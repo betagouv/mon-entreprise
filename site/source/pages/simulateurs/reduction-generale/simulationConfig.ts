@@ -1,9 +1,6 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configRéductionGénérale: SimulationConfig = {
-	// TODO: remplacer 'salarié . cotisations . assiette' par 'salarié . rémunération . brut'
-	// lorsque cette dernière n'incluera plus les frais professionnels.
-	'objectifs exclusifs': ['salarié . cotisations . assiette'],
 	objectifs: ['salarié . cotisations . exonérations . réduction générale'],
 	questions: {
 		"à l'affiche": [

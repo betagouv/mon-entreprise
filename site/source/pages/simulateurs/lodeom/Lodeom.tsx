@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -9,7 +10,12 @@ import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Emoji } from '@/design-system/emoji'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useZoneLodeom } from '@/hooks/useZoneLodeom'
+import { barèmeLodeomDottedName } from '@/hooks/useBarèmeLodeom'
+import {
+	useZoneLodeom,
+	zones,
+	zonesLodeomDottedName,
+} from '@/hooks/useZoneLodeom'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 import BarèmeSwitch from './components/BarèmeSwitch'
@@ -40,9 +46,18 @@ export default function LodeomSimulation() {
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
 
+	const firstStepCompletedExceptions = [
+		zonesLodeomDottedName,
+		...zones.map((zone) => barèmeLodeomDottedName(zone)),
+		'entreprise . salariés . effectif' as DottedName,
+	]
+
 	return (
 		<>
-			<Simulation afterQuestionsSlot={<YearSelectionBanner />}>
+			<Simulation
+				firstStepCompletedExceptions={firstStepCompletedExceptions}
+				afterQuestionsSlot={<YearSelectionBanner />}
+			>
 				<SimulateurWarning
 					simulateur="lodeom"
 					informationsComplémentaires={

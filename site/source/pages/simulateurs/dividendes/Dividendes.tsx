@@ -21,10 +21,15 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {
+	const firstStepCompletedExceptions = [
+		'impôt . méthode de calcul' as DottedName,
+	]
+
 	return (
 		<>
 			<Notifications />
 			<Simulation
+				firstStepCompletedExceptions={firstStepCompletedExceptions}
 				explanations={<DividendesExplanation />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>
