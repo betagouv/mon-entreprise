@@ -54,7 +54,7 @@ export default function GuichetInfo({ codeApe }: { codeApe: string }) {
 	}
 
 	return (
-		<Ul noMarker>
+		<Ul $noMarker>
 			{guichetEntries.map((guichetEntry) => {
 				return (
 					<Li key={guichetEntry.code}>

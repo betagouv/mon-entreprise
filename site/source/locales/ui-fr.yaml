@@ -399,7 +399,6 @@ Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d�
 Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.:
   Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
   résultat.
-Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>
 "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).":
   "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
   existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
@@ -1842,6 +1841,8 @@ pages:
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
     salarié:
+      SASU: Vous êtes dirigeant d'une SAS(U) ? <2>Accédez au simulateur de revenu
+        dédié</2>
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
