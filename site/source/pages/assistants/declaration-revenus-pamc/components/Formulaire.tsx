@@ -87,9 +87,9 @@ export default function Formulaire() {
 				</H2>
 				<SimpleField dottedName="déclaration revenus PAMC . autres revenus non salariés" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme" />
-				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . vente de marchandises" />
-				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . prestation de service" />
-				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . agricole" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BIC marchandises" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BIC service" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BA" />
 
 				<WhenApplicable dottedName="déclaration revenus PAMC . actes conventionnés uniquement">
 					<H2>

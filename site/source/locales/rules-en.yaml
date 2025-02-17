@@ -4645,24 +4645,55 @@ déclaration revenus PAMC . autres revenus non salariés:
     régime micro-BNC ?
   titre.en: '[automatic] other self-employed income'
   titre.fr: autres revenus non salariés
+déclaration revenus PAMC . autres revenus non salariés . BIC:
+  description.en: >
+    [automatic] For example, professional income from furnished rentals or a
+    sales activity.
+
+    sales activity.
+  description.fr: |
+    Par exemple, des revenus professionnels issus de locations meublées ou d’une
+    activité de vente.
+  titre.en: '[automatic] BIC profit/loss'
+  titre.fr: bénéfice/déficit BIC
 déclaration revenus PAMC . autres revenus non salariés . agricole:
+  titre.en: '[automatic] farm profit/loss'
+  titre.fr: bénéfice/déficit agricole
+déclaration revenus PAMC . autres revenus non salariés . micro-BA:
   description.en: '[automatic] Indicate your sales figures without applying an allowance.'
   description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BA: farm sales'
   titre.fr: 'micro-BA : chiffre d’affaires agricole'
-déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
-  titre.en: '[automatic] net short-term capital gains'
-  titre.fr: plus-values nettes à court terme
-déclaration revenus PAMC . autres revenus non salariés . prestation de service:
-  description.en: '[automatic] Indicate your sales figures without applying an allowance.'
-  description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
-  titre.en: '[automatic] micro-BIC: sales of services'
-  titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
-déclaration revenus PAMC . autres revenus non salariés . vente de marchandises:
+déclaration revenus PAMC . autres revenus non salariés . micro-BIC marchandises:
   description.en: '[automatic] Indicate your sales figures without applying an allowance.'
   description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BIC: sales of goods'
   titre.fr: 'micro-BIC : chiffre d’affaires vente de marchandises'
+déclaration revenus PAMC . autres revenus non salariés . micro-BIC service:
+  description.en: '[automatic] Indicate your sales figures without applying an allowance.'
+  description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
+  titre.en: '[automatic] micro-BIC: sales of services'
+  titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
+déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
+  titre.en: '[automatic] net short-term capital gains'
+  titre.fr: plus-values nettes à court terme
+déclaration revenus PAMC . cotisations facultatives:
+  description.en: >
+    [automatic] You will find this amount in **headings BU and BZ** of your
+    professional
+
+    2035 business tax return.
+  description.fr: |
+    Vous retrouverez ce montant dans les **rubriques BU et BZ** de votre liasse
+    professionnelle 2035.
+  titre.en: '[automatic] optional contributions'
+  titre.fr: cotisations facultatives
+déclaration revenus PAMC . cotisations facultatives . activité conventionnée:
+  titre.en: '[automatic] activity under agreement'
+  titre.fr: activité conventionnée
+déclaration revenus PAMC . cotisations facultatives . autres activités non salariées:
+  titre.en: '[automatic] other self-employed activities'
+  titre.fr: autres activités non salariées
 déclaration revenus PAMC . cotisations sociales obligatoires:
   description.en: >
     [automatic] Indicate the amount of contributions paid to Urssaf and your
@@ -4686,6 +4717,12 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
       AT/MP</abbr>
       - <abbr title="indemnités journalières">IJ</abbr> and old-age pension contributions
       for your collaborating spouse
+
+    If you are subject to **tax sur le revenu en régime réel ou en déclaration
+
+    controlled declaration**, you will find this amount in the **BT heading** of your professional
+
+    2035 business tax return.
   description.fr: >
     Indiquez le montant des cotisations payées à l’Urssaf et à votre caisse de
 
@@ -4707,6 +4744,12 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
       AT/MP</abbr>
       - les cotisations <abbr title="indemnités journalières">IJ</abbr> et vieillesse
       de votre conjoint collaborateur / conjointe collaboratrice
+
+    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration
+
+    contrôlée**, vous retrouverez ce montant dans la **rubrique BT** de votre liasse
+
+    professionnelle 2035.
   titre.en: '[automatic] compulsory social security contributions'
   titre.fr: cotisations sociales obligatoires
 déclaration revenus PAMC . déductions et exonérations:
@@ -4719,17 +4762,43 @@ déclaration revenus PAMC . déductions et exonérations . chèques vacances:
   description.fr: Indiquez le montant total des chèques vacances octroyés.
   titre.en: '[automatic] amount of vacation vouchers deducted from taxable income'
   titre.fr: montant des chèques vacances déduits du revenu imposable
+déclaration revenus PAMC . déductions et exonérations . déduction groupe III:
+  description.en: >
+    [automatic] These tax deductions are granted to contracted doctors. They do
+    not
+
+    the nature of deductions for professional expenses and will be reintegrated
+
+    social security contributions.
+
+
+    You will find these amounts in **section CQ** of your professional tax return.
+
+    2035.
+  description.fr: >
+    Ces déductions fiscales sont accordées aux médecins conventionnés. Elles
+    n’ont
+
+    pas le caractère de déductions pour frais professionnels et seront réintégrées
+
+    dans l’assiette sociale.
+
+
+    Vous retrouverez ces montants en **rubrique CQ** de votre liasse professionnelle
+
+    2035.
+  titre.en: '[automatic] Group III deduction and 3% additional deduction'
+  titre.fr: déduction du groupe III et déduction complémentaire 3%
 déclaration revenus PAMC . déductions et exonérations . plus-values à court terme:
   description.en: >
-    [automatic] Indicate the net amount of tax-exempt short-term capital gains,
-    without applying
+    [automatic] **If you are covered by the micro-tax system**, enter the net
+    amount of the exempted
 
-    any allowance or mark-up.
+    exempted short-term capital gain, without applying any allowance or mark-up.
   description.fr: >
-    Indiquez le montant net de la plus-value à court terme exonérée, sans
-    appliquer
+    **Si vous relevez du régime micro-fiscal**, indiquez le montant net de la
 
-    d’abattement ni de majoration.
+    plus-value à court terme exonérée, sans appliquer d’abattement ni de majoration.
   titre.en: '[automatic] tax-exempt short-term capital gains'
   titre.fr: plus-values à court terme exonérées
 déclaration revenus PAMC . déductions et exonérations . revenus exonérés:
@@ -4743,6 +4812,20 @@ déclaration revenus PAMC . déductions et exonérations . total déductible:
   titre.en: '[automatic] total deductible'
   titre.fr: total déductible
 déclaration revenus PAMC . déductions et exonérations . zone déficitaire en offre de soins:
+  description.en: >
+    [automatic] If you are subject to the **tax sur le revenu en régime réel ou
+    en déclaration
+
+    controlled declaration**, you will find this amount under the CI heading** on your professional
+
+    2035 business tax return.
+  description.fr: >
+    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en
+    déclaration
+
+    contrôlée**, vous retrouverez ce montant en **rubrique CI** de votre liasse
+
+    professionnelle 2035.
   titre.en: '[automatic] exemption for areas with a shortage of healthcare services'
   titre.fr: exonération zone déficitaire en offre de soins
 déclaration revenus PAMC . profession:
@@ -4759,6 +4842,9 @@ déclaration revenus PAMC . profession:
     médecin:
       titre.en: '[automatic] doctor'
       titre.fr: médecin
+    médecin secteur 1:
+      titre.en: '[automatic] sector 1 doctor'
+      titre.fr: médecin secteur 1
     médecin secteur 1 généraliste:
       titre.en: '[automatic] sector 1 general practitioner'
       titre.fr: médecin secteur 1 généraliste
@@ -4786,23 +4872,37 @@ déclaration revenus PAMC . profession:
   titre.fr: profession
 déclaration revenus PAMC . recettes brutes totales:
   description.en: >
-    [automatic] Indicate the total sales generated by your self-employed
-    activities, without
+    [automatic] **If you are covered by the micro-tax system:** Indicate the
+    total sales generated by your
 
-    activities, without applying any deductions. In most cases, gross revenues are equivalent
+    generated by your self-employed activities, without applying any deductions.
 
-    equivalent to item 5HQ of the professional income tax return
+    In most cases, gross revenues are equivalent to item 5HQ
 
-    n°2042-C-PRO.
+    of the tax return n°2042-C-PRO.
+
+
+    **If you are subject to income tax under the "régime réel" or "déclaration contrôlée" system:**
+
+    Indicate all sales generated by all your self-employed activities
+
+    all your self-employed activities.
   description.fr: >
-    Indiquez la totalité de votre chiffre d’affaires généré par vos activités
-    non
+    **Si vous relevez du régime micro-fiscal :** Indiquez la totalité de votre
+    chiffre
 
-    salariées, sans application d’abattement. Dans la majorité des cas, les recettes
+    d’affaires généré par vos activités non salariées, sans application d’abattement.
 
-    brutes sont équivalentes à la rubrique 5HQ de la déclaration des revenus
+    Dans la majorité des cas, les recettes brutes sont équivalentes à la rubrique 5HQ
 
-    professionnelle n°2042-C-PRO.
+    de la déclaration des revenus n°2042-C-PRO.
+
+
+    **Si vous êtes soumis à l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
+
+    Indiquez la totalité de votre chiffre d’affaires généré par
+
+    l’ensemble de vos activités non salariées.
   titre.en: '[automatic] total gross revenues'
   titre.fr: recettes brutes totales
 déclaration revenus PAMC . revenus de remplacement:
@@ -4830,23 +4930,72 @@ déclaration revenus PAMC . revenus de remplacement . AJPA:
     Les allocations familiales versées par la CAF ne sont pas à renseigner.
   titre.en: '[automatic] amount of AJPA paid by Caf'
   titre.fr: montant perçu de l’AJPA versée par la Caf
+déclaration revenus PAMC . revenus de remplacement . IJ:
+  description.en: |
+    [automatic] Indicate the amounts received as sickness, maternity,
+    paternity and adoption benefits.
+  description.fr: |
+    Indiquez les montants perçus au titre des indemnités maladie, maternité,
+    paternité et adoption versées par la CPAM.
+  titre.en: '[automatic] amount of daily allowance paid by the CPAM'
+  titre.fr: montant des indemnités journalières versées par la CPAM
+déclaration revenus PAMC . revenus de remplacement . indemnités incapacité temporaire:
+  description.en: >
+    [automatic] Indicate the amounts received in respect of temporary incapacity
+    benefits
+
+    paid by your pension fund, if these are included in your BNC,
+
+    BIC or art. 62 remuneration.
+  description.fr: >
+    Indiquez les montants perçus au titre des indemnités d’incapacité temporaire
+
+    versées par votre caisse de retraite, si celles-ci sont incluses dans votre BNC,
+
+    BIC ou rémunération art. 62.
+  titre.en: '[automatic] amount of temporary disability benefits paid by your
+    pension fund'
+  titre.fr: montant des indemnités d’incapacité temporaire versées par votre
+    caisse de retraite
 déclaration revenus PAMC . revenus de remplacement . total:
   titre.en: '[automatic] total'
   titre.fr: total
 déclaration revenus PAMC . revenus imposables:
   description.en: >
-    [automatic] Indicate the amount of gross sales generated under the micro-BNC
-    scheme,
+    [automatic] **If you are covered by the micro-tax regime:** Indicate the
+    amount of gross sales
 
-    without applying an allowance. This is the amount you entered in
+    sales under the micro-BNC scheme, without applying an allowance. It
 
-    box 5HQ of professional tax return n°2042-C-PRO.
+    the amount you indicated in **section 5HQ** of your tax return
+
+    tax return n°2042-C-PRO.
+
+
+    **If you are subject to income tax under the "régime réel" or the "déclaration contrôlée" system:**
+
+    Indicate the amount of your profit or loss. This amount
+
+    corresponds to **section 5QC or 5QE** of your income tax return
+
+    n°2042-C-PRO.
   description.fr: >
-    Indiquez le montant du chiffre d’affaires brut réalisé au régime micro-BNC,
+    **Si vous relevez du régime micro-fiscal :** Indiquez le montant du chiffre
 
-    sans appliquer d’abattement. Il s’agit du montant que vous avez indiqué dans la
+    d’affaires brut réalisé au régime micro-BNC, sans appliquer d’abattement. Il
 
-    case 5HQ de la déclaration des revenus professionnelle n°2042-C-PRO.
+    s’agit du montant que vous avez indiqué dans la **rubrique 5HQ** de la
+
+    déclaration des revenus n°2042-C-PRO.
+
+
+    **Si vous êtes soumis à l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
+
+    Indiquez le montant de votre bénéfice ou déficit. Ce montant
+
+    correspond à la **rubrique 5QC ou 5QE** de votre déclaration des revenus
+
+    n°2042-C-PRO.
   titre.en: '[automatic] taxable income'
   titre.fr: revenus imposables
 déclaration revenus PAMC . revenus nets:
@@ -4870,6 +5019,24 @@ déclaration revenus PAMC . revenus nets . revenus non conventionnés:
 déclaration revenus PAMC . revenus nets . revenus structures de soins:
   titre.en: '[automatic] income from care facilities'
   titre.fr: revenus structures de soins
+déclaration revenus PAMC . régime fiscal:
+  avec:
+    IR déclaration contrôlée:
+      titre.en: '[automatic] income tax - controlled declaration'
+      titre.fr: impôt sur le revenu - déclaration contrôlée
+    IR micro-fiscal:
+      titre.en: '[automatic] income tax - micro-tax system'
+      titre.fr: impôt sur le revenu - régime micro-fiscal
+    IR non micro-fiscal:
+      titre.en: '[automatic] Non-micro-tax IR'
+      titre.fr: IR non micro-fiscal
+    IR réel:
+      titre.en: '[automatic] income tax - actual system'
+      titre.fr: impôt sur le revenu - régime réel
+  question.en: '[automatic] What is your tax status?'
+  question.fr: Quel est votre régime fiscal ?
+  titre.en: '[automatic] tax system'
+  titre.fr: régime fiscal
 déclaration revenus PAMC . résultats:
   avec:
     champs autres professions:
