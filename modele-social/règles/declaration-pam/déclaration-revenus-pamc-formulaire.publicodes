@@ -46,6 +46,10 @@ déclaration revenus PAMC . profession:
         - profession = 'médecin secteur 1 généraliste'
         - profession = 'médecin secteur 1 spécialiste'
         - profession = 'médecin secteur 2'
+    médecin secteur 1:
+      une de ces conditions:
+        - profession = 'médecin secteur 1 généraliste'
+        - profession = 'médecin secteur 1 spécialiste'
 
 déclaration revenus PAMC . statut:
   question: Quel était votre statut d’exercice au 1er janvier ou à votre date de début d’activité ?
@@ -71,20 +75,59 @@ déclaration revenus PAMC . statut:
       titre: remplaçant / remplaçante
       valeur: statut = 'remplaçant'
 
+déclaration revenus PAMC . régime fiscal:
+  question: Quel est votre régime fiscal ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - IR micro-fiscal
+      - IR réel
+      - IR déclaration contrôlée
+  par défaut: "'IR micro-fiscal'"
+
+  avec:
+
+    IR micro-fiscal:
+      titre: impôt sur le revenu - régime micro-fiscal
+      valeur: régime fiscal = 'IR micro-fiscal'
+
+    IR réel:
+      titre: impôt sur le revenu - régime réel
+      valeur: régime fiscal = 'IR réel'
+
+    IR déclaration contrôlée:
+      titre: impôt sur le revenu - déclaration contrôlée
+      valeur: régime fiscal = 'IR déclaration contrôlée'
+
+    IR non micro-fiscal:
+      une de ces conditions:
+        - régime fiscal = 'IR réel'
+        - régime fiscal = 'IR déclaration contrôlée'
+
 déclaration revenus PAMC . recettes brutes totales:
   unité: €/an
   description: |
-    Indiquez la totalité de votre chiffre d’affaires généré par vos activités non
-    salariées, sans application d’abattement. Dans la majorité des cas, les recettes
-    brutes sont équivalentes à la rubrique 5HQ de la déclaration des revenus
-    professionnelle n°2042-C-PRO.
+    **Si vous relevez du régime micro-fiscal :** Indiquez la totalité de votre chiffre
+    d’affaires généré par vos activités non salariées, sans application d’abattement.
+    Dans la majorité des cas, les recettes brutes sont équivalentes à la rubrique 5HQ
+    de la déclaration des revenus n°2042-C-PRO.
+
+    **Si vous êtes soumis à l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
+    Indiquez la totalité de votre chiffre d’affaires généré par
+    l’ensemble de vos activités non salariées.
 
 déclaration revenus PAMC . revenus imposables:
   unité: €/an
   description: |
-    Indiquez le montant du chiffre d’affaires brut réalisé au régime micro-BNC,
-    sans appliquer d’abattement. Il s’agit du montant que vous avez indiqué dans la
-    case 5HQ de la déclaration des revenus professionnelle n°2042-C-PRO.
+    **Si vous relevez du régime micro-fiscal :** Indiquez le montant du chiffre
+    d’affaires brut réalisé au régime micro-BNC, sans appliquer d’abattement. Il
+    s’agit du montant que vous avez indiqué dans la **rubrique 5HQ** de la
+    déclaration des revenus n°2042-C-PRO.
+
+    **Si vous êtes soumis à l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
+    Indiquez le montant de votre bénéfice ou déficit. Ce montant
+    correspond à la **rubrique 5QC ou 5QE** de votre déclaration des revenus
+    n°2042-C-PRO.
 
 déclaration revenus PAMC . cotisations sociales obligatoires:
   unité: €/an
@@ -107,6 +150,17 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
       AT/MP</abbr>
       - les cotisations <abbr title="indemnités journalières">IJ</abbr> et vieillesse
       de votre conjoint collaborateur / conjointe collaboratrice
+
+    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration
+    contrôlée**, vous retrouverez ce montant dans la **rubrique BT** de votre liasse
+    professionnelle 2035.
+
+déclaration revenus PAMC . cotisations facultatives:
+  applicable si: régime fiscal . IR non micro-fiscal
+  unité: €/an
+  description: |
+    Vous retrouverez ce montant dans les **rubriques BU et BZ** de votre liasse
+    professionnelle 2035.
 
 déclaration revenus PAMC . SNIR:
 
@@ -174,6 +228,26 @@ déclaration revenus PAMC . déductions et exonérations . zone déficitaire en 
   titre: exonération zone déficitaire en offre de soins
   unité: €/an
   par défaut: 0
+  description: |
+    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration
+    contrôlée**, vous retrouverez ce montant en **rubrique CI** de votre liasse
+    professionnelle 2035.
+
+déclaration revenus PAMC . déductions et exonérations . déduction groupe III:
+  applicable si:
+    toutes ces conditions:
+      - régime fiscal . IR non micro-fiscal
+      - profession . médecin secteur 1
+  titre: déduction du groupe III et déduction complémentaire 3%
+  unité: €/an
+  par défaut: 0
+  description: |
+    Ces déductions fiscales sont accordées aux médecins conventionnés. Elles n’ont
+    pas le caractère de déductions pour frais professionnels et seront réintégrées
+    dans l’assiette sociale.
+
+    Vous retrouverez ces montants en **rubrique CQ** de votre liasse professionnelle
+    2035.
 
 déclaration revenus PAMC . déductions et exonérations . revenus exonérés:
   titre: revenus exonérés
@@ -185,8 +259,8 @@ déclaration revenus PAMC . déductions et exonérations . plus-values à court 
   unité: €/an
   par défaut: 0
   description: |
-    Indiquez le montant net de la plus-value à court terme exonérée, sans appliquer
-    d’abattement ni de majoration.
+    **Si vous relevez du régime micro-fiscal**, indiquez le montant net de la
+    plus-value à court terme exonérée, sans appliquer d’abattement ni de majoration.
 
 déclaration revenus PAMC . déductions et exonérations . chèques vacances:
   titre: montant des chèques vacances déduits du revenu imposable
@@ -200,26 +274,45 @@ déclaration revenus PAMC . autres revenus non salariés:
 
 déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
   titre: plus-values nettes à court terme
+  applicable si: régime fiscal . IR micro-fiscal
   unité: €/an
   par défaut: 0
 
-déclaration revenus PAMC . autres revenus non salariés . vente de marchandises:
+déclaration revenus PAMC . autres revenus non salariés . micro-BIC marchandises:
   titre: 'micro-BIC : chiffre d’affaires vente de marchandises'
+  applicable si: régime fiscal . IR micro-fiscal
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
-déclaration revenus PAMC . autres revenus non salariés . prestation de service:
+déclaration revenus PAMC . autres revenus non salariés . micro-BIC service:
   titre: 'micro-BIC : chiffre d’affaires prestation de service'
+  applicable si: régime fiscal . IR micro-fiscal
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
+
+déclaration revenus PAMC . autres revenus non salariés . micro-BA:
+  titre: 'micro-BA : chiffre d’affaires agricole'
+  applicable si: régime fiscal . IR micro-fiscal
+  unité: €/an
+  par défaut: 0
+  description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
+
+déclaration revenus PAMC . autres revenus non salariés . BIC:
+  titre: bénéfice/déficit BIC
+  applicable si: régime fiscal . IR non micro-fiscal
+  unité: €/an
+  par défaut: 0
+  description: |
+    Par exemple, des revenus professionnels issus de locations meublées ou d’une
+    activité de vente.
 
 déclaration revenus PAMC . autres revenus non salariés . agricole:
-  titre: 'micro-BA : chiffre d’affaires agricole'
+  titre: bénéfice/déficit agricole
+  applicable si: régime fiscal . IR non micro-fiscal
   unité: €/an
   par défaut: 0
-  description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
 déclaration revenus PAMC . actes conventionnés uniquement:
   non applicable si:
@@ -239,8 +332,31 @@ déclaration revenus PAMC . revenus de remplacement:
 
 déclaration revenus PAMC . revenus de remplacement . total:
   somme:
+    - IJ
+    - indemnités incapacité temporaire
     - AJPA
   unité: €/an
+
+déclaration revenus PAMC . revenus de remplacement . IJ:
+  titre: montant des indemnités journalières versées par la CPAM
+  applicable si: régime fiscal . IR non micro-fiscal
+  unité: €/an
+  par défaut: 0
+  description: |
+    Indiquez les montants perçus au titre des indemnités maladie, maternité,
+    paternité et adoption versées par la CPAM.
+
+déclaration revenus PAMC . revenus de remplacement . indemnités incapacité temporaire:
+  titre: montant des indemnités d’incapacité temporaire versées par votre caisse de retraite
+  applicable si: régime fiscal . IR non micro-fiscal
+  unité: €/an
+  par défaut: 0
+  description: |
+    Indiquez les montants perçus au titre des indemnités d’incapacité temporaire
+    versées par votre caisse de retraite, si celles-ci sont incluses dans votre BNC,
+    BIC ou rémunération art. 62.
+  références:
+    Article 62 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019288260
 
 déclaration revenus PAMC . revenus de remplacement . AJPA:
   titre: montant perçu de l’AJPA versée par la Caf

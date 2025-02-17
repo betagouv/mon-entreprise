@@ -105,17 +105,17 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}___vente_de_marchandises`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}___prestation_de_service`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}___agricole`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA`).should('not.exist')
 
 		cy.contains(
 			'Avez-vous effectué uniquement des actes conventionnés ?'
@@ -616,17 +616,17 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}___vente_de_marchandises`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}___prestation_de_service`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}___agricole`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA`).should('not.exist')
 
 		cy.get(`#${idPrefix}_${autresRevenus}`).contains('Oui').click()
 
@@ -637,17 +637,17 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}___vente_de_marchandises`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises`).should(
 			'be.visible'
 		)
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}___prestation_de_service`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service`).should(
 			'be.visible'
 		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}___agricole`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA`).should('be.visible')
 	})
 
 	it('devrait montrer le champ pour les revenus de remplacement conditionnellement', function () {
