@@ -2,7 +2,13 @@
 
 ## next
 
-## Mises à jour
+### Breaking changes
+- Renommage des règles enfant de `déclaration revenus PAMC . autres revenus non salariés`
+
+### Nouveautés
+- Ajout des règles pour l'IR non micro-fiscal à `déclaration revenus PAMC`
+
+### Mises à jour
 - Mises à jour des valeurs CARPIMKO pour 2025
 
 ## 5.0.0
