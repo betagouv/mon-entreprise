@@ -57,6 +57,7 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Hello, I'm a baker and I couldn't find "bread" or "viennoiserie" when I
   searched.
 Budget: Budget
+Bénéfice: Profit
 Cette commune n'existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
@@ -81,6 +82,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Our partner Conseillers-Entreprises.Service-Public.fr will identify, from among all our public and semi-public partners,
     the right advisor for your request.
     He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
+Déficit: Deficit
 Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
@@ -837,34 +839,46 @@ pages:
     declaration-revenus-pamc:
       formulaire:
         "1": Profession
-        "2": Recipes
-        "3": SNIR survey data
-        "4": Care facilities
-        "5": Deductions and exemptions
-        "6": Other self-employed income
-        "7": Covered procedures
-        "8": Replacement income
+        "2": Tax system
+        "3": Recipes
+        "4": SNIR survey data
+        "5": Care facilities
+        "6": Deductions and exemptions
+        "7": Other self-employed income
+        "8": Covered procedures
+        "9": Replacement income
       meta:
         description: Calculate the amounts of your income to report on your tax return.
         title: PAMC tax return
       resultats:
-        "1": Amounts to report on your tax return
-        "10": "Net income from other self-employed activities :"
-        "11": Data provided by Assurance Maladie
-        "2": Situation on January 1 or on the date of commencement of activity
-        "3": You are a holder
-        "4": You are a replacement
-        "5": Replacement income
-        "6": Deductions and exemptions
-        "7": Compulsory social security contributions
-        "8": Breakdown of net income
-        "9": "Net income from contract activity :"
+        label:
+          "1": Situation on January 1 or on the date of commencement of activity
+          "10": Of which net income from activities carried out in care facilities
+          "11": Of which optional contributions linked to the activity covered by the
+            agreement
+          "12": Of which voluntary contributions related to other self-employed activities
+          "2": You are a holder
+          "3": You are a replacement
+          "4": Total gross revenue from self-employed activities
+          "5": Sector 1 doctor - 3% additional deduction
+          "6": Tax-deductible vacation vouchers
+          "7": Compulsory social security contributions deducted from taxable income
+          "8": "Net income from contract activity :"
+          "9": "Net income from other self-employed activities :"
+        title:
+          "1": Amounts to report on your tax return
+          "2": Replacement income
+          "3": Deductions and exemptions
+          "4": Compulsory social security contributions
+          "5": Breakdown of net income
+          "6": Optional contributions
+          "7": Data provided by Assurance Maladie
       shortname: PAMC tax return assistant
       title: PAMC tax return assistant
-      warning: <0>This assistant is designed for <2>practitioners and medical
-        auxiliaries under contract (PAMC).</2></0><1>It manages the <1>micro-tax
-        system</1> only.</1><2>Its purpose is to help you fill in the <2>social
-        section of your tax return</2> on <5>impots.gouv.fr</5>.</2><3><0>In the
+      warning: <0>This assistant is intended for <2>practitioners and medical
+        auxiliaries under contract (PAMC)</2>.</0><1>It handles<1>income tax</1>
+        only.</1><2>Its purpose is to help you fill in the <2>social section of
+        your income tax return</2> on <5>impots.gouv.fr</5>.</2><3><0>In the
         event of a deficit</0>, enter a "-" in front of the amount.</3><4><0>The
         wizard does not take into account the following
         situations:</0><1><0>foreign income</0><1>non-professional
