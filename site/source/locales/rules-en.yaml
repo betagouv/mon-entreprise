@@ -6158,22 +6158,36 @@ entreprise . chiffre d'affaires . seuil micro:
   titre.fr: seuil micro
 entreprise . chiffre d'affaires . seuil micro . dépassé:
   description.en: >
-    [automatic] The status of micro-enterprise applies as long as the annual
-    turnover (effectively collected during the calendar year) does not exceed
-    the thresholds of the micro-enterprise tax regime.
+    [automatic] Micro-enterprise status applies for as long as annual sales
+
+    (actually received during the calendar year) does not exceed the thresholds of the
+
+    micro-enterprise tax regime.
 
 
-    In case of exceeding **over two consecutive years**, the company automatically switches to the [sole proprietorship](/simulator/self-employed) regime.
+    If these thresholds are exceeded **over two consecutive years**, the company is automatically
+
+    automatically switches to the [sole proprietorship
+
+    sole proprietorship] regime.
 
 
-    At the end of the first year of activity, the turnover is prorated according to the duration of activity.
+    At the end of the first year of activity, sales are prorated according to the length of
+
+    duration of activity.
 
 
-    ##### Example:
+    &gt; ##### Example:
 
-    &gt; A taxpayer creates a company on August 1 and collects revenues of €50,000 before tax during the five months of activity of his first calendar year of operation.
+    &gt; A taxpayer sets up a business on August 1 and receives revenues of
 
-    &gt; The receipts of this first calendar year are adjusted *prorata temporis* to compare them to the ceiling:
+    &gt; 50,000 over the five months of the first calendar year.
+
+    &gt; of operations.
+
+    &gt; Revenues for this first calendar year are adjusted *prorata temporis* to &gt; compare them with the ceiling
+
+    &gt; to compare with the ceiling:
 
     &gt;
 
@@ -6181,37 +6195,54 @@ entreprise . chiffre d'affaires . seuil micro . dépassé:
 
 
 
-    The expenses are not deductible for the calculation of the ceiling (as for the calculation of the contributions)
+    Expenses are not deductible when calculating the ceiling (as they are when calculating
+
+    calculation of contributions)
 
 
 
     ### Multi-activity
 
 
-    When an entrepreneur carries out 2 activities within his or her micro-enterprise, the
+    When an entrepreneur carries out 2 activities within his micro-enterprise, the sales
 
-    the turnover threshold is not doubled. In
+    sales threshold is not doubled. This is because
 
-    Indeed, the exercise of several activities with the same micro-enterprise
+    carrying out several activities with the same micro-enterprise does not increase
 
-    does not increase the thresholds.
+    thresholds.
   description.fr: >
-    Le statut de micro-entreprise s'applique tant que le chiffre d'affaires
-    annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas
-    les seuils du régime fiscal de la micro-entreprise.
+    Le statut de micro-entreprise s’applique tant que le chiffre d’affaires
+    annuel
+
+    (effectivement encaissé au cours de l’année civile) ne dépasse pas les seuils du
+
+    régime fiscal de la micro-entreprise.
 
 
-    En cas de dépassement **sur deux années consécutives**, l'entreprise bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
+    En cas de dépassement **sur deux années consécutives**, l’entreprise bascule
+
+    automatiquement dans le régime de [l’entreprise
+
+    individuelle](/simulateurs/indépendant).
 
 
-    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité.
+    À la fin de la première année d’activité, le CA est proratisé par rapport à la
+
+    durée d’activité.
 
 
     > ##### Exemple :
 
-    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation.
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de
 
-    > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
+    > `50 000 €` au cours des cinq mois d’activité de sa première année civile
+
+    > d’exploitation.
+
+    > Les recettes de cette première année civile sont ajustées *prorata temporis*
+
+    > pour les comparer au plafond :
 
     >
 
@@ -6219,20 +6250,22 @@ entreprise . chiffre d'affaires . seuil micro . dépassé:
 
 
 
-    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
+    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le
+
+    calcul des cotisations)
 
 
 
     ### Multi-activité
 
 
-    Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+    Lorsqu’un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
 
-    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En effet
 
-    effet l'exercice de plusieurs activités avec la même micro-entreprise
+    l’exercice de plusieurs activités avec la même micro-entreprise n’augmente pas
 
-    n’augmente pas les seuils.
+    les seuils.
   titre.en: '[automatic] exceeded'
   titre.fr: dépassé
 entreprise . chiffre d'affaires . seuil micro . libérale:
@@ -6553,53 +6586,89 @@ entreprise . exercice:
   titre.en: '[automatic] exercise'
   titre.fr: exercice
 entreprise . imposition:
-  question.en: '[automatic] What type of taxation does your company have?'
-  question.fr: Quel est le type d'imposition de votre entreprise ?
+  question.en: '[automatic] How is your company taxed?'
+  question.fr: Quel est le type d’imposition de votre entreprise ?
   titre.en: '[automatic] taxation'
   titre.fr: imposition
 entreprise . imposition . IR:
-  description.en: '[automatic] '
+  description.en: >
+    [automatic] Your company's profits are subject to income tax, like your
+    household's other income.
+
+    other household income.
+
+
+    The result is determined when you fill in the **liasse fiscale** (also known as the
+
+    income tax return). This is done by your chartered accountant.
+
+
+    If your company makes money, the result is called **profit**. It
+
+    is added to other taxable income (if any): **your income tax
+
+    is higher**.
+
+
+    If your company loses money, the result is called a **deficit**. It
+
+    reduces your household's taxable income: **your income tax
+
+    is lower**.
+
+
+    Note: with income tax, there is no tax difference between your household income
+
+    between your household income and that of your company.
   description.fr: >
-    Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme
-    les autres revenus de
+    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme
+    les
 
-    votre foyer.
-
-
-    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
-
-    déclaration de résultat). C'est l'expert-comptable qui s'en charge.
+    autres revenus de votre foyer.
 
 
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
 
-    revenus imposables (s'ils existent) : **votre impôt sur le revenu est plus élevé**.
-
-
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du
-
-    revenu imposable de votre ménage : **votre impôt sur le revenu est moins élevé**.
+    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
 
 
-    À noter : avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
 
-    votre entreprise.
+    est ajouté aux autres revenus imposables (s’ils existent) : **votre impôt sur le
+
+    revenu est plus élevé**.
+
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
+
+    vient réduire le montant du revenu imposable de votre ménage : **votre impôt sur
+
+    le revenu est moins élevé**.
+
+
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
+
+    entre les revenus de votre foyer et ceux de votre entreprise.
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
 entreprise . imposition . IR . information sur le report de déficit:
   description.en: >
-    [automatic] When your taxable income is negative, it reduces the taxable
-    income of the tax household.
+    [automatic] When your taxable income is negative, this is deducted from your
+    taxable
 
-    A deficit can be deducted up to 6 years after its realization.
+    taxable income.
+
+    A deficit can be offset up to 6 years after it is incurred.
 
 
-    See detailed tax rules](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
+    [See detailed tax rules](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
   description.fr: >
     Lorsque votre résultat fiscal est négatif, ce dernier vient réduire le
-    revenu imposables du foyer fiscal.
+    revenu
 
-    Un déficit peut être imputé jusqu'à 6 ans après sa réalisation.
+    imposables du foyer fiscal.
+
+    Un déficit peut être imputé jusqu’à 6 ans après sa réalisation.
 
 
     [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
@@ -6626,62 +6695,120 @@ entreprise . imposition . IR . type de bénéfices . BNC:
   titre.en: '[automatic] BNC'
   titre.fr: BNC
 entreprise . imposition . IS:
-  description.en: '[automatic] '
+  description.en: >-
+    [automatic] 
+
+    Your company's **results** are subject to corporate income tax.
+
+
+    If your company loses money, the result is called a **deficit**. It
+
+    will not have to pay corporate income tax.
+
+
+    If your company makes money, the result is called **profit**.
+
+    It will be taxed at a **fixed rate**.
+
+
+    Taxable income is determined when you fill out your **liasse fiscale** (tax return).
+
+    (also known as an income tax return). This is done by the chartered accountant.
+
+
+
+    Please note: there are **two ways to earn income** with a company that pays income tax
+
+    company:
+      - You can pay yourself a salary as a director during the year.
+      the year. This remuneration is deducted (subtracted) from your income to calculate
+      your company's taxable profit. On the other hand, this remuneration is
+      added to your household's taxable income for income tax purposes.
+      income tax.
+      - You can also pay yourself dividends from previous years' profits.
+      previous years. You will have to pay a fixed tax on these: this is known as the "flat tax".
+      known as "flat tax".
+
+      In all cases, you will have to pay **social contributions** on the income you
+      income you receive.
   description.fr: >-
 
-    Le **résultat** de votre entreprise est imposé à l'**impôt sur les sociétés**.
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
 
 
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
 
-    sur les sociétés.
-
-
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un
-
-    **taux fixe**.
+    n’aura pas à payer d’impôt sur les sociétés.
 
 
-    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
 
-    déclaration de résultat). C'est l'expert-comptable qui s'en charge.
+    Il sera imposé à un **taux fixe**.
+
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
+
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
 
 
 
-    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés :
-      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est
-      déduite (soustraite) du résultat pour calculer le bénéfice imposable de votre entreprise. En revanche, cette
-      rémunération est ajoutée aux revenus imposables de votre foyer pour le calcul de l'impôt sur le revenu.
-      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des années précédentes. Vous aurez à payer
-      un impôt fixe sur ces derniers : c'est ce que l'on appelle la "flat tax".
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
 
-      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les revenus que vous touchez.
+    sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
+      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
+      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
+      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
+      revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
+      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
+      ce que l’on appelle la "flat tax".
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
+      revenus que vous touchez.
   titre.en: '[automatic] Corporate income tax'
   titre.fr: Impôt sur les sociétés
 entreprise . imposition . IS . contribution sociale:
   description.en: >
     [automatic] The social contribution on profits is a separate tax from the
-    corporate tax. Its amount is not deductible from the results.
+    corporate income tax.
+
+    tax. It is not deductible from income.
 
 
-    The tax base benefits from a significant deduction, and only companies with a profit of more than 2.3 million euros are concerned by this contribution.
+    The tax base benefits from a substantial allowance, and only companies
+
+    over 2.3 million euros in profits are concerned.
+
+    contribution.
   description.fr: >
     La contribution sociale sur les bénéfices est un impôt distinct de l’impôt
-    sur les sociétés. Son montant n’est pas déductible des résultats.
+    sur
+
+    les sociétés. Son montant n’est pas déductible des résultats.
 
 
-    L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
+    L’assiette bénéficie d’un abattement important, et seules les entreprises
+
+    réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette
+
+    contribution.
   titre.en: '[automatic] social contribution'
   titre.fr: contribution sociale
 entreprise . imposition . IS . information sur le report de déficit:
   description.en: >
-    [automatic] Losses incurred during a fiscal year can be carried forward to
-    subsequent years (carry forward), or back to the previous year only (carry
+    [automatic] Losses incurred in a given year can be carried forward to
+    subsequent years
+
+    (carry forward), or to the previous year only (carry back).
+
     back).
   description.fr: >
-    Les déficits subits au cours d'un exercice peuvent être reportés sur les
-    exercices suivants (report en avant), ou sur le seul exercice précédent
-    (report en arrière).
+    Les déficits subits au cours d’un exercice peuvent être reportés sur les
+
+    exercices suivants (report en avant), ou sur le seul exercice précédent (report
+
+    en arrière).
   titre.en: '[automatic] information on deficit carryover'
   titre.fr: information sur le report de déficit
 entreprise . imposition . IS . montant:
@@ -6702,23 +6829,23 @@ entreprise . imposition . IS . montant:
   titre.fr: montant
 entreprise . imposition . IS . prorata temporis:
   description.en: >
-    [automatic] When the duration of the financial year is not equal to one
-    year, the ceilings used in the
+    [automatic] When the financial year is less than one year, the ceilings used
+    in the
 
-    the ceilings used in the corporate tax schedule.
+    the ceilings used in the corporate income tax scale.
   description.fr: |
-    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
-    plafonds utilisés dans le barème de l'impôt sur les sociétés.
+    Lorsque la durée de l’exercice n’est pas égale à un an, on pro-ratise les
+    plafonds utilisés dans le barème de l’impôt sur les sociétés.
   titre.en: '[automatic] prorata temporis'
   titre.fr: prorata temporis
 entreprise . imposition . IS . résultat imposable:
-  résumé.en: '[automatic] Taxable for corporate income tax purposes'
-  résumé.fr: Imposable à l'impôt sur les sociétés
-  titre.en: '[automatic] Result for the year'
-  titre.fr: Résultat de l'exercice
+  résumé.en: '[automatic] Subject to corporate income tax'
+  résumé.fr: Imposable à l’impôt sur les sociétés
+  titre.en: '[automatic] Net income for the year'
+  titre.fr: Résultat de l’exercice
 entreprise . imposition . IS . résultat net:
   résumé.en: '[automatic] After deduction of expenses and corporate income tax'
-  résumé.fr: Après déduction des charges et de l'impôt sur les société
+  résumé.fr: Après déduction des charges et de l’impôt sur les société
   titre.en: '[automatic] net result'
   titre.fr: résultat net
 entreprise . imposition . IS . éligible taux réduit:
@@ -6729,8 +6856,8 @@ entreprise . imposition . IS . éligible taux réduit:
   titre.en: '[automatic] eligible for reduced rate'
   titre.fr: éligible taux réduit
 entreprise . imposition . régime:
-  question.en: '[automatic] What is the tax regime of your company?'
-  question.fr: Quel est le régime d'imposition de votre entreprise ?
+  question.en: '[automatic] How is your company taxed?'
+  question.fr: Quel est le régime d’imposition de votre entreprise ?
   titre.en: '[automatic] diet'
   titre.fr: régime
 entreprise . imposition . régime . déclaration contrôlée:
@@ -6739,32 +6866,37 @@ entreprise . imposition . régime . déclaration contrôlée:
 entreprise . imposition . régime . micro-entreprise:
   description.en: >
     [automatic] Under the micro-tax system, deductible expenses are estimated on
-    a flat-rate basis, based on a percentage of sales. This percentage depends
-    on the type of activity: 71% for sales, catering and accommodation (rental
-    of classified furnished tourist accommodation and bed and breakfast), 50%
-    for commercial or craft services, 34% for liberal professions.
+    a flat-rate basis, based on a percentage of sales. This
+
+    percentage depends on the type of activity: 71% for sales, catering and accommodation (rental of classified
+
+    and bed and breakfast), 50% for commercial and craft services, and 34% for liberal professions.
 
 
     This option simplifies your accounting and can be advantageous in terms of taxable income if your operating costs are low.
+
+    are low.
   description.fr: >
     Avec le régime micro-fiscal, les charges déductibles sont estimées
     forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-    pourcentage dépend du type d’activité : 71% pour les activités de vente,
-    restauration et hébergement (location de meublé de tourisme classé et
-    chambre d’hôte), 50% pour les prestations de service commerciales ou
-    artisanales, 34% pour les activités libérales.
+
+    pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme
+
+    classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
 
 
-    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de fonctionnement sont faibles.
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
+
+    fonctionnement sont faibles.
   question.en: '[automatic] Have you opted for the micro-tax system?'
   question.fr: Avez-vous opté pour le régime micro-fiscal ?
   titre.en: '[automatic] micro-tax'
   titre.fr: micro-fiscal
 entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
-  description.en: '[automatic] The annual turnover threshold for the micro-tax
-    system is exceeded. [Read
-    more](/documentation/company/turnover/threshold-exceeded)'
-  description.fr: Le seuil annuel de chiffre d'affaires pour le régime
+  description.en:
+    '[automatic] The annual sales threshold for the micro-tax system
+    is exceeded. [Learn more](/documentation/company/sales/threshold-exceeded)'
+  description.fr: Le seuil annuel de chiffre d’affaires pour le régime
     micro-fiscal est dépassé. [En savoir
     plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
   titre.en: '[automatic] threshold alert exceeded'
@@ -6775,25 +6907,37 @@ entreprise . imposition . régime . micro-entreprise . revenu abattu:
       titre.en: '[automatic] floor allowance'
       titre.fr: plancher abattement
   description.en: >
-    [automatic] The micro-entrepreneur is exempted from drawing up a
-    professional declaration of profits under the BNC or BIC heading.
+    [automatic] Micro-entrepreneurs are exempt from having to file a
+    professional declaration of
+
+    for BNC or BIC.
 
 
-    All they have to do is enter the annual gross turnover (BIC) or revenue (BNC) in the supplementary income tax return (n°2042-C Pro).
+    All they have to do is enter the annual amount of gross sales (BIC) or revenue (BIC) on the supplementary income tax return
+
+    (n°2042-C-PRO) the annual amount of gross sales (BIC) or revenues
+
+    (BNC).
   description.fr: >
-    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle
-    de bénéfices au titre des BNC ou BIC.
+    Le micro-entrepreneur est dispensé d’établir une déclaration professionnelle
+    de
+
+    bénéfices au titre des BNC ou BIC.
 
 
-    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
+    Il lui suffit de porter dans la déclaration complémentaire de revenu
+
+    (n°2042-C-PRO) le montant annuel du chiffre d’affaires brut (BIC) ou des recettes
+
+    (BNC).
   titre.en: '[automatic] flat-rate micro-tax deduction'
   titre.fr: abattement forfaitaire micro-fiscal
 entreprise . imposition . régime . réel normal:
   titre.en: '[automatic] real normal taxation'
-  titre.fr: réel normal d'imposition
+  titre.fr: réel normal d’imposition
 entreprise . imposition . régime . réel simplifié:
   titre.en: '[automatic] real simplified taxation'
-  titre.fr: réel simplifié d'imposition
+  titre.fr: réel simplifié d’imposition
 entreprise . nom:
   titre.en: '[automatic] name'
   titre.fr: nom
