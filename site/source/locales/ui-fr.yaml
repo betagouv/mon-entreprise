@@ -62,6 +62,7 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
 Budget: Budget
+Bénéfice: Bénéfice
 Cette commune n'existe pas: Cette commune n'existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
@@ -87,6 +88,7 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Notre partenaire Conseillers-Entreprises.Service-Public.fr identifiera, parmi l’ensemble des partenaires publics et parapublics,
     le conseiller compétent pour votre demande.
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
+Déficit: Déficit
 Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
@@ -892,38 +894,49 @@ pages:
     declaration-revenus-pamc:
       formulaire:
         "1": Profession
-        "2": Recettes
-        "3": Données du relevé SNIR
-        "4": Structures de soins
-        "5": Déductions et exonérations
-        "6": Autres revenus non salariés
-        "7": Actes conventionnés
-        "8": Revenus de remplacement
+        "2": Régime fiscal
+        "3": Recettes
+        "4": Données du relevé SNIR
+        "5": Structures de soins
+        "6": Déductions et exonérations
+        "7": Autres revenus non salariés
+        "8": Actes conventionnés
+        "9": Revenus de remplacement
       meta:
         description: Calculez les montants de vos revenus à reporter dans votre
           déclaration de revenus.
         title: Déclaration de revenus des PAMC
       resultats:
-        "1": Montants à reporter dans votre déclaration de revenus
-        "10": "Revenus nets tirés des autres activités non salariées :"
-        "11": Données transmises par l’Assurance Maladie
-        "2": Situation au 1er janvier ou à la date du début d’activité
-        "3": Vous êtes titulaire
-        "4": Vous êtes remplaçant
-        "5": Montant des revenus de remplacement
-        "6": Déductions et exonérations
-        "7": Cotisations sociales obligatoires
-        "8": Répartition des revenus nets
-        "9": "Revenus nets de l’activité conventionnée :"
+        label:
+          "1": Situation au 1er janvier ou à la date du début d’activité
+          "10": Dont revenus nets de l’activité réalisée dans des structures de soins
+          "11": Dont cotisations facultatives liées à l’activité conventionnée
+          "12": Dont cotisations facultatives liées aux autres activités non salariées
+          "2": Vous êtes titulaire
+          "3": Vous êtes remplaçant
+          "4": Recettes brutes totales tirées des activités non salariées
+          "5": Médecin secteur 1 - déduction complémentaire 3%
+          "6": Chèques vacances déduits du revenu imposable
+          "7": Cotisations sociales obligatoires déduites du résultat imposable
+          "8": "Revenus nets de l’activité conventionnée :"
+          "9": "Revenus nets tirés des autres activités non salariées :"
+        title:
+          "1": Montants à reporter dans votre déclaration de revenus
+          "2": Montant des revenus de remplacement
+          "3": Déductions et exonérations
+          "4": Cotisations sociales obligatoires
+          "5": Répartition des revenus nets
+          "6": Cotisations facultatives
+          "7": Données transmises par l’Assurance Maladie
       shortname: Assistant à la déclaration de revenus des PAMC
       title: Assistant à la déclaration de revenus pour les PAMC
       warning: <0>Cet assistant est à destination des <2>praticiens et auxiliaires
-        médicaux conventionnés (PAMC)</2>.</0><1>Il gère uniquement le <1>régime
-        micro-fiscal</1>.</1><2>Il a pour but de vous aider à remplir le
-        <2>volet social de votre déclaration de revenus</2> à réaliser sur
-        <5>impots.gouv.fr</5>.</2><3><0>En cas de déficit</0>, renseignez le
-        signe « - » devant le montant.</3><4><0>L’assistant ne prend pas en
-        compte les situations suivantes :</0><1><0>revenus
+        médicaux conventionnés (PAMC)</2>.</0><1>Il gère uniquement le cas de
+        l’<1>impôt sur le revenu</1>.</1><2>Il a pour but de vous aider à
+        remplir le <2>volet social de votre déclaration de revenus</2> à
+        réaliser sur <5>impots.gouv.fr</5>.</2><3><0>En cas de déficit</0>,
+        renseignez le signe « - » devant le montant.</3><4><0>L’assistant ne
+        prend pas en compte les situations suivantes :</0><1><0>revenus
         étrangers,</0><1>revenus non professionnels,</1><2>changement de régime
         en cours d’année,</2><3>comptabilités d’engagement,</3><4>médecins
         adhérents au dispositif RSPM.</4></1>Si vous êtes dans l’une de ces

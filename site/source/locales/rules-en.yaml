@@ -4928,8 +4928,10 @@ déclaration revenus PAMC . revenus de remplacement . AJPA:
 
 
     Les allocations familiales versées par la CAF ne sont pas à renseigner.
-  titre.en: '[automatic] amount of AJPA paid by Caf'
-  titre.fr: montant perçu de l’AJPA versée par la Caf
+  titre.en: '[automatic] amount of daily allowance for caregivers (AJPA) paid by
+    the French social security office (CAF)'
+  titre.fr: montant des allocations journalières du proche aidant (AJPA) versées
+    par la CAF
 déclaration revenus PAMC . revenus de remplacement . IJ:
   description.en: |
     [automatic] Indicate the amounts received as sickness, maternity,
@@ -4953,10 +4955,9 @@ déclaration revenus PAMC . revenus de remplacement . indemnités incapacité te
     versées par votre caisse de retraite, si celles-ci sont incluses dans votre BNC,
 
     BIC ou rémunération art. 62.
-  titre.en: '[automatic] amount of temporary disability benefits paid by your
+  titre.en: '[automatic] amount of temporary disability benefits paid by the
     pension fund'
-  titre.fr: montant des indemnités d’incapacité temporaire versées par votre
-    caisse de retraite
+  titre.fr: montant des indemnités d’incapacité temporaire versées par la caisse retraite
 déclaration revenus PAMC . revenus de remplacement . total:
   titre.en: '[automatic] total'
   titre.fr: total

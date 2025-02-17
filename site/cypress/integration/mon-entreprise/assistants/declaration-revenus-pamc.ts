@@ -37,8 +37,18 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		).should('be.visible')
 	})
 
-	it("ne devrait pas montrer les champs avant qu'un statut soit sélectionné", function () {
+	it('devrait demander le régime fiscal une fois le statut sélectionné', function () {
 		cy.contains('Sage-femme').click()
+		cy.contains('Quel est votre régime fiscal ?').should('not.exist')
+
+		cy.contains('Titulaire').click()
+
+		cy.contains('Quel est votre régime fiscal ?').should('be.visible')
+	})
+
+	it("ne devrait pas montrer les champs avant qu'un régime fiscal soit sélectionné", function () {
+		cy.contains('Sage-femme').click()
+		cy.contains('Titulaire').click()
 
 		cy.contains('Recettes brutes totales').should('not.exist')
 		cy.get(`#${idPrefix}_recettes_brutes_totales`).should('not.exist')
@@ -126,13 +136,16 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			'Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?'
 		).should('not.exist')
 		cy.get(`#${idPrefix}_revenus_de_remplacement`).should('not.exist')
-		cy.contains('Montant perçu de l’AJPA versée par la Caf').should('not.exist')
+		cy.contains(
+			'Montant des allocations journalières du proche aidant (AJPA) versées par la CAF'
+		).should('not.exist')
 		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA`).should('not.exist')
 	})
 
-	it("devrait montrer les champs lorsqu'un statut est sélectionné", function () {
+	it("devrait montrer les champs lorsqu'un régime fiscal est sélectionné", function () {
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.contains('Recettes brutes totales').should('be.visible')
 		cy.get(`#${idPrefix}_recettes_brutes_totales`).should('be.visible')
@@ -177,6 +190,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 	it('devrait effacer les réponses en cliquant sur réinitialiser', function () {
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.contains('Réinitialiser').click()
 
@@ -187,6 +201,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.contains('Montants à reporter dans votre déclaration de revenus').should(
 			'not.exist'
@@ -276,6 +291,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').as('inputs').should('have.length', 5)
 		cy.get('@inputs').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
@@ -330,12 +346,14 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.contains('Taux Urssaf').should('not.exist')
 		cy.get(`#${idPrefix}_SNIR___taux_urssaf`).should('not.exist')
 
 		cy.contains('Chirurgien/chirurgienne-dentiste').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.get(`#${idPrefix}_SNIR___taux_urssaf-title`).should('be.visible')
 		cy.get(`#${idPrefix}_SNIR___taux_urssaf`).should('be.visible')
@@ -350,6 +368,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -359,6 +378,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 
 		cy.contains('Chirurgien/chirurgienne-dentiste').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').as('inputs').should('have.length', 6)
 		cy.get('@inputs').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
@@ -385,6 +405,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.contains('Honoraires aux tarifs opposables hors forfaits').should(
 			'not.exist'
@@ -397,6 +418,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 
 		cy.contains('Médecin').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.get(`#${idPrefix}_SNIR___honoraires_tarifs_opposables-title`).should(
 			'be.visible'
@@ -414,6 +436,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -431,6 +454,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 
 		cy.contains('Médecin').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').as('inputs').should('have.length', 7)
 		cy.get('@inputs').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
@@ -454,6 +478,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Pédicure podologue').click()
 		cy.contains('Remplaçant').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.contains('Avez-vous effectué uniquement des actes conventionnés ?')
 			.as('questionLabel')
@@ -463,12 +488,14 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			.should('be.visible')
 
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		cy.get('@questionLabel').should('not.exist')
 		cy.get('@questionInput').should('not.exist')
 
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 
 		// "oui" à structure de soins et "non" à autres revenus
 		cy.get(`#${idPrefix}_${structureDeSoins}`).contains('Oui').click()
@@ -493,6 +520,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -520,6 +548,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -567,6 +596,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -582,6 +612,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Médecin').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -605,6 +636,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -654,18 +686,21 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
 
-		cy.contains('Montant perçu de l’AJPA versée par la Caf').should('not.exist')
+		cy.contains(
+			'Montant des allocations journalières du proche aidant (AJPA) versées par la CAF'
+		).should('not.exist')
 		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA`).should('not.exist')
 
 		cy.get(`#${idPrefix}_revenus_de_remplacement`).contains('Oui').click()
 
-		cy.contains('Montant perçu de l’AJPA versée par la Caf').should(
-			'be.visible'
-		)
+		cy.contains(
+			'Montant des allocations journalières du proche aidant (AJPA) versées par la CAF'
+		).should('be.visible')
 		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA`).should('be.visible')
 		cy.contains('Montant des revenus de remplacement').should('be.visible')
 		cy.contains(

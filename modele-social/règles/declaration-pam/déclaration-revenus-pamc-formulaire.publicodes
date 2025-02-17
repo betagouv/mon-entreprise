@@ -83,7 +83,6 @@ déclaration revenus PAMC . régime fiscal:
       - IR micro-fiscal
       - IR réel
       - IR déclaration contrôlée
-  par défaut: "'IR micro-fiscal'"
 
   avec:
 
@@ -347,7 +346,7 @@ déclaration revenus PAMC . revenus de remplacement . IJ:
     paternité et adoption versées par la CPAM.
 
 déclaration revenus PAMC . revenus de remplacement . indemnités incapacité temporaire:
-  titre: montant des indemnités d’incapacité temporaire versées par votre caisse de retraite
+  titre: montant des indemnités d’incapacité temporaire versées par la caisse retraite
   applicable si: régime fiscal . IR non micro-fiscal
   unité: €/an
   par défaut: 0
@@ -359,7 +358,7 @@ déclaration revenus PAMC . revenus de remplacement . indemnités incapacité te
     Article 62 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019288260
 
 déclaration revenus PAMC . revenus de remplacement . AJPA:
-  titre: montant perçu de l’AJPA versée par la Caf
+  titre: montant des allocations journalières du proche aidant (AJPA) versées par la CAF
   unité: €/an
   par défaut: 0
   description: |
