@@ -197,6 +197,21 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Recettes brutes totales').should('not.exist')
 	})
 
+	it('devrait afficher un conseil selon le régime fiscal sélectionné', function () {
+		cy.contains('Réinitialiser').click()
+		cy.contains('Sage-femme').click()
+		cy.contains('Titulaire').click()
+
+		cy.contains('micro-fiscal').click()
+		cy.contains('Afin de faciliter le remplissage, préparez :').should('be.visible')
+
+		cy.contains('régime réel').click()
+		cy.contains('Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre liasse fiscale 2035.').should('be.visible')
+
+		cy.contains('déclaration contrôlée').click()
+		cy.contains('Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre liasse fiscale 2035.').should('be.visible')
+	})
+
 	it('ne devrait pas montrer les résultats avant que les champs soient remplis', function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()

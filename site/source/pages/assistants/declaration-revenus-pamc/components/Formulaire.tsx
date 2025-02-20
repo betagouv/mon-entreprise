@@ -1,10 +1,14 @@
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { AssistantGoal } from '@/components/Assistant/AssistantGoal'
+import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenAlreadyDefinedMulti } from '@/components/EngineValue/WhenAlreadyDefinedMulti'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
+import { Message } from '@/design-system'
 import { H2 } from '@/design-system/typography/heading'
+import { Li, Ul } from '@/design-system/typography/list'
+import { Body } from '@/design-system/typography/paragraphs'
 
 import { SimpleField } from '../../components/Fields'
 
@@ -39,6 +43,31 @@ export default function Formulaire() {
 				</H2>
 				<SimpleField dottedName="déclaration revenus PAMC . régime fiscal" />
 			</WhenAlreadyDefinedMulti>
+
+			<WhenAlreadyDefined dottedName="déclaration revenus PAMC . régime fiscal">
+				<Message type="secondary" icon>
+					<Condition expression="déclaration revenus PAMC . régime fiscal . IR micro-fiscal">
+						<Trans i18nKey="pages.assistants.declaration-revenus-pamc.formulaire.conseil.MF">
+							<Body>Afin de faciliter le remplissage, préparez :</Body>
+							<Ul>
+								<Li>l’ensemble des recettes encaissées,</Li>
+								<Li>le détail des cotisations versées à l’Urssaf,</Li>
+								<Li>
+									le détail des cotisations versées à votre caisse de retraite.
+								</Li>
+							</Ul>
+						</Trans>
+					</Condition>
+					<Condition expression="déclaration revenus PAMC . régime fiscal . IR non micro-fiscal">
+						<Body>
+							{t(
+								'pages.assistants.declaration-revenus-pamc.formulaire.conseil.IR',
+								'Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre liasse fiscale 2035.'
+							)}
+						</Body>
+					</Condition>
+				</Message>
+			</WhenAlreadyDefined>
 
 			<WhenAlreadyDefinedMulti
 				dottedNames={[
