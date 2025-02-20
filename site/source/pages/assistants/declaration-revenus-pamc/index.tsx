@@ -4,7 +4,6 @@ import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import Warning from '@/components/ui/WarningBlock'
-import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
@@ -53,9 +52,8 @@ export default function DéclarationRevenusPAMC() {
 							<Strong>impôt sur le revenu</Strong>.
 						</StyledLi>
 						<StyledLi>
-							Il a pour but de vous aider à remplir le{' '}
-							<Strong>volet social de votre déclaration de revenus</Strong> à
-							réaliser sur{' '}
+							Il a pour but de vous aider à remplir le volet social de votre
+							déclaration de revenus à réaliser sur{' '}
 							<Link
 								href="https://www.impots.gouv.fr"
 								aria-label="impots.gouv.fr, nouvelle fenêtre"
@@ -95,15 +93,6 @@ export default function DéclarationRevenusPAMC() {
 					</Trans>
 				</Body>
 			</Warning>
-
-			<Message type="secondary" icon>
-				<Body>Afin de faciliter le remplissage, préparez :</Body>
-				<Ul>
-					<Li>l’ensemble des recettes encaissées,</Li>
-					<Li>le détail des cotisations versées à l’Urssaf,</Li>
-					<Li>le détail des cotisations versées à votre caisse de retraite.</Li>
-				</Ul>
-			</Message>
 
 			<Formulaire />
 
