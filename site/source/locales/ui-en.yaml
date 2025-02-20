@@ -847,6 +847,13 @@ pages:
         "7": Other self-employed income
         "8": Covered procedures
         "9": Replacement income
+        conseil:
+          IR: To make filling in the form easier, bring along appendices A and B of your
+            2035 tax form.
+          MF: <0>To facilitate filling, prepare :</0><1><0>all revenues
+            received,</0><1>details of contributions paid to
+            Urssaf,</1><2>details of contributions paid to your pension
+            fund.</2></1>
       meta:
         description: Calculate the amounts of your income to report on your tax return.
         title: PAMC tax return
@@ -877,9 +884,9 @@ pages:
       title: PAMC tax return assistant
       warning: <0>This assistant is intended for <2>practitioners and medical
         auxiliaries under contract (PAMC)</2>.</0><1>It handles<1>income tax</1>
-        only.</1><2>Its purpose is to help you fill in the <2>social section of
-        your income tax return</2> on <5>impots.gouv.fr</5>.</2><3><0>In the
-        event of a deficit</0>, enter a "-" in front of the amount.</3><4><0>The
+        only.</1><2>Its purpose is to help you fill in the social section of
+        your income tax return on <2>impots.gouv.fr</2>.</2><3><0>In the event
+        of a deficit</0>, enter a "-" in front of the amount.</3><4><0>The
         wizard does not take into account the following
         situations:</0><1><0>foreign income</0><1>non-professional
         income,</1><2>change of tax regime during the year,</2><3>commitment
