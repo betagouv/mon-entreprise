@@ -2,10 +2,10 @@ import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import useYear from '@/components/utils/useYear'
 import { Grid } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+import useYear from '@/hooks/useYear'
 
 import { SimpleField, SubSection } from '../../components/Fields'
 

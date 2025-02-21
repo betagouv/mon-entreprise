@@ -6,7 +6,7 @@ import RéductionBasique from '@/components/RéductionDeCotisations/RéductionBa
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
-import useYear from '@/components/utils/useYear'
+import useYear from '@/hooks/useYear'
 import {
 	situationSelector,
 	targetUnitSelector,

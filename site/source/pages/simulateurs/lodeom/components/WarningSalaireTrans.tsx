@@ -3,8 +3,8 @@ import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import useYear from '@/components/utils/useYear'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
+import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 
 export default function WarningSalaireTrans() {

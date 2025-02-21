@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useIsEmbedded } from '../hooks/useIsEmbedded'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 
 export function IframeResizer() {
 	const isEmbedded = useIsEmbedded()

@@ -8,6 +8,7 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { useInitialRender } from '@/hooks/useInitialRender'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 import { ExplicableRule } from '../conversation/Explicable'
@@ -16,7 +17,6 @@ import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
-import { useInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalProps = {
 	dottedName: DottedName

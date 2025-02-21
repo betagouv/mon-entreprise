@@ -4,10 +4,9 @@ import { styled } from 'styled-components'
 
 import Banner from '@/components/Banner'
 import { Link } from '@/design-system/typography/link'
+import useYear from '@/hooks/useYear'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { getCurrentYear, getYearsBetween } from '@/utils/dates'
-
-import useYear from './utils/useYear'
 
 const Bold = styled.span<{ $bold: boolean }>`
 	${({ $bold }) => ($bold ? 'font-weight: bold;' : '')}
