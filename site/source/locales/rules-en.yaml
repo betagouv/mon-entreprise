@@ -4639,10 +4639,6 @@ déclaration revenus PAMC . activité en structures de soins . recettes:
   titre.en: '[automatic] amount'
   titre.fr: montant
 déclaration revenus PAMC . autres revenus non salariés:
-  question.en: '[automatic] Do you have self-employed income other than that
-    covered by the micro-BNC scheme?'
-  question.fr: Avez-vous des revenus non salariés autres que ceux relevant du
-    régime micro-BNC ?
   titre.en: '[automatic] other self-employed income'
   titre.fr: autres revenus non salariés
 déclaration revenus PAMC . autres revenus non salariés . BIC:
@@ -4656,6 +4652,11 @@ déclaration revenus PAMC . autres revenus non salariés . BIC:
     activité de vente.
   titre.en: '[automatic] BIC profit/loss'
   titre.fr: bénéfice/déficit BIC
+déclaration revenus PAMC . autres revenus non salariés . BNC:
+  question.en: '[automatic] Do you have self-employed income other than BNC?'
+  question.fr: Avez-vous des revenus non salariés autres que ceux relevant des BNC ?
+  titre.en: '[automatic] BNC'
+  titre.fr: BNC
 déclaration revenus PAMC . autres revenus non salariés . agricole:
   titre.en: '[automatic] farm profit/loss'
   titre.fr: bénéfice/déficit agricole
@@ -4674,6 +4675,13 @@ déclaration revenus PAMC . autres revenus non salariés . micro-BIC service:
   description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BIC: sales of services'
   titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
+déclaration revenus PAMC . autres revenus non salariés . micro-BNC:
+  question.en: '[automatic] Do you have self-employed income other than that
+    covered by the micro-BNC scheme?'
+  question.fr: Avez-vous des revenus non salariés autres que ceux relevant du
+    régime micro-BNC ?
+  titre.en: '[automatic] micro-BNC'
+  titre.fr: micro-BNC
 déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
   titre.en: '[automatic] net short-term capital gains'
   titre.fr: plus-values nettes à court terme
