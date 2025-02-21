@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef } from 'react'
-import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
@@ -12,11 +11,11 @@ import {
 	MergedSimulatorDataValues,
 	useCurrentSimulatorData,
 } from '@/hooks/useCurrentSimulatorData'
+import useDate from '@/hooks/useDate'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSearchParamsSimulationSharing from '@/hooks/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { Simulation } from '@/store/reducers/simulation.reducer'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { Merge } from '@/types/utils'
 
 import { NextSteps } from '../pages/simulateurs/NextSteps'
@@ -44,10 +43,8 @@ export default function SimulateurOrAssistantPage() {
 		path,
 	} = currentSimulatorData
 
-	const situation = useSelector(situationSelector)
-	const année =
-		typeof situation.date === 'string' && new Date(situation.date).getFullYear()
-	const year = typeof année === 'number' ? `Année ${année}` : ''
+	const engineDate = useDate()
+	const date = engineDate?.toString().slice(-7)
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({
@@ -87,9 +84,9 @@ export default function SimulateurOrAssistantPage() {
 				<>
 					<H1>
 						<StyledSpan>{title}</StyledSpan>{' '}
-						{year && (
+						{date && (
 							<Chip type="secondary" icon={<Emoji emoji="📆" />}>
-								{year}
+								{date}
 							</Chip>
 						)}
 						{beta && (
