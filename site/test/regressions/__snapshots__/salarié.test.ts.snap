@@ -249,7 +249,7 @@ salarié . coût total employeur: 3590
 salarié . rémunération . net . payé après impôt: 1815
 salarié . rémunération . net . à payer avant impôt: 1871
 
-Notifications affichées : salarié . contrat . CDD . information, salarié . convention collective . avertissement convention collective"
+Notifications affichées : salarié . convention collective . avertissement convention collective, salarié . contrat . CDD . information"
 `;
 
 exports[`calculate simulations-salarié > contrat pro 1`] = `
@@ -977,7 +977,7 @@ salarié . coût total employeur: 1053
 salarié . rémunération . net . payé après impôt: 770
 salarié . rémunération . net . à payer avant impôt: 770
 
-Notifications affichées : salarié . contrat . temps de travail . temps partiel . contrôle temps min, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle, salarié . contrat . temps de travail . temps partiel . contrôle temps min"
 `;
 
 exports[`calculate simulations-salarié > treizième mois 1`] = `
