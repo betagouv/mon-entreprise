@@ -4,8 +4,8 @@ import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import useYear from '@/components/utils/useYear'
 import { DarkLi, Ul } from '@/design-system/typography/list'
+import useYear from '@/hooks/useYear'
 import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
 
 export const IndépendantPLSimulation = () => {

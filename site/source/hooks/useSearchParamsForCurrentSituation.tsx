@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import { useParamsFromSituation } from '@/components/utils/useSearchParamsSimulationSharing'
+import { useParamsFromSituation } from '@/hooks/useSearchParamsSimulationSharing'
 import {
 	companySituationSelector,
 	situationSelector,
