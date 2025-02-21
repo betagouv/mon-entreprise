@@ -3,7 +3,6 @@ import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
-import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { Emoji } from '@/design-system/emoji'
 import { Container, Spacing } from '@/design-system/layout'
 import { H2, H4 } from '@/design-system/typography/heading'
@@ -62,14 +61,14 @@ export default function Résultats() {
 					)}
 				/>
 
-				<WhenAlreadyDefined dottedName="déclaration revenus PAMC . revenus de remplacement . total">
+				<Condition expression="déclaration revenus PAMC . revenus de remplacement . total">
 					<H4 as="h3">
 						{t(
 							'pages.assistants.declaration-revenus-pamc.resultats.title.2',
 							'Montant des revenus de remplacement'
 						)}
 					</H4>
-				</WhenAlreadyDefined>
+				</Condition>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . revenus de remplacement . IJ"
 					code="DSAS"
@@ -83,14 +82,14 @@ export default function Résultats() {
 					code="DSCP"
 				/>
 
-				<WhenAlreadyDefined dottedName="déclaration revenus PAMC . déductions et exonérations . total déductible">
+				<Condition expression="déclaration revenus PAMC . déductions et exonérations . total déductible">
 					<H4 as="h3">
 						{t(
 							'pages.assistants.declaration-revenus-pamc.resultats.title.3',
 							'Déductions et exonérations'
 						)}
 					</H4>
-				</WhenAlreadyDefined>
+				</Condition>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . déductions et exonérations . zone déficitaire en offre de soins"
 					code="DSFA"
@@ -184,14 +183,14 @@ export default function Résultats() {
 					)}
 				/>
 
-				<WhenApplicable dottedName="déclaration revenus PAMC . cotisations facultatives">
+				<Condition expression="déclaration revenus PAMC . cotisations facultatives">
 					<H4 as="h3">
 						{t(
 							'pages.assistants.declaration-revenus-pamc.resultats.title.6',
 							'Cotisations facultatives'
 						)}
 					</H4>
-				</WhenApplicable>
+				</Condition>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . cotisations facultatives"
 					code="DSEA"

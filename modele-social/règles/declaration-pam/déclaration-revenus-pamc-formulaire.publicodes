@@ -268,39 +268,47 @@ déclaration revenus PAMC . déductions et exonérations . chèques vacances:
   description: Indiquez le montant total des chèques vacances octroyés.
 
 déclaration revenus PAMC . autres revenus non salariés:
+
+déclaration revenus PAMC . autres revenus non salariés . micro-BNC:
+  applicable si: régime fiscal . IR micro-fiscal
   question: Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?
+  par défaut: non
+
+déclaration revenus PAMC . autres revenus non salariés . BNC:
+  applicable si: régime fiscal . IR non micro-fiscal
+  question: Avez-vous des revenus non salariés autres que ceux relevant des BNC ?
   par défaut: non
 
 déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
   titre: plus-values nettes à court terme
-  applicable si: régime fiscal . IR micro-fiscal
+  applicable si: autres revenus non salariés . micro-BNC
   unité: €/an
   par défaut: 0
 
 déclaration revenus PAMC . autres revenus non salariés . micro-BIC marchandises:
   titre: 'micro-BIC : chiffre d’affaires vente de marchandises'
-  applicable si: régime fiscal . IR micro-fiscal
+  applicable si: autres revenus non salariés . micro-BNC
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
 déclaration revenus PAMC . autres revenus non salariés . micro-BIC service:
   titre: 'micro-BIC : chiffre d’affaires prestation de service'
-  applicable si: régime fiscal . IR micro-fiscal
+  applicable si: autres revenus non salariés . micro-BNC
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
 déclaration revenus PAMC . autres revenus non salariés . micro-BA:
   titre: 'micro-BA : chiffre d’affaires agricole'
-  applicable si: régime fiscal . IR micro-fiscal
+  applicable si: autres revenus non salariés . micro-BNC
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
 
 déclaration revenus PAMC . autres revenus non salariés . BIC:
   titre: bénéfice/déficit BIC
-  applicable si: régime fiscal . IR non micro-fiscal
+  applicable si: autres revenus non salariés . BNC
   unité: €/an
   par défaut: 0
   description: |
@@ -309,7 +317,7 @@ déclaration revenus PAMC . autres revenus non salariés . BIC:
 
 déclaration revenus PAMC . autres revenus non salariés . agricole:
   titre: bénéfice/déficit agricole
-  applicable si: régime fiscal . IR non micro-fiscal
+  applicable si: autres revenus non salariés . BNC
   unité: €/an
   par défaut: 0
 
@@ -321,7 +329,8 @@ déclaration revenus PAMC . actes conventionnés uniquement:
   applicable si:
     toutes ces conditions:
       - activité en structures de soins = non
-      - autres revenus non salariés = non
+      - autres revenus non salariés . micro-BNC = non
+      - autres revenus non salariés . BNC = non
   question: Avez-vous effectué uniquement des actes conventionnés ?
   par défaut: non
 
