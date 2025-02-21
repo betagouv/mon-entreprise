@@ -6,11 +6,11 @@ import { css, styled } from 'styled-components'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
+import { WatchInitialRender } from '@/hooks/useInitialRender'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { LogoWithLink } from '../Logo'
-import { WatchInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalsProps = {
 	legend: string

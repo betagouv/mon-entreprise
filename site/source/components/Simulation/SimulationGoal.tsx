@@ -10,6 +10,7 @@ import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { useInitialRender } from '@/hooks/useInitialRender'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -20,7 +21,6 @@ import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
-import { useInitialRender } from '../utils/useInitialRender'
 
 type SimulationGoalProps = {
 	dottedName: DottedName

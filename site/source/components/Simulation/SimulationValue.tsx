@@ -8,6 +8,7 @@ import { styled } from 'styled-components'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Contexte } from '@/domaine/Contexte'
+import { useInitialRender } from '@/hooks/useInitialRender'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import LectureGuide from '../LectureGuide'
@@ -15,7 +16,6 @@ import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
-import { useInitialRender } from '../utils/useInitialRender'
 
 type SimulationValueProps = {
 	dottedName: DottedName
