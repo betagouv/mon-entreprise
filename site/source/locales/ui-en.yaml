@@ -1419,6 +1419,7 @@ pages:
           packing.
         pas-reprise: This simulator calculates start-up costs for new businesses. It
           does not take into account takeovers of existing companies.
+    date: Date of regulations used for calculations
     dividendes:
       meta:
         description: Calculate the amount of tax and contributions on dividends paid by
