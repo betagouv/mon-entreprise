@@ -14,6 +14,7 @@ export function rechercheCodeApeConfig({ t, sitePaths }: SimulatorsDataParams) {
 		id: 'recherche-code-ape',
 		pathId: 'assistants.recherche-code-ape',
 		path: sitePaths.assistants['recherche-code-ape'],
+		hideDate: true,
 		iframePath: 'recherche-code-ape',
 		icône: '🔍',
 		title: t(
