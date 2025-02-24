@@ -272,12 +272,12 @@ export default function Integration() {
 					</Grid>
 					<Grid role="listitem" item xs={12} md={6} xl={4}>
 						<Article
-							title="Pôle Emploi"
-							href="https://entreprise.pole-emploi.fr/cout-salarie/"
-							aria-label="pole-emploi.fr, Voir le simulateur"
+							title="France Travail"
+							href="https://entreprise.francetravail.fr/cout-salarie/"
+							aria-label="francetravail.fr, voir le simulateur"
 							ctaLabel="Voir le simulateur"
 						>
-							<Logo src={poleEmploiLogo} alt="Logo Pôle emploi" />
+							<Logo src={poleEmploiLogo} alt="" />
 						</Article>
 					</Grid>
 					<Grid role="listitem" item xs={12} md={6} xl={4}>

@@ -1139,9 +1139,9 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
   titre.fr: après impôt
 dirigeant . auto-entrepreneur . éligible à l'ACRE:
   description.en: >
-    [automatic] ACRE is reserved for the following self-entrepreneurs:
+    [automatic] ACRE is reserved for the following auto-entrepreneurs:
 
-    - Jobseekers (with or without benefits, but registered with Pôle Emploi for at least 6 months in the last 18 months).
+    - Jobseekers (with or without benefits, but registered with France Travail for at least 6 months in the last 18 months).
 
     - Recipients of social assistance (RSA, ASS, ATA).
 
@@ -1151,7 +1151,7 @@ dirigeant . auto-entrepreneur . éligible à l'ACRE:
   description.fr: >
     L'ACRE est réservée aux auto-entrepreneurs suivants:
 
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
 
     - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
 
@@ -1177,7 +1177,7 @@ dirigeant . exonérations . ACRE:
 
     For **self-employed** entrepreneurs, on the other hand, it must be applied for, and is reserved for the following beneficiaries:
 
-    - Jobseekers (with or without benefits, but registered with Pôle Emploi for at least 6 months in the last 18 months).
+    - Jobseekers (with or without benefits, but with at least 6 months' registration with France Travail in the last 18 months).
 
     - Recipients of social assistance (RSA, ASS, ATA).
 
@@ -1195,7 +1195,7 @@ dirigeant . exonérations . ACRE:
 
     Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants:
 
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
 
     - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
 
@@ -11885,24 +11885,25 @@ salarié . coût total employeur . aides . embauche . senior professionnalisatio
   titre.fr: senior professionnalisation
 salarié . coût total employeur . aides . emploi franc:
   description.en: >
-    [automatic] Deferred assistance paid by Pôle emploi for the hiring of a job
-    seeker
+    [automatic] Deferred assistance paid by France Travail for the hiring of a
+    job seeker
 
-    registered with Pôle Emploi and residing in a priority urban district
+    registered with France Travail and living in a priority urban district
 
     (QPV).
 
 
-    - Hiring on a permanent contract*: €5,000/year for 3 years, for a total of €15,000
+    - hiring on a permanent contract*: €5,000/year for 3 years, i.e. a total of €15,000
 
-    - Hiring on a fixed-term contract of at least 6 months*: €2,500/year for 2 years, i.e. a maximum of €5,000
+    - hiring on a fixed-term contract of at least 6 months*: €2,500/year for 2 years, i.e. a maximum of €5,000
 
 
-    [🗺 Check the eligibility of an address](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    [🗺 Check eligibility of an address](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   description.fr: >
-    Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
+    Aide différée versée par France Travail pour l'embauche d'un demandeur
+    d'emploi
 
-    inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
+    inscrit à France Travail et résidant dans un quartier prioritaire de la ville
 
     (QPV).
 
@@ -11917,17 +11918,17 @@ salarié . coût total employeur . aides . emploi franc:
   titre.fr: emploi franc
 salarié . coût total employeur . aides . emploi franc . éligible:
   description.en: >
-    [automatic] Conditions:
+    [automatic] Conditions :
 
-    - The employee recruited is a job seeker registered with Pôle Emploi and resides in a priority urban district (QPV) [check the eligibility of a district](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - The employee recruited is a jobseeker registered with France Travail and resides in a priority urban district (QPV) [check district eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
 
-    - The employer is up to date with its contributions and has not made an economic redundancy for the position filled in the 6 months preceding the recruitment
+    - The employer is up to date with its contributions and has not made any redundancies for the position filled in the 6 months prior to recruitment.
 
-    - The employee recruited must not have been part of the company's workforce in the 6 months prior to hiring
+    - The employee recruited must not have been part of the company's workforce in the 6 months prior to recruitment.
   description.fr: >
     Conditions :
 
-    - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - Le salarié recruté est un demandeur d'emploi inscrit à France Travail et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
 
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
 

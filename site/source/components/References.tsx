@@ -87,7 +87,7 @@ function Reference({ href, title }: { href: string; title: string }) {
 					{domain in referencesImages && (
 						<StyledImage
 							src={referencesImages[domain as keyof typeof referencesImages]}
-							alt={`logo du site ${domain}`}
+							alt=""
 						/>
 					)}
 				</Grid>
@@ -109,25 +109,24 @@ const StyledImage = styled.img`
 	max-height: 2.25rem;
 `
 const referencesImages = {
-	'service-public.fr': '/références-images/service-public.png',
-	'impots.gouv.fr': '/références-images/impots.gouv.svg',
-	'entreprendre.service-public.fr':
-		'/références-images/entreprendre.service-public.png',
-	'legifrance.gouv.fr': '/références-images/marianne.png',
-	'urssaf.fr': '/références-images/urssaf.svg',
+	'agirc-arrco.fr': '/références-images/agirc-arrco.jpg',
+	'ameli.fr': '/références-images/ameli.svg',
 	'autoentrepreneur.urssaf.fr': '/références-images/urssaf.svg',
-	'secu-independants.fr': '/références-images/urssaf.svg',
-	'gouv.fr': '/références-images/marianne.png',
-	'agirc-arrco.fr': '/références-images/agirc-arrco.png',
-	'pole-emploi.fr': '/références-images/pole-emploi.png',
-	'ladocumentationfrançaise.fr':
-		'/références-images/ladocumentationfrançaise.png',
-	'senat.fr': '/références-images/senat.png',
-	'ameli.fr': '/références-images/ameli.png',
-	'bpifrance-creation.fr': '/références-images/bpi-création.png',
+	'bofip.impots.gouv.fr': '/références-images/bofip.impots.gouv.jpg',
+	'boss.gouv.fr': '/références-images/boss.svg',
+	'bpifrance-creation.fr': '/références-images/bpifrance-creation.svg',
 	'economie.gouv.fr': '/références-images/economie.gouv.png',
-	'lassuranceretraite.fr': '/références-images/cnav.png',
-	'legislation.lassuranceretraite.fr': '/références-images/cnav.png',
+	'entreprendre.service-public.fr':
+		'/références-images/entreprendre.service-public.jpg',
+	'francetravail.fr': '/références-images/france-travail.svg',
+	'impots.gouv.fr': '/références-images/impots.gouv.svg',
+	'lassuranceretraite.fr': '/références-images/lassuranceretraite.svg',
+	'legislation.lassuranceretraite.fr':
+		'/références-images/lassuranceretraite.svg',
+	'legifrance.gouv.fr': '/références-images/legifrance.svg',
+	'secu-independants.fr': '/références-images/cpsti.svg',
+	'service-public.fr': '/références-images/service-public.svg',
+	'urssaf.fr': '/références-images/urssaf.svg',
 }
 
 const getDomain = (link: string) =>
