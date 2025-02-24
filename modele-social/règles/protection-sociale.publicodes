@@ -238,7 +238,10 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
   titre: retraite complémentaire des indépendants
-  non applicable si: dirigeant . indépendant . PL . CNAVPL
+  non applicable si:
+    une de ces conditions:
+      - dirigeant . indépendant . PL . CNAVPL
+      - dirigeant . auto-entrepreneur . affiliation CIPAV
   produit:
     - points acquis
     - valeur du point

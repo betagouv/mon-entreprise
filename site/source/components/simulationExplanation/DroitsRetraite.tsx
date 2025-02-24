@@ -99,12 +99,19 @@ export function DroitsRetraite() {
 								</WhenApplicable>
 								<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
 									<Strong>non connue</Strong>
-									<WhenApplicable dottedName="dirigeant . indépendant . PL">
+									<Condition
+										expression={{
+											'une de ces conditions': [
+												'dirigeant . indépendant . PL',
+												'entreprise . activité . nature . libérale . réglementée',
+											],
+										}}
+									>
 										<SmallBody>
 											Ce simulateur ne gère pas les droits acquis de retraite
 											complémentaire pour les professions libérales
 										</SmallBody>
-									</WhenApplicable>
+									</Condition>
 								</WhenNotApplicable>
 							</Li>
 						</Ul>
