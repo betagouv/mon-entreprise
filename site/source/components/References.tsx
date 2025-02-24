@@ -126,6 +126,8 @@ const referencesImages = {
 	'ameli.fr': '/références-images/ameli.png',
 	'bpifrance-creation.fr': '/références-images/bpi-création.png',
 	'economie.gouv.fr': '/références-images/economie.gouv.png',
+	'lassuranceretraite.fr': '/références-images/cnav.png',
+	'legislation.lassuranceretraite.fr': '/références-images/cnav.png',
 }
 
 const getDomain = (link: string) =>
