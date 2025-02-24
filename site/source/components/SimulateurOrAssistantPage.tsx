@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
@@ -12,7 +11,6 @@ import {
 	MergedSimulatorDataValues,
 	useCurrentSimulatorData,
 } from '@/hooks/useCurrentSimulatorData'
-import useDate from '@/hooks/useDate'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSearchParamsSimulationSharing from '@/hooks/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
@@ -21,6 +19,7 @@ import { Merge } from '@/types/utils'
 
 import { NextSteps } from '../pages/simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'
+import DateChip from './DateChip'
 
 export default function SimulateurOrAssistantPage() {
 	const { currentSimulatorData } = useCurrentSimulatorData()
@@ -44,9 +43,6 @@ export default function SimulateurOrAssistantPage() {
 		path,
 	} = currentSimulatorData
 
-	const engineDate = useDate()
-	const date = engineDate?.toString().slice(-7)
-
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({
 		key: path,
@@ -54,8 +50,6 @@ export default function SimulateurOrAssistantPage() {
 		autoloadLastSimulation,
 	})
 	useSearchParamsSimulationSharing()
-
-	const { t } = useTranslation()
 
 	const trackInfo = {
 		chapter1:
@@ -86,19 +80,7 @@ export default function SimulateurOrAssistantPage() {
 			{title && !inIframe && (
 				<>
 					<H1>
-						<StyledSpan>{title}</StyledSpan>{' '}
-						{date && (
-							<Chip
-								type="secondary"
-								icon={<Emoji emoji="📆" />}
-								title={t(
-									'pages.simulateurs.date',
-									'Date de la réglemenation utilisée pour les calculs'
-								)}
-							>
-								{date}
-							</Chip>
-						)}
+						<StyledSpan>{title}</StyledSpan> <DateChip />
 						{beta && (
 							<Chip type="info" icon={<Emoji emoji="🚧" />}>
 								Version bêta

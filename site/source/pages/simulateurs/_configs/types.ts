@@ -83,6 +83,10 @@ export interface PageConfig {
 	 */
 	codesCatégorieJuridique?: string[]
 
+	/** Indique si la date du simulateur doit être masquée ou pas.
+	 */
+	hideDate?: boolean
+
 	/** Composant React de la page
 	 *
 	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche
