@@ -15,6 +15,7 @@ type ChipProps = {
 	icon?: boolean | React.ReactElement<typeof Emoji>
 	type?: ChipType
 	className?: string
+	title?: string
 }
 
 export function Chip({
@@ -22,12 +23,13 @@ export function Chip({
 	icon = false,
 	children,
 	className,
+	title,
 }: ChipProps) {
 	const { t } = useTranslation()
 
 	return (
 		<ForceThemeProvider forceTheme="light">
-			<StyledChip className={className} type={type}>
+			<StyledChip className={className} type={type} title={title}>
 				{icon && (
 					<StyledIconWrapper type={type}>
 						{typeof icon !== 'boolean' ? (

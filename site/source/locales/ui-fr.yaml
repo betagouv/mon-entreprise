@@ -1508,6 +1508,7 @@ pages:
         pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
           entreprises. Il ne prend pas en compte le cas des reprises
           d’entreprises existantes.
+    date: Date de la réglemenation utilisée pour les calculs
     dividendes:
       meta:
         description: Calculez le montant de l'impôt et des cotisations sur les

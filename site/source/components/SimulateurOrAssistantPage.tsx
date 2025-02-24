@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
@@ -54,6 +55,8 @@ export default function SimulateurOrAssistantPage() {
 	})
 	useSearchParamsSimulationSharing()
 
+	const { t } = useTranslation()
+
 	const trackInfo = {
 		chapter1:
 			typeof tracking !== 'string' && tracking && 'chapter1' in tracking
@@ -85,7 +88,14 @@ export default function SimulateurOrAssistantPage() {
 					<H1>
 						<StyledSpan>{title}</StyledSpan>{' '}
 						{date && (
-							<Chip type="secondary" icon={<Emoji emoji="📆" />}>
+							<Chip
+								type="secondary"
+								icon={<Emoji emoji="📆" />}
+								title={t(
+									'pages.simulateurs.date',
+									'Date de la réglemenation utilisée pour les calculs'
+								)}
+							>
 								{date}
 							</Chip>
 						)}
