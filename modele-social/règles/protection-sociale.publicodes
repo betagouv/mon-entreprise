@@ -72,11 +72,22 @@ protection sociale . retraite . base:
   résumé: Pension de retraite de base à taux plein en partant du principe que
     votre rémunération est restée la même pendant toute votre vie active.
   description: |
-    Le montant de votre pension pour la retraite de base est calculé à partir la moyenne de vos revenus des 25 meilleures années.
+    Le montant de votre pension pour la retraite de base est calculé à partir de la
+    moyenne de vos revenus des 25 meilleures années et du nombre de trimestres
+    cotisés.
 
-    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants :
-    - La rémunération calculée correspond à celle de vos **25 meilleures années** ;
-    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du **taux plein**.
+    Cette **estimation** de votre pension de retraite de base **maximum** est
+    calculée avec les hypothèses suivantes :
+    - La rémunération que vous avez saisie correspond à celle de vos
+    **25 meilleures années** ;
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+    - Vous n’avez pas d’autres sources de revenus ;
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+    bénéficier du **taux plein**.
+
+    Pour le calcul détaillé nous vous invitons à consulter le site de l’Assurance
+    retraite.
+
   arrondi: oui
   unité: €/mois
   produit:
@@ -84,9 +95,11 @@ protection sociale . retraite . base:
     - 50%
   références:
     'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
-    'Assurance Retraite de la Sécurité sociale': https://www.lassuranceretraite.fr/
-    'Calcul de la retraite du salarié du secteur privé': 'https://www.service-public.fr/particuliers/vosdroits/F21552'
-    'Régime de retraite des travailleurs indépendants': 'https://entreprendre.service-public.fr/vosdroits/F33841'
+    Assurance Retraite de la Sécurité sociale: https://www.lassuranceretraite.fr/
+    Calcul de la retraite du salarié du secteur privé: https://www.service-public.fr/particuliers/vosdroits/F21552
+    Régime de retraite des travailleurs indépendants: https://entreprendre.service-public.fr/vosdroits/F33841
+    Montant de la retraite personnelle: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_montant_montant_ex.aspx
+    Durée d’assurance pour le taux plein: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_taux_duree_assurance_pour_taux_plein_ex.aspx
 
 protection sociale . retraite . base . cotisée:
   titre: revenu cotisés pour la retraite de base

@@ -8424,24 +8424,62 @@ protection sociale . retraite:
 protection sociale . retraite . base:
   description.en: >
     [automatic] The amount of your basic retirement pension is calculated on the
-    basis of your average income over the best 25 years.
+    basis of your
+
+    average of your earnings over the best 25 years and the number of quarters
+
+    contributed.
 
 
-    This estimate of your retirement pension is calculated on the basis of the following principles:
+    This **estimation** of your **maximum** basic retirement pension is
 
-    - The earnings calculated correspond to your **25 best years**;
+    calculated on the basis of the following assumptions:
 
-    - You have contributed enough quarters and are retiring at the age required to benefit from the **full rate**.
+    - The income you have entered corresponds to that of your
+
+    **25 best years**;
+
+    - You have had no change in income during your career;
+
+    - You have no other sources of income;
+
+    - You have contributed a sufficient number of quarters and are retiring at the age
+
+    benefit from the **full rate**.
+
+
+    For a detailed calculation, please consult the Assurance
+
+    site.
   description.fr: >
-    Le montant de votre pension pour la retraite de base est calculé à partir la
-    moyenne de vos revenus des 25 meilleures années.
+    Le montant de votre pension pour la retraite de base est calculé à partir de
+    la
+
+    moyenne de vos revenus des 25 meilleures années et du nombre de trimestres
+
+    cotisés.
 
 
-    Cet estimation de votre pension de retraite est calculée en se basant sur les principes suivants :
+    Cette **estimation** de votre pension de retraite de base **maximum** est
 
-    - La rémunération calculée correspond à celle de vos **25 meilleures années** ;
+    calculée avec les hypothèses suivantes :
 
-    - Vous avez cotisé suffisamment de trimestres et vous partez à l'âge requis pour bénéficier du **taux plein**.
+    - La rémunération que vous avez saisie correspond à celle de vos
+
+    **25 meilleures années** ;
+
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+
+    - Vous n’avez pas d’autres sources de revenus ;
+
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+
+    bénéficier du **taux plein**.
+
+
+    Pour le calcul détaillé nous vous invitons à consulter le site de l’Assurance
+
+    retraite.
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
     have remained the same throughout your working life.'
   résumé.fr: Pension de retraite de base à taux plein en partant du principe que
