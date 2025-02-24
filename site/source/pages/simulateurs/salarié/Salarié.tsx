@@ -218,7 +218,7 @@ export const SeoExplanations = () => {
 					</Strong>
 				</Body>
 				<Body>
-					Partenaires mobilisés : Pôle emploi, APEC, Cap Emploi, missions
+					Partenaires mobilisés : France Travail, Apec, Cap Emploi, missions
 					locales...
 				</Body>
 				<ConseillersEntreprisesButton variant="recrutement" />
