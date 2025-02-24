@@ -7193,36 +7193,34 @@ plafond sécurité sociale:
   titre.fr: plafond sécurité sociale
 protection sociale:
   description.en: >
-    Social protection in France is composed of 5 main branches: sickness,
-    family, accidents at work and occupational diseases, retirement and
-    unemployment. In addition, there are also contributions for vocational
-    training and transport.
+    [automatic] Social protection is made up of 5 main branches: sickness,
+    family, workplace accidents and occupational illnesses, retirement and
+    unemployment. There are also contributions for vocational training and
+    transport.
   description.fr: >
     La protection sociale est composée de 5 branches principales : maladie,
     famille, accidents du travail et maladies professionnelles, retraite et
-    chômage. A cela s'ajoutent aussi les cotisations pour la formation
+    chômage. A cela s’ajoutent aussi les cotisations pour la formation
     professionnelle et le transport.
   titre.en: social welfare
   titre.fr: protection sociale
 protection sociale . assurance chômage:
   description.en: >
-    Since 1958, the Unemployment Insurance has been protecting all private and
-    some public sector employees when they lose their jobs. It provides them
-    with an allowance and promotes their return to employment through
-    assistance.
+    [automatic] Since 1958, unemployment insurance has protected all
+    private-sector employees, and some in the public sector, when they lose
+    their jobs. It pays them an allowance and helps them return to work through
+    a range of subsidies.
 
+    Operating like an insurance scheme, it compensates those who have paid into it, according to their former salary. But it is also based on solidarity, since it pools risks and compensates the loss of a low salary better than a high income.
 
-    Operating as an insurance, it compensates those who have contributed, based on their former salary. But it is also supportive, since it pools risks and compensates better for the loss of a low salary than a high income.
+    As a result, anyone who loses their job involuntarily can receive an income in the form of an allowance, provided they have paid sufficient contributions.
 
-
-    Thanks to it, all those who involuntarily lose their jobs can receive income in the form of an allowance as long as they have made sufficient contributions.
-
-
-    ## Unemployment insurance in France in a few figures
-      - **72%** of old net salary: average percentage of unemployment benefit
-      - **2.7 million** unemployed people compensated each month
-      - **1,020 €****: amount of the net allowance per month
-      - **51%** of recipients combine allowance and salary
+    ## Unemployment insurance in France in figures
+      - 72%** of former net salary: percentage of unemployment benefit
+      average
+      - 2.7 million** unemployed people receive compensation each month
+      - 1,020**: average net benefit per month
+      - 51%** of recipients receive both benefit and salary
   description.fr: >
     Depuis 1958, l’Assurance chômage protège tous les salariés du privé et
     certains du secteur public lorsqu’ils perdent leur emploi. Elle leur verse
@@ -7232,74 +7230,113 @@ protection sociale . assurance chômage:
 
     Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
 
-    ## L'assurance chômage en France en quelques chiffres
-      - **72 %** de l'ancien salaire net : pourcentage de l'allocation chômage en moyenne
+    ## L’assurance chômage en France en quelques chiffres
+      - **72 %** de l’ancien salaire net : pourcentage de l’allocation chômage en
+      moyenne
       - **2,7 millions** de chômeurs indemnisés chaque mois
-      - **1 020 €** : montant de l'allocation nette moyenne par mois
+      - **1 020 €** : montant de l’allocation nette moyenne par mois
       - **51 %** des allocataires cumulent allocation et salaire
-  résumé.en: Provides income for workers looking for a new job.
-  résumé.fr: Assure un revenu aux travailleurs à la recherche d'un nouvel emploi.
+  résumé.en: '[automatic] Provides an income for workers looking for a new job.'
+  résumé.fr: Assure un revenu aux travailleurs à la recherche d’un nouvel emploi.
   titre.en: unemployment insurance
   titre.fr: assurance chômage
 protection sociale . autres:
   description.en: >
-    Cross-cutting contributions to the social system.
+    [automatic] All transversal contributions to the social system.
 
 
-    For example, there is the CRDS (contribution for the repayment of the social debt) which is a tax intended to reduce the debt of the Social Security, and thus ensure the sustainability of social protection for your children and grandchildren.
+    These include, for example, the CRDS (contribution pour le remboursement de la dette sociale)
+
+    social debt), which is a tax designed to reduce the debt of the Social Security system
+
+    to ensure the viability of social protection for your children and grandchildren.
+
+    and grandchildren.
   description.fr: >
     Toutes les contributions transverses au système social.
 
 
-    On y retrouve par exemple la CRDS (contribution pour le remboursement de la dette sociale) qui est un impôt destiné à résorber l'endettement de la Sécurité sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants et petits enfants.
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la
+
+    dette sociale) qui est un impôt destiné à résorber l’endettement de la Sécurité
+
+    sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants
+
+    et petits-enfants.
   résumé.en: Other contributions to the social system.
   résumé.fr: Autres contributions au système social.
   titre.en: other
   titre.fr: autres
 protection sociale . famille:
   description.en: >
-    [automatic] Created in 1945, the Family branch is one of the main actors of
-    the French family policy. Currently, it has two priority missions:
-      - To help families in their daily life, facilitating, in particular, the reconciliation of family and professional life
-      - To develop solidarity with the most vulnerable, including the disabled
+    [automatic] Created in 1945, the Family branch is one of the key players in
+    French family
+
+    family policy. It currently has two priority missions:
+      - To help families in their day-to-day lives, and in particular to facilitate
+      reconciling family and professional life;
+      - Develop solidarity with the most vulnerable, including the disabled.
+      the disabled.
 
     To fulfill these missions, it relies on two levers:
-      - The payment of financial benefits to families (family and social benefits, housing assistance and minimum social benefits such as assistance to disabled adults and the active solidarity income)
-      - Supporting families and setting up or co-financing various services and community
-      services and community facilities for them (such as day care centers)
+      - The payment of financial benefits to families (family and social benefits
+      and social benefits, housing assistance and minimum social benefits such as the
+      and the revenu de solidarité active);
+      - Supporting families and setting up or co-financing various services and
+      services and facilities for families (such as day-care centres).
+      crèches)
   description.fr: >
     Créée en 1945, la branche Famille est l’un des principaux acteurs de la
-    politique familiale française. Actuellement, elle a deux missions
-    prioritaires :
-      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la conciliation entre vie familiale et vie professionnelle
-      - Développer la solidarité envers les plus vulnérables, dont les personnes handicapées
+
+    politique familiale française. Actuellement, elle a deux missions prioritaires :
+      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la
+      conciliation entre vie familiale et vie professionnelle ;
+      - Développer la solidarité envers les plus vulnérables, dont les personnes
+      handicapées.
 
     Pour remplir ces missions, elle s’appuie sur deux leviers :
-      - Le versement de prestations financières aux familles (prestations familiales et sociales, aides au logement et minima sociaux comme l’aide aux adultes handicapés et le revenu de solidarité active)
-      - L’accompagnement des familles et la mise en place ou le cofinancement de différents
-      services et équipements collectifs qui leur sont destinés (comme les crèches)
-  résumé.en: >
-    Provides services in support of families: childcare, housing assistance, etc.
-  résumé.fr: >
-    Assure des prestations en soutien aux familles : garde d'enfants, aide au
+      - Le versement de prestations financières aux familles (prestations familiales
+      et sociales, aides au logement et minima sociaux comme l’aide aux adultes
+      handicapés et le revenu de solidarité active) ;
+      - L’accompagnement des familles et la mise en place ou le cofinancement de
+      différents services et équipements collectifs qui leur sont destinés (comme
+      les crèches)
+  résumé.en: |
+    [automatic] Provides family support services: childcare, housing assistance
+    assistance...
+  résumé.fr: |
+    Assure des prestations en soutien aux familles : garde d’enfants, aide au
     logement...
   titre.en: family
   titre.fr: famille
 protection sociale . formation:
   description.en: >
-    Vocational training enables each person, regardless of their status, to
-    acquire and update their knowledge and skills, to increase their level of
-    qualification and to promote their professional development.
+    [automatic] Vocational training enables everyone, regardless of their
+    status, to acquire and
 
-     For a personalized report on your training rights, go to [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr)
+    acquire and update their knowledge and skills,
+
+    increase their level of qualification and promote their professional
+
+    career development.
+
+
+    For a personalized account of your training entitlements,
+
+    go to [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
   description.fr: >
     La formation professionnelle permet à chaque personne, indépendamment de son
+
     statut, d’acquérir et d’actualiser ses connaissances et ses compétences,
+
     d’accroître son niveau de qualification et de favoriser son évolution
+
     professionnelle.
 
 
-    Pour avoir un compte-rendu personnalisé de vos droits à la formation, rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+    Pour avoir un compte-rendu personnalisé de vos droits à la formation,
+
+    rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
   résumé.en: '[automatic] Finances the possibility of following professional
     training courses.'
   résumé.fr: Finance la possibilité de suivre des formations professionnelles.
@@ -7311,26 +7348,39 @@ protection sociale . invalidité et décès:
       avec:
         rente décès:
           description.en: >
-            [automatic] If the accident at work results in the death of the
-            insured, the next of kin (spouse, partner in a civil solidarity pact
-            (Pacs) - not divorced or separated - children, etc.) may receive an
+            [automatic] If the workplace accident results in the insured's
+            death, the insured's next-of-kin
+
+            (spouse, cohabitee, partner in a civil solidarity pact
+
+            (Pacs) - not divorced or separated - children, etc.) may be entitled to an annuity.
+
             annuity.
           description.fr: >
-            Si l'accident du travail entraîne le décès de l'assuré, les proches
+            Si l’accident du travail entraîne le décès de l’assuré, les proches
+
             (conjoint, concubin, partenaire lié par un pacte civil de solidarité
-            (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier
-            d'une rente.
+
+            (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d’une
+
+            rente.
           titre.en: '[automatic] Death pension AT/MP'
           titre.fr: Rente décès AT/MP
         rente incapacité:
           description.en: >
-            [automatic] If your permanent disability rate following an accident
-            at work or an occupational disease is greater than 10%, you will
-            receive a permanent disability pension.
+            [automatic] If you are permanently disabled as a result of a
+            work-related accident or illness
+
+            occupational disease is greater than 10%, you will receive a permanent
+
+            permanent disability pension.
           description.fr: >
-            Si votre taux d'incapacité permanente suite à un accident du travail
-            ou une maladie professionnelle est supérieur à 10 %, vous percevrez
-            une rente d'incapacité permanente.
+            Si votre taux d’incapacité permanente suite à un accident du travail
+            ou
+
+            une maladie professionnelle est supérieur à 10 %, vous percevrez une
+
+            rente d’incapacité permanente.
           titre.en: '[automatic] Disability pension AT/MP'
           titre.fr: Rente incapacité AT/MP
       titre.en: '[automatic] work accidents and occupational diseases'
@@ -7340,7 +7390,7 @@ protection sociale . invalidité et décès:
         '[automatic] What degree of disability would you like to simulate
         for an occupational injury and disease pension?'
       question.fr:
-        Quel taux d'incapacité voulez-vous simuler pour la rente accidents
+        Quel taux d’incapacité voulez-vous simuler pour la rente accidents
         du travail et maladie professionnelle ?
       titre.en: '[automatic] disability rate'
       titre.fr: taux incapacité
@@ -7349,52 +7399,105 @@ protection sociale . invalidité et décès:
       titre.fr: capital décès
     capital décès . orphelin:
       description.en: >
-        [automatic] An "orphan" capital is paid to the children of deceased
-        self-employed workers. It concerns :
+        [automatic] An "orphan" capital sum is paid to the children of
+        self-employed workers
+
+        who have died. It concerns :
 
 
-        - children under 16 years of age on the day of the insured's death and dependent on him/her;
+        - children under the age of 16 on the day of the insured's death and dependent on the insured
 
-        - dependent children of the deceased over 16 and under 20 years of age who are still studying or in training;
+        dependent ;
 
-        - children, regardless of age, who are beneficiaries of allowances for the disabled.
+        - dependent children of the deceased aged over 16 and under 20,
+
+        pursuing their studies or apprenticeship;
+
+        - children of any age in receipt of disability benefits.
+
+        disabled persons.
       description.fr: >
         Un capital « orphelin » est versé aux enfants des travailleurs
-        indépendants décédés. Il concerne :
+        indépendants
+
+        décédés. Il concerne :
 
 
-        - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa charge ;
+        - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa
 
-        - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans, poursuivant leurs études ou leur apprentissage ;
+        charge ;
 
-        - les enfants, quel que soit leur âge, bénéficiaires des allocations instituées en faveur des handicapés.
+        - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans,
+
+        poursuivant leurs études ou leur apprentissage ;
+
+        - les enfants, quel que soit leur âge, bénéficiaires des allocations
+
+        instituées en faveur des personnes handicapées.
       titre.en: '[automatic] orphan'
       titre.fr: orphelin
     pension de reversion:
       description.en: >
-        [automatic] When your spouse or ex-spouse dies, you may be entitled to a
-        survivor's pension.
+        [automatic] When your husband/wife or ex-husband/wife dies, you may be
+        entitled to a survivor's pension.
 
-        Payment of the pension is possible, under certain conditions, when the deceased exercised a salaried or self-employed activity (self-employed worker, liberal professional, farmer).
+        reversionary pension.
+
+        Payment of the pension is possible, under certain conditions, when
+
+        the deceased was gainfully employed or self-employed (self-employed, liberal
+
+        self-employed, self-employed professionals, farmers).
 
 
-        The pension is equal to 54% of the pension that your spouse or ex-spouse was receiving or could have received (excluding increases).
+        The pension is equal to 54% of the pension your husband/wife or ex-husband/wife
+
+        ex-spouse was receiving or could have received (excluding increases).
       description.fr: >
-        Au décès de votre époux(se) ou ex-époux(se), vous pouvez percevoir une
+        Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir
+        une
+
         pension de réversion.
 
-        Le versement de la pension est possible, sous certaines conditions, lorsque le défunt exerçait une activité salariée ou non salariée (travailleur indépendant, professionnel libéral, agriculteur).
+        Le versement de la pension est possible, sous certaines conditions, lorsque
+
+        le défunt exerçait une activité salariée ou non salariée (travailleur
+
+        indépendant, professionnel libéral, agriculteur).
 
 
-        La pension est égale à 54 % de la retraite que votre époux(se) ou ex-époux(se) percevait ou aurait pu percevoir (majorations non comprises).
+        La pension est égale à 54 % de la retraite que votre époux/épouse ou
+
+        ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
       titre.en: '[automatic] maximum reversionary pension'
       titre.fr: pension de reversion maximum
     pension invalidité:
       avec:
-        '[privé] minimum':
-          titre.en: '[automatic] [private] minimum'
-          titre.fr: '[privé] minimum'
-        '[privé] minimum indépendant':
+        condition revenu salarié:
+          titre.en: '[automatic] condition salaried income'
+          titre.fr: condition revenu salarié
+        invalidité partielle:
+          description.en:
+            '[automatic] If you are capable of gainful employment, you are
+            classified in category 1.'
+          description.fr:
+            Si vous êtes capable d’exercer une activité professionnelle
+            rémunérée, vous êtes classé en 1re catégorie.
+          titre.en: '[automatic] partial disability'
+          titre.fr: invalidité partielle
+        invalidité totale:
+          description.en:
+            '[automatic] If you can no longer work, you are classified in
+            category 2.'
+          description.fr:
+            Si vous ne pouvez plus exercer d’activité professionnelle, vous
+            êtes classé en 2e catégorie.
+          titre.en: '[automatic] total disability'
+          titre.fr: invalidité totale
+        minimum:
+          titre.en: '[automatic] minimum'
+          titre.fr: minimum
+        minimum indépendant:
           avec:
             minimum invalidité partielle:
               titre.en: '[automatic] minimum partial disability'
@@ -7402,46 +7505,33 @@ protection sociale . invalidité et décès:
             minimum invalidité totale:
               titre.en: '[automatic] minimum total disability'
               titre.fr: minimum invalidité totale
-          titre.en: '[automatic] [private] minimum independent'
-          titre.fr: '[privé] minimum indépendant'
-        condition revenu salarié:
-          titre.en: '[automatic] condition salaried income'
-          titre.fr: condition revenu salarié
-        invalidité partielle:
-          description.en:
-            '[automatic] If you are able to engage in gainful employment,
-            you are classified as Category 1.'
-          description.fr:
-            Si vous êtes capable d'exercer une activité professionnelle
-            rémunérée, vous êtes classé en 1re catégorie.
-          titre.en: '[automatic] partial disability'
-          titre.fr: invalidité partielle
-        invalidité totale:
-          description.en:
-            '[automatic] If you are no longer able to work, you are
-            classified in the 2nd category.'
-          description.fr:
-            Si vous ne pouvez plus exercer d'activité professionnelle, vous
-            êtes classé en 2e catégorie.
-          titre.en: '[automatic] total disability'
-          titre.fr: invalidité totale
+          titre.en: '[automatic] minimum independent'
+          titre.fr: minimum indépendant
         minimum salarié:
           titre.en: '[automatic] minimum wage'
           titre.fr: minimum salarié
         revenu annuel moyen des 10 meilleures années:
           description.en: >
             [automatic] Since July 1, 2016, you can only receive one disability
-            pension: either from your salaried activity or from your activity as
-            a craftsman/trader. However, the amount of the pension takes into
-            account all your income received whether it comes from your salaried
-            activity or from your activity as a self-employed person.
+            pension
+
+            disability pension: either for your salaried activity, or for your activity as a
+
+            for your activity as a craftsman/trader. However, the amount of
+
+            However, the amount of your pension takes into account all your income, whether from
+
+            your salaried activity or your self-employed activity.
           description.fr: >
             Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
-            pension d’invalidité : soit au titre de votre activité salariée,
-            soit au titre de votre activité d’artisan/commerçant. Toutefois, le
-            montant de la pension tient compte de tous vos revenus perçus qu’ils
-            proviennent de votre activité salariée ou de votre activité comme
-            indépendant.
+
+            pension d’invalidité : soit au titre de votre activité salariée, soit au
+
+            titre de votre activité d’artisan/commerçant. Toutefois, le montant de
+
+            la pension tient compte de tous vos revenus perçus qu’ils proviennent de
+
+            votre activité salariée ou de votre activité comme indépendant.
           titre.en: '[automatic] average annual income for the 10 best years'
           titre.fr: revenu annuel moyen des 10 meilleures années
       titre.en: '[automatic] disability pension'
@@ -7450,73 +7540,112 @@ protection sociale . invalidité et décès:
       titre.en: '[automatic] average annual income'
       titre.fr: revenu annuel moyen
   description.en: >
-    [automatic] You may be recognised as disabled if your capacity for work and
-    earning is reduced by at least 2/3 as a result of an accident or illness of
-    non-occupational origin. You can obtain payment of a disability pension to
-    compensate for the loss of income.
+    [automatic] You may be recognized as disabled if your ability to work and
+    earn a living is
+
+    reduced by at least 2/3 as a result of a non-work-related accident or illness.
+
+    occupational origin. You may be entitled to a disability pension
+
+    to compensate for loss of income.
 
 
-    The death benefit is an indemnity that guarantees the payment of a lump sum to the heirs of a deceased worker, under certain conditions. The amount is a lump sum.
+    Lump-sum death benefit guarantees payment of a lump sum to the beneficiaries of a deceased worker.
+
+    of a deceased worker, under certain conditions. The amount is
+
+    lump sum.
   description.fr: >
     Vous pouvez être reconnu invalide si votre capacité de travail et de gain
-    est réduite d'au moins 2/3 à la suite d'un accident ou d'une maladie
-    d'origine non professionnelle. Vous pouvez obtenir le versement d'une
-    pension d'invalidité afin de compenser la perte de revenus.
+    est
+
+    réduite d’au moins 2/3 à la suite d’un accident ou d’une maladie d’origine non
+
+    professionnelle. Vous pouvez obtenir le versement d’une pension d’invalidité
+
+    afin de compenser la perte de revenus.
 
 
-    Le capital décès est une indemnité qui garantit le versement d'un capital aux ayants droit d'un travailleur décédé, sous certaines conditions. Son montant est forfaitaire.
+    Le capital décès est une indemnité qui garantit le versement d’un capital aux
+
+    ayants droit d’un travailleur décédé, sous certaines conditions. Son montant est
+
+    forfaitaire.
   résumé.en: '[automatic] Guarantees the payment of a pension in the event of
-    disability and a lump sum to your family in the event of death.'
+    disability and a lump sum to your loved ones in the event of death.'
   résumé.fr:
-    Garantit le versement d'une pension en cas d'invalidité et un capital
+    Garantit le versement d’une pension en cas d’invalidité et un capital
     à vos proches en cas de décès.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 protection sociale . maladie:
   avec:
-    '[privé] abattement forfaitaire salarié':
-      titre.en: '[automatic] [private] employee lump-sum allowance'
-      titre.fr: '[privé] abattement forfaitaire salarié'
-    '[privé] plancher indemnités salarié':
-      titre.en: '[automatic] [private] floor indemnities employee'
-      titre.fr: '[privé] plancher indemnités salarié'
+    abattement forfaitaire salarié:
+      titre.en: '[automatic] flat-rate employee allowance'
+      titre.fr: abattement forfaitaire salarié
+    plancher indemnités salarié:
+      titre.en: '[automatic] employee indemnity floor'
+      titre.fr: plancher indemnités salarié
     raam:
       titre.en: '[automatic] Average annual activity income'
       titre.fr: Revenu d’activité annuel moyen
   description.en: >
-    [automatic] Health insurance protects the health of everyone in their
-    personal and professional lives.
+    [automatic] Assurance Maladie provides lasting protection for the health of
+    every individual
+
+    and professional life.
 
 
-    In concrete terms, it supports 60 million insured persons throughout their lives, by paying for their care regardless of their resources, their situation or their state of health. It thus guarantees universal access to rights and enables access to care.
+    In concrete terms, it supports 60 million policyholders throughout their lives, by
+
+    care, whatever their resources, situation or state of health.
+
+    or state of health. In this way, it guarantees universal access to rights and
+
+    access to care.
 
 
-    Thanks to it, you are covered for most health care. In case of serious or long term illness, 100% of the care is reimbursed.
+    It means you're covered for most healthcare services. In the event of
+
+    serious or long-term illness, 100% of care is reimbursed.
 
 
-    ## Health insurance in France in a few figures
-      - 92%** of health expenses are reimbursed on average by health insurance and supplementary health insurance
-      - 30,000 € / year / patient**: example of full coverage for a person with cystic fibrosis
+    ## Health insurance in France in figures
+      - 92%** of healthcare expenses reimbursed on average by health insurance
+      and supplementary health insurance
+      - 30,000 / year / patient**: example of full coverage for a person with
+      cystic fibrosis patient
       - 82.4 years** average life expectancy in France (in the top 10 worldwide 🏅)
   description.fr: >
     L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+
     personnelle ou professionnelle.
 
 
-    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en
+
+    prenant en charge leurs soins quels que soient leurs ressources, leur situation
+
+    ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle
+
+    permet l’accès aux soins.
 
 
-    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de
+
+    maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
 
-    ## L'assurance maladie en France en quelques chiffres
-      - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
-      - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
+    ## L’assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
+      maladie et la complémentaire
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une
+      personne atteinte de mucoviscidose
       - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
-  résumé.en: Covers most everyday health care and 100% of serious illnesses such
-    as hospital stays.
+  résumé.en: '[automatic] Covers most day-to-day healthcare and 100% of critical
+    illnesses such as hospital stays.'
   résumé.fr: Couvre la plupart des soins de santé de la vie quotidienne et 100 %
-    des maladies graves comme les séjours à l'hôpital.
+    des maladies graves comme les séjours à l’hôpital.
   titre.en: '[automatic] health insurance'
   titre.fr: assurance maladie
 protection sociale . maladie . accidents du travail et maladies professionnelles:
@@ -7532,25 +7661,29 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
       titre.en: '[automatic] daily reference salary'
       titre.fr: salaire journalier de référence
   description.en: >
-    [automatic] Have you suffered an accident at work or an occupational
-    disease?
+    [automatic] Have you suffered a work-related accident or illness?
+
+    illness?
 
     Your medical expenses are covered at 100%.
 
 
-    To compensate for your loss of earnings, you may receive a daily allowance.
+    To compensate for your loss of earnings, you can receive daily
 
-    If you are declared unfit as a result of your accident/illness, you may receive a temporary incapacity allowance.
-  description.fr: >
+    benefits.
+
+    If you are declared unfit for work as a result of your accident/illness, you may be entitled to
+
+    receive a temporary incapacity allowance.
+  description.fr: |
     Vous avez subi un accident du travail ou êtes atteint d’une maladie
     professionnelle ?
-
     Vos frais médicaux sont pris en charge à 100 %.
 
-
-    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités journalières.
-
-    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez recevoir une indemnité temporaire d'inaptitude.
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités
+    journalières.
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez
+    recevoir une indemnité temporaire d’inaptitude.
   résumé.en:
     '[automatic] Provides comprehensive coverage for work-related illness
     or injury.'
@@ -7564,26 +7697,29 @@ protection sociale . maladie . arrêt maladie:
       titre.fr: délai d'attente
     délai de carence:
       description.en: >
-        [automatic] During the first 3 days of your work stoppage, no daily
-        allowance is paid to you; this is called the waiting period. It applies
-        at the beginning of each work stoppage.
-      description.fr: >
+        [automatic] During the first 3 days of your absence from work, no daily
+        allowance is paid.
+
+        paid; this is known as the "waiting period".
+
+        waiting period. It applies at the start of each work stoppage.
+      description.fr: |
         Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité
-        journalière ne vous est versée ; c'est ce que l'on appelle le délai de
-        carence. Il s'applique au début de chaque arrêt de travail.
+        journalière ne vous est versée ; c’est ce que l’on appelle le délai de
+        carence. Il s’applique au début de chaque arrêt de travail.
       titre.en: '[automatic] waiting period'
       titre.fr: délai de carence
   description.en: >-
     [automatic] If you are off work due to illness, you are entitled to daily
-    allowances (IJ) paid by your health insurance scheme (CPAM, MSA,...).
+    benefits (IJ) paid by your health insurance scheme (CPAM, MSA, etc.).
 
-    The conditions of compensation vary according to your social protection scheme.
+    Compensation conditions vary according to your social security scheme.
   description.fr: >-
     Si vous êtes en arrêt de travail pour maladie, vous avez droit à des
-    indemnités journalières (IJ) versées par votre régime d'assurance maladie
+    indemnités journalières (IJ) versées par votre régime d’assurance maladie
     (CPAM, MSA,...).
 
-    Les conditions d'indemnisation varient en fonction de votre régime de protection sociale.
+    Les conditions d’indemnisation varient en fonction de votre régime de protection sociale.
   titre.en: '[automatic] sick leave'
   titre.fr: arrêt maladie
 protection sociale . maladie . arrêt maladie . indépendant:
@@ -7592,51 +7728,75 @@ protection sociale . maladie . arrêt maladie . indépendant:
       avec:
         délai d'attente:
           description.en: >
-            [automatic] In order to be eligible for sickness compensation for
-            your professional activity, you must have a continuous period of
-            affiliation in this activity.
+            [automatic] In order to claim compensation for illness related to
+            your professional activity
+
+            your professional activity, you must provide proof of continuous
+
+            of continuous affiliation to this activity.
 
 
-            &gt; Note**: if you do not have the necessary entitlements, you may, under certain conditions, be able to receive compensation for your absence from work by maintaining your entitlements for your previous activity. Contact your primary health insurance fund (CPAM) for more information.
+            **Please note**: if you are not entitled to sick pay, you may, under certain conditions
+
+            may, under certain conditions, be eligible for compensation under your previous
+
+            your previous activity. Contact your
+
+            primary health insurance fund (CPAM).
           description.fr: >
             Pour pouvoir prétendre à une indemnisation pour maladie au titre de
+
             votre activité professionnelle, vous devez justifier d’un délai
+
             d’affiliation continus dans cette activité.
 
 
-            > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail peut, sous certaines conditions, être indemnisable au titre du maintien de droits de votre activité précédente. Renseignez-vous auprès de votre caisse primaire d'assurance maladie (CPAM).
+            > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail
+
+            peut, sous certaines conditions, être indemnisable au titre du maintien
+
+            de droits de votre activité précédente. Renseignez-vous auprès de votre
+
+            caisse primaire d’assurance maladie (CPAM).
           titre.en: '[automatic] waiting period'
           titre.fr: délai d'attente
         revenu:
           titre.en: '[automatic] income'
           titre.fr: revenu
       description.en: >-
-        [automatic] In case of low self-employed income, the amount of the daily
-        allowance (IJ) received by the self-employed person may be zero. Also at
-        the beginning of the activity, it is necessary to wait a certain number
-        of months before being able to receive benefits.
+        [automatic] In the event of low self-employed income, the amount of
+        daily allowance (IJ) received by the self-employed worker may be zero.
+        Similarly, at the start of a business, you have to wait a certain number
+        of months before you can receive benefits.
 
-        Since 1 January 2022, it is therefore possible to receive daily sickness and/or maternity benefits for your former activity (regardless of the scheme you were affiliated to).
+        Since January 1, 2022, it has been possible to receive daily sickness and/or maternity benefits for your former activity (regardless of the scheme you were affiliated to).
       description.fr: >-
         En cas de revenu d’activité indépendante faible, le montant de
         l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
-        être nul. De même en début d'activité, il faut attendre un certain
-        nombre de mois avant de pouvoir bénéficier d'indemnités.
+        être nul. De même en début d’activité, il faut attendre un certain
+        nombre de mois avant de pouvoir bénéficier d’indemnités.
 
         Depuis le 1er janvier 2022, il est donc possible de percevoir des indemnités journalières pour maladie et/ou pour maternité au titre de son ancienne activité (quel que soit le régime auquel on était affilié).
       titre.en: '[automatic] conditions'
       titre.fr: conditions
     indemnités:
       description.en: >
-        [automatic] The daily allowance you will receive during your work
-        stoppage is equal to 1/730th of your average annual activity income
-        (Raam) (1). This is calculated on the average of your income during the
-        3 calendar years preceding the date of your work stoppage.
+        [automatic] The daily allowance you receive while you're off work is
+
+        equal to 1/730th of your average annual earned income (Raam) (1). This
+
+        is calculated on the basis of your average contributory income over the 3 calendar years
+
+        preceding the date of your work stoppage.
       description.fr: >
-        L'indemnité journalière que vous recevrez pendant votre arrêt de travail
-        est égale à 1/730e de votre revenu d’activité annuel moyen (Raam) (1).
-        Celui-ci est calculé sur la moyenne de vos revenus cotisés des 3 années
-        civiles précédant la date de votre arrêt de travail.
+        L’indemnité journalière que vous recevrez pendant votre arrêt de travail
+        est
+
+        égale à 1/730e de votre revenu d’activité annuel moyen (Raam) (1). Celui-ci
+
+        est calculé sur la moyenne de vos revenus cotisés des 3 années civiles
+
+        précédant la date de votre arrêt de travail.
       titre.en: '[automatic] daily allowances'
       titre.fr: indemnités journalières
   titre.en: '[automatic] independent'
@@ -7646,12 +7806,23 @@ protection sociale . maladie . arrêt maladie . salarié:
     conditions:
       avec:
         délai d'attente:
-          description.en: '[automatic] '
+          description.en: >
+            [automatic] In order to claim compensation for illness related to
+            your professional activity
+
+            your professional activity, you must provide proof of continuous
+
+            period of continuous affiliation to this activity. This period depends on your
+
+            previous months' earnings.
           description.fr: >
             Pour pouvoir prétendre à une indemnisation pour maladie au titre de
+
             votre activité professionnelle, vous devez justifier d’un délai
-            d’affiliation continus dans cette activité. Ce dernier dépend de
-            votre rémunération des mois précédents.
+
+            d’affiliation continus dans cette activité. Ce dernier dépend de votre
+
+            rémunération des mois précédents.
           titre.en: '[automatic] waiting period'
           titre.fr: délai d'attente
         revenu:
@@ -7660,16 +7831,20 @@ protection sociale . maladie . arrêt maladie . salarié:
       titre.en: '[automatic] conditions'
       titre.fr: conditions
     indemnités:
-      description.en: >
-        [automatic] The daily allowance you will receive during your work
-        stoppage is equal to 50% of your basic daily salary. This is calculated
-        on the average of the gross salaries of the last 3 months preceding your
-        work stoppage (12 months in case of seasonal activity).
+      description.en: |
+        [automatic] The daily allowance you receive while you are off work is
+        50% of your basic daily wage. This is calculated on
+        the average gross salary for the 3 months prior to your work stoppage
+        (12 months in the case of seasonal work).
       description.fr: >
-        L'indemnité journalière que vous recevrez pendant votre arrêt de travail
-        est égale à 50 % de votre salaire journalier de base. Celui-ci est
-        calculé sur la moyenne des salaires bruts des 3 derniers mois précédant
-        votre arrêt de travail (12 mois en cas d'activité saisonnière).
+        L’indemnité journalière que vous recevrez pendant votre arrêt de travail
+        est
+
+        égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur
+
+        la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de
+
+        travail (12 mois en cas d’activité saisonnière).
       titre.en: '[automatic] daily allowances'
       titre.fr: indemnités journalières
   titre.en: '[automatic] employee'
@@ -7686,23 +7861,31 @@ protection sociale . maladie . maternité paternité adoption:
       description.en: >
         [automatic] ## Maternity
 
-        You must have 10 months' membership at the expected date of delivery,
+        You must have been insured for at least 10 months prior to the expected date of childbirth.
 
-        and cease all professional activity during the collection period and for at least 8 weeks, 6 of which must be post-delivery.
+        and cease all professional activity during the collection period
+
+        and for at least 8 weeks, including 6 weeks after the birth.
 
         ## Paternity / Adoption
 
-        To benefit from this benefit, you must provide proof of 10 months' affiliation at the time of birth/adoption.
+        To benefit from this benefit, you must have 10 months' affiliation at the time of the birth/adoption.
+
+        birth/adoption.
       description.fr: >
         ## Maternité
 
-        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre accouchement,
+        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
 
-        et cesser toute activité professionnelle pendant la période de perception et au moins pendant 8 semaines dont 6 après l’accouchement
+        accouchement, et cesser toute activité professionnelle pendant la période de
+
+        perception et au moins pendant 8 semaines dont 6 après l’accouchement.
 
         ## Paternité / Adoption
 
-        Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la naissance / à l’adoption.
+        Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
+
+        naissance / à l’adoption.
       titre.en: '[automatic] waiting period'
       titre.fr: délai d'attente
     indépendant:
@@ -7712,17 +7895,23 @@ protection sociale . maladie . maternité paternité adoption:
           titre.fr: allocation forfaitaire de repos adoption
         allocation forfaitaire de repos maternel:
           description.en: >
-            [automatic] Half of the allowance is paid at the beginning of the
-            leave and half at the end of the mandatory 8-week period of
-            cessation of activity. The full amount of the allowance is paid
-            after the birth if it takes place before the end of the 7th month of
-            pregnancy.
+            [automatic] Half is paid at the start of the leave and half at the
+            end of the compulsory
+
+            the compulsory 8-week period of leave. The
+
+            full amount of the allowance is paid after the birth of the child
+
+            if delivery takes place before the end of the 7th month of pregnancy.
           description.fr: >
             Elle est versée pour moitié au début du congé et pour moitié à la
-            fin de la période obligatoire de cessation d’activité de 8 semaines.
-            La totalité du montant de l’allocation est versée après
-            l’accouchement lorsque celui-ci a lieu avant la fin du 7e mois de la
-            grossesse.
+            fin de
+
+            la période obligatoire de cessation d’activité de 8 semaines. La
+
+            totalité du montant de l’allocation est versée après l’accouchement
+
+            lorsque celui-ci a lieu avant la fin du 7e mois de la grossesse.
           titre.en: '[automatic] lump-sum maternal rest allowance'
           titre.fr: allocation forfaitaire de repos maternel
         indemnités:
@@ -7733,18 +7922,20 @@ protection sociale . maladie . maternité paternité adoption:
     salarié:
       avec:
         indemnités:
-          description.en: >
-            [automatic] The daily allowance you will receive during your work
-            stoppage is equal to 50% of your basic daily salary. This is
-            calculated on the average of the gross salaries of the last 3 months
-            preceding your work stoppage (12 months in case of seasonal
-            activity).
+          description.en: |
+            [automatic] The daily allowance you receive while you are off work
+            is equal to 50% of your basic daily wage. This is calculated
+            calculated on the average gross salary for the 3 months preceding
+            (12 months in the case of seasonal work).
           description.fr: >
-            L'indemnité journalière que vous recevrez pendant votre arrêt de
-            travail est égale à 50 % de votre salaire journalier de base.
-            Celui-ci est calculé sur la moyenne des salaires bruts des 3
-            derniers mois précédant votre arrêt de travail (12 mois en cas
-            d'activité saisonnière).
+            L’indemnité journalière que vous recevrez pendant votre arrêt de
+            travail
+
+            est égale à 50 % de votre salaire journalier de base. Celui-ci est
+
+            calculé sur la moyenne des salaires bruts des 3 derniers mois précédant
+
+            votre arrêt de travail (12 mois en cas d’activité saisonnière).
           titre.en: '[automatic] daily allowances'
           titre.fr: indemnités journalières
       titre.en: '[automatic] employee'
@@ -7753,22 +7944,38 @@ protection sociale . maladie . maternité paternité adoption:
   titre.fr: indemnités congé maternité paternité adoption
 protection sociale . retraite:
   description.en: >
-    [automatic] ### A mandatory system ...
+    [automatic] ### A compulsory system ...
 
-    As soon as you work, you and your employer contribute to your pension. This contribution is based on the salary you receive.
+    As soon as you start working, you and your employer contribute to your pension scheme. This contribution is based on your salary.
 
 
     ###Pay-as-you-go
 
-    The total amount of contributions you pay each year is used to pay the pensions of the retirees for that same year. The system thus organizes a direct transfer from working generations to retired generations.
+    The total amount of contributions you make each year is used to pay the pensions
+
+    pensions for that same year. The system thus organizes a
+
+    direct transfer from working generations to retired generations.
 
 
-    ###... mainly contributory
+    ###Mainly contributory
 
-    When you retire, your pension (i.e., your retirement "income") is calculated based on your earnings, your retirement age and the number of years you worked.
+    When you retire, your pension (i.e. your retirement "income") is calculated
+
+    is calculated on the basis of your income, your retirement age and the number of years
+
+    and the number of years you've worked.
 
 
-    **Our retirement system is also based on solidarity**: the unemployed, people on sick leave, people with disabilities, low-income workers and women on maternity leave also acquire rights. No retired person is left without resources.
+    **Our pension system is also based on solidarity**: the unemployed, people on sick leave
+
+    people on sick leave, people with disabilities, low-income workers
+
+    low-income earners, women on maternity leave, etc., also acquire
+
+    also acquire rights. No retired person is left destitute.
+
+    without resources.
 
 
 
@@ -7781,15 +7988,31 @@ protection sociale . retraite:
 
     ###… par répartition
 
-    Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
+    Le montant total des cotisations que vous versez chaque année sert à payer les
+
+    pensions des retraités pour cette même année. Le système organise ainsi un
+
+    transfert direct des générations en activité vers les générations à la retraite.
 
 
     ###… principalement contributif
 
-    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu »
+
+    à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à
+
+    la retraite et du nombre d’années passées à travailler.
 
 
-    **Notre système de retraite est également solidaire** : les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+    **Notre système de retraite est également solidaire** : les chômeurs, les
+
+    personnes en arrêt maladie, les personnes en situation de handicap, les
+
+    travailleurs touchant de faibles revenus, les femmes en congé maternité
+
+    acquièrent également des droits. Aucune personne à la retraite n’est laissée
+
+    sans ressources.
 
 
 
@@ -7797,7 +8020,7 @@ protection sociale . retraite:
   résumé.en: '[automatic] Guarantees an average of 60-70% of your last working
     income for your retirement pension.'
   résumé.fr:
-    Garantit en moyenne 60 à 70 % du dernier revenu d'activité pour votre
+    Garantit en moyenne 60 à 70 % du dernier revenu d’activité pour votre
     pension de retraite.
   titre.en: pensions
   titre.fr: retraite
@@ -7877,33 +8100,41 @@ protection sociale . retraite . base . CNAVPL:
           titre.en: '[automatic] maximum fee T2'
           titre.fr: cotisation maximum T2
       note.en: >-
-        [automatic] Additional points may be awarded:
+        [automatic] Additional points can be awarded :
 
-        - redeemed points;
+        - redeemed points ;
 
-        - 100 additional points for the calendar quarter in which childbirth occurs,
+        - 100 additional points for the calendar quarter in which childbirth
 
-        - 200 additional points per calendar year for the insured person suffering from a disability requiring the assistance of a third party
+        childbirth occurs,
 
-        200 additional points per calendar year concerned for insured persons suffering from a disability that requires them to have recourse to the assistance of a third party;
+        - 200 additional points per calendar year concerned for insureds
 
-        - 400 points per calendar year for persons recognized as being unable to practice their profession for a
+        disability requiring the assistance of a third party
 
-        of their profession for a period of more than 6 months
+        assistance;
+
+        - 400 points per calendar year for persons recognized as being unable to practice their profession
+
+        incapacity to practice their profession for more than 6 months.
       note.fr: >-
         Des points supplémentaires peuvent être attribués :
 
         - points rachetés ;
 
-        - 100 points supplémentaires au titre du trimestre civil au cours duquel survient l’accouchement,
+        - 100 points supplémentaires au titre du trimestre civil au cours duquel
 
-        - 200 points supplémentaires par année civile concernée pour l’assuré atteint d’invalidité l’obli-
+        survient l’accouchement,
 
-        geant à avoir recours à l’assistance d’une tierce personne ;
+        - 200 points supplémentaires par année civile concernée pour l’assuré
 
-        - 400 points par année civile pour les personnes reconnues atteintes d’une incapacité d’exercice
+        atteint d’invalidité l’obligeant à avoir recours à l’assistance d’une tierce
 
-        de leur profession pour une durée de plus de 6 mois
+        personne ;
+
+        - 400 points par année civile pour les personnes reconnues atteintes d’une
+
+        incapacité d’exercice de leur profession pour une durée de plus de 6 mois.
       titre.en: '[automatic] points acquired'
       titre.fr: points acquis
     points acquis . points T1:
@@ -7922,29 +8153,34 @@ protection sociale . retraite . base . CNAVPL:
       titre.en: '[automatic] point value'
       titre.fr: valeur du point
   description.en: >-
-    [automatic] The liberal professions affiliated to the CNAVPL have a basic
-    pension plan based on points.
+    [automatic] The liberal professions affiliated to the CNAVPL have a
+    point-based
+
+    pension scheme.
 
 
-    The number of points acquired each year is determined according to the professional income
+    The number of points acquired each year is determined on the basis of professional income
 
     income subject to contributions:
 
 
-    - the maximum contribution on bracket T1 allows the acquisition of 525 points (from 0 to an annual social security
+    - the maximum contribution on bracket T1 allows you to acquire 525 points (from 0 to
 
-    annual social security ceiling),
+    one annual social security ceiling),
 
-    - the maximum contribution on bracket T2 allows the acquisition of 25 points (from 0 to five times the annual social security pla-
+    - the maximum contribution on tranche T2 is 25 points (from 0 to five times the annual social security ceiling).
 
-    the annual social security ceiling).
+    five times the annual social security ceiling).
 
 
-    For each bracket, the number of points awarded is calculated in proportion to the effective contribution
+    For each bracket, the number of points allocated is calculated in proportion to the
 
-    the maximum contribution and rounded to the nearest decimal place
+    maximum contribution and rounded off to the nearest decimal place.
+
+    decimal place.
   description.fr: >-
     Les professions libérales affiliées à la CNAVPL ont un régime de retraite de
+
     base par point.
 
 
@@ -7953,71 +8189,152 @@ protection sociale . retraite . base . CNAVPL:
     professionnels soumis à cotisations :
 
 
-    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à un plafond
+    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à
 
-    annuel de la sécurité sociale),
+    un plafond annuel de la sécurité sociale),
 
-    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à cinq fois le pla-
+    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à
 
-    fond annuel de la sécurité sociale).
+    cinq fois le plafond annuel de la sécurité sociale).
 
 
-    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la cotisation effective
+    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la
 
-    sur la cotisation maximale et arrondi à la décimale la plus proche
+    cotisation effective sur la cotisation maximale et arrondi à la décimale la plus
+
+    proche.
   titre.en: '[automatic] basic pension CNAVPL'
   titre.fr: retraite de base CNAVPL
 protection sociale . retraite . base . cotisée:
   avec:
     indépendant:
       note.en: >-
-        [automatic] Reminder: for self-employed workers, the validation of
-        quarters is based on the **contributed income**.
+        [automatic] Reminder: for the self-employed, validation of quarters is
+        based on the **contributed income**.
+
+        on the basis of **contributed income**.
 
 
-        The last paragraph of article R351-9 of the Social Security Code, as made applicable to self-employed workers by articles D634-1 and R634-1 of the same code, with adaptations, provides that for the period after December 31, 2013, as many quarters are to be retained as the annual income corresponding to the deductions made by the insured person represents times the amount of the minimum growth wage in force on January 1 of the year in question, calculated on the basis of 150 hours, with a maximum of four quarters per calendar year.
+        The last paragraph of article R351-9 of the French Social Security Code, as made
+
+        made applicable to self-employed workers by articles D634-1 and
+
+        R634-1 of the same code, provides that for the period after
+
+        after December 31, 2013, as many quarters are deducted as the annual income
+
+        as the annual income corresponding to the deductions made by the insured person
+
+        times the amount of the minimum growth wage in force on the
+
+        January 1 of the year in question, calculated on the basis of 150 hours, up to a maximum of four quarters per calendar year.
+
+        maximum of four quarters per calendar year.
 
 
-        By deductions made by the insured, the text refers (in the case of a self-employed person who is not necessarily up to date with his or her contributions) to the basic old-age pension scheme contributions actually paid by him or her (and not to the contributions called for).
+        The text refers to the deductions made by the insured (in the case of a self-employed person who is not necessarily a salaried employee).
+
+        who is not necessarily up to date with his contributions) the contributions to the
+
+        contributions actually paid (and not contributions called in).
+
+        called).
 
 
-        The annual income corresponding to the deductions made by the insured (so-called "contributed income") is the income reconstituted from the basic old-age pension scheme contributions ("RVB") actually paid by the insured.
+        The annual income corresponding to the deductions made by the insured (known as "contributory income") is defined as follows
+
+        "the income reconstituted on the basis of the basic old-age scheme contributions
+
+        contributions ("RVB") actually paid by the insured.
 
 
-        The contributed income is therefore the basic old-age pension contribution actually paid for the year N divided by the basic old-age pension contribution rate for that year N.
+        Contributed income therefore corresponds to the basic old-age pension contributions
+
+        contributions actually paid in respect of year N divided by the basic old-age
+
+        contribution rate for that year N.
 
 
-        Final RVB contribution actually paid for a year N (+ deductions or exemptions generating rights) / RVB contribution rate for this year N (for the part generating rights applicable to the capped income).
+        Final RVB contribution actually paid for year N
+
+        (+entitlement-generating reductions or exemptions) / contribution rate
+
+        RVB contribution rate for that year N (for the rights-generating portion applicable
+
+        capped income).
 
 
-        This income (known as "contributed income" for a year N) is used to validate quarters for a year N.
+        This income (known as "contributory income" for year N) is used to validate
+
+        validation of quarters for year N.
 
 
-        It is compared to the threshold of 150 smic/hour to determine the number of quarters to be validated (contributed income of year N /150 smic h).
+        It is compared with the threshold of 150 smic/hour to determine the number of quarters
+
+        to be validated (contributed income for year N / 150 smic h).
       note.fr: >-
         Rappel : la validation de trimestres s’effectue, pour les travailleurs
+
         indépendants à partir du **revenu cotisé**
 
 
-        Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel que rendu applicable aux travailleurs indépendants par les articles D634-1 et R634-1 du même code, moyennant adaptations, prévoit que pour la période postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres que le revenu annuel correspondant aux retenues subies par l’assuré représente de fois le montant du salaire minimum de croissance en vigueur au 1er janvier de l'année considérée calculé sur la base de 150 heures, avec un maximum de quatre trimestres par année civile.
+        Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel
+
+        que rendu applicable aux travailleurs indépendants par les articles D634-1 et
+
+        R634-1 du même code, moyennant adaptations, prévoit que pour la période
+
+        postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres
+
+        que le revenu annuel correspondant aux retenues subies par l’assuré
+
+        représente de fois le montant du salaire minimum de croissance en vigueur au
+
+        1er janvier de l’année considérée calculé sur la base de 150 heures, avec un
+
+        maximum de quatre trimestres par année civile.
 
 
-        Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant qui n’est pas forcément à jour de ses cotisations) les cotisations du régime vieillesse de base effectivement versées par lui (et non des cotisations appelées).
+        Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant
+
+        qui n’est pas forcément à jour de ses cotisations) les cotisations du régime
+
+        vieillesse de base effectivement versées par lui (et non des cotisations
+
+        appelées).
 
 
-        Par revenu annuel correspondant aux retenues subies par l’assuré (dit « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
+        Par revenu annuel correspondant aux retenues subies par l’assuré (dit
+
+        « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations
+
+        du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
 
 
-        Le revenu cotisé correspond donc à la cotisation du régime vieillesse de base effectivement versée au titre de l’année N divisée par le taux de cotisation du régime vieillesse de base de cette année N.
+        Le revenu cotisé correspond donc à la cotisation du régime vieillesse de
+
+        base effectivement versée au titre de l’année N divisée par le taux de
+
+        cotisation du régime vieillesse de base de cette année N.
 
 
-        Cotisation définitive RVB effectivement versée au titre d'une année N (+réductions ou exonérations génératrices de droits)  / taux de cotisation RVB au titre de cette année N (pour la part génératrice de droit applicable au revenu plafonné).
+        Cotisation définitive RVB effectivement versée au titre d’une année N
+
+        (+réductions ou exonérations génératrices de droits)  / taux de cotisation
+
+        RVB au titre de cette année N (pour la part génératrice de droit applicable
+
+        au revenu plafonné).
 
 
-        Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la validation de trimestres d’une année N.
+        Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la
+
+        validation de trimestres d’une année N.
 
 
-        Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres à valider (revenu cotisé de l’année N /150 smic h).
+        Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres
+
+        à valider (revenu cotisé de l’année N /150 smic h).
       titre.en: '[automatic] independent income'
       titre.fr: revenu indépendant
     revenu auto-entrepreneur:
@@ -8030,17 +8347,28 @@ protection sociale . retraite . base . cotisée:
   titre.fr: revenu cotisés pour la retraite de base
 protection sociale . retraite . complémentaire:
   description.en: >
-    [automatic] Supplemental pension earned through 10 full years of
-    supplemental pension contributions.
+    [automatic] Retirement pension supplement acquired through 10 full years of
+    supplementary
+
+    supplementary pension contributions.
 
 
-    &gt; This amount is likely to vary between now and your retirement, depending on the update of the point value. Nevertheless, it offers an order of magnitude, and allows you to compare the complementary pension schemes between them
+    &gt; This amount may vary between now and your retirement, depending on
+
+    point value. Nevertheless, it provides an order of magnitude
+
+    allows you to compare supplementary pension schemes.
   description.fr: >
     Supplément de pension de retraite acquis grâce à 10 années complètes de
+
     cotisation retraite complémentaire.
 
 
-    > Ce montant est succeptible de varier d'ici votre retraite, en fonction de la mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et permet de comparer les régimes de retraite complémentaire entre eux
+    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
+
+    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
+
+    permet de comparer les régimes de retraite complémentaire entre eux
   titre.en: '[automatic] Supplementary pension'
   titre.fr: Retraite complémentaire
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
@@ -8048,11 +8376,18 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
     points acquis:
       description.en: >
         [automatic] Throughout your career, you earn pension points by paying
-        compulsory pension contributions. The total number of points acquired
-        will determine the annual amount of your future supplementary pension.
+        compulsory pension contributions.
+
+        compulsory pension contributions. The total number of
+
+        points acquired that will determine the annual amount of your future
+
+        pension.
 
 
         So it's important to understand how these pension points are allocated.
+
+        allocated.
 
 
         #### Formula for calculating the number of points
@@ -8064,21 +8399,39 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         #### What is the points calculation rate?
 
 
-        This is the percentage applied to the contribution base to calculate points.
+        It's the percentage applied to the contribution base to calculate points.
+
+        points.
 
 
-        Note: it also serves as the basis for calculating the contributions paid by the employer and the employee: it is then multiplied by 1.27 to determine the contributions payable.
+        Note: it also serves as the basis for calculating the contributions paid by
+
+        the employer and the employee: it is then multiplied by 1.27 to determine the
+
+        contributions to be paid.
 
 
-        The rate that appears on the pay slip and is split between the employee and employer is therefore higher than the points acquisition rate. The additional contribution thus determined is not used to acquire points.
+        The rate that appears on the pay slip and is shared between the
+
+        the employee and the employer is therefore higher than the points acquisition rate.
+
+        The additional contribution thus determined is not used to acquire points.
+
+        points.
       description.fr: >
         Tout au long de votre carrière, vous obtenez des points de retraite via
-        le versement de cotisations de retraite obligatoires. C’est le nombre
-        total des points acquis qui déterminera le montant annuel de votre
-        future retraite complémentaire.
+        le
+
+        versement de cotisations de retraite obligatoires. C’est le nombre total des
+
+        points acquis qui déterminera le montant annuel de votre future retraite
+
+        complémentaire.
 
 
-        Il est donc important de bien comprendre comment ces points de retraite sont attribués.
+        Il est donc important de bien comprendre comment ces points de retraite sont
+
+        attribués.
 
 
         #### Formule de calcul du nombre de points
@@ -8090,13 +8443,25 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         #### Le taux de calcul des points, c’est quoi ?
 
 
-        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer les points.
+        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer
+
+        les points.
 
 
-        A noter : il sert aussi de base au calcul des cotisations payées par l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer les cotisations à payer.
+        A noter : il sert aussi de base au calcul des cotisations payées par
+
+        l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer
+
+        les cotisations à payer.
 
 
-        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le salarié et l’employeur est donc supérieur au taux d’acquisition des points. Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des points.
+        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le
+
+        salarié et l’employeur est donc supérieur au taux d’acquisition des points.
+
+        Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des
+
+        points.
       note.en:
         '[automatic] As the supplementary pension contribution rate is 127% of
         the points calculation rate, the amount of contributions paid by the
@@ -8121,8 +8486,8 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   note.fr:
     La revalorisation de la valeur du point a lieu au 1er novembre, et non
     au 1er janvier.
-  titre.en: '[automatic] AGIRC ARRCO'
-  titre.fr: AGIRC ARRCO
+  titre.en: '[automatic] Agirc-Arrco'
+  titre.fr: Agirc-Arrco
 protection sociale . retraite . complémentaire . CIPAV:
   avec:
     points acquis:
@@ -8167,34 +8532,51 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
   titre.fr: auto-entrepreneur CIPAV
 protection sociale . transport:
   description.en: >
-    This contribution is paid in full to the [mobility
-    authority](https://fr.wikipedia.org/wiki/Autorit%C3%A9_mobility_organiser%C3%A9)
-    in the area where the company is located. It can then be used to subsidize
-    existing public transport or to develop new transport infrastructure
-    (tramway, metro, bus, etc.).
+    [automatic] This contribution is paid in full to the [mobility organizing
+    authority
+
+    mobility](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
+
+    in the area where the company is located. It can then be used to
+
+    ubsidize existing public transport or develop new transport infrastructure
+
+    infrastructure (tramway, metro, bus, etc.).
 
 
-    ## The transport payment in a few figures
+    ## Mobility payment in figures
 
-    - **45% discount** on the cost of public transport in the 12 largest conurbations in France.
+    - 45% reduction** on the cost of public transport in France's 12 biggest conurbations.
 
-    - **€263 / year / inhabitant** in purchasing power gains for Île-de-France residents
+    France's largest conurbations.
+
+    - 263 / year / inhabitant** in purchasing power gains for the inhabitants of
+
+    Île-de-France
   description.fr: >
-    Cette contribution est reversée intégralement à l'[autorité organisatrice de
+    Cette contribution est reversée intégralement à l’[autorité organisatrice de
     la
+
     mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
-    de la zone ou est implantée l'entreprise. Celle-ci peut ensuite l'utiliser
-    pour subventionner les transports en commun existants ou pour développer de
-    nouvelles infrastructures de transport (tramway, métro, bus...).
+
+    de la zone ou est implantée l’entreprise. Celle-ci peut ensuite l’utiliser pour
+
+    ubventionner les transports en commun existants ou pour développer de nouvelles
+
+    infrastructures de transport (tramway, métro, bus...).
 
 
     ## Le versement mobilité en quelques chiffres
 
-    - **45% de réduction** sur le coût des transports en communs dans les 12 plus grandes agglomérations de France.
+    - **45% de réduction** sur le coût des transports en communs dans les 12 plus
 
-    - **263 € / an / habitant** de gain de pouvoir d'achat pour les habitants d'Île-de-France
-  résumé.en: Keeps the price of a public transit ticket low
-  résumé.fr: Permet de maintenir le prix d'un billet de transport en commun à un bas prix
+    grandes agglomérations de France.
+
+    - **263 € / an / habitant** de gain de pouvoir d’achat pour les habitants
+
+    d’Île-de-France
+  résumé.en: '[automatic] Keeps transit fares low'
+  résumé.fr: Permet de maintenir le prix d’un billet de transport en commun à un bas prix
   titre.en: transportation
   titre.fr: transport
 période:
