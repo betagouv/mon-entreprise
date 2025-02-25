@@ -9,6 +9,7 @@ import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { FlexCenter } from '@/design-system/global-style'
+import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { H3 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -29,92 +30,105 @@ export function DroitsRetraite() {
 
 	return (
 		<Trans i18nKey="pages.simulateurs.indépendant.retraite-droits-acquis">
-			<H3 as="h2">Retraite : droits acquis sur l'année</H3>
-			<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
-				<Message type="info" border>
-					Les exonérations DROM n'ont aucune incidence sur la détermination des
-					droits à la retraite de base et complémentaire des auto-entrepreneurs
-				</Message>
-			</WhenApplicable>
-			<WhenApplicable dottedName="dirigeant . exonérations . ACRE">
-				<Message type="info" border>
-					L’exonération ACRE n'a aucune incidence sur la détermination des
-					droits à la retraite de base et complémentaire des auto-entrepreneurs
-				</Message>
-			</WhenApplicable>
-
-			<Condition expression={exonérationRetraiteActive}>
-				<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
-					Le calcul des droits ouverts à la retraite n'est pas encore implémenté
-					pour les cas incluants des d'exonérations de cotisations (ACRE,
-					pension invalidité, etc).
-				</Message>
-			</Condition>
-			<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
-				<Ul>
-					<Li>
-						Retraite de base :{' '}
-						<Value
-							expression="protection sociale . retraite . trimestres"
-							displayedUnit={t('trimestres acquis')}
-						/>
-					</Li>
-					<WhenApplicable dottedName="protection sociale . retraite . base . CNAVPL">
-						<Li>
-							Points de retraite de base acquis (CNAVPL) :{' '}
-							<Value
-								linkToRule
-								expression="protection sociale . retraite . base . CNAVPL"
-								displayedUnit={t('points')}
-							/>
-						</Li>
+			<Grid
+				container
+				columnSpacing={8}
+				style={{ justifyContent: 'space-between' }}
+			>
+				<Grid item>
+					<H3 as="h2">Retraite : droits acquis sur l’année</H3>
+					<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
+						<Message type="info" border>
+							Les exonérations DROM n’ont aucune incidence sur la détermination
+							des droits à la retraite de base et complémentaire des
+							auto-entrepreneurs
+						</Message>
 					</WhenApplicable>
+					<WhenApplicable dottedName="dirigeant . exonérations . ACRE">
+						<Message type="info" border>
+							L’exonération ACRE n’a aucune incidence sur la détermination des
+							droits à la retraite de base et complémentaire des
+							auto-entrepreneurs
+						</Message>
+					</WhenApplicable>
+
+					<Condition expression={exonérationRetraiteActive}>
+						<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
+							Le calcul des droits ouverts à la retraite n’est pas encore
+							implémenté pour les cas incluants des d’exonérations de
+							cotisations (ACRE, pension invalidité, etc).
+						</Message>
+					</Condition>
+					<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
+						<Ul>
+							<Li>
+								Retraite de base :{' '}
+								<Value
+									expression="protection sociale . retraite . trimestres"
+									displayedUnit={t('trimestres acquis')}
+								/>
+							</Li>
+							<WhenApplicable dottedName="protection sociale . retraite . base . CNAVPL">
+								<Li>
+									Points de retraite de base acquis (CNAVPL) :{' '}
+									<Value
+										linkToRule
+										expression="protection sociale . retraite . base . CNAVPL"
+										displayedUnit={t('points')}
+									/>
+								</Li>
+							</WhenApplicable>
+							<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
+								<Li>
+									Revenu cotisé pour la retraite de base :{' '}
+									<Value
+										linkToRule
+										unit="€/an"
+										expression="protection sociale . retraite . base . cotisée"
+									/>
+								</Li>
+							</WhenNotApplicable>
+							<Li>
+								Points de retraite complémentaire acquis :{' '}
+								<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
+									<Value
+										expression="protection sociale . retraite . complémentaire . RCI . points acquis"
+										displayedUnit=""
+									/>{' '}
+									points acquis
+								</WhenApplicable>
+								<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
+									<Strong>non connue</Strong>
+									<WhenApplicable dottedName="dirigeant . indépendant . PL">
+										<SmallBody>
+											Ce simulateur ne gère pas les droits acquis de retraite
+											complémentaire pour les professions libérales
+										</SmallBody>
+									</WhenApplicable>
+								</WhenNotApplicable>
+							</Li>
+						</Ul>
+					</Condition>
+				</Grid>
+				<Grid item>
 					<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
-						<Li>
-							Revenu cotisé pour la retraite de base :{' '}
+						<H3 as="h2">Projection du montant de votre retraite</H3>
+						<CenteredDiv>
 							<Value
 								linkToRule
-								unit="€/an"
-								expression="protection sociale . retraite . base . cotisée"
-							/>
-						</Li>
-					</WhenNotApplicable>
-					<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
-						<StyledLi>
-							Projection du montant de votre retraite :&nbsp;
-							<Value
-								linkToRule
-								unit="€/an"
+								unit="€/mois"
 								expression="protection sociale . retraite . base"
 							/>
 							<ExplicableRule dottedName="protection sociale . retraite . base" />
-						</StyledLi>
+						</CenteredDiv>
 					</WhenNotApplicable>
-					<Li>
-						Points de retraite complémentaire acquis :{' '}
-						<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
-							<Value
-								expression="protection sociale . retraite . complémentaire . RCI . points acquis"
-								displayedUnit=""
-							/>{' '}
-							points acquis
-						</WhenApplicable>
-						<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
-							<Strong>non connue</Strong>
-							<WhenApplicable dottedName="dirigeant . indépendant . PL">
-								<SmallBody>
-									Ce simulateur ne gère pas les droits acquis de retraite
-									complémentaire pour les professions libérales
-								</SmallBody>
-							</WhenApplicable>
-						</WhenNotApplicable>
-					</Li>
-				</Ul>
-			</Condition>
+				</Grid>
+			</Grid>
 		</Trans>
 	)
 }
 
-const StyledLi = styled(Li)`
+const CenteredDiv = styled.div`
 	${FlexCenter}
+	justify-content: center;
 `
