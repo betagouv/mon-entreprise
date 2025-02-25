@@ -2,7 +2,7 @@ import { DottedName } from 'modele-social'
 
 import { useEngine } from '@/components/utils/EngineContext'
 
-const zones = ['zone un', 'zone deux']
+export const zones = ['zone un', 'zone deux']
 
 export type ZoneLodeom = (typeof zones)[number]
 

@@ -1,28 +1,34 @@
+import { difference } from 'effect/Array'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
+import SimulationBanner from '@/components/Simulation/Banner'
 import { PopoverWithTrigger } from '@/design-system'
 import { Link } from '@/design-system/typography/link'
-import { companySituationSelector } from '@/store/selectors/simulationSelectors'
+import {
+	companySituationSelector,
+	situationSelector,
+} from '@/store/selectors/simulationSelectors'
 
-import Banner from './Banner'
-import AnswerList from './conversation/AnswerList'
-import WrongSimulateurWarning from './WrongSimulateurWarning'
+import AnswerList from '../conversation/AnswerList'
+import WrongSimulateurWarning from '../WrongSimulateurWarning'
 
 export default function SimulationPréremplieBanner() {
-	const existingCompany = !!useSelector(companySituationSelector)[
-		'entreprise . SIREN'
-	]
+	const companySituation = useSelector(companySituationSelector)
+	const simulationSituation = useSelector(situationSelector)
+	const preexistingCompanySituation =
+		difference(Object.keys(companySituation), Object.keys(simulationSituation))
+			.length > 0
 
 	const { t } = useTranslation()
 
-	if (!existingCompany) {
+	if (!preexistingCompanySituation) {
 		return null
 	}
 
 	return (
-		<Banner icon="✏">
+		<SimulationBanner icon="✏">
 			<Trans i18nKey="simulationPréremplieBanner.info">
 				Ce simulateur a été prérempli avec la situation de votre entreprise.
 			</Trans>{' '}
@@ -47,7 +53,7 @@ export default function SimulationPréremplieBanner() {
 			<WrongSimulateurWarningContainer>
 				<WrongSimulateurWarning />
 			</WrongSimulateurWarningContainer>
-		</Banner>
+		</SimulationBanner>
 	)
 }
 

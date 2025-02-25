@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux'
 
 import RuleInput from '@/components/conversation/RuleInput'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import useYear from '@/components/utils/useYear'
 import { Body } from '@/design-system/typography/paragraphs'
@@ -18,11 +18,14 @@ export default function IndépendantSimulation() {
 	const dispatch = useDispatch()
 	const year = useYear()
 
+	const firstStepCompletedExceptions = ['entreprise . imposition' as DottedName]
+
 	return (
 		<>
 			<Simulation
+				firstStepCompletedExceptions={firstStepCompletedExceptions}
 				explanations={<IndépendantExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="indépendant"

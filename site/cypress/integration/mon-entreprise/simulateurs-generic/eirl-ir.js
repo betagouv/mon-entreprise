@@ -1,3 +1,3 @@
 import { runSimulateurTest } from '../../../support/simulateur'
 
-runSimulateurTest('profession-liberale', true)
+runSimulateurTest('eirl', true)

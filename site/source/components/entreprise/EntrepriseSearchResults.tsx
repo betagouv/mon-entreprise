@@ -76,7 +76,7 @@ export default function EntrepriseSearchResults({
 	) : (
 		<FromTop>
 			<ForceThemeProvider>
-				<Ul noMarker data-test-id="company-search-results">
+				<Ul $noMarker data-test-id="company-search-results">
 					{results.map((entreprise) => (
 						<Li key={entreprise.siren}>
 							<StyledCard
