@@ -5746,17 +5746,15 @@ entreprise . catégorie juridique . remplacements:
   titre.fr: remplacements
 entreprise . charges:
   description.en: >
-    [automatic] Social security contributions, CSG-CRDS and vocational training
-    contributions are not
-
-    contribution to professional training.
+    [automatic] **No social security contributions, CSG-CRDS or vocational
+    training contributions are to be declared here **.
 
 
-    The only expenses to be declared are those incurred in the interest of the company,
+    Expenses incurred in the interest of the company must be declared,
 
     excluding management remuneration. For companies and businesses other than
 
-    auto-entrepreneurs, these expenses are said to be deductible from income: the company
+    auto-entrepreneur, these expenses are said to be deductible from income: the company
 
     will not pay any contributions or taxes on them. For auto-entrepreneurs, they are not
 
@@ -5784,12 +5782,12 @@ entreprise . charges:
 
     years. Each year, part of this fixed asset is depreciated, and this deductible
 
-    deductible depreciation can be included in this calculation, for example 200€ per year
+    deductible depreciation can be included in this calculation, e.g. 200€ per year for
 
     year for 5 years.
 
 
-    On the other hand, a cell phone costing less than €500 can be treated as a non-capital expense.
+    Conversely, a cell phone costing less than €500 can be treated as an expense with no
 
     expense with no fixed asset.
 
@@ -5808,9 +5806,8 @@ entreprise . charges:
 
     income net of charges.
   description.fr: >
-    Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la
-
-    contribution à la formation professionnelle.
+    **Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la
+    contribution à la formation professionnelle.**
 
 
     Sont à déclarer, les dépenses de l’entreprise engagées dans l’intérêt de celle-ci,
