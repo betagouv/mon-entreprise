@@ -1,5 +1,5 @@
 entreprise . imposition:
-  question: Quel est le type d'imposition de votre entreprise ?
+  question: Quel est le type d’imposition de votre entreprise ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -18,7 +18,7 @@ entreprise . imposition:
   références:
     Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices
     Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
-    Guide complet sur les types de résultats d'une entreprise: https://www.impots.gouv.fr/professionnel/resultat-imposable-limpot-sur-le-revenu-ir-ou-limpot-sur-les-societes
+    Guide complet sur les types de résultats d’une entreprise: https://www.impots.gouv.fr/professionnel/resultat-imposable-limpot-sur-le-revenu-ir-ou-limpot-sur-les-societes
     # BPI ONLY
     Imposition des bénéfices: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices
 
@@ -27,20 +27,22 @@ entreprise . imposition . IR:
   titre: Impôt sur le revenu
   acronyme: IR
   description: |
-    Le résultat de votre entreprise est imposé à l'impôt sur le revenu, comme les autres revenus de
-    votre foyer.
+    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme les
+    autres revenus de votre foyer.
 
-    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
-    déclaration de résultat). C'est l'expert-comptable qui s'en charge.
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
+    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
 
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il est ajouté aux autres
-    revenus imposables (s'ils existent) : **votre impôt sur le revenu est plus élevé**.
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
+    est ajouté aux autres revenus imposables (s’ils existent) : **votre impôt sur le
+    revenu est plus élevé**.
 
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Il vient réduire le montant du
-    revenu imposable de votre ménage : **votre impôt sur le revenu est moins élevé**.
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
+    vient réduire le montant du revenu imposable de votre ménage : **votre impôt sur
+    le revenu est moins élevé**.
 
-    À noter : avec l'imposition sur le revenu, il n'y a pas de différence fiscale entre les revenus de votre foyer et ceux de
-    votre entreprise.
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
+    entre les revenus de votre foyer et ceux de votre entreprise.
 
 entreprise . imposition . IR . type de bénéfices:
   question: Quel est le type de bénéfices de votre entreprise ?
@@ -77,8 +79,9 @@ entreprise . imposition . IR . information sur le report de déficit:
   type: notification
   formule: résultat fiscal < 0 €/an
   description: |
-    Lorsque votre résultat fiscal est négatif, ce dernier vient réduire le revenu imposables du foyer fiscal.
-    Un déficit peut être imputé jusqu'à 6 ans après sa réalisation.
+    Lorsque votre résultat fiscal est négatif, ce dernier vient réduire le revenu
+    imposables du foyer fiscal.
+    Un déficit peut être imputé jusqu’à 6 ans après sa réalisation.
 
     [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
   références:
@@ -90,32 +93,37 @@ entreprise . imposition . IS:
   acronyme: IS
   description: |-
 
-    Le **résultat** de votre entreprise est imposé à l'**impôt sur les sociétés**.
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
 
-    Si votre entreprise perd de l'argent, le résultat est appelé **déficit**. Elle n'aura pas à payer d'impôt
-    sur les sociétés.
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
+    n’aura pas à payer d’impôt sur les sociétés.
 
-    Si votre entreprise gagne de l'argent, le résultat est appelé **bénéfice**. Il sera imposé à un
-    **taux fixe**.
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+    Il sera imposé à un **taux fixe**.
 
-    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale** (aussi appelée
-    déclaration de résultat). C'est l'expert-comptable qui s'en charge.
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
 
 
-    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l'impôt sur les sociétés :
-      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant l'année. Cette rémunération est
-      déduite (soustraite) du résultat pour calculer le bénéfice imposable de votre entreprise. En revanche, cette
-      rémunération est ajoutée aux revenus imposables de votre foyer pour le calcul de l'impôt sur le revenu.
-      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des années précédentes. Vous aurez à payer
-      un impôt fixe sur ces derniers : c'est ce que l'on appelle la "flat tax".
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
+    sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
+      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
+      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
+      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
+      revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
+      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
+      ce que l’on appelle la "flat tax".
 
-      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les revenus que vous touchez.
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
+      revenus que vous touchez.
   références:
-    "Impôt sur les sociétés : entreprises concernées et taux d'imposition": https://entreprendre.service-public.fr/vosdroits/F23575
-    Comment choisir l'imposition sur le revenu ?: https://entreprendre.service-public.fr/vosdroits/F31265
+    'Impôt sur les sociétés : entreprises concernées et taux d’imposition': https://entreprendre.service-public.fr/vosdroits/F23575
+    Comment choisir l’imposition sur le revenu ?: https://entreprendre.service-public.fr/vosdroits/F31265
 
     # BPI Only
-    "Quelles sont les entreprises soumises à l'impôt sur les sociétés (IS) ?": "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/is-impot-societes"
+    Quelles sont les entreprises soumises à l’impôt sur les sociétés (IS) ?: "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/is-impot-societes"
     Comparaison IR/IS: "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices#:~:text=Principe%20de%20l%27imp%C3%B4t%20sur%20les%20soci%C3%A9t%C3%A9s,-Une%20distinction%20est&text=Les%20entreprises%20dont%20le%20chiffre,%2C%20et%2025%20%25%20au%20del%C3%A0."
 
 entreprise . imposition . IS . montant:
@@ -202,8 +210,8 @@ entreprise . imposition . IS . éligible taux réduit:
 
 entreprise . imposition . IS . prorata temporis:
   description: |
-    Lorsque la durée de l’exercice n'est pas égale à un an, on pro-ratise les
-    plafonds utilisés dans le barème de l'impôt sur les sociétés.
+    Lorsque la durée de l’exercice n’est pas égale à un an, on pro-ratise les
+    plafonds utilisés dans le barème de l’impôt sur les sociétés.
   unité: '%'
   formule: exercice . durée / 1 an
   # TODO: c'est un peu plus subtil que cela : « En cas d’exercice ouvert ou
@@ -214,14 +222,13 @@ entreprise . imposition . IS . prorata temporis:
     Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
 
 entreprise . imposition . IS . contribution sociale:
-  # description: |
-  #   La contribution sociale sur les bénéfices est un impôt distinct de l'impôt sur les sociétés. Son montant n'est pas déductible des résultats.
-
-  #   L'assiette bénéficie d'un abattement important, et seules les entreprises réalisant plus de 2,3 millions d'euros de bénéficie sont concernées par cette contribution.
   description: |
-    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt sur les sociétés. Son montant n’est pas déductible des résultats.
+    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt sur
+    les sociétés. Son montant n’est pas déductible des résultats.
 
-    L’assiette bénéficie d’un abattement important, et seules les entreprises réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette contribution.
+    L’assiette bénéficie d’un abattement important, et seules les entreprises
+    réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette
+    contribution.
   formule:
     produit:
       - valeur: IS . montant
@@ -231,8 +238,8 @@ entreprise . imposition . IS . contribution sociale:
     Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
 entreprise . imposition . IS . résultat imposable:
-  titre: Résultat de l'exercice
-  résumé: Imposable à l'impôt sur les sociétés
+  titre: Résultat de l’exercice
+  résumé: Imposable à l’impôt sur les sociétés
   valeur: résultat fiscal
 
 entreprise . imposition . IS . information sur le report de déficit:
@@ -240,10 +247,12 @@ entreprise . imposition . IS . information sur le report de déficit:
   formule: résultat imposable < 0 €/an
   # TODO: Support des références dans les notifications
   description: |
-    Les déficits subits au cours d'un exercice peuvent être reportés sur les exercices suivants (report en avant), ou sur le seul exercice précédent (report en arrière).
+    Les déficits subits au cours d’un exercice peuvent être reportés sur les
+    exercices suivants (report en avant), ou sur le seul exercice précédent (report
+    en arrière).
 
 entreprise . imposition . IS . résultat net:
-  résumé: Après déduction des charges et de l'impôt sur les société
+  résumé: Après déduction des charges et de l’impôt sur les société
   somme:
     - chiffre d'affaires
     - (- charges)
@@ -252,7 +261,7 @@ entreprise . imposition . IS . résultat net:
   par défaut: 0€
 
 entreprise . imposition . régime:
-  question: Quel est le régime d'imposition de votre entreprise ?
+  question: Quel est le régime d’imposition de votre entreprise ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -261,7 +270,7 @@ entreprise . imposition . régime:
       - réel simplifié
       - réel normal
   références:
-    Les différents régimes d'imposition: https://www.economie.gouv.fr/entreprises/les-differents-regimes-dimposition
+    Les différents régimes d’imposition: https://www.economie.gouv.fr/entreprises/les-differents-regimes-dimposition
 
 entreprise . imposition . régime . micro-entreprise:
   titre: micro-fiscal
@@ -272,21 +281,27 @@ entreprise . imposition . régime . micro-entreprise:
   rend non applicable: dirigeant . indépendant . cotisations facultatives
   question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
-    Avec le régime micro-fiscal, les charges déductibles sont estimées forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
+    Avec le régime micro-fiscal, les charges déductibles sont estimées forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+    pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme
+    classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
 
-    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de fonctionnement sont faibles.
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
+    fonctionnement sont faibles.
   références:
     Régime micro-fiscal: https://entreprendre.service-public.fr/vosdroits/F23267
-    "Changement de régime d'imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
+    "Changement de régime d’imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
 
 entreprise . imposition . régime . micro-entreprise . revenu abattu:
   remplace: résultat fiscal
   résoudre la référence circulaire: oui
   titre: abattement forfaitaire micro-fiscal
   description: |
-    Le micro-entrepreneur est dispensé d'établir une déclaration professionnelle de bénéfices au titre des BNC ou BIC.
+    Le micro-entrepreneur est dispensé d’établir une déclaration professionnelle de
+    bénéfices au titre des BNC ou BIC.
 
-    Il lui suffit de porter dans la déclaration complémentaire de revenu (n°2042-C Pro) le montant annuel du chiffre d'affaires brut (BIC) ou des recettes (BNC).
+    Il lui suffit de porter dans la déclaration complémentaire de revenu
+    (n°2042-C-PRO) le montant annuel du chiffre d’affaires brut (BIC) ou des recettes
+    (BNC).
   somme:
     - entreprise . chiffre d'affaires . vente restauration hébergement
     - entreprise . chiffre d'affaires . service BIC
@@ -315,7 +330,7 @@ entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   type: notification
   sévérité: avertissement
   formule: chiffre d'affaires . seuil micro . dépassé
-  description: Le seuil annuel de chiffre d'affaires pour le régime micro-fiscal
+  description: Le seuil annuel de chiffre d’affaires pour le régime micro-fiscal
     est dépassé. [En savoir
     plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
 
@@ -340,28 +355,37 @@ entreprise . chiffre d'affaires . seuil micro . dépassé:
   experimental: oui
   applicable si: imposition . IR
   description: |
-    Le statut de micro-entreprise s'applique tant que le chiffre d'affaires annuel (effectivement encaissé au cours de l'année civile) ne dépasse pas les seuils du régime fiscal de la micro-entreprise.
+    Le statut de micro-entreprise s’applique tant que le chiffre d’affaires annuel
+    (effectivement encaissé au cours de l’année civile) ne dépasse pas les seuils du
+    régime fiscal de la micro-entreprise.
 
-    En cas de dépassement **sur deux années consécutives**, l'entreprise bascule automatiquement dans le régime de [l'entreprise individuelle](/simulateurs/indépendant).
+    En cas de dépassement **sur deux années consécutives**, l’entreprise bascule
+    automatiquement dans le régime de [l’entreprise
+    individuelle](/simulateurs/indépendant).
 
-    À la fin de la première année d'activité, le CA est proratisé par rapport à la durée d'activité.
+    À la fin de la première année d’activité, le CA est proratisé par rapport à la
+    durée d’activité.
 
     > ##### Exemple :
-    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de `50 000 €` au cours des cinq mois d'activité de sa première année civile d'exploitation.
-    > Les recettes de cette première année civile sont ajustées *prorata temporis* pour les comparer au plafond :
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de
+    > `50 000 €` au cours des cinq mois d’activité de sa première année civile
+    > d’exploitation.
+    > Les recettes de cette première année civile sont ajustées *prorata temporis*
+    > pour les comparer au plafond :
     >
     > `50 000€ x (365/153) = 119 280 €`
 
 
-    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le calcul des cotisations)
+    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le
+    calcul des cotisations)
 
 
     ### Multi-activité
 
-    Lorsqu'un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
-    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En
-    effet l'exercice de plusieurs activités avec la même micro-entreprise
-    n’augmente pas les seuils.
+    Lorsqu’un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En effet
+    l’exercice de plusieurs activités avec la même micro-entreprise n’augmente pas
+    les seuils.
 
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
@@ -385,15 +409,15 @@ entreprise . imposition . régime . déclaration contrôlée:
     Qu’est-ce que le régime de la déclaration contrôlée ?: https://www.economie.gouv.fr/entreprises/regime-declaration-controlee
 
 entreprise . imposition . régime . réel normal:
-  titre: réel normal d'imposition
+  titre: réel normal d’imposition
   acronyme: RN
   non applicable si: IR . type de bénéfices . BNC
   valeur: régime = 'réel normal'
   références:
-    Qu'est-ce que le régime réel normal ?: https://www.economie.gouv.fr/entreprises/regime-reel-normal-imposition
+    Qu’est-ce que le régime réel normal ?: https://www.economie.gouv.fr/entreprises/regime-reel-normal-imposition
 
 entreprise . imposition . régime . réel simplifié:
-  titre: réel simplifié d'imposition
+  titre: réel simplifié d’imposition
   acronyme: RSI
   non applicable si: IR . type de bénéfices . BNC
   valeur: régime = 'réel simplifié'
