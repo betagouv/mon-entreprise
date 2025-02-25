@@ -181,7 +181,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		return <SelectAtmp {...commonProps} />
 	}
 
-	if (rule.rawNode.type?.startsWith('date')) {
+	if ((rule.rawNode.type as string | undefined)?.startsWith('date')) {
 		return (
 			<DateInput
 				{...commonProps}
@@ -192,7 +192,9 @@ export default function RuleInput<Names extends string = DottedName>({
 
 	if (
 		evaluation.unit == null &&
-		['booléen', 'notification', undefined].includes(rule.rawNode.type) &&
+		['booléen', 'notification', undefined].includes(
+			rule.rawNode.type as string
+		) &&
 		typeof evaluation.nodeValue !== 'number'
 	) {
 		return (
