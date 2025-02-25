@@ -549,7 +549,7 @@ dirigeant . auto-entrepreneur . éligible à l'ACRE:
   applicable si: entreprise . durée d'activité . en début d'année < 1 an
   description: |
     L'ACRE est réservée aux auto-entrepreneurs suivants:
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à Pôle Emploi au cours des 18 derniers mois).
+    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
     - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
     - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
