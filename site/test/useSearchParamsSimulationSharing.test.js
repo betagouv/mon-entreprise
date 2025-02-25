@@ -8,7 +8,7 @@ import {
 	getRulesParamNames,
 	getSearchParams,
 	getSituationFromSearchParams,
-} from '../source/components/utils/useSearchParamsSimulationSharing'
+} from '../source/hooks/useSearchParamsSimulationSharing'
 
 describe('identifiant court', () => {
 	const questions = Object.entries(parsePublicodes(rules).parsedRules)

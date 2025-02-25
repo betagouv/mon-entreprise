@@ -15,10 +15,10 @@ import {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
-import useYear from '@/components/utils/useYear'
 import { H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
+import useYear from '@/hooks/useYear'
 import {
 	batchUpdateSituation,
 	enregistreLaRéponse,

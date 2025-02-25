@@ -7,7 +7,7 @@ import { animated, useSpring } from 'react-spring'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
-import useDisplayOnIntersecting from '@/components/utils/useDisplayOnIntersecting'
+import useDisplayOnIntersecting from '@/hooks/useDisplayOnIntersecting'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'

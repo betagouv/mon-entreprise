@@ -10,6 +10,7 @@ export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 		iframePath: 'demande-mobilite',
 		path: sitePaths.assistants.formulaireMobilité,
 		icône: '🧳',
+		hideDate: true,
 		tracking: {
 			chapter1: 'assistant',
 			chapter2: 'demande_mobilite',

@@ -1,10 +1,8 @@
 import { ComponentPropsWithoutRef } from 'react'
-import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import Meta from '@/components/utils/Meta'
-import useSearchParamsSimulationSharing from '@/components/utils/useSearchParamsSimulationSharing'
 import { Chip } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { H1 } from '@/design-system/typography/heading'
@@ -14,13 +12,14 @@ import {
 	useCurrentSimulatorData,
 } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import useSearchParamsSimulationSharing from '@/hooks/useSearchParamsSimulationSharing'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { Simulation } from '@/store/reducers/simulation.reducer'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { Merge } from '@/types/utils'
 
 import { NextSteps } from '../pages/simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'
+import DateChip from './DateChip'
 
 export default function SimulateurOrAssistantPage() {
 	const { currentSimulatorData } = useCurrentSimulatorData()
@@ -43,11 +42,6 @@ export default function SimulateurOrAssistantPage() {
 		autoloadLastSimulation,
 		path,
 	} = currentSimulatorData
-
-	const situation = useSelector(situationSelector)
-	const année =
-		typeof situation.date === 'string' && new Date(situation.date).getFullYear()
-	const year = typeof année === 'number' ? `Année ${année}` : ''
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({
@@ -86,12 +80,7 @@ export default function SimulateurOrAssistantPage() {
 			{title && !inIframe && (
 				<>
 					<H1>
-						<StyledSpan>{title}</StyledSpan>{' '}
-						{year && (
-							<Chip type="secondary" icon={<Emoji emoji="📆" />}>
-								{year}
-							</Chip>
-						)}
+						<StyledSpan>{title}</StyledSpan> <DateChip />
 						{beta && (
 							<Chip type="info" icon={<Emoji emoji="🚧" />}>
 								Version bêta
