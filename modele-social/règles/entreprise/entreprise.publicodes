@@ -342,8 +342,7 @@ entreprise . charges:
   résumé: Total des dépenses nécessaires à l’entreprise, en excluant cotisations sociales, CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement déduites par le simulateur.
   question: Quelles sont les charges de l’entreprise ?
   description: |
-    Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la
-    contribution à la formation professionnelle.
+    **Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la contribution à la formation professionnelle.**
 
     Sont à déclarer, les dépenses de l’entreprise engagées dans l’intérêt de celle-ci,
     hors rémunération du dirigeant. Pour les sociétés et entreprises hors
