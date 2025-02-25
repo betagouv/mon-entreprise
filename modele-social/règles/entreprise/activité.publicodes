@@ -106,7 +106,6 @@ entreprise . activités:
     Artisanale : {{ artisanale }} ;
     Libérale : {{ libérale }} ;
     Agricole : {{ agricole }}
-  par défaut: oui
   plusieurs possibilités:
     - artisanale
     - commerciale

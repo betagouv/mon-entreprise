@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
 import Engine, {
+	EngineOptions,
 	EvaluatedNode,
 	isPublicodesError,
 	PublicodesExpression,
@@ -26,7 +27,7 @@ export type Rules = Record<DottedName, Rule>
 const unitsTranslations = Object.entries(
 	i18n.getResourceBundle('fr', 'units') as Record<string, string>
 )
-const engineOptions = {
+const engineOptions: EngineOptions = {
 	getUnitKey(unit: string): string {
 		const key = unitsTranslations
 			.find(([, trans]) => trans === unit)?.[0]
@@ -34,6 +35,13 @@ const engineOptions = {
 
 		return key || unit
 	},
+	warn:
+		process.env.NODE_ENV === 'production'
+			? false
+			: {
+					experimentalRules: false,
+					deprecatedSyntax: false,
+			  },
 }
 
 let timeout: NodeJS.Timeout | null = null

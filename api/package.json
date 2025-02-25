@@ -43,7 +43,7 @@
 		"modele-social": "workspace:^",
 		"nodemon": "^3.0.1",
 		"piano-analytics-js": "^6.13.0",
-		"publicodes": "^1.2.0",
+		"publicodes": "https://pkg.pr.new/publicodes/publicodes@e90106c#.tgz",
 		"rate-limiter-flexible": "^2.4.2",
 		"swagger-ui-dist": "^5.7.2"
 	},

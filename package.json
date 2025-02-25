@@ -52,7 +52,7 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-vitest": "^0.3.22",
 		"prettier": "^3.0.3",
-		"publicodes": "^1.2.0",
+		"publicodes": "https://pkg.pr.new/publicodes/publicodes@e90106c#.tgz",
 		"rimraf": "^5.0.1"
 	},
 	"resolutions": {
