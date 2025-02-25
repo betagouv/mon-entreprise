@@ -1,15 +1,19 @@
+import { DottedName } from 'modele-social'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
-import { RégularisationMethod } from '@/utils/réductionDeCotisations'
+import {
+	réductionGénéraleDottedName,
+	RégularisationMethod,
+} from '@/utils/réductionDeCotisations'
 
 import CongésPayésSwitch from './components/CongésPayésSwitch'
 import RéductionGénéraleSimulationGoals from './Goals'
@@ -43,9 +47,17 @@ export default function RéductionGénéraleSimulation() {
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
 
+	const firstStepCompletedExceptions = [
+		'entreprise . salariés . effectif' as DottedName,
+		`${réductionGénéraleDottedName} . caisse de congés payés` as DottedName,
+	]
+
 	return (
 		<>
-			<Simulation afterQuestionsSlot={<SelectSimulationYear />}>
+			<Simulation
+				firstStepCompletedExceptions={firstStepCompletedExceptions}
+				afterQuestionsSlot={<YearSelectionBanner />}
+			>
 				<SimulateurWarning
 					simulateur="réduction-générale"
 					informationsComplémentaires={

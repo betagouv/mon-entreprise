@@ -1,4 +1,5 @@
-import { intersection, NonEmptyArray } from 'effect/Array'
+import { difference, NonEmptyArray } from 'effect/Array'
+import { DottedName } from 'modele-social'
 import { createSelector } from 'reselect'
 
 import { isComparateurConfig } from '@/domaine/ComparateurConfig'
@@ -52,12 +53,17 @@ export const rawSituationsSelonContextesSelector = createSelector(
 			: [rawSituation]) as NonEmptyArray<Situation>
 )
 
-export const firstStepCompletedSelector = (state: RootState) => {
-	const situation = situationSelector(state)
-	const objectifs = configObjectifsSelector(state)
+export const firstStepCompletedSelector = createSelector(
+	[
+		situationSelector,
+		(_: unknown, exceptions?: DottedName[]) => exceptions || [],
+	],
+	(situation, exceptions) =>
+		difference(Object.keys(situation), exceptions).length > 0
+)
 
-	return intersection(objectifs, Object.keys(situation)).length > 0
-}
+export const previousSimulationSelector = (state: RootState) =>
+	state.previousSimulation
 
 export const targetUnitSelector = (state: RootState) =>
 	state.simulation?.targetUnit ?? '€/mois'

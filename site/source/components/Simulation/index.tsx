@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -10,17 +11,18 @@ import ShareOrSaveSimulationBanner, {
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
+import { RootState } from '@/store/reducers/rootReducer'
 import { ilYADesQuestionsSelector } from '@/store/selectors/ilYADesQuestions.selector'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { TrackPage } from '../ATInternetTracking'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
-import SimulationPréremplieBanner from '../SimulationPréremplieBanner'
-import PreviousSimulationBanner from './../PreviousSimulationBanner'
 import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
+import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
+import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
 export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
@@ -48,6 +50,7 @@ type SimulationProps = {
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
+	firstStepCompletedExceptions?: DottedName[]
 }
 
 export default function Simulation({
@@ -62,10 +65,14 @@ export default function Simulation({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
+	firstStepCompletedExceptions,
 }: SimulationProps) {
-	const firstStepCompleted = useSelector(firstStepCompletedSelector)
+	const firstStepCompleted = useSelector((state: RootState) =>
+		firstStepCompletedSelector(state, firstStepCompletedExceptions)
+	)
 	const ilYADesQuestions = useSelector(ilYADesQuestionsSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
+	const showQuestions = showQuestionsFromBeginning || firstStepCompleted
 
 	return (
 		<>
@@ -75,12 +82,12 @@ export default function Simulation({
 				<PrintExportRecover />
 				{children}
 				<FromTop>
-					{(firstStepCompleted || showQuestionsFromBeginning) && (
+					{showQuestions && (
 						<>
-							{entrepriseSelection && <EntrepriseSelection />}
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
+							{entrepriseSelection && <EntrepriseSelection />}
 							{ilYADesQuestions && (
 								<Questions customEndMessages={customEndMessages} />
 							)}
@@ -88,11 +95,9 @@ export default function Simulation({
 					)}
 					<Spacing md />
 
-					<SimulationPréremplieBanner />
+					{!entrepriseSelection && <SimulationPréremplieBanner />}
 
-					{!showQuestionsFromBeginning && !firstStepCompleted && (
-						<PreviousSimulationBanner />
-					)}
+					{!showQuestions && <PreviousSimulationBanner />}
 
 					{afterQuestionsSlot}
 

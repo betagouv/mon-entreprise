@@ -6,12 +6,12 @@ import { useTheme } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Notifications from '@/components/Notifications'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import StackedBarChart from '@/components/StackedBarChart'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Radio, ToggleGroup } from '@/design-system/field'
@@ -21,12 +21,17 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {
+	const firstStepCompletedExceptions = [
+		'impôt . méthode de calcul' as DottedName,
+	]
+
 	return (
 		<>
 			<Notifications />
 			<Simulation
+				firstStepCompletedExceptions={firstStepCompletedExceptions}
 				explanations={<DividendesExplanation />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="dividendes"

@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
-import Banner from '@/components/Banner'
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
@@ -17,9 +16,10 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
-import { Appear, FromTop } from '@/components/ui/animate'
+import { FadeIn, FromTop } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { useEngine } from '@/components/utils/EngineContext'
+import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Strong } from '@/design-system/typography'
 import { H2 } from '@/design-system/typography/heading'
@@ -60,16 +60,23 @@ export default function SalariéSimulation() {
 						{!import.meta.env.SSR &&
 							!document.referrer?.includes('code.travail.gouv.fr') && (
 								<WhenNotAlreadyDefined dottedName="entreprise . catégorie juridique">
-									<Appear>
-										<Banner icon={'👨‍✈️'}>
-											<Trans>
-												Vous êtes dirigeant d'une SAS(U) ?{' '}
-												<Link to={absoluteSitePaths.simulateurs.sasu}>
-													Accéder au simulateur de revenu dédié
-												</Link>
-											</Trans>
-										</Banner>
-									</Appear>
+									<FadeIn>
+										<Message
+											border={false}
+											mini
+											icon={<Emoji emoji="👨‍✈️" />}
+											className="print-hidden"
+										>
+											<SmallBody>
+												<Trans i18nKey="pages.simulateurs.salarié.SASU">
+													Vous êtes dirigeant d'une SAS(U) ?{' '}
+													<Link to={absoluteSitePaths.simulateurs.sasu}>
+														Accédez au simulateur de revenu dédié
+													</Link>
+												</Trans>
+											</SmallBody>
+										</Message>
+									</FadeIn>
 								</WhenNotAlreadyDefined>
 							)}
 					</BrowserOnly>

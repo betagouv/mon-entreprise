@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import { SelectSimulationYear } from '@/components/SelectSimulationYear'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
+import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -25,8 +25,9 @@ export default function ArtisteAuteur() {
 	return (
 		<>
 			<Simulation
+				results={<InstitutionsPartenairesArtisteAuteur />}
 				explanations={<CotisationsResult />}
-				afterQuestionsSlot={<SelectSimulationYear />}
+				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
 					simulateur="artiste-auteur"
@@ -47,8 +48,6 @@ export default function ArtisteAuteur() {
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . frais réels" />
 				</SimulationGoals>
-
-				<InstitutionsPartenairesArtisteAuteur />
 			</Simulation>
 		</>
 	)
