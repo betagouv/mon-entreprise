@@ -44,7 +44,15 @@ app.use(cors())
 
 router.use('/api/v1', docRoutes(), openapiRoutes(openapi))
 
-const apiRoutes = publicodesAPI(new Engine(rules, { getUnitKey }))
+const apiRoutes = publicodesAPI(
+	new Engine(rules, {
+		getUnitKey,
+		warn: {
+			deprecatedSyntax: false,
+			cyclicReferences: false,
+		},
+	})
+)
 
 router.use(
 	'/api/v1',
