@@ -1,6 +1,4 @@
 (embauche, absences, départ...): (embauche, absences, départ...)
-(invalidité partielle): (invalidité partielle)
-(invalidité totale): (invalidité totale)
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
@@ -39,17 +37,14 @@
 API REST de simulation: API REST de simulation
 API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
-Accident du travail et maladie professionnelle: Accident du travail et maladie professionnelle
 Accéder au site mon-entreprise, nouvelle fenêtre: Accéder au site mon-entreprise, nouvelle fenêtre
 Activités relevant de l’économie collaborative, voir la page: Activités relevant de l’économie collaborative, voir la page
-Adoption: Adoption
 Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
 Afficher les détails de l'entreprise, la modifier ou la supprimer.: Afficher les détails de l'entreprise, la modifier ou la supprimer.
 Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
-Arrêt maladie: Arrêt maladie
 Assistants à la déclaration de revenus des indépendants: Assistants à la déclaration de revenus des indépendants
 Attention: Attention
 Attention, information importante: Attention, information importante
@@ -60,7 +55,6 @@ Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-cl�
   Aucun résultat ne correspond à votre recherche. Essayez avec d'autres
   mots-clés.
 Autres outils: Autres outils
-Avec <2><0></0></2> de cotisations sociales: Avec <2><0></0></2> de cotisations sociales
 Avec ACRE: Avec ACRE
 Avec chômage partiel: Avec chômage partiel
 Boite de dialogue: Boite de dialogue
@@ -68,7 +62,6 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
 Budget: Budget
-Calculer vos revenus: Calculer vos revenus
 Cette commune n'existe pas: Cette commune n'existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
@@ -80,11 +73,9 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
-Comparer...: Comparer...
 Confirmer: Confirmer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
-Coût de création: Coût de création
 "Crée le :": "Crée le :"
 Dividendes nets: Dividendes nets
 Documentation: Documentation
@@ -96,24 +87,9 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Notre partenaire Conseillers-Entreprises.Service-Public.fr identifiera, parmi l’ensemble des partenaires publics et parapublics,
     le conseiller compétent pour votre demande.
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
-Décès: Décès
 Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
-"En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
-  "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
-  d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à
-  hauteur de :"
-En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos maternel supplémentaire</2>.:
-  En plus des indemnités journalières, vous pouvez aussi prétendre à une
-  <2>allocation forfaitaire de repos maternel supplémentaire</2>.
-En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos parental supplémentaire</2>.:
-  En plus des indemnités journalières, vous pouvez aussi prétendre à une
-  <2>allocation forfaitaire de repos parental supplémentaire</2>.
-En plus du capital décès, une <2>pension de réversion</2> peut être versée au conjoint survivant. Elle correspond aux <5>droits à la retraite acquis par le défunt</5> durant sa vie professionnelle.:
-  En plus du capital décès, une <2>pension de réversion</2> peut être versée au
-  conjoint survivant. Elle correspond aux <5>droits à la retraite acquis par le
-  défunt</5> durant sa vie professionnelle.
 En savoir plus: En savoir plus
 En savoir plus sur impots:
   gouv:
@@ -155,7 +131,6 @@ Information: Information
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
-Invalidité: Invalidité
 J'ai compris: J'ai compris
 J'ai compris, fermer le message condensé.: J'ai compris, fermer le message condensé.
 Je donne mon avis, donner mon avis sur jedonnemonavis:
@@ -164,18 +139,6 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
       fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
 Jours: Jours
-La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
-  La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
-  (personnes qui sont à votre charge) sous certaines conditions.
-La gestion juridique et comptable <1></1>: La gestion juridique et comptable <1></1>
-La maternité, paternité et adoption: La maternité, paternité et adoption
-La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.:
-  La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en
-  considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par
-  an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.
-Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
-  Le montant de votre retraite est constitué de <2>votre retraite de base +
-  votre retraite complémentaire</2>.
 Le montant demandé n'est <2>pas calculable...</2>: Le montant demandé n'est <2>pas calculable...</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Les données de simulations se mettront automatiquement à jour après la
@@ -183,16 +146,10 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
-Les formalités de création d'une entreprise diffèrent selon les statuts et la nature de l'activité. Le calcul se concentre ici sur les <1>procédures obligatoires</1> (immatriculation, annonces légales, rédaction des statuts...).:
-  Les formalités de création d'une entreprise diffèrent selon les statuts et la
-  nature de l'activité. Le calcul se concentre ici sur les <1>procédures
-  obligatoires</1> (immatriculation, annonces légales, rédaction des
-  statuts...).
 Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
-Maternité: Maternité
 Menu de navigation: Menu de navigation
 Message à caractère informatif: Message à caractère informatif
 Mode d'affichage: Mode d'affichage
@@ -238,22 +195,6 @@ Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
     fr</2>: Pour en savoir plus, rendez-vous sur le site
       <2>aquoiserventlescotisations.urssaf.fr</2>
-Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de santé.:
-  Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance
-  complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de
-  santé.
-"Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
-  "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En
-  cas d’arrêt maladie, l’assurance maladie vous versera :"
-Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le conjoint survivant peut bénéficier d’une <4>rente de décès</4>.:
-  Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le
-  conjoint survivant peut bénéficier d’une <4>rente de décès</4>.
-Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente d’incapacité</4>.:
-  Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez
-  bénéficier d’une <4>rente d’incapacité</4>.
-Pour y prétendre, vous devez avoir cotisé <2>au moins 6 mois</2>.: Pour y prétendre, vous devez avoir cotisé <2>au moins 6 mois</2>.
-Pour y prétendre, vous devez avoir cotisé au moins <2><0></0></2>: Pour y prétendre, vous devez avoir cotisé au moins <2><0></0></2>
-Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.: Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Professions libérales: Professions libérales
@@ -276,8 +217,6 @@ Renseigner une adresse e-mail (au format nom@domaine:
 Replier: Replier
 Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
-Retraite complémentaire: Retraite complémentaire
-Retraite de base: Retraite de base
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.:
   Retrouver ma précédente simulation, charger les données de ma précédente
   simulation.
@@ -286,7 +225,6 @@ Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Revenu disponible: Revenu disponible
 Revenu du dirigeant par statut: Revenu du dirigeant par statut
-Revenu net mensuel après impôts: Revenu net mensuel après impôts
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Régime d’imposition: Régime d’imposition
@@ -315,9 +253,7 @@ Simulateurs: Simulateurs
 Simulateurs et Assistants: Simulateurs et Assistants
 Simulation en cours: Simulation en cours
 "Siège :": "Siège :"
-Soit <2><0></0></2> avant impôts: Soit <2><0></0></2> avant impôts
 Statistiques: Statistiques
-Statut du conjoint: Statut du conjoint
 Suivant: Suivant
 Suivant, enregistrer et passer à l'étape suivante: Suivant, enregistrer et passer à l'étape suivante
 Suivant, passer à la question suivante: Suivant, passer à la question suivante
@@ -331,20 +267,6 @@ Tableau présentant le nombre de visites par simulateur et par mois.: Tableau pr
 Titres-restaurant: Titres-restaurant
 Total des cotisations et contributions: Total des cotisations et contributions
 Total des cotisations à devoir pour l'année de cessation d'activité: Total des cotisations à devoir pour l'année de cessation d'activité
-"Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
-  "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui
-  constituent votre pension de retraite complémentaire</2>. En fin de carrière,
-  vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre
-  retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple,
-  au bout de 10 ans, vous auriez droit à :"
-Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de réversion et un capital en cas de décès</8>.:
-  Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les
-  <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de
-  réversion et un capital en cas de décès</8>.
-Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>
-Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.:
-  Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de
-  congé maternité, paternité, adoption.
 Tout déplier: Tout déplier
 Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
@@ -352,9 +274,6 @@ Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Trimestre: Trimestre
 Type: Type
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, accéder à la page d'accueil
-Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.:
-  Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs
-  indépendants</4> décédés, sous certaines conditions.
 Un avis sur cette page ?: Un avis sur cette page ?
 Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
@@ -374,36 +293,20 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos cotisations pour l’année précédente: Vos cotisations pour l’année précédente
-Vos droits pour la retraite: Vos droits pour la retraite
-Vos prestations santé: Vos prestations santé
-Vos revenus: Vos revenus
-Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie.:
-  Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt
-  maladie.
 Votre adresse e-mail (requise): Votre adresse e-mail (requise)
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
-Votre couverture invalidité et décès: Votre couverture invalidité et décès
 Votre domaine d'activité: Votre domaine d'activité
 Votre entreprise: Votre entreprise
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
-Vous allez dépasser le plafond de la micro-entreprise: Vous allez dépasser le plafond de la micro-entreprise
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.:
   Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes
   désolé(e)s.
-Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
-  Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou
-  d’accident conduisant à une incapacité à poursuivre votre activité
-  professionnelle</2>.
 Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.:
   Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
   résultat.
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>
-"Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).":
-  "Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il
-  existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>,
-  <6>conjoint associé</6> ou <9>conjoint salarié</9>)."
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
@@ -424,7 +327,6 @@ assistants:
         sur
       cta: Visiter le site
       title: Voir vos données publiques
-au bout de 10 ans: au bout de 10 ans
 avril: avril
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
@@ -610,7 +512,6 @@ créer:
         pouvez consulter les sites de la <2>CCI</2> ou de la <5>CMA</5>.
       title: Précisions sur votre activité
 d'aides: d'aides
-de chiffre d’affaires: de chiffre d’affaires
 design-system:
   date-picker:
     close: Fermer
@@ -626,7 +527,6 @@ design-system:
     year: Année
 décembre: décembre
 employeur: employeur
-en cas d'accident pro: en cas d'accident pro
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
 error:
@@ -1478,18 +1378,131 @@ pages:
         title: "Professions libérales rattachées à la Cipav : simulateur de revenus"
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
-    comparaison:
+    comparaison-statuts:
+      accordion-title: Comparer...
+      items:
+        gestion:
+          conjoint:
+            body: "Vous êtes marié⋅e, pacsé⋅e ou en union libre avec une cheffe ou un chef
+              d’entreprise : il existe <1>3 statuts possibles</1> pour vous
+              (<4>conjoint⋅e collaborateurice</4>, <7>conjoint⋅e associé⋅e</7>
+              ou <10>conjoint⋅e salarié⋅e</10>)."
+            h4: Statut du conjoint / de la conjointe
+          création:
+            body: Les formalités de création d’une entreprise diffèrent selon les statuts et
+              la nature de l’activité. Le calcul se concentre ici sur les
+              <1>procédures obligatoires</1> (immatriculation, annonces légales,
+              rédaction des statuts...).
+            h4: Coût de création
+          title: La gestion juridique et comptable
+        parentalité:
+          adoption:
+            body: En plus des indemnités journalières, vous pouvez aussi prétendre à une
+              <2>allocation forfaitaire de repos parental supplémentaire</2>.
+            h4: Adoption
+            label: versés en une fois
+          body: <0>Tous les statuts vous ouvrent le droit aux <2>indemnités
+            journalières</2> de congé maternité, paternité, adoption.</0><1>Pour
+            y prétendre, vous devez avoir cotisé <2>au moins 6 mois</2>.</1>
+          maternité:
+            body: En plus des indemnités journalières, vous pouvez aussi prétendre à une
+              <2>allocation forfaitaire de repos maternel supplémentaire</2>.
+            h4: Maternité
+            label: versés en deux fois
+          title: La maternité, paternité et adoption
+        prévoyance:
+          body: Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les
+            <5>protège en cas d’invalidité</5> et assure à leurs proches une
+            <8>pension de réversion et un capital en cas de décès</8>.
+          décès:
+            body:
+              "1": La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
+                (personnes qui sont à votre charge) sous certaines conditions.
+              "2": En plus du capital décès, une <2>pension de réversion</2> peut être versée
+                à la conjointe survivante ou au conjoint survivant. Elle
+                correspond aux <5>droits à la retraite acquis par la défunte ou
+                le défunt</5> durant sa vie professionnelle.
+              "3": Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, la
+                conjointe survivante ou le conjoint survivant peut bénéficier
+                d’une <5>rente de décès</5>.
+              "4": Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurses
+                indépendant⋅es</4> décédé⋅es, sous certaines conditions.
+            h4: Décès
+            label:
+              "1": pour vos proches
+              "2": maximum
+              "3": en cas d’accident professionnel
+          invalidité:
+            body:
+              "1": <0>Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou
+                d’accident conduisant à une incapacité à poursuivre votre
+                activité professionnelle</2>.</0><1>Pour y prétendre, vous devez
+                respecter <2>certaines règles<1></1></2>.</1>
+              "2": Pour une invalidité causée par un <2>accident professionnel</2>, vous
+                pouvez bénéficier d’une <4>rente d’incapacité</4>.
+            evolution-label: (invalidité totale)
+            h4: Invalidité
+            label: (invalidité partielle)
+          title: Votre couverture invalidité et décès
+        retraite:
+          base:
+            body: La pension calculée correspond à celle de <2>vos 25 meilleures années</2>,
+              en considérant que vous avez cotisé suffisamment de trimestres (4
+              trimestres par an) et que vous partez en retraite à l’âge requis
+              pour obtenir un taux plein.
+            h4: Retraite de base
+          body: Le montant de votre retraite est constitué de <2>votre retraite de base +
+            votre retraite complémentaire</2>.
+          complémentaire:
+            body: "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui
+              constituent votre pension de retraite complémentaire</2>. En fin
+              de carrière, vos points sont transformés en <5>un montant qui
+              s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se
+              calcule sur le long terme. Par exemple, au bout de 10 ans, vous
+              auriez droit à :"
+            evolution-label: au bout de 10 ans
+            h4: Retraite complémentaire
+          title: Vos droits pour la retraite
+        revenus:
+          button-title: Calculer vos revenus
+          détails:
+            "1": Soit <2><0></0></2> avant impôts
+            "2": Avec <2><0></0></2> de cotisations sociales sur le chiffre d’affaires (soit
+              <6><0></0></6> du bénéfice)
+            "3": Avec <2><0></0></2> de cotisations sociales sur le bénéfice
+          h4: Revenu net mensuel après impôts
+          title: Vos revenus
+          warning: Vous allez dépasser le plafond de la micro-entreprise <2>(<1></1> de
+            chiffre d’affaires).</2>
+        santé:
+          arrêt:
+            body: "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>.
+              En cas d’arrêt maladie, l’assurance maladie vous versera :"
+            footer: Pour y prétendre, vous devez avoir cotisé au moins <2><0></0></2>
+            h4: Arrêt maladie
+            warning: Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier
+              d’arrêt maladie.
+          atmp:
+            body: "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
+              d’un <7>accident sur le trajet domicile-travail</7>, vous serez
+              indemnisé⋅e à hauteur de :"
+            evolution-label: à partir du 29ème jour
+            h4: Accident du travail et maladie professionnelle
+          body: <0>Tous les statuts vous ouvrent le droit au <2>remboursement des
+            soins.</2></0><1>Pour tous les statuts, il est conseillé de
+            souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
+            améliorer le remboursement des frais de santé.</1>
+          title: Vos prestations santé
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
         title: Comparateur de statut juridique
-      shortname: Comparaison des statuts
-      title: Comparateur de statut juridique
-    comparaison-statuts:
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
           pour chaque statut
+      shortname: Comparaison des statuts
+      title: Comparateur de statut juridique
     coût-création-entreprise:
       meta:
         description: Estimez les coûts des formalités administratives obligatoires à la
@@ -2216,8 +2229,6 @@ termsOfUse:
     et utilisatrices.
   title: Conditions générales d'utilisation
 trimestres acquis: trimestres acquis
-versés en deux fois: versés en deux fois
-versés en une fois: versés en une fois
 vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux statistiques d'utilisation
 warning:
   overwrite:
@@ -2237,4 +2248,3 @@ warning:
 Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
-à partir du 29ème jour: à partir du 29ème jour

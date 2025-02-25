@@ -43,7 +43,10 @@ const Détails = ({
 				defaultExpandedKeys={expandRevenuSection ? ['revenus'] : []}
 				title={
 					<H2>
-						<Trans>Comparer...</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.accordion-title',
+							'Comparer...'
+						)}
 					</H2>
 				}
 				isFoldable
@@ -51,7 +54,11 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Vos revenus</Trans>&nbsp;
+							{t(
+								'pages.simulateurs.comparaison-statuts.items.revenus.title',
+								'Vos revenus'
+							)}
+							&nbsp;
 							<Emoji emoji="🤑" />
 						</ItemTitle>
 					}
@@ -59,12 +66,18 @@ const Détails = ({
 					hasChildItems={false}
 				>
 					<StyledH4>
-						<Trans>Revenu net mensuel après impôts</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.revenus.h4',
+							'Revenu net mensuel après impôts'
+						)}
 
 						<HelpButtonWithPopover
 							type="info"
 							bigPopover
-							title={t('Calculer vos revenus')}
+							title={t(
+								'pages.simulateurs.comparaison-statuts.items.revenus.button-title',
+								'Calculer vos revenus'
+							)}
 						>
 							<RevenuTable namedEngines={namedEngines} />
 						</HelpButtonWithPopover>
@@ -82,7 +95,7 @@ const Détails = ({
 							>
 								<Ul>
 									<Li>
-										<Trans i18nKey="">
+										<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.revenus.détails.1">
 											Soit{' '}
 											<Strong>
 												<Value
@@ -102,19 +115,55 @@ const Détails = ({
 										expression="dirigeant . rémunération . totale > 0"
 									>
 										<Li>
-											<Trans i18nKey="">
-												Avec{' '}
-												<Strong>
-													<Value
-														engine={engine}
-														expression="dirigeant . rémunération . cotisations / dirigeant . rémunération . totale"
-														unit="%"
-														precision={0}
-														linkToRule={false}
-													/>
-												</Strong>{' '}
-												de cotisations sociales
-											</Trans>
+											<Condition
+												engine={engine}
+												expression="dirigeant . auto-entrepreneur"
+											>
+												<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.revenus.détails.2">
+													Avec{' '}
+													<Strong>
+														<Value
+															engine={engine}
+															expression="dirigeant . rémunération . cotisations / entreprise . chiffre d'affaires"
+															unit="%"
+															precision={0}
+															linkToRule={false}
+														/>
+													</Strong>{' '}
+													de cotisations sociales sur le chiffre d’affaires
+													(soit{' '}
+													<Strong>
+														<Value
+															engine={engine}
+															expression="dirigeant . rémunération . cotisations / dirigeant . rémunération . totale"
+															unit="%"
+															precision={0}
+															linkToRule={false}
+														/>
+													</Strong>{' '}
+													du bénéfice)
+												</Trans>
+											</Condition>
+											<Condition
+												engine={engine}
+												expression={{
+													'=': ['dirigeant . auto-entrepreneur', 'non'],
+												}}
+											>
+												<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.revenus.détails.3">
+													Avec{' '}
+													<Strong>
+														<Value
+															engine={engine}
+															expression="dirigeant . rémunération . cotisations / dirigeant . rémunération . totale"
+															unit="%"
+															precision={0}
+															linkToRule={false}
+														/>
+													</Strong>{' '}
+													de cotisations sociales sur le bénéfice
+												</Trans>
+											</Condition>
 										</Li>
 									</Condition>
 								</Ul>
@@ -132,10 +181,8 @@ const Détails = ({
 							>
 								<WarningTooltip
 									tooltip={
-										<div>
-											<Trans>
-												Vous allez dépasser le plafond de la micro-entreprise
-											</Trans>{' '}
+										<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.revenus.warning">
+											Vous allez dépasser le plafond de la micro-entreprise{' '}
 											<span>
 												(
 												<Value
@@ -155,9 +202,9 @@ const Détails = ({
 															: "entreprise . chiffre d'affaires . seuil micro . total"
 													}
 												/>{' '}
-												<Trans>de chiffre d’affaires</Trans>).
+												de chiffre d’affaires).
 											</span>
-										</div>
+										</Trans>
 									}
 								/>
 							</Condition>
@@ -168,7 +215,11 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Vos droits pour la retraite</Trans>&nbsp;
+							{t(
+								'pages.simulateurs.comparaison-statuts.items.retraite.title',
+								'Vos droits pour la retraite'
+							)}
+							&nbsp;
 							<Emoji emoji="🧐" />
 						</ItemTitle>
 					}
@@ -176,7 +227,7 @@ const Détails = ({
 					hasChildItems={false}
 				>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.body">
 							Le montant de votre retraite est constitué de{' '}
 							<Strong>
 								votre retraite de base + votre retraite complémentaire
@@ -185,11 +236,14 @@ const Détails = ({
 						</Trans>
 					</Body>
 					<StyledH4>
-						<Trans>Retraite de base</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.retraite.base.h4',
+							'Retraite de base'
+						)}
 						<ExplicableRule dottedName="protection sociale . retraite . base" />
 					</StyledH4>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.base.body">
 							La pension calculée correspond à celle de{' '}
 							<Strong>vos 25 meilleures années</Strong>, en considérant que vous
 							avez cotisé suffisamment de trimestres (4 trimestres par an) et
@@ -205,11 +259,14 @@ const Détails = ({
 					/>
 
 					<StyledH4>
-						<Trans>Retraite complémentaire</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.h4',
+							'Retraite complémentaire'
+						)}
 						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
 					</StyledH4>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.body">
 							Tous les ans, selon votre rémunération,{' '}
 							<Strong>
 								vous gagnez des points qui constituent votre pension de retraite
@@ -228,43 +285,47 @@ const Détails = ({
 						dottedName="protection sociale . retraite . complémentaire"
 						namedEngines={namedEngines}
 						unit="€/mois"
-						evolutionLabel={<Trans>au bout de 10 ans</Trans>}
+						evolutionLabel={t(
+							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.evolution-label',
+							'au bout de 10 ans'
+						)}
 					/>
 				</Item>
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Vos prestations santé</Trans>&nbsp;
+							{t(
+								'pages.simulateurs.comparaison-statuts.items.santé.title',
+								'Vos prestations santé'
+							)}
+							&nbsp;
 							<Emoji emoji="😷" />
 						</ItemTitle>
 					}
 					key="santé"
 					hasChildItems={false}
 				>
-					<Body
-						style={{
-							marginBottom: '0',
-						}}
-					>
-						<Trans>
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.body">
+						<BodyNoBottomMargin>
 							Tous les statuts vous ouvrent le droit au{' '}
 							<Strong>remboursement des soins.</Strong>
-						</Trans>
-					</Body>
-					<BodyNoMargin>
-						<Trans>
+						</BodyNoBottomMargin>
+						<BodyNoMargin>
 							Pour tous les statuts, il est conseillé de souscrire à une{' '}
 							<Strong>prévoyance complémentaire (mutuelle)</Strong> pour
 							améliorer le remboursement des frais de santé.
-						</Trans>
-					</BodyNoMargin>
+						</BodyNoMargin>
+					</Trans>
 
 					<StyledH4>
-						<Trans>Arrêt maladie</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.santé.arrêt.h4',
+							'Arrêt maladie'
+						)}
 						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
 					</StyledH4>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.body">
 							Pour tous les statuts, vous aurez un{' '}
 							<Strong>délai de carence de 3 jours</Strong>. En cas d’arrêt
 							maladie, l’assurance maladie vous versera :
@@ -286,7 +347,7 @@ const Détails = ({
 												fontWeight: 'normal',
 											}}
 										>
-											<Trans>
+											<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.warning">
 												Votre <Strong>rémunération</Strong> est{' '}
 												<Strong>trop faible</Strong> pour bénéficier d’arrêt
 												maladie.
@@ -312,7 +373,7 @@ const Détails = ({
 											margin: '0',
 										}}
 									>
-										<Trans>
+										<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.footer">
 											Pour y prétendre, vous devez avoir cotisé au moins{' '}
 											<Strong>
 												<Value
@@ -328,15 +389,18 @@ const Détails = ({
 					/>
 
 					<StyledH4>
-						<Trans>Accident du travail et maladie professionnelle</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.santé.atmp.h4',
+							'Accident du travail et maladie professionnelle'
+						)}
 						<ExplicableRule dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités" />
 					</StyledH4>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.atmp.body">
 							En cas d’<Strong>accident de travail</Strong>, de{' '}
 							<Strong>maladie professionnelle</Strong> ou d’un{' '}
 							<Strong>accident sur le trajet domicile-travail</Strong>, vous
-							serez indemnisé(e) à hauteur de :
+							serez indemnisé⋅e à hauteur de :
 						</Trans>
 					</Body>
 					<DetailsRowCards
@@ -344,40 +408,37 @@ const Détails = ({
 						namedEngines={namedEngines}
 						unit="€/mois"
 						evolutionDottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour"
-						evolutionLabel={<Trans>à partir du 29ème jour</Trans>}
+						evolutionLabel={t(
+							'pages.simulateurs.comparaison-statuts.items.santé.atmp.evolution-label',
+							'à partir du 29ème jour'
+						)}
 					/>
 				</Item>
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>La maternité, paternité et adoption</Trans>&nbsp;
+							{t(
+								'pages.simulateurs.comparaison-statuts.items.parentalité.title',
+								'La maternité, paternité et adoption'
+							)}
+							&nbsp;
 							<Emoji emoji="🤗" />
 						</ItemTitle>
 					}
 					key="enfants"
 					hasChildItems={false}
 				>
-					<Body
-						style={{
-							marginBottom: '0',
-						}}
-					>
-						<Trans>
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.parentalité.body">
+						<BodyNoBottomMargin>
 							Tous les statuts vous ouvrent le droit aux{' '}
 							<Strong>indemnités journalières</Strong> de congé maternité,
 							paternité, adoption.
-						</Trans>
-					</Body>
-					<Body
-						style={{
-							marginTop: '0',
-						}}
-					>
-						<Trans>
+						</BodyNoBottomMargin>
+						<BodyNoTopMargin>
 							Pour y prétendre, vous devez avoir cotisé{' '}
 							<Strong>au moins 6 mois</Strong>.
-						</Trans>
-					</Body>
+						</BodyNoTopMargin>
+					</Trans>
 
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . maternité paternité adoption"
@@ -386,11 +447,14 @@ const Détails = ({
 					/>
 
 					<StyledH4>
-						<Trans>Maternité</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.parentalité.maternité.h4',
+							'Maternité'
+						)}
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel" />
 					</StyledH4>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.parentalité.maternité.body">
 							En plus des indemnités journalières, vous pouvez aussi prétendre à
 							une{' '}
 							<Strong>
@@ -402,15 +466,21 @@ const Détails = ({
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel"
 						namedEngines={namedEngines}
-						label={<Trans>versés en deux fois</Trans>}
+						label={t(
+							'pages.simulateurs.comparaison-statuts.items.parentalité.maternité.label',
+							'versés en deux fois'
+						)}
 					/>
 
 					<StyledH4>
-						<Trans>Adoption</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.parentalité.adoption.h4',
+							'Adoption'
+						)}
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption" />
 					</StyledH4>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.parentalité.adoption.body">
 							En plus des indemnités journalières, vous pouvez aussi prétendre à
 							une{' '}
 							<Strong>
@@ -422,13 +492,20 @@ const Détails = ({
 					<DetailsRowCards
 						dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption"
 						namedEngines={namedEngines}
-						label={<Trans>versés en une fois</Trans>}
+						label={t(
+							'pages.simulateurs.comparaison-statuts.items.parentalité.adoption.label',
+							'versés en une fois'
+						)}
 					/>
 				</Item>
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>Votre couverture invalidité et décès</Trans>&nbsp;
+							{t(
+								'pages.simulateurs.comparaison-statuts.items.prévoyance.title',
+								'Votre couverture invalidité et décès'
+							)}
+							&nbsp;
 							<Emoji emoji="🤕" />
 						</ItemTitle>
 					}
@@ -436,7 +513,7 @@ const Détails = ({
 					hasChildItems={false}
 				>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.body">
 							Tous les statuts cotisent pour une{' '}
 							<Strong>pension invalidité-décès</Strong> qui les{' '}
 							<Strong>protège en cas d’invalidité</Strong> et assure à leurs
@@ -448,33 +525,34 @@ const Détails = ({
 						</Trans>
 					</Body>
 					<StyledH4>
-						<Trans>Invalidité</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.h4',
+							'Invalidité'
+						)}
 						<ExplicableRule dottedName="protection sociale . invalidité et décès" />
 					</StyledH4>
-					<BodyNoMargin>
-						<Trans>
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.body.1">
+						<BodyNoMargin>
 							Vous pouvez bénéficier d’une pension invalidité{' '}
 							<Strong>
 								en cas de maladie ou d’accident conduisant à une incapacité à
 								poursuivre votre activité professionnelle
 							</Strong>
 							.
-						</Trans>
-					</BodyNoMargin>
-					<BodyNoMargin
-						style={{
-							marginBottom: '1rem',
-						}}
-					>
-						<Trans>
+						</BodyNoMargin>
+						<BodyNoTopMargin
+							style={{
+								marginBottom: '1rem',
+							}}
+						>
 							Pour y prétendre, vous devez respecter{' '}
 							<BlackColoredLink href="https://www.service-public.fr/particuliers/vosdroits/F672">
 								certaines règles
 								<StyledExternalLinkIcon />
 							</BlackColoredLink>
 							.
-						</Trans>
-					</BodyNoMargin>
+						</BodyNoTopMargin>
+					</Trans>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . pension invalidité . invalidité partielle"
 						evolutionDottedName="protection sociale . invalidité et décès . pension invalidité . invalidité totale"
@@ -482,17 +560,23 @@ const Détails = ({
 						unit="€/mois"
 						label={
 							<span style={{ fontSize: '1rem' }}>
-								<Trans>(invalidité partielle)</Trans>
+								{t(
+									'pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.label',
+									'(invalidité partielle)'
+								)}
 							</span>
 						}
 						evolutionLabel={
 							<span style={{ fontSize: '0.75rem' }}>
-								<Trans>(invalidité totale)</Trans>
+								{t(
+									'pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.evolution-label',
+									'(invalidité totale)'
+								)}
 							</span>
 						}
 					/>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.body.2">
 							Pour une invalidité causée par un{' '}
 							<Strong>accident professionnel</Strong>, vous pouvez bénéficier
 							d’une <Strong>rente d’incapacité</Strong>.
@@ -505,11 +589,14 @@ const Détails = ({
 					/>
 
 					<StyledH4>
-						<Trans>Décès</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.prévoyance.décès.h4',
+							'Décès'
+						)}
 						<ExplicableRule dottedName="protection sociale . invalidité et décès . capital décès" />
 					</StyledH4>
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.1">
 							La Sécurité Sociale garantit un{' '}
 							<Strong>capital décès pour vos ayants droits</Strong> (personnes
 							qui sont à votre charge) sous certaines conditions.
@@ -517,30 +604,39 @@ const Détails = ({
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . capital décès"
-						label="pour vos proches"
+						label={t(
+							'pages.simulateurs.comparaison-statuts.items.prévoyance.décès.label.1',
+							'pour vos proches'
+						)}
 						namedEngines={namedEngines}
 					/>
 
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.2">
 							En plus du capital décès, une{' '}
-							<Strong>pension de réversion</Strong> peut être versée au conjoint
-							survivant. Elle correspond aux{' '}
-							<Strong>droits à la retraite acquis par le défunt</Strong> durant
-							sa vie professionnelle.
+							<Strong>pension de réversion</Strong> peut être versée à la
+							conjointe survivante ou au conjoint survivant. Elle correspond aux{' '}
+							<Strong>
+								droits à la retraite acquis par la défunte ou le défunt
+							</Strong>{' '}
+							durant sa vie professionnelle.
 						</Trans>
 					</Body>
 					<DetailsRowCards
 						dottedName="protection sociale . invalidité et décès . pension de reversion"
-						label={'maximum'}
+						label={t(
+							'pages.simulateurs.comparaison-statuts.items.prévoyance.décès.label.2',
+							'maximum'
+						)}
 						namedEngines={namedEngines}
 					/>
 
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.3">
 							Pour un décès survenu dans le cadre d’un{' '}
-							<Strong>accident professionnel</Strong>, le conjoint survivant
-							peut bénéficier d’une <Strong>rente de décès</Strong>.
+							<Strong>accident professionnel</Strong>, la conjointe survivante
+							ou le conjoint survivant peut bénéficier d’une{' '}
+							<Strong>rente de décès</Strong>.
 						</Trans>
 					</Body>
 
@@ -548,14 +644,17 @@ const Détails = ({
 						dottedName="protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès"
 						namedEngines={namedEngines}
 						unit="€/mois"
-						label={t("en cas d'accident pro")}
+						label={t(
+							'pages.simulateurs.comparaison-statuts.items.prévoyance.décès.label.3',
+							'en cas d’accident professionnel'
+						)}
 					/>
 
 					<Body>
-						<Trans>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.4">
 							Un <Strong>capital « orphelin »</Strong> est versé aux{' '}
-							<Strong>enfants des travailleurs indépendants</Strong> décédés,
-							sous certaines conditions.
+							<Strong>enfants des travailleurses indépendant⋅es</Strong>{' '}
+							décédé⋅es, sous certaines conditions.
 						</Trans>
 					</Body>
 
@@ -568,22 +667,28 @@ const Détails = ({
 				<Item
 					title={
 						<ItemTitle>
-							<Trans>
-								La gestion juridique et comptable <Emoji emoji="🤓" />
-							</Trans>
+							{t(
+								'pages.simulateurs.comparaison-statuts.items.gestion.title',
+								'La gestion juridique et comptable'
+							)}
+							&nbsp;
+							<Emoji emoji="🤓" />
 						</ItemTitle>
 					}
 					key="administratif"
 					hasChildItems={false}
 				>
 					<StyledH4>
-						<Trans>Coût de création</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.gestion.création.h4',
+							'Coût de création'
+						)}
 						<ExplicableRule dottedName="entreprise . coût formalités . création" />
 					</StyledH4>
 					<Body>
-						<Trans>
-							Les formalités de création d'une entreprise diffèrent selon les
-							statuts et la nature de l'activité. Le calcul se concentre ici sur
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.gestion.création.body">
+							Les formalités de création d’une entreprise diffèrent selon les
+							statuts et la nature de l’activité. Le calcul se concentre ici sur
 							les <Strong>procédures obligatoires</Strong> (immatriculation,
 							annonces légales, rédaction des statuts...).
 						</Trans>
@@ -596,15 +701,18 @@ const Détails = ({
 					/>
 
 					<StyledH4>
-						<Trans>Statut du conjoint</Trans>
+						{t(
+							'pages.simulateurs.comparaison-statuts.items.gestion.conjoint.h4',
+							'Statut du conjoint / de la conjointe'
+						)}
 					</StyledH4>
 					<Body>
-						<Trans>
-							Vous êtes marié(e), pacsé(e) ou en union libre avec un chef
-							d’entreprise : il existe <Strong>3 statuts possibles</Strong> pour
-							vous (<Strong>conjoint collaborateur</Strong>,{' '}
-							<Strong>conjoint associé</Strong> ou{' '}
-							<Strong>conjoint salarié</Strong>).
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.gestion.conjoint.body">
+							Vous êtes marié⋅e, pacsé⋅e ou en union libre avec une cheffe ou un
+							chef d’entreprise : il existe <Strong>3 statuts possibles</Strong>{' '}
+							pour vous (<Strong>conjoint⋅e collaborateurice</Strong>,{' '}
+							<Strong>conjoint⋅e associé⋅e</Strong> ou{' '}
+							<Strong>conjoint⋅e salarié⋅e</Strong>).
 						</Trans>
 					</Body>
 
@@ -613,11 +721,11 @@ const Détails = ({
 							variations: [
 								{
 									si: 'entreprise . catégorie juridique . EI . auto-entrepreneur',
-									alors: '"Conjoint collaborateur"',
+									alors: '"Conjoint⋅e collaborateurice"',
 								},
 								{
 									si: 'entreprise . catégorie juridique . EI',
-									alors: '"Conjoint collaborateur ou salarié"',
+									alors: '"Conjoint⋅e collaborateurice ou salarié⋅e"',
 								},
 								{
 									si: {
@@ -626,10 +734,11 @@ const Détails = ({
 											'entreprise . catégorie juridique . SELARL',
 										],
 									},
-									alors: '"Conjoint collaborateur, associé ou salarié"',
+									alors:
+										'"Conjoint⋅e collaborateurice, associé⋅e ou salarié⋅e"',
 								},
 								{
-									sinon: '"Conjoint associé ou salarié"',
+									sinon: '"Conjoint⋅e associé⋅e ou salarié⋅e"',
 								},
 							],
 						}}
@@ -676,6 +785,12 @@ const StyledDiv = styled.div`
 	}
 `
 
+const BodyNoBottomMargin = styled(Body)`
+	margin-bottom: 0;
+`
+const BodyNoTopMargin = styled(Body)`
+	margin-top: 0;
+`
 const BodyNoMargin = styled(Body)`
 	margin: 0;
 `
