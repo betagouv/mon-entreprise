@@ -1,9 +1,11 @@
 import { pipe } from 'effect'
-import { flatMap, NonEmptyArray, reduce } from 'effect/Array'
+import { flatMap, NonEmptyReadonlyArray, reduce } from 'effect/Array'
 import { DottedName } from 'modele-social'
 import Engine, { utils } from 'publicodes'
 
 import { Contexte } from '@/domaine/Contexte'
+
+import { Situation } from '../Situation'
 
 export const evalueDansLeContexte =
 	(engine: Engine, contexte: Contexte) => (expression: DottedName) =>
@@ -15,18 +17,23 @@ export const evalueDansLeContexte =
 export type MissingVariables = Partial<Record<DottedName, number>>
 
 export const listeLesVariablesManquantes = (
-	engines: NonEmptyArray<Engine>,
-	objectifs: ReadonlyArray<DottedName>
+	engine: Engine,
+	objectifs: ReadonlyArray<DottedName>,
+	contextes?: NonEmptyReadonlyArray<Situation> | undefined
 ): MissingVariables => {
 	return pipe(
-		engines,
-		flatMap((engine) =>
-			objectifs.map(
-				(objectif) => engine.evaluate(objectif).missingVariables ?? {}
-			)
+		objectifs,
+		flatMap((objectif) =>
+			contextes
+				? contextes.map(
+						(contexte) =>
+							evalueDansLeContexte(engine, contexte)(objectif)
+								.missingVariables ?? {}
+				  )
+				: [engine.evaluate(objectif).missingVariables ?? {}]
 		),
 		reduce({}, mergeMissing),
-		treatAPIMissingVariables(engines)
+		treatAPIMissingVariables(engine)
 	)
 }
 
@@ -47,14 +54,14 @@ const mergeMissing = (
  * For instance, the commune field (API) will fill `commune . nom` `commune . taux versement transport`, `commune . département`, etc.
  */
 const treatAPIMissingVariables =
-	<Name extends string>(engines: Array<Engine<Name>>) =>
+	<Name extends string>(engine: Engine<Name>) =>
 	(
 		missingVariables: Partial<Record<Name, number>>
 	): Partial<Record<Name, number>> =>
 		(Object.entries(missingVariables) as Array<[Name, number]>).reduce(
 			(missings, [name, value]: [Name, number]) => {
 				const parentName = utils.ruleParent(name) as Name
-				if (parentName && engines.some(engineHasRule(parentName))) {
+				if (parentName && engineHasRule(engine, parentName)) {
 					missings[parentName] = (missings[parentName] ?? 0) + value
 
 					return missings
@@ -66,7 +73,5 @@ const treatAPIMissingVariables =
 			{} as Partial<Record<Name, number>>
 		)
 
-const engineHasRule =
-	<Name extends string>(rule: Name) =>
-	(engine: Engine<Name>) =>
-		engine.getRule(rule).rawNode.API
+const engineHasRule = <Name extends string>(engine: Engine<Name>, rule: Name) =>
+	engine.getRule(rule).rawNode.API
