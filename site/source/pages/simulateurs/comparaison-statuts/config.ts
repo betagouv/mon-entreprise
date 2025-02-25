@@ -14,21 +14,21 @@ export function comparaisonStatutsConfig({
 		pathId: 'simulateurs.comparaison',
 		iframePath: 'comparaison-statuts',
 		title: t(
-			'pages.simulateurs.comparaison.title',
+			'pages.simulateurs.comparaison-statuts.title',
 			'Comparateur de statut juridique'
 		),
 		meta: {
 			description: t(
-				'pages.simulateurs.comparaison.meta.description',
+				'pages.simulateurs.comparaison-statuts.meta.description',
 				'Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de revenu, retraite et indemnités maladie'
 			),
 			title: t(
-				'pages.simulateurs.comparaison.meta.title',
+				'pages.simulateurs.comparaison-statuts.meta.title',
 				'Comparateur de statut juridique'
 			),
 		},
 		shortName: t(
-			'pages.simulateurs.comparaison.shortname',
+			'pages.simulateurs.comparaison-statuts.shortname',
 			'Comparaison des statuts'
 		),
 		path: sitePaths.simulateurs.comparaison,

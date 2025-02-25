@@ -1,6 +1,4 @@
 (embauche, absences, départ...): (hiring, absences, departures...)
-(invalidité partielle): (partial disability)
-(invalidité totale): (total disability)
 "404":
   action: Back to safety
   message: This page does not exist or no longer exists
@@ -36,17 +34,14 @@
 API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
 Accessibilité: Accessibility
-Accident du travail et maladie professionnelle: Occupational injury and disease
 Accéder au site mon-entreprise, nouvelle fenêtre: Go to mon-entreprise, new window
 Activités relevant de l’économie collaborative, voir la page: Collaborative economy activities, see page
-Adoption: Adoption
 Afficher le détail: Show details
 "Afficher les données par :": "Display data by:"
 Afficher les détails de l'entreprise, la modifier ou la supprimer.: View company details, modify or delete.
 Aller au contenu principal: Go to main content
 Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
-Arrêt maladie: Sick leave
 Assistants à la déclaration de revenus des indépendants: Self-employed tax return assistants
 Attention: Warning
 Attention, information importante: Important information
@@ -55,7 +50,6 @@ Aucun: No
 Aucun résultat: No results
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.: No results matching your search. Try other keywords.
 Autres outils: Other tools
-Avec <2><0></0></2> de cotisations sociales: With <2><0></0></2> in social security contributions
 Avec ACRE: With ACRE
 Avec chômage partiel: With short-time working
 Boite de dialogue: Dialog box
@@ -63,7 +57,6 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Hello, I'm a baker and I couldn't find "bread" or "viennoiserie" when I
   searched.
 Budget: Budget
-Calculer vos revenus: Calculate your income
 Cette commune n'existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
@@ -75,11 +68,9 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   How does it work? See the explanatory page on the github repository page, new
   window
 Commune ou code postal: Town or zip code
-Comparer...: Compare...
 Confirmer: Confirm
 Cotisations: Contributions
 Cotisations sociales: Social security contributions
-Coût de création: Cost of creation
 "Crée le :": "Created on:"
 Dividendes nets: Net dividends
 Documentation: Documentation
@@ -90,23 +81,9 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Our partner Conseillers-Entreprises.Service-Public.fr will identify, from among all our public and semi-public partners,
     the right advisor for your request.
     He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
-Décès: Deaths
 Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
-"En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou d’un <7>accident sur le trajet domicile-travail</7>, vous serez indemnisé(e) à hauteur de :":
-  "In the event of an<1>accident at work</1>, <4>occupational illness</4> or an
-  <7>accident on the way to or from work</7>, you will receive compensation of:"
-En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos maternel supplémentaire</2>.:
-  In addition to your daily allowance, you may also be entitled to an
-  <2>additional lump-sum maternal rest allowance</2>.
-En plus des indemnités journalières, vous pouvez aussi prétendre à une <2>allocation forfaitaire de repos parental supplémentaire</2>.:
-  In addition to your daily allowance, you may also be entitled to an
-  <2>additional lump-sum parental rest allowance</2>.
-En plus du capital décès, une <2>pension de réversion</2> peut être versée au conjoint survivant. Elle correspond aux <5>droits à la retraite acquis par le défunt</5> durant sa vie professionnelle.:
-  In addition to the lump-sum death benefit, a <2>reversionary pension</2> may
-  be paid to the surviving spouse. This corresponds to the <5>pension rights
-  acquired by the deceased</5> during his or her working life.
 En savoir plus: Read more
 En savoir plus sur impots:
   gouv:
@@ -146,7 +123,6 @@ Information: Information
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
-Invalidité: Disability
 J'ai compris: I understand
 J'ai compris, fermer le message condensé.: I get it, close the condensed message.
 Je donne mon avis, donner mon avis sur jedonnemonavis:
@@ -155,33 +131,15 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
       fr, nouvelle fenêtre: I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
 Jours: Days
-La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2> (personnes qui sont à votre charge) sous certaines conditions.:
-  Under certain conditions, Social Security guarantees a <2>lump-sum death
-  benefit for your dependants</2>.
-La gestion juridique et comptable <1></1>: Legal and accounting management <1></1>
-La maternité, paternité et adoption: Maternity, paternity and adoption
-La pension calculée correspond à celle de <2>vos 25 meilleures années</2>, en considérant que vous avez cotisé suffisamment de trimestres (4 trimestres par an) et que vous partez en retraite à l’âge requis pour obtenir un taux plein.:
-  The pension calculated corresponds to <2>your best 25 years</2>, assuming that
-  you have contributed enough quarters (4 quarters per year) and that you retire
-  at the age required to obtain a full pension.
-Le montant de votre retraite est constitué de <2>votre retraite de base + votre retraite complémentaire</2>.:
-  The amount of your pension is made up of <2>your basic pension + your
-  supplementary pension</2>.
 Le montant demandé n'est <2>pas calculable...</2>: The amount requested <2>cannot be calculated.</2>..
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Simulation data is automatically updated when you modify a field. <2>A panel
   will open to allow you to add details to the simulation, and detailed results
   will be displayed below the form and updated when you modify it.</2>
-Les formalités de création d'une entreprise diffèrent selon les statuts et la nature de l'activité. Le calcul se concentre ici sur les <1>procédures obligatoires</1> (immatriculation, annonces légales, rédaction des statuts...).:
-  The formalities involved in setting up a business vary according to the type
-  of company and the nature of the activity. The calculation here focuses on the
-  <1>mandatory procedures</1> (registration, legal announcements, drafting of
-  articles of association, etc.).
 Lire les précisions, ouvrir le message condensé.: Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
-Maternité: Maternity ward
 Menu de navigation: Navigation menu
 Message à caractère informatif: Informative message
 Mode d'affichage: Display mode
@@ -225,21 +183,6 @@ Plus de 50 salariés: More than 50 employees
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
     fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
-Pour tous les statuts, il est conseillé de souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour améliorer le remboursement des frais de santé.:
-  For all statuses, it is advisable to take out a <2>supplementary health
-  insurance policy (mutuelle)</2> to improve reimbursement of healthcare costs.
-"Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>. En cas d’arrêt maladie, l’assurance maladie vous versera :":
-  "For all statuses, there is a <2>3-day waiting period</2>. In the event of
-  sick leave, the health insurance will pay you:"
-Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, le conjoint survivant peut bénéficier d’une <4>rente de décès</4>.:
-  In the event of death resulting from an <2>accident at work</2>, the surviving
-  spouse may be entitled to a <4>death pension</4>.
-Pour une invalidité causée par un <2>accident professionnel</2>, vous pouvez bénéficier d’une <4>rente d’incapacité</4>.:
-  If you are disabled as a result of an <2>accident at work</2>, you may be
-  entitled to a <4>disability pension</4>.
-Pour y prétendre, vous devez avoir cotisé <2>au moins 6 mois</2>.: To qualify, you must have paid contributions for <2>at least 6 months</2>.
-Pour y prétendre, vous devez avoir cotisé au moins <2><0></0></2>: To qualify, you must have contributed at least <2><0></0></2>
-Pour y prétendre, vous devez respecter <2>certaines règles<1></1></2>.: To qualify, you must comply with <2>certain rules<1></1></2>.
 Pourcentage: Percentage
 Prochaines questions: Next questions
 Professions libérales: Liberal professions
@@ -261,15 +204,12 @@ Renseigner une adresse e-mail (au format nom@domaine:
 Replier: Fold
 Retour à la création: Back to creation
 Retour à mon activité: Back to my activity
-Retraite complémentaire: Supplementary pension
-Retraite de base: Basic pension
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
 Revenu (incluant les dépenses liées à l'activité): Income (including activity-related expenses)
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
 Revenu disponible: Disposable income
 Revenu du dirigeant par statut: Executive income by status
-Revenu net mensuel après impôts: Net monthly income after tax
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Régime d’imposition: Taxation system
@@ -297,9 +237,7 @@ Simulateurs: Simulators
 Simulateurs et Assistants: Simulators and Assistants
 Simulation en cours: Simulation in progress
 "Siège :": "Headquarters:"
-Soit <2><0></0></2> avant impôts: Or <2><0></0></2> before tax
 Statistiques: Statistics
-Statut du conjoint: Spouse's status
 Suivant: Next
 Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
 Suivant, passer à la question suivante: Next, move on to the next question
@@ -313,21 +251,6 @@ Tableau présentant le nombre de visites par simulateur et par mois.: Table show
 Titres-restaurant: Meal vouchers
 Total des cotisations et contributions: Total contributions
 Total des cotisations à devoir pour l'année de cessation d'activité: Total contributions due for the year of cessation of activity
-"Tous les ans, selon votre rémunération, <2>vous gagnez des points qui constituent votre pension de retraite complémentaire</2>. En fin de carrière, vos points sont transformés en <5>un montant qui s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se calcule sur le long terme. Par exemple, au bout de 10 ans, vous auriez droit à :":
-  "Every year, depending on how much you earn, <2>you earn points that make up
-  your supplementary pension</2>. At the end of your career, your points are
-  converted into <5>an amount which is added to your basic pension every
-  month</5>. This value is calculated over the long term. For example, after 10
-  years, you would be entitled to:"
-Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les <5>protège en cas d’invalidité</5> et assure à leurs proches une <8>pension de réversion et un capital en cas de décès</8>.:
-  All status employees contribute to an <2>invalidity-death pension</2>, which
-  <5>protects</5> them in the <5>event of invalidity</5> and provides their next
-  of kin with a <8>survivor's pension and a lump-sum payment in the event of
-  death</8>.
-Tous les statuts vous ouvrent le droit au <2>remboursement des soins.</2>: All statuses entitle you to <2>reimbursement</2>.
-Tous les statuts vous ouvrent le droit aux <2>indemnités journalières</2> de congé maternité, paternité, adoption.:
-  All statuses entitle you to <2>daily benefits</2> for maternity, paternity and
-  adoption leave.
 Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
@@ -335,9 +258,6 @@ Travailleurs Non Salariés (TNS): Self-employed workers (TNS)
 Trimestre: Quarter
 Type: Type
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, go to home page
-Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurs indépendants</4> décédés, sous certaines conditions.:
-  An <1>"orphan" capital</1> is paid to the <4>children</4> of deceased
-  <4>self-employed workers</4>, under certain conditions.
 Un avis sur cette page ?: What do you think of this page?
 Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
@@ -355,30 +275,16 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Vos cotisations pour l’année précédente: Your contributions for the previous year
-Vos droits pour la retraite: Your pension rights
-Vos prestations santé: Your health benefits
-Vos revenus: Your income
-Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier d’arrêt maladie.: Your <1>salary</1> is <4>too low</4> to benefit from sick leave.
 Votre adresse e-mail (requise): Your e-mail address (required)
 Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
-Votre couverture invalidité et décès: Your disability and death coverage
 Votre domaine d'activité: Your field of activity
 Votre entreprise: Your company
 Votre message (requis): Your message (required)
 Votre rémunération totale estimée: Your estimated total remuneration
-Vous allez dépasser le plafond de la micro-entreprise: You will exceed the micro-business limit
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.: We're sorry you weren't satisfied with your experience.
-Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou d’accident conduisant à une incapacité à poursuivre votre activité professionnelle</2>.:
-  You may be entitled to a disability pension in the event of <2>illness or
-  accident leading to an inability to continue working</2>.
 Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.: You can try again with your SIREN or SIRET for a better result.
 Vous êtes dirigeant d'une SAS(U) ? <2>Accéder au simulateur de revenu dédié</2>: Are you an SAS(U) director? <2>Go to the dedicated income simulator</2>
-"Vous êtes marié(e), pacsé(e) ou en union libre avec un chef d’entreprise : il existe <1>3 statuts possibles</1> pour vous (<3>conjoint collaborateur</3>, <6>conjoint associé</6> ou <9>conjoint salarié</9>).":
-  If you are married, in a civil partnership or in a common-law relationship
-  with a company director, there are <1>3 possible statuses</1> for
-  you<3>(collaborating spouse</3>, <6>associate spouse</6> or <9>salaried
-  spouse</9>).
 accessibility:
   description: Référentiel Général d'Amélioration de l'Accessibilité (General
     Accessibility Improvement Reference System)
@@ -399,7 +305,6 @@ assistants:
       body: Find all public information about your company at
       cta: Visit the site
       title: View your public data
-au bout de 10 ans: after 10 years
 avril: April
 betawarning: "<0><0>This tool is in beta version</0>: we are working on
   <3>validating the information and calculations</3>, but <6>errors may</6>
@@ -579,7 +484,6 @@ créer:
         activity, you can consult the <2>CCI</2> or <5>CMA</5> websites.
       title: Details of your business
 d'aides: aids
-de chiffre d’affaires: in sales
 design-system:
   date-picker:
     close: Close
@@ -594,7 +498,6 @@ design-system:
     year: Year
 décembre: December
 employeur: employer
-en cas d'accident pro: in the event of a professional accident
 en incluant: including
 en titres-restaurant: in meal vouchers
 error:
@@ -1391,18 +1294,127 @@ pages:
         title: "Professions affiliated to Cipav: income simulator"
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
-    comparaison:
+    comparaison-statuts:
+      accordion-title: Compare...
+      items:
+        gestion:
+          conjoint:
+            body: "If you are married⋅e, in a civil union⋅e or in a common-law relationship
+              with a business owner: there are <1>3 possible statuses</1> for
+              you<4>(conjoint⋅e collaborateurice</4>, <7>conjoint⋅e
+              associé⋅e</7> or <10>conjoint⋅e salarié⋅e</10>)."
+            h4: Spouse's status
+          création:
+            body: The formalities involved in setting up a business vary according to the
+              type of company and the nature of the activity. The calculation
+              here focuses on the <1>mandatory procedures</1> (registration,
+              legal announcements, drafting of articles of association, etc.).
+            h4: Cost of creation
+          title: Legal and accounting management
+        parentalité:
+          adoption:
+            body: In addition to your daily allowance, you may also be entitled to an
+              <2>additional lump-sum parental rest allowance</2>.
+            h4: Adoption
+            label: one-off payments
+          body: <0>All statuses entitle you to <2>daily benefits</2> for maternity,
+            paternity and adoption leave.</0><1>To qualify, you must have paid
+            contributions for <2>at least 6 months</2>.</1>
+          maternité:
+            body: In addition to your daily allowance, you may also be entitled to an
+              <2>additional lump-sum maternal rest allowance</2>.
+            h4: Maternity ward
+            label: paid in two instalments
+          title: Maternity, paternity and adoption
+        prévoyance:
+          body: All status employees contribute to a <2>disability-death pension</2>,
+            which <5>protects</5> them <5>in the event of disability</5>, and
+            provides their next of kin with a <8>survivor's pension and a
+            lump-sum payment in the event of death</8>.
+          décès:
+            body:
+              "1": Under certain conditions, Social Security guarantees a <2>lump-sum death
+                benefit for your dependants</2>.
+              "2": In addition to the lump-sum death benefit, a <2>reversionary pension</2>
+                may be paid to the surviving spouse. This corresponds to the
+                <5>pension rights acquired by the deceased</5> during his or her
+                working life.
+              "3": In the event of death resulting from an <2>accident at work</2>, the
+                surviving spouse is entitled to a <5>death pension</5>.
+              "4": An <1>"orphan" capital</1> is paid to the <4>children of</4> deceased
+                <4>self-employed⋅es</4>, under certain conditions.
+            h4: Deaths
+            label:
+              "1": for your loved ones
+              "2": maximum
+              "3": in the event of a work-related accident
+          invalidité:
+            body:
+              "1": <0>You may be entitled to a disability pension in the <2>event of illness
+                or accident leading to an inability to continue
+                working</2>.</0><1>To qualify, you must comply with <2>certain
+                rules<1></1></2>.</1>
+              "2": If you are disabled as a result of an <2>accident at work</2>, you may be
+                entitled to a <4>disability pension</4>.
+            evolution-label: (total disability)
+            h4: Disability
+            label: (partial disability)
+          title: Your disability and death coverage
+        retraite:
+          base:
+            body: The pension calculated corresponds to <2>your best 25 years</2>, assuming
+              that you have contributed enough quarters (4 quarters per year)
+              and that you retire at the age required to obtain a full pension.
+            h4: Basic pension
+          body: The amount of your pension is made up of <2>your basic pension + your
+            supplementary pension</2>.
+          complémentaire:
+            body: "Every year, depending on how much you earn, <2>you earn points that make
+              up your supplementary pension</2>. At the end of your career, your
+              points are converted into <5>an amount which is added each month
+              to your basic pension</5>. This value is calculated over the long
+              term. For example, after 10 years, you would be entitled to :"
+            evolution-label: after 10 years
+            h4: Supplementary pension
+          title: Your pension rights
+        revenus:
+          button-title: Calculate your income
+          détails:
+            "1": Or <2><0></0></2> before tax
+            "2": With <2><0></0></2> social security contributions on sales (i.e.
+              <6><0></0></6> of profit)
+            "3": With <2><0></0></2> social security contributions on profits
+          h4: Net monthly income after tax
+          title: Your income
+          warning: You will exceed the micro-business limit <2>(<1></1> sales).</2>
+        santé:
+          arrêt:
+            body: "For all statuses, there is a <2>3-day waiting period</2>. In the event of
+              sick leave, the health insurance will pay you :"
+            footer: To qualify, you must have contributed at least <2><0></0></2>
+            h4: Sick leave
+            warning: Your <1>salary</1> is <4>too low</4> to benefit from sick leave.
+          atmp:
+            body: "In the event of an<1>accident at work</1>, <4>occupational illness</4> or
+              an <7>accident on the way to or from work</7>, you will be
+              compensated⋅e up to :"
+            evolution-label: from day 29
+            h4: Occupational injury and disease
+          body: <0>All statuses entitle you to <2>reimbursement of healthcare
+            costs.</2></0><1>For all types of status, it is advisable to take
+            out a <2>supplementary insurance policy (mutuelle)</2> to improve
+            reimbursement of healthcare costs.</1>
+          title: Your health benefits
       meta:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
         title: Legal status comparator
-      shortname: Status comparison
-      title: Legal status comparator
-    comparaison-statuts:
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
           each status
+      shortname: Status comparison
+      title: Legal status comparator
     coût-création-entreprise:
       meta:
         description: Estimate the cost of the administrative formalities involved in
@@ -2082,8 +2094,6 @@ termsOfUse:
     and use of the services offered to users.
   title: Terms and conditions of use
 trimestres acquis: quarters acquired
-versés en deux fois: paid in two instalments
-versés en une fois: one-off payments
 vos retours, accéder aux statistiques d'utilisation: your feedback, access to usage statistics
 warning:
   overwrite:
@@ -2103,4 +2113,3 @@ warning:
 Éviter de communiquer des informations personnelles: Avoid giving out personal information
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered situation?
-à partir du 29ème jour: from day 29
