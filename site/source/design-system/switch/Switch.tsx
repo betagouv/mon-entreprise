@@ -91,40 +91,22 @@ const LabelBody = styled(Body)`
 	cursor: pointer;
 `
 
-const Text = styled.span<{ $invertLabel?: boolean }>`
-	${({ theme, $invertLabel }) =>
-		$invertLabel
-			? css`
-					margin-left: ${theme.spacings.xxs};
-			  `
-			: css`
-					margin-right: ${theme.spacings.xxs};
-			  `};
+const Text = styled.span`
+	${({ theme }) => css`
+		margin-left: ${theme.spacings.xxs};
+	`}
 `
 
 type AriaSwitchProps = Parameters<typeof useSwitch>[0]
 
-export type SwitchProps = AriaSwitchProps & {
+type SwitchProps = AriaSwitchProps & {
 	size?: Size
 	light?: boolean
 	children?: ReactNode
-	className?: string
-	role?: string
-	/**
-	 * Invert the position of the label and the switch
-	 */
-	invertLabel?: boolean
 }
 
 export const Switch = (props: SwitchProps) => {
-	const {
-		size = 'MD',
-		light = false,
-		children,
-		className,
-		invertLabel = false,
-		...ariaProps
-	} = props
+	const { size = 'MD', light = false, children, ...ariaProps } = props
 	const state = useToggleState(ariaProps)
 	const ref = useRef<HTMLInputElement>(null)
 	const { inputProps } = useSwitch(ariaProps, state, ref)
@@ -139,10 +121,10 @@ export const Switch = (props: SwitchProps) => {
 			// eslint-disable-next-line react/jsx-props-no-spreading
 			{...inputProps}
 			id={id}
-			type="switch"
+			type="checkbox"
+			role="switch"
 			tabIndex={0}
 			ref={ref}
-			role={props?.role}
 		/>
 	)
 
@@ -164,10 +146,7 @@ export const Switch = (props: SwitchProps) => {
 	}
 
 	return (
-		<LabelBody as="label" htmlFor={id} className={className}>
-			{children && !invertLabel && (
-				<Text $invertLabel={invertLabel}>{children}</Text>
-			)}
+		<LabelBody as="label" htmlFor={id}>
 			<StyledSwitch
 				$light={light}
 				$size={size}
@@ -177,9 +156,7 @@ export const Switch = (props: SwitchProps) => {
 				{hiddenInput}
 				{styledSpan}
 			</StyledSwitch>
-			{children && invertLabel && (
-				<Text $invertLabel={invertLabel}>{children}</Text>
-			)}
+			<Text>{children}</Text>
 		</LabelBody>
 	)
 }
