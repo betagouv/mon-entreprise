@@ -4,6 +4,7 @@ import { ReactNode, useRef } from 'react'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle, SROnly } from '@/design-system/global-style'
+import { generateUuid } from '@/utils'
 
 import { Body } from '../typography/paragraphs'
 
@@ -19,14 +20,7 @@ const sizeDico = {
 	XL: '4rem',
 } as { [K in Size]: string }
 
-interface StyledProps {
-	checked: boolean
-	disabled: boolean
-	$size: Size
-	$light: boolean
-}
-
-const StyledSpan = styled.span<StyledProps>`
+const StyledSpan = styled.span<{ checked: boolean }>`
 	position: relative;
 	left: ${({ checked }) =>
 		checked ? 'calc(100% - 2 * (var(--switch-size) / 5))' : '0'};
@@ -42,7 +36,14 @@ const StyledSpan = styled.span<StyledProps>`
 	color: inherit;
 `
 
-const StyledSwitch = styled.span<StyledProps>`
+interface StyledSwitchProps {
+	checked: boolean
+	disabled: boolean
+	$size: Size
+	$light: boolean
+}
+
+const StyledSwitch = styled.span<StyledSwitchProps>`
 	--switch-size: ${({ $size }) => sizeDico[$size]};
 	display: inline-flex;
 	transition: all 0.15s ease-in-out;
@@ -131,8 +132,39 @@ export const Switch = (props: SwitchProps) => {
 	const { isDisabled = false } = ariaProps
 	const { isSelected } = state
 
+	const id = generateUuid()
+
+	const hiddenInput = (
+		<HiddenInput
+			// eslint-disable-next-line react/jsx-props-no-spreading
+			{...inputProps}
+			id={id}
+			type="switch"
+			tabIndex={0}
+			ref={ref}
+			role={props?.role}
+		/>
+	)
+
+	const styledSpan = <StyledSpan aria-hidden checked={isSelected} />
+
+	if (!children) {
+		return (
+			<StyledSwitch
+				$light={light}
+				$size={size}
+				checked={isSelected}
+				disabled={isDisabled}
+				aria-label={props['aria-label']}
+			>
+				{hiddenInput}
+				{styledSpan}
+			</StyledSwitch>
+		)
+	}
+
 	return (
-		<LabelBody as="label" htmlFor={inputProps.id} className={className}>
+		<LabelBody as="label" htmlFor={id} className={className}>
 			{children && !invertLabel && (
 				<Text $invertLabel={invertLabel}>{children}</Text>
 			)}
@@ -141,23 +173,9 @@ export const Switch = (props: SwitchProps) => {
 				$size={size}
 				checked={isSelected}
 				disabled={isDisabled}
-				aria-label={props['aria-label']}
 			>
-				<HiddenInput
-					// eslint-disable-next-line react/jsx-props-no-spreading
-					{...inputProps}
-					type="checkbox"
-					tabIndex={0}
-					ref={ref}
-					role={props?.role}
-				/>
-				<StyledSpan
-					$light={light}
-					$size={size}
-					aria-hidden
-					checked={isSelected}
-					disabled={isDisabled}
-				/>
+				{hiddenInput}
+				{styledSpan}
 			</StyledSwitch>
 			{children && invertLabel && (
 				<Text $invertLabel={invertLabel}>{children}</Text>
