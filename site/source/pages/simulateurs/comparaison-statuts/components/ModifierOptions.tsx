@@ -2,7 +2,6 @@ import { PublicodesExpression } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { SwitchInput } from '@/components/conversation/ChoicesInput'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { Message } from '@/design-system'
@@ -10,6 +9,7 @@ import { Button } from '@/design-system/buttons'
 import { Drawer } from '@/design-system/drawer'
 import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
 import { Grid, Spacing } from '@/design-system/layout'
+import { Switch } from '@/design-system/switch'
 import { Strong } from '@/design-system/typography'
 import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
@@ -83,13 +83,15 @@ const ModifierOptions = () => {
 				<H5 as="h4">Choisir mon option de simulation</H5>
 				<div aria-live="polite">
 					<FlexCentered>
-						<SwitchInput
+						<Switch
 							id="activation-acre"
 							onChange={(value: boolean) => set[DOTTEDNAME_ACRE](value)}
 							defaultSelected={values[DOTTEDNAME_ACRE] as boolean}
-							label="Activer l'ACRE dans la simulation"
 							invertLabel
-						/>
+							light
+						>
+							<Trans>Activer l'ACRE dans la simulation</Trans>
+						</Switch>
 					</FlexCentered>
 
 					{values[DOTTEDNAME_ACRE] && (
@@ -102,7 +104,7 @@ const ModifierOptions = () => {
 								à l'ACRE sont plus restrictives pour les auto-entrepreneurs.
 							</Body>
 							<FlexCentered>
-								<SwitchInput
+								<Switch
 									id="activation-acre-ae"
 									onChange={(value: boolean) =>
 										set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE](value)
@@ -110,9 +112,11 @@ const ModifierOptions = () => {
 									defaultSelected={
 										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as boolean
 									}
-									label="Je suis éligible à l'ACRE pour mon auto-entreprise"
 									invertLabel
-								/>
+									light
+								>
+									Je suis éligible à l'ACRE pour mon auto-entreprise
+								</Switch>
 							</FlexCentered>
 						</>
 					)}
@@ -183,7 +187,7 @@ const ModifierOptions = () => {
 					/>
 				</H5>
 				<FlexCentered>
-					<SwitchInput
+					<Switch
 						id="versement-liberatoire"
 						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
 						defaultSelected={
@@ -191,9 +195,11 @@ const ModifierOptions = () => {
 								DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE
 							] as boolean
 						}
-						label="Activer le versement libératoire dans la simulation."
 						invertLabel
-					/>
+						light
+					>
+						Activer le versement libératoire dans la simulation.
+					</Switch>
 				</FlexCentered>
 			</>
 		</Drawer>
