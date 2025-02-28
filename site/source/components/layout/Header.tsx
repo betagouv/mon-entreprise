@@ -62,7 +62,6 @@ export default function Header() {
 							<Switch
 								isSelected={darkMode}
 								onChange={setDarkMode}
-								role="checkbox"
 								aria-label={
 									darkMode
 										? t(
