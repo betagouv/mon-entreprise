@@ -5035,6 +5035,26 @@ déclaration revenus PAMC . régime fiscal:
       titre.en: '[automatic] income tax - controlled declaration'
       titre.fr: impôt sur le revenu - déclaration contrôlée
     IR micro-fiscal:
+      description.en: >
+        [automatic] Under the micro-tax system, deductible expenses are
+        estimated on a
+
+        based on a percentage of sales. This
+
+        percentage depends on the type of activity: 71% for sales activities,
+
+        and accommodation (rental of classified furnished tourist accommodation and
+
+        chambres d'hôte), 50% for commercial or craft services, and
+
+        34% for liberal professions.
+      description.fr: |
+        Avec le régime micro-fiscal, les charges déductibles sont estimées
+        forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+        pourcentage dépend du type d’activité : 71% pour les activités de vente,
+        restauration et hébergement (location de meublé de tourisme classé et
+        chambre d’hôte), 50% pour les prestations de service commerciales ou
+        artisanales, 34% pour les activités libérales.
       titre.en: '[automatic] income tax - micro-tax system'
       titre.fr: impôt sur le revenu - régime micro-fiscal
     IR non micro-fiscal:

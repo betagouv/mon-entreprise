@@ -89,6 +89,13 @@ déclaration revenus PAMC . régime fiscal:
     IR micro-fiscal:
       titre: impôt sur le revenu - régime micro-fiscal
       valeur: régime fiscal = 'IR micro-fiscal'
+      description: |
+        Avec le régime micro-fiscal, les charges déductibles sont estimées
+        forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+        pourcentage dépend du type d’activité : 71% pour les activités de vente,
+        restauration et hébergement (location de meublé de tourisme classé et
+        chambre d’hôte), 50% pour les prestations de service commerciales ou
+        artisanales, 34% pour les activités libérales.
 
     IR réel:
       titre: impôt sur le revenu - régime réel
