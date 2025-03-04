@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
+import { SwitchInput } from '@/components/conversation/SwitchInput'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Drawer } from '@/design-system/drawer'
