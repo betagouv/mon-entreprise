@@ -54,15 +54,18 @@ déclaration revenus PAMC . profession:
 déclaration revenus PAMC . statut:
   question: Quel était votre statut d’exercice au 1er janvier ou à votre date de début d’activité ?
   description: |
-    Indiquez ici votre statut au 1er janvier de l’année précédant l’année de déclaration.
+    Indiquez ici votre statut au 1er janvier de l’année précédant l’année de
+    déclaration.
     <br />
-    Par exemple, pour la déclaration 2025 sur les revenus de 2024, indiquez votre situation au 1er
-    janvier 2024.
+    Par exemple, pour la déclaration 2025 sur les revenus de 2024, indiquez votre
+    situation au 1er janvier 2024.
 
-    Si vous avez commencé en cours d’année, indiquez votre statut à la date de début de votre activité.
+    Si vous avez commencé en cours d’année, indiquez votre statut à la date de début
+    de votre activité.
     <br />
-    Par exemple, si vous avez débuté votre activité au 1er mars en tant que remplaçant/remplaçante et
-    que vous vous êtes installé/installée au 1er juillet, sélectionnez « Remplaçant / remplaçante » 
+    Par exemple, si vous avez débuté votre activité au 1er mars en tant que
+    remplaçant/remplaçante et que vous vous êtes installé/installée au 1er juillet,
+    sélectionnez « Remplaçant / remplaçante ».
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -119,8 +122,8 @@ déclaration revenus PAMC . recettes brutes totales:
     de la déclaration des revenus n°2042-C-PRO.
 
     **Si vous êtes soumis à l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
-    Indiquez la totalité de votre chiffre d’affaires généré par
-    l’ensemble de vos activités non salariées.
+    Indiquez la totalité de votre chiffre d’affaires généré par l’ensemble de vos
+    activités non salariées.
 
 déclaration revenus PAMC . revenus imposables:
   unité: €/an
@@ -157,8 +160,8 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
       - les cotisations <abbr title="indemnités journalières">IJ</abbr> et vieillesse
       de votre conjoint collaborateur / conjointe collaboratrice
 
-    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration
-    contrôlée**, vous retrouverez ce montant dans la **rubrique BT** de votre liasse
+    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration contrôlée**,
+    vous retrouverez ce montant dans la **rubrique BT** de votre liasse
     professionnelle 2035.
 
 déclaration revenus PAMC . cotisations facultatives:
@@ -236,9 +239,9 @@ déclaration revenus PAMC . déductions et exonérations . zone déficitaire en 
   unité: €/an
   par défaut: 0
   description: |
-    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration
-    contrôlée**, vous retrouverez ce montant en **rubrique CI** de votre liasse
-    professionnelle 2035.
+    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration contrôlée**,
+    vous retrouverez ce montant en **rubrique CI** de votre liasse professionnelle
+    2035.
 
 déclaration revenus PAMC . déductions et exonérations . déduction groupe III:
   applicable si:
