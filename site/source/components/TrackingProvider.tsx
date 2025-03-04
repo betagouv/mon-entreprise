@@ -14,11 +14,9 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 	const [injected, setInjected] = useState<boolean>(false)
 
 	useEffect(() => {
-		const script = document.createElement('script')
-		script.src = 'https://tag.aticdn.net/piano-analytics.js'
-		script.type = 'text/javascript'
-		script.crossOrigin = 'anonymous'
-		script.async = true
+		configureConsent()
+
+		const script = prepareScript()
 
 		script.onload = () => {
 			const siteId = import.meta.env.VITE_AT_INTERNET_SITE_ID
@@ -82,4 +80,25 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 			{children}
 		</TrackingContext.Provider>
 	)
+}
+
+const configureConsent = () => {
+	window.pdl = window.pdl || {}
+	window.pdl.requireConsent = 'v2'
+	window.pdl.consent = {
+		defaultPreset: {
+			PA: 'essential',
+		},
+	}
+	window.pdl.consent.products = ['PA']
+}
+
+const prepareScript = (): HTMLScriptElement => {
+	const script = document.createElement('script')
+	script.src = 'https://tag.aticdn.net/piano-analytics.js'
+	script.type = 'text/javascript'
+	script.crossOrigin = 'anonymous'
+	script.async = true
+
+	return script
 }
