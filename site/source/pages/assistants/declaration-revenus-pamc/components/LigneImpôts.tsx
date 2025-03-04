@@ -9,6 +9,7 @@ import { FlexCenter } from '@/design-system/global-style'
 import { Grid } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Body } from '@/design-system/typography/paragraphs'
+import { toOuiNon } from '@/domaine/engine/toOuiNon'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import CheckboxImpôts from './CheckboxImpôts'
@@ -19,6 +20,7 @@ type SimulationValueProps = {
 	code: string
 	label?: string
 	expression?: PublicodesExpression
+	arrondi?: boolean
 }
 
 export function LigneImpôts({
@@ -26,13 +28,14 @@ export function LigneImpôts({
 	code,
 	label,
 	expression,
+	arrondi = true,
 }: SimulationValueProps) {
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
 
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		arrondi: 'oui',
+		arrondi: toOuiNon(arrondi),
 		unité: currentUnit,
 	})
 	const noValue =

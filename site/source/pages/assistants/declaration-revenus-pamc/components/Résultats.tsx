@@ -170,6 +170,7 @@ export default function Résultats() {
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . SNIR . taux urssaf"
 					code="DSAZ"
+					arrondi={false}
 				/>
 
 				<Spacing xxl />
