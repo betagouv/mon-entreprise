@@ -230,6 +230,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     ## Calcul du taux
 
     La formule de calcul du taux de dépassement est la suivante :
+
     > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
   question: Quel est votre "taux Urssaf" ?
   unité: ''
