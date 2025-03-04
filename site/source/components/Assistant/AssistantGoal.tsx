@@ -19,11 +19,13 @@ import { useEngine } from '../utils/EngineContext'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
+	label?: string
 	originalUnit?: boolean
 }
 
 export function AssistantGoal({
 	dottedName,
+	label,
 	originalUnit = false,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
@@ -68,7 +70,7 @@ export function AssistantGoal({
 						>
 							<Grid item>
 								<StyledBody id={`${dottedName.replace(/\s|\./g, '_')}-title`}>
-									{rule.title}
+									{label || rule.title}
 								</StyledBody>
 							</Grid>
 							<Grid item>

@@ -839,6 +839,8 @@ pages:
     declaration-revenus-pamc:
       formulaire:
         "1": Profession
+        "10": Amount of your optional contributions
+        "11": Replacement income
         "2": Tax system
         "3": Recipes
         "4": SNIR survey data
@@ -846,7 +848,7 @@ pages:
         "6": Deductions and exemptions
         "7": Other self-employed income
         "8": Covered procedures
-        "9": Replacement income
+        "9": Optional contributions
         conseil:
           IR: To make filling in the form easier, bring along appendices A and B of your
             2035 tax form.

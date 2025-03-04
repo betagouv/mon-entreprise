@@ -894,6 +894,8 @@ pages:
     declaration-revenus-pamc:
       formulaire:
         "1": Profession
+        "10": Montant de vos cotisations facultatives
+        "11": Revenus de remplacement
         "2": Régime fiscal
         "3": Recettes
         "4": Données du relevé SNIR
@@ -901,7 +903,7 @@ pages:
         "6": Déductions et exonérations
         "7": Autres revenus non salariés
         "8": Actes conventionnés
-        "9": Revenus de remplacement
+        "9": Cotisations facultatives
         conseil:
           IR: Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre
             liasse fiscale 2035.
