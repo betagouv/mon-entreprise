@@ -155,6 +155,8 @@ export const SpanBody = styled(Body).attrs({ as: 'span' })`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 	background-color: transparent;
+	display: inline-flex;
+	align-items: center;
 `
 
 export const InputRadio = styled.input`
