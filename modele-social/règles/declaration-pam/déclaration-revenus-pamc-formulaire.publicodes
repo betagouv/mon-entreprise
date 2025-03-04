@@ -146,7 +146,9 @@ déclaration revenus PAMC . SNIR . taux urssaf:
   applicable si: profession . dentiste
   titre: taux Urssaf
   unité: '%'
-  description: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
+  description: |
+    Ce taux est issu des données de votre Relevé individuel d’activité et de
+    prescriptions (RIAP).
 
 déclaration revenus PAMC . activité en structures de soins:
   non applicable si: profession . dentiste
