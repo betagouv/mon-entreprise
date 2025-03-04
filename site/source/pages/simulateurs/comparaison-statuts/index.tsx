@@ -8,7 +8,7 @@ import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
-import { AutoentrepreneurContexte } from '@/domaine/AutoentrepreneurContexte'
+import { AutoEntrepreneurContexte } from '@/domaine/AutoEntrepreneurContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { useSitePaths } from '@/sitePaths'
 
@@ -32,7 +32,7 @@ function ComparateurStatutsUI() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				...AutoentrepreneurContexte,
+				...AutoEntrepreneurContexte,
 			}),
 		[situation, engine]
 	)

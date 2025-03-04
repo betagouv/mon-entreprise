@@ -196,7 +196,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         maladie-maternité:
           icônes: 🏥
           description: |
-            Part des cotisations autoentrepreneurs qui alimentent l'assurance maladie-maternité
+            Part des cotisations auto-entrepreneur qui alimentent l'assurance maladie-maternité
 
             L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
 
@@ -215,7 +215,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         invalidité-décès:
           icônes: 🦽
           description: |
-            Part des cotisations autoentrepreneurs qui alimentent l'assurance invalidité-décès
+            Part des cotisations auto-entrepreneur qui alimentent l'assurance invalidité-décès
 
             Garantit le versement d'une pension en cas d'invalidité et un capital à vos proches en cas de décès.
           somme:
@@ -223,13 +223,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - service BIC . répartition . invalidité-décès
             - service BNC . répartition . invalidité-décès
         retraite de base:
-          description: Part des cotisations autoentrepreneurs qui alimentent la retraite de base
+          description: Part des cotisations auto-entrepreneur qui alimentent la retraite de base
           somme:
             - vente restauration hébergement . répartition . retraite de base
             - service BIC . répartition . retraite de base
             - service BNC . répartition . retraite de base
         retraite complémentaire:
-          description: Part des cotisations autoentrepreneurs qui alimentent la retraite complémentaire
+          description: Part des cotisations auto-entrepreneur qui alimentent la retraite complémentaire
           somme:
             - vente restauration hébergement . répartition . retraite complémentaire
             - service BIC . répartition . retraite complémentaire
@@ -237,7 +237,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         retraite:
           icônes: 👵
           description: |
-            Part des cotisations autoentrepreneurs qui alimentent la retraite
+            Part des cotisations auto-entrepreneur qui alimentent la retraite
             ### Un système obligatoire …
             Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
 
@@ -256,7 +256,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         autres contributions:
           icônes: 🔧
           description: |
-            Part des cotisations autoentrepreneurs qui alimentent la contribution sociale généralisée et la cotisation pour le remboursement de la dette sociale
+            Part des cotisations auto-entrepreneur qui alimentent la contribution sociale généralisée et la cotisation pour le remboursement de la dette sociale
           somme:
             - vente restauration hébergement . répartition . autres contributions
             - service BIC . répartition . autres contributions

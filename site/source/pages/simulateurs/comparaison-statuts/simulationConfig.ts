@@ -1,12 +1,12 @@
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
-import { AutoentrepreneurContexte } from '@/domaine/AutoentrepreneurContexte'
+import { AutoEntrepreneurContexte } from '@/domaine/AutoEntrepreneurContexte'
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 
 export const configComparateurStatuts: ComparateurConfig = {
 	contextes: [
 		AssimiléSalariéContexte,
-		AutoentrepreneurContexte,
+		AutoEntrepreneurContexte,
 		IndépendantContexte,
 	],
 	'objectifs exclusifs': [],
