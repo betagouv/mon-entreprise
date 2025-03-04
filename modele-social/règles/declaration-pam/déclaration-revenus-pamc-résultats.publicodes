@@ -122,6 +122,8 @@ déclaration revenus PAMC . revenus nets . assiette sociale:
 
 déclaration revenus PAMC . revenus nets . revenus conventionnés:
   variations:
+    - si: revenus nets . assiette sociale = 0
+      alors: 0
     - si: actes conventionnés uniquement
       alors: assiette sociale
     - sinon:
@@ -149,6 +151,8 @@ déclaration revenus PAMC . revenus nets . revenus structures de soins:
 
 déclaration revenus PAMC . cotisations facultatives . activité conventionnée:
   variations:
+    - si: revenus nets . assiette sociale = 0
+      alors: 0
     - si: actes conventionnés uniquement
       alors: cotisations facultatives
     - sinon:
