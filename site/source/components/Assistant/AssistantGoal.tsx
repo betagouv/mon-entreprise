@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -15,7 +15,6 @@ import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput from '../conversation/RuleInput'
 import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
-import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
 
 type SimulationGoalProps = {
@@ -34,7 +33,6 @@ export function AssistantGoal({
 	})
 	const rule = engine.getRule(dottedName)
 	const initialRender = useInitialRender()
-	const [isFocused, setFocused] = useState(false)
 	const onChange = useCallback(
 		(x?: PublicodesExpression) => {
 			dispatch(
@@ -82,16 +80,11 @@ export function AssistantGoal({
 					</Grid>
 					<LectureGuide />
 					<Grid item md={3} sm={4} xs={4}>
-						{!isFocused && (
-							<AnimatedTargetValue value={evaluation.nodeValue as number} />
-						)}
 						<RuleInput
 							dottedName={dottedName}
 							displayedUnit={originalUnit ? undefined : '€'}
 							missing={dottedName in evaluation.missingVariables}
 							onChange={onChange}
-							onFocus={() => setFocused(true)}
-							onBlur={() => setFocused(false)}
 							showSuggestions={false}
 							aria-labelledby={`${dottedName.replace(/\s|\./g, '_')}-title`}
 							aria-describedby={`${dottedName.replace(
