@@ -982,6 +982,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 0%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 11497 €/part/an
             - si: date >= 01/2024
               alors: 11294 €/part/an
             - si: date >= 01/2023
@@ -993,6 +995,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 11%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 29315 €/part/an
             - si: date >= 01/2024
               alors: 28797 €/part/an
             - si: date >= 01/2023
@@ -1004,6 +1008,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 30%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 83823 €/part/an
             - si: date >= 01/2024
               alors: 82341 €/part/an
             - si: date >= 01/2023
@@ -1015,6 +1021,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 41%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 180294 €/part/an
             - si: date >= 01/2024
               alors: 177106 €/part/an
             - si: date >= 01/2023
