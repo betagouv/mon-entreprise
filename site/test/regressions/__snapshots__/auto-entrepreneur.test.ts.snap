@@ -311,7 +311,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: undefined
 dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
-dirigeant . rémunération . impôt: 670"
+dirigeant . rémunération . impôt: 637"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 1`] = `
@@ -650,8 +650,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 819
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 70000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 68974
-dirigeant . rémunération . impôt: 1026"
+dirigeant . auto-entrepreneur . revenu net . après impôt: 69007
+dirigeant . rémunération . impôt: 993"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 9`] = `
@@ -670,8 +670,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 1170
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 100000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 96781
-dirigeant . rémunération . impôt: 3219"
+dirigeant . auto-entrepreneur . revenu net . après impôt: 96902
+dirigeant . rémunération . impôt: 3098"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 10`] = `
@@ -690,8 +690,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 11703
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 1000000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 871425
-dirigeant . rémunération . impôt: 128575
+dirigeant . auto-entrepreneur . revenu net . après impôt: 871836
+dirigeant . rémunération . impôt: 128164
 
 Notifications affichées : entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés"
 `;
