@@ -42,14 +42,12 @@ Afficher les détails de l'entreprise, la modifier ou la supprimer.: View compan
 Aller au contenu principal: Go to main content
 Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
-Assistants à la déclaration de revenus des indépendants: Self-employed tax return assistants
 Attention: Warning
 Attention, information importante: Important information
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Please note that your saved data will be permanently deleted.
 Aucun: No
 Aucun résultat: No results
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.: No results matching your search. Try other keywords.
-Autres outils: Other tools
 Avec ACRE: With ACRE
 Avec chômage partiel: With short-time working
 Boite de dialogue: Dialog box
@@ -187,7 +185,6 @@ Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
     fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Percentage
 Prochaines questions: Next questions
-Professions libérales: Liberal professions
 Précédent: Previous
 Prévisualisation: Preview
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
@@ -211,7 +208,6 @@ Revenu (incluant les dépenses liées à l'activité): Income (including activit
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
 Revenu disponible: Disposable income
-Revenu du dirigeant par statut: Executive income by status
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Régime d’imposition: Taxation system
@@ -228,7 +224,6 @@ Salaire brut: Gross salary
 Salaire brut mensuel: Gross monthly salary
 Salaire net: Net salary
 Salariés et embauche: Employees and hiring
-Salariés et employeurs: Employees and employers
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   If your company does not appear using your SIREN/SIRET, it may be that you
   have opted not to have <2>your company information made public</2>, in which
@@ -256,7 +251,6 @@ Total des cotisations à devoir pour l'année de cessation d'activité: Total co
 Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
-Travailleurs Non Salariés (TNS): Self-employed workers (TNS)
 Trimestre: Quarter
 Type: Type
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, go to home page
@@ -1153,6 +1147,16 @@ pages:
     title: Offline
   simulateurs:
     accueil:
+      "1":
+        h2: Employees and employers
+        h3: Executive income by status
+      "2":
+        h2: Self-employed workers (TNS)
+        h3:
+          "1": Liberal professions
+          "2": Self-employed tax return assistants
+      "3":
+        h2: Other tools
       description: All the simulators and wizards on this site are kept up to date
         with the latest legislative developments.
       header: All the simulators on this site are kept up to date with the latest
