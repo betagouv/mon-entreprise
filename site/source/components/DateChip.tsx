@@ -22,7 +22,7 @@ export default function DateChip() {
 				icon={<Emoji emoji="📆" />}
 				title={t(
 					'pages.simulateurs.date',
-					'Date de la réglemenation utilisée pour les calculs'
+					'Date de la réglementation utilisée pour les calculs'
 				)}
 			>
 				{date}
