@@ -150,9 +150,25 @@ export default function Formulaire() {
 				</WhenApplicable>
 				<SimpleField dottedName="déclaration revenus PAMC . actes conventionnés uniquement" />
 
+				<WhenApplicable dottedName="déclaration revenus PAMC . cotisations facultatives">
+					<H2>
+						{t(
+							'pages.assistants.declaration-revenus-pamc.formulaire.9',
+							'Cotisations facultatives'
+						)}
+					</H2>
+				</WhenApplicable>
+				<AssistantGoal
+					dottedName="déclaration revenus PAMC . cotisations facultatives"
+					label={t(
+						'pages.assistants.declaration-revenus-pamc.formulaire.10',
+						'Montant de vos cotisations facultatives'
+					)}
+				/>
+
 				<H2>
 					{t(
-						'pages.assistants.declaration-revenus-pamc.formulaire.9',
+						'pages.assistants.declaration-revenus-pamc.formulaire.11',
 						'Revenus de remplacement'
 					)}
 				</H2>

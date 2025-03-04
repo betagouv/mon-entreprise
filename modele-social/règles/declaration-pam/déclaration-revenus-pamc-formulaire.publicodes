@@ -157,6 +157,7 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
 déclaration revenus PAMC . cotisations facultatives:
   applicable si: régime fiscal . IR non micro-fiscal
   unité: €/an
+  par défaut: 0
   description: |
     Vous retrouverez ce montant dans les **rubriques BU et BZ** de votre liasse
     professionnelle 2035.

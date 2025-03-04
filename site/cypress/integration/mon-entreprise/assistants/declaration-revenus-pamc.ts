@@ -160,6 +160,9 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		).should('not.exist')
 		cy.get(`#${idPrefix}_actes_conventionnés_uniquement`).should('not.exist')
 
+		cy.get('@titles').contains('Cotisations facultatives').should('not.exist')
+		cy.contains('Montant de vos cotisations facultatives').should('not.exist')
+
 		cy.get('@titles').contains('Revenus de remplacement').should('not.exist')
 		cy.contains(
 			'Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?'
@@ -267,6 +270,28 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains(
 			'Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre liasse fiscale 2035.'
 		).should('be.visible')
+	})
+
+	it('devrait ajouter une section supplémentaire dans le formulaire pour le régime réel et la déclaration contrôlée', function () {
+		// Régime micro-fiscal
+		cy.contains('Sage-femme').click()
+		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
+
+		cy.get('h2').contains('Cotisations facultatives').should('not.exist')
+		cy.contains('Montant de vos cotisations facultatives').should('not.exist')
+
+		// Régime réel
+		cy.contains('régime réel').click()
+
+		cy.get('h2').contains('Cotisations facultatives').should('be.visible')
+		cy.contains('Montant de vos cotisations facultatives').should('be.visible')
+
+		// Déclaration contrôlée
+		cy.contains('déclaration contrôlée').click()
+
+		cy.get('h2').contains('Cotisations facultatives').should('be.visible')
+		cy.contains('Montant de vos cotisations facultatives').should('be.visible')
 	})
 
 	it('devrait formuler différemment la question sur les autres revenus pour le régime réel et la déclaration contrôlée', function () {
@@ -499,6 +524,34 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_SNIR___dépassements_honoraires-value`).should(
 			'be.visible'
 		)
+	})
+
+	it('devrait ajouter une section supplémentaire dans les résultats pour le régime réel et la déclaration contrôlée', function () {
+		// Régime micro-fiscal
+		cy.contains('Sage-femme').click()
+		cy.contains('Titulaire').click()
+		cy.contains('micro-fiscal').click()
+		cy.get('input[type="text"]').each(($input) => {
+			cy.wrap($input).type('{selectall}100')
+		})
+
+		cy.get('h3').contains('Cotisations facultatives').should('not.exist')
+		cy.get(`#${idPrefix}_cotisations_facultatives-label`).should('not.exist')
+		cy.get(`#${idPrefix}_cotisations_facultatives-value`).should('not.exist')
+
+		// Régime réel
+		cy.contains('régime réel').click()
+
+		cy.get('h3').contains('Cotisations facultatives').should('be.visible')
+		cy.get(`#${idPrefix}_cotisations_facultatives-label`).should('be.visible')
+		cy.get(`#${idPrefix}_cotisations_facultatives-value`).should('be.visible')
+
+		// Déclaration contrôlée
+		cy.contains('déclaration contrôlée').click()
+
+		cy.get('h3').contains('Cotisations facultatives').should('be.visible')
+		cy.get(`#${idPrefix}_cotisations_facultatives-label`).should('be.visible')
+		cy.get(`#${idPrefix}_cotisations_facultatives-value`).should('be.visible')
 	})
 
 	it('devrait montrer des champs différents aux dentistes', function () {
