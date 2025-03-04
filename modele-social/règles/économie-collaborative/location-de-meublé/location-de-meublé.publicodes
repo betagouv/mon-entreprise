@@ -1,14 +1,6 @@
 location de logement meublé:
   avec:
 
-    date de début d'activité:
-      par défaut: période . début d'année . N-1
-      question: Quand avez-vous commencé la location de meublé ?
-      type: date
-
-    première année:
-      formule: période . début d'année <= date de début d'activité
-
     seuil de professionalisation:
       description: |
         En dessous de 23 000 € de recettes, votre activité n’est pas considérée comme professionnelle.
@@ -20,26 +12,26 @@ location de logement meublé:
       titre: Plafond de recettes autorisé pour le régime général
       valeur: 77700 €/an
 
+    recettes: courte durée . recettes
+
+    autres revenus:
+      résumé: Autres sources de revenus
+      unité: €/an
+
+    recettes supérieures aux autres revenus:
+      formule: recettes > autres revenus
+
     cotisations:
-      non applicable si:
-        est non applicable: location de logement meublé . courte durée . cotisations
-      valeur: courte durée . cotisations
+      non applicable si: recettes > plafond régime général
+      variations:
+        - si: affiliation . RG
+          alors: cotisations . régime général
+        - si: affiliation . TI
+          alors: location de logement meublé . cotisations . régime travailleur indépendant
+        - si: affiliation . ME
+          alors: location de logement meublé . cotisations . régime micro-entreprise
+        - sinon:
+            non applicable si: oui
 
     revenu net:
-      formule: location de logement meublé . courte durée . recettes - cotisations
-
-    zone géographique:
-      question: Quelle est votre zone géographique ?
-      une possibilité:
-        possibilités:
-          - Alsace-Moselle
-          - autre
-        choix obligatoire: oui
-      par défaut: "'autre'"
-      avec:
-        Alsace-Moselle:
-          titre: Bas-Rhin, Haut-Rhin ou Moselle
-          valeur: zone géographique = 'Alsace-Moselle'
-        autre:
-          titre: Autre département
-          valeur: zone géographique = 'autre'
+      formule: recettes - cotisations
