@@ -14,6 +14,13 @@ const toEvaluate = function <T extends PublicodesTypes>(
 	const evaluated = engine.evaluate(rule).nodeValue
 	const pass = evaluated === value
 
+	const ruleName =
+		rule instanceof String || rule instanceof Number
+			? rule
+			: (rule as Record<string, unknown>).valeur
+			? (rule as Record<string, unknown>).valeur
+			: JSON.stringify(rule, null, 2)
+
 	if (pass) {
 		return {
 			message: () =>
@@ -26,7 +33,7 @@ const toEvaluate = function <T extends PublicodesTypes>(
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
 					`${value}`
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-				)} for rule ${rule}`,
+				)} for rule ${ruleName}`,
 			pass: true,
 		}
 	} else {

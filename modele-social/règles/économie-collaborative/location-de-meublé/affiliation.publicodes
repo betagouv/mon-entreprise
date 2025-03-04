@@ -1,0 +1,26 @@
+location de logement meublé . affiliation:
+  question: Pour quelle affiliation souhaitez-vous opter ?
+  description: Il est possible d’opter pour le régime général, le régime de travailleur indépendant ou le régime de micro-entreprise
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - RG
+      - TI
+      - ME
+  par défaut: "'RG'"
+  avec:
+    RG:
+      titre: Régime général
+      description: Régime général pour la location de logements meublés
+      valeur: affiliation = 'RG'
+    TI:
+      titre: Travailleur indépendant
+      description: Vous avez la possibilité d’opter pour le régime du travailleur indépendant
+      valeur: affiliation = 'TI'
+      estimation: location de logement meublé . cotisations . régime travailleur indépendant
+    ME:
+      titre: Micro-entreprise
+      valeur: affiliation = 'ME'
+      description: Vous avez la possibilité d’opter pour le régime de la micro-entreprise
+      estimation: location de logement meublé . cotisations . régime micro-entreprise
+

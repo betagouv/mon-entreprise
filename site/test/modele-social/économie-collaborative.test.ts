@@ -11,7 +11,15 @@ describe('Économie collaborative', () => {
 		describe('Courte durée', () => {
 			let engine: Engine<DottedName>
 			beforeEach(() => {
-				engine = new Engine(rules)
+				engine = new Engine(rules, {
+					logger: {
+						// eslint-disable-next-line no-console
+						log: console.log,
+						warn() {},
+						// eslint-disable-next-line no-console
+						error: console.error,
+					},
+				})
 			})
 
 			it('applique correctement l’abattement et le taux de cotisation', () => {
@@ -30,14 +38,14 @@ describe('Économie collaborative', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
 					'location de logement meublé . courte durée . recettes': '40000 €/an',
-					'location de logement meublé . zone géographique': 'Alsace-Moselle',
+					'location de logement meublé . zone géographique': "'Alsace-Moselle'",
 				})
 
 				const cotisations = e.evaluate(
 					'location de logement meublé . cotisations'
 				).nodeValue
 
-				expect(cotisations).toEqual(7_587.2)
+				expect(cotisations).toEqual(7_795.2)
 			})
 
 			it('applique le régime général jusqu’à 77 700 €', () => {
@@ -78,6 +86,67 @@ describe('Économie collaborative', () => {
 				).nodeValue
 
 				expect(cotisations).toBeLessThan(24_000 - 23_000)
+			})
+			it('reconnait quand les recettes dépassent les autres revenus', () => {
+				engine.setSituation({
+					...situationParDéfaut,
+					'location de logement meublé . courte durée . recettes': '35000 €/an',
+					'location de logement meublé . autres revenus': '30000 €/an',
+				})
+
+				expect(engine).toEvaluate(
+					'location de logement meublé . recettes supérieures aux autres revenus',
+					true
+				)
+			})
+			it('reconnait quand les recettes ne dépassent pas les autres revenus', () => {
+				engine.setSituation({
+					...situationParDéfaut,
+					'location de logement meublé . courte durée . recettes': '25000 €/an',
+					'location de logement meublé . autres revenus': '30000 €/an',
+				})
+
+				expect(engine).toEvaluate(
+					'location de logement meublé . recettes supérieures aux autres revenus',
+					false
+				)
+			})
+			it('applique le régime général par défaut', () => {
+				engine.setSituation({
+					...situationParDéfaut,
+				})
+
+				expect(engine).toEvaluate(
+					'location de logement meublé . affiliation',
+					'RG'
+				)
+			})
+			it('applique le régime TI si choisi', () => {
+				engine.setSituation({
+					...situationParDéfaut,
+					'location de logement meublé . courte durée . recettes': '25000 €/an',
+					'location de logement meublé . affiliation': "'TI'",
+				})
+
+				expect(engine).toEvaluate(
+					'location de logement meublé . cotisations',
+					10_064
+				)
+			})
+			it('applique le régime ME si choisi', () => {
+				engine.setSituation({
+					...situationParDéfaut,
+					'location de logement meublé . courte durée . recettes': '25000 €/an',
+					'location de logement meublé . affiliation': "'ME'",
+				})
+
+				expect(engine).toEvaluate(
+					{
+						valeur: 'location de logement meublé . cotisations',
+						unité: '€/an',
+					},
+					3_100
+				)
 			})
 		})
 	})
