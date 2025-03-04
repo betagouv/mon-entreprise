@@ -5336,6 +5336,9 @@ déclaration revenus PAMC . résultats:
     champs médecin:
       titre.en: "[automatic] doctor's field"
       titre.fr: champs médecin
+    champs revenus imposables:
+      titre.en: '[automatic] taxable income fields'
+      titre.fr: champs revenus imposables
   titre.en: '[automatic] results'
   titre.fr: résultats
 déclaration revenus PAMC . statut:
