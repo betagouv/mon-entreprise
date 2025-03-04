@@ -48,10 +48,6 @@ export default function DéclarationRevenusPAMC() {
 							.
 						</StyledLi>
 						<StyledLi>
-							Il gère uniquement le cas de l’
-							<Strong>impôt sur le revenu</Strong>.
-						</StyledLi>
-						<StyledLi>
 							Il a pour but de vous aider à remplir le volet social de votre
 							déclaration de revenus à réaliser sur{' '}
 							<Link
