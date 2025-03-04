@@ -9,6 +9,7 @@
 
 ### Nouveautés
 - Ajout des règles pour l'IR non micro-fiscal à `déclaration revenus PAMC`
+- Ajout des règles pour l'IS à `déclaration revenus PAMC`
 
 ### Mises à jour
 - Mises à jour des valeurs CARPIMKO pour 2025

@@ -66,6 +66,14 @@ export default function Formulaire() {
 							)}
 						</Body>
 					</Condition>
+					<Condition expression="déclaration revenus PAMC . régime fiscal . IS">
+						<Body>
+							{t(
+								'pages.assistants.declaration-revenus-pamc.formulaire.conseil.IS',
+								'Afin de faciliter le remplissage, munissez-vous de votre liasse fiscale 2065.'
+							)}
+						</Body>
+					</Condition>
 				</Message>
 			</WhenAlreadyDefined>
 
@@ -84,6 +92,9 @@ export default function Formulaire() {
 				</H2>
 				<AssistantGoal dottedName="déclaration revenus PAMC . recettes brutes totales" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . revenus imposables" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . revenus des associés et gérants" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . dividendes" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . frais réels" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . cotisations sociales obligatoires" />
 
 				<H2>
@@ -133,12 +144,13 @@ export default function Formulaire() {
 				</H2>
 				<SimpleField dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BNC" />
 				<SimpleField dottedName="déclaration revenus PAMC . autres revenus non salariés . BNC" />
+				<SimpleField dottedName="déclaration revenus PAMC . autres revenus non salariés . IS" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . BIC" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BIC marchandises" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BIC service" />
-				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BA" />
-				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . BIC" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . agricole" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . autres revenus non salariés . micro-BA" />
 
 				<WhenApplicable dottedName="déclaration revenus PAMC . actes conventionnés uniquement">
 					<H2>
