@@ -123,7 +123,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_actes_conventionnés_uniquement`).should('not.exist')
 
 		cy.contains(
-			'Avez-vous perçues des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?'
+			'Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?'
 		).should('not.exist')
 		cy.get(`#${idPrefix}_revenus_de_remplacement`).should('not.exist')
 		cy.contains('Montant perçu de l’AJPA versée par la Caf').should('not.exist')
@@ -169,7 +169,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_actes_conventionnés_uniquement`).should('be.visible')
 
 		cy.contains(
-			'Avez-vous perçues des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?'
+			'Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?'
 		).should('be.visible')
 		cy.get(`#${idPrefix}_revenus_de_remplacement`).should('be.visible')
 	})

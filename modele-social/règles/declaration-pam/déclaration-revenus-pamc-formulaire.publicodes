@@ -230,7 +230,7 @@ déclaration revenus PAMC . actes conventionnés uniquement:
   par défaut: non
 
 déclaration revenus PAMC . revenus de remplacement:
-  question: Avez-vous perçues des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?
+  question: Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?
   par défaut: non
 
 déclaration revenus PAMC . revenus de remplacement . total:

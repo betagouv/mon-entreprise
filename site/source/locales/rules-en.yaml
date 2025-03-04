@@ -4798,9 +4798,8 @@ déclaration revenus PAMC . recettes brutes totales:
   titre.en: '[automatic] total gross revenues'
   titre.fr: recettes brutes totales
 déclaration revenus PAMC . revenus de remplacement:
-  question.en: '[automatic] Do you receive benefits from Caf, CPAM or your pension fund?'
-  question.fr:
-    Avez-vous perçues des indemnités de la Caf, de la CPAM ou de votre
+  question.en: '[automatic] Have you received benefits from Caf, CPAM or your pension fund?'
+  question.fr: Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre
     caisse de retraite ?
   titre.en: '[automatic] replacement income'
   titre.fr: revenus de remplacement
