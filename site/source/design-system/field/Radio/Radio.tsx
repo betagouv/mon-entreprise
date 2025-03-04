@@ -5,7 +5,7 @@ import React, { createContext, useContext, useRef } from 'react'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '@/design-system/global-style'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 
 export const RadioContext = createContext<RadioGroupState | null>(null)
 
@@ -13,6 +13,7 @@ type RadioProps = AriaRadioProps & {
 	className?: string
 	role?: string
 	visibleRadioAs?: string | React.ComponentType
+	precision?: React.ReactNode
 }
 
 // TDOO: isDisabled style
@@ -28,7 +29,7 @@ export function Radio(props: RadioProps) {
 }
 
 export const RadioSkeleton = (props: RadioProps) => {
-	const { visibleRadioAs, id, ...ariaProps } = props
+	const { visibleRadioAs, id, precision, ...ariaProps } = props
 	const { children, value } = ariaProps
 	const state = useContext(RadioContext)
 	if (!state) {
@@ -39,6 +40,7 @@ export const RadioSkeleton = (props: RadioProps) => {
 	const { inputProps } = useRadio(ariaProps, state, ref)
 
 	return (
+		<>
 		<Label htmlFor={id || `input-radio-${value}`} className={props.className}>
 			<InputRadio
 				{...inputProps}
@@ -54,6 +56,8 @@ export const RadioSkeleton = (props: RadioProps) => {
 				{children}
 			</VisibleRadio>
 		</Label>
+		{precision && <PrecisionSpan>{precision}</PrecisionSpan>}
+		</>
 	)
 }
 
@@ -150,6 +154,12 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 `
 
 const Label = styled.label<{ htmlFor?: string }>``
+
+const PrecisionSpan = styled(SmallBody).attrs({ as: 'span' })`
+	margin: 0;
+	margin-left: ${({ theme }) => theme.spacings.md};
+	background-color: transparent;
+`
 
 export const SpanBody = styled(Body).attrs({ as: 'span' })`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;

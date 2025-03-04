@@ -36,6 +36,13 @@ const toEvaluate = function <T extends PublicodesTypes>(
 		: evaluation
 	const pass = formattedEvaluation === value
 
+	const ruleName =
+		rule instanceof String || rule instanceof Number
+			? rule
+			: (rule as Record<string, unknown>).valeur
+			? (rule as Record<string, unknown>).valeur
+			: JSON.stringify(rule, null, 2)
+
 	if (pass) {
 		return {
 			message: () =>
@@ -48,7 +55,7 @@ const toEvaluate = function <T extends PublicodesTypes>(
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
 					`${value}`
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-				)} for rule ${dottedName}`,
+				)} for rule ${ruleName}`,
 			pass: true,
 		}
 	} else {
