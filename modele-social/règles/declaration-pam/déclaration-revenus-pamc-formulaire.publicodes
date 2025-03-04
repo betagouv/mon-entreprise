@@ -259,8 +259,8 @@ déclaration revenus PAMC . déductions et exonérations . plus-values à court 
   unité: €/an
   par défaut: 0
   description: |
-    **Si vous relevez du régime micro-fiscal**, indiquez le montant net de la
-    plus-value à court terme exonérée, sans appliquer d’abattement ni de majoration.
+    Indiquez le montant net de la plus-value à court terme exonérée, sans appliquer
+    d’abattement ni de majoration.
 
 déclaration revenus PAMC . déductions et exonérations . chèques vacances:
   titre: montant des chèques vacances déduits du revenu imposable
