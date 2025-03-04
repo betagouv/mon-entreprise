@@ -4563,12 +4563,60 @@ déclaration revenus PAMC . SNIR:
   titre.en: '[automatic] SNIR'
   titre.fr: SNIR
 déclaration revenus PAMC . SNIR . dépassements honoraires:
-  description.en: |
-    [automatic] Enter the amount shown on your SNIR statement. If you are a
-    substitute, enter zero.
-  description.fr: |
-    Reportez le montant indiqué sur votre relevé SNIR. Si vous êtes
-    remplaçant/remplaçante, renseignez zéro.
+  description.en: >
+    [automatic] ## If you are subject to income tax
+
+
+    Enter the amount shown on your
+
+    <abbr title="Système National Inter-Régimes">SNIR</abbr> STATEMENT.
+
+
+    If you are a **replacement worker**, enter zero.
+
+
+    ## If you are subject to corporate income tax
+
+
+    If the health insurance company has sent you only
+
+    **only one <abbr title="Système National Inter-Régimes">SNIR</abbr> in the company's name**,
+
+    indicate the amount of excess fees corresponding to your shares in the
+
+    capital of the company.
+
+
+    For example, if you hold 40% of the shares and the total amount of excess fees is
+
+    is €100,000, enter €40,000.
+  description.fr: >
+    ## Si vous relevez de l’impôt sur le revenu
+
+
+    Reportez le montant indiqué sur votre relevé
+
+    <abbr title="Système National Inter-Régimes">SNIR</abbr>.
+
+
+    Si vous êtes **remplaçant/remplaçante**, renseignez zéro.
+
+
+    ## Si vous relevez de l’impôt sur les sociétés
+
+
+    Si l’assurance maladie ne vous a transmis qu’
+
+    **un seul <abbr title="Système National Inter-Régimes">SNIR</abbr> au nom de la société**,
+
+    indiquez le montant des dépassement d’honoraires correspondant à vos parts du
+
+    capital social de la société.
+
+
+    Par exemple, si vous détenez 40% des parts et que le total des dépassements
+
+    d’honoraires est de 100 000 €, indiquez 40 000 €.
   question.en: '[automatic] excess fees'
   question.fr: dépassements d’honoraires
   titre.en: '[automatic] excess fees'
@@ -4579,22 +4627,68 @@ déclaration revenus PAMC . SNIR . honoraires hors forfaits:
   titre.en: '[automatic] total fees excluding packages'
   titre.fr: honoraires totaux hors forfaits
 déclaration revenus PAMC . SNIR . honoraires remboursables:
-  description.en: |
-    [automatic] Enter the amount shown on your SNIR statement. If you are a
+  description.en: >
+    [automatic] ## If you are subject to income tax
+
+
+    Enter the amount shown on your
+
+    <abbr title="Système National Inter-Régimes">SNIR</abbr> STATEMENT. If you are a
+
     substitute, enter all retrocessions received.
+
 
     Add to this amount :
       - the amount of your daily allowance paid by the
      <abbr title="Caisse Primaire d’Assurance Maladie">CPAM</abbr>
       - your optional "Madelin law" contributions
-  description.fr: |
-    Reportez le montant indiqué sur votre relevé SNIR. Si vous êtes
+
+    ## If you are subject to corporate income tax
+
+
+    If the health insurance company has only sent you
+
+    **a single <abbr title="Système National Inter-Régimes">SNIR</abbr> in the company's name**,
+
+    please indicate the amount of fees corresponding to your shares in the
+
+    capital of the company.
+
+
+    For example, if you hold 40% of the shares and the total amount of fees
+
+    is €100,000, enter €40,000.
+  description.fr: >
+    ## Si vous relevez de l’impôt sur le revenu
+
+
+    Reportez le montant indiqué sur votre relevé
+
+    <abbr title="Système National Inter-Régimes">SNIR</abbr>. Si vous êtes
+
     remplaçant/remplaçante, renseignez la totalité des rétrocessions perçues.
+
 
     Ajoutez à ce montant :
       - le montant de vos indemnités journalières versées par la
       <abbr title="Caisse Primaire d’Assurance Maladie">CPAM</abbr>
       - vos cotisations facultatives « loi Madelin »
+
+    ## Si vous relevez de l’impôt sur les sociétés
+
+
+    Si l’assurance maladie ne vous a transmis qu’
+
+    **un seul <abbr title="Système National Inter-Régimes">SNIR</abbr> au nom de la société**,
+
+    indiquez le montant des honoraires conventionnés correspondant à vos parts du
+
+    capital social de la société.
+
+
+    Par exemple, si vous détenez 40% des parts et que le total des honoraires
+
+    conventionnés est de 100 000 €, indiquez 40 000 €.
   titre.en: '[automatic] fees from conventional procedures'
   titre.fr: honoraires tirés d’actes conventionnés
 déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
@@ -4657,6 +4751,13 @@ déclaration revenus PAMC . autres revenus non salariés . BNC:
   question.fr: Avez-vous des revenus non salariés autres que ceux relevant des BNC ?
   titre.en: '[automatic] BNC'
   titre.fr: BNC
+déclaration revenus PAMC . autres revenus non salariés . IS:
+  question.en: '[automatic] Do you have self-employed income other than that
+    subject to corporation tax?'
+  question.fr: Avez-vous des revenus non salariés autres que ceux relevant de
+    l’impôt sur les sociétés ?
+  titre.en: '[automatic] IS'
+  titre.fr: IS
 déclaration revenus PAMC . autres revenus non salariés . agricole:
   titre.en: '[automatic] farm profit/loss'
   titre.fr: bénéfice/déficit agricole
@@ -4664,17 +4765,17 @@ déclaration revenus PAMC . autres revenus non salariés . micro-BA:
   description.en: '[automatic] Indicate your sales figures without applying an allowance.'
   description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BA: farm sales'
-  titre.fr: 'micro-BA : chiffre d’affaires agricole'
+  titre.fr: 'micro-BA : chiffre d’affaires agricole'
 déclaration revenus PAMC . autres revenus non salariés . micro-BIC marchandises:
   description.en: '[automatic] Indicate your sales figures without applying an allowance.'
   description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BIC: sales of goods'
-  titre.fr: 'micro-BIC : chiffre d’affaires vente de marchandises'
+  titre.fr: 'micro-BIC : chiffre d’affaires vente de marchandises'
 déclaration revenus PAMC . autres revenus non salariés . micro-BIC service:
   description.en: '[automatic] Indicate your sales figures without applying an allowance.'
   description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BIC: sales of services'
-  titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
+  titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
 déclaration revenus PAMC . autres revenus non salariés . micro-BNC:
   question.en: '[automatic] Do you have self-employed income other than that
     covered by the micro-BNC scheme?'
@@ -4725,10 +4826,12 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
       AT/MP</abbr>
       - <abbr title="indemnités journalières">IJ</abbr> and old-age pension contributions
       for your collaborating spouse
+      - if you are subject to corporate income tax**, payments into your
+     <abbr title="Plan d’épargne retraite complémentaire">Perco</abbr>
 
-    If you are subject to **tax sur le revenu en régime réel ou en déclaration contrôlée**,
+    **if you are subject to income tax under the "régime réel" or "déclaration contrôlée" system**,
 
-    you will find this amount in the **heading BT** of your professional
+    you will find this amount in the **BT heading** of your professional
 
     2035 business tax return.
   description.fr: >
@@ -4752,14 +4855,75 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
       AT/MP</abbr>
       - les cotisations <abbr title="indemnités journalières">IJ</abbr> et vieillesse
       de votre conjoint collaborateur / conjointe collaboratrice
+      - **si vous relevez de l’impôt sur les sociétés**, les versements sur votre
+      <abbr title="Plan d’épargne retraite complémentaire">Perco</abbr>
 
-    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en déclaration contrôlée**,
+    **Si vous relevez de l’impôt sur le revenu en régime réel ou en déclaration contrôlée**,
 
     vous retrouverez ce montant dans la **rubrique BT** de votre liasse
 
     professionnelle 2035.
   titre.en: '[automatic] compulsory social security contributions'
   titre.fr: cotisations sociales obligatoires
+déclaration revenus PAMC . dividendes:
+  description.en: >
+    [automatic] Indicate the portion of dividends received in excess of 10% of
+    the share capital
+
+    share capital, additional paid-in capital and sums paid into partners' current accounts
+
+    held by you, your spouse or civil union partner, and your children
+
+    children.
+
+
+    &gt; For information, dividends are subject to :
+
+    &gt; - social security contributions for the portion exceeding 10% of the share capital
+
+    &gt; share capital contributed by the majority shareholder, share premiums and
+
+    &gt; and contributions to shareholders' current accounts (average over the year).
+
+    &gt; contributed by the manager);
+
+    &gt; - social security contributions (17.2%) for the portion below 10% not subject to
+
+    &gt; contributions;
+
+    &gt; - income tax on all dividends (i.e. 12.8%, i.e.
+
+    &gt; progressive scale after a 40% allowance under certain conditions).
+  description.fr: >
+    Indiquez la part des dividendes perçus supérieure à 10% du montant du
+    capital
+
+    social, des primes d’émission et des sommes versées en compte courant d’associé
+
+    que vous, votre conjoint, conjointe ou partenaire pacsé/pacsée et vos enfants
+
+    mineurs non émancipés détenez.
+
+
+    > Pour information, les dividendes versés sont soumis :
+
+    > - aux cotisations et contributions sociales pour la part supérieure aux 10% du
+
+    > capital social apporté par le gérant ou la gérante majoritaire, des primes
+
+    > d’émission et des apports en compte courant d’associé (moyenne sur l’année
+
+    > apportée par le gérant ou la gérante) ;
+
+    > - aux prélèvements sociaux (17,2%) pour la part inférieure aux 10% non soumise
+
+    > à cotisations et contributions ;
+
+    > - à l’impôt sur le revenu sur la totalité des dividendes (soit 12,8%, soit
+
+    > barème progressif après abattement de 40% sous certaines conditions).
+  titre.en: '[automatic] dividends'
+  titre.fr: dividendes
 déclaration revenus PAMC . déductions et exonérations:
   question.en: '[automatic] Do you benefit from deductions and/or tax-exempt income?'
   question.fr: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
@@ -4825,18 +4989,75 @@ déclaration revenus PAMC . déductions et exonérations . zone déficitaire en 
     [automatic] If you are subject to **tax sur le revenu en régime réel ou en
     déclaration contrôlée**,
 
-    you will find this amount in the CI section** of your professional tax return
+    you'll find this amount in the CI section of your professional tax return
 
     2035.
   description.fr: >
-    Si vous êtes soumis à l’**impôt sur le revenu en régime réel ou en
-    déclaration contrôlée**,
+    Si vous relevez de l’**impôt sur le revenu en régime réel ou en déclaration
+    contrôlée**,
 
     vous retrouverez ce montant en **rubrique CI** de votre liasse professionnelle
 
     2035.
   titre.en: '[automatic] exemption for areas with a shortage of healthcare services'
   titre.fr: exonération zone déficitaire en offre de soins
+déclaration revenus PAMC . frais réels:
+  description.en: >
+    [automatic] This section applies to you if you are covered by the salary
+    system, i.e.
+
+    if you are a partner or manager covered by article 62 of the
+
+    <abbr title="Code général des impôts">CGI</abbr>.
+
+
+    Enter here the sum of :
+
+    - the amount of actual deductible expenses (which you must enter in
+
+    1AK or 1BK of your tax return),
+
+    - and the amount of your actual expenses relating solely to your activity as a
+
+    under article 62 of the <abbr title="Code général des impôts">CGI</abbr>.
+
+
+    **Do not enter** the amount of expenses, fees and loan interest paid to
+
+    acquiring or subscribing to shares in a company engaged in an industrial, commercial
+
+    activity in which the director or manager is active.
+
+    professional activity.
+  description.fr: >
+    Cette rubrique vous concerne si vous relevez du régime des salaires,
+    c’est-à-dire
+
+    si vous êtes associé/associée ou gérant/gérante relevant de l’article 62 du
+
+    <abbr title="Code général des impôts">CGI</abbr>.
+
+
+    Indiquez ici la somme :
+
+    - du montant des frais réels déductibles (que vous devez indiquer dans la
+
+    rubrique 1AK ou 1BK de votre déclaration de revenus),
+
+    - et du montant de vos frais réels afférents à votre seule activité de
+
+    dirigeant/dirigeante selon l’article 62 du <abbr title="Code général des impôts">CGI</abbr>.
+
+
+    **N’indiquez pas** le montant des frais, droits et intérêts d’emprunt versés pour
+
+    acquérir ou souscrire des parts ou des actions d’une société ayant une activité
+
+    industrielle, commerciale, artisanale, agricole ou libérale dans laquelle le
+
+    dirigeant ou la dirigeante exerce son activité professionnelle principale.
+  titre.en: '[automatic] actual costs excluding loan interest'
+  titre.fr: frais réels hors intérêt d’emprunts
 déclaration revenus PAMC . profession:
   avec:
     dentiste:
@@ -4896,8 +5117,17 @@ déclaration revenus PAMC . recettes brutes totales:
     Indicate the total sales generated by all your self-employed activities.
 
     self-employed activities.
+
+
+    **If you are subject to corporate income tax:** Indicate the amount of sales
+
+    corresponding to your share in the company's capital.
+
+    For example, if you own 40% of the shares and the company's sales are
+
+    100,000, enter €40,000.
   description.fr: >
-    **Si vous relevez du régime micro-fiscal :** Indiquez la totalité de votre
+    **Si vous relevez du régime micro-fiscal :** Indiquez la totalité de votre
     chiffre
 
     d’affaires généré par vos activités non salariées, sans application d’abattement.
@@ -4907,11 +5137,20 @@ déclaration revenus PAMC . recettes brutes totales:
     de la déclaration des revenus n°2042-C-PRO.
 
 
-    **Si vous êtes soumis à l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
+    **Si vous relevez de l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
 
     Indiquez la totalité de votre chiffre d’affaires généré par l’ensemble de vos
 
     activités non salariées.
+
+
+    **Si vous relevez de l’impôt sur les sociétés :** Indiquez le montant du chiffre
+
+    d’affaires correspondant à vos parts du capital social de la société.
+
+    Par exemple, si vous détenez 40% des parts et que le chiffre d’affaires de la
+
+    société est de 100 000 €, indiquez 40 000 €.
   titre.en: '[automatic] total gross revenues'
   titre.fr: recettes brutes totales
 déclaration revenus PAMC . revenus de remplacement:
@@ -4957,40 +5196,51 @@ déclaration revenus PAMC . revenus de remplacement . indemnités incapacité te
 
     paid by your pension fund, if these are included in your BNC,
 
-    BIC or art. 62 remuneration.
+    BIC or remuneration in accordance with article 62 of the French General Tax Code.
   description.fr: >
     Indiquez les montants perçus au titre des indemnités d’incapacité temporaire
 
     versées par votre caisse de retraite, si celles-ci sont incluses dans votre BNC,
 
-    BIC ou rémunération art. 62.
+    BIC ou rémunération selon l’article 62 du code général des impôts.
   titre.en: '[automatic] amount of temporary disability benefits paid by the
     pension fund'
   titre.fr: montant des indemnités d’incapacité temporaire versées par la caisse retraite
 déclaration revenus PAMC . revenus de remplacement . total:
   titre.en: '[automatic] total'
   titre.fr: total
+déclaration revenus PAMC . revenus des associés et gérants:
+  description.en: >
+    [automatic] This item concerns partners and managers covered by Article 62
+    of the French General Tax Code.
+
+    general tax code.
+  description.fr: >
+    Cette rubrique concerne les associés et gérants relevant de l’article 62 du
+    code
+
+    général des impôts.
+  titre.en: '[automatic] income from associates and managers'
+  titre.fr: revenus des associés et gérants
 déclaration revenus PAMC . revenus imposables:
   description.en: >
-    [automatic] **If you are covered by the micro-tax regime:** Indicate the
+    [automatic] **If you are covered by the micro-tax system:** Indicate the
     amount of gross sales
 
     sales under the micro-BNC scheme, without applying an allowance. It
 
-    the amount you indicated in **section 5HQ** of your tax return
+    amount you indicated in **section 5HQ** of the tax return
 
     tax return n°2042-C-PRO.
 
 
-    **If you are subject to income tax under the "régime réel" or the "déclaration contrôlée" system:**
+    **If you are subject to income tax under the "régime réel" or "déclaration contrôlée" system:**
 
-    Indicate the amount of your profit or loss. This amount
+    Indicate the amount of your profit or loss. This amount corresponds to
 
-    corresponds to **section 5QC or 5QE** of your income tax return
-
-    n°2042-C-PRO.
+    **item 5QC or 5QE** of your tax return n°2042-C-PRO.
   description.fr: >
-    **Si vous relevez du régime micro-fiscal :** Indiquez le montant du chiffre
+    **Si vous relevez du régime micro-fiscal :** Indiquez le montant du chiffre
 
     d’affaires brut réalisé au régime micro-BNC, sans appliquer d’abattement. Il
 
@@ -4999,13 +5249,11 @@ déclaration revenus PAMC . revenus imposables:
     déclaration des revenus n°2042-C-PRO.
 
 
-    **Si vous êtes soumis à l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
+    **Si vous relevez de l’impôt sur le revenu en régime réel ou en déclaration contrôlée :**
 
-    Indiquez le montant de votre bénéfice ou déficit. Ce montant
+    Indiquez le montant de votre bénéfice ou déficit. Ce montant correspond à la
 
-    correspond à la **rubrique 5QC ou 5QE** de votre déclaration des revenus
-
-    n°2042-C-PRO.
+    **rubrique 5QC ou 5QE** de votre déclaration des revenus n°2042-C-PRO.
   titre.en: '[automatic] taxable income'
   titre.fr: revenus imposables
 déclaration revenus PAMC . revenus nets:
@@ -5015,6 +5263,13 @@ déclaration revenus PAMC . revenus nets . assiette sociale:
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
 déclaration revenus PAMC . revenus nets . autres revenus non salariés:
+  avec:
+    régime général:
+      titre.en: '[automatic] general scheme'
+      titre.fr: régime général
+    régime micro-fiscal:
+      titre.en: '[automatic] micro-tax system'
+      titre.fr: régime micro-fiscal
   titre.en: '[automatic] other self-employed income'
   titre.fr: autres revenus non salariés
 déclaration revenus PAMC . revenus nets . revenus conventionnés:
@@ -5051,7 +5306,7 @@ déclaration revenus PAMC . régime fiscal:
       description.fr: |
         Avec le régime micro-fiscal, les charges déductibles sont estimées
         forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-        pourcentage dépend du type d’activité : 71% pour les activités de vente,
+        pourcentage dépend du type d’activité : 71% pour les activités de vente,
         restauration et hébergement (location de meublé de tourisme classé et
         chambre d’hôte), 50% pour les prestations de service commerciales ou
         artisanales, 34% pour les activités libérales.
@@ -5063,6 +5318,9 @@ déclaration revenus PAMC . régime fiscal:
     IR réel:
       titre.en: '[automatic] income tax - actual system'
       titre.fr: impôt sur le revenu - régime réel
+    IS:
+      titre.en: '[automatic] corporate income tax'
+      titre.fr: impôt sur les sociétés
   question.en: '[automatic] What is your tax status?'
   question.fr: Quel est votre régime fiscal ?
   titre.en: '[automatic] tax system'
