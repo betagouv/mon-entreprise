@@ -152,7 +152,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 					</Intro>
 					<Ul>
 						<Li>La copie du contrat</Li>
-						<Li>L’attestation Pôle Emploi Service </Li>
+						<Li>L’attestation France Travail Service </Li>
 					</Ul>
 				</Condition>
 				<Condition expression="situation . non actif">
@@ -162,7 +162,7 @@ export default function EndBlock({ fields, missingValues }: EndBlockProps) {
 					</Intro>
 					<Ul>
 						<Li> Etudiant : une copie de votre carte d’étudiant</Li>
-						<Li> Demandeur d’emploi : une attestation pôle emploi</Li>
+						<Li> Demandeur d’emploi : une attestation France Travail</Li>
 						<Li> Retraité : notification de pension </Li>
 					</Ul>
 				</Condition>
