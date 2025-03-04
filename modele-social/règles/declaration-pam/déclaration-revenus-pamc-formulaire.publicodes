@@ -145,7 +145,7 @@ déclaration revenus PAMC . SNIR . honoraires hors forfaits:
 déclaration revenus PAMC . SNIR . taux urssaf:
   applicable si: profession . dentiste
   titre: taux Urssaf
-  unité: '%'
+  unité: ''
   description: |
     Ce taux est issu des données de votre Relevé individuel d’activité et de
     prescriptions (RIAP).
