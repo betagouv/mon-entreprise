@@ -453,6 +453,9 @@ contact:
 conversation:
   multiple-answer:
     aria-label: Multiple choice
+  radio-choices:
+    estimation:
+      label: estimate
   yes-no:
     aria-label: Yes or no
 copied: Copy

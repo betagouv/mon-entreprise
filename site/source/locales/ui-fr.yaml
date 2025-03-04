@@ -480,6 +480,9 @@ contact:
 conversation:
   multiple-answer:
     aria-label: Choix multiples
+  radio-choices:
+    estimation:
+      label: estimation
   yes-no:
     aria-label: Oui ou non
 copied: Copié

@@ -1,0 +1,157 @@
+import { DottedName } from 'modele-social'
+import { Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
+
+import { Choice } from '@/components/conversation/Choice'
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import Value from '@/components/EngineValue/Value'
+import { Radio } from '@/design-system'
+import { Emoji } from '@/design-system/emoji'
+import { Spacing } from '@/design-system/layout'
+import { H3, H4 } from '@/design-system/typography/heading'
+import { estimationDImpactPourUneRègle } from '@/domaine/estimations'
+import { relativeDottedName } from '@/domaine/relativeDottedName'
+
+export function RadioChoices<Names extends string = DottedName>({
+	choices,
+	defaultValue,
+	autoFocus,
+	rootDottedName,
+	type,
+}: {
+	choices: Choice
+	defaultValue?: string
+	autoFocus?: boolean
+	rootDottedName: Names
+	estimationLabel?: string
+	type: 'radio' | 'toggle'
+}) {
+	const { t } = useTranslation()
+
+	return (
+		<>
+			{choices.children.map((node) => {
+				const estimation = estimationDImpactPourUneRègle(
+					node.dottedName as DottedName
+				)
+
+				return (
+					<Fragment key={node.dottedName}>
+						{' '}
+						{'children' in node ? (
+							<div
+								role="group"
+								aria-labelledby={
+									node.dottedName.replace(/\s|\./g, '_') + '-legend'
+								}
+								id={`radio-input-${node.dottedName.replace(
+									/\s|\./g,
+									'_'
+								)}-${rootDottedName.replace(/\s|\./g, '_')}`}
+								style={{
+									marginTop: '-1rem',
+								}}
+							>
+								<H4 as={H3} id={node.dottedName + '-legend'}>
+									{node.title}
+								</H4>
+								<Spacing lg />
+								<StyledSubRadioGroup>
+									<RadioChoices
+										// eslint-disable-next-line jsx-a11y/no-autofocus
+										autoFocus={autoFocus}
+										defaultValue={defaultValue}
+										choices={node}
+										rootDottedName={rootDottedName}
+										type={type}
+									/>
+								</StyledSubRadioGroup>
+							</div>
+						) : (
+							<span>
+								<Radio
+									// eslint-disable-next-line jsx-a11y/no-autofocus
+									autoFocus={
+										// Doit autoFocus si correspond à la valeur par défaut
+										(defaultValue &&
+											defaultValue ===
+												`'${relativeDottedName(
+													rootDottedName,
+													node.dottedName
+												)}'` &&
+											autoFocus) ||
+										// Sinon doit autoFocus automatiquement
+										autoFocus
+									}
+									value={`'${relativeDottedName(
+										rootDottedName,
+										node.dottedName
+									)}'`}
+									id={`radio-input-${relativeDottedName(
+										rootDottedName,
+										node.dottedName
+									).replace(/\s|\./g, '_')}-${rootDottedName.replace(
+										/\s|\./g,
+										'_'
+									)}`}
+									precision={
+										estimation && (
+											<>
+												&nbsp;(
+												{estimation.label ||
+													t(
+														'conversation.radio-choices.estimation.label',
+														'estimation'
+													)}{' '}
+												:
+												<Value
+													expression={estimation.règleCible}
+													unit={estimation.unité}
+												/>
+												)
+											</>
+										)
+									}
+								>
+									{node.title}
+									{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
+									{type !== 'toggle' && (
+										<>
+											<ExplicableRule
+												light
+												dottedName={node.dottedName as DottedName}
+												aria-label={t("Plus d'informations sur {{ title }}", {
+													title: node.title,
+												})}
+											/>
+										</>
+									)}
+								</Radio>
+							</span>
+						)}
+					</Fragment>
+				)
+			})}
+			{choices.canGiveUp && (
+				<>
+					<Radio value={'non'}>{t('Aucun')}</Radio>
+				</>
+			)}
+		</>
+	)
+}
+
+const StyledSubRadioGroup = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: ${({ theme }) => theme.spacings.md};
+
+	> * {
+		flex-shrink: 0;
+		margin-right: ${({ theme }) => theme.spacings.md};
+	}
+	border-left: 2px dotted ${({ theme }) => theme.colors.extended.grey[500]};
+	padding-left: ${({ theme }) => theme.spacings.md};
+	margin-top: calc(${({ theme }) => theme.spacings.md} * -1);
+`

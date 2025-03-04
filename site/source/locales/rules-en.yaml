@@ -7911,20 +7911,23 @@ impôt . taux personnalisé:
   titre.fr: taux personnalisé
 location de logement meublé:
   avec:
+    autres revenus:
+      résumé.en: '[automatic] Other sources of income'
+      résumé.fr: Autres sources de revenus
+      titre.en: '[automatic] other income'
+      titre.fr: autres revenus
     cotisations:
       titre.en: '[automatic] contributions'
       titre.fr: cotisations
-    date de début d'activité:
-      question.en: '[automatic] When did you start renting out furnished accommodation?'
-      question.fr: Quand avez-vous commencé la location de meublé ?
-      titre.en: '[automatic] start date'
-      titre.fr: date de début d'activité
     plafond régime général:
       titre.en: '[automatic] Authorized revenue ceiling for the general scheme'
       titre.fr: Plafond de recettes autorisé pour le régime général
-    première année:
-      titre.en: '[automatic] first year'
-      titre.fr: première année
+    recettes:
+      titre.en: '[automatic] revenues'
+      titre.fr: recettes
+    recettes supérieures aux autres revenus:
+      titre.en: '[automatic] revenues greater than other income'
+      titre.fr: recettes supérieures aux autres revenus
     revenu net:
       titre.en: '[automatic] net income'
       titre.fr: revenu net
@@ -7945,47 +7948,72 @@ location de logement meublé:
         sociale (assurance maladie, retraite…) en contrepartie du paiement des cotisations sociales.
       titre.en: '[automatic] professionalization threshold'
       titre.fr: seuil de professionalisation
-    zone géographique:
-      avec:
-        Alsace-Moselle:
-          titre.en: '[automatic] Bas-Rhin, Haut-Rhin or Moselle'
-          titre.fr: Bas-Rhin, Haut-Rhin ou Moselle
-        autre:
-          titre.en: '[automatic] Other department'
-          titre.fr: Autre département
-      question.en: '[automatic] What is your geographical area?'
-      question.fr: Quelle est votre zone géographique ?
-      titre.en: '[automatic] geographical area'
-      titre.fr: zone géographique
   titre.en: '[automatic] rental of furnished accommodation'
   titre.fr: location de logement meublé
+location de logement meublé . affiliation:
+  avec:
+    ME:
+      description.en: '[automatic] You can opt for the micro-enterprise scheme'
+      description.fr: Vous avez la possibilité d’opter pour le régime de la micro-entreprise
+      titre.en: '[automatic] Micro-business'
+      titre.fr: Micro-entreprise
+    RG:
+      description.en: '[automatic] General scheme for renting furnished accommodation'
+      description.fr: Régime général pour la location de logements meublés
+      titre.en: '[automatic] General scheme'
+      titre.fr: Régime général
+    TI:
+      description.en: '[automatic] You can opt for the self-employed worker scheme'
+      description.fr:
+        Vous avez la possibilité d’opter pour le régime du travailleur
+        indépendant
+      titre.en: '[automatic] Self-employed'
+      titre.fr: Travailleur indépendant
+  description.en: '[automatic] You can opt for the general scheme, the
+    self-employed worker scheme or the micro-enterprise scheme.'
+  description.fr: Il est possible d’opter pour le régime général, le régime de
+    travailleur indépendant ou le régime de micro-entreprise
+  question.en: '[automatic] Which affiliation would you prefer?'
+  question.fr: Pour quelle affiliation souhaitez-vous opter ?
+  titre.en: '[automatic] affiliation'
+  titre.fr: affiliation
+location de logement meublé . cotisations . régime général:
+  avec:
+    assiette:
+      avec:
+        assiette normale:
+          titre.en: '[automatic] standard plate'
+          titre.fr: assiette normale
+        assiette première année:
+          titre.en: '[automatic] first-year base'
+          titre.fr: assiette première année
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux de cotisation:
+      description.en: '[automatic] Contribution rates for short-term furnished
+        accommodation under the general scheme'
+      description.fr:
+        Taux de cotisation pour la location d’un logement meublé de
+        courte durée au régime général
+      titre.en: '[automatic] General scheme contribution rates'
+      titre.fr: Taux de cotisation au régime général
+  titre.en: '[automatic] Contributions payable for short-term furnished rental
+    accommodation'
+  titre.fr: Cotisations dues pour la location d’un logement meublé de courte durée
+location de logement meublé . cotisations . régime micro-entreprise:
+  titre.en:
+    '[automatic] Contributions payable for renting furnished accommodation
+    under the micro-enterprise scheme'
+  titre.fr:
+    Cotisations dues pour la location d’un logement meublé au régime de la
+    micro-entreprise
+location de logement meublé . cotisations . régime travailleur indépendant:
+  titre.en: '[automatic] Contributions for renting furnished accommodation under
+    the self-employed worker scheme'
+  titre.fr: Cotisations dues pour la location d’un logement meublé au régime du
+    travailleur indépendant
 location de logement meublé . courte durée:
   avec:
-    cotisations:
-      avec:
-        assiette:
-          avec:
-            assiette normale:
-              titre.en: '[automatic] standard plate'
-              titre.fr: assiette normale
-            assiette première année:
-              titre.en: '[automatic] first-year base'
-              titre.fr: assiette première année
-          titre.en: '[automatic] plate'
-          titre.fr: assiette
-        taux de cotisation:
-          description.en:
-            '[automatic] Contribution rates for short-term furnished
-            accommodation under the general scheme'
-          description.fr:
-            Taux de cotisation pour la location d’un logement meublé de
-            courte durée au régime général
-          titre.en: '[automatic] General scheme contribution rates'
-          titre.fr: Taux de cotisation au régime général
-      titre.en:
-        '[automatic] Contributions payable for short-term furnished rental
-        accommodation'
-      titre.fr: Cotisations dues pour la location d’un logement meublé de courte durée
     recettes:
       résumé.en: '[automatic] Revenue for short-term furnished accommodation'
       résumé.fr: Recettes pour un logement meublé de courte durée
@@ -7993,6 +8021,32 @@ location de logement meublé . courte durée:
       titre.fr: recettes
   titre.en: '[automatic] short term'
   titre.fr: courte durée
+location de logement meublé . date de début d'activité:
+  question.en: '[automatic] When did you start renting out furnished accommodation?'
+  question.fr: Quand avez-vous commencé la location de meublé ?
+  suggestions.Début 2024.en: '[automatic] Early 2024'
+  suggestions.Début 2024.fr: Début 2024
+  suggestions.Début d’année.en: '[automatic] Beginning of the year'
+  suggestions.Début d’année.fr: Début d’année
+  suggestions.Il y a plus de 10 ans.en: '[automatic] Over 10 years ago'
+  suggestions.Il y a plus de 10 ans.fr: Il y a plus de 10 ans
+  titre.en: '[automatic] start date'
+  titre.fr: date de début d'activité
+location de logement meublé . première année:
+  titre.en: '[automatic] first year'
+  titre.fr: première année
+location de logement meublé . zone géographique:
+  avec:
+    Alsace-Moselle:
+      titre.en: '[automatic] Bas-Rhin, Haut-Rhin or Moselle'
+      titre.fr: Bas-Rhin, Haut-Rhin ou Moselle
+    autre:
+      titre.en: '[automatic] Other department'
+      titre.fr: Autre département
+  question.en: '[automatic] What is your geographical area?'
+  question.fr: Quelle est votre zone géographique ?
+  titre.en: '[automatic] geographical area'
+  titre.fr: zone géographique
 plafond sécurité sociale:
   avec:
     N-1:

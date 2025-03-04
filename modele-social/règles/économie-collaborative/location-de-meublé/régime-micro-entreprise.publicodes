@@ -1,0 +1,13 @@
+location de logement meublé . cotisations . régime micro-entreprise:
+  titre: Cotisations dues pour la location d’un logement meublé au régime de la micro-entreprise
+  variations:
+    - si: recettes < seuil de professionalisation
+      alors: 0 €/an
+    - sinon:
+        valeur: dirigeant . auto-entrepreneur . cotisations et contributions
+        contexte:
+          dirigeant . auto-entrepreneur . chiffre d'affaires: recettes
+          entreprise . catégorie juridique: "'EI'"
+          entreprise . catégorie juridique . EI . auto-entrepreneur: oui
+          dirigeant . auto-entrepreneur: oui
+
