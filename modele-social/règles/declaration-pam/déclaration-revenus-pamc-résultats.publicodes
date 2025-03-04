@@ -1,12 +1,21 @@
 déclaration revenus PAMC . résultats:
   toutes ces conditions:
     - recettes brutes totales
-    - revenus imposables
+    - champs revenus imposables
     - cotisations sociales obligatoires
     - champs dentiste
     - champs médecin
     - champs autres professions
   avec:
+    champs revenus imposables:
+      variations:
+        - si: régime fiscal . IS
+          alors:
+            toutes ces conditions:
+              - revenus des associés et gérants
+              - dividendes
+              - frais réels
+        - sinon: revenus imposables
     champs dentiste:
       variations:
         - si: profession . dentiste
