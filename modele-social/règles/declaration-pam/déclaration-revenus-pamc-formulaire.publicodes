@@ -134,12 +134,14 @@ déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
   applicable si: profession . médecin
   titre: honoraires aux tarifs opposables hors forfaits
   unité: €/an
+  par défaut: 0
   description: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
 
 déclaration revenus PAMC . SNIR . honoraires hors forfaits:
   applicable si: profession . médecin
   titre: honoraires totaux hors forfaits
   unité: €/an
+  par défaut: 0
   description: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
 
 déclaration revenus PAMC . SNIR . taux urssaf:
