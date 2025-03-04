@@ -2,6 +2,15 @@
 declare global {
 	interface Window {
 		pa: ATTracker
+		pdl: {
+			requireConsent: string
+			consent: {
+				defaultPreset: {
+					PA: string
+				}
+				products?: string[]
+			}
+		}
 	}
 }
 
