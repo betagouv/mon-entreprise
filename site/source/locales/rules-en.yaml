@@ -4603,8 +4603,14 @@ déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
     payments'
   titre.fr: honoraires aux tarifs opposables hors forfaits
 déclaration revenus PAMC . SNIR . taux urssaf:
-  description.en: '[automatic] Concerns you only if you are a member of Optam or Optam-ACO.'
-  description.fr: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
+  description.en: >
+    [automatic] This rate is derived from the data on your Relevé individuel
+    d'activité et de
+
+    prescriptions (RIAP).
+  description.fr: |
+    Ce taux est issu des données de votre Relevé individuel d’activité et de
+    prescriptions (RIAP).
   titre.en: '[automatic] Urssaf rate'
   titre.fr: taux Urssaf
 déclaration revenus PAMC . actes conventionnés uniquement:
