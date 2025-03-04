@@ -67,30 +67,48 @@ déclaration revenus PAMC . revenus nets . revenus imposables:
         produit:
           - revenus imposables
           - 66%
-    - sinon: revenus imposables
+    - si: régime fiscal . IR micro-fiscal
+      alors: revenus imposables
+    - si: régime fiscal . IS
+      alors:
+        somme:
+          - revenus des associés et gérants
+          - dividendes
   unité: €/an
 
 déclaration revenus PAMC . revenus nets . autres revenus non salariés:
   variations:
     - si: régime fiscal . IR micro-fiscal
+      alors: régime micro-fiscal
+    - si: régime fiscal . IR non micro-fiscal
+      alors: régime général
+    - si: régime fiscal . IS
       alors:
         somme:
+          - régime micro-fiscal
+          - régime général
+  unité: €/an
+  avec:
+    régime général:
+      somme:
+        - autres revenus non salariés . BIC
+        - autres revenus non salariés . agricole
+    régime micro-fiscal:
+      somme:
         - autres revenus non salariés . plus-values nettes à court terme
         - 29% * autres revenus non salariés . micro-BIC marchandises
         - 50% * autres revenus non salariés . micro-BIC service
         - 13% * autres revenus non salariés . micro-BA
-    - sinon:
-        somme:
-          - autres revenus non salariés . BIC
-          - autres revenus non salariés . agricole
-  unité: €/an
 
 déclaration revenus PAMC . revenus nets . assiette sociale:
   somme:
     - revenus imposables
     - autres revenus non salariés
     - déductions et exonérations . total déductible
-  abattement: revenus de remplacement . indemnités incapacité temporaire
+  abattement:
+    somme:
+      - frais réels
+      - revenus de remplacement . indemnités incapacité temporaire
   unité: €/an
 
 déclaration revenus PAMC . revenus nets . revenus conventionnés:
