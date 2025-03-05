@@ -144,7 +144,7 @@ export default function Library() {
 						<br /> Vous pouvez modifier sans hésiter les valeurs de la
 						situation. Ces dernières acceptent n'importe quelle{' '}
 						<Link
-							href="https://publi.codes/docs/principes-de-base"
+							href="https://publi.codes/docs/manuel/principe-de-base"
 							aria-label="expression ou objet publicodes, en savoir plus sur publi.codes, nouvelle fenêtre"
 						>
 							expression ou objet publicodes.
