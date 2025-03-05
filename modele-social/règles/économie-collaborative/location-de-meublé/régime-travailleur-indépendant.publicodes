@@ -1,0 +1,11 @@
+location de logement meublé . cotisations . régime travailleur indépendant:
+  titre: Cotisations dues pour la location d’un logement meublé au régime du travailleur indépendant
+  variations:
+    - si: recettes < seuil de professionalisation
+      alors: 0 €/an
+    - sinon:
+        valeur: dirigeant . indépendant . cotisations et contributions
+        contexte:
+          entreprise . chiffre d'affaires: recettes
+          dirigeant . régime social: "'indépendant'"
+          entreprise . imposition: "'IR'"
