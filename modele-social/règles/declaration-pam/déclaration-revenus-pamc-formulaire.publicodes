@@ -451,6 +451,7 @@ déclaration revenus PAMC . actes conventionnés uniquement:
       - activité en structures de soins = non
       - autres revenus non salariés . micro-BNC = non
       - autres revenus non salariés . BNC = non
+      - autres revenus non salariés . IS = non
   question: Avez-vous effectué uniquement des actes conventionnés ?
   par défaut: non
 
