@@ -48,13 +48,12 @@ salarié . coût total employeur . aides . embauche . senior professionnalisatio
     - temps de travail . effectif . quotité
   arrondi: oui
   références:
-    Ministère du travail: https://travail-emploi.gouv.fr/emploi/mesures-seniors/article/l-aide-a-l-embauche-d-un-demandeur-d-emploi-de-45-ans-et-plus-en-contrat-de
-    Pôle Emploi: https://www.pole-emploi.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
+    Aide à l’embauche d'un demandeur d’emploi de 45 ans et plus en contrat de professionnalisation: https://www.francetravail.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
 
 salarié . coût total employeur . aides . emploi franc:
   description: |
-    Aide différée versée par Pôle emploi pour l'embauche d'un demandeur d'emploi
-    inscrit à Pôle Emploi et résidant dans un quartier prioritaire de la ville
+    Aide différée versée par France Travail pour l'embauche d'un demandeur d'emploi
+    inscrit à France Travail et résidant dans un quartier prioritaire de la ville
     (QPV).
 
     - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
@@ -83,7 +82,7 @@ salarié . coût total employeur . aides . emploi franc . éligible:
   question: Cette embauche est-elle éligible à l'aide emploi-franc ?
   description: |
     Conditions :
-    - Le salarié recruté est un demandeur d'emploi inscrit à Pôle Emploi et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - Le salarié recruté est un demandeur d'emploi inscrit à France Travail et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
     - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
   par défaut: non
