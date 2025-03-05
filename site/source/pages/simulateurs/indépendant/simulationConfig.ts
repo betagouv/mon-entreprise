@@ -70,7 +70,6 @@ export const configIndépendant: SimulationConfig = {
 	situation: {
 		'dirigeant . régime social': "'indépendant'",
 		'entreprise . imposition': "'IR'",
-		'entreprise . catégorie juridique': "''",
 		salarié: 'non',
 	},
 }
