@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Warning from '@/components/ui/WarningBlock'
 import { Button } from '@/design-system/buttons'
 import { Spacing } from '@/design-system/layout'
@@ -98,6 +99,7 @@ export default function DéclarationRevenusPAMC() {
 				onPress={() => {
 					dispatch(resetSimulation())
 				}}
+				className="print-hidden"
 			>
 				Réinitialiser
 			</Button>
@@ -105,6 +107,8 @@ export default function DéclarationRevenusPAMC() {
 			<Spacing xxl />
 
 			<Résultats />
+
+			<ShareOrSaveSimulationBanner print />
 		</>
 	)
 }

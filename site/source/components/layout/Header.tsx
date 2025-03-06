@@ -32,8 +32,9 @@ export default function Header() {
 				style={{
 					zIndex: '1',
 				}}
+				className="print-hidden"
 			>
-				<a href={`${fullURL}#main`} className="skip-link print-hidden">
+				<a href={`${fullURL}#main`} className="skip-link">
 					{t('Aller au contenu principal')}
 				</a>
 				<Container>
@@ -41,7 +42,7 @@ export default function Header() {
 						<Link
 							to={absoluteSitePaths.index}
 							aria-label={t(
-								"URSSAF Mon entreprise, accéder à la page d'accueil"
+								"Urssaf Mon entreprise, accéder à la page d'accueil"
 							)}
 						>
 							<StyledLogo>
