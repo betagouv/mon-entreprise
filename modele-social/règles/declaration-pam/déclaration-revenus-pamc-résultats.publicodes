@@ -76,7 +76,7 @@ déclaration revenus PAMC . revenus nets . revenus imposables:
         produit:
           - revenus imposables
           - 66%
-    - si: régime fiscal . IR micro-fiscal
+    - si: régime fiscal . IR non micro-fiscal
       alors: revenus imposables
     - si: régime fiscal . IS
       alors:
