@@ -20,7 +20,6 @@ export const Menu = () => {
 				>
 					<StyledButton
 						size="XS"
-						className="print-hidden"
 						light
 						// eslint-disable-next-line react/jsx-props-no-spreading
 						{...buttonProps}
