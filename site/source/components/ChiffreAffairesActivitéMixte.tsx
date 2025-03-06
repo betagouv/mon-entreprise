@@ -170,7 +170,6 @@ function ActivitéMixte() {
 						defaultSelected={defaultChecked}
 						onChange={onMixteChecked}
 						light
-						aria-label="Activité mixte"
 					>
 						Activité mixte
 					</Switch>
