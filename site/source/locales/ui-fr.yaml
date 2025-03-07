@@ -45,7 +45,6 @@ Afficher les détails de l'entreprise, la modifier ou la supprimer.: Afficher le
 Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
-Assistants à la déclaration de revenus des indépendants: Assistants à la déclaration de revenus des indépendants
 Attention: Attention
 Attention, information importante: Attention, information importante
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
@@ -54,7 +53,6 @@ Aucun résultat: Aucun résultat
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.:
   Aucun résultat ne correspond à votre recherche. Essayez avec d'autres
   mots-clés.
-Autres outils: Autres outils
 Avec ACRE: Avec ACRE
 Avec chômage partiel: Avec chômage partiel
 Boite de dialogue: Boite de dialogue
@@ -199,7 +197,6 @@ Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
       <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
-Professions libérales: Professions libérales
 Précédent: Précédent
 Prévisualisation: Prévisualisation
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
@@ -226,7 +223,6 @@ Revenu (incluant les dépenses liées à l'activité): Revenu (incluant les dép
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Revenu disponible: Revenu disponible
-Revenu du dirigeant par statut: Revenu du dirigeant par statut
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Régime d’imposition: Régime d’imposition
@@ -243,7 +239,6 @@ Salaire brut: Salaire brut
 Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
-Salariés et employeurs: Salariés et employeurs
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
   que vous ayez opté pour que <2>les informations de votre entreprise ne soient
@@ -272,7 +267,6 @@ Total des cotisations à devoir pour l'année de cessation d'activité: Total de
 Tout déplier: Tout déplier
 Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
-Travailleurs Non Salariés (TNS): Travailleurs Non Salariés (TNS)
 Trimestre: Trimestre
 Type: Type
 URSSAF Mon entreprise, accéder à la page d'accueil: URSSAF Mon entreprise, accéder à la page d'accueil
@@ -907,6 +901,8 @@ pages:
         conseil:
           IR: Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre
             liasse fiscale 2035.
+          IS: Afin de faciliter le remplissage, munissez-vous de votre liasse fiscale
+            2065.
           MF: <0>Afin de faciliter le remplissage, préparez :</0><1><0>l’ensemble des
             recettes encaissées,</0><1>le détail des cotisations versées à
             l’Urssaf,</1><2>le détail des cotisations versées à votre caisse de
@@ -940,17 +936,16 @@ pages:
       shortname: Assistant à la déclaration de revenus des PAMC
       title: Assistant à la déclaration de revenus pour les PAMC
       warning: <0>Cet assistant est à destination des <2>praticiens et auxiliaires
-        médicaux conventionnés (PAMC)</2>.</0><1>Il gère uniquement le cas de
-        l’<1>impôt sur le revenu</1>.</1><2>Il a pour but de vous aider à
+        médicaux conventionnés (PAMC)</2>.</0><1>Il a pour but de vous aider à
         remplir le volet social de votre déclaration de revenus à réaliser sur
-        <2>impots.gouv.fr</2>.</2><3><0>En cas de déficit</0>, renseignez le
-        signe « - » devant le montant.</3><4><0>L’assistant ne prend pas en
+        <2>impots.gouv.fr</2>.</1><2><0>En cas de déficit</0>, renseignez le
+        signe « - » devant le montant.</2><3><0>L’assistant ne prend pas en
         compte les situations suivantes :</0><1><0>revenus
         étrangers,</0><1>revenus non professionnels,</1><2>changement de régime
         en cours d’année,</2><3>comptabilités d’engagement,</3><4>médecins
         adhérents au dispositif RSPM.</4></1>Si vous êtes dans l’une de ces
         situations, nous vous invitons à contacter votre Urssaf pour vous
-        accompagner.</4>
+        accompagner.</3>
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
@@ -1226,6 +1221,16 @@ pages:
     title: Hors ligne
   simulateurs:
     accueil:
+      "1":
+        h2: Salariés et employeurs
+        h3: Revenu du dirigeant par statut
+      "2":
+        h2: Travailleurs et travailleuses Non Salariés (TNS)
+        h3:
+          "1": Professions libérales
+          "2": Assistants à la déclaration de revenus des indépendants
+      "3":
+        h2: Autres outils
       description: Tous les simulateurs et assistants sur ce site sont maintenus à
         jour avec les dernières évolutions législatives.
       header: Tous les simulateurs sur ce site sont maintenus à jour avec les

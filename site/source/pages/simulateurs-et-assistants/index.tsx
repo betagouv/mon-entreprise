@@ -37,15 +37,15 @@ export default function SimulateursEtAssistants() {
 			/>
 			<PageHeader titre={titre} picture={simulatorSvg}>
 				<Intro>
-					<Trans i18nKey="pages.simulateurs.accueil.header">
-						Tous les simulateurs sur ce site sont maintenus à jour avec les
-						dernières évolutions législatives.
-					</Trans>
+					{t(
+						'pages.simulateurs.accueil.header',
+						'Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
+					)}
 				</Intro>
 			</PageHeader>
 			<section>
 				<H2 id="salarie-employeurs">
-					<Trans>Salariés et employeurs</Trans>
+					{t('pages.simulateurs.accueil.1.h2', 'Salariés et employeurs')}
 				</H2>
 				<Grid
 					role="list"
@@ -58,7 +58,10 @@ export default function SimulateursEtAssistants() {
 				</Grid>
 
 				<H3 id="revenu-dirigeant">
-					<Trans>Revenu du dirigeant par statut</Trans>
+					{t(
+						'pages.simulateurs.accueil.1.h3',
+						'Revenu du dirigeant par statut'
+					)}
 				</H3>
 				<Grid
 					container
@@ -87,7 +90,10 @@ export default function SimulateursEtAssistants() {
 				</Grid>
 
 				<H2 id="travailleurs-ns">
-					<Trans>Travailleurs Non Salariés (TNS)</Trans>
+					{t(
+						'pages.simulateurs.accueil.2.h2',
+						'Travailleurs et travailleuses Non Salariés (TNS)'
+					)}
 				</H2>
 
 				<Grid
@@ -105,7 +111,7 @@ export default function SimulateursEtAssistants() {
 				</Grid>
 				<>
 					<H3 id="professions-lib">
-						<Trans>Professions libérales</Trans>
+						{t('pages.simulateurs.accueil.2.h3.1', 'Professions libérales')}
 					</H3>
 					<Grid
 						container
@@ -141,17 +147,24 @@ export default function SimulateursEtAssistants() {
 				</>
 
 				<H3 id="assistants">
-					<Trans>Assistants à la déclaration de revenus des indépendants</Trans>
+					{t(
+						'pages.simulateurs.accueil.2.h3.2',
+						'Assistants à la déclaration de revenus des indépendants'
+					)}
 				</H3>
 				<Grid container spacing={3} role="list" aria-labelledby="assistants">
 					<SimulateurCard
 						{...simulators['déclaration-charges-sociales-indépendant']}
 						role="listitem"
 					/>
+					<SimulateurCard
+						{...simulators['déclaration-revenus-pamc']}
+						role="listitem"
+					/>
 				</Grid>
 
 				<H2 id="autres-outils">
-					<Trans>Autres outils</Trans>
+					{t('pages.simulateurs.accueil.3.h2', 'Autres outils')}
 				</H2>
 				<Grid container spacing={3} role="list" aria-labelledby="autres-outils">
 					<SimulateurCard {...simulators['choix-statut']} role="listitem" />

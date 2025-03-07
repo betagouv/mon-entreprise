@@ -205,7 +205,7 @@ export default function Résultats() {
 				/>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . cotisations facultatives . autres activités non salariées"
-					code="DSAR"
+					code="DSCM"
 					label={t(
 						'pages.assistants.declaration-revenus-pamc.resultats.label.12',
 						'Dont cotisations facultatives liées aux autres activités non salariées'

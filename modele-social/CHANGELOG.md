@@ -1,20 +1,32 @@
 # Journal des modifications
 
 ## next
+
+## 6.0.0
 ### Breaking changes
 - Déplacement des règles sur l’Acre pour assimilé salarié de `dirigeant . assimilé salarié` vers `salarié . cotisations . exonérations`
-
-### Breaking changes
 - Renommage des règles enfant de `déclaration revenus PAMC . autres revenus non salariés`
 
 ### Nouveautés
-- Ajout des règles pour l'IR non micro-fiscal à `déclaration revenus PAMC`
+- Ajout des règles pour l'impôt sur le revenu hors régime micro-fiscal à `déclaration revenus PAMC`
+- Ajout des règles pour l'impôt sur les sociétés à `déclaration revenus PAMC`
+- Ajout de règles pour la location de meublé
 
 ### Mises à jour
 - Mises à jour des valeurs CARPIMKO pour 2025
 
 ### Corrections
+- Correction de la limite future de la date de création d'une entreprise
 - Correction du calcul de l’Acre pour assimilé salarié
+- Correction du calcul de `chèques vacances exonérés` dans `déclaration revenus PAMC . déductions et exonérations . total déductible`
+- Suppression de l'unité de `déclaration revenus PAMC . SNIR . taux urssaf`
+- Correction de quelques fautes de grammaire et d'orthographe
+
+### Documentation
+- Ajout de documentation pour les règles `déclaration revenus PAMC`
+- Mise à jour de la description des charges de l'entreprise
+- Remplacement de la balise `<strong>` par le markdown `**`
+- Utilisation d'apostrophes typographiques (WIP)
 
 ## 5.0.0
 ### Breaking changes
