@@ -119,7 +119,7 @@ export function SimulationGoal({
 								<RuleLink
 									dottedName={dottedName}
 								>
-									<label htmlFor={normalizeRuleName.Input(dottedName)} style={{cursor: "pointer"}}>{label || rule.title}</label>
+									<StyledLabel htmlFor={normalizeRuleName.Input(dottedName)}>{label || rule.title}</StyledLabel>
 								</RuleLink>
 							)}
 
@@ -195,3 +195,6 @@ const StyledBody = styled(Body)`
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
 `
+const StyledLabel = styled.label`
+	cursor: pointer
+`;
