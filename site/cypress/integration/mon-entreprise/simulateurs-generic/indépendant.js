@@ -1,3 +1,3 @@
 import { runSimulateurTest } from '../../../support/simulateur'
 
-runSimulateurTest('indépendant', true)
+runSimulateurTest('indépendant', { avecCharges: true })

@@ -50,11 +50,17 @@ const variableNames = {
 	},
 }
 
+type Options = {
+	avecCharges?: boolean
+	beforeAction?: () => void
+}
+
 export const runSimulateurTest = (
 	simulateur: Simulateur,
-	avecCharges = false,
-	beforeAction = () => {}
+	options: Options = {}
 ) => {
+	const { avecCharges = false, beforeAction = () => {} } = options
+
 	describe(
 		`Le simulateur ${simulateur}`,
 		{ testIsolation: false },
