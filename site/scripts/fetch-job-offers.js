@@ -20,7 +20,7 @@ async function fetchJobOffers() {
 	let jobOffers = []
 
 	try {
-		const response = await fetch('https://beta.gouv.fr/nous-rejoindre/')
+		const response = await fetch('https://beta.gouv.fr/nous-rejoindre')
 		const content = await response.text()
 
 		// The XML API isn't the most ergonomic, we ought to have a JSON API.
