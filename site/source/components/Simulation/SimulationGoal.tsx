@@ -147,7 +147,6 @@ export function SimulationGoal({
 										  }
 										: undefined
 								}
-								// aria-label={engine.getRule(dottedName)?.title}
 								aria-describedby={normalizeRuleName.Description(dottedName)}
 								hideDefaultValue
 								displayedUnit={displayedUnit}

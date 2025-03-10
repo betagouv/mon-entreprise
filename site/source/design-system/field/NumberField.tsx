@@ -79,8 +79,6 @@ export default function NumberField(props: NumberFieldProps) {
 		ref
 	)
 
-	console.log(props, labelProps, inputProps)
-
 	const inputWithCursorHandlingProps = useKeepCursorPositionOnUpdate(
 		inputProps,
 		ref
