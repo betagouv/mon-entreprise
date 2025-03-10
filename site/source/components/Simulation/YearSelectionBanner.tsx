@@ -1,3 +1,4 @@
+import React from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
@@ -32,7 +33,7 @@ export const YearSelectionBanner = () => {
 					.filter((year) => year !== currentEngineYear)
 					.reverse()
 					.map((year) => (
-						<span key={year}>
+						<React.Fragment key={year}>
 							<StyledLink
 								onPress={() =>
 									dispatch(enregistreLaRéponse('date', `01/01/${year}`))
@@ -48,7 +49,7 @@ export const YearSelectionBanner = () => {
 									</Trans>
 								)}
 							</StyledLink>
-						</span>
+						</React.Fragment>
 					))}
 			</>
 		</SimulationBanner>

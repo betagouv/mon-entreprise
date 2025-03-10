@@ -1,3 +1,4 @@
+import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
@@ -78,7 +79,7 @@ function ExerciceDate() {
 			<ExerciceDateContainer>
 				<StyledInputSuggestion>
 					{[yearN2, yearN1].map((year) => (
-						<span key={year}>
+						<React.Fragment key={year}>
 							<Link
 								aria-label={t(
 									'pages.simulateurs.impot-société.préremplir',
@@ -100,7 +101,7 @@ function ExerciceDate() {
 									{ year }
 								)}
 							</Link>{' '}
-						</span>
+						</React.Fragment>
 					))}
 				</StyledInputSuggestion>
 			</ExerciceDateContainer>
