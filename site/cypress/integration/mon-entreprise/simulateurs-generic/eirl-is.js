@@ -1,5 +1,5 @@
 import { runSimulateurTest } from '../../../support/simulateur'
 
-runSimulateurTest('eirl', false, () =>
-	cy.contains('Impôt sur les sociétés').click()
-)
+runSimulateurTest('eirl', {
+	beforeAction: () => cy.contains('Impôt sur les sociétés').click(),
+})
