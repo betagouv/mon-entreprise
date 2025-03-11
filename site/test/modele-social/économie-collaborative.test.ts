@@ -133,6 +133,20 @@ describe('Économie collaborative', () => {
 					10_064
 				)
 			})
+			it('TI direct', () => {
+				engine.setSituation({
+					"entreprise . chiffre d'affaires": 50_000,
+					'dirigeant . régime social': "'indépendant'",
+					'entreprise . imposition': "'IR'",
+					'entreprise . catégorie juridique': "''",
+					salarié: 'non',
+				})
+
+				expect(engine).toEvaluate(
+					'dirigeant . indépendant . cotisations et contributions',
+					10_064
+				)
+			})
 			it('applique le régime ME si choisi', () => {
 				engine.setSituation({
 					...situationParDéfaut,
