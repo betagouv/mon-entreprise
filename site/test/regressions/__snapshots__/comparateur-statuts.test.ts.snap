@@ -2,7 +2,7 @@
 
 exports[`calculate comparateur-statuts > ACRE 1`] = `
 "dirigeant . rémunération . net: 44208
-dirigeant . rémunération . net . après impôt: 44138
+dirigeant . rémunération . net . après impôt: 44154
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -76,7 +76,7 @@ protection sociale . retraite . trimestres: 4"
 
 exports[`calculate comparateur-statuts > EI à l'IS 1`] = `
 "dirigeant . rémunération . net: 27619
-dirigeant . rémunération . net . après impôt: 26202
+dirigeant . rémunération . net . après impôt: 26218
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -172,7 +172,7 @@ protection sociale . retraite . trimestres: 0"
 
 exports[`calculate comparateur-statuts > base 1`] = `
 "dirigeant . rémunération . net: 40548
-dirigeant . rémunération . net . après impôt: 40478
+dirigeant . rémunération . net . après impôt: 40494
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -220,7 +220,7 @@ protection sociale . retraite . trimestres: 4"
 
 exports[`calculate comparateur-statuts > base 3`] = `
 "dirigeant . rémunération . net: 26920
-dirigeant . rémunération . net . après impôt: 25506
+dirigeant . rémunération . net . après impôt: 25522
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1147
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 717
@@ -292,7 +292,7 @@ protection sociale . retraite . trimestres: 4"
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 3`] = `
 "dirigeant . rémunération . net: 25219
-dirigeant . rémunération . net . après impôt: 24063
+dirigeant . rémunération . net . après impôt: 24079
 entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1075
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 672

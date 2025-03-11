@@ -36,7 +36,7 @@ exports[`calculate simulations-salarié > JEI 2`] = `
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 26485
-salarié . rémunération . net . payé après impôt: 10985
+salarié . rémunération . net . payé après impôt: 10995
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -580,7 +580,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4076
-salarié . rémunération . net . payé après impôt: 2302
+salarié . rémunération . net . payé après impôt: 2303
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
@@ -636,7 +636,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 9000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 12905
-salarié . rémunération . net . payé après impôt: 6968
+salarié . rémunération . net . payé après impôt: 6970
 salarié . rémunération . net . à payer avant impôt: 7150"
 `;
 
@@ -644,7 +644,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4076
-salarié . rémunération . net . payé après impôt: 2225
+salarié . rémunération . net . payé après impôt: 2226
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
@@ -660,7 +660,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28464
-salarié . rémunération . net . payé après impôt: 13061
+salarié . rémunération . net . payé après impôt: 13068
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -670,7 +670,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28464
-salarié . rémunération . net . payé après impôt: 11331
+salarié . rémunération . net . payé après impôt: 11347
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -1120,7 +1120,7 @@ exports[`calculate simulations-salarié > échelle de salaires 14`] = `
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28464
-salarié . rémunération . net . payé après impôt: 10985
+salarié . rémunération . net . payé après impôt: 10995
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -1130,7 +1130,7 @@ exports[`calculate simulations-salarié > échelle de salaires 15`] = `
 "salarié . contrat . salaire brut: 100000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 129386
-salarié . rémunération . net . payé après impôt: 46381
+salarié . rémunération . net . payé après impôt: 46391
 salarié . rémunération . net . à payer avant impôt: 86762
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -1140,7 +1140,7 @@ exports[`calculate simulations-salarié > échelle de salaires 16`] = `
 "salarié . contrat . salaire brut: 1000000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1245800
-salarié . rémunération . net . payé après impôt: 446233
+salarié . rémunération . net . payé après impôt: 446243
 salarié . rémunération . net . à payer avant impôt: 895862
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
