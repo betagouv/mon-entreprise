@@ -9,3 +9,5 @@ location de logement meublé . cotisations . régime travailleur indépendant:
           entreprise . chiffre d'affaires: recettes
           dirigeant . régime social: "'indépendant'"
           entreprise . imposition: "'IR'"
+          entreprise . catégorie juridique: "''"
+          salarié: non
