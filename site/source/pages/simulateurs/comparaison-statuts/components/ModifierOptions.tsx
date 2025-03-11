@@ -87,7 +87,6 @@ const ModifierOptions = () => {
 							id="activation-acre"
 							onChange={(value: boolean) => set[DOTTEDNAME_ACRE](value)}
 							defaultSelected={values[DOTTEDNAME_ACRE] as boolean}
-							invertLabel
 							light
 						>
 							<Trans>Activer l'ACRE dans la simulation</Trans>
@@ -112,7 +111,6 @@ const ModifierOptions = () => {
 									defaultSelected={
 										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as boolean
 									}
-									invertLabel
 									light
 								>
 									<Trans>
@@ -197,7 +195,6 @@ const ModifierOptions = () => {
 								DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE
 							] as boolean
 						}
-						invertLabel
 						light
 					>
 						<Trans>Activer le versement libératoire dans la simulation</Trans>
