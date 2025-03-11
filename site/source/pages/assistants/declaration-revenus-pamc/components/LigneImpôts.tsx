@@ -49,7 +49,11 @@ export function LigneImpôts({
 	const idPrefix = ((expression || dottedName) as string).replace(/\s|\./g, '_')
 
 	return (
-		<StyledGridContainer container spacing={2}>
+		<StyledGridContainer
+			container
+			spacing={2}
+			className="print-no-break-inside"
+		>
 			<Grid item md="auto" sm={8} xs={12}>
 				<StyledBody id={`${idPrefix}-label`}>{label || rule.title}</StyledBody>
 			</Grid>

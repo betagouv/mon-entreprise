@@ -32,9 +32,8 @@ export default function Header() {
 				style={{
 					zIndex: '1',
 				}}
-				className="print-hidden"
 			>
-				<a href={`${fullURL}#main`} className="skip-link">
+				<a href={`${fullURL}#main`} className="skip-link print-hidden">
 					{t('Aller au contenu principal')}
 				</a>
 				<Container>
@@ -50,7 +49,7 @@ export default function Header() {
 							</StyledLogo>
 						</Link>
 
-						<div style={{ flex: 1 }} />
+						<div style={{ flex: 1 }} className="print-hidden" />
 
 						<div
 							style={{
@@ -58,6 +57,7 @@ export default function Header() {
 								alignItems: 'center',
 								marginRight: '1rem',
 							}}
+							className="print-hidden"
 						>
 							<Emoji emoji="☀️" aria-hidden />
 							<Switch
