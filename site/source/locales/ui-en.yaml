@@ -35,6 +35,8 @@ API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
 Accessibilité: Accessibility
 Accéder au site mon-entreprise, nouvelle fenêtre: Go to mon-entreprise, new window
+Activer l'ACRE dans la simulation: Activate ACRE in simulation
+Activer le versement libératoire dans la simulation: Activate payment in full discharge in simulation
 Activités relevant de l’économie collaborative, voir la page: Collaborative economy activities, see page
 Afficher le détail: Show details
 "Afficher les données par :": "Display data by:"
@@ -130,6 +132,7 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
     gouv:
       fr, nouvelle fenêtre: I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
+Je suis éligible à l'ACRE pour mon auto-entreprise: I am eligible for ACRE for my auto-enterprise
 Jours: Days
 Le montant demandé n'est <2>pas calculable...</2>: The amount requested <2>cannot be calculated.</2>..
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
