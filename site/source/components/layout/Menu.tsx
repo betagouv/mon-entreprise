@@ -17,6 +17,7 @@ export const Menu = () => {
 						display: 'flex',
 						alignItems: 'end',
 					}}
+					className="print-hidden"
 				>
 					<StyledButton
 						size="XS"
@@ -42,7 +43,7 @@ export const Menu = () => {
 				</div>
 			)}
 		>
-			<Nav>
+			<Nav className="print-hidden">
 				<StyledUl $noMarker>
 					<PlanContent />
 				</StyledUl>
