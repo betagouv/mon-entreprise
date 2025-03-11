@@ -38,6 +38,8 @@ API REST de simulation: API REST de simulation
 API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accéder au site mon-entreprise, nouvelle fenêtre: Accéder au site mon-entreprise, nouvelle fenêtre
+Activer l'ACRE dans la simulation: Activer l'ACRE dans la simulation
+Activer le versement libératoire dans la simulation: Activer le versement libératoire dans la simulation
 Activités relevant de l’économie collaborative, voir la page: Activités relevant de l’économie collaborative, voir la page
 Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
@@ -136,6 +138,7 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
     gouv:
       fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
+Je suis éligible à l'ACRE pour mon auto-entreprise: Je suis éligible à l'ACRE pour mon auto-entreprise
 Jours: Jours
 Le montant demandé n'est <2>pas calculable...</2>: Le montant demandé n'est <2>pas calculable...</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
