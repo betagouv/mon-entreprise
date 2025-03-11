@@ -112,7 +112,7 @@ impôt . revenu imposable . abattement contrat court:
     Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
 
 impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martinique:
-  icônes: 🇬🇵🇷🇪 🇲🇶
+  icônes: 🇬🇵 🇷🇪 🇲🇶
   applicable si: établissement . commune . département . outre-mer . Guadeloupe
     Réunion Martinique
   références:
@@ -340,7 +340,7 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
             - montant: 43%
 
 impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
-  icônes: 🇬🇾 🇾🇹
+  icônes: 🇬🇫 🇾🇹
   applicable si:
     par défaut: non
     une de ces conditions:

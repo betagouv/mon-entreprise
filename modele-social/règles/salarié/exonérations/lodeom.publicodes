@@ -59,6 +59,7 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
 
 salarié . cotisations . exonérations . lodeom . zone un:
   titre: Guadeloupe, Guyane, Martinique, La Réunion
+  icônes: 🇬🇵 🇬🇫 🇲🇶 🇷🇪
   par défaut: non
   une de ces conditions:
     - zones lodeom = 'zone un'
