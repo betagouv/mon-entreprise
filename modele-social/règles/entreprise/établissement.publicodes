@@ -31,11 +31,14 @@
 
           avec:
             Guadeloupe Réunion Martinique:
+              icônes: 🇬🇵 🇷🇪 🇲🇶
               une de ces conditions:
                 - département = 'Guadeloupe'
                 - département = 'Martinique'
                 - département = 'La Réunion'
-            Mayotte: département = 'Mayotte'
+            Mayotte:
+              valeur: département = 'Mayotte'
+              icônes: 🇾🇹
 
     nom:
       titre: Commune
