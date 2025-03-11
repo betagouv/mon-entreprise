@@ -947,6 +947,8 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     valeur: 10% * revenu d'activité
     plafond:
       variations:
+        - si: date >= 01/2025
+          alors: 14426 €/an
         - si: date >= 01/2024
           alors: 14171 €/an
         - si: date >= 01/2023
@@ -959,6 +961,8 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
           alors: 12627 €/an
     plancher:
       variations:
+        - si: date >= 01/2025
+          alors: 504 €/an
         - si: date >= 01/2024
           alors: 495 €/an
         - si: date >= 01/2023
@@ -1020,6 +1024,8 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
     - si: foyer fiscal . situation de famille = 'couple'
       alors:
         variations:
+          - si: date >= 01/2025
+            alors: 1470 €/an
           - si: date >= 01/2024
             alors: 1444 €/an
           - si: date >= 01/2023
@@ -1032,6 +1038,8 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
             alors: 1286 €/an
     - sinon:
         variations:
+          - si: date >= 01/2025
+            alors: 889 €/an
           - si: date >= 01/2024
             alors: 873 €/an
           - si: date >= 01/2023
@@ -1068,6 +1076,8 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
     plafonnement général:
       produit:
         - variations:
+            - si: date >= 01/2025
+              alors: 1791 €/demi-part/an
             - si: date >= 01/2024
               alors: 1759 €/demi-part/an
             - si: date >= 01/2023
@@ -1082,6 +1092,8 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
             - valeur: nombre de parts . rattachées
               abattement: nombre de parts . majoration personne seule avec enfant
             - 2 demi-part/part
+      références:
+        Article 197 du Code général des impôts (I.2.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805432
 
     plafonnement parent isolé:
       description: |
@@ -1089,6 +1101,8 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
         contribuables célibataires ou divorcés vivant seuls.
       applicable si: nombre de parts . majoration personne seule avec enfant
       variations:
+        - si: date >= 01/2025
+          alors: 4224 €/an
         - si: date >= 01/2024
           alors: 4149 €/an
         - si: date >= 01/2023
@@ -1099,6 +1113,8 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
           alors: 3704 €/an
         - si: date >= 01/2020
           alors: 3697 €/an
+      références:
+        Article 197 du Code général des impôts (I.2.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805432
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
   description: |

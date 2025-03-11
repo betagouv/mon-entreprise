@@ -14,9 +14,9 @@ protection sociale . retraite . trimestres: 3"
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `
 "dirigeant . indépendant . cotisations et contributions: 6836
 dirigeant . rémunération . net: 20000
-dirigeant . rémunération . net . après impôt: 19398
+dirigeant . rémunération . net . après impôt: 19414
 entreprise . chiffre d'affaires: 26836
-impôt . montant: 602
+impôt . montant: 586
 protection sociale . retraite . base: 153
 protection sociale . retraite . complémentaire: 95
 protection sociale . retraite . trimestres: 4"
@@ -344,9 +344,9 @@ protection sociale . retraite . trimestres: 4"
 exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] = `
 "dirigeant . indépendant . cotisations et contributions: 8758
 dirigeant . rémunération . net: 21242
-dirigeant . rémunération . net . après impôt: 20428
+dirigeant . rémunération . net . après impôt: 20444
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 814
+impôt . montant: 798
 protection sociale . retraite . base: 162
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
@@ -355,9 +355,9 @@ protection sociale . retraite . trimestres: 4"
 exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `
 "dirigeant . indépendant . cotisations et contributions: 8921
 dirigeant . rémunération . net: 21079
-dirigeant . rémunération . net . après impôt: 20291
+dirigeant . rémunération . net . après impôt: 20307
 entreprise . chiffre d'affaires: 30000
-impôt . montant: 788
+impôt . montant: 772
 protection sociale . retraite . base: 161
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4"
