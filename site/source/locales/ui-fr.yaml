@@ -39,6 +39,7 @@ API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accéder au site mon-entreprise, nouvelle fenêtre: Accéder au site mon-entreprise, nouvelle fenêtre
 Activer l'ACRE dans la simulation: Activer l'ACRE dans la simulation
+Activer le mode sombre: Activer le mode sombre
 Activer le versement libératoire dans la simulation: Activer le versement libératoire dans la simulation
 Activités relevant de l’économie collaborative, voir la page: Activités relevant de l’économie collaborative, voir la page
 Afficher le détail: Afficher le détail
@@ -667,8 +668,6 @@ mars: mars
 moins: moins
 mois: mois
 navbar:
-  activate-darkmode: Activer le mode sombre
-  deactivate-darkmode: Désactiver le mode sombre
   logo: logo Mon entreprise
 news:
   description: Nous améliorons le site en continu à partir de vos retours.
