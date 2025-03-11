@@ -36,7 +36,7 @@ exports[`calculate simulations-salarié > JEI 2`] = `
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 26485
-salarié . rémunération . net . payé après impôt: 10951
+salarié . rémunération . net . payé après impôt: 10985
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -64,7 +64,7 @@ exports[`calculate simulations-salarié > activité partielle 3`] = `
 "salarié . contrat . salaire brut: 8000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1940
-salarié . rémunération . net . payé après impôt: 3790
+salarié . rémunération . net . payé après impôt: 3800
 salarié . rémunération . net . à payer avant impôt: 4484"
 `;
 
@@ -112,7 +112,7 @@ exports[`calculate simulations-salarié > aides 2`] = `
 "salarié . contrat . salaire brut: 10000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 12827
-salarié . rémunération . net . payé après impôt: 7729
+salarié . rémunération . net . payé après impôt: 7739
 salarié . rémunération . net . à payer avant impôt: 8912
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -198,7 +198,7 @@ exports[`calculate simulations-salarié > cadre 2`] = `
 "salarié . contrat . salaire brut: 8000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 11579
-salarié . rémunération . net . payé après impôt: 5013
+salarié . rémunération . net . payé après impôt: 5023
 salarié . rémunération . net . à payer avant impôt: 6233"
 `;
 
@@ -580,7 +580,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4076
-salarié . rémunération . net . payé après impôt: 2298
+salarié . rémunération . net . payé après impôt: 2302
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
@@ -604,7 +604,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4076
-salarié . rémunération . net . payé après impôt: 1964
+salarié . rémunération . net . payé après impôt: 1970
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
@@ -612,7 +612,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4076
-salarié . rémunération . net . payé après impôt: 2211
+salarié . rémunération . net . payé après impôt: 2214
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
@@ -620,7 +620,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 9000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 12905
-salarié . rémunération . net . payé après impôt: 6264
+salarié . rémunération . net . payé après impôt: 6284
 salarié . rémunération . net . à payer avant impôt: 7150"
 `;
 
@@ -628,7 +628,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 9000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 12905
-salarié . rémunération . net . payé après impôt: 6725
+salarié . rémunération . net . payé après impôt: 6731
 salarié . rémunération . net . à payer avant impôt: 7150"
 `;
 
@@ -636,7 +636,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 9000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 12905
-salarié . rémunération . net . payé après impôt: 6954
+salarié . rémunération . net . payé après impôt: 6968
 salarié . rémunération . net . à payer avant impôt: 7150"
 `;
 
@@ -644,7 +644,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 4076
-salarié . rémunération . net . payé après impôt: 2222
+salarié . rémunération . net . payé après impôt: 2225
 salarié . rémunération . net . à payer avant impôt: 2353"
 `;
 
@@ -660,7 +660,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28464
-salarié . rémunération . net . payé après impôt: 13031
+salarié . rémunération . net . payé après impôt: 13061
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -670,7 +670,7 @@ exports[`calculate simulations-salarié > impôt sur le revenu - quotient famili
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28464
-salarié . rémunération . net . payé après impôt: 11296
+salarié . rémunération . net . payé après impôt: 11331
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -1110,7 +1110,7 @@ exports[`calculate simulations-salarié > échelle de salaires 13`] = `
 "salarié . contrat . salaire brut: 10000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 14336
-salarié . rémunération . net . payé après impôt: 6219
+salarié . rémunération . net . payé après impôt: 6243
 salarié . rémunération . net . à payer avant impôt: 7952
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -1120,7 +1120,7 @@ exports[`calculate simulations-salarié > échelle de salaires 14`] = `
 "salarié . contrat . salaire brut: 20000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 28464
-salarié . rémunération . net . payé après impôt: 10951
+salarié . rémunération . net . payé après impôt: 10985
 salarié . rémunération . net . à payer avant impôt: 15966
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -1130,7 +1130,7 @@ exports[`calculate simulations-salarié > échelle de salaires 15`] = `
 "salarié . contrat . salaire brut: 100000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 129386
-salarié . rémunération . net . payé après impôt: 46346
+salarié . rémunération . net . payé après impôt: 46381
 salarié . rémunération . net . à payer avant impôt: 86762
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
@@ -1140,7 +1140,7 @@ exports[`calculate simulations-salarié > échelle de salaires 16`] = `
 "salarié . contrat . salaire brut: 1000000
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1245800
-salarié . rémunération . net . payé après impôt: 446198
+salarié . rémunération . net . payé après impôt: 446233
 salarié . rémunération . net . à payer avant impôt: 895862
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"

@@ -119,6 +119,50 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
     Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
   remplace: taux neutre d'impôt sur le revenu
   variations:
+    - si: date >= 01/05/2025
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1858 €/mois
+            - montant: 0.5%
+              plafond: 1971 €/mois
+            - montant: 1.3%
+              plafond: 2171 €/mois
+            - montant: 2.1%
+              plafond: 2371 €/mois
+            - montant: 2.9%
+              plafond: 2618 €/mois
+            - montant: 3.5%
+              plafond: 2761 €/mois
+            - montant: 4.1%
+              plafond: 2855 €/mois
+            - montant: 5.3%
+              plafond: 3142 €/mois
+            - montant: 7.5%
+              plafond: 3885 €/mois
+            - montant: 9.9%
+              plafond: 4971 €/mois
+            - montant: 11.9%
+              plafond: 5646 €/mois
+            - montant: 13.8%
+              plafond: 6540 €/mois
+            - montant: 15.8%
+              plafond: 7836 €/mois
+            - montant: 17.9%
+              plafond: 8711 €/mois
+            - montant: 20%
+              plafond: 9900 €/mois
+            - montant: 24%
+              plafond: 13615 €/mois
+            - montant: 28%
+              plafond: 18090 €/mois
+            - montant: 33%
+              plafond: 27610 €/mois
+            - montant: 38%
+              plafond: 60350 €/mois
+            - montant: 43%
     - si: date >= 01/01/2024
       alors:
         grille:
@@ -307,6 +351,50 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
     Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
 
   variations:
+    - si: date >= 01/05/2025
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1990 €/mois
+            - montant: 0.5%
+              plafond: 2151 €/mois
+            - montant: 1.3%
+              plafond: 2393 €/mois
+            - montant: 2.1%
+              plafond: 2704 €/mois
+            - montant: 2.9%
+              plafond: 2808 €/mois
+            - montant: 3.5%
+              plafond: 2904 €/mois
+            - montant: 4.1%
+              plafond: 2999 €/mois
+            - montant: 5.3%
+              plafond: 3332 €/mois
+            - montant: 7.5%
+              plafond: 4598 €/mois
+            - montant: 9.9%
+              plafond: 5951 €/mois
+            - montant: 11.9%
+              plafond: 6712 €/mois
+            - montant: 13.8%
+              plafond: 7788 €/mois
+            - montant: 15.8%
+              plafond: 8567 €/mois
+            - montant: 17.9%
+              plafond: 9492 €/mois
+            - montant: 20%
+              plafond: 11016 €/mois
+            - montant: 24%
+              plafond: 14820 €/mois
+            - montant: 28%
+              plafond: 18850 €/mois
+            - montant: 33%
+              plafond: 30210 €/mois
+            - montant: 38%
+              plafond: 63767 €/mois
+            - montant: 43%
     - si: date >= 01/01/2024
       alors:
         grille:
@@ -494,6 +582,50 @@ impôt . taux neutre d'impôt sur le revenu:
     abattu.
 
   variations:
+    - si: date >= 01/05/2025
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - plafond: 1620 €/mois
+              montant: 0%
+            - plafond: 1683 €/mois
+              montant: 0.5 %
+            - plafond: 1791 €/mois
+              montant: 1.3 %
+            - plafond: 1911 €/mois
+              montant: 2.1 %
+            - plafond: 2042 €/mois
+              montant: 2.9 %
+            - plafond: 2151 €/mois
+              montant: 3.5 %
+            - plafond: 2294 €/mois
+              montant: 4.1 %
+            - plafond: 2714 €/mois
+              montant: 5.3 %
+            - plafond: 3107 €/mois
+              montant: 7.5 %
+            - plafond: 3539 €/mois
+              montant: 9.9 %
+            - plafond: 3983 €/mois
+              montant: 11.9 %
+            - plafond: 4648 €/mois
+              montant: 13.8 %
+            - plafond: 5574 €/mois
+              montant: 15.8 %
+            - plafond: 6974 €/mois
+              montant: 17.9 %
+            - plafond: 8711 €/mois
+              montant: 20%
+            - plafond: 12091 €/mois
+              montant: 24%
+            - plafond: 16376 €/mois
+              montant: 28 %
+            - plafond: 25706 €/mois
+              montant: 33 %
+            - plafond: 55062 €/mois
+              montant: 38 %
+            - montant: 43 %
     - si: date >= 01/01/2024
       alors:
         grille:
@@ -982,6 +1114,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 0%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 11497 €/part/an
             - si: date >= 01/2024
               alors: 11294 €/part/an
             - si: date >= 01/2023
@@ -993,6 +1127,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 11%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 29315 €/part/an
             - si: date >= 01/2024
               alors: 28797 €/part/an
             - si: date >= 01/2023
@@ -1004,6 +1140,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 30%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 83823 €/part/an
             - si: date >= 01/2024
               alors: 82341 €/part/an
             - si: date >= 01/2023
@@ -1015,6 +1153,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 41%
         plafond:
           variations:
+            - si: date >= 01/2025
+              alors: 180294 €/part/an
             - si: date >= 01/2024
               alors: 177106 €/part/an
             - si: date >= 01/2023
