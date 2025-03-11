@@ -1,7 +1,7 @@
 impôt:
   experimental: oui
   icônes: 🏛️
-  description: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
+  description: Cet ensemble de formules est un modèle simplifié de l’impôt sur le revenu.
   titre: impôt sur le revenu
 
 impôt . montant:
@@ -27,15 +27,23 @@ impôt . taux d'imposition:
 
 impôt . méthode de calcul:
   description: |
-    Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
-    - *Le taux personnalisé* : indiqué sur votre avis d'imposition
-    - *Le taux neutre* : pour un célibataire sans enfant
-    - *Le barème standard * : la formule "officielle" utilisée par l'administration fiscale pour obtenir le taux d'imposition
+    Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
+    - *Le taux personnalisé* : indiqué sur votre avis d’imposition
+    - *Le taux neutre* : pour un célibataire sans enfant
+    - *Le barème standard * : la formule "officielle" utilisée par l’administration
+    fiscale pour obtenir le taux d’imposition
 
-    En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
-  question: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre
+    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
+    n’avez pas transmis votre taux personnalisé à l’employeur et que vous souhaitez
+    comparer les résultats du simulateur à votre fiche de paie. Le barème standard
+    vous donne un résultat plus précis que le taux neutre pour un célibataire sans
+    enfant.
+  question: Comment souhaitez-vous calculer l’impôt sur le revenu ?
   # applicable si: revenu imposable > 0
-  # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser une version plus "hacky" et moins proche de la loi. Elle posera problème le jour où l'on aura a calculer l'impot avec plusieurs sources de revenu
+  # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser
+  # une version plus "hacky" et moins proche de la loi. Elle posera problème le jour
+  # où l’on aura a calculer l’impot avec plusieurs sources de revenu
   non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire > 0
   par défaut: par défaut
   valeur:
@@ -46,8 +54,8 @@ impôt . méthode de calcul:
         - taux personnalisé
         - barème standard
   références:
-    différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
-    calcul du taux d'imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
+    Différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
+    Calcul du taux d’imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
 
   avec:
     par défaut: "'barème standard'"
@@ -57,7 +65,7 @@ impôt . méthode de calcul . taux neutre:
   titre: avec le taux neutre
   description: Si vous ne connaissez pas votre taux personnalisé, ou si vous
     voulez connaître votre impôt à la source dans le cas où vous avez choisi de
-    ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre
+    ne pas communiquer à votre taux à l’employeur, le calcul au taux neutre
     correspond à une imposition pour un célibataire sans enfant et sans autres
     revenus / charges.
   valeur: impôt . méthode de calcul = 'taux neutre'
@@ -65,7 +73,7 @@ impôt . méthode de calcul . taux neutre:
 impôt . méthode de calcul . taux personnalisé:
   titre: avec un taux personnalisé
   description: Vous pouvez utiliser directement le taux personnalisé communiqué
-    par l'administration fiscale pour calculer votre impôt. Pour le connaître,
+    par l’administration fiscale pour calculer votre impôt. Pour le connaître,
     vous pouvez-vous rendre sur votre [espace fiscal
     personnel](https://impots.gouv.fr).
   valeur: impôt . méthode de calcul = 'taux personnalisé'
@@ -73,19 +81,20 @@ impôt . méthode de calcul . taux personnalisé:
 impôt . méthode de calcul . barème standard:
   titre: avec le barème standard
   description:
-    Le calcul "officiel" de l'impôt, celui sur lequel l'administration
-    fiscale se base pour calculer votre taux d'imposition.
+    Le calcul "officiel" de l’impôt, celui sur lequel l’administration
+    fiscale se base pour calculer votre taux d’imposition.
   valeur: impôt . méthode de calcul = 'barème standard'
 
 impôt . méthode de calcul . PFU:
   titre: avec prélèvement forfaitaire unique
-  description: Calcul de l'impôt des revenus de capitaux mobiliers avec le
+  description: Calcul de l’impôt des revenus de capitaux mobiliers avec le
     prélèvement forfaitaire unique (ou "flat tax")
   valeur: impôt . méthode de calcul = 'PFU'
 
 impôt . revenu imposable:
   description: |
-    C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen d'imposition (neutre ou personnalisé).
+    C’est le revenu à prendre en compte pour calculer l’impôt avec un taux moyen
+    d’imposition (neutre ou personnalisé).
   somme:
     - variations:
         - si: dirigeant
@@ -96,8 +105,8 @@ impôt . revenu imposable:
     - bénéficiaire . dividendes . imposables
 
 impôt . revenu imposable . abattement contrat court:
-  description: Lorsque la durée d'un contrat de travail est inférieure à 2 mois,
-    il est possible d'appliquer un abattement pour diminuer le montant du
+  description: Lorsque la durée d’un contrat de travail est inférieure à 2 mois,
+    il est possible d’appliquer un abattement pour diminuer le montant du
     prélèvement à la source.
   applicable si:
     toutes ces conditions:
@@ -106,7 +115,7 @@ impôt . revenu imposable . abattement contrat court:
   formule:
     valeur: 50% * SMIC . net imposable * 1 mois/an
     arrondi: oui
-  note: Cet abattement s'applique aussi pour les conventions de stage ou les
+  note: Cet abattement s’applique aussi pour les conventions de stage ou les
     contrats de mission (intérim) de moins de 2 mois.
   références:
     Bofip - dispositions spécifiques aux contrats courts: https://bofip.impots.gouv.fr/bofip/11252-PGP.html?identifiant=BOI-IR-PAS-20-20-30-10-20180515
@@ -573,12 +582,12 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
 
 impôt . taux neutre d'impôt sur le revenu:
   description: >
-    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
-    l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
-    leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
+    C’est le barème à appliquer sur le salaire mensuel imposable pour obtenir
+    l’impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    leur entreprise leur taux d’imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
-  note: Attention, l'abattement de 10% est inclus implicitement dans ce barème.
-    L'assiette est donc bien le salaire imposable, et non le salaire imposable
+  note: Attention, l’abattement de 10% est inclus implicitement dans ce barème.
+    L’assiette est donc bien le salaire imposable, et non le salaire imposable
     abattu.
 
   variations:
@@ -805,14 +814,14 @@ impôt . taux neutre d'impôt sur le revenu:
   références:
     BOFIP: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
     Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
-    Qu'est-ce que le taux neutre ?: https://www.economie.gouv.fr/particuliers/modifier-gerer-taux-prelevement-source#qu-est-ce-que-le-taux-non-person_5
+    Qu’est-ce que le taux neutre ?: https://www.economie.gouv.fr/particuliers/modifier-gerer-taux-prelevement-source#qu-est-ce-que-le-taux-non-person_5
 
 impôt . taux personnalisé:
   question: Quel est votre taux de prélèvement à la source ?
   description: |
-    Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur :
+    Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
       - une fiche de paie
-      - un avis d'imposition
+      - un avis d’imposition
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
   unité: '%'
 
@@ -844,7 +853,7 @@ impôt . foyer fiscal . situation de famille . veuf:
   titre: Veuf(ve)
 
 impôt . foyer fiscal . enfants à charge:
-  question: Combien d'enfants sont à charge du foyer fiscal ?
+  question: Combien d’enfants sont à charge du foyer fiscal ?
   par défaut: 0 enfant
 
 impôt . foyer fiscal . parent isolé:
@@ -895,18 +904,19 @@ impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
 
 impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
   description: >-
-    Une personne veuve avec des enfants à charge bénéficie d'une part
+    Une personne veuve avec des enfants à charge bénéficie d’une part
     supplémentaire pour le calcul du quotient familial, ce qui correspond au
     maintient de la part de la personne décédée.
 
-    Une personne veuve sans enfant à charge ne bénéficie en revanche d'aucune majoration.
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d’aucune
+    majoration.
   applicable si:
     toutes ces conditions:
       - situation de famille = 'veuf'
       - enfants à charge >= 1 enfant
   formule: 1 part
   références:
-    Quotient familial d'une personne veuve: https://www.service-public.fr/particuliers/vosdroits/F35127
+    Quotient familial d’une personne veuve: https://www.service-public.fr/particuliers/vosdroits/F35127
 
 impôt . foyer fiscal . taux effectif:
   unité: '%'
@@ -941,7 +951,9 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité:
 
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
   description: |
-    Dans le cas général, l'impôt est calculé après l'application d'un abattement forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses *frais réels*, qui viendront remplacer ce forfait par défaut.
+    Dans le cas général, l’impôt est calculé après l’application d’un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
   valeur: revenu d'activité
   abattement:
     valeur: 10% * revenu d'activité
@@ -984,7 +996,7 @@ impôt . foyer fiscal . revenu imposable . autres revenus imposables:
 impôt . foyer fiscal . revenu fiscal de référence:
   description: >-
     Le revenu fiscal de référence correspond au revenu abattu du foyer ajusté
-    avec un mécanisme de quotient et majoré d'un certains nombre d'exonérations.
+    avec un mécanisme de quotient et majoré d’un certains nombre d’exonérations.
     Ces dernières sont réintégrées dans le calcul.
   formule:
     somme:
@@ -1018,8 +1030,8 @@ impôt . foyer fiscal . impôt sur le revenu:
 
 impôt . foyer fiscal . impôt sur le revenu . décote:
   description:
-    Une décote est appliquée après le barème de l'impôt sur le revenu,
-    pour réduire l'impôt des bas revenus.
+    Une décote est appliquée après le barème de l’impôt sur le revenu, pour réduire
+    l’impôt des bas revenus.
   variations:
     - si: foyer fiscal . situation de famille = 'couple'
       alors:
@@ -1052,9 +1064,10 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
             alors: 777 €/an
   abattement: 45.25% * impôt brut
   références:
-    Pouvez-vous bénéficier de la décote de l'impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/decote-impot-revenu
-    Calculer l'impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
-    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517
+    Pouvez-vous bénéficier de la décote de l’impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/decote-impot-revenu
+    Calculer l’impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
+    Article 197 du Code général des impôts (I.4.a.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517
+
 impôt . foyer fiscal . impôt sur le revenu . quotient familial:
   unité: €/part/an
   valeur: revenu imposable / nombre de parts
@@ -1065,7 +1078,7 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
     - plafonnement parent isolé
 
   références:
-    Calculer l'impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
+    Calculer l’impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
     Bofip 2023: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20230626
     Bofip 2022: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20220516#III._Niveau_du_plafonnement_16
@@ -1118,10 +1131,13 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
   description: |
-    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à 5 tranches.
+    Voici le fameux barème de l’impôt sur le revenu. C’est un barème marginal à 5
+    tranches.
     Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
 
-    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas
+    41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
+    uniquement à la part de ses revenus supérieure à 72 617 €.
   barème:
     assiette: quotient familial
     tranches:
@@ -1182,7 +1198,7 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 45%
   références:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
-    Comment calculer votre impôt d'après le barème de l'impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/tranches-imposition-impot-revenu
+    Comment calculer votre impôt d’après le barème de l’impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/tranches-imposition-impot-revenu
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées:
   barème:
@@ -1236,7 +1252,8 @@ impôt . domiciliation étranger non implémentée:
   type: notification
   sévérité: avertissement
   description: |
-    La retenue à la source pour les non-résident n'est pas encore implémentée. Pour en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
+    La retenue à la source pour les non-résident n’est pas encore implémentée. Pour
+    en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
 
 impôt . dividendes:
   valeur: oui
@@ -1244,7 +1261,7 @@ impôt . dividendes:
   titre: Imposition des dividendes
 
 impôt . dividendes . impôt sans dividendes:
-  description: Montant de l'impôt si aucun dividende n'était touché
+  description: Montant de l’impôt si aucun dividende n’était touché
   valeur: impôt . foyer fiscal . impôt à payer
   contexte:
     bénéficiaire . dividendes . bruts: 0 €/an
@@ -1255,7 +1272,7 @@ impôt . dividendes . montant en sus des autres revenus imposables:
       alors: PFU
     - sinon: impôt . foyer fiscal . impôt à payer - impôt sans dividendes
   description:
-    Montant de l'impôt sur dividendes, en sus de l'impôt sur les autres
+    Montant de l’impôt sur dividendes, en sus de l’impôt sur les autres
     revenus imposables
 
 impôt . dividendes . PFU:
@@ -1263,21 +1280,21 @@ impôt . dividendes . PFU:
   produit:
     - bénéficiaire . dividendes . bruts
     - 12.8%
-  titre: Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire
+  titre: Montant de l’impôt sur dividendes au titre du Prélèvement Forfaitaire
     Unique (ou "flat tax")
   description: |
-    Ce montant est à verser sous forme d'acompte au moment du versement des
+    Ce montant est à verser sous forme d’acompte au moment du versement des
     dividendes.
 
-    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur
+    L’acompte n’est pas obligatoire au cas où le revenu fiscal n-2 est inférieur
     à
 
-      - 50 000 € pour une personne seule,
-      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou
+      - 50 000 € pour une personne seule,
+      - 75 000 € pour un couple soumis à l’imposition commune (mariés ou
         pacsés).
 
     Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard
-    le 30 novembre de l'année précédant celle du paiement
+    le 30 novembre de l’année précédant celle du paiement
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32963
     Article 200 A du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179579/

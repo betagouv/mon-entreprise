@@ -7332,8 +7332,8 @@ entreprise . salariés . ratio alternants:
   titre.en: '[automatic] Fraction of alternating workers'
   titre.fr: Fraction d’alternants
 impôt:
-  description.en: '[automatic] This set of formulas is a simplified income tax model.'
-  description.fr: Cet ensemble de formules est un modèle simplifié de l'impôt sur le revenu.
+  description.en: '[automatic] This set of formulas is a simplified model of income tax.'
+  description.fr: Cet ensemble de formules est un modèle simplifié de l’impôt sur le revenu.
   titre.en: income tax
   titre.fr: impôt sur le revenu
 impôt . dividendes:
@@ -7342,61 +7342,64 @@ impôt . dividendes:
 impôt . dividendes . PFU:
   description.en: >
     [automatic] This amount is to be paid in the form of a deposit at the time
-    of payment of the
+    of the dividend payment.
 
-    dividends.
+    dividend payment.
 
 
-    The advance payment is not compulsory if the tax income n-2 is less than
+    No advance payment is required if n-2 taxable income is less than
 
     à
 
       - 50,000 € for a single person,
-      - 75,000 for a couple subject to joint taxation (married or
-        married or in a civil union).
+      - 75,000 € for a couple subject to joint taxation (married or
+        pacsés).
 
     In this case, the beneficiary may apply for exemption no later than
 
-    30 November of the year preceding the year of payment
+    November 30 of the year preceding the year of payment
   description.fr: |
-    Ce montant est à verser sous forme d'acompte au moment du versement des
+    Ce montant est à verser sous forme d’acompte au moment du versement des
     dividendes.
 
-    L'acompte n'est pas obligatoire au cas où le revenu fiscal n-2 est inférieur
+    L’acompte n’est pas obligatoire au cas où le revenu fiscal n-2 est inférieur
     à
 
-      - 50 000 € pour une personne seule,
-      - 75 000 € pour un couple soumis à l'imposition commune (mariés ou
+      - 50 000 € pour une personne seule,
+      - 75 000 € pour un couple soumis à l’imposition commune (mariés ou
         pacsés).
 
     Dans ce cas, le bénéficiaire peut faire la demande de dispense au plus tard
-    le 30 novembre de l'année précédant celle du paiement
+    le 30 novembre de l’année précédant celle du paiement
   titre.en: '[automatic] Amount of tax on dividends under the Prélèvement
     Forfaitaire Unique (or "flat tax")'
   titre.fr:
-    Montant de l'impôt sur dividendes au titre du Prélèvement Forfaitaire
+    Montant de l’impôt sur dividendes au titre du Prélèvement Forfaitaire
     Unique (ou "flat tax")
 impôt . dividendes . impôt sans dividendes:
-  description.en: '[automatic] Amount of tax if no dividend was received'
-  description.fr: Montant de l'impôt si aucun dividende n'était touché
+  description.en: '[automatic] Amount of tax if no dividend were received'
+  description.fr: Montant de l’impôt si aucun dividende n’était touché
   titre.en: '[automatic] tax without dividends'
   titre.fr: impôt sans dividendes
 impôt . dividendes . montant en sus des autres revenus imposables:
-  description.en: '[automatic] Amount of tax on dividends, in addition to tax on
-    other taxable income'
-  description.fr: Montant de l'impôt sur dividendes, en sus de l'impôt sur les
+  description.en:
+    '[automatic] Amount of dividend tax, in addition to tax on other
+    taxable income'
+  description.fr: Montant de l’impôt sur dividendes, en sus de l’impôt sur les
     autres revenus imposables
   titre.en: '[automatic] amount in excess of other taxable income'
   titre.fr: montant en sus des autres revenus imposables
 impôt . domiciliation étranger non implémentée:
   description.en: >
-    [automatic] Withholding tax for non-residents is not yet implemented. For
-    more information, please refer to the [tax
-    documentation](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
+    [automatic] Withholding tax for non-residents has not yet been implemented.
+    For
+
+    find out more, please refer to the [tax documentation](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
   description.fr: >
-    La retenue à la source pour les non-résident n'est pas encore implémentée.
-    Pour en savoir plus, se référer à la [documentation
-    fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
+    La retenue à la source pour les non-résident n’est pas encore implémentée.
+    Pour
+
+    en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
   titre.en: '[automatic] foreign domiciliation not implemented'
   titre.fr: domiciliation étranger non implémentée
 impôt . foyer fiscal:
@@ -7407,18 +7410,17 @@ impôt . foyer fiscal . CEHR:
   titre.fr: CEHR
 impôt . foyer fiscal . enfants à charge:
   question.en: '[automatic] How many children are dependent on the tax household?'
-  question.fr: Combien d'enfants sont à charge du foyer fiscal ?
+  question.fr: Combien d’enfants sont à charge du foyer fiscal ?
   titre.en: '[automatic] dependent children'
   titre.fr: enfants à charge
 impôt . foyer fiscal . impôt sur le revenu:
   titre.en: '[automatic] personal income tax'
   titre.fr: impôt sur le revenu
 impôt . foyer fiscal . impôt sur le revenu . décote:
-  description.en:
-    '[automatic] A discount is applied after the income tax scale to
-    reduce the tax for low income earners.'
-  description.fr: Une décote est appliquée après le barème de l'impôt sur le
-    revenu, pour réduire l'impôt des bas revenus.
+  description.en: '[automatic] A discount is applied after the income tax scale,
+    to reduce tax on low incomes.'
+  description.fr: Une décote est appliquée après le barème de l’impôt sur le
+    revenu, pour réduire l’impôt des bas revenus.
   titre.en: '[automatic] discount'
   titre.fr: décote
 impôt . foyer fiscal . impôt sur le revenu . impôt brut:
@@ -7426,21 +7428,33 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   titre.fr: impôt brut
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
   description.en: >
-    [automatic] Here is the famous income tax scale. It is a marginal scale with
-    5 brackets.
+    [automatic] This is the famous income tax scale. It's a marginal scale with
+    5
 
-    A contribution on high incomes adds two more brackets.
+    brackets.
+
+    A contribution on high incomes adds two further brackets.
 
 
-    Attention: for an income of 100 000€ per year, the taxpayer will not pay 41 000€ of tax (the rate of the 4th bracket is 41%)! This 41% is only applied to the part of his income above 72 617€.
+    Note: for an annual income of €100,000, the taxpayer will not pay
+
+    41,000€ in tax (the 4th bracket rate is 41%)! This 41% is applied
+
+    only to the portion of income in excess of €72,617.
   description.fr: >
-    Voici le fameux barème de l'impôt sur le revenu. C'est un barème marginal à
-    5 tranches.
+    Voici le fameux barème de l’impôt sur le revenu. C’est un barème marginal à
+    5
+
+    tranches.
 
     Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
 
 
-    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas 41 000€ d'impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués uniquement à la part de ses revenus supérieure à 72 617€.
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas
+
+    41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
+
+    uniquement à la part de ses revenus supérieure à 72 617 €.
   titre.en: '[automatic] per share'
   titre.fr: par part
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées:
@@ -7485,17 +7499,17 @@ impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
   titre.fr: majoration personne seule avec enfant
 impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
   description.en: >-
-    [automatic] A widow with dependent children receives an additional share for
-    the calculation of the family quotient, which corresponds to the maintenance
-    of the deceased's share.
+    [automatic] A widow with dependent children benefits from an additional
+    share for the calculation of the family quotient, which corresponds to
+    maintaining the share of the deceased.
 
-    A widow with no dependent children, on the other hand, receives no increase.
+    A widow with no dependent children, on the other hand, does not benefit from any increase.
   description.fr: >-
-    Une personne veuve avec des enfants à charge bénéficie d'une part
+    Une personne veuve avec des enfants à charge bénéficie d’une part
     supplémentaire pour le calcul du quotient familial, ce qui correspond au
     maintient de la part de la personne décédée.
 
-    Une personne veuve sans enfant à charge ne bénéficie en revanche d'aucune majoration.
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d’aucune majoration.
   titre.en: '[automatic] widow with child increase'
   titre.fr: majoration personne veuve avec enfant
 impôt . foyer fiscal . nombre de parts . principales:
@@ -7516,12 +7530,11 @@ impôt . foyer fiscal . parent isolé:
   titre.fr: parent isolé
 impôt . foyer fiscal . revenu fiscal de référence:
   description.en: "[automatic] The reference tax income corresponds to the
-    household's slaughtered income adjusted with a quotient mechanism and
-    increased by a certain number of exemptions. The latter are reintegrated
-    into the calculation."
+    household's income, adjusted by a quotient mechanism and increased by a
+    number of exemptions. The latter are added back into the calculation."
   description.fr: Le revenu fiscal de référence correspond au revenu abattu du
-    foyer ajusté avec un mécanisme de quotient et majoré d'un certains nombre
-    d'exonérations. Ces dernières sont réintégrées dans le calcul.
+    foyer ajusté avec un mécanisme de quotient et majoré d’un certains nombre
+    d’exonérations. Ces dernières sont réintégrées dans le calcul.
   titre.en: '[automatic] benchmark tax revenue'
   titre.fr: revenu fiscal de référence
 impôt . foyer fiscal . revenu imposable:
@@ -7540,11 +7553,14 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité:
   titre.fr: revenu d'activité
 impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
   description.en: >
-    [automatic] In the general case, the tax is calculated after the application
-    of a fixed abatement. However, everyone can opt to declare their *actual
-    expenses*, which will replace this default fixed allowance.
-  description.fr: >
-    Dans le cas général, l'impôt est calculé après l'application d'un abattement
+    [automatic] In the general case, tax is calculated after application of a
+    fixed lump-sum allowance.
+
+    fixed allowance. However, everyone can opt to declare their *actual* expenses, which will replace the default flat rate.
+
+    *actual expenses*, which will replace the default flat rate.
+  description.fr: |
+    Dans le cas général, l’impôt est calculé après l’application d’un abattement
     forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
     *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: '[automatic] earned income slaughtered'
@@ -7581,37 +7597,62 @@ impôt . méthode de calcul:
 
     - the neutral rate*: for a single person with no children
 
-    - The standard scale*: the "official" formula used by the tax authorities to calculate the tax rate.
+    - *The standard rate scale*: the "official" formula used by the tax
+
+    tax authorities to obtain the tax rate
 
 
-    By filling in your personalized rate, you'll be as close as possible to your actual situation. The neutral rate can be useful if you haven't sent your personalized rate to your employer and want to compare the simulator's results with your payslip. The standard scale gives a more accurate result than the neutral rate for a single person without children.
+    By filling in your personalized rate, you'll be as close as possible to your
+
+    situation. The neutral rate can be useful if you haven't
+
+    you have not sent your personalized rate to your employer, and you wish to
+
+    compare the simulator results with your pay slip. The standard scale
+
+    gives you a more accurate result than the neutral rate for a single person with no
+
+    child.
   description.fr: >
-    Nous avons implémenté trois façon de calculer l'impôt sur le revenu :
+    Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
 
-    - *Le taux personnalisé* : indiqué sur votre avis d'imposition
+    - *Le taux personnalisé* : indiqué sur votre avis d’imposition
 
-    - *Le taux neutre* : pour un célibataire sans enfant
+    - *Le taux neutre* : pour un célibataire sans enfant
 
-    - *Le barème standard * : la formule "officielle" utilisée par l'administration fiscale pour obtenir le taux d'imposition
+    - *Le barème standard * : la formule "officielle" utilisée par l’administration
+
+    fiscale pour obtenir le taux d’imposition
 
 
-    En remplissant votre taux personnalisé, vous serez au plus proche de votre situation réelle. Le taux neutre peut être intéressant dans le cas où vous n'avez pas transmis votre taux personnalisé à l'employeur et que vous souhaitez comparer les résultats du simulateur à votre fiche de paie. Le barème standard vous donne un résultat plus précis que le taux neutre pour un célibataire sans enfant.
-  question.en: How do you want to calculate income tax?
-  question.fr: Comment souhaitez-vous calculer l'impôt sur le revenu ?
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre
+
+    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
+
+    n’avez pas transmis votre taux personnalisé à l’employeur et que vous souhaitez
+
+    comparer les résultats du simulateur à votre fiche de paie. Le barème standard
+
+    vous donne un résultat plus précis que le taux neutre pour un célibataire sans
+
+    enfant.
+  question.en: '[automatic] How would you like to calculate your income tax?'
+  question.fr: Comment souhaitez-vous calculer l’impôt sur le revenu ?
   titre.en: calculation method
   titre.fr: méthode de calcul
 impôt . méthode de calcul . PFU:
-  description.en: '[automatic] Calculation of the tax on income from movable
-    assets with the single flat rate tax (or "flat tax")'
-  description.fr: Calcul de l'impôt des revenus de capitaux mobiliers avec le
+  description.en: '[automatic] Calculating tax on income from transferable
+    securities with the single flat-rate tax (or "flat tax")'
+  description.fr: Calcul de l’impôt des revenus de capitaux mobiliers avec le
     prélèvement forfaitaire unique (ou "flat tax")
   titre.en: '[automatic] with one-time deduction'
   titre.fr: avec prélèvement forfaitaire unique
 impôt . méthode de calcul . barème standard:
-  description.en: '[automatic] The "official" tax calculation, the one on which
-    the tax authorities base their calculation of your tax rate.'
-  description.fr: Le calcul "officiel" de l'impôt, celui sur lequel
-    l'administration fiscale se base pour calculer votre taux d'imposition.
+  description.en:
+    '[automatic] The "official" tax calculation, the one used by the
+    tax authorities to calculate your tax rate.'
+  description.fr: Le calcul "officiel" de l’impôt, celui sur lequel
+    l’administration fiscale se base pour calculer votre taux d’imposition.
   titre.en: with the standard scale
   titre.fr: avec le barème standard
 impôt . méthode de calcul . taux neutre:
@@ -7622,41 +7663,44 @@ impôt . méthode de calcul . taux neutre:
     for a single person with no children and no other income or expenses."
   description.fr: Si vous ne connaissez pas votre taux personnalisé, ou si vous
     voulez connaître votre impôt à la source dans le cas où vous avez choisi de
-    ne pas communiquer à votre taux à l'employeur, le calcul au taux neutre
+    ne pas communiquer à votre taux à l’employeur, le calcul au taux neutre
     correspond à une imposition pour un célibataire sans enfant et sans autres
     revenus / charges.
   titre.en: with the neutral rate
   titre.fr: avec le taux neutre
 impôt . méthode de calcul . taux personnalisé:
-  description.en: You can use the personalized rate provided by the tax
-    authorities directly to calculate your tax. To find out, go to your
-    [personal tax space](https://impots.gouv.fr).
+  description.en: '[automatic] You can directly use the personalized rate
+    communicated by the tax authorities to calculate your tax. To find out,
+    visit your [espace fiscal personnel](https://impots.gouv.fr).'
   description.fr:
     Vous pouvez utiliser directement le taux personnalisé communiqué
-    par l'administration fiscale pour calculer votre impôt. Pour le connaître,
+    par l’administration fiscale pour calculer votre impôt. Pour le connaître,
     vous pouvez-vous rendre sur votre [espace fiscal
     personnel](https://impots.gouv.fr).
   titre.en: '[automatic] with a personalized rate'
   titre.fr: avec un taux personnalisé
 impôt . revenu imposable:
   description.en: >
-    This is the income to be taken into account when calculating tax with an
-    average tax rate (neutral or personalized).
-  description.fr: >
-    C'est le revenu à prendre en compte pour calculer l'impôt avec un taux moyen
-    d'imposition (neutre ou personnalisé).
+    [automatic] This is the income used to calculate tax with an average tax
+    rate
+
+    tax rate (neutral or personalized).
+  description.fr: |
+    C’est le revenu à prendre en compte pour calculer l’impôt avec un taux moyen
+    d’imposition (neutre ou personnalisé).
   titre.en: taxable income
   titre.fr: revenu imposable
 impôt . revenu imposable . abattement contrat court:
-  description.en: When the duration of an employment contract is less than 2
-    months, it is possible to apply a deduction to reduce the amount of the
-    withholding tax.
-  description.fr: Lorsque la durée d'un contrat de travail est inférieure à 2
-    mois, il est possible d'appliquer un abattement pour diminuer le montant du
+  description.en:
+    '[automatic] When the duration of an employment contract is less
+    than 2 months, it is possible to apply an abatement to reduce the amount of
+    withholding tax.'
+  description.fr: Lorsque la durée d’un contrat de travail est inférieure à 2
+    mois, il est possible d’appliquer un abattement pour diminuer le montant du
     prélèvement à la source.
-  note.en: '[automatic] This allowance also applies to internship agreements or
-    (temporary) assignment contracts of less than 2 months.'
-  note.fr: Cet abattement s'applique aussi pour les conventions de stage ou les
+  note.en: '[automatic] This allowance also applies to internship agreements and
+    temporary work contracts of less than 2 months.'
+  note.fr: Cet abattement s’applique aussi pour les conventions de stage ou les
     contrats de mission (intérim) de moins de 2 mois.
   titre.en: short contract allowance
   titre.fr: abattement contrat court
@@ -7665,22 +7709,22 @@ impôt . taux d'imposition:
   titre.fr: taux d'imposition
 impôt . taux neutre d'impôt sur le revenu:
   description.en: >
-    This is the scale to be applied on the taxable monthly salary to obtain the
-    monthly tax payable for employees who do not want to disclose their tax rate
-    to their company (this rate may reveal, for example, significant income from
-    assets).
+    [automatic] This is the scale to be applied to the monthly taxable salary to
+    obtain the tax to be paid monthly for employees who do not wish to reveal
+    their tax rate to their company (this rate may reveal, for example,
+    substantial income from assets).
   description.fr: >
-    C'est le barème à appliquer sur le salaire mensuel imposable pour obtenir
-    l'impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
-    leur entreprise leur taux d'imposition (ce taux peut révéler par exemple des
+    C’est le barème à appliquer sur le salaire mensuel imposable pour obtenir
+    l’impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    leur entreprise leur taux d’imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
   note.en:
     '[automatic] Please note that the 10% allowance is implicitly included
-    in this scale. The base is therefore the taxable salary, not the taxable
-    salary paid.'
+    in this scale. The tax base is therefore the taxable salary, not the taxable
+    salary with allowance.'
   note.fr:
-    Attention, l'abattement de 10% est inclus implicitement dans ce barème.
-    L'assiette est donc bien le salaire imposable, et non le salaire imposable
+    Attention, l’abattement de 10% est inclus implicitement dans ce barème.
+    L’assiette est donc bien le salaire imposable, et non le salaire imposable
     abattu.
   titre.en: neutral income tax rate
   titre.fr: taux neutre d'impôt sur le revenu
@@ -7692,14 +7736,14 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
   titre.fr: barème Guyane Mayotte
 impôt . taux personnalisé:
   description.en: |
-    Your personalized average tax rate, which you can find:
-      - a pay slip
+    [automatic] Your personalized average tax rate, which you can find on :
+      - pay slip
       - a tax notice
       - your personal space [impots.gouv.fr](https://impots.gouv.fr)
   description.fr: |
-    Votre taux moyen d'imposition personnalisé, que vous pouvez retrouver sur :
+    Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
       - une fiche de paie
-      - un avis d'imposition
+      - un avis d’imposition
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
   question.en: What is your withholding tax rate?
   question.fr: Quel est votre taux de prélèvement à la source ?
@@ -8993,35 +9037,33 @@ protection sociale . retraite . base . cotisée:
 
     - If you have the status of **auto-entrepreneur (micro-entreprise)** :
 
-    <a href="/documentation/dirigeant/auto‑entrepreneur/cotisations-et-contributions
+    [Portion of contributions allocated to basic retirement](/documentation/dirigeant
 
-    /cotisations/répartition/retraite-de-base">Portion of contributions allocated to
+    /auto-entrepreneur/co-contributions/co-contributions/distribution/
 
-    basic pension</a> / <a href="/documentation/dirigeant/indépendant/
+    basic retirement) / [basic retirement contribution rate](/documentation/
 
-    cotisations-et-contributions/retraite-de-base/taux">basic pension contribution rate
-
-    basic pension</a>
+    manager/self-employed/contributions/basic-retirement/rate)
 
     <br />In practice, this result is equal, to within a few euros, to the taxable income
 
-    taxable income<a href="/documentation/entreprise/imposition/régime/micro‑entreprise
+    taxable income ([abated sales](/documentation/company/taxation/
 
-    /revenu-abattu">.</a>
-
-
-    - If you are self-employed and not an auto-entrepreneur** :
-
-    <a href="/documentation/dirigeant/indépendant/cotisations-et-contributions
-
-    /retraite-de-base">Basic pension contributions</a> / <a href="/
-
-    documentation/dirigeant/indépendant/cotisations-et-contributions/
-
-    retraite-de-base/taux">basic pension contribution rate</a>
+    regime/micro-entreprise/sales-taxed income)).
 
 
-    In the event of exemption from contributions, a floor amount is used for the calculation.
+    - If you have the status of **travailleur indépendant non auto-entrepreneur** :
+
+    [Basic pension contributions](/documentation/dirigeant/indépendant/
+
+    cotisations-et-contributions/retraite-de-base) / [taux de cotisation à la retraite
+
+    contribution rate](/documentation/manager/self-employed/
+
+    cotisations-et-contributions/retraite-de-base/rates)
+
+
+    In the case of contribution exemptions, a floor amount is used for the calculation.
 
     calculation.
 
@@ -9033,32 +9075,30 @@ protection sociale . retraite . base . cotisée:
 
     - Si vous avez le statut d’**auto-entrepreneur (micro-entreprise)** :
 
-    <a href="/documentation/dirigeant/auto‑entrepreneur/cotisations-et-contributions
+    [Part des cotisations affectée à la retraite de base](/documentation/dirigeant
 
-    /cotisations/répartition/retraite-de-base">Part des cotisations affectée à la
+    /auto‑entrepreneur/cotisations-et-contributions/cotisations/répartition/
 
-    retraite de base</a> / <a href="/documentation/dirigeant/indépendant/
+    retraite-de-base) / [taux de cotisation à la retraite de base](/documentation/
 
-    cotisations-et-contributions/retraite-de-base/taux">taux de cotisation à la
-
-    retraite de base</a>
+    dirigeant/indépendant/cotisations-et-contributions/retraite-de-base/taux)
 
     <br />En pratique, ce résultat est égal, à quelques euros près, au revenu
 
-    imposable (<a href="/documentation/entreprise/imposition/régime/micro‑entreprise
+    imposable ([chiffre d’affaires abattu](/documentation/entreprise/imposition/
 
-    /revenu-abattu">chiffre d’affaires abattu</a>).
+    régime/micro‑entreprise/revenu-abattu)).
 
 
     - Si vous avez le statut de **travailleur indépendant non auto-entrepreneur** :
 
-    <a href="/documentation/dirigeant/indépendant/cotisations-et-contributions
+    [Cotisations à la retraite de base](/documentation/dirigeant/indépendant/
 
-    /retraite-de-base">Cotisations à la retraite de base</a> / <a href="/
+    cotisations-et-contributions/retraite-de-base) / [taux de cotisation à la
 
-    documentation/dirigeant/indépendant/cotisations-et-contributions/
+    retraite de base](/documentation/dirigeant/indépendant/
 
-    retraite-de-base/taux">taux de cotisation à la retraite de base</a>
+    cotisations-et-contributions/retraite-de-base/taux)
 
 
     En cas d’exonération de cotisations, un montant plancher est utilisé pour le
