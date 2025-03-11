@@ -1,6 +1,6 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configRéductionGénérale: SimulationConfig = {
+export const configLodeom: SimulationConfig = {
 	// TODO: remplacer 'salarié . cotisations . assiette' par 'salarié . rémunération . brut'
 	// lorsque cette dernière n'incluera plus les frais professionnels.
 	'objectifs exclusifs': ['salarié . cotisations . assiette'],

@@ -5,7 +5,7 @@ import { configRéductionGénérale } from '@/pages/simulateurs/reduction-genera
 import réductionGénéraleSituation from './réduction-générale.yaml'
 import { runSimulations } from './utils'
 
-it('calculate simulations-dividendes', () => {
+it('calculate réduction générale', () => {
 	runSimulations(
 		réductionGénéraleSituation,
 		[
