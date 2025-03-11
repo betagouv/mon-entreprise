@@ -27,10 +27,7 @@ export function mergeDeep(
 				if (!target[key]) {
 					Object.assign(target, { [key]: {} })
 				}
-				mergeDeep(
-					target[key] as Record<string, unknown>,
-					source[key] as Record<string, unknown>
-				)
+				mergeDeep(target[key] as Record<string, unknown>, source[key])
 			} else if (Array.isArray(target[key]) && Array.isArray(source[key])) {
 				return (target[key] as unknown[]).map((el, i) =>
 					mergeDeep(

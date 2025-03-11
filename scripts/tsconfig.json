@@ -2,10 +2,15 @@
 	"compilerOptions": {
 		/* Basic Options */
 		"incremental": true,
-		"target": "ESNext",
-		"module": "NodeNext",
+	//	"target": "ESNext",
+		//"module": "NodeNext",
+		"module":"CommonJS",
+		"target": "ES2020",
+
 		"outDir": "dist",
 		"declaration": true,
+	
+		"allowSyntheticDefaultImports": true,
 
 		/* Strict Type-Checking Options */
 		"strict": true,
@@ -32,6 +37,7 @@
 		/* Advanced Options */
 		"forceConsistentCasingInFileNames": true
 	},
-	"include": ["codeAPESearch/**/*.ts"],
+	"include": ["codeAPESearch/**/*.ts", "src/**/*.ts",
+    "shims.d.ts"],
 	"exclude": ["**/node_modules"]
 }
