@@ -121,16 +121,26 @@ describe('Économie collaborative', () => {
 					'RG'
 				)
 			})
-			it('applique le régime TI si choisi', () => {
+			it('TI direct', () => {
 				engine.setSituation({
-					...situationParDéfaut,
-					'location de logement meublé . courte durée . recettes': '25000 €/an',
-					'location de logement meublé . affiliation': "'TI'",
+					"entreprise . chiffre d'affaires": '50000 €/an',
+					'dirigeant . régime social': "'indépendant'",
+					'entreprise . imposition': "'IR'",
 				})
 
 				expect(engine).toEvaluate(
-					'location de logement meublé . cotisations',
-					10_064
+					'dirigeant . indépendant . cotisations et contributions',
+					15_276
+				)
+			})
+			it('applique le régime TI si choisi', () => {
+				engine.setSituation({
+					'location de logement meublé . recettes': '50000 €/an',
+				})
+
+				expect(engine).toEvaluate(
+					'location de logement meublé . cotisations . régime travailleur indépendant',
+					15_276 // Pourquoi ça calcule 19633 ?
 				)
 			})
 			it('applique le régime ME si choisi', () => {
