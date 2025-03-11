@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Logo } from '@/components/Logo'
@@ -59,19 +59,9 @@ export default function Header() {
 							}}
 						>
 							<Emoji emoji="☀️" aria-hidden />
-							<Switch
-								isSelected={darkMode}
-								onChange={setDarkMode}
-								role="checkbox"
-								aria-label={
-									darkMode
-										? t(
-												'navbar.deactivate-darkmode',
-												'Désactiver le mode sombre'
-										  )
-										: t('navbar.activate-darkmode', 'Activer le mode sombre')
-								}
-							/>
+							<Switch isSelected={darkMode} onChange={setDarkMode} srOnlyLabel>
+								<Trans>Activer le mode sombre</Trans>
+							</Switch>
 							<Emoji emoji="🌙" aria-hidden />
 						</div>
 
