@@ -7818,7 +7818,7 @@ protection sociale:
     unemployment. There are also contributions for vocational training and
     transport.
   description.fr: >
-    La protection sociale est composée de 5 branches principales : maladie,
+    La protection sociale est composée de 5 branches principales : maladie,
     famille, accidents du travail et maladies professionnelles, retraite et
     chômage. A cela s’ajoutent aussi les cotisations pour la formation
     professionnelle et le transport.
@@ -7851,10 +7851,10 @@ protection sociale . assurance chômage:
     Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
 
     ## L’assurance chômage en France en quelques chiffres
-      - **72 %** de l’ancien salaire net : pourcentage de l’allocation chômage en
+      - **72 %** de l’ancien salaire net : pourcentage de l’allocation chômage en
       moyenne
       - **2,7 millions** de chômeurs indemnisés chaque mois
-      - **1 020 €** : montant de l’allocation nette moyenne par mois
+      - **1 020 €** : montant de l’allocation nette moyenne par mois
       - **51 %** des allocataires cumulent allocation et salaire
   résumé.en: '[automatic] Provides an income for workers looking for a new job.'
   résumé.fr: Assure un revenu aux travailleurs à la recherche d’un nouvel emploi.
@@ -7908,16 +7908,16 @@ protection sociale . famille:
   description.fr: >
     Créée en 1945, la branche Famille est l’un des principaux acteurs de la
 
-    politique familiale française. Actuellement, elle a deux missions prioritaires :
+    politique familiale française. Actuellement, elle a deux missions prioritaires :
       - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la
-      conciliation entre vie familiale et vie professionnelle ;
+      conciliation entre vie familiale et vie professionnelle ;
       - Développer la solidarité envers les plus vulnérables, dont les personnes
       handicapées.
 
-    Pour remplir ces missions, elle s’appuie sur deux leviers :
+    Pour remplir ces missions, elle s’appuie sur deux leviers :
       - Le versement de prestations financières aux familles (prestations familiales
       et sociales, aides au logement et minima sociaux comme l’aide aux adultes
-      handicapés et le revenu de solidarité active) ;
+      handicapés et le revenu de solidarité active) ;
       - L’accompagnement des familles et la mise en place ou le cofinancement de
       différents services et équipements collectifs qui leur sont destinés (comme
       les crèches)
@@ -7925,7 +7925,7 @@ protection sociale . famille:
     [automatic] Provides family support services: childcare, housing assistance
     assistance...
   résumé.fr: |
-    Assure des prestations en soutien aux familles : garde d’enfants, aide au
+    Assure des prestations en soutien aux familles : garde d’enfants, aide au
     logement...
   titre.en: family
   titre.fr: famille
@@ -8040,7 +8040,7 @@ protection sociale . invalidité et décès:
         Un capital « orphelin » est versé aux enfants des travailleurs
         indépendants
 
-        décédés. Il concerne :
+        décédés. Il concerne :
 
 
         - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa
@@ -8049,7 +8049,7 @@ protection sociale . invalidité et décès:
 
         - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans,
 
-        poursuivant leurs études ou leur apprentissage ;
+        poursuivant leurs études ou leur apprentissage ;
 
         - les enfants, quel que soit leur âge, bénéficiaires des allocations
 
@@ -8145,7 +8145,7 @@ protection sociale . invalidité et décès:
           description.fr: >
             Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
 
-            pension d’invalidité : soit au titre de votre activité salariée, soit au
+            pension d’invalidité : soit au titre de votre activité salariée, soit au
 
             titre de votre activité d’artisan/commerçant. Toutefois, le montant de
 
@@ -8259,7 +8259,7 @@ protection sociale . maladie:
     ## L’assurance maladie en France en quelques chiffres
       - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
       maladie et la complémentaire
-      - **30 000 € / an / patient** : exemple de prise en charge complète pour une
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une
       personne atteinte de mucoviscidose
       - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
   résumé.en: '[automatic] Covers most day-to-day healthcare and 100% of critical
@@ -8325,7 +8325,7 @@ protection sociale . maladie . arrêt maladie:
         waiting period. It applies at the start of each work stoppage.
       description.fr: |
         Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité
-        journalière ne vous est versée ; c’est ce que l’on appelle le délai de
+        journalière ne vous est versée ; c’est ce que l’on appelle le délai de
         carence. Il s’applique au début de chaque arrêt de travail.
       titre.en: '[automatic] waiting period'
       titre.fr: délai de carence
@@ -8371,7 +8371,7 @@ protection sociale . maladie . arrêt maladie . indépendant:
             d’affiliation continus dans cette activité.
 
 
-            > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail
+            > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail
 
             peut, sous certaines conditions, être indemnisable au titre du maintien
 
@@ -8624,7 +8624,7 @@ protection sociale . retraite:
     la retraite et du nombre d’années passées à travailler.
 
 
-    **Notre système de retraite est également solidaire** : les chômeurs, les
+    **Notre système de retraite est également solidaire** : les chômeurs, les
 
     personnes en arrêt maladie, les personnes en situation de handicap, les
 
@@ -8671,9 +8671,21 @@ protection sociale . retraite . base:
     benefit from the **full rate**.
 
 
-    For a detailed calculation, please consult the Assurance
+    &gt; **Detailed calculation:** 50% x average annual income x pension pro rata
 
-    site.
+    &gt;
+
+    &gt; With :
+
+    &gt; - _average annual income_ = average of salaries and income contributed by
+
+    &gt; self-employed during the 25 most advantageous years of your
+
+    &gt; career ;
+
+    &gt; - _prorata de pension_ = length of insurance with the Assurance retraite /q
+
+    &gt; insurance period to obtain a full pension.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir de
     la
@@ -8685,24 +8697,36 @@ protection sociale . retraite . base:
 
     Cette **estimation** de votre pension de retraite de base **maximum** est
 
-    calculée avec les hypothèses suivantes :
+    calculée avec les hypothèses suivantes :
 
     - La rémunération que vous avez saisie correspond à celle de vos
 
-    **25 meilleures années** ;
+    **25 meilleures années** ;
 
-    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
 
-    - Vous n’avez pas d’autres sources de revenus ;
+    - Vous n’avez pas d’autres sources de revenus ;
 
     - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
 
     bénéficier du **taux plein**.
 
 
-    Pour le calcul détaillé nous vous invitons à consulter le site de l’Assurance
+    > **Calcul détaillé :** 50% x revenu annuel moyen x prorata de pension
 
-    retraite.
+    >
+
+    > Avec :
+
+    > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
+
+    > travailleur indépendant pendant les 25 années les plus avantageuses de votre
+
+    > carrière ;
+
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /q
+
+    > durée d’assurance pour obtenir une pension à taux plein.
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
     have remained the same throughout your working life.'
   résumé.fr: Pension de retraite de base à taux plein en partant du principe que
@@ -8734,13 +8758,13 @@ protection sociale . retraite . base . CNAVPL:
 
         assistance;
 
-        - 400 points per calendar year for persons recognized as being unable to practice their profession
+        - 400 points per calendar year for persons recognized as being unable to exercise their
 
         incapacity to practice their profession for more than 6 months.
       note.fr: >-
-        Des points supplémentaires peuvent être attribués :
+        Des points supplémentaires peuvent être attribués :
 
-        - points rachetés ;
+        - points rachetés ;
 
         - 100 points supplémentaires au titre du trimestre civil au cours duquel
 
@@ -8750,7 +8774,7 @@ protection sociale . retraite . base . CNAVPL:
 
         atteint d’invalidité l’obligeant à avoir recours à l’assistance d’une tierce
 
-        personne ;
+        personne ;
 
         - 400 points par année civile pour les personnes reconnues atteintes d’une
 
@@ -8806,7 +8830,7 @@ protection sociale . retraite . base . CNAVPL:
 
     Le nombre de points acquis chaque année est déterminé en fonction des revenus
 
-    professionnels soumis à cotisations :
+    professionnels soumis à cotisations :
 
 
     - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à
@@ -8893,7 +8917,7 @@ protection sociale . retraite . base . cotisée:
 
         to be validated (contributed income for year N / 150 smic h).
       note.fr: >-
-        Rappel : la validation de trimestres s’effectue, pour les travailleurs
+        Rappel : la validation de trimestres s’effectue, pour les travailleurs
 
         indépendants à partir du **revenu cotisé**
 
@@ -8963,8 +8987,88 @@ protection sociale . retraite . base . cotisée:
     salarié:
       titre.en: '[automatic] salaried income'
       titre.fr: revenu salarié
-  titre.en: '[automatic] income contributed for the basic pension'
-  titre.fr: revenu cotisés pour la retraite de base
+  description.en: >
+    [automatic] The income contributed for the basic pension is equal to :
+
+
+    - If you have the status of **auto-entrepreneur (micro-entreprise)** :
+
+    <a href="/documentation/dirigeant/auto‑entrepreneur/cotisations-et-contributions
+
+    /cotisations/répartition/retraite-de-base">Portion of contributions allocated to
+
+    basic pension</a> / <a href="/documentation/dirigeant/indépendant/
+
+    cotisations-et-contributions/retraite-de-base/taux">basic pension contribution rate
+
+    basic pension</a>
+
+    <br />In practice, this result is equal, to within a few euros, to the taxable income
+
+    taxable income<a href="/documentation/entreprise/imposition/régime/micro‑entreprise
+
+    /revenu-abattu">.</a>
+
+
+    - If you are self-employed and not an auto-entrepreneur** :
+
+    <a href="/documentation/dirigeant/indépendant/cotisations-et-contributions
+
+    /retraite-de-base">Basic pension contributions</a> / <a href="/
+
+    documentation/dirigeant/indépendant/cotisations-et-contributions/
+
+    retraite-de-base/taux">basic pension contribution rate</a>
+
+
+    In the event of exemption from contributions, a floor amount is used for the calculation.
+
+    calculation.
+
+
+    In all cases, the result is limited to the social security ceiling.
+  description.fr: >
+    Le revenu cotisé pour la retraite de base est égal à :
+
+
+    - Si vous avez le statut d’**auto-entrepreneur (micro-entreprise)** :
+
+    <a href="/documentation/dirigeant/auto‑entrepreneur/cotisations-et-contributions
+
+    /cotisations/répartition/retraite-de-base">Part des cotisations affectée à la
+
+    retraite de base</a> / <a href="/documentation/dirigeant/indépendant/
+
+    cotisations-et-contributions/retraite-de-base/taux">taux de cotisation à la
+
+    retraite de base</a>
+
+    <br />En pratique, ce résultat est égal, à quelques euros près, au revenu
+
+    imposable (<a href="/documentation/entreprise/imposition/régime/micro‑entreprise
+
+    /revenu-abattu">chiffre d’affaires abattu</a>).
+
+
+    - Si vous avez le statut de **travailleur indépendant non auto-entrepreneur** :
+
+    <a href="/documentation/dirigeant/indépendant/cotisations-et-contributions
+
+    /retraite-de-base">Cotisations à la retraite de base</a> / <a href="/
+
+    documentation/dirigeant/indépendant/cotisations-et-contributions/
+
+    retraite-de-base/taux">taux de cotisation à la retraite de base</a>
+
+
+    En cas d’exonération de cotisations, un montant plancher est utilisé pour le
+
+    calcul.
+
+
+    Dans tous les cas, le résultat est limité au plafond de la sécurité sociale.
+  titre.en: '[automatic] income contributed for basic pension'
+  titre.fr: revenu cotisé pour la retraite de base
 protection sociale . retraite . complémentaire:
   description.en: >
     [automatic] Retirement pension supplement acquired through 10 full years of
@@ -8996,11 +9100,11 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
     points acquis:
       description.en: >
         [automatic] Throughout your career, you earn pension points by paying
-        compulsory pension contributions.
+        compulsory
 
         compulsory pension contributions. The total number of
 
-        points acquired that will determine the annual amount of your future
+        points that will determine the annual amount of your future supplementary
 
         pension.
 
@@ -9068,9 +9172,9 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         les points.
 
 
-        A noter : il sert aussi de base au calcul des cotisations payées par
+        A noter : il sert aussi de base au calcul des cotisations payées par
 
-        l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer
+        l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer
 
         les cotisations à payer.
 
