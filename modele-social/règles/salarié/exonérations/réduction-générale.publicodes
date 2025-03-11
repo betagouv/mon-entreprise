@@ -36,16 +36,19 @@ salarié . cotisations . exonérations . réduction générale:
 
     imputation retraite complémentaire:
       valeur: réduction générale - imputation sécurité sociale
+      arrondi: 2 décimales
 
     imputation sécurité sociale:
       produit:
         - réduction générale
         - T . sécurité sociale et chômage / T
+      arrondi: 2 décimales
 
     imputation chômage:
       produit:
         - réduction générale
         - chômage . employeur . taux / T
+      arrondi: 2 décimales
 
     plafond avec application de la DFS:
       privé: oui

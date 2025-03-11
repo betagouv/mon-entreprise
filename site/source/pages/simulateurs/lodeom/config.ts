@@ -1,7 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import RéductionGénéraleSimulation from './Lodeom'
-import { configRéductionGénérale } from './simulationConfig'
+import { configLodeom } from './simulationConfig'
 
 export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -25,7 +25,7 @@ export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		nextSteps: ['salarié'],
 		path: sitePaths.simulateurs.lodeom,
-		simulation: configRéductionGénérale,
+		simulation: configLodeom,
 		component: RéductionGénéraleSimulation,
 	} as const)
 }
