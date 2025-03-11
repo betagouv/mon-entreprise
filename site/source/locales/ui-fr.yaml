@@ -581,7 +581,7 @@ gérer:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
       body: Retrouvez toutes les informations publiques concernant votre entreprise
         sur
-    autoEntrepreneur:
+    auto-entrepreneur:
       aria-label: auto-entrepreneur.urssaf.fr, Visiter le site
       body: Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
         cotisations, et plus largement trouver toutes les informations relatives

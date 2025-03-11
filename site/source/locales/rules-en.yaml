@@ -642,11 +642,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       avec:
         autres contributions:
           description.en: >
-            [automatic] Share of auto-entrepreneurs' contributions to the
-            general social contribution and the contribution for the repayment
-            of the social debt
+            [automatic] Share of auto-entrepreneur contributions to the general
+            social contribution and the contribution for the repayment of the
+            social debt
           description.fr: >
-            Part des cotisations autoentrepreneurs qui alimentent la
+            Part des cotisations auto-entrepreneur qui alimentent la
             contribution sociale généralisée et la cotisation pour le
             remboursement de la dette sociale
           titre.en: '[automatic] other contributions'
@@ -656,13 +656,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: formation professionnelle
         invalidité-décès:
           description.en: >
-            [automatic] Share of auto-entrepreneurs' contributions to disability
-            and death insurance
+            [automatic] Percentage of auto-entrepreneur contributions to
+            disability and death insurance
 
 
             Guarantees payment of a pension in the event of disability and a lump sum to your loved ones in the event of death.
           description.fr: >
-            Part des cotisations autoentrepreneurs qui alimentent l'assurance
+            Part des cotisations auto-entrepreneur qui alimentent l'assurance
             invalidité-décès
 
 
@@ -671,14 +671,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: invalidité-décès
         maladie-maternité:
           description.en: >
-            [automatic] Share of auto-entrepreneurs' contributions to health and
-            maternity insurance
+            [automatic] Percentage of auto-entrepreneur contributions paid into
+            sickness and maternity insurance schemes
 
 
             Assurance Maladie provides long-term protection for the health of everyone in their personal and professional lives.
 
 
-            In concrete terms, it supports 60 million insured people throughout their lives, covering their care regardless of their resources, situation or state of health. In this way, it guarantees universal access to rights and enables access to healthcare.
+            In concrete terms, it supports 60 million insured people throughout their lives, covering their care regardless of their resources, situation or state of health. In this way, it guarantees universal access to rights and enables access to care.
 
 
             You are covered for most healthcare services. In the event of serious or long-term illness, 100% of treatment is reimbursed.
@@ -689,7 +689,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
               - 30,000/year/patient**: example of full coverage for a person with cystic fibrosis
               - 82.4 years** average life expectancy in France (in the top 10 worldwide 🏅)
           description.fr: >
-            Part des cotisations autoentrepreneurs qui alimentent l'assurance
+            Part des cotisations auto-entrepreneur qui alimentent l'assurance
             maladie-maternité
 
 
@@ -710,8 +710,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: maladie-maternité
         retraite:
           description.en: >
-            [automatic] Percentage of autoentrepreneurs' contributions that go
-            to pensions
+            [automatic] Percentage of auto-entrepreneur contributions that go
+            towards retirement
 
             ### A compulsory system ...
 
@@ -728,12 +728,12 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             When you retire, your pension (i.e. your retirement "income") is calculated on the basis of your income, your retirement age and the number of years you have worked.
 
 
-            **Our pension system is also based on solidarity**: the unemployed, people on sick leave, people with disabilities, low-income workers and women on maternity leave also acquire rights. No retired person is left destitute.
+            **Our pension system is also based on solidarity**: the unemployed, people on sick leave, disabled people, low-income workers and women on maternity leave also acquire rights. No retired person is left destitute.
 
 
             Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
           description.fr: >
-            Part des cotisations autoentrepreneurs qui alimentent la retraite
+            Part des cotisations auto-entrepreneur qui alimentent la retraite
 
             ### Un système obligatoire …
 
@@ -758,19 +758,19 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: retraite
         retraite complémentaire:
           description.en:
-            "[automatic] Share of auto-entrepreneurs' contributions to
-            supplementary pension schemes"
+            '[automatic] Percentage of auto-entrepreneur contributions paid
+            into supplementary pension schemes'
           description.fr:
-            Part des cotisations autoentrepreneurs qui alimentent la
+            Part des cotisations auto-entrepreneur qui alimentent la
             retraite complémentaire
           titre.en: '[automatic] supplementary pension'
           titre.fr: retraite complémentaire
         retraite de base:
           description.en:
-            "[automatic] Percentage of auto-entrepreneurs' contributions
-            that go towards basic retirement pensions"
+            '[automatic] Percentage of auto-entrepreneur contributions paid
+            into the basic pension scheme'
           description.fr:
-            Part des cotisations autoentrepreneurs qui alimentent la
+            Part des cotisations auto-entrepreneur qui alimentent la
             retraite de base
           titre.en: '[automatic] basic retirement'
           titre.fr: retraite de base
