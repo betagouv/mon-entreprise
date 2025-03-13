@@ -63,18 +63,6 @@ const StyledSwitch = styled.span<StyledSwitchProps>`
 			  `
 			: ''}
 
-	&:hover ${StyledSpan} {
-		box-shadow: 0 0 0 0.5rem
-			${({ disabled, checked, theme }) =>
-				disabled
-					? ''
-					: checked
-					? theme.colors.bases.primary[700]
-					: theme.colors.extended.grey[500]}42; // 42 is alpha
-	}
-	&:focus-within {
-		${FocusStyle}
-	}
 	${({ disabled, theme }) =>
 		disabled
 			? css`
@@ -87,12 +75,18 @@ const StyledSwitch = styled.span<StyledSwitchProps>`
 const LabelBody = styled(Body)`
 	display: inline-flex;
 	align-items: center;
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 	cursor: pointer;
+
+	&:hover,
+	&:focus-within {
+		${FocusStyle}
+	}
 `
 
 const Text = styled.span`
 	${({ theme }) => css`
-		margin-left: ${theme.spacings.xxs};
+		margin: 0 ${theme.spacings.xxs};
 	`}
 `
 
@@ -106,7 +100,7 @@ type SwitchProps = AriaSwitchProps & {
 	size?: Size
 	light?: boolean
 	srOnlyLabel?: boolean
-	children?: ReactNode
+	children: ReactNode
 }
 
 export const Switch = (props: SwitchProps) => {
