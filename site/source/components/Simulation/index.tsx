@@ -16,11 +16,11 @@ import { firstStepCompletedSelector } from '@/store/selectors/simulationSelector
 import { TrackPage } from '../ATInternetTracking'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
-import SimulationPréremplieBanner from '../SimulationPréremplieBanner'
-import PreviousSimulationBanner from './../PreviousSimulationBanner'
 import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
+import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
+import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
 export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
@@ -63,24 +63,25 @@ export default function Simulation({
 	customSimulationbutton,
 	entrepriseSelection = true,
 }: SimulationProps) {
-	const firstStepCompleted = useSelector(firstStepCompletedSelector)
+	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const ilYADesQuestions = useSelector(ilYADesQuestionsSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
+	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
 
 	return (
 		<>
-			{!firstStepCompleted && <TrackPage name="accueil" />}
+			{!isFirstStepCompleted && <TrackPage name="accueil" />}
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />
 				{children}
 				<FromTop>
-					{(firstStepCompleted || showQuestionsFromBeginning) && (
+					{showQuestions && (
 						<>
-							{entrepriseSelection && <EntrepriseSelection />}
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
+							{entrepriseSelection && <EntrepriseSelection />}
 							{ilYADesQuestions && (
 								<Questions customEndMessages={customEndMessages} />
 							)}
@@ -88,15 +89,13 @@ export default function Simulation({
 					)}
 					<Spacing md />
 
-					<SimulationPréremplieBanner />
+					{!entrepriseSelection && <SimulationPréremplieBanner />}
 
-					{!showQuestionsFromBeginning && !firstStepCompleted && (
-						<PreviousSimulationBanner />
-					)}
+					{!showQuestions && <PreviousSimulationBanner />}
 
 					{afterQuestionsSlot}
 
-					{firstStepCompleted && !hideDetails && (
+					{isFirstStepCompleted && !hideDetails && (
 						<>
 							{customSimulationbutton && (
 								<>
@@ -119,8 +118,8 @@ export default function Simulation({
 					)}
 				</FromTop>
 			</SimulationContainer>
-			{firstStepCompleted && !hideDetails && explanations}
-			{firstStepCompleted && !hideDetails && shouldShowFeedback && (
+			{isFirstStepCompleted && !hideDetails && explanations}
+			{isFirstStepCompleted && !hideDetails && shouldShowFeedback && (
 				<div
 					style={{
 						textAlign: 'center',

@@ -1,9 +1,6 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configRéductionGénérale: SimulationConfig = {
-	// TODO: remplacer 'salarié . cotisations . assiette' par 'salarié . rémunération . brut'
-	// lorsque cette dernière n'incluera plus les frais professionnels.
-	'objectifs exclusifs': ['salarié . cotisations . assiette'],
 	objectifs: ['salarié . cotisations . exonérations . lodeom . montant'],
 	questions: {
 		"à l'affiche": [
@@ -49,4 +46,10 @@ export const configRéductionGénérale: SimulationConfig = {
 		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
 	},
+	'règles à ignorer pour déclencher les questions': [
+		'entreprise . salariés . effectif',
+		'salarié . cotisations . exonérations . zones lodeom',
+		'salarié . cotisations . exonérations . lodeom . zone un . barèmes',
+		'salarié . cotisations . exonérations . lodeom . zone deux . barèmes',
+	],
 }

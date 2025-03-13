@@ -71,11 +71,12 @@ export const SimulationGoalsContainer = styled.div<{
 	z-index: 2;
 	position: relative;
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-start-end-radius: ${({ theme, $isEmbeded }) =>
-		$isEmbeded ? theme.box.borderRadius : '0'};
-	border-end-start-radius: 0;
-	border-end-end-radius: 0;
-	border-start-start-radius: ${({ theme }) => theme.box.borderRadius};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	${({ $isEmbeded }) =>
+		!$isEmbeded &&
+		css`
+			border-top-right-radius: 0;
+		`}
 	${({ $isFirstStepCompleted }) =>
 		$isFirstStepCompleted &&
 		css`

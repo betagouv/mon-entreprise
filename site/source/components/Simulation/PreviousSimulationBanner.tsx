@@ -1,28 +1,22 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import SimulationBanner from '@/components/Simulation/Banner'
 import { Link } from '@/design-system/typography/link'
 import { loadPreviousSimulation } from '@/store/actions/actions'
-import { RootState } from '@/store/reducers/rootReducer'
-import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
-
-import Banner from './Banner'
+import { previousSimulationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function PreviousSimulationBanner() {
-	const previousSimulation = useSelector(
-		(state: RootState) => state.previousSimulation
-	)
-	const newSimulationStarted = useSelector(firstStepCompletedSelector)
+	const previousSimulation = useSelector(previousSimulationSelector)
 	const dispatch = useDispatch()
-
 	const { t } = useTranslation()
 
+	if (!previousSimulation) {
+		return null
+	}
+
 	return (
-		<Banner
-			className="print-hidden"
-			hidden={!previousSimulation || newSimulationStarted}
-			icon="💾"
-		>
+		<SimulationBanner className="print-hidden" icon="💾">
 			<Trans i18nKey="previousSimulationBanner.info">
 				Votre précédente simulation a été sauvegardée :
 			</Trans>{' '}
@@ -37,6 +31,6 @@ export default function PreviousSimulationBanner() {
 					Retrouver ma précédente simulation
 				</Trans>
 			</Link>
-		</Banner>
+		</SimulationBanner>
 	)
 }

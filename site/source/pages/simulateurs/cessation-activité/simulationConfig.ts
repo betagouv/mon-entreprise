@@ -16,4 +16,8 @@ export const configCessationActivité: SimulationConfig = {
 			'entreprise . date de cessation',
 		],
 	},
+	'règles à ignorer pour déclencher les questions': [
+		'entreprise . date de cessation',
+		'entreprise . imposition',
+	],
 }

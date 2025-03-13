@@ -44,7 +44,7 @@ export const Menu = () => {
 			)}
 		>
 			<Nav>
-				<StyledUl noMarker>
+				<StyledUl $noMarker>
 					<PlanContent />
 				</StyledUl>
 			</Nav>
