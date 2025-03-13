@@ -1,20 +1,20 @@
-import { EvaluatedNode, formatValue } from 'publicodes'
+import { formatValue } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Body } from '@/design-system/typography/paragraphs'
 
 type Props = {
-	evaluation: EvaluatedNode
+	value: number
 	idPrefix: string
 }
 
-export default function MontantImpôts({ evaluation, idPrefix }: Props) {
+export default function MontantImpôts({ value, idPrefix }: Props) {
 	const language = useTranslation().i18n.language
 
 	return (
 		<Value id={`${idPrefix}-value`}>
-			{formatValue(evaluation, {
+			{formatValue(value, {
 				language,
 				displayedUnit: '',
 			})}

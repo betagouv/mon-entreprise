@@ -111,10 +111,8 @@ déclaration revenus PAMC . revenus nets . assiette sociale:
     - revenus imposables
     - autres revenus non salariés
     - déductions et exonérations . total déductible
-  abattement:
-    somme:
-      - frais réels
-      - revenus de remplacement . indemnités incapacité temporaire
+    - (- frais réels)
+    - (- revenus de remplacement . indemnités incapacité temporaire)
   unité: €/an
 
 déclaration revenus PAMC . revenus nets . revenus conventionnés:
@@ -135,8 +133,7 @@ déclaration revenus PAMC . revenus nets . revenus non conventionnés:
     - si: actes conventionnés uniquement
       alors: 0
     - sinon:
-        valeur: assiette sociale
-        abattement: revenus conventionnés
+        valeur: assiette sociale - revenus conventionnés
   unité: €/an
 
 déclaration revenus PAMC . revenus nets . revenus structures de soins:
