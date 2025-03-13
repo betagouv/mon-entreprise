@@ -46,4 +46,10 @@ export const configLodeom: SimulationConfig = {
 		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
 	},
+	'règles à ignorer pour déclencher les questions': [
+		'entreprise . salariés . effectif',
+		'salarié . cotisations . exonérations . zones lodeom',
+		'salarié . cotisations . exonérations . lodeom . zone un . barèmes',
+		'salarié . cotisations . exonérations . lodeom . zone deux . barèmes',
+	],
 }

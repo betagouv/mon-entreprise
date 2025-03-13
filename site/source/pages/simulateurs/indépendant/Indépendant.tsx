@@ -18,12 +18,9 @@ export default function IndépendantSimulation() {
 	const dispatch = useDispatch()
 	const year = useYear()
 
-	const firstStepCompletedExceptions = ['entreprise . imposition' as DottedName]
-
 	return (
 		<>
 			<Simulation
-				firstStepCompletedExceptions={firstStepCompletedExceptions}
 				explanations={<IndépendantExplanation />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>

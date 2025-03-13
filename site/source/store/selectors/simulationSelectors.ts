@@ -1,5 +1,4 @@
 import { difference, NonEmptyArray } from 'effect/Array'
-import { DottedName } from 'modele-social'
 import { createSelector } from 'reselect'
 
 import { isComparateurConfig } from '@/domaine/ComparateurConfig'
@@ -54,12 +53,12 @@ export const rawSituationsSelonContextesSelector = createSelector(
 )
 
 export const firstStepCompletedSelector = createSelector(
-	[
-		situationSelector,
-		(_: unknown, exceptions?: DottedName[]) => exceptions || [],
-	],
-	(situation, exceptions) =>
-		difference(Object.keys(situation), exceptions).length > 0
+	[situationSelector, configSelector],
+	(situation, config) =>
+		difference(
+			Object.keys(situation),
+			config['règles à ignorer pour déclencher les questions'] || []
+		).length > 0
 )
 
 export const previousSimulationSelector = (state: RootState) =>
