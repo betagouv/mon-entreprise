@@ -73,6 +73,7 @@ export const configIndépendant: SimulationConfig = {
 		'entreprise . catégorie juridique': "''",
 		salarié: 'non',
 	},
+	'règles à ignorer pour déclencher les questions': ['entreprise . imposition'],
 }
 
 export const configEntrepriseIndividuelle: SimulationConfig = {

@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
@@ -32,14 +31,8 @@ export const CessationActivitéSimulation = () => {
 
 	const { t } = useTranslation()
 
-	const firstStepCompletedExceptions = [
-		'entreprise . date de cessation' as DottedName,
-		'entreprise . imposition' as DottedName,
-	]
-
 	return (
 		<Simulation
-			firstStepCompletedExceptions={firstStepCompletedExceptions}
 			customSimulationbutton={{
 				href: lien,
 				title: t('Vos cotisations pour l’année précédente'),

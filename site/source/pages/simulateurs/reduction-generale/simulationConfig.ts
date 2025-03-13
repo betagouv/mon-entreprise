@@ -41,4 +41,8 @@ export const configRéductionGénérale: SimulationConfig = {
 		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': 'non',
 	},
+	'règles à ignorer pour déclencher les questions': [
+		'entreprise . salariés . effectif',
+		'salarié . cotisations . exonérations . réduction générale . caisse de congés payés',
+	],
 }
