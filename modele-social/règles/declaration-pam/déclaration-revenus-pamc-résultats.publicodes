@@ -55,15 +55,12 @@ déclaration revenus PAMC . déductions et exonérations . total déductible:
       valeur: déductions et exonérations . chèques vacances
       abattement:
         # Il faut soustraire 30% du Smic mensuel (€/mois) au montant annuel des
-        # chèques vacances (€/an).
-        # On obtient donc le résultat en divisant par 12 le Smic car le moteur ne
-        # peut pas mélanger les unités.
+        # chèques vacances (€/an)
         produit:
           - 30%
-          - valeur: SMIC
+          - valeur: (SMIC * 1 mois) / 1 an
             contexte:
-              date: période . début d'année
-          - 1 / 12
+              date: période . début d'année . N-1
       plancher: 0
       unité: €/an
 
