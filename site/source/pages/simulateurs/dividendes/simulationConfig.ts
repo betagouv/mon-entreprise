@@ -20,4 +20,7 @@ export const configDividendes: SimulationConfig = {
 		'impôt . méthode de calcul': "'PFU'",
 		'dirigeant . rémunération . net . imposable': '0 €/an',
 	},
+	'règles à ignorer pour déclencher les questions': [
+		'impôt . méthode de calcul',
+	],
 }

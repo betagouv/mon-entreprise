@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -11,7 +10,6 @@ import ShareOrSaveSimulationBanner, {
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { RootState } from '@/store/reducers/rootReducer'
 import { ilYADesQuestionsSelector } from '@/store/selectors/ilYADesQuestions.selector'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
@@ -50,7 +48,6 @@ type SimulationProps = {
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
-	firstStepCompletedExceptions?: DottedName[]
 }
 
 export default function Simulation({
@@ -65,18 +62,15 @@ export default function Simulation({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
-	firstStepCompletedExceptions,
 }: SimulationProps) {
-	const firstStepCompleted = useSelector((state: RootState) =>
-		firstStepCompletedSelector(state, firstStepCompletedExceptions)
-	)
+	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const ilYADesQuestions = useSelector(ilYADesQuestionsSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
-	const showQuestions = showQuestionsFromBeginning || firstStepCompleted
+	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
 
 	return (
 		<>
-			{!firstStepCompleted && <TrackPage name="accueil" />}
+			{!isFirstStepCompleted && <TrackPage name="accueil" />}
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />
@@ -101,7 +95,7 @@ export default function Simulation({
 
 					{afterQuestionsSlot}
 
-					{firstStepCompleted && !hideDetails && (
+					{isFirstStepCompleted && !hideDetails && (
 						<>
 							{customSimulationbutton && (
 								<>
@@ -124,8 +118,8 @@ export default function Simulation({
 					)}
 				</FromTop>
 			</SimulationContainer>
-			{firstStepCompleted && !hideDetails && explanations}
-			{firstStepCompleted && !hideDetails && shouldShowFeedback && (
+			{isFirstStepCompleted && !hideDetails && explanations}
+			{isFirstStepCompleted && !hideDetails && shouldShowFeedback && (
 				<div
 					style={{
 						textAlign: 'center',

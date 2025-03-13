@@ -48,4 +48,6 @@ export type SimulationConfig = Partial<{
 	}
 
 	'unité par défaut'?: string
+
+	'règles à ignorer pour déclencher les questions'?: DottedName[]
 }>
