@@ -51,10 +51,9 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Impôt sur le revenu - régime micro-fiscal').should(
 			'be.visible'
 		)
-		cy.contains('Impôt sur le revenu - régime réel').should('be.visible')
-		cy.contains('Impôt sur le revenu - déclaration contrôlée').should(
-			'be.visible'
-		)
+		cy.contains(
+			'Impôt sur le revenu - régime de la déclaration contrôlée'
+		).should('be.visible')
 		cy.contains('Impôt sur les sociétés').should('be.visible')
 	})
 
@@ -279,12 +278,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			'be.visible'
 		)
 
-		cy.contains('régime réel').click()
-		cy.contains(
-			'Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre liasse fiscale 2035.'
-		).should('be.visible')
-
-		cy.contains('déclaration contrôlée').click()
+		cy.contains('régime de la déclaration contrôlée').click()
 		cy.contains(
 			'Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre liasse fiscale 2035.'
 		).should('be.visible')
@@ -326,11 +320,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get('h2').contains('Cotisations facultatives').should('not.exist')
 		cy.contains('Montant de vos cotisations facultatives').should('not.exist')
 
-		cy.contains('régime réel').click()
-		cy.get('h2').contains('Cotisations facultatives').should('be.visible')
-		cy.contains('Montant de vos cotisations facultatives').should('be.visible')
-
-		cy.contains('déclaration contrôlée').click()
+		cy.contains('régime de la déclaration contrôlée').click()
 		cy.get('h2').contains('Cotisations facultatives').should('be.visible')
 		cy.contains('Montant de vos cotisations facultatives').should('be.visible')
 
@@ -353,21 +343,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		).should('not.exist')
 		cy.get(`#${idPrefix}_${autresRevenus}_IS`).should('not.exist')
 
-		cy.contains('régime réel').click()
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC`).should('not.exist')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
-		).should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC`).should('be.visible')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS`).should('not.exist')
-
-		cy.contains('déclaration contrôlée').click()
+		cy.contains('régime de la déclaration contrôlée').click()
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
 		).should('not.exist')
@@ -604,12 +580,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_cotisations_facultatives-label`).should('not.exist')
 		cy.get(`#${idPrefix}_cotisations_facultatives-value`).should('not.exist')
 
-		cy.contains('régime réel').click()
-		cy.get('h3').contains('Cotisations facultatives').should('be.visible')
-		cy.get(`#${idPrefix}_cotisations_facultatives-label`).should('be.visible')
-		cy.get(`#${idPrefix}_cotisations_facultatives-value`).should('be.visible')
-
-		cy.contains('déclaration contrôlée').click()
+		cy.contains('régime de la déclaration contrôlée').click()
 		cy.get('h3').contains('Cotisations facultatives').should('be.visible')
 		cy.get(`#${idPrefix}_cotisations_facultatives-label`).should('be.visible')
 		cy.get(`#${idPrefix}_cotisations_facultatives-value`).should('be.visible')
@@ -940,12 +911,12 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		)
 	})
 
-	it("devrait montrer deux champs d'exonération supplémentaires aux médecins au régime réel ou à la déclaration contrôlée", function () {
-		// Non médecin au régime réel
+	it("devrait montrer deux champs d'exonération supplémentaires aux médecins au régime de la déclaration contrôlée", function () {
+		// Non médecin au régime de la déclaration controlée
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
-		cy.contains('régime réel').click()
+		cy.contains('régime de la déclaration contrôlée').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
@@ -973,68 +944,15 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			'not.exist'
 		)
 
-		// Non médecin à la déclaration controlée
-		cy.contains('déclaration contrôlée').click()
-
-		cy.contains('Exonération zone déficitaire en offre de soins').should(
-			'not.exist'
-		)
-		cy.get(
-			`#${idPrefix}_${exonerations}___zone_déficitaire_en_offre_de_soins`
-		).should('not.exist')
-		cy.get(
-			`#${idPrefix}_${exonerations}___zone_déficitaire_en_offre_de_soins-value`
-		).should('not.exist')
-		cy.contains(
-			'Déduction du groupe III et déduction complémentaire 3%'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${exonerations}___déduction_groupe_III`).should(
-			'not.exist'
-		)
-		cy.contains('Médecin secteur 1 - déduction complémentaire 3%').should(
-			'not.exist'
-		)
-		cy.get(`#${idPrefix}_${exonerations}___déduction_groupe_III-value`).should(
-			'not.exist'
-		)
-
-		// Médecin au régime réel
+		// Médecin au régime de la déclaration contrôlée
 		cy.contains('Réinitialiser').click()
 		cy.contains('Médecin').click()
 		cy.contains('Titulaire').click()
-		cy.contains('régime réel').click()
+		cy.contains('régime de la déclaration contrôlée').click()
 		cy.get('input[type="text"]').each(($input) => {
 			cy.wrap($input).type('{selectall}100')
 		})
 		cy.get(`#${idPrefix}_${exonerations}`).contains('Oui').click()
-
-		cy.get(
-			`#${idPrefix}_${exonerations}___zone_déficitaire_en_offre_de_soins-title`
-		).should('be.visible')
-		cy.get(
-			`#${idPrefix}_${exonerations}___zone_déficitaire_en_offre_de_soins`
-		).should('be.visible')
-		cy.get(
-			`#${idPrefix}_${exonerations}___zone_déficitaire_en_offre_de_soins-label`
-		).should('be.visible')
-		cy.get(
-			`#${idPrefix}_${exonerations}___zone_déficitaire_en_offre_de_soins-value`
-		).should('be.visible')
-		cy.contains(
-			'Déduction du groupe III et déduction complémentaire 3%'
-		).should('be.visible')
-		cy.get(`#${idPrefix}_${exonerations}___déduction_groupe_III`).should(
-			'be.visible'
-		)
-		cy.contains('Médecin secteur 1 - déduction complémentaire 3%').should(
-			'be.visible'
-		)
-		cy.get(`#${idPrefix}_${exonerations}___déduction_groupe_III-value`).should(
-			'be.visible'
-		)
-
-		// Médecin à la déclaration contrôlée
-		cy.contains('déclaration contrôlée').click()
 
 		cy.get(
 			`#${idPrefix}_${exonerations}___zone_déficitaire_en_offre_de_soins-title`
@@ -1208,11 +1126,11 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_${autresRevenus}_agricole`).should('not.exist')
 	})
 
-	it('devrait montrer uniquement les champs des autres revenus non salariés relevant du régime général lorsque le régime réel ou la déclaration contrôlée sont sélectionnés', function () {
+	it('devrait montrer uniquement les champs des autres revenus non salariés relevant du régime général lorsque le régime de la déclaration contrôlée est sélectionné', function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
-		cy.contains('régime réel').click()
+		cy.contains('régime de la déclaration contrôlée').click()
 
 		// Question présente
 		cy.contains(
@@ -1378,47 +1296,8 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-value`
 		).should('not.exist')
 
-		// Régime réel
-		cy.contains('régime réel').click()
-
-		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-title`).should(
-			'be.visible'
-		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ`).should('be.visible')
-		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-title`).should(
-			'be.visible'
-		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA`).should('be.visible')
-		cy.get(
-			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-title`
-		).should('be.visible')
-		cy.get(
-			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire`
-		).should('be.visible')
-		cy.get('h3')
-			.contains('Montant des revenus de remplacement')
-			.should('be.visible')
-		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-label`).should(
-			'be.visible'
-		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-value`).should(
-			'be.visible'
-		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-label`).should(
-			'be.visible'
-		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-value`).should(
-			'be.visible'
-		)
-		cy.get(
-			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-label`
-		).should('be.visible')
-		cy.get(
-			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-value`
-		).should('be.visible')
-
-		// Déclaration contrôlée
-		cy.contains('déclaration contrôlée').click()
+		// Régime de la déclaration contrôlée
+		cy.contains('régime de la déclaration contrôlée').click()
 
 		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-title`).should(
 			'be.visible'
