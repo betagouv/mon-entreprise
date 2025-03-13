@@ -45,6 +45,8 @@ export function LigneImpôts({
 		return null
 	}
 
+	const value = Math.abs(evaluation.nodeValue as number)
+
 	const rule = engine.getRule(dottedName)
 	const idPrefix = ((expression || dottedName) as string).replace(/\s|\./g, '_')
 
@@ -63,7 +65,7 @@ export function LigneImpôts({
 				{expression ? (
 					<CheckboxImpôts expression={expression} idPrefix={idPrefix} />
 				) : (
-					<MontantImpôts evaluation={evaluation} idPrefix={idPrefix} />
+					<MontantImpôts value={value} idPrefix={idPrefix} />
 				)}
 			</StyledGridItem>
 		</StyledGridContainer>
