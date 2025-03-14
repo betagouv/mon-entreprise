@@ -32,3 +32,15 @@ export const Disabled: Story = {
 		isDisabled: true,
 	},
 }
+
+export const Light: Story = {
+	args: {
+		light: true,
+	},
+}
+
+export const XS: Story = {
+	args: {
+		size: 'XS',
+	},
+}

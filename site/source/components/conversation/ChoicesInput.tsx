@@ -20,7 +20,6 @@ import {
 import { Emoji } from '@/design-system/emoji'
 import { Select } from '@/design-system/field/Select'
 import { Spacing } from '@/design-system/layout'
-import { Switch } from '@/design-system/switch'
 import { H3, H4 } from '@/design-system/typography/heading'
 
 import { ExplicableRule } from './Explicable'
@@ -345,29 +344,4 @@ export function useSelection<Names extends string = DottedName>({
 	}, [value, missing, currentSelection])
 
 	return { currentSelection, handleChange, defaultValue }
-}
-
-export const SwitchInput = (props: {
-	onChange?: (isSelected: boolean) => void
-	defaultSelected?: boolean
-	label?: string
-	id?: string
-	key?: string
-	invertLabel?: boolean
-}) => {
-	const { onChange, id, label, defaultSelected, key, invertLabel } = props
-
-	return (
-		<Switch
-			defaultSelected={defaultSelected}
-			onChange={(isSelected: boolean) => onChange && onChange(isSelected)}
-			light
-			id={id}
-			key={key}
-			invertLabel={invertLabel}
-			aria-label={label}
-		>
-			{label}
-		</Switch>
-	)
 }
