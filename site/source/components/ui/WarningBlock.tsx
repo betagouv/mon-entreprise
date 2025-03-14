@@ -22,7 +22,7 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 
 	return (
 		<>
-			<Message type="info" icon>
+			<Message type={'info'} icon>
 				<div className="print-hidden">
 					<Intro as="h2">
 						<Trans i18nKey="simulateurs.warning.titre">
