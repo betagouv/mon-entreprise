@@ -225,10 +225,6 @@ export async function getIframeOffset(): Promise<number> {
 	})
 }
 
-export const generateUuid = () => {
-	return Math.floor(Math.random() * Date.now()).toString(16)
-}
-
 /**
  * Returns true if x is not null, useful for filtering out nulls from arrays
  * @example [1, null, 2].filter(isNotNull) // [1, 2]
