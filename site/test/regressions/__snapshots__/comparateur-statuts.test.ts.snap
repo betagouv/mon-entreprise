@@ -23,7 +23,7 @@ protection sociale . retraite . base: 725
 protection sociale . retraite . complémentaire: 32
 protection sociale . retraite . trimestres: 4
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate comparateur-statuts > ACRE 2`] = `
