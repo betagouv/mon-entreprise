@@ -137,13 +137,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
           alors: 12.10%
         - sinon: cotisations CIPAV . taux * taux ACRE
 
-    prestation de service:
-      déprécié: oui
-      note:
-        Il y a maintenant des taux différents pour les prestations de service BIC
-        et BNC
-      valeur: service BIC
-
     service BIC:
       remplace: cotisations . service BIC . taux
       valeur: taux ACRE * cotisations . service BIC . taux
