@@ -2284,70 +2284,295 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
   titre.en: '[automatic] CPAM participation'
   titre.fr: participation CPAM
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description.en: '[automatic] Also known as conventional income, this is fee
-    income net of surcharges.'
-  description.fr: Aussi appelé revenu conventionnel, il s’agit du revenu des
-    honoraires nets de dépassement.
-  note.en: |
-    [automatic] The formula referred to in Urssaf texts is as follows:
-    &gt; (income from conventional activity) x (total fees - total excess
-    &gt; fee overruns) / total fees.
+  description.en: >
+    [automatic] Also known as conventional income, this is income from
+    conventional
+
+    net of excess fees.
+
+
+    The calculation depends on whether or not there is any income other than that from
+
+    income.
+  description.fr: |
+    Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
+    l’activité conventionnée nets de dépassements d’honoraires.
+
+    Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
+    conventionnée.
+  note.en: >
+    [automatic] #### With no income
+
+
+    The Urssaf formula is as follows:
+
+
+    **income from conventional activity x (total fees - total excess fees) / total amount of fees**.
+
 
     This formula can be simplified to :
-    &gt; (income from conventional activity) / (100% + average fee overrun)
 
-    ### Proof
-    If we take the following variables,
-    &gt; `h+`: total fees (with overrun)
-      h`: fees without overrun
-      `d%`: average overcharge percentage
 
-    We have :
+    **income from conventional activity / (100% + average fee overrun)**.
+
+
+    &gt; **Proof:**
+
     &gt;
-      `h+ = h + h * d%`
-      `h+ = h * (100% + d%)`
 
-    If we replace the CPAM participation base formula, we get :
-    &gt; 1. `(income from conventional activity) * h / h+`
-    &gt; 2. `(income from conventional activity) * h / (h * (100% + d%))
-    &gt; 3. `(income from conventional activity) / (100% + d%)`
+    &gt; If we take the following variables,
+
+    &gt; - `h+` : total fees (with overrun)
+
+    &gt; - `h`: fees without overrun
+
+    &gt; - `d%` : average percentage fee exceeded
+
+    &gt;
+
+    &gt; We have: `h+ = h + h * d% = h * (100% + d%)`.
+
+    &gt;
+
+    &gt; If we replace the CPAM participation base in the formula, we obtain :
+
+    1. `income from conventional activity * h / h+` &gt; 2.
+
+    2. `income from conventional activity * h / (h * (100% + d%))` &gt; &gt; 3.
+
+    &gt; 3. `income from conventional activity / (100% + d%)`
+
+
+    #### With non-contracted income
+
+
+    In this case, the formula is as follows:
+
+
+    **income from contracted activity - income from contracted activity x (total fees - total excess fees) / total fees + non-contracted income**.
+
+
+    This formula can be simplified to :
+
+
+    **total income - income from conventional activity / (100% + average fee overrun)**.
+
+
+    &gt; **Proof:**
+
+    &gt;
+
+    &gt; Based on the proof of the case with no non-contracted income, we can simplify the
+
+    &gt; formula into : income from conventional activity + non-conventional income -
+
+    &gt; income from conventional activity / (100% + d%)`.
+
+    &gt;
+
+    &gt; With `d%`: average percentage fee exceeded
+
+    &gt;
+
+    We also have: `income from conventional activity + non-conventional income = &gt; total income
+
+    &gt; total income
+
+    &gt;
+
+    &gt; The formula can therefore be further simplified to :
+
+    &gt; `total income - income from conventional activity / (100% + d%)`.
   note.fr: >
-    La formule référencée dans les textes Urssaf est la suivante :
+    #### Sans revenus non conventionnés
 
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des
 
-    > dépassements d’honoraires) / montant total des honoraires.
+    La formule donnée par l’Urssaf est la suivante :
+
+
+    **revenu de l’activité conventionnée x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires**
 
 
     On peut simplififer cette formule en :
 
-    > (revenu de l’activité conventionnée) / (100% + dépassement d’honoraire moyen)
+
+    **revenu de l’activité conventionnée / (100% + dépassement d’honoraire moyen)**
 
 
-    ### Preuve
-
-    Si on prends les variables suivantes,
-
-    > `h+` : total des honoraires (avec dépassement)
-      `h` : honoraires sans dépassement
-      `d%`: pourcentage de dépassement d’honoraire moyen
-
-    On a :
+    > **Preuve :**
 
     >
-      `h+ = h + h * d%`
-      `h+ = h * (100% + d%)`
 
-    Si on remplace dans la formule de l’assiette participation CPAM, on a :
+    > Si on prends les variables suivantes,
 
-    > 1. `(revenu de l’activité conventionnée) * h / h+`
+    > - `h+` : total des honoraires (avec dépassement)
 
-    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%))
+    > - `h` : honoraires sans dépassement
 
-    > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
+    > - `d%` : pourcentage de dépassement d’honoraire moyen
+
+    >
+
+    > On a : `h+ = h + h * d% = h * (100% + d%)`
+
+    >
+
+    > Si on remplace dans la formule de l’assiette participation CPAM, on obtient :
+
+    > 1. `revenu de l’activité conventionnée * h / h+`
+
+    > 2. `revenu de l’activité conventionnée * h / (h * (100% + d%))`
+
+    > 3. `revenu de l’activité conventionnée / (100% + d%)`
+
+
+    #### Avec des revenus non conventionnés
+
+
+    Dans ce cas la formule est la suivante :
+
+
+    **revenu de l’activité conventionnée - revenu de l’activité conventionnée x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires + revenus non conventionnés**
+
+
+    Cette formule se simplifie en :
+
+
+    **total des revenus - revenu de l’activité conventionnée / (100% + dépassement d’honoraire moyen)**
+
+
+    > **Preuve :**
+
+    >
+
+    > D’après la preuve du cas sans revenus non conventionnés, on peut simplifier la
+
+    > formule en : `revenu de l’activité conventionnée + revenus non conventionnés -
+
+    > revenu de l’activité conventionnée / (100% + d%)`
+
+    >
+
+    > Avec `d%` : pourcentage de dépassement d’honoraire moyen
+
+    >
+
+    > On a aussi : `revenu de l’activité conventionnée + revenus non conventionnés =
+
+    > total des revenus`
+
+    >
+
+    > On peut donc simplifier encore la formule en :
+
+    > `total des revenus - revenu de l’activité conventionnée / (100% + d%)`
   titre.en: '[automatic] CPAM contribution base'
   titre.fr: assiette participation CPAM
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
+  note.en: >
+    [automatic] #### With no income
+
+
+    The Urssaf formula is as follows:
+
+
+    **income from conventional activity x (1 - Urssaf rate / (1 + Urssaf rate))**
+
+
+    This formula can be simplified to :
+
+
+    **income from conventional activity / (1 + Urssaf rate)**
+
+
+    #### With income not covered by the agreement
+
+
+    In this case, the formula is as follows:
+
+
+    **income from contracted activity - income from contracted activity x (1 - Urssaf rate / (1 + Urssaf rate)) + non-contracted income**.
+
+
+    This formula can be simplified to :
+
+
+    **total income - income from conventional activity / (1 + Urssaf rate)**
+
+
+    &gt; **Proof:**
+
+    &gt;
+
+    &gt; The formula can be simplified to : income from conventional activity + &gt; income from non-conventional activity - income from conventional activity
+
+    &gt; non-contracted income - income from contracted activity / (1 + rate
+
+    &gt; Urssaf rate)`
+
+    &gt;
+
+    &gt; We also have: `income from conventional activity + non-conventional income = &gt; total income`.
+
+    &gt; total income
+
+    &gt;
+
+    &gt; The formula can therefore be further simplified to :
+
+    &gt; `total income - income from conventional activity / (1 + Urssaf rate)`.
+  note.fr: >
+    #### Sans revenus non conventionnés
+
+
+    La formule donnée par l’Urssaf est la suivante :
+
+
+    **revenu de l’activité conventionnée x (1 - taux Urssaf / (1 + taux Urssaf))**
+
+
+    Cette formule se simplifie en :
+
+
+    **revenu de l’activité conventionnée / (1 + taux Urssaf)**
+
+
+    #### Avec des revenus non conventionnés
+
+
+    Dans ce cas la formule est la suivante :
+
+
+    **revenu de l’activité conventionnée - revenu de l’activité conventionnée x (1 - taux Urssaf / (1 + taux Urssaf)) + revenus non conventionnés**
+
+
+    Cette formule se simplifie en :
+
+
+    **total des revenus - revenu de l’activité conventionnée / (1 + taux Urssaf)**
+
+
+    > **Preuve :**
+
+    >
+
+    > On peut simplifier la formule en : `revenu de l’activité conventionnée +
+
+    > revenus non conventionnés - revenu de l’activité conventionnée / (1 + taux
+
+    > Urssaf)`
+
+    >
+
+    > On a aussi : `revenu de l’activité conventionnée + revenus non conventionnés =
+
+    > total des revenus`
+
+    >
+
+    > On peut donc simplifier encore la formule en :
+
+    > `total des revenus - revenu de l’activité conventionnée / (1 + taux Urssaf)`
   titre.en: '[automatic] CPAM participation plate (dental surgeon)'
   titre.fr: assiette participation CPAM (chirurgien dentiste)
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
@@ -2376,9 +2601,9 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     The formula for calculating the overrun rate is as follows:
 
 
-    &gt; Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable &gt; procedures + amounts reimbursed CMU lump sums).
+    &gt; Urssaf rate = (overruns - amounts reimbursed at CMU fixed rates) / (amounts reimbursable for
 
-    &gt; reimbursable procedures + reimbursed CMU lump-sum amounts)
+    reimbursable acts + amounts reimbursed CMU lump sums)
   description.fr: >
     Le « taux Urssaf » (taux UR) permet de calculer la part de votre
 
@@ -2405,7 +2630,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 
     > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
 
-    > remboursables actes + montants remboursés forfaits CMU)
+    remboursables actes + montants remboursés forfaits CMU)
   question.en: '[automatic] What is your "Urssaf rate"?'
   question.fr: Quel est votre « taux Urssaf » ?
   titre.en: '[automatic] Urssaf rate'
@@ -2558,6 +2783,9 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     provenant des actes conventionnés.
   titre.en: '[automatic] income from agreement activity'
   titre.fr: revenus activité conventionnée
+dirigeant . indépendant . PL . PAMC . revenus non conventionnés:
+  titre.en: '[automatic] non-conventional income'
+  titre.fr: revenus non conventionnés
 dirigeant . indépendant . PL . cotisations Urssaf:
   description.en: |
     [automatic] The contributions collected by Urssaf, which are used to finance
