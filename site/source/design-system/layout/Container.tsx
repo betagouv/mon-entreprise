@@ -113,7 +113,4 @@ const OuterOuterContainer = styled.div`
 	display: flex;
 	flex: 1;
 	justify-content: center;
-	@media print {
-		break-inside: avoid;
-	}
 `

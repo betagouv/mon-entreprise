@@ -49,7 +49,10 @@ export default function SearchButton() {
 			{(closePopover) => (
 				<Suspense
 					fallback={
-						<Container style={{ height: '300px', alignItems: 'center' }}>
+						<Container
+							style={{ height: '300px', alignItems: 'center' }}
+							className="print-hidden"
+						>
 							<Loader />
 						</Container>
 					}

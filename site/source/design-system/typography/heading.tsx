@@ -43,6 +43,10 @@ export const H2 = styled.h2<{ noUnderline?: boolean }>`
 		${theme.spacings.xxl} 0 ${theme.spacings.lg}
 	`};
 	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
+
+	@media print {
+		margin: ${({ theme }) => theme.spacings.xl} 0;
+	}
 `
 
 export const H3 = styled.h3`
