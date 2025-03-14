@@ -96,6 +96,7 @@
 		"reselect": "^4.1.8",
 		"styled-components": "^6.0.8",
 		"stylis": "^4.3.0",
+		"uuid": "^11.1.0",
 		"whatwg-fetch": "^3.6.19"
 	},
 	"devDependencies": {
