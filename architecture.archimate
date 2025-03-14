@@ -39,7 +39,7 @@
     <element xsi:type="archimate:ApplicationInterface" name="Simulateur auto-entrepreneur" id="id-9b8297d9ccc74974b7c89e44c9ae387c"/>
     <element xsi:type="archimate:ApplicationInterface" name="Simulateur de chômage partiel" id="id-05875e9fe0e64654a761f3724637349e"/>
     <element xsi:type="archimate:ApplicationInterface" name="Simulateurs professions libérales" id="id-3ac274b7d84d41dc944c381d4d4d266d">
-      <documentation>dont auxiliaire médicale, dentiste, médecin, pharmacien, sage-femme, avocat, expert-comptable, CIPAV</documentation>
+      <documentation>dont auxiliaire médicale, dentiste, médecin, pharmacien, sage-femme, avocat, expert-comptable, Cipav</documentation>
     </element>
     <element xsi:type="archimate:ApplicationInterface" name="Assistants à la déclaration de revenus" id="id-9ec30d4415a24ff59d07122a1872661d"/>
     <element xsi:type="archimate:ApplicationInterface" name="Recherche de code APE" id="id-0519c30c206b49fd87101702740ab4f9"/>
