@@ -2017,10 +2017,10 @@ dirigeant . indépendant . PL . CIPAV:
       titre.en: '[automatic] supplementary pension contributions'
       titre.fr: cotisations et contributions retraite complémentaire
   description.en: >
-    [automatic] CIPAV is the independent pension fund for the regulated
+    [automatic] Cipav is the independent pension fund for the regulated liberal
     professions.
   description.fr: >
-    La CIPAV est la caisse de retraite autonomes des professions libérales
+    La Cipav est la caisse de retraite autonomes des professions libérales
     réglementées.
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
@@ -2040,10 +2040,11 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
         quart:
           titre.en: '[automatic] 25 %'
           titre.fr: 25 %
-      question.en: '[automatic] How much does the spouse contribute to the
-        complementary plan and the CIPAV disability-death plan?'
+      question.en:
+        '[automatic] In what proportion does the spouse contribute to the
+        Cipav complementary and disability-death plans?'
       question.fr: A quelle proportion le conjoint cotise-t’il pour le régime
-        complémentaire et le régime d’invalidité-décès CIPAV ?
+        complémentaire et le régime d’invalidité-décès Cipav ?
       titre.en: '[automatic] proportion'
       titre.fr: proportion
     retraite complémentaire:
@@ -2083,11 +2084,11 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
         les affiliés cotisent en « classe A » mais il est possible de cotiser en
         classe B ou C afin de bénéficier d'une meilleure couverture
         invalidité-décès.
-      question.en: '[automatic] In which class do you contribute to the CIPAV
-        disability-death plan?'
+      question.en: "[automatic] In which class do you contribute to Cipav's
+        disability-death scheme?"
       question.fr:
         Dans quelle classe cotisez-vous pour le régime invalidité-décès de
-        la CIPAV ?
+        la Cipav ?
       titre.en: '[automatic] contribution class'
       titre.fr: classe de cotisation
   titre.en: '[automatic] disability and death'
@@ -2108,11 +2109,11 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération in
     de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
 
     peut, à sa demande expresse, être dispensé de cette cotisation.
-  question.en: '[automatic] Have you asked to be exempted from CIPAV disability
-    and death contributions? (income of the previous year lower than 6 170€)'
+  question.en: "[automatic] Have you applied for exemption from Cipav
+    disability-death contributions? (previous year's income under €6,170)"
   question.fr:
     Avez-vous demandé à être exonéré de la cotisations invalidité-décès
-    CIPAV ? (revenus de l'année précédente inférieurs à 6 170€)
+    Cipav ? (revenus de l'année précédente inférieurs à 6 170€)
   titre.en: '[automatic] disability and death exemption'
   titre.fr: exonération invalidité et décès
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
@@ -2130,15 +2131,15 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
   titre.fr: option surcotisation
 dirigeant . indépendant . PL . CNAVPL:
   description.en: >
-    [automatic] The National Old Age Insurance Fund for the liberal professions
-    is
+    [automatic] The Caisse Nationale d'Assurance Vieillesse des Professions
+    Libérales is
 
-    the body that federates the various existing funds (CIPAV, CARPIMKO,
+    the organization that federates the various existing funds (Cipav, CARPIMKO,
 
-    CARCDSF, CAVEC etc.)
+    CARCDSF, CAVEC etc.).
   description.fr: |
     La caisse nationale d'assurance vieillesse des professions libérales est
-    l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
+    l'organisme qui fédère les différentes caisses existantes (Cipav, CARPIMKO,
     CARCDSF, CAVEC etc..)
   titre.en: '[automatic] CNAVPL'
   titre.fr: CNAVPL
@@ -2807,11 +2808,11 @@ dirigeant . indépendant . PL . métier . juridique:
   titre.fr: Professions juridiques et judicaires
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   description.en: >
-    [automatic] You work in a regulated trade that is affiliated with the CIPAV.
-    The list of these trades is :
+    [automatic] You work in a regulated profession covered by Cipav. The list of
+    these trades is :
 
 
-    - Architect (architect, interior architect, construction economist, project manager, surveyor)
+    - Architect (architect, interior designer, construction economist, project manager, surveyor)
 
     - Mountain guide (ski instructor, high mountain guide, medium mountain guide)
 
@@ -2831,17 +2832,17 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
 
     - Consulting engineer
 
-    - Guide-lecturer
+    - Tour guide
 
     - Artists other than artist-authors
 
     - Court experts
 
-    - Motor vehicle experts
+    - Automotive experts
 
     - Legal representatives for the protection of adults
   description.fr: >
-    Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces
+    Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces
     métiers est :
 
 
@@ -2874,8 +2875,8 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
     - Experts automobiles
 
     - Mandataires judiciaires à la protection des majeurs
-  titre.en: '[automatic] Other CIPAV-related professions'
-  titre.fr: Autre métier rattaché à la CIPAV
+  titre.en: '[automatic] Other Cipav professions'
+  titre.fr: Autre métier rattaché à la Cipav
 dirigeant . indépendant . PL . métier . santé:
   avec:
     auxiliaire médical:
@@ -2937,61 +2938,61 @@ dirigeant . indépendant . PL . métier . santé:
       titre.en: '[automatic] by default'
       titre.fr: par défaut
   description.en: >
-    [automatic] **Exceptions**: Osteopath, psychologist, psychotherapist,
-    occupational therapist,
+    [automatic] **Exceptions** : Osteopaths, psychologists, psychotherapists,
+    occupational therapists,
 
-    dietician and chiropractor depend on the
+    dietician and chiropractor are covered by the
 
-    CIPAV for their retirement and disability.
+    Cipav for their retirement and disability benefits.
   description.fr: >
     **Exceptions** : Les ostéopathe, psychologue, psychothérapeute,
     ergothérapeute,
 
     diététicien et chiropracteur dépendent de la
 
-    CIPAV pour leur retraite et invalidité.
+    Cipav pour leur retraite et invalidité.
   question.en: '[automatic] What do you do as a healthcare professional?'
   question.fr: Quel métier exercez-vous en tant que professionnel de santé ?
   titre.en: '[automatic] Health professions'
   titre.fr: Professions de santé
 dirigeant . indépendant . PL . option régime général:
   description.en: >
-    [automatic] Persons already practising an unregulated liberal profession
+    [automatic] People already working in an unregulated liberal profession
     before
 
-    2019 can opt between 2019 and 2023 for Social Security for the self-employed, provided that they
+    2019 can opt for Social Security for the self-employed between 2019 and 2023
 
-    provided that they are up to date with the payment of all their
+    provided they are up to date with payment of all their contributions to
 
-    contributions to the CIPAV.
-
-
-    This option will allow them to benefit from the same rights as craftsmen and tradesmen
-
-    This option will allow them to benefit from the same rights as artisans and traders (daily allowances, retirement, disability, etc.).
+    contributions to Cipav.
 
 
-    In particular, they will have access to daily allowances in the event of sick leave or maternity
+    This option will enable them to benefit from the same rights as artisans
 
-    maternity, which is not the case with the CIPAV.
+    (daily allowances, retirement, disability, etc.).
 
 
-    The application must be made to the CIPAV. It will take effect on January 1 of the following year and will be
+    In particular, they will have access to daily allowances in the event of sick leave or maternity, which is not available to self-employed workers.
 
-    January of the following year and will be definitive.
+    maternity, which is not the case with Cipav.
+
+
+    Applications must be made to Cipav. It will take effect on January 1st
+
+    of the following year.
   description.fr: |
     Les personnes exerçant déjà une profession libérale non réglementée avant
     2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
     indépendants, à condition d’être à jour dans le paiement de toutes leurs
-    cotisations à la CIPAV.
+    cotisations à la Cipav.
 
     Cette option leur permettra de bénéficier des mêmes droits que les artisans
     et commerçants (indemnités journalières, retraite, invalidité, etc.).
 
     Ils auront nottament accès à des indemnités journalières en cas d'arrêt de
-    travail ou de maternité, ce qui n'est pas le cas à la CIPAV.
+    travail ou de maternité, ce qui n'est pas le cas à la Cipav.
 
-    La demande est à effectuer auprès de la CIPAV. Elle prendra effet au 1er
+    La demande est à effectuer auprès de la Cipav. Elle prendra effet au 1er
     janvier de l’année suivante et sera définitive.
   question.en: '[automatic] Have you opted to join the general scheme for
     self-employed persons?'
@@ -3816,34 +3817,34 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
       titre.en: '[automatic] disability and death'
       titre.fr: invalidité et décès
   description.en: >
-    [automatic] ### Craftsmen, merchants, and self-employed professionals
-    outside the CIPAV
+    [automatic] ### Craftsmen, shopkeepers and self-employed professionals
+    outside Cipav
 
-    This scheme was stopped in 2015, but is still active for people who benefited from it before it was
+    This scheme was discontinued in 2015, but is still active for those who benefited from it
 
-    before its abrogation.
+    before it was abolished.
 
 
-    #### Liberal professions under the CIPAV
+    #### Self-employed professionals covered by Cipav
 
-    The exemption applies automatically from the year you turn 68.
+    The exemption applies automatically from the year in which you turn 68.
 
-    However, you may contribute voluntarily between the ages of 68 and 80 if:
+    You may, however, contribute voluntarily between the ages of 68 and 80, if :
 
-    - you continue your activity ;
+    - you continue to work ;
 
     - you have a spouse under 67 or dependent children under 21;
 
     - you have a dependent with a major disability.
   description.fr: >
-    ### Artisans, commerçants, et professions libérales hors CIPAV
+    ### Artisans, commerçants, et professions libérales hors Cipav
 
     Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
 
     avant son abrogation.
 
 
-    #### Professions libérales relevants de la CIPAV
+    #### Professions libérales relevants de la Cipav
 
     L'exonération s'applique automatique à partir de l'année de vos 68 ans.
 
