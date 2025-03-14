@@ -2,9 +2,9 @@ import { useSwitch } from '@react-aria/switch'
 import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
 import { css, styled } from 'styled-components'
+import { v4 as uuidv4 } from 'uuid'
 
 import { FocusStyle, SROnly } from '@/design-system/global-style'
-import { generateUuid } from '@/utils'
 
 import { Body } from '../typography/paragraphs'
 
@@ -118,7 +118,7 @@ export const Switch = (props: SwitchProps) => {
 	const { isDisabled = false } = ariaProps
 	const { isSelected } = state
 
-	const uuid = generateUuid()
+	const uuid = uuidv4()
 
 	return (
 		<LabelBody as="label" htmlFor={uuid}>
