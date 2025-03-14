@@ -593,13 +593,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: '[automatic] contributions and fees'
   titre.fr: cotisations et contributions
 dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
-  avec:
-    revenus BIC:
-      titre.en: '[automatic] BIC revenues'
-      titre.fr: revenus BIC
-    revenus BNC:
-      titre.en: '[automatic] BNC revenues'
-      titre.fr: revenus BNC
   description.en: >
     [automatic] In addition to the social security charges, auto-entrepreneurs
     are liable for a
@@ -614,10 +607,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
     contribution à la formation professionnelle leur permettant de bénéficier du
     droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
     d’affaires positif au cours des 12 derniers mois).
-  note.en: |
-    [automatic] The rates implemented are those levied by the Urssaf.
-  note.fr: |
-    Les taux implémentés sont ceux prélevés par l'Urssaf.
+  note.en: '[automatic] The rates implemented are those levied by Urssaf.'
+  note.fr: Les taux implémentés sont ceux prélevés par l’Urssaf.
   titre.en: '[automatic] Contribution to professional training'
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
@@ -669,11 +660,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         taux:
           titre.en: '[automatic] rate'
           titre.fr: taux
-      description.en: >
-        [automatic] Contributions for self-employed workers under the CIPAV
-        scheme
+      description.en: |
+        [automatic] Contributions for self-employed workers covered by Cipav
       description.fr: |
-        Cotisations pour les professions libérales dépendant de la CIPAV
+        Cotisations pour les professions libérales dépendant de la Cipav
       titre.en: '[automatic] CIPAV contributions'
       titre.fr: cotisations CIPAV
     répartition:
@@ -1008,22 +998,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         service BNC
       titre.en: '[automatic] BNC service'
       titre.fr: service BNC
-    taux prestation de service:
-      note.en: '[automatic] There is now a different rate for BIC or BNC services.'
-      note.fr:
-        Il y a maintenant un taux différent pour les prestations de service BIC
-        ou BNC.
-      titre.en: '[automatic] service delivery rate'
-      titre.fr: taux prestation de service
-    taux service BIC:
-      titre.en: '[automatic] BIC service rate'
-      titre.fr: taux service BIC
-    taux service BNC:
-      titre.en: '[automatic] BNC service rate'
-      titre.fr: taux service BNC
-    taux vente restauration hébergement:
-      titre.en: '[automatic] sales rate catering accommodation'
-      titre.fr: taux vente restauration hébergement
     vente restauration hébergement:
       avec:
         répartition:
@@ -1102,13 +1076,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . tau
     CIPAV:
       titre.en: '[automatic] CIPAV'
       titre.fr: CIPAV
-    prestation de service:
-      note.en: '[automatic] There are now different rates for BIC and BNC services'
-      note.fr:
-        Il y a maintenant des taux différents pour les prestations de service
-        BIC et BNC
-      titre.en: '[automatic] service delivery'
-      titre.fr: prestation de service
     service BIC:
       titre.en: '[automatic] BIC service'
       titre.fr: service BIC
