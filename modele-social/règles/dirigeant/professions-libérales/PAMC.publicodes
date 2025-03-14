@@ -19,15 +19,15 @@ dirigeant . indépendant . PL . PAMC:
 
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
   question: |
-    Quel est la part de votre chiffre d'affaires liée à une activité non
-    conventionnée (estimation) ?
+    Quel est la part de votre chiffre d’affaires liée à une activité non
+    conventionnée (estimation) ?
   par défaut: 0%
   suggestions:
     10%: 10%
     30%: 30%
   description: |
     Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
-    les catégories suivantes :
+    les catégories suivantes :
 
     - Honoraires tirés des actes remboursables (y compris les
     dépassements d’honoraires et les frais de déplacement figurant sur le relevé
@@ -50,9 +50,11 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
 dirigeant . indépendant . PL . PAMC . remplaçant:
   question:
     texte: Au {{ période . début d'année }}, exerciez-vous votre activité
-      exclusivement en tant que remplaçant ?
+      exclusivement en tant que remplaçant ?
   description: |
-    Les practicien et auxiliaire médical exerçant une activité de remplacement ne sont pas redevables de la contribution aux unions régionales des professionnels de santé (CURPS)
+    Les practicien et auxiliaire médical exerçant une activité de remplacement ne
+    sont pas redevables de la contribution aux unions régionales des professionnels
+    de santé (CURPS).
   par défaut: non
   avec:
     offre simplifiée médecins:
@@ -62,10 +64,10 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
       type: notification
       description:
         Vous exercez une activité de médecin exclusivement en tant que
-        remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
+        remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
         [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
       références:
-        Site de l'offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
+        Site de l’offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
 
 dirigeant . indépendant . PL . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
@@ -76,7 +78,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     l’évolution de l’offre de santé au niveau régional, notamment à la
     préparation du projet régional de santé et à sa mise en œuvre.
 
-    Ces unions sont financées par une contribution recouvrée par l’Urssaf : la
+    Ces unions sont financées par une contribution recouvrée par l’Urssaf : la
     contribution aux unions régionales des professionnels de santé (Curps).
   note: |
     Les remplaçants, quelle que soit leur activité, ne sont pas redevables de la
@@ -109,7 +111,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
 
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   non applicable si: métier . santé . médecin . secteur = 'S1'
-  question: Quels est votre dépassement honoraires moyen (estimation) ?
+  question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
@@ -117,10 +119,10 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     Les revenus conventionnés sont ceux correspondant aux recettes tirées des
     honoraires et des rémunérations forfaitaires versées par la CPAM.
   note: |
-    Pour éviter d'avoir à ventiler les charges entre celles issues de
-    l'activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
+    Pour éviter d’avoir à ventiler les charges entre celles issues de
+    l’activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
     deux comptabilités distinct), on peut le calculer à partir du revenu
-    professionnel que l'on ajuste en fonction de la part du chiffre d'affaires
+    professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
     provenant des actes conventionnés.
   formule:
     produit:
@@ -129,28 +131,29 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
         plancher: 0%
 
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description: Aussi appelé revenu conventionnel, il s'agit du revenu des
+  description: Aussi appelé revenu conventionnel, il s’agit du revenu des
     honoraires nets de dépassement.
   formule: revenus activité conventionnée  / (100% + dépassement d'honoraire moyen)
   note: |
-    La formule référencée dans les textes Urssaf est la suivante :
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires.
+    La formule référencée dans les textes Urssaf est la suivante :
+    > (revenu de l’activité conventionnée) x (total des honoraires - total des
+    > dépassements d’honoraires) / montant total des honoraires.
 
-    On peut simplififer cette formule en :
-    > (revenu de l’activité conventionnée) / (100% + dépassement d'honoraire moyen)
+    On peut simplififer cette formule en :
+    > (revenu de l’activité conventionnée) / (100% + dépassement d’honoraire moyen)
 
     ### Preuve
     Si on prends les variables suivantes,
-    > `h+` : total des honoraires (avec dépassement)
-      `h` : honoraires sans dépassement
-      `d%`: pourcentage de dépassement d'honoraire moyen
+    > `h+` : total des honoraires (avec dépassement)
+      `h` : honoraires sans dépassement
+      `d%`: pourcentage de dépassement d’honoraire moyen
 
-    On a :
+    On a :
     >
       `h+ = h + h * d%`
       `h+ = h * (100% + d%)`
 
-    Si on remplace dans la formule de l'assiette participation CPAM, on a :
+    Si on remplace dans la formule de l’assiette participation CPAM, on a :
     > 1. `(revenu de l’activité conventionnée) * h / h+`
     > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%))
     > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
@@ -217,7 +220,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
   description: |
-    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
+    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
     cotisation d’assurance maladie-maternité prise en charge par la CPAM.
 
     Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
@@ -229,10 +232,11 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 
     ## Calcul du taux
 
-    La formule de calcul du taux de dépassement est la suivante :
+    La formule de calcul du taux de dépassement est la suivante :
 
-    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
-  question: Quel est votre "taux Urssaf" ?
+    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
+    > remboursables actes + montants remboursés forfaits CMU)
+  question: Quel est votre « taux Urssaf » ?
   unité: ''
   par défaut: 1
 
@@ -245,7 +249,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 dirigeant . indépendant . PL . PAMC . participation CPAM:
   titre: Participation assurance maladie
   description: |
-    Les professionnels de santé conventionnés bénéficient d'une prise en charge d'une partie de leur cotisations par l'Assurance Maladie.
+    Les professionnels de santé conventionnés bénéficient d’une prise en charge
+    d’une partie de leur cotisations par l’Assurance Maladie.
   formule:
     somme:
       - PAMC . allocations familiales . participation CPAM
@@ -269,12 +274,17 @@ dirigeant . indépendant . PL . PAMC . IJSS:
     cas de congé maternité/paternité/adoption.
 
 
-    La CSG-CRDS est automatiquement précomptée par l'Assurance maladie lors du versement. Leur montant est donc retranché à l'assiette pour le calcul de la CSG-CRDS restante dûe.
+    La CSG-CRDS est automatiquement précomptée par l’Assurance maladie lors du
+    versement. Leur montant est donc retranché à l’assiette pour le calcul de la
+    CSG-CRDS restante dûe.
 
 
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
+    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale
+    versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus
+    de remplacement.
 
-    Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
+    Note : Les prestations d’invalidité versées par les régimes d’invalidité-décès
+    ne sont pas concernées.
 
   question: Quel est le montant des indemnités journalières de maternité ou
     paternité perçu au titre de votre activité libérale ?
