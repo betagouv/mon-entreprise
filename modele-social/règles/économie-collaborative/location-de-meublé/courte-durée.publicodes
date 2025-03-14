@@ -5,38 +5,3 @@ location de logement meublé . courte durée:
       résumé: Recettes pour un logement meublé de courte durée
       unité: €/an
 
-    cotisations:
-      titre: Cotisations dues pour la location d’un logement meublé de courte durée
-      variations:
-        - si: recettes < seuil de professionalisation
-          alors: 0 €/an
-        - sinon:
-            produit:
-              - assiette
-              - taux de cotisation
-      unité: €/an
-      non applicable si: recettes > plafond régime général
-
-      avec:
-        assiette:
-          variations:
-            - si: première année
-              alors: assiette première année
-            - sinon: assiette normale
-          abattement: 60%
-          unité: €/an
-
-          avec:
-            assiette première année:
-              formule: recettes - seuil de professionalisation
-              plancher: 0
-              unité: €/an
-            assiette normale: recettes
-
-        taux de cotisation:
-          titre: Taux de cotisation au régime général
-          description: Taux de cotisation pour la location d’un logement meublé de courte durée au régime général
-          variations:
-            - si: zone géographique . Alsace-Moselle
-              alors: 48.72%
-            - sinon:  47.42%
