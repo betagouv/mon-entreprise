@@ -702,17 +702,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
   titre.fr: taux Moselle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   avec:
-    cotisations CIPAV:
-      avec:
-        taux:
-          titre.en: '[automatic] rate'
-          titre.fr: taux
-      description.en: |
-        [automatic] Contributions for self-employed workers covered by Cipav
-      description.fr: |
-        Cotisations pour les professions libérales dépendant de la Cipav
-      titre.en: '[automatic] CIPAV contributions'
-      titre.fr: cotisations CIPAV
     répartition:
       avec:
         autres contributions:
@@ -1045,6 +1034,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         service BNC
       titre.en: '[automatic] BNC service'
       titre.fr: service BNC
+    taux CIPAV:
+      description.en: >
+        [automatic] Contribution rates for self-employed workers covered by Cipav
+      description.fr: |
+        Taux de cotisation pour les professions libérales dépendant de la Cipav
+      titre.en: '[automatic] CIPAV rate'
+      titre.fr: taux CIPAV
     vente restauration hébergement:
       avec:
         répartition:
