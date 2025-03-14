@@ -1,6 +1,15 @@
 # Journal des modifications
 
 ## next
+### Breaking changes
+- Suppression des règles dépréciées suivantes :
+	- dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BIC
+	- dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BNC
+	- dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux prestation de service
+	- dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux service BIC
+	- dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux service BNC
+	- dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux vente restauration hébergement
+	- dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service
 
 ## 6.0.0
 ### Breaking changes
