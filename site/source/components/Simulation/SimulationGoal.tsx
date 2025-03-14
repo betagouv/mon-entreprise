@@ -20,8 +20,8 @@ import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 import { useInitialRender } from '../utils/useInitialRender'
-import {normalizeRuleName} from '../utils/normalizeRuleName';
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -103,9 +103,7 @@ export function SimulationGoal({
 									}}
 								>
 									<Grid item>
-										<StyledBody
-											id={normalizeRuleName.Label(dottedName)}
-										>
+										<StyledBody id={normalizeRuleName.Label(dottedName)}>
 											<Strong>{label || rule.title}</Strong>
 										</StyledBody>
 									</Grid>
@@ -116,10 +114,10 @@ export function SimulationGoal({
 									</Grid>
 								</Grid>
 							) : (
-								<RuleLink
-									dottedName={dottedName}
-								>
-									<StyledLabel htmlFor={normalizeRuleName.Input(dottedName)}>{label || rule.title}</StyledLabel>
+								<RuleLink dottedName={dottedName}>
+									<StyledLabel htmlFor={normalizeRuleName.Input(dottedName)}>
+										{label || rule.title}
+									</StyledLabel>
 								</RuleLink>
 							)}
 
@@ -195,6 +193,7 @@ const StyledBody = styled(Body)`
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
 `
+
 const StyledLabel = styled.label`
-	cursor: pointer
-`;
+	cursor: pointer;
+`
