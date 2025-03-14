@@ -412,11 +412,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                 taux de répartition: 29.70%
 
     cotisations CIPAV:
-      remplace: cotisations
       description: |
         Cotisations pour les professions libérales dépendant de la Cipav
       applicable si: affiliation CIPAV
-      rend non applicable: entreprise . activités . revenus mixtes
       produit:
         - entreprise . chiffre d'affaires
         - taux

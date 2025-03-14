@@ -91,72 +91,74 @@ dirigeant . auto-entrepreneur . DROM:
           alors: 10.60%
         - sinon: 14.20%
 
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  applicable si: dirigeant . exonérations . ACRE
-  description: |
-    Ce taux correspond à la réduction de cotisations qui s’applique pour
-    l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
-    l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
-    cotisations.
-  unité: '%'
-  variations:
-    - si: entreprise . date de création < 01/04/2019
-      alors:
-        grille:
-          assiette: entreprise . durée d'activité
-          tranches:
-            - montant: 25%
-              plafond: 1 an
-            - montant: 50%
-              plafond: 2 ans
-            - montant: 90%
-              plafond: 3 ans
-    - si: entreprise . date de création < 01/04/2020
-      alors:
-        grille:
-          assiette: entreprise . durée d'activité
-          tranches:
-            - montant: 25%
-              plafond: 1 an
-            - montant: 75%
-              plafond: 2 ans
-            - montant: 90%
-              plafond: 3 ans
-    - si: entreprise . durée d'activité < 1 an
-      alors: 50%
-
-  références:
-    FAQ auto-entrepreneur - Urssaf: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
-    Aide à la création ou à la reprise d'une entreprise (Acre) - Service-public.fr: https://entreprendre.service-public.fr/vosdroits/F11677
+dirigeant . auto-entrepreneur . Acre:
+  valeur: dirigeant . exonérations . ACRE
 
   avec:
-    CIPAV:
-      remplace: cotisations CIPAV . taux
+    taux Acre:
+      description: |
+        Ce taux correspond à la réduction de cotisations qui s’applique pour
+        l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
+        l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
+        cotisations.
+      unité: '%'
       variations:
-        - si: entreprise . date de création >= 01/04/2020
-          alors: 12.10%
-        - sinon: cotisations CIPAV . taux * taux ACRE
+        - si: entreprise . date de création < 01/04/2019
+          alors:
+            grille:
+              assiette: entreprise . durée d'activité
+              tranches:
+                - montant: 25%
+                  plafond: 1 an
+                - montant: 50%
+                  plafond: 2 ans
+                - montant: 90%
+                  plafond: 3 ans
+        - si: entreprise . date de création < 01/04/2020
+          alors:
+            grille:
+              assiette: entreprise . durée d'activité
+              tranches:
+                - montant: 25%
+                  plafond: 1 an
+                - montant: 75%
+                  plafond: 2 ans
+                - montant: 90%
+                  plafond: 3 ans
+        - si: entreprise . durée d'activité < 1 an
+          alors: 50%
 
-    service BIC:
-      remplace: cotisations . service BIC . taux
-      valeur: taux ACRE * cotisations . service BIC . taux
+      références:
+        FAQ auto-entrepreneur - Urssaf: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
+        Aide à la création ou à la reprise d'une entreprise (Acre) - Service-public.fr: https://entreprendre.service-public.fr/vosdroits/F11677
+
+    taux service BIC:
+      remplace: cotisations et contributions . cotisations . service BIC . taux
+      valeur: taux Acre * cotisations et contributions . cotisations . service BIC . taux
       arrondi: 1 décimale
 
-    service BNC:
-      remplace: cotisations . service BNC . taux
-      valeur: taux ACRE * cotisations . service BNC . taux
+    taux service BNC:
+      remplace: cotisations et contributions . cotisations . service BNC . taux
+      valeur: taux Acre * cotisations et contributions . cotisations . service BNC . taux
       arrondi:
         variations:
           - si: date >= 01/2026
             alors: 2 décimales
           - sinon: 1 décimale
 
-    vente restauration hébergement:
-      remplace: cotisations . vente restauration hébergement . taux
-      valeur: taux ACRE * cotisations . vente restauration hébergement . taux
+    taux vente restauration hébergement:
+      remplace: cotisations et contributions . cotisations . vente restauration hébergement . taux
+      valeur: taux Acre * cotisations et contributions . cotisations . vente restauration hébergement . taux
       arrondi: 1 décimale
 
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel:
+    taux CIPAV:
+      remplace: cotisations et contributions . cotisations . cotisations CIPAV . taux
+      variations:
+        - si: entreprise . date de création >= 01/04/2020
+          alors: 12.10%
+        - sinon: taux Acre * cotisations et contributions . cotisations . cotisations CIPAV . taux
+
+dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel:
   experimental: oui
   formule: dirigeant . exonérations . ACRE
   type: notification
