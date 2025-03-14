@@ -481,7 +481,7 @@ protection sociale . retraite . base . CNAVPL:
         - si: date >= 01/2022
           alors: 0.5795 €/an/point
     références:
-      'CIPAV : Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
+      'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
 protection sociale . retraite . complémentaire . CIPAV:
   applicable si: dirigeant . indépendant . PL . CIPAV
@@ -489,8 +489,8 @@ protection sociale . retraite . complémentaire . CIPAV:
     - points acquis
     - valeur de service du point
   références:
-    'CIPAV : Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
-    Évolutions relatives aux droits et aux prestations de la CIPAV: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
+    'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
+    Évolutions relatives aux droits et aux prestations de la Cipav: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
 
   avec:
     points acquis:
