@@ -10,7 +10,10 @@
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux service BNC`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux vente restauration hébergement`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service`
+- Suppression de la règle `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV`
 - Renommage des règles suivantes :
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux` => `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux CIPAV`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE` => `dirigeant . auto-entrepreneur . Acre . taux Acre`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE` => `dirigeant . auto-entrepreneur . Acre . taux Acre`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . service BIC ` => `dirigeant . auto-entrepreneur . Acre . taux service BIC`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . service BNC ` => `dirigeant . auto-entrepreneur . Acre . taux service BNC`
