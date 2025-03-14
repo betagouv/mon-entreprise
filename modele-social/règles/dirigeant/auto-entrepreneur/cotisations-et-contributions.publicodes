@@ -12,7 +12,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
   titre: Taxes pour frais de chambre
   unité: €/mois
   note: |
-    Nous n'avons pas intégré les exceptions suivantes :
+    Nous n’avons pas intégré les exceptions suivantes :
     - Artisans en double immatriculation CCI-CMA
   références:
     Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
@@ -134,13 +134,13 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
 
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   description: |
-    Les cotisations sociales donnent à l'auto-entrepreneur accès à une
-    protection sociale minimale : une retraite, des soins de santé, des
+    Les cotisations sociales donnent à l’auto-entrepreneur accès à une
+    protection sociale minimale : une retraite, des soins de santé, des
     allocations familiales, etc.
 
-    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
+    L’auto-entreprise est un régime simplifié : plutôt qu’une fiche de paie
     complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
-    taux dépend de la catégorie d'activité.
+    taux dépend de la catégorie d’activité.
 
   références:
     Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
@@ -157,7 +157,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         maladie-maternité:
           icônes: 🏥
           description: |
-            Part des cotisations auto-entrepreneur qui alimentent l'assurance
+            Part des cotisations auto-entrepreneur qui alimentent l’assurance
             maladie-maternité
 
             L’Assurance Maladie protège durablement la santé de chacun dans sa vie
@@ -169,14 +169,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             universel aux droits et elle permet l’accès aux soins.
 
             Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas
-            de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+            de maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
-            ## L'assurance maladie en France en quelques chiffres
-              - **92 %** des dépenses de santé remboursées en moyenne par l'assurance
+            ## L’assurance maladie en France en quelques chiffres
+              - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
               maladie et la complémentaire
-              - **30 000 € / an / patient** : exemple de prise en charge complète
+              - **30 000 € / an / patient** : exemple de prise en charge complète
               pour une personne atteinte de mucoviscidose
-              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10
+              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10
               mondial 🏅)
           somme:
             - vente restauration hébergement . répartition . maladie-maternité
@@ -185,10 +185,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         invalidité-décès:
           icônes: 🦽
           description: |
-            Part des cotisations auto-entrepreneur qui alimentent l'assurance
+            Part des cotisations auto-entrepreneur qui alimentent l’assurance
             invalidité-décès
 
-            Garantit le versement d'une pension en cas d'invalidité et un capital à
+            Garantit le versement d’une pension en cas d’invalidité et un capital à
             vos proches en cas de décès.
           somme:
             - vente restauration hébergement . répartition . invalidité-décès
@@ -225,11 +225,11 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
             ###… principalement contributif
             Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre
-            « revenu » à la retraite) est calculé en fonction de vos revenus, de
+            « revenu » à la retraite) est calculé en fonction de vos revenus, de
             votre âge de départ à la retraite et du nombre d’années passées à
             travailler.
 
-            **Notre système de retraite est également solidaire**: les chômeurs, les
+            **Notre système de retraite est également solidaire** : les chômeurs, les
             personnes en arrêt maladie, les personnes en situation de handicap, les
             travailleurs touchant de faibles revenus, les femmes en congé maternité
             acquièrent également des droits. Aucune personne à la retraite n’est
@@ -255,7 +255,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           valeur: dirigeant . auto-entrepreneur . cotisations et contributions . CFP
 
     service BIC:
-      description: Cotisations pour la part du chiffre d'affaires en prestation de
+      description: Cotisations pour la part du chiffre d’affaires en prestation de
         service BIC
       produit:
         - entreprise . chiffre d'affaires . service BIC
@@ -293,7 +293,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                 taux de répartition: 29.70%
 
     service BNC:
-      description: Cotisations pour la part du chiffre d'affaires en prestation de
+      description: Cotisations pour la part du chiffre d’affaires en prestation de
         service BNC
       produit:
         - entreprise . chiffre d'affaires . service BNC
@@ -377,7 +377,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                     - sinon: 36.50%
 
     vente restauration hébergement:
-      description: Cotisations pour la part du chiffre d'affaires en vente,
+      description: Cotisations pour la part du chiffre d’affaires en vente,
         restauration et hébergement
       produit:
         - entreprise . chiffre d'affaires . vente restauration hébergement
