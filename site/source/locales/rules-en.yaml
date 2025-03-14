@@ -458,17 +458,27 @@ dirigeant . assimilé salarié:
   titre.fr: assimilé salarié
 dirigeant . auto-entrepreneur:
   description.en: >
-    [automatic] The auto-entrepreneur is a simplified individual business.
-    Originally known as "auto-entrepreneur", the "micro-entrepreneur" regime is
-    a self-employed worker regime created to simplify administrative management,
-    notably by replacing all social contributions with a single monthly
-    deduction.
+    [automatic] The auto-entreprise is a simplified sole proprietorship.
+    Originally known
+
+    under the name "auto-entrepreneur", the "micro-entrepreneur" scheme is a self-employed
+
+    a self-employed worker scheme created to simplify administrative
+
+    by replacing all social security contributions with a single monthly deduction.
+
+    single monthly deduction.
   description.fr: >
     L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine
-    connu sous l'appellation « auto-entrepreneur », le régime de «
-    micro-entrepreneur » est un régime de travailleur indépendant créé pour
-    simplifier la gestion administrative, notamment en remplaçant toutes les
-    cotisations sociales par un prélèvement unique mensuel.
+    connu
+
+    sous l'appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est
+
+    un régime de travailleur indépendant créé pour simplifier la gestion
+
+    administrative, notamment en remplaçant toutes les cotisations sociales par un
+
+    prélèvement unique mensuel.
   titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
 dirigeant . auto-entrepreneur . DROM:
@@ -495,19 +505,34 @@ dirigeant . auto-entrepreneur . DROM:
       titre.en: '[automatic] sales rate catering accommodation'
       titre.fr: taux vente restauration hébergement
   description.en: >
-    [automatic] As an auto-entrepreneur starting out in business, you benefit
-    from an exemption that translates into the application of reduced
-    contribution rates over three years, corresponding to :
+    [automatic] As an auto-entrepreneur just starting out, you benefit from a
+    tax exemption.
 
-      - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or unregulated liberal professional, 1/3 if you are a regulated liberal professional, until the end of the 7th quarter following the quarter in which you started your business,
-      - ½ of the full metropolitan rates if you are a craftsman, tradesman or self-employed professional, for the period between the end of the 8th quarter of activity and the end of the 3rd calendar year of activity,
+    exemption, which translates into the application of reduced contribution rates over
+
+    three years, corresponding to :
+
+      - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or
+      1/3 if you are a regulated liberal professional, until the end of the year.
+      until the end of the 7th quarter following the quarter in which you
+      you started your business,
+      - ½ of the full rate for mainland France, whether you are a craftsman, merchant or
+      self-employed professional, for the period between the end of the 8th quarter
+      until the end of the 3rd calendar year of activity,
   description.fr: >
     En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une
-    exonération qui se traduit par l’application de taux réduits de cotisations
-    sur trois ans, correspondant à :
 
-      - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
-      - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
+    exonération qui se traduit par l’application de taux réduits de cotisations sur
+
+    trois ans, correspondant à :
+
+      - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou
+      professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral
+      réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel
+      vous avez débuté votre activité,
+      - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou
+      professionnel libéral, pour la période qui court entre la fin du 8ème trimestre
+      d’activité jusqu’à la fin de la 3ème année civile d’activité,
   note.en: '[automatic] DOM rates are defined as a percentage of metropolitan
     France rates, but the rounding rules are unclear.'
   note.fr:
@@ -519,25 +544,38 @@ dirigeant . auto-entrepreneur . affiliation CIPAV:
   avec:
     adhérent:
       description.en: >
-        [automatic] Since January 1, 2018, auto-entrepreneurs in unregulated
-        liberal professions have been affiliated to the Social Security for the
-        Self-Employed (SSI).
+        [automatic] Since January 1, 2018, self-employed workers in unregulated
+        liberal professions
+
+        are affiliated to the Sécurité sociale pour les indépendants (SSI).
 
 
-        Non-regulated self-employed liberal professionals created before January 1, 2018, who were members of Cipav, remain members of Cipav.
+        Unregulated self-employed self-employed professionals created before January 1
+
+        January 2018, who were members of Cipav, remain members of Cipav.
 
 
-        The auto-entrepreneurs concerned do, however, have a five-year right of option to join Sécurité sociale pour les indépendants (SSI).
+        The auto-entrepreneurs concerned do, however, have a right of option
+
+        for five years to join the Sécurité sociale pour les indépendants
+
+        (SSI).
       description.fr: >
         Depuis le 1er janvier 2018, les auto-entreprises d'activité libérale non
-        réglementée sont affiliées à la Sécurité sociale pour les indépendants
+
+        réglementée sont affiliées à la Sécurité sociale pour les indépendants (SSI).
+
+
+        Les auto-entreprises d'activité libérale non réglementée créées avant le 1er
+
+        janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
+
+
+        Les auto-entrepreneurs concernés disposent toutefois d’un droit d'option
+
+        durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants
+
         (SSI).
-
-
-        Les auto-entreprises d'activité libérale non réglementée créées avant le 1er janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
-
-
-        Les auto-entrepreneurs concernés disposent toutefois d’un droit d'option durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants (SSI).
       question.en: '[automatic] Are you a Cipav member?'
       question.fr: Êtes-vous adhérent à la Cipav ?
       titre.en: '[automatic] member'
@@ -643,12 +681,18 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         autres contributions:
           description.en: >
             [automatic] Share of auto-entrepreneur contributions to the general
-            social contribution and the contribution for the repayment of the
-            social debt
+            social contribution
+
+            contribution and the contribution for the repayment of the social debt.
+
+            sociale
           description.fr: >
             Part des cotisations auto-entrepreneur qui alimentent la
-            contribution sociale généralisée et la cotisation pour le
-            remboursement de la dette sociale
+            contribution
+
+            sociale généralisée et la cotisation pour le remboursement de la dette
+
+            sociale
           titre.en: '[automatic] other contributions'
           titre.fr: autres contributions
         formation professionnelle:
@@ -656,56 +700,92 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: formation professionnelle
         invalidité-décès:
           description.en: >
-            [automatic] Percentage of auto-entrepreneur contributions to
-            disability and death insurance
+            [automatic] Percentage of auto-entrepreneur contributions that go to
+            insurance
+
+            insurance
 
 
-            Guarantees payment of a pension in the event of disability and a lump sum to your loved ones in the event of death.
+            Guarantees payment of a pension in the event of disability and a lump sum to your
+
+            in the event of death.
           description.fr: >
             Part des cotisations auto-entrepreneur qui alimentent l'assurance
+
             invalidité-décès
 
 
-            Garantit le versement d'une pension en cas d'invalidité et un capital à vos proches en cas de décès.
+            Garantit le versement d'une pension en cas d'invalidité et un capital à
+
+            vos proches en cas de décès.
           titre.en: '[automatic] disability and death'
           titre.fr: invalidité-décès
         maladie-maternité:
           description.en: >
-            [automatic] Percentage of auto-entrepreneur contributions paid into
-            sickness and maternity insurance schemes
+            [automatic] Percentage of auto-entrepreneur contributions that go
+            towards
+
+            sickness and maternity insurance
 
 
-            Assurance Maladie provides long-term protection for the health of everyone in their personal and professional lives.
+            Assurance Maladie provides long-term health protection for everyone, whether
+
+            and professional life.
 
 
-            In concrete terms, it supports 60 million insured people throughout their lives, covering their care regardless of their resources, situation or state of health. In this way, it guarantees universal access to rights and enables access to care.
+            In concrete terms, it supports 60 million policyholders throughout their lives
+
+            care, whatever their resources, situation or state of health,
+
+            situation or state of health. It guarantees universal access
+
+            to rights and access to care.
 
 
-            You are covered for most healthcare services. In the event of serious or long-term illness, 100% of treatment is reimbursed.
+            It means you're covered for most healthcare services. In the event of
+
+            serious or long-term illness, 100% of treatment is reimbursed.
 
 
             ## Health insurance in France in figures
-              - 92%** of healthcare costs reimbursed on average by health insurance and complementary health insurance.
-              - 30,000/year/patient**: example of full coverage for a person with cystic fibrosis
-              - 82.4 years** average life expectancy in France (in the top 10 worldwide 🏅)
+              - 92%** of healthcare expenses reimbursed on average by health insurance
+              and supplementary health insurance
+              - 30,000 / year / patient**: example of full coverage
+              for a person with cystic fibrosis
+              - 82.4 years** average life expectancy in france (in the top 10 worldwide)
+              worldwide 🏅)
           description.fr: >
             Part des cotisations auto-entrepreneur qui alimentent l'assurance
+
             maladie-maternité
 
 
-            L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
+            L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+
+            personnelle ou professionnelle.
 
 
-            Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+            Concrètement, elle accompagne 60 millions d’assurés tout au long de leur
+
+            vie, en prenant en charge leurs soins quels que soient leurs ressources,
+
+            leur situation ou leur état de santé. Elle garantit ainsi un accès
+
+            universel aux droits et elle permet l’accès aux soins.
 
 
-            Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+            Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas
+
+            de maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
 
             ## L'assurance maladie en France en quelques chiffres
-              - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
-              - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
-              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+              - **92 %** des dépenses de santé remboursées en moyenne par l'assurance
+              maladie et la complémentaire
+              - **30 000 € / an / patient** : exemple de prise en charge complète
+              pour une personne atteinte de mucoviscidose
+              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10
+              mondial 🏅)
           titre.en: '[automatic] illness-maternity'
           titre.fr: maladie-maternité
         retraite:
@@ -715,45 +795,97 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
             ### A compulsory system ...
 
-            As soon as you start working, you and your employer contribute to your pension. This contribution is based on the salary you receive.
+            As long as you're working, you and your employer contribute to your
+
+            contributions. This contribution is based on the salary you receive.
+
+            you receive.
 
 
             ###Pay-as-you-go
 
-            The total amount of contributions you pay each year is used to pay the pensions of retirees for that same year. The system thus organizes a direct transfer from working generations to retired generations.
+            The total amount of contributions you make each year is used to pay
+
+            pensions for that same year. The pay-as-you-go
+
+            system thus organizes a direct transfer from working generations to
+
+            retired generations.
 
 
             ###Mainly contributory
 
-            When you retire, your pension (i.e. your retirement "income") is calculated on the basis of your income, your retirement age and the number of years you have worked.
+            When you retire, your pension (i.e. your retirement "income") is
+
+            retirement "income") is calculated on the basis of your income, your retirement age
+
+            your retirement age and the number of years you've worked.
+
+            working.
 
 
-            **Our pension system is also based on solidarity**: the unemployed, people on sick leave, disabled people, low-income workers and women on maternity leave also acquire rights. No retired person is left destitute.
+            **Our pension system is also based on solidarity**: the unemployed, people on sick leave
+
+            people on sick leave, people with disabilities, low-income workers
+
+            low-income earners, women on maternity leave, etc., also acquire
+
+            also acquire rights. No retired person is left
+
+            left destitute.
 
 
-            Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+            Simulate and manage your retirement on
+
+            [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
           description.fr: >
             Part des cotisations auto-entrepreneur qui alimentent la retraite
 
             ### Un système obligatoire …
 
-            Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+            Dès lors que vous travaillez, vous et votre employeur, cotisez pour la
+
+            retraite. Cette cotisation est définie à la mesure du salaire que vous
+
+            percevez.
 
 
             ###… par répartition
 
-            Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
+            Le montant total des cotisations que vous versez chaque année sert à
+
+            payer les pensions des retraités pour cette même année. Le système
+
+            organise ainsi un transfert direct des générations en activité vers les
+
+            générations à la retraite.
 
 
             ###… principalement contributif
 
-            Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+            Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre
+
+            « revenu » à la retraite) est calculé en fonction de vos revenus, de
+
+            votre âge de départ à la retraite et du nombre d’années passées à
+
+            travailler.
 
 
-            **Notre système de retraite est également solidaire**: les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+            **Notre système de retraite est également solidaire**: les chômeurs, les
+
+            personnes en arrêt maladie, les personnes en situation de handicap, les
+
+            travailleurs touchant de faibles revenus, les femmes en congé maternité
+
+            acquièrent également des droits. Aucune personne à la retraite n’est
+
+            laissée sans ressources.
 
 
-            Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+            Simulez et gérez votre retraite sur
+
+            [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
           titre.en: '[automatic] retirement'
           titre.fr: retraite
         retraite complémentaire:
@@ -1141,23 +1273,35 @@ dirigeant . auto-entrepreneur . éligible à l'ACRE:
   description.en: >
     [automatic] ACRE is reserved for the following auto-entrepreneurs:
 
-    - Jobseekers (with or without benefits, but registered with France Travail for at least 6 months in the last 18 months).
+    - Jobseekers (with or without benefits, but with at least 6 months
+
+    months of registration with France Travail in the last 18 months).
 
     - Recipients of social assistance (RSA, ASS, ATA).
 
-    - Young people aged between 18 and 25 (up to 29 for people recognized as disabled).
+    - Young people aged between 18 and 25 (up to 29 for people recognized as being
+
+    disabled)
 
     - People setting up a micro-business in a priority urban district (QPPV).
+
+    quartier prioritaire de la ville (QPPV)
   description.fr: >
     L'ACRE est réservée aux auto-entrepreneurs suivants:
 
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
+    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6
+
+    mois d’inscription à France Travail au cours des 18 derniers mois).
 
     - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
 
-    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en
 
-    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
+    situation de handicap)
+
+    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la
+
+    ville (QPPV)
   question.en: '[automatic] Are you eligible for ACRE for your auto-entreprise?'
   question.fr: Êtes-vous éligible à l'ACRE pour votre auto-entreprise ?
   titre.en: '[automatic] eligible for ACRE'
@@ -1193,7 +1337,7 @@ dirigeant . exonérations . ACRE:
     Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
 
 
-    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants:
+    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants :
 
     - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
 
