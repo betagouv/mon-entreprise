@@ -2394,7 +2394,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     l’évolution de l’offre de santé au niveau régional, notamment à la
     préparation du projet régional de santé et à sa mise en œuvre.
 
-    Ces unions sont financées par une contribution recouvrée par l’Urssaf : la
+    Ces unions sont financées par une contribution recouvrée par l’Urssaf : la
     contribution aux unions régionales des professionnels de santé (Curps).
   note.en: >
     [automatic] Replacements, regardless of their activity, are not liable for
@@ -2429,12 +2429,12 @@ dirigeant . indépendant . PL . PAMC . IJSS:
     cas de congé maternité/paternité/adoption.
 
 
-    La CSG-CRDS est automatiquement précomptée par l'Assurance maladie lors du versement. Leur montant est donc retranché à l'assiette pour le calcul de la CSG-CRDS restante dûe.
+    La CSG-CRDS est automatiquement précomptée par l’Assurance maladie lors du versement. Leur montant est donc retranché à l’assiette pour le calcul de la CSG-CRDS restante dûe.
 
 
     Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
 
-    Note: Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
+    Note : Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
   question.en:
     '[automatic] What is the amount of the daily maternity or paternity
     allowances received for your liberal profession?'
@@ -2451,66 +2451,59 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
   description.en: '[automatic] Also known as conventional income, this is fee
     income net of surcharges.'
-  description.fr: Aussi appelé revenu conventionnel, il s'agit du revenu des
+  description.fr: Aussi appelé revenu conventionnel, il s’agit du revenu des
     honoraires nets de dépassement.
-  note.en: >
+  note.en: |
     [automatic] The formula referred to in Urssaf texts is as follows:
-
-    &gt; (income from conventional activity) x (total fees - total excess fees) / total fees.
-
+    &gt; (income from conventional activity) x (total fees - total excess
+    &gt; fee overruns) / total fees.
 
     This formula can be simplified to :
-
     &gt; (income from conventional activity) / (100% + average fee overrun)
 
-
     ### Proof
-
     If we take the following variables,
-
     &gt; `h+`: total fees (with overrun)
       h`: fees without overrun
       `d%`: average overcharge percentage
 
     We have :
-
     &gt;
       `h+ = h + h * d%`
       `h+ = h * (100% + d%)`
 
     If we replace the CPAM participation base formula, we get :
-
     &gt; 1. `(income from conventional activity) * h / h+`
-
     &gt; 2. `(income from conventional activity) * h / (h * (100% + d%))
-
     &gt; 3. `(income from conventional activity) / (100% + d%)`
   note.fr: >
-    La formule référencée dans les textes Urssaf est la suivante :
+    La formule référencée dans les textes Urssaf est la suivante :
 
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires.
+    > (revenu de l’activité conventionnée) x (total des honoraires - total des
+
+    > dépassements d’honoraires) / montant total des honoraires.
 
 
-    On peut simplififer cette formule en :
+    On peut simplififer cette formule en :
 
-    > (revenu de l’activité conventionnée) / (100% + dépassement d'honoraire moyen)
+    > (revenu de l’activité conventionnée) / (100% + dépassement d’honoraire moyen)
 
 
     ### Preuve
 
     Si on prends les variables suivantes,
 
-    > `h+` : total des honoraires (avec dépassement)
-      `h` : honoraires sans dépassement
-      `d%`: pourcentage de dépassement d'honoraire moyen
+    > `h+` : total des honoraires (avec dépassement)
+      `h` : honoraires sans dépassement
+      `d%`: pourcentage de dépassement d’honoraire moyen
 
-    On a :
+    On a :
 
     >
       `h+ = h + h * d%`
       `h+ = h * (100% + d%)`
 
-    Si on remplace dans la formule de l'assiette participation CPAM, on a :
+    Si on remplace dans la formule de l’assiette participation CPAM, on a :
 
     > 1. `(revenu de l’activité conventionnée) * h / h+`
 
@@ -2527,7 +2520,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     [automatic] The "Urssaf rate" (taux UR) is used to calculate the portion of
     your
 
-    sickness and maternity insurance contribution paid by the CPAM.
+    health and maternity insurance contribution paid by the CPAM.
 
 
     This rate is pre-filled on your professional income tax return. It
@@ -2548,9 +2541,11 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     The formula for calculating the overrun rate is as follows:
 
 
-    &gt; Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable acts + amounts reimbursed CMU lump sums)
+    &gt; Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable &gt; procedures + amounts reimbursed CMU lump sums).
+
+    &gt; reimbursable procedures + reimbursed CMU lump-sum amounts)
   description.fr: >
-    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
+    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
 
     cotisation d’assurance maladie-maternité prise en charge par la CPAM.
 
@@ -2570,12 +2565,14 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     ## Calcul du taux
 
 
-    La formule de calcul du taux de dépassement est la suivante :
+    La formule de calcul du taux de dépassement est la suivante :
 
 
-    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
+    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
+
+    > remboursables actes + montants remboursés forfaits CMU)
   question.en: '[automatic] What is your "Urssaf rate"?'
-  question.fr: Quel est votre "taux Urssaf" ?
+  question.fr: Quel est votre « taux Urssaf » ?
   titre.en: '[automatic] Urssaf rate'
   titre.fr: taux Urssaf
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
@@ -2585,7 +2582,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   titre.fr: notification
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   question.en: '[automatic] What is your average excess fee (estimate)?'
-  question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
+  question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
   titre.en: '[automatic] average overpayment'
   titre.fr: dépassement d'honoraire moyen
 dirigeant . indépendant . PL . PAMC . maladie:
@@ -2600,11 +2597,13 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   titre.fr: contribution additionnelle
 dirigeant . indépendant . PL . PAMC . participation CPAM:
   description.en: >
-    [automatic] Health insurance covers a portion of the fees paid by contracted
-    healthcare professionals.
-  description.fr: >
-    Les professionnels de santé conventionnés bénéficient d'une prise en charge
-    d'une partie de leur cotisations par l'Assurance Maladie.
+    [automatic] Health professionals who are members of a health insurance
+    agreement
+
+    by the Assurance Maladie.
+  description.fr: |
+    Les professionnels de santé conventionnés bénéficient d’une prise en charge
+    d’une partie de leur cotisations par l’Assurance Maladie.
   titre.en: '[automatic] Health insurance participation'
   titre.fr: Participation assurance maladie
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
@@ -2634,7 +2633,7 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     training, installation bonus, etc.)
   description.fr: |
     Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
-    les catégories suivantes :
+    les catégories suivantes :
 
     - Honoraires tirés des actes remboursables (y compris les
     dépassements d’honoraires et les frais de déplacement figurant sur le relevé
@@ -2650,8 +2649,8 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     [automatic] How much of your sales are linked to non-standard activities?
     (estimate)?
   question.fr: |
-    Quel est la part de votre chiffre d'affaires liée à une activité non
-    conventionnée (estimation) ?
+    Quel est la part de votre chiffre d’affaires liée à une activité non
+    conventionnée (estimation) ?
   suggestions.10%.en: '[automatic] 10%'
   suggestions.10%.fr: 10%
   suggestions.30%.en: '[automatic] 30%'
@@ -2674,21 +2673,27 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
         more](https://www.medecins-remplacants.urssaf.fr/accueil)'
       description.fr:
         Vous exercez une activité de médecin exclusivement en tant que
-        remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
+        remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
         [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
       titre.en: '[automatic] simplified offer doctors'
       titre.fr: offre simplifiée médecins
   description.en: >
     [automatic] Practitioners and medical auxiliaries working as replacements
-    are not liable for contributions to regional unions of healthcare
+    are not liable for
+
+    are not liable for contributions to regional unions of healthcare professionals
+
     professionals (CURPS).
   description.fr: >
     Les practicien et auxiliaire médical exerçant une activité de remplacement
-    ne sont pas redevables de la contribution aux unions régionales des
-    professionnels de santé (CURPS)
+    ne
+
+    sont pas redevables de la contribution aux unions régionales des professionnels
+
+    de santé (CURPS).
   question.fr:
     texte: Au {{ période . début d'année }}, exerciez-vous votre activité
-      exclusivement en tant que remplaçant ?
+      exclusivement en tant que remplaçant ?
   titre.en: '[automatic] replacing'
   titre.fr: remplaçant
 dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
@@ -2711,10 +2716,10 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
 
     to the proportion of sales generated by approved procedures.
   note.fr: |
-    Pour éviter d'avoir à ventiler les charges entre celles issues de
-    l'activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
+    Pour éviter d’avoir à ventiler les charges entre celles issues de
+    l’activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
     deux comptabilités distinct), on peut le calculer à partir du revenu
-    professionnel que l'on ajuste en fonction de la part du chiffre d'affaires
+    professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
     provenant des actes conventionnés.
   titre.en: '[automatic] income from agreement activity'
   titre.fr: revenus activité conventionnée
