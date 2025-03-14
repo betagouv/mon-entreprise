@@ -1,0 +1,52 @@
+dirigeant . auto-entrepreneur . impôt: oui
+
+dirigeant . auto-entrepreneur . impôt . revenu imposable: entreprise . imposition . régime . micro-entreprise . revenu abattu
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire:
+  rend non applicable: revenu imposable
+  description: |
+    Avec l’option pour le versement libératoire, l’impôt sur le revenu est payé
+    en même temps que vos cotisations (par mois ou par trimestre) avec
+    application d’un taux spécifique en fonction de votre activité.
+
+    Pour en bénéficier en 2025, votre revenu fiscal de référence pour l’année
+    2023 ne doit pas excéder 28 797 € pour une part de quotient familial.
+
+    Pour bénéficier ou sortir du dispositif l’année suivante, il faut en faire
+    la demande à l’Urssaf au plus tard le 30 septembre.
+
+    Pour vérifier si cette option est adaptée à votre situation personnelle,
+    vous devez effectuer des simulations sur le site des impôts.
+  références:
+    Le versement libératoire: https://www.impots.gouv.fr/professionnel/le-versement-liberatoire
+    Quand et comment puis-je opter pour le versement libératoire de l’impôt ?: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html#quand-et-comment-puis-je-opter-p
+    Lexique de l’Urssaf: https://www.autoentrepreneur.urssaf.fr/portail/accueil/lexique.html?lettre=V#versement-liberatoire-de-limpot2
+    En tant que micro-entrepreneur, sous quelles conditions puis-je opter pour le versement libératoire de l’impôt ?: https://www.impots.gouv.fr/professionnel/questions/en-tant-que-micro-entrepreneur-sous-quelles-conditions-puis-je-opter-pour-l
+    'Micro-entreprise : comment fonctionne le versement libératoire de l’impôt sur le revenu ?': https://www.economie.gouv.fr/entreprises/micro-entreprise-auto-entreprise-versement-liberatoire-impot-revenu
+    Devenir auto-entrepreneur, combien ça coûte ? Durant la vie de votre auto-entreprise: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+  question: Bénéficiez-vous du versement libératoire de l’impôt sur le revenu ?
+  par défaut: non
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire . seuil dépassé:
+  type: notification
+  valeur: impôt . foyer fiscal . revenu fiscal de référence > 27519 €/an
+  description: |
+    Le versement libératoire n’est pas disponible si le revenu fiscal de
+    référence de votre ménage est supérieur à 27 519 € par part en 2018
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
+  titre: versement libératoire auto-entrepreneur
+  description: |
+    Si vous avez opté pour le versement libératoire, l’impôt sur le revenu est
+    payé en même temps que vos cotisations (par mois ou par trimestre) avec
+    application d’un taux spécifique en fonction de votre activité
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - 1%
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - 1.7%
+    - produit:
+        - entreprise . chiffre d'affaires . service BNC
+        - 2.2%
