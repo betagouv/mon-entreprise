@@ -481,6 +481,53 @@ dirigeant . auto-entrepreneur:
     prélèvement unique mensuel.
   titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
+dirigeant . auto-entrepreneur . Acre:
+  avec:
+    taux Acre:
+      description.en: >
+        [automatic] This rate corresponds to the reduction in contributions
+        applicable to
+
+        auto-entrepreneurs benefiting from Acre. A rate of 75% means that
+
+        the auto-entrepreneur must pay 75% of the original amount of the
+
+        contributions.
+      description.fr: |
+        Ce taux correspond à la réduction de cotisations qui s’applique pour
+        l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
+        l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
+        cotisations.
+      titre.en: '[automatic] Acre rate'
+      titre.fr: taux Acre
+    taux CIPAV:
+      titre.en: '[automatic] CIPAV rate'
+      titre.fr: taux CIPAV
+    taux service BIC:
+      titre.en: '[automatic] BIC service rate'
+      titre.fr: taux service BIC
+    taux service BNC:
+      titre.en: '[automatic] BNC service rate'
+      titre.fr: taux service BNC
+    taux vente restauration hébergement:
+      titre.en: '[automatic] sales rate catering accommodation'
+      titre.fr: taux vente restauration hébergement
+  titre.en: '[automatic] Acre'
+  titre.fr: Acre
+dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel:
+  description.en: >
+    [automatic] The Acre rate used is that corresponding to the current month.
+    The
+
+    simulator does not yet take into account the overlapping of two Acre periods
+
+    in the same year.
+  description.fr: |
+    Le taux Acre utilisé est celui correspondant au mois courant. Le
+    simulateur ne prend pas encore en compte le chevauchement de deux périodes
+    d’Acre sur une même année.
+  titre.en: '[automatic] notification annual ACRE calculation'
+  titre.fr: notification calcul ACRE annuel
 dirigeant . auto-entrepreneur . DROM:
   avec:
     première période:
@@ -1071,50 +1118,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     taux dépend de la catégorie d’activité.
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  avec:
-    CIPAV:
-      titre.en: '[automatic] CIPAV'
-      titre.fr: CIPAV
-    service BIC:
-      titre.en: '[automatic] BIC service'
-      titre.fr: service BIC
-    service BNC:
-      titre.en: '[automatic] BNC service'
-      titre.fr: service BNC
-    vente restauration hébergement:
-      titre.en: '[automatic] sales catering accommodation'
-      titre.fr: vente restauration hébergement
-  description.en: >
-    [automatic] This rate corresponds to the reduction in contributions
-    applicable to
-
-    auto-entrepreneurs benefiting from Acre. A rate of 75% means that
-
-    the auto-entrepreneur must pay 75% of the original amount of the
-
-    contributions.
-  description.fr: |
-    Ce taux correspond à la réduction de cotisations qui s’applique pour
-    l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
-    l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
-    cotisations.
-  titre.en: '[automatic] ACRE rate'
-  titre.fr: taux ACRE
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel:
-  description.en: >
-    [automatic] The Acre rate used is that corresponding to the current month.
-    The
-
-    simulator does not yet take into account the overlapping of two Acre periods
-
-    in the same year.
-  description.fr: |
-    Le taux Acre utilisé est celui correspondant au mois courant. Le
-    simulateur ne prend pas encore en compte le chevauchement de deux périodes
-    d’Acre sur une même année.
-  titre.en: '[automatic] notification calculation ACRE annual'
-  titre.fr: notification calcul ACRE annuel
 dirigeant . auto-entrepreneur . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
