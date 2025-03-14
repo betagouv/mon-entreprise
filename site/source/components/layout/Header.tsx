@@ -49,13 +49,12 @@ export default function Header() {
 							</StyledLogo>
 						</Link>
 
-						<div style={{ flex: 1 }} />
-
 						<div
 							style={{
 								display: 'flex',
 								alignItems: 'center',
 								marginRight: '1rem',
+								marginLeft: 'auto',
 							}}
 						>
 							<Emoji emoji="☀️" aria-hidden />
