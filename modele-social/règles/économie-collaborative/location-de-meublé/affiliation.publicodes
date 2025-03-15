@@ -17,10 +17,8 @@ location de logement meublé . affiliation:
       titre: Travailleur indépendant
       description: Vous avez la possibilité d’opter pour le régime du travailleur indépendant
       valeur: affiliation = 'TI'
-      estimation: location de logement meublé . cotisations . régime travailleur indépendant
     ME:
       titre: Micro-entreprise
       valeur: affiliation = 'ME'
       description: Vous avez la possibilité d’opter pour le régime de la micro-entreprise
-      estimation: location de logement meublé . cotisations . régime micro-entreprise
 
