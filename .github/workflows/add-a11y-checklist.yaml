@@ -1,42 +1,42 @@
-name: Add A11Y checklist
-on:
-  pull_request:
-    types: [opened, synchronize]
-jobs:
-  add-a11y-check-if-necessary:
-    if: github.event.pull_request.head.repo.full_name != github.repository
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Get changed files in the site folder
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v36
-        with:
-          files: |
-            site/**
-      - name: Find Comment
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
-        uses: peter-evans/find-comment@v2
-        id: find-comment
-        with:
-          issue-number: ${{ github.event.pull_request.number }} #e.g. 1
-          comment-author: 'github-actions[bot]'
-          body-includes: accessibilité
-      - name: Create comment
-        if: steps.changed-files-specific.outputs.any_changed == 'true' && steps.find-comment.outputs.comment-id == ''
-        uses: peter-evans/create-or-update-comment@v3
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-id: ${{ steps.find-comment.outputs.comment-id }}
-          body: |
-            ## ♿ Checklist accessibilité :
+# name: Add A11Y checklist
+# on:
+#   pull_request:
+#     types: [opened, synchronize]
+# jobs:
+#   add-a11y-check-if-necessary:
+#     if: github.event.pull_request.head.repo.full_name != github.repository
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#         with:
+#           fetch-depth: 0
+#       - name: Get changed files in the site folder
+#         id: changed-files-specific
+#         uses: tj-actions/changed-files@v36
+#         with:
+#           files: |
+#             site/**
+#       - name: Find Comment
+#         if: steps.changed-files-specific.outputs.any_changed == 'true'
+#         uses: peter-evans/find-comment@v2
+#         id: find-comment
+#         with:
+#           issue-number: ${{ github.event.pull_request.number }} #e.g. 1
+#           comment-author: 'github-actions[bot]'
+#           body-includes: accessibilité
+#       - name: Create comment
+#         if: steps.changed-files-specific.outputs.any_changed == 'true' && steps.find-comment.outputs.comment-id == ''
+#         uses: peter-evans/create-or-update-comment@v3
+#         with:
+#           issue-number: ${{ github.event.pull_request.number }}
+#           comment-id: ${{ steps.find-comment.outputs.comment-id }}
+#           body: |
+#             ## ♿ Checklist accessibilité :
 
-            Quelques points à vérifier pour maintenir une bonne accessibilité du site :
+#             Quelques points à vérifier pour maintenir une bonne accessibilité du site :
 
-            - [ ] les labels des boutons et des liens sont descriptifs
-            - [ ] un aria-label est ajouté pour préciser l'action d'un bouton ou d'un lien pour les lecteurs d'écran
-            - [ ] les couleurs du texte est suffisamment constratée par rapport à la couleur de background
-            - [ ] la fonctionnalité ajoutée est utilisable en navigant au clavier et avec un lecteur d'écran
-            - [ ] les changements de contexte sont évités ou au minimum annoncés
+#             - [ ] les labels des boutons et des liens sont descriptifs
+#             - [ ] un aria-label est ajouté pour préciser l'action d'un bouton ou d'un lien pour les lecteurs d'écran
+#             - [ ] les couleurs du texte est suffisamment constratée par rapport à la couleur de background
+#             - [ ] la fonctionnalité ajoutée est utilisable en navigant au clavier et avec un lecteur d'écran
+#             - [ ] les changements de contexte sont évités ou au minimum annoncés
