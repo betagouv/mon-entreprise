@@ -161,7 +161,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   formule:
     produit:
-      - (assiette des cotisations - assiette participation CPAM)
+      - (assiette des cotisations - revenus activité conventionnée)
       - taux
     arrondi: oui
     avec:

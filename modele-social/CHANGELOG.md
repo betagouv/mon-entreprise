@@ -1,6 +1,8 @@
 # Journal des modifications
 
 ## next
+### Corrections
+- Correction de la formule du calcul de la contribution additionnelle pour les PAMC
 
 ## 6.0.0
 ### Breaking changes
