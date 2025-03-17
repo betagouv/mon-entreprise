@@ -11,12 +11,17 @@ import { LigneImpôts } from './LigneImpôts'
 
 export default function Résultats() {
 	const { t } = useTranslation()
+	const date = new Date()
 
 	return (
 		<Container
 			forceTheme="dark"
 			backgroundColor={(theme) => theme.colors.bases.primary[600]}
 		>
+			<Body className="print-only">
+				{date.toLocaleDateString() + ' - ' + date.toLocaleTimeString()}
+			</Body>
+
 			<H2>
 				<Emoji emoji="📄" />{' '}
 				{t(
