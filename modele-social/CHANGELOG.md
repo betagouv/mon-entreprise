@@ -1,6 +1,8 @@
 # Journal des modifications
 
 ## next
+### Corrections
+- Correction du calcul de l’assiette de participation CPAM pour les PAMC ayant des revenus non conventionnés
 
 ## 6.0.0
 ### Breaking changes
