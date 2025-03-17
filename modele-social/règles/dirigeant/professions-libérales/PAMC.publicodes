@@ -86,7 +86,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
   acronyme: CURPS
   applicable si:
     toutes ces conditions:
-      - entreprise . date de création < période . début d'année
+      - entreprise . date de création <= période . début d'année
       - revenu professionnel > 0
   non applicable si:
     une de ces conditions:

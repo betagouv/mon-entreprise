@@ -3,6 +3,7 @@
 ## next
 ### Corrections
 - Correction de la formule du calcul de la contribution additionnelle pour les PAMC
+- Correction du montant de la CURPS pour les activités démarrées au 1er janvier
 
 ## 6.0.0
 ### Breaking changes
