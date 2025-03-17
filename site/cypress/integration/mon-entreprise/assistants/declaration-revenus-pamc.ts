@@ -520,6 +520,8 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		)
 		cy.get(`#${idPrefix}_SNIR___taux_urssaf-label`).should('not.exist')
 		cy.get(`#${idPrefix}_SNIR___taux_urssaf-value`).should('not.exist')
+
+		cy.contains('Imprimer ou sauvegarder en PDF').should('not.exist')
 	})
 
 	it('devrait montrer les résultats lorsque les champs sont remplis', function () {
@@ -590,6 +592,8 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_SNIR___dépassements_honoraires-value`).should(
 			'be.visible'
 		)
+
+		cy.contains('Imprimer ou sauvegarder en PDF').should('be.visible')
 	})
 
 	it('ne devrait pas afficher les cotisations facultatives dans les résultats pour le régime micro-fiscal', function () {
