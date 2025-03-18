@@ -11,7 +11,7 @@ const WarningTooltip = ({ tooltip }: { tooltip: ReactNode }) => {
 	return (
 		<Tooltip tooltip={tooltip}>
 			<span className="sr-only">{t('Attention')}</span>
-			<StyledWarningIcon aria-label={t('Attention')} />
+			<StyledWarningIcon />
 		</Tooltip>
 	)
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -25,8 +24,6 @@ export function Chip({
 	className,
 	title,
 }: ChipProps) {
-	const { t } = useTranslation()
-
 	return (
 		<ForceThemeProvider forceTheme="light">
 			<StyledChip className={className} $type={type} title={title}>
@@ -35,11 +32,11 @@ export function Chip({
 						{typeof icon !== 'boolean' ? (
 							icon
 						) : type === 'success' ? (
-							<SuccessIcon aria-label={t('Réussite')} />
+							<SuccessIcon />
 						) : type === 'error' ? (
-							<ErrorIcon aria-label={t('Échec')} />
+							<ErrorIcon />
 						) : type === 'info' ? (
-							<InfoIcon aria-label={t('Information')} />
+							<InfoIcon />
 						) : (
 							<></>
 						)}
