@@ -1,5 +1,4 @@
 import React, { CSSProperties } from 'react'
-import { useTranslation } from 'react-i18next'
 import { css, DefaultTheme, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -34,7 +33,6 @@ export function Message({
 	style,
 	role = undefined,
 }: MessageProps) {
-	const { t } = useTranslation()
 	if (
 		Array.isArray(children) &&
 		children.length === 1 &&
@@ -63,11 +61,11 @@ export function Message({
 						{typeof icon !== 'boolean' ? (
 							icon
 						) : type === 'success' ? (
-							<SuccessIcon aria-label={t('Réussite')} />
+							<SuccessIcon />
 						) : type === 'error' ? (
-							<ErrorIcon aria-label={t('Échec')} />
+							<ErrorIcon />
 						) : type === 'info' ? (
-							<InfoIcon aria-label={t('Attention, information importante')} />
+							<InfoIcon />
 						) : (
 							<ReturnIcon />
 						)}
