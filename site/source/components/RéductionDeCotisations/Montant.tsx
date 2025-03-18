@@ -89,7 +89,7 @@ export default function Montant({
 				>
 					<Tooltip tooltip={warningTooltip}>
 						<span className="sr-only">{t('Attention')}</span>
-						<StyledWarningIcon aria-label={t('Attention')} />
+						<StyledWarningIcon />
 					</Tooltip>
 				</Condition>
 			</FlexDiv>
