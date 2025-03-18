@@ -18,7 +18,6 @@ type ButtonProps = GenericButtonOrNavLinkProps & {
 	size?: Size
 	light?: boolean
 	role?: string
-	['aria-disabled']?: boolean
 	lang?: string
 	underline?: boolean
 }
@@ -58,7 +57,6 @@ export const Button = forwardRef(function Button(
 			disabled={isDisabled}
 			$underline={underline}
 			role={role}
-			aria-disabled={ariaButtonProps?.['aria-disabled']}
 			lang={lang}
 		/>
 	)
