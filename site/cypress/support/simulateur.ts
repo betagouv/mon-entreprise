@@ -1,8 +1,8 @@
 import { checkA11Y } from './utils'
 
 const inputSelector =
-	'div[id="simulator-legend"] input[inputmode="numeric"]:not([id="entreprise___charges"])'
-const chargeInputSelector = 'input[id="entreprise___charges"]'
+	'div[id="simulator-legend"] input[inputmode="numeric"]:not([id="entreprise___charges-input"])'
+const chargeInputSelector = 'input[id="entreprise___charges-input"]'
 const lang = Cypress.env('language') as 'fr' | 'en'
 
 type Simulateur =

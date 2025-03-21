@@ -21,6 +21,7 @@ import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import { useEngine } from '../utils/EngineContext'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -102,9 +103,7 @@ export function SimulationGoal({
 									}}
 								>
 									<Grid item>
-										<StyledBody
-											id={`${dottedName.replace(/\s|\./g, '_')}-label`}
-										>
+										<StyledBody id={normalizeRuleName.Label(dottedName)}>
 											<Strong>{label || rule.title}</Strong>
 										</StyledBody>
 									</Grid>
@@ -119,14 +118,16 @@ export function SimulationGoal({
 									id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 									dottedName={dottedName}
 								>
-									{label || rule.title}
+									<StyledLabel htmlFor={normalizeRuleName.Input(dottedName)}>
+										{label || rule.title}
+									</StyledLabel>
 								</RuleLink>
 							)}
 
 							{rule.rawNode.résumé && (
 								<StyledSmallBody
 									className={small ? 'sr-only' : ''}
-									id={`${dottedName.replace(/\s|\./g, '_')}-description`}
+									id={normalizeRuleName.Description(dottedName)}
 								>
 									{rule.rawNode.résumé}
 								</StyledSmallBody>
@@ -147,12 +148,7 @@ export function SimulationGoal({
 										  }
 										: undefined
 								}
-								aria-label={engine.getRule(dottedName)?.title}
-								aria-describedby={`${dottedName.replace(
-									/\s|\./g,
-									'_'
-								)}-description`}
-								aria-labelledby="simu-update-explaining"
+								aria-describedby={normalizeRuleName.Description(dottedName)}
 								hideDefaultValue
 								displayedUnit={displayedUnit}
 								dottedName={dottedName}
@@ -168,7 +164,7 @@ export function SimulationGoal({
 						</Grid>
 					) : (
 						<Grid item>
-							<Body id={`${dottedName.replace(/\s|\./g, '_')}-value`}>
+							<Body id={normalizeRuleName.Value(dottedName)}>
 								{formatValue(evaluation, {
 									displayedUnit,
 									precision: round ? 0 : 2,
@@ -196,7 +192,12 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
 `
+
 const StyledBody = styled(Body)`
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
+`
+
+const StyledLabel = styled.label`
+	cursor: pointer;
 `
