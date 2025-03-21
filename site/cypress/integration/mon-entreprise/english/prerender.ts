@@ -63,10 +63,12 @@ describe('Test prerender', function () {
 					cy.contains('Montant annuel')
 
 					cy.contains("Chiffre d'affaires")
-					cy.get('input[id="entreprise___chiffre_d\'affaires"]').should('exist')
+					cy.get('input[id="entreprise___chiffre_d\'affaires-input"]').should(
+						'exist'
+					)
 
 					cy.contains('Charges')
-					cy.get('input[id="entreprise___charges"]').should('exist')
+					cy.get('input[id="entreprise___charges-input"]').should('exist')
 
 					cy.get('input[id="dirigeant___rémunération___net"]').should('exist')
 
