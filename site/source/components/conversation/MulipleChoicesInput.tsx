@@ -10,7 +10,7 @@ import { ExplicableRule } from './Explicable'
 import { InputProps } from './RuleInput'
 
 export function MultipleChoicesInput<Names extends string = DottedName>(
-	props: Omit<InputProps<Names>, 'onChange'> & {
+	props: Omit<InputProps, 'onChange'> & {
 		choices: Array<RuleNode<Names>>
 		onChange: (value: PublicodesExpression, name: Names) => void
 	}
