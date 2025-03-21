@@ -50,7 +50,7 @@ export type Choice = ASTNode<'rule'> & {
 	canGiveUp?: boolean
 }
 
-export function MultipleAnswerInput<Names extends string = DottedName>({
+export function MultipleAnswerInput({
 	choices,
 	type = 'radio',
 	autoFocus,
@@ -59,7 +59,7 @@ export function MultipleAnswerInput<Names extends string = DottedName>({
 }: {
 	choices: Choice
 	type?: 'radio' | 'card' | 'toggle' | 'select'
-} & InputProps<Names>) {
+} & InputProps) {
 	const { t } = useTranslation()
 
 	// seront stockées ainsi dans le state :
@@ -263,9 +263,7 @@ const StyledSubRadioGroup = styled.div`
 	margin-top: calc(${({ theme }) => theme.spacings.md} * -1);
 `
 
-export function OuiNonInput<Names extends string = DottedName>(
-	props: InputProps<Names>
-) {
+export function OuiNonInput(props: InputProps) {
 	const { t } = useTranslation()
 
 	// seront stockées ainsi dans le state :
@@ -299,11 +297,7 @@ export function OuiNonInput<Names extends string = DottedName>(
 	)
 }
 
-export function useSelection<Names extends string = DottedName>({
-	value,
-	onChange,
-	missing,
-}: InputProps<Names>) {
+export function useSelection({ value, onChange, missing }: InputProps) {
 	const serializeValue = (nodeValue: Evaluation) =>
 		serializeEvaluation({ nodeValue } as EvaluatedNode)
 
