@@ -16,6 +16,7 @@ import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
 import { getMeta } from '@/utils/publicodes'
 
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
 import DateInput from './DateInput'
 import { DefaultValue } from './DefaultValue'
@@ -27,17 +28,20 @@ import TextInput from './TextInput'
 
 type InputType = 'radio' | 'card' | 'toggle' | 'select'
 
-type Props<Names extends string = DottedName> = Omit<
+type Props = Omit<
 	React.HTMLAttributes<HTMLInputElement>,
 	'onChange' | 'defaultValue' | 'onSubmit'
 > & {
 	required?: boolean
 	autoFocus?: boolean
 	small?: boolean
-	dottedName: Names
+	dottedName: DottedName
 	label?: string
 	missing?: boolean
-	onChange: (value: PublicodesExpression | undefined, dottedName: Names) => void
+	onChange: (
+		value: PublicodesExpression | undefined,
+		dottedName: DottedName
+	) => void
 	// TODO: It would be preferable to replace this "showSuggestions" parameter by
 	// a build-in logic in the engine, by setting the "applicability" of
 	// suggestions.
@@ -51,16 +55,13 @@ type Props<Names extends string = DottedName> = Omit<
 	engine?: Engine<DottedName>
 }
 
-export type InputProps<Name extends string = string> = Omit<
-	Props<Name>,
-	'onChange' | 'engine'
-> &
+export type InputProps = Omit<Props, 'onChange' | 'engine'> &
 	Pick<RuleNode, 'suggestions'> & {
 		question: RuleNode['rawNode']['question']
 		description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
 		onChange: (value: PublicodesExpression | undefined) => void
-		engine: Engine<Name>
+		engine: Engine<DottedName>
 	}
 
 export const binaryQuestion = [
@@ -72,7 +73,7 @@ export const binaryQuestion = [
 // be displayed to get a user input through successive if statements
 // That's not great, but we won't invest more time until we have more diverse
 // input components and a better type system.
-export default function RuleInput<Names extends string = DottedName>({
+export default function RuleInput({
 	dottedName,
 	onChange,
 	showSuggestions = true,
@@ -83,16 +84,16 @@ export default function RuleInput<Names extends string = DottedName>({
 	modifiers = {},
 	engine,
 	...props
-}: Props<Names>) {
+}: Props) {
 	const defaultEngine = useEngine() as Engine<string>
 
-	const engineValue = (engine ?? defaultEngine) as Engine<Names>
+	const engineValue = (engine ?? defaultEngine) as Engine<DottedName>
 
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
 	const value = evaluation.nodeValue
 
-	const commonProps: InputProps<Names> = {
+	const commonProps: InputProps = {
 		dottedName,
 		value,
 		hideDefaultValue,
@@ -108,7 +109,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		engine: engineValue,
 		...props,
 		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
-		id: props?.id?.replace(/\s|\.]/g, '_') ?? dottedName.replace(/\s|\./g, '_'),
+		id: props?.id ?? normalizeRuleName.Input(dottedName),
 	}
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
@@ -140,9 +141,7 @@ export default function RuleInput<Names extends string = DottedName>({
 					choices={getOnePossibilityOptions(engineValue, dottedName)}
 					type={type}
 				/>
-				{!hideDefaultValue && (
-					<DefaultValue dottedName={dottedName as DottedName} />
-				)}
+				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
 			</>
 		)
 	}
@@ -181,7 +180,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		return <SelectAtmp {...commonProps} />
 	}
 
-	if ((rule.rawNode.type as string | undefined)?.startsWith('date')) {
+	if (rule.rawNode.type?.startsWith('date')) {
 		return (
 			<DateInput
 				{...commonProps}
@@ -200,9 +199,7 @@ export default function RuleInput<Names extends string = DottedName>({
 		return (
 			<>
 				<OuiNonInput {...commonProps} />
-				{!hideDefaultValue && (
-					<DefaultValue dottedName={dottedName as DottedName} />
-				)}
+				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
 			</>
 		)
 	}
@@ -246,9 +243,9 @@ const isOnePossibility = (node: RuleNode) =>
 		node
 	)
 
-export const getOnePossibilityOptions = <Name extends string>(
-	engine: Engine<Name>,
-	path: Name
+export const getOnePossibilityOptions = (
+	engine: Engine<DottedName>,
+	path: DottedName
 ): Choice => {
 	const node = engine.getRule(path)
 	if (!node) {
@@ -273,7 +270,7 @@ export const getOnePossibilityOptions = <Name extends string>(
 							(explanation) => engine.evaluate(explanation).nodeValue !== null
 						)
 						.map(({ dottedName }) =>
-							getOnePossibilityOptions(engine, dottedName as Name)
+							getOnePossibilityOptions(engine, dottedName as DottedName)
 						),
 			  }
 			: null
@@ -285,21 +282,21 @@ type RuleWithMultiplePossibilities = RuleNode & {
 		'plusieurs possibilités'?: Array<string>
 	}
 }
-function isMultiplePossibilities<Name extends string>(
-	engine: Engine<Name>,
-	dottedName: Name
+function isMultiplePossibilities(
+	engine: Engine<DottedName>,
+	dottedName: DottedName
 ): boolean {
 	return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
 		.rawNode['plusieurs possibilités']
 }
 
-function getMultiplePossibilitiesOptions<Name extends string>(
-	engine: Engine<Name>,
-	dottedName: Name
-): RuleNode<Name>[] {
+function getMultiplePossibilitiesOptions(
+	engine: Engine<DottedName>,
+	dottedName: DottedName
+): RuleNode<DottedName>[] {
 	return (
 		(engine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
 			'plusieurs possibilités'
 		] ?? []
-	).map((name) => engine.getRule(`${dottedName} . ${name}` as Name))
+	).map((name) => engine.getRule(`${dottedName} . ${name}` as DottedName))
 }
