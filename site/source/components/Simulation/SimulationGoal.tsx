@@ -118,12 +118,9 @@ export function SimulationGoal({
 									id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 									dottedName={dottedName}
 								>
-									<label
-										htmlFor={normalizeRuleName.Input(dottedName)}
-										style={{ cursor: 'pointer' }}
-									>
+									<StyledLabel htmlFor={normalizeRuleName.Input(dottedName)}>
 										{label || rule.title}
-									</label>
+									</StyledLabel>
 								</RuleLink>
 							)}
 
@@ -195,7 +192,12 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
 `
+
 const StyledBody = styled(Body)`
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
+`
+
+const StyledLabel = styled.label`
+	cursor: pointer;
 `
