@@ -180,7 +180,8 @@ export default function RuleInput({
 		return <SelectAtmp {...commonProps} />
 	}
 
-	if (rule.rawNode.type?.startsWith('date')) {
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+	if ((rule.rawNode.type as string | undefined)?.startsWith('date')) {
 		return (
 			<DateInput
 				{...commonProps}
