@@ -22,9 +22,8 @@
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel` => `dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel`
 
 ### Corrections
-- Correction du calcul des cotisations pour les auto-entrepreneur affilié Cipav sans Acre
-
-### Corrections
+- Correction du calcul des cotisations pour les auto-entrepreneuses et auto-entrepreneurs affiliés à la Cipav sans Acre
+- Correction du taux de cotisations Acre pour les auto-entrepreneuses et auto-entrepreneurs affiliés à la Cipav
 - Correction de la formule du calcul de la contribution additionnelle pour les PAMC
 - Correction du montant de la CURPS pour les activités démarrées au 1er janvier
 
