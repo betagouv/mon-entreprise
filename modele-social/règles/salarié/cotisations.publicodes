@@ -315,12 +315,16 @@ salarié . cotisations . allocations familiales:
       avec:
         plafond:
           produit:
-            - 3.5
+            - variations:
+                - si: date >= 01/2025
+                  alors: 3.3
+                - sinon: 3.5
             - valeur: SMIC
               contexte:
                 date: 31/12/2023
             - temps de travail . effectif . quotité
       références:
+        Code de la sécurité sociale - Article L241-6-1: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051285453
         Code de la sécurité sociale - Article D241-3-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030067277/
         Code de la sécurité sociale - Article D241-7 II (salaire minimum de croissance): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
 
@@ -737,7 +741,10 @@ salarié . cotisations . maladie:
           avec:
             plafond:
               produit:
-                - 2.5
+                - variations:
+                    - si: date >= 01/2025
+                      alors: 2.25
+                    - sinon: 2.5
                 - valeur: SMIC
                   contexte:
                     date: 31/12/2023

@@ -30,6 +30,9 @@
 - Correction de la formule du calcul de la contribution additionnelle pour les PAMC
 - Correction du montant de la CURPS pour les activités démarrées au 1er janvier
 
+### Mises à jour
+- Mise à jour des niveaux de rémunération pour les taux réduits de cotisations maladie et familiales
+
 ## 6.0.0
 ### Breaking changes
 - Déplacement des règles sur l’Acre pour assimilé salarié de `dirigeant . assimilé salarié` vers `salarié . cotisations . exonérations`
