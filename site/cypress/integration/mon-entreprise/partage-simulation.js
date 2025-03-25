@@ -1,7 +1,7 @@
 const fr = Cypress.env('language') === 'fr'
 
 describe('Partage (simulateur salarié)', function () {
-	const brutInputSelector = '#salarié___contrat___salaire_brut'
+	const brutInputSelector = '#salarié___contrat___salaire_brut-input'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
 		'salaire-brut': '1539€/mois',
