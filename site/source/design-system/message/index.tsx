@@ -59,7 +59,7 @@ export function Message({
 				aria-atomic
 			>
 				{icon && (
-					<StyledIconWrapper type={type}>
+					<StyledIconWrapper $type={type}>
 						{typeof icon !== 'boolean' ? (
 							icon
 						) : type === 'success' ? (
@@ -79,14 +79,14 @@ export function Message({
 	)
 }
 const StyledIconWrapper = styled.div<{
-	type: MessageProps['type']
+	$type: MessageProps['type']
 }>`
 	display: flex;
 	position: relative;
 	top: ${({ theme }) => theme.spacings.xxs};
 	width: ${({ theme }) => theme.spacings.xl};
 	svg {
-		fill: ${({ theme, type }) => textColorFromType(type, theme)};
+		fill: ${({ theme, $type }) => textColorFromType($type, theme)};
 	}
 `
 
