@@ -158,7 +158,11 @@ dirigeant . auto-entrepreneur . Acre:
         priorité: 1
       variations:
         - si: entreprise . date de création >= 01/04/2020
-          alors: 12.10%
+          alors:
+            variations:
+              - si: date >= 07/2024
+                alors: 13.90%
+              - sinon: 12.10%
         - sinon: taux Acre * cotisations et contributions . cotisations . taux CIPAV
 
 dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel:
