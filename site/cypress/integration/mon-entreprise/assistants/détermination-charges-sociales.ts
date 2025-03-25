@@ -12,10 +12,10 @@ describe(`Assistant charges sociales`, function () {
 		cy.contains('Impôt sur le revenu').click()
 		cy.contains('Comptabilité de trésorerie').click()
 		cy.get(
-			'#déclaration_charge_sociales___cotisations_payées___cotisations_sociales'
+			'#déclaration_charge_sociales___cotisations_payées___cotisations_sociales-input'
 		).type('12000')
 		cy.get(
-			'#déclaration_charge_sociales___cotisations_payées___CSG_déductible_et_CFP'
+			'#déclaration_charge_sociales___cotisations_payées___CSG_déductible_et_CFP-input'
 		).type('1000')
 
 		cy.contains('Montants à reporter dans votre déclaration de revenus')
