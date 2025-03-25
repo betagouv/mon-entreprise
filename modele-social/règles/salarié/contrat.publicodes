@@ -188,10 +188,14 @@ salarié . contrat . apprentissage . ancienneté . moins de quatre ans:
 
 salarié . contrat . apprentissage . assiette réduite apprentissage:
   description:
-    Les apprentis bénéficient d'une exonération de cotisations sociales
-    jusqu'à 79% du SMIC.
+    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
+    d’une exonération de cotisations sociales jusqu’à 50% du Smic.
+
+    Pour les contrats conclus avant, cette exonération va jusqu’à 79%.
   références:
-    Urssaf: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-a-la/le-contrat-dapprentissage/exonerations.html
+    Embaucher un alternant en contrat d’apprentissage - les exonérations: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/contrat-apprentissage.html#ancre-les-exonerations
+    Contrat d’apprentissage - Quel est le salaire de l’apprenti ?: https://www.service-public.fr/particuliers/vosdroits/F2918#fiche-item-4
+    Code du travail - Article L6243-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947681
   remplace:
     références à: cotisations . assiette
     dans:
@@ -199,7 +203,13 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
       - cotisations . retraite complémentaire . salarié
       - cotisations . vieillesse . salarié
   valeur: cotisations . assiette
-  abattement: 79% * SMIC
+  abattement:
+    produit:
+      - variations:
+          - si: date >= 03/2025
+            alors: 50%
+          - sinon: 79%
+      - SMIC
 
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
   question: Le salarié embauché a-t-il moins de 30 ans ?

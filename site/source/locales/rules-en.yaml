@@ -10096,10 +10096,16 @@ salarié . contrat . apprentissage . ancienneté . moins de trois ans:
   titre.en: '[automatic] less than three years old'
   titre.fr: moins de trois ans
 salarié . contrat . apprentissage . assiette réduite apprentissage:
-  description.en: '[automatic] Apprentices benefit from an exemption from social
-    security contributions up to 79% of the minimum wage.'
-  description.fr: Les apprentis bénéficient d'une exonération de cotisations
-    sociales jusqu'à 79% du SMIC.
+  description.en: >-
+    [automatic] For contracts signed on or after March 1, 2025, apprentices are
+    exempt from social security contributions up to 50% of the minimum wage.
+
+    For contracts signed before, the exemption is up to 79%.
+  description.fr: >-
+    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
+    d’une exonération de cotisations sociales jusqu’à 50% du Smic.
+
+    Pour les contrats conclus avant, cette exonération va jusqu’à 79%.
   titre.en: '[automatic] reduced learning base'
   titre.fr: assiette réduite apprentissage
 salarié . contrat . apprentissage . diplôme:

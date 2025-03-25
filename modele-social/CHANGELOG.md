@@ -32,6 +32,7 @@
 
 ### Mises à jour
 - Mise à jour des niveaux de rémunération pour les taux réduits de cotisations maladie et familiales
+- Mise à jour du plafond d’exonération de cotisations sociales pour les apprentis
 
 ## 6.0.0
 ### Breaking changes
