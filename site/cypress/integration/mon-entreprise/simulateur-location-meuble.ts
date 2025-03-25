@@ -17,14 +17,14 @@ describe('Simulateur de location de meublé', () => {
 
 	it('affiche le formulaire', () => {
 		cy.get(
-			'input#location_de_logement_meublé___courte_durée___recettes'
+			'input#location_de_logement_meublé___courte_durée___recettes-input'
 		).should('be.visible')
 	})
 
 	it('chiffre les cotisations quand on saisi des revenus', () => {
-		cy.get('input#location_de_logement_meublé___courte_durée___recettes').type(
-			'{selectall}25000'
-		)
+		cy.get(
+			'input#location_de_logement_meublé___courte_durée___recettes-input'
+		).type('{selectall}25000')
 
 		cy.get('#location_de_logement_meublé___cotisations-value')
 			.should('be.visible')
@@ -32,9 +32,9 @@ describe('Simulateur de location de meublé', () => {
 	})
 
 	it('ne chiffre rien si on dépasse le plafond de recettes au régime général', () => {
-		cy.get('input#location_de_logement_meublé___courte_durée___recettes').type(
-			'{selectall}78000'
-		)
+		cy.get(
+			'input#location_de_logement_meublé___courte_durée___recettes-input'
+		).type('{selectall}78000')
 
 		cy.get('#location_de_logement_meublé___cotisations-value').should(
 			'not.exist'
