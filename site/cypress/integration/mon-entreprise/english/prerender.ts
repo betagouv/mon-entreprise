@@ -3,12 +3,12 @@ import { fr } from '../../../support/utils'
 type cyType = typeof cy
 type Obj = Record<string, { test: (cy: cyType) => unknown; path: string }[]>
 
-const coutTotalSelector = 'input[id="salarié___coût_total_employeur"]'
-const salaireBrutSelector = 'input[id="salarié___contrat___salaire_brut"]'
+const coutTotalSelector = 'input[id="salarié___coût_total_employeur-input"]'
+const salaireBrutSelector = 'input[id="salarié___contrat___salaire_brut-input"]'
 const salaireNetSelector =
-	'input[id="salarié___rémunération___net___à_payer_avant_impôt"]'
+	'input[id="salarié___rémunération___net___à_payer_avant_impôt-input"]'
 const salaireNetApresImpot =
-	'input[id="salarié___rémunération___net___payé_après_impôt"]'
+	'input[id="salarié___rémunération___net___payé_après_impôt-input"]'
 
 describe('Test prerender', function () {
 	const testSimuSalaire = (cy: cyType) => {
