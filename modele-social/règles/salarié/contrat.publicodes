@@ -199,7 +199,9 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
   remplace:
     références à: cotisations . assiette
     dans:
+      - cotisations . maladie . salarié
       - cotisations . CEG . salarié
+      - cotisations . CET . salarié
       - cotisations . retraite complémentaire . salarié
       - cotisations . vieillesse . salarié
   valeur: cotisations . assiette
