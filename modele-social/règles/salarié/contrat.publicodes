@@ -23,7 +23,6 @@ salarié . contrat:
         Le contrat d'apprentissage est un contrat de travail écrit à durée limitée (CDD) ou à durée indéterminée (CDI) entre un salarié et un employeur. Il permet à l'apprenti de suivre une formation en alternance en entreprise sous la responsabilité d'un maître d'apprentissage et en centre de formation des apprentis (CFA) pendant 1 à 3 ans.
       rend non applicable:
         - statut cadre
-        - cotisations . CSG-CRDS
         - cotisations . exonérations . JEI
         - régimes spécifiques . impatriés
         - temps de travail . temps partiel
@@ -212,6 +211,25 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
             alors: 50%
           - sinon: 79%
       - SMIC
+
+salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
+  description:
+    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
+    d’une exonération de CSG et de CRDS jusqu’à 50% du Smic.
+
+    Pour les contrats conclus avant, cette exonération est totale.
+  références:
+    Embaucher un alternant en contrat d’apprentissage - les exonérations: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/contrat-apprentissage.html#ancre-les-exonerations
+    Contrat d’apprentissage - Quel est le salaire de l’apprenti ?: https://www.service-public.fr/particuliers/vosdroits/F2918#fiche-item-4
+  remplace:
+    références à: cotisations . assiette
+    dans: salarié . cotisations . CSG-CRDS
+  variations:
+    - si: date >= 03/2025
+      alors:
+        valeur: cotisations . assiette
+        abattement: 50% * SMIC
+    - sinon: 0
 
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
   question: Le salarié embauché a-t-il moins de 30 ans ?
