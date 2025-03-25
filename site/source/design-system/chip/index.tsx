@@ -29,7 +29,7 @@ export function Chip({
 
 	return (
 		<ForceThemeProvider forceTheme="light">
-			<StyledChip className={className} type={type} title={title}>
+			<StyledChip className={className} $type={type} title={title}>
 				{icon && (
 					<StyledIconWrapper type={type}>
 						{typeof icon !== 'boolean' ? (
@@ -65,29 +65,31 @@ const StyledIconWrapper = styled.span<{
 
 const StyledChip = styled.strong<
 	Pick<ChipProps, 'type'> & {
-		type: NonNullable<ChipProps['type']>
+		$type: NonNullable<ChipProps['type']>
 	}
 >`
 	vertical-align: middle;
 	white-space: nowrap;
-	${({ theme, type }) => {
+	${({ theme, $type }) => {
 		const colorSpace: Palette | SmallPalette =
-			type === 'secondary' || type === 'primary'
-				? theme.colors.bases[type]
-				: theme.colors.extended[type]
+			$type === 'secondary' || $type === 'primary'
+				? theme.colors.bases[$type]
+				: theme.colors.extended[$type]
 
 		return css`
 			margin: 0 ${theme.spacings.xxs};
 			border-radius: ${theme.spacings.md};
 			font-family: ${theme.fonts.main};
 			padding: ${theme.spacings.xxs} ${theme.spacings.xs};
-			background-color: ${type === 'error' ? colorSpace[400] : colorSpace[300]};
+			background-color: ${$type === 'error'
+				? colorSpace[400]
+				: colorSpace[300]};
 
 			font-size: ${theme.baseFontSize};
 			text-align: center;
-			color: ${type === 'error'
+			color: ${$type === 'error'
 				? theme.colors.extended.grey[100]
-				: textColorFromType(type, theme)};
+				: textColorFromType($type, theme)};
 		`
 	}}
 `
