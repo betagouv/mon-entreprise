@@ -70,11 +70,13 @@ describe('Test prerender', function () {
 					cy.contains('Charges')
 					cy.get('input[id="entreprise___charges-input"]').should('exist')
 
-					cy.get('input[id="dirigeant___rémunération___net"]').should('exist')
+					cy.get('input[id="dirigeant___rémunération___net-input"]').should(
+						'exist'
+					)
 
 					cy.contains('Revenu après impôt')
 					cy.get(
-						'input[id="dirigeant___rémunération___net___après_impôt"]'
+						'input[id="dirigeant___rémunération___net___après_impôt-input"]'
 					).should('exist')
 				},
 				path: '/simulateurs/indépendant',

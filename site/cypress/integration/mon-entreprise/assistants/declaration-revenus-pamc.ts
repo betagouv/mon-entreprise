@@ -1170,9 +1170,9 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 
 		// Champs présents
 		cy.contains('Bénéfice/déficit BIC').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_BIC`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}_BIC-input`).should('be.visible')
 		cy.contains('Bénéfice/déficit agricole').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_agricole`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}_agricole-input`).should('be.visible')
 
 		// Champs absents
 		cy.contains('Plus-values nettes à court terme').should('not.exist')
@@ -1274,7 +1274,9 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-title`).should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA`).should('be.visible')
+		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-input`).should(
+			'be.visible'
+		)
 		cy.get('h3')
 			.contains('Montant des revenus de remplacement')
 			.should('be.visible')
@@ -1320,11 +1322,15 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-title`).should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ`).should('be.visible')
+		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-input`).should(
+			'be.visible'
+		)
 		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-title`).should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA`).should('be.visible')
+		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-input`).should(
+			'be.visible'
+		)
 		cy.get(
 			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-title`
 		).should('be.visible')
@@ -1359,11 +1365,13 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-title`).should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ`).should('be.visible')
+		cy.get(`#${idPrefix}_revenus_de_remplacement___IJ-input`).should(
+			'be.visible'
+		)
 		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-title`).should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA`).should('be.visible')
+		cy.get(`#${idPrefix}_revenus_de_remplacement__-input`).should('be.visible')
 		cy.get(
 			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-title`
 		).should('be.visible')
