@@ -11140,16 +11140,7 @@ salarié . cotisations . catégories:
   titre.fr: catégories
 salarié . cotisations . chômage:
   avec:
-    employeur:
-      titre.en: "[automatic] employer's share"
-      titre.fr: part employeur
-    employeur . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-    salarié:
-      titre.en: '[automatic] employee share'
-      titre.fr: part salarié
-    salarié . taux:
+    taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
   description.en: '[automatic] Unemployment insurance contribution'

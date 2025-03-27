@@ -270,7 +270,7 @@ describe('Simulateur lodeom', { testIsolation: false }, function () {
 		).should('include.text', '444,60 €')
 		cy.get(
 			'#salarié___cotisations___exonérations___lodeom___montant-décembre'
-		).should('include.text', '200,25 €')
+		).should('include.text', '204,45 €')
 	})
 
 	it('should include monthly options', function () {

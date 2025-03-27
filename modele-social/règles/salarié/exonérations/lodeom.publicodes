@@ -578,7 +578,7 @@ salarié . cotisations . exonérations . lodeom . montant:
       non applicable si: lodeom . zone deux
       produit:
         - lodeom . montant
-        - chômage . employeur . taux / T
+        - chômage . taux / T
 
 salarié . cotisations . exonérations . lodeom . code réduction:
   variations:
