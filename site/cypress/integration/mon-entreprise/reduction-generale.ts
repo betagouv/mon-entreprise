@@ -179,7 +179,7 @@ describe(
 			).should('include.text', '523,26 €')
 			cy.get(
 				'#salarié___cotisations___exonérations___réduction_générale-décembre'
-			).should('include.text', '460,38 €')
+			).should('include.text', '467,03 €')
 		})
 
 		it('should include monthly options', function () {
