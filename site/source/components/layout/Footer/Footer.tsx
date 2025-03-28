@@ -176,7 +176,6 @@ export default function Footer() {
 														<StyledButton
 															openInSameWindow
 															href={altHref}
-															aria-disabled={isFrenchMode}
 															isDisabled={isFrenchMode}
 															aria-label={
 																isFrenchMode
@@ -199,7 +198,6 @@ export default function Footer() {
 															href={altHref}
 															openInSameWindow
 															lang="en"
-															aria-disabled={!isFrenchMode}
 															isDisabled={!isFrenchMode}
 															aria-label={
 																!isFrenchMode
