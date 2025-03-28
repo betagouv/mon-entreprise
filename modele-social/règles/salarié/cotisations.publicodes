@@ -368,34 +368,17 @@ salarié . cotisations . chômage:
     branche: assurance chômage
   description: Cotisation d’assurance chômage
   références:
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
+    L’assurance chômage et l’assurance garantie des salaires (AGS): https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
   produit:
     - valeur: cotisations . assiette
       plafond: 4 * temps de travail . plafond sécurité sociale
-    - 4.05%
-
+    - taux
   avec:
-    employeur:
-      déprécié: oui
-      produit:
-        - valeur: cotisations . assiette
-          plafond: 4 * temps de travail . plafond sécurité sociale
-        - taux
-      titre: part employeur
-    employeur . taux:
-      déprécié: oui
-      valeur: 4.05%
-
-    salarié:
-      déprécié: oui
-      produit:
-        - valeur: cotisations . assiette
-          plafond: 4 * temps de travail . plafond sécurité sociale
-        - taux
-      titre: part salarié
-    salarié . taux:
-      déprécié: oui
-      valeur: 0%
+    taux:
+      variations:
+        - si: date >= 05/2025
+          alors: 4.00%
+        - sinon: 4.05%
 
 salarié . cotisations . ATMP:
   cotisation:

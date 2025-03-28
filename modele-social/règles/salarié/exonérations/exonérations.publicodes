@@ -108,7 +108,7 @@ salarié . cotisations . exonérations . T:
         - CSA . taux
         - ATMP . taux minimum
         - FNAL . taux
-        - chômage . employeur . taux
+        - chômage . taux
     retraite complémentaire:
       somme:
         - valeur: retraite complémentaire . employeur . taux T1

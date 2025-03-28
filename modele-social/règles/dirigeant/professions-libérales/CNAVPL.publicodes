@@ -1,7 +1,7 @@
 dirigeant . indépendant . PL . CNAVPL:
   description: |
     La caisse nationale d'assurance vieillesse des professions libérales est
-    l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
+    l'organisme qui fédère les différentes caisses existantes (Cipav, CARPIMKO,
     CARCDSF, CAVEC etc..)
   non applicable si: régime général
   valeur: oui

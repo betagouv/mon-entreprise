@@ -17,10 +17,10 @@ export const Menu = () => {
 						display: 'flex',
 						alignItems: 'end',
 					}}
+					className="print-hidden"
 				>
 					<StyledButton
 						size="XS"
-						className="print-hidden"
 						light
 						// eslint-disable-next-line react/jsx-props-no-spreading
 						{...buttonProps}
@@ -43,7 +43,7 @@ export const Menu = () => {
 				</div>
 			)}
 		>
-			<Nav>
+			<Nav className="print-hidden">
 				<StyledUl $noMarker>
 					<PlanContent />
 				</StyledUl>

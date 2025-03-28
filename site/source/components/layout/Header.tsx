@@ -41,7 +41,7 @@ export default function Header() {
 						<Link
 							to={absoluteSitePaths.index}
 							aria-label={t(
-								"URSSAF Mon entreprise, accéder à la page d'accueil"
+								"Urssaf Mon entreprise, accéder à la page d'accueil"
 							)}
 						>
 							<StyledLogo>
@@ -49,14 +49,14 @@ export default function Header() {
 							</StyledLogo>
 						</Link>
 
-						<div style={{ flex: 1 }} />
-
 						<div
 							style={{
 								display: 'flex',
 								alignItems: 'center',
 								marginRight: '1rem',
+								marginLeft: 'auto',
 							}}
+							className="print-hidden"
 						>
 							<Emoji emoji="☀️" aria-hidden />
 							<Switch

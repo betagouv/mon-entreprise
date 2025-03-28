@@ -47,7 +47,7 @@ salarié . cotisations . exonérations . réduction générale:
     imputation chômage:
       produit:
         - réduction générale
-        - chômage . employeur . taux / T
+        - chômage . taux / T
       arrondi: 2 décimales
 
     plafond avec application de la DFS:

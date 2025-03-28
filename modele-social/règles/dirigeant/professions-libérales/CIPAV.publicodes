@@ -8,18 +8,18 @@ dirigeant . indépendant . PL . option régime général:
     Les personnes exerçant déjà une profession libérale non réglementée avant
     2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
     indépendants, à condition d’être à jour dans le paiement de toutes leurs
-    cotisations à la CIPAV.
+    cotisations à la Cipav.
 
     Cette option leur permettra de bénéficier des mêmes droits que les artisans
     et commerçants (indemnités journalières, retraite, invalidité, etc.).
 
     Ils auront nottament accès à des indemnités journalières en cas d'arrêt de
-    travail ou de maternité, ce qui n'est pas le cas à la CIPAV.
+    travail ou de maternité, ce qui n'est pas le cas à la Cipav.
 
-    La demande est à effectuer auprès de la CIPAV. Elle prendra effet au 1er
+    La demande est à effectuer auprès de la Cipav. Elle prendra effet au 1er
     janvier de l’année suivante et sera définitive.
   références:
-    fiche information droit d'option (PDF CIPAV): https://www.lacipav.fr/sites/default/files/2019-03/Fiche%20pratique%20droit%20d%27option.pdf
+    fiche information droit d'option (PDF Cipav): https://www.lacipav.fr/sites/default/files/2019-03/Fiche%20pratique%20droit%20d%27option.pdf
     bpi-france: https://bpifrance-creation.fr/entrepreneur/actualites/nouvelle-liste-activites-liberales-non-reglementees-relevant-cipav
   par défaut: non
 
@@ -32,7 +32,7 @@ dirigeant . indépendant . PL . CIPAV:
         - entreprise . activité . nature . libérale . réglementée = non
 
   description: |
-    La CIPAV est la caisse de retraite autonomes des professions libérales réglementées.
+    La Cipav est la caisse de retraite autonomes des professions libérales réglementées.
   références:
     Site de la Cipav: https://www.lacipav.fr/
     Comment fonctionne le droit d'option (PDF): https://www.lacipav.fr/sites/default/files/2019-07/CIPAV%20-%20Guide%20Pratique%20-%20EXE_BAT-BD_3.pdf#page=7
@@ -116,7 +116,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
               - si: classe = 'Classe H'
                 alors: 18936
       références:
-        Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+        Guide Cipav 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
     classe:
       applicable si: date < 01/2023
@@ -140,7 +140,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
             plafond: 123301 €/an
           - montant: "'Classe H'"
       références:
-        Guide CIPAV 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
+        Guide Cipav 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
 dirigeant . indépendant . PL . CIPAV . exonération incapacité:
   déprécié: oui
@@ -186,7 +186,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
       applicable si: date < 01/2023
       question:
         Dans quelle classe cotisez-vous pour le régime invalidité-décès de la
-        CIPAV ?
+        Cipav ?
       description: >-
         La Cipav gère un régime de prévoyance versant une pension en cas
         d'invalidité permanente et un capital décès ainsi qu’une rente pour les
@@ -216,7 +216,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
 dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
   applicable si: date < 01/2023
   question: Avez-vous demandé à être exonéré de la cotisations invalidité-décès
-    CIPAV ? (revenus de l'année précédente inférieurs à 6 170€)
+    Cipav ? (revenus de l'année précédente inférieurs à 6 170€)
   par défaut: non
   description: |-
     L’adhérent qui justifie avoir perçu, au titre de l’année précédente, un revenu professionnel inférieur à 15 % du plafond
@@ -259,7 +259,7 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
 
     proportion:
       question: A quelle proportion le conjoint cotise-t’il pour le régime
-        complémentaire et le régime d’invalidité-décès CIPAV ?
+        complémentaire et le régime d’invalidité-décès Cipav ?
       par défaut: "'quart'"
       une possibilité:
         choix obligatoire: oui

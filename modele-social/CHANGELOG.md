@@ -1,7 +1,32 @@
 # Journal des modifications
 
 ## next
+### Breaking changes
+- Suppression des règles dépréciées suivantes :
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BIC`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BNC`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux prestation de service`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux service BIC`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux service BNC`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux vente restauration hébergement`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . prestation de service`
+	- `salarié . cotisations . chômage . employeur`
+	- `salarié . cotisations . chômage . salarié`
+- Suppression de la règle `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV`
+- Renommage des règles suivantes :
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux` => `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux CIPAV`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE` => `dirigeant . auto-entrepreneur . Acre . taux Acre`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE` => `dirigeant . auto-entrepreneur . Acre . taux Acre`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . service BIC ` => `dirigeant . auto-entrepreneur . Acre . taux service BIC`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . service BNC ` => `dirigeant . auto-entrepreneur . Acre . taux service BNC`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . vente restauration hébergement ` => `dirigeant . auto-entrepreneur . Acre . taux vente restauration hébergement`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . CIPAV ` => `dirigeant . auto-entrepreneur . Acre . taux Cipav`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel` => `dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel`
+	- `salarié . cotisations . chômage . employeur . taux` => `salarié . cotisations . chômage . taux`
+
 ### Corrections
+- Correction du calcul des cotisations pour les auto-entrepreneuses et auto-entrepreneurs affiliés à la Cipav sans Acre
+- Correction du taux de cotisations Acre pour les auto-entrepreneuses et auto-entrepreneurs affiliés à la Cipav
 - Correction de la formule du calcul de la contribution additionnelle pour les PAMC
 - Correction du montant de la CURPS pour les activités démarrées au 1er janvier
 

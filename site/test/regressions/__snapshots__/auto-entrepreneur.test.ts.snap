@@ -19,7 +19,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
@@ -41,7 +41,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `
@@ -63,7 +63,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
@@ -85,7 +85,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
@@ -107,7 +107,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 6`] = `
@@ -129,7 +129,7 @@ dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 7`] = `
@@ -151,7 +151,7 @@ dirigeant . auto-entrepreneur . revenu net: 30000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 30000
 dirigeant . rémunération . impôt: 0
 
-Notifications affichées : dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel"
+Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 1`] = `
@@ -336,8 +336,8 @@ dirigeant . rémunération . impôt: 0"
 
 exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 205
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 2420
+dirigeant . auto-entrepreneur . cotisations et contributions: 390
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 387
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 126
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 13
@@ -349,8 +349,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 23
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 17540
-dirigeant . auto-entrepreneur . revenu net . après impôt: 17540
+dirigeant . auto-entrepreneur . revenu net: 15320
+dirigeant . auto-entrepreneur . revenu net . après impôt: 15320
 dirigeant . rémunération . impôt: 0"
 `;
 

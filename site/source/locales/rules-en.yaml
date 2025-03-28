@@ -458,30 +458,87 @@ dirigeant . assimilé salarié:
   titre.fr: assimilé salarié
 dirigeant . auto-entrepreneur:
   description.en: >
-    [automatic] The auto-entrepreneur is a simplified individual business.
-    Originally known as "auto-entrepreneur", the "micro-entrepreneur" regime is
-    a self-employed worker regime created to simplify administrative management,
-    notably by replacing all social contributions with a single monthly
-    deduction.
+    [automatic] The auto-entreprise is a simplified sole proprietorship.
+    Originally known
+
+    under the name "auto-entrepreneur", the "micro-entrepreneur" scheme is a self-employed
+
+    a self-employed worker scheme created to simplify administrative
+
+    by replacing all social security contributions with a single monthly deduction.
+
+    single monthly deduction.
   description.fr: >
-    L'auto-entreprise est une entreprise individuelle simplifiée. À l'origine
-    connu sous l'appellation « auto-entrepreneur », le régime de «
-    micro-entrepreneur » est un régime de travailleur indépendant créé pour
-    simplifier la gestion administrative, notamment en remplaçant toutes les
-    cotisations sociales par un prélèvement unique mensuel.
+    L’auto-entreprise est une entreprise individuelle simplifiée. À l’origine
+    connu
+
+    sous l’appellation « auto-entrepreneur », le régime de « micro-entrepreneur » est
+
+    un régime de travailleur indépendant créé pour simplifier la gestion
+
+    administrative, notamment en remplaçant toutes les cotisations sociales par un
+
+    prélèvement unique mensuel.
   titre.en: '[automatic] auto-entrepreneur'
   titre.fr: auto-entrepreneur
+dirigeant . auto-entrepreneur . Acre:
+  avec:
+    taux Acre:
+      description.en: >
+        [automatic] This rate corresponds to the reduction in contributions
+        applicable to
+
+        auto-entrepreneurs benefiting from Acre. A rate of 75% means that
+
+        the auto-entrepreneur must pay 75% of the original amount of the
+
+        contributions.
+      description.fr: |
+        Ce taux correspond à la réduction de cotisations qui s’applique pour
+        l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
+        l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
+        cotisations.
+      titre.en: '[automatic] Acre rate'
+      titre.fr: taux Acre
+    taux CIPAV:
+      titre.en: '[automatic] CIPAV rate'
+      titre.fr: taux CIPAV
+    taux service BIC:
+      titre.en: '[automatic] BIC service rate'
+      titre.fr: taux service BIC
+    taux service BNC:
+      titre.en: '[automatic] BNC service rate'
+      titre.fr: taux service BNC
+    taux vente restauration hébergement:
+      titre.en: '[automatic] sales rate catering accommodation'
+      titre.fr: taux vente restauration hébergement
+  titre.en: '[automatic] Acre'
+  titre.fr: Acre
+dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel:
+  description.en: >
+    [automatic] The Acre rate used is that corresponding to the current month.
+    The
+
+    simulator does not yet take into account the overlapping of two Acre periods
+
+    in the same year.
+  description.fr: |
+    Le taux Acre utilisé est celui correspondant au mois courant. Le
+    simulateur ne prend pas encore en compte le chevauchement de deux périodes
+    d’Acre sur une même année.
+  titre.en: '[automatic] notification annual ACRE calculation'
+  titre.fr: notification calcul ACRE annuel
 dirigeant . auto-entrepreneur . DROM:
   avec:
     première période:
       titre.en: '[automatic] Up to the end of the 8th quarter of activity'
-      titre.fr: Jusqu'à la fin du 8ème trimestre d'activité
+      titre.fr: Jusqu’à la fin du 8ème trimestre d’activité
     seconde période:
       titre.en:
         '[automatic] Between the 9th calendar quarter and the end of the 3rd
         calendar year of activity'
       titre.fr: Entre le 9ème trimestre civil et la fin de la 3ème année civile
-        d'activité
+        d’activité
     taux CIPAV:
       titre.en: '[automatic] CIPAV rate'
       titre.fr: taux CIPAV
@@ -495,49 +552,77 @@ dirigeant . auto-entrepreneur . DROM:
       titre.en: '[automatic] sales rate catering accommodation'
       titre.fr: taux vente restauration hébergement
   description.en: >
-    [automatic] As an auto-entrepreneur starting out in business, you benefit
-    from an exemption that translates into the application of reduced
-    contribution rates over three years, corresponding to :
+    [automatic] As an auto-entrepreneur just starting out, you benefit from a
+    tax exemption.
 
-      - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or unregulated liberal professional, 1/3 if you are a regulated liberal professional, until the end of the 7th quarter following the quarter in which you started your business,
-      - ½ of the full metropolitan rates if you are a craftsman, tradesman or self-employed professional, for the period between the end of the 8th quarter of activity and the end of the 3rd calendar year of activity,
+    exemption, which translates into the application of reduced contribution rates over
+
+    three years, corresponding to :
+
+      - 1/6 of the full rate for mainland France if you are a craftsman, shopkeeper or unregulated liberal
+      1/3 if you are a regulated self-employed professional.
+      until the end of the 7th quarter following the quarter in which you
+      you started your business,
+      - 1/2 of the full rate for mainland France, whether you are a craftsman, merchant or liberal
+      self-employed, for the period between the end of the 8th quarter of activity
+      until the end of the 3rd calendar year of activity,
   description.fr: >
     En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une
-    exonération qui se traduit par l’application de taux réduits de cotisations
-    sur trois ans, correspondant à :
 
-      - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel vous avez débuté votre activité,
-      - ½ des taux pleins de métropole que vous soyez artisan, commerçant ou professionnel libéral, pour la période qui court entre la fin du 8ème trimestre d’activité jusqu’à la fin de la 3ème année civile d’activité,
+    exonération qui se traduit par l’application de taux réduits de cotisations sur
+
+    trois ans, correspondant à :
+
+      - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou
+      professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral
+      réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel
+      vous avez débuté votre activité,
+      - 1/2 des taux pleins de métropole que vous soyez artisan, commerçant ou
+      professionnel libéral, pour la période qui court entre la fin du 8ème trimestre
+      d’activité jusqu’à la fin de la 3ème année civile d’activité,
   note.en: '[automatic] DOM rates are defined as a percentage of metropolitan
     France rates, but the rounding rules are unclear.'
   note.fr:
     Les taux DOM sont définis comme un pourcentage des taux métropole, mais
-    les règles d'arrondi ne sont pas claires
+    les règles d’arrondi ne sont pas claires
   titre.en: '[automatic] DROM'
   titre.fr: DROM
 dirigeant . auto-entrepreneur . affiliation CIPAV:
   avec:
     adhérent:
       description.en: >
-        [automatic] Since January 1, 2018, auto-entrepreneurs in unregulated
-        liberal professions have been affiliated to the Social Security for the
-        Self-Employed (SSI).
+        [automatic] Since January 1, 2018, self-employed workers in unregulated
+        liberal professions
+
+        are affiliated to Sécurité sociale pour les indépendants (SSI).
 
 
-        Non-regulated self-employed liberal professionals created before January 1, 2018, who were members of Cipav, remain members of Cipav.
+        Unregulated self-employed self-employed professionals created before January 1
+
+        January 2018, who were members of Cipav, remain members of Cipav.
 
 
-        The auto-entrepreneurs concerned do, however, have a five-year right of option to join Sécurité sociale pour les indépendants (SSI).
-      description.fr: >
-        Depuis le 1er janvier 2018, les auto-entreprises d'activité libérale non
-        réglementée sont affiliées à la Sécurité sociale pour les indépendants
+        The auto-entrepreneurs concerned do, however, have a right of option
+
+        for five years to join the Sécurité sociale pour les indépendants
+
         (SSI).
+      description.fr: >
+        Depuis le 1er janvier 2018, les auto-entreprises d’activité libérale non
+
+        réglementée sont affiliées à la Sécurité sociale pour les indépendants (SSI).
 
 
-        Les auto-entreprises d'activité libérale non réglementée créées avant le 1er janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
+        Les auto-entreprises d’activité libérale non réglementée créées avant le 1er
+
+        janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
 
 
-        Les auto-entrepreneurs concernés disposent toutefois d’un droit d'option durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants (SSI).
+        Les auto-entrepreneurs concernés disposent toutefois d’un droit d’option
+
+        durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants
+
+        (SSI).
       question.en: '[automatic] Are you a Cipav member?'
       question.fr: Êtes-vous adhérent à la Cipav ?
       titre.en: '[automatic] member'
@@ -545,8 +630,8 @@ dirigeant . auto-entrepreneur . affiliation CIPAV:
   titre.en: '[automatic] CIPAV affiliation'
   titre.fr: affiliation CIPAV
 dirigeant . auto-entrepreneur . chiffre d'affaires:
-  question.en: '[automatic] What is your turnover?'
-  question.fr: Quel est votre chiffre d'affaires ?
+  question.en: '[automatic] What are your sales figures?'
+  question.fr: Quel est votre chiffre d’affaires ?
   résumé.en: '[automatic] Total revenue (excluding tax)'
   résumé.fr: Montant total des recettes (hors taxe)
   titre.en: '[automatic] revenue'
@@ -555,13 +640,6 @@ dirigeant . auto-entrepreneur . cotisations et contributions:
   titre.en: '[automatic] contributions and fees'
   titre.fr: cotisations et contributions
 dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
-  avec:
-    revenus BIC:
-      titre.en: '[automatic] BIC revenues'
-      titre.fr: revenus BIC
-    revenus BNC:
-      titre.en: '[automatic] BNC revenues'
-      titre.fr: revenus BNC
   description.en: >
     [automatic] In addition to the social security charges, auto-entrepreneurs
     are liable for a
@@ -576,10 +654,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
     contribution à la formation professionnelle leur permettant de bénéficier du
     droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
     d’affaires positif au cours des 12 derniers mois).
-  note.en: |
-    [automatic] The rates implemented are those levied by the Urssaf.
-  note.fr: |
-    Les taux implémentés sont ceux prélevés par l'Urssaf.
+  note.en: '[automatic] The rates implemented are those levied by Urssaf.'
+  note.fr: Les taux implémentés sont ceux prélevés par l’Urssaf.
   titre.en: '[automatic] Contribution to professional training'
   titre.fr: Contribution à la formation professionnelle
 dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
@@ -587,7 +663,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC:
     [automatic] We have not included the following exceptions:
     - Craftsmen with dual CCI-CMA registration
   note.fr: |
-    Nous n'avons pas intégré les exceptions suivantes :
+    Nous n’avons pas intégré les exceptions suivantes :
     - Artisans en double immatriculation CCI-CMA
   titre.en: '[automatic] Taxes for room expenses'
   titre.fr: Taxes pour frais de chambre
@@ -626,29 +702,23 @@ dirigeant . auto-entrepreneur . cotisations et contributions . TFC . métiers . 
   titre.fr: taux Moselle
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
   avec:
-    cotisations CIPAV:
-      avec:
-        taux:
-          titre.en: '[automatic] rate'
-          titre.fr: taux
-      description.en: >
-        [automatic] Contributions for self-employed workers under the CIPAV
-        scheme
-      description.fr: |
-        Cotisations pour les professions libérales dépendant de la CIPAV
-      titre.en: '[automatic] CIPAV contributions'
-      titre.fr: cotisations CIPAV
     répartition:
       avec:
         autres contributions:
           description.en: >
             [automatic] Share of auto-entrepreneur contributions to the general
-            social contribution and the contribution for the repayment of the
-            social debt
+            social contribution
+
+            contribution and the contribution for the repayment of the social debt.
+
+            sociale
           description.fr: >
             Part des cotisations auto-entrepreneur qui alimentent la
-            contribution sociale généralisée et la cotisation pour le
-            remboursement de la dette sociale
+            contribution
+
+            sociale généralisée et la cotisation pour le remboursement de la dette
+
+            sociale
           titre.en: '[automatic] other contributions'
           titre.fr: autres contributions
         formation professionnelle:
@@ -656,56 +726,92 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: formation professionnelle
         invalidité-décès:
           description.en: >
-            [automatic] Percentage of auto-entrepreneur contributions to
-            disability and death insurance
+            [automatic] Percentage of auto-entrepreneur contributions that go to
+            insurance
+
+            insurance
 
 
-            Guarantees payment of a pension in the event of disability and a lump sum to your loved ones in the event of death.
+            Guarantees payment of a pension in the event of disability and a lump sum to your
+
+            in the event of death.
           description.fr: >
-            Part des cotisations auto-entrepreneur qui alimentent l'assurance
+            Part des cotisations auto-entrepreneur qui alimentent l’assurance
+
             invalidité-décès
 
 
-            Garantit le versement d'une pension en cas d'invalidité et un capital à vos proches en cas de décès.
+            Garantit le versement d’une pension en cas d’invalidité et un capital à
+
+            vos proches en cas de décès.
           titre.en: '[automatic] disability and death'
           titre.fr: invalidité-décès
         maladie-maternité:
           description.en: >
-            [automatic] Percentage of auto-entrepreneur contributions paid into
-            sickness and maternity insurance schemes
+            [automatic] Percentage of auto-entrepreneur contributions that go
+            towards
+
+            sickness and maternity insurance
 
 
-            Assurance Maladie provides long-term protection for the health of everyone in their personal and professional lives.
+            Assurance Maladie provides long-term health protection for everyone, whether
+
+            and professional life.
 
 
-            In concrete terms, it supports 60 million insured people throughout their lives, covering their care regardless of their resources, situation or state of health. In this way, it guarantees universal access to rights and enables access to care.
+            In concrete terms, it supports 60 million policyholders throughout their lives
+
+            care, whatever their resources, situation or state of health,
+
+            situation or state of health. It guarantees universal access
+
+            to rights and access to care.
 
 
-            You are covered for most healthcare services. In the event of serious or long-term illness, 100% of treatment is reimbursed.
+            It means you're covered for most healthcare services. In the event of
+
+            serious or long-term illness, 100% of treatment is reimbursed.
 
 
             ## Health insurance in France in figures
-              - 92%** of healthcare costs reimbursed on average by health insurance and complementary health insurance.
-              - 30,000/year/patient**: example of full coverage for a person with cystic fibrosis
-              - 82.4 years** average life expectancy in France (in the top 10 worldwide 🏅)
+              - 92%** of healthcare expenses reimbursed on average by health insurance
+              and supplementary health insurance
+              - 30,000 / year / patient**: example of full coverage
+              for a person with cystic fibrosis
+              - 82.4 years** average life expectancy in france (in the top 10 worldwide)
+              worldwide 🏅)
           description.fr: >
-            Part des cotisations auto-entrepreneur qui alimentent l'assurance
+            Part des cotisations auto-entrepreneur qui alimentent l’assurance
+
             maladie-maternité
 
 
-            L’Assurance Maladie protège durablement la santé de chacun dans sa vie personnelle ou professionnelle.
+            L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+
+            personnelle ou professionnelle.
 
 
-            Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en prenant en charge leurs soins quels que soient leurs ressources, leur situation ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle permet l’accès aux soins.
+            Concrètement, elle accompagne 60 millions d’assurés tout au long de leur
+
+            vie, en prenant en charge leurs soins quels que soient leurs ressources,
+
+            leur situation ou leur état de santé. Elle garantit ainsi un accès
+
+            universel aux droits et elle permet l’accès aux soins.
 
 
-            Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+            Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas
+
+            de maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
 
-            ## L'assurance maladie en France en quelques chiffres
-              - **92 %** des dépenses de santé remboursées en moyenne par l'assurance maladie et la complémentaire
-              - **30 000 € / an / patient** : exemple de prise en charge complète pour une personne atteinte de mucoviscidose
-              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+            ## L’assurance maladie en France en quelques chiffres
+              - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
+              maladie et la complémentaire
+              - **30 000 € / an / patient** : exemple de prise en charge complète
+              pour une personne atteinte de mucoviscidose
+              - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10
+              mondial 🏅)
           titre.en: '[automatic] illness-maternity'
           titre.fr: maladie-maternité
         retraite:
@@ -715,45 +821,97 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
             ### A compulsory system ...
 
-            As soon as you start working, you and your employer contribute to your pension. This contribution is based on the salary you receive.
+            As long as you're working, you and your employer contribute to your
+
+            contributions. This contribution is based on the salary you receive.
+
+            you receive.
 
 
             ###Pay-as-you-go
 
-            The total amount of contributions you pay each year is used to pay the pensions of retirees for that same year. The system thus organizes a direct transfer from working generations to retired generations.
+            The total amount of contributions you make each year is used to pay
+
+            pensions for that same year. The pay-as-you-go
+
+            system thus organizes a direct transfer from working generations to
+
+            retired generations.
 
 
             ###Mainly contributory
 
-            When you retire, your pension (i.e. your retirement "income") is calculated on the basis of your income, your retirement age and the number of years you have worked.
+            When you retire, your pension (i.e. your retirement "income") is
+
+            retirement "income") is calculated on the basis of your income, your retirement age
+
+            your retirement age and the number of years you've worked.
+
+            working.
 
 
-            **Our pension system is also based on solidarity**: the unemployed, people on sick leave, disabled people, low-income workers and women on maternity leave also acquire rights. No retired person is left destitute.
+            **Our pension system is also based on solidarity**: the unemployed, people on sick leave
+
+            people on sick leave, people with disabilities, low-income workers
+
+            low-income earners, women on maternity leave, etc., also acquire
+
+            also acquire rights. No retired person is left
+
+            left destitute.
 
 
-            Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+            Simulate and manage your retirement on
+
+            [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
           description.fr: >
             Part des cotisations auto-entrepreneur qui alimentent la retraite
 
             ### Un système obligatoire …
 
-            Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+            Dès lors que vous travaillez, vous et votre employeur, cotisez pour la
+
+            retraite. Cette cotisation est définie à la mesure du salaire que vous
+
+            percevez.
 
 
             ###… par répartition
 
-            Le montant total des cotisations que vous versez chaque année sert à payer les pensions des retraités pour cette même année. Le système organise ainsi un transfert direct des générations en activité vers les générations à la retraite.
+            Le montant total des cotisations que vous versez chaque année sert à
+
+            payer les pensions des retraités pour cette même année. Le système
+
+            organise ainsi un transfert direct des générations en activité vers les
+
+            générations à la retraite.
 
 
             ###… principalement contributif
 
-            Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu » à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à la retraite et du nombre d’années passées à travailler.
+            Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre
+
+            « revenu » à la retraite) est calculé en fonction de vos revenus, de
+
+            votre âge de départ à la retraite et du nombre d’années passées à
+
+            travailler.
 
 
-            **Notre système de retraite est également solidaire**: les chômeurs, les personnes en arrêt maladie, les personnes en situation de handicap, les travailleurs touchant de faibles revenus, les femmes en congé maternité acquièrent également des droits. Aucune personne à la retraite n’est laissée sans ressources.
+            **Notre système de retraite est également solidaire** : les chômeurs, les
+
+            personnes en arrêt maladie, les personnes en situation de handicap, les
+
+            travailleurs touchant de faibles revenus, les femmes en congé maternité
+
+            acquièrent également des droits. Aucune personne à la retraite n’est
+
+            laissée sans ressources.
 
 
-            Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+            Simulez et gérez votre retraite sur
+
+            [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
           titre.en: '[automatic] retirement'
           titre.fr: retraite
         retraite complémentaire:
@@ -822,7 +980,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: taux
       description.en: '[automatic] Contributions for the portion of sales from BIC services'
       description.fr:
-        Cotisations pour la part du chiffre d'affaires en prestation de
+        Cotisations pour la part du chiffre d’affaires en prestation de
         service BIC
       titre.en: '[automatic] BIC service'
       titre.fr: service BIC
@@ -872,26 +1030,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.fr: taux
       description.en: '[automatic] Contributions for the portion of sales from BNC services'
       description.fr:
-        Cotisations pour la part du chiffre d'affaires en prestation de
+        Cotisations pour la part du chiffre d’affaires en prestation de
         service BNC
       titre.en: '[automatic] BNC service'
       titre.fr: service BNC
-    taux prestation de service:
-      note.en: '[automatic] There is now a different rate for BIC or BNC services.'
-      note.fr:
-        Il y a maintenant un taux différent pour les prestations de service BIC
-        ou BNC.
-      titre.en: '[automatic] service delivery rate'
-      titre.fr: taux prestation de service
-    taux service BIC:
-      titre.en: '[automatic] BIC service rate'
-      titre.fr: taux service BIC
-    taux service BNC:
-      titre.en: '[automatic] BNC service rate'
-      titre.fr: taux service BNC
-    taux vente restauration hébergement:
-      titre.en: '[automatic] sales rate catering accommodation'
-      titre.fr: taux vente restauration hébergement
+    taux CIPAV:
+      description.en: >
+        [automatic] Contribution rates for self-employed workers covered by Cipav
+      description.fr: |
+        Taux de cotisation pour les professions libérales dépendant de la Cipav
+      titre.en: '[automatic] CIPAV rate'
+      titre.fr: taux CIPAV
     vente restauration hébergement:
       avec:
         répartition:
@@ -937,84 +1086,34 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
           titre.en: '[automatic] rate'
           titre.fr: taux
       description.en: '[automatic] Contributions on sales, catering and accommodation sales'
-      description.fr: Cotisations pour la part du chiffre d'affaires en vente,
+      description.fr: Cotisations pour la part du chiffre d’affaires en vente,
         restauration et hébergement
       titre.en: '[automatic] sales catering accommodation'
       titre.fr: vente restauration hébergement
   description.en: >
-    [automatic] The social contributions give the auto-entrepreneur access to a
+    [automatic] Social security contributions give auto-entrepreneurs access to
+    a minimum
 
-    social protection: a pension, health care, family allowances, etc.
+    minimum social protection: pension, health care, family allowances
 
     family allowances, etc.
 
 
-    The auto-entreprise is a simplified system: rather than a complex pay slip, all
+    Auto-entrepreneurship is a simplified system: rather than a complex payslip
 
-    rather than a complex pay slip, all contributions are grouped in a *lump sum* whose
+    payslip, all contributions are grouped together in a "lump sum", the rate of which
 
     rate depends on the category of activity.
   description.fr: |
-    Les cotisations sociales donnent à l'auto-entrepreneur accès à une
-    protection sociale minimale : une retraite, des soins de santé, des
+    Les cotisations sociales donnent à l’auto-entrepreneur accès à une
+    protection sociale minimale : une retraite, des soins de santé, des
     allocations familiales, etc.
 
-    L'auto-entreprise est un régime simplifié : plutôt qu'une fiche de paie
+    L’auto-entreprise est un régime simplifié : plutôt qu’une fiche de paie
     complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
-    taux dépend de la catégorie d'activité.
+    taux dépend de la catégorie d’activité.
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE:
-  avec:
-    CIPAV:
-      titre.en: '[automatic] CIPAV'
-      titre.fr: CIPAV
-    prestation de service:
-      note.en: '[automatic] There are now different rates for BIC and BNC services'
-      note.fr:
-        Il y a maintenant des taux différents pour les prestations de service
-        BIC et BNC
-      titre.en: '[automatic] service delivery'
-      titre.fr: prestation de service
-    service BIC:
-      titre.en: '[automatic] BIC service'
-      titre.fr: service BIC
-    service BNC:
-      titre.en: '[automatic] BNC service'
-      titre.fr: service BNC
-    vente restauration hébergement:
-      titre.en: '[automatic] sales catering accommodation'
-      titre.fr: vente restauration hébergement
-  description.en: >
-    [automatic] This rate corresponds to the reduction in contributions that
-    applies to
-
-    the self-employed person benefiting from the Acre. A rate of 75% means that
-
-    the auto-entrepreneur must pay 75% of the original amount of the
-
-    contributions.
-  description.fr: |
-    Ce taux correspond à la réduction de cotisations qui s'applique pour
-    l'auto-entrepreneur bénéficiant de l'Acre. Un taux de 75% signifie que
-    l'auto-entrepreneur doit s'acquitter de 75% du montant d'origine des
-    cotisations.
-  titre.en: '[automatic] ACRE rate'
-  titre.fr: taux ACRE
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel:
-  description.en: >
-    [automatic] The ACRE rate used is the one corresponding to the current
-    month. The
-
-    simulator does not yet take into account the overlapping of two acre periods
-
-    of acre on the same year.
-  description.fr: |
-    Le taux ACRE utilisé est celui correspondant au mois courant. Le
-    simulateur ne prend pas encore en compte le chevauchement de deux périodes
-    d'acre sur une meme année.
-  titre.en: '[automatic] notification calculation ACRE annual'
-  titre.fr: notification calcul ACRE annuel
 dirigeant . auto-entrepreneur . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
@@ -1036,7 +1135,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     2023 must not exceed €28,797 for one family share.
 
 
-    To take advantage of the scheme the following year, you need to
+    To benefit from the scheme the following year, you need to
 
     Urssaf by September 30 at the latest.
 
@@ -1045,20 +1144,21 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
 
     you can run simulations on the French tax site.
   description.fr: |
-    Avec l'option pour le versement libératoire, l’impôt sur le revenu est payé
+    Avec l’option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité.
 
-    Pour en bénéficier en 2025, votre revenu fiscal de référence pour l'année
-    2023 ne doit pas excéder 28 797 € pour une part de quotient familial.
+    Pour en bénéficier en 2025, votre revenu fiscal de référence pour l’année
+    2023 ne doit pas excéder 28 797 € pour une part de quotient familial.
 
-    Pour bénéficier ou sortir du dispositif l'année suivante, il faut en faire
-    la demande à l'Urssaf au plus tard le 30 septembre.
+    Pour bénéficier ou sortir du dispositif l’année suivante, il faut en faire
+    la demande à l’Urssaf au plus tard le 30 septembre.
 
     Pour vérifier si cette option est adaptée à votre situation personnelle,
     vous devez effectuer des simulations sur le site des impôts.
-  question.en: '[automatic] Do you benefit from the payment in full of income tax?'
-  question.fr: Bénéficiez-vous du versement libératoire de l'impôt sur le revenu ?
+  question.en: '[automatic] Do you benefit from the "versement libératoire de
+    l''impôt sur le revenu" system?'
+  question.fr: Bénéficiez-vous du versement libératoire de l’impôt sur le revenu ?
   titre.en: '[automatic] payment in full discharge'
   titre.fr: versement libératoire
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
@@ -1077,21 +1177,20 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   titre.fr: versement libératoire auto-entrepreneur
 dirigeant . auto-entrepreneur . impôt . versement libératoire . seuil dépassé:
   description.en: >
-    [automatic] The payment in full discharge is not available if your
-    household's taxable income
+    [automatic] The payment in full discharge is not available if your household
+    tax
 
-    of your household is higher than €27,519 per unit in 2018
+    exceeds €27,519 per unit in 2018
   description.fr: |
-    Le versement libératoire n'est pas disponible si le revenu fiscal de
-    référence de votre ménage est supérieur à 27 519 € par part en 2018
+    Le versement libératoire n’est pas disponible si le revenu fiscal de
+    référence de votre ménage est supérieur à 27 519 € par part en 2018
   titre.en: '[automatic] threshold exceeded'
   titre.fr: seuil dépassé
 dirigeant . auto-entrepreneur . revenu net:
-  description.en:
-    '[automatic] This is income after deductions for contributions,
+  description.en: '[automatic] This is income after deduction of contributions,
     before payment of income tax.'
-  description.fr: Il s'agit du revenu après déductions des cotisations, avant le
-    paiement de l'impôt sur le revenu.
+  description.fr: Il s’agit du revenu après déductions des cotisations, avant le
+    paiement de l’impôt sur le revenu.
   question.en: '[automatic] How much pre-tax income do you want to receive?'
   question.fr: Quel revenu avant impôt voulez-vous toucher ?
   résumé.en: '[automatic] Before tax'
@@ -1100,66 +1199,78 @@ dirigeant . auto-entrepreneur . revenu net:
   titre.fr: revenu net
 dirigeant . auto-entrepreneur . revenu net . après impôt:
   description.en: >-
-    [automatic] The net income of the auto-entrepreneur after deduction of
-    income tax and social contributions.
+    [automatic] The auto-entrepreneur's net income after deduction of income tax
+    and social security contributions.
 
 
-    **To properly evaluate the profitability of the business, do not forget to deduct from this amount the expenses incurred in the course of the activity. This can include for example :
+    **Warning:** To properly assess the profitability of the business, don't forget to subtract from this amount the expenses incurred in the course of the activity. These may include, for example
 
-    - The purchase of raw materials
+    - Purchase of raw materials
 
-    - The purchase of tools / equipment
+    - Purchase of tools/equipment
 
     - Subscription to paid services
 
     - Rental of premises
 
-    - etc...
+    - etc.
   description.fr: >-
-    Le revenu net de l'auto-entrepreneur après déduction de l'impôt sur le
+    Le revenu net de l’auto-entrepreneur après déduction de l’impôt sur le
     revenu et des cotisations sociales.
 
 
-    **Attention :** Pour bien évaluer la rentabilité de l'entreprise, il ne faut pas oublier de retrancher à ce montant les dépenses engagées dans le cadre de l'activité. Cela peut inclure par exemple :
+    **Attention :** Pour bien évaluer la rentabilité de l’entreprise, il ne faut pas oublier de retrancher à ce montant les dépenses engagées dans le cadre de l’activité. Cela peut inclure par exemple :
 
-    - L'achat des matière premières
+    - L’achat des matières premières
 
-    - L'achat des outils / materiel
+    - L’achat des outils / matériel
 
-    - L'abonnement à des services payants
+    - L’abonnement à des services payants
 
-    - La location d'un local
+    - La location d’un local
 
     - etc...
   question.en: '[automatic] What is the desired net after-tax income?'
   question.fr: Quel est le revenu net après impôt souhaité ?
-  résumé.en: '[automatic] Before deduction of expenses related to the activity'
-  résumé.fr: Avant déduction des dépenses liées à l'activité
+  résumé.en: '[automatic] Before deduction of business expenses'
+  résumé.fr: Avant déduction des dépenses liées à l’activité
   titre.en: '[automatic] after tax'
   titre.fr: après impôt
 dirigeant . auto-entrepreneur . éligible à l'ACRE:
   description.en: >
-    [automatic] ACRE is reserved for the following auto-entrepreneurs:
+    [automatic] ACRE is reserved for the following self-entrepreneurs:
 
-    - Jobseekers (with or without benefits, but registered with France Travail for at least 6 months in the last 18 months).
+    - Jobseekers (with or without benefits, but with at least 6 months
+
+    months of registration with France Travail in the last 18 months).
 
     - Recipients of social assistance (RSA, ASS, ATA).
 
-    - Young people aged between 18 and 25 (up to 29 for people recognized as disabled).
+    - Young people aged between 18 and 25 (up to 29 for people recognized as being
+
+    disabled)
 
     - People setting up a micro-business in a priority urban district (QPPV).
+
+    quartier prioritaire de la ville (QPPV)
   description.fr: >
-    L'ACRE est réservée aux auto-entrepreneurs suivants:
+    L’ACRE est réservée aux auto-entrepreneurs suivants :
 
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
+    - Les demandeurs d’emplois (indemnisés ou non indemnisés mais ayant au moins 6
 
-    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+    mois d’inscription à France Travail au cours des 18 derniers mois).
 
-    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+    - Les bénéficiaires d’aides sociales (RSA, ASS, ATA)
 
-    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
+    - Les jeunes entre 18 et 25 ans (jusqu’à 29 ans pour les personnes reconnues en
+
+    situation de handicap)
+
+    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la
+
+    ville (QPPV)
   question.en: '[automatic] Are you eligible for ACRE for your auto-entreprise?'
-  question.fr: Êtes-vous éligible à l'ACRE pour votre auto-entreprise ?
+  question.fr: Êtes-vous éligible à l’ACRE pour votre auto-entreprise ?
   titre.en: '[automatic] eligible for ACRE'
   titre.fr: éligible à l'ACRE
 dirigeant . exonérations:
@@ -1185,25 +1296,25 @@ dirigeant . exonérations . ACRE:
 
     - People setting up a micro-business in a priority urban district (QPPV).
   description.fr: >-
-    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
-    d'activité pendant 12 mois.
+    d’activité pendant 12 mois.
 
 
     Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
 
 
-    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants:
+    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants :
 
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
+    - Les demandeurs d’emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
 
-    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
+    - Les bénéficiaires d’aides sociales (RSA, ASS, ATA)
 
-    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
+    - Les jeunes entre 18 et 25 ans (jusqu’à 29 ans pour les personnes reconnues en situation de handicap)
 
     - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
-  question.en: '[automatic] Did you benefit from the ACRE?'
-  question.fr: Bénéficiez-vous de l'ACRE ?
+  question.en: '[automatic] Did you benefit from Acre?'
+  question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] ACRE'
   titre.fr: ACRE
 dirigeant . gérant minoritaire:
@@ -1902,10 +2013,10 @@ dirigeant . indépendant . PL . CIPAV:
       titre.en: '[automatic] supplementary pension contributions'
       titre.fr: cotisations et contributions retraite complémentaire
   description.en: >
-    [automatic] CIPAV is the independent pension fund for the regulated
+    [automatic] Cipav is the independent pension fund for the regulated liberal
     professions.
   description.fr: >
-    La CIPAV est la caisse de retraite autonomes des professions libérales
+    La Cipav est la caisse de retraite autonomes des professions libérales
     réglementées.
   titre.en: '[automatic] CIPAV'
   titre.fr: CIPAV
@@ -1925,10 +2036,11 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
         quart:
           titre.en: '[automatic] 25 %'
           titre.fr: 25 %
-      question.en: '[automatic] How much does the spouse contribute to the
-        complementary plan and the CIPAV disability-death plan?'
+      question.en:
+        '[automatic] In what proportion does the spouse contribute to the
+        Cipav complementary and disability-death plans?'
       question.fr: A quelle proportion le conjoint cotise-t’il pour le régime
-        complémentaire et le régime d’invalidité-décès CIPAV ?
+        complémentaire et le régime d’invalidité-décès Cipav ?
       titre.en: '[automatic] proportion'
       titre.fr: proportion
     retraite complémentaire:
@@ -1968,11 +2080,11 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
         les affiliés cotisent en « classe A » mais il est possible de cotiser en
         classe B ou C afin de bénéficier d'une meilleure couverture
         invalidité-décès.
-      question.en: '[automatic] In which class do you contribute to the CIPAV
-        disability-death plan?'
+      question.en: "[automatic] In which class do you contribute to Cipav's
+        disability-death scheme?"
       question.fr:
         Dans quelle classe cotisez-vous pour le régime invalidité-décès de
-        la CIPAV ?
+        la Cipav ?
       titre.en: '[automatic] contribution class'
       titre.fr: classe de cotisation
   titre.en: '[automatic] disability and death'
@@ -1993,11 +2105,11 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération in
     de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
 
     peut, à sa demande expresse, être dispensé de cette cotisation.
-  question.en: '[automatic] Have you asked to be exempted from CIPAV disability
-    and death contributions? (income of the previous year lower than 6 170€)'
+  question.en: "[automatic] Have you applied for exemption from Cipav
+    disability-death contributions? (previous year's income under €6,170)"
   question.fr:
     Avez-vous demandé à être exonéré de la cotisations invalidité-décès
-    CIPAV ? (revenus de l'année précédente inférieurs à 6 170€)
+    Cipav ? (revenus de l'année précédente inférieurs à 6 170€)
   titre.en: '[automatic] disability and death exemption'
   titre.fr: exonération invalidité et décès
 dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
@@ -2015,15 +2127,15 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcot
   titre.fr: option surcotisation
 dirigeant . indépendant . PL . CNAVPL:
   description.en: >
-    [automatic] The National Old Age Insurance Fund for the liberal professions
-    is
+    [automatic] The Caisse Nationale d'Assurance Vieillesse des Professions
+    Libérales is
 
-    the body that federates the various existing funds (CIPAV, CARPIMKO,
+    the organization that federates the various existing funds (Cipav, CARPIMKO,
 
-    CARCDSF, CAVEC etc.)
+    CARCDSF, CAVEC etc.).
   description.fr: |
     La caisse nationale d'assurance vieillesse des professions libérales est
-    l'organisme qui fédère les différentes caisses existantes (CIPAV, CARPIMKO,
+    l'organisme qui fédère les différentes caisses existantes (Cipav, CARPIMKO,
     CARCDSF, CAVEC etc..)
   titre.en: '[automatic] CNAVPL'
   titre.fr: CNAVPL
@@ -2692,11 +2804,11 @@ dirigeant . indépendant . PL . métier . juridique:
   titre.fr: Professions juridiques et judicaires
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   description.en: >
-    [automatic] You work in a regulated trade that is affiliated with the CIPAV.
-    The list of these trades is :
+    [automatic] You work in a regulated profession covered by Cipav. The list of
+    these trades is :
 
 
-    - Architect (architect, interior architect, construction economist, project manager, surveyor)
+    - Architect (architect, interior designer, construction economist, project manager, surveyor)
 
     - Mountain guide (ski instructor, high mountain guide, medium mountain guide)
 
@@ -2716,17 +2828,17 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
 
     - Consulting engineer
 
-    - Guide-lecturer
+    - Tour guide
 
     - Artists other than artist-authors
 
     - Court experts
 
-    - Motor vehicle experts
+    - Automotive experts
 
     - Legal representatives for the protection of adults
   description.fr: >
-    Vous exercez un métier réglementé rattaché à la CIPAV. La liste de ces
+    Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces
     métiers est :
 
 
@@ -2759,8 +2871,8 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
     - Experts automobiles
 
     - Mandataires judiciaires à la protection des majeurs
-  titre.en: '[automatic] Other CIPAV-related professions'
-  titre.fr: Autre métier rattaché à la CIPAV
+  titre.en: '[automatic] Other Cipav professions'
+  titre.fr: Autre métier rattaché à la Cipav
 dirigeant . indépendant . PL . métier . santé:
   avec:
     auxiliaire médical:
@@ -2822,61 +2934,61 @@ dirigeant . indépendant . PL . métier . santé:
       titre.en: '[automatic] by default'
       titre.fr: par défaut
   description.en: >
-    [automatic] **Exceptions**: Osteopath, psychologist, psychotherapist,
-    occupational therapist,
+    [automatic] **Exceptions** : Osteopaths, psychologists, psychotherapists,
+    occupational therapists,
 
-    dietician and chiropractor depend on the
+    dietician and chiropractor are covered by the
 
-    CIPAV for their retirement and disability.
+    Cipav for their retirement and disability benefits.
   description.fr: >
     **Exceptions** : Les ostéopathe, psychologue, psychothérapeute,
     ergothérapeute,
 
     diététicien et chiropracteur dépendent de la
 
-    CIPAV pour leur retraite et invalidité.
+    Cipav pour leur retraite et invalidité.
   question.en: '[automatic] What do you do as a healthcare professional?'
   question.fr: Quel métier exercez-vous en tant que professionnel de santé ?
   titre.en: '[automatic] Health professions'
   titre.fr: Professions de santé
 dirigeant . indépendant . PL . option régime général:
   description.en: >
-    [automatic] Persons already practising an unregulated liberal profession
+    [automatic] People already working in an unregulated liberal profession
     before
 
-    2019 can opt between 2019 and 2023 for Social Security for the self-employed, provided that they
+    2019 can opt for Social Security for the self-employed between 2019 and 2023
 
-    provided that they are up to date with the payment of all their
+    provided they are up to date with payment of all their contributions to
 
-    contributions to the CIPAV.
-
-
-    This option will allow them to benefit from the same rights as craftsmen and tradesmen
-
-    This option will allow them to benefit from the same rights as artisans and traders (daily allowances, retirement, disability, etc.).
+    contributions to Cipav.
 
 
-    In particular, they will have access to daily allowances in the event of sick leave or maternity
+    This option will enable them to benefit from the same rights as artisans
 
-    maternity, which is not the case with the CIPAV.
+    (daily allowances, retirement, disability, etc.).
 
 
-    The application must be made to the CIPAV. It will take effect on January 1 of the following year and will be
+    In particular, they will have access to daily allowances in the event of sick leave or maternity, which is not available to self-employed workers.
 
-    January of the following year and will be definitive.
+    maternity, which is not the case with Cipav.
+
+
+    Applications must be made to Cipav. It will take effect on January 1st
+
+    of the following year.
   description.fr: |
     Les personnes exerçant déjà une profession libérale non réglementée avant
     2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
     indépendants, à condition d’être à jour dans le paiement de toutes leurs
-    cotisations à la CIPAV.
+    cotisations à la Cipav.
 
     Cette option leur permettra de bénéficier des mêmes droits que les artisans
     et commerçants (indemnités journalières, retraite, invalidité, etc.).
 
     Ils auront nottament accès à des indemnités journalières en cas d'arrêt de
-    travail ou de maternité, ce qui n'est pas le cas à la CIPAV.
+    travail ou de maternité, ce qui n'est pas le cas à la Cipav.
 
-    La demande est à effectuer auprès de la CIPAV. Elle prendra effet au 1er
+    La demande est à effectuer auprès de la Cipav. Elle prendra effet au 1er
     janvier de l’année suivante et sera définitive.
   question.en: '[automatic] Have you opted to join the general scheme for
     self-employed persons?'
@@ -3701,34 +3813,34 @@ dirigeant . indépendant . cotisations et contributions . exonérations . âge:
       titre.en: '[automatic] disability and death'
       titre.fr: invalidité et décès
   description.en: >
-    [automatic] ### Craftsmen, merchants, and self-employed professionals
-    outside the CIPAV
+    [automatic] ### Craftsmen, shopkeepers and self-employed professionals
+    outside Cipav
 
-    This scheme was stopped in 2015, but is still active for people who benefited from it before it was
+    This scheme was discontinued in 2015, but is still active for those who benefited from it
 
-    before its abrogation.
+    before it was abolished.
 
 
-    #### Liberal professions under the CIPAV
+    #### Self-employed professionals covered by Cipav
 
-    The exemption applies automatically from the year you turn 68.
+    The exemption applies automatically from the year in which you turn 68.
 
-    However, you may contribute voluntarily between the ages of 68 and 80 if:
+    You may, however, contribute voluntarily between the ages of 68 and 80, if :
 
-    - you continue your activity ;
+    - you continue to work ;
 
     - you have a spouse under 67 or dependent children under 21;
 
     - you have a dependent with a major disability.
   description.fr: >
-    ### Artisans, commerçants, et professions libérales hors CIPAV
+    ### Artisans, commerçants, et professions libérales hors Cipav
 
     Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
 
     avant son abrogation.
 
 
-    #### Professions libérales relevants de la CIPAV
+    #### Professions libérales relevants de la Cipav
 
     L'exonération s'applique automatique à partir de l'année de vos 68 ans.
 
@@ -11028,16 +11140,7 @@ salarié . cotisations . catégories:
   titre.fr: catégories
 salarié . cotisations . chômage:
   avec:
-    employeur:
-      titre.en: "[automatic] employer's share"
-      titre.fr: part employeur
-    employeur . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-    salarié:
-      titre.en: '[automatic] employee share'
-      titre.fr: part salarié
-    salarié . taux:
+    taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
   description.en: '[automatic] Unemployment insurance contribution'

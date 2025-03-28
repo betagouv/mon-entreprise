@@ -1,31 +1,6 @@
+dirigeant . exonérations:
+
 dirigeant . exonérations . ACRE:
-  description: >-
-    L'aide à la création ou à la reprise d'une entreprise (Acre) consiste en une
-    exonération partielle de charges sociales, dite exonération de début
-    d'activité pendant 12 mois.
-
-
-    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
-
-
-    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants:
-
-    - Les demandeurs d'emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
-
-    - Les bénéficiaires d'aides sociales (RSA, ASS, ATA)
-
-    - Les jeunes entre 18 et 25 ans (jusqu'à 29 ans pour les personnes reconnues en situation de handicap)
-
-    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
-
-  notes: |
-    #### Historique
-
-    - Pour les auto-entreprise créées à partir du 1er janvier 2020, l'exonération est
-    de nouveau soumise à condition.
-    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019, la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu l'ACCRE dans les trois années précédentes
-    - Pour les entreprises créées avant le 1er janvier 2019, la l'exonération de cotisation s'appelait ACCRE était soumise à conditions et n'était pas automatique : il fallait en faire la demande.
-  question: Bénéficiez-vous de l'ACRE ?
   applicable si:
     une de ces conditions:
       - toutes ces conditions:
@@ -33,11 +8,49 @@ dirigeant . exonérations . ACRE:
         - entreprise . durée d'activité . en début d'année < 1 an
       - toutes ces conditions:
         - auto-entrepreneur = oui
-        - dirigeant . auto-entrepreneur . éligible à l'ACRE = oui
         - entreprise . durée d'activité . en début d'année < 1 an
+        - dirigeant . auto-entrepreneur . éligible à l'ACRE = oui
+  question: Bénéficiez-vous de l’Acre ?
   par défaut: non
+  description: >-
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d’activité pendant 12 mois.
+
+
+    Elle est **automatique** pour les **sociétés et les entreprises individuelles**
+    (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois
+    dernières années).
+
+
+    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est
+    réservée aux bénéficiaires suivants :
+
+    - Les demandeurs d’emplois (indemnisés ou non indemnisés mais ayant au moins 6
+    mois d’inscription à France Travail au cours des 18 derniers mois).
+
+    - Les bénéficiaires d’aides sociales (RSA, ASS, ATA)
+
+    - Les jeunes entre 18 et 25 ans (jusqu’à 29 ans pour les personnes reconnues en
+    situation de handicap)
+
+    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la
+    ville (QPPV)
+
+  notes: |
+    #### Historique
+
+    - Pour les auto-entreprise créées à partir du 1er janvier 2020, l’exonération est
+    de nouveau soumise à condition.
+    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019,
+    la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu
+    l’ACCRE dans les trois années précédentes
+    - Pour les entreprises créées avant le 1er janvier 2019, la l’exonération de
+    cotisation s’appelait ACCRE était soumise à conditions et n’était pas
+    automatique : il fallait en faire la demande.
+
   références:
-    "L’Acre : une aide pour favoriser les créations et reprises d’entreprises": https://www.urssaf.fr/accueil/exoneration-acre-createur.html
-    Aide à la création ou à la reprise d'une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
+    'L’Acre : une aide pour favoriser les créations et reprises d’entreprises': https://www.urssaf.fr/accueil/exoneration-acre-createur.html
+    Aide à la création ou à la reprise d’une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
     # BPI ONLY
-    "Acre : aide aux créateurs et repreneurs d'entreprise": https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
+    'Acre : aide aux créateurs et repreneurs d’entreprise': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
