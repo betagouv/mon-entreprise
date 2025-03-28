@@ -41,7 +41,6 @@ it('calculate simulations-professions-libérales', () => {
 		  "entreprise . activités . commerciale",
 		  "entreprise . activités . saisonnière",
 		  "entreprise . charges",
-		  "entreprise . date de cessation",
 		  "entreprise . date de création",
 		  "entreprise . imposition . régime",
 		  "entreprise . imposition . régime . micro-entreprise",
