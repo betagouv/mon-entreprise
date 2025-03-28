@@ -49,13 +49,12 @@ export default function Header() {
 							</StyledLogo>
 						</Link>
 
-						<div style={{ flex: 1 }} className="print-hidden" />
-
 						<div
 							style={{
 								display: 'flex',
 								alignItems: 'center',
 								marginRight: '1rem',
+								marginLeft: 'auto',
 							}}
 							className="print-hidden"
 						>
