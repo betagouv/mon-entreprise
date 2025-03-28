@@ -11,19 +11,26 @@ salarié . cotisations . exonérations . JEI:
 
   description: >-
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
-    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 20% au
     moins de leurs charges à de la Recherche et Développement de bénéficier
     d'une exonération de cotisations sociales.
 
 
     L’exonération peut s’appliquer sur les rémunérations versées :
 
-    - aux salariés pour lesquels l’employeur est soumis à l’obligation d’assurance chômage
+    - aux salariés pour lesquels l’employeur est soumis à l’obligation d’assurance
+    chômage
 
-    - aux mandataires sociaux qui participent, à titre principal, au projet de recherche et de développement de l’entreprise
+    - aux mandataires sociaux qui participent, à titre principal, au projet de
+    recherche et de développement de l’entreprise
 
 
-    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
+    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera
+    considéré comme acquis dès lors que la moitié de son temps de travail au moins
+    est consacrée à un ou des projets de recherche et de développement et
+    l’exonération ne pourra être remise en cause.
+  références:
+    Code général des impôts - Article 44 sexies-0 A: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048844070
 
   par défaut: non
   rend non applicable:

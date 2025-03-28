@@ -518,9 +518,7 @@ salarié . régimes spécifiques . taxe sur les salaires:
     distribuent.
   barème:
     assiette:
-      somme:
-        - cotisations . assiette
-        - cotisations . prévoyances . employeur
+      valeur: cotisations . CSG-CRDS . assiette de base
       abattement: rémunération . net . imposable . exonération prime d'impatriation
     tranches:
       - taux: 4.25%

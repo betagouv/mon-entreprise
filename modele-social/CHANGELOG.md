@@ -29,6 +29,12 @@
 - Correction du taux de cotisations Acre pour les auto-entrepreneuses et auto-entrepreneurs affiliés à la Cipav
 - Correction de la formule du calcul de la contribution additionnelle pour les PAMC
 - Correction du montant de la CURPS pour les activités démarrées au 1er janvier
+- Correction de la liste des cotisations sociales exonérées pour les apprentis
+
+### Mises à jour
+- Mise à jour des niveaux de rémunération pour les taux réduits de cotisations maladie et familiales
+- Mise à jour du plafond d’exonération de cotisations sociales pour les apprentis
+- Mise à jour de l’exonération de CSG-CRDS pour les apprentis
 
 ## 6.0.0
 ### Breaking changes

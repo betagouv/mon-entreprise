@@ -10096,12 +10096,31 @@ salarié . contrat . apprentissage . ancienneté . moins de trois ans:
   titre.en: '[automatic] less than three years old'
   titre.fr: moins de trois ans
 salarié . contrat . apprentissage . assiette réduite apprentissage:
-  description.en: '[automatic] Apprentices benefit from an exemption from social
-    security contributions up to 79% of the minimum wage.'
-  description.fr: Les apprentis bénéficient d'une exonération de cotisations
-    sociales jusqu'à 79% du SMIC.
+  description.en: >-
+    [automatic] For contracts signed on or after March 1, 2025, apprentices are
+    exempt from social security contributions up to 50% of the minimum wage.
+
+    For contracts signed before, the exemption is up to 79%.
+  description.fr: >-
+    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
+    d’une exonération de cotisations sociales jusqu’à 50% du Smic.
+
+    Pour les contrats conclus avant, cette exonération va jusqu’à 79%.
   titre.en: '[automatic] reduced learning base'
   titre.fr: assiette réduite apprentissage
+salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
+  description.en: >-
+    [automatic] For contracts signed on or after March 1, 2025, apprentices are
+    exempt from CSG and CRDS up to 50% of the minimum wage.
+
+    For contracts signed before, this exemption is total.
+  description.fr: >-
+    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
+    d’une exonération de CSG et de CRDS jusqu’à 50% du Smic.
+
+    Pour les contrats conclus avant, cette exonération est totale.
+  titre.en: '[automatic] CSG-CRDS'
+  titre.fr: CSG-CRDS
 salarié . contrat . apprentissage . diplôme:
   titre.en: '[automatic] Diploma prepared'
   titre.fr: Diplôme préparé
@@ -11199,22 +11218,22 @@ salarié . cotisations . exonérations . Acre . salarié:
 salarié . cotisations . exonérations . JEI:
   description.en: >-
     [automatic] The Young Innovative Company (JEI) status was created by the
-    2004 Finance Act and allows SMEs under 8 years old that devote at least 15%
-    of their expenses to Research and Development to benefit from an exemption
-    from social security contributions.
+    French Finance Act for 2004, and enables SMEs under 8 years of age devoting
+    at least 20% of their costs to R&amp;D to benefit from an exemption from
+    social security contributions.
 
 
-    The exemption can be applied to remuneration paid to
+    The exemption can be applied to remuneration paid to :
 
-    - to employees for whom the employer is subject to the unemployment insurance obligation
+    - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - to corporate officers who participate, on a principal basis, in the company's research and development project
+    - corporate officers who are principally involved in the company's research and development project
 
 
-    By simplification, the benefit of the exemption for an employee will be considered as acquired as soon as at least half of his working time is devoted to one or more research and development projects and the exemption cannot be called into question.
+    By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
   description.fr: >-
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
-    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 15% au
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 20% au
     moins de leurs charges à de la Recherche et Développement de bénéficier
     d'une exonération de cotisations sociales.
 
