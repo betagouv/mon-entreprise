@@ -9,6 +9,10 @@ export const configCessationActivité: SimulationConfig = {
 		'dirigeant . rémunération . net',
 	],
 	'unité par défaut': '€/an',
+	situation: {
+		...configIndépendant.situation,
+		"entreprise . en cessation d'activité": 'oui',
+	},
 	questions: {
 		...configIndépendant.questions,
 		'liste noire': [
