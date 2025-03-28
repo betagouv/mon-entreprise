@@ -71,7 +71,13 @@ export default function Header() {
 							className="print-hidden"
 						>
 							<Emoji emoji="☀️" aria-hidden />
-							<Switch isSelected={darkMode} onChange={setDarkMode} srOnlyLabel>
+							<Switch
+								isSelected={darkMode}
+								onChange={setDarkMode}
+								srOnlyLabel
+								/* Need this useless aria-label to silence a React-Aria warning */
+								aria-label=""
+							>
 								<Trans>Activer le mode sombre</Trans>
 							</Switch>
 							<Emoji emoji="🌙" aria-hidden />
