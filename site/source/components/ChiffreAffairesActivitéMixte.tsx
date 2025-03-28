@@ -170,6 +170,8 @@ function ActivitéMixte() {
 						defaultSelected={defaultChecked}
 						onChange={onMixteChecked}
 						light
+						/* Need this useless aria-label to silence a React-Aria warning */
+						aria-label=""
 					>
 						Activité mixte
 					</Switch>

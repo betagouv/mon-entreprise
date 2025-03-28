@@ -88,6 +88,8 @@ const ModifierOptions = () => {
 							onChange={(value: boolean) => set[DOTTEDNAME_ACRE](value)}
 							defaultSelected={values[DOTTEDNAME_ACRE] as boolean}
 							light
+							/* Need this useless aria-label to silence a React-Aria warning */
+							aria-label=""
 						>
 							<Trans>Activer l'ACRE dans la simulation</Trans>
 						</Switch>
@@ -112,6 +114,8 @@ const ModifierOptions = () => {
 										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as boolean
 									}
 									light
+									/* Need this useless aria-label to silence a React-Aria warning */
+									aria-label=""
 								>
 									<Trans>
 										Je suis éligible à l'ACRE pour mon auto-entreprise
@@ -196,6 +200,8 @@ const ModifierOptions = () => {
 							] as boolean
 						}
 						light
+						/* Need this useless aria-label to silence a React-Aria warning */
+						aria-label=""
 					>
 						<Trans>Activer le versement libératoire dans la simulation</Trans>
 					</Switch>
