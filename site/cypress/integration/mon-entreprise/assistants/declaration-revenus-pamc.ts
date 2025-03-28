@@ -1339,7 +1339,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-title`
 		).should('be.visible')
 		cy.get(
-			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire`
+			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-input`
 		).should('be.visible')
 		cy.get('h3')
 			.contains('Montant des revenus de remplacement')
@@ -1380,7 +1380,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-title`
 		).should('be.visible')
 		cy.get(
-			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire`
+			`#${idPrefix}_revenus_de_remplacement___indemnités_incapacité_temporaire-input`
 		).should('be.visible')
 		cy.get('h3')
 			.contains('Montant des revenus de remplacement')
