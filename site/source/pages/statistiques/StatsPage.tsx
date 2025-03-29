@@ -112,7 +112,10 @@ export default function StatPage({ stats }: StatsDetailProps) {
 						/* Need this useless aria-label to silence a React-Aria warning */
 						aria-label=""
 					>
-						Activer le mode accessibilité sur cette section
+						{t(
+							'activate-a11y',
+							'Activer le mode accessibilité sur cette section'
+						)}
 					</Switch>
 				</Body>
 				<H3>Visites</H3>

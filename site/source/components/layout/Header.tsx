@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Logo } from '@/components/Logo'
@@ -66,7 +66,7 @@ export default function Header() {
 								/* Need this useless aria-label to silence a React-Aria warning */
 								aria-label=""
 							>
-								<Trans>Activer le mode sombre</Trans>
+								{t('navbar.activate-darkmode', 'Activer le mode sombre')}
 							</Switch>
 							<Emoji emoji="🌙" aria-hidden />
 						</div>

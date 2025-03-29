@@ -1,5 +1,5 @@
 import { PublicodesExpression } from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
@@ -43,7 +43,8 @@ const ModifierOptions = () => {
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...buttonProps}
 				>
-					<Trans>Modifier mes options</Trans> <StyledArrowRightIcon />
+					{t('update-options', 'Modifier mes options')}
+					<StyledArrowRightIcon />
 				</Button>
 			)}
 			confirmLabel="Enregistrer les options"
@@ -51,9 +52,7 @@ const ModifierOptions = () => {
 			onCancel={cancel}
 		>
 			<>
-				<H2>
-					<Trans>Modifier mes options</Trans>
-				</H2>
+				<H2>{t('update-options', 'Modifier mes options')}</H2>
 
 				<H3>
 					Bénéficier de l'ACRE{' '}
@@ -77,7 +76,7 @@ const ModifierOptions = () => {
 						light
 						size="XS"
 					>
-						<Trans>En savoir plus</Trans>
+						{t('read-more', 'En savoir plus')}
 					</Button>
 				}
 				<H5 as="h4">Choisir mon option de simulation</H5>
@@ -91,7 +90,10 @@ const ModifierOptions = () => {
 							/* Need this useless aria-label to silence a React-Aria warning */
 							aria-label=""
 						>
-							<Trans>Activer l'ACRE dans la simulation</Trans>
+							{t(
+								'status-choice.activate-acre',
+								"Activer l'ACRE dans la simulation"
+							)}
 						</Switch>
 					</FlexCentered>
 
@@ -117,9 +119,10 @@ const ModifierOptions = () => {
 									/* Need this useless aria-label to silence a React-Aria warning */
 									aria-label=""
 								>
-									<Trans>
-										Je suis éligible à l'ACRE pour mon auto-entreprise
-									</Trans>
+									{t(
+										'status-choice.acre-eligibility',
+										"Je suis éligible à l'ACRE pour mon auto-entreprise"
+									)}
 								</Switch>
 							</FlexCentered>
 						</>
@@ -168,10 +171,10 @@ const ModifierOptions = () => {
 									fontSize: '0.875rem',
 								}}
 							>
-								<Trans>
-									À ce jour, ce comparateur ne prend pas en compte le calcul de
-									l'impôt sur le revenu pour les SAS(U).
-								</Trans>
+								{t(
+									'status-choice.sasu-warning',
+									"À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U)."
+								)}
 							</Body>
 						</Grid>
 					</Grid>
@@ -203,7 +206,10 @@ const ModifierOptions = () => {
 						/* Need this useless aria-label to silence a React-Aria warning */
 						aria-label=""
 					>
-						<Trans>Activer le versement libératoire dans la simulation</Trans>
+						{t(
+							'status-choice.payement-in-full-discharge',
+							'Activer le versement libératoire dans la simulation'
+						)}
 					</Switch>
 				</FlexCentered>
 			</>
