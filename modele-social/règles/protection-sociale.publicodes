@@ -75,6 +75,35 @@ protection sociale . retraite . trimestres:
         - dirigeant . indépendant . cotisations et contributions . exonérations
           . pension invalidité . prorata
 
+protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
+  applicable si:
+    toutes ces conditions:
+      - dirigeant . auto-entrepreneur
+      - entreprise . activité . nature . libérale . réglementée
+  remplace: retraite . trimestres
+  grille:
+    assiette: entreprise . chiffre d'affaires
+    multiplicateur:
+      variations:
+        - si: date >= 01/2024
+          alors: 2660 €/an
+        - si: date >= 01/2023
+          alors: 2571 €/an
+        - sinon: 2421 €/an
+    tranches:
+      - montant: 0 trimestres validés/an
+        plafond: 1
+      - montant: 1 trimestres validés/an
+        plafond: 2
+      - montant: 2 trimestres validés/an
+        plafond: 3
+      - montant: 3 trimestres validés/an
+        plafond: 4
+      - montant: 4 trimestres validés/an
+  références:
+    Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
+    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23369
+
 protection sociale . retraite . base:
   titre: Retraite de base maximum
   résumé: Pension de retraite de base à taux plein en partant du principe que
@@ -324,7 +353,7 @@ protection sociale . retraite . complémentaire . RCI:
   non applicable si:
     une de ces conditions:
       - dirigeant . indépendant . PL . CNAVPL
-      - dirigeant . auto-entrepreneur . affiliation CIPAV
+      - dirigeant . auto-entrepreneur . Cipav
   produit:
     - points acquis
     - valeur du point
@@ -484,7 +513,10 @@ protection sociale . retraite . base . CNAVPL:
       'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
 protection sociale . retraite . complémentaire . CIPAV:
-  applicable si: dirigeant . indépendant . PL . CIPAV
+  applicable si:
+    une de ces conditions:
+      - dirigeant . indépendant . PL . CIPAV
+      - dirigeant . auto-entrepreneur . Cipav
   produit:
     - points acquis
     - valeur de service du point
@@ -494,14 +526,38 @@ protection sociale . retraite . complémentaire . CIPAV:
 
   avec:
     points acquis:
-      dirigeant . indépendant . PL . CIPAV . retraite complémentaire /
-      valeur d'acquisition
+      valeur: montant cotisé / valeur d'acquisition
+      arrondi: oui
+
+    montant cotisé:
+      description: |
+        ### Pour les auto-entrepreneuses et auto-entrepreneurs
+
+        Le montant cotisé pour la retraite complémentaire Cipav correspond à la
+        part des cotisations correspondant à la retraite complémentaire.
+
+        Cette part est calculée en multipliant le montant total des cotisations par
+        un taux de répartition. Ce taux est de **25,6 % du total des cotisations**,
+        soit 5,94 % du chiffre d’affaires.
+
+        ### Pour les autres indépendantes et indépendants
+
+        Le montant cotisé est calculé en multipliant l’**assiette des cotisations**
+        par un taux qui varie en fonction de la tranche de l’assiette des
+        cotisations.
+      variations:
+        - si: dirigeant . auto-entrepreneur
+          alors: dirigeant . auto-entrepreneur . Cipav . retraite complémentaire
+        - sinon: dirigeant . indépendant . PL . CIPAV . retraite complémentaire
+      unité: €/an
+
     valeur d'acquisition:
       variations:
         - si: date >= 01/2024
           alors: 47.40 €/point
         - si: date >= 01/2023
           alors: 45.30 €/point
+
     valeur de service du point:
       unité: €/an/point
       variations:
@@ -511,37 +567,6 @@ protection sociale . retraite . complémentaire . CIPAV:
           alors: 2.77 €/an/point
         - si: date >= 01/2022
           alors: 2.63 €/an/point
-    références:
-      'CIPAV : Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
-
-protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
-  applicable si:
-    toutes ces conditions:
-      - dirigeant . auto-entrepreneur
-      - entreprise . activité . nature . libérale . réglementée
-  remplace: retraite . trimestres
-  grille:
-    assiette: entreprise . chiffre d'affaires
-    multiplicateur:
-      variations:
-        - si: date >= 01/2024
-          alors: 2660 €/an
-        - si: date >= 01/2023
-          alors: 2571 €/an
-        - sinon: 2421 €/an
-    tranches:
-      - montant: 0 trimestres validés/an
-        plafond: 1
-      - montant: 1 trimestres validés/an
-        plafond: 2
-      - montant: 2 trimestres validés/an
-        plafond: 3
-      - montant: 3 trimestres validés/an
-        plafond: 4
-      - montant: 4 trimestres validés/an
-  références:
-    Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
-    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23369
 
 protection sociale . maladie:
   icônes: 🏥

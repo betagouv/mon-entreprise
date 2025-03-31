@@ -528,6 +528,53 @@ dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel:
     d’Acre sur une même année.
   titre.en: '[automatic] notification annual ACRE calculation'
   titre.fr: notification calcul ACRE annuel
+dirigeant . auto-entrepreneur . Cipav:
+  avec:
+    adhérent:
+      description.en: >
+        [automatic] Since January 1, 2018, self-employed workers in unregulated
+        liberal professions
+
+        are affiliated to Sécurité sociale pour les indépendants (SSI).
+
+
+        Unregulated self-employed self-employed professionals created before January 1
+
+        January 2018, who were members of Cipav, remain members of Cipav.
+
+
+        The auto-entrepreneurs concerned do, however, have a right of option
+
+        for five years to join the Sécurité sociale pour les indépendants
+
+        (SSI).
+      description.fr: >
+        Depuis le 1er janvier 2018, les auto-entreprises d’activité libérale non
+
+        réglementée sont affiliées à la Sécurité sociale pour les indépendants (SSI).
+
+
+        Les auto-entreprises d’activité libérale non réglementée créées avant le 1er
+
+        janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
+
+
+        Les auto-entrepreneurs concernés disposent toutefois d’un droit d’option
+
+        durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants
+
+        (SSI).
+      question.en: '[automatic] Are you a Cipav member?'
+      question.fr: Êtes-vous adhérent à la Cipav ?
+      titre.en: '[automatic] member'
+      titre.fr: adhérent
+  titre.en: '[automatic] Cipav'
+  titre.fr: Cipav
+dirigeant . auto-entrepreneur . Cipav . retraite complémentaire:
+  description.en: '[automatic] Amount contributed for supplementary pension.'
+  description.fr: Montant cotisé pour la retraite complémentaire.
+  titre.en: '[automatic] supplementary pension'
+  titre.fr: retraite complémentaire
 dirigeant . auto-entrepreneur . DROM:
   avec:
     première période:
@@ -588,45 +635,6 @@ dirigeant . auto-entrepreneur . DROM:
   titre.en: '[automatic] DROM'
   titre.fr: DROM
 dirigeant . auto-entrepreneur . affiliation CIPAV:
-  avec:
-    adhérent:
-      description.en: >
-        [automatic] Since January 1, 2018, self-employed workers in unregulated
-        liberal professions
-
-        are affiliated to Sécurité sociale pour les indépendants (SSI).
-
-
-        Unregulated self-employed self-employed professionals created before January 1
-
-        January 2018, who were members of Cipav, remain members of Cipav.
-
-
-        The auto-entrepreneurs concerned do, however, have a right of option
-
-        for five years to join the Sécurité sociale pour les indépendants
-
-        (SSI).
-      description.fr: >
-        Depuis le 1er janvier 2018, les auto-entreprises d’activité libérale non
-
-        réglementée sont affiliées à la Sécurité sociale pour les indépendants (SSI).
-
-
-        Les auto-entreprises d’activité libérale non réglementée créées avant le 1er
-
-        janvier 2018, qui étaient adhérentes à la Cipav, demeurent à la Cipav.
-
-
-        Les auto-entrepreneurs concernés disposent toutefois d’un droit d’option
-
-        durant cinq ans afin de rejoindre la Sécurité sociale pour les indépendants
-
-        (SSI).
-      question.en: '[automatic] Are you a Cipav member?'
-      question.fr: Êtes-vous adhérent à la Cipav ?
-      titre.en: '[automatic] member'
-      titre.fr: adhérent
   titre.en: '[automatic] CIPAV affiliation'
   titre.fr: affiliation CIPAV
 dirigeant . auto-entrepreneur . chiffre d'affaires:
@@ -1034,13 +1042,58 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
         service BNC
       titre.en: '[automatic] BNC service'
       titre.fr: service BNC
-    taux CIPAV:
-      description.en: >
-        [automatic] Contribution rates for self-employed workers covered by Cipav
-      description.fr: |
-        Taux de cotisation pour les professions libérales dépendant de la Cipav
-      titre.en: '[automatic] CIPAV rate'
-      titre.fr: taux CIPAV
+    service BNC Cipav:
+      avec:
+        répartition:
+          avec:
+            autres contributions:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] other contributions'
+              titre.fr: autres contributions
+            invalidité-décès:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] disability-death'
+              titre.fr: invalidité-décès
+            maladie-maternité:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] illness-maternity'
+              titre.fr: maladie-maternité
+            retraite complémentaire:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] supplementary pension'
+              titre.fr: retraite complémentaire
+            retraite de base:
+              avec:
+                taux de répartition:
+                  titre.en: '[automatic] distribution rate'
+                  titre.fr: taux de répartition
+              titre.en: '[automatic] basic retirement'
+              titre.fr: retraite de base
+          titre.en: '[automatic] distribution'
+          titre.fr: répartition
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      description.en:
+        '[automatic] Contributions for the BNC portion of sales for
+        regulated liberal professions.'
+      description.fr:
+        Cotisations pour la part du chiffre d’affaires en prestation de
+        service BNC pour les professions libérales réglementées.
+      titre.en: '[automatic] BNC Cipav service'
+      titre.fr: service BNC Cipav
     vente restauration hébergement:
       avec:
         répartition:
@@ -9360,12 +9413,60 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
   titre.fr: Agirc-Arrco
 protection sociale . retraite . complémentaire . CIPAV:
   avec:
+    montant cotisé:
+      description.en: >
+        [automatic] ### For auto-entrepreneurs
+
+
+        The amount contributed to the Cipav supplementary pension corresponds to the
+
+        contributions corresponding to the supplementary pension.
+
+
+        This share is calculated by multiplying the total amount of contributions by
+
+        a distribution rate. This rate is **25.6% of total contributions**,
+
+        or 5.94% of sales.
+
+
+        ### For other self-employed workers
+
+
+        The amount contributed is calculated by multiplying the **assiette des cotisations** (contribution base)
+
+        by a rate that varies according to the contribution base bracket.
+
+        contribution base.
+      description.fr: >
+        ### Pour les auto-entrepreneuses et auto-entrepreneurs
+
+
+        Le montant cotisé pour la retraite complémentaire Cipav correspond à la
+
+        part des cotisations correspondant à la retraite complémentaire.
+
+
+        Cette part est calculée en multipliant le montant total des cotisations par
+
+        un taux de répartition. Ce taux est de **25,6 % du total des cotisations**,
+
+        soit 5,94 % du chiffre d’affaires.
+
+
+        ### Pour les autres indépendantes et indépendants
+
+
+        Le montant cotisé est calculé en multipliant l’**assiette des cotisations**
+
+        par un taux qui varie en fonction de la tranche de l’assiette des
+
+        cotisations.
+      titre.en: '[automatic] amount contributed'
+      titre.fr: montant cotisé
     points acquis:
       titre.en: '[automatic] points acquired'
       titre.fr: points acquis
-    références:
-      titre.en: '[automatic] references'
-      titre.fr: références
     valeur d'acquisition:
       titre.en: '[automatic] acquisition value'
       titre.fr: valeur d'acquisition

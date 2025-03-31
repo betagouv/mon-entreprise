@@ -13,6 +13,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 110
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
 dirigeant . auto-entrepreneur . revenu net: 20000
@@ -35,6 +37,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 234
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 12
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 20000
@@ -57,6 +61,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 111
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
 dirigeant . auto-entrepreneur . revenu net: 20000
@@ -79,6 +85,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 20000
@@ -101,6 +109,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 20000
@@ -123,6 +133,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 20000
@@ -145,6 +157,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 165
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
 dirigeant . auto-entrepreneur . revenu net: 30000
@@ -167,6 +181,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 41
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 16
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 34
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
 dirigeant . auto-entrepreneur . revenu net: 17371
@@ -187,6 +203,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 16
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 307
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
 dirigeant . auto-entrepreneur . revenu net: 41253
@@ -207,6 +225,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 4
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 10
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 4
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 7
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 9
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 2
 dirigeant . auto-entrepreneur . revenu net: 19317
@@ -227,6 +247,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 31
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 12
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 11
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 26
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
 dirigeant . auto-entrepreneur . revenu net: 18026
@@ -247,6 +269,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 25
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 103
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 16630
@@ -267,6 +291,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 273
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 25
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 68
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 15867
@@ -287,6 +313,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 25
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 103
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 16518
@@ -307,6 +335,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 205
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 25
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 154
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: undefined
@@ -327,6 +357,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 410
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 25
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15040
@@ -338,15 +370,17 @@ exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 390
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 387
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 126
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 14
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 13
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 50
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 184
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 131
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 39
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 99
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 111
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 387
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 23
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: 387
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 23
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15320
@@ -367,6 +401,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 205
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 17432
@@ -387,6 +423,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15604
@@ -407,6 +445,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 205
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 17520
@@ -427,6 +467,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15728
@@ -447,6 +489,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 59
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 5000
@@ -467,6 +511,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 585
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 50000
@@ -487,6 +533,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 682
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 25
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 25000
@@ -507,6 +555,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 6
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 500
@@ -527,6 +577,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 12
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 1000
@@ -547,6 +599,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 23
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 2000
@@ -567,6 +621,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 59
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 5000
@@ -587,6 +643,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 117
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 10000
@@ -607,6 +665,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 234
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 20000
@@ -627,6 +687,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 585
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 50000
@@ -647,6 +709,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 819
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 70000
@@ -667,6 +731,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 1170
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 100000
@@ -687,6 +753,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ser
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 11703
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 1000000

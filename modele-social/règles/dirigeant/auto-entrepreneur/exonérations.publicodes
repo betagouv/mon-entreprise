@@ -83,7 +83,7 @@ dirigeant . auto-entrepreneur . DROM:
         - sinon: 8.20%
 
     taux CIPAV:
-      remplace: cotisations et contributions . cotisations . taux CIPAV
+      remplace: cotisations et contributions . cotisations . service BNC Cipav . taux
       variations:
         - si: première période
           alors: 7.10%
@@ -152,10 +152,8 @@ dirigeant . auto-entrepreneur . Acre:
       arrondi: 1 décimale
 
     taux CIPAV:
-      applicable si: affiliation CIPAV
-      remplace:
-        références à: cotisations et contributions . cotisations . service BNC . taux
-        priorité: 1
+      applicable si: Cipav
+      remplace: cotisations et contributions . cotisations . service BNC Cipav . taux
       variations:
         - si: entreprise . date de création >= 01/04/2020
           alors:
@@ -163,7 +161,7 @@ dirigeant . auto-entrepreneur . Acre:
               - si: date >= 07/2024
                 alors: 13.90%
               - sinon: 12.10%
-        - sinon: taux Acre * cotisations et contributions . cotisations . taux CIPAV
+        - sinon: taux Acre * cotisations et contributions . cotisations . service BNC Cipav . taux
 
 dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel:
   experimental: oui
