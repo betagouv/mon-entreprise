@@ -36,7 +36,8 @@ export function DroitsRetraite() {
 				style={{ justifyContent: 'space-between' }}
 			>
 				<Grid item>
-					<H3 as="h2">Retraite : droits acquis sur l’année</H3>
+					<H3 as="h2">Retraite&nbsp;: droits acquis sur l’année</H3>
+
 					<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
 						<Message type="info" border>
 							Les exonérations DROM n’ont aucune incidence sur la détermination
@@ -59,18 +60,20 @@ export function DroitsRetraite() {
 							cotisations (ACRE, pension invalidité, etc).
 						</Message>
 					</Condition>
+
 					<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
 						<Ul>
 							<Li>
-								Retraite de base :{' '}
+								Retraite de base&nbsp;:{' '}
 								<Value
 									expression="protection sociale . retraite . trimestres"
 									displayedUnit={t('trimestres acquis')}
 								/>
 							</Li>
+
 							<WhenApplicable dottedName="protection sociale . retraite . base . CNAVPL">
 								<Li>
-									Points de retraite de base acquis (CNAVPL) :{' '}
+									Points de retraite de base acquis (CNAVPL)&nbsp;:{' '}
 									<Value
 										linkToRule
 										expression="protection sociale . retraite . base . CNAVPL"
@@ -78,9 +81,10 @@ export function DroitsRetraite() {
 									/>
 								</Li>
 							</WhenApplicable>
+
 							<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
 								<Li>
-									Revenu cotisé pour la retraite de base :{' '}
+									Revenu cotisé pour la retraite de base&nbsp;:{' '}
 									<Value
 										linkToRule
 										unit="€/an"
@@ -88,32 +92,61 @@ export function DroitsRetraite() {
 									/>
 								</Li>
 							</WhenNotApplicable>
-							<Li>
-								Points de retraite complémentaire acquis :{' '}
-								<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
+
+							{/* Pour le moment on ne gère la retraite complémentaire des PLR que pour les AE,
+									car toutes les PLR AE sont affiliées à la Cipav. Pour les PLR non-AE, il y a
+									des caisses spécifiques par métier et elles ne sont pas encore implémentées. */}
+							<Condition
+								expression={{
+									'toutes ces conditions': [
+										'dirigeant . auto-entrepreneur',
+										{
+											'est applicable':
+												'protection sociale . retraite . complémentaire . CIPAV . points acquis',
+										},
+									],
+								}}
+							>
+								<Li>
+									Points de retraite complémentaire acquis (Cipav)&nbsp;:{' '}
 									<Value
-										expression="protection sociale . retraite . complémentaire . RCI . points acquis"
-										displayedUnit=""
-									/>{' '}
-									points acquis
-								</WhenApplicable>
-								<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
-									<Strong>non connue</Strong>
-									<Condition
-										expression={{
-											'une de ces conditions': [
-												'dirigeant . indépendant . PL',
-												'entreprise . activité . nature . libérale . réglementée',
-											],
-										}}
-									>
-										<SmallBody>
-											Ce simulateur ne gère pas les droits acquis de retraite
-											complémentaire pour les professions libérales
-										</SmallBody>
-									</Condition>
-								</WhenNotApplicable>
-							</Li>
+										linkToRule
+										expression="protection sociale . retraite . complémentaire . CIPAV . points acquis"
+										displayedUnit={t('points')}
+									/>
+								</Li>
+							</Condition>
+
+							<Condition
+								expression={{
+									'une de ces conditions': [
+										'dirigeant . auto-entrepreneur = non',
+										{
+											'est non applicable':
+												'protection sociale . retraite . complémentaire . CIPAV . points acquis',
+										},
+									],
+								}}
+							>
+								<Li>
+									Points de retraite complémentaire acquis&nbsp;:{' '}
+									<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
+										<Value
+											expression="protection sociale . retraite . complémentaire . RCI . points acquis"
+											displayedUnit={t('points')}
+										/>
+									</WhenApplicable>
+									<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
+										<Strong>non connue</Strong>
+										<WhenApplicable dottedName="dirigeant . indépendant . PL">
+											<SmallBody>
+												Ce simulateur ne gère pas les droits acquis de retraite
+												complémentaire pour les professions libérales
+											</SmallBody>
+										</WhenApplicable>
+									</WhenNotApplicable>
+								</Li>
+							</Condition>
 						</Ul>
 					</Condition>
 				</Grid>

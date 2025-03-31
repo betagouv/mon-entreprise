@@ -14,7 +14,7 @@
 	- `salarié . cotisations . chômage . salarié`
 - Suppression de la règle `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV`
 - Renommage des règles suivantes :
-	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux` => `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux CIPAV`
+	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux` => `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE` => `dirigeant . auto-entrepreneur . Acre . taux Acre`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE` => `dirigeant . auto-entrepreneur . Acre . taux Acre`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . service BIC ` => `dirigeant . auto-entrepreneur . Acre . taux service BIC`
@@ -23,6 +23,11 @@
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . CIPAV ` => `dirigeant . auto-entrepreneur . Acre . taux Cipav`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE . notification calcul ACRE annuel` => `dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel`
 	- `salarié . cotisations . chômage . employeur . taux` => `salarié . cotisations . chômage . taux`
+
+### Nouveautés
+- Ajout de `dirigeant . auto-entrepreneur . Cipav` et `dirigeant . auto-entrepreneur . Cipav . retraite complémentaire`
+- Ajout de `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav` avec la répartition des cotisations Cipav
+- Gestion des auto-entrepreneurs dans `protection sociale . retraite . complémentaire . CIPAV`
 
 ### Corrections
 - Correction du calcul des cotisations pour les auto-entrepreneuses et auto-entrepreneurs affiliés à la Cipav sans Acre
@@ -35,6 +40,9 @@
 - Mise à jour des niveaux de rémunération pour les taux réduits de cotisations maladie et familiales
 - Mise à jour du plafond d’exonération de cotisations sociales pour les apprentis
 - Mise à jour de l’exonération de CSG-CRDS pour les apprentis
+
+### Dépréciations
+- `dirigeant . auto-entrepreneur . affiliation CIPAV` : utiliser `dirigeant . auto-entrepreneur . Cipav` à la place
 
 ## 6.0.0
 ### Breaking changes

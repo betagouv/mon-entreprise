@@ -46,7 +46,6 @@ Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
 Attention: Attention
-Attention, information importante: Attention, information importante
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
 Aucun résultat: Aucun résultat
@@ -127,7 +126,6 @@ Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôt sur le revenu: Impôt sur le revenu
 Impôts: Impôts
-Information: Information
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
@@ -233,7 +231,6 @@ Rémunération totale pour l'année de cessation: Rémunération totale pour l'a
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Répondez à quelques questions additionnelles afin de préciser votre résultat.
 Résultat fiscal: Résultat fiscal
-Réussite: Réussite
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
 Salaire brut mensuel: Salaire brut mensuel
@@ -1704,12 +1701,13 @@ pages:
         d’exonérations de cotisations (ACRE, pension invalidité,
         etc).</0></3><4><0><0>Retraite de base : <2></2></0><1><0>Points de
         retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
-        pour la retraite de base : <2></2></0></2><3>Points de retraite
-        complémentaire acquis : <2><0></0> points acquis</2><3><0>non
-        connue</0><1><0>Ce simulateur ne gère pas les droits acquis de retraite
-        complémentaire pour les professions
-        libérales</0></1></3></3></0></4></0><1><0><0>Projection du montant de
-        votre retraite</0><1><0></0><1></1></1></0></1></0>"
+        pour la retraite de base : <2></2></0></2><3><0>Points de retraite
+        complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points de retraite
+        complémentaire acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce
+        simulateur ne gère pas les droits acquis de retraite complémentaire pour
+        les professions
+        libérales</0></1></3></0></4></0></4></0><1><0><0>Projection du montant
+        de votre retraite</0><1><0></0><1></1></1></0></1></0>"
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning: Le montant calculé correspond aux cotisations de l’année {{year}} (pour
@@ -2268,7 +2266,6 @@ warning:
   revenu pour les SAS(U).
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Échanger avec un conseiller: Échanger avec un conseiller
-Échec: Échec
 "Établissement recherché :": "Établissement recherché :"
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée

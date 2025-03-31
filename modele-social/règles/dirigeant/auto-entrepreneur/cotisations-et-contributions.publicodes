@@ -119,7 +119,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . CFP:
                 # Avant 2022, le taux était de 1% pour les PLNR non affiliés à la Cipav
                 toutes ces conditions:
                   - date < 01/2022
-                  - affiliation CIPAV = non
+                  - Cipav = non
               alors: 0.1%
             - sinon: 0.2%
 
@@ -142,6 +142,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     - service BIC
     - service BNC
     - vente restauration hébergement
+    - service BNC Cipav
 
   références:
     Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
@@ -179,6 +180,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . maladie-maternité
             - service BIC . répartition . maladie-maternité
             - service BNC . répartition . maladie-maternité
+            - service BNC Cipav . répartition . maladie-maternité
         invalidité-décès:
           icônes: 🦽
           description: |
@@ -191,6 +193,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . invalidité-décès
             - service BIC . répartition . invalidité-décès
             - service BNC . répartition . invalidité-décès
+            - service BNC Cipav . répartition . invalidité-décès
         retraite de base:
           description: Part des cotisations auto-entrepreneur qui alimentent la
             retraite de base
@@ -198,6 +201,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . retraite de base
             - service BIC . répartition . retraite de base
             - service BNC . répartition . retraite de base
+            - service BNC Cipav . répartition . retraite de base
         retraite complémentaire:
           description: Part des cotisations auto-entrepreneur qui alimentent la
             retraite complémentaire
@@ -205,6 +209,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . retraite complémentaire
             - service BIC . répartition . retraite complémentaire
             - service BNC . répartition . retraite complémentaire
+            - service BNC Cipav . répartition . retraite complémentaire
         retraite:
           icônes: 👵
           description: |
@@ -247,6 +252,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             - vente restauration hébergement . répartition . autres contributions
             - service BIC . répartition . autres contributions
             - service BNC . répartition . autres contributions
+            - service BNC Cipav . répartition . autres contributions
         formation professionnelle:
           icônes: 👩‍🎓
           valeur: dirigeant . auto-entrepreneur . cotisations et contributions . CFP
@@ -292,6 +298,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
     service BNC:
       description: Cotisations pour la part du chiffre d’affaires en prestation de
         service BNC
+      non applicable si: service BNC Cipav
       produit:
         - entreprise . chiffre d'affaires . service BNC
         - taux
@@ -411,12 +418,63 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
               avec:
                 taux de répartition: 29.70%
 
-    taux CIPAV:
-      description: |
-        Taux de cotisation pour les professions libérales dépendant de la Cipav
-      applicable si: affiliation CIPAV
-      remplace: service BNC . taux
-      variations:
-        - si: date >= 07/2024
-          alors: 23.2%
-        - sinon: 21.2%
+    service BNC Cipav:
+      description: Cotisations pour la part du chiffre d’affaires en prestation de
+        service BNC pour les professions libérales réglementées.
+      applicable si: Cipav
+      produit:
+        - entreprise . chiffre d'affaires . service BNC
+        - taux
+      unité: €/mois
+
+      avec:
+        taux:
+          variations:
+            - si: date >= 07/2024
+              alors: 23.2%
+            - sinon: 21.2%
+
+        répartition:
+          références:
+            Article D613-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656780
+          avec:
+            maladie-maternité:
+              valeur: service BNC Cipav * taux de répartition
+              avec:
+                taux de répartition:
+                  variations:
+                    - si: date >= 07/2024
+                      alors: 10.20%
+                    - sinon: 9.05%
+            invalidité-décès:
+              valeur: service BNC Cipav * taux de répartition
+              avec:
+                taux de répartition:
+                  variations:
+                    - si: date >= 07/2024
+                      alors: 1.40%
+                    - sinon: 2.60%
+            retraite de base:
+              valeur: service BNC Cipav * taux de répartition
+              avec:
+                taux de répartition:
+                  variations:
+                    - si: date >= 07/2024
+                      alors: 28.8%
+                    - sinon: 31.3%
+            retraite complémentaire:
+              valeur: service BNC Cipav * taux de répartition
+              avec:
+                taux de répartition:
+                  variations:
+                    - si: date >= 07/2024
+                      alors: 25.60%
+                    - sinon: 20.75%
+            autres contributions:
+              valeur: service BNC Cipav * taux de répartition
+              avec:
+                taux de répartition:
+                  variations:
+                    - si: date >= 07/2024
+                      alors: 34.00%
+                    - sinon: 36.30%

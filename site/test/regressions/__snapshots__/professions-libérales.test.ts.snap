@@ -18,7 +18,7 @@ dirigeant . rémunération . net . après impôt: 19414
 entreprise . chiffre d'affaires: 26836
 impôt . montant: 586
 protection sociale . retraite . base: 153
-protection sociale . retraite . complémentaire: 95
+protection sociale . retraite . complémentaire: 94
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -29,7 +29,7 @@ dirigeant . rémunération . net . après impôt: 41262
 entreprise . chiffre d'affaires: 70469
 impôt . montant: 8738
 protection sociale . retraite . base: 347
-protection sociale . retraite . complémentaire: 269
+protection sociale . retraite . complémentaire: 270
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -73,7 +73,7 @@ dirigeant . rémunération . net . après impôt: 10000
 entreprise . chiffre d'affaires: 13453
 impôt . montant: 0
 protection sociale . retraite . base: 76
-protection sociale . retraite . complémentaire: 47
+protection sociale . retraite . complémentaire: 48
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -84,7 +84,7 @@ dirigeant . rémunération . net . après impôt: 73423
 entreprise . chiffre d'affaires: 146737
 impôt . montant: 26577
 protection sociale . retraite . base: 351
-protection sociale . retraite . complémentaire: 851
+protection sociale . retraite . complémentaire: 850
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -139,7 +139,7 @@ dirigeant . rémunération . net . après impôt: 48090
 entreprise . chiffre d'affaires: 91598
 impôt . montant: 11910
 protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 387
+protection sociale . retraite . complémentaire: 388
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -150,7 +150,7 @@ dirigeant . rémunération . net . après impôt: 48097
 entreprise . chiffre d'affaires: 90705
 impôt . montant: 11903
 protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 387
+protection sociale . retraite . complémentaire: 388
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -161,7 +161,7 @@ dirigeant . rémunération . net . après impôt: 48100
 entreprise . chiffre d'affaires: 90354
 impôt . montant: 11900
 protection sociale . retraite . base: 460
-protection sociale . retraite . complémentaire: 387
+protection sociale . retraite . complémentaire: 388
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -205,7 +205,7 @@ dirigeant . rémunération . net . après impôt: 48090
 entreprise . chiffre d'affaires: 91598
 impôt . montant: 11910
 protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 387
+protection sociale . retraite . complémentaire: 388
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -227,7 +227,7 @@ dirigeant . rémunération . net . après impôt: 10000
 entreprise . chiffre d'affaires: 13453
 impôt . montant: 0
 protection sociale . retraite . base: 76
-protection sociale . retraite . complémentaire: 47
+protection sociale . retraite . complémentaire: 48
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -238,7 +238,7 @@ dirigeant . rémunération . net . après impôt: 41262
 entreprise . chiffre d'affaires: 70469
 impôt . montant: 8738
 protection sociale . retraite . base: 347
-protection sociale . retraite . complémentaire: 269
+protection sociale . retraite . complémentaire: 270
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -249,7 +249,7 @@ dirigeant . rémunération . net . après impôt: 73423
 entreprise . chiffre d'affaires: 146735
 impôt . montant: 26577
 protection sociale . retraite . base: 351
-protection sociale . retraite . complémentaire: 851
+protection sociale . retraite . complémentaire: 850
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -315,7 +315,7 @@ dirigeant . rémunération . net . après impôt: 10000
 entreprise . chiffre d'affaires: 13453
 impôt . montant: 0
 protection sociale . retraite . base: 76
-protection sociale . retraite . complémentaire: 47
+protection sociale . retraite . complémentaire: 48
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -326,7 +326,7 @@ dirigeant . rémunération . net . après impôt: 73423
 entreprise . chiffre d'affaires: 146735
 impôt . montant: 26577
 protection sociale . retraite . base: 351
-protection sociale . retraite . complémentaire: 851
+protection sociale . retraite . complémentaire: 850
 protection sociale . retraite . trimestres: 4"
 `;
 

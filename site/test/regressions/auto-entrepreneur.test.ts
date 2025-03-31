@@ -18,6 +18,8 @@ it('calculate simulations-auto-entrepreneur', () => {
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base',

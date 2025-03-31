@@ -53,6 +53,10 @@ dirigeant . auto-entrepreneur . chiffre d'affaires:
     - revenu net . après impôt
 
 dirigeant . auto-entrepreneur . affiliation CIPAV:
+  déprécié: oui
+  valeur: Cipav
+
+dirigeant . auto-entrepreneur . Cipav:
   rend non applicable: entreprise . activités . revenus mixtes
   une de ces conditions:
     - entreprise . activité . nature . libérale . réglementée
@@ -76,6 +80,10 @@ dirigeant . auto-entrepreneur . affiliation CIPAV:
         (SSI).
       références:
         Qui est assuré à la Cipav ?: https://www.lacipav.fr/qui-est-assure-cipav
+
+dirigeant . auto-entrepreneur . Cipav . retraite complémentaire:
+  description: Montant cotisé pour la retraite complémentaire.
+  valeur: dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . répartition . retraite complémentaire
 
 dirigeant . auto-entrepreneur . éligible à l'ACRE:
   par défaut: non
