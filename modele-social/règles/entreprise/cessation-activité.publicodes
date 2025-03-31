@@ -8,7 +8,7 @@ entreprise . date de cessation:
   description: La date de cessation est la date à laquelle l’entreprise cessera son activité.
   type: date
   références:
-    Urssaf: https://www.urssaf.fr/accueil/services/services-independants/realiser-cessation-activite.html
+    Comment réaliser votre cessation d’activité en tant que travailleur indépendant ?: https://www.urssaf.fr/accueil/services/services-independants/realiser-cessation-activite.html
 
 entreprise . radiée:
   titre: Entreprise radiée
