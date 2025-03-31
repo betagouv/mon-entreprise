@@ -12,16 +12,16 @@ entreprise . date de cessation:
 
 entreprise . radiée:
   titre: Entreprise radiée
+  description: Indique si l’entreprise va être radiée.
   formule:
     toutes ces conditions:
       - est défini: date de cessation
       - est applicable: date de cessation
-  description: L’entreprise sera-t-elle radiée l’année de la simulation ?
 
 entreprise . radiée cette année:
   titre: Entreprise radiée cette année
+  description: Indique si l’entreprise va être radiée l’année de la simulation.
   formule:
     toutes ces conditions:
       - est défini: date de cessation
       - période . début d'année <= entreprise . date de cessation
-  description: L’entreprise sera-t-elle radiée l’année de la simulation ?
