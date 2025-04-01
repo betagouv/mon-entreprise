@@ -775,7 +775,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get('@questionInput').should('not.exist')
 
 		// "non" à structure de soins et "oui" à autres revenus
-		cy.get(`#${idPrefix}_${structureDeSoins}`).contains('Non').click()
+		cy.get(`#${idPrefix}_${structureDeSoins}-input`).contains('Non').click()
 
 		cy.get('@questionLabel').should('not.exist')
 		cy.get('@questionInput').should('not.exist')
