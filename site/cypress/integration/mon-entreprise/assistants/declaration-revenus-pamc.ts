@@ -746,7 +746,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Avez-vous effectué uniquement des actes conventionnés ?')
 			.as('questionLabel')
 			.should('be.visible')
-		cy.get(`#${idPrefix}_actes_conventionnés_uniquement-label`)
+		cy.get(`#${idPrefix}_actes_conventionnés_uniquement-input`)
 			.as('questionInput')
 			.should('be.visible')
 
