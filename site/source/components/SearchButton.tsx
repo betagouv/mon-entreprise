@@ -23,9 +23,7 @@ export default function SearchButton() {
 					light
 					{...buttonProps}
 					aria-haspopup="dialog"
-					aria-label={t(
-						'Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.'
-					)}
+					aria-label={t('Ouvrir la boite de dialogue pour rechercher')}
 				>
 					<StyledIcon
 						xmlns="http://www.w3.org/2000/svg"
