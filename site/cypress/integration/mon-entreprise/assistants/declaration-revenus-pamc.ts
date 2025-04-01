@@ -1239,7 +1239,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 			'be.visible'
 		)
 		cy.contains('Bénéfice/déficit agricole').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_agricole`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}_agricole-input`).should('be.visible')
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('be.visible')
 		cy.get(`#${idPrefix}_${autresRevenus}_micro-BA-input`).should('be.visible')
 
@@ -1375,7 +1375,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-title`).should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_revenus_de_remplacement__AJPA-input`).should(
+		cy.get(`#${idPrefix}_revenus_de_remplacement___AJPA-input`).should(
 			'be.visible'
 		)
 		cy.get(
