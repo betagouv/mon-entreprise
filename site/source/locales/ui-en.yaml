@@ -173,7 +173,7 @@ Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
 Passer: Pass
 Passer le contenu principal et aller directement au pied de page: Skip the main content and go directly to the footer
-Passer à la version française du site: Switch to the French version of the site
+Passer à la version française: Passer à la version française
 Passer, passer la question sans répondre: Pass, pass the question without answering
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
@@ -236,7 +236,7 @@ Suivant: Next
 Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
 Suivant, passer à la question suivante: Next, move on to the next question
 Suivant, voir le résultat: Next, see the result
-Switch to the english version of the website: Switch to the english version of the website
+Switch to the english version: Switch to the english version
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
   site, by month.

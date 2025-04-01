@@ -1,17 +1,16 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { generatePath, matchPath, useLocation } from 'react-router-dom'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import Contact from '@/components/Contact'
 import FeedbackButton from '@/components/Feedback'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { FooterContainer } from '@/design-system/footer'
 import { FooterColumn } from '@/design-system/footer/column'
 import { GithubIcon } from '@/design-system/icons'
-import { Container, Grid } from '@/design-system/layout'
+import { Container } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
@@ -170,56 +169,69 @@ export default function Footer() {
 											</Link>
 										</StyledLi>
 										{altHref && (
-											<StyledLi key={altLang}>
-												<Grid container spacing={2} role="list">
-													<Grid item role="listitem">
-														<StyledButton
-															openInSameWindow
-															href={altHref}
-															isDisabled={isFrenchMode}
-															aria-label={
-																isFrenchMode
-																	? t('Version française du site activée.')
-																	: t('Passer à la version française du site')
-															}
-															title={
-																isFrenchMode
-																	? t('Version française du site activée.')
-																	: t('Passer à la version française du site')
-															}
-															lang="fr"
-															data-test-id="fr-switch-button"
-														>
-															FR <Emoji emoji="🇫🇷" />
-														</StyledButton>
-													</Grid>
-													<Grid item role="listitem">
-														<StyledButton
-															href={altHref}
-															openInSameWindow
-															lang="en"
-															isDisabled={!isFrenchMode}
-															aria-label={
-																!isFrenchMode
-																	? t('English version of the website enabled.')
-																	: t(
-																			'Switch to the english version of the website'
-																	  )
-															}
-															title={
-																!isFrenchMode
-																	? t('English version of the website enabled.')
-																	: t(
-																			'Switch to the english version of the website'
-																	  )
-															}
-															data-test-id="en-switch-button"
-														>
-															EN <Emoji emoji="🇬🇧" />
-														</StyledButton>
-													</Grid>
-												</Grid>
+											<StyledLi>
+												<Link
+													href={altHref}
+													noUnderline
+													openInSameWindow
+													lang={isFrenchMode ? 'en' : 'fr'}
+												>
+													{isFrenchMode
+														? t('Switch to the english version')
+														: t('Passer à la version française')}
+												</Link>
 											</StyledLi>
+
+											// <StyledLi key={altLang}>
+											// 	<Grid container spacing={2} role="list">
+											// 		<Grid item role="listitem">
+											// 			<StyledButton
+											// 				openInSameWindow
+											// 				href={altHref}
+											// 				isDisabled={isFrenchMode}
+											// 				aria-label={
+											// 					isFrenchMode
+											// 						? t('Version française du site activée.')
+											// 						: t('Passer à la version française du site')
+											// 				}
+											// 				title={
+											// 					isFrenchMode
+											// 						? t('Version française du site activée.')
+											// 						: t('Passer à la version française du site')
+											// 				}
+											// 				lang="fr"
+											// 				data-test-id="fr-switch-button"
+											// 			>
+											// 				FR <Emoji emoji="🇫🇷" />
+											// 			</StyledButton>
+											// 		</Grid>
+											// 		<Grid item role="listitem">
+											// 			<StyledButton
+											// 				href={altHref}
+											// 				openInSameWindow
+											// 				lang="en"
+											// 				isDisabled={!isFrenchMode}
+											// 				aria-label={
+											// 					!isFrenchMode
+											// 						? t('English version of the website enabled.')
+											// 						: t(
+											// 								'Switch to the english version of the website'
+											// 						  )
+											// 				}
+											// 				title={
+											// 					!isFrenchMode
+											// 						? t('English version of the website enabled.')
+											// 						: t(
+											// 								'Switch to the english version of the website'
+											// 						  )
+											// 				}
+											// 				data-test-id="en-switch-button"
+											// 			>
+											// 				EN <Emoji emoji="🇬🇧" />
+											// 			</StyledButton>
+											// 		</Grid>
+											// 	</Grid>
+											// </StyledLi>
 										)}
 									</ul>
 								</nav>
@@ -266,19 +278,6 @@ export default function Footer() {
 		</>
 	)
 }
-
-const StyledButton = styled(Button)`
-	padding: 10px 16px 10px 16px;
-	border-radius: 4px;
-
-	${({ isDisabled }) =>
-		isDisabled &&
-		css`
-			background-color: ${({ theme }) =>
-				theme.colors.bases.primary[300]}!important;
-			opacity: 1;
-		`}
-`
 
 const StyledLi = styled.li`
 	margin-top: ${({ theme }) => theme.spacings.sm};
