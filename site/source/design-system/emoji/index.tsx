@@ -12,7 +12,7 @@ type PropType = {
 // - allow to configure the URL to self host twemoji images in production
 // - using a real React component works better with the translation scripts
 export function Emoji({ emoji, alt, title, ...props }: PropType) {
-	alt ??= emoji
+	alt = ''
 
 	if (!emoji) {
 		return null
