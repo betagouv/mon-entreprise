@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Button } from '@/design-system/buttons'
@@ -7,8 +6,6 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { PlanContent } from '@/pages/Plan'
 
 export const Menu = () => {
-	const { t } = useTranslation()
-
 	return (
 		<Drawer
 			trigger={(buttonProps) => (
@@ -25,9 +22,6 @@ export const Menu = () => {
 						// eslint-disable-next-line react/jsx-props-no-spreading
 						{...buttonProps}
 						aria-haspopup="menu"
-						aria-label={t(
-							'Rechercher, ouvrir la boite de dialogue pour entrer vos termes de recherche.'
-						)}
 					>
 						<StyledSVG
 							xmlns="http://www.w3.org/2000/svg"
