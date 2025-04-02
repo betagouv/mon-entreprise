@@ -181,57 +181,6 @@ export default function Footer() {
 														: t('Passer à la version française')}
 												</Link>
 											</StyledLi>
-
-											// <StyledLi key={altLang}>
-											// 	<Grid container spacing={2} role="list">
-											// 		<Grid item role="listitem">
-											// 			<StyledButton
-											// 				openInSameWindow
-											// 				href={altHref}
-											// 				isDisabled={isFrenchMode}
-											// 				aria-label={
-											// 					isFrenchMode
-											// 						? t('Version française du site activée.')
-											// 						: t('Passer à la version française du site')
-											// 				}
-											// 				title={
-											// 					isFrenchMode
-											// 						? t('Version française du site activée.')
-											// 						: t('Passer à la version française du site')
-											// 				}
-											// 				lang="fr"
-											// 				data-test-id="fr-switch-button"
-											// 			>
-											// 				FR <Emoji emoji="🇫🇷" />
-											// 			</StyledButton>
-											// 		</Grid>
-											// 		<Grid item role="listitem">
-											// 			<StyledButton
-											// 				href={altHref}
-											// 				openInSameWindow
-											// 				lang="en"
-											// 				isDisabled={!isFrenchMode}
-											// 				aria-label={
-											// 					!isFrenchMode
-											// 						? t('English version of the website enabled.')
-											// 						: t(
-											// 								'Switch to the english version of the website'
-											// 						  )
-											// 				}
-											// 				title={
-											// 					!isFrenchMode
-											// 						? t('English version of the website enabled.')
-											// 						: t(
-											// 								'Switch to the english version of the website'
-											// 						  )
-											// 				}
-											// 				data-test-id="en-switch-button"
-											// 			>
-											// 				EN <Emoji emoji="🇬🇧" />
-											// 			</StyledButton>
-											// 		</Grid>
-											// 	</Grid>
-											// </StyledLi>
 										)}
 									</ul>
 								</nav>
