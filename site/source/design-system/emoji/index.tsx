@@ -11,9 +11,7 @@ type PropType = {
 // `emojiFn` provided by `react-easy-emoji` :
 // - allow to configure the URL to self host twemoji images in production
 // - using a real React component works better with the translation scripts
-export function Emoji({ emoji, alt, title, ...props }: PropType) {
-	alt = ''
-
+export function Emoji({ emoji, title, ...props }: PropType) {
 	if (!emoji) {
 		return null
 	}
@@ -23,7 +21,7 @@ export function Emoji({ emoji, alt, title, ...props }: PropType) {
 		protocol: '' as 'https', // Hack to use relative path
 		ext: '.png',
 		props: {
-			alt,
+			alt: '',
 			title,
 			'aria-hidden': props['aria-hidden'] ?? 'true',
 			...props,
