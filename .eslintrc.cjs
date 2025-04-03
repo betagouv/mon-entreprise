@@ -163,7 +163,7 @@ module.exports = {
 				'vitest/expect-expect': [
 					'error',
 					{
-						assertFunctionNames: ['expect', 'runSimulations'],
+						assertFunctionNames: ['expect', 'runSimulations', "expectTypeOf"],
 						additionalTestBlockFunctions: [],
 					},
 				],
