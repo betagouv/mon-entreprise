@@ -2,6 +2,7 @@ import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
@@ -12,7 +13,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import {
@@ -74,6 +75,7 @@ type SimpleFieldProps = {
 	label?: string
 	['aria-label']?: string
 	labelStyle?: IStyledComponent<'web', object>
+	required?: boolean
 }
 
 export function SimpleField(props: SimpleFieldProps) {
@@ -84,8 +86,10 @@ export function SimpleField(props: SimpleFieldProps) {
 		showSuggestions = false,
 		label,
 		labelStyle,
+		required,
 	} = props
 	const dispatch = useDispatch()
+	const { t } = useTranslation()
 	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
 	const rule = engine.getRule(dottedName)
@@ -127,6 +131,12 @@ export function SimpleField(props: SimpleFieldProps) {
 		<FadeIn>
 			<StyledQuestion id={labelId}>
 				<Markdown components={markdownComponents}>{displayedLabel}</Markdown>
+				{required && (
+					<Body>
+						<span aria-hidden>&nbsp;*</span>
+						<span className="sr-only">&nbsp;({t('champ obligatoire')})</span>
+					</Body>
+				)}
 				<ExplicableRule dottedName={dottedName} />
 			</StyledQuestion>
 			{summary && <SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>}
