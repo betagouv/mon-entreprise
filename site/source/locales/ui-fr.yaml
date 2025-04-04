@@ -46,7 +46,6 @@ Aller au contenu principal: Aller au contenu principal
 Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
 Attention: Attention
-Attention, information importante: Attention, information importante
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
 Aucun résultat: Aucun résultat
@@ -127,7 +126,6 @@ Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôt sur le revenu: Impôt sur le revenu
 Impôts: Impôts
-Information: Information
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
@@ -180,6 +178,7 @@ Option la plus avantageuse.: Option la plus avantageuse.
 Options: Options
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
+Ouvrir la boite de dialogue pour rechercher: Ouvrir la boite de dialogue pour rechercher
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
@@ -208,7 +207,6 @@ Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
-Ouvrir la boite de dialogue pour rechercher: Ouvrir la boite de dialogue pour rechercher
 Remboursements et déductions diverses: Remboursements et déductions diverses
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
@@ -233,7 +231,6 @@ Rémunération totale pour l'année de cessation: Rémunération totale pour l'a
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Répondez à quelques questions additionnelles afin de préciser votre résultat.
 Résultat fiscal: Résultat fiscal
-Réussite: Réussite
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
 Salaire brut mensuel: Salaire brut mensuel
@@ -2268,7 +2265,6 @@ warning:
   revenu pour les SAS(U).
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Échanger avec un conseiller: Échanger avec un conseiller
-Échec: Échec
 "Établissement recherché :": "Établissement recherché :"
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée

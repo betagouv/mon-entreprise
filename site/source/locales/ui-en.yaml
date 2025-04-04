@@ -43,7 +43,6 @@ Aller au contenu principal: Go to main content
 Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
 Attention: Warning
-Attention, information importante: Important information
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Please note that your saved data will be permanently deleted.
 Aucun: No
 Aucun résultat: No results
@@ -119,7 +118,6 @@ Impôt: Tax
 Impôt au barème: Tax scale
 Impôt sur le revenu: Income tax
 Impôts: Taxes
-Information: Information
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
@@ -169,6 +167,7 @@ Option la plus avantageuse.: Most advantageous option.
 Options: Options
 Oui: Yes
 Outils pour les développeurs: Tools for developers
+Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
@@ -196,7 +195,6 @@ Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
-Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Enter an e-mail address (in nom@domaine.com format) to receive a reply.
@@ -218,7 +216,6 @@ Rémunération totale pour l'année de cessation: Total compensation for the yea
 Répartition du chiffre d'affaires: Sales breakdown
 Répondez à quelques questions additionnelles afin de préciser votre résultat.: Answer a few additional questions to clarify your result.
 Résultat fiscal: Taxable income
-Réussite: Success
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
 Salaire brut mensuel: Gross monthly salary
@@ -2132,7 +2129,6 @@ warning:
   SAS(U).
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
-Échec: Failure
 "Établissement recherché :": "Establishment sought:"
 Étape complétée: Step completed
 Étape non complétée: Step not completed
