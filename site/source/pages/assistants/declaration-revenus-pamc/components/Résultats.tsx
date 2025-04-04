@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -6,12 +7,15 @@ import { Emoji } from '@/design-system/emoji'
 import { Container, Spacing } from '@/design-system/layout'
 import { H2, H4 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
+import { codesImpôt } from '@/domaine/CodesImpôt'
 
+import DéclarantSelection from './DéclarantSelection'
 import { LigneImpôts } from './LigneImpôts'
 
 export default function Résultats() {
 	const { t } = useTranslation()
 	const date = new Date()
+	const [déclarant, setDéclarant] = useState<'1' | '2'>('1')
 
 	return (
 		<Container
@@ -30,6 +34,8 @@ export default function Résultats() {
 				)}
 			</H2>
 
+			<DéclarantSelection déclarant={déclarant} setDéclarant={setDéclarant} />
+
 			<StyledBody>
 				{t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.1',
@@ -38,7 +44,7 @@ export default function Résultats() {
 			</StyledBody>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . statut"
-				code="DSAP"
+				code={codesImpôt.DSAP[déclarant]}
 				expression="déclaration revenus PAMC . statut = 'titulaire'"
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.2',
@@ -47,7 +53,7 @@ export default function Résultats() {
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . statut"
-				code="DSAQ"
+				code={codesImpôt.DSAQ[déclarant]}
 				expression="déclaration revenus PAMC . statut = 'remplaçant'"
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.3',
@@ -57,7 +63,7 @@ export default function Résultats() {
 
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . recettes brutes totales"
-				code="DSCS"
+				code={codesImpôt.DSCS[déclarant]}
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.4',
 					'Recettes brutes totales tirées des activités non salariées'
@@ -74,15 +80,15 @@ export default function Résultats() {
 			</Condition>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . revenus de remplacement . IJ"
-				code="DSAS"
+				code={codesImpôt.DSAS[déclarant]}
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . revenus de remplacement . AJPA"
-				code="DSAG"
+				code={codesImpôt.DSAG[déclarant]}
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . revenus de remplacement . indemnités incapacité temporaire"
-				code="DSCP"
+				code={codesImpôt.DSCP[déclarant]}
 			/>
 
 			<Condition expression="déclaration revenus PAMC . déductions et exonérations . total déductible">
@@ -95,11 +101,11 @@ export default function Résultats() {
 			</Condition>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . déductions et exonérations . zone déficitaire en offre de soins"
-				code="DSFA"
+				code={codesImpôt.DSFA[déclarant]}
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . déductions et exonérations . déduction groupe III"
-				code="DSCO"
+				code={codesImpôt.DSCO[déclarant]}
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.5',
 					'Médecin secteur 1 - déduction complémentaire 3%'
@@ -107,7 +113,7 @@ export default function Résultats() {
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . déductions et exonérations . chèques vacances"
-				code="DSCN"
+				code={codesImpôt.DSCN[déclarant]}
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.6',
 					'Chèques vacances déduits du revenu imposable'
@@ -122,7 +128,7 @@ export default function Résultats() {
 			</H4>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . cotisations sociales obligatoires"
-				code="DSCA"
+				code={codesImpôt.DSCA[déclarant]}
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.7',
 					'Cotisations sociales obligatoires déduites du résultat imposable'
@@ -144,14 +150,14 @@ export default function Résultats() {
 			<Condition expression="déclaration revenus PAMC . revenus nets . revenus conventionnés >= 0">
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . revenus nets . revenus conventionnés"
-					code="DSGA"
+					code={codesImpôt.DSGA[déclarant]}
 					label={t('Bénéfice', 'Bénéfice')}
 				/>
 			</Condition>
 			<Condition expression="déclaration revenus PAMC . revenus nets . revenus conventionnés < 0">
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . revenus nets . revenus conventionnés"
-					code="DSHA"
+					code={codesImpôt.DSHA[déclarant]}
 					label={t('Déficit', 'Déficit')}
 				/>
 			</Condition>
@@ -165,21 +171,21 @@ export default function Résultats() {
 			<Condition expression="déclaration revenus PAMC . revenus nets . revenus non conventionnés >= 0">
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . revenus nets . revenus non conventionnés"
-					code="DSCR"
+					code={codesImpôt.DSCR[déclarant]}
 					label={t('Bénéfice', 'Bénéfice')}
 				/>
 			</Condition>
 			<Condition expression="déclaration revenus PAMC . revenus nets . revenus non conventionnés < 0">
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . revenus nets . revenus non conventionnés"
-					code="DSCQ"
+					code={codesImpôt.DSCQ[déclarant]}
 					label={t('Déficit', 'Déficit')}
 				/>
 			</Condition>
 
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . revenus nets . revenus structures de soins"
-				code="DSAT"
+				code={codesImpôt.DSAT[déclarant]}
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.10',
 					'Dont revenus nets de l’activité réalisée dans des structures de soins'
@@ -196,11 +202,11 @@ export default function Résultats() {
 			</Condition>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . cotisations facultatives"
-				code="DSEA"
+				code={codesImpôt.DSEA[déclarant]}
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . cotisations facultatives . activité conventionnée"
-				code="DSAR"
+				code={codesImpôt.DSAR[déclarant]}
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.11',
 					'Dont cotisations facultatives liées à l’activité conventionnée'
@@ -208,7 +214,7 @@ export default function Résultats() {
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . cotisations facultatives . autres activités non salariées"
-				code="DSCM"
+				code={codesImpôt.DSCM[déclarant]}
 				label={t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.12',
 					'Dont cotisations facultatives liées aux autres activités non salariées'
@@ -224,24 +230,24 @@ export default function Résultats() {
 			<Condition expression="déclaration revenus PAMC . profession != 'dentiste'">
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables"
-					code="DSAV"
+					code={codesImpôt.DSAV[déclarant]}
 				/>
 				<LigneImpôts
 					dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires"
-					code="DSAW"
+					code={codesImpôt.DSAW[déclarant]}
 				/>
 			</Condition>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . SNIR . honoraires tarifs opposables"
-				code="DSAX"
+				code={codesImpôt.DSAX[déclarant]}
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . SNIR . honoraires hors forfaits"
-				code="DSAY"
+				code={codesImpôt.DSAY[déclarant]}
 			/>
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . SNIR . taux urssaf"
-				code="DSAZ"
+				code={codesImpôt.DSAZ[déclarant]}
 				arrondi={false}
 			/>
 
