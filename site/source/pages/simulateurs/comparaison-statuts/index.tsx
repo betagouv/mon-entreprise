@@ -8,8 +8,8 @@ import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
-import { AutoEntrepreneurContexte } from '@/domaine/AutoEntrepreneurContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
+import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 import { useSitePaths } from '@/sitePaths'
 
 import Comparateur from './components/Comparateur'
@@ -32,7 +32,7 @@ function ComparateurStatutsUI() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				...AutoEntrepreneurContexte,
+				...AutoEntrepreneurContexteDansPublicodes,
 			}),
 		[situation, engine]
 	)
