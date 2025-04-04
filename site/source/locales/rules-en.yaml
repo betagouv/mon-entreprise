@@ -5387,14 +5387,10 @@ déclaration revenus PAMC . revenus des associés et gérants:
   titre.fr: revenus des associés et gérants
 déclaration revenus PAMC . revenus imposables:
   description.en: >
-    [automatic] **If you are covered by the micro-tax system:** Indicate the
-    amount of gross sales
+    [automatic] **If you are covered by the micro-tax system:** Enter the amount
+    you have indicated in
 
-    sales under the micro-BNC scheme, without applying an allowance. It
-
-    amount you entered in **section 5HQ** of the tax return
-
-    tax return n°2042-C-PRO.
+    in **section 5HQ** of the n°2042-C-PRO tax return.
 
 
     **If you are subject to income tax under the controlled declaration system:** Enter the amount of your profit or loss.
@@ -5403,13 +5399,10 @@ déclaration revenus PAMC . revenus imposables:
 
     **item 5QC or 5QE** of your tax return n°2042-C-PRO.
   description.fr: >
-    **Si vous relevez du régime micro-fiscal :** Indiquez le montant du chiffre
+    **Si vous relevez du régime micro-fiscal :** Indiquez le montant que vous
+    avez
 
-    d’affaires brut réalisé au régime micro-BNC, sans appliquer d’abattement. Il
-
-    s’agit du montant que vous avez indiqué dans la **rubrique 5HQ** de la
-
-    déclaration des revenus n°2042-C-PRO.
+    indiqué dans la **rubrique 5HQ** de la déclaration des revenus n°2042-C-PRO.
 
 
     **Si vous relevez de l’impôt sur le revenu au régime de la déclaration contrôlée :**
@@ -5456,20 +5449,29 @@ déclaration revenus PAMC . régime fiscal:
 
         based on a percentage of sales. This
 
-        percentage depends on the type of activity: 71% for sales activities,
+        percentage depends on the type of activity:
 
-        and accommodation (rental of classified furnished tourist accommodation and
+        - 71% for sales, catering and accommodation activities (rental of classified
 
-        chambres d'hôte), 50% for commercial or craft services, and
+        and bed and breakfast),
 
-        34% for liberal professions.
-      description.fr: |
+        - 50% for commercial and craft services,
+
+        - 34% for liberal professions.
+      description.fr: >
         Avec le régime micro-fiscal, les charges déductibles sont estimées
+
         forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-        pourcentage dépend du type d’activité : 71% pour les activités de vente,
-        restauration et hébergement (location de meublé de tourisme classé et
-        chambre d’hôte), 50% pour les prestations de service commerciales ou
-        artisanales, 34% pour les activités libérales.
+
+        pourcentage dépend du type d’activité :
+
+        - 71% pour les activités de vente, restauration et hébergement (location de
+
+        meublé de tourisme classé et chambre d’hôte),
+
+        - 50% pour les prestations de service commerciales ou artisanales,
+
+        - 34% pour les activités libérales.
       titre.en: '[automatic] income tax - micro-tax system'
       titre.fr: impôt sur le revenu - régime micro-fiscal
     IR non micro-fiscal:
