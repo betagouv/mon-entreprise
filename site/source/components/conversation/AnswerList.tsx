@@ -302,7 +302,7 @@ function AnswerElement(rule: RuleNode) {
 				>
 					<Value expression={rule.dottedName} linkToRule={false} />{' '}
 					<span className="print-hidden">
-						<Emoji emoji="✏" alt="Modifier" aria-hidden={false} />
+						<Emoji emoji="✏" />
 					</span>
 				</Link>
 			)}
