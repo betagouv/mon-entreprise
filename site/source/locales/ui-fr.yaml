@@ -178,6 +178,7 @@ Option la plus avantageuse.: Option la plus avantageuse.
 Options: Options
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
+Ouvrir la boite de dialogue pour rechercher: Ouvrir la boite de dialogue pour rechercher
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
@@ -206,7 +207,6 @@ Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
-Ouvrir la boite de dialogue pour rechercher: Ouvrir la boite de dialogue pour rechercher
 Remboursements et déductions diverses: Remboursements et déductions diverses
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
@@ -908,6 +908,10 @@ pages:
           déclaration de revenus.
         title: Déclaration de revenus des PAMC
       resultats:
+        déclarant:
+          "1": Déclarant 1
+          "2": Déclarant 2
+          label: Quel déclarant êtes-vous ?
         label:
           "1": Situation au 1er janvier ou à la date du début d’activité
           "10": Dont revenus nets de l’activité réalisée dans des structures de soins

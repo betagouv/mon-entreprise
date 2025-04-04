@@ -533,7 +533,7 @@ dirigeant . auto-entrepreneur . Cipav:
     adhérent:
       description.en: >
         [automatic] Since January 1, 2018, self-employed workers in unregulated
-        liberal professions
+        liberal
 
         are affiliated to Sécurité sociale pour les indépendants (SSI).
 
@@ -5555,7 +5555,8 @@ déclaration revenus PAMC . statut:
     remplaçant/remplaçante et que vous vous êtes installé/installée au 1er juillet,
 
     sélectionnez « Remplaçant / remplaçante ».
-  question.en: '[automatic] What was your practice status on January 1 or when you started?'
+  question.en: '[automatic] What was your practice status on January 1st or when
+    you started?'
   question.fr: Quel était votre statut d’exercice au 1er janvier ou à votre date
     de début d’activité ?
   titre.en: '[automatic] status'

@@ -167,6 +167,7 @@ Option la plus avantageuse.: Most advantageous option.
 Options: Options
 Oui: Yes
 Outils pour les développeurs: Tools for developers
+Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
@@ -194,7 +195,6 @@ Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
-Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Enter an e-mail address (in nom@domaine.com format) to receive a reply.
@@ -851,6 +851,10 @@ pages:
         description: Calculate the amounts of your income to report on your tax return.
         title: PAMC tax return
       resultats:
+        déclarant:
+          "1": Declarant 1
+          "2": Declarant 2
+          label: Which registrant are you?
         label:
           "1": Situation on January 1 or on the date of commencement of activity
           "10": Of which net income from activities carried out in care facilities
