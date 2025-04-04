@@ -42,6 +42,7 @@
 - Correction de la formule du calcul de la contribution additionnelle pour les PAMC
 - Correction du montant de la CURPS pour les activités démarrées au 1er janvier
 - Correction de la liste des cotisations sociales exonérées pour les apprentis
+- Correction des formules de calcul pour la déclaration de revenus des PAMC
 
 ### Mises à jour
 - Mise à jour des niveaux de rémunération pour les taux réduits de cotisations maladie et familiales

@@ -121,6 +121,11 @@ déclaration revenus PAMC . revenus nets . revenus conventionnés:
       alors: 0
     - si: actes conventionnés uniquement
       alors: assiette sociale
+    - si:
+        toutes ces conditions:
+          - activité en structures de soins
+          - autres revenus non salariés = non
+      alors: assiette sociale - revenus structures de soins
     - sinon:
         produit:
           - assiette sociale
@@ -132,6 +137,11 @@ déclaration revenus PAMC . revenus nets . revenus non conventionnés:
   variations:
     - si: actes conventionnés uniquement
       alors: 0
+    - si:
+        toutes ces conditions:
+          - activité en structures de soins
+          - autres revenus non salariés = non
+      alors: revenus structures de soins
     - sinon:
         valeur: assiette sociale - revenus conventionnés
   unité: €/an
@@ -147,7 +157,12 @@ déclaration revenus PAMC . cotisations facultatives . activité conventionnée:
   variations:
     - si: revenus nets . assiette sociale = 0
       alors: 0
-    - si: actes conventionnés uniquement
+    - si:
+        une de ces conditions:
+          - actes conventionnés uniquement
+          - toutes ces conditions:
+              - activité en structures de soins
+              - autres revenus non salariés = non
       alors: cotisations facultatives
     - sinon:
         produit:
@@ -157,7 +172,12 @@ déclaration revenus PAMC . cotisations facultatives . activité conventionnée:
 
 déclaration revenus PAMC . cotisations facultatives . autres activités non salariées:
   variations:
-    - si: actes conventionnés uniquement
+    - si:
+        une de ces conditions:
+          - actes conventionnés uniquement
+          - toutes ces conditions:
+              - activité en structures de soins
+              - autres revenus non salariés = non
       alors: 0
     - sinon:
         valeur: cotisations facultatives
