@@ -328,6 +328,7 @@ cards:
     cta: Accéder au simulateur
 certains critères, en savoir plus sur service-public:
   fr, nouvelle fenêtre: certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre
+champ obligatoire: champ obligatoire
 checklist:
   showmore:
     closed: En savoir plus
@@ -883,6 +884,7 @@ pages:
       title: Assistant à la détermination des charges sociales déductibles
     declaration-revenus-pamc:
       formulaire:
+        "0": Les champs obligatoires sont signalés par une astérisque.
         "1": Profession
         "10": Montant de vos cotisations facultatives
         "11": Revenus de remplacement
