@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
+import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Warning from '@/components/ui/WarningBlock'
 import { Button } from '@/design-system/buttons'
@@ -34,7 +35,14 @@ export default function DéclarationRevenusPAMC() {
 	return (
 		<>
 			{Object.keys(situation).length ? (
-				<TrackPage name="simulation commencée" />
+				<>
+					<WhenAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
+						<TrackPage name="simulation terminée" />
+					</WhenAlreadyDefined>
+					<WhenNotAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
+						<TrackPage name="simulation commencée" />
+					</WhenNotAlreadyDefined>
+				</>
 			) : (
 				<TrackPage name="accueil" />
 			)}
