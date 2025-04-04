@@ -2,7 +2,6 @@ import emojiFn from 'react-easy-emoji'
 
 type PropType = {
 	emoji: string
-	alt?: string
 	title?: string
 	'aria-hidden'?: boolean
 }
