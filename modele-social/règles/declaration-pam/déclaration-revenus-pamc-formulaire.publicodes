@@ -3,7 +3,7 @@ déclaration revenus PAMC:
   valeur: non
 
 déclaration revenus PAMC . profession:
-  question: Quelle est votre profession ?
+  question: Quelle est votre profession ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -52,7 +52,8 @@ déclaration revenus PAMC . profession:
         - profession = 'médecin secteur 1 spécialiste'
 
 déclaration revenus PAMC . statut:
-  question: Quel était votre statut d’exercice au 1er janvier ou à votre date de début d’activité ?
+  question: Quel était votre statut d’exercice au 1er janvier ou à votre date de
+    début d’activité ?
   description: |
     Indiquez ici votre statut au 1er janvier de l’année précédant l’année de
     déclaration.
@@ -79,7 +80,7 @@ déclaration revenus PAMC . statut:
       valeur: statut = 'remplaçant'
 
 déclaration revenus PAMC . régime fiscal:
-  question: Quel est votre régime fiscal ?
+  question: Quel est votre régime fiscal ?
   une possibilité:
     choix obligatoire: oui
     possibilités:
@@ -95,10 +96,11 @@ déclaration revenus PAMC . régime fiscal:
       description: |
         Avec le régime micro-fiscal, les charges déductibles sont estimées
         forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-        pourcentage dépend du type d’activité : 71% pour les activités de vente,
-        restauration et hébergement (location de meublé de tourisme classé et
-        chambre d’hôte), 50% pour les prestations de service commerciales ou
-        artisanales, 34% pour les activités libérales.
+        pourcentage dépend du type d’activité :
+        - 71% pour les activités de vente, restauration et hébergement (location de
+        meublé de tourisme classé et chambre d’hôte),
+        - 50% pour les prestations de service commerciales ou artisanales,
+        - 34% pour les activités libérales.
 
     IR non micro-fiscal:
       titre: impôt sur le revenu - régime de la déclaration contrôlée
@@ -129,10 +131,8 @@ déclaration revenus PAMC . revenus imposables:
   non applicable si: régime fiscal . IS
   unité: €/an
   description: |
-    **Si vous relevez du régime micro-fiscal :** Indiquez le montant du chiffre
-    d’affaires brut réalisé au régime micro-BNC, sans appliquer d’abattement. Il
-    s’agit du montant que vous avez indiqué dans la **rubrique 5HQ** de la
-    déclaration des revenus n°2042-C-PRO.
+    **Si vous relevez du régime micro-fiscal :** Indiquez le montant que vous avez
+    indiqué dans la **rubrique 5HQ** de la déclaration des revenus n°2042-C-PRO.
 
     **Si vous relevez de l’impôt sur le revenu au régime de la déclaration contrôlée :**
     Indiquez le montant de votre bénéfice ou déficit. Ce montant correspond à la
@@ -297,7 +297,7 @@ déclaration revenus PAMC . SNIR . taux urssaf:
 
 déclaration revenus PAMC . activité en structures de soins:
   non applicable si: profession . dentiste
-  question: Avez-vous des recettes issues d’une activité en structure de soins ?
+  question: Avez-vous des recettes issues d’une activité en structure de soins ?
   par défaut: non
 
 déclaration revenus PAMC . activité en structures de soins . recettes:
@@ -309,7 +309,7 @@ déclaration revenus PAMC . activité en structures de soins . recettes:
     de soins (EHPAD, ESPIC, HAD, SSIAD, CMPP…).
 
 déclaration revenus PAMC . déductions et exonérations:
-  question: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
+  question: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
   par défaut: non
 
 déclaration revenus PAMC . déductions et exonérations . zone déficitaire en offre de soins:
@@ -358,25 +358,26 @@ déclaration revenus PAMC . déductions et exonérations . chèques vacances:
   description: Indiquez le montant total des chèques vacances octroyés.
 
 déclaration revenus PAMC . autres revenus non salariés:
-
-déclaration revenus PAMC . autres revenus non salariés . micro-BNC:
-  applicable si: régime fiscal . IR micro-fiscal
-  question: Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?
-  par défaut: non
-
-déclaration revenus PAMC . autres revenus non salariés . BNC:
-  applicable si: régime fiscal . IR non micro-fiscal
-  question: Avez-vous des revenus non salariés autres que ceux relevant des BNC ?
-  par défaut: non
-
-déclaration revenus PAMC . autres revenus non salariés . IS:
-  applicable si: régime fiscal . IS
-  question: Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?
+  question:
+    variations:
+      - si: déclaration revenus PAMC . régime fiscal . IR micro-fiscal
+        alors:
+          texte: Avez-vous des revenus non salariés autres que ceux relevant du
+            régime micro-BNC ?
+      - si: déclaration revenus PAMC . régime fiscal . IR non micro-fiscal
+        alors:
+          texte: Avez-vous des revenus non salariés autres que ceux relevant des BNC ?
+      - si: déclaration revenus PAMC . régime fiscal . IS
+        alors:
+          texte: Avez-vous des revenus non salariés autres que ceux relevant de
+            l’impôt sur les sociétés ?
+      - sinon:
+          texte: Avez-vous d’autres revenus non salariés ?
   par défaut: non
 
 déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
   titre: plus-values nettes à court terme
-  applicable si: autres revenus non salariés . micro-BNC
+  applicable si: régime fiscal . IR micro-fiscal
   unité: €/an
   par défaut: 0
 
@@ -384,8 +385,8 @@ déclaration revenus PAMC . autres revenus non salariés . micro-BIC marchandise
   titre: 'micro-BIC : chiffre d’affaires vente de marchandises'
   applicable si:
     une de ces conditions:
-      - autres revenus non salariés . micro-BNC
-      - autres revenus non salariés . IS
+      - régime fiscal . IR micro-fiscal
+      - régime fiscal . IS
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
@@ -394,8 +395,8 @@ déclaration revenus PAMC . autres revenus non salariés . micro-BIC service:
   titre: 'micro-BIC : chiffre d’affaires prestation de service'
   applicable si:
     une de ces conditions:
-      - autres revenus non salariés . micro-BNC
-      - autres revenus non salariés . IS
+      - régime fiscal . IR micro-fiscal
+      - régime fiscal . IS
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
@@ -404,8 +405,8 @@ déclaration revenus PAMC . autres revenus non salariés . micro-BA:
   titre: 'micro-BA : chiffre d’affaires agricole'
   applicable si:
     une de ces conditions:
-      - autres revenus non salariés . micro-BNC
-      - autres revenus non salariés . IS
+      - régime fiscal . IR micro-fiscal
+      - régime fiscal . IS
   unité: €/an
   par défaut: 0
   description: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
@@ -414,8 +415,8 @@ déclaration revenus PAMC . autres revenus non salariés . BIC:
   titre: bénéfice/déficit BIC
   applicable si:
     une de ces conditions:
-      - autres revenus non salariés . BNC
-      - autres revenus non salariés . IS
+      - régime fiscal . IR non micro-fiscal
+      - régime fiscal . IS
   unité: €/an
   par défaut: 0
   description: |
@@ -426,8 +427,8 @@ déclaration revenus PAMC . autres revenus non salariés . agricole:
   titre: bénéfice/déficit agricole
   applicable si:
     une de ces conditions:
-      - autres revenus non salariés . BNC
-      - autres revenus non salariés . IS
+      - régime fiscal . IR non micro-fiscal
+      - régime fiscal . IS
   unité: €/an
   par défaut: 0
 
@@ -439,14 +440,12 @@ déclaration revenus PAMC . actes conventionnés uniquement:
   applicable si:
     toutes ces conditions:
       - activité en structures de soins = non
-      - autres revenus non salariés . micro-BNC = non
-      - autres revenus non salariés . BNC = non
-      - autres revenus non salariés . IS = non
-  question: Avez-vous effectué uniquement des actes conventionnés ?
+      - autres revenus non salariés = non
+  question: Avez-vous effectué uniquement des actes conventionnés ?
   par défaut: non
 
 déclaration revenus PAMC . revenus de remplacement:
-  question: Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?
+  question: Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre caisse de retraite ?
   par défaut: non
 
 déclaration revenus PAMC . revenus de remplacement . total:

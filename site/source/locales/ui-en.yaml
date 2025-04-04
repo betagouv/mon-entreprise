@@ -167,6 +167,7 @@ Option la plus avantageuse.: Most advantageous option.
 Options: Options
 Oui: Yes
 Outils pour les développeurs: Tools for developers
+Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
@@ -194,7 +195,6 @@ Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
-Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Renseigner une adresse e-mail (au format nom@domaine:
   com) pour recevoir une réponse: Enter an e-mail address (in nom@domaine.com format) to receive a reply.
@@ -306,6 +306,7 @@ cards:
     cta: Access the simulator
 certains critères, en savoir plus sur service-public:
   fr, nouvelle fenêtre: certain criteria, find out more on service-public.fr, new window
+champ obligatoire: required field
 checklist:
   showmore:
     closed: Read more
@@ -828,6 +829,7 @@ pages:
       title: Assistance in determining deductible social charges
     declaration-revenus-pamc:
       formulaire:
+        "0": Required fields are marked with an asterisk.
         "1": Profession
         "10": Amount of your optional contributions
         "11": Replacement income
