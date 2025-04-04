@@ -177,8 +177,8 @@ export default function Footer() {
 													lang={isFrenchMode ? 'en' : 'fr'}
 												>
 													{isFrenchMode
-														? t('Switch to the english version')
-														: t('Passer à la version française')}
+														? 'Switch to the English version'
+														: 'Passer à la version française'}
 												</Link>
 											</StyledLi>
 										)}
