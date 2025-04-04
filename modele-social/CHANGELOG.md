@@ -14,6 +14,12 @@
 	- `salarié . cotisations . chômage . employeur`
 	- `salarié . cotisations . chômage . salarié`
 - Suppression de la règle `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV`
+- Suppression des règles
+  - `déclaration revenus PAMC . autres revenus non salariés . micro-BNC`
+  - `déclaration revenus PAMC . autres revenus non salariés . BNC`
+  - `déclaration revenus PAMC . autres revenus non salariés . IS`
+	Utiliser simplement `déclaration revenus PAMC . autres revenus non salariés` à la place.
+- Renommage des règles enfant de `déclaration revenus PAMC . autres revenus non salariés`
 - Renommage des règles suivantes :
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . cotisations CIPAV . taux` => `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . taux ACRE` => `dirigeant . auto-entrepreneur . Acre . taux Acre`

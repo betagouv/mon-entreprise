@@ -3,7 +3,7 @@ import { checkA11Y, fr } from '../../../support/utils'
 const idPrefix = 'déclaration_revenus_PAMC__'
 const structureDeSoins = 'activité_en_structures_de_soins'
 const exonerations = 'déductions_et_exonérations'
-const autresRevenus = 'autres_revenus_non_salariés__'
+const autresRevenus = 'autres_revenus_non_salariés'
 const revenusNets = 'revenus_nets__'
 const revenusDeRemplaçement = 'revenus_de_remplacement__'
 
@@ -136,40 +136,32 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get('@titles')
 			.contains('Autres revenus non salariés')
 			.should('not.exist')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC`).should('not.exist')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC`).should('not.exist')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS`).should('not.exist')
+		cy.contains('Avez-vous des revenus non salariés autres que ceux ').should(
+			'not.exist'
+		)
+		cy.get(`#${idPrefix}_${autresRevenus}`).should('not.exist')
 		cy.contains('Plus-values nettes à court terme').should('not.exist')
 		cy.get(
-			`#${idPrefix}_${autresRevenus}_plus-values_nettes_à_court_terme`
+			`#${idPrefix}_${autresRevenus}___plus-values_nettes_à_court_terme`
 		).should('not.exist')
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_marchandises`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_service`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BA`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA`).should('not.exist')
 		cy.contains('Bénéfice/déficit BIC').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BIC`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___BIC`).should('not.exist')
 		cy.contains('Bénéfice/déficit agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_agricole`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___agricole`).should('not.exist')
 
 		cy.get('@titles').contains('Actes conventionnés').should('not.exist')
 		cy.contains(
@@ -247,7 +239,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
 		).should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}-input`).should('be.visible')
 
 		cy.get('@titles').contains('Actes conventionnés').should('be.visible')
 		cy.contains(
@@ -341,43 +333,36 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Réinitialiser').click()
 		cy.contains('Sage-femme').click()
 		cy.contains('Titulaire').click()
+
 		cy.contains('micro-fiscal').click()
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
 		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC`).should('not.exist')
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
 		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS`).should('not.exist')
 
 		cy.contains('régime de la déclaration contrôlée').click()
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
 		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC`).should('not.exist')
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
 		).should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC-input`).should('be.visible')
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
 		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS`).should('not.exist')
 
 		cy.contains('Impôt sur les sociétés').click()
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
 		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC`).should('not.exist')
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
 		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC`).should('not.exist')
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
 		).should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS-input`).should('be.visible')
 	})
 
 	it('ne devrait pas montrer les résultats avant que les champs soient remplis', function () {
@@ -767,9 +752,7 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.get('@questionInput').should('not.exist')
 
 		// "oui" à structure de soins et "oui" à autres revenus
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC-input`)
-			.contains('Oui')
-			.click()
+		cy.get(`#${idPrefix}_${autresRevenus}-input`).contains('Oui').click()
 
 		cy.get('@questionLabel').should('not.exist')
 		cy.get('@questionInput').should('not.exist')
@@ -1076,49 +1059,49 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 
 		cy.contains('Plus-values nettes à court terme').should('not.exist')
 		cy.get(
-			`#${idPrefix}_${autresRevenus}_plus-values_nettes_à_court_terme`
+			`#${idPrefix}_${autresRevenus}___plus-values_nettes_à_court_terme`
 		).should('not.exist')
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_marchandises`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_service`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BA`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA`).should('not.exist')
 		cy.contains('Bénéfice/déficit BIC').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BIC`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___BIC`).should('not.exist')
 		cy.contains('Bénéfice/déficit agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_agricole`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___agricole`).should('not.exist')
 
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC-input`)
-			.contains('Oui')
-			.click()
+		cy.get(`#${idPrefix}_${autresRevenus}-input`).contains('Oui').click()
 
 		cy.contains('Plus-values nettes à court terme').should('be.visible')
 		cy.get(
-			`#${idPrefix}_${autresRevenus}_plus-values_nettes_à_court_terme-input`
+			`#${idPrefix}_${autresRevenus}___plus-values_nettes_à_court_terme-input`
 		).should('be.visible')
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_marchandises-input`).should(
-			'be.visible'
-		)
+		cy.get(
+			`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises-input`
+		).should('be.visible')
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_service-input`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service-input`).should(
 			'be.visible'
 		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BA-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA-input`).should(
+			'be.visible'
+		)
 	})
 
 	it('devrait montrer uniquement les champs des autres revenus non salariés relevant du régime micro-fiscal lorsque le régime micro-fiscal est sélectionné', function () {
@@ -1127,25 +1110,10 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Titulaire').click()
 		cy.contains('micro-fiscal').click()
 
-		// Questions absentes
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC`).should('not.exist')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS`).should('not.exist')
-
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC-input`)
-			.contains('Oui')
-			.click()
-
-		// Champs absents
 		cy.contains('Bénéfice/déficit BIC').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BIC`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___BIC`).should('not.exist')
 		cy.contains('Bénéfice/déficit agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_agricole`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___agricole`).should('not.exist')
 	})
 
 	it('devrait montrer uniquement les champs des autres revenus non salariés relevant du régime général lorsque le régime de la déclaration contrôlée est sélectionné', function () {
@@ -1154,49 +1122,41 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Titulaire').click()
 		cy.contains('régime de la déclaration contrôlée').click()
 
-		// Question présente
+		// Question
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
 		).should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}-input`).should('be.visible')
 
-		// Questions absentes
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC`).should('not.exist')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS`).should('not.exist')
-
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC-input`).contains('Oui').click()
+		cy.get(`#${idPrefix}_${autresRevenus}-input`).contains('Oui').click()
 
 		// Champs présents
 		cy.contains('Bénéfice/déficit BIC').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_BIC-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}___BIC-input`).should('be.visible')
 		cy.contains('Bénéfice/déficit agricole').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_agricole-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}___agricole-input`).should(
+			'be.visible'
+		)
 
 		// Champs absents
 		cy.contains('Plus-values nettes à court terme').should('not.exist')
 		cy.get(
-			`#${idPrefix}_${autresRevenus}_plus-values_nettes_à_court_terme`
+			`#${idPrefix}_${autresRevenus}___plus-values_nettes_à_court_terme`
 		).should('not.exist')
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_marchandises`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'not.exist'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_service`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service`).should(
 			'not.exist'
 		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BA`).should('not.exist')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA`).should('not.exist')
 	})
 
 	it("devrait montrer tous les champs des autres revenus non salariés (sauf les plus-values) lorsque l'IS est sélectionné", function () {
@@ -1205,48 +1165,42 @@ describe(`L'assistant à la déclaration de revenu pour PAMC`, function () {
 		cy.contains('Titulaire').click()
 		cy.contains('Impôt sur les sociétés').click()
 
-		// Question présente
+		// Question
 		cy.contains(
 			'Avez-vous des revenus non salariés autres que ceux relevant de l’impôt sur les sociétés ?'
 		).should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_IS-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}-input`).should('be.visible')
 
-		// Questions absentes
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant du régime micro-BNC ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BNC`).should('not.exist')
-		cy.contains(
-			'Avez-vous des revenus non salariés autres que ceux relevant des BNC ?'
-		).should('not.exist')
-		cy.get(`#${idPrefix}_${autresRevenus}_BNC`).should('not.exist')
-
-		cy.get(`#${idPrefix}_${autresRevenus}_IS-input`).contains('Oui').click()
+		cy.get(`#${idPrefix}_${autresRevenus}-input`).contains('Oui').click()
 
 		// Champs présents
 		cy.contains('Bénéfice/déficit BIC').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_BIC-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}___BIC-input`).should('be.visible')
 		cy.contains('Micro-BIC : chiffre d’affaires vente de marchandises').should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_marchandises-input`).should(
-			'be.visible'
-		)
+		cy.get(
+			`#${idPrefix}_${autresRevenus}___micro-BIC_marchandises-input`
+		).should('be.visible')
 		cy.contains('Micro-BIC : chiffre d’affaires prestation de service').should(
 			'be.visible'
 		)
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BIC_service-input`).should(
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BIC_service-input`).should(
 			'be.visible'
 		)
 		cy.contains('Bénéfice/déficit agricole').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_agricole-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}___agricole-input`).should(
+			'be.visible'
+		)
 		cy.contains('Micro-BA : chiffre d’affaires agricole').should('be.visible')
-		cy.get(`#${idPrefix}_${autresRevenus}_micro-BA-input`).should('be.visible')
+		cy.get(`#${idPrefix}_${autresRevenus}___micro-BA-input`).should(
+			'be.visible'
+		)
 
 		// Champ absent
 		cy.contains('Plus-values nettes à court terme').should('not.exist')
 		cy.get(
-			`#${idPrefix}_${autresRevenus}_plus-values_nettes_à_court_terme`
+			`#${idPrefix}_${autresRevenus}___plus-values_nettes_à_court_terme`
 		).should('not.exist')
 	})
 
