@@ -9,7 +9,9 @@ describe('General navigation', function () {
 				? encodeURI('/assistants/choix-du-statut')
 				: '/assistants/choice-of-status'
 		)
-		cy.contains('Switch to the English version').click()
+		cy.contains(
+			fr ? 'Switch to the English version' : 'Passer à la version française'
+		).click()
 		cy.url().should(
 			'include',
 			fr
