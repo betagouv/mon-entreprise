@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -21,14 +22,17 @@ type SimulationGoalProps = {
 	dottedName: DottedName
 	label?: string
 	originalUnit?: boolean
+	required?: boolean
 }
 
 export function AssistantGoal({
 	dottedName,
 	label,
 	originalUnit = false,
+	required,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
+	const { t } = useTranslation()
 	const engine = useEngine()
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
@@ -71,6 +75,14 @@ export function AssistantGoal({
 							<Grid item>
 								<StyledBody id={`${dottedName.replace(/\s|\./g, '_')}-title`}>
 									{label || rule.title}
+									{required && (
+										<>
+											<span aria-hidden>&nbsp;*</span>
+											<span className="sr-only">
+												&nbsp;({t('champ obligatoire')})
+											</span>
+										</>
+									)}
 								</StyledBody>
 							</Grid>
 							<Grid item>

@@ -306,6 +306,7 @@ cards:
     cta: Access the simulator
 certains critères, en savoir plus sur service-public:
   fr, nouvelle fenêtre: certain criteria, find out more on service-public.fr, new window
+champ obligatoire: required field
 checklist:
   showmore:
     closed: Read more
@@ -828,6 +829,7 @@ pages:
       title: Assistance in determining deductible social charges
     declaration-revenus-pamc:
       formulaire:
+        "0": Required fields are marked with an asterisk.
         "1": Profession
         "10": Amount of your optional contributions
         "11": Replacement income
