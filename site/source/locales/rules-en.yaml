@@ -4876,12 +4876,12 @@ déclaration revenus PAMC . SNIR . taux urssaf:
   titre.fr: taux Urssaf
 déclaration revenus PAMC . actes conventionnés uniquement:
   question.en: '[automatic] Did you perform only contract procedures?'
-  question.fr: Avez-vous effectué uniquement des actes conventionnés ?
+  question.fr: Avez-vous effectué uniquement des actes conventionnés ?
   titre.en: '[automatic] conventional procedures only'
   titre.fr: actes conventionnés uniquement
 déclaration revenus PAMC . activité en structures de soins:
   question.en: '[automatic] Do you generate any income from care facility activities?'
-  question.fr: Avez-vous des recettes issues d’une activité en structure de soins ?
+  question.fr: Avez-vous des recettes issues d’une activité en structure de soins ?
   titre.en: '[automatic] activity in care facilities'
   titre.fr: activité en structures de soins
 déclaration revenus PAMC . activité en structures de soins . recettes:
@@ -4898,6 +4898,23 @@ déclaration revenus PAMC . activité en structures de soins . recettes:
   titre.en: '[automatic] amount'
   titre.fr: montant
 déclaration revenus PAMC . autres revenus non salariés:
+  question.fr:
+    variations:
+      - alors:
+          texte:
+            Avez-vous des revenus non salariés autres que ceux relevant du régime
+            micro-BNC ?
+        si: déclaration revenus PAMC . régime fiscal . IR micro-fiscal
+      - alors:
+          texte: Avez-vous des revenus non salariés autres que ceux relevant des BNC ?
+        si: déclaration revenus PAMC . régime fiscal . IR non micro-fiscal
+      - alors:
+          texte:
+            Avez-vous des revenus non salariés autres que ceux relevant de l’impôt
+            sur les sociétés ?
+        si: déclaration revenus PAMC . régime fiscal . IS
+      - sinon:
+          texte: Avez-vous d’autres revenus non salariés ?
   titre.en: '[automatic] other self-employed income'
   titre.fr: autres revenus non salariés
 déclaration revenus PAMC . autres revenus non salariés . BIC:
@@ -4911,18 +4928,6 @@ déclaration revenus PAMC . autres revenus non salariés . BIC:
     activité de vente.
   titre.en: '[automatic] BIC profit/loss'
   titre.fr: bénéfice/déficit BIC
-déclaration revenus PAMC . autres revenus non salariés . BNC:
-  question.en: '[automatic] Do you have self-employed income other than BNC?'
-  question.fr: Avez-vous des revenus non salariés autres que ceux relevant des BNC ?
-  titre.en: '[automatic] BNC'
-  titre.fr: BNC
-déclaration revenus PAMC . autres revenus non salariés . IS:
-  question.en: '[automatic] Do you have self-employed income other than that
-    subject to corporation tax?'
-  question.fr: Avez-vous des revenus non salariés autres que ceux relevant de
-    l’impôt sur les sociétés ?
-  titre.en: '[automatic] IS'
-  titre.fr: IS
 déclaration revenus PAMC . autres revenus non salariés . agricole:
   titre.en: '[automatic] farm profit/loss'
   titre.fr: bénéfice/déficit agricole
@@ -4941,13 +4946,6 @@ déclaration revenus PAMC . autres revenus non salariés . micro-BIC service:
   description.fr: Indiquez votre chiffres d’affaires sans appliquer d’abattement.
   titre.en: '[automatic] micro-BIC: sales of services'
   titre.fr: 'micro-BIC : chiffre d’affaires prestation de service'
-déclaration revenus PAMC . autres revenus non salariés . micro-BNC:
-  question.en: '[automatic] Do you have self-employed income other than that
-    covered by the micro-BNC scheme?'
-  question.fr: Avez-vous des revenus non salariés autres que ceux relevant du
-    régime micro-BNC ?
-  titre.en: '[automatic] micro-BNC'
-  titre.fr: micro-BNC
 déclaration revenus PAMC . autres revenus non salariés . plus-values nettes à court terme:
   titre.en: '[automatic] net short-term capital gains'
   titre.fr: plus-values nettes à court terme
@@ -5091,7 +5089,7 @@ déclaration revenus PAMC . dividendes:
   titre.fr: dividendes
 déclaration revenus PAMC . déductions et exonérations:
   question.en: '[automatic] Do you benefit from deductions and/or tax-exempt income?'
-  question.fr: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
+  question.fr: Bénéficiez-vous de déductions et/ou de revenus exonérés fiscalement ?
   titre.en: '[automatic] deductions and exemptions'
   titre.fr: déductions et exonérations
 déclaration revenus PAMC . déductions et exonérations . chèques vacances:
@@ -5262,7 +5260,7 @@ déclaration revenus PAMC . profession:
       titre.en: '[automatic] midwife'
       titre.fr: sage-femme
   question.en: '[automatic] What do you do for a living?'
-  question.fr: Quelle est votre profession ?
+  question.fr: Quelle est votre profession ?
   titre.en: '[automatic] profession'
   titre.fr: profession
 déclaration revenus PAMC . recettes brutes totales:
@@ -5321,7 +5319,7 @@ déclaration revenus PAMC . recettes brutes totales:
 déclaration revenus PAMC . revenus de remplacement:
   question.en: '[automatic] Have you received benefits from Caf, CPAM or your pension fund?'
   question.fr: Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre
-    caisse de retraite ?
+    caisse de retraite ?
   titre.en: '[automatic] replacement income'
   titre.fr: revenus de remplacement
 déclaration revenus PAMC . revenus de remplacement . AJPA:
@@ -5481,7 +5479,7 @@ déclaration revenus PAMC . régime fiscal:
       titre.en: '[automatic] corporate income tax'
       titre.fr: impôt sur les sociétés
   question.en: '[automatic] What is your tax status?'
-  question.fr: Quel est votre régime fiscal ?
+  question.fr: Quel est votre régime fiscal ?
   titre.en: '[automatic] tax system'
   titre.fr: régime fiscal
 déclaration revenus PAMC . résultats:
@@ -5558,7 +5556,7 @@ déclaration revenus PAMC . statut:
   question.en: '[automatic] What was your practice status on January 1st or when
     you started?'
   question.fr: Quel était votre statut d’exercice au 1er janvier ou à votre date
-    de début d’activité ?
+    de début d’activité ?
   titre.en: '[automatic] status'
   titre.fr: statut
 entreprise:
