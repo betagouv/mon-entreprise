@@ -96,10 +96,11 @@ déclaration revenus PAMC . régime fiscal:
       description: |
         Avec le régime micro-fiscal, les charges déductibles sont estimées
         forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-        pourcentage dépend du type d’activité : 71% pour les activités de vente,
-        restauration et hébergement (location de meublé de tourisme classé et
-        chambre d’hôte), 50% pour les prestations de service commerciales ou
-        artisanales, 34% pour les activités libérales.
+        pourcentage dépend du type d’activité :
+        - 71% pour les activités de vente, restauration et hébergement (location de
+        meublé de tourisme classé et chambre d’hôte),
+        - 50% pour les prestations de service commerciales ou artisanales,
+        - 34% pour les activités libérales.
 
     IR non micro-fiscal:
       titre: impôt sur le revenu - régime de la déclaration contrôlée
@@ -130,10 +131,8 @@ déclaration revenus PAMC . revenus imposables:
   non applicable si: régime fiscal . IS
   unité: €/an
   description: |
-    **Si vous relevez du régime micro-fiscal :** Indiquez le montant du chiffre
-    d’affaires brut réalisé au régime micro-BNC, sans appliquer d’abattement. Il
-    s’agit du montant que vous avez indiqué dans la **rubrique 5HQ** de la
-    déclaration des revenus n°2042-C-PRO.
+    **Si vous relevez du régime micro-fiscal :** Indiquez le montant que vous avez
+    indiqué dans la **rubrique 5HQ** de la déclaration des revenus n°2042-C-PRO.
 
     **Si vous relevez de l’impôt sur le revenu au régime de la déclaration contrôlée :**
     Indiquez le montant de votre bénéfice ou déficit. Ce montant correspond à la
