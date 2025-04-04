@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 import { Grid } from '@/design-system/layout'
 import { H1 } from '@/design-system/typography/heading'
 
-const Illustration = styled.img<{ titre: ReactNode }>`
+const Illustration = styled.img`
 	height: 100%;
 	width: 100%;
 	vertical-align: bottom;
@@ -44,12 +44,7 @@ export default function PageHeader({
 
 			{picture && (
 				<InnerGrid item className="hide-mobile" md={4} lg={5} xl={4}>
-					<Illustration
-						className="hide-mobile"
-						titre={titre}
-						src={picture}
-						alt=""
-					/>
+					<Illustration className="hide-mobile" src={picture} alt="" />
 				</InnerGrid>
 			)}
 		</Grid>
