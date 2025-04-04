@@ -9,8 +9,8 @@ describe('General navigation', function () {
 				? encodeURI('/assistants/choix-du-statut')
 				: '/assistants/choice-of-status'
 		)
-		cy.get(
-			fr ? '[data-test-id=en-switch-button]' : '[data-test-id=fr-switch-button]'
+		cy.contains(
+			fr ? 'Switch to the English version' : 'Passer à la version française'
 		).click()
 		cy.url().should(
 			'include',
