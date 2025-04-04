@@ -9,7 +9,7 @@ import { InputProps } from './RuleInput'
 export default function TextInput({
 	onChange,
 	value,
-	description,
+	$description,
 	title,
 	missing,
 	autoFocus,
@@ -25,7 +25,7 @@ export default function TextInput({
 			onChange={(value) => {
 				debouncedOnChange(`'${value}'`)
 			}}
-			description={description}
+			description={$description}
 			{...{
 				[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
 			}}

@@ -57,11 +57,11 @@ type Props = Omit<
 
 export type InputProps = Omit<Props, 'onChange' | 'engine'> &
 	Pick<RuleNode, 'suggestions'> & {
-		$question: RuleNode['rawNode']['question']
-		$description: RuleNode['rawNode']['description']
+		$question?: RuleNode['rawNode']['question']
+		$description?: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
 		onChange: (value: PublicodesExpression | undefined) => void
-		$engine: Engine<DottedName>
+		$engine?: Engine<DottedName>
 	}
 
 export const binaryQuestion = [

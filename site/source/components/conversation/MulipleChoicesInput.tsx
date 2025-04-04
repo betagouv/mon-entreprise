@@ -21,7 +21,7 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 			const value =
 				dottedName === choice.dottedName
 					? isSelected
-					: props.engine.evaluate(choice).nodeValue
+					: props.$engine.evaluate(choice).nodeValue
 			props.onChange(value ? 'oui' : 'non', choice.dottedName)
 		})
 	}
@@ -33,7 +33,7 @@ export function MultipleChoicesInput<Names extends string = DottedName>(
 					<CheckBoxRule
 						node={node}
 						onChange={(isSelected) => handleChange(isSelected, node.dottedName)}
-						engine={props.engine}
+						engine={props.$engine}
 					/>
 				</Fragment>
 			))}
