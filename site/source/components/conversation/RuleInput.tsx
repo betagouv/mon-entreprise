@@ -57,11 +57,11 @@ type Props = Omit<
 
 export type InputProps = Omit<Props, 'onChange' | 'engine'> &
 	Pick<RuleNode, 'suggestions'> & {
-		question: RuleNode['rawNode']['question']
-		description: RuleNode['rawNode']['description']
+		$question: RuleNode['rawNode']['question']
+		$description: RuleNode['rawNode']['description']
 		value: EvaluatedNode['nodeValue']
 		onChange: (value: PublicodesExpression | undefined) => void
-		engine: Engine<DottedName>
+		$engine: Engine<DottedName>
 	}
 
 export const binaryQuestion = [
@@ -102,11 +102,11 @@ export default function RuleInput({
 			onChange(value, dottedName),
 		onSubmit,
 		title: rule.title,
-		description: rule.rawNode.description,
-		question: rule.rawNode.question,
+		$description: rule.rawNode.description,
+		$question: rule.rawNode.question,
 		showSuggestions,
 		suggestions: showSuggestions ? rule.suggestions : {},
-		engine: engineValue,
+		$engine: engineValue,
 		...props,
 		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
 		id: props?.id ?? normalizeRuleName.Input(dottedName),
