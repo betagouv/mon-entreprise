@@ -110,7 +110,7 @@ export default function DéclarationRevenusPAMC() {
 
 			<WhenAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
 				<Résultats />
-				<ShareOrSaveSimulationBanner print />
+				<ShareOrSaveSimulationBanner share print />
 			</WhenAlreadyDefined>
 		</>
 	)
