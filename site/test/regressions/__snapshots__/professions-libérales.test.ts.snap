@@ -23,10 +23,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 20469
+"dirigeant . indépendant . cotisations et contributions: 20451
 dirigeant . rémunération . net: 50000
 dirigeant . rémunération . net . après impôt: 41262
-entreprise . chiffre d'affaires: 70469
+entreprise . chiffre d'affaires: 70451
 impôt . montant: 8738
 protection sociale . retraite . base: 347
 protection sociale . retraite . complémentaire: 270
@@ -100,10 +100,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 21094
+"dirigeant . indépendant . cotisations et contributions: 21074
 dirigeant . rémunération . net: 50000
 dirigeant . rémunération . net . après impôt: 40828
-entreprise . chiffre d'affaires: 71094
+entreprise . chiffre d'affaires: 71074
 impôt . montant: 9172
 protection sociale . retraite . base: 323
 protection sociale . retraite . complémentaire: 291
@@ -133,10 +133,10 @@ protection sociale . retraite . trimestres: 0"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 31598
+"dirigeant . indépendant . cotisations et contributions: 31571
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 48090
-entreprise . chiffre d'affaires: 91598
+entreprise . chiffre d'affaires: 91571
 impôt . montant: 11910
 protection sociale . retraite . base: 348
 protection sociale . retraite . complémentaire: 388
@@ -144,10 +144,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 30705
+"dirigeant . indépendant . cotisations et contributions: 30678
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 48097
-entreprise . chiffre d'affaires: 90705
+entreprise . chiffre d'affaires: 90678
 impôt . montant: 11903
 protection sociale . retraite . base: 348
 protection sociale . retraite . complémentaire: 388
@@ -155,10 +155,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 30354
+"dirigeant . indépendant . cotisations et contributions: 30327
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 48100
-entreprise . chiffre d'affaires: 90354
+entreprise . chiffre d'affaires: 90327
 impôt . montant: 11900
 protection sociale . retraite . base: 460
 protection sociale . retraite . complémentaire: 388
@@ -166,10 +166,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
-"dirigeant . indépendant . cotisations et contributions: 34697
+"dirigeant . indépendant . cotisations et contributions: 34669
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 48065
-entreprise . chiffre d'affaires: 94697
+entreprise . chiffre d'affaires: 94669
 impôt . montant: 11935
 protection sociale . retraite . base: 348
 protection sociale . retraite . complémentaire: 388
@@ -177,10 +177,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
-"dirigeant . indépendant . cotisations et contributions: 32579
+"dirigeant . indépendant . cotisations et contributions: 32553
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 48082
-entreprise . chiffre d'affaires: 92579
+entreprise . chiffre d'affaires: 92553
 impôt . montant: 11918
 protection sociale . retraite . base: 460
 protection sociale . retraite . complémentaire: 388
@@ -199,10 +199,10 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 7`] = `
-"dirigeant . indépendant . cotisations et contributions: 31598
+"dirigeant . indépendant . cotisations et contributions: 31571
 dirigeant . rémunération . net: 60000
 dirigeant . rémunération . net . après impôt: 48090
-entreprise . chiffre d'affaires: 91598
+entreprise . chiffre d'affaires: 91571
 impôt . montant: 11910
 protection sociale . retraite . base: 348
 protection sociale . retraite . complémentaire: 388
@@ -232,10 +232,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 20469
+"dirigeant . indépendant . cotisations et contributions: 20451
 dirigeant . rémunération . net: 50000
 dirigeant . rémunération . net . après impôt: 41262
-entreprise . chiffre d'affaires: 70469
+entreprise . chiffre d'affaires: 70451
 impôt . montant: 8738
 protection sociale . retraite . base: 347
 protection sociale . retraite . complémentaire: 270
@@ -243,10 +243,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV réduction et surcotisation 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 46735
+"dirigeant . indépendant . cotisations et contributions: 46737
 dirigeant . rémunération . net: 100000
 dirigeant . rémunération . net . après impôt: 73423
-entreprise . chiffre d'affaires: 146735
+entreprise . chiffre d'affaires: 146737
 impôt . montant: 26577
 protection sociale . retraite . base: 351
 protection sociale . retraite . complémentaire: 850
@@ -320,10 +320,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 7`] = `
-"dirigeant . indépendant . cotisations et contributions: 46735
+"dirigeant . indépendant . cotisations et contributions: 46737
 dirigeant . rémunération . net: 100000
 dirigeant . rémunération . net . après impôt: 73423
-entreprise . chiffre d'affaires: 146735
+entreprise . chiffre d'affaires: 146737
 impôt . montant: 26577
 protection sociale . retraite . base: 351
 protection sociale . retraite . complémentaire: 850
@@ -331,10 +331,10 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 8`] = `
-"dirigeant . indépendant . cotisations et contributions: 252401
+"dirigeant . indépendant . cotisations et contributions: 252404
 dirigeant . rémunération . net: 1000000
 dirigeant . rémunération . net . après impôt: 529105
-entreprise . chiffre d'affaires: 1252401
+entreprise . chiffre d'affaires: 1252404
 impôt . montant: 470895
 protection sociale . retraite . base: 360
 protection sociale . retraite . complémentaire: 1532
