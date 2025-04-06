@@ -464,9 +464,11 @@ contact:
 conversation:
   multiple-answer:
     aria-label: Choix multiples
+  no: Non
   radio-choices:
     estimation:
       label: estimation
+  yes: Oui
   yes-no:
     aria-label: Oui ou non
 copied: Copié
