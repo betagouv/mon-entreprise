@@ -2,7 +2,7 @@
 
 ## next
 ### Breaking changes
-- la règle `entreprise . date de cessation` n’est plus applicable par défaut (Utiliser la règle `entreprise . en cessation d'activité` pour l’activer)
+- Règle `entreprise . date de cessation` non applicable par défaut (utiliser la règle `entreprise . en cessation d'activité` pour l’activer)
 - Suppression des règles dépréciées suivantes :
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BIC`
 	- `dirigeant . auto-entrepreneur . cotisations et contributions . CFP . revenus BNC`
