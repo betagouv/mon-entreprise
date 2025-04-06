@@ -439,9 +439,11 @@ contact:
 conversation:
   multiple-answer:
     aria-label: Multiple choice
+  no: No
   radio-choices:
     estimation:
       label: estimate
+  yes: Yes
   yes-no:
     aria-label: Yes or no
 copied: Copy
