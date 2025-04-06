@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { InputProps } from '@/components/conversation/RuleInput'
 import { Radio, ToggleGroup } from '@/design-system'
@@ -24,7 +24,7 @@ export function OuiNonInput(props: InputProps) {
 				id={`input-oui-${props.id || ''}`}
 				autoFocus={props.autoFocus && defaultValue === 'oui'}
 			>
-				<Trans>Oui</Trans>
+				{t('conversation.yes', 'Oui')}
 			</Radio>
 			{/* eslint-disable-next-line jsx-a11y/no-autofocus */}
 			<Radio
@@ -32,7 +32,7 @@ export function OuiNonInput(props: InputProps) {
 				id={`input-non-${props.id || ''}`}
 				autoFocus={props.autoFocus && defaultValue === 'non'}
 			>
-				<Trans>Non</Trans>
+				{t('conversation.no', 'Non')}
 			</Radio>
 		</ToggleGroup>
 	)
