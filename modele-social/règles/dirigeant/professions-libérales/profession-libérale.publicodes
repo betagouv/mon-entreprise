@@ -200,34 +200,6 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
           plafond: 4
     arrondi: oui
 
-dirigeant . indépendant . PL . PAMC . maladie:
-  # remplace: PL . maladie doesn't work because of https://github.com/betagouv/publicodes/issues/55
-  # So we need to put this bloc before PL . maladie, in order for this replace to take precedence over the next (the first replace of the file win it all)
-  remplace: cotisations et contributions . maladie
-  titre: maladie (après participation CPAM)
-  somme:
-    - variations:
-        - si: date >= 01/2022
-          alors: PL . maladie
-        - sinon:
-            produit:
-              - assiette des cotisations
-              - 6.50%
-            arrondi: oui
-    - contribution additionnelle
-    - (- participation CPAM)
-
-  avec:
-    participation CPAM:
-      non applicable si: métier . santé . médecin . secteur = 'S2'
-      produit:
-        - assiette participation CPAM
-        - variations:
-            - si: date >= 01/2022
-              alors: PL . maladie . taux - 0.1%
-            - sinon: 6.40%
-      arrondi: oui
-
 dirigeant . indépendant . PL . maladie:
   non applicable si: régime général
   remplace: cotisations et contributions . maladie

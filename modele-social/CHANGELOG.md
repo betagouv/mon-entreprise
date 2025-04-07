@@ -50,6 +50,9 @@
 - Mise à jour de l’exonération de CSG-CRDS pour les apprentis
 - Mise à jour du SMIC pour la cotisation maladie et les allocations familiales
 
+### Documentation
+- Ajout de documentation et de références sur la participation de la CPAM aux cotisations des PAMC
+
 ### Dépréciations
 - `dirigeant . auto-entrepreneur . affiliation CIPAV` : utiliser `dirigeant . auto-entrepreneur . Cipav` à la place
 
