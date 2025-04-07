@@ -137,7 +137,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
           - 2 * forfaitaire
           - proportionnelle
       références:
-        Guide CARCDSF (PDF, page 6): https://www.carcdsf.fr/images/memento/0872-19_CARCDSF_MEMENTO_2020_CHIRURGIENS_DENTISTES-WEB.pdf
+        Mémento des chirurgiens dentistes: https://www.carcdsf.fr/images/pdf/2025/Memento_CD_WEB.pdf#page=8
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   type: notification

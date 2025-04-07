@@ -2449,67 +2449,102 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
   titre.en: '[automatic] CPAM participation'
   titre.fr: participation CPAM
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description.en: '[automatic] Also known as conventional income, this is fee
-    income net of surcharges.'
-  description.fr: Aussi appelé revenu conventionnel, il s’agit du revenu des
-    honoraires nets de dépassement.
-  note.en: |
-    [automatic] The formula referred to in Urssaf texts is as follows:
-    &gt; (income from conventional activity) x (total fees - total excess
-    &gt; fee overruns) / total fees.
+  description.en: >
+    [automatic] Also known as conventional income, this is income from
+    conventional
+
+    net of excess fees.
+
+
+    The calculation depends on whether or not there is any income other than that from
+
+    income.
+  description.fr: |
+    Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
+    l’activité conventionnée nets de dépassements d’honoraires.
+
+    Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
+    conventionnée.
+  note.en: >
+    [automatic] The Urssaf formula is as follows:
+
+
+    **income from activity under agreement x (total fees - total excess fees) / total fees**.
+
 
     This formula can be simplified to :
-    &gt; (income from conventional activity) / (100% + average fee overrun)
 
-    ### Proof
-    If we take the following variables,
-    &gt; `h+`: total fees (with overrun)
-      h`: fees without overrun
-      `d%`: average overcharge percentage
 
-    We have :
+    **income from conventional activity / (100% + average fee overrun)**.
+
+
+    &gt; **Proof:**
+
     &gt;
-      `h+ = h + h * d%`
-      `h+ = h * (100% + d%)`
 
-    If we replace the CPAM participation base formula, we get :
-    &gt; 1. `(income from conventional activity) * h / h+`
-    &gt; 2. `(income from conventional activity) * h / (h * (100% + d%))
-    &gt; 3. `(income from conventional activity) / (100% + d%)`
+    &gt; If we take the following variables,
+
+    &gt; - `h+` : total fees (with overrun)
+
+    &gt; - `h`: fees without overrun
+
+    &gt; - `d%` : average percentage fee exceeded
+
+    &gt;
+
+    &gt; We have: `h+ = h + h * d% = h * (100% + d%)`.
+
+    &gt; And: `total fees - total excess fees = fees without excess = h`.
+
+    &gt;
+
+    &gt; If we replace the CPAM participation base in the formula, we obtain :
+
+    1. `income from conventional activity * h / h+` &gt; 2.
+
+    2. `income from conventional activity * h / (h * (100% + d%))` &gt; 3.
+
+    &gt; 3. `income from conventional activity / (100% + d%)`
   note.fr: >
-    La formule référencée dans les textes Urssaf est la suivante :
+    La formule donnée par l’Urssaf est la suivante :
 
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des
 
-    > dépassements d’honoraires) / montant total des honoraires.
+    **revenu de l’activité conventionnée x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires**
 
 
     On peut simplififer cette formule en :
 
-    > (revenu de l’activité conventionnée) / (100% + dépassement d’honoraire moyen)
+
+    **revenu de l’activité conventionnée / (100% + dépassement d’honoraire moyen)**
 
 
-    ### Preuve
-
-    Si on prends les variables suivantes,
-
-    > `h+` : total des honoraires (avec dépassement)
-      `h` : honoraires sans dépassement
-      `d%`: pourcentage de dépassement d’honoraire moyen
-
-    On a :
+    > **Preuve :**
 
     >
-      `h+ = h + h * d%`
-      `h+ = h * (100% + d%)`
 
-    Si on remplace dans la formule de l’assiette participation CPAM, on a :
+    > Si on prends les variables suivantes,
 
-    > 1. `(revenu de l’activité conventionnée) * h / h+`
+    > - `h+` : total des honoraires (avec dépassement)
 
-    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%))
+    > - `h` : honoraires sans dépassement
 
-    > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
+    > - `d%` : pourcentage de dépassement d’honoraire moyen
+
+    >
+
+    > On a : `h+ = h + h * d% = h * (100% + d%)`
+
+    > Et : `total des honoraires - total des dépassements d’honoraires = honoraires sans dépassement = h`
+
+    >
+
+    > Si on remplace dans la formule de l’assiette participation CPAM, on obtient :
+
+    > 1. `revenu de l’activité conventionnée * h / h+`
+
+    > 2. `revenu de l’activité conventionnée * h / (h * (100% + d%))`
+
+    > 3. `revenu de l’activité conventionnée / (100% + d%)`
   titre.en: '[automatic] CPAM contribution base'
   titre.fr: assiette participation CPAM
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
@@ -2517,10 +2552,10 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   titre.fr: assiette participation CPAM (chirurgien dentiste)
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
   description.en: >
-    [automatic] The "Urssaf rate" (taux UR) is used to calculate the portion of
-    your
+    [automatic] The "Urssaf rate" is used to calculate the portion of your
+    sickness and maternity insurance contribution
 
-    health and maternity insurance contribution paid by the CPAM.
+    paid by the CPAM.
 
 
     This rate is pre-filled on your professional income tax return. It
@@ -2545,9 +2580,10 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
 
     &gt; reimbursable procedures + reimbursed CMU lump-sum amounts)
   description.fr: >
-    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
+    Le « taux Urssaf » permet de calculer la part de votre cotisation
+    d’assurance
 
-    cotisation d’assurance maladie-maternité prise en charge par la CPAM.
+    maladie-maternité prise en charge par la CPAM.
 
 
     Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il

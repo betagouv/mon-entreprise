@@ -131,35 +131,69 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
         plancher: 0%
 
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description: Aussi appelé revenu conventionnel, il s’agit du revenu des
-    honoraires nets de dépassement.
-  formule: revenus activité conventionnée  / (100% + dépassement d'honoraire moyen)
+  description: |
+    Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
+    l’activité conventionnée nets de dépassements d’honoraires.
+
+    Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
+    conventionnée.
+  formule: revenus activité conventionnée / (100% + dépassement d'honoraire moyen)
   note: |
-    La formule référencée dans les textes Urssaf est la suivante :
-    > (revenu de l’activité conventionnée) x (total des honoraires - total des
-    > dépassements d’honoraires) / montant total des honoraires.
+    La formule donnée par l’Urssaf est la suivante :
+
+    **revenu de l’activité conventionnée x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires**
 
     On peut simplififer cette formule en :
-    > (revenu de l’activité conventionnée) / (100% + dépassement d’honoraire moyen)
 
-    ### Preuve
-    Si on prends les variables suivantes,
-    > `h+` : total des honoraires (avec dépassement)
-      `h` : honoraires sans dépassement
-      `d%`: pourcentage de dépassement d’honoraire moyen
+    **revenu de l’activité conventionnée / (100% + dépassement d’honoraire moyen)**
 
-    On a :
+    > **Preuve :**
     >
-      `h+ = h + h * d%`
-      `h+ = h * (100% + d%)`
-
-    Si on remplace dans la formule de l’assiette participation CPAM, on a :
-    > 1. `(revenu de l’activité conventionnée) * h / h+`
-    > 2. `(revenu de l’activité conventionnée) * h / (h * (100% + d%))
-    > 3. `(revenu de l’activité conventionnée) / (100% + d%)`
-
+    > Si on prends les variables suivantes,
+    > - `h+` : total des honoraires (avec dépassement)
+    > - `h` : honoraires sans dépassement
+    > - `d%` : pourcentage de dépassement d’honoraire moyen
+    >
+    > On a : `h+ = h + h * d% = h * (100% + d%)`
+    > Et : `total des honoraires - total des dépassements d’honoraires = honoraires sans dépassement = h`
+    >
+    > Si on remplace dans la formule de l’assiette participation CPAM, on obtient :
+    > 1. `revenu de l’activité conventionnée * h / h+`
+    > 2. `revenu de l’activité conventionnée * h / (h * (100% + d%))`
+    > 3. `revenu de l’activité conventionnée / (100% + d%)`
   références:
-    Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-medecin-du-secteur-1/assiette-de-participation-de-la.html
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+
+dirigeant . indépendant . PL . PAMC . maladie:
+  # remplace: PL . maladie doesn't work because of https://github.com/betagouv/publicodes/issues/55
+  # So we need to put this bloc before PL . maladie, in order for this replace to take precedence over the next (the first replace of the file win it all)
+  remplace: cotisations et contributions . maladie
+  titre: maladie (après participation CPAM)
+  somme:
+    - variations:
+        - si: date >= 01/2022
+          alors: PL . maladie
+        - sinon:
+            produit:
+              - assiette des cotisations
+              - 6.50%
+            arrondi: oui
+    - contribution additionnelle
+    - (- participation CPAM)
+
+dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
+  non applicable si: métier . santé . médecin . secteur = 'S2'
+  produit:
+    - assiette participation CPAM
+    - variations:
+        - si: date >= 01/2022
+          alors: PL . maladie . taux - 0.1%
+        - sinon: 6.40%
+  arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   formule:
@@ -187,9 +221,8 @@ dirigeant . indépendant . PL . PAMC . allocations familiales:
   formule:
     valeur: cotisations et contributions . allocations familiales
     abattement: participation CPAM
-
   références:
-    Fiche Urssaf: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/les-praticiens-et-auxiliaires-me/taux-de-cotisations-medecin-sect.html
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html
 
 dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
   formule:
@@ -205,6 +238,9 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
               plafond: 250%
             - montant: 60%
     arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
 
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
   applicable si: métier = 'santé . chirurgien-dentiste'
@@ -215,13 +251,13 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
       - revenus activité conventionnée
       - 1 - taux Urssaf / (1 + taux Urssaf)
   références:
-    Fiche Urssaf: https://www.urssaf.fr/portail/home/praticien-et-auxiliaire-medical/mes-cotisations/le-calcul-de-mes-cotisations/la-participation-de-la-cpam-a-me/je-suis-chirurgien-dentiste/assiette-de-participation-de-la.html
-    Texte de loi: https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000020429271&categorieLien=id
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
   description: |
-    Le « taux Urssaf » (taux UR) permet de calculer la part de votre
-    cotisation d’assurance maladie-maternité prise en charge par la CPAM.
+    Le « taux Urssaf » permet de calculer la part de votre cotisation d’assurance
+    maladie-maternité prise en charge par la CPAM.
 
     Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
     est issu des données de votre Relevé individuel d’activité et de
@@ -239,6 +275,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   question: Quel est votre « taux Urssaf » ?
   unité: ''
   par défaut: 1
+  références:
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
   formule: taux Urssaf >= 100
@@ -262,8 +300,8 @@ dirigeant . indépendant . PL . PAMC . participation CPAM:
       - CARMF . participation CPAM retraite
     arrondi: oui
   références:
-    amelie.fr: https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical
-    rapport sécurité sociale 2009: https://www.securite-sociale.fr/files/live/sites/SSFR/files/medias/CCSS/2009/RAPPORT/CCSS-RAPPORT-JUIN_2009-FICHE-LA_PRISE_EN_CHARGE_DES_COTISATIONS_DES_PRATICIENS_ET_AUXILIAIRES_MEDICAUX.pdf
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
 
 dirigeant . indépendant . PL . PAMC . IJSS:
   remplace: indépendant . IJSS . imposable
