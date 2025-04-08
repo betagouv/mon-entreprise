@@ -20,9 +20,9 @@ export function Emoji({ emoji, title, ...props }: PropType) {
 		protocol: '' as 'https', // Hack to use relative path
 		ext: '.png',
 		props: {
+			'aria-hidden': true,
 			alt: '',
 			title,
-			'aria-hidden': props['aria-hidden'] ?? 'true',
 			...props,
 		},
 	})
