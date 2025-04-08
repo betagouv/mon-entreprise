@@ -47,12 +47,16 @@ salarié . cotisations . exonérations . heures supplémentaires:
         - variations:
             - si: entreprise . salariés . effectif >= 20
               alors:
-                applicable si: date >= 10/2022
+                applicable si:
+                  toutes ces conditions:
+                    - date >= 10/2022
+                    - date < 01/2025
                 valeur: 0.50 €/heures
             - sinon: 1.50 €/heures
       note: La déduction ne s’applique pas aux heures complémentaires
       références:
         La déduction forfaitaire patronale pour heures supplémentaires: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-deduction-forfaitaire-patrona/employeurs-concernes.html
+        La déduction forfaitaire patronale a été abrogée en 2025: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000051430146
 
     salarié:
       non applicable si:
