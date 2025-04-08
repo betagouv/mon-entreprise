@@ -13,7 +13,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import {
@@ -132,10 +132,10 @@ export function SimpleField(props: SimpleFieldProps) {
 			<StyledQuestion id={labelId}>
 				<Markdown components={markdownComponents}>{displayedLabel}</Markdown>
 				{required && (
-					<Body>
+					<div>
 						<span aria-hidden>&nbsp;*</span>
 						<span className="sr-only">&nbsp;({t('champ obligatoire')})</span>
-					</Body>
+					</div>
 				)}
 				<ExplicableRule dottedName={dottedName} />
 			</StyledQuestion>
