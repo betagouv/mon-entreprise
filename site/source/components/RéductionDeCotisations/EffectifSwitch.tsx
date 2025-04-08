@@ -10,7 +10,6 @@ import {
 	SwitchRadio,
 	SwitchToggleGroup,
 } from '@/design-system/réductionDeCotisations'
-import { Strong } from '@/design-system/typography'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export default function EffectifSwitch() {
@@ -29,7 +28,7 @@ export default function EffectifSwitch() {
 	return (
 		<SwitchContainer>
 			<SwitchLabel id="effectif-switch-label">
-				<Strong>{t('Quel est l’effectif de votre entreprise ?')}</Strong>
+				{t('Quel est l’effectif de votre entreprise ?')}
 			</SwitchLabel>
 			<SwitchToggleGroup
 				value={currentEffectif}

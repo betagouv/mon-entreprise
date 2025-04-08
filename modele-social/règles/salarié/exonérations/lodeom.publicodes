@@ -81,7 +81,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
     # /!\ Attention /!\ Penser à modifier les titres, descriptions et références dans
     # les 2 règles à chaque évolution
     barèmes:
-      question: Quel barème souhaitez-vous appliquer ?
+      question: Quel barème envisagez-vous ?
       une possibilité:
         choix obligatoire: oui
         possibilités:

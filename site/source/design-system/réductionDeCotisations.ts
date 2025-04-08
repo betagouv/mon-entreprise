@@ -17,6 +17,7 @@ export const SwitchLabel = styled(Body)<{ $isRule?: boolean }>`
 	margin: 0;
 	margin-bottom: ${({ $isRule, theme }) =>
 		theme.spacings[$isRule ? 'md' : 'sm']};
+	font-weight: 700;
 `
 export const RuleSwitchLabel = styled(SwitchLabel).attrs({
 	$isRule: true,

@@ -1,6 +1,3 @@
-import { renderToString } from 'react-dom/server'
-import { useTranslation } from 'react-i18next'
-
 import {
 	RuleSwitchLabel,
 	SwitchContainer,
@@ -11,23 +8,12 @@ import { SimpleField } from '@/pages/assistants/components/Fields'
 
 export default function BarèmeSwitch() {
 	const currentZone = useZoneLodeom()
-	const { t } = useTranslation()
 
 	return (
 		currentZone && (
 			<SwitchContainer $isRule>
 				<SimpleField
 					dottedName={barèmeLodeomDottedName(currentZone)}
-					label={renderToString(
-						<p>
-							<strong>
-								{t(
-									'pages.simulateurs.lodeom.barème-switch-label',
-									'Quel barème envisagez-vous ?'
-								)}
-							</strong>
-						</p>
-					)}
 					labelStyle={RuleSwitchLabel}
 				/>
 			</SwitchContainer>
