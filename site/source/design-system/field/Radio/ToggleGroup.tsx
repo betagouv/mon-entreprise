@@ -24,6 +24,7 @@ type ToggleGroupProps = AriaRadioGroupProps & {
 	hideRadio?: boolean
 	className?: string
 	mode?: Toggle | Tab
+	isRequired?: boolean
 } & AriaLabelRequired
 
 export function ToggleGroup(props: ToggleGroupProps) {

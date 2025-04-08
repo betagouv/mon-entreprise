@@ -134,6 +134,7 @@ export function MultipleAnswerInput({
 			onChange={handleChange}
 			value={currentSelection ?? undefined}
 			aria-labelledby={props['aria-labelledby'] || undefined}
+			isRequired={props.required}
 		>
 			<RadioChoices
 				// eslint-disable-next-line jsx-a11y/no-autofocus

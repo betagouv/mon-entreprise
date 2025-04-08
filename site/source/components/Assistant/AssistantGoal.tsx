@@ -1,7 +1,6 @@
 import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -11,6 +10,7 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { ajusteLaSituation } from '@/store/actions/actions'
+import { getMeta } from '@/utils/publicodes'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput from '../conversation/RuleInput'
@@ -22,22 +22,20 @@ type SimulationGoalProps = {
 	dottedName: DottedName
 	label?: string
 	originalUnit?: boolean
-	required?: boolean
 }
 
 export function AssistantGoal({
 	dottedName,
 	label,
 	originalUnit = false,
-	required,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
-	const { t } = useTranslation()
 	const engine = useEngine()
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
 	})
 	const rule = engine.getRule(dottedName)
+	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
 	const initialRender = useInitialRender()
 	const onChange = useCallback(
 		(x?: PublicodesExpression) => {
@@ -53,6 +51,8 @@ export function AssistantGoal({
 	if (evaluation.nodeValue === null) {
 		return null
 	}
+
+	const required = meta.requis === 'oui'
 
 	return (
 		<Appear unless={initialRender}>
@@ -75,14 +75,7 @@ export function AssistantGoal({
 							<Grid item>
 								<StyledBody id={`${dottedName.replace(/\s|\./g, '_')}-title`}>
 									{label || rule.title}
-									{required && (
-										<>
-											<span aria-hidden>&nbsp;*</span>
-											<span className="sr-only">
-												&nbsp;({t('champ obligatoire')})
-											</span>
-										</>
-									)}
+									{required && <RedSpan aria-hidden>&nbsp;*</RedSpan>}
 								</StyledBody>
 							</Grid>
 							<Grid item>
@@ -105,6 +98,7 @@ export function AssistantGoal({
 								/\s|\./g,
 								'_'
 							)}-description`}
+							required={required}
 						/>
 					</Grid>
 				</Grid>
@@ -122,4 +116,8 @@ const StyledGoal = styled.div`
 const StyledBody = styled(Body)`
 	margin: 0;
 	font-size: 1.125rem;
+`
+const RedSpan = styled.span`
+	color: ${({ theme }) =>
+		theme.darkMode ? '' : theme.colors.extended.error[400]};
 `

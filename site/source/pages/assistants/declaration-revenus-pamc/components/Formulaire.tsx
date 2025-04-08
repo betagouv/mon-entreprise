@@ -33,13 +33,10 @@ export default function Formulaire() {
 					'Profession'
 				)}
 			</H2>
-			<SimpleField
-				dottedName="déclaration revenus PAMC . profession"
-				required
-			/>
+			<SimpleField dottedName="déclaration revenus PAMC . profession" />
 
 			<WhenAlreadyDefined dottedName="déclaration revenus PAMC . profession">
-				<SimpleField dottedName="déclaration revenus PAMC . statut" required />
+				<SimpleField dottedName="déclaration revenus PAMC . statut" />
 			</WhenAlreadyDefined>
 
 			<WhenAlreadyDefinedMulti
@@ -54,10 +51,7 @@ export default function Formulaire() {
 						'Régime fiscal'
 					)}
 				</H2>
-				<SimpleField
-					dottedName="déclaration revenus PAMC . régime fiscal"
-					required
-				/>
+				<SimpleField dottedName="déclaration revenus PAMC . régime fiscal" />
 			</WhenAlreadyDefinedMulti>
 
 			<WhenAlreadyDefined dottedName="déclaration revenus PAMC . régime fiscal">
@@ -106,30 +100,12 @@ export default function Formulaire() {
 						'Recettes'
 					)}
 				</H2>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . recettes brutes totales"
-					required
-				/>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . revenus imposables"
-					required
-				/>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . revenus des associés et gérants"
-					required
-				/>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . dividendes"
-					required
-				/>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . frais réels"
-					required
-				/>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . cotisations sociales obligatoires"
-					required
-				/>
+				<AssistantGoal dottedName="déclaration revenus PAMC . recettes brutes totales" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . revenus imposables" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . revenus des associés et gérants" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . dividendes" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . frais réels" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . cotisations sociales obligatoires" />
 
 				<H2>
 					{t(
@@ -137,14 +113,8 @@ export default function Formulaire() {
 						'Données du relevé SNIR'
 					)}
 				</H2>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables"
-					required
-				/>
-				<AssistantGoal
-					dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires"
-					required
-				/>
+				<AssistantGoal dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables" />
+				<AssistantGoal dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . SNIR . honoraires tarifs opposables" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . SNIR . honoraires hors forfaits" />
 				<AssistantGoal
