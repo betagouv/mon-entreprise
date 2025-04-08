@@ -1,5 +1,9 @@
 import { combineSlices, createSlice } from '@reduxjs/toolkit'
+import { Either } from 'effect'
+import { createSelector } from 'reselect'
 
+import { calculeCotisations } from '@/domaine/économie-collaborative/location-de-meublé'
+import { SituationIncomplète } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
 import { SituationLocationCourteDuree } from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import { RootState } from '@/store/reducers/rootReducer'
 
@@ -54,5 +58,17 @@ export const selectLocationDeMeubleSituation = (
 
 	return state.simulateurs.locationDeMeuble
 }
+
+export const selectLocationDeMeubleCotisations = createSelector(
+	[selectLocationDeMeubleSituation],
+	(situation) =>
+		situation
+			? calculeCotisations(situation)
+			: Either.left(
+					new SituationIncomplète({
+						message: 'Impossible de calculer les cotisations du simulateur',
+					})
+			  )
+)
 
 export default simulateursSlice
