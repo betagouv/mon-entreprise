@@ -6,7 +6,10 @@ import { EuroParAn } from '@/domaine/Montant'
 import { calculeCotisationsRégimeGénéral } from './régime-général'
 import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
 import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
-import { RegimeCotisation, SituationLocationCourteDuree } from './situation'
+import {
+	RegimeCotisation,
+	SituationLocationCourteDureeValide,
+} from './situation'
 
 type RésultatRégime =
 	| {
@@ -21,7 +24,7 @@ type RésultatRégime =
 	  }
 
 export const compareRégimes = (
-	situation: SituationLocationCourteDuree
+	situation: SituationLocationCourteDureeValide
 ): RésultatRégime[] =>
 	pipe(
 		[

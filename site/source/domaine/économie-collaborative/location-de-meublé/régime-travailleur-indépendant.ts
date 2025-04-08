@@ -10,12 +10,17 @@ import {
 	TravailleurIndependantCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/TravailleurIndependantContexteDansPublicodes'
 
-import { SituationLocationCourteDuree } from './situation'
+import { SituationLocationCourteDureeValide } from './situation'
 
+/**
+ * Calcule les cotisations sociales pour le régime travailleur indépendant
+ * @param situation La situation avec des recettes obligatoirement définies
+ * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
+ */
 export function calculeCotisationsTravailleurIndépendant(
-	situation: SituationLocationCourteDuree
+	situation: SituationLocationCourteDureeValide
 ): Either.Either<EuroParAn, RecettesInférieuresAuSeuilRequisPourCeRégime> {
-	const { recettes } = situation
+	const recettes = situation.recettes.value
 
 	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {
 		return Either.left(

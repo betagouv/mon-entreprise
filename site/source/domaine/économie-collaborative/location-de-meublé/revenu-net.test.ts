@@ -1,21 +1,21 @@
-import { Either, Equal, pipe } from 'effect'
+import { Either, Equal, Option, pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
 import { SEUIL_PROFESSIONNALISATION } from '@/domaine/économie-collaborative/location-de-meublé/constantes'
 import { calculeCotisations } from '@/domaine/économie-collaborative/location-de-meublé/cotisations'
-import { eurosParAn, moins } from '@/domaine/Montant'
+import { EuroParAn, eurosParAn, moins } from '@/domaine/Montant'
 
 import { calculeRevenuNet } from './revenu-net'
-import { SituationLocationCourteDuree } from './situation'
+import { SituationLocationCourteDureeValide } from './situation'
 
 describe('calculeRevenuNet', () => {
 	it('devrait correctement calculer le revenu net avec Either', () => {
 		const recettes = eurosParAn(30_000)
-		const situation: SituationLocationCourteDuree = {
-			recettes,
-			regimeCotisation: 'régime-général',
-			estAlsaceMoselle: false,
-			premièreAnnée: false,
+		const situation: SituationLocationCourteDureeValide = {
+			recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+			regimeCotisation: Option.some('régime-général'),
+			estAlsaceMoselle: Option.some(false),
+			premièreAnnée: Option.some(false),
 		}
 
 		const resultat = calculeRevenuNet(situation)
@@ -34,9 +34,15 @@ describe('calculeRevenuNet', () => {
 	})
 
 	it("devrait propager l'erreur si les cotisations ne peuvent pas être calculées", () => {
-		const situation: SituationLocationCourteDuree = {
-			recettes: pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1))),
-			regimeCotisation: 'régime-général',
+		const recettesInferieures = pipe(
+			SEUIL_PROFESSIONNALISATION,
+			moins(eurosParAn(1))
+		)
+		const situation: SituationLocationCourteDureeValide = {
+			recettes: Option.some(recettesInferieures) as Option.Some<EuroParAn>,
+			regimeCotisation: Option.some('régime-général'),
+			estAlsaceMoselle: Option.none(),
+			premièreAnnée: Option.none(),
 		}
 
 		const resultat = calculeRevenuNet(situation)

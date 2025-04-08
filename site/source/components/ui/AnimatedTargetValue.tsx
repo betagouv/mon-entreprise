@@ -4,52 +4,71 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { keyframes, styled } from 'styled-components'
 
+import { estEuro, Montant } from '@/domaine/Montant'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 type AnimatedTargetValueProps = {
-	value?: number
+	value: Montant
 }
 
-const formatDifference = (difference: number, language: string) => {
+const formatDifference = (
+	difference: number,
+	language: string,
+	unit: string
+) => {
 	const prefix = difference > 0 ? '+' : ''
 
 	return (
 		prefix +
-		(formatValue(difference, { displayedUnit: '€', language }) as string)
+		(formatValue(difference, { displayedUnit: unit, language }) as string)
 	)
 }
 
 export default function AnimatedTargetValue({
 	value,
 }: AnimatedTargetValueProps) {
+	const numericValue = value.valeur
+	const valueUnit = value.unité
+
 	const previousValue = useRef<number>()
 	const previousDifference = useRef<number>()
 	const { language } = useTranslation().i18n
+	const previousUnit = useRef(valueUnit)
 
 	const unit = useSelector(targetUnitSelector)
-	const previousUnit = useRef(unit)
 
 	let difference =
-		value == null ||
+		numericValue == null ||
 		previousValue.current == null ||
 		// We don't want to show the animated if the difference comes from a change in the unit
-		previousUnit.current !== unit
+		previousUnit.current !== valueUnit
 			? undefined
-			: value - previousValue.current
+			: numericValue - previousValue.current
 
-	if (previousValue.current !== value) {
-		previousValue.current = value
+	if (previousValue.current !== numericValue) {
+		previousValue.current = numericValue
 		previousDifference.current = difference
 	} else {
 		difference = previousDifference.current
 	}
-	if (previousUnit.current !== unit) {
-		previousUnit.current = unit
+
+	if (previousUnit.current !== valueUnit) {
+		previousUnit.current = valueUnit
 	}
 
 	if (!difference || Math.abs(difference) < 1) {
 		return null
 	}
+
+	const displayUnit = estEuro(value)
+		? '€'
+		: valueUnit === 'EuroParMois'
+		? '€/mois'
+		: valueUnit === 'EuroParAn'
+		? '€/an'
+		: valueUnit === 'EuroParJour'
+		? '€/jour'
+		: '€/heure'
 
 	return (
 		<div
@@ -62,7 +81,7 @@ export default function AnimatedTargetValue({
 			}}
 		>
 			<StyledEvaporate>
-				{formatDifference(difference ?? 0, language)}
+				{formatDifference(difference ?? 0, language, displayUnit)}
 			</StyledEvaporate>
 		</div>
 	)
