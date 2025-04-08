@@ -50,7 +50,7 @@ export function ObjectifRevenuNet() {
 			id="objectif-location-meuble-revenu-net"
 			titre={t(
 				'pages.simulateurs.location-de-logement-meublé.objectifs.revenu-net',
-				'Revenu net (nouveau calcul)'
+				'Revenu net'
 			)}
 			valeur={valeurMontant}
 			messageComplementaire={messageComplementaire}
