@@ -6,7 +6,6 @@ import {
 	SwitchRadio,
 	SwitchToggleGroup,
 } from '@/design-system/réductionDeCotisations'
-import { Strong } from '@/design-system/typography'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 type Props = {
@@ -23,12 +22,10 @@ export default function RégularisationSwitch({
 	return (
 		<SwitchContainer>
 			<SwitchLabel id="régularisation-switch-label">
-				<Strong>
-					{t(
-						'pages.simulateurs.réduction-générale.régularisation.type',
-						'Quel type de régularisation souhaitez-vous ?'
-					)}
-				</Strong>
+				{t(
+					'pages.simulateurs.réduction-générale.régularisation.type',
+					'Quel type de régularisation souhaitez-vous ?'
+				)}
 			</SwitchLabel>
 
 			<SwitchToggleGroup

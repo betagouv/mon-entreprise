@@ -10,7 +10,6 @@ import {
 	SwitchRadio,
 	SwitchToggleGroup,
 } from '@/design-system/réductionDeCotisations'
-import { Strong } from '@/design-system/typography'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { réductionGénéraleDottedName } from '@/utils/réductionDeCotisations'
 
@@ -33,7 +32,7 @@ export default function CongésPayésSwitch() {
 	return (
 		<SwitchContainer>
 			<SwitchLabel id="caisse-congés-payés-label">
-				<Strong>{engine.getRule(dottedName).rawNode.question}</Strong>
+				{engine.getRule(dottedName).rawNode.question}
 			</SwitchLabel>
 			<SwitchToggleGroup
 				value={currentCongésPayés}

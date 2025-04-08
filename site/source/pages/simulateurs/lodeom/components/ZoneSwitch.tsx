@@ -1,6 +1,3 @@
-import { renderToString } from 'react-dom/server'
-import { useTranslation } from 'react-i18next'
-
 import {
 	RuleSwitchLabel,
 	SwitchContainer,
@@ -9,22 +6,10 @@ import { zonesLodeomDottedName } from '@/hooks/useZoneLodeom'
 import { SimpleField } from '@/pages/assistants/components/Fields'
 
 export default function ZoneSwitch() {
-	const { t } = useTranslation()
-
 	return (
 		<SwitchContainer $isRule>
 			<SimpleField
 				dottedName={zonesLodeomDottedName}
-				label={renderToString(
-					<p>
-						<strong>
-							{t(
-								'pages.simulateurs.lodeom.zone-switch-label',
-								'Quelle est votre localisation ?'
-							)}
-						</strong>
-					</p>
-				)}
 				labelStyle={RuleSwitchLabel}
 			/>
 		</SwitchContainer>
