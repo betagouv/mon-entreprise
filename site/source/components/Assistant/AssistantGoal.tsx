@@ -103,10 +103,6 @@ export function AssistantGoal({
 							missing={dottedName in evaluation.missingVariables}
 							onChange={onChange}
 							showSuggestions={false}
-							aria-describedby={`${dottedName.replace(
-								/\s|\./g,
-								'_'
-							)}-description`}
 						/>
 					</Grid>
 				</Grid>
