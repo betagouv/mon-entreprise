@@ -8,6 +8,12 @@ import { styled } from 'styled-components'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Contexte } from '@/domaine/Contexte'
+import {
+	eurosParAn,
+	eurosParHeure,
+	eurosParJour,
+	eurosParMois,
+} from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -57,6 +63,25 @@ export function SimulationValue({
 	const rule = engine.getRule(dottedName)
 	const elementIdPrefix = dottedName.replace(/\s|\./g, '_')
 
+	const montantValue =
+		typeof evaluation.nodeValue === 'number'
+			? (() => {
+					const valeur = evaluation.nodeValue
+					switch (currentUnit) {
+						case '€/an':
+							return eurosParAn(valeur)
+						case '€/mois':
+							return eurosParMois(valeur)
+						case '€/jour':
+							return eurosParJour(valeur)
+						case '€/heure':
+							return eurosParHeure(valeur)
+						default:
+							return eurosParAn(valeur)
+					}
+			  })()
+			: undefined
+
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledValue>
@@ -83,7 +108,7 @@ export function SimulationValue({
 					<LectureGuide />
 
 					<Grid item>
-						<AnimatedTargetValue value={evaluation.nodeValue as number} />
+						{montantValue && <AnimatedTargetValue value={montantValue} />}
 						<StyledBody id={`${elementIdPrefix}-value`}>
 							{formatValue(evaluation, {
 								displayedUnit,

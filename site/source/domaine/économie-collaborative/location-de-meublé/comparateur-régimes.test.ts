@@ -1,16 +1,22 @@
-import { Equal, pipe } from 'effect'
+import { Equal, Option, pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
 import { estPlusGrandQue, eurosParAn } from '@/domaine/Montant'
 
 import { compareRégimes } from './comparateur-régimes'
-import { RegimeCotisation, SituationLocationCourteDuree } from './situation'
+import { SEUIL_PROFESSIONNALISATION } from './constantes'
+import { SituationLocationCourteDureeValide } from './situation'
 
 describe('compareRégimes', () => {
 	describe('avec des recettes inférieures au seuil de professionnalisation', () => {
 		it('marque tous les régimes comme non applicables', () => {
-			const situation: SituationLocationCourteDuree = {
-				recettes: eurosParAn(10_000),
+			const situation: SituationLocationCourteDureeValide = {
+				recettes: Option.some(eurosParAn(10_000)) as Option.Some<
+					typeof SEUIL_PROFESSIONNALISATION
+				>,
+				regimeCotisation: Option.none(),
+				estAlsaceMoselle: Option.none(),
+				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
@@ -28,8 +34,13 @@ describe('compareRégimes', () => {
 
 	describe('avec des recettes au-dessus du seuil mais en-dessous du plafond', () => {
 		it('marque tous les régimes comme applicables', () => {
-			const situation: SituationLocationCourteDuree = {
-				recettes: eurosParAn(40_000),
+			const situation: SituationLocationCourteDureeValide = {
+				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
+					typeof SEUIL_PROFESSIONNALISATION
+				>,
+				regimeCotisation: Option.none(),
+				estAlsaceMoselle: Option.none(),
+				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
@@ -43,8 +54,13 @@ describe('compareRégimes', () => {
 		})
 
 		it('calcule des valeurs de cotisations différentes pour chaque régime', () => {
-			const situation: SituationLocationCourteDuree = {
-				recettes: eurosParAn(40_000),
+			const situation: SituationLocationCourteDureeValide = {
+				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
+					typeof SEUIL_PROFESSIONNALISATION
+				>,
+				regimeCotisation: Option.none(),
+				estAlsaceMoselle: Option.none(),
+				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
@@ -87,8 +103,13 @@ describe('compareRégimes', () => {
 
 	describe('avec des recettes supérieures au plafond du régime général', () => {
 		it('devrait marquer le régime général comme non applicable', () => {
-			const situation: SituationLocationCourteDuree = {
-				recettes: eurosParAn(80_000),
+			const situation: SituationLocationCourteDureeValide = {
+				recettes: Option.some(eurosParAn(80_000)) as Option.Some<
+					typeof SEUIL_PROFESSIONNALISATION
+				>,
+				regimeCotisation: Option.none(),
+				estAlsaceMoselle: Option.none(),
+				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
@@ -115,9 +136,13 @@ describe('compareRégimes', () => {
 
 	describe('avec un régime spécifié', () => {
 		it('devrait tout de même comparer tous les régimes', () => {
-			const situation: SituationLocationCourteDuree = {
-				recettes: eurosParAn(40_000),
-				regimeCotisation: 'micro-entreprise' as RegimeCotisation,
+			const situation: SituationLocationCourteDureeValide = {
+				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
+					typeof SEUIL_PROFESSIONNALISATION
+				>,
+				regimeCotisation: Option.some('micro-entreprise'),
+				estAlsaceMoselle: Option.none(),
+				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
@@ -128,14 +153,22 @@ describe('compareRégimes', () => {
 
 	describe('avec des paramètres supplémentaires', () => {
 		it('devrait prendre en compte le paramètre estAlsaceMoselle', () => {
-			const situationNormale: SituationLocationCourteDuree = {
-				recettes: eurosParAn(40_000),
-				estAlsaceMoselle: false,
+			const situationNormale: SituationLocationCourteDureeValide = {
+				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
+					typeof SEUIL_PROFESSIONNALISATION
+				>,
+				regimeCotisation: Option.none(),
+				estAlsaceMoselle: Option.some(false),
+				premièreAnnée: Option.none(),
 			}
 
-			const situationAlsaceMoselle: SituationLocationCourteDuree = {
-				recettes: eurosParAn(40_000),
-				estAlsaceMoselle: true,
+			const situationAlsaceMoselle: SituationLocationCourteDureeValide = {
+				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
+					typeof SEUIL_PROFESSIONNALISATION
+				>,
+				regimeCotisation: Option.none(),
+				estAlsaceMoselle: Option.some(true),
+				premièreAnnée: Option.none(),
 			}
 
 			const résultatsNormal = compareRégimes(situationNormale)
