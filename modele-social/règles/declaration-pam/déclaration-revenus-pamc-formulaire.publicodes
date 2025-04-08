@@ -134,6 +134,14 @@ déclaration revenus PAMC . recettes brutes totales:
   meta:
     requis: oui
 
+déclaration revenus PAMC . recettes brutes totales . avertissement:
+  formule: recettes brutes totales <= 0
+  type: notification
+  sévérité: avertissement
+  description: |
+    Cet assistant ne gère pas les recettes brutes à 0. Nous vous invitons à vérifier
+    votre saisie ou à contacter votre Urssaf au 0 806 804 209.
+
 déclaration revenus PAMC . revenus imposables:
   non applicable si: régime fiscal . IS
   unité: €/an
@@ -146,6 +154,16 @@ déclaration revenus PAMC . revenus imposables:
     **rubrique 5QC ou 5QE** de votre déclaration des revenus n°2042-C-PRO.
   meta:
     requis: oui
+
+déclaration revenus PAMC . revenus imposables . avertissement:
+  toutes ces conditions:
+    - recettes brutes totales . avertissement = non
+    - revenus imposables > recettes brutes totales
+  type: notification
+  sévérité: avertissement
+  description: |
+    Les revenus imposables doivent être supérieurs aux recettes
+    brutes totales.
 
 déclaration revenus PAMC . revenus des associés et gérants:
   applicable si: régime fiscal . IS
@@ -270,6 +288,14 @@ déclaration revenus PAMC . SNIR . honoraires remboursables:
   meta:
     requis: oui
 
+déclaration revenus PAMC . SNIR . honoraires remboursables . avertissement:
+  formule: honoraires remboursables > recettes brutes totales
+  type: notification
+  sévérité: avertissement
+  description: |
+    Les honoraires doivent être inférieurs aux recettes brutes
+    totales.
+
 déclaration revenus PAMC . SNIR . dépassements honoraires:
   titre: dépassements d’honoraires
   question: dépassements d’honoraires
@@ -293,6 +319,14 @@ déclaration revenus PAMC . SNIR . dépassements honoraires:
     d’honoraires est de 100 000 €, indiquez 40 000 €.
   meta:
     requis: oui
+
+déclaration revenus PAMC . SNIR . dépassements honoraires . avertissement:
+  formule: dépassements honoraires > honoraires remboursables
+  type: notification
+  sévérité: avertissement
+  description: |
+    Les dépassements d’honoraires doivent être inférieurs aux
+    total des honoraires.
 
 déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
   applicable si: profession . médecin

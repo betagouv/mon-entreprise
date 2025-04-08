@@ -1,8 +1,12 @@
 déclaration revenus PAMC . résultats:
   toutes ces conditions:
     - recettes brutes totales
+    - recettes brutes totales . avertissement = non
     - champs revenus imposables
+    - revenus imposables . avertissement = non
     - cotisations sociales obligatoires
+    - SNIR . honoraires remboursables . avertissement = non
+    - SNIR . dépassements honoraires . avertissement = non
     - champs dentiste
     - champs médecin
     - champs autres professions
@@ -65,6 +69,7 @@ déclaration revenus PAMC . déductions et exonérations . total déductible:
       unité: €/an
 
 déclaration revenus PAMC . revenus nets:
+  applicable si: résultats
 
 déclaration revenus PAMC . revenus nets . revenus imposables:
   variations:

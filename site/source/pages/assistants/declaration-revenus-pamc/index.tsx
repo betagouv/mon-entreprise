@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
+import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
@@ -116,10 +117,10 @@ export default function DéclarationRevenusPAMC() {
 				<Spacing xxl />
 			</div>
 
-			<WhenAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
+			<Condition expression="déclaration revenus PAMC . résultats">
 				<Résultats />
 				<ShareOrSaveSimulationBanner share print />
-			</WhenAlreadyDefined>
+			</Condition>
 		</>
 	)
 }
