@@ -7,7 +7,7 @@ import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
+import { baseParagraphStyle } from '@/design-system/typography/paragraphs'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { ajusteLaSituation } from '@/store/actions/actions'
@@ -17,6 +17,7 @@ import RuleInput from '../conversation/RuleInput'
 import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import { useEngine } from '../utils/EngineContext'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -73,8 +74,10 @@ export function AssistantGoal({
 							}}
 						>
 							<Grid item>
-								<StyledBody id={`${dottedName.replace(/\s|\./g, '_')}-title`}>
-									{label || rule.title}
+								<StyledBody>
+									<label htmlFor={normalizeRuleName.Input(dottedName)}>
+										{label || rule.title}
+									</label>
 									{required && (
 										<>
 											<span aria-hidden>&nbsp;*</span>
@@ -100,7 +103,6 @@ export function AssistantGoal({
 							missing={dottedName in evaluation.missingVariables}
 							onChange={onChange}
 							showSuggestions={false}
-							aria-labelledby={`${dottedName.replace(/\s|\./g, '_')}-title`}
 							aria-describedby={`${dottedName.replace(
 								/\s|\./g,
 								'_'
@@ -119,7 +121,8 @@ const StyledGoal = styled.div`
 	margin: ${({ theme }) => theme.spacings.xxs} 0;
 `
 
-const StyledBody = styled(Body)`
+const StyledBody = styled.div`
+	${baseParagraphStyle};
 	margin: 0;
 	font-size: 1.125rem;
 `
