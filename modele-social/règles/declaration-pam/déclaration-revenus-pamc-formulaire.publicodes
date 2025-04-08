@@ -17,6 +17,8 @@ déclaration revenus PAMC . profession:
       - orthoptiste
       - pédicure podologue
       - sage-femme
+  meta:
+    requis: oui
   avec:
     dentiste:
       titre: chirurgien/chirurgienne-dentiste
@@ -72,6 +74,8 @@ déclaration revenus PAMC . statut:
     possibilités:
       - titulaire
       - remplaçant
+  meta:
+    requis: oui
   avec:
     titulaire:
       valeur: statut = 'titulaire'
@@ -87,9 +91,10 @@ déclaration revenus PAMC . régime fiscal:
       - IR micro-fiscal
       - IR non micro-fiscal
       - IS
+  meta:
+    requis: oui
 
   avec:
-
     IR micro-fiscal:
       titre: impôt sur le revenu - régime micro-fiscal
       valeur: régime fiscal = 'IR micro-fiscal'
@@ -126,6 +131,8 @@ déclaration revenus PAMC . recettes brutes totales:
     d’affaires correspondant à vos parts du capital social de la société.
     Par exemple, si vous détenez 40% des parts et que le chiffre d’affaires de la
     société est de 100 000 €, indiquez 40 000 €.
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . revenus imposables:
   non applicable si: régime fiscal . IS
@@ -137,6 +144,8 @@ déclaration revenus PAMC . revenus imposables:
     **Si vous relevez de l’impôt sur le revenu au régime de la déclaration contrôlée :**
     Indiquez le montant de votre bénéfice ou déficit. Ce montant correspond à la
     **rubrique 5QC ou 5QE** de votre déclaration des revenus n°2042-C-PRO.
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . revenus des associés et gérants:
   applicable si: régime fiscal . IS
@@ -146,6 +155,8 @@ déclaration revenus PAMC . revenus des associés et gérants:
     général des impôts.
   références:
     Article 62 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019288260
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . dividendes:
   applicable si: régime fiscal . IS
@@ -165,6 +176,8 @@ déclaration revenus PAMC . dividendes:
     > à cotisations et contributions ;
     > - à l’impôt sur le revenu sur la totalité des dividendes (soit 12,8%, soit
     > barème progressif après abattement de 40% sous certaines conditions).
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . frais réels:
   titre: frais réels hors intérêt d’emprunts
@@ -187,6 +200,8 @@ déclaration revenus PAMC . frais réels:
     dirigeant ou la dirigeante exerce son activité professionnelle principale.
   références:
     Article 62 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000019288260
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . cotisations sociales obligatoires:
   unité: €/an
@@ -215,6 +230,8 @@ déclaration revenus PAMC . cotisations sociales obligatoires:
     **Si vous relevez de l’impôt sur le revenu au régime de la déclaration contrôlée**,
     vous retrouverez ce montant dans la **rubrique BT** de votre liasse
     professionnelle 2035.
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . cotisations facultatives:
   non applicable si: régime fiscal . IR micro-fiscal
@@ -250,6 +267,8 @@ déclaration revenus PAMC . SNIR . honoraires remboursables:
 
     Par exemple, si vous détenez 40% des parts et que le total des honoraires
     conventionnés est de 100 000 €, indiquez 40 000 €.
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . SNIR . dépassements honoraires:
   titre: dépassements d’honoraires
@@ -272,6 +291,8 @@ déclaration revenus PAMC . SNIR . dépassements honoraires:
 
     Par exemple, si vous détenez 40% des parts et que le total des dépassements
     d’honoraires est de 100 000 €, indiquez 40 000 €.
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
   applicable si: profession . médecin
@@ -294,6 +315,8 @@ déclaration revenus PAMC . SNIR . taux urssaf:
   description: |
     Ce taux est issu des données de votre Relevé individuel d’activité et de
     prescriptions (RIAP).
+  meta:
+    requis: oui
 
 déclaration revenus PAMC . activité en structures de soins:
   non applicable si: profession . dentiste

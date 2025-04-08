@@ -2,7 +2,6 @@ import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression, RuleNode } from 'publicodes'
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
@@ -13,7 +12,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import {
@@ -72,10 +71,7 @@ type SimpleFieldProps = {
 	summary?: RuleNode['rawNode']['résumé']
 	question?: RuleNode['rawNode']['question']
 	showSuggestions?: boolean
-	label?: string
-	['aria-label']?: string
 	labelStyle?: IStyledComponent<'web', object>
-	required?: boolean
 }
 
 export function SimpleField(props: SimpleFieldProps) {
@@ -84,12 +80,9 @@ export function SimpleField(props: SimpleFieldProps) {
 		question,
 		summary,
 		showSuggestions = false,
-		label,
 		labelStyle,
-		required,
 	} = props
 	const dispatch = useDispatch()
-	const { t } = useTranslation()
 	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
 	const rule = engine.getRule(dottedName)
@@ -107,36 +100,26 @@ export function SimpleField(props: SimpleFieldProps) {
 	if (evaluation.nodeValue === null) {
 		return null
 	}
-	let displayedLabel = label
-	if (!displayedLabel) {
-		displayedLabel =
-			question ?? evaluateQuestion(engine, engine.getRule(dottedName))
-	}
+
+	let displayedLabel =
+		question ?? evaluateQuestion(engine, engine.getRule(dottedName))
+
 	if (!displayedLabel) {
 		displayedLabel =
 			rule.title + (rule.rawNode.résumé ? ` – ${rule.rawNode.résumé}` : '')
-	}
-
-	if (meta.requis === 'oui') {
-		if (displayedLabel) {
-			displayedLabel += ' *'
-		}
 	}
 
 	const markdownComponents = {
 		p: labelStyle ?? Intro,
 	}
 
+	const required = meta.requis === 'oui'
+
 	return (
 		<FadeIn>
 			<StyledQuestion id={labelId}>
 				<Markdown components={markdownComponents}>{displayedLabel}</Markdown>
-				{required && (
-					<Body>
-						<span aria-hidden>&nbsp;*</span>
-						<span className="sr-only">&nbsp;({t('champ obligatoire')})</span>
-					</Body>
-				)}
+				{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
 				<ExplicableRule dottedName={dottedName} />
 			</StyledQuestion>
 			{summary && <SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>}
@@ -148,14 +131,13 @@ export function SimpleField(props: SimpleFieldProps) {
 						: undefined
 				}
 				aria-labelledby={labelId}
-				required={meta.requis === 'oui'}
+				required={required}
 				missing={
 					evaluation.nodeValue === undefined ||
 					Object.keys(evaluation.missingVariables).length > 0
 				}
 				onChange={dispatchValue}
 				showSuggestions={showSuggestions}
-				aria-label={props?.['aria-label']}
 			/>
 			<Spacing sm />
 		</FadeIn>
@@ -166,4 +148,8 @@ const StyledQuestion = styled.div`
 	display: inline-flex;
 	align-items: baseline;
 	margin-bottom: -0.75rem;
+`
+const RedIntro = styled(Intro)`
+	color: ${({ theme }) =>
+		theme.darkMode ? '' : theme.colors.extended.error[400]};
 `

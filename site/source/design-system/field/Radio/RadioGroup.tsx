@@ -8,6 +8,7 @@ import { RadioContext } from './Radio'
 
 type RadioGroupProps = AriaRadioGroupProps & {
 	children: React.ReactNode
+	isRequired?: boolean
 }
 
 export function RadioGroup(props: RadioGroupProps) {

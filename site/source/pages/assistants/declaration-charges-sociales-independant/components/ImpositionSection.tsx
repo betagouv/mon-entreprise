@@ -32,10 +32,7 @@ export default function ImpositionSection() {
 
 	return (
 		<>
-			<SimpleField
-				aria-label={t('Régime d’imposition')}
-				dottedName="entreprise . imposition"
-			/>
+			<SimpleField dottedName="entreprise . imposition" />
 
 			<WhenAlreadyDefined dottedName="entreprise . imposition">
 				<SimpleField dottedName="déclaration charge sociales . comptabilité" />

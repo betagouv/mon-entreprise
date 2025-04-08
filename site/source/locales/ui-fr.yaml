@@ -221,7 +221,6 @@ Revenu avant impôt: Revenu avant impôt
 Revenu disponible: Revenu disponible
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
-Régime d’imposition: Régime d’imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Rémunération brute: Rémunération brute
@@ -324,7 +323,6 @@ cards:
     cta: Accéder au simulateur
 certains critères, en savoir plus sur service-public:
   fr, nouvelle fenêtre: certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre
-champ obligatoire: champ obligatoire
 checklist:
   showmore:
     closed: En savoir plus

@@ -206,7 +206,6 @@ Revenu avant impôt: Income before tax
 Revenu disponible: Disposable income
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
-Régime d’imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
 Rémunération brute: Gross remuneration
@@ -302,7 +301,6 @@ cards:
     cta: Access the simulator
 certains critères, en savoir plus sur service-public:
   fr, nouvelle fenêtre: certain criteria, find out more on service-public.fr, new window
-champ obligatoire: required field
 checklist:
   showmore:
     closed: Read more
