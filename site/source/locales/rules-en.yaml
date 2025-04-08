@@ -4786,6 +4786,15 @@ déclaration revenus PAMC . SNIR . dépassements honoraires:
   question.fr: dépassements d’honoraires
   titre.en: '[automatic] excess fees'
   titre.fr: dépassements d’honoraires
+déclaration revenus PAMC . SNIR . dépassements honoraires . avertissement:
+  description.en: |
+    [automatic] Excess fees must be lower than
+    total fees.
+  description.fr: |
+    Les dépassements d’honoraires doivent être inférieurs aux
+    total des honoraires.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
 déclaration revenus PAMC . SNIR . honoraires hors forfaits:
   description.en: '[automatic] Concerns you only if you are a member of Optam or Optam-ACO.'
   description.fr: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
@@ -4856,6 +4865,15 @@ déclaration revenus PAMC . SNIR . honoraires remboursables:
     conventionnés est de 100 000 €, indiquez 40 000 €.
   titre.en: '[automatic] fees from conventional procedures'
   titre.fr: honoraires tirés d’actes conventionnés
+déclaration revenus PAMC . SNIR . honoraires remboursables . avertissement:
+  description.en: |
+    [automatic] Fees must be less than total gross revenue.
+    revenues.
+  description.fr: |
+    Les honoraires doivent être inférieurs aux recettes brutes
+    totales.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
 déclaration revenus PAMC . SNIR . honoraires tarifs opposables:
   description.en: '[automatic] Concerns you only if you are a member of Optam or Optam-ACO.'
   description.fr: Vous concerne uniquement si vous adhérez à l’Optam ou à l’Optam-ACO.
@@ -5316,6 +5334,19 @@ déclaration revenus PAMC . recettes brutes totales:
     société est de 100 000 €, indiquez 40 000 €.
   titre.en: '[automatic] total gross revenues'
   titre.fr: recettes brutes totales
+déclaration revenus PAMC . recettes brutes totales . avertissement:
+  description.en: >
+    [automatic] This wizard does not manage gross receipts at 0. We invite you
+    to check
+
+    or contact your Urssaf on 0 806 804 209.
+  description.fr: >
+    Cet assistant ne gère pas les recettes brutes à 0. Nous vous invitons à
+    vérifier
+
+    votre saisie ou à contacter votre Urssaf au 0 806 804 209.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
 déclaration revenus PAMC . revenus de remplacement:
   question.en: '[automatic] Have you received benefits from Caf, CPAM or your pension fund?'
   question.fr: Avez-vous perçu des indemnités de la Caf, de la CPAM ou de votre
@@ -5412,6 +5443,15 @@ déclaration revenus PAMC . revenus imposables:
     **rubrique 5QC ou 5QE** de votre déclaration des revenus n°2042-C-PRO.
   titre.en: '[automatic] taxable income'
   titre.fr: revenus imposables
+déclaration revenus PAMC . revenus imposables . avertissement:
+  description.en: |
+    [automatic] Taxable income must exceed total gross revenue.
+    revenues.
+  description.fr: |
+    Les revenus imposables doivent être supérieurs aux recettes
+    brutes totales.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
 déclaration revenus PAMC . revenus nets:
   titre.en: '[automatic] net income'
   titre.fr: revenus nets

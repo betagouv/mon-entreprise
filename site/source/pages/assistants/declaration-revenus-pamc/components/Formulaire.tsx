@@ -5,6 +5,7 @@ import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenAlreadyDefinedMulti } from '@/components/EngineValue/WhenAlreadyDefinedMulti'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
+import Notifications from '@/components/Notifications'
 import { Message } from '@/design-system'
 import { H2 } from '@/design-system/typography/heading'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -121,6 +122,8 @@ export default function Formulaire() {
 					dottedName="déclaration revenus PAMC . SNIR . taux urssaf"
 					originalUnit
 				/>
+
+				<Notifications />
 
 				<WhenApplicable dottedName="déclaration revenus PAMC . activité en structures de soins">
 					<H2>
