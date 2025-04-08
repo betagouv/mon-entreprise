@@ -1,27 +1,28 @@
+import { Option } from 'effect'
 import { DottedName } from 'modele-social'
 import { formatValue, PublicodesExpression } from 'publicodes'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import RuleInput, { InputProps } from '@/components/conversation/RuleInput'
+import RuleLink from '@/components/RuleLink'
+import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
+import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
+import { useEngine } from '@/components/utils/EngineContext'
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
-import { useInitialRender } from '@/hooks/useInitialRender'
+import {
+	eurosParAn,
+	eurosParHeure,
+	eurosParJour,
+	eurosParMois,
+	Montant,
+} from '@/domaine/Montant'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
-
-import { ExplicableRule } from '../conversation/Explicable'
-import RuleInput, { InputProps } from '../conversation/RuleInput'
-import LectureGuide from '../LectureGuide'
-import RuleLink from '../RuleLink'
-import { Appear } from '../ui/animate'
-import AnimatedTargetValue from '../ui/AnimatedTargetValue'
-import { useEngine } from '../utils/EngineContext'
-import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -55,14 +56,15 @@ export function SimulationGoal({
 	const engine = useEngine()
 	const currentUnit = useSelector(targetUnitSelector)
 	const language = useTranslation().i18n.language
+
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
 		arrondi: round ? 'oui' : 'non',
 		...(!isTypeBoolean ? { unité: currentUnit } : {}),
 	})
+
 	const rule = engine.getRule(dottedName)
-	const initialRender = useInitialRender()
-	const [isFocused, setFocused] = useState(false)
+
 	const onChange = useCallback(
 		(x?: PublicodesExpression) => {
 			dispatch(
@@ -75,132 +77,111 @@ export function SimulationGoal({
 		},
 		[dispatch, onUpdateSituation, dottedName]
 	)
+
 	if (evaluation.nodeValue === null) {
 		return null
 	}
+
 	if (small && !editable && evaluation.nodeValue === undefined) {
 		return null
 	}
 
-	return (
-		<Appear unless={!appear || initialRender}>
-			<StyledGoal $small={small && !editable}>
-				<Grid
-					container
-					style={{
-						alignItems: 'baseline',
-						justifyContent: 'space-between',
-					}}
-					spacing={2}
-				>
-					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
-						<div>
-							{isInfoMode ? (
-								<Grid
-									container
-									style={{
-										alignItems: 'center',
-									}}
-								>
-									<Grid item>
-										<StyledBody id={normalizeRuleName.Label(dottedName)}>
-											<Strong>{label || rule.title}</Strong>
-										</StyledBody>
-									</Grid>
-									<Grid item>
-										<ForceThemeProvider forceTheme="default">
-											<ExplicableRule dottedName={dottedName} light />
-										</ForceThemeProvider>
-									</Grid>
-								</Grid>
-							) : (
-								<RuleLinkAccessible
-									id={`${dottedName.replace(/\s|\./g, '_')}-label`}
-									dottedName={dottedName}
-								>
-									<StyledLabel htmlFor={normalizeRuleName.Input(dottedName)}>
-										{label || rule.title}
-									</StyledLabel>
-								</RuleLinkAccessible>
-							)}
+	const titreTexte = label || rule.title
 
-							{rule.rawNode.résumé && (
-								<StyledSmallBody
-									className={small ? 'sr-only' : ''}
-									id={normalizeRuleName.Description(dottedName)}
-								>
-									{rule.rawNode.résumé}
-								</StyledSmallBody>
-							)}
-						</div>
-					</Grid>
-					<LectureGuide />
-					{editable ? (
-						<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
-							{!isFocused && !small && (
-								<AnimatedTargetValue value={evaluation.nodeValue as number} />
-							)}
-							<RuleInput
-								modifiers={
-									!isTypeBoolean
-										? {
-												unité: currentUnit,
-										  }
-										: undefined
-								}
-								aria-describedby={normalizeRuleName.Description(dottedName)}
-								hideDefaultValue
-								displayedUnit={displayedUnit}
-								dottedName={dottedName}
-								onFocus={() => setFocused(true)}
-								onBlur={() => setFocused(false)}
-								onChange={onChange}
-								missing={dottedName in evaluation.missingVariables}
-								small={small}
-								formatOptions={{
-									maximumFractionDigits: round ? 0 : 2,
-								}}
-							/>
-						</Grid>
-					) : (
-						<Grid item>
-							<Body id={normalizeRuleName.Value(dottedName)}>
-								{formatValue(evaluation, {
-									displayedUnit,
-									precision: round ? 0 : 2,
-									language,
-								})}
-							</Body>
-						</Grid>
-					)}
-				</Grid>
-			</StyledGoal>
-		</Appear>
+	const titre = isInfoMode ? (
+		titreTexte
+	) : (
+		<RuleLinkAccessible dottedName={dottedName}>
+			{titreTexte}
+		</RuleLinkAccessible>
+	)
+
+	const description = rule.rawNode.résumé || undefined
+
+	// Pour la compatibilité avec l'ancienne API
+	const valeurFormatee = formatValue(evaluation, {
+		displayedUnit,
+		precision: round ? 0 : 2,
+		language,
+	}) as string
+
+	// Conversion de la valeur en Option<Montant>
+	const valeurMontant =
+		typeof evaluation.nodeValue === 'number'
+			? (() => {
+					const valeur = evaluation.nodeValue
+					switch (currentUnit) {
+						case '€/an':
+							return Option.some(eurosParAn(valeur))
+						case '€/mois':
+							return Option.some(eurosParMois(valeur))
+						case '€/jour':
+							return Option.some(eurosParJour(valeur))
+						case '€/heure':
+							return Option.some(eurosParHeure(valeur))
+						default:
+							return Option.some(eurosParAn(valeur))
+					}
+			  })()
+			: Option.none<Montant>()
+
+	const editeur = editable ? (
+		<RuleInput
+			modifiers={
+				!isTypeBoolean
+					? {
+							unité: currentUnit,
+					  }
+					: undefined
+			}
+			aria-describedby={
+				description ? normalizeRuleName.Description(dottedName) : undefined
+			}
+			hideDefaultValue
+			displayedUnit={displayedUnit}
+			dottedName={dottedName}
+			onChange={onChange}
+			missing={dottedName in evaluation.missingVariables}
+			small={small}
+			formatOptions={{
+				maximumFractionDigits: round ? 0 : 2,
+			}}
+		/>
+	) : undefined
+
+	const rendreEditeur = editable ? () => editeur : undefined
+
+	// Pour les cas où la valeur n'est pas un nombre, on utilise le format texte
+	const valeur = isTypeBoolean ? valeurFormatee : valeurMontant
+
+	if (editable) {
+		return (
+			<ObjectifSaisissableDeSimulation
+				id={dottedName.replace(/\s|\./g, '_')}
+				titre={titre}
+				description={description}
+				valeur={valeurMontant}
+				rendreChampSaisie={rendreEditeur as () => React.ReactNode}
+				isInfoMode={isInfoMode}
+				small={small}
+				appear={appear}
+			/>
+		)
+	}
+
+	return (
+		<ObjectifDeSimulation
+			id={dottedName.replace(/\s|\./g, '_')}
+			titre={titre}
+			description={description}
+			valeur={valeur}
+			isInfoMode={isInfoMode}
+			small={small}
+			appear={appear}
+			explication={<ExplicableRule dottedName={dottedName} light />}
+		/>
 	)
 }
-
-const StyledGoal = styled.div<{ $small: boolean }>`
-	position: relative;
-	z-index: 1;
-	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'sm']} 0;
-
-	@media print {
-		padding: 0;
-	}
-`
-
-const StyledSmallBody = styled(SmallBody)`
-	margin-bottom: 0;
-`
-
-const StyledBody = styled(Body)`
-	color: ${({ theme }) => theme.colors.extended.grey[100]};
-	margin: 0;
-`
-
-const StyledLabel = styled.label`
-	cursor: pointer;
-`
 
 const RuleLinkAccessible = styled(RuleLink)`
 	&:hover {

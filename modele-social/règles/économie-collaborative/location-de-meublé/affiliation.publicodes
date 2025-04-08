@@ -7,7 +7,7 @@ location de logement meublé . affiliation:
       - RG
       - TI
       - ME
-  par défaut: "'RG'"
+  par défaut: "'TI'"
   avec:
     RG:
       titre: Régime général
