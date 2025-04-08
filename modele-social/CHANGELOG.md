@@ -48,6 +48,7 @@
 - Mise à jour des niveaux de rémunération pour les taux réduits de cotisations maladie et familiales
 - Mise à jour du plafond d’exonération de cotisations sociales pour les apprentis
 - Mise à jour de l’exonération de CSG-CRDS pour les apprentis
+- Mise à jour du SMIC pour la cotisation maladie et les allocations familiales
 
 ### Dépréciations
 - `dirigeant . auto-entrepreneur . affiliation CIPAV` : utiliser `dirigeant . auto-entrepreneur . Cipav` à la place

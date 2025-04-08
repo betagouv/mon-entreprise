@@ -321,7 +321,11 @@ salarié . cotisations . allocations familiales:
                 - sinon: 3.5
             - valeur: SMIC
               contexte:
-                date: 31/12/2023
+                date:
+                  variations:
+                    - si: date >= 01/2025
+                      alors: 01/01/2025
+                    - sinon: 31/12/2023
             - temps de travail . effectif . quotité
       références:
         Code de la sécurité sociale - Article L241-6-1: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051285453
@@ -747,7 +751,11 @@ salarié . cotisations . maladie:
                     - sinon: 2.5
                 - valeur: SMIC
                   contexte:
-                    date: 31/12/2023
+                    date:
+                      variations:
+                        - si: date >= 01/2025
+                          alors: 01/01/2025
+                        - sinon: 31/12/2023
                 - temps de travail . effectif . quotité
           références:
             Code de la sécurité sociale - Article L241-2-1: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048684728
