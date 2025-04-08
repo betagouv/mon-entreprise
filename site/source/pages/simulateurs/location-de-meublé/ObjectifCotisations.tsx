@@ -61,7 +61,7 @@ export function ObjectifCotisations() {
 			id="objectif-location-meuble-cotisations"
 			titre={t(
 				'pages.simulateurs.location-de-logement-meublé.objectifs.cotisations',
-				'Cotisations sociales (nouveau calcul)'
+				'Cotisations sociales'
 			)}
 			valeur={valeurMontant}
 			messageComplementaire={messageComplementaire}
