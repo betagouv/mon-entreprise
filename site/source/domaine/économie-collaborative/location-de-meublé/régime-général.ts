@@ -1,4 +1,4 @@
-import { Either, pipe } from 'effect'
+import { Either, Option, pipe } from 'effect'
 
 import { SEUIL_PROFESSIONNALISATION } from '@/domaine/économie-collaborative/location-de-meublé/constantes'
 import {
@@ -15,26 +15,37 @@ import {
 	moins,
 } from '@/domaine/Montant'
 
-import { SituationLocationCourteDuree } from './situation'
+import { DEFAULTS } from './cotisations'
+import { SituationLocationCourteDureeValide } from './situation'
 
 export const PLAFOND_REGIME_GENERAL = eurosParAn(77_700)
-
 export const TAUX_COTISATION_RG_NORMAL = 0.4742
 export const TAUX_COTISATION_RG_ALSACE_MOSELLE = 0.4872
 export const ABATTEMENT_REGIME_GENERAL = 0.6
 
+/**
+ * Calcule les cotisations sociales pour le régime général
+ * @param situation La situation avec des recettes obligatoirement définies
+ * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
+ */
 export function calculeCotisationsRégimeGénéral(
-	situation: SituationLocationCourteDuree
+	situation: SituationLocationCourteDureeValide
 ): Either.Either<
 	EuroParAn,
 	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
 > {
-	const {
-		recettes,
-		estAlsaceMoselle = false,
-		premièreAnnée = false,
-	} = situation
+	const recettes = situation.recettes.value
+
+	const estAlsaceMoselle = Option.getOrElse(
+		situation.estAlsaceMoselle,
+		() => DEFAULTS.EST_ALSACE_MOSELLE
+	)
+
+	const premièreAnnée = Option.getOrElse(
+		situation.premièreAnnée,
+		() => DEFAULTS.PREMIERE_ANNEE
+	)
 
 	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {
 		return Either.left(

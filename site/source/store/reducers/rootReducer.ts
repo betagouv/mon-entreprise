@@ -10,6 +10,7 @@ import {
 } from '@/store/actions/actions'
 import { simulationReducer } from '@/store/reducers/simulation.reducer'
 import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
+import simulateursReducer from '@/store/slices/simulateursSlice'
 
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
@@ -49,6 +50,7 @@ const mainReducer = combineReducers({
 	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	choixStatutJuridique,
+	simulateurs: simulateursReducer,
 })
 
 export default reduceReducers<RootState>(

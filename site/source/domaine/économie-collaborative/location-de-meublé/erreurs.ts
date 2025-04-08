@@ -7,6 +7,18 @@ export type RégimeInapplicable =
 	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
 
+export class SituationIncomplète extends Data.TaggedError(
+	'SituationIncomplète'
+)<{
+	message: string
+}> {
+	toString(): string {
+		return this.message
+	}
+}
+
+export type SimulationImpossible = RégimeInapplicable | SituationIncomplète
+
 export class RecettesSupérieuresAuPlafondAutoriséPourCeRégime extends Data.TaggedError(
 	'RecettesSupérieuresAuPlafondAutoriséPourCeRégime'
 )<{
