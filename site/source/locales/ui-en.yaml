@@ -88,7 +88,6 @@ En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: More information on impots.gouv.fr, new window
 En savoir plus, nouvelle fenêtre: Find out more, new window
-English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
@@ -173,7 +172,6 @@ Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
 Passer: Pass
 Passer le contenu principal et aller directement au pied de page: Skip the main content and go directly to the footer
-Passer à la version française: Passer à la version française
 Passer, passer la question sans répondre: Pass, pass the question without answering
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
@@ -236,7 +234,6 @@ Suivant: Next
 Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
 Suivant, passer à la question suivante: Next, move on to the next question
 Suivant, voir le résultat: Next, see the result
-Switch to the english version: Switch to the english version
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
   site, by month.
@@ -256,7 +253,6 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
-Version française du site activée.: French version of the site activated.
 Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
 Veuillez renseigner votre adresse email.: Please enter your email address.
 Voir la fiche Urssaf: See the Urssaf sheet
@@ -1638,6 +1634,9 @@ pages:
           optimize their tax situation in this specific context.
         ogTitle: Income simulator for renting furnished accommodation
         titre: Income simulator for renting furnished accommodation
+      objectifs:
+        cotisations: Social security contributions
+        revenu-net: Net income
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
     lodeom:

@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { TitreObjectif } from '@/design-system/typography/TitreObjectif'
+import { TitreObjectifSaisissable } from '@/design-system/typography/TitreObjectifSaisissable'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
@@ -36,7 +36,6 @@ export function ObjectifSaisissableDeSimulation({
 	rendreChampSaisie,
 	small = false,
 	appear = true,
-	isInfoMode = false,
 	onFocus,
 	onBlur,
 }: ObjectifSaisissableDeSimulationProps) {
@@ -67,52 +66,35 @@ export function ObjectifSaisissableDeSimulation({
 					spacing={2}
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
-						<div>
-							<Grid
-								container
-								style={{
-									alignItems: 'center',
-								}}
-							>
-								<Grid item>
-									<TitreObjectif
-										id={`${id}-label`}
-										htmlFor={`${id}-input`}
-										isInfoMode={isInfoMode}
-										noWrap={true}
-									>
-										{titre}
-									</TitreObjectif>
-								</Grid>
-								{explication && (
-									<Grid item>
-										<ForceThemeProvider forceTheme="default">
-											{explication}
-										</ForceThemeProvider>
-									</Grid>
-								)}
-							</Grid>
+						<TitreObjectifSaisissable
+							id={`${id}-label`}
+							htmlFor={`${id}-input`}
+							noWrap={true}
+						>
+							{titre}
+						</TitreObjectifSaisissable>
 
-							{description && (
-								<StyledSmallBody
-									className={small ? 'sr-only' : ''}
-									id={`${id}-description`}
-								>
-									{description}
-								</StyledSmallBody>
-							)}
-						</div>
+						{explication && (
+							<ForceThemeProvider forceTheme="default">
+								{explication}
+							</ForceThemeProvider>
+						)}
+
+						{description && (
+							<StyledSmallBody
+								className={small ? 'sr-only' : ''}
+								id={`${id}-description`}
+							>
+								{description}
+							</StyledSmallBody>
+						)}
 					</Grid>
 					<LectureGuide />
 					<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
 						{!isFocused && !small && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
-						<div 
-							onFocus={handleFocus} 
-							onBlur={handleBlur}
-							role="presentation"
-						>
+						<div onFocus={handleFocus} onBlur={handleBlur} role="presentation">
 							{rendreChampSaisie()}
 						</div>
 					</Grid>
@@ -124,8 +106,8 @@ export function ObjectifSaisissableDeSimulation({
 
 const StyledGoal = styled.div<{ $small: boolean }>`
 	position: relative;
+	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'xs']} 0;
 	z-index: 1;
-	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'sm']} 0;
 
 	@media print {
 		padding: 0;

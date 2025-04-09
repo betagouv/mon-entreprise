@@ -6930,8 +6930,9 @@ entreprise . coût formalités . création:
   titre.en: '[automatic] Total creation costs'
   titre.fr: Total des coûts de création
 entreprise . créée cette année:
-  description.en: '[automatic] Was the company created in the year of the simulation?'
-  description.fr: L’entreprise a-t-elle été créée l’année de la simulation ?
+  description.en: '[automatic] Indicates whether the company was created in the
+    year of the simulation.'
+  description.fr: Indique si l’entreprise a été créée l’année de la simulation.
   titre.en: '[automatic] Company created this year'
   titre.fr: Entreprise créée cette année
 entreprise . date de cessation:
@@ -7013,6 +7014,9 @@ entreprise . durée d'activité . trimestres civils:
 entreprise . durée d'activité cette année:
   titre.en: '[automatic] duration of activity this year'
   titre.fr: durée d'activité cette année
+entreprise . en cessation d'activité:
+  titre.en: '[automatic] ceasing operations'
+  titre.fr: en cessation d'activité
 entreprise . exercice:
   avec:
     date trop ancienne:
@@ -7411,13 +7415,15 @@ entreprise . prorata temporis:
   titre.en: '[automatic] prorata temporis'
   titre.fr: prorata temporis
 entreprise . radiée:
-  description.en: '[automatic] Will the company be deregistered in the year of the simulation?'
-  description.fr: L’entreprise sera-t-elle radiée l’année de la simulation ?
+  description.en: '[automatic] Indicates whether the company will be deregistered.'
+  description.fr: Indique si l’entreprise va être radiée.
   titre.en: '[automatic] Delisted company'
   titre.fr: Entreprise radiée
 entreprise . radiée cette année:
-  description.en: '[automatic] Will the company be deregistered in the year of the simulation?'
-  description.fr: L’entreprise sera-t-elle radiée l’année de la simulation ?
+  description.en:
+    '[automatic] Indicates whether the company will be deregistered
+    in the year of the simulation.'
+  description.fr: Indique si l’entreprise va être radiée l’année de la simulation.
   titre.en: '[automatic] Company written off this year'
   titre.fr: Entreprise radiée cette année
 entreprise . résultat fiscal:
@@ -7953,7 +7959,7 @@ location de logement meublé:
 location de logement meublé . affiliation:
   avec:
     ME:
-      description.en: '[automatic] You can opt for the micro-enterprise scheme'
+      description.en: '[automatic] You can opt for the micro-enterprise system'
       description.fr: Vous avez la possibilité d’opter pour le régime de la micro-entreprise
       titre.en: '[automatic] Micro-business'
       titre.fr: Micro-entreprise

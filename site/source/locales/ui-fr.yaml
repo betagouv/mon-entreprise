@@ -94,7 +94,6 @@ En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
 En savoir plus, nouvelle fenêtre: En savoir plus, nouvelle fenêtre
-English version of the website enabled.: English version of the website enabled.
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
@@ -184,7 +183,6 @@ Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
 Passer: Passer
 Passer le contenu principal et aller directement au pied de page: Passer le contenu principal et aller directement au pied de page
-Passer à la version française: Passer à la version française
 Passer, passer la question sans répondre: Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
@@ -252,7 +250,6 @@ Suivant: Suivant
 Suivant, enregistrer et passer à l'étape suivante: Suivant, enregistrer et passer à l'étape suivante
 Suivant, passer à la question suivante: Suivant, passer à la question suivante
 Suivant, voir le résultat: Suivant, voir le résultat
-Switch to the english version: Switch to the english version
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
   le site mon-entreprise par mois.
@@ -272,7 +269,6 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-Version française du site activée.: Version française du site activée.
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
 Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.
 Voir la fiche Urssaf: Voir la fiche Urssaf
@@ -1729,11 +1725,11 @@ pages:
     location-de-logement-meublé:
       avertissement:
         dépassement-du-plafond: Vous dépassez le plafond autorisé (<1></1>) pour
-          déclarer vos revenus de l’économie collaborative avec un statut social
+          déclarer vos revenus de l'économie collaborative avec un statut social
           au régime général. Vous devez vous orienter vers les statuts
-          d’auto-entrepreneur ou de travailleur indépendant.
+          d'auto-entrepreneur ou de travailleur indépendant.
         pas-de-cotisation: Le montant de vos recettes est inférieur à <2></2> et votre
-          activité n’est pas considérée comme professionnelle. Vous n’êtes pas
+          activité n'est pas considérée comme professionnelle. Vous n'êtes pas
           obligé de vous affilier à la sécurité sociale. Vous pouvez toutefois
           le faire si vous souhaitez bénéficier d'une protection sociale
           (assurance maladie, retraite…) en contrepartie du paiement des
@@ -1747,6 +1743,9 @@ pages:
           leurs gains et optimiser leur fiscalité dans ce cadre spécifique.
         ogTitle: Simulateur de revenu pour location de logement meublé
         titre: Simulateur de revenu pour location de logement meublé
+      objectifs:
+        cotisations: Cotisations sociales
+        revenu-net: Revenu net
       shortname: Location de logement meublé
       title: Simulateur de revenu pour location de logement meublé
     lodeom:
