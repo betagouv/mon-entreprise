@@ -160,6 +160,7 @@ function ActivitéMixte() {
 		},
 		[dispatch, situation]
 	)
+	const { t } = useTranslation()
 
 	return (
 		<div key={Boolean(defaultChecked).toString()}>
@@ -170,9 +171,10 @@ function ActivitéMixte() {
 						defaultSelected={defaultChecked}
 						onChange={onMixteChecked}
 						light
-						aria-label="Activité mixte"
+						/* Need this useless aria-label to silence a React-Aria warning */
+						aria-label=""
 					>
-						Activité mixte
+						{t('mixed-activity', 'Activité mixte')}
 					</Switch>
 				</Trans>
 				<ExplicableRule dottedName={rule.dottedName} light />

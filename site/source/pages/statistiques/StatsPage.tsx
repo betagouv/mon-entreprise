@@ -106,8 +106,16 @@ export default function StatPage({ stats }: StatsDetailProps) {
 				<H2>Évolution sur plusieurs mois</H2>
 
 				<Body>
-					<Switch defaultSelected={accessibleMode} onChange={setAccessibleMode}>
-						Activer le mode accessibilité sur cette section
+					<Switch
+						defaultSelected={accessibleMode}
+						onChange={setAccessibleMode}
+						/* Need this useless aria-label to silence a React-Aria warning */
+						aria-label=""
+					>
+						{t(
+							'activate-a11y',
+							'Activer le mode accessibilité sur cette section'
+						)}
 					</Switch>
 				</Body>
 				<H3>Visites</H3>

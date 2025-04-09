@@ -2,6 +2,7 @@ import { useSwitch } from '@react-aria/switch'
 import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
 import { css, styled } from 'styled-components'
+import { v4 as uuidv4 } from 'uuid'
 
 import { FocusStyle, SROnly } from '@/design-system/global-style'
 
@@ -19,14 +20,7 @@ const sizeDico = {
 	XL: '4rem',
 } as { [K in Size]: string }
 
-interface StyledProps {
-	checked: boolean
-	disabled: boolean
-	$size: Size
-	$light: boolean
-}
-
-const StyledSpan = styled.span<StyledProps>`
+const StyledSpan = styled.span<{ checked: boolean }>`
 	position: relative;
 	left: ${({ checked }) =>
 		checked ? 'calc(100% - 2 * (var(--switch-size) / 5))' : '0'};
@@ -41,8 +35,14 @@ const StyledSpan = styled.span<StyledProps>`
 	background-color: #ffffff;
 	color: inherit;
 `
+interface StyledSwitchProps {
+	checked: boolean
+	disabled: boolean
+	$size: Size
+	$light: boolean
+}
 
-const StyledSwitch = styled.span<StyledProps>`
+const StyledSwitch = styled.span<StyledSwitchProps>`
 	--switch-size: ${({ $size }) => sizeDico[$size]};
 	display: inline-flex;
 	transition: all 0.15s ease-in-out;
@@ -63,18 +63,6 @@ const StyledSwitch = styled.span<StyledProps>`
 			  `
 			: ''}
 
-	&:hover ${StyledSpan} {
-		box-shadow: 0 0 0 0.5rem
-			${({ disabled, checked, theme }) =>
-				disabled
-					? ''
-					: checked
-					? theme.colors.bases.primary[700]
-					: theme.colors.extended.grey[500]}42; // 42 is alpha
-	}
-	&:focus-within {
-		${FocusStyle}
-	}
 	${({ disabled, theme }) =>
 		disabled
 			? css`
@@ -87,41 +75,40 @@ const StyledSwitch = styled.span<StyledProps>`
 const LabelBody = styled(Body)`
 	display: inline-flex;
 	align-items: center;
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 	cursor: pointer;
+
+	&:hover,
+	&:focus-within {
+		${FocusStyle}
+	}
 `
 
-const Text = styled.span<{ $invertLabel?: boolean }>`
-	${({ theme, $invertLabel }) =>
-		$invertLabel
-			? css`
-					margin-left: ${theme.spacings.xxs};
-			  `
-			: css`
-					margin-right: ${theme.spacings.xxs};
-			  `};
+const Text = styled.span`
+	${({ theme }) => css`
+		margin: 0 ${theme.spacings.xxs};
+	`}
+`
+
+const SrOnlyText = styled.span`
+	${SROnly}
 `
 
 type AriaSwitchProps = Parameters<typeof useSwitch>[0]
 
-export type SwitchProps = AriaSwitchProps & {
+type SwitchProps = AriaSwitchProps & {
 	size?: Size
 	light?: boolean
-	children?: ReactNode
-	className?: string
-	role?: string
-	/**
-	 * Invert the position of the label and the switch
-	 */
-	invertLabel?: boolean
+	srOnlyLabel?: boolean
+	children: ReactNode
 }
 
 export const Switch = (props: SwitchProps) => {
 	const {
 		size = 'MD',
 		light = false,
+		srOnlyLabel = false,
 		children,
-		className,
-		invertLabel = false,
 		...ariaProps
 	} = props
 	const state = useToggleState(ariaProps)
@@ -131,36 +118,32 @@ export const Switch = (props: SwitchProps) => {
 	const { isDisabled = false } = ariaProps
 	const { isSelected } = state
 
+	const uuid = uuidv4()
+
 	return (
-		<LabelBody as="label" htmlFor={inputProps.id} className={className}>
-			{children && !invertLabel && (
-				<Text $invertLabel={invertLabel}>{children}</Text>
-			)}
+		<LabelBody as="label" htmlFor={uuid}>
 			<StyledSwitch
 				$light={light}
 				$size={size}
 				checked={isSelected}
 				disabled={isDisabled}
-				aria-label={props['aria-label']}
 			>
 				<HiddenInput
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...inputProps}
+					id={uuid}
 					type="checkbox"
+					role="switch"
 					tabIndex={0}
 					ref={ref}
-					role={props?.role}
 				/>
-				<StyledSpan
-					$light={light}
-					$size={size}
-					aria-hidden
-					checked={isSelected}
-					disabled={isDisabled}
-				/>
+				<StyledSpan aria-hidden checked={isSelected} />
 			</StyledSwitch>
-			{children && invertLabel && (
-				<Text $invertLabel={invertLabel}>{children}</Text>
+
+			{srOnlyLabel ? (
+				<SrOnlyText>{children}</SrOnlyText>
+			) : (
+				<Text>{children}</Text>
 			)}
 		</LabelBody>
 	)
