@@ -8047,7 +8047,7 @@ location de logement meublé:
 location de logement meublé . affiliation:
   avec:
     ME:
-      description.en: '[automatic] You can opt for the micro-enterprise scheme'
+      description.en: '[automatic] You can opt for the micro-enterprise system'
       description.fr: Vous avez la possibilité d’opter pour le régime de la micro-entreprise
       titre.en: '[automatic] Micro-business'
       titre.fr: Micro-entreprise

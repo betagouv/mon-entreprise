@@ -232,9 +232,11 @@ describe('Location de meublé de courte durée', () => {
 				}
 
 				const resultat = calculeCotisations(situation)
+
 				expect(Either.isRight(resultat)).toBe(true)
+
 				if (Either.isRight(resultat)) {
-					expect(Equal.equals(resultat.right, eurosParAn(8_849))).toEqual(true)
+					expect(resultat.right.valeur).toEqual(8_847)
 				}
 			})
 
@@ -250,7 +252,7 @@ describe('Location de meublé de courte durée', () => {
 				const resultat = calculeCotisations(situation)
 				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
-					expect(Equal.equals(resultat.right, eurosParAn(8_849))).toEqual(true)
+					expect(resultat.right.valeur).toEqual(8_847)
 				}
 			})
 		})

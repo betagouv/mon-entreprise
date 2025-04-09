@@ -1,11 +1,9 @@
 import { formatValue } from 'publicodes'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { keyframes, styled } from 'styled-components'
 
 import { estEuro, Montant } from '@/domaine/Montant'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 type AnimatedTargetValueProps = {
 	value: Montant
@@ -34,8 +32,6 @@ export default function AnimatedTargetValue({
 	const previousDifference = useRef<number>()
 	const { language } = useTranslation().i18n
 	const previousUnit = useRef(valueUnit)
-
-	const unit = useSelector(targetUnitSelector)
 
 	let difference =
 		numericValue == null ||
