@@ -4,7 +4,11 @@ import { createSelector } from 'reselect'
 
 import { calculeCotisations } from '@/domaine/économie-collaborative/location-de-meublé'
 import { SituationIncomplète } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
-import { SituationLocationCourteDuree } from '@/domaine/économie-collaborative/location-de-meublé/situation'
+import { calculeRevenuNet } from '@/domaine/économie-collaborative/location-de-meublé/revenu-net'
+import {
+	estSituationValide,
+	SituationLocationCourteDuree,
+} from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import { RootState } from '@/store/reducers/rootReducer'
 
 import locationDeMeubleReducer from './locationDeMeubleSlice'
@@ -67,6 +71,19 @@ export const selectLocationDeMeubleCotisations = createSelector(
 			: Either.left(
 					new SituationIncomplète({
 						message: 'Impossible de calculer les cotisations du simulateur',
+					})
+			  )
+)
+
+export const selectLocationDeMeubleRevenuNet = createSelector(
+	[selectLocationDeMeubleSituation],
+	(situation) =>
+		situation && estSituationValide(situation)
+			? calculeRevenuNet(situation)
+			: Either.left(
+					new SituationIncomplète({
+						message:
+							'Impossible de calculer le revenu net sans connaitre les recettes',
 					})
 			  )
 )

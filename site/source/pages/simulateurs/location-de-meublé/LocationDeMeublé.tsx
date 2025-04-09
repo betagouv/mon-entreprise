@@ -14,10 +14,12 @@ import Simulation, {
 } from '@/components/Simulation'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { SimulationImpossible } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
+import { eurosParAn } from '@/domaine/Montant'
 import { setRecettesNumber } from '@/store/slices/locationDeMeubleSlice'
 import {
 	activeLocationDeMeuble,
 	selectLocationDeMeubleCotisations,
+	selectLocationDeMeubleRevenuNet,
 } from '@/store/slices/simulateursSlice'
 
 import { ObjectifCotisations } from './ObjectifCotisations'
@@ -40,6 +42,7 @@ export default function LocationDeMeublé() {
 	)
 
 	const cotisations = useSelector(selectLocationDeMeubleCotisations)
+	const revenuNet = useSelector(selectLocationDeMeubleRevenuNet)
 
 	return (
 		<Simulation entrepriseSelection={false}>
@@ -52,10 +55,15 @@ export default function LocationDeMeublé() {
 				/>
 
 				{Either.match(cotisations, {
-					onRight: () => (
+					onRight: (cotisationsCalculées) => (
 						<>
-							<ObjectifCotisations />
-							<ObjectifRevenuNet />
+							<ObjectifCotisations cotisations={cotisationsCalculées} />
+							<ObjectifRevenuNet
+								revenuNet={pipe(
+									revenuNet,
+									Either.getOrElse(() => eurosParAn(0))
+								)}
+							/>
 						</>
 					),
 					onLeft: (erreur) => {
