@@ -6,7 +6,7 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid } from '@/design-system/layout'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { TitreObjectif } from '@/design-system/typography/TitreObjectif'
-import { Montant, toString as formatMontant } from '@/domaine/Montant'
+import { toString as formatMontant, Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import LectureGuide from '../LectureGuide'
@@ -34,16 +34,16 @@ export function ObjectifDeSimulation({
 	messageComplementaire,
 	small = false,
 	appear = true,
-	isInfoMode = false,
 }: ObjectifDeSimulationProps) {
 	const initialRender = useInitialRender()
-	
-	const valeurAffichee = typeof valeur === 'string' 
-		? valeur 
-		: Option.match(valeur, {
-			onNone: () => '—',
-			onSome: (montant) => formatMontant(montant)
-		})
+
+	const valeurAffichee =
+		typeof valeur === 'string'
+			? valeur
+			: Option.match(valeur, {
+					onNone: () => '—',
+					onSome: (montant) => formatMontant(montant),
+			  })
 
 	return (
 		<Appear unless={!appear || initialRender}>
@@ -57,53 +57,35 @@ export function ObjectifDeSimulation({
 					spacing={2}
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
-						<div>
-							<Grid
-								container
-								style={{
-									alignItems: 'center',
-								}}
-							>
-								<Grid item>
-									<TitreObjectif
-										id={`${id}-label`}
-										isInfoMode={isInfoMode}
-										noWrap={true}
-									>
-										{titre}
-									</TitreObjectif>
-								</Grid>
-								{explication && (
-									<Grid item>
-										<ForceThemeProvider forceTheme="default">
-											{explication}
-										</ForceThemeProvider>
-									</Grid>
-								)}
-							</Grid>
+						<TitreObjectif id={`${id}-label`} noWrap={true}>
+							{titre}
+						</TitreObjectif>
 
-							{description && (
-								<StyledSmallBody
-									className={small ? 'sr-only' : ''}
-									id={`${id}-description`}
-								>
-									{description}
-								</StyledSmallBody>
-							)}
-							
-							{messageComplementaire && (
-								<StyledSmallBody>
-									{messageComplementaire}
-								</StyledSmallBody>
-							)}
-						</div>
+						{explication && (
+							<ForceThemeProvider forceTheme="default">
+								{explication}
+							</ForceThemeProvider>
+						)}
+
+						{description && (
+							<StyledSmallBody
+								className={small ? 'sr-only' : ''}
+								id={`${id}-description`}
+							>
+								{description}
+							</StyledSmallBody>
+						)}
+
+						{messageComplementaire && (
+							<StyledSmallBody>{messageComplementaire}</StyledSmallBody>
+						)}
 					</Grid>
 					<LectureGuide />
 					<Grid item>
 						{!small && typeof valeur !== 'string' && Option.isSome(valeur) && (
 							<AnimatedTargetValue value={valeur.value} />
 						)}
-						<Body id={`${id}-value`}>{valeurAffichee}</Body>
+						<StyledValue id={`${id}-value`}>{valeurAffichee}</StyledValue>
 					</Grid>
 				</Grid>
 			</StyledGoal>
@@ -123,4 +105,8 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 
 const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
+`
+
+const StyledValue = styled(Body)`
+	margin: 1.2rem 0;
 `
