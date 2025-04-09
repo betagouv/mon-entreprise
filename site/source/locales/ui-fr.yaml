@@ -1757,11 +1757,11 @@ pages:
     location-de-logement-meublé:
       avertissement:
         dépassement-du-plafond: Vous dépassez le plafond autorisé (<1></1>) pour
-          déclarer vos revenus de l’économie collaborative avec un statut social
+          déclarer vos revenus de l'économie collaborative avec un statut social
           au régime général. Vous devez vous orienter vers les statuts
-          d’auto-entrepreneur ou de travailleur indépendant.
+          d'auto-entrepreneur ou de travailleur indépendant.
         pas-de-cotisation: Le montant de vos recettes est inférieur à <2></2> et votre
-          activité n’est pas considérée comme professionnelle. Vous n’êtes pas
+          activité n'est pas considérée comme professionnelle. Vous n'êtes pas
           obligé de vous affilier à la sécurité sociale. Vous pouvez toutefois
           le faire si vous souhaitez bénéficier d'une protection sociale
           (assurance maladie, retraite…) en contrepartie du paiement des
@@ -1781,6 +1781,9 @@ pages:
           leurs gains et optimiser leur fiscalité dans ce cadre spécifique.
         ogTitle: Simulateur de revenu pour location de logement meublé
         titre: Simulateur de revenu pour location de logement meublé
+      objectifs:
+        cotisations: Cotisations sociales
+        revenu-net: Revenu net
       shortname: Location de logement meublé
       title: Simulateur de revenu pour location de logement meublé
     lodeom:

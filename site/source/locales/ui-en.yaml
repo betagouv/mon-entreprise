@@ -1674,6 +1674,9 @@ pages:
           optimize their tax situation in this specific context.
         ogTitle: Income simulator for renting furnished accommodation
         titre: Income simulator for renting furnished accommodation
+      objectifs:
+        cotisations: Social security contributions
+        revenu-net: Net income
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
     lodeom:
