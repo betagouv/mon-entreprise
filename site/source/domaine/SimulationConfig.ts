@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 
-import { Situation } from './Situation'
+import { SituationPublicodes } from './SituationPublicodes'
 
 export type SimulationConfig = Partial<{
 	/**
@@ -18,7 +18,7 @@ export type SimulationConfig = Partial<{
 	/**
 	 * La situation de base du simulateur
 	 */
-	situation: Situation
+	situation: SituationPublicodes
 
 	questions: {
 		/**

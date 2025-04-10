@@ -3,7 +3,7 @@ import { DottedName } from 'modele-social'
 import * as Optics from 'optics-ts'
 
 import { SimulationConfig } from '@/domaine/SimulationConfig'
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { updateSituation } from '@/domaine/updateSituation'
 import { updateSituationMulti } from '@/domaine/updateSituationMulti'
 import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
@@ -19,7 +19,7 @@ export type Simulation = {
 	config: SimulationConfig
 	url: string
 	hiddenNotifications: Array<string>
-	situation: Situation
+	situation: SituationPublicodes
 	targetUnit: string
 	questionsRépondues: Array<QuestionRépondue>
 	questionsSuivantes?: Array<DottedName>
