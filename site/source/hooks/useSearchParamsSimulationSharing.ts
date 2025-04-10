@@ -10,7 +10,7 @@ import {
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
-import { Situation } from '@/store/reducers/rootReducer'
+import { SituationPublicodes } from '@/store/reducers/rootReducer'
 import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
 
 type ShortName = string
@@ -44,7 +44,7 @@ export default function useSearchParamsSimulationSharing() {
 			dottedNameParamName
 		)
 		if (Object.keys(newSituation).length > 0) {
-			dispatch(batchUpdateSituation(newSituation as Situation))
+			dispatch(batchUpdateSituation(newSituation as SituationPublicodes))
 		}
 
 		const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>
@@ -66,7 +66,7 @@ export default function useSearchParamsSimulationSharing() {
 }
 
 export const useParamsFromSituation = (
-	situation: Situation,
+	situation: SituationPublicodes,
 	targetUnit: string
 ) => {
 	const engine = useEngine()
@@ -107,7 +107,7 @@ export const getRulesParamNames = (
 
 export function getSearchParams(
 	engine: Engine,
-	situation: Situation,
+	situation: SituationPublicodes,
 	dottedNameParamName: [DottedName, ParamName][],
 	targetUnit: string
 ): URLSearchParams {

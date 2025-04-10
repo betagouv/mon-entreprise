@@ -2,12 +2,17 @@ import { Option } from 'effect'
 
 import { EuroParAn } from '@/domaine/Montant'
 
-export type RegimeCotisation =
-	| 'micro-entreprise'
-	| 'travailleur-indépendant'
-	| 'régime-général'
+export enum RegimeCotisation {
+	'micro-entreprise' = 'micro-entreprise',
+	'travailleur-indépendant' = 'travailleur-indépendant',
+	'régime-général' = 'régime-général',
+}
 
-export interface SituationLocationCourteDuree {
+export interface Situation {
+	_tag: 'Situation'
+}
+
+export interface SituationLocationCourteDuree extends Situation {
 	recettes: Option.Option<EuroParAn>
 	regimeCotisation: Option.Option<RegimeCotisation>
 	estAlsaceMoselle: Option.Option<boolean>

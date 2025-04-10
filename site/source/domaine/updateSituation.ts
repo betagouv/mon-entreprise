@@ -5,14 +5,14 @@ import { ImmutableType } from '@/types/utils'
 import { objectTransform, omit } from '@/utils'
 
 import { SimulationConfig } from './SimulationConfig'
-import { Situation } from './Situation'
+import { SituationPublicodes } from './SituationPublicodes'
 
 export function updateSituation(
 	config: ImmutableType<SimulationConfig>,
-	currentSituation: Situation,
+	currentSituation: SituationPublicodes,
 	dottedName: DottedName,
 	value: PublicodesExpression | undefined
-): Situation {
+): SituationPublicodes {
 	if (value === undefined) {
 		return omit(currentSituation, dottedName)
 	}
