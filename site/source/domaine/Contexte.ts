@@ -1,3 +1,3 @@
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 
-export type Contexte = Situation
+export type Contexte = SituationPublicodes

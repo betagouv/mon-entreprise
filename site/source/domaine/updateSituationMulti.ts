@@ -14,14 +14,14 @@ import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 
 import { SimulationConfig } from '@/domaine/SimulationConfig'
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { omit } from '@/utils'
 
 export function updateSituationMulti(
 	config: SimulationConfig,
-	currentSituation: Situation,
+	currentSituation: SituationPublicodes,
 	amendement: Record<DottedName, PublicodesExpression | undefined>
-): Situation {
+): SituationPublicodes {
 	const [àAjuster, àEffacer] = partition(amendement, isUndefined) as [
 		Record<DottedName, PublicodesExpression>,
 		Record<DottedName, undefined>,

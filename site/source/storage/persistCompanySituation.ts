@@ -1,7 +1,7 @@
 import { Store } from 'redux'
 
 import { Action } from '@/store/actions/actions'
-import { RootState, Situation } from '@/store/reducers/rootReducer'
+import { RootState, SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'
@@ -27,6 +27,6 @@ export function retrievePersistedCompanySituation() {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 
 	return serializedState && serializedState !== 'undefined'
-		? (JSON.parse(serializedState) as Situation)
+		? (JSON.parse(serializedState) as SituationPublicodes)
 		: undefined
 }
