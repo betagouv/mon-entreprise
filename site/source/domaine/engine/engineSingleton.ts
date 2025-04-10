@@ -3,7 +3,7 @@ import rules, { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, Unit } from 'publicodes'
 
 import { engineFactory } from '@/components/utils/EngineContext'
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import ruleTranslations from '@/locales/rules-en.yaml'
 import translateRules from '@/locales/translateRules'
 
@@ -26,7 +26,7 @@ export function resetPublicodesEngine(): void {
 }
 
 export const evalueAvecPublicodes = <TypeRetour>(
-	situation: Situation,
+	situation: SituationPublicodes,
 	règle: PublicodesExpression,
 	unité?: Unit
 ) =>

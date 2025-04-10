@@ -2,6 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 import { buildSituationFromObject } from '@/utils/publicodes'
@@ -28,6 +29,7 @@ export type Action =
 			| typeof batchUpdateSituation
 			| typeof questionsSuivantes
 			| typeof applicabilitéDesQuestionsRépondues
+			| typeof miseÀJourSituation
 	  >
 	| CompanyActions
 	| HiringChecklistAction
@@ -150,3 +152,9 @@ export const answerBatchQuestion = (
 	dottedName: DottedName,
 	value: Record<string, PublicodesExpression>
 ) => batchUpdateSituation(buildSituationFromObject(dottedName, value))
+
+export const miseÀJourSituation = (situation: SituationPublicodes) =>
+	({
+		type: 'MISE_À_JOUR_SITUATION',
+		payload: { situation },
+	}) as const

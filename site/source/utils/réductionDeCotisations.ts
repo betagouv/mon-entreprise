@@ -4,7 +4,7 @@ import Engine, { PublicodesExpression } from 'publicodes'
 import { AnyAction, Dispatch } from 'redux'
 
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 /********************************************************************/
@@ -52,7 +52,7 @@ export type Options = {
 
 export type RégularisationMethod = 'annuelle' | 'progressive'
 
-export type SituationType = Situation & {
+export type SituationType = SituationPublicodes & {
 	[heuresSupplémentairesDottedName]?: {
 		explanation: {
 			nodeValue: number
@@ -629,7 +629,7 @@ const getSMICMensuelAvecOptions = (
 		[rémunérationBruteDottedName]: rémunérationBrute,
 		[heuresSupplémentairesDottedName]: options.heuresSupplémentaires,
 		[heuresComplémentairesDottedName]: options.heuresComplémentaires,
-	} as Situation
+	} as SituationPublicodes
 
 	const SMICMensuel = engine.evaluate({
 		valeur: 'salarié . temps de travail . SMIC',

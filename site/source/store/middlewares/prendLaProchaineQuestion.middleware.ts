@@ -17,7 +17,7 @@ import {
 import {
 	RootState,
 	SimulationConfig,
-	Situation,
+	SituationPublicodes,
 } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 import {
@@ -28,7 +28,8 @@ import { complement } from '@/utils/complement'
 
 let lastSimulation: Simulation | null = null
 let lastConfig: SimulationConfig | null = null
-let lastSituationsAvecContextes: NonEmptyArray<Situation> | null = null
+let lastSituationsAvecContextes: NonEmptyArray<SituationPublicodes> | null =
+	null
 let engines: NonEmptyArray<Engine> | null = null
 
 export const prendLaProchaineQuestionMiddleware =
@@ -69,10 +70,10 @@ export const prendLaProchaineQuestionMiddleware =
 
 			const situationAChangé =
 				!!lastSituationsAvecContextes &&
-				!deepEql<NonEmptyArray<Situation>, NonEmptyArray<Situation>>(
-					situationsAvecContextes,
-					lastSituationsAvecContextes
-				)
+				!deepEql<
+					NonEmptyArray<SituationPublicodes>,
+					NonEmptyArray<SituationPublicodes>
+				>(situationsAvecContextes, lastSituationsAvecContextes)
 
 			if (!lastSituationsAvecContextes || situationAChangé) {
 				lastSituationsAvecContextes = situationsAvecContextes

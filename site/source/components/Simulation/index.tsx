@@ -1,3 +1,4 @@
+import { Option } from 'effect'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
@@ -10,7 +11,9 @@ import ShareOrSaveSimulationBanner, {
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { ilYADesQuestionsSelector } from '@/store/selectors/ilYADesQuestions.selector'
+import { Situation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
+import { Action } from '@/store/actions/actions'
+import { RootState } from '@/store/reducers/rootReducer'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
 import { TrackPage } from '../ATInternetTracking'
@@ -19,6 +22,7 @@ import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
 import PreviousSimulationBanner from './PreviousSimulationBanner'
+import { QuestionQuelconque } from './Question'
 import { Questions } from './Questions'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
@@ -36,7 +40,29 @@ const StyledGrid = styled(Grid)`
 	}
 `
 
-type SimulationProps = {
+/**
+ * Adaptateur pour connecter les questions à un store Redux
+ * ou toute autre source de données et méthode de mise à jour
+ *
+ * @template S Type de la situation
+ * @template A Type de l'action générée
+ */
+export interface SituationStoreAdapter<
+	S extends Situation = Situation,
+	A extends Action = Action,
+> {
+	/** Sélecteur pour obtenir la situation actuelle depuis le state global (Option) */
+	selector: (state: RootState) => Option.Option<S>
+	/** Fonction pour créer l'action de mise à jour de la situation */
+	updateActionCreator: (situation: S) => A
+}
+
+/**
+ * Props du composant Simulation
+ *
+ * @template S Type de la situation utilisée par les questions
+ */
+type SimulationProps<S extends Situation = Situation> = {
 	explanations?: React.ReactNode
 	results?: React.ReactNode
 	children?: React.ReactNode
@@ -48,9 +74,17 @@ type SimulationProps = {
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
+
+	// Nouvelles props pour les questions personnalisées
+	/** Questions personnalisées à afficher */
+	questions?: Array<QuestionQuelconque<S>>
+	/** Adaptateur pour connecter les questions au store */
+	situationAdapter?: SituationStoreAdapter<S>
+	/** Afficher aussi les questions Publicodes générées automatiquement */
+	avecQuestionsPublicodes?: boolean
 }
 
-export default function Simulation({
+export default function Simulation<S extends Situation = Situation>({
 	explanations,
 	results,
 	children,
@@ -62,9 +96,11 @@ export default function Simulation({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
-}: SimulationProps) {
+	questions,
+	situationAdapter,
+	avecQuestionsPublicodes = true,
+}: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
-	const ilYADesQuestions = useSelector(ilYADesQuestionsSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
 	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
 
@@ -82,9 +118,14 @@ export default function Simulation({
 								<FromTop>{results}</FromTop>
 							</div>
 							{entrepriseSelection && <EntrepriseSelection />}
-							{ilYADesQuestions && (
-								<Questions customEndMessages={customEndMessages} />
-							)}
+
+							{/* Questions (personnalisées et/ou Publicodes) */}
+							<Questions
+								questions={questions}
+								situationAdapter={situationAdapter}
+								avecQuestionsPublicodes={avecQuestionsPublicodes}
+								customEndMessages={customEndMessages}
+							/>
 						</>
 					)}
 					<Spacing md />

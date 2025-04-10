@@ -5,15 +5,15 @@ import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 
 import { SimulationConfig } from '@/domaine/SimulationConfig'
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ImmutableType } from '@/types/utils'
 
 export function updateSituationMultiple(
 	config: ImmutableType<SimulationConfig>,
-	currentSituation: Situation,
+	currentSituation: SituationPublicodes,
 	préfixe: DottedName,
 	valeurs: Record<string, PublicodesExpression>
-): Situation {
+): SituationPublicodes {
 	const nouvellesValeurs = pipe(
 		valeurs,
 		R.mapKeys((suffixe) => `${préfixe} . ${suffixe}`),

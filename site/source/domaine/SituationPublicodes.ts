@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import { ASTNode, PublicodesExpression } from 'publicodes'
 
-export type Situation = Partial<
+export type SituationPublicodes = Partial<
 	Record<DottedName, PublicodesExpression | ASTNode>
 >

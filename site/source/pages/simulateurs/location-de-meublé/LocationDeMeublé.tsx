@@ -1,4 +1,4 @@
-import { Either, Match, pipe } from 'effect'
+import { Either, Match, Option, pipe } from 'effect'
 import { DottedName } from 'modele-social'
 import { useCallback, useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -11,25 +11,68 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
+	SituationStoreAdapter,
 } from '@/components/Simulation'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { SimulationImpossible } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
+import { SituationLocationCourteDuree } from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import { eurosParAn } from '@/domaine/Montant'
-import { setRecettesNumber } from '@/store/slices/locationDeMeubleSlice'
+import { RootState } from '@/store/reducers/rootReducer'
+import {
+	initialLocationDeMeubleState,
+	setRecettesNumber,
+	setSituation,
+} from '@/store/slices/locationDeMeubleSlice'
 import {
 	activeLocationDeMeuble,
 	selectLocationDeMeubleCotisations,
 	selectLocationDeMeubleRevenuNet,
+	selectLocationDeMeubleSituation,
 } from '@/store/slices/simulateursSlice'
 
 import { ObjectifCotisations } from './ObjectifCotisations'
 import { ObjectifRevenuNet } from './ObjectifRevenuNet'
+import {
+	questionEstAlsaceMoselle,
+	questionPremiereAnnee,
+	questionRegimeCotisation,
+} from './questions'
+
+/**
+ * Adaptateur pour connecter les questions au store de location meublée
+ */
+const locationMeubleAdapter: SituationStoreAdapter<SituationLocationCourteDuree> =
+	{
+		// Sélecteur retournant un Option de la situation
+		selector: (state: RootState) => {
+			const situation = selectLocationDeMeubleSituation(state)
+
+			return situation ? Option.some(situation) : Option.none()
+		},
+
+		// Action creator pour mettre à jour la situation
+		updateActionCreator: (situation: SituationLocationCourteDuree) =>
+			setSituation(situation),
+	}
 
 export default function LocationDeMeublé() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
+		// Active le simulateur de location meublée
 		dispatch(activeLocationDeMeuble())
+
+		// Initialise la situation avec les valeurs par défaut si elle n'existe pas déjà
+		const locationMeubleSituation = selectLocationDeMeubleSituation({
+			simulateurs: {
+				locationDeMeuble: initialLocationDeMeubleState,
+				meta: { simulateurActif: 'location-de-meuble' },
+			},
+		} as RootState)
+
+		if (!locationMeubleSituation) {
+			dispatch(setSituation(initialLocationDeMeubleState))
+		}
 	}, [dispatch])
 
 	const handlePublicodeRecettesChange = useCallback(
@@ -45,7 +88,17 @@ export default function LocationDeMeublé() {
 	const revenuNet = useSelector(selectLocationDeMeubleRevenuNet)
 
 	return (
-		<Simulation entrepriseSelection={false}>
+		<Simulation
+			entrepriseSelection={false}
+			// Nouvelles props pour les questions personnalisées
+			questions={[
+				questionRegimeCotisation,
+				questionEstAlsaceMoselle,
+				questionPremiereAnnee,
+			]}
+			situationAdapter={locationMeubleAdapter}
+			avecQuestionsPublicodes={false}
+		>
 			<SimulateurWarning simulateur="location-de-logement-meublé" />
 			<SimulationGoals legend="Montant de votre loyer net">
 				<SimulationGoal
