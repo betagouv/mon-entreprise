@@ -8,6 +8,7 @@ import {
 import { EuroParAn, eurosParAn } from '@/domaine/Montant'
 
 export const initialLocationDeMeubleState: SituationLocationCourteDuree = {
+	_tag: 'Situation',
 	recettes: Option.none(),
 	regimeCotisation: Option.none(),
 	estAlsaceMoselle: Option.none(),
@@ -43,6 +44,13 @@ export const locationDeMeubleSlice = createSlice({
 			state.premièreAnnée = action.payload
 		},
 
+		setSituation: (
+			state,
+			action: PayloadAction<SituationLocationCourteDuree>
+		) => {
+			return action.payload
+		},
+
 		reset: () => initialLocationDeMeubleState,
 	},
 })
@@ -52,6 +60,7 @@ export const {
 	setRegimeCotisation,
 	setEstAlsaceMoselle,
 	setPremiereAnnee,
+	setSituation,
 	reset,
 } = locationDeMeubleSlice.actions
 

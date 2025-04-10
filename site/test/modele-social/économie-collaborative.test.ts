@@ -2,9 +2,9 @@ import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 
-const situationParDéfaut = {} satisfies Situation
+const situationParDéfaut = {} satisfies SituationPublicodes
 
 describe('Économie collaborative', () => {
 	describe('Location de meublé', () => {
