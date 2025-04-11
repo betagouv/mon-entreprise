@@ -948,7 +948,7 @@ pages:
         que nous développions un nouveau simulateur, laissez-nous message en
         cliquant sur le bouton "<1></1>" à droite de votre écran.</1>
       codeDuTravailNumeriqueCard:
-        aria-label: Code du travail numérique
+        aria-label: Code du travail numérique, en savoir plus
         body: Pour toutes vos questions en droit du travail, rendez-vous sur le site
           Code du travail numérique
         cta: En savoir plus
