@@ -64,8 +64,8 @@ export function LastYearIndicator({
 	return (
 		<>
 			<H2>Retour sur l'année {lastYear.date.slice(0, 4)}</H2>
-			<Grid container columnSpacing={4}>
-				<Grid item xs={12} sm={6} md={4}>
+			<Grid container columnSpacing={4} role="list">
+				<Grid item xs={12} sm={6} md={4} role="listitem">
 					<Message border={false} icon={<Emoji emoji="🛎️" />}>
 						<Intro>
 							<Strong>
@@ -75,7 +75,7 @@ export function LastYearIndicator({
 						</Intro>
 					</Message>
 				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
+				<Grid item xs={12} sm={6} md={4} role="listitem">
 					<Message
 						border={false}
 						icon={<Emoji emoji={emojiSatisfaction(satisfactionRate)} />}
@@ -87,7 +87,7 @@ export function LastYearIndicator({
 					</Message>
 				</Grid>
 
-				<Grid item xs={12} sm={6} md={4}>
+				<Grid item xs={12} sm={6} md={4} role="listitem">
 					<Message border={false} icon={<Emoji emoji="🏇" />}>
 						<Intro>
 							<Strong>{conversionRate}</Strong> taux de conversion
@@ -95,7 +95,7 @@ export function LastYearIndicator({
 					</Message>
 				</Grid>
 
-				<Grid item xs={12} sm={6} md={4}>
+				<Grid item xs={12} sm={6} md={4} role="listitem">
 					<Message border={false} icon={<Emoji emoji="📈" />}>
 						<Body>
 							<Strong>{formatIndicator(visitesLastYear, language)}</Strong>{' '}
