@@ -12,7 +12,7 @@ describe('Secondary pages', function () {
 
 	it('Statistics page should be RGAA compliant', function () {
 		cy.visit('/stats')
-		cy.contains('Activer le mode accessibilité').click()
+		cy.contains('Activer le mode accessibilité pour cette section').click()
 		cy.get('table').should('be.visible')
 		checkA11Y()
 	})
