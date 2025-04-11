@@ -22,7 +22,7 @@ export function CodeDuTravailNumeriqueCard() {
 			)}
 			aria-label={t(
 				'pages.assistants.pour-mon-entreprise.codeDuTravailNumeriqueCard.aria-label',
-				'Code du travail , en savoir plus'
+				'Code du travail numérique, en savoir plus'
 			)}
 			href="https://code.travail.gouv.fr/"
 		>
