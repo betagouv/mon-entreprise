@@ -7,7 +7,7 @@ import { Button } from '@/design-system/buttons'
 import { Emoji } from '@/design-system/emoji'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
-import { Li, Ol } from '@/design-system/typography/list'
+import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useFetchData } from '@/hooks/useFetchData'
 
@@ -68,11 +68,11 @@ function Pagination({ title, items }: PaginationProps) {
 
 	return (
 		<nav aria-label={`${title} : menu de navigation paginée`}>
-			<Ol>
+			<Ul>
 				{items.slice(currentPage * 10, (currentPage + 1) * 10).map((item) => (
 					<Issue key={`issue-${item.number}`} {...item} />
 				))}
-			</Ol>
+			</Ul>
 			<Pager>
 				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
 					<li key={i}>
