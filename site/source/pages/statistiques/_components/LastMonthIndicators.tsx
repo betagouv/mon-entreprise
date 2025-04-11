@@ -43,8 +43,8 @@ export function MainIndicators({
 	return (
 		<>
 			<H2>Notre impact en {formatMonth(lastMonth.date, language)}</H2>
-			<Grid container spacing={4}>
-				<Grid item xs={12} md={6}>
+			<Grid container spacing={4} role="list">
+				<Grid item xs={12} md={6} role="listitem">
 					<Message border={false} icon={<Emoji emoji="🛎️" />}>
 						<Intro>
 							<Strong>
@@ -63,7 +63,7 @@ export function MainIndicators({
 					</Message>
 				</Grid>
 				{satisfactionLastMonth && (
-					<Grid item xs={12} md={6}>
+					<Grid item xs={12} md={6} role="listitem">
 						<Message
 							border={false}
 							type={messageTypeSatisfaction(satisfactionLastMonth.moyenne)}
