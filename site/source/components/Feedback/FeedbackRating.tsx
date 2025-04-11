@@ -19,39 +19,35 @@ const FeedbackRating = ({
 			role="list"
 		>
 			<div role="listitem">
-				<EmojiButton onClick={() => submitFeedback('mauvais')}>
-					<Emoji
-						emoji="🙁"
-						aria-label="Pas satisfait, envoyer cette réponse"
-						aria-hidden={false}
-					/>
+				<EmojiButton
+					onClick={() => submitFeedback('mauvais')}
+					aria-label="Pas satisfait, envoyer cette réponse"
+				>
+					<Emoji emoji="🙁" />
 				</EmojiButton>
 			</div>
 			<div role="listitem">
-				<EmojiButton onClick={() => submitFeedback('moyen')}>
-					<Emoji
-						emoji="😐"
-						aria-label="Moyennement satisfait, envoyer cette réponse"
-						aria-hidden={false}
-					/>
+				<EmojiButton
+					onClick={() => submitFeedback('moyen')}
+					aria-label="Moyennement satisfait, envoyer cette réponse"
+				>
+					<Emoji emoji="😐" />
 				</EmojiButton>
 			</div>
 			<div role="listitem">
-				<EmojiButton onClick={() => submitFeedback('bien')}>
-					<Emoji
-						emoji="🙂"
-						aria-label="Plutôt satisfait, envoyer cette réponse"
-						aria-hidden={false}
-					/>
+				<EmojiButton
+					onClick={() => submitFeedback('bien')}
+					aria-label="Plutôt satisfait, envoyer cette réponse"
+				>
+					<Emoji emoji="🙂" />
 				</EmojiButton>
 			</div>
 			<div role="listitem">
-				<EmojiButton onClick={() => submitFeedback('très bien')}>
-					<Emoji
-						emoji="😀"
-						aria-label="Très satisfait, envoyer cette réponse"
-						aria-hidden={false}
-					/>
+				<EmojiButton
+					onClick={() => submitFeedback('très bien')}
+					aria-label="Très satisfait, envoyer cette réponse"
+				>
+					<Emoji emoji="😀" />
 				</EmojiButton>
 			</div>
 		</div>
