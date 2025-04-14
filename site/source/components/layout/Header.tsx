@@ -62,16 +62,12 @@ export default function Header() {
 							<Switch
 								isSelected={darkMode}
 								onChange={setDarkMode}
-								role="checkbox"
-								aria-label={
-									darkMode
-										? t(
-												'navbar.deactivate-darkmode',
-												'Désactiver le mode sombre'
-										  )
-										: t('navbar.activate-darkmode', 'Activer le mode sombre')
-								}
-							/>
+								srOnlyLabel
+								/* Need this useless aria-label to silence a React-Aria warning */
+								aria-label=""
+							>
+								{t('navbar.activate-darkmode', 'Activer le mode sombre')}
+							</Switch>
 							<Emoji emoji="🌙" aria-hidden />
 						</div>
 
