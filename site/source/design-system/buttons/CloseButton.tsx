@@ -11,10 +11,16 @@ export default styled(Button).attrs({
 	@media print {
 		display: none !important;
 	}
-	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	height: 1.5rem;
-	line-height: 1rem;
 	width: 1.5rem;
 	padding: 0;
 	margin-left: 1rem;
+
+	img {
+		width: 0.7em !important;
+		height: 0.7em !important;
+	}
 `
