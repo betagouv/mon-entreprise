@@ -114,14 +114,14 @@ export function SimulationGoal({
 									</Grid>
 								</Grid>
 							) : (
-								<RuleLink
+								<RuleLinkAccessible
 									id={`${dottedName.replace(/\s|\./g, '_')}-label`}
 									dottedName={dottedName}
 								>
 									<StyledLabel htmlFor={normalizeRuleName.Input(dottedName)}>
 										{label || rule.title}
 									</StyledLabel>
-								</RuleLink>
+								</RuleLinkAccessible>
 							)}
 
 							{rule.rawNode.résumé && (
@@ -200,4 +200,10 @@ const StyledBody = styled(Body)`
 
 const StyledLabel = styled.label`
 	cursor: pointer;
+`
+
+const RuleLinkAccessible = styled(RuleLink)`
+	&:hover {
+		color: ${({ theme }) => theme.colors.extended.grey[300]};
+	}
 `
