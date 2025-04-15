@@ -84,6 +84,8 @@ button:enabled {
 
 
 .skip-link {
+	display: flex;
+	gap: 1rem;
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -92,16 +94,20 @@ button:enabled {
 	clip: rect(1px, 1px, 1px, 1px);
 	font-family: 'Roboto';
 	font-weight: bold;
+	list-style-type: "";
 }
 
-.skip-link:focus {
+.skip-link:has(a:focus) {
 	z-index: 999;
 	width: auto;
 	height: auto;
 	clip: auto;
 	background-color: #2E5FB6;
-	color: #FFFFFF;
 	padding: 1rem;
+}
+
+.skip-link a {
+	color: #FFFFFF;
 }
 
 figure {

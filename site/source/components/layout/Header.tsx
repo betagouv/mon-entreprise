@@ -33,9 +33,21 @@ export default function Header() {
 					zIndex: '1',
 				}}
 			>
-				<a href={`${fullURL}#main`} className="skip-link print-hidden">
-					{t('Aller au contenu principal')}
-				</a>
+				<ul className="skip-link print-hidden">
+					<li>
+						<a href={`${fullURL}#main`}>{t('Aller au contenu principal')}</a>
+					</li>
+					<li>
+						<a
+							href={`${fullURL}#footer`}
+							aria-label={t(
+								'Passer le contenu principal et aller directement au pied de page'
+							)}
+						>
+							{t('Aller directement au pied de page')}
+						</a>
+					</li>
+				</ul>
 				<Container>
 					<StyledHeader>
 						<Link

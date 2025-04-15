@@ -1,7 +1,6 @@
 import { ErrorBoundary } from '@sentry/react'
 import rules from 'modele-social'
 import { StrictMode, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
@@ -16,7 +15,6 @@ import {
 } from '@/components/utils/EngineContext'
 import { Container } from '@/design-system/layout'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
-import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
@@ -91,10 +89,6 @@ const Router = () => {
 const App = () => {
 	const { relativeSitePaths } = useSitePaths()
 
-	const { t } = useTranslation()
-
-	const fullURL = useGetFullURL()
-
 	useSaveAndRestoreScrollPosition()
 	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
@@ -117,15 +111,6 @@ const App = () => {
 					flexDirection: 'column',
 				}}
 			>
-				<a
-					href={`${fullURL}#footer`}
-					aria-label={t(
-						'Passer le contenu principal et aller directement au pied de page'
-					)}
-					className="skip-link print-hidden"
-				>
-					{t('Aller directement au pied de page')}
-				</a>
 				<Container>
 					<Routes>
 						<Route index element={<Landing />} />
