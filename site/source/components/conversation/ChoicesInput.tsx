@@ -198,7 +198,7 @@ function RadioChoices<Names extends string = DottedName>({
 							</StyledSubRadioGroup>
 						</div>
 					) : (
-						<span>
+						<div>
 							<Radio
 								// eslint-disable-next-line jsx-a11y/no-autofocus
 								autoFocus={
@@ -227,17 +227,18 @@ function RadioChoices<Names extends string = DottedName>({
 							>
 								{node.title}{' '}
 								{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}{' '}
-								{type !== 'toggle' && (
-									<ExplicableRule
-										light
-										dottedName={node.dottedName as DottedName}
-										aria-label={t("Plus d'informations sur {{ title }}", {
-											title: node.title,
-										})}
-									/>
-								)}
 							</Radio>
-						</span>
+
+							{type !== 'toggle' && (
+								<ExplicableRule
+									light
+									dottedName={node.dottedName as DottedName}
+									aria-label={t("Plus d'informations sur {{ title }}", {
+										title: node.title,
+									})}
+								/>
+							)}
+						</div>
 					)}
 				</Fragment>
 			))}
