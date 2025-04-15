@@ -103,7 +103,7 @@ export function LastYearIndicator({
 						</Body>
 					</Message>
 				</Grid>
-				<Grid item xs={12} sm={6} md={4}>
+				<Grid item xs={12} sm={6} md={4} role="listitem">
 					<Message
 						border={false}
 						icon={<Emoji emoji="👋" />}
