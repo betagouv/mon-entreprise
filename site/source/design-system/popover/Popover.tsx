@@ -67,11 +67,7 @@ export default function Popover(
 	}
 
 	return (
-		<OverlayContainer
-			aria-modal={true}
-			role="dialog"
-			aria-label={t('Fond de la boite de dialogue')}
-		>
+		<OverlayContainer>
 			<Underlay {...underlayProps} $offsetTop={offsetTop}>
 				<FromBottom>
 					<Container backgroundColor={() => 'transparent'}>
