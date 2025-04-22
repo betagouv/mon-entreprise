@@ -112,7 +112,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 						/* Need this useless aria-label to silence a React-Aria warning */
 						aria-label=""
 					>
-						Activer le mode accessibilité sur cette section
+						<Trans>Activer le mode accessibilité sur cette section</Trans>
 					</Switch>
 				</Body>
 				<H3>Visites</H3>
