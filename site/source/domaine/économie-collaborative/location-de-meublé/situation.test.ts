@@ -3,18 +3,20 @@ import { describe, expectTypeOf, it } from 'vitest'
 
 import { EuroParAn, eurosParAn } from '@/domaine/Montant'
 
-import { SituationLocationCourteDuree, SituationLocationCourteDureeValide } from './situation'
+import { RegimeCotisation, SituationLocationCourteDuree, SituationLocationCourteDureeValide } from './situation'
 
 describe('SituationLocationCourteDuree', () => {
 	it('accepte les situations valides', () => {
 		const situationComplete: SituationLocationCourteDureeValide = {
+				_tag: 'Situation',
 			recettes: Option.some(eurosParAn(25_000)) as Option.Some<EuroParAn>,
-			regimeCotisation: Option.some('micro-entreprise'),
+			regimeCotisation: Option.some(RegimeCotisation.microEntreprise),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),
 		}
 
 		const situationPartielle: SituationLocationCourteDureeValide = {
+				_tag: 'Situation',
 			recettes: Option.some(eurosParAn(15_000)) as Option.Some<EuroParAn>,
 			regimeCotisation: Option.none(),
 			estAlsaceMoselle: Option.none(),

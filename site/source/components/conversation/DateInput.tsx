@@ -1,27 +1,44 @@
+import { ASTNode, EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { lazy, Suspense, useCallback, useMemo } from 'react'
 import { styled } from 'styled-components'
 
-import { InputProps } from '@/components/conversation/RuleInput'
+import { useEngine } from '@/components/utils/EngineContext'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
 
 import Skeleton from '../ui/Skeleton'
-import { useEngine } from '../utils/EngineContext'
 import InputSuggestions from './InputSuggestions'
 
 const DateField = lazy(() => import('@/design-system/field/DateField'))
 
-export default function DateInput({
-	suggestions,
+interface DateInputProps {
+	value: EvaluatedNode['nodeValue']
+	onChange: (value: PublicodesExpression | undefined) => void
+	missing?: boolean
+	hideDefaultValue?: boolean
+	onSubmit?: (source?: string) => void
+	suggestions?: Record<string, ASTNode>
+
+	title?: string
+	type: DateFieldProps['type']
+
+	aria?: {
+		labelledby?: string
+		label?: string
+	}
+}
+
+export const DateInput = ({
+	suggestions = {},
 	onChange,
 	missing,
 	title,
 	hideDefaultValue,
 	onSubmit,
-	required,
 	value,
 	type,
-}: InputProps & { type: DateFieldProps['type'] }) {
+	aria = {},
+}: DateInputProps) => {
 	const engine = useEngine()
 
 	const convertDate = (val?: unknown) => {
@@ -65,16 +82,16 @@ export default function DateInput({
 						}}
 					/>
 				)}
-				<Suspense fallback={<DateFieldFallback />}>
+				<Suspense fallback={<Wrapper />}>
 					<DateField
+						aria-label={aria.label ?? title}
+						aria-labelledby={aria.labelledby}
 						defaultSelected={
 							(missing && hideDefaultValue) || isNaN(+dateValue)
 								? undefined
 								: dateValue
 						}
-						isRequired={required}
 						onChange={handleDateChange}
-						aria-label={title}
 						label={title}
 						type={type}
 					/>
@@ -84,12 +101,8 @@ export default function DateInput({
 		</div>
 	)
 }
-function DateFieldFallback() {
-	return <Wrapper />
-}
 
 const Wrapper = styled(Skeleton)`
 	width: 218px;
-
 	height: 3.5rem;
 `

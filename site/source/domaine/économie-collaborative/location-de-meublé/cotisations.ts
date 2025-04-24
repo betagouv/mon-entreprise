@@ -15,7 +15,7 @@ import {
 import { EuroParAn } from '@/domaine/Montant'
 
 export const DEFAULTS = {
-	RÉGIME_PAR_DÉFAUT: 'travailleur-indépendant' as RegimeCotisation,
+	RÉGIME_PAR_DÉFAUT: RegimeCotisation.travailleurIndependant,
 	EST_ALSACE_MOSELLE: false,
 	PREMIERE_ANNEE: false,
 }
@@ -43,11 +43,11 @@ export function calculeCotisations(
 	)
 
 	switch (regimeCotisation) {
-		case 'régime-général':
+		case RegimeCotisation.regimeGeneral:
 			return calculeCotisationsRégimeGénéral(situation)
-		case 'micro-entreprise':
+		case RegimeCotisation.microEntreprise:
 			return calculeCotisationsMicroEntreprise(situation)
-		case 'travailleur-indépendant':
+		case RegimeCotisation.travailleurIndependant:
 			return calculeCotisationsTravailleurIndépendant(situation)
 	}
 }

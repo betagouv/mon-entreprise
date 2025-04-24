@@ -1,19 +1,15 @@
 import { getDocumentationSiteMap, RulePage } from '@publicodes/react-ui'
+import { Item } from '@react-stately/collections'
 import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { ComponentProps, lazy, Suspense, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import {
-	Navigate,
-	Route,
-	Routes,
-	useLocation,
-	useParams,
-} from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { References } from '@/components/References'
 import { FromBottom } from '@/components/ui/animate'
 import Markdown from '@/components/utils/Markdown/Markdown'
@@ -30,7 +26,6 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { RootState } from '@/store/reducers/rootReducer'
 
-import { TrackPage } from '../components/ATInternetTracking'
 import RuleLink from '../components/RuleLink'
 
 const LazySearchRules = lazy(() => import('@/components/search/SearchRules'))

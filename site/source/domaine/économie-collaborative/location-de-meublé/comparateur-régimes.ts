@@ -29,15 +29,15 @@ export const compareRégimes = (
 	pipe(
 		[
 			{
-				régime: 'régime-général' as const,
+				régime: RegimeCotisation.regimeGeneral,
 				calcul: calculeCotisationsRégimeGénéral,
 			},
 			{
-				régime: 'micro-entreprise' as const,
+				régime: RegimeCotisation.microEntreprise,
 				calcul: calculeCotisationsMicroEntreprise,
 			},
 			{
-				régime: 'travailleur-indépendant' as const,
+				régime: RegimeCotisation.travailleurIndependant,
 				calcul: calculeCotisationsTravailleurIndépendant,
 			},
 		],

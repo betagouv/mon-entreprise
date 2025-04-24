@@ -3,7 +3,10 @@ import { describe, expect, expectTypeOf, it } from 'vitest'
 
 import { estActiviteProfessionnelle } from '@/domaine/économie-collaborative/location-de-meublé/activite'
 import { calculeCotisations } from '@/domaine/économie-collaborative/location-de-meublé/cotisations'
-import { SituationLocationCourteDureeValide } from '@/domaine/économie-collaborative/location-de-meublé/situation'
+import {
+	RegimeCotisation,
+	SituationLocationCourteDureeValide,
+} from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import {
 	abattement,
 	EuroParAn,
@@ -13,7 +16,6 @@ import {
 	plus,
 } from '@/domaine/Montant'
 
-import { RegimeCotisation } from '.'
 import { SEUIL_PROFESSIONNALISATION } from './constantes'
 import {
 	ABATTEMENT_REGIME_GENERAL,
@@ -26,6 +28,7 @@ describe('Location de meublé de courte durée', () => {
 	describe('estActiviteProfessionnelle', () => {
 		it('est faux si les recettes sont inférieures au seuil de professionalisation', () => {
 			const situation: SituationLocationCourteDureeValide = {
+				_tag: 'Situation',
 				recettes: Option.some(
 					pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
 				) as Option.Some<EuroParAn>,
@@ -39,6 +42,7 @@ describe('Location de meublé de courte durée', () => {
 
 		it('est vrai si les recettes sont égales au seuil de professionalisation', () => {
 			const situation: SituationLocationCourteDureeValide = {
+				_tag: 'Situation',
 				recettes: Option.some(
 					SEUIL_PROFESSIONNALISATION
 				) as Option.Some<EuroParAn>,
@@ -52,6 +56,7 @@ describe('Location de meublé de courte durée', () => {
 
 		it('est vrai si les recettes sont supérieures au seuil de professionalisation', () => {
 			const situation: SituationLocationCourteDureeValide = {
+				_tag: 'Situation',
 				recettes: Option.some(
 					pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(1)))
 				) as Option.Some<EuroParAn>,
@@ -68,10 +73,11 @@ describe('Location de meublé de courte durée', () => {
 		describe('cas généraux', () => {
 			it('retourne une erreur si recettes < seuil de professionnalisation', () => {
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(
 						pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
 					) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('régime-général'),
+					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
 				}
@@ -83,10 +89,11 @@ describe('Location de meublé de courte durée', () => {
 
 			it('retourne une erreur si régime-général et recettes > plafond', () => {
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(
 						pipe(PLAFOND_REGIME_GENERAL, plus(eurosParAn(1)))
 					) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('régime-général'),
+					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
 				}
@@ -100,8 +107,9 @@ describe('Location de meublé de courte durée', () => {
 			it('devrait calculer correctement les cotisations avec abattement standard', () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('régime-général'),
+					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(false),
 				}
@@ -127,8 +135,9 @@ describe('Location de meublé de courte durée', () => {
 			it("devrait appliquer le taux Alsace-Moselle quand l'option est activée", () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('régime-général'),
+					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(true),
 					premièreAnnée: Option.some(false),
 				}
@@ -154,8 +163,9 @@ describe('Location de meublé de courte durée', () => {
 			it('devrait appliquer le calcul spécifique pour la première année', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('régime-général'),
+					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
 				}
@@ -180,8 +190,9 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(100)))
 
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('régime-général'),
+					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
 				}
@@ -207,8 +218,9 @@ describe('Location de meublé de courte durée', () => {
 			it("devrait appeler l'engine Publicodes avec les bons paramètres", () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('micro-entreprise'),
+					regimeCotisation: Option.some(RegimeCotisation.microEntreprise),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
 				}
@@ -225,8 +237,11 @@ describe('Location de meublé de courte durée', () => {
 			it("devrait appeler l'engine Publicodes avec les bons paramètres", () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
-					regimeCotisation: Option.some('travailleur-indépendant'),
+					regimeCotisation: Option.some(
+						RegimeCotisation.travailleurIndependant
+					),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
 				}
@@ -243,6 +258,7 @@ describe('Location de meublé de courte durée', () => {
 			it('devrait traiter le cas sans régime spécifié (utilisant travailleur-indépendant par défaut)', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
+					_tag: 'Situation',
 					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
 					regimeCotisation: Option.none(),
 					estAlsaceMoselle: Option.none(),
@@ -260,9 +276,10 @@ describe('Location de meublé de courte durée', () => {
 
 	describe('RegimeCotisation type', () => {
 		it('accepte les valeurs valides', () => {
-			const microEntreprise: RegimeCotisation = 'micro-entreprise'
-			const travailleurIndependant: RegimeCotisation = 'travailleur-indépendant'
-			const regimeGeneral: RegimeCotisation = 'régime-général'
+			const microEntreprise: RegimeCotisation = RegimeCotisation.microEntreprise
+			const travailleurIndependant: RegimeCotisation =
+				RegimeCotisation.travailleurIndependant
+			const regimeGeneral: RegimeCotisation = RegimeCotisation.regimeGeneral
 
 			expectTypeOf(microEntreprise).toMatchTypeOf<RegimeCotisation>()
 			expectTypeOf(travailleurIndependant).toMatchTypeOf<RegimeCotisation>()

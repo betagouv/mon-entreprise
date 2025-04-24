@@ -10,6 +10,7 @@ import { SituationLocationCourteDureeValide } from './situation'
 describe('estActiviteProfessionnelle', () => {
 	it('est faux si les recettes sont inférieures au seuil de professionalisation', () => {
 		const situation: SituationLocationCourteDureeValide = {
+			_tag: 'Situation',
 			recettes: Option.some(
 				pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
 			) as Option.Some<typeof SEUIL_PROFESSIONNALISATION>,
@@ -23,6 +24,7 @@ describe('estActiviteProfessionnelle', () => {
 
 	it('est vrai si les recettes sont égales au seuil de professionalisation', () => {
 		const situation: SituationLocationCourteDureeValide = {
+			_tag: 'Situation',
 			recettes: Option.some(SEUIL_PROFESSIONNALISATION) as Option.Some<
 				typeof SEUIL_PROFESSIONNALISATION
 			>,
@@ -36,6 +38,7 @@ describe('estActiviteProfessionnelle', () => {
 
 	it('est vrai si les recettes sont supérieures au seuil de professionalisation', () => {
 		const situation: SituationLocationCourteDureeValide = {
+			_tag: 'Situation',
 			recettes: Option.some(
 				pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(1)))
 			) as Option.Some<typeof SEUIL_PROFESSIONNALISATION>,

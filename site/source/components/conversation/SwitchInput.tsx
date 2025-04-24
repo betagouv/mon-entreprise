@@ -1,24 +1,33 @@
 import { Switch } from '@/design-system/switch'
 
-export const SwitchInput = (props: {
+interface SwitchInputProps {
 	onChange?: (isSelected: boolean) => void
 	defaultSelected?: boolean
 	label?: string
 	id?: string
 	key?: string
 	invertLabel?: boolean
-}) => {
-	const { onChange, id, label, defaultSelected, key, invertLabel } = props
+	'aria-label'?: string
+}
 
+export const SwitchInput = ({
+	onChange,
+	id,
+	label,
+	defaultSelected,
+	key,
+	invertLabel,
+	'aria-label': ariaLabel,
+}: SwitchInputProps) => {
 	return (
 		<Switch
 			defaultSelected={defaultSelected}
-			onChange={(isSelected: boolean) => onChange && onChange(isSelected)}
+			onChange={(isSelected: boolean) => onChange?.(isSelected)}
 			light
 			id={id}
 			key={key}
 			invertLabel={invertLabel}
-			aria-label={label}
+			aria-label={ariaLabel || label}
 		>
 			{label}
 		</Switch>

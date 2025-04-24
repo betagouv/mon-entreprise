@@ -2,6 +2,7 @@ import { Either, pipe } from 'effect'
 
 import { SEUIL_PROFESSIONNALISATION } from '@/domaine/économie-collaborative/location-de-meublé/constantes'
 import { RecettesInférieuresAuSeuilRequisPourCeRégime } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
+import { RegimeCotisation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
 import { estPlusPetitQue, EuroParAn, eurosParAn } from '@/domaine/Montant'
 import {
@@ -27,7 +28,7 @@ export function calculeCotisationsMicroEntreprise(
 			new RecettesInférieuresAuSeuilRequisPourCeRégime({
 				recettes,
 				seuil: SEUIL_PROFESSIONNALISATION,
-				régime: 'micro-entreprise',
+				régime: RegimeCotisation.microEntreprise,
 			})
 		)
 	}

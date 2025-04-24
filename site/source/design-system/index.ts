@@ -1,6 +1,7 @@
 export { Item } from '@react-stately/collections'
 export * from './accordion'
 export * as button from './buttons'
+export * from './InfoButton'
 export * from './chip'
 export * from './field'
 export { GlobalStyle } from './global-style'
