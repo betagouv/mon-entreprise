@@ -1,11 +1,11 @@
 import { Either, Match, Option, pipe } from 'effect'
 import { DottedName } from 'modele-social'
+import { PublicodesExpression } from 'publicodes'
 import { useCallback, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDansObjectifDeSimulateur'
-import { InputProps } from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue/Value'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
@@ -76,9 +76,9 @@ export default function LocationDeMeublé() {
 	}, [dispatch])
 
 	const handlePublicodeRecettesChange = useCallback(
-		(_name: DottedName, ...values: Parameters<InputProps['onChange']>) => {
-			if (typeof values[0] === 'object' && 'valeur' in values[0]) {
-				dispatch(setRecettesNumber(Number(values[0].valeur)))
+		(_name: DottedName, value?: PublicodesExpression) => {
+			if (typeof value === 'object' && 'valeur' in value) {
+				dispatch(setRecettesNumber(Number(value.valeur)))
 			}
 		},
 		[dispatch]

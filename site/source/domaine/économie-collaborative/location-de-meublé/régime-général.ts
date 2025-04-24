@@ -5,6 +5,7 @@ import {
 	RecettesInférieuresAuSeuilRequisPourCeRégime,
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
 } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
+import { RegimeCotisation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import {
 	abattement,
 	estPlusGrandQue,
@@ -52,7 +53,7 @@ export function calculeCotisationsRégimeGénéral(
 			new RecettesInférieuresAuSeuilRequisPourCeRégime({
 				recettes,
 				seuil: SEUIL_PROFESSIONNALISATION,
-				régime: 'régime-général',
+				régime: RegimeCotisation.regimeGeneral,
 			})
 		)
 	}
@@ -62,7 +63,7 @@ export function calculeCotisationsRégimeGénéral(
 			new RecettesSupérieuresAuPlafondAutoriséPourCeRégime({
 				recettes,
 				plafond: PLAFOND_REGIME_GENERAL,
-				régime: 'régime-général',
+				régime: RegimeCotisation.regimeGeneral,
 			})
 		)
 	}

@@ -6,14 +6,15 @@ import { calculeCotisations } from '@/domaine/économie-collaborative/location-d
 import { EuroParAn, eurosParAn, moins } from '@/domaine/Montant'
 
 import { calculeRevenuNet } from './revenu-net'
-import { SituationLocationCourteDureeValide } from './situation'
+import { RegimeCotisation, SituationLocationCourteDureeValide } from './situation'
 
 describe('calculeRevenuNet', () => {
 	it('devrait correctement calculer le revenu net avec Either', () => {
 		const recettes = eurosParAn(30_000)
 		const situation: SituationLocationCourteDureeValide = {
+				_tag: 'Situation',
 			recettes: Option.some(recettes) as Option.Some<EuroParAn>,
-			regimeCotisation: Option.some('régime-général'),
+			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 			estAlsaceMoselle: Option.some(false),
 			premièreAnnée: Option.some(false),
 		}
@@ -39,8 +40,9 @@ describe('calculeRevenuNet', () => {
 			moins(eurosParAn(1))
 		)
 		const situation: SituationLocationCourteDureeValide = {
+				_tag: 'Situation',
 			recettes: Option.some(recettesInferieures) as Option.Some<EuroParAn>,
-			regimeCotisation: Option.some('régime-général'),
+			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),
 		}

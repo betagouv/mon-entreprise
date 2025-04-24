@@ -1,10 +1,24 @@
-import { Evaluation } from 'publicodes'
+import { ASTNode, EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
 
 import { TextField } from '@/design-system/field'
+import { debounce } from '@/utils'
 
-import { debounce } from '../../utils'
-import { InputProps } from './RuleInput'
+interface TextInputProps {
+	value: EvaluatedNode['nodeValue']
+	onChange: (value: PublicodesExpression | undefined) => void
+	missing?: boolean
+	title?: string
+	description?: string
+	autoFocus?: boolean
+	onSubmit?: (source?: string) => void
+	suggestions?: Record<string, ASTNode>
+
+	aria?: {
+		labelledby?: string
+		label?: string
+	}
+}
 
 export default function TextInput({
 	onChange,
@@ -13,7 +27,8 @@ export default function TextInput({
 	title,
 	missing,
 	autoFocus,
-}: InputProps & { value: Evaluation<string> }) {
+	aria = {},
+}: TextInputProps) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (
@@ -30,6 +45,8 @@ export default function TextInput({
 				[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
 			}}
 			autoComplete="off"
+			aria-label={aria.label ?? title}
+			aria-labelledby={aria.labelledby}
 		/>
 	)
 }

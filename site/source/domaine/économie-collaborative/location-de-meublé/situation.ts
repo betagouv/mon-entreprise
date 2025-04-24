@@ -3,9 +3,9 @@ import { Option } from 'effect'
 import { EuroParAn } from '@/domaine/Montant'
 
 export enum RegimeCotisation {
-	'micro-entreprise' = 'micro-entreprise',
-	'travailleur-indépendant' = 'travailleur-indépendant',
-	'régime-général' = 'régime-général',
+	microEntreprise = 'micro-entreprise',
+	travailleurIndependant = 'travailleur-indépendant',
+	regimeGeneral = 'régime-général',
 }
 
 export interface Situation {

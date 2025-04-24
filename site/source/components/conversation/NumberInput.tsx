@@ -1,5 +1,10 @@
-import { NumberFieldProps } from '@react-types/numberfield'
-import { ASTNode, parseUnit, serializeUnit, Unit } from 'publicodes'
+import {
+	ASTNode,
+	parseUnit,
+	PublicodesExpression,
+	serializeUnit,
+	Unit,
+} from 'publicodes'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
@@ -10,7 +15,26 @@ import { debounce } from '@/utils'
 
 import localI18n from '../../locales/i18n'
 import InputSuggestions from './InputSuggestions'
-import { InputProps } from './RuleInput'
+
+interface NumberInputProps {
+	value: unknown
+	onChange: (value: PublicodesExpression | undefined) => void
+	missing?: boolean
+	onSubmit?: (source?: string) => void
+	suggestions?: Record<string, ASTNode>
+	showSuggestions?: boolean
+	unit?: Unit
+
+	id?: string
+	description?: string
+	formatOptions?: Intl.NumberFormatOptions
+	displayedUnit?: string
+
+	aria?: {
+		labelledby?: string
+		label?: string
+	}
+}
 
 export default function NumberInput({
 	suggestions,
@@ -22,10 +46,9 @@ export default function NumberInput({
 	formatOptions,
 	displayedUnit,
 	showSuggestions,
-	...fieldProps
-}: InputProps & {
-	unit?: Unit
-}) {
+	id,
+	aria,
+}: NumberInputProps) {
 	const unité = serializeUnit(unit)
 	const [currentValue, setCurrentValue] = useState<number | undefined>(
 		!missing && value != null && typeof value === 'number' ? value : undefined
@@ -33,6 +56,7 @@ export default function NumberInput({
 	const { i18n } = useTranslation()
 	const parsedDisplayedUnit = displayedUnit ? parseUnit(displayedUnit) : unit
 	const engine = useEngine()
+
 	useEffect(() => {
 		if (value !== currentValue) {
 			setCurrentValue(
@@ -41,32 +65,38 @@ export default function NumberInput({
 					: undefined
 			)
 		}
-	}, [value])
+	}, [value, missing])
 
-	if (parsedDisplayedUnit && parsedDisplayedUnit.numerators.includes('€')) {
+	const isCurrencyUnit =
+		parsedDisplayedUnit && parsedDisplayedUnit.numerators.includes('€')
+
+	if (isCurrencyUnit && parsedDisplayedUnit) {
 		parsedDisplayedUnit.numerators = parsedDisplayedUnit.numerators.filter(
 			(u) => u === '€'
 		)
-		formatOptions = {
-			style: 'currency',
-			currency: 'EUR',
-			minimumFractionDigits: 0,
-
-			...formatOptions,
-		}
-	} else {
-		formatOptions = {
-			style: 'decimal',
-			...formatOptions,
-		}
 	}
+
+	const completeFormatOptions = isCurrencyUnit
+		? {
+				style: 'currency',
+				currency: 'EUR',
+				minimumFractionDigits: 0,
+				...formatOptions,
+		  }
+		: {
+				style: 'decimal',
+				...formatOptions,
+		  }
+
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 
 	return (
 		<StyledNumberInput>
 			<NumberField
-				{...(fieldProps as NumberFieldProps)}
-				description=""
+				id={id}
+				aria-labelledby={aria?.labelledby}
+				aria-label={aria?.label}
+				description={''}
 				displayedUnit={
 					parsedDisplayedUnit &&
 					getSerializedUnit(
@@ -75,7 +105,7 @@ export default function NumberInput({
 						i18n.language
 					)
 				}
-				onChange={(valeur) => {
+				onChange={(valeur: number | undefined) => {
 					setCurrentValue(valeur)
 
 					if (valeur != null && unité) {
@@ -84,7 +114,7 @@ export default function NumberInput({
 						debouncedOnChange(valeur)
 					}
 				}}
-				formatOptions={formatOptions}
+				formatOptions={completeFormatOptions}
 				placeholder={
 					missing && value != null && typeof value === 'number'
 						? value
@@ -92,7 +122,7 @@ export default function NumberInput({
 				}
 				value={currentValue}
 			/>
-			{showSuggestions && (
+			{showSuggestions && suggestions && (
 				<InputSuggestions
 					className="print-hidden"
 					suggestions={suggestions}
