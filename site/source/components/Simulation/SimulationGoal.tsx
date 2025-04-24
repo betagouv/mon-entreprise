@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import RuleInput, { InputProps } from '@/components/conversation/RuleInput'
+import RuleInput from '@/components/conversation/RuleInput'
 import RuleLink from '@/components/RuleLink'
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
@@ -35,7 +35,7 @@ type SimulationGoalProps = {
 	round?: boolean
 	onUpdateSituation?: (
 		name: DottedName,
-		...rest: Parameters<InputProps['onChange']>
+		value?: PublicodesExpression
 	) => void
 }
 

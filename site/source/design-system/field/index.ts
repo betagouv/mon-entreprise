@@ -1,4 +1,6 @@
 export * from './Radio'
+export * from './ChoiceGroup'
+export * from './choix'
 export { default as Checkbox } from './Checkbox'
 export { default as NumberField } from './NumberField'
 export { default as SearchField } from './SearchField'

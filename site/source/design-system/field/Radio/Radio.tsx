@@ -14,14 +14,44 @@ type RadioProps = AriaRadioProps & {
 	role?: string
 	visibleRadioAs?: string | React.ComponentType
 	precision?: React.ReactNode
+	emoji?: string
+	infoButton?: React.ReactNode
+	defaultSelected?: boolean
 }
 
-// TDOO: isDisabled style
+// TODO: isDisabled style
 export function Radio(props: RadioProps) {
-	const { children } = props
+	const {
+		children,
+		value,
+		isDisabled,
+		className,
+		id,
+		'aria-label': ariaLabel,
+		'aria-labelledby': ariaLabelledby,
+		precision,
+		emoji,
+		infoButton,
+		visibleRadioAs,
+		defaultSelected,
+	} = props
 
 	return (
-		<RadioSkeleton role="radio" aria-atomic {...props}>
+		<RadioSkeleton
+			role="radio"
+			aria-atomic
+			value={value}
+			isDisabled={isDisabled}
+			className={className}
+			id={id}
+			aria-label={ariaLabel}
+			aria-labelledby={ariaLabelledby}
+			precision={precision}
+			emoji={emoji}
+			infoButton={infoButton}
+			visibleRadioAs={visibleRadioAs}
+			defaultSelected={defaultSelected}
+		>
 			<RadioPoint />
 			<SpanBody>{children}</SpanBody>
 		</RadioSkeleton>
@@ -29,21 +59,42 @@ export function Radio(props: RadioProps) {
 }
 
 export const RadioSkeleton = (props: RadioProps) => {
-	const { visibleRadioAs, id, precision, ...ariaProps } = props
-	const { children } = ariaProps
+	const {
+		visibleRadioAs,
+		id,
+		precision,
+		children,
+		value,
+		isDisabled,
+		className,
+		'aria-label': ariaLabel,
+		'aria-labelledby': ariaLabelledby,
+		defaultSelected,
+	} = props
+
 	const state = useContext(RadioContext)
 	if (!state) {
 		throw new Error("Radio can't be instanciated outside a RadioContext")
 	}
 
 	const ref = useRef(null)
-	const { inputProps } = useRadio(ariaProps, state, ref)
+	const { inputProps: ariaInputProps } = useRadio(
+		{
+			value,
+			isDisabled,
+			'aria-label': ariaLabel,
+			'aria-labelledby': ariaLabelledby,
+			children,
+		},
+		state,
+		ref
+	)
 
 	return (
 		<>
-			<Label htmlFor={id} className={props.className}>
+			<Label htmlFor={id} className={className}>
 				<InputRadio
-					{...inputProps}
+					{...ariaInputProps}
 					// Avoid react-aria focus next element (input, button, etc.) on keydown for rgaa
 					onKeyDown={undefined}
 					onKeyUp={undefined}
@@ -51,9 +102,10 @@ export const RadioSkeleton = (props: RadioProps) => {
 					className="sr-only"
 					ref={ref}
 					id={id}
+					defaultChecked={defaultSelected}
 				/>
-				<VisibleRadio as={visibleRadioAs} $inert={props.isDisabled}>
-					{children}
+				<VisibleRadio as={visibleRadioAs} $inert={isDisabled}>
+					<>{children}</>
 				</VisibleRadio>
 			</Label>
 			{precision && <PrecisionSpan>{precision}</PrecisionSpan>}
@@ -129,19 +181,19 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 	${({ theme, $inert }) =>
 		!$inert
 			? css`
-			&:hover > ${RadioButton}::before {
-				opacity: 1;
-				transform: scale(1);
-			}
+				&:hover > ${RadioButton}::before {
+					opacity: 1;
+					transform: scale(1);
+				}
 
-			&:hover ${OutsideCircle} {
-				border-color: ${
-					theme.darkMode
-						? theme.colors.bases.primary[500]
-						: theme.colors.bases.primary[700]
-				};
-			} :
-		`
+				&:hover ${OutsideCircle} {
+					border-color: ${
+						theme.darkMode
+							? theme.colors.bases.primary[500]
+							: theme.colors.bases.primary[700]
+					};
+				} :
+			`
 			: css`
 					&:hover {
 						background-color: ${theme.colors.extended.grey[200]} !important;
