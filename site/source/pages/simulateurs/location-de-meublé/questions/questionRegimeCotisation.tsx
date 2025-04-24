@@ -1,23 +1,38 @@
-import { Option } from 'effect'
+import { Array, Option, pipe } from 'effect'
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { Question } from '@/components/Simulation/Question'
-import { RadioCardGroup, RadioCard } from '@/design-system'
+import { RadioCard, RadioCardGroup } from '@/design-system'
+import { SmallBody } from '@/design-system/typography/paragraphs'
+import { compareRégimes } from '@/domaine/économie-collaborative/location-de-meublé/comparateur-régimes'
 import {
+	estSituationValide,
 	RegimeCotisation,
 	SituationLocationCourteDuree,
 } from '@/domaine/économie-collaborative/location-de-meublé/situation'
+import { toString as formatMontant } from '@/domaine/Montant'
 
 interface Props {
 	situation: SituationLocationCourteDuree
 	onRéponse: (réponse: Option.Option<RegimeCotisation>) => void
 }
 
+const trouveEstimationPourRégime = (
+	résultats: ReturnType<typeof compareRégimes>,
+	régime: RegimeCotisation
+) => Array.findFirst(résultats, (résultat) => résultat.régime === régime)
+
 const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 	const { t } = useTranslation()
 
 	const regimeCotisation = Option.getOrUndefined(situation.regimeCotisation)
+
+	const comparaisonRégimes = pipe(
+		situation,
+		Option.liftPredicate(estSituationValide),
+		Option.map(compareRégimes)
+	)
 
 	const handleChange = useCallback(
 		(newValue: string) => {
@@ -30,7 +45,10 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 
 	return (
 		<RadioCardGroup
-			aria-label={t('conversation.multiple-answer.aria-label', 'Choix multiples')}
+			aria-label={t(
+				'conversation.multiple-answer.aria-label',
+				'Choix multiples'
+			)}
 			value={regimeCotisation}
 			onChange={handleChange}
 		>
@@ -40,10 +58,35 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 					'Régime général (cotisations URSSAF)'
 				)}
 				value={RegimeCotisation.regimeGeneral}
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description',
-					'Comme pour un salarié, des cotisations sociales seront prélevées à la source.'
-				)}
+				description={
+					<>
+						{t(
+							'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description',
+							'Comme pour un salarié, des cotisations sociales seront prélevées à la source.'
+						)}
+						{pipe(
+							comparaisonRégimes,
+							Option.flatMap((résultats) =>
+								trouveEstimationPourRégime(
+									résultats,
+									RegimeCotisation.regimeGeneral
+								)
+							),
+							Option.match({
+								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
+								onSome: (résultat) =>
+									résultat.applicable ? (
+										<SmallBody>
+											<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation">
+												Estimation des cotisations :{' '}
+												<strong>{formatMontant(résultat.cotisations)}</strong>
+											</Trans>
+										</SmallBody>
+									) : null,
+							})
+						)}
+					</>
+				}
 			/>
 			<RadioCard
 				label={t(
@@ -51,10 +94,35 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 					'Micro-entreprise'
 				)}
 				value={RegimeCotisation.microEntreprise}
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
-					"Vous payez un pourcentage fixe de votre chiffre d'affaires."
-				)}
+				description={
+					<>
+						{t(
+							'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
+							"Vous payez un pourcentage fixe de votre chiffre d'affaires."
+						)}
+						{pipe(
+							comparaisonRégimes,
+							Option.flatMap((résultats) =>
+								trouveEstimationPourRégime(
+									résultats,
+									RegimeCotisation.microEntreprise
+								)
+							),
+							Option.match({
+								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
+								onSome: (résultat) =>
+									résultat.applicable ? (
+										<SmallBody>
+											<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation">
+												Estimation des cotisations :{' '}
+												<strong>{formatMontant(résultat.cotisations)}</strong>
+											</Trans>
+										</SmallBody>
+									) : null,
+							})
+						)}
+					</>
+				}
 			/>
 			<RadioCard
 				label={t(
@@ -62,10 +130,35 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 					'Travailleur indépendant'
 				)}
 				value={RegimeCotisation.travailleurIndependant}
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description',
-					'Vous payez des cotisations sociales sur votre bénéfice.'
-				)}
+				description={
+					<>
+						{t(
+							'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description',
+							'Vous payez des cotisations sociales sur votre bénéfice.'
+						)}
+						{pipe(
+							comparaisonRégimes,
+							Option.flatMap((résultats) =>
+								trouveEstimationPourRégime(
+									résultats,
+									RegimeCotisation.travailleurIndependant
+								)
+							),
+							Option.match({
+								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
+								onSome: (résultat) =>
+									résultat.applicable ? (
+										<SmallBody>
+											<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation">
+												Estimation des cotisations :{' '}
+												<strong>{formatMontant(résultat.cotisations)}</strong>
+											</Trans>
+										</SmallBody>
+									) : null,
+							})
+						)}
+					</>
+				}
 			/>
 		</RadioCardGroup>
 	)
