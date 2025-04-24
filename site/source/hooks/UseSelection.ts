@@ -1,9 +1,26 @@
-import { EvaluatedNode, Evaluation, serializeEvaluation } from 'publicodes'
+import {
+	EvaluatedNode,
+	Evaluation,
+	PublicodesExpression,
+	serializeEvaluation,
+} from 'publicodes'
 import { Key, useCallback, useEffect, useRef, useState } from 'react'
 
-import { InputProps } from '@/components/conversation/RuleInput'
+export interface SelectionInputProps {
+	value: EvaluatedNode['nodeValue']
+	dottedName?: string
+	onChange: (value: PublicodesExpression | undefined) => void
+	missing?: boolean
+	onSubmit?: (source?: string) => void
+	id?: string
+}
 
-export function useSelection({ value, onChange, missing }: InputProps) {
+export function useSelection({
+	value,
+	onChange,
+	missing,
+	dottedName,
+}: SelectionInputProps) {
 	const serializeValue = (nodeValue: Evaluation) =>
 		serializeEvaluation({ nodeValue } as EvaluatedNode)
 
@@ -26,7 +43,7 @@ export function useSelection({ value, onChange, missing }: InputProps) {
 				onChange(val)
 			}, 300)
 		},
-		[onChange]
+		[onChange, dottedName]
 	)
 
 	const lastValue = useRef(value)

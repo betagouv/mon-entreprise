@@ -39,7 +39,7 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.label',
 					'Régime général (cotisations URSSAF)'
 				)}
-				value={RegimeCotisation['régime-général']}
+				value={RegimeCotisation.regimeGeneral}
 				description={t(
 					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description',
 					'Comme pour un salarié, des cotisations sociales seront prélevées à la source.'
@@ -50,7 +50,7 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.label',
 					'Micro-entreprise'
 				)}
-				value={RegimeCotisation['micro-entreprise']}
+				value={RegimeCotisation.microEntreprise}
 				description={t(
 					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
 					"Vous payez un pourcentage fixe de votre chiffre d'affaires."
@@ -61,7 +61,7 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.label',
 					'Travailleur indépendant'
 				)}
-				value={RegimeCotisation['travailleur-indépendant']}
+				value={RegimeCotisation.travailleurIndependant}
 				description={t(
 					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description',
 					'Vous payez des cotisations sociales sur votre bénéfice.'

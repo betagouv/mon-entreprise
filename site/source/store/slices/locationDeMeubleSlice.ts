@@ -84,4 +84,8 @@ export const clearRegimeCotisation = () => setRegimeCotisation(Option.none())
 export const clearEstAlsaceMoselle = () => setEstAlsaceMoselle(Option.none())
 export const clearPremiereAnnee = () => setPremiereAnnee(Option.none())
 
+export type LocationDeMeubleAction = ReturnType<
+	(typeof locationDeMeubleSlice.actions)[keyof typeof locationDeMeubleSlice.actions]
+>
+
 export default locationDeMeubleSlice.reducer
