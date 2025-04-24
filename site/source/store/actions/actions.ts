@@ -5,6 +5,7 @@ import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
+import { LocationDeMeubleAction } from '@/store/slices/locationDeMeubleSlice'
 import { buildSituationFromObject } from '@/utils/publicodes'
 
 import { CompanyActions } from './companyActions'
@@ -33,6 +34,7 @@ export type Action =
 	  >
 	| CompanyActions
 	| HiringChecklistAction
+	| LocationDeMeubleAction
 
 export const resetSimulation = () =>
 	({

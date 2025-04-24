@@ -10,6 +10,7 @@ import { DayPicker, useInput } from 'react-day-picker'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { splitAriaProps } from '@/design-system/splitAriaProps'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import { Button } from '../buttons'
@@ -297,28 +298,3 @@ const StyledButton = styled(Button)`
 	background-color: ${({ theme }) =>
 		theme.darkMode && theme.colors.bases.primary[700]};
 `
-
-type OnlyAriaType<T> = {
-	[K in keyof T as K extends `aria-${string}` ? K : never]: T[K]
-}
-
-/**
- * Split props into aria and rest
- * @param props
- */
-const splitAriaProps = <T extends object>(props: T) =>
-	Object.entries(props).reduce(
-		(acc, [key, prop]) => {
-			if (key.startsWith('aria-')) {
-				acc.aria[key] = prop
-			} else {
-				acc.rest[key] = prop
-			}
-
-			return acc
-		},
-		{ aria: {}, rest: {} } as {
-			aria: Record<string, unknown>
-			rest: Record<string, unknown>
-		}
-	) as { aria: OnlyAriaType<T>; rest: Omit<T, keyof OnlyAriaType<T>> }
