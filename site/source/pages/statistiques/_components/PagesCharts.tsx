@@ -93,7 +93,7 @@ export default function PagesChart({
 						data={flattenedData}
 						syncId={sync ? '1' : undefined}
 						aria-label={t(
-							'Graphique des principaux simulateurs, présence d’une alternative accessible après l’image'
+							"Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section)"
 						)}
 						role="img"
 					>

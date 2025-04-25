@@ -101,7 +101,7 @@ export default function VisitsChart({
 					layout={layout}
 					data={flattenData}
 					aria-label={t(
-						'Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image'
+						"Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section)"
 					)}
 					role="img"
 				>
