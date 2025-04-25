@@ -105,13 +105,15 @@ Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Pay slip
 Fond de la boite de dialogue: Dialog box background
 Frais de transport: Transport costs
-Graphique des principaux simulateurs, présence d’une alternative accessible après l’image: Graphics of the main simulators, with an alternative available after the image.
-Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image:
-  Detailed statistical graph of satisfaction, presence of an accessible
-  alternative after the image
-Graphique statistiques détaillés du nombre visites par jour, présence d’une alternative accessible après l’image:
-  Graph showing detailed statistics on the number of visits per day, with an
-  alternative accessible after the image
+Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
+  Graph detailing the number of visits per simulator (alternative accessible via
+  the switch at the start of the section)
+Graphique détaillant la satisfaction des utilisateurs (alternative accessible avec l'interrupteur en début de section):
+  Graph detailing user satisfaction (alternative accessible with the switch at
+  the beginning of the section)
+Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
+  Graph detailing number of visits (alternative accessible via the switch at the
+  start of the section)
 Habituellement: Usually
 Impôt: Tax
 Impôt au barème: Tax scale
