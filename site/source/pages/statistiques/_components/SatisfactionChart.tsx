@@ -111,7 +111,7 @@ export default function SatisfactionChart({
 					<BarChartWithRole
 						data={flattenData}
 						aria-label={t(
-							'Graphique statistiques détaillés de la satisfaction, présence d’une alternative accessible après l’image'
+							"Graphique détaillant la satisfaction des utilisateurs (alternative accessible avec l'interrupteur en début de section)"
 						)}
 						role="img"
 					>
