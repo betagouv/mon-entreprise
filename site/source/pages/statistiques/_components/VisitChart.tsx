@@ -65,7 +65,7 @@ export default function VisitChart({
 				)
 			) : (
 				<Message type="info">
-					<Body>Aucune donnée disponible.</Body>
+					<Body>{t('Aucune donnée disponible.')}</Body>
 				</Message>
 			)}
 		</>
