@@ -64,7 +64,9 @@ export default function VisitChart({
 					<Chart period={period} data={visites} />
 				)
 			) : (
-				<Message type="info">Aucune donnée disponible.</Message>
+				<Message type="info">
+					<Body>Aucune donnée disponible.</Body>
+				</Message>
 			)}
 		</>
 	)
