@@ -73,7 +73,6 @@ export default function PopoverWithTrigger({
 						}}
 						isDismissable
 						role="dialog"
-						aria-modal={true}
 						small={small}
 						contentRef={contentRef}
 					>
