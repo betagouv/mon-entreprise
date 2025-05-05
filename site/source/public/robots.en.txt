@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /dev
-
-Sitemap: https://mycompanyinfrance.urssaf.fr/sitemap.txt

@@ -1,5 +1,0 @@
-node_modules
-dist
-storybook-static
-*.yaml.d.ts
-vitest.config.ts
