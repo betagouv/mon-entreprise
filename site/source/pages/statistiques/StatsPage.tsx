@@ -52,18 +52,25 @@ export default function StatPage({ stats }: StatsDetailProps) {
 					<Spacing xl />
 
 					<H1>
-						Statistiques <Emoji emoji="📊" />
+						{t('pages.statistiques.h1', 'Statistiques')} <Emoji emoji="📊" />
 					</H1>
 
 					<Intro>
-						Découvrez nos statistiques d'utilisation mises à jour
-						quotidiennement.
+						{t(
+							'pages.statistiques.intro',
+							'Découvrez nos statistiques d’utilisation mises à jour quotidiennement.'
+						)}
 					</Intro>
 					<Body>
-						Les données recueillies sont anonymisées.{' '}
+						{t(
+							'pages.statistiques.anonymous',
+							'Les données recueillies sont anonymisées.'
+						)}{' '}
 						<PrivacyPolicy label={t('En savoir plus')} />
 					</Body>
-					<h2 className="sr-only">Selection du simulateur</h2>
+					<h2 className="sr-only">
+						{t('pages.statistiques.h2.selection', 'Selection du simulateur')}
+					</h2>
 					<SimulateursChoice
 						onChange={setFilter}
 						value={filter}
@@ -85,14 +92,14 @@ export default function StatPage({ stats }: StatsDetailProps) {
 					questionsRépondues={questionsRépondues}
 					satisfaction={satisfaction}
 				/>
-				<Trans>
+				<Trans i18nKey="pages.statistiques.explanation">
 					<Ul>
 						<Li>
 							Les simulateurs et assistants de ce site ont pour but de{' '}
-							<Strong>répondre à une question</Strong> (par exemple « combien
-							mon entreprise doit-elle payer pour embaucher une personne ? » ou
-							« Quel est le meilleur statut juridique pour débuter mon activité
-							? »
+							<Strong>répondre à une question</Strong> (par exemple
+							«&nbsp;combien mon entreprise doit-elle payer pour embaucher une
+							personne&nbsp;?&nbsp;» ou «&nbsp;Quel est le meilleur statut
+							juridique pour débuter mon activité&nbsp;?&nbsp;»)
 						</Li>
 						<Li>
 							Pour calculer le nombre de questions répondues, nous multiplions
@@ -103,7 +110,9 @@ export default function StatPage({ stats }: StatsDetailProps) {
 				</Trans>
 			</section>
 			<section id="visites-panel">
-				<H2>Évolution sur plusieurs mois</H2>
+				<H2>
+					{t('pages.statistiques.h2.evolution', 'Évolution sur plusieurs mois')}
+				</H2>
 
 				<Body>
 					<Switch
@@ -112,10 +121,13 @@ export default function StatPage({ stats }: StatsDetailProps) {
 						/* Need this useless aria-label to silence a React-Aria warning */
 						aria-label=""
 					>
-						<Trans>Activer le mode accessibilité sur cette section</Trans>
+						{t(
+							'pages.statistiques.a11y-switch',
+							'Activer le mode accessibilité sur cette section'
+						)}
 					</Switch>
 				</Body>
-				<H3>Visites</H3>
+				<H3>{t('pages.statistiques.h3.visits', 'Visites')}</H3>
 				<VisitChart
 					visitesJours={visitesJours}
 					visitesMois={visitesMois}
@@ -127,7 +139,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 					(satisfaction.at(-2)?.total ?? 0) >= 100 && (
 						<>
 							<Spacing md />
-							<H3>Satisfaction</H3>
+							<H3>{t('pages.statistiques.h3.satisfaction', 'Satisfaction')}</H3>
 							<SatisfactionChart
 								data={satisfaction}
 								accessibleMode={accessibleMode}
@@ -136,7 +148,12 @@ export default function StatPage({ stats }: StatsDetailProps) {
 					)}
 				{filter === '' && (
 					<>
-						<H3>Répartition des visites par simulateurs</H3>
+						<H3>
+							{t(
+								'pages.statistiques.h3.repartition',
+								'Répartition des visites par simulateurs'
+							)}
+						</H3>
 
 						<PagesChart data={repartition} accessibleMode={accessibleMode} />
 					</>
