@@ -1,5 +1,5 @@
 import { PublicodesExpression } from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
@@ -43,7 +43,8 @@ const ModifierOptions = () => {
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...buttonProps}
 				>
-					<Trans>Modifier mes options</Trans> <StyledArrowRightIcon />
+					{t('modifier-options.texte', 'Modifier mes options')}{' '}
+					<StyledArrowRightIcon />
 				</Button>
 			)}
 			confirmLabel="Enregistrer les options"
@@ -51,15 +52,13 @@ const ModifierOptions = () => {
 			onCancel={cancel}
 		>
 			<>
-				<H2>
-					<Trans>Modifier mes options</Trans>
-				</H2>
+				<H2>{t('modifier-options.texte', 'Modifier mes options')}</H2>
 
 				<H3>
-					Bénéficier de l'ACRE{' '}
+					{t('modifier-options.acre.title', 'Bénéficier de l’Acre')}{' '}
 					<ExplicableRule
-						dottedName="dirigeant . exonérations . ACRE"
-						title="Bénéficier de l'ACRE"
+						dottedName={DOTTEDNAME_ACRE}
+						title={t('modifier-options.acre.title', 'Bénéficier de l’Acre')}
 					/>
 				</H3>
 
@@ -77,7 +76,7 @@ const ModifierOptions = () => {
 						light
 						size="XS"
 					>
-						<Trans>En savoir plus</Trans>
+						{t('En savoir plus')}
 					</Button>
 				}
 				<H5 as="h4">Choisir mon option de simulation</H5>
@@ -91,7 +90,10 @@ const ModifierOptions = () => {
 							/* Need this useless aria-label to silence a React-Aria warning */
 							aria-label=""
 						>
-							<Trans>Activer l'ACRE dans la simulation</Trans>
+							{t(
+								'modifier-options.activer-acre',
+								'Activer l’Acre dans la simulation'
+							)}
 						</Switch>
 					</FlexCentered>
 
@@ -102,7 +104,7 @@ const ModifierOptions = () => {
 								<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
 									conditions d'accès
 								</StyledLink>{' '}
-								à l'ACRE sont plus restrictives pour les auto-entrepreneurs.
+								à l’Acre sont plus restrictives pour les auto-entrepreneurs.
 							</Body>
 							<FlexCentered>
 								<Switch
@@ -117,9 +119,10 @@ const ModifierOptions = () => {
 									/* Need this useless aria-label to silence a React-Aria warning */
 									aria-label=""
 								>
-									<Trans>
-										Je suis éligible à l'ACRE pour mon auto-entreprise
-									</Trans>
+									{t(
+										'modifier-options.éligible-acre',
+										'Je suis éligible à l’Acre pour mon auto-entreprise'
+									)}
 								</Switch>
 							</FlexCentered>
 						</>
@@ -168,10 +171,10 @@ const ModifierOptions = () => {
 									fontSize: '0.875rem',
 								}}
 							>
-								<Trans>
-									À ce jour, ce comparateur ne prend pas en compte le calcul de
-									l'impôt sur le revenu pour les SAS(U).
-								</Trans>
+								{t(
+									'modifier-options.disclaimer',
+									'À ce jour, ce comparateur ne prend pas en compte le calcul de l’impôt sur le revenu pour les SAS(U).'
+								)}
 							</Body>
 						</Grid>
 					</Grid>
@@ -203,7 +206,10 @@ const ModifierOptions = () => {
 						/* Need this useless aria-label to silence a React-Aria warning */
 						aria-label=""
 					>
-						<Trans>Activer le versement libératoire dans la simulation</Trans>
+						{t(
+							'modifier-options.versement-libératoire',
+							'Activer le versement libératoire dans la simulation'
+						)}
 					</Switch>
 				</FlexCentered>
 			</>

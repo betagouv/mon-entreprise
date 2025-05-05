@@ -15,13 +15,6 @@
   les informations et les calculs.</0><1>Pour retrouver les informations à
   jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités
   relevant de l’économie collaborative</2></0>
-<0><0>Les simulateurs et assistants de ce site ont pour but de <2>répondre à une question</2> (par exemple « combien mon entreprise doit-elle payer pour embaucher une personne ? » ou « Quel est le meilleur statut juridique pour débuter mon activité ? »</0><1>Pour calculer le nombre de questions répondues, nous multiplions le <1>nombre de simulations</1> par le <4>taux de satisfaction</4> moyen du simulateur.</1> </0>:
-  <0><0>Les simulateurs et assistants de ce site ont pour but de <2>répondre à
-  une question</2> (par exemple « combien mon entreprise doit-elle payer pour
-  embaucher une personne ? » ou « Quel est le meilleur statut juridique pour
-  débuter mon activité ? »</0><1>Pour calculer le nombre de questions répondues,
-  nous multiplions le <1>nombre de simulations</1> par le <4>taux de
-  satisfaction</4> moyen du simulateur.</1> </0>
 <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
   <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
   l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
@@ -38,16 +31,10 @@ API REST de simulation: API REST de simulation
 API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accéder au site mon-entreprise, nouvelle fenêtre: Accéder au site mon-entreprise, nouvelle fenêtre
-Activer l'ACRE dans la simulation: Activer l'ACRE dans la simulation
-Activer le mode accessibilité sur cette section: Activer le mode accessibilité sur cette section
-Activer le mode sombre: Activer le mode sombre
-Activer le versement libératoire dans la simulation: Activer le versement libératoire dans la simulation
 Activités relevant de l’économie collaborative, voir la page: Activités relevant de l’économie collaborative, voir la page
 Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
 Afficher les détails de l'entreprise, la modifier ou la supprimer.: Afficher les détails de l'entreprise, la modifier ou la supprimer.
-Aller au contenu principal: Aller au contenu principal
-Aller directement au pied de page: Aller directement au pied de page
 Annuler: Annuler
 Attention: Attention
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
@@ -114,7 +101,6 @@ ExportSimulation:
 Fermer: Fermer
 Fermer le module "Donner son avis": Fermer le module "Donner son avis"
 Fiche de paie: Fiche de paie
-Fond de la boite de dialogue: Fond de la boite de dialogue
 Frais de transport: Frais de transport
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
   Graphique détaillant la part des visites par simulateur (alternative
@@ -140,7 +126,6 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
     gouv:
       fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
-Je suis éligible à l'ACRE pour mon auto-entreprise: Je suis éligible à l'ACRE pour mon auto-entreprise
 Jours: Jours
 Le montant demandé n'est <2>pas calculable...</2>: Le montant demandé n'est <2>pas calculable...</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
@@ -156,7 +141,6 @@ Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Menu de navigation: Menu de navigation
 Message à caractère informatif: Message à caractère informatif
 Mode d'affichage: Mode d'affichage
-Modifier mes options: Modifier mes options
 Modifier mes réponses: Modifier mes réponses
 Moins de 50 salariés: Moins de 50 salariés
 Mois: Mois
@@ -188,7 +172,6 @@ PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
 Passer: Passer
-Passer le contenu principal et aller directement au pied de page: Passer le contenu principal et aller directement au pied de page
 Passer, passer la question sans répondre: Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
@@ -269,7 +252,6 @@ Tout réinitialiser: Tout réinitialiser
 Trimestre: Trimestre
 Type: Type
 Un avis sur cette page ?: Un avis sur cette page ?
-Urssaf Mon entreprise, accéder à la page d'accueil: Urssaf Mon entreprise, accéder à la page d'accueil
 Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
@@ -591,6 +573,16 @@ gérer:
         réduction générale des cotisations.
       cta: Consulter le guide
       title: La réduction générale des cotisations
+header:
+  dark-mode-switch:
+    activate-dark-mode: Activer le mode sombre
+  footer-shortcut:
+    aria-label: Passer le contenu principal et aller directement au pied de page
+    text: Aller directement au pied de page
+  logo:
+    aria-label: Urssaf Mon entreprise, accéder à la page d’accueil
+  main-shortcut:
+    text: Aller au contenu principal
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
@@ -666,6 +658,15 @@ library:
 loading: Chargement en cours...
 mai: mai
 mars: mars
+modifier-options:
+  acre:
+    title: Bénéficier de l’Acre
+  activer-acre: Activer l’Acre dans la simulation
+  disclaimer: À ce jour, ce comparateur ne prend pas en compte le calcul de
+    l’impôt sur le revenu pour les SAS(U).
+  texte: Modifier mes options
+  versement-libératoire: Activer le versement libératoire dans la simulation
+  éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
 moins: moins
 mois: mois
 navbar:
@@ -1976,6 +1977,25 @@ pages:
       access: Accéder au simulateur {{year}}
       back: Retourner au simulateur {{year}}
       info: "Cette simulation concerne l'année <2>{{currentEngineYear}}</2>. "
+  statistiques:
+    a11y-switch: Activer le mode accessibilité sur cette section
+    anonymous: Les données recueillies sont anonymisées.
+    explanation: <0><0>Les simulateurs et assistants de ce site ont pour but de
+      <2>répondre à une question</2> (par exemple « combien mon entreprise
+      doit-elle payer pour embaucher une personne ? » ou « Quel est le meilleur
+      statut juridique pour débuter mon activité ? »)</0><1>Pour calculer le
+      nombre de questions répondues, nous multiplions le <1>nombre de
+      simulations</1> par le <4>taux de satisfaction</4> moyen du
+      simulateur.</1> </0>
+    h1: Statistiques
+    h2:
+      evolution: Évolution sur plusieurs mois
+      selection: Selection du simulateur
+    h3:
+      repartition: Répartition des visites par simulateurs
+      satisfaction: Satisfaction
+      visits: Visites
+    intro: Découvrez nos statistiques d’utilisation mises à jour quotidiennement.
 payslip:
   disclaimer: "Cette fiche de paie est issue de la simulation que vous avez faite.
     Elle vous aide à comprendre votre bulletin de paie : vous pouvez cliquer sur
@@ -2263,9 +2283,6 @@ warning:
     situation: Voulez-vous écraser votre situation ?
 "{{title}}, voir la demande sur github":
   com, nouvelle fenêtre: "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
-À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).:
-  À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le
-  revenu pour les SAS(U).
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Échanger avec un conseiller: Échanger avec un conseiller
 "Établissement recherché :": "Établissement recherché :"

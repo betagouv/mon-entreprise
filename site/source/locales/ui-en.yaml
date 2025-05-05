@@ -13,12 +13,6 @@
   to remove it from the site. It was too difficult to keep the information and
   calculations up to date.</0><1>To find up-to-date information, please visit
   the Urssaf website:</1><2>Collaborative economy activities</2></0>
-<0><0>Les simulateurs et assistants de ce site ont pour but de <2>répondre à une question</2> (par exemple « combien mon entreprise doit-elle payer pour embaucher une personne ? » ou « Quel est le meilleur statut juridique pour débuter mon activité ? »</0><1>Pour calculer le nombre de questions répondues, nous multiplions le <1>nombre de simulations</1> par le <4>taux de satisfaction</4> moyen du simulateur.</1> </0>:
-  <0><0>The simulators and wizards on this site are designed to <2>answer a
-  question</2> (e.g. "How much should my company pay to hire someone?" or "What
-  is the best legal status for starting my business?").</0><1>To calculate the
-  number of questions answered, we multiply the <1>number of simulations</1> by
-  the simulator's average <4>satisfaction rate</4>.</1> </0>
 <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
   <0><0>We've detected an old situation. Are you sure you want to overwrite
   it?</0></0><1><0><0>Overwrite</0></0><1><0>Cancel</0></1></1>
@@ -35,16 +29,10 @@ API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
 Accessibilité: Accessibility
 Accéder au site mon-entreprise, nouvelle fenêtre: Go to mon-entreprise, new window
-Activer l'ACRE dans la simulation: Activate ACRE in simulation
-Activer le mode accessibilité sur cette section: Enable accessibility mode on this section
-Activer le mode sombre: Activate dark mode
-Activer le versement libératoire dans la simulation: Activate payment in full discharge in simulation
 Activités relevant de l’économie collaborative, voir la page: Collaborative economy activities, see page
 Afficher le détail: Show details
 "Afficher les données par :": "Display data by:"
 Afficher les détails de l'entreprise, la modifier ou la supprimer.: View company details, modify or delete.
-Aller au contenu principal: Go to main content
-Aller directement au pied de page: Go directly to footer
 Annuler: Cancel
 Attention: Warning
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Please note that your saved data will be permanently deleted.
@@ -108,7 +96,6 @@ ExportSimulation:
 Fermer: Close
 Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Pay slip
-Fond de la boite de dialogue: Dialog box background
 Frais de transport: Transport costs
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
   Graph detailing the number of visits per simulator (alternative accessible via
@@ -134,7 +121,6 @@ Je donne mon avis, donner mon avis sur jedonnemonavis:
     gouv:
       fr, nouvelle fenêtre: I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
-Je suis éligible à l'ACRE pour mon auto-entreprise: I am eligible for ACRE for my auto-enterprise
 Jours: Days
 Le montant demandé n'est <2>pas calculable...</2>: The amount requested <2>cannot be calculated.</2>..
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
@@ -148,7 +134,6 @@ Masquer les détails de l'entreprise.: Hide company details.
 Menu de navigation: Navigation menu
 Message à caractère informatif: Informative message
 Mode d'affichage: Display mode
-Modifier mes options: Modify my options
 Modifier mes réponses: Modify my answers
 Moins de 50 salariés: Less than 50 employees
 Mois: Month
@@ -179,7 +164,6 @@ PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
 Passer: Pass
-Passer le contenu principal et aller directement au pied de page: Skip the main content and go directly to the footer
 Passer, passer la question sans répondre: Pass, pass the question without answering
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
@@ -255,7 +239,6 @@ Tout réinitialiser: Reset all
 Trimestre: Quarter
 Type: Type
 Un avis sur cette page ?: What do you think of this page?
-Urssaf Mon entreprise, accéder à la page d'accueil: Urssaf Mon entreprise, go to home page
 Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
@@ -561,6 +544,16 @@ gérer:
         reduction in contributions.
       cta: Consult the guide
       title: General reduction in contributions
+header:
+  dark-mode-switch:
+    activate-dark-mode: Activate dark mode
+  footer-shortcut:
+    aria-label: Skip the main content and go directly to the footer
+    text: Go directly to footer
+  logo:
+    aria-label: Urssaf Mon entreprise, go to home page
+  main-shortcut:
+    text: Go to main content
 iframe:
   description: Tools for developers
   title: Integrate a simulator
@@ -632,6 +625,15 @@ library:
 loading: Loading in progress...
 mai: May
 mars: March
+modifier-options:
+  acre:
+    title: Benefit from Acre
+  activer-acre: Activate Acre in simulation
+  disclaimer: At present, this comparator does not include income tax calculations
+    for SAS(U).
+  texte: Modify my options
+  versement-libératoire: Activate final payment in simulation
+  éligible-acre: I'm eligible for Acre for my self-employed business
 moins: less
 mois: month
 navbar:
@@ -1860,6 +1862,24 @@ pages:
       access: Access the simulator {{year}}
       back: Back to simulator {{year}}
       info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
+  statistiques:
+    a11y-switch: Enable accessibility mode on this section
+    anonymous: The data collected is anonymized.
+    explanation: <0><0>The simulators and wizards on this site are designed to
+      <2>answer a specific question</2> (e.g. "How much should my company pay to
+      hire a new employee?" or "What is the best legal status for starting my
+      business?)</0><1>To calculate the number of questions answered, we
+      multiply the <1>number of simulations</1> by the simulator's average
+      <4>satisfaction rate</4>.</1> </0>
+    h1: Statistics
+    h2:
+      evolution: Trends over several months
+      selection: Simulator selection
+    h3:
+      repartition: Breakdown of visits by simulator
+      satisfaction: Satisfaction
+      visits: Visit
+    intro: Discover our usage statistics, updated daily.
 payslip:
   disclaimer: "This payslip is the result of the simulation you made. It helps you
     to understand your pay slip: you can click on the links to understand how
@@ -2129,9 +2149,6 @@ warning:
     situation: Do you want to crush your situation?
 "{{title}}, voir la demande sur github":
   com, nouvelle fenêtre: "{{title}}view request on github.com, new window"
-À ce jour, ce comparateur ne prend pas en compte le calcul de l'impôt sur le revenu pour les SAS(U).:
-  At present, this comparator does not include income tax calculations for
-  SAS(U).
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
 "Établissement recherché :": "Establishment sought:"

@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Logo } from '@/components/Logo'
@@ -35,16 +35,22 @@ export default function Header() {
 			>
 				<ul className="skip-link print-hidden">
 					<li>
-						<a href={`${fullURL}#main`}>{t('Aller au contenu principal')}</a>
+						<a href={`${fullURL}#main`}>
+							{t('header.main-shortcut.text', 'Aller au contenu principal')}
+						</a>
 					</li>
 					<li>
 						<a
 							href={`${fullURL}#footer`}
 							aria-label={t(
+								'header.footer-shortcut.aria-label',
 								'Passer le contenu principal et aller directement au pied de page'
 							)}
 						>
-							{t('Aller directement au pied de page')}
+							{t(
+								'header.footer-shortcut.text',
+								'Aller directement au pied de page'
+							)}
 						</a>
 					</li>
 				</ul>
@@ -53,7 +59,8 @@ export default function Header() {
 						<Link
 							to={absoluteSitePaths.index}
 							aria-label={t(
-								"Urssaf Mon entreprise, accéder à la page d'accueil"
+								'header.logo.aria-label',
+								'Urssaf Mon entreprise, accéder à la page d’accueil'
 							)}
 						>
 							<StyledLogo>
@@ -78,7 +85,10 @@ export default function Header() {
 								/* Need this useless aria-label to silence a React-Aria warning */
 								aria-label=""
 							>
-								<Trans>Activer le mode sombre</Trans>
+								{t(
+									'header.dark-mode-switch.activate-dark-mode',
+									'Activer le mode sombre'
+								)}
 							</Switch>
 							<Emoji emoji="🌙" aria-hidden />
 						</div>
