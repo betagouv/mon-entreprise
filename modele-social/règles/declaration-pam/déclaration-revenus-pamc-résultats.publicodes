@@ -162,6 +162,14 @@ déclaration revenus PAMC . revenus nets . revenus structures de soins:
     - 1 / recettes brutes totales
   unité: €/an
 
+déclaration revenus PAMC . revenus nets . revenus structures de soins . avertissement:
+  formule: revenus structures de soins > revenus non conventionnés
+  type: notification
+  sévérité: avertissement
+  description: |
+    Les revenus structures de soins doivent être inférieurs aux revenus non
+    conventionnés. Veuillez vérifier les montants de recettes déclarés.
+
 déclaration revenus PAMC . cotisations facultatives . activité conventionnée:
   variations:
     - si: revenus nets . assiette sociale = 0

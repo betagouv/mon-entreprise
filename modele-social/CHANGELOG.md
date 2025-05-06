@@ -35,6 +35,7 @@
 - Ajout de `dirigeant . auto-entrepreneur . Cipav` et `dirigeant . auto-entrepreneur . Cipav . retraite complémentaire`
 - Ajout de `dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav` avec la répartition des cotisations Cipav
 - Gestion des auto-entrepreneurs dans `protection sociale . retraite . complémentaire . CIPAV`
+- Ajout d'avertissements pour les champs de l'assistant à la déclaration des PAMC
 
 ### Corrections
 - Correction du calcul des cotisations pour les auto-entrepreneuses et auto-entrepreneurs affiliés à la Cipav sans Acre

@@ -5518,6 +5518,17 @@ déclaration revenus PAMC . revenus nets . revenus non conventionnés:
 déclaration revenus PAMC . revenus nets . revenus structures de soins:
   titre.en: '[automatic] income from care facilities'
   titre.fr: revenus structures de soins
+déclaration revenus PAMC . revenus nets . revenus structures de soins . avertissement:
+  description.en: >
+    [automatic] Income from healthcare structures must be lower than income from
+    non
+
+    income. Please check the declared income amounts.
+  description.fr: |
+    Les revenus structures de soins doivent être inférieurs aux revenus non
+    conventionnés. Veuillez vérifier les montants de recettes déclarés.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
 déclaration revenus PAMC . régime fiscal:
   avec:
     IR micro-fiscal:
