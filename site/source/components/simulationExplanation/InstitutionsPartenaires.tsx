@@ -15,12 +15,12 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import * as logosSrc from '@/utils/logos'
 
 import { Condition } from '../EngineValue/Condition'
 import Value from '../EngineValue/Value'
 import { WhenApplicable } from '../EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '../EngineValue/WhenNotApplicable'
-import * as logosSrc from './logos'
 
 export default function InstitutionsPartenaires() {
 	const unit = useSelector(targetUnitSelector)
