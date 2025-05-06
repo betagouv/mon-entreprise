@@ -2375,18 +2375,19 @@ dirigeant . indépendant . PL . PAMC:
   titre.fr: PAMC
 dirigeant . indépendant . PL . PAMC . CURPS:
   description.en: >
-    [automatic] The health professions are represented by the following unions
+    [automatic] The self-employed healthcare professions are represented by
+    regional
 
-    of health professionals who contribute to the organization and management of the
+    unions, which contribute to the organization and development of healthcare
 
-    the evolution of health care provision at the regional level, particularly in the
+    the organization and development of healthcare provision at regional level, in particular
 
-    preparation of the regional health project and its implementation.
+    regional health project and its implementation.
 
 
-    These unions are financed by a contribution recovered by USSAF: the
+    These unions are financed by a contribution collected by Urssaf: the
 
-    contribution to regional health professional unions (Curps).
+    contribution aux unions régionales des professionnels de santé (Curps).
   description.fr: |
     Les professions libérales de santé sont représentées par des unions
     régionales des professionnels de santé qui contribuent à l’organisation et à
@@ -2413,16 +2414,16 @@ dirigeant . indépendant . PL . PAMC . CURPS:
   titre.fr: Contribution aux unions régionales des professionnels de santé
 dirigeant . indépendant . PL . PAMC . IJSS:
   description.en: >-
-    [automatic] The daily social security benefits (IJSS) are paid in the case
-    of maternity/paternity/adoption leave.
+    [automatic] Social Security daily allowances (IJSS) are paid in the event of
+    maternity/paternity/adoption leave.
 
 
-    The CSG-CRDS is automatically deducted by the Health Insurance at the time of payment. Their amount is therefore deducted from the base for the calculation of the remaining CSG-CRDS due.
+    The CSG-CRDS is automatically deducted by the Assurance Maladie at the time of payment. The amount is therefore deducted from the base for calculating the remaining CSG-CRDS due.
 
 
-    The supplementary allowances to the daily allowances paid by the Social Security under a provident contract do not constitute replacement income.
+    Benefits supplementing Social Security daily allowances paid under a provident insurance contract do not constitute replacement income.
 
-    Note: Disability benefits paid by the disability-death schemes are not concerned.
+    Note: This does not apply to disability benefits paid under disability-death schemes.
   description.fr: >-
     Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le
     cas de congé maternité/paternité/adoption.
@@ -2448,43 +2449,42 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
   titre.en: '[automatic] CPAM participation'
   titre.fr: participation CPAM
 dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
-  description.en:
-    '[automatic] Also known as conventional income, this is the net
-    overrun fee income.'
+  description.en: '[automatic] Also known as conventional income, this is fee
+    income net of surcharges.'
   description.fr: Aussi appelé revenu conventionnel, il s'agit du revenu des
     honoraires nets de dépassement.
   note.en: >
-    [automatic] The formula referred to in the Urssaf texts is as follows:
+    [automatic] The formula referred to in Urssaf texts is as follows:
 
-    &gt; (income from contracted activity) x (total fees - total excess fees) / total amount of fees.
+    &gt; (income from conventional activity) x (total fees - total excess fees) / total fees.
 
 
     This formula can be simplified to :
 
-    (income from the activity under agreement) / (100% + average fee overrun)
+    &gt; (income from conventional activity) / (100% + average fee overrun)
 
 
-    Proof
+    ### Proof
 
     If we take the following variables,
 
-    h+` : total fees (with overrun)
-      h': fees without overrun
-      d%`: average overcharge percentage
+    &gt; `h+`: total fees (with overrun)
+      h`: fees without overrun
+      `d%`: average overcharge percentage
 
     We have :
 
     &gt;
-      h+ = h + h * d%`.
-      h+ = h * (100% + d%)`
+      `h+ = h + h * d%`
+      `h+ = h * (100% + d%)`
 
-    If we replace in the formula of the CPAM participation base, we have :
+    If we replace the CPAM participation base formula, we get :
 
-    1. `(income from the contracted activity) * h / h+` &gt; 2.
+    &gt; 1. `(income from conventional activity) * h / h+`
 
-    2. `(income from activity under agreement) * h / (h * (100% + d%))
+    &gt; 2. `(income from conventional activity) * h / (h * (100% + d%))
 
-    3. `(income from activity under agreement) / (100% + d%)
+    &gt; 3. `(income from conventional activity) / (100% + d%)`
   note.fr: >
     La formule référencée dans les textes Urssaf est la suivante :
 
@@ -2527,7 +2527,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     [automatic] The "Urssaf rate" (taux UR) is used to calculate the portion of
     your
 
-    health and maternity insurance contribution paid by the CPAM.
+    sickness and maternity insurance contribution paid by the CPAM.
 
 
     This rate is pre-filled on your professional income tax return. It
@@ -2584,14 +2584,14 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
   titre.en: '[automatic] notification'
   titre.fr: notification
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
-  question.en: '[automatic] What is your average fee overrun (estimate)?'
+  question.en: '[automatic] What is your average excess fee (estimate)?'
   question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
   titre.en: '[automatic] average overpayment'
   titre.fr: dépassement d'honoraire moyen
 dirigeant . indépendant . PL . PAMC . maladie:
   avec:
     participation CPAM:
-      titre.en: '[automatic] CPAM participation'
+      titre.en: '[automatic] CPAM contribution'
       titre.fr: participation CPAM
   titre.en: '[automatic] disease (after CPAM participation)'
   titre.fr: maladie (après participation CPAM)
@@ -2600,9 +2600,8 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   titre.fr: contribution additionnelle
 dirigeant . indépendant . PL . PAMC . participation CPAM:
   description.en: >
-    [automatic] Health professionals who are members of the agreement benefit
-    from part of their contributions being covered by the Assurance Maladie
-    (Health Insurance).
+    [automatic] Health insurance covers a portion of the fees paid by contracted
+    healthcare professionals.
   description.fr: >
     Les professionnels de santé conventionnés bénéficient d'une prise en charge
     d'une partie de leur cotisations par l'Assurance Maladie.
@@ -2618,19 +2617,19 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
 
     - Fees from reimbursable procedures (including excess fees and
 
-    Fees from reimbursable procedures (including overcharges and travel expenses listed on the
+    fees and travel expenses shown on the SNIR statement).
 
-    SNIR)
+    SNIR STATEMENT)
 
 
     - Fees from retrocessions for reimbursable procedures
 
-    received as a substitute
+    received as a replacement
 
 
-    - All lump-sum payments made by the health insurance
+    - All flat-rate remuneration paid by the health insurance scheme
 
-    (assistance with teletransmission, compensation, compensation for continuing education
+    (assistance with teletransmission, indemnity, compensation for continuing
 
     training, installation bonus, etc.)
   description.fr: |
@@ -2648,8 +2647,8 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
     (aide à la télétransmission, indemnisation, indemnisation de la formation
     continue, prime à l’installation, ...)
   question.en: |
-    [automatic] How much of your turnover is related to a non-trading activity?
-    conventionnée (estimate) ?
+    [automatic] How much of your sales are linked to non-standard activities?
+    (estimate)?
   question.fr: |
     Quel est la part de votre chiffre d'affaires liée à une activité non
     conventionnée (estimation) ?
@@ -2670,8 +2669,8 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
   avec:
     offre simplifiée médecins:
       description.en:
-        '[automatic] Are you a physician working exclusively as a locum
-        tenens or dispatcher? You can join the simplified offer. [Learn
+        '[automatic] Do you work exclusively as a locum or dispatcher?
+        You can subscribe to the simplified offer. [Learn
         more](https://www.medecins-remplacants.urssaf.fr/accueil)'
       description.fr:
         Vous exercez une activité de médecin exclusivement en tant que
@@ -2680,9 +2679,9 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
       titre.en: '[automatic] simplified offer doctors'
       titre.fr: offre simplifiée médecins
   description.en: >
-    [automatic] Practitioners and medical auxiliaries exercising a substitute
-    activity are not liable for the contribution to the regional unions of
-    health professionals (CURPS).
+    [automatic] Practitioners and medical auxiliaries working as replacements
+    are not liable for contributions to regional unions of healthcare
+    professionals (CURPS).
   description.fr: >
     Les practicien et auxiliaire médical exerçant une activité de remplacement
     ne sont pas redevables de la contribution aux unions régionales des
@@ -2702,15 +2701,15 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     Les revenus conventionnés sont ceux correspondant aux recettes tirées des
     honoraires et des rémunérations forfaitaires versées par la CPAM.
   note.en: >
-    [automatic] To avoid having to distribute loads between those from
+    [automatic] To avoid having to break down expenses into those arising from
 
-    the activities covered by the agreements and those that are not (which would result in
+    activities and those that are not (which would result in two separate
 
-    two separate accounts), it can be calculated from income
+    two separate accounts), it can be calculated on the basis of professional income
 
-    which is adjusted according to the share of the turnover
+    professional income, which is adjusted according to the proportion of sales
 
-    from the acts covered by the agreements.
+    to the proportion of sales generated by approved procedures.
   note.fr: |
     Pour éviter d'avoir à ventiler les charges entre celles issues de
     l'activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
@@ -4788,7 +4787,7 @@ déclaration revenus PAMC . SNIR . dépassements honoraires:
   titre.fr: dépassements d’honoraires
 déclaration revenus PAMC . SNIR . dépassements honoraires . avertissement:
   description.en: |
-    [automatic] Excess fees must be lower than
+    [automatic] Excess fees must be less than total fees.
     total fees.
   description.fr: |
     Les dépassements d’honoraires doivent être inférieurs aux
