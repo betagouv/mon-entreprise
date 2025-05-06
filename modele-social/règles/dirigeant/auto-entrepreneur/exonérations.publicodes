@@ -1,0 +1,173 @@
+dirigeant . auto-entrepreneur . DROM:
+  experimental: oui
+  description: |
+    En tant qu’auto-entrepreneur en début d’activité, vous bénéficiez d’une
+    exonération qui se traduit par l’application de taux réduits de cotisations sur
+    trois ans, correspondant à :
+
+      - 1/6 des taux pleins de métropole si vous êtes artisan, commerçant ou
+      professionnel libéral non réglementé, 1/3 si vous êtes un professionnel libéral
+      réglementé, jusqu’à la fin du 7ème trimestre qui suit celui au cours duquel
+      vous avez débuté votre activité,
+      - 1/2 des taux pleins de métropole que vous soyez artisan, commerçant ou
+      professionnel libéral, pour la période qui court entre la fin du 8ème trimestre
+      d’activité jusqu’à la fin de la 3ème année civile d’activité,
+  note : Les taux DOM sont définis comme un pourcentage des taux métropole, mais les
+    règles d’arrondi ne sont pas claires
+  applicable si: établissement . commune . département . outre-mer
+  valeur: oui
+  rend non applicable: exonérations . ACRE
+  références:
+    Vous êtes auto-entrepreneur dans les Drom ?: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#vous-etes-auto-entrepreneur-dans
+    Taux auto-entrepreneur dans les Drom (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-AutoEntrepreneur-Drom.pdf#page=13
+  avec:
+    première période:
+      titre: Jusqu’à la fin du 8ème trimestre d’activité
+      privé: oui
+      valeur: entreprise . durée d'activité . trimestres civils <= 8
+    seconde période:
+      titre: Entre le 9ème trimestre civil et la fin de la 3ème année civile
+        d’activité
+      privé: oui
+      valeur: entreprise . durée d'activité . années civiles <= 3
+
+    taux service BIC:
+      remplace: cotisations et contributions . cotisations . service BIC . taux
+      variations:
+        - si: première période
+          alors: 3.60%
+        - si: seconde période
+          alors: 10.60%
+        - sinon: 14.20%
+
+    taux service BNC:
+      remplace: cotisations et contributions . cotisations . service BNC . taux
+      variations:
+        - si: première période
+          alors:
+            variations:
+              - si: date >= 01/2026
+                alors: 4.4%
+              - si: date >= 01/2025
+                alors: 4.1%
+              - si: date >= 07/2024
+                alors: 3.9%
+              - sinon: 3.60%
+        - si: seconde période
+          alors:
+            variations:
+              - si: date >= 01/2026
+                alors: 13.1%
+              - si: date >= 01/2025
+                alors: 12.3%
+              - si: date >= 07/2024
+                alors: 11.6%
+              - sinon: 10.60%
+        - sinon:
+            variations:
+              - si: date >= 01/2026
+                alors: 17.4%
+              - si: date >= 01/2025
+                alors: 16.4%
+              - si: date >= 07/2024
+                alors: 15.4%
+              - sinon: 14.10%
+
+    taux vente restauration hébergement:
+      remplace: cotisations et contributions . cotisations . vente restauration hébergement . taux
+      variations:
+        - si: première période
+          alors: 2.10%
+        - si: seconde période
+          alors: 6.20%
+        - sinon: 8.20%
+
+    taux CIPAV:
+      remplace: cotisations et contributions . cotisations . service BNC Cipav . taux
+      variations:
+        - si: première période
+          alors: 7.10%
+        - si: seconde période
+          alors: 10.60%
+        - sinon: 14.20%
+
+dirigeant . auto-entrepreneur . Acre:
+  applicable si: dirigeant . exonérations . ACRE
+
+  avec:
+    taux Acre:
+      description: |
+        Ce taux correspond à la réduction de cotisations qui s’applique pour
+        l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
+        l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
+        cotisations.
+      unité: '%'
+      variations:
+        - si: entreprise . date de création < 01/04/2019
+          alors:
+            grille:
+              assiette: entreprise . durée d'activité
+              tranches:
+                - montant: 25%
+                  plafond: 1 an
+                - montant: 50%
+                  plafond: 2 ans
+                - montant: 90%
+                  plafond: 3 ans
+        - si: entreprise . date de création < 01/04/2020
+          alors:
+            grille:
+              assiette: entreprise . durée d'activité
+              tranches:
+                - montant: 25%
+                  plafond: 1 an
+                - montant: 75%
+                  plafond: 2 ans
+                - montant: 90%
+                  plafond: 3 ans
+        - si: entreprise . durée d'activité < 1 an
+          alors: 50%
+
+      références:
+        FAQ auto-entrepreneur - Urssaf: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
+        Aide à la création ou à la reprise d'une entreprise (Acre) - Service-public.fr: https://entreprendre.service-public.fr/vosdroits/F11677
+
+    taux service BIC:
+      remplace: cotisations et contributions . cotisations . service BIC . taux
+      valeur: taux Acre * cotisations et contributions . cotisations . service BIC . taux
+      arrondi: 1 décimale
+
+    taux service BNC:
+      remplace: cotisations et contributions . cotisations . service BNC . taux
+      valeur: taux Acre * cotisations et contributions . cotisations . service BNC . taux
+      arrondi:
+        variations:
+          - si: date >= 01/2026
+            alors: 2 décimales
+          - sinon: 1 décimale
+
+    taux vente restauration hébergement:
+      remplace: cotisations et contributions . cotisations . vente restauration hébergement . taux
+      valeur: taux Acre * cotisations et contributions . cotisations . vente restauration hébergement . taux
+      arrondi: 1 décimale
+
+    taux CIPAV:
+      applicable si: Cipav
+      remplace: cotisations et contributions . cotisations . service BNC Cipav . taux
+      variations:
+        - si: entreprise . date de création >= 01/04/2020
+          alors:
+            variations:
+              - si: date >= 07/2024
+                alors: 13.90%
+              - sinon: 12.10%
+        - sinon: taux Acre * cotisations et contributions . cotisations . service BNC Cipav . taux
+
+dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel:
+  experimental: oui
+  formule: dirigeant . exonérations . ACRE
+  type: notification
+  description: |
+    Le taux Acre utilisé est celui correspondant au mois courant. Le
+    simulateur ne prend pas encore en compte le chevauchement de deux périodes
+    d’Acre sur une même année.

@@ -1,0 +1,97 @@
+salarié . mois incomplet:
+  experimental: oui
+  description: |
+    Gestion des mois incomplets (absence, embauche, départ, etc), notamment pour le
+    calcul de la réduction générale des cotisations ou de l’exonération Lodeom.
+  références:
+    Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-d-determination-de-la-valeur-du-4-determination-de-la-valeur-du
+
+salarié . mois incomplet . rémunération non impactée par l'absence:
+  somme:
+    - rémunération . primes
+    - rémunération . indemnités CDD
+  unité: €/mois
+
+salarié . mois incomplet . rémunération de base mois incomplet:
+  # TODO: décommenter la formule lorsque "rémunération . brut" n'incluera plus
+  # les frais professionnels.
+  # Décommenter aussi la ligne "rémunération . brut" dans "salarié . contrat . salaire brut"
+
+  # valeur: rémunération . brut
+  # abattement:
+  #   somme:
+  #     - rémunération . heures supplémentaires
+  #     - rémunération . heures complémentaires
+  #     - rémunération non impactée par l'absence
+  unité: €/mois
+  description: |
+    Exclure de cette rémunération :
+      - le paiement des heures supplémentaires et complémentaires,
+      - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
+
+salarié . mois incomplet . rémunération équivalente mois complet:
+  # par défaut: contrat . salaire brut
+  unité: €/mois
+  question: Quelle rémunération brute aurait été versée pour un mois complet ?
+  note: |
+    Exclure de cette rémunération :
+      - le paiement des heures supplémentaires et complémentaires,
+      - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
+
+salarié . mois incomplet . prorata:
+  valeur: rémunération de base mois incomplet / rémunération équivalente mois complet
+  unité: '%'
+  description: |
+    Le prorata correspond au rapport entre la rémunération du mois incomplet et
+    la rémunération qui aurait été versée pour un mois complet.
+
+    Plus précisément, ce prorata est le rapport entre :
+      - la rémunération brute versée pour le mois incomplet, sans les primes (et
+    autres éléments non impactés par l’absence) ni le paiements des heures
+    supplémentaires
+      - et la rémunération équivalente "mois complet" sans les primes et autres
+    éléments non impactés par l’absence.
+  références:
+    Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-d-determination-de-la-valeur-du-4-determination-de-la-valeur-du
+
+salarié . mois incomplet . SMIC équivalent:
+  somme:
+    - SMIC mensuel proratisé
+    - SMIC heures supplémentaires
+    - SMIC heures complémentaires
+  unité: €/mois
+  références:
+    Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-d-determination-de-la-valeur-du
+
+  avec:
+    SMIC mensuel proratisé:
+      produit:
+        - SMIC
+        - prorata
+      unité: €/mois
+      description: |
+        Ce montant correspond au SMIC équivalent au mois incomplet, c’est-à-dire en
+        tenant compte du prorata du temps de travail et les heures supplémentaires et
+        complémentaires.
+
+        Ce prorata du temps de travail est en réalité calculé comme un prorata des
+        rémunérations, entre celle du mois incomplet et celle qui aurait été versée
+        pour un mois complet.
+      références:
+        Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-d-determination-de-la-valeur-du-4-determination-de-la-valeur-du
+
+    SMIC heures supplémentaires:
+      produit:
+        - temps de travail . heures supplémentaires
+        - SMIC . horaire
+      unité: €/mois
+      références:
+        Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-e-prise-en-compte-des-heures-com-1-heures-supplementaires
+
+    SMIC heures complémentaires:
+      produit:
+        - temps de travail . heures complémentaires
+        - SMIC . horaire
+      unité: €/mois
+      références:
+        Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-e-prise-en-compte-des-heures-com-2-heures-complementaires

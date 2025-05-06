@@ -1,0 +1,91 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`calculate simulations-salarié > CCN HCR 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3384
+salarié . rémunération . net . payé après impôt: 1909
+salarié . rémunération . net . à payer avant impôt: 1983
+
+Notifications affichées : salarié . convention collective . avertissement convention collective"
+`;
+
+exports[`calculate simulations-salarié > CCN batiment 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3738
+salarié . rémunération . net . payé après impôt: 1859
+salarié . rémunération . net . à payer avant impôt: 1931
+
+Notifications affichées : salarié . convention collective . avertissement convention collective"
+`;
+
+exports[`calculate simulations-salarié > CCN batiment 2`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3721
+salarié . rémunération . net . payé après impôt: 1861
+salarié . rémunération . net . à payer avant impôt: 1933
+
+Notifications affichées : salarié . convention collective . avertissement convention collective"
+`;
+
+exports[`calculate simulations-salarié > CCN batiment 3`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3770
+salarié . rémunération . net . payé après impôt: 1862
+salarié . rémunération . net . à payer avant impôt: 1949
+
+Notifications affichées : salarié . convention collective . avertissement convention collective"
+`;
+
+exports[`calculate simulations-salarié > CCN compta 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3264
+salarié . rémunération . net . payé après impôt: 1935
+salarié . rémunération . net . à payer avant impôt: 2006
+
+Notifications affichées : salarié . convention collective . avertissement convention collective"
+`;
+
+exports[`calculate simulations-salarié > CCN optique 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3455
+salarié . rémunération . net . payé après impôt: 1969
+salarié . rémunération . net . à payer avant impôt: 2058
+
+Notifications affichées : salarié . convention collective . avertissement convention collective"
+`;
+
+exports[`calculate simulations-salarié > CCN spectacle vivant 1`] = `
+"salarié . contrat . salaire brut: 2500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 3731
+salarié . rémunération . net . payé après impôt: 2065
+salarié . rémunération . net . à payer avant impôt: 2155
+
+Notifications affichées : salarié . convention collective . avertissement convention collective, salarié . contrat . CDD . information"
+`;
+
+exports[`calculate simulations-salarié > CCN sport 1`] = `
+"salarié . contrat . salaire brut: 500
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 907
+salarié . rémunération . net . payé après impôt: 593
+salarié . rémunération . net . à payer avant impôt: 593
+
+Notifications affichées : salarié . convention collective . avertissement convention collective, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+`;
+
+exports[`calculate simulations-salarié > CCN sport 2`] = `
+"salarié . contrat . salaire brut: 1800
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 1801
+salarié . rémunération . net . payé après impôt: 1399
+salarié . rémunération . net . à payer avant impôt: 1399
+
+Notifications affichées : salarié . convention collective . avertissement convention collective, salarié . rémunération . assiette de vérification du SMIC . contrôle"
+`;

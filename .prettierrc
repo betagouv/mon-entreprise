@@ -1,0 +1,18 @@
+{
+	"bracketSpacing": true,
+	"semi": false,
+	"singleQuote": true,
+	"trailingComma": "es5",
+	"plugins": ["@ianvs/prettier-plugin-sort-imports"],
+	"importOrder": [
+		"<BUILTIN_MODULES>",
+		"",
+		"<THIRD_PARTY_MODULES>",
+		"",
+		"^@/(.*)",
+		"",
+		"^\\.(.*)"
+	],
+	"importOrderParserPlugins": ["typescript", "jsx", "importAssertions"],
+	"importOrderTypeScriptVersion": "5.0.0"
+}

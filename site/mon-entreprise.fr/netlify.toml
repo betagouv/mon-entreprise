@@ -1,0 +1,25 @@
+# Le projet "mon-entreprise.fr" se contente de faire une redirection 301 vers
+# les nouveaux domaines en *.urssaf.fr. Il y a 2 projets distincts sur Netlify
+# car le site "mon-entreprise.fr" utilise un certificat let's encrypt tandis que
+# les nouveaux noms de domaines en *.urssaf.fr utilisent un certificat dédié.
+
+[[redirects]]
+  from = "https://mon-entreprise.fr/modules/v2/dist/simulateur.js"
+  to = "https://mon-entreprise.urssaf.fr/simulateur-iframe-integration.js"
+  status = 301
+
+[[redirects]]
+  from = "https://mon-entreprise.fr/dist/simulateur.js"
+  to = "https://mon-entreprise.urssaf.fr/simulateur-iframe-integration.js"
+  status = 301
+
+[[redirects]]
+  from = "https://mon-entreprise.fr/*"
+  to = "https://mon-entreprise.urssaf.fr/:splat"
+  status = 301
+  
+[[redirects]]
+  from = "https://mycompanyinfrance.fr/*"
+  to = "https://mycompanyinfrance.urssaf.fr/:splat"
+  status = 301
+  

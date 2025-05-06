@@ -1,0 +1,15 @@
+.env
+source/public/data/*
+!source/public/data/versement-mobilité.json
+!source/public/data/base-stats.json
+cypress/videos
+cypress/screenshots
+cypress/downloads
+.deps.json
+netlify*.toml
+!mon-entreprise.fr/netlify.toml
+source/public/sitemap.*.txt
+source/public/simulation-data*.json
+dev-dist
+vite*.config.ts.timestamp*
+.swc

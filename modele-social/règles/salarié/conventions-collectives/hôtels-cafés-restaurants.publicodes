@@ -1,0 +1,51 @@
+salarié . convention collective . HCR:
+  formule: convention collective = 'HCR'
+  titre: hôtels, cafés restaurants HCR
+  icônes: 🍴
+  description: L'entreprise est un hôtel, café, restaurant ou assimilé.
+
+salarié . convention collective . HCR . montant forfaitaire d'un repas:
+  remplace:
+    références à:
+      rémunération . avantages en nature . nourriture . montant . repas
+      forfaitaire
+  variations:
+    - si: date >= 11/2024
+      alors: 4.22 €/repas
+    - si: date >= 01/2024
+      alors: 4.15 €/repas
+    - sinon: 3.94 €/repas
+
+salarié . convention collective . HCR . majoration heures supplémentaires:
+  remplace: temps de travail . heures supplémentaires . majoration
+  formule:
+    barème:
+      assiette: temps de travail . heures supplémentaires
+      multiplicateur: période . semaines par mois
+      tranches:
+        - taux: 10%
+          plafond: 4 heures/semaine
+        - taux: 20%
+          plafond: 8 heures/semaine
+        - taux: 50%
+
+salarié . convention collective . HCR . prévoyance conventionnelle:
+  note: Taux spécifiques pour les salariés relevant du régime local Alsace-Moselle
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: plafond sécurité sociale
+        - 0.90%
+      remplace: cotisations . prévoyances . conventionnelle . employeur
+
+    salarié:
+      produit:
+        - valeur: contrat . salaire brut
+          plafond: plafond sécurité sociale
+        - 0.47%
+      remplace: cotisations . prévoyances . conventionnelle . salarié

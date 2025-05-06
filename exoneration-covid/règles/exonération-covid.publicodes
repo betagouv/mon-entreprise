@@ -1,0 +1,555 @@
+secteur:
+  question: De quel secteur relève votre activité principale ?
+  description: |
+    Voir la liste détaillée des activités des différents secteurs [ici](https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/liste-secteurs-pour-infographie.pdf)
+
+    ### Bon à savoir :
+    - Les activités de livraison, de retrait de commande ou de vente à emporter ne sont pas prises en compte
+      pour apprécier le respect de la condition d'interdiction d'accueil du public.
+    - Le couvre-feu n'est pas considéré comme une mesure d'interdiction d'accueil du public.
+  une possibilité:
+    choix obligatoire: oui
+    possibilités: [S1, S1bis, S2]
+  meta:
+    affichage: card
+
+secteur . S1:
+  valeur: secteur = 'S1'
+  titre: Secteur dit S1
+  description: Activités du tourisme, de l’hôtellerie, de la restauration, du
+    sport, de la culture, du transport aérien et de l’événementiel
+
+secteur . S1bis:
+  valeur: secteur = 'S1bis'
+  titre: Secteur dit S1bis
+  description: Activités dépendantes du secteur 1
+
+secteur . S2:
+  valeur: secteur = 'S2'
+  titre: Secteur dit S2
+  description: Activités autres que S1 et S1bis ayant fait l'objet d'une
+    interdiction affectant de manière prépondérante la poursuite de leur
+    activité
+
+secteur . S1 ou S1bis:
+  question:
+    Quelle était votre situation liée à la crise sanitaire durant vos mois
+    d’activité ?
+  titre: ''
+  description: |
+    ### Baisse de 50% du chiffres d'affaires (périodes jusqu'à septembre 2021) :
+
+    Vous devez avoir subi une baisse d'au moins 50% du chiffre d'affaires mensuel par rapport au même mois de l'année précédente*,
+    ou si vous le souhaitez par rapport au chiffre d'affaires mensuel moyen de l'année 2019, ou, pour les entreprises créées en 2020,
+    par rapport au montant mensuel moyen du chiffre d'affaires réalisé entre la date de création de l'entreprise et le 31 août 2020.
+
+    Cette condition est également satisfaite lorsque la baisse de chiffre d'affaires mensuel par rapport à la même période de l'année précédente
+    représente au moins 15% du chiffre d'affaires de l'année 2019, ou, pour les entreprises créées en 2019,
+    par rapport au chiffre d'affaires de l'année 2019 ramené sur 12 mois.
+
+    *La condition de baisse de 50 % du chiffre d'affaires peut continuer, en 2021,
+    à être appréciée par rapport au chiffre d'affaires du même mois de l'année 2019,
+    lorsque cette comparaison est plus favorable pour l'entreprise qu'une appréciation par rapport au même mois de l'année précédente.
+
+    ### Baisse de 65% du chiffres d'affaires (périodes à compter de décembre 2021) :
+
+    Vous devez avoir subi une baisse d'au moins 65% du chiffre d'affaires mensuel par rapport au même mois de l'une des deux années précédentes ou,
+    pour les entreprises créées en 2021, par rapport au montant mensuel moyen du chiffre d'affaires réalisé entre la date de création de l'entreprise et le 31 août 2021.
+
+    ### Baisse entre 30 et 64% du chiffres d'affaires (périodes à compter de décembre 2021) :
+
+    Vous devez avoir subi une baisse d'au moins 30%, mais inférieure à 65%,
+    du chiffre d'affaires mensuel par rapport au même mois de l'une des deux années précédentes ou, pour les entreprises créées en 2021,
+    par rapport au montant mensuel moyen du chiffre d'affaires réalisé entre la date de création de l'entreprise et le 31 août 2021.
+  une de ces conditions:
+    - S1
+    - S1bis
+
+lieu d'exercice:
+  question: Où exercez-vous votre activité ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - métropole
+      - outre-mer
+  meta:
+    affichage: toggle
+
+lieu d'exercice . métropole:
+  titre: En métropole
+lieu d'exercice . outre-mer:
+  titre: En Outre-mer
+
+début d'activité:
+  titre: Période de début d’activité
+  question: À quelle période avez-vous débuté votre activité ?
+  une possibilité:
+    choix obligatoire: oui
+    possibilités:
+      - avant 2021
+      - janvier 2021
+      - février 2021
+      - mars 2021
+      - avril 2021
+      - mai 2021
+      - juin 2021
+      - juillet 2021
+      - août 2021
+      - septembre 2021
+      - octobre 2021
+      - novembre 2021
+      - décembre 2021
+  meta:
+    affichage: select
+
+début d'activité . avant 2021:
+début d'activité . janvier 2021:
+début d'activité . février 2021:
+début d'activité . mars 2021:
+début d'activité . avril 2021:
+début d'activité . mai 2021:
+début d'activité . juin 2021:
+début d'activité . juillet 2021:
+début d'activité . août 2021:
+début d'activité . septembre 2021:
+début d'activité . octobre 2021:
+début d'activité . novembre 2021:
+début d'activité . décembre 2021:
+
+début d'activité . date:
+  # Converti les possibilités en date (dans le futur on aimerait avoir des select basé sur des types sommes, et un type pour exprimer un 'mois' d'une date)
+  variations:
+    - si: début d'activité = 'avant 2021'
+      alors: 12/2020
+    - si: début d'activité = 'janvier 2021'
+      alors: 01/2021
+    - si: début d'activité = 'février 2021'
+      alors: 02/2021
+    - si: début d'activité = 'mars 2021'
+      alors: 03/2021
+    - si: début d'activité = 'avril 2021'
+      alors: 04/2021
+    - si: début d'activité = 'mai 2021'
+      alors: 05/2021
+    - si: début d'activité = 'juin 2021'
+      alors: 06/2021
+    - si: début d'activité = 'juillet 2021'
+      alors: 07/2021
+    - si: début d'activité = 'août 2021'
+      alors: 08/2021
+    - si: début d'activité = 'septembre 2021'
+      alors: 09/2021
+    - si: début d'activité = 'octobre 2021'
+      alors: 10/2021
+    - si: début d'activité = 'novembre 2021'
+      alors: 11/2021
+    - si: début d'activité = 'décembre 2021'
+      alors: 12/2021
+
+mois:
+  applicable si: secteur . S1 ou S1bis
+  valeur: oui
+
+mois . janvier 2021:
+  applicable si: début d'activité . date >= 01/2021
+  non applicable si: début d'activité . date >= 02/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . janvier 2021 . LFSS 600: janvier 2021 = 'LFSS 600'
+
+mois . février 2021:
+  non applicable si: début d'activité . date >= 03/2021
+  applicable si: début d'activité . date >= 01/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . février 2021 . LFSS 600: février 2021 = 'LFSS 600'
+
+mois . mars 2021:
+  non applicable si: début d'activité . date >= 04/2021
+  applicable si: début d'activité . date >= 01/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . mars 2021 . LFSS 600: mars 2021 = 'LFSS 600'
+
+mois . avril 2021:
+  non applicable si: début d'activité . date >= 05/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . avril 2021 . LFSS 600: avril 2021 = 'LFSS 600'
+
+mois . mai 2021:
+  non applicable si: début d'activité . date >= 06/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . mai 2021 . LFSS 600: mai 2021 = 'LFSS 600'
+
+mois . juin 2021:
+  non applicable si: début d'activité . date >= 07/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFR1
+
+mois . juin 2021 . LFSS 600: juin 2021 = 'LFSS 600'
+mois . juin 2021 . LFR1:
+  applicable si: LFR1 applicable
+  valeur: juin 2021 = 'LFR1'
+
+mois . juillet 2021:
+  non applicable si: début d'activité . date >= 08/2021
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFR1
+
+mois . juillet 2021 . LFSS 600: juillet 2021 = 'LFSS 600'
+
+mois . juillet 2021 . LFR1:
+  applicable si: LFR1 applicable
+  valeur: juillet 2021 = 'LFR1'
+
+mois . août 2021:
+  non applicable si: début d'activité . date >= 09/2021
+  applicable si:
+    une de ces conditions:
+      - LFR1 applicable
+      - lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFR1
+
+mois . août 2021 . LFSS 600:
+  valeur: août 2021 = 'LFSS 600'
+  applicable si: lieu d'exercice = 'outre-mer'
+
+mois . août 2021 . LFR1:
+  applicable si: LFR1 applicable
+  valeur: août 2021 = 'LFR1'
+
+mois . septembre 2021:
+  non applicable si: début d'activité . date >= 10/2021
+  applicable si: lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . septembre 2021 . LFSS 600: septembre 2021 = 'LFSS 600'
+
+mois . octobre 2021:
+  non applicable si: début d'activité . date >= 11/2021
+  applicable si: lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . octobre 2021 . LFSS 600: octobre 2021 = 'LFSS 600'
+
+mois . novembre 2021:
+  non applicable si: début d'activité . date >= 12/2021
+  applicable si: lieu d'exercice = 'outre-mer'
+  une possibilité:
+    possibilités:
+      - LFSS 600
+
+mois . novembre 2021 . LFSS 600: novembre 2021 = 'LFSS 600'
+
+mois . décembre 2021:
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFSS 300
+
+mois . décembre 2021 . LFSS 600:
+  valeur: décembre 2021 = 'LFSS 600'
+  meta:
+    baisse d'au moins: 65%
+mois . décembre 2021 . LFSS 300: décembre 2021 = 'LFSS 300'
+
+mois . janvier 2022:
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFSS 300
+
+mois . janvier 2022 . LFSS 600:
+  valeur: janvier 2022 = 'LFSS 600'
+  meta:
+    baisse d'au moins: 65%
+mois . janvier 2022 . LFSS 300: janvier 2022 = 'LFSS 300'
+
+mois . février 2022:
+  une possibilité:
+    possibilités:
+      - LFSS 600
+      - LFSS 300
+
+mois . février 2022 . LFSS 600:
+  valeur: février 2022 = 'LFSS 600'
+  meta:
+    baisse d'au moins: 65%
+mois . février 2022 . LFSS 300: février 2022 = 'LFSS 300'
+
+LFSS 600:
+  applicable si: secteur . S1 ou S1bis
+  produit:
+    - assiette
+    - mois éligibles
+
+  avec:
+    assiette:
+      valeur: 600
+      unité: €/mois
+
+    mois éligibles:
+      unité: mois
+      description: Nombre de mois éligible à l'exonération LFSS à 600 €
+      somme:
+        - valeur: mois . janvier 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . février 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . mars 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . avril 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . mai 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . juin 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . juillet 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . août 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . septembre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . octobre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . novembre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . décembre 2021 . LFSS 600
+          par défaut: non
+        - valeur: mois . janvier 2022 . LFSS 600
+          par défaut: non
+        - valeur: mois . février 2022 . LFSS 600
+          par défaut: non
+
+LFSS 600 . montant mensuel: LFSS 600 . assiette * 1 mois
+
+LFSS 300:
+  applicable si: secteur . S1 ou S1bis
+  produit:
+    - assiette
+    - mois éligibles
+
+  avec:
+    assiette:
+      valeur: 300
+      unité: €/mois
+
+    mois éligibles:
+      description: Nombre de mois éligible à l'exonération LFSS à 300€
+      unité: mois
+      somme:
+        - valeur: mois . décembre 2021 . LFSS 300
+          par défaut: non
+        - valeur: mois . janvier 2022 . LFSS 300
+          par défaut: non
+        - valeur: mois . février 2022 . LFSS 300
+          par défaut: non
+
+LFSS 300 . montant mensuel: LFSS 300 . assiette * 1 mois
+
+LFSS: oui
+LFSS . mois éligibles: LFSS 300 . mois éligibles + LFSS 600 . mois éligibles
+
+LFR1 applicable:
+  valeur: oui
+  applicable si:
+    toutes ces conditions:
+      - secteur . S1 ou S1bis
+      - début d'activité . date < 06/2021
+      - une de ces conditions:
+          - début d'activité . date < 01/2021
+          - mois . mars 2021 . LFSS 600
+          - mois . avril 2021 . LFSS 600
+          - mois . mai 2021 . LFSS 600
+
+LFR1:
+  produit:
+    - assiette
+    - mois éligibles
+
+  avec:
+    assiette:
+      valeur: 250
+      unité: €/mois
+
+    mois éligibles:
+      unité: mois
+      description: Nombre de mois éligible à l'exonération LFR1
+      somme:
+        - valeur: mois . juin 2021 . LFR1
+          par défaut: non
+        - valeur: mois . juillet 2021 . LFR1
+          par défaut: non
+        - valeur: mois . août 2021 . LFR1
+          par défaut: non
+
+LFR1 . montant mensuel: LFR1 . assiette * 1 mois
+
+exonération S2:
+  produit:
+    - assiette
+    - mois éligibles
+  applicable si:
+    toutes ces conditions:
+      - secteur . S2
+      - début d'activité . date <= mois éligibles . dernier mois
+
+  avec:
+    assiette:
+      valeur: 600
+      unité: €/mois
+
+exonération S2 . montant mensuel: exonération S2 . assiette * 1 mois
+
+exonération S2 . mois éligibles:
+  par défaut: 0 mois
+  unité: mois
+  arrondi: oui
+  question:
+    texte:
+      Précisez le nombre de mois entre {{ premier mois }} et {{ dernier mois }}
+      durant lesquels vous avez fait l’objet d’une mesure d’interdiction
+      affectant de manière prépondérante la poursuite de votre activité
+  plafond: plafond
+
+  avec:
+    plafond:
+      somme:
+        - durée:
+            depuis: premier mois
+            jusqu'à: dernier mois
+          arrondi: oui
+          unité: mois
+        - 1 mois
+
+exonération S2 . mois éligibles . premier mois:
+  variations:
+    - si: début d'activité . date < 01/2021
+      alors: 04/2021
+    - si: début d'activité . date < 02/2021
+      alors: 02/2021
+    - si: début d'activité . date > dernier mois
+      alors: dernier mois
+    - sinon: début d'activité . date
+
+exonération S2 . mois éligibles . dernier mois:
+  variations:
+    - si: lieu d'exercice = 'outre-mer'
+      alors: 09/2021
+    - sinon: 07/2021
+
+montant total:
+  somme:
+    - LFSS 600
+    - LFR1
+    - LFSS 300
+    - exonération S2
+
+code:
+  texte: '{{ secteur }};{{ LFSS }};{{ LFR1 }}'
+
+  # Applicabilité ajoutée pour éviter un code mal formatté en cas de variable non définie
+  # Cf https://github.com/betagouv/publicodes/issues/172
+  applicable si:
+    toutes ces conditions:
+      - secteur
+      - LFSS
+      - LFR1
+
+code . secteur:
+  variations:
+    - si: secteur . S1bis
+      alors: "'S1B'"
+    - sinon: secteur
+
+code . lieu d'exercice:
+  variations:
+    - si: lieu d'exercice = 'métropole'
+      alors: "'1'"
+    - sinon: "'2'"
+
+code . début d'activité:
+  variations:
+    - si: début d'activité = 'avant 2021'
+      alors: "'0'"
+    - si: début d'activité = 'janvier 2021'
+      alors: "'1'"
+    - si: début d'activité = 'février 2021'
+      alors: "'2'"
+    - si: début d'activité = 'mars 2021'
+      alors: "'3'"
+    - si: début d'activité = 'avril 2021'
+      alors: "'4'"
+    - si: début d'activité = 'mai 2021'
+      alors: "'5'"
+    - si: début d'activité = 'juin 2021'
+      alors: "'6'"
+    - si: début d'activité = 'juillet 2021'
+      alors: "'7'"
+    - si: début d'activité = 'août 2021'
+      alors: "'8'"
+    - si: début d'activité = 'septembre 2021'
+      alors: "'9'"
+    - si: début d'activité = 'octobre 2021'
+      alors: "'10'"
+    - si: début d'activité = 'novembre 2021'
+      alors: "'11'"
+    - si: début d'activité = 'décembre 2021'
+      alors: "'12'"
+
+code . LFSS:
+  variations:
+    - si: LFSS 300 + LFSS 600 = 0€
+      alors: "'N'"
+    - si: secteur . S2
+      alors:
+        texte: O;{{ mois S2 }}
+    - si: LFSS 300 = 0€
+      alors:
+        texte: O;{{ mois 600 }}
+    - sinon:
+        # LFSS 300 et 600
+        texte: O;{{ mois 600 }};{{ mois 300}}
+
+code . LFSS . mois S2:
+  valeur: exonération S2 . mois éligibles
+  unité: ''
+code . LFSS . mois 300:
+  valeur: LFSS 300 . mois éligibles
+  unité: ''
+code . LFSS . mois 600:
+  valeur: LFSS 600 . mois éligibles
+  unité: ''
+
+code . LFR1:
+  variations:
+    - si: LFR1 = 0€
+      alors: "'N'"
+    - sinon:
+        texte: O;{{ mois }}
+code . LFR1 . mois:
+  valeur: LFR1 . mois éligibles
+  unité: ''

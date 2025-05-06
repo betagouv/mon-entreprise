@@ -1,0 +1,50 @@
+[
+  {
+    "nom": "Brest",
+    "code": "29019",
+    "codesPostaux": [
+      "29200"
+    ],
+    "_score": 1.719818959982611,
+    "departement": {
+      "code": "29",
+      "nom": "Finistère"
+    },
+    "region": {
+      "code": "53",
+      "nom": "Bretagne"
+    }
+  },
+  {
+    "nom": "Brestot",
+    "code": "27110",
+    "codesPostaux": [
+      "27350"
+    ],
+    "_score": 0.7003536456918837,
+    "departement": {
+      "code": "27",
+      "nom": "Eure"
+    },
+    "region": {
+      "code": "28",
+      "nom": "Normandie"
+    }
+  },
+  {
+    "nom": "Esboz-Brest",
+    "code": "70216",
+    "codesPostaux": [
+      "70300"
+    ],
+    "_score": 0.49397751499282716,
+    "departement": {
+      "code": "70",
+      "nom": "Haute-Saône"
+    },
+    "region": {
+      "code": "27",
+      "nom": "Bourgogne-Franche-Comté"
+    }
+  }
+]

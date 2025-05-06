@@ -1,0 +1,30 @@
+import { DottedName } from 'modele-social'
+import Engine from 'publicodes'
+import React from 'react'
+
+import { useEngine } from '../utils/EngineContext'
+
+export function WhenAlreadyDefinedMulti({
+	dottedNames,
+	children,
+	engine,
+}: {
+	dottedNames: DottedName[]
+	children: React.ReactNode
+	engine?: Engine<DottedName>
+}) {
+	const defaultEngine = useEngine()
+
+	const engineValue = engine ?? defaultEngine
+
+	const notAllAlreadyDefined = dottedNames.some(
+		(dottedName) =>
+			engineValue.evaluate({ 'est non défini': dottedName }).nodeValue
+	)
+
+	if (notAllAlreadyDefined) {
+		return null
+	}
+
+	return <>{children}</>
+}

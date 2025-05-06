@@ -1,0 +1,15 @@
+{
+  "nom": "Escoubès-Pouts",
+  "code": "65164",
+  "codesPostaux": [
+    "65100"
+  ],
+  "departement": {
+    "code": "65",
+    "nom": "Hautes-Pyrénées"
+  },
+  "region": {
+    "code": "76",
+    "nom": "Occitanie"
+  }
+}

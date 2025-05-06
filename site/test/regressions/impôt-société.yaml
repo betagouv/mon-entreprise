@@ -1,0 +1,17 @@
+bénéfices:
+  - entreprise . résultat fiscal: -2000 €/an
+  - entreprise . résultat fiscal: 0 €/an
+  - entreprise . résultat fiscal: 2000 €/an
+  - entreprise . résultat fiscal: 20000 €/an
+  - entreprise . résultat fiscal: 200000 €/an
+  - entreprise . résultat fiscal: 2000000 €/an
+  - entreprise . résultat fiscal: 20000000 €/an
+
+prorata temporis:
+  - entreprise . résultat fiscal: 1000000 €/an
+  - entreprise . résultat fiscal: 1000000 €/an
+    entreprise . exercice . début: 01/01/2020
+    entreprise . exercice . fin: 01/06/2020
+  - entreprise . résultat fiscal: 1000000 €/an
+    entreprise . exercice . début: 01/01/2020
+    entreprise . exercice . fin: 01/06/2021

@@ -1,0 +1,54 @@
+base:
+  - &AE
+    entreprise . chiffre d'affaires: 60000 €/an
+    entreprise . catégorie juridique: "'EI'"
+    entreprise . catégorie juridique . EI . auto-entrepreneur: oui
+  - &EI
+    entreprise . chiffre d'affaires: 60000 €/an
+    entreprise . catégorie juridique: "'EI'"
+    entreprise . catégorie juridique . EI . auto-entrepreneur: non
+  - &SASU
+    entreprise . chiffre d'affaires: 60000 €/an
+    entreprise . catégorie juridique: "'SAS'"
+    entreprise . associés: "'unique'"
+
+bas revenus:
+  - entreprise . chiffre d'affaires: 2000 €/an
+    entreprise . charges: 0
+    entreprise . catégorie juridique: "'EI'"
+    entreprise . catégorie juridique . EI . auto-entrepreneur: oui
+
+  - entreprise . chiffre d'affaires: 2000 €/an
+    entreprise . charges: 0
+    entreprise . catégorie juridique: "'EI'"
+    entreprise . catégorie juridique . EI . auto-entrepreneur: non
+
+  - entreprise . chiffre d'affaires: 2000 €/an
+    entreprise . charges: 0
+    entreprise . catégorie juridique: "'SAS'"
+    entreprise . associés: "'unique'"
+
+ACRE:
+  - <<:
+      - *AE
+      - &ACRE
+        entreprise . chiffre d'affaires: 20000 €/an
+        dirigeant . exonérations . ACRE: oui
+        dirigeant . auto-entrepreneur . éligible à l'ACRE: oui
+  - <<: [*EI, *ACRE]
+  - <<: [*SASU, *ACRE]
+
+EI à l'IS:
+  - <<: *EI
+    entreprise . charges: 20000 €/an
+    entreprise . imposition: "'IS'"
+
+profession libérale non reglementée:
+  - <<:
+      - *AE
+      - &PLNR
+        entreprise . chiffre d'affaires: 120000 €/an
+        entreprise . charges: 15000 €/an
+        entreprise . activité . nature: "'libérale'"
+  - <<: [*EI, *PLNR]
+  - <<: [*SASU, *PLNR]

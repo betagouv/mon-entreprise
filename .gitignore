@@ -1,0 +1,27 @@
+.tags*
+.tmp
+/tmp
+.DS_Store
+yarn-error.log
+package-lock.json
+node_modules/
+.env
+dist/
+storybook-static/
+
+# Local Netlify folder
+.netlify
+
+# IDE
+.idea/
+.vscode/
+
+# Yarn https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+**/.pnp.*
+**/.yarn/*
+!**/.yarn/patches
+!**/.yarn/plugins
+!**/.yarn/releases
+!**/.yarn/sdks
+!**/.yarn/versions
+/.direnv/

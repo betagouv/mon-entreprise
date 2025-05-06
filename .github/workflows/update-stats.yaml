@@ -1,0 +1,39 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 0 7 6,12 *'
+
+name: Updates the base-stats.json file every six months
+jobs:
+  createPullRequest:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
+        env:
+          # Secrets of all kinds for fetching stats & releases
+          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
+          ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
+          ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
+          CRISP_API_IDENTIFIER: ${{ secrets.CRISP_API_IDENTIFIER }}
+          CRISP_API_KEY: ${{ secrets.CRISP_API_KEY }}
+          CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
+      - run: yarn workspace site run postinstall
+        env:
+          # Secrets of all kinds for fetching stats & releases
+          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
+          ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
+          ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
+          CRISP_API_IDENTIFIER: ${{ secrets.CRISP_API_IDENTIFIER }}
+          CRISP_API_KEY: ${{ secrets.CRISP_API_KEY }}
+          CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
+      - run: cp site/source/public/data/stats.json site/source/public/data/base-stats.json
+      - run: git status
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          add-paths: site/source/public/data/base-stats.json
+          commit-message: Updates the base-stats.json file every six months
+          title: '[Automatic PR] Updates the base-stats.json file'
+          body: >
+            Piano Analytics deletes data after two years, this cron job updates the base-stats.json file every six months so that old data is not lost.

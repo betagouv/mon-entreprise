@@ -1,0 +1,289 @@
+salarié . convention collective . SVP:
+  titre: Spectacle vivant privé
+  formule: convention collective = 'SVP'
+  icônes: 🎭
+  description: |
+    L'entreprise dépend de la convention collective nationale des entreprises privée du spectacle
+  rend non applicable: rémunération . indemnités CDD . congés payés
+
+salarié . convention collective . SVP . cotisations employeur:
+  remplace: cotisations . employeur
+  somme:
+    - cotisations . employeur
+    - régimes spécifiques . intermittents du spectacle . caisse des congés
+      spectacle
+    - FCAP
+    - prévoyance
+
+salarié . convention collective . SVP . FCAP:
+  titre: Fond commun d'aide au paritarisme
+  description: |
+    Le Fonds Commun d’Aide au Paritarisme du Spectacle Vivant Privé (FCAP-SVP) résulte de l’application du titre V – Financement du paritarisme la CCN des entreprises du secteur privé du spectacle vivant. Il a pour but de :
+
+    - Permettre aux organisations d’employeurs et de salariés d’exercer leurs missions et de favoriser l’application dans le temps de la Convention collective,
+    - De couvrir les frais engagés par les organisations syndicales,
+    - De couvrir les frais relatifs au dispositif des Conseillers Conventionnels des Salariés, au nombre de 28
+    - De financer le rapport de branche du spectacle vivant privé.
+
+  unité: €/an
+
+  # TODO :
+  note: les minimum et maximum sont fixé par entreprise, et non par salarié
+  non applicable si: entreprise . salariés . effectif = 0
+  formule:
+    produit:
+      - valeur: rémunération . brut
+        plafond: plafond sécurité sociale
+      - 0.1%
+    plancher: 80 €.employés/an / entreprise . salariés . effectif
+    plafond: 300 €.employés/an / entreprise . salariés . effectif
+
+  références:
+    Titre V de IDCC 3090: https://www.legifrance.gouv.fr/affichIDCC.do;?idSectionTA=KALISCTA000028157274&cidTexte=KALITEXT000028157267&idConvention=KALICONT000028157262
+    Note explicative AUDIENS: http://www.cheque-intermittents.com/wp-content/uploads/2015/05/FCAP-SVP-EXPLIC_final.pdf
+
+salarié . convention collective . SVP . prévoyance:
+  formule:
+    produit:
+      - valeur: cotisations . assiette
+        plafond: plafond sécurité sociale
+      - 1.20%
+  non applicable si: contrat . statut cadre
+  note: Dans le cas du statut cadre, la prévoyance obligatoire est plus
+    avantageuse, c'est donc cette dernière qui est prise en compte
+  références:
+    notice audiens: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/particulier/Fiches-techniques/ESSENTIEL-Sante-Prevoyance-Intermittents.pdf
+    Article 12.6, Titre VII, IDCC 3090: https://www.legifrance.gouv.fr/affichIDCCArticle.do;?idArticle=KALIARTI000028157451&cidTexte=KALITEXT000028157267&dateTexte=29990101&categorieLien=id
+
+salarié . régimes spécifiques . intermittents du spectacle:
+  applicable si:
+    toutes ces conditions:
+      - contrat . CDD . motif = 'classique . usage'
+      - convention collective . SVP
+  question: A quel statut d'intermittent est rattaché l'employé ?
+  par défaut: "'technicien'"
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - technicien
+        - artiste
+
+salarié . régimes spécifiques . intermittents du spectacle . formation professionnelle:
+  remplace: formation professionnelle
+  formule:
+    somme:
+      - 50 €/mois
+      - produit:
+          - rémunération . brut
+          - 2.10%
+
+salarié . régimes spécifiques . intermittents du spectacle . caisse des congés spectacle:
+  formule:
+    produit:
+      - rémunération . brut
+      - 15.40%
+  références:
+    audiens.org: https://www.audiens.org/files/live/sites/siteAudiens/files/03_documents/particulier/Fiches-techniques/ESSENTIEL-Sante-Prevoyance-Intermittents.pdf
+    Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
+
+salarié . régimes spécifiques . intermittents du spectacle . retraite complémentaire techniciens et cadre:
+  applicable si:
+    une de ces conditions:
+      - contrat . statut cadre
+      - technicien
+  formule: oui
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      remplace: cotisations . retraite complémentaire . employeur . taux T1
+      valeur: 3.94%
+
+    cotisations retraite complémentaire salarié taux T1:
+      remplace: cotisations . retraite complémentaire . salarié . taux T1
+      valeur: 3.93%
+
+salarié . régimes spécifiques . intermittents du spectacle . technicien:
+  formule: intermittents du spectacle = 'technicien'
+
+salarié . régimes spécifiques . intermittents du spectacle . technicien . non cadre:
+  formule: contrat . statut cadre = non
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+  avec:
+    cotisations retraite complémentaire employeur taux T2:
+      remplace: cotisations . retraite complémentaire . employeur . taux T2
+      valeur: 10.80%
+
+    cotisations retraite complémentaire salarié taux T2:
+      remplace: cotisations . retraite complémentaire . salarié . taux T2
+      valeur: 10.79%
+
+    plafond sécurité sociale:
+      remplace:
+        références à: plafond sécurité sociale
+        dans:
+          - cotisations . retraite complémentaire
+          - cotisations . CEG
+          - cotisations . CET
+      valeur: plafond sécurité sociale
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste:
+  formule: intermittents du spectacle = 'artiste'
+  description: |
+    Sont considérés comme artistes du spectacle :
+    - L'artiste lyrique
+    - L'artiste dramatique
+    - L'artiste chorégraphique
+    - L'artiste de variétés
+    - Le musicien
+    - Le chansonnier
+    - L'artiste de complément
+    - Le chef d'orchestre
+    - L'arrangeur-orchestrateur
+    - Le metteur en scène, le réalisateur et le chorégraphe, pour l'exécution matérielle de leur conception artistique
+    - L'artiste de cirque
+    - Le marionnettiste
+    - Les personnes dont l'activité est reconnue comme un métier d'artiste-interprète par les conventions collectives du spectacle vivant étendues.
+
+  références:
+    Article L7121-2: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000032859810&cidTexte=LEGITEXT000006072050&dateTexte=20160709
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . non cadre:
+  formule: contrat . statut cadre = non
+  références:
+    audiens.org: https://www.audiens.org/solutions/entreprises-la-retraite-complementaire-agirc-arcco-au-1er-janvier-2019.html
+
+  avec:
+    cotisations retraite complémentaire employeur taux T1:
+      remplace: cotisations . retraite complémentaire . employeur . taux T1
+      valeur: 4.45%
+
+    cotisations retraite complémentaire employeur taux T2:
+      remplace: cotisations . retraite complémentaire . employeur . taux T2
+      valeur: 10.80%
+
+    cotisations retraite complémentaire salarié taux T1:
+      remplace: cotisations . retraite complémentaire . salarié . taux T1
+      valeur: 4.44%
+
+    cotisations retraite complémentaire salarié taux T2:
+      remplace: cotisations . retraite complémentaire . salarié . taux T2
+      valeur: 10.79%
+
+    plafond sécurité sociale:
+      remplace:
+        références à: plafond sécurité sociale
+        dans:
+          - cotisations . retraite complémentaire
+          - cotisations . CEG
+          - cotisations . CET
+      valeur: plafond sécurité sociale
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . activité accessoire:
+  question: |
+    L'artiste est-il rémunéré pour une activité accessoire (dispense de cours, stages, etc) ?
+  par défaut: non
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux:
+  # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
+  rend non applicable: cotisations . exonérations . réduction générale
+  non applicable si: activité accessoire
+  formule: 70%
+
+  avec:
+    cotisations allocations familiales taux:
+      remplace: cotisations . allocations familiales . taux
+      valeur: cotisations . allocations familiales . taux * réduction de taux
+
+    cotisations FNAL taux:
+      remplace: cotisations . FNAL . taux
+      valeur: cotisations . FNAL . taux * réduction de taux
+
+    cotisations maladie employeur taux:
+      remplace: cotisations . maladie . employeur . taux
+      valeur: cotisations . maladie . employeur . taux * réduction de taux
+
+    cotisations maladie salarié taux:
+      remplace: cotisations . maladie . salarié . taux
+      valeur: cotisations . maladie . salarié . taux * réduction de taux
+
+    cotisations versement mobilité:
+      remplace: cotisations . versement mobilité
+      valeur: cotisations . versement mobilité * réduction de taux
+
+    cotisations vieillesse employeur déplafonnée taux:
+      remplace: cotisations . vieillesse . employeur . déplafonnée . taux
+      valeur:
+        cotisations . vieillesse . employeur . déplafonnée . taux * réduction de
+        taux
+
+    cotisations vieillesse employeur plafonnée taux:
+      remplace: cotisations . vieillesse . employeur . plafonnée . taux
+      valeur:
+        cotisations . vieillesse . employeur . plafonnée . taux * réduction de
+        taux
+
+    cotisations vieillesse salarié déplafonnée taux:
+      remplace: cotisations . vieillesse . salarié . déplafonnée . taux
+      valeur:
+        cotisations . vieillesse . salarié . déplafonnée . taux * réduction de
+        taux
+
+    cotisations vieillesse salarié plafonnée taux:
+      remplace: cotisations . vieillesse . salarié . plafonnée . taux
+      valeur: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux . ATMP:
+  remplace: cotisations . ATMP . taux
+  formule:
+    variations:
+      - si: régimes spécifiques . alsace moselle
+        alors: 1.54%
+      - sinon: 1.12%
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . nombre jours travaillés:
+  question: Pour combien de jours continus l'artiste est-il engagé ?
+  par défaut: 5 jour
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . plafond proratisé:
+  applicable si: nombre jours travaillés < 5
+  unité: €/mois
+
+  remplace:
+    références à: plafond sécurité sociale
+    dans:
+      - cotisations . FNAL
+      - cotisations . vieillesse
+  formule:
+    produit:
+      - plafond sécurité sociale . horaire
+      - 12 * nombre jours travaillés
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément:
+  non applicable si: activité accessoire
+  question:
+    L'artiste est-il un acteur de complément engagé à la journée pour une
+    production cinématographique ?
+  par defaut: non
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément . nombre jours travaillés:
+  remplace: artiste . nombre jours travaillés
+  formule: 1
+
+salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément . assiette forfaitaire:
+  applicable si: rémunération . brut < 6% * plafond sécurité sociale
+  remplace:
+    - salarié . cotisations . assiette forfaitaire
+  formule:
+    produit:
+      - SMIC . horaire
+      - 9
+
+  avec:
+    nombre jours travaillés:
+      remplace: nombre jours travaillés
+      valeur: 1

@@ -1,0 +1,12 @@
+{
+  "nom": "Monestiés",
+  "code": "81170",
+  "departement": {
+    "code": "81",
+    "nom": "Tarn"
+  },
+  "region": {
+    "code": "76",
+    "nom": "Occitanie"
+  }
+}

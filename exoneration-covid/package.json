@@ -1,0 +1,36 @@
+{
+	"name": "exoneration-covid",
+	"version": "1.0.0",
+	"description": "Les règles publicodes pour le calcul de l'exonération de cotisations covid (année 2021)",
+	"main": "./dist/index.js",
+	"types": "./index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"directory": "exoneration-covid"
+	},
+	"bugs": "https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%F0%9F%93%95+l%C3%A9gislation%22",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"index.d.ts"
+	],
+	"type": "module",
+	"devDependencies": {
+		"js-yaml": "^4.1.0",
+		"onchange": "^7.1.0"
+	},
+	"peerDependencies": {
+		"publicodes": "^1.0.4"
+	},
+	"scripts": {
+		"build": "node ../scripts/build-rules.js",
+		"start": "yarn run build && onchange 'règles/**/*.yaml' -- yarn run build",
+		"clean": "rimraf dist node_modules",
+		"prepack": "yarn run build",
+		"upgrade:major": "yarn version major && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"upgrade:minor": "yarn version minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"upgrade:patch": "yarn version patch && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"test": "node ../scripts/check-changelog.js"
+	}
+}
