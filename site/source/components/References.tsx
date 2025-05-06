@@ -7,6 +7,23 @@ import { Grid } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { capitalise0 } from '@/utils'
+import {
+	AGIRC_ARRCO,
+	AMELI,
+	ASSURANCE_RETRAITE,
+	BOFIP,
+	BOSS,
+	BPI,
+	CARCDSF,
+	CPSTI,
+	ECONOMIE_GOUV,
+	ENTREPRENDRE_SERVICE_PUBLIC,
+	FRANCE_TRAVAIL,
+	IMPOTS_GOUV,
+	LEGIFRANCE,
+	SERVICE_PUBLIC,
+	URSSAF,
+} from '@/utils/logos'
 
 export function References({
 	references,
@@ -109,24 +126,23 @@ const StyledImage = styled.img`
 	max-height: 2.25rem;
 `
 const referencesImages = {
-	'agirc-arrco.fr': '/références-images/agirc-arrco.jpg',
-	'ameli.fr': '/références-images/ameli.svg',
-	'autoentrepreneur.urssaf.fr': '/références-images/urssaf.svg',
-	'bofip.impots.gouv.fr': '/références-images/bofip.impots.gouv.jpg',
-	'boss.gouv.fr': '/références-images/boss.svg',
-	'bpifrance-creation.fr': '/références-images/bpifrance-creation.svg',
-	'economie.gouv.fr': '/références-images/economie.gouv.png',
-	'entreprendre.service-public.fr':
-		'/références-images/entreprendre.service-public.jpg',
-	'francetravail.fr': '/références-images/france-travail.svg',
-	'impots.gouv.fr': '/références-images/impots.gouv.svg',
-	'lassuranceretraite.fr': '/références-images/lassuranceretraite.svg',
-	'legislation.lassuranceretraite.fr':
-		'/références-images/lassuranceretraite.svg',
-	'legifrance.gouv.fr': '/références-images/legifrance.svg',
-	'secu-independants.fr': '/références-images/cpsti.svg',
-	'service-public.fr': '/références-images/service-public.svg',
-	'urssaf.fr': '/références-images/urssaf.svg',
+	'agirc-arrco.fr': AGIRC_ARRCO,
+	'ameli.fr': AMELI,
+	'autoentrepreneur.urssaf.fr': URSSAF,
+	'bofip.impots.gouv.fr': BOFIP,
+	'boss.gouv.fr': BOSS,
+	'bpifrance-creation.fr': BPI,
+	'carcdsf.fr': CARCDSF,
+	'economie.gouv.fr': ECONOMIE_GOUV,
+	'entreprendre.service-public.fr': ENTREPRENDRE_SERVICE_PUBLIC,
+	'francetravail.fr': FRANCE_TRAVAIL,
+	'impots.gouv.fr': IMPOTS_GOUV,
+	'lassuranceretraite.fr': ASSURANCE_RETRAITE,
+	'legislation.lassuranceretraite.fr': ASSURANCE_RETRAITE,
+	'legifrance.gouv.fr': LEGIFRANCE,
+	'secu-independants.fr': CPSTI,
+	'service-public.fr': SERVICE_PUBLIC,
+	'urssaf.fr': URSSAF,
 }
 
 const getDomain = (link: string) =>
