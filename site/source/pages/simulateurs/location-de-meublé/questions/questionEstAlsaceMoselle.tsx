@@ -1,23 +1,25 @@
-import { Option } from 'effect'
+import { Option, pipe } from 'effect'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Question } from '@/components/Simulation/Question'
+import { QuestionTypée } from '@/components/Simulation/QuestionFournie'
 import { Radio, ToggleGroup } from '@/design-system'
 import { SituationLocationCourteDuree } from '@/domaine/économie-collaborative/location-de-meublé/situation'
 
 interface Props {
-	situation: SituationLocationCourteDuree
+	situation: Option.Option<SituationLocationCourteDuree>
 	onRéponse: (réponse: Option.Option<boolean>) => void
 }
 
 const AlsaceMoselleQuestion = ({ situation, onRéponse }: Props) => {
 	const { t } = useTranslation()
 
-	const boolValue = Option.getOrNull(situation.estAlsaceMoselle)
-	const value = boolValue === null 
-		? undefined 
-		: boolValue ? 'oui' : 'non'
+	const boolValue = pipe(
+		situation,
+		Option.flatMap((s) => s.estAlsaceMoselle),
+		Option.getOrUndefined
+	)
+	const value = boolValue ?? boolValue ? 'oui' : 'non'
 
 	const handleChange = useCallback(
 		(newValue: string) => {
@@ -33,23 +35,21 @@ const AlsaceMoselleQuestion = ({ situation, onRéponse }: Props) => {
 			onChange={handleChange}
 			value={value}
 		>
-			<Radio value="oui">
-				{t('conversation.yes', 'Oui')}
-			</Radio>
-			<Radio value="non">
-				{t('conversation.no', 'Non')}
-			</Radio>
+			<Radio value="oui">{t('conversation.yes', 'Oui')}</Radio>
+			<Radio value="non">{t('conversation.no', 'Non')}</Radio>
 		</ToggleGroup>
 	)
 }
 
-export const questionEstAlsaceMoselle: Question<
+export const questionEstAlsaceMoselle: QuestionTypée<
 	SituationLocationCourteDuree,
 	Option.Option<boolean>
 > = {
+	_tag: 'QuestionFournie',
+	id: 'est-alsace-moselle', // Identifiant unique
 	libellé: 'Votre hébergement est-il situé en Alsace-Moselle ?',
 
-	applicable: (situation) => Option.isSome(situation.regimeCotisation),
+	applicable: () => true,
 
 	répond: (situation, réponse) => {
 		return {
@@ -58,7 +58,12 @@ export const questionEstAlsaceMoselle: Question<
 		}
 	},
 
-	estRépondue: (situation) => Option.isSome(situation.estAlsaceMoselle),
+	répondue: (situation) =>
+		pipe(
+			situation,
+			Option.flatMap((s) => s.estAlsaceMoselle),
+			Option.isSome
+		),
 
 	renderer: (situation, onRéponse) => (
 		<AlsaceMoselleQuestion situation={situation} onRéponse={onRéponse} />

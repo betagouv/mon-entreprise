@@ -1,6 +1,5 @@
-import { Option } from 'effect'
 import { DottedName } from 'modele-social'
-import { formatValue, PublicodesExpression } from 'publicodes'
+import { formatValue } from 'publicodes'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,14 +11,8 @@ import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulati
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
-import {
-	eurosParAn,
-	eurosParHeure,
-	eurosParJour,
-	eurosParMois,
-	Montant,
-} from '@/domaine/Montant'
+import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
+import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -33,10 +26,7 @@ type SimulationGoalProps = {
 	displayedUnit?: string
 	isInfoMode?: boolean
 	round?: boolean
-	onUpdateSituation?: (
-		name: DottedName,
-		value?: PublicodesExpression
-	) => void
+	onUpdateSituation?: (name: DottedName, value?: ValeurPublicodes) => void
 }
 
 export function SimulationGoal({
@@ -65,11 +55,11 @@ export function SimulationGoal({
 	const rule = engine.getRule(dottedName)
 
 	const onChange = useCallback(
-		(x?: PublicodesExpression) => {
+		(x?: ValeurPublicodes) => {
 			dispatch(
 				ajusteLaSituation({ [dottedName]: x } as Record<
 					DottedName,
-					SimpleRuleEvaluation
+					ValeurPublicodes
 				>)
 			)
 			onUpdateSituation?.(dottedName, x)
@@ -95,32 +85,13 @@ export function SimulationGoal({
 
 	const description = rule.rawNode.résumé || undefined
 
-	// Pour la compatibilité avec l'ancienne API
 	const valeurFormatee = formatValue(evaluation, {
 		displayedUnit,
 		precision: round ? 0 : 2,
 		language,
 	}) as string
 
-	// Conversion de la valeur en Option<Montant>
-	const valeurMontant =
-		typeof evaluation.nodeValue === 'number'
-			? (() => {
-					const valeur = evaluation.nodeValue
-					switch (currentUnit) {
-						case '€/an':
-							return Option.some(eurosParAn(valeur))
-						case '€/mois':
-							return Option.some(eurosParMois(valeur))
-						case '€/jour':
-							return Option.some(eurosParJour(valeur))
-						case '€/heure':
-							return Option.some(eurosParHeure(valeur))
-						default:
-							return Option.some(eurosParAn(valeur))
-					}
-			  })()
-			: Option.none<Montant>()
+	const valeurMontant = MontantAdapter.decode(evaluation)
 
 	const editeur = editable ? (
 		<RuleInput
