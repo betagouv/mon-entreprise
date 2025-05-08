@@ -1,10 +1,7 @@
-import { DottedName } from 'modele-social'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
-import { useNavigateQuestions } from '@/components/conversation/useNavigateQuestions'
 import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import Notifications from '@/components/Notifications'
 import { Button } from '@/design-system/buttons'
@@ -15,21 +12,18 @@ import { Body } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 interface Props {
-	firstRenderDone: boolean
 	customEndMessages?: React.ReactNode
-	previousAnswers: DottedName[]
-	customSituationVisualisation?: React.ReactNode
+	onPrevious?: () => void
 }
 
 export function VousAvezComplétéCetteSimulation({
-	firstRenderDone,
 	customEndMessages,
-	previousAnswers,
-	customSituationVisualisation,
+	onPrevious,
 }: Props) {
 	const { currentSimulatorData } = useCurrentSimulatorData()
 
-	const { goToPrevious } = useNavigateQuestions()
+	const [firstRenderDone, setFirstRenderDone] = useState(false)
+	useEffect(() => setFirstRenderDone(true), [])
 
 	return (
 		<>
@@ -56,13 +50,11 @@ export function VousAvezComplétéCetteSimulation({
 					</>
 				)}
 				<Grid container spacing={2}>
-					{previousAnswers.length > 0 && (
-						<Grid item xs={6} sm="auto">
-							<Button light onPress={goToPrevious} size="XS">
-								<span aria-hidden>←</span> <Trans>Précédent</Trans>
-							</Button>
-						</Grid>
-					)}
+					<Grid item xs={6} sm="auto">
+						<Button light onPress={onPrevious} size="XS">
+							<span aria-hidden>←</span> <Trans>Précédent</Trans>
+						</Button>
+					</Grid>
 					<Grid
 						item
 						xs={6}
@@ -71,9 +63,7 @@ export function VousAvezComplétéCetteSimulation({
 							justifyContent: 'flex-end',
 							display: 'flex',
 						}}
-					>
-						<SeeAnswersButton>{customSituationVisualisation}</SeeAnswersButton>
-					</Grid>
+					></Grid>
 				</Grid>
 			</div>
 			<Notifications />

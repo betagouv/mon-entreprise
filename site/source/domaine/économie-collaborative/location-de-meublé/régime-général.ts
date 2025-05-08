@@ -10,10 +10,10 @@ import {
 	abattement,
 	estPlusGrandQue,
 	estPlusPetitQue,
-	EuroParAn,
 	eurosParAn,
 	fois,
 	moins,
+	Montant,
 } from '@/domaine/Montant'
 
 import { DEFAULTS } from './cotisations'
@@ -32,7 +32,7 @@ export const ABATTEMENT_REGIME_GENERAL = 0.6
 export function calculeCotisationsRégimeGénéral(
 	situation: SituationLocationCourteDureeValide
 ): Either.Either<
-	EuroParAn,
+	Montant<'EuroParAn'>,
 	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
 > {

@@ -69,7 +69,6 @@ export const RadioSkeleton = (props: RadioProps) => {
 		className,
 		'aria-label': ariaLabel,
 		'aria-labelledby': ariaLabelledby,
-		defaultSelected,
 	} = props
 
 	const state = useContext(RadioContext)
@@ -102,7 +101,6 @@ export const RadioSkeleton = (props: RadioProps) => {
 					className="sr-only"
 					ref={ref}
 					id={id}
-					defaultChecked={defaultSelected}
 				/>
 				<VisibleRadio as={visibleRadioAs} $inert={isDisabled}>
 					<>{children}</>
