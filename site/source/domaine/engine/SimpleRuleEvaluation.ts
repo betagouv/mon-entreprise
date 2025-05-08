@@ -1,5 +1,7 @@
 import { PublicodesExpression } from 'publicodes'
 
-export type SimpleRuleEvaluation =
-	| (PublicodesExpression & (string | boolean | number))
+export type SimplePublicodesExpression =
+	| (PublicodesExpression & (string | number))
 	| undefined
+
+// export type SimpleRuleEvaluation = SimplePublicodesExpression | undefined | null

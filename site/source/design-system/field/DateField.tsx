@@ -20,7 +20,7 @@ import TextField from './TextField'
 
 export interface DateFieldProps {
 	defaultSelected?: Date
-	onChange?: (value?: string) => void
+	onChange?: (value?: Date) => void
 	placeholder?: string
 	label?: string
 	isRequired?: boolean
@@ -91,13 +91,9 @@ export default function DateField(props: DateFieldProps) {
 		setIsChangeOnce(true)
 		setInputValue(value)
 		const date = parse(value, format, new Date())
-		if (
-			isValid(date) &&
-			date.getFullYear() > 1800 &&
-			date.getFullYear() <= new Date().getFullYear()
-		) {
+		if (isValid(date) && date.getFullYear() > 1800) {
 			setSelected(date)
-			onChange?.(value)
+			onChange?.(date)
 		} else {
 			setSelected(undefined)
 			onChange?.()
@@ -115,7 +111,7 @@ export default function DateField(props: DateFieldProps) {
 				const value = formatDate(date, format, { locale })
 				setInputValue(value)
 				close()
-				onChange?.(value)
+				onChange?.(date)
 			} else {
 				setInputValue('')
 				onChange?.()
@@ -149,9 +145,7 @@ export default function DateField(props: DateFieldProps) {
 					isRequired={isRequired}
 					placeholder={placeholder}
 					value={inputValue}
-					onChange={(value) => {
-						handleInputChange(value)
-					}}
+					onChange={handleInputChange}
 					onBlur={(e) => {
 						inputProps.onBlur?.(
 							e as React.FocusEvent<HTMLInputElement, Element>

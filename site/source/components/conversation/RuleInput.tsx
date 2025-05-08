@@ -1,5 +1,8 @@
+import { pipe } from 'effect'
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
+import Engine, { Evaluation } from 'publicodes'
+import { useDispatch } from 'react-redux'
 
 import {
 	getMultiplePossibilitiesOptions,
@@ -9,10 +12,20 @@ import {
 	getOnePossibilityOptions,
 	isOnePossibility,
 } from '@/components/conversation/getOnePossibilityOptions'
+import MontantInput from '@/components/conversation/MontantInput'
 import { useEngine } from '@/components/utils/EngineContext'
 import { ChoiceDisplayType } from '@/design-system/field/ChoiceGroup'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
+import { isIsoDate } from '@/domaine/Date'
+import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
+import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
+import {
+	RèglePublicodeAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/RèglePublicodeAdapter'
+import { OuiNon } from '@/domaine/OuiNon'
+import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
@@ -22,7 +35,6 @@ import NumberInput from './NumberInput'
 import { OuiNonInput } from './OuiNonInput'
 import { PlusieursPossibilités } from './PlusieursPossibilités'
 import SelectCommune from './select/SelectCommune'
-import SelectPaysDétachement from './select/SelectPaysDétachement'
 import SelectAtmp from './select/SelectTauxRisque'
 import TextInput from './TextInput'
 import { UnePossibilité } from './UnePossibilité'
@@ -30,7 +42,7 @@ import { UnePossibilité } from './UnePossibilité'
 interface RuleInputProps {
 	dottedName: DottedName
 	onChange: (
-		value: PublicodesExpression | undefined,
+		value: ValeurPublicodes | undefined,
 		dottedName: DottedName
 	) => void
 
@@ -77,11 +89,20 @@ export default function RuleInput({
 	engine,
 	...accessibilityProps
 }: RuleInputProps) {
+	const dispatch = useDispatch()
 	const defaultEngine = useEngine() as Engine<string>
+
 	const engineValue = (engine ?? defaultEngine) as Engine<DottedName>
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
-	const value = evaluation.nodeValue
+
+	const isDefaultValue = missing ?? dottedName in evaluation.missingVariables
+
+	const decoded: O.Option<ValeurPublicodes> =
+		RèglePublicodeAdapter.decode(evaluation)
+
+	const value = isDefaultValue ? undefined : O.getOrUndefined(decoded)
+	const defaultValue = isDefaultValue ? decoded : O.none()
 
 	const inputId = accessibilityProps?.id ?? normalizeRuleName.Input(dottedName)
 
@@ -125,9 +146,9 @@ export default function RuleInput({
 				<UnePossibilité
 					dottedName={dottedName}
 					value={value}
+					defaultValue={O.getOrUndefined(defaultValue)}
 					onChange={(value) => onChange(value, dottedName)}
 					missing={missing ?? dottedName in evaluation.missingVariables}
-					onSubmit={onSubmit}
 					id={inputId}
 					title={rule.title}
 					description={rule.rawNode.description}
@@ -154,7 +175,9 @@ export default function RuleInput({
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
 					autoFocus={accessibilityProps.autoFocus}
 					missing={missing ?? dottedName in evaluation.missingVariables}
-					onChange={(c) => onChange({ batchUpdate: c }, dottedName)}
+					onChange={(c) => {
+						dispatch(enregistreLesRéponses(dottedName, c))
+					}}
 					value={value as Evaluation<string>}
 				/>
 				<Spacing md />
@@ -162,19 +185,22 @@ export default function RuleInput({
 		)
 	}
 
-	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
-		return (
-			<>
-				<SelectPaysDétachement
-					id={inputId}
-					value={value}
-					onChange={(value) => onChange(value, dottedName)}
-					plusFrance={rule.rawNode.API.endsWith('plus France')}
-				/>
-				<Spacing md />
-			</>
-		)
-	}
+	// FIXME Utilise-t-on encore cet input ?
+	// if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
+	// 	return (
+	// 		<>
+	// 			<SelectPaysDétachement
+	// 				id={inputId}
+	// 				value={value}
+	// 				onChange={(value) =>
+	// 					onChange(value as ValeurPourPublicodes, dottedName)
+	// 				}
+	// 				plusFrance={rule.rawNode.API.endsWith('plus France')}
+	// 			/>
+	// 			<Spacing md />
+	// 		</>
+	// 	)
+	// }
 
 	if (rule.rawNode.API) {
 		throw new Error(
@@ -186,7 +212,12 @@ export default function RuleInput({
 	if (rule.dottedName === 'établissement . taux ATMP . taux collectif') {
 		return (
 			<SelectAtmp
-				onChange={(value) => onChange(value, dottedName)}
+				onChange={(value) =>
+					onChange(
+						value === undefined ? undefined : parseInt(value),
+						dottedName
+					)
+				}
 				/* eslint-disable-next-line jsx-a11y/no-autofocus */
 				autoFocus={accessibilityProps.autoFocus}
 				onSubmit={onSubmit}
@@ -195,10 +226,11 @@ export default function RuleInput({
 	}
 
 	// Gestion des entrées de date
-	if ((rule.rawNode.type as string | undefined)?.startsWith('date')) {
+	if ((rule.rawNode.type as string | undefined)?.startsWith('date') /* 😭 */) {
 		return (
 			<DateInput
-				value={value}
+				dottedName={rule.dottedName}
+				value={isIsoDate(value) ? value : undefined}
 				onChange={(value) => onChange(value, dottedName)}
 				missing={missing ?? dottedName in evaluation.missingVariables}
 				title={rule.title}
@@ -224,22 +256,14 @@ export default function RuleInput({
 		return (
 			<>
 				<OuiNonInput
-					value={
-						value === true
-							? true
-							: value === false
-							? false
-							: value === 'oui'
-							? 'oui'
-							: value === 'non'
-							? 'non'
-							: undefined
-					}
+					dottedName={rule.dottedName}
+					value={pipe(
+						value as Evaluation<boolean>,
+						OuiNonAdapter.decode,
+						O.getOrUndefined
+					)}
 					onChange={(value) => onChange(value, dottedName)}
-					defaultValue={
-						value === true ? 'oui' : value === false ? 'non' : undefined
-					}
-					onSubmit={onSubmit}
+					defaultValue={O.getOrUndefined(defaultValue) as OuiNon | undefined}
 					id={inputId}
 					title={rule.title}
 					description={rule.rawNode.description}
@@ -258,6 +282,7 @@ export default function RuleInput({
 	if (rule.rawNode.type === 'texte') {
 		return (
 			<TextInput
+				dottedName={rule.dottedName}
 				value={value}
 				onChange={(value) => onChange(value, dottedName)}
 				missing={missing ?? dottedName in evaluation.missingVariables}
@@ -275,19 +300,47 @@ export default function RuleInput({
 		)
 	}
 
+	if (rule.rawNode.type === 'nombre' && rule.rawNode.unité) {
+		console.warn('Est-ce un montant ?', rule.rawNode.unité)
+
+		// eslint-disable-next-line no-constant-condition
+		if (false) {
+			return (
+				<MontantInput
+					value={pipe(evaluation, MontantAdapter.decode, O.getOrUndefined)}
+					unité={'Euro'} // FIXME détecter correctement l’unité
+					onChange={(value) => {
+						onChange(value, dottedName)
+					}}
+					missing={missing ?? dottedName in evaluation.missingVariables}
+					onSubmit={onSubmit}
+					suggestions={showSuggestions ? rule.suggestions : {}}
+					showSuggestions={showSuggestions}
+					id={inputId}
+					description={rule.rawNode.description}
+					formatOptions={accessibilityProps.formatOptions}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'] ?? rule.title,
+					}}
+				/>
+			)
+		}
+	}
+
 	return (
 		<NumberInput
-			value={value}
-			onChange={(value) => onChange(value, dottedName)}
+			value={evaluation.nodeValue as number | undefined}
+			onChange={(value) => {
+				onChange(value, dottedName)
+			}}
 			missing={missing ?? dottedName in evaluation.missingVariables}
 			onSubmit={onSubmit}
 			suggestions={showSuggestions ? rule.suggestions : {}}
 			showSuggestions={showSuggestions}
-			unit={evaluation.unit}
 			id={inputId}
 			description={rule.rawNode.description}
 			formatOptions={accessibilityProps.formatOptions}
-			displayedUnit={accessibilityProps.displayedUnit}
 			aria={{
 				labelledby: accessibilityProps['aria-labelledby'],
 				label: accessibilityProps['aria-label'] ?? rule.title,

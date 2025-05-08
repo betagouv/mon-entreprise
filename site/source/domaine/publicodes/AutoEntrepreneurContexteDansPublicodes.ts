@@ -1,5 +1,5 @@
 import { Contexte } from '@/domaine/Contexte'
-import { EuroParAn, montantToNumber } from '@/domaine/Montant'
+import { Montant, montantToNumber } from '@/domaine/Montant'
 
 export const AutoEntrepreneurContexteDansPublicodes: Contexte = {
 	'entreprise . catégorie juridique': "'EI'",
@@ -19,7 +19,7 @@ export const AutoEntrepreneurCotisationsEtContributionsDansPublicodes = {
 }
 
 export const AutoEntrepreneurChiffreAffaireDansPublicodes = {
-	fromMontant: (montant: EuroParAn) => ({
+	fromMontant: (montant: Montant<'EuroParAn'>) => ({
 		"dirigeant . auto-entrepreneur . chiffre d'affaires": `${montantToNumber(
 			montant
 		)} €/an`,
