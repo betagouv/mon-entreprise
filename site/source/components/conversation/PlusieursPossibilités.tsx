@@ -1,18 +1,15 @@
 import { DottedName } from 'modele-social'
-import Engine, {
-	ASTNode,
-	EvaluatedNode,
-	PublicodesExpression,
-	RuleNode,
-} from 'publicodes'
+import Engine, { ASTNode, RuleNode } from 'publicodes'
+import { useCallback } from 'react'
 
 import { ChoixMultiple, ChoixOption } from '@/design-system/field/choix'
+import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
 
 interface PlusieursPossibilitésProps {
-	value: EvaluatedNode['nodeValue']
 	choices: Array<RuleNode<DottedName>>
-	onChange: (value: PublicodesExpression, name: DottedName) => void
 	engine: Engine<DottedName>
+	onChange?: (value: ValeurPublicodes, name: DottedName) => void
+	value?: ValeurPublicodes
 	id?: string
 	title?: string
 	description?: string
@@ -47,15 +44,20 @@ export function PlusieursPossibilités({
 		})
 		.filter((option) => option.value !== null)
 
-	const handleChange = (id: string, isSelected: boolean) => {
-		return choices.forEach((choice) => {
-			const value =
-				id === choice.dottedName
-					? isSelected
-					: engine.evaluate(choice).nodeValue
-			onChange(value ? 'oui' : 'non', choice.dottedName)
-		})
-	}
+	const handleChange = useCallback(
+		(id: string, isSelected: boolean) => {
+			choices.forEach((choice) => {
+				const dottedName = choice.dottedName
+				const value =
+					id === dottedName ? isSelected : engine.evaluate(choice).nodeValue
+
+				if (onChange) {
+					onChange(value ? 'oui' : 'non', dottedName)
+				}
+			})
+		},
+		[choices, engine, onChange]
+	)
 
 	return (
 		<ChoixMultiple

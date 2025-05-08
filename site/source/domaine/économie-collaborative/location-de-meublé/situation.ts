@@ -1,6 +1,6 @@
 import { Option } from 'effect'
 
-import { EuroParAn } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
 
 export enum RegimeCotisation {
 	microEntreprise = 'micro-entreprise',
@@ -13,7 +13,7 @@ export interface Situation {
 }
 
 export interface SituationLocationCourteDuree extends Situation {
-	recettes: Option.Option<EuroParAn>
+	recettes: Option.Option<Montant<'EuroParAn'>>
 	regimeCotisation: Option.Option<RegimeCotisation>
 	estAlsaceMoselle: Option.Option<boolean>
 	premièreAnnée: Option.Option<boolean>
@@ -21,7 +21,7 @@ export interface SituationLocationCourteDuree extends Situation {
 
 export interface SituationLocationCourteDureeValide
 	extends SituationLocationCourteDuree {
-	recettes: Option.Some<EuroParAn>
+	recettes: Option.Some<Montant<'EuroParAn'>>
 }
 
 export function estSituationValide(

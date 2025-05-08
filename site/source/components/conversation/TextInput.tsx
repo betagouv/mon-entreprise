@@ -1,12 +1,13 @@
-import { ASTNode, EvaluatedNode, PublicodesExpression } from 'publicodes'
-import { useCallback } from 'react'
+import { ASTNode } from 'publicodes'
 
 import { TextField } from '@/design-system/field'
-import { debounce } from '@/utils'
+import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
+import { useSelection } from '@/hooks/UseSelection'
+import { NoOp } from '@/utils/NoOp'
 
 interface TextInputProps {
-	value: EvaluatedNode['nodeValue']
-	onChange: (value: PublicodesExpression | undefined) => void
+	value: ValeurPublicodes | undefined
+	onChange?: (value: ValeurPublicodes | undefined) => void
 	missing?: boolean
 	title?: string
 	description?: string
@@ -21,7 +22,7 @@ interface TextInputProps {
 }
 
 export default function TextInput({
-	onChange,
+	onChange = NoOp,
 	value,
 	description,
 	title,
@@ -29,7 +30,10 @@ export default function TextInput({
 	autoFocus,
 	aria = {},
 }: TextInputProps) {
-	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
+	const { handleChange } = useSelection({
+		value,
+		onChange,
+	})
 
 	return (
 		<TextField
@@ -38,7 +42,7 @@ export default function TextInput({
 			// eslint-disable-next-line jsx-a11y/no-autofocus
 			autoFocus={autoFocus}
 			onChange={(value) => {
-				debouncedOnChange(`'${value}'`)
+				handleChange(`'${value}'`)
 			}}
 			description={description}
 			{...{

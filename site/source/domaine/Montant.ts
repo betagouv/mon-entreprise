@@ -1,5 +1,6 @@
 import { Data, Either } from 'effect'
 import { dual } from 'effect/Function'
+import { isObject } from 'effect/Predicate'
 
 export type UnitéMonétaire =
 	| 'Euro'
@@ -8,31 +9,14 @@ export type UnitéMonétaire =
 	| 'EuroParJour'
 	| 'EuroParHeure'
 
-export interface Montant {
+export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'
 	readonly valeur: number
-	readonly unité: UnitéMonétaire
+	readonly unité: T
 }
 
-export interface Euro extends Montant {
-	readonly unité: 'Euro'
-}
-
-export interface EuroParMois extends Montant {
-	readonly unité: 'EuroParMois'
-}
-
-export interface EuroParAn extends Montant {
-	readonly unité: 'EuroParAn'
-}
-
-export interface EuroParJour extends Montant {
-	readonly unité: 'EuroParJour'
-}
-
-export interface EuroParHeure extends Montant {
-	readonly unité: 'EuroParHeure'
-}
+export const isMontant = (valeur: unknown): valeur is Montant =>
+	isObject(valeur) && '_tag' in valeur && valeur._tag === 'Montant'
 
 const makeMontant = Data.tagged<Montant>('Montant')
 
@@ -55,43 +39,59 @@ const Symbole: Record<UnitéMonétaire, string> = {
 const arrondirAuCentime = (valeur: number): number =>
 	Math.round(valeur * 100) / 100
 
-export const estEuro = (montant: Montant): montant is Euro =>
+export const estEuro = (montant: Montant): montant is Montant<'Euro'> =>
 	montant.unité === 'Euro'
-export const estEuroParMois = (montant: Montant): montant is EuroParMois =>
-	montant.unité === 'EuroParMois'
-export const estEuroParAn = (montant: Montant): montant is EuroParAn =>
-	montant.unité === 'EuroParAn'
-export const estEuroParJour = (montant: Montant): montant is EuroParJour =>
-	montant.unité === 'EuroParJour'
-export const estEuroParHeure = (montant: Montant): montant is EuroParHeure =>
-	montant.unité === 'EuroParHeure'
+export const estEuroParMois = (
+	montant: Montant
+): montant is Montant<'EuroParMois'> => montant.unité === 'EuroParMois'
+export const estEuroParAn = (
+	montant: Montant
+): montant is Montant<'EuroParAn'> => montant.unité === 'EuroParAn'
+export const estEuroParJour = (
+	montant: Montant
+): montant is Montant<'EuroParJour'> => montant.unité === 'EuroParJour'
+export const estEuroParHeure = (
+	montant: Montant
+): montant is Montant<'EuroParHeure'> => montant.unité === 'EuroParHeure'
 
-export const euros = (valeur: number): Euro =>
-	makeMontant({ valeur: arrondirAuCentime(valeur), unité: 'Euro' }) as Euro
+export const euros = (valeur: number): Montant<'Euro'> =>
+	makeMontant({
+		valeur: arrondirAuCentime(valeur),
+		unité: 'Euro',
+	}) as Montant<'Euro'>
 
-export const eurosParMois = (valeur: number): EuroParMois =>
+export const eurosParMois = (valeur: number): Montant<'EuroParMois'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
 		unité: 'EuroParMois',
-	}) as EuroParMois
+	}) as Montant<'EuroParMois'>
 
-export const eurosParAn = (valeur: number): EuroParAn =>
+export const eurosParAn = (valeur: number): Montant<'EuroParAn'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
 		unité: 'EuroParAn',
-	}) as EuroParAn
+	}) as Montant<'EuroParAn'>
 
-export const eurosParJour = (valeur: number): EuroParJour =>
+export const eurosParJour = (valeur: number): Montant<'EuroParJour'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
 		unité: 'EuroParJour',
-	}) as EuroParJour
+	}) as Montant<'EuroParJour'>
 
-export const eurosParHeure = (valeur: number): EuroParHeure =>
+export const eurosParHeure = (valeur: number): Montant<'EuroParHeure'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
 		unité: 'EuroParHeure',
-	}) as EuroParHeure
+	}) as Montant<'EuroParHeure'>
+
+export const montant = <U extends UnitéMonétaire>(
+	valeur: number,
+	unité: U
+): Montant<U> =>
+	makeMontant({
+		valeur: arrondirAuCentime(valeur),
+		unité,
+	}) as Montant<U>
 
 export const plus = dual<
 	<M extends Montant>(b: M) => (a: M) => M,
@@ -180,5 +180,11 @@ export const estZéro = (montant: Montant): boolean => montant.valeur === 0
 export const montantToNumber = (montant: Montant): number => montant.valeur
 
 export const toString = (montant: Montant): string => {
-	return `${montant.valeur.toLocaleString('fr-FR')} ${Symbole[montant.unité]}`
+	return `${montant.valeur.toLocaleString('fr-FR')} ${unitéMonétaireToString(
+		montant.unité
+	)}`
 }
+
+export const montantToString = toString
+
+export const unitéMonétaireToString = (u: UnitéMonétaire): string => Symbole[u]
