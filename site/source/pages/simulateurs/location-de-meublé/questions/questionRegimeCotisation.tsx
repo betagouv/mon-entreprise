@@ -2,7 +2,7 @@ import { Array, Option, pipe } from 'effect'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Question } from '@/components/Simulation/Question'
+import { QuestionTypée } from '@/components/Simulation/QuestionFournie'
 import { RadioCard, RadioCardGroup } from '@/design-system'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { compareRégimes } from '@/domaine/économie-collaborative/location-de-meublé/comparateur-régimes'
@@ -164,10 +164,12 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 	)
 }
 
-export const questionRegimeCotisation: Question<
+export const questionRegimeCotisation: QuestionTypée<
 	SituationLocationCourteDuree,
 	Option.Option<RegimeCotisation>
 > = {
+	_tag: 'QuestionFournie',
+	id: 'regime-cotisation', // Identifiant unique
 	libellé: 'Quel régime de cotisation souhaitez-vous simuler ?',
 
 	applicable: (situation) => Option.isSome(situation.recettes),
@@ -179,7 +181,7 @@ export const questionRegimeCotisation: Question<
 		}
 	},
 
-	estRépondue: (situation) => Option.isSome(situation.regimeCotisation),
+	répondue: (situation) => Option.isSome(situation.regimeCotisation),
 
 	renderer: (situation, onRéponse) => (
 		<RegimeCotisationQuestion situation={situation} onRéponse={onRéponse} />

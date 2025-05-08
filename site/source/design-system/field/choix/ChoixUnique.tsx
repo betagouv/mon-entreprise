@@ -21,7 +21,6 @@ export interface ChoixUniqueProps {
 	value?: string
 	options: SimpleChoiceOption[]
 	onChange: (value: string) => void
-	onSubmit?: (source?: string) => void
 	id?: string
 	title?: string
 	description?: string
@@ -40,17 +39,16 @@ export interface ChoixUniqueProps {
  */
 export function ChoixUnique({
 	value,
+	defaultValue,
 	options,
 	onChange,
-	onSubmit,
 	title,
 	autoFocus,
 	variant = 'radio',
-	defaultValue,
 	aria,
 }: ChoixUniqueProps) {
 	const [currentSelection, setCurrentSelection] = useState<string | undefined>(
-		value || defaultValue || undefined
+		value
 	)
 
 	const handleChange = useCallback(
@@ -62,12 +60,8 @@ export function ChoixUnique({
 			setCurrentSelection(stringVal)
 
 			onChange(stringVal)
-
-			if (onSubmit) {
-				onSubmit()
-			}
 		},
-		[onChange, onSubmit]
+		[onChange]
 	)
 
 	const choiceOptions: ChoiceOption[] = options.map((option) => ({
@@ -76,8 +70,7 @@ export function ChoixUnique({
 		label: option.label,
 		description: option.description,
 		emoji: option.emoji,
-		isDefaultSelected:
-			option.isDefaultSelected || option.value === defaultValue,
+		isDefaultSelected: option.isDefaultSelected || option.value === value,
 	}))
 
 	switch (variant) {

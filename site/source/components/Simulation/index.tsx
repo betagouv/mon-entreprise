@@ -1,10 +1,9 @@
 import { Option } from 'effect'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { ConversationProps } from '@/components/conversation/Conversation'
 import ShareOrSaveSimulationBanner, {
 	CustomSimulationButton,
 } from '@/components/ShareSimulationBanner'
@@ -22,7 +21,7 @@ import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
 import PreviousSimulationBanner from './PreviousSimulationBanner'
-import { QuestionQuelconque } from './Question'
+import { QuestionFournie } from './QuestionFournie'
 import { Questions } from './Questions'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
@@ -69,7 +68,7 @@ type SimulationProps<S extends Situation = Situation> = {
 	afterQuestionsSlot?: React.ReactNode
 	hideDetails?: boolean
 	showQuestionsFromBeginning?: boolean
-	customEndMessages?: ConversationProps['customEndMessages']
+	customEndMessages?: ReactNode
 	fullWidth?: boolean
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
@@ -77,7 +76,7 @@ type SimulationProps<S extends Situation = Situation> = {
 
 	// Nouvelles props pour les questions personnalisées
 	/** Questions personnalisées à afficher */
-	questions?: Array<QuestionQuelconque<S>>
+	questions?: Array<QuestionFournie<S>>
 	/** Adaptateur pour connecter les questions au store */
 	situationAdapter?: SituationStoreAdapter<S>
 	/** Afficher aussi les questions Publicodes générées automatiquement */

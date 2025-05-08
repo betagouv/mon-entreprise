@@ -3,17 +3,20 @@ import { describe, expect, it } from 'vitest'
 
 import { SEUIL_PROFESSIONNALISATION } from '@/domaine/économie-collaborative/location-de-meublé/constantes'
 import { calculeCotisations } from '@/domaine/économie-collaborative/location-de-meublé/cotisations'
-import { EuroParAn, eurosParAn, moins } from '@/domaine/Montant'
+import { eurosParAn, moins, Montant } from '@/domaine/Montant'
 
 import { calculeRevenuNet } from './revenu-net'
-import { RegimeCotisation, SituationLocationCourteDureeValide } from './situation'
+import {
+	RegimeCotisation,
+	SituationLocationCourteDureeValide,
+} from './situation'
 
 describe('calculeRevenuNet', () => {
 	it('devrait correctement calculer le revenu net avec Either', () => {
 		const recettes = eurosParAn(30_000)
 		const situation: SituationLocationCourteDureeValide = {
-				_tag: 'Situation',
-			recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+			_tag: 'Situation',
+			recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 			estAlsaceMoselle: Option.some(false),
 			premièreAnnée: Option.some(false),
@@ -40,8 +43,10 @@ describe('calculeRevenuNet', () => {
 			moins(eurosParAn(1))
 		)
 		const situation: SituationLocationCourteDureeValide = {
-				_tag: 'Situation',
-			recettes: Option.some(recettesInferieures) as Option.Some<EuroParAn>,
+			_tag: 'Situation',
+			recettes: Option.some(recettesInferieures) as Option.Some<
+				Montant<'EuroParAn'>
+			>,
 			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),

@@ -2,14 +2,21 @@ import { ASTNode } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { NumberField } from '@/design-system/field'
+import {
+	montant,
+	Montant,
+	UnitéMonétaire,
+	unitéMonétaireToString,
+} from '@/domaine/Montant'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
 import InputSuggestions from './InputSuggestions'
 
-interface NumberInputProps {
-	value: number | undefined
-	onChange?: (value: number | undefined) => void
+interface MontantInputProps<U extends UnitéMonétaire> {
+	value: Montant<U> | undefined
+	unité: U
+	onChange?: (value: Montant | undefined) => void
 	missing?: boolean
 	onSubmit?: (source?: string) => void
 	suggestions?: Record<string, ASTNode>
@@ -25,29 +32,38 @@ interface NumberInputProps {
 	}
 }
 
-export default function NumberInput({
+export default function MontantInput<U extends UnitéMonétaire>({
+	value,
+	unité,
 	suggestions,
 	onChange = NoOp,
 	onSubmit,
-	value,
 	missing,
 	formatOptions,
 	showSuggestions,
 	id,
 	aria,
-}: NumberInputProps) {
+}: MontantInputProps<U>) {
 	const { handleChange, currentSelection: currentValue } = useSelection({
 		value,
 		onChange,
 	})
 
 	const completeFormatOptions = {
-		style: 'decimal',
+		style: 'currency',
+		currency: 'EUR',
+		minimumFractionDigits: 0,
 		...formatOptions,
 	}
 
 	const handleValueChange = (valeur: number | undefined) => {
-		handleChange(valeur)
+		handleChange(
+			valeur === undefined
+				? undefined
+				: currentValue
+				? { ...currentValue, valeur }
+				: montant<U>(valeur, unité)
+		)
 	}
 
 	return (
@@ -57,17 +73,18 @@ export default function NumberInput({
 				aria-labelledby={aria?.labelledby}
 				aria-label={aria?.label}
 				description={''}
+				displayedUnit={unitéMonétaireToString(unité)}
 				onChange={handleValueChange}
 				formatOptions={completeFormatOptions}
-				placeholder={missing && value != null ? value : undefined}
-				value={currentValue}
+				placeholder={missing && value != null ? value.valeur : undefined}
+				value={currentValue?.valeur}
 			/>
 			{showSuggestions && suggestions && (
 				<InputSuggestions
 					className="print-hidden"
 					suggestions={suggestions}
 					onFirstClick={(node: ASTNode) => {
-						handleChange(node.rawNode.valeur)
+						handleChange(montant(node.rawNode.valeur as number, unité))
 					}}
 					onSecondClick={() => onSubmit?.('suggestion')}
 				/>

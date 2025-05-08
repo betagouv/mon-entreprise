@@ -5,7 +5,7 @@ import {
 	RegimeCotisation,
 	SituationLocationCourteDuree,
 } from '@/domaine/économie-collaborative/location-de-meublé/situation'
-import { EuroParAn, eurosParAn } from '@/domaine/Montant'
+import { eurosParAn, Montant } from '@/domaine/Montant'
 
 export const initialLocationDeMeubleState: SituationLocationCourteDuree = {
 	_tag: 'Situation',
@@ -19,7 +19,10 @@ export const locationDeMeubleSlice = createSlice({
 	name: 'locationDeMeuble',
 	initialState: initialLocationDeMeubleState,
 	reducers: {
-		setRecettes: (state, action: PayloadAction<Option.Option<EuroParAn>>) => {
+		setRecettes: (
+			state,
+			action: PayloadAction<Option.Option<Montant<'EuroParAn'>>>
+		) => {
 			state.recettes = action.payload
 		},
 
@@ -64,7 +67,7 @@ export const {
 	reset,
 } = locationDeMeubleSlice.actions
 
-export const setRecettesValue = (value: EuroParAn) =>
+export const setRecettesValue = (value: Montant<'EuroParAn'>) =>
 	setRecettes(Option.some(value))
 
 export const setRecettesNumber = (value: number) =>

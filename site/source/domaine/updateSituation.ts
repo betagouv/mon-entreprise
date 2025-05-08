@@ -1,6 +1,10 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import { PublicodesExpression } from 'publicodes'
 
+import {
+	RèglePublicodeAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/RèglePublicodeAdapter'
 import { ImmutableType } from '@/types/utils'
 import { objectTransform, omit } from '@/utils'
 
@@ -11,7 +15,7 @@ export function updateSituation(
 	config: ImmutableType<SimulationConfig>,
 	currentSituation: SituationPublicodes,
 	dottedName: DottedName,
-	value: PublicodesExpression | undefined
+	value: ValeurPublicodes | undefined
 ): SituationPublicodes {
 	if (value === undefined) {
 		return omit(currentSituation, dottedName)
@@ -19,8 +23,13 @@ export function updateSituation(
 
 	const objectifsExclusifs = config['objectifs exclusifs'] ?? []
 
+	const encoded = RèglePublicodeAdapter.encode(O.some(value))
+
 	if (!objectifsExclusifs.includes(dottedName)) {
-		return { ...currentSituation, [dottedName]: value }
+		return {
+			...currentSituation,
+			[dottedName]: encoded,
+		}
 	}
 
 	const objectifsToReset = objectifsExclusifs.filter(
@@ -33,5 +42,8 @@ export function updateSituation(
 		)
 	)
 
-	return { ...clearedSituation, [dottedName]: value }
+	return {
+		...clearedSituation,
+		[dottedName]: encoded,
+	}
 }

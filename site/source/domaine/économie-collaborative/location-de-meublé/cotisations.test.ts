@@ -9,10 +9,10 @@ import {
 } from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import {
 	abattement,
-	EuroParAn,
 	eurosParAn,
 	fois,
 	moins,
+	Montant,
 	plus,
 } from '@/domaine/Montant'
 
@@ -31,7 +31,7 @@ describe('Location de meublé de courte durée', () => {
 				_tag: 'Situation',
 				recettes: Option.some(
 					pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
-				) as Option.Some<EuroParAn>,
+				) as Option.Some<Montant<'EuroParAn'>>,
 				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
@@ -43,9 +43,9 @@ describe('Location de meublé de courte durée', () => {
 		it('est vrai si les recettes sont égales au seuil de professionalisation', () => {
 			const situation: SituationLocationCourteDureeValide = {
 				_tag: 'Situation',
-				recettes: Option.some(
-					SEUIL_PROFESSIONNALISATION
-				) as Option.Some<EuroParAn>,
+				recettes: Option.some(SEUIL_PROFESSIONNALISATION) as Option.Some<
+					Montant<'EuroParAn'>
+				>,
 				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
@@ -59,7 +59,7 @@ describe('Location de meublé de courte durée', () => {
 				_tag: 'Situation',
 				recettes: Option.some(
 					pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(1)))
-				) as Option.Some<EuroParAn>,
+				) as Option.Some<Montant<'EuroParAn'>>,
 				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
@@ -76,7 +76,7 @@ describe('Location de meublé de courte durée', () => {
 					_tag: 'Situation',
 					recettes: Option.some(
 						pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
-					) as Option.Some<EuroParAn>,
+					) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
@@ -92,7 +92,7 @@ describe('Location de meublé de courte durée', () => {
 					_tag: 'Situation',
 					recettes: Option.some(
 						pipe(PLAFOND_REGIME_GENERAL, plus(eurosParAn(1)))
-					) as Option.Some<EuroParAn>,
+					) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
@@ -108,7 +108,7 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationLocationCourteDureeValide = {
 					_tag: 'Situation',
-					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(false),
@@ -136,7 +136,7 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationLocationCourteDureeValide = {
 					_tag: 'Situation',
-					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(true),
 					premièreAnnée: Option.some(false),
@@ -164,7 +164,7 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
 					_tag: 'Situation',
-					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
@@ -191,7 +191,7 @@ describe('Location de meublé de courte durée', () => {
 
 				const situation: SituationLocationCourteDureeValide = {
 					_tag: 'Situation',
-					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
@@ -219,7 +219,7 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
 					_tag: 'Situation',
-					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(RegimeCotisation.microEntreprise),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
@@ -238,7 +238,7 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
 					_tag: 'Situation',
-					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.some(
 						RegimeCotisation.travailleurIndependant
 					),
@@ -259,7 +259,7 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationLocationCourteDureeValide = {
 					_tag: 'Situation',
-					recettes: Option.some(recettes) as Option.Some<EuroParAn>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
 					regimeCotisation: Option.none(),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),

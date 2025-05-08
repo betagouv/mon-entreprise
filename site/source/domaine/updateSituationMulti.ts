@@ -1,18 +1,15 @@
 import { pipe } from 'effect'
 import { headNonEmpty, NonEmptyArray, of } from 'effect/Array'
+import * as O from 'effect/Option'
 import { isUndefined } from 'effect/Predicate'
-import {
-	filter,
-	fromEntries,
-	isEmptyRecord,
-	keys,
-	partition,
-	size,
-	toEntries,
-} from 'effect/Record'
+import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 
+import {
+	RèglePublicodeAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/RèglePublicodeAdapter'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { omit } from '@/utils'
@@ -20,23 +17,24 @@ import { omit } from '@/utils'
 export function updateSituationMulti(
 	config: SimulationConfig,
 	currentSituation: SituationPublicodes,
-	amendement: Record<DottedName, PublicodesExpression | undefined>
+	amendement: Record<DottedName, ValeurPublicodes | undefined>
 ): SituationPublicodes {
-	const [àAjuster, àEffacer] = partition(amendement, isUndefined) as [
-		Record<DottedName, PublicodesExpression>,
+	const [àAjuster, àEffacer] = R.partition(amendement, isUndefined) as [
+		Record<DottedName, ValeurPublicodes>,
 		Record<DottedName, undefined>,
 	]
 	const objectifsExclusifs = config['objectifs exclusifs'] ?? []
 	const estUnObjectifExclusif = (règle: DottedName): boolean =>
 		objectifsExclusifs.includes(règle)
 
-	const [règlesNormales, règlesExclusives] = partition(
+	const [règlesNormales, règlesExclusives] = pipe(
 		àAjuster,
-		(valeur, règle) => estUnObjectifExclusif(règle)
+		R.map((valeur) => RèglePublicodeAdapter.encode(O.fromNullable(valeur))),
+		R.partition((_valeur, règle) => estUnObjectifExclusif(règle))
 	)
 
-	const clearedSituation = size(règlesExclusives)
-		? filter(
+	const clearedSituation = R.size(règlesExclusives)
+		? R.filter(
 				currentSituation as Record<DottedName, PublicodesExpression>,
 				(_, règle) => !estUnObjectifExclusif(règle) || règle in règlesExclusives
 		  )
@@ -48,18 +46,18 @@ export function updateSituationMulti(
 			...keepFirstEntry(règlesExclusives),
 			...règlesNormales,
 		},
-		...keys(àEffacer)
+		...R.keys(àEffacer)
 	)
 }
 
 const keepFirstEntry = <T, K extends string>(
 	record: Record<K, T>
 ): Record<K, T> =>
-	isEmptyRecord(record)
+	R.isEmptyRecord(record)
 		? ({} as Record<K, T>)
 		: (pipe(
-				toEntries(record) as NonEmptyArray<[K, T]>,
+				R.toEntries(record) as NonEmptyArray<[K, T]>,
 				headNonEmpty,
 				of,
-				fromEntries
+				R.fromEntries
 		  ) as Record<K, T>)
