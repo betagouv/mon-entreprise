@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
@@ -67,7 +67,7 @@ export const setActiveTarget = (targetName: DottedName) =>
 	}) as const
 
 export const ajusteLaSituation = <T extends DottedName>(
-	amendement: Record<T, SimpleRuleEvaluation | undefined>
+	amendement: Record<T, ValeurPublicodes | undefined>
 ) =>
 	({
 		type: 'AJUSTE_LA_SITUATION',
@@ -76,7 +76,7 @@ export const ajusteLaSituation = <T extends DottedName>(
 
 export const enregistreLaRéponse = (
 	fieldName: DottedName,
-	value: PublicodesExpression | undefined
+	value: ValeurPublicodes | undefined
 ) =>
 	value === undefined
 		? deleteFromSituation(fieldName)
@@ -88,7 +88,7 @@ export const enregistreLaRéponse = (
 
 export const enregistreLesRéponses = (
 	règle: DottedName,
-	valeurs: Record<string, PublicodesExpression>
+	valeurs: Record<string, ValeurPublicodes>
 ) =>
 	({
 		type: 'ENREGISTRE_LES_RÉPONSES',

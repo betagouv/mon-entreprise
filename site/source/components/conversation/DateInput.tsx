@@ -1,10 +1,19 @@
-import { ASTNode, EvaluatedNode, PublicodesExpression } from 'publicodes'
-import { lazy, Suspense, useCallback, useMemo } from 'react'
+import { DottedName } from 'modele-social'
+import { ASTNode } from 'publicodes'
+import { lazy, Suspense } from 'react'
 import { styled } from 'styled-components'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
+import {
+	dateToIsoDate,
+	IsoDate,
+	isPublicodesStandardDate,
+	parseIsoDateString,
+	parsePublicodesDateString,
+} from '@/domaine/Date'
+import { NoOp } from '@/utils/NoOp'
 
 import Skeleton from '../ui/Skeleton'
 import InputSuggestions from './InputSuggestions'
@@ -12,8 +21,9 @@ import InputSuggestions from './InputSuggestions'
 const DateField = lazy(() => import('@/design-system/field/DateField'))
 
 interface DateInputProps {
-	value: EvaluatedNode['nodeValue']
-	onChange: (value: PublicodesExpression | undefined) => void
+	dottedName: DottedName
+	value?: IsoDate
+	onChange?: (value: IsoDate | undefined) => void
 	missing?: boolean
 	hideDefaultValue?: boolean
 	onSubmit?: (source?: string) => void
@@ -30,7 +40,7 @@ interface DateInputProps {
 
 export const DateInput = ({
 	suggestions = {},
-	onChange,
+	onChange = NoOp,
 	missing,
 	title,
 	hideDefaultValue,
@@ -41,26 +51,12 @@ export const DateInput = ({
 }: DateInputProps) => {
 	const engine = useEngine()
 
-	const convertDate = (val?: unknown) => {
-		if (!val || typeof val !== 'string') {
-			return undefined
+	const handleDateChange = (value?: Date) => {
+		if (!value) {
+			return onChange(undefined)
 		}
-		const [day, month, year] = val.split('/')
-
-		return `${year}-${month}-${day}T12:00:00`
+		onChange(value && dateToIsoDate(value))
 	}
-
-	const handleDateChange = useCallback(
-		(value?: string) => {
-			if (!value) {
-				return onChange(undefined)
-			}
-			onChange(value)
-		},
-		[onChange]
-	)
-
-	const dateValue = useMemo(() => new Date(convertDate(value) ?? NaN), [value])
 
 	return (
 		<div className="step input">
@@ -72,8 +68,10 @@ export const DateInput = ({
 							const value = engine.evaluate(node)
 
 							handleDateChange(
-								'nodeValue' in value && typeof value.nodeValue === 'string'
-									? value.nodeValue
+								'nodeValue' in value &&
+									typeof value.nodeValue === 'string' &&
+									isPublicodesStandardDate(value.nodeValue)
+									? parsePublicodesDateString(value.nodeValue)
 									: undefined
 							)
 						}}
@@ -87,9 +85,9 @@ export const DateInput = ({
 						aria-label={aria.label ?? title}
 						aria-labelledby={aria.labelledby}
 						defaultSelected={
-							(missing && hideDefaultValue) || isNaN(+dateValue)
+							(missing && hideDefaultValue) || value === undefined
 								? undefined
-								: dateValue
+								: parseIsoDateString(value)
 						}
 						onChange={handleDateChange}
 						label={title}

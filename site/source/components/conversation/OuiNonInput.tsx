@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next'
 
 import { Radio, ToggleGroup } from '@/design-system'
-import { useSelectionUI } from '@/hooks/useSelectionUI'
+import { OuiNon } from '@/domaine/OuiNon'
+import { useSelection } from '@/hooks/UseSelection'
+import { NoOp } from '@/utils/NoOp'
 
 interface OuiNonInputProps {
-	value?: string | boolean
-	onChange: (value: string | undefined) => void
-	defaultValue?: string
-	onSubmit?: (source?: string) => void
+	value?: OuiNon
+	onChange?: (value: OuiNon | undefined) => void
+	defaultValue?: OuiNon
 	id?: string
 	title?: string
 	description?: string
@@ -21,20 +22,26 @@ interface OuiNonInputProps {
 
 export function OuiNonInput({
 	value,
-	onChange,
+	onChange = NoOp,
 	defaultValue,
-	onSubmit,
 	id,
 	autoFocus,
 	aria = {},
 }: OuiNonInputProps) {
-	const { handleChange, defaultValue: derivedDefaultValue, currentSelection } = useSelectionUI({
+	const { handleChange, currentSelection } = useSelection({
 		value,
 		onChange,
-		defaultValue,
-		onSubmit,
-		id,
 	})
+
+	const handleToggleGroupChange = (value: string | undefined) => {
+		handleChange(value as OuiNon | undefined)
+	}
+	const currentValueAsString =
+		currentSelection === undefined
+			? undefined
+			: currentSelection === 'oui'
+			? 'oui'
+			: 'non'
 
 	const { t } = useTranslation()
 
@@ -44,14 +51,14 @@ export function OuiNonInput({
 				aria.label || t('conversation.yes-no.aria-label', 'Oui ou non')
 			}
 			aria-labelledby={aria.labelledby}
-			onChange={handleChange}
-			value={currentSelection ?? undefined}
+			onChange={handleToggleGroupChange}
+			value={currentValueAsString}
 		>
 			<Radio
 				value="oui"
 				id={`input-oui-${id || ''}`}
 				/* eslint-disable-next-line jsx-a11y/no-autofocus */
-				autoFocus={autoFocus && derivedDefaultValue === 'oui'}
+				autoFocus={autoFocus && defaultValue === 'oui'}
 			>
 				{t('conversation.yes', 'Oui')}
 			</Radio>
@@ -59,7 +66,7 @@ export function OuiNonInput({
 				value="non"
 				id={`input-non-${id || ''}`}
 				/* eslint-disable-next-line jsx-a11y/no-autofocus */
-				autoFocus={autoFocus && derivedDefaultValue === 'non'}
+				autoFocus={autoFocus && defaultValue === 'non'}
 			>
 				{t('conversation.no', 'Non')}
 			</Radio>
