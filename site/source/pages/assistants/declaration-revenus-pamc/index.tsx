@@ -1,15 +1,15 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Warning from '@/components/ui/WarningBlock'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
+import { Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
@@ -24,14 +24,26 @@ import Résultats from './components/Résultats'
 import { configDéclarationRevenusPAMC } from './simulationConfig'
 
 export default function DéclarationRevenusPAMC() {
+	const { t } = useTranslation()
+	const dispatch = useDispatch()
+	const engine = useEngine()
+	const situation = useSelector(situationSelector)
 	const { absoluteSitePaths } = useSitePaths()
+
 	useSimulationConfig({
 		key: absoluteSitePaths.assistants['déclaration-revenus-pamc'],
 		config: configDéclarationRevenusPAMC,
 		autoloadLastSimulation: true,
 	})
-	const situation = useSelector(situationSelector)
-	const dispatch = useDispatch()
+
+	const isFormValid = engine.evaluate({
+		'!=': ['déclaration revenus PAMC . résultats', 'non'],
+	}).nodeValue
+
+	const scrollToResults = () =>
+		document
+			.getElementById('déclaration-revenus-pamc-résultats')
+			?.scrollIntoView({ behavior: 'smooth' })
 
 	return (
 		<>
@@ -106,21 +118,40 @@ export default function DéclarationRevenusPAMC() {
 
 				<Spacing lg />
 
-				<Button
-					onPress={() => {
-						dispatch(resetSimulation())
-					}}
-				>
-					Réinitialiser
-				</Button>
+				<GridContainer container spacing={6}>
+					<Grid item xs={12} md={3}>
+						<StyledButton isDisabled={!isFormValid} onPress={scrollToResults}>
+							{t(
+								'pages.assistants.declaration-revenus-pamc.buttons.results',
+								'Voir les résultats'
+							)}
+						</StyledButton>
+					</Grid>
+
+					<Grid item xs={12} md={3}>
+						<StyledButton
+							light
+							onPress={() => {
+								dispatch(resetSimulation())
+							}}
+						>
+							{t(
+								'pages.assistants.declaration-revenus-pamc.buttons.reset',
+								'Réinitialiser'
+							)}
+						</StyledButton>
+					</Grid>
+				</GridContainer>
 
 				<Spacing xxl />
 			</div>
 
-			<Condition expression="déclaration revenus PAMC . résultats">
-				<Résultats />
-				<ShareOrSaveSimulationBanner share print />
-			</Condition>
+			{isFormValid && (
+				<>
+					<Résultats id="déclaration-revenus-pamc-résultats" />
+					<ShareOrSaveSimulationBanner share print />
+				</>
+			)}
 		</>
 	)
 }
@@ -129,4 +160,12 @@ const StyledLi = styled(Li)`
 	&::before {
 		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
 	}
+`
+
+const GridContainer = styled(Grid)`
+	justify-content: space-around;
+`
+
+const StyledButton = styled(Button)`
+	width: 100%;
 `

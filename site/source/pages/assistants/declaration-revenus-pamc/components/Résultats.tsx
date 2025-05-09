@@ -12,13 +12,18 @@ import { codesImpôt } from '@/domaine/CodesImpôt'
 import DéclarantSelection from './DéclarantSelection'
 import { LigneImpôts } from './LigneImpôts'
 
-export default function Résultats() {
+type Props = {
+	id: string
+}
+
+export default function Résultats({ id }: Props) {
 	const { t } = useTranslation()
 	const date = new Date()
 	const [déclarant, setDéclarant] = useState<'1' | '2'>('1')
 
 	return (
 		<Container
+			id={id}
 			forceTheme="dark"
 			backgroundColor={(theme) => theme.colors.bases.primary[600]}
 		>
