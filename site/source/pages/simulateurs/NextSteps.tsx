@@ -18,15 +18,26 @@ import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireE
 import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
 import { CodeDuTravailNumeriqueCard } from '../assistants/pour-mon-entreprise/CodeDuTravailNumeriqueCard'
 import { ReductionGeneraleCard } from '../assistants/pour-mon-entreprise/ReductionGeneraleCard'
+import { ExternalLink } from './_configs/types'
+import { ReactNode } from 'react'
+import ExternalLinkCard from './cards/ExternalLinkCard'
 
 interface NextStepsProps {
 	iframePath?: MergedSimulatorDataValues['iframePath']
 	nextSteps: MergedSimulatorDataValues['nextSteps']
+	externalLinks: MergedSimulatorDataValues['externalLinks']
 }
 
-export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
+export default function NextSteps({
+	iframePath,
+	nextSteps,
+	externalLinks,
+}: NextStepsProps) {
 	const { absoluteSitePaths } = useSitePaths()
-	const { language } = useTranslation().i18n
+	const {
+		t,
+		i18n: { language },
+	} = useTranslation()
 	const engine = useEngine()
 
 	const { key } = useCurrentSimulatorData()
@@ -34,7 +45,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
 	)
 
-	if (!iframePath && !guidesUrssaf.length && !nextSteps) {
+	if (!iframePath && !guidesUrssaf.length && !nextSteps && !externalLinks) {
 		return null
 	}
 
@@ -51,16 +62,23 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				</Condition>
 
 				<WhenAlreadyDefined dottedName="entreprise . SIREN">
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
+					<GridItem>
 						<AnnuaireEntreprises />
-					</Grid>
+					</GridItem>
 				</WhenAlreadyDefined>
 
 				{nextSteps &&
 					nextSteps.map((simulatorId) => (
-						<Grid item xs={12} sm={6} lg={4} key={simulatorId} role="listitem">
+						<GridItem key={simulatorId}>
 							<SimulatorRessourceCard simulatorId={simulatorId} />
-						</Grid>
+						</GridItem>
+					))}
+
+				{externalLinks &&
+					externalLinks.map((externalLink: ExternalLink, index) => (
+						<GridItem key={index}>
+							<ExternalLinkCard externalLink={externalLink} />
+						</GridItem>
 					))}
 
 				{key === 'réduction-générale' && (
@@ -72,13 +90,13 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				{guidesUrssaf &&
 					language === 'fr' &&
 					guidesUrssaf.map((guideUrssaf, index) => (
-						<Grid item xs={12} sm={6} lg={4} role="listitem" key={index}>
+						<GridItem key={index}>
 							<GuideURSSAFCard guideUrssaf={guideUrssaf} />
-						</Grid>
+						</GridItem>
 					))}
 
 				{key === 'location-de-logement-meublé' && (
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
+					<GridItem>
 						<GuideURSSAFCard
 							guideUrssaf={{
 								url: 'https://www.urssaf.fr/accueil/services/economie-collaborative.html',
@@ -87,7 +105,7 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 									'Retrouvez toutes les règles Urssaf pour l’économie collaborative.',
 							}}
 						/>
-					</Grid>
+					</GridItem>
 				)}
 
 				{key === 'salarié' && (
@@ -97,12 +115,12 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 				)}
 
 				{iframePath && (
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
+					<GridItem>
 						<IframeIntegrationCard
 							iframePath={iframePath}
 							sitePaths={absoluteSitePaths}
 						/>
-					</Grid>
+					</GridItem>
 				)}
 			</Grid>
 
@@ -110,6 +128,13 @@ export function NextSteps({ iframePath, nextSteps }: NextStepsProps) {
 		</section>
 	)
 }
+
+type GridItemProps = {
+	children: ReactNode
+}
+const GridItem = ({children}: GridItemProps) => (
+	<Grid item xs={12} sm={6} lg={4} role="listitem">{children}</Grid>
+)
 
 const guidesUrssafList = [
 	/* On désactive tous les guides Urssaf qui sont des documents non accessibles. */

@@ -70,6 +70,9 @@ export interface PageConfig {
 	 */
 	nextSteps?: string[] | false
 
+	/** Liens externes à  faire apparaître dans la section « Ressources utiles » en bas de page. */
+	externalLinks?: ExternalLink[]
+
 	/** Configuration de la simulation */
 	simulation?: SimulationConfig
 
@@ -111,6 +114,15 @@ type Tracking =
 			chapter2?: string
 			chapter3?: string
 	  }
+
+export type ExternalLink = {
+	url: string
+	title: string
+	description?: string
+	logo?: string
+	ctaLabel?: string
+	ariaLabel?: string
+}
 
 export interface SimulatorsDataParams {
 	t: TFunction
