@@ -882,6 +882,9 @@ pages:
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
     declaration-revenus-pamc:
+      buttons:
+        reset: Réinitialiser
+        results: Voir les résultats
       formulaire:
         "0": Les champs obligatoires sont signalés par une astérisque.
         "1": Profession

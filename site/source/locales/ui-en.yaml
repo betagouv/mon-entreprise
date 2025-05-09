@@ -830,6 +830,9 @@ pages:
       shortname: Determining deductible social security charges
       title: Assistance in determining deductible social charges
     declaration-revenus-pamc:
+      buttons:
+        reset: Reset
+        results: See results
       formulaire:
         "0": Required fields are marked with an asterisk.
         "1": Profession
