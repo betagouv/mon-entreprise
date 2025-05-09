@@ -30,7 +30,6 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 						</Trans>{' '}
 						{folded && (
 							<Link
-								role="button"
 								onPress={() => fold(false)}
 								aria-expanded={false}
 								aria-label={t(

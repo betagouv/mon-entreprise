@@ -77,13 +77,12 @@ export const Link = React.forwardRef<
 			  }
 	}
 >(function Link(props, forwardedRef) {
-	const { isDisabled, role, noUnderline, type, ...ariaButtonProps } = props
+	const { isDisabled, noUnderline, type, ...ariaButtonProps } = props
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, forwardedRef)
 
 	return (
 		<StyledLink
 			{...buttonOrLinkProps}
-			role={role || (props.href || props.to ? undefined : 'button')}
 			type={type}
 			$isDisabled={isDisabled}
 			$noUnderline={noUnderline}
@@ -170,7 +169,6 @@ export type GenericButtonOrNavLinkProps = (
 	| AriaButtonProps<'button'>
 ) & {
 	openInSameWindow?: true
-	role?: string
 }
 
 export function useButtonOrLink(
