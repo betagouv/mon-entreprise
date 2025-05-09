@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Route, Routes, useLocation } from 'react-router-dom'
 
 import { TrackChapter } from '@/components/ATInternetTracking'
-import { ScrollToTop } from '@/components/utils/Scroll'
+import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Banner, InnerBanner } from '@/design-system/banner'
 import { Emoji } from '@/design-system/emoji'
 import { Link } from '@/design-system/typography/link'

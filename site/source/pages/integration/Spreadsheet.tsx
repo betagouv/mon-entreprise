@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { ScrollToTop } from '@/components/utils/Scroll'
+import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { H1, H2 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'

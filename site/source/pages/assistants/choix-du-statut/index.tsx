@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { ScrollToTop } from '@/components/utils/Scroll'
+import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { useSitePaths } from '@/sitePaths'
 
 import { IsBPIProvider } from './_components/useIsEmbededBPI'

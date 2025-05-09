@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
-import { ScrollToTop } from '@/components/utils/Scroll'
+import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Message } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Code, Strong } from '@/design-system/typography'
