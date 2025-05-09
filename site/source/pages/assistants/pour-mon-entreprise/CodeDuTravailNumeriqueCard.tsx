@@ -16,10 +16,7 @@ export function CodeDuTravailNumeriqueCard() {
 					</Trans>
 				</h3>
 			}
-			ctaLabel={t(
-				'pages.assistants.pour-mon-entreprise.codeDuTravailNumeriqueCard.cta',
-				'En savoir plus'
-			)}
+			ctaLabel={t('En savoir plus')}
 			aria-label={t(
 				'pages.assistants.pour-mon-entreprise.codeDuTravailNumeriqueCard.aria-label',
 				'Code du travail numérique, en savoir plus'
