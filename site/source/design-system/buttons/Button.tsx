@@ -17,7 +17,6 @@ type ButtonProps = GenericButtonOrNavLinkProps & {
 	children: React.ReactNode
 	size?: Size
 	light?: boolean
-	role?: string
 	lang?: string
 	underline?: boolean
 }
@@ -29,7 +28,6 @@ export const Button = forwardRef(function Button(
 		color = 'primary' as const,
 		underline,
 		isDisabled,
-		role,
 		lang,
 		...ariaButtonProps
 	}: ButtonProps,
@@ -56,7 +54,6 @@ export const Button = forwardRef(function Button(
 			$color={color}
 			disabled={isDisabled}
 			$underline={underline}
-			role={role}
 			lang={lang}
 		/>
 	)
