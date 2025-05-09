@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { usePersistingState } from '@/components/utils/persistState'
-import { ScrollToTop } from '@/components/utils/Scroll'
+import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Link } from '@/design-system/typography/link'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'

@@ -1,55 +1,20 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
-const forEachParent = (node: Node | null, fn: (node: Node) => void) => {
-	if (!node) {
-		return
-	}
-	fn(node)
-	forEachParent(node.parentNode, fn)
-}
-
-export function ScrollToTop({
-	behavior = 'auto',
-}: {
-	behavior?: ScrollBehavior
-}) {
-	const ref = useRef<HTMLDivElement>(null)
-
-	useEffect(() => {
-		forEachParent(ref.current, (elem) => {
-			if (!elem) {
-				return
-			}
-			;(elem as HTMLElement).scrollTop = 0
-		})
-		try {
-			window.scroll({
-				top: 0,
-				behavior,
-			})
-		} catch (e) {
-			window.scroll(0, 0)
-		}
-	}, [])
-
-	return <div ref={ref} />
-}
-
-type ScrollToElementProps = React.ComponentProps<'div'> & {
+type Props = React.ComponentProps<'div'> & {
 	onlyIfNotVisible?: boolean
 	when?: boolean
 	behavior?: ScrollBehavior
 	style?: React.CSSProperties
 }
 
-export function ScrollToElement({
+export default function ScrollToElement({
 	onlyIfNotVisible = false,
 	when,
 	behavior = 'smooth',
 	children,
 	style,
 	...otherProps
-}: ScrollToElementProps) {
+}: Props) {
 	const ref = useRef<HTMLDivElement>(null)
 	const scrollIfNeeded = () => {
 		if (
@@ -87,9 +52,4 @@ export function ScrollToElement({
 			{children}
 		</div>
 	)
-}
-
-export default {
-	toElement: ScrollToElement,
-	toTop: ScrollToTop,
 }

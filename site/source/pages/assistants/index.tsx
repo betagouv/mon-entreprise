@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
-import { ScrollToTop } from '@/components/utils/Scroll'
+import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 

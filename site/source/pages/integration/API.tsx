@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
-import { ScrollToTop } from '@/components/utils/Scroll'
+import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Button } from '@/design-system/buttons'
 import { Code, Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
