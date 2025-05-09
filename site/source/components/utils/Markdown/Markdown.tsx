@@ -7,6 +7,7 @@ import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
 import { Li, Ol, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 
+import ImgRenderer from './ImgRenderer'
 import LinkRenderer from './LinkRenderer'
 import TextRenderer from './TextRenderer'
 
@@ -49,6 +50,7 @@ export default function Markdown({
 					blockquote: (props) => (
 						<Message type="info" border={false} icon {...props} />
 					),
+					img: ImgRenderer,
 					...components,
 				},
 			}}
