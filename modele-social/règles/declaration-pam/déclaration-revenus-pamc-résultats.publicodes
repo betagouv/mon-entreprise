@@ -137,29 +137,18 @@ déclaration revenus PAMC . revenus nets . revenus conventionnés:
       alors: assiette sociale - revenus structures de soins
     - sinon:
         produit:
-          - assiette sociale
           - SNIR . honoraires remboursables
-          - 1 / recettes brutes totales
+          - assiette sociale / recettes brutes totales
   unité: €/an
 
 déclaration revenus PAMC . revenus nets . revenus non conventionnés:
-  variations:
-    - si: actes conventionnés uniquement
-      alors: 0
-    - si:
-        toutes ces conditions:
-          - activité en structures de soins
-          - déclaration revenus PAMC . autres revenus non salariés = non
-      alors: revenus structures de soins
-    - sinon:
-        valeur: assiette sociale - revenus conventionnés
+  valeur: assiette sociale - revenus conventionnés
   unité: €/an
 
 déclaration revenus PAMC . revenus nets . revenus structures de soins:
   produit:
-    - assiette sociale
     - activité en structures de soins . recettes
-    - 1 / recettes brutes totales
+    - assiette sociale / recettes brutes totales
   unité: €/an
 
 déclaration revenus PAMC . revenus nets . revenus structures de soins . avertissement:
@@ -174,28 +163,14 @@ déclaration revenus PAMC . cotisations facultatives . activité conventionnée:
   variations:
     - si: revenus nets . assiette sociale = 0
       alors: 0
-    - si:
-        une de ces conditions:
-          - actes conventionnés uniquement
-          - toutes ces conditions:
-              - activité en structures de soins
-              - déclaration revenus PAMC . autres revenus non salariés = non
-      alors: cotisations facultatives
     - sinon:
         produit:
-          - revenus nets . revenus conventionnés
           - cotisations facultatives
+          - somme:
+              - revenus nets . revenus conventionnés
+              - revenus nets . revenus structures de soins
           - 1 / revenus nets . assiette sociale
 
 déclaration revenus PAMC . cotisations facultatives . autres activités non salariées:
-  variations:
-    - si:
-        une de ces conditions:
-          - actes conventionnés uniquement
-          - toutes ces conditions:
-              - activité en structures de soins
-              - déclaration revenus PAMC . autres revenus non salariés = non
-      alors: 0
-    - sinon:
-        valeur: cotisations facultatives
-        abattement: cotisations facultatives . activité conventionnée
+  valeur: cotisations facultatives
+  abattement: cotisations facultatives . activité conventionnée
