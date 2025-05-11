@@ -7,9 +7,9 @@ import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 
 import {
-	RèglePublicodeAdapter,
+	PublicodesAdapter,
 	ValeurPublicodes,
-} from '@/domaine/engine/RèglePublicodeAdapter'
+} from '@/domaine/engine/PublicodesAdapter'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { omit } from '@/utils'
@@ -29,7 +29,7 @@ export function updateSituationMulti(
 
 	const [règlesNormales, règlesExclusives] = pipe(
 		àAjuster,
-		R.map((valeur) => RèglePublicodeAdapter.encode(O.fromNullable(valeur))),
+		R.map((valeur) => PublicodesAdapter.encode(O.fromNullable(valeur))),
 		R.partition((_valeur, règle) => estUnObjectifExclusif(règle))
 	)
 

@@ -90,4 +90,4 @@ const encode = (
 	return `'${valeur}'`
 }
 
-export const RèglePublicodeAdapter = { decode, encode }
+export const PublicodesAdapter = { decode, encode }

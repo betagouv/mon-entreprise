@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
-import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'

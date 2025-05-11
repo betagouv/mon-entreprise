@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { RèglePublicodeAdapter } from '@/domaine/engine/RèglePublicodeAdapter'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 
 export function usePublicodes() {
 	const engine = useEngine()
@@ -10,7 +10,7 @@ export function usePublicodes() {
 		const evaluation = engine.evaluate(dottedName)
 
 		return {
-			valeur: RèglePublicodeAdapter.decode(evaluation),
+			valeur: PublicodesAdapter.decode(evaluation),
 			parDéfaut: (dottedName in evaluation.missingVariables) satisfies boolean,
 		}
 	}
