@@ -15,7 +15,7 @@ import Simulation, {
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { SimulationImpossible } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
 import { SituationLocationCourteDuree } from '@/domaine/économie-collaborative/location-de-meublé/situation'
-import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn } from '@/domaine/Montant'
 import { RootState } from '@/store/reducers/rootReducer'
 import {
