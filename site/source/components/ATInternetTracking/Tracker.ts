@@ -10,7 +10,7 @@ type PageHit = {
 	page_chapter1?: string
 	page_chapter2?: string
 	page_chapter3?: string
-	simulateur_origin?: string
+	simulateur_origine?: string
 }
 type ClickHit = {
 	click?: string
@@ -31,7 +31,7 @@ export interface ATTracker {
 		propertiesObject: {
 			env_language: 'fr' | 'en'
 			'n:simulateur_embarque': 1 | 0
-			simulateur_origin?: string
+			simulateur_origine?: string
 		},
 		options: {
 			persistent: true
@@ -84,7 +84,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 				{
 					env_language: options.language,
 					'n:simulateur_embarque': isEmbedded ? 1 : 0,
-					simulateur_origin: cleanIntegratorUrl,
+					simulateur_origine: cleanIntegratorUrl,
 				},
 				{ persistent: true }
 			)
@@ -102,7 +102,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 			propertiesObject: {
 				env_language: 'fr' | 'en'
 				'n:simulateur_embarque': 1 | 0
-				simulateur_origin?: string
+				simulateur_origine?: string
 			},
 			options: { persistent: true }
 		): void {
