@@ -1,7 +1,7 @@
 import { ASTNode } from 'publicodes'
 
 import { TextField } from '@/design-system/field'
-import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 

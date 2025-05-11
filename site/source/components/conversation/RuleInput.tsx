@@ -21,9 +21,9 @@ import { isIsoDate } from '@/domaine/Date'
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
 import {
-	RèglePublicodeAdapter,
+	PublicodesAdapter,
 	ValeurPublicodes,
-} from '@/domaine/engine/RèglePublicodeAdapter'
+} from '@/domaine/engine/PublicodesAdapter'
 import { OuiNon } from '@/domaine/OuiNon'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
@@ -99,7 +99,7 @@ export default function RuleInput({
 	const isDefaultValue = missing ?? dottedName in evaluation.missingVariables
 
 	const decoded: O.Option<ValeurPublicodes> =
-		RèglePublicodeAdapter.decode(evaluation)
+		PublicodesAdapter.decode(evaluation)
 
 	const value = isDefaultValue ? undefined : O.getOrUndefined(decoded)
 	const defaultValue = isDefaultValue ? decoded : O.none()
