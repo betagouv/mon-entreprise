@@ -3,7 +3,7 @@ import { DottedName } from 'modele-social'
 
 import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
 import { toPublicodeDate } from '@/domaine/Date'
-import { RèglePublicodeAdapter } from '@/domaine/engine/RèglePublicodeAdapter'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { Entreprise } from '@/domaine/Entreprise'
 import { Action } from '@/store/actions/actions'
 import { omit } from '@/utils'
@@ -49,9 +49,7 @@ export function companySituation(
 			if (isCompanyDottedName(action.fieldName)) {
 				return {
 					...state,
-					[action.fieldName]: RèglePublicodeAdapter.encode(
-						O.some(action.value)
-					),
+					[action.fieldName]: PublicodesAdapter.encode(O.some(action.value)),
 				}
 			}
 			break

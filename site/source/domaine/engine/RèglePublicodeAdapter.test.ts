@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 import { EvaluatedNode } from 'publicodes'
 import { describe, expect, it, vi } from 'vitest'
 
-import { RèglePublicodeAdapter } from '@/domaine/engine/RèglePublicodeAdapter'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { euros, eurosParAn, eurosParMois, isMontant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
 
@@ -11,24 +11,24 @@ describe('RèglePublicodeAdapter', () => {
 		describe('valeurs nulles ou undefined', () => {
 			it('retourne Option.none() pour une valeur null', () => {
 				const node = { nodeValue: null } as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(O.none())
+				expect(PublicodesAdapter.decode(node)).toEqual(O.none())
 			})
 
 			it('retourne Option.none() pour une valeur undefined', () => {
 				const node = { nodeValue: undefined } as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(O.none())
+				expect(PublicodesAdapter.decode(node)).toEqual(O.none())
 			})
 		})
 
 		describe('valeurs booléennes', () => {
 			it('convertit true en "oui"', () => {
 				const node = { nodeValue: true } as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(O.some('oui'))
+				expect(PublicodesAdapter.decode(node)).toEqual(O.some('oui'))
 			})
 
 			it('convertit false en "non"', () => {
 				const node = { nodeValue: false } as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(O.some('non'))
+				expect(PublicodesAdapter.decode(node)).toEqual(O.some('non'))
 			})
 		})
 
@@ -39,7 +39,7 @@ describe('RèglePublicodeAdapter', () => {
 					missingVariables: {},
 					unit: undefined,
 				} as EvaluatedNode
-				const result = RèglePublicodeAdapter.decode(node)
+				const result = PublicodesAdapter.decode(node)
 				expect(O.isSome(result)).toBe(true)
 				const value = O.getOrThrow(result)
 				expect(value).toBe(42)
@@ -51,7 +51,7 @@ describe('RèglePublicodeAdapter', () => {
 					unit: '€',
 					missingVariables: {},
 				} as unknown as EvaluatedNode
-				const result = RèglePublicodeAdapter.decode(node)
+				const result = PublicodesAdapter.decode(node)
 				expect(O.isSome(result)).toBe(true)
 				const value = O.getOrThrow(result)
 				expect(isMontant(value)).toBe(true)
@@ -67,7 +67,7 @@ describe('RèglePublicodeAdapter', () => {
 					unit: '€/mois',
 					missingVariables: {},
 				} as unknown as EvaluatedNode
-				const result = RèglePublicodeAdapter.decode(node)
+				const result = PublicodesAdapter.decode(node)
 				expect(O.isSome(result)).toBe(true)
 				const value = O.getOrThrow(result)
 				expect(isMontant(value)).toBe(true)
@@ -85,7 +85,7 @@ describe('RèglePublicodeAdapter', () => {
 					nodeValue: publicodeDate,
 					missingVariables: {},
 				} as EvaluatedNode
-				const result = RèglePublicodeAdapter.decode(node)
+				const result = PublicodesAdapter.decode(node)
 				expect(O.isSome(result)).toBe(true)
 				expect(O.getOrThrow(result)).toBe('2023-01-01')
 			})
@@ -97,7 +97,7 @@ describe('RèglePublicodeAdapter', () => {
 					nodeValue: "'texte entre guillemets'",
 					missingVariables: {},
 				} as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(
+				expect(PublicodesAdapter.decode(node)).toEqual(
 					O.some('texte entre guillemets')
 				)
 			})
@@ -107,7 +107,7 @@ describe('RèglePublicodeAdapter', () => {
 					nodeValue: 'texte sans guillemets',
 					missingVariables: {},
 				} as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(
+				expect(PublicodesAdapter.decode(node)).toEqual(
 					O.some('texte sans guillemets')
 				)
 			})
@@ -117,7 +117,7 @@ describe('RèglePublicodeAdapter', () => {
 					nodeValue: "texte avec 'guillemets",
 					missingVariables: {},
 				} as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(
+				expect(PublicodesAdapter.decode(node)).toEqual(
 					O.some("texte avec 'guillemets")
 				)
 			})
@@ -133,7 +133,7 @@ describe('RèglePublicodeAdapter', () => {
 					nodeValue: { complexObject: true },
 					missingVariables: {},
 				} as unknown as EvaluatedNode
-				expect(RèglePublicodeAdapter.decode(node)).toEqual(O.none())
+				expect(PublicodesAdapter.decode(node)).toEqual(O.none())
 				expect(consoleWarnSpy).toHaveBeenCalled()
 
 				consoleWarnSpy.mockRestore()
@@ -144,18 +144,14 @@ describe('RèglePublicodeAdapter', () => {
 	describe('encode', () => {
 		describe('valeurs None', () => {
 			it('retourne undefined pour Option.none()', () => {
-				expect(RèglePublicodeAdapter.encode(O.none())).toBeUndefined()
+				expect(PublicodesAdapter.encode(O.none())).toBeUndefined()
 			})
 		})
 
 		describe('valeurs OuiNon', () => {
 			it('retourne la valeur OuiNon directement', () => {
-				expect(RèglePublicodeAdapter.encode(O.some('oui' as OuiNon))).toBe(
-					'oui'
-				)
-				expect(RèglePublicodeAdapter.encode(O.some('non' as OuiNon))).toBe(
-					'non'
-				)
+				expect(PublicodesAdapter.encode(O.some('oui' as OuiNon))).toBe('oui')
+				expect(PublicodesAdapter.encode(O.some('non' as OuiNon))).toBe('non')
 			})
 		})
 
@@ -165,17 +161,17 @@ describe('RèglePublicodeAdapter', () => {
 				const montantEurosParMois = eurosParMois(2_000)
 				const montantEurosParAn = eurosParAn(24_000)
 
-				const resultatEuros = RèglePublicodeAdapter.encode(
+				const resultatEuros = PublicodesAdapter.encode(
 					O.some(montantEuros)
 				) as string
 				expect(resultatEuros.replace(/\u202F/g, ' ')).toBe('1 000 €')
 
-				const resultatMois = RèglePublicodeAdapter.encode(
+				const resultatMois = PublicodesAdapter.encode(
 					O.some(montantEurosParMois)
 				) as string
 				expect(resultatMois.replace(/\u202F/g, ' ')).toBe('2 000 €/mois')
 
-				const resultatAn = RèglePublicodeAdapter.encode(
+				const resultatAn = PublicodesAdapter.encode(
 					O.some(montantEurosParAn)
 				) as string
 				expect(resultatAn.replace(/\u202F/g, ' ')).toBe('24 000 €/an')
@@ -184,9 +180,9 @@ describe('RèglePublicodeAdapter', () => {
 
 		describe('valeurs numériques', () => {
 			it('retourne la valeur numérique directement', () => {
-				expect(RèglePublicodeAdapter.encode(O.some(42))).toBe(42)
-				expect(RèglePublicodeAdapter.encode(O.some(0))).toBe(0)
-				expect(RèglePublicodeAdapter.encode(O.some(-123.45))).toBe(-123.45)
+				expect(PublicodesAdapter.encode(O.some(42))).toBe(42)
+				expect(PublicodesAdapter.encode(O.some(0))).toBe(0)
+				expect(PublicodesAdapter.encode(O.some(-123.45))).toBe(-123.45)
 			})
 		})
 
@@ -194,23 +190,21 @@ describe('RèglePublicodeAdapter', () => {
 			it('convertit les dates ISO en dates publicodes', () => {
 				const isoDate = '2023-01-01'
 				const publicodeDate = '01/01/2023'
-				expect(RèglePublicodeAdapter.encode(O.some(isoDate))).toBe(
-					publicodeDate
-				)
+				expect(PublicodesAdapter.encode(O.some(isoDate))).toBe(publicodeDate)
 			})
 		})
 
 		describe('valeurs de chaîne', () => {
 			it('entoure les chaînes de guillemets simples', () => {
-				expect(RèglePublicodeAdapter.encode(O.some('texte simple'))).toBe(
+				expect(PublicodesAdapter.encode(O.some('texte simple'))).toBe(
 					"'texte simple'"
 				)
-				expect(RèglePublicodeAdapter.encode(O.some(''))).toBe("''")
+				expect(PublicodesAdapter.encode(O.some(''))).toBe("''")
 			})
 
 			it('gère correctement les chaînes qui contiennent déjà des guillemets', () => {
 				expect(
-					RèglePublicodeAdapter.encode(
+					PublicodesAdapter.encode(
 						O.some("texte avec 'guillemets' à l'intérieur")
 					)
 				).toBe("'texte avec 'guillemets' à l'intérieur'")

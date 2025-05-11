@@ -3,7 +3,7 @@ import Engine, { ASTNode, RuleNode } from 'publicodes'
 import { useCallback } from 'react'
 
 import { ChoixMultiple, ChoixOption } from '@/design-system/field/choix'
-import { ValeurPublicodes } from '@/domaine/engine/RèglePublicodeAdapter'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 
 interface PlusieursPossibilitésProps {
 	choices: Array<RuleNode<DottedName>>

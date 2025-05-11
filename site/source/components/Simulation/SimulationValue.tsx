@@ -9,7 +9,7 @@ import { styled } from 'styled-components'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Contexte } from '@/domaine/Contexte'
-import { RèglePublicodeAdapter } from '@/domaine/engine/RèglePublicodeAdapter'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
@@ -60,7 +60,7 @@ export function SimulationValue({
 	const rule = engine.getRule(dottedName)
 	const elementIdPrefix = dottedName.replace(/\s|\./g, '_')
 
-	const decoded = RèglePublicodeAdapter.decode(evaluation)
+	const decoded = PublicodesAdapter.decode(evaluation)
 
 	if (isNone(decoded)) {
 		return null

@@ -2,9 +2,9 @@ import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 
 import {
-	RèglePublicodeAdapter,
+	PublicodesAdapter,
 	ValeurPublicodes,
-} from '@/domaine/engine/RèglePublicodeAdapter'
+} from '@/domaine/engine/PublicodesAdapter'
 import { ImmutableType } from '@/types/utils'
 import { objectTransform, omit } from '@/utils'
 
@@ -23,7 +23,7 @@ export function updateSituation(
 
 	const objectifsExclusifs = config['objectifs exclusifs'] ?? []
 
-	const encoded = RèglePublicodeAdapter.encode(O.some(value))
+	const encoded = PublicodesAdapter.encode(O.some(value))
 
 	if (!objectifsExclusifs.includes(dottedName)) {
 		return {

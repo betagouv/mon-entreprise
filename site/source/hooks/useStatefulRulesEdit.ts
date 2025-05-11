@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { RèglePublicodeAdapter } from '@/domaine/engine/RèglePublicodeAdapter'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
@@ -23,7 +23,7 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 				engine.evaluate(rule).nodeValue,
 			]) as Record<T, Evaluation>,
 			R.map((nodeValue: Evaluation, rule: T) =>
-				RèglePublicodeAdapter.decode(rule, nodeValue as SimpleRuleEvaluation)
+				PublicodesAdapter.decode(rule, nodeValue as SimpleRuleEvaluation)
 			)
 		)
 
@@ -52,7 +52,7 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 		dispatch(
 			ajusteLaSituation(
 				R.map(dirtyValues, (dirtyValue, rule) =>
-					RèglePublicodeAdapter.encode(rule, dirtyValue)
+					PublicodesAdapter.encode(rule, dirtyValue)
 				)
 			)
 		)
