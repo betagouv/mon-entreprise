@@ -15,8 +15,8 @@ export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly unité: T
 }
 
-export const isMontant = (valeur: unknown): valeur is Montant =>
-	isObject(valeur) && '_tag' in valeur && valeur._tag === 'Montant'
+export const isMontant = (something: unknown): something is Montant =>
+	isObject(something) && '_tag' in something && something._tag === 'Montant'
 
 const makeMontant = Data.tagged<Montant>('Montant')
 
