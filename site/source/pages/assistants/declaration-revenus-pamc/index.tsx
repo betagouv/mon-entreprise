@@ -5,6 +5,7 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
+import PageHeader from '@/components/PageHeader'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -13,7 +14,7 @@ import { Grid, Spacing } from '@/design-system/layout'
 import { Strong } from '@/design-system/typography'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 import { resetSimulation } from '@/store/actions/actions'
@@ -61,26 +62,36 @@ export default function DéclarationRevenusPAMC() {
 			)}
 
 			<div className="print-hidden">
+				<PageHeader>
+					<Trans i18nKey="pages.assistants.declaration-revenus-pamc.description">
+						<Intro>
+							Cet outil est une aide à la déclaration de revenus des{' '}
+							<Strong>
+								praticiens et auxiliaires médicaux conventionnés (PAMC)
+							</Strong>
+							. Il a pour but de vous aider à remplir le volet social de votre
+							déclaration de revenus à réaliser sur{' '}
+							<Link
+								href="https://www.impots.gouv.fr"
+								aria-label="impots.gouv.fr, nouvelle fenêtre"
+							>
+								impots.gouv.fr
+							</Link>
+							.
+						</Intro>
+						<SmallBody>
+							Vous restez entièrement responsable d’éventuelles omissions ou
+							inexactitudes dans votre déclaration.
+						</SmallBody>
+					</Trans>
+				</PageHeader>
+
 				<Warning localStorageKey="pages.assistants.declaration-revenus-pamc.warning">
 					<Ul>
 						<Trans i18nKey="pages.assistants.declaration-revenus-pamc.warning">
 							<StyledLi>
-								Cet assistant est à destination des{' '}
-								<Strong>
-									praticiens et auxiliaires médicaux conventionnés (PAMC)
-								</Strong>
-								.
-							</StyledLi>
-							<StyledLi>
-								Il a pour but de vous aider à remplir le volet social de votre
-								déclaration de revenus à réaliser sur{' '}
-								<Link
-									href="https://www.impots.gouv.fr"
-									aria-label="impots.gouv.fr, nouvelle fenêtre"
-								>
-									impots.gouv.fr
-								</Link>
-								.
+								Cet assistant <Strong>ne permet pas</Strong> de transmettre
+								votre déclaration de revenus.
 							</StyledLi>
 							<StyledLi>
 								<Strong>En cas de déficit</Strong>, renseignez le signe « - »

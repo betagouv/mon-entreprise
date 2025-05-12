@@ -833,6 +833,12 @@ pages:
       buttons:
         reset: Reset
         results: See results
+      description: <0>This tool is designed to help you complete the social section of
+        your tax return for <2>practitioners and medical auxiliaries under
+        contract (PAMC)</2>. Its purpose is to help you complete the social
+        section of your tax return on <5>impots.gouv.fr</5>.</0><1>You remain
+        entirely responsible for any omissions or inaccuracies in your
+        declaration.</1>
       formulaire:
         "0": Required fields are marked with an asterisk.
         "1": Profession
@@ -888,16 +894,14 @@ pages:
           "7": Data provided by Assurance Maladie
       shortname: PAMC tax return assistant
       title: PAMC tax return assistant
-      warning: <0>This assistant is intended for <2>practitioners and medical
-        auxiliaries under contract (PAMC)</2>.</0><1>It is designed to help you
-        fill in the social section of your tax return on
-        <2>impots.gouv.fr</2>.</1><2><0>In the event of a deficit</0>, enter a
-        "-" in front of the amount.</2><3><0>The wizard does not take into
-        account the following situations:</0><1><0>foreign
-        income</0><1>non-professional income,</1><2>change of tax regime during
-        the year,</2><3>commitment accounting,</3><4>doctors enrolled in the
-        RSPM scheme.</4></1>If you find yourself in one of these situations, we
-        invite you to contact your Urssaf office for assistance.</3>
+      warning: <0>This wizard does <1>not allow</1> you to submit your tax
+        return.</0><1><0>In the event of a deficit</0>, enter a "-" in front of
+        the amount.</1><2><0>The wizard does not take the following situations
+        into account:</0><1><0>foreign income,</0><1>non-professional
+        income,</1><2>change of tax regime during the year,</2><3>commitment
+        accounting,</3><4>doctors enrolled in the RSPM scheme.</4></1>If you
+        find yourself in one of these situations, we invite you to contact your
+        Urssaf office for assistance.</2>
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop

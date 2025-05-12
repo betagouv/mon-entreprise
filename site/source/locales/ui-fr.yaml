@@ -885,6 +885,12 @@ pages:
       buttons:
         reset: Réinitialiser
         results: Voir les résultats
+      description: <0>Cet outil est une aide à la déclaration de revenus des
+        <2>praticiens et auxiliaires médicaux conventionnés (PAMC)</2>. Il a
+        pour but de vous aider à remplir le volet social de votre déclaration de
+        revenus à réaliser sur <5>impots.gouv.fr</5>.</0><1>Vous restez
+        entièrement responsable d’éventuelles omissions ou inexactitudes dans
+        votre déclaration.</1>
       formulaire:
         "0": Les champs obligatoires sont signalés par une astérisque.
         "1": Profession
@@ -941,17 +947,14 @@ pages:
           "7": Données transmises par l’Assurance Maladie
       shortname: Assistant à la déclaration de revenus des PAMC
       title: Assistant à la déclaration de revenus pour les PAMC
-      warning: <0>Cet assistant est à destination des <2>praticiens et auxiliaires
-        médicaux conventionnés (PAMC)</2>.</0><1>Il a pour but de vous aider à
-        remplir le volet social de votre déclaration de revenus à réaliser sur
-        <2>impots.gouv.fr</2>.</1><2><0>En cas de déficit</0>, renseignez le
-        signe « - » devant le montant.</2><3><0>L’assistant ne prend pas en
-        compte les situations suivantes :</0><1><0>revenus
-        étrangers,</0><1>revenus non professionnels,</1><2>changement de régime
-        en cours d’année,</2><3>comptabilités d’engagement,</3><4>médecins
-        adhérents au dispositif RSPM.</4></1>Si vous êtes dans l’une de ces
-        situations, nous vous invitons à contacter votre Urssaf pour vous
-        accompagner.</3>
+      warning: <0>Cet assistant <1>ne permet pas</1> de transmettre votre déclaration
+        de revenus.</0><1><0>En cas de déficit</0>, renseignez le signe « - »
+        devant le montant.</1><2><0>L’assistant ne prend pas en compte les
+        situations suivantes :</0><1><0>revenus étrangers,</0><1>revenus non
+        professionnels,</1><2>changement de régime en cours
+        d’année,</2><3>comptabilités d’engagement,</3><4>médecins adhérents au
+        dispositif RSPM.</4></1>Si vous êtes dans l’une de ces situations, nous
+        vous invitons à contacter votre Urssaf pour vous accompagner.</2>
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
