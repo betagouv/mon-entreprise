@@ -2622,15 +2622,14 @@ dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
   titre.en: '[automatic] average overpayment'
   titre.fr: dépassement d'honoraire moyen
 dirigeant . indépendant . PL . PAMC . maladie:
-  avec:
-    participation CPAM:
-      titre.en: '[automatic] CPAM contribution'
-      titre.fr: participation CPAM
   titre.en: '[automatic] disease (after CPAM participation)'
   titre.fr: maladie (après participation CPAM)
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   titre.en: '[automatic] supplementary contribution'
   titre.fr: contribution additionnelle
+dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
+  titre.en: '[automatic] CPAM contribution'
+  titre.fr: participation CPAM
 dirigeant . indépendant . PL . PAMC . participation CPAM:
   description.en: >
     [automatic] Health professionals who are members of a health insurance
@@ -4863,7 +4862,7 @@ déclaration revenus PAMC . SNIR . honoraires remboursables:
 
     **a single <abbr title="Système National Inter-Régimes">SNIR</abbr> in the company's name**,
 
-    please indicate the amount of fees corresponding to your shares in the
+    please indicate the amount of conventional fees corresponding to your shares in the
 
     capital of the company.
 
