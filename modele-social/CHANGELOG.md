@@ -1,6 +1,8 @@
 # Journal des modifications
 
 ## next
+
+## 7.0.0
 ### Breaking changes
 - Règle `entreprise . date de cessation` non applicable par défaut (utiliser la règle `entreprise . en cessation d'activité` pour l’activer)
 - Suppression des règles dépréciées suivantes :
