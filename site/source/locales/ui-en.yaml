@@ -127,6 +127,7 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   Simulation data is automatically updated when you modify a field. <2>A panel
   will open to allow you to add details to the simulation, and detailed results
   will be displayed below the form and updated when you modify it.</2>
+Lire la page sur {{ site }}, nouvelle fenêtre.: Read the page on {{ site }}, new window.
 Lire les précisions, ouvrir le message condensé.: Read the details, open the condensed message.
 Liste des intégrations: List of integrations
 Ma situation: My situation
@@ -532,18 +533,6 @@ gérer:
     annuaire-entreprises:
       aria-label: Company directory, new window
       body: Find all public information about your company at
-    auto-entrepreneur:
-      aria-label: auto-entrepreneur.urssaf.fr, Visit the site
-      body: You'll be able to declare your sales, pay your contributions, and find all
-        the information you need about auto-entrepreneur status.
-      cta: Visit the site
-      title: Official website for auto-entrepreneurs
-    réductionGénérale:
-      aria-label: Consult the guide on urssaf.fr, new window
-      body: Calculation, declaration, rules... Consult the Urssaf guide to the general
-        reduction in contributions.
-      cta: Consult the guide
-      title: General reduction in contributions
 header:
   dark-mode-switch:
     activate-dark-mode: Activate dark mode
@@ -839,6 +828,15 @@ pages:
         section of your tax return on <5>impots.gouv.fr</5>.</0><1>You remain
         entirely responsible for any omissions or inaccuracies in your
         declaration.</1>
+      externalLinks:
+        "1":
+          description: Who has to declare self-employed income and how to do it.
+          title: Everything you need to know about the social security and tax returns for
+            self-employed workers
+        "2":
+          description: Declaration and payment of social security contributions for
+            practitioners and auxiliaries under agreement (PAM-C).
+          title: I am covered by the PAM-C scheme for my self-employed activity
       formulaire:
         "0": Required fields are marked with an asterisk.
         "1": Profession
@@ -907,11 +905,6 @@ pages:
         type of business on this site yet.</0><1>If you would like us to develop
         a new simulator, please let us know by clicking on the "<1></1>" button
         on the right of your screen.</1>
-      codeDuTravailNumeriqueCard:
-        aria-label: Digital Labour Code, read more
-        body: For all your labour law questions, visit the Digital Labour Code website.
-        cta: Read more
-        title: Digital labor code
       description: Do you want to earn an income or hire someone? You'll have to pay
         contributions and taxes. Use our simulators to find out how much you'll
         have to pay.
@@ -1182,6 +1175,13 @@ pages:
         here.</2></1>
       titre: Simulators and Assistants
     artiste-auteur:
+      externalLinks:
+        "1":
+          ariaLabel: Access the service on urssaf.fr, new window
+          ctaLabel: Access the service
+          description: Urssaf provides you with an online service. It allows you to manage
+            your business, contact an advisor and retrieve all your documents.
+          title: The Artist-Author online service
       meta:
         description: Estimate social security contributions on copyright and BNC income
         title: "Artiste-auteur: calculating Urssaf contributions"
@@ -1190,6 +1190,24 @@ pages:
       warning: This simulator allows you to estimate the amount of your contributions
         based on your projected income.
     auto-entrepreneur:
+      externalLinks:
+        "1":
+          ariaLabel: Visit auto-entrepreneur.urssaf.fr, new window.
+          ctaLabel: Visit the site
+          description: You'll be able to declare your sales, pay your contributions, and
+            find all the information you need about auto-entrepreneur status.
+          title: Official website for auto-entrepreneurs
+        "2":
+          ariaLabel: See the guides on auto-entrepreneur.urssaf.fr, new window.
+          ctaLabel: See the guides
+          description: Urssaf guides for auto-entrepreneurs.
+          title: Practical guides for auto-entrepreneurs
+        "3":
+          ariaLabel: Access the service on urssaf.fr, new window
+          ctaLabel: Access the service
+          description: Urssaf provides you with an online service. It allows you to manage
+            your business, contact an advisor and retrieve all your documents.
+          title: Auto-entrepreneur online service
       meta:
         description: Calculate your net income after contributions and taxes, taking
           into account all options, including ACRE and prélèvement libératoire.
@@ -1265,6 +1283,13 @@ pages:
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
     cessation-activité:
+      externalLinks:
+        "1":
+          ariaLabel: Access the service on urssaf.fr, new window
+          ctaLabel: Access the service
+          description: Urssaf will be with you every step of the way when you decide to
+            stop working.
+          title: Termination of activity service
       meta:
         description: Estimate your contributions for the year in which you cease
           self-employed activity.
@@ -1635,6 +1660,14 @@ pages:
           security system. However, you may do so if you wish to benefit from
           social protection (health insurance, retirement, etc.) in return for
           paying social security contributions.
+      externalLinks:
+        "1":
+          ariaLabel: Access the service on urssaf.fr, new window
+          ctaLabel: Access the service
+          description: Do you rent out furnished accommodation or goods? The Collaborative
+            Economy service makes it easy for you to declare and pay your
+            contributions.
+          title: The Collaborative Economy Department
       meta:
         description: This simulator calculates the income generated by the rental of
           furnished accommodation. It helps owners anticipate their earnings and
@@ -1712,6 +1745,13 @@ pages:
         général: This simulator is intended for self-employed professionals in the BNC
           sector. It does not take into account self-employed companies.
     réduction-générale:
+      externalLinks:
+        "1":
+          ariaLabel: Consult the guide on urssaf.fr, new window
+          ctaLabel: Consult the guide
+          description: Calculation, declaration, rules... Consult the Urssaf guide to the
+            general reduction in contributions.
+          title: General reduction in contributions
       legend: Employee's gross salary and applicable general reduction
       meta:
         description: Estimate of the amount of the general reduction in employer
@@ -1789,6 +1829,12 @@ pages:
       alt-image1: Net salary (received by the employee) is equal to Gross salary
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).
+      externalLinks:
+        "1":
+          ariaLabel: Visit Code du travail numérique, new window.
+          description: For all your labor law questions, visit the Code du travail
+            numérique website.
+          title: Digital labor code
       meta:
         description: "Calculate the total cost of hiring and explore different
           compensation options: management, internships, apprenticeships,

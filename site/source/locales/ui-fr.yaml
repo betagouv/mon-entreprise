@@ -134,6 +134,7 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
+Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
@@ -560,19 +561,6 @@ gérer:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
       body: Retrouvez toutes les informations publiques concernant votre entreprise
         sur
-    auto-entrepreneur:
-      aria-label: auto-entrepreneur.urssaf.fr, Visiter le site
-      body: Vous pourrez effectuer votre déclaration de chiffre d'affaires, payer vos
-        cotisations, et plus largement trouver toutes les informations relatives
-        au statut d'auto-entrepreneur
-      cta: Visiter le site
-      title: Site officiel des auto-entrepreneurs
-    réductionGénérale:
-      aria-label: Consulter le guide sur urssaf.fr, nouvelle fenêtre
-      body: Calcul, déclaration, règles... Consultez le guide de l'Urssaf sur la
-        réduction générale des cotisations.
-      cta: Consulter le guide
-      title: La réduction générale des cotisations
 header:
   dark-mode-switch:
     activate-dark-mode: Activer le mode sombre
@@ -891,6 +879,16 @@ pages:
         revenus à réaliser sur <5>impots.gouv.fr</5>.</0><1>Vous restez
         entièrement responsable d’éventuelles omissions ou inexactitudes dans
         votre déclaration.</1>
+      externalLinks:
+        "1":
+          description: Qui doit déclarer ses revenus d’indépendant et comment faire sa
+            déclaration.
+          title: Tout savoir sur la déclaration sociale et fiscale des revenus des
+            indépendants
+        "2":
+          description: Modalités déclaratives et paiement des cotisations sociales pour
+            les Praticiens et Auxiliaires Médicaux Conventionnés (PAM-C).
+          title: Je relève du régime des PAM-C dans le cadre de mon activité libérale
       formulaire:
         "0": Les champs obligatoires sont signalés par une astérisque.
         "1": Profession
@@ -960,12 +958,6 @@ pages:
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
         que nous développions un nouveau simulateur, laissez-nous message en
         cliquant sur le bouton "<1></1>" à droite de votre écran.</1>
-      codeDuTravailNumeriqueCard:
-        aria-label: Code du travail numérique, en savoir plus
-        body: Pour toutes vos questions en droit du travail, rendez-vous sur le site
-          Code du travail numérique
-        cta: En savoir plus
-        title: Code du travail numérique
       description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
         payer des cotisations et des impôts. Anticipez leurs montants grâce aux
         simulateurs adaptés à votre situation.
@@ -1251,6 +1243,14 @@ pages:
         quel site internet. <3>En savoir plus</3>.</2></1>
       titre: Simulateurs et Assistants
     artiste-auteur:
+      externalLinks:
+        "1":
+          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
+          ctaLabel: Accéder au service
+          description: L’Urssaf met à votre disposition un service en ligne. Il vous
+            permet de gérer votre activité, contacter un conseiller et retrouver
+            tous vos documents.
+          title: Le service en ligne Artiste-auteur
       meta:
         description: Estimez les cotisations sociales sur les droits d'auteur et sur le
           revenu BNC
@@ -1260,6 +1260,27 @@ pages:
       warning: Ce simulateur permet d’estimer le montant de vos cotisations à partir
         de votre revenu projeté.
     auto-entrepreneur:
+      externalLinks:
+        "1":
+          ariaLabel: Visiter le site auto-entrepreneur.urssaf.fr, nouvelle fenêtre.
+          ctaLabel: Visiter le site
+          description: Vous pourrez effectuer votre déclaration de chiffre d’affaires,
+            payer vos cotisations, et plus largement trouver toutes les
+            informations relatives au statut d’auto-entrepreneur.
+          title: Site officiel des auto-entrepreneurs
+        "2":
+          ariaLabel: Voir les guides sur auto-entrepreneur.urssaf.fr, nouvelle fenêtre.
+          ctaLabel: Voir les guides
+          description: Les guides de l’Urssaf dédiés aux auto-entrepreneurs et
+            auto-entrepreneuses.
+          title: Guides pratiques de l’auto-entrepreneur
+        "3":
+          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
+          ctaLabel: Accéder au service
+          description: L’Urssaf met à votre disposition un service en ligne. Il vous
+            permet de gérer votre activité, contacter un conseiller et retrouver
+            tous vos documents.
+          title: Le service en ligne Auto-entrepreneur
       meta:
         description: Calculez votre revenu net après cotisations et impôts en tenant
           compte de toutes les options, y compris ACRE et prélèvement
@@ -1343,6 +1364,13 @@ pages:
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
     cessation-activité:
+      externalLinks:
+        "1":
+          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
+          ctaLabel: Accéder au service
+          description: L’Urssaf vous accompagne à toutes les étapes clés de votre démarche
+            de cessation d’activité.
+          title: Le service Cessation d’activité
       meta:
         description: Estimez vos cotisations de l'année de cessation de votre activité
           en tant qu’indépendant.
@@ -1740,6 +1768,14 @@ pages:
           le faire si vous souhaitez bénéficier d'une protection sociale
           (assurance maladie, retraite…) en contrepartie du paiement des
           cotisations sociales.
+      externalLinks:
+        "1":
+          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
+          ctaLabel: Accéder au service
+          description: Vous louez des logements meublés ou des biens ? Le service Économie
+            collaborative vous facilite la déclaration et le paiement de vos
+            cotisations.
+          title: Le service Économie collaborative
       meta:
         description: Ce simulateur permet de calculer les revenus générés par la
           location de logements meublés. Il aide les propriétaires à anticiper
@@ -1819,6 +1855,13 @@ pages:
         général: Ce simulateur est à destination des professions libérales en BNC. Il ne
           prend pas en compte les sociétés d’exercice libéral.
     réduction-générale:
+      externalLinks:
+        "1":
+          ariaLabel: Consulter le guide sur urssaf.fr, nouvelle fenêtre
+          ctaLabel: Consulter le guide
+          description: Calcul, déclaration, règles... Consultez le guide de l’Urssaf sur
+            la réduction générale des cotisations.
+          title: La réduction générale des cotisations
       legend: Salaire brut du salarié et réduction générale applicable
       meta:
         description: Estimation du montant de la réduction générale des cotisations
@@ -1897,6 +1940,12 @@ pages:
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
+      externalLinks:
+        "1":
+          ariaLabel: Visiter le site Code du travail numérique, nouvelle fenêtre.
+          description: Pour toutes vos questions en droit du travail, rendez-vous sur le
+            site Code du travail numérique.
+          title: Code du travail numérique
       meta:
         description: "Calculez le coût total d'une embauche et explorez les différentes
           options de rémunération : cadres, stages, apprentissages, heures

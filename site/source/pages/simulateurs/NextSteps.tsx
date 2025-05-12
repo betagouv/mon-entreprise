@@ -1,13 +1,11 @@
+import { ReactNode } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H2 } from '@/design-system/typography/heading'
-import {
-	MergedSimulatorDataValues,
-	useCurrentSimulatorData,
-} from '@/hooks/useCurrentSimulatorData'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { GuideURSSAFCard } from '@/pages/simulateurs/cards/GuideURSSAFCard'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
@@ -15,7 +13,6 @@ import { useSitePaths } from '@/sitePaths'
 
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { ExternalLink } from './_configs/types'
-import { ReactNode } from 'react'
 import ExternalLinkCard from './cards/ExternalLinkCard'
 
 interface NextStepsProps {
@@ -30,13 +27,9 @@ export default function NextSteps({
 	externalLinks,
 }: NextStepsProps) {
 	const { absoluteSitePaths } = useSitePaths()
-	const {
-		t,
-		i18n: { language },
-	} = useTranslation()
+	const { language } = useTranslation().i18n
 	const engine = useEngine()
 
-	const { key } = useCurrentSimulatorData()
 	const guidesUrssaf = guidesUrssafList.filter(
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
 	)
@@ -79,19 +72,6 @@ export default function NextSteps({
 						</GridItem>
 					))}
 
-				{key === 'location-de-logement-meublé' && (
-					<GridItem>
-						<GuideURSSAFCard
-							guideUrssaf={{
-								url: 'https://www.urssaf.fr/accueil/services/economie-collaborative.html',
-								title: 'Le guide Économie collaborative de l’Urssaf',
-								description:
-									'Retrouvez toutes les règles Urssaf pour l’économie collaborative.',
-							}}
-						/>
-					</GridItem>
-				)}
-
 				{iframePath && (
 					<GridItem>
 						<IframeIntegrationCard
@@ -110,33 +90,26 @@ export default function NextSteps({
 type GridItemProps = {
 	children: ReactNode
 }
-const GridItem = ({children}: GridItemProps) => (
-	<Grid item xs={12} sm={6} lg={4} role="listitem">{children}</Grid>
+const GridItem = ({ children }: GridItemProps) => (
+	<Grid item xs={12} sm={6} lg={4} role="listitem">
+		{children}
+	</Grid>
 )
 
 const guidesUrssafList = [
-	/* On désactive tous les guides Urssaf qui sont des documents non accessibles. */
-	// {
-	// 	url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/PAM/Diaporama_Medecins.pdf',
-	// 	associatedRule: "dirigeant . indépendant . PL . métier = 'santé . médecin'",
-	// 	title: 'Guide Urssaf pour les médecins libéraux',
-	// },
-	// {
-	// 	url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_PL_statuts_hors_AE_et_PAM.pdf',
-	// 	associatedRule: 'entreprise . activité . nature . libérale . réglementée',
-	// 	title: 'Guide Urssaf pour les professions libérales réglementées',
-	// },
-	// {
-	// 	url: 'https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-Guide-AutoEntrepreneur-metropole.pdf',
-	// 	associatedRule: 'dirigeant . auto-entrepreneur',
-	// 	title: 'Guide Urssaf pour les auto-entrepreneurs',
-	// },
-	// {
-	// 	url: 'https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf',
-	// 	associatedRule: 'dirigeant',
-	// 	title: 'Guide Urssaf pour les indépendants',
-	// },
-
+	// Pour les employeureuses
+	{
+		url: 'https://www.urssaf.fr/accueil/services/services-employeurs/service-employeur.html',
+		title: 'Le service en ligne Employeur',
+		description:
+			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
+		associatedRule: {
+			'toutes ces conditions': [
+				'dirigeant = non',
+				{ 'est non défini': 'artiste-auteur' },
+			],
+		},
+	},
 	{
 		url: 'https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries.html',
 		title: 'Embaucher et gérer les salariés',
@@ -162,6 +135,7 @@ const guidesUrssafList = [
 		},
 	},
 
+	// Pour les indépendant⋅es et auto-entrepreneureuses
 	{
 		url: 'https://www.urssaf.fr/accueil/services/services-tiers-declarants/service-expert-comptable.html',
 		title: 'Le service en ligne Expert-comptable',
@@ -170,7 +144,6 @@ const guidesUrssafList = [
 		associatedRule:
 			"dirigeant . indépendant . PL . métier = 'expert-comptable'",
 	},
-
 	{
 		url: 'https://www.urssaf.fr/accueil/services/services-independants/service-pam.html',
 		title: 'Le service en ligne Praticien ou auxiliaire médical',
@@ -186,17 +159,24 @@ const guidesUrssafList = [
 		associatedRule: {
 			'toutes ces conditions': [
 				'dirigeant . indépendant . PL',
+				'entreprise . activité . nature . libérale . réglementée',
 				"dirigeant . indépendant . PL . métier != 'expert-comptable'",
 				'dirigeant . indépendant . PL . PAMC = non',
 			],
 		},
 	},
 	{
-		url: 'https://www.urssaf.fr/accueil/services/services-independants/service-autoentrepreneur.html',
-		title: 'Le service en ligne Auto-entrepreneur',
+		url: 'https://www.urssaf.fr/accueil/services/services-independants/service-acplnr.html',
+		title:
+			'Le service Artisan, Commerçant et Profession libérale non réglementée',
 		description:
 			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
-		associatedRule: 'dirigeant . auto-entrepreneur',
+		associatedRule: {
+			'toutes ces conditions': [
+				'dirigeant . indépendant',
+				'entreprise . activité . nature . libérale . réglementée = non',
+			],
+		},
 	},
 	{
 		url: 'https://www.urssaf.fr/accueil/services/services-independants/mespremiersmois.html',
@@ -206,45 +186,8 @@ const guidesUrssafList = [
 		associatedRule: {
 			'une de ces conditions': [
 				'dirigeant . auto-entrepreneur',
-				'dirigeant . indépendant . PL',
+				'dirigeant . indépendant',
 			],
 		},
 	},
-
-	{
-		url: 'https://www.urssaf.fr/accueil/services/services-artisteauteur-diffuseur/service-artiste-auteur.html',
-		title: 'Le service en ligne Artiste-auteur',
-		description:
-			"L'Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.",
-		associatedRule: 'artiste-auteur',
-	},
 ]
-
-// const FAQAutoEntrepreneurArticle = () => {
-// 	const { t } = useTranslation()
-
-// 	return (
-// 		<Article
-// 			title={
-// 				<h3>
-// 					{t(
-// 						'pages.common.ressources-auto-entrepreneur.FAQ.title',
-// 						'Questions fréquentes'
-// 					)}{' '}
-// 					<Emoji emoji="❓" />
-// 				</h3>
-// 			}
-// 			href="https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html"
-// 			ctaLabel={t(
-// 				'pages.common.ressources-auto-entrepreneur.FAQ.cta',
-// 				'Voir les réponses'
-// 			)}
-// 		>
-// 			<Trans i18nKey="pages.common.ressources-auto-entrepreneur.FAQ.body">
-// 				Une liste exhaustive et maintenue à jour de toutes les questions
-// 				fréquentes (et moins fréquentes) que l'on est amené à poser en tant
-// 				qu'auto-entrepreneur
-// 			</Trans>
-// 		</Article>
-// 	)
-// }
