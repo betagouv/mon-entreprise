@@ -109,10 +109,18 @@ export default function Formulaire() {
 				<AssistantGoal dottedName="déclaration revenus PAMC . cotisations sociales obligatoires" />
 
 				<H2>
-					{t(
-						'pages.assistants.declaration-revenus-pamc.formulaire.4',
-						'Données du relevé SNIR'
-					)}
+					<Condition expression="déclaration revenus PAMC . statut = 'titulaire'">
+						{t(
+							'pages.assistants.declaration-revenus-pamc.formulaire.4.titulaire',
+							'Données du relevé SNIR'
+						)}
+					</Condition>
+					<Condition expression="déclaration revenus PAMC . statut = 'remplaçant'">
+						{t(
+							'pages.assistants.declaration-revenus-pamc.formulaire.4.remplacant',
+							'Rétrocessions d’honoraires perçues'
+						)}
+					</Condition>
 				</H2>
 				<AssistantGoal dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables" />
 				<AssistantGoal dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires" />

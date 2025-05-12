@@ -840,7 +840,9 @@ pages:
         "11": Replacement income
         "2": Tax system
         "3": Recipes
-        "4": SNIR survey data
+        "4":
+          remplacant: Fee retrocessions received
+          titulaire: SNIR survey data
         "5": Care facilities
         "6": Deductions and exemptions
         "7": Other self-employed income

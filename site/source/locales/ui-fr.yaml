@@ -892,7 +892,9 @@ pages:
         "11": Revenus de remplacement
         "2": Régime fiscal
         "3": Recettes
-        "4": Données du relevé SNIR
+        "4":
+          remplacant: Rétrocessions d’honoraires perçues
+          titulaire: Données du relevé SNIR
         "5": Structures de soins
         "6": Déductions et exonérations
         "7": Autres revenus non salariés
