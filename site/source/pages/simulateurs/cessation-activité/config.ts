@@ -1,6 +1,7 @@
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
 import { CessationActivitéSimulation } from '@/pages/simulateurs/cessation-activité/CessationActivité'
 import { configCessationActivité } from '@/pages/simulateurs/cessation-activité/simulationConfig'
+import { URSSAF } from '@/utils/logos'
 
 import { config } from '../_configs/config'
 
@@ -41,6 +42,28 @@ export function cessationActivitéConfig({
 			),
 		},
 		nextSteps: ['indépendant'],
+		externalLinks: [
+			{
+				url: 'https://www.urssaf.fr/accueil/services/services-independants/cessation-activite.html',
+				title: t(
+					'pages.simulateurs.cessation-activité.externalLinks.1.title',
+					'Le service Cessation d’activité'
+				),
+				description: t(
+					'pages.simulateurs.cessation-activité.externalLinks.1.description',
+					'L’Urssaf vous accompagne à toutes les étapes clés de votre démarche de cessation d’activité.'
+				),
+				logo: URSSAF,
+				ctaLabel: t(
+					'pages.simulateurs.cessation-activité.externalLinks.1.ctaLabel',
+					'Accéder au service'
+				),
+				ariaLabel: t(
+					'pages.simulateurs.cessation-activité.externalLinks.1.ariaLabel',
+					'Accéder au service sur urssaf.fr, nouvelle fenêtre'
+				),
+			},
+		],
 		path: sitePaths.simulateurs['cessation-activité'],
 		simulation: configCessationActivité,
 		component: CessationActivitéSimulation,
