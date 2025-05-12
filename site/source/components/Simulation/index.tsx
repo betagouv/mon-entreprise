@@ -41,7 +41,6 @@ const StyledGrid = styled(Grid)`
 
 /**
  * Adaptateur pour connecter les questions à un store Redux
- * ou toute autre source de données et méthode de mise à jour
  *
  * @template S Type de la situation
  * @template A Type de l'action générée
