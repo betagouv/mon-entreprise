@@ -1,6 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Grid, Spacing } from '@/design-system/layout'
@@ -15,9 +14,6 @@ import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorResso
 import { useSitePaths } from '@/sitePaths'
 
 import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
-import { AutoEntrepreneurCard } from '../assistants/pour-mon-entreprise/AutoEntrepeneurCard'
-import { CodeDuTravailNumeriqueCard } from '../assistants/pour-mon-entreprise/CodeDuTravailNumeriqueCard'
-import { ReductionGeneraleCard } from '../assistants/pour-mon-entreprise/ReductionGeneraleCard'
 import { ExternalLink } from './_configs/types'
 import { ReactNode } from 'react'
 import ExternalLinkCard from './cards/ExternalLinkCard'
@@ -55,12 +51,6 @@ export default function NextSteps({
 				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H2>
 			<Grid container spacing={3} role="list">
-				<Condition expression="entreprise . catégorie juridique . EI . auto-entrepreneur = oui">
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<AutoEntrepreneurCard />
-					</Grid>
-				</Condition>
-
 				<WhenAlreadyDefined dottedName="entreprise . SIREN">
 					<GridItem>
 						<AnnuaireEntreprises />
@@ -81,12 +71,6 @@ export default function NextSteps({
 						</GridItem>
 					))}
 
-				{key === 'réduction-générale' && (
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<ReductionGeneraleCard />
-					</Grid>
-				)}
-
 				{guidesUrssaf &&
 					language === 'fr' &&
 					guidesUrssaf.map((guideUrssaf, index) => (
@@ -106,12 +90,6 @@ export default function NextSteps({
 							}}
 						/>
 					</GridItem>
-				)}
-
-				{key === 'salarié' && (
-					<Grid item xs={12} sm={6} lg={4} role="listitem">
-						<CodeDuTravailNumeriqueCard />
-					</Grid>
 				)}
 
 				{iframePath && (

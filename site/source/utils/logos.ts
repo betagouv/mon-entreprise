@@ -23,3 +23,5 @@ export { default as IMPOTS_GOUV } from '@/assets/images/références-images/impo
 export { default as LEGIFRANCE } from '@/assets/images/références-images/legifrance.svg'
 export { default as SERVICE_PUBLIC } from '@/assets/images/références-images/service-public.svg'
 export { default as URSSAF } from '@/assets/images/références-images/urssaf.svg'
+
+export { default as CODE_DU_TRAVAIL_NUMERIQUE } from '@/assets/images/références-images/code-du-travail-numerique.svg'
