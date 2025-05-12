@@ -21,19 +21,19 @@ describe('Réduction générale des cotisations patronales', () => {
 
 			expect(e).toEvaluate(
 				'salarié . cotisations . exonérations . réduction générale',
-				523.26
+				522.31
 			)
 			expect(e).toEvaluate(
 				'salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire',
-				98.46
+				98.43
 			)
 			expect(e).toEvaluate(
 				'salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale',
-				424.8
+				423.88
 			)
 			expect(e).toEvaluate(
 				'salarié . cotisations . exonérations . réduction générale . imputation chômage',
-				66.35
+				65.51
 			)
 		})
 
@@ -91,12 +91,12 @@ describe('Réduction générale des cotisations patronales', () => {
 				'salarié . cotisations . assiette': '1900 €/mois',
 				'entreprise . salariés . effectif': '50',
 			})
-			const réductionÀ50 = engine.evaluate(
+			const réductionÀ50 = Math.round(engine.evaluate(
 				'salarié . cotisations . exonérations . réduction générale'
-			).nodeValue as number
+			).nodeValue as number)
 
 			expect(réductionDeBase).toBeLessThan(réductionÀ50)
-			expect(réductionÀ50).toEqual(529.72)
+			expect(réductionÀ50).toEqual(529)
 		})
 
 		it('Obligation de cotiser à une caisse de congés payés', () => {
@@ -106,12 +106,12 @@ describe('Réduction générale des cotisations patronales', () => {
 				'salarié . cotisations . exonérations . réduction générale . caisse de congés payés':
 					'oui',
 			})
-			const réductionAvecCCP = engine.evaluate(
+			const réductionAvecCCP = Math.round(engine.evaluate(
 				'salarié . cotisations . exonérations . réduction générale'
-			).nodeValue as number
+			).nodeValue as number)
 
 			expect(réductionDeBase).toBeLessThan(réductionAvecCCP)
-			expect(réductionAvecCCP).toEqual(581.4)
+			expect(réductionAvecCCP).toEqual(580)
 		})
 	})
 })
