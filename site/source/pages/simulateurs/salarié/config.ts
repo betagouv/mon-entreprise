@@ -1,3 +1,5 @@
+import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
+import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { CODE_DU_TRAVAIL_NUMERIQUE } from '@/utils/logos'
 
 import { config } from '../_configs/config'
@@ -59,6 +61,8 @@ export function salariéConfig(params: SimulatorsDataParams) {
 					'Visiter le site Code du travail numérique, nouvelle fenêtre.'
 				),
 			},
+			embaucherGérerSalariés,
+			nouvelEmployeur,
 		],
 		path: sitePaths.simulateurs.salarié,
 		simulation: configSalarié,

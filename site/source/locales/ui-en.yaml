@@ -493,6 +493,12 @@ error:
     apologize for any inconvenience caused.
   placeholder: Hello, I encountered an error after clicking on...
   title: An error has occurred
+external-links:
+  service:
+    ariaLabel: Access the service on urssaf.fr, new window
+    ctaLabel: Access the service
+    description: Urssaf provides you with an online service. It allows you to manage
+      your business, contact an advisor and retrieve all your documents.
 feedback:
   error:
     description: The message could not be sent (status code {{statusCode}}). Please
@@ -1177,10 +1183,6 @@ pages:
     artiste-auteur:
       externalLinks:
         "1":
-          ariaLabel: Access the service on urssaf.fr, new window
-          ctaLabel: Access the service
-          description: Urssaf provides you with an online service. It allows you to manage
-            your business, contact an advisor and retrieve all your documents.
           title: The Artist-Author online service
       meta:
         description: Estimate social security contributions on copyright and BNC income
@@ -1202,12 +1204,6 @@ pages:
           ctaLabel: See the guides
           description: Urssaf guides for auto-entrepreneurs.
           title: Practical guides for auto-entrepreneurs
-        "3":
-          ariaLabel: Access the service on urssaf.fr, new window
-          ctaLabel: Access the service
-          description: Urssaf provides you with an online service. It allows you to manage
-            your business, contact an advisor and retrieve all your documents.
-          title: Auto-entrepreneur online service
       meta:
         description: Calculate your net income after contributions and taxes, taking
           into account all options, including ACRE and prélèvement libératoire.
@@ -1285,8 +1281,6 @@ pages:
     cessation-activité:
       externalLinks:
         "1":
-          ariaLabel: Access the service on urssaf.fr, new window
-          ctaLabel: Access the service
           description: Urssaf will be with you every step of the way when you decide to
             stop working.
           title: Termination of activity service
@@ -1662,8 +1656,6 @@ pages:
           paying social security contributions.
       externalLinks:
         "1":
-          ariaLabel: Access the service on urssaf.fr, new window
-          ctaLabel: Access the service
           description: Do you rent out furnished accommodation or goods? The Collaborative
             Economy service makes it easy for you to declare and pay your
             contributions.

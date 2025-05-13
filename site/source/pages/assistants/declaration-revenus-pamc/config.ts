@@ -1,3 +1,4 @@
+import { servicePAM } from '@/external-links/servicePAM'
 import { IMPOTS_GOUV, URSSAF } from '@/utils/logos'
 
 import DéclarationRevenusPAMC from '.'
@@ -62,6 +63,7 @@ export function déclarationRevenusPAMCConfig({
 				),
 				logo: IMPOTS_GOUV,
 			},
+			servicePAM,
 		],
 	} as const)
 }

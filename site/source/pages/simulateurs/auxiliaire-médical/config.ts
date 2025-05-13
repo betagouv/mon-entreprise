@@ -1,3 +1,5 @@
+import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
+import { servicePAM } from '@/external-links/servicePAM'
 import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
 
 import { config } from '../_configs/config'
@@ -39,6 +41,7 @@ export function auxiliaireMédicalConfig({
 				'Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des revenus non conventionnés.'
 			),
 		},
+		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 		simulation: configAuxiliaire,
 		codesCatégorieJuridique: ['1000', '5410'],

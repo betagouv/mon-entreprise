@@ -1,3 +1,6 @@
+import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
+import { serviceIndépendant } from '@/external-links/serviceIndépendant'
+
 import DéclarationChargeSocialeIndépendant from '.'
 import { config } from '../../simulateurs/_configs/config'
 import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
@@ -34,6 +37,7 @@ export function déclarationChargesSocialesIndépendantConfig({
 			'pages.assistants.declaration-charges-sociales-independant.title',
 			'Assistant à la détermination des charges sociales déductibles'
 		),
+		externalLinks: [serviceIndépendant, premiersMoisUrssaf],
 		component: DéclarationChargeSocialeIndépendant,
 	} as const)
 }

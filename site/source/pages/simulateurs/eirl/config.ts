@@ -1,3 +1,9 @@
+import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
+import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
+import { serviceIndépendant } from '@/external-links/serviceIndépendant'
+import { servicePAM } from '@/external-links/servicePAM'
+import { servicePLR } from '@/external-links/servicePLR'
+
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
@@ -36,6 +42,13 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 		shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
 		title: t('pages.simulateurs.eirl.title', 'Simulateur de revenus pour EIRL'),
 		nextSteps: ['comparaison-statuts'],
+		externalLinks: [
+			serviceIndépendant,
+			servicePLR,
+			servicePAM,
+			serviceExpertComptable,
+			premiersMoisUrssaf,
+		],
 		path: sitePaths.simulateurs.eirl,
 		simulation: configEirl,
 		codesCatégorieJuridique: ['1000'],

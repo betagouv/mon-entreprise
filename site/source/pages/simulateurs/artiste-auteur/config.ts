@@ -41,16 +41,13 @@ export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 					'Le service en ligne Artiste-auteur'
 				),
 				description: t(
-					'pages.simulateurs.artiste-auteur.externalLinks.1.description',
+					'external-links.service.description',
 					'L’Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.'
 				),
 				logo: URSSAF,
-				ctaLabel: t(
-					'pages.simulateurs.artiste-auteur.externalLinks.1.ctaLabel',
-					'Accéder au service'
-				),
+				ctaLabel: t('external-links.service.ctaLabel', 'Accéder au service'),
 				ariaLabel: t(
-					'pages.simulateurs.artiste-auteur.externalLinks.1.ariaLabel',
+					'external-links.service.ariaLabel',
 					'Accéder au service sur urssaf.fr, nouvelle fenêtre'
 				),
 			},

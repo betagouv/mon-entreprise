@@ -1,3 +1,6 @@
+import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
+import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
+
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import RéductionGénéraleSimulation from './Lodeom'
@@ -24,6 +27,7 @@ export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 		},
 		nextSteps: ['salarié'],
+		externalLinks: [embaucherGérerSalariés, nouvelEmployeur],
 		path: sitePaths.simulateurs.lodeom,
 		simulation: configLodeom,
 		component: RéductionGénéraleSimulation,

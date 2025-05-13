@@ -54,12 +54,9 @@ export function cessationActivitéConfig({
 					'L’Urssaf vous accompagne à toutes les étapes clés de votre démarche de cessation d’activité.'
 				),
 				logo: URSSAF,
-				ctaLabel: t(
-					'pages.simulateurs.cessation-activité.externalLinks.1.ctaLabel',
-					'Accéder au service'
-				),
+				ctaLabel: t('external-links.service.ctaLabel', 'Accéder au service'),
 				ariaLabel: t(
-					'pages.simulateurs.cessation-activité.externalLinks.1.ariaLabel',
+					'external-links.service.ariaLabel',
 					'Accéder au service sur urssaf.fr, nouvelle fenêtre'
 				),
 			},
