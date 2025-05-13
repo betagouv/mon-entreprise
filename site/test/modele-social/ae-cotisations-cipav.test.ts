@@ -3,6 +3,7 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { configAutoEntrepreneur } from '@/pages/simulateurs/auto-entrepreneur/simulationConfig'
+import { round } from '@/utils/number'
 
 const situationParDéfaut = {
 	...configAutoEntrepreneur.situation,
@@ -114,17 +115,13 @@ describe('Le simulateur auto-entrepreneur', () => {
 			expect(partPrévoyance).toEqual(partPrévoyanceBNC)
 			expect(partAutres).toEqual(partAutresBNC)
 
+			expect(round((100 * partRetraiteBase) / cotisations, 2)).toEqual(47.6)
 			expect(
-				Math.round((10000 * partRetraiteBase) / cotisations) / 100
-			).toEqual(47.6)
-			expect(
-				Math.round((10000 * partRetraiteComplémentaire) / cotisations) / 100
+				round((100 * partRetraiteComplémentaire) / cotisations, 2)
 			).toEqual(13)
-			expect(Math.round((10000 * partMaladie) / cotisations) / 100).toEqual(3.4)
-			expect(Math.round((10000 * partPrévoyance) / cotisations) / 100).toEqual(
-				3.5
-			)
-			expect(Math.round((10000 * partAutres) / cotisations) / 100).toEqual(32.5)
+			expect(round((100 * partMaladie) / cotisations, 2)).toEqual(3.4)
+			expect(round((100 * partPrévoyance) / cotisations, 2)).toEqual(3.5)
+			expect(round((100 * partAutres) / cotisations, 2)).toEqual(32.5)
 		})
 
 		it('pour les PLR', () => {
@@ -177,19 +174,13 @@ describe('Le simulateur auto-entrepreneur', () => {
 			expect(partPrévoyance).toEqual(partPrévoyanceCipav)
 			expect(partAutres).toEqual(partAutresCipav)
 
+			expect(round((100 * partRetraiteBase) / cotisations, 2)).toEqual(28.8)
 			expect(
-				Math.round((10000 * partRetraiteBase) / cotisations) / 100
-			).toEqual(28.8)
-			expect(
-				Math.round((10000 * partRetraiteComplémentaire) / cotisations) / 100
+				round((100 * partRetraiteComplémentaire) / cotisations, 2)
 			).toEqual(25.6)
-			expect(Math.round((10000 * partMaladie) / cotisations) / 100).toEqual(
-				10.2
-			)
-			expect(Math.round((10000 * partPrévoyance) / cotisations) / 100).toEqual(
-				1.4
-			)
-			expect(Math.round((10000 * partAutres) / cotisations) / 100).toEqual(34)
+			expect(round((100 * partMaladie) / cotisations, 2)).toEqual(10.2)
+			expect(round((100 * partPrévoyance) / cotisations, 2)).toEqual(1.4)
+			expect(round((100 * partAutres) / cotisations, 2)).toEqual(34)
 		})
 	})
 
