@@ -4,15 +4,37 @@ import { DottedName } from 'modele-social'
 import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
 import { expect } from 'vitest'
 
+import { round } from '@/utils/number'
+
 import { PublicodesTypes } from '../helpers/PublicodesTypes'
+
+type RuleType =
+	| PublicodesExpression
+	| {
+			dottedName: PublicodesExpression
+			precision?: number
+	  }
 
 const toEvaluate = function <T extends PublicodesTypes>(
 	engine: Engine,
-	rule: PublicodesExpression,
+	rule: RuleType,
 	value: Evaluation<T>
 ) {
-	const evaluated = engine.evaluate(rule).nodeValue
-	const pass = evaluated === value
+	let dottedName: PublicodesExpression
+	let precision: number | null = null
+	if (typeof rule === 'object' && 'dottedName' in rule) {
+		dottedName = rule.dottedName as PublicodesExpression
+		if ('precision' in rule && typeof rule.precision === 'number') {
+			precision = rule.precision
+		}
+	} else {
+		dottedName = rule
+	}
+	const evaluation = engine.evaluate(dottedName).nodeValue
+	const formattedEvaluation = precision
+		? round(evaluation as number, precision)
+		: evaluation
+	const pass = formattedEvaluation === value
 
 	if (pass) {
 		return {
@@ -20,13 +42,13 @@ const toEvaluate = function <T extends PublicodesTypes>(
 				// `this` context will have correct typings
 				// @ts-ignore
 				`expected ${this.utils.printReceived(
-					evaluated
+					evaluation
 					// @ts-ignore
 				)} not to equal ${this.utils.printExpected(
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
 					`${value}`
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-				)} for rule ${rule}`,
+				)} for rule ${dottedName}`,
 			pass: true,
 		}
 	} else {
@@ -34,10 +56,13 @@ const toEvaluate = function <T extends PublicodesTypes>(
 			message: () =>
 				// @ts-ignore
 				`expected ${this.utils.printReceived(
-					evaluated
+					evaluation
 					// @ts-ignore
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-				)} to equal ${this.utils.printExpected(`${value}`)} for rule ${rule}`,
+				)} to equal ${this.utils.printExpected(
+					`${value}`
+					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
+				)} for rule ${dottedName}`,
 			pass: false,
 		}
 	}
