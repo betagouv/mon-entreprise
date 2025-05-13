@@ -21,6 +21,7 @@ import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
+import { round } from '@/utils/number'
 
 import { Satisfaction, SatisfactionLevel } from '../types'
 import { AccessibleTable } from './AccessibleTable'
@@ -174,9 +175,6 @@ export default function SatisfactionChart({
 		</Body>
 	)
 }
-
-export const round = (num: number, precision = 0) =>
-	Math.round(num * 10 ** precision) / 10 ** precision
 
 const AccessibleVersion = ({
 	data,

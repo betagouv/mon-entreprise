@@ -3,12 +3,13 @@ import { Trans } from 'react-i18next'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/hooks/useYear'
+import { round } from '@/utils/number'
 
 export default function WarningSalaireTrans() {
 	const year = useYear()
 	const engine = useEngine()
 	const smic = engine.evaluate('SMIC').nodeValue as number
-	const plafond = formatValue(Math.round(1.6 * smic * 100) / 100, {
+	const plafond = formatValue(round(1.6 * smic), {
 		displayedUnit: '€',
 	}) as string
 

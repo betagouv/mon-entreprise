@@ -6,6 +6,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
+import { round } from '@/utils/number'
 
 export default function WarningSalaireTrans() {
 	const zone = useZoneLodeom()
@@ -26,7 +27,7 @@ export default function WarningSalaireTrans() {
 	const year = useYear()
 
 	const smic = engine.evaluate('SMIC').nodeValue as number
-	const plafond = formatValue(Math.round(seuilDeSortie * smic * 100) / 100, {
+	const plafond = formatValue(round(seuilDeSortie * smic, 2), {
 		displayedUnit: '€',
 	}) as string
 
