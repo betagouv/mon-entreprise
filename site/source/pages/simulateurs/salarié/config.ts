@@ -1,3 +1,7 @@
+import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
+import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
+import { CODE_DU_TRAVAIL_NUMERIQUE } from '@/utils/logos'
+
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import salaireBrutNetPreviewEN from './SalaireBrutNetPreviewEN.png'
@@ -40,6 +44,26 @@ export function salariéConfig(params: SimulatorsDataParams) {
 		pathId: 'simulateurs.salarié',
 		shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
 		nextSteps: ['chômage-partiel'],
+		externalLinks: [
+			{
+				url: 'https://code.travail.gouv.fr/',
+				title: t(
+					'pages.simulateurs.salarié.externalLinks.1.title',
+					'Code du travail numérique'
+				),
+				description: t(
+					'pages.simulateurs.salarié.externalLinks.1.description',
+					'Pour toutes vos questions en droit du travail, rendez-vous sur le site Code du travail numérique.'
+				),
+				logo: CODE_DU_TRAVAIL_NUMERIQUE,
+				ariaLabel: t(
+					'pages.simulateurs.salarié.externalLinks.1.ariaLabel',
+					'Visiter le site Code du travail numérique, nouvelle fenêtre.'
+				),
+			},
+			embaucherGérerSalariés,
+			nouvelEmployeur,
+		],
 		path: sitePaths.simulateurs.salarié,
 		simulation: configSalarié,
 		component: SalariéSimulation,

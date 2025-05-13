@@ -17,7 +17,7 @@ import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 import { Merge } from '@/types/utils'
 
-import { NextSteps } from '../pages/simulateurs/NextSteps'
+import NextSteps from '../pages/simulateurs/NextSteps'
 import { TrackChapter } from './ATInternetTracking'
 import DateChip from './DateChip'
 
@@ -39,6 +39,7 @@ export default function SimulateurOrAssistantPage() {
 		component: Component,
 		seoExplanations: SeoExplanations,
 		nextSteps,
+		externalLinks,
 		autoloadLastSimulation,
 		path,
 	} = currentSimulatorData
@@ -103,6 +104,7 @@ export default function SimulateurOrAssistantPage() {
 					<NextSteps
 						iframePath={privateIframe ? undefined : iframePath}
 						nextSteps={nextSteps}
+						externalLinks={externalLinks}
 					/>
 				</>
 			)}

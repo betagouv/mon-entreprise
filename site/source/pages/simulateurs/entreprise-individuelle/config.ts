@@ -1,3 +1,8 @@
+import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
+import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
+import { serviceIndépendant } from '@/external-links/serviceIndépendant'
+import { servicePAM } from '@/external-links/servicePAM'
+import { servicePLR } from '@/external-links/servicePLR'
 import { EntrepriseIndividuelle } from '@/pages/simulateurs/indépendant/EntrepriseIndividuelle'
 import { SeoExplanationsEI } from '@/pages/simulateurs/indépendant/SeoExplanationsEI'
 
@@ -44,6 +49,13 @@ export function entrepriseIndividuelleConfig({
 			'Simulateur pour entreprise individuelle (EI)'
 		),
 		nextSteps: ['comparaison-statuts'],
+		externalLinks: [
+			serviceIndépendant,
+			servicePLR,
+			servicePAM,
+			serviceExpertComptable,
+			premiersMoisUrssaf,
+		],
 		path: sitePaths.simulateurs['entreprise-individuelle'],
 		simulation: configEntrepriseIndividuelle,
 		codesCatégorieJuridique: ['1000'],

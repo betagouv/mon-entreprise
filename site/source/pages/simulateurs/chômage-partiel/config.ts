@@ -1,3 +1,6 @@
+import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
+import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
+
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import ChômagePartielComponent, { SeoExplanations } from './ChômagePartiel'
@@ -40,6 +43,7 @@ export function chômagePartielConfig({ t, sitePaths }: SimulatorsDataParams) {
 			"Simulateur du calcul de l'indemnité chômage partiel"
 		),
 		nextSteps: ['salarié'],
+		externalLinks: [embaucherGérerSalariés, nouvelEmployeur],
 		simulation: configChômagePartiel,
 		component: ChômagePartielComponent,
 		seoExplanations: SeoExplanations,
