@@ -91,9 +91,11 @@ describe('Réduction générale des cotisations patronales', () => {
 				'salarié . cotisations . assiette': '1900 €/mois',
 				'entreprise . salariés . effectif': '50',
 			})
-			const réductionÀ50 = Math.round(engine.evaluate(
-				'salarié . cotisations . exonérations . réduction générale'
-			).nodeValue as number)
+			const réductionÀ50 = Math.round(
+				engine.evaluate(
+					'salarié . cotisations . exonérations . réduction générale'
+				).nodeValue as number
+			)
 
 			expect(réductionDeBase).toBeLessThan(réductionÀ50)
 			expect(réductionÀ50).toEqual(529)
@@ -106,9 +108,11 @@ describe('Réduction générale des cotisations patronales', () => {
 				'salarié . cotisations . exonérations . réduction générale . caisse de congés payés':
 					'oui',
 			})
-			const réductionAvecCCP = Math.round(engine.evaluate(
-				'salarié . cotisations . exonérations . réduction générale'
-			).nodeValue as number)
+			const réductionAvecCCP = Math.round(
+				engine.evaluate(
+					'salarié . cotisations . exonérations . réduction générale'
+				).nodeValue as number
+			)
 
 			expect(réductionDeBase).toBeLessThan(réductionAvecCCP)
 			expect(réductionAvecCCP).toEqual(580)
