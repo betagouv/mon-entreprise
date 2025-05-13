@@ -519,6 +519,13 @@ error:
     veuillez nous excuser pour la gêne occasionnée.
   placeholder: Bonjour, j'ai rencontré une erreur après avoir cliqué sur...
   title: Une erreur est survenue
+external-links:
+  service:
+    ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
+    ctaLabel: Accéder au service
+    description: L’Urssaf met à votre disposition un service en ligne. Il vous
+      permet de gérer votre activité, contacter un conseiller et retrouver tous
+      vos documents.
 feedback:
   error:
     description: Le message n’a pas pu être envoyé (status code {{statusCode}}).
@@ -1245,11 +1252,6 @@ pages:
     artiste-auteur:
       externalLinks:
         "1":
-          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
-          ctaLabel: Accéder au service
-          description: L’Urssaf met à votre disposition un service en ligne. Il vous
-            permet de gérer votre activité, contacter un conseiller et retrouver
-            tous vos documents.
           title: Le service en ligne Artiste-auteur
       meta:
         description: Estimez les cotisations sociales sur les droits d'auteur et sur le
@@ -1274,13 +1276,6 @@ pages:
           description: Les guides de l’Urssaf dédiés aux auto-entrepreneurs et
             auto-entrepreneuses.
           title: Guides pratiques de l’auto-entrepreneur
-        "3":
-          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
-          ctaLabel: Accéder au service
-          description: L’Urssaf met à votre disposition un service en ligne. Il vous
-            permet de gérer votre activité, contacter un conseiller et retrouver
-            tous vos documents.
-          title: Le service en ligne Auto-entrepreneur
       meta:
         description: Calculez votre revenu net après cotisations et impôts en tenant
           compte de toutes les options, y compris ACRE et prélèvement
@@ -1366,8 +1361,6 @@ pages:
     cessation-activité:
       externalLinks:
         "1":
-          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
-          ctaLabel: Accéder au service
           description: L’Urssaf vous accompagne à toutes les étapes clés de votre démarche
             de cessation d’activité.
           title: Le service Cessation d’activité
@@ -1770,8 +1763,6 @@ pages:
           cotisations sociales.
       externalLinks:
         "1":
-          ariaLabel: Accéder au service sur urssaf.fr, nouvelle fenêtre
-          ctaLabel: Accéder au service
           description: Vous louez des logements meublés ou des biens ? Le service Économie
             collaborative vous facilite la déclaration et le paiement de vos
             cotisations.

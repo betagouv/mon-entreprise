@@ -1,3 +1,9 @@
+import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
+import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
+import { serviceIndépendant } from '@/external-links/serviceIndépendant'
+import { servicePAM } from '@/external-links/servicePAM'
+import { servicePLR } from '@/external-links/servicePLR'
+
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
@@ -42,6 +48,13 @@ export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'déclaration-charges-sociales-indépendant',
 			'is',
 			'comparaison-statuts',
+		],
+		externalLinks: [
+			serviceIndépendant,
+			servicePLR,
+			servicePAM,
+			serviceExpertComptable,
+			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs.eurl,
 		simulation: configEurl,

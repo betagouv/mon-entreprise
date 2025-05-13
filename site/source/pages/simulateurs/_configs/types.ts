@@ -1,4 +1,5 @@
 import type { TFunction } from 'i18next'
+import { PublicodesExpression } from 'publicodes'
 
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
@@ -118,6 +119,7 @@ type Tracking =
 export type ExternalLink = {
 	url: string
 	title: string
+	associatedRule?: PublicodesExpression
 	description?: string
 	logo?: string
 	ctaLabel?: string
