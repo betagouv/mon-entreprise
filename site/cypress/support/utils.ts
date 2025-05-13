@@ -36,3 +36,10 @@ export const checkA11Y = () => {
 		null
 	)
 }
+
+export const getAmountFromText = (text: string): number => {
+	const value = text.replace(/[€\s]/g, '')
+	const valueAsNumber = value.replace(',', '.')
+
+	return Number(valueAsNumber)
+}
