@@ -91,6 +91,16 @@ const configureConsent = () => {
 		},
 	}
 	window.pdl.consent.products = ['PA']
+	window.pdl.consent_items = {
+		PA: {
+			properties: {
+				simulateur_embarque: 'essential',
+				simulateur_nom: 'essential',
+				simulateur_origine: 'essential',
+				simulateur_origine_page: 'essential',
+			},
+		},
+	}
 }
 
 const prepareScript = (): HTMLScriptElement => {
