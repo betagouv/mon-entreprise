@@ -41,7 +41,6 @@ export default function InputSuggestions({
 							}
 						}}
 						type="button" // To avoid submitting the form
-						role="button"
 						aria-label={t('Insérer dans le champ la valeur du {{text}}', {
 							text,
 						})}
