@@ -5,12 +5,10 @@ import { styled } from 'styled-components'
 
 import { Choice } from '@/components/conversation/Choice'
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import Value from '@/components/EngineValue/Value'
 import { Radio } from '@/design-system'
 import { Emoji } from '@/design-system/emoji'
 import { Spacing } from '@/design-system/layout'
 import { H3, H4 } from '@/design-system/typography/heading'
-import { estimationDImpactPourUneRègle } from '@/domaine/estimations'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
 
 export function RadioChoices<Names extends string = DottedName>({
@@ -32,10 +30,6 @@ export function RadioChoices<Names extends string = DottedName>({
 	return (
 		<>
 			{choices.children.map((node) => {
-				const estimation = estimationDImpactPourUneRègle(
-					node.dottedName as DottedName
-				)
-
 				return (
 					<Fragment key={node.dottedName}>
 						{' '}
@@ -95,24 +89,6 @@ export function RadioChoices<Names extends string = DottedName>({
 										/\s|\./g,
 										'_'
 									)}`}
-									precision={
-										estimation && (
-											<>
-												&nbsp;(
-												{estimation.label ||
-													t(
-														'conversation.radio-choices.estimation.label',
-														'estimation'
-													)}{' '}
-												:
-												<Value
-													expression={estimation.règleCible}
-													unit={estimation.unité}
-												/>
-												)
-											</>
-										)
-									}
 								>
 									{node.title}
 									{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}

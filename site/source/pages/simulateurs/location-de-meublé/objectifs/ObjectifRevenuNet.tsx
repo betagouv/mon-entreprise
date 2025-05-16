@@ -2,9 +2,13 @@ import { Option } from 'effect'
 import { useTranslation } from 'react-i18next'
 
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
-import { EuroParAn } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
 
-export function ObjectifRevenuNet({ revenuNet }: { revenuNet: EuroParAn }) {
+export function ObjectifRevenuNet({
+	revenuNet,
+}: {
+	revenuNet: Montant<'EuroParAn'>
+}) {
 	const { t } = useTranslation()
 
 	return (

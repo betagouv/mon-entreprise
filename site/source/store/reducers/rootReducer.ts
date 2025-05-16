@@ -2,6 +2,7 @@ import { DottedName } from 'modele-social'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import {
@@ -10,7 +11,7 @@ import {
 } from '@/store/actions/actions'
 import { simulationReducer } from '@/store/reducers/simulation.reducer'
 import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
-import simulateursReducer from '@/store/slices/simulateursSlice'
+import situationReducer from '@/store/slices/simulateursSlice'
 
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
@@ -38,7 +39,10 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 		(newState, [fieldName, value]) =>
 			mainReducer(
 				newState ?? undefined,
-				updateSituationAction(fieldName as DottedName, value)
+				updateSituationAction(
+					fieldName as DottedName,
+					value as ValeurPublicodes
+				)
 			),
 		state
 	)
@@ -50,7 +54,7 @@ const mainReducer = combineReducers({
 	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	choixStatutJuridique,
-	simulateurs: simulateursReducer,
+	situation: situationReducer,
 })
 
 export default reduceReducers<RootState>(

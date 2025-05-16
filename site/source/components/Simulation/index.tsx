@@ -7,10 +7,11 @@ import { styled } from 'styled-components'
 import ShareOrSaveSimulationBanner, {
 	CustomSimulationButton,
 } from '@/components/ShareSimulationBanner'
+import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button } from '@/design-system/buttons'
 import { Grid, Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
-import { Situation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
+import { Situation } from '@/domaine/Situation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
@@ -21,7 +22,6 @@ import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
 import PreviousSimulationBanner from './PreviousSimulationBanner'
-import { QuestionFournie } from './QuestionFournie'
 import { Questions } from './Questions'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
@@ -73,12 +73,8 @@ type SimulationProps<S extends Situation = Situation> = {
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
 
-	// Nouvelles props pour les questions personnalisées
-	/** Questions personnalisées à afficher */
-	questions?: Array<QuestionFournie<S>>
-	/** Adaptateur pour connecter les questions au store */
-	situationAdapter?: SituationStoreAdapter<S>
-	/** Afficher aussi les questions Publicodes générées automatiquement */
+	situation?: S
+	questions?: Array<ComposantQuestion<S>>
 	avecQuestionsPublicodes?: boolean
 }
 
@@ -94,8 +90,8 @@ export default function Simulation<S extends Situation = Situation>({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
+	situation,
 	questions,
-	situationAdapter,
 	avecQuestionsPublicodes = true,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
@@ -117,10 +113,9 @@ export default function Simulation<S extends Situation = Situation>({
 							</div>
 							{entrepriseSelection && <EntrepriseSelection />}
 
-							{/* Questions (personnalisées et/ou Publicodes) */}
 							<Questions
+								situation={situation}
 								questions={questions}
-								situationAdapter={situationAdapter}
 								avecQuestionsPublicodes={avecQuestionsPublicodes}
 								customEndMessages={customEndMessages}
 							/>

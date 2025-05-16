@@ -1,6 +1,6 @@
 import { useSSRSafeId } from '@react-aria/ssr'
 import { DottedName } from 'modele-social'
-import { PublicodesExpression, RuleNode } from 'publicodes'
+import { RuleNode } from 'publicodes'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,6 +14,7 @@ import { Markdown } from '@/components/utils/markdown'
 import { Spacing } from '@/design-system/layout'
 import { H3 } from '@/design-system/typography/heading'
 import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import {
@@ -95,7 +96,7 @@ export function SimpleField(props: SimpleFieldProps) {
 	const rule = engine.getRule(dottedName)
 	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
 	const dispatchValue = useCallback(
-		(value: PublicodesExpression | undefined, dottedName: DottedName) => {
+		(value: ValeurPublicodes | undefined, dottedName: DottedName) => {
 			dispatch(enregistreLaRéponse(dottedName, value))
 		},
 		[dispatch]

@@ -3,16 +3,17 @@ import { Either, Option } from 'effect'
 import {
 	SimulationImpossible,
 	SituationIncomplète,
-} from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
-import { calculeCotisationsRégimeGénéral } from '@/domaine/économie-collaborative/location-de-meublé/régime-général'
-import { calculeCotisationsMicroEntreprise } from '@/domaine/économie-collaborative/location-de-meublé/régime-micro-entreprise'
-import { calculeCotisationsTravailleurIndépendant } from '@/domaine/économie-collaborative/location-de-meublé/régime-travailleur-indépendant'
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
+import { calculeCotisationsRégimeGénéral } from '@/contextes/économie-collaborative/domaine/location-de-meublé/régime-général'
+import { calculeCotisationsTravailleurIndépendant } from '@/contextes/économie-collaborative/domaine/location-de-meublé/régime-travailleur-indépendant'
 import {
 	estSituationValide,
 	RegimeCotisation,
-	SituationLocationCourteDuree,
-} from '@/domaine/économie-collaborative/location-de-meublé/situation'
-import { EuroParAn } from '@/domaine/Montant'
+	SituationÉconomieCollaborative,
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
+import { Montant } from '@/domaine/Montant'
+
+import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
 
 export const DEFAULTS = {
 	RÉGIME_PAR_DÉFAUT: RegimeCotisation.travailleurIndependant,
@@ -26,8 +27,8 @@ export const DEFAULTS = {
  * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
  */
 export function calculeCotisations(
-	situation: SituationLocationCourteDuree
-): Either.Either<EuroParAn, SimulationImpossible> {
+	situation: SituationÉconomieCollaborative
+): Either.Either<Montant<'EuroParAn'>, SimulationImpossible> {
 	if (!estSituationValide(situation)) {
 		return Either.left(
 			new SituationIncomplète({

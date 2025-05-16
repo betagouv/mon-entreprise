@@ -1,11 +1,10 @@
 import { Either, Option, pipe } from 'effect'
 
-import { SEUIL_PROFESSIONNALISATION } from '@/domaine/économie-collaborative/location-de-meublé/constantes'
+import { SEUIL_PROFESSIONNALISATION } from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
 import {
 	RecettesInférieuresAuSeuilRequisPourCeRégime,
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
-} from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
-import { RegimeCotisation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
 	abattement,
 	estPlusGrandQue,
@@ -17,7 +16,10 @@ import {
 } from '@/domaine/Montant'
 
 import { DEFAULTS } from './cotisations'
-import { SituationLocationCourteDureeValide } from './situation'
+import {
+	RegimeCotisation,
+	SituationÉconomieCollaborativeValide,
+} from './situation'
 
 export const PLAFOND_REGIME_GENERAL = eurosParAn(77_700)
 export const TAUX_COTISATION_RG_NORMAL = 0.4742
@@ -30,7 +32,7 @@ export const ABATTEMENT_REGIME_GENERAL = 0.6
  * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
  */
 export function calculeCotisationsRégimeGénéral(
-	situation: SituationLocationCourteDureeValide
+	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
 	Montant<'EuroParAn'>,
 	| RecettesInférieuresAuSeuilRequisPourCeRégime

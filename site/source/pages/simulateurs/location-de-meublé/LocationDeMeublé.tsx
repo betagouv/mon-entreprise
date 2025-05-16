@@ -1,115 +1,65 @@
-import { Either, Match, Option, pipe } from 'effect'
-import { DottedName } from 'modele-social'
-import { useCallback, useEffect } from 'react'
+import { Either, Match, pipe } from 'effect'
 import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 
 import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDansObjectifDeSimulateur'
 import Value from '@/components/EngineValue/Value'
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation, {
-	SimulationGoal,
-	SimulationGoals,
-	SituationStoreAdapter,
-} from '@/components/Simulation'
+import Simulation, { SimulationGoals } from '@/components/Simulation'
+import { calculeCotisations } from '@/contextes/économie-collaborative/domaine/location-de-meublé'
+import {
+	SimulationImpossible,
+	SituationIncomplète,
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
+import { calculeRevenuNet } from '@/contextes/économie-collaborative/domaine/location-de-meublé/revenu-net'
+import {
+	estSituationValide,
+	usagerAChoisiUnRégimeDeCotisation,
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/store/useEconomieCollaborative.hook'
 import { SmallBody } from '@/design-system/typography/paragraphs'
-import { SimulationImpossible } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
-import { SituationLocationCourteDuree } from '@/domaine/économie-collaborative/location-de-meublé/situation'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn } from '@/domaine/Montant'
-import { RootState } from '@/store/reducers/rootReducer'
+import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
+import { ObjectifRevenuNet } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRevenuNet'
 import {
-	initialLocationDeMeubleState,
-	setRecettesNumber,
-	setSituation,
-} from '@/store/slices/locationDeMeubleSlice'
-import {
-	activeLocationDeMeuble,
-	selectLocationDeMeubleCotisations,
-	selectLocationDeMeubleRevenuNet,
-	selectLocationDeMeubleSituation,
-} from '@/store/slices/simulateursSlice'
+	AlsaceMoselleQuestion,
+	PremiereAnneeQuestion,
+	RegimeCotisationQuestion,
+} from '@/pages/simulateurs/location-de-meublé/questions'
 
-import { ObjectifCotisations } from './ObjectifCotisations'
-import { ObjectifRevenuNet } from './ObjectifRevenuNet'
-import {
-	questionEstAlsaceMoselle,
-	questionPremiereAnnee,
-	questionRegimeCotisation,
-} from './questions'
+import { ObjectifCotisations } from './objectifs/ObjectifCotisations'
 
-/**
- * Adaptateur pour connecter les questions au store de location meublée
- */
-const locationMeubleAdapter: SituationStoreAdapter<SituationLocationCourteDuree> =
-	{
-		// Sélecteur retournant un Option de la situation
-		selector: (state: RootState) => {
-			const situation = selectLocationDeMeubleSituation(state)
+const LocationDeMeublé = () => {
+	const { ready, situation } = useEconomieCollaborative()
 
-			return situation ? Option.some(situation) : Option.none()
-		},
-
-		// Action creator pour mettre à jour la situation
-		updateActionCreator: (situation: SituationLocationCourteDuree) =>
-			setSituation(situation),
+	if (!ready) {
+		return <></>
 	}
 
-export default function LocationDeMeublé() {
-	const dispatch = useDispatch()
+	const regimeCotisationChoisi = usagerAChoisiUnRégimeDeCotisation(situation)
 
-	useEffect(() => {
-		// Active le simulateur de location meublée
-		dispatch(activeLocationDeMeuble())
-
-		// Initialise la situation avec les valeurs par défaut si elle n'existe pas déjà
-		const locationMeubleSituation = selectLocationDeMeubleSituation({
-			simulateurs: {
-				locationDeMeuble: initialLocationDeMeubleState,
-				meta: { simulateurActif: 'location-de-meuble' },
-			},
-		} as RootState)
-
-		if (!locationMeubleSituation) {
-			dispatch(setSituation(initialLocationDeMeubleState))
-		}
-	}, [dispatch])
-
-	const handlePublicodeRecettesChange = useCallback(
-		(_name: DottedName, value?: ValeurPublicodes) => {
-			if (typeof value === 'object' && 'valeur' in value) {
-				dispatch(setRecettesNumber(Number(value.valeur)))
-			}
-		},
-		[dispatch]
-	)
-
-	const cotisations = useSelector(selectLocationDeMeubleCotisations)
-	const revenuNet = useSelector(selectLocationDeMeubleRevenuNet)
-	const situation = useSelector(selectLocationDeMeubleSituation)
-
-	const regimeCotisationChoisi =
-		situation?.regimeCotisation && Option.isSome(situation.regimeCotisation)
+	const cotisations = calculeCotisations(situation)
+	const revenuNet = estSituationValide(situation)
+		? calculeRevenuNet(situation)
+		: Either.left(
+				new SituationIncomplète({
+					message: 'Situation incomplète',
+				})
+		  )
 
 	return (
 		<Simulation
 			entrepriseSelection={false}
+			situation={situation}
 			questions={[
-				questionRegimeCotisation,
-				questionEstAlsaceMoselle,
-				questionPremiereAnnee,
+				RegimeCotisationQuestion,
+				AlsaceMoselleQuestion,
+				PremiereAnneeQuestion,
 			]}
-			situationAdapter={locationMeubleAdapter}
 			avecQuestionsPublicodes={false}
 		>
 			<SimulateurWarning simulateur="location-de-logement-meublé" />
 			<SimulationGoals legend="Montant de votre loyer net">
-				<SimulationGoal
-					dottedName="location de logement meublé . courte durée . recettes"
-					displayedUnit="€/an"
-					onUpdateSituation={handlePublicodeRecettesChange}
-				/>
-
+				<ObjectifRecettes />
 				{regimeCotisationChoisi &&
 					Either.match(cotisations, {
 						onRight: (cotisationsCalculées) => (
@@ -172,3 +122,5 @@ export default function LocationDeMeublé() {
 		</Simulation>
 	)
 }
+
+export default LocationDeMeublé

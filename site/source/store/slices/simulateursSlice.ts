@@ -1,17 +1,7 @@
-import { combineSlices, createSlice } from '@reduxjs/toolkit'
-import { Either } from 'effect'
-import { createSelector } from 'reselect'
+import { Reducer } from 'redux'
 
-import { calculeCotisations } from '@/domaine/économie-collaborative/location-de-meublé'
-import { SituationIncomplète } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
-import { calculeRevenuNet } from '@/domaine/économie-collaborative/location-de-meublé/revenu-net'
-import {
-	estSituationValide,
-	SituationLocationCourteDuree,
-} from '@/domaine/économie-collaborative/location-de-meublé/situation'
+import { Situation, SituationAction } from '@/domaine/Situation'
 import { RootState } from '@/store/reducers/rootReducer'
-
-import locationDeMeubleReducer from './locationDeMeubleSlice'
 
 export type SimulateurType =
 	| 'location-de-meuble'
@@ -20,72 +10,24 @@ export type SimulateurType =
 	| 'auto-entrepreneur'
 // ...
 
-export interface SimulateursMetaState {
-	simulateurActif: SimulateurType | null
+const initialState = { _tag: 'Situation' } satisfies Situation
+
+const situationReducers: Record<string, Reducer<Situation>> = {}
+
+export const registerSituationReducer = (
+	type: string,
+	reducer: Reducer<Situation>
+) => (situationReducers[type] = reducer)
+
+export const situationReducer: Reducer<Situation, SituationAction> = (
+	state = initialState,
+	action: SituationAction
+) => {
+	const reducer = situationReducers[action._situationType]
+
+	return reducer ? reducer(state, action) : state
 }
 
-const initialMetaState: SimulateursMetaState = {
-	simulateurActif: null,
-}
+export const selectSituation = (state: RootState) => state.situation
 
-export const simulateursMetaSlice = createSlice({
-	name: 'simulateurs/meta',
-	initialState: initialMetaState,
-	reducers: {
-		activeLocationDeMeuble: (state) => {
-			state.simulateurActif = 'location-de-meuble'
-		},
-		reset: (state) => {
-			state.simulateurActif = null
-		},
-	},
-})
-
-export const { activeLocationDeMeuble, reset } = simulateursMetaSlice.actions
-
-export const simulateursSlice = combineSlices({
-	meta: simulateursMetaSlice.reducer,
-	locationDeMeuble: locationDeMeubleReducer,
-})
-
-export const selectSimulateurActif = (state: RootState) =>
-	state.simulateurs.meta.simulateurActif
-
-export const selectEstLocationDeMeubleActif = (state: RootState) =>
-	state.simulateurs.meta.simulateurActif === 'location-de-meuble'
-
-export const selectLocationDeMeubleSituation = (
-	state: RootState
-): SituationLocationCourteDuree | null => {
-	if (state.simulateurs.meta.simulateurActif !== 'location-de-meuble')
-		return null
-
-	return state.simulateurs.locationDeMeuble
-}
-
-export const selectLocationDeMeubleCotisations = createSelector(
-	[selectLocationDeMeubleSituation],
-	(situation) =>
-		situation
-			? calculeCotisations(situation)
-			: Either.left(
-					new SituationIncomplète({
-						message: 'Impossible de calculer les cotisations du simulateur',
-					})
-			  )
-)
-
-export const selectLocationDeMeubleRevenuNet = createSelector(
-	[selectLocationDeMeubleSituation],
-	(situation) =>
-		situation && estSituationValide(situation)
-			? calculeRevenuNet(situation)
-			: Either.left(
-					new SituationIncomplète({
-						message:
-							'Impossible de calculer le revenu net sans connaitre les recettes',
-					})
-			  )
-)
-
-export default simulateursSlice
+export default situationReducer

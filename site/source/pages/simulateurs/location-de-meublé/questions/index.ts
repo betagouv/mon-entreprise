@@ -1,3 +1,3 @@
-export { questionRegimeCotisation } from './questionRegimeCotisation'
-export { questionEstAlsaceMoselle } from './questionEstAlsaceMoselle'
-export { questionPremiereAnnee } from './questionPremiereAnnee'
+export { RegimeCotisationQuestion } from './RegimeCotisationQuestion'
+export { AlsaceMoselleQuestion } from './AlsaceMoselleQuestion'
+export { PremiereAnneeQuestion } from './questionPremiereAnnee'

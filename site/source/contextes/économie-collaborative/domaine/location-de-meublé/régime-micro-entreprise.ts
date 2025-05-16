@@ -1,17 +1,19 @@
 import { Either, pipe } from 'effect'
 
-import { SEUIL_PROFESSIONNALISATION } from '@/domaine/économie-collaborative/location-de-meublé/constantes'
-import { RecettesInférieuresAuSeuilRequisPourCeRégime } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
-import { RegimeCotisation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
+import { SEUIL_PROFESSIONNALISATION } from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
+import { RecettesInférieuresAuSeuilRequisPourCeRégime } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
-import { estPlusPetitQue, EuroParAn, eurosParAn } from '@/domaine/Montant'
+import { estPlusPetitQue, eurosParAn, Montant } from '@/domaine/Montant'
 import {
 	AutoEntrepreneurChiffreAffaireDansPublicodes,
 	AutoEntrepreneurContexteDansPublicodes,
 	AutoEntrepreneurCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 
-import { SituationLocationCourteDureeValide } from './situation'
+import {
+	RegimeCotisation,
+	SituationÉconomieCollaborativeValide,
+} from './situation'
 
 /**
  * Calcule les cotisations sociales pour le régime micro-entreprise
@@ -19,8 +21,11 @@ import { SituationLocationCourteDureeValide } from './situation'
  * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
  */
 export function calculeCotisationsMicroEntreprise(
-	situation: SituationLocationCourteDureeValide
-): Either.Either<EuroParAn, RecettesInférieuresAuSeuilRequisPourCeRégime> {
+	situation: SituationÉconomieCollaborativeValide
+): Either.Either<
+	Montant<'EuroParAn'>,
+	RecettesInférieuresAuSeuilRequisPourCeRégime
+> {
 	const recettes = situation.recettes.value
 
 	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {

@@ -5,14 +5,15 @@ import { eurosParAn, Montant } from '@/domaine/Montant'
 
 import {
 	RegimeCotisation,
-	SituationLocationCourteDuree,
-	SituationLocationCourteDureeValide,
+	SituationÉconomieCollaborative,
+	SituationÉconomieCollaborativeValide,
 } from './situation'
 
 describe('SituationLocationCourteDuree', () => {
 	it('accepte les situations valides', () => {
-		const situationComplete: SituationLocationCourteDureeValide = {
+		const situationComplete: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
+			_type: 'économie-collaborative',
 			recettes: Option.some(eurosParAn(25_000)) as Option.Some<
 				Montant<'EuroParAn'>
 			>,
@@ -21,8 +22,9 @@ describe('SituationLocationCourteDuree', () => {
 			premièreAnnée: Option.none(),
 		}
 
-		const situationPartielle: SituationLocationCourteDureeValide = {
+		const situationPartielle: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
+			_type: 'économie-collaborative',
 			recettes: Option.some(eurosParAn(15_000)) as Option.Some<
 				Montant<'EuroParAn'>
 			>,
@@ -33,23 +35,23 @@ describe('SituationLocationCourteDuree', () => {
 
 		expectTypeOf(
 			situationComplete
-		).toMatchTypeOf<SituationLocationCourteDuree>()
+		).toMatchTypeOf<SituationÉconomieCollaborative>()
 		expectTypeOf(
 			situationPartielle
-		).toMatchTypeOf<SituationLocationCourteDuree>()
+		).toMatchTypeOf<SituationÉconomieCollaborative>()
 
 		// Vérifie que ces situations sont aussi conformes au type avec recettes définies
 		expectTypeOf(
 			situationComplete
-		).toMatchTypeOf<SituationLocationCourteDureeValide>()
+		).toMatchTypeOf<SituationÉconomieCollaborativeValide>()
 		expectTypeOf(
 			situationPartielle
-		).toMatchTypeOf<SituationLocationCourteDureeValide>()
+		).toMatchTypeOf<SituationÉconomieCollaborativeValide>()
 	})
 
 	it('rejette les situations invalides', () => {
 		expectTypeOf({
 			recettes: 'autre',
-		}).not.toMatchTypeOf<SituationLocationCourteDuree>()
+		}).not.toMatchTypeOf<SituationÉconomieCollaborative>()
 	})
 })
