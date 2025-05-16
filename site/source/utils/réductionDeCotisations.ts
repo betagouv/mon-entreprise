@@ -3,7 +3,7 @@ import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { AnyAction, Dispatch } from 'redux'
 
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
@@ -526,7 +526,7 @@ const updateRémunérationBruteAnnuelle = (
 				valeur: rémunérationBruteAnnuelle,
 				unité: '€/an',
 			} as PublicodesExpression,
-		} as Record<DottedName, SimpleRuleEvaluation>)
+		} as Record<DottedName, ValeurPublicodes>)
 	)
 }
 

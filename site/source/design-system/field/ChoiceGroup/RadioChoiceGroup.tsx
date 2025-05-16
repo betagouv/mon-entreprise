@@ -51,7 +51,6 @@ export default function RadioChoiceGroup({
 							/* eslint-disable-next-line jsx-a11y/no-autofocus */
 							autoFocus={autoFocus && defaultValue === option.value}
 							isDisabled={option.isDisabled}
-							precision={option.precision}
 							defaultSelected={option.isDefaultSelected}
 						>
 							{option.label}

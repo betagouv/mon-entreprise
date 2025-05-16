@@ -1,10 +1,9 @@
-import { PublicodesExpression } from 'publicodes'
+import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import { SwitchInput } from '@/components/conversation/SwitchInput'
 import { Message } from '@/design-system'
 import { Button } from '@/design-system/buttons'
 import { Drawer } from '@/design-system/drawer'
@@ -15,7 +14,13 @@ import { Strong } from '@/design-system/typography'
 import { H2, H3, H5 } from '@/design-system/typography/heading'
 import { Link, StyledLink } from '@/design-system/typography/link'
 import { Body } from '@/design-system/typography/paragraphs'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { OuiNon } from '@/domaine/OuiNon'
 import { useStatefulRulesEdit } from '@/hooks/useStatefulRulesEdit'
+
+
+
+
 
 const DOTTEDNAME_ENTREPRISE_IMPOSITION = 'entreprise . imposition'
 const DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE =
@@ -86,7 +91,9 @@ const ModifierOptions = () => {
 						<Switch
 							id="activation-acre"
 							onChange={(value: boolean) => set[DOTTEDNAME_ACRE](value)}
-							defaultSelected={values[DOTTEDNAME_ACRE] as boolean}
+							defaultSelected={optionalOuiNonToBooleanOrUndefined(
+								values[DOTTEDNAME_ACRE] as O.Option<OuiNon>
+							)}
 							light
 							/* Need this useless aria-label to silence a React-Aria warning */
 							aria-label=""
@@ -113,9 +120,11 @@ const ModifierOptions = () => {
 									onChange={(value: boolean) =>
 										set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE](value)
 									}
-									defaultSelected={
-										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as boolean
-									}
+									defaultSelected={optionalOuiNonToBooleanOrUndefined(
+										values[
+											DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE
+											] as O.Option<OuiNon>
+									)}
 									light
 									/* Need this useless aria-label to silence a React-Aria warning */
 									aria-label=""
@@ -182,7 +191,7 @@ const ModifierOptions = () => {
 				</Message>
 				<RuleInput
 					dottedName={DOTTEDNAME_ENTREPRISE_IMPOSITION}
-					onChange={(value: PublicodesExpression | undefined) => {
+					onChange={(value: ValeurPublicodes | undefined) => {
 						set[DOTTEDNAME_ENTREPRISE_IMPOSITION](value as undefined | IRouIS)
 					}}
 					key="imposition"
@@ -198,11 +207,11 @@ const ModifierOptions = () => {
 					<Switch
 						id="versement-liberatoire"
 						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
-						defaultSelected={
+						defaultSelected={optionalOuiNonToBooleanOrUndefined(
 							values[
 								DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE
-							] as boolean
-						}
+								] as O.Option<OuiNon>
+						)}
 						light
 						/* Need this useless aria-label to silence a React-Aria warning */
 						aria-label=""
@@ -228,3 +237,10 @@ const StyledArrowRightIcon = styled(ArrowRightIcon)`
 `
 
 export default ModifierOptions
+
+const optionalOuiNonToBooleanOrUndefined = (
+	optionalOuiNon: O.Option<OuiNon>
+): boolean | undefined =>
+	optionalOuiNon === undefined || O.isNone(optionalOuiNon)
+		? undefined
+		: optionalOuiNon.value === 'oui'

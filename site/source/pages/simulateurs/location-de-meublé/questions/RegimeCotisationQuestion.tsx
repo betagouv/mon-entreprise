@@ -1,47 +1,58 @@
-import { Array, Option, pipe } from 'effect'
+import { Array, pipe } from 'effect'
+import * as O from 'effect/Option'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { QuestionTypée } from '@/components/Simulation/QuestionFournie'
-import { RadioCard, RadioCardGroup } from '@/design-system'
-import { SmallBody } from '@/design-system/typography/paragraphs'
-import { compareRégimes } from '@/domaine/économie-collaborative/location-de-meublé/comparateur-régimes'
+import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import {
+	compareRégimes,
+	SituationÉconomieCollaborative,
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé'
 import {
 	estSituationValide,
 	RegimeCotisation,
-	SituationLocationCourteDuree,
-} from '@/domaine/économie-collaborative/location-de-meublé/situation'
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/store/useEconomieCollaborative.hook'
+import { RadioCard, RadioCardGroup } from '@/design-system'
+import { SmallBody } from '@/design-system/typography/paragraphs'
 import { toString as formatMontant } from '@/domaine/Montant'
 
-interface Props {
-	situation: SituationLocationCourteDuree
-	onRéponse: (réponse: Option.Option<RegimeCotisation>) => void
-}
+interface Props {}
 
 const trouveEstimationPourRégime = (
 	résultats: ReturnType<typeof compareRégimes>,
 	régime: RegimeCotisation
 ) => Array.findFirst(résultats, (résultat) => résultat.régime === régime)
 
-const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
+export const RegimeCotisationQuestion: ComposantQuestion<
+	SituationÉconomieCollaborative,
+	Props
+> = () => {
 	const { t } = useTranslation()
-
-	const regimeCotisation = Option.getOrUndefined(situation.regimeCotisation)
-
-	const comparaisonRégimes = pipe(
-		situation,
-		Option.liftPredicate(estSituationValide),
-		Option.map(compareRégimes)
-	)
+	const { ready, situation, setSituation } = useEconomieCollaborative()
 
 	const handleChange = useCallback(
 		(newValue: string) => {
 			if (newValue) {
-				onRéponse(Option.some(newValue as RegimeCotisation))
+				setSituation &&
+					setSituation({
+						...situation,
+						regimeCotisation: O.some(newValue as RegimeCotisation),
+					})
 			}
 		},
-		[onRéponse]
+		[setSituation, situation]
 	)
+
+	if (!ready) return null
+
+	const comparaisonRégimes = pipe(
+		situation,
+		O.liftPredicate(estSituationValide),
+		O.map(compareRégimes)
+	)
+
+	const regimeCotisation = O.getOrUndefined(situation.regimeCotisation)
 
 	return (
 		<RadioCardGroup
@@ -66,13 +77,13 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 						)}
 						{pipe(
 							comparaisonRégimes,
-							Option.flatMap((résultats) =>
+							O.flatMap((résultats) =>
 								trouveEstimationPourRégime(
 									résultats,
 									RegimeCotisation.regimeGeneral
 								)
 							),
-							Option.match({
+							O.match({
 								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
 								onSome: (résultat) =>
 									résultat.applicable ? (
@@ -102,13 +113,13 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 						)}
 						{pipe(
 							comparaisonRégimes,
-							Option.flatMap((résultats) =>
+							O.flatMap((résultats) =>
 								trouveEstimationPourRégime(
 									résultats,
 									RegimeCotisation.microEntreprise
 								)
 							),
-							Option.match({
+							O.match({
 								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
 								onSome: (résultat) =>
 									résultat.applicable ? (
@@ -138,13 +149,13 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 						)}
 						{pipe(
 							comparaisonRégimes,
-							Option.flatMap((résultats) =>
+							O.flatMap((résultats) =>
 								trouveEstimationPourRégime(
 									résultats,
 									RegimeCotisation.travailleurIndependant
 								)
 							),
-							Option.match({
+							O.match({
 								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
 								onSome: (résultat) =>
 									résultat.applicable ? (
@@ -163,27 +174,11 @@ const RegimeCotisationQuestion = ({ situation, onRéponse }: Props) => {
 		</RadioCardGroup>
 	)
 }
-
-export const questionRegimeCotisation: QuestionTypée<
-	SituationLocationCourteDuree,
-	Option.Option<RegimeCotisation>
-> = {
-	_tag: 'QuestionFournie',
-	id: 'regime-cotisation', // Identifiant unique
-	libellé: 'Quel régime de cotisation souhaitez-vous simuler ?',
-
-	applicable: (situation) => Option.isSome(situation.recettes),
-
-	répond: (situation, réponse) => {
-		return {
-			...situation,
-			regimeCotisation: réponse,
-		}
-	},
-
-	répondue: (situation) => Option.isSome(situation.regimeCotisation),
-
-	renderer: (situation, onRéponse) => (
-		<RegimeCotisationQuestion situation={situation} onRéponse={onRéponse} />
-	),
-}
+RegimeCotisationQuestion._tag = 'QuestionFournie'
+RegimeCotisationQuestion.id = 'regime-cotisation'
+RegimeCotisationQuestion.libellé =
+	'Quel régime de cotisation souhaitez-vous simuler ?'
+RegimeCotisationQuestion.applicable = (situation) =>
+	O.isSome(situation.recettes)
+RegimeCotisationQuestion.répondue = (situation) =>
+	O.isSome(situation.regimeCotisation)
