@@ -7,7 +7,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
 import { H3 } from '@/design-system/typography/heading'
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
@@ -57,7 +57,7 @@ export const CessationActivitéToggles = () => {
 							dispatch(
 								ajusteLaSituation({
 									'entreprise . date de cessation': date,
-								} as Record<DottedName, SimpleRuleEvaluation>)
+								} as Record<DottedName, ValeurPublicodes>)
 							)
 						}}
 						hideDefaultValue
@@ -76,7 +76,7 @@ export const CessationActivitéToggles = () => {
 						dispatch(
 							ajusteLaSituation({
 								'entreprise . imposition': imposition,
-							} as Record<DottedName, SimpleRuleEvaluation>)
+							} as Record<DottedName, ValeurPublicodes>)
 						)
 					}}
 				/>

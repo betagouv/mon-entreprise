@@ -1,13 +1,17 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import { PublicodesExpression, serializeEvaluation } from 'publicodes'
+import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Switch } from '@/design-system/switch'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { batchUpdateSituation } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { catchDivideByZeroError } from '@/utils/publicodes'
 
 import { ExplicableRule } from './conversation/Explicable'
@@ -77,7 +81,9 @@ function useAdjustProportions(CADottedName: DottedName) {
 	const dispatch = useDispatch()
 
 	return useCallback(
-		(name: DottedName, value?: PublicodesExpression) => {
+		(name: DottedName, valeur?: ValeurPublicodes) => {
+			const value = valeur && PublicodesAdapter.encode(O.some(valeur))
+
 			const checkValue = (
 				val: unknown
 			): val is { valeur: number; unité: string } =>
@@ -138,7 +144,6 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 function ActivitéMixte() {
 	const dispatch = useDispatch()
-	const situation = useSelector(situationSelector)
 	const rule = useEngine().getRule('entreprise . activités . revenus mixtes')
 	const defaultChecked =
 		useEngine().evaluate('entreprise . activités . revenus mixtes')
@@ -158,7 +163,7 @@ function ActivitéMixte() {
 				)
 			)
 		},
-		[dispatch, situation]
+		[dispatch]
 	)
 
 	return (
