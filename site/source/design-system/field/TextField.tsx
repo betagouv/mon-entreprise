@@ -24,6 +24,11 @@ export default function TextField(props: TextFieldProps) {
 				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
 				$hasLabel={!!props.label && !props.small}
 			>
+				{props.label && (
+					<StyledLabel className={props.small ? 'sr-only' : ''} {...labelProps}>
+						{props.label}
+					</StyledLabel>
+				)}
 				<StyledInput
 					{...(omit(
 						props,
@@ -37,11 +42,6 @@ export default function TextField(props: TextFieldProps) {
 					}
 					ref={props.inputRef || ref}
 				/>
-				{props.label && (
-					<StyledLabel className={props.small ? 'sr-only' : ''} {...labelProps}>
-						{props.label}
-					</StyledLabel>
-				)}
 			</StyledInputContainer>
 			{props.errorMessage && (
 				<StyledErrorMessage {...errorMessageProps} role="alert">
