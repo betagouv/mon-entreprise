@@ -1,7 +1,8 @@
 import { Data } from 'effect'
 
-import { RegimeCotisation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
-import { EuroParAn } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
+
+import { RegimeCotisation } from './situation'
 
 export type RégimeInapplicable =
 	| RecettesInférieuresAuSeuilRequisPourCeRégime
@@ -22,8 +23,8 @@ export type SimulationImpossible = RégimeInapplicable | SituationIncomplète
 export class RecettesSupérieuresAuPlafondAutoriséPourCeRégime extends Data.TaggedError(
 	'RecettesSupérieuresAuPlafondAutoriséPourCeRégime'
 )<{
-	recettes: EuroParAn
-	plafond: EuroParAn
+	recettes: Montant<'EuroParAn'>
+	plafond: Montant<'EuroParAn'>
 	régime: RegimeCotisation
 }> {
 	toString(): string {
@@ -34,8 +35,8 @@ export class RecettesSupérieuresAuPlafondAutoriséPourCeRégime extends Data.Ta
 export class RecettesInférieuresAuSeuilRequisPourCeRégime extends Data.TaggedError(
 	'RecettesInférieuresAuSeuilRequisPourCeRégime'
 )<{
-	recettes: EuroParAn
-	seuil: EuroParAn
+	recettes: Montant<'EuroParAn'>
+	seuil: Montant<'EuroParAn'>
 	régime: RegimeCotisation
 }> {
 	toString(): string {

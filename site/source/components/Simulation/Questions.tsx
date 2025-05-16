@@ -1,77 +1,29 @@
-import { pipe } from 'effect'
-import { dedupe, filter } from 'effect/Array'
-import * as O from 'effect/Option'
-import { isNotUndefined, isUndefined, Predicate } from 'effect/Predicate'
-import { fromEntries } from 'effect/Record'
 import { DottedName } from 'modele-social'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback } from 'react'
 import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
+import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Conversation } from '@/design-system/conversation'
 import { H3 } from '@/design-system/typography/heading'
 import { Body } from '@/design-system/typography/paragraphs'
-import { Situation } from '@/domaine/économie-collaborative/location-de-meublé/situation'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { Situation } from '@/domaine/Situation'
+import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
-import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
-import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
 import { evaluateQuestion } from '@/utils/publicodes'
 
-import { SituationStoreAdapter } from './index'
-import { QuestionFournie } from './QuestionFournie'
-
-interface QuestionPublicodes<S extends Situation> {
-	_tag: 'QuestionPublicodes'
-	id: DottedName
-	applicable: Predicate<O.Option<S>>
-	répondue: Predicate<O.Option<S>>
-}
-
-type Question<S extends Situation> = QuestionFournie<S> | QuestionPublicodes<S>
-
-const fromQuestionPublicodeRépondue = <S extends Situation>(
-	q: QuestionRépondue
-): QuestionPublicodes<S> => ({
-	_tag: 'QuestionPublicodes',
-	id: q.règle,
-	applicable: () => q.applicable,
-	répondue: () => true,
-})
-
-const fromQuestionsPublicodesSuivante = <S extends Situation>(
-	dottedName: DottedName
-): QuestionPublicodes<S> => ({
-	_tag: 'QuestionPublicodes',
-	id: dottedName,
-	applicable: () => true,
-	répondue: () => false,
-})
-
-const fromQuestionFournie = <S extends Situation>(
-	q: QuestionFournie<S>
-): QuestionFournie<S> => ({
-	_tag: 'QuestionFournie',
-	id: q.id,
-	libellé: q.libellé,
-	applicable: q.applicable,
-	répondue: q.répondue,
-	répond: q.répond,
-	renderer: q.renderer,
-})
-
 export interface QuestionsProps<S extends Situation = Situation> {
-	questions?: Array<QuestionFournie<S>>
-	situationAdapter?: SituationStoreAdapter<S>
+	situation?: S
+	questions?: Array<ComposantQuestion<S>>
 	avecQuestionsPublicodes?: boolean
 	customEndMessages?: React.ReactNode
 	customSituationVisualisation?: React.ReactNode
@@ -79,72 +31,28 @@ export interface QuestionsProps<S extends Situation = Situation> {
 
 export function Questions<S extends Situation>({
 	questions = [],
-	situationAdapter,
 	avecQuestionsPublicodes = true,
 	customEndMessages,
 	customSituationVisualisation,
+	situation,
 }: QuestionsProps<S>) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
-	const situation = useSelector(
-		situationAdapter ? situationAdapter.selector : () => O.none<S>()
-	)
-
-	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
-	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
-
-	const toutesLesQuestionsApplicables = pipe(
-		[
-			...questions.map(fromQuestionFournie),
-			...(avecQuestionsPublicodes
-				? [
-						...publicodesQuestionsRépondues.map(fromQuestionPublicodeRépondue),
-						...publicodesQuestionsSuivantes.map(
-							fromQuestionsPublicodesSuivante
-						),
-				  ]
-				: []),
-		],
-		filter(
-			(q: Question<S>): boolean =>
-				isNotUndefined(situation) && q.applicable(situation)
-		)
-	)
-
-	const questionsParId = fromEntries(
-		toutesLesQuestionsApplicables.map((q) => [q.id, q])
-	)
-
-	const idsDesQuestions = dedupe(Object.keys(questionsParId))
-
-	const [activeQuestionId, setActiveQuestionId] = useState<
-		Question<S>['id'] | undefined
-	>(idsDesQuestions[0])
-	const [finished, setFinished] = useState(false)
-
-	useEffect(() => {
-		if (activeQuestionId && !idsDesQuestions.includes(activeQuestionId)) {
-			setActiveQuestionId(idsDesQuestions[0])
-		}
-	}, [activeQuestionId, idsDesQuestions])
-
-	const questionCourante = isUndefined(activeQuestionId)
-		? undefined
-		: questionsParId[activeQuestionId]
-
-	const handleRéponseÀUneQuestionFournie = useCallback(
-		<T,>(question: QuestionFournie<S>, réponse: T) => {
-			if (!situationAdapter || !situation) return
-
-			pipe(
-				question.répond(situation, réponse),
-				O.map(situationAdapter.updateActionCreator),
-				O.map(dispatch)
-			)
-		},
-		[situation, situationAdapter, dispatch]
-	)
+	const {
+		nombreDeQuestions,
+		nombreDeQuestionsRépondues,
+		activeQuestionIndex,
+		QuestionCourante,
+		questionCouranteRépondue,
+		finished,
+		goToNext,
+		goToPrevious,
+	} = useQuestions({
+		questions,
+		situation,
+		avecQuestionsPublicodes,
+	})
 
 	const handlePublicodesQuestionResponse = useCallback(
 		(dottedName: DottedName, value: ValeurPublicodes | undefined) => {
@@ -153,66 +61,16 @@ export function Questions<S extends Situation>({
 		[dispatch]
 	)
 
-	const goToNext = useCallback(() => {
-		if (!activeQuestionId) {
-			return
-		}
-
-		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
-		if (currentIndex < idsDesQuestions.length - 1) {
-			const nextId = idsDesQuestions[currentIndex + 1]
-			setActiveQuestionId(nextId)
-		} else {
-			setFinished(true)
-		}
-	}, [activeQuestionId, idsDesQuestions])
-
-	const goToPrevious = useCallback(() => {
-		if (finished) {
-			setActiveQuestionId(idsDesQuestions[idsDesQuestions.length - 1])
-			setFinished(false)
-
-			return
-		}
-
-		if (!activeQuestionId) {
-			return
-		}
-
-		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
-		if (currentIndex > 0) {
-			const prevId = idsDesQuestions[currentIndex - 1]
-			setActiveQuestionId(prevId)
-		}
-	}, [activeQuestionId, finished, idsDesQuestions])
-
-	if (!idsDesQuestions.length) return null
-
-	if (!situation) return null
-
-	const nombreDeQuestionsApplicables = toutesLesQuestionsApplicables.filter(
-		(q) => q.applicable(situation)
-	).length
-	const nombreDeQuestionsRépondues = toutesLesQuestionsApplicables.filter((q) =>
-		q.répondue(situation)
-	).length
-
-	const activeQuestionIndex = activeQuestionId
-		? idsDesQuestions.indexOf(activeQuestionId)
-		: -1
-
-	const questionCouranteRépondue =
-		isNotUndefined(questionCourante) && questionCourante.répondue(situation)
-
 	return (
 		<>
 			<Progress
 				progress={activeQuestionIndex + 1}
-				maxValue={nombreDeQuestionsApplicables}
+				maxValue={nombreDeQuestions}
 			/>
 			<QuestionsContainer>
 				<div className="print-hidden">
-					{nombreDeQuestionsRépondues < nombreDeQuestionsApplicables && (
+					{(nombreDeQuestions === 0 ||
+						nombreDeQuestionsRépondues < nombreDeQuestions) && (
 						<Notice>
 							<Trans i18nKey="simulateurs.précision.défaut">
 								Améliorez votre simulation en répondant aux questions :
@@ -227,12 +85,11 @@ export function Questions<S extends Situation>({
 					/>
 				)}
 
-				{!finished && questionCourante?._tag === 'QuestionFournie' && (
-					<FromTop key={`custom-question-${activeQuestionId}`}>
-						<QuestionTitle>{questionCourante.libellé}</QuestionTitle>
-						{questionCourante.renderer(situation, (réponse) =>
-							handleRéponseÀUneQuestionFournie(questionCourante, réponse)
-						)}
+				{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
+					<FromTop key={`custom-question-${QuestionCourante.id}`}>
+						<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
+						<QuestionCourante />
+
 						<Conversation
 							onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
 							onNext={goToNext}
@@ -250,8 +107,8 @@ export function Questions<S extends Situation>({
 					</FromTop>
 				)}
 
-				{!finished && questionCourante?._tag === 'QuestionPublicodes' && (
-					<FromTop key={`publicodes-question-${activeQuestionId}`}>
+				{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
+					<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
 						<div
 							style={{
 								display: 'inline-flex',
@@ -259,8 +116,8 @@ export function Questions<S extends Situation>({
 							}}
 						>
 							<H3 id="questionHeader" as="h2">
-								{evaluateQuestion(engine, engine.getRule(questionCourante.id))}
-								<ExplicableRule light dottedName={questionCourante.id} />
+								{evaluateQuestion(engine, engine.getRule(QuestionCourante.id))}
+								<ExplicableRule light dottedName={QuestionCourante.id} />
 							</H3>
 						</div>
 						<fieldset>
@@ -271,11 +128,11 @@ export function Questions<S extends Situation>({
 								</Trans>
 							</legend>
 							<RuleInput
-								dottedName={questionCourante.id}
+								dottedName={QuestionCourante.id}
 								onChange={(value, name) =>
 									handlePublicodesQuestionResponse(name, value)
 								}
-								key={activeQuestionId}
+								key={QuestionCourante.id}
 								onSubmit={goToNext}
 								aria-labelledby="questionHeader"
 							/>

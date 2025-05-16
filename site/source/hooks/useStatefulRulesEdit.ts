@@ -1,13 +1,16 @@
 import { pipe, Record } from 'effect'
+import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import { Evaluation } from 'publicodes'
+import { EvaluatedNode } from 'publicodes'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 export const useStatefulRulesEdit = <T extends DottedName>(
@@ -16,23 +19,21 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
-	const engineValues = (): Record<T, SimpleRuleEvaluation> =>
-		pipe<Record<T, Evaluation>, Record<T, SimpleRuleEvaluation>>(
+	const engineValues = (): Record<T, O.Option<ValeurPublicodes>> =>
+		pipe<Record<T, EvaluatedNode>, Record<T, O.Option<ValeurPublicodes>>>(
 			R.fromIterableWith(rules, (rule) => [
 				rule,
-				engine.evaluate(rule).nodeValue,
-			]) as Record<T, Evaluation>,
-			R.map((nodeValue: Evaluation, rule: T) =>
-				PublicodesAdapter.decode(rule, nodeValue as SimpleRuleEvaluation)
-			)
+				engine.evaluate(rule),
+			]) as Record<T, EvaluatedNode>,
+			R.map((node: EvaluatedNode) => PublicodesAdapter.decode(node))
 		)
 
 	const [dirtyValues, setDirtyValues] = useState(engineValues())
 
 	const read = R.map(
 		dirtyValues,
-		(_, rule: T) => () => dirtyValues[rule]
-	) as Record<T, () => SimpleRuleEvaluation>
+		(_, rule: T) => () => O.getOrUndefined(dirtyValues[rule])
+	) as Record<T, () => ValeurPublicodes | undefined>
 
 	const set = R.map(
 		dirtyValues,
@@ -49,13 +50,7 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 	}
 
 	const confirm = () => {
-		dispatch(
-			ajusteLaSituation(
-				R.map(dirtyValues, (dirtyValue, rule) =>
-					PublicodesAdapter.encode(rule, dirtyValue)
-				)
-			)
-		)
+		dispatch(ajusteLaSituation(R.map(dirtyValues, PublicodesAdapter.encode)))
 	}
 
 	return {

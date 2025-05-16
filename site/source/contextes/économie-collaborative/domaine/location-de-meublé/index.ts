@@ -1,5 +1,5 @@
 export type {
-	SituationLocationCourteDuree,
+	SituationÉconomieCollaborative,
 	RegimeCotisation,
 } from './situation'
 export { calculeCotisations } from './cotisations'

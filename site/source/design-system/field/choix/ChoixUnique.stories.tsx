@@ -18,7 +18,6 @@ const meta = {
 	tags: ['autodocs'],
 	argTypes: {
 		onChange: { action: 'changed' },
-		onSubmit: { action: 'submitted' },
 		variant: {
 			control: 'select',
 			options: ['radio', 'card', 'toggle', 'select'],

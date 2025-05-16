@@ -10,6 +10,8 @@ import React, {
 import { NavLink } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
+import { omit } from '@/utils'
+
 export const StyledLinkHover = css`
 	text-decoration: underline;
 	color: ${({ theme }) =>
@@ -224,7 +226,7 @@ export function useButtonOrLink(
 			? { _className: props.className, className: undefined }
 			: {}
 
-	const buttonOrLinkProps = {
+	const propsToPass = {
 		...initialProps,
 		...buttonPropsWithoutRole,
 		...useExternalLinkProps(props),
@@ -232,9 +234,11 @@ export function useButtonOrLink(
 		...styleProps,
 		as: elementType,
 		ref,
-	}
+	} as const
 
-	return buttonOrLinkProps
+	// Very ugly mais sinon on se récupère un warning parce qu’on passe `openInSameWindow` au DOM … qui n’est même pas censé être dans `propsToPass` d’après TypeScript ! 😭
+	// @ts-ignore
+	return omit(propsToPass, 'openInSameWindow') as typeof propsToPass
 }
 
 export const NewWindowLinkIcon = () => {

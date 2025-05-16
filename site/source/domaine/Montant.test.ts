@@ -12,12 +12,12 @@ import {
 	estPlusPetitQue,
 	estPositif,
 	estZéro,
-	Euro,
 	euros,
 	eurosParAn,
 	eurosParMois,
 	fois,
 	moins,
+	Montant,
 	plus,
 	toString,
 } from './Montant'
@@ -151,7 +151,7 @@ describe('Montant', () => {
 			const centEuros = euros(100)
 			const resultat = plus(centEuros, euros(50))
 
-			expectTypeOf<typeof resultat>().toMatchTypeOf<Euro>()
+			expectTypeOf<typeof resultat>().toMatchTypeOf<Montant<'Euro'>>()
 		})
 
 		it('renvoie une erreur en cas de division par zéro', () => {

@@ -5,13 +5,17 @@ import { estPlusGrandQue, eurosParAn } from '@/domaine/Montant'
 
 import { compareRégimes } from './comparateur-régimes'
 import { SEUIL_PROFESSIONNALISATION } from './constantes'
-import { RegimeCotisation, SituationLocationCourteDureeValide } from './situation'
+import {
+	RegimeCotisation,
+	SituationÉconomieCollaborativeValide,
+} from './situation'
 
 describe('compareRégimes', () => {
 	describe('avec des recettes inférieures au seuil de professionnalisation', () => {
 		it('marque tous les régimes comme non applicables', () => {
-			const situation: SituationLocationCourteDureeValide = {
-					_tag: 'Situation',
+			const situation: SituationÉconomieCollaborativeValide = {
+				_tag: 'Situation',
+				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(10_000)) as Option.Some<
 					typeof SEUIL_PROFESSIONNALISATION
 				>,
@@ -35,8 +39,9 @@ describe('compareRégimes', () => {
 
 	describe('avec des recettes au-dessus du seuil mais en-dessous du plafond', () => {
 		it('marque tous les régimes comme applicables', () => {
-			const situation: SituationLocationCourteDureeValide = {
-					_tag: 'Situation',
+			const situation: SituationÉconomieCollaborativeValide = {
+				_tag: 'Situation',
+				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
 					typeof SEUIL_PROFESSIONNALISATION
 				>,
@@ -56,8 +61,9 @@ describe('compareRégimes', () => {
 		})
 
 		it('calcule des valeurs de cotisations différentes pour chaque régime', () => {
-			const situation: SituationLocationCourteDureeValide = {
-					_tag: 'Situation',
+			const situation: SituationÉconomieCollaborativeValide = {
+				_tag: 'Situation',
+				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
 					typeof SEUIL_PROFESSIONNALISATION
 				>,
@@ -68,7 +74,9 @@ describe('compareRégimes', () => {
 
 			const résultats = compareRégimes(situation)
 
-			const régimeGénéral = résultats.find((r) => r.régime === RegimeCotisation.regimeGeneral)
+			const régimeGénéral = résultats.find(
+				(r) => r.régime === RegimeCotisation.regimeGeneral
+			)
 			const microEntreprise = résultats.find(
 				(r) => r.régime === RegimeCotisation.microEntreprise
 			)
@@ -106,8 +114,9 @@ describe('compareRégimes', () => {
 
 	describe('avec des recettes supérieures au plafond du régime général', () => {
 		it('devrait marquer le régime général comme non applicable', () => {
-			const situation: SituationLocationCourteDureeValide = {
-					_tag: 'Situation',
+			const situation: SituationÉconomieCollaborativeValide = {
+				_tag: 'Situation',
+				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(80_000)) as Option.Some<
 					typeof SEUIL_PROFESSIONNALISATION
 				>,
@@ -118,7 +127,9 @@ describe('compareRégimes', () => {
 
 			const résultats = compareRégimes(situation)
 
-			const régimeGénéral = résultats.find((r) => r.régime === RegimeCotisation.regimeGeneral)
+			const régimeGénéral = résultats.find(
+				(r) => r.régime === RegimeCotisation.regimeGeneral
+			)
 			const microEntreprise = résultats.find(
 				(r) => r.régime === RegimeCotisation.microEntreprise
 			)
@@ -140,8 +151,9 @@ describe('compareRégimes', () => {
 
 	describe('avec un régime spécifié', () => {
 		it('devrait tout de même comparer tous les régimes', () => {
-			const situation: SituationLocationCourteDureeValide = {
-					_tag: 'Situation',
+			const situation: SituationÉconomieCollaborativeValide = {
+				_tag: 'Situation',
+				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
 					typeof SEUIL_PROFESSIONNALISATION
 				>,
@@ -158,8 +170,9 @@ describe('compareRégimes', () => {
 
 	describe('avec des paramètres supplémentaires', () => {
 		it('devrait prendre en compte le paramètre estAlsaceMoselle', () => {
-			const situationNormale: SituationLocationCourteDureeValide = {
+			const situationNormale: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
 					typeof SEUIL_PROFESSIONNALISATION
 				>,
@@ -168,8 +181,9 @@ describe('compareRégimes', () => {
 				premièreAnnée: Option.none(),
 			}
 
-			const situationAlsaceMoselle: SituationLocationCourteDureeValide = {
+			const situationAlsaceMoselle: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
 					typeof SEUIL_PROFESSIONNALISATION
 				>,

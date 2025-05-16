@@ -1,7 +1,8 @@
 import { ASTNode } from 'publicodes'
 import { styled } from 'styled-components'
 
-import { NumberField } from '@/design-system/field'
+import InputSuggestions from '@/components/conversation/InputSuggestions'
+import { NumberField } from '@/design-system'
 import {
 	montant,
 	Montant,
@@ -11,12 +12,10 @@ import {
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
-import InputSuggestions from './InputSuggestions'
-
-interface MontantInputProps<U extends UnitéMonétaire> {
+interface MontantFieldProps<U extends UnitéMonétaire> {
 	value: Montant<U> | undefined
 	unité: U
-	onChange?: (value: Montant | undefined) => void
+	onChange?: (value: Montant<U> | undefined) => void
 	missing?: boolean
 	onSubmit?: (source?: string) => void
 	suggestions?: Record<string, ASTNode>
@@ -32,7 +31,7 @@ interface MontantInputProps<U extends UnitéMonétaire> {
 	}
 }
 
-export default function MontantInput<U extends UnitéMonétaire>({
+export default function MontantField<U extends UnitéMonétaire>({
 	value,
 	unité,
 	suggestions,
@@ -43,7 +42,7 @@ export default function MontantInput<U extends UnitéMonétaire>({
 	showSuggestions,
 	id,
 	aria,
-}: MontantInputProps<U>) {
+}: MontantFieldProps<U>) {
 	const { handleChange, currentSelection: currentValue } = useSelection({
 		value,
 		onChange,
@@ -92,7 +91,6 @@ export default function MontantInput<U extends UnitéMonétaire>({
 		</StyledNumberInput>
 	)
 }
-
 const StyledNumberInput = styled.div`
 	display: flex;
 	width: fit-content;

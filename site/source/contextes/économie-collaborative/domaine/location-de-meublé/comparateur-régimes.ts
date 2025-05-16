@@ -1,21 +1,21 @@
 import { Array, Either, pipe } from 'effect'
 
-import { RégimeInapplicable } from '@/domaine/économie-collaborative/location-de-meublé/erreurs'
-import { EuroParAn } from '@/domaine/Montant'
+import { RégimeInapplicable } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
+import { Montant } from '@/domaine/Montant'
 
 import { calculeCotisationsRégimeGénéral } from './régime-général'
 import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
 import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
 import {
 	RegimeCotisation,
-	SituationLocationCourteDureeValide,
+	SituationÉconomieCollaborativeValide,
 } from './situation'
 
 type RésultatRégime =
 	| {
 			régime: RegimeCotisation
 			applicable: true
-			cotisations: EuroParAn
+			cotisations: Montant<'EuroParAn'>
 	  }
 	| {
 			régime: RegimeCotisation
@@ -24,7 +24,7 @@ type RésultatRégime =
 	  }
 
 export const compareRégimes = (
-	situation: SituationLocationCourteDureeValide
+	situation: SituationÉconomieCollaborativeValide
 ): RésultatRégime[] =>
 	pipe(
 		[
