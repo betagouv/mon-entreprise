@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { RepositoriesContext } from '@/contexts/RepositoriesContext'
+import { RepositoriesContext } from '@/entreprise/RepositoriesContext'
 
 export const useRepositories = () => useContext(RepositoriesContext)
 

@@ -192,6 +192,7 @@ function FormulairePublicodes() {
 										<RuleInput
 											id={dottedName.replace(/\s|\./g, '_')}
 											dottedName={dottedName as DottedName}
+											// @ts-ignore
 											onChange={(value) => onChange(dottedName, value)}
 											hideDefaultValue
 											aria-label={

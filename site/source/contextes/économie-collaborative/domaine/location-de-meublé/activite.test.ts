@@ -1,16 +1,20 @@
 import { Option, pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { estActiviteProfessionnelle } from '@/domaine/économie-collaborative/location-de-meublé/activite'
+import { estActiviteProfessionnelle } from '@/contextes/économie-collaborative/domaine/location-de-meublé/activite'
 import { eurosParAn, moins, plus } from '@/domaine/Montant'
 
 import { SEUIL_PROFESSIONNALISATION } from './constantes'
-import { SituationLocationCourteDureeValide } from './situation'
+import {
+	SITUATION_ÉCONOMIE_COLLABORATIVE,
+	SituationÉconomieCollaborativeValide,
+} from './situation'
 
 describe('estActiviteProfessionnelle', () => {
 	it('est faux si les recettes sont inférieures au seuil de professionalisation', () => {
-		const situation: SituationLocationCourteDureeValide = {
+		const situation: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
+			_type: SITUATION_ÉCONOMIE_COLLABORATIVE,
 			recettes: Option.some(
 				pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
 			) as Option.Some<typeof SEUIL_PROFESSIONNALISATION>,
@@ -23,8 +27,9 @@ describe('estActiviteProfessionnelle', () => {
 	})
 
 	it('est vrai si les recettes sont égales au seuil de professionalisation', () => {
-		const situation: SituationLocationCourteDureeValide = {
+		const situation: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
+			_type: SITUATION_ÉCONOMIE_COLLABORATIVE,
 			recettes: Option.some(SEUIL_PROFESSIONNALISATION) as Option.Some<
 				typeof SEUIL_PROFESSIONNALISATION
 			>,
@@ -37,8 +42,9 @@ describe('estActiviteProfessionnelle', () => {
 	})
 
 	it('est vrai si les recettes sont supérieures au seuil de professionalisation', () => {
-		const situation: SituationLocationCourteDureeValide = {
+		const situation: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
+			_type: SITUATION_ÉCONOMIE_COLLABORATIVE,
 			recettes: Option.some(
 				pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(1)))
 			) as Option.Some<typeof SEUIL_PROFESSIONNALISATION>,

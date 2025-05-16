@@ -1,11 +1,11 @@
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 
+import { LocationDeMeubleAction } from '@/contextes/économie-collaborative/store/slice'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { LocationDeMeubleAction } from '@/store/slices/locationDeMeubleSlice'
 import { buildSituationFromObject } from '@/utils/publicodes'
 
 import { CompanyActions } from './companyActions'

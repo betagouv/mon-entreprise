@@ -2,12 +2,12 @@ import { Option } from 'effect'
 import { useTranslation } from 'react-i18next'
 
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
-import { EuroParAn } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
 
 export function ObjectifCotisations({
 	cotisations,
 }: {
-	cotisations: EuroParAn
+	cotisations: Montant<'EuroParAn'>
 }) {
 	const { t } = useTranslation()
 

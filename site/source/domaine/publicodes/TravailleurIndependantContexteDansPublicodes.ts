@@ -1,4 +1,4 @@
-import { EuroParAn, montantToNumber } from '@/domaine/Montant'
+import { Montant, montantToNumber } from '@/domaine/Montant'
 
 export const TravailleurIndependantContexteDansPublicodes = {
 	'dirigeant . régime social': "'indépendant'",
@@ -8,7 +8,7 @@ export const TravailleurIndependantContexteDansPublicodes = {
 }
 
 export const TravailleurIndependantChiffreAffaireDansPublicodes = {
-	fromMontant: (montant: EuroParAn) => ({
+	fromMontant: (montant: Montant<'EuroParAn'>) => ({
 		"entreprise . chiffre d'affaires": `${montantToNumber(montant)} €/an`,
 	}),
 }

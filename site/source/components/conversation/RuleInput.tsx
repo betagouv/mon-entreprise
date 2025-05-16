@@ -12,8 +12,8 @@ import {
 	getOnePossibilityOptions,
 	isOnePossibility,
 } from '@/components/conversation/getOnePossibilityOptions'
-import MontantInput from '@/components/conversation/MontantInput'
 import { useEngine } from '@/components/utils/EngineContext'
+import MontantField from '@/design-system/conversation/MontantField'
 import { ChoiceDisplayType } from '@/design-system/field/ChoiceGroup'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
@@ -256,7 +256,6 @@ export default function RuleInput({
 		return (
 			<>
 				<OuiNonInput
-					dottedName={rule.dottedName}
 					value={pipe(
 						value as Evaluation<boolean>,
 						OuiNonAdapter.decode,
@@ -282,7 +281,6 @@ export default function RuleInput({
 	if (rule.rawNode.type === 'texte') {
 		return (
 			<TextInput
-				dottedName={rule.dottedName}
 				value={value}
 				onChange={(value) => onChange(value, dottedName)}
 				missing={missing ?? dottedName in evaluation.missingVariables}
@@ -306,7 +304,7 @@ export default function RuleInput({
 		// eslint-disable-next-line no-constant-condition
 		if (false) {
 			return (
-				<MontantInput
+				<MontantField
 					value={pipe(evaluation, MontantAdapter.decode, O.getOrUndefined)}
 					unité={'Euro'} // FIXME détecter correctement l’unité
 					onChange={(value) => {
