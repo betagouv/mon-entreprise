@@ -8,7 +8,7 @@ import Engine, {
 	RuleNode,
 } from 'publicodes'
 
-import { Situation } from '@/store/reducers/rootReducer'
+import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import { getValueFrom } from '.'
 
@@ -41,7 +41,7 @@ export function evaluateQuestion(
 export function buildSituationFromObject<Names extends string = DottedName>(
 	contextDottedName: Names,
 	situationObject: Record<string, PublicodesExpression>
-): Situation {
+): SituationPublicodes {
 	return Object.fromEntries(
 		Object.entries(situationObject).map(
 			([key, value]: [string, PublicodesExpression]) => [

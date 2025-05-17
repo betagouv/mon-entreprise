@@ -1,6 +1,10 @@
-import { DottedName } from 'modele-social'
-import { ASTNode, PublicodesExpression } from 'publicodes'
+import { AnyAction } from 'redux'
 
-export type Situation = Partial<
-	Record<DottedName, PublicodesExpression | ASTNode>
->
+export interface Situation {
+	_tag: 'Situation'
+	_type?: string
+}
+
+export type SituationAction = AnyAction & {
+	_situationType: string
+}

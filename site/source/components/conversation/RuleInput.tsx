@@ -1,78 +1,82 @@
+import { pipe } from 'effect'
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import Engine, {
-	ASTNode,
-	EvaluatedNode,
-	Evaluation,
-	PublicodesExpression,
-	reduceAST,
-	RuleNode,
-} from 'publicodes'
-import React from 'react'
+import Engine, { Evaluation } from 'publicodes'
+import { useDispatch } from 'react-redux'
 
-import NumberInput from '@/components/conversation/NumberInput'
-import SelectCommune from '@/components/conversation/select/SelectCommune'
+import {
+	getMultiplePossibilitiesOptions,
+	isMultiplePossibilities,
+} from '@/components/conversation/getMultiplePossibilitiesOptions'
+import {
+	getOnePossibilityOptions,
+	isOnePossibility,
+} from '@/components/conversation/getOnePossibilityOptions'
 import { useEngine } from '@/components/utils/EngineContext'
+import MontantField from '@/design-system/conversation/MontantField'
+import { ChoiceDisplayType } from '@/design-system/field/ChoiceGroup'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
+import { isIsoDate } from '@/domaine/Date'
+import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
+import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
+import { OuiNon } from '@/domaine/OuiNon'
+import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
-import { Choice, MultipleAnswerInput, OuiNonInput } from './ChoicesInput'
-import DateInput from './DateInput'
+import { DateInput } from './DateInput'
 import { DefaultValue } from './DefaultValue'
-import { MultipleChoicesInput } from './MulipleChoicesInput'
-import ParagrapheInput from './ParagrapheInput'
-import SelectPaysDétachement from './select/SelectPaysDétachement'
+import NumberInput from './NumberInput'
+import { OuiNonInput } from './OuiNonInput'
+import { PlusieursPossibilités } from './PlusieursPossibilités'
+import SelectCommune from './select/SelectCommune'
 import SelectAtmp from './select/SelectTauxRisque'
 import TextInput from './TextInput'
+import { UnePossibilité } from './UnePossibilité'
 
-type InputType = 'radio' | 'card' | 'toggle' | 'select'
-
-type Props = Omit<
-	React.HTMLAttributes<HTMLInputElement>,
-	'onChange' | 'defaultValue' | 'onSubmit'
-> & {
-	required?: boolean
-	autoFocus?: boolean
-	small?: boolean
+interface RuleInputProps {
 	dottedName: DottedName
-	label?: string
-	missing?: boolean
 	onChange: (
-		value: PublicodesExpression | undefined,
+		value: ValeurPublicodes | undefined,
 		dottedName: DottedName
 	) => void
-	// TODO: It would be preferable to replace this "showSuggestions" parameter by
-	// a build-in logic in the engine, by setting the "applicability" of
-	// suggestions.
+
+	missing?: boolean
+	onSubmit?: (source?: string) => void
+	engine?: Engine<DottedName>
 	showSuggestions?: boolean
 	hideDefaultValue?: boolean
-	onSubmit?: (source?: string) => void
-	inputType?: InputType
+	inputType?: ChoiceDisplayType
+	modifiers?: Record<string, string>
+	required?: boolean
+
+	id?: string
+	'aria-labelledby'?: string
+	'aria-label'?: string
+	className?: string
+	autoFocus?: boolean
+	small?: boolean
+
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
-	modifiers?: Record<string, string>
-	engine?: Engine<DottedName>
 }
-
-export type InputProps = Omit<Props, 'onChange' | 'engine'> &
-	Pick<RuleNode, 'suggestions'> & {
-		question: RuleNode['rawNode']['question']
-		description: RuleNode['rawNode']['description']
-		value: EvaluatedNode['nodeValue']
-		onChange: (value: PublicodesExpression | undefined) => void
-		engine: Engine<DottedName>
-	}
 
 export const binaryQuestion = [
 	{ value: 'oui', label: 'Oui' },
 	{ value: 'non', label: 'Non' },
 ] as const
 
-// This function takes the unknown rule and finds which React component should
-// be displayed to get a user input through successive if statements
-// That's not great, but we won't invest more time until we have more diverse
-// input components and a better type system.
+/**
+ * RuleInput - Composant de routage d'une question Publicodes
+ *
+ * Ce composant analyse une règle Publicodes et détermine le composant d'entrée approprié
+ * à afficher en fonction du type de règle et des métadonnées associées.
+ */
 export default function RuleInput({
 	dottedName,
 	onChange,
@@ -83,43 +87,46 @@ export default function RuleInput({
 	inputType,
 	modifiers = {},
 	engine,
-	...props
-}: Props) {
+	...accessibilityProps
+}: RuleInputProps) {
+	const dispatch = useDispatch()
 	const defaultEngine = useEngine() as Engine<string>
 
 	const engineValue = (engine ?? defaultEngine) as Engine<DottedName>
-
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
-	const value = evaluation.nodeValue
 
-	const commonProps: InputProps = {
-		dottedName,
-		value,
-		hideDefaultValue,
-		missing: missing ?? dottedName in evaluation.missingVariables,
-		onChange: (value: PublicodesExpression | undefined) =>
-			onChange(value, dottedName),
-		onSubmit,
-		title: rule.title,
-		description: rule.rawNode.description,
-		question: rule.rawNode.question,
-		showSuggestions,
-		suggestions: showSuggestions ? rule.suggestions : {},
-		engine: engineValue,
-		...props,
-		// Les espaces ne sont pas autorisés dans un id, les points sont assimilés à une déclaration de class CSS par Cypress
-		id: props?.id ?? normalizeRuleName.Input(dottedName),
-	}
+	const isDefaultValue = missing ?? dottedName in evaluation.missingVariables
+
+	const decoded: O.Option<ValeurPublicodes> =
+		PublicodesAdapter.decode(evaluation)
+
+	const value = isDefaultValue ? undefined : O.getOrUndefined(decoded)
+	const defaultValue = isDefaultValue ? decoded : O.none()
+
+	const inputId = accessibilityProps?.id ?? normalizeRuleName.Input(dottedName)
+
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
 	if (isMultiplePossibilities(engineValue, dottedName)) {
 		return (
 			<>
-				<MultipleChoicesInput
-					{...commonProps}
+				<PlusieursPossibilités
+					value={value}
 					choices={getMultiplePossibilitiesOptions(engineValue, dottedName)}
 					onChange={onChange}
+					engine={engineValue}
+					id={inputId}
+					title={rule.title}
+					description={rule.rawNode.description}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={accessibilityProps.autoFocus}
+					onSubmit={onSubmit}
+					suggestions={showSuggestions ? rule.suggestions : {}}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'],
+					}}
 				/>
 				<Spacing md />
 			</>
@@ -131,27 +138,46 @@ export default function RuleInput({
 			inputType ??
 			(meta.affichage &&
 			['radio', 'card', 'toggle', 'select'].includes(meta.affichage)
-				? (meta.affichage as 'radio' | 'card' | 'toggle' | 'select')
+				? (meta.affichage as ChoiceDisplayType)
 				: 'radio')
 
 		return (
 			<>
-				<MultipleAnswerInput
-					{...commonProps}
+				<UnePossibilité
+					dottedName={dottedName}
+					value={value}
+					defaultValue={O.getOrUndefined(defaultValue)}
+					onChange={(value) => onChange(value, dottedName)}
+					missing={missing ?? dottedName in evaluation.missingVariables}
+					id={inputId}
+					title={rule.title}
+					description={rule.rawNode.description}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={accessibilityProps.autoFocus}
 					choices={getOnePossibilityOptions(engineValue, dottedName)}
-					type={type}
+					variant={type}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'],
+					}}
 				/>
 				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
 			</>
 		)
 	}
 
+	// Gestion des API spécifiques
 	if (rule.rawNode.API && rule.rawNode.API === 'commune') {
 		return (
 			<>
 				<SelectCommune
-					{...commonProps}
-					onChange={(c) => commonProps.onChange({ batchUpdate: c })} // 😭
+					id={inputId}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={accessibilityProps.autoFocus}
+					missing={missing ?? dottedName in evaluation.missingVariables}
+					onChange={(c) => {
+						dispatch(enregistreLesRéponses(dottedName, c))
+					}}
 					value={value as Evaluation<string>}
 				/>
 				<Spacing md />
@@ -159,32 +185,62 @@ export default function RuleInput({
 		)
 	}
 
-	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
-		return (
-			<>
-				<SelectPaysDétachement
-					{...commonProps}
-					plusFrance={rule.rawNode.API.endsWith('plus France')}
-				/>
-				<Spacing md />
-			</>
-		)
-	}
+	// FIXME Utilise-t-on encore cet input ?
+	// if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
+	// 	return (
+	// 		<>
+	// 			<SelectPaysDétachement
+	// 				id={inputId}
+	// 				value={value}
+	// 				onChange={(value) =>
+	// 					onChange(value as ValeurPourPublicodes, dottedName)
+	// 				}
+	// 				plusFrance={rule.rawNode.API.endsWith('plus France')}
+	// 			/>
+	// 			<Spacing md />
+	// 		</>
+	// 	)
+	// }
+
 	if (rule.rawNode.API) {
 		throw new Error(
 			"Les seules API implémentées sont 'commune' et 'pays détachement'"
 		)
 	}
 
+	// Cas spécifique pour ATMP
 	if (rule.dottedName === 'établissement . taux ATMP . taux collectif') {
-		return <SelectAtmp {...commonProps} />
+		return (
+			<SelectAtmp
+				onChange={(value) =>
+					onChange(
+						value === undefined ? undefined : parseInt(value),
+						dottedName
+					)
+				}
+				/* eslint-disable-next-line jsx-a11y/no-autofocus */
+				autoFocus={accessibilityProps.autoFocus}
+				onSubmit={onSubmit}
+			/>
+		)
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-	if ((rule.rawNode.type as string | undefined)?.startsWith('date')) {
+	// Gestion des entrées de date
+	if ((rule.rawNode.type as string | undefined)?.startsWith('date') /* 😭 */) {
 		return (
 			<DateInput
-				{...commonProps}
+				dottedName={rule.dottedName}
+				value={isIsoDate(value) ? value : undefined}
+				onChange={(value) => onChange(value, dottedName)}
+				missing={missing ?? dottedName in evaluation.missingVariables}
+				title={rule.title}
+				hideDefaultValue={hideDefaultValue}
+				onSubmit={onSubmit}
+				suggestions={showSuggestions ? rule.suggestions : {}}
+				aria={{
+					labelledby: accessibilityProps['aria-labelledby'],
+					label: accessibilityProps['aria-label'],
+				}}
 				type={rule.rawNode.type as DateFieldProps['type']}
 			/>
 		)
@@ -199,7 +255,24 @@ export default function RuleInput({
 	) {
 		return (
 			<>
-				<OuiNonInput {...commonProps} />
+				<OuiNonInput
+					value={pipe(
+						value as Evaluation<boolean>,
+						OuiNonAdapter.decode,
+						O.getOrUndefined
+					)}
+					onChange={(value) => onChange(value, dottedName)}
+					defaultValue={O.getOrUndefined(defaultValue) as OuiNon | undefined}
+					id={inputId}
+					title={rule.title}
+					description={rule.rawNode.description}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={accessibilityProps.autoFocus}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'],
+					}}
+				/>
 				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
 			</>
 		)
@@ -208,96 +281,68 @@ export default function RuleInput({
 	if (rule.rawNode.type === 'texte') {
 		return (
 			<TextInput
-				{...commonProps}
-				label={undefined}
-				value={value as Evaluation<string>}
+				value={value}
+				onChange={(value) => onChange(value, dottedName)}
+				missing={missing ?? dottedName in evaluation.missingVariables}
+				title={rule.title}
+				description={rule.rawNode.description}
+				/* eslint-disable-next-line jsx-a11y/no-autofocus */
+				autoFocus={accessibilityProps.autoFocus}
+				onSubmit={onSubmit}
+				suggestions={showSuggestions ? rule.suggestions : {}}
+				aria={{
+					labelledby: accessibilityProps['aria-labelledby'],
+					label: accessibilityProps['aria-label'],
+				}}
 			/>
 		)
 	}
-	if (rule.rawNode.type === 'paragraphe') {
-		return (
-			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
-		)
-	}
 
-	// Pas de title sur NumberInput pour avoir une bonne expérience avec
-	// lecteur d'écran
-	delete commonProps.title
+	if (rule.rawNode.type === 'nombre' && rule.rawNode.unité) {
+		console.warn('Est-ce un montant ?', rule.rawNode.unité)
+
+		// eslint-disable-next-line no-constant-condition
+		if (false) {
+			return (
+				<MontantField
+					value={pipe(evaluation, MontantAdapter.decode, O.getOrUndefined)}
+					unité={'Euro'} // FIXME détecter correctement l’unité
+					onChange={(value) => {
+						onChange(value, dottedName)
+					}}
+					missing={missing ?? dottedName in evaluation.missingVariables}
+					onSubmit={onSubmit}
+					suggestions={showSuggestions ? rule.suggestions : {}}
+					showSuggestions={showSuggestions}
+					id={inputId}
+					description={rule.rawNode.description}
+					formatOptions={accessibilityProps.formatOptions}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'] ?? rule.title,
+					}}
+				/>
+			)
+		}
+	}
 
 	return (
 		<NumberInput
-			{...commonProps}
-			unit={evaluation.unit}
-			value={value as Evaluation<number>}
+			value={evaluation.nodeValue as number | undefined}
+			onChange={(value) => {
+				onChange(value, dottedName)
+			}}
+			missing={missing ?? dottedName in evaluation.missingVariables}
+			onSubmit={onSubmit}
+			suggestions={showSuggestions ? rule.suggestions : {}}
+			showSuggestions={showSuggestions}
+			id={inputId}
+			description={rule.rawNode.description}
+			formatOptions={accessibilityProps.formatOptions}
+			aria={{
+				labelledby: accessibilityProps['aria-labelledby'],
+				label: accessibilityProps['aria-label'] ?? rule.title,
+			}}
 		/>
 	)
-}
-
-const isOnePossibility = (node: RuleNode) =>
-	reduceAST<false | (ASTNode & { nodeKind: 'une possibilité' })>(
-		(_, node) => {
-			if (node.nodeKind === 'une possibilité') {
-				return node
-			}
-		},
-		false,
-		node
-	)
-
-export const getOnePossibilityOptions = (
-	engine: Engine<DottedName>,
-	path: DottedName
-): Choice => {
-	const node = engine.getRule(path)
-	if (!node) {
-		throw new Error(`La règle ${path} est introuvable`)
-	}
-	const variant = isOnePossibility(node)
-	const canGiveUp =
-		variant &&
-		(!variant['choix obligatoire'] || variant['choix obligatoire'] === 'non')
-
-	return Object.assign(
-		node,
-		variant
-			? {
-					canGiveUp,
-					children: (
-						variant.explanation as (ASTNode & {
-							nodeKind: 'reference'
-						})[]
-					)
-						.filter(
-							(explanation) => engine.evaluate(explanation).nodeValue !== null
-						)
-						.map(({ dottedName }) =>
-							getOnePossibilityOptions(engine, dottedName as DottedName)
-						),
-			  }
-			: null
-	)
-}
-
-type RuleWithMultiplePossibilities = RuleNode & {
-	rawNode: RuleNode['rawNode'] & {
-		'plusieurs possibilités'?: Array<string>
-	}
-}
-function isMultiplePossibilities(
-	engine: Engine<DottedName>,
-	dottedName: DottedName
-): boolean {
-	return !!(engine.getRule(dottedName) as RuleWithMultiplePossibilities)
-		.rawNode['plusieurs possibilités']
-}
-
-function getMultiplePossibilitiesOptions(
-	engine: Engine<DottedName>,
-	dottedName: DottedName
-): RuleNode<DottedName>[] {
-	return (
-		(engine.getRule(dottedName) as RuleWithMultiplePossibilities).rawNode[
-			'plusieurs possibilités'
-		] ?? []
-	).map((name) => engine.getRule(`${dottedName} . ${name}` as DottedName))
 }

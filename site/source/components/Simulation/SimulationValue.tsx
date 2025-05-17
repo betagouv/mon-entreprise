@@ -1,3 +1,4 @@
+import { isNone } from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React from 'react'
@@ -8,6 +9,8 @@ import { styled } from 'styled-components'
 import { Grid } from '@/design-system/layout'
 import { Body } from '@/design-system/typography/paragraphs'
 import { Contexte } from '@/domaine/Contexte'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { isMontant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -57,6 +60,18 @@ export function SimulationValue({
 	const rule = engine.getRule(dottedName)
 	const elementIdPrefix = dottedName.replace(/\s|\./g, '_')
 
+	const decoded = PublicodesAdapter.decode(evaluation)
+
+	if (isNone(decoded)) {
+		return null
+	}
+
+	if (!isMontant(decoded.value)) {
+		return null
+	}
+
+	const montantValue = decoded.value
+
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledValue>
@@ -83,7 +98,7 @@ export function SimulationValue({
 					<LectureGuide />
 
 					<Grid item>
-						<AnimatedTargetValue value={evaluation.nodeValue as number} />
+						{montantValue && <AnimatedTargetValue value={montantValue} />}
 						<StyledBody id={`${elementIdPrefix}-value`}>
 							{formatValue(evaluation, {
 								displayedUnit,
