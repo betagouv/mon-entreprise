@@ -47,7 +47,7 @@ const toEvaluate = function <T extends PublicodesTypes>(
 				)} to equal ${this.utils.printExpected(
 					`${value}`
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-				)} for rule ${dottedName}`,
+				)} for rule ${ruleName}`,
 			pass: false,
 		}
 	}
