@@ -23,3 +23,19 @@ export const Basic: Story = {
 	),
 	args: {},
 }
+
+export const ValeurParDéfaut: Story = {
+	render: (args) => (
+		<ToggleGroup defaultValue="valueB" {...args}>
+			<Radio value="valueA">Radio A</Radio>
+			<Radio value="valueB" defaultSelected={true}>
+				Radio B
+			</Radio>
+			<Radio value="valueC">Radio C</Radio>
+			<Radio isDisabled value="valueD">
+				Radio Disabled
+			</Radio>
+		</ToggleGroup>
+	),
+	args: {},
+}
