@@ -1,3 +1,4 @@
+import { round } from '../../../source/utils/number'
 import { checkA11Y, fr, getAmountFromText } from '../../support/utils'
 
 describe(
@@ -37,19 +38,9 @@ describe(
 				.invoke('text')
 				.should(($text) => {
 					const amount = getAmountFromText($text)
-					expect(amount).to.be.greaterThan(0)
+					expect(amount).to.be.greaterThan(500)
 					baseAmount = amount
 					roundedBaseAmount = Math.round(amount)
-				})
-
-			let UrssafAmount: number
-			cy.get(`p[id="${idPrefix}___imputation_sécurité_sociale-value"]`)
-				.invoke('text')
-				.should(($text) => {
-					const amount = getAmountFromText($text)
-					expect(amount).to.be.greaterThan(0)
-					expect(amount).to.be.lessThan(baseAmount)
-					UrssafAmount = amount
 				})
 
 			let IRCAmount: number
@@ -58,8 +49,19 @@ describe(
 				.should(($text) => {
 					const amount = getAmountFromText($text)
 					expect(amount).to.be.greaterThan(0)
-					expect(amount).to.be.lessThan(UrssafAmount)
+					expect(amount).to.be.lessThan(baseAmount)
 					IRCAmount = amount
+				})
+
+			let UrssafAmount: number
+			cy.get(`p[id="${idPrefix}___imputation_sécurité_sociale-value"]`)
+				.invoke('text')
+				.should(($text) => {
+					const amount = getAmountFromText($text)
+					expect(amount).to.be.greaterThan(IRCAmount)
+					expect(amount).to.be.lessThan(baseAmount)
+					UrssafAmount = amount
+					expect(UrssafAmount + IRCAmount).to.be.equal(baseAmount)
 				})
 
 			cy.get(`p[id="${idPrefix}___imputation_chômage-value"]`)
@@ -67,11 +69,13 @@ describe(
 				.should(($text) => {
 					const amount = getAmountFromText($text)
 					expect(amount).to.be.greaterThan(0)
-					expect(amount).to.be.lessThan(IRCAmount)
+					expect(amount).to.be.lessThan(UrssafAmount)
+					expect(round(amount / UrssafAmount, 2)).to.be.equal(0.15) // chômage =~ 15% part Urssaf
 				})
 		})
 
 		it('should allow to select a company size', function () {
+			cy.contains('Réduction mensuelle').click()
 			cy.contains('Plus de 50 salariés').click()
 			cy.contains('Modifier mes réponses').click()
 			cy.get('div[data-cy="modal"]')
@@ -103,6 +107,7 @@ describe(
 				.contains('Oui')
 				.click()
 
+			cy.contains('Réduction mensuelle').click()
 			cy.get(`p[id="${idPrefix}-value"]`)
 				.invoke('text')
 				.should(($text) => {
@@ -116,6 +121,7 @@ describe(
 		})
 
 		it('should display a warning for a remuneration too high', function () {
+			cy.contains('Réduction mensuelle').click()
 			cy.get(inputSelector).first().type('{selectall}3000')
 
 			cy.get('div[id="simulator-legend"]').should(
@@ -177,6 +183,7 @@ describe(
 				.should(($text) => {
 					const amount = getAmountFromText($text)
 					expect(amount).to.be.lessThan(baseAmount)
+					expect(round(amount / baseAmount, 2)).to.be.equal(0.9) // RGCP pour 2000€ =~ 90% * RGCP pour 1900€
 				})
 		})
 
@@ -193,6 +200,7 @@ describe(
 		})
 
 		it('should include progressive regularisation', function () {
+			cy.contains('Réduction mois par mois').click()
 			cy.get(inputSelector).eq(1).type('{selectall}4000')
 
 			cy.get(`#${idPrefix}-février`).should('include.text', '0 €')
