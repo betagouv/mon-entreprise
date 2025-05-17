@@ -1,12 +1,17 @@
 import { getDocumentationSiteMap, RulePage } from '@publicodes/react-ui'
-import { Item } from '@react-stately/collections'
 import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { ComponentProps, lazy, Suspense, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
+import {
+	Navigate,
+	Route,
+	Routes,
+	useLocation,
+	useParams,
+} from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
