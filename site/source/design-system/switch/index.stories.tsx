@@ -37,10 +37,6 @@ const meta: Meta<typeof Switch> = {
 			action: 'changed',
 			description: "Fonction appelée lorsque l'état change",
 		},
-		invertLabel: {
-			control: 'boolean',
-			description: 'Inverser la position du label et du switch',
-		},
 		light: {
 			control: 'boolean',
 			description: 'Utiliser un style plus léger',
@@ -89,7 +85,6 @@ export const Selected: Story = {
 export const WithInvertedLabel: Story = {
 	args: {
 		children: 'Label après le switch',
-		invertLabel: true,
 	},
 }
 
@@ -110,7 +105,7 @@ const SizeVariants = () => (
 )
 
 export const Sizes: Story = {
-	render: () => <SizeVariants />
+	render: () => <SizeVariants />,
 }
 
 export const Light: Story = {
