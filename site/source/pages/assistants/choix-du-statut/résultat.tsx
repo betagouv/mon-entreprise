@@ -20,7 +20,7 @@ import { H3 } from '@/design-system/typography/heading'
 import { Intro } from '@/design-system/typography/paragraphs'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
-import { Situation } from '@/store/reducers/rootReducer'
+import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
@@ -143,7 +143,7 @@ function setAllStatutTo(value: undefined | 'non') {
 			...acc,
 			[dottedName]: value,
 		}),
-		{} as Situation
+		{} as SituationPublicodes
 	)
 }
 

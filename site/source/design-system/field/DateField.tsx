@@ -10,6 +10,7 @@ import { DayPicker, useInput } from 'react-day-picker'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { splitAriaProps } from '@/design-system/splitAriaProps'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import { Button } from '../buttons'
@@ -19,7 +20,7 @@ import TextField from './TextField'
 
 export interface DateFieldProps {
 	defaultSelected?: Date
-	onChange?: (value?: string) => void
+	onChange?: (value?: Date) => void
 	placeholder?: string
 	label?: string
 	isRequired?: boolean
@@ -90,13 +91,9 @@ export default function DateField(props: DateFieldProps) {
 		setIsChangeOnce(true)
 		setInputValue(value)
 		const date = parse(value, format, new Date())
-		if (
-			isValid(date) &&
-			date.getFullYear() > 1800 &&
-			date.getFullYear() <= new Date().getFullYear()
-		) {
+		if (isValid(date) && date.getFullYear() > 1800) {
 			setSelected(date)
-			onChange?.(value)
+			onChange?.(date)
 		} else {
 			setSelected(undefined)
 			onChange?.()
@@ -114,7 +111,7 @@ export default function DateField(props: DateFieldProps) {
 				const value = formatDate(date, format, { locale })
 				setInputValue(value)
 				close()
-				onChange?.(value)
+				onChange?.(date)
 			} else {
 				setInputValue('')
 				onChange?.()
@@ -148,9 +145,7 @@ export default function DateField(props: DateFieldProps) {
 					isRequired={isRequired}
 					placeholder={placeholder}
 					value={inputValue}
-					onChange={(value) => {
-						handleInputChange(value)
-					}}
+					onChange={handleInputChange}
 					onBlur={(e) => {
 						inputProps.onBlur?.(
 							e as React.FocusEvent<HTMLInputElement, Element>
@@ -297,28 +292,3 @@ const StyledButton = styled(Button)`
 	background-color: ${({ theme }) =>
 		theme.darkMode && theme.colors.bases.primary[700]};
 `
-
-type OnlyAriaType<T> = {
-	[K in keyof T as K extends `aria-${string}` ? K : never]: T[K]
-}
-
-/**
- * Split props into aria and rest
- * @param props
- */
-const splitAriaProps = <T extends object>(props: T) =>
-	Object.entries(props).reduce(
-		(acc, [key, prop]) => {
-			if (key.startsWith('aria-')) {
-				acc.aria[key] = prop
-			} else {
-				acc.rest[key] = prop
-			}
-
-			return acc
-		},
-		{ aria: {}, rest: {} } as {
-			aria: Record<string, unknown>
-			rest: Record<string, unknown>
-		}
-	) as { aria: OnlyAriaType<T>; rest: Omit<T, keyof OnlyAriaType<T>> }

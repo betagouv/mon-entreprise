@@ -4,37 +4,22 @@ import { DottedName } from 'modele-social'
 import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
 import { expect } from 'vitest'
 
-import { round } from '@/utils/number'
-
 import { PublicodesTypes } from '../helpers/PublicodesTypes'
-
-type RuleType =
-	| PublicodesExpression
-	| {
-			dottedName: PublicodesExpression
-			precision?: number
-	  }
 
 const toEvaluate = function <T extends PublicodesTypes>(
 	engine: Engine,
-	rule: RuleType,
+	rule: PublicodesExpression,
 	value: Evaluation<T>
 ) {
-	let dottedName: PublicodesExpression
-	let precision: number | null = null
-	if (typeof rule === 'object' && 'dottedName' in rule) {
-		dottedName = rule.dottedName as PublicodesExpression
-		if ('precision' in rule && typeof rule.precision === 'number') {
-			precision = rule.precision
-		}
-	} else {
-		dottedName = rule
-	}
-	const evaluation = engine.evaluate(dottedName).nodeValue
-	const formattedEvaluation = precision
-		? round(evaluation as number, precision)
-		: evaluation
-	const pass = formattedEvaluation === value
+	const evaluation = engine.evaluate(rule).nodeValue
+	const pass = evaluation === value
+
+	const ruleName =
+		rule instanceof String || rule instanceof Number
+			? rule
+			: (rule as Record<string, unknown>).valeur
+			? (rule as Record<string, unknown>).valeur
+			: JSON.stringify(rule, null, 2)
 
 	if (pass) {
 		return {
@@ -48,7 +33,7 @@ const toEvaluate = function <T extends PublicodesTypes>(
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
 					`${value}`
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-				)} for rule ${dottedName}`,
+				)} for rule ${ruleName}`,
 			pass: true,
 		}
 	} else {
@@ -62,7 +47,7 @@ const toEvaluate = function <T extends PublicodesTypes>(
 				)} to equal ${this.utils.printExpected(
 					`${value}`
 					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-base-to-string
-				)} for rule ${dottedName}`,
+				)} for rule ${ruleName}`,
 			pass: false,
 		}
 	}

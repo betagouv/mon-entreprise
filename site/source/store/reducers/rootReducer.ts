@@ -2,20 +2,22 @@ import { DottedName } from 'modele-social'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import {
 	Action,
 	enregistreLaRéponse as updateSituationAction,
 } from '@/store/actions/actions'
 import { simulationReducer } from '@/store/reducers/simulation.reducer'
 import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
+import situationReducer from '@/store/slices/simulateursSlice'
 
 import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
-export type { SimulationConfig, Situation }
+export type { SimulationConfig, SituationPublicodes }
 
 function activeTargetInput(state: DottedName | null = null, action: Action) {
 	switch (action.type) {
@@ -37,7 +39,10 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 		(newState, [fieldName, value]) =>
 			mainReducer(
 				newState ?? undefined,
-				updateSituationAction(fieldName as DottedName, value)
+				updateSituationAction(
+					fieldName as DottedName,
+					value as ValeurPublicodes
+				)
 			),
 		state
 	)
@@ -49,6 +54,7 @@ const mainReducer = combineReducers({
 	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	choixStatutJuridique,
+	situation: situationReducer,
 })
 
 export default reduceReducers<RootState>(

@@ -1,13 +1,15 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 
 import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
 import { toPublicodeDate } from '@/domaine/Date'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { Entreprise } from '@/domaine/Entreprise'
 import { Action } from '@/store/actions/actions'
 import { omit } from '@/utils'
 import { buildSituationFromObject } from '@/utils/publicodes'
 
-import { Situation } from './rootReducer'
+import { SituationPublicodes } from './rootReducer'
 
 const SAVED_NAMESPACES = [
 	'dirigeant . gérant minoritaire',
@@ -38,18 +40,21 @@ export function isCompanyDottedName(dottedName: DottedName) {
 	return SAVED_NAMESPACES.some((namespace) => dottedName.startsWith(namespace))
 }
 
-export function companySituation(state: Situation = {}, action: Action) {
+export function companySituation(
+	state: SituationPublicodes = {},
+	action: Action
+) {
 	switch (action.type) {
 		case 'ENREGISTRE_LA_RÉPONSE':
 			if (isCompanyDottedName(action.fieldName)) {
 				return {
 					...state,
-					[action.fieldName]: action.value,
+					[action.fieldName]: PublicodesAdapter.encode(O.some(action.value)),
 				}
 			}
 			break
 		case 'DELETE_FROM_SITUATION': {
-			return omit({ ...state }, action.fieldName) as Situation
+			return omit({ ...state }, action.fieldName) as SituationPublicodes
 		}
 		case 'COMPANY::SET_EXISTING_COMPANY':
 			return getCompanySituation(action.entreprise)
@@ -84,7 +89,9 @@ export function companySituation(state: Situation = {}, action: Action) {
 	return state
 }
 
-export function getCompanySituation(entreprise: Entreprise): Situation {
+export function getCompanySituation(
+	entreprise: Entreprise
+): SituationPublicodes {
 	return {
 		'entreprise . date de création': toPublicodeDate(entreprise.dateDeCréation),
 		'entreprise . code catégorie juridique': entreprise.codeCatégorieJuridique,
