@@ -31,7 +31,7 @@ export default function Page404() {
 				}
 				picture={image}
 			>
-				<Button size="XL" role="link" to={'/'}>
+				<Button size="XL" to={'/'}>
 					<Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
 				</Button>
 			</PageHeader>
