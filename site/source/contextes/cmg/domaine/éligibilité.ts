@@ -20,6 +20,7 @@ const DATE_RÉFORME = new Date('2025-09-01')
 const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
 
 interface SituationCMG {
+	enfantsÀCharge: EnfantsÀCharge
 	enfantsGardés: Array<Enfant>
 	historique: {
 		mars: MoisHistorique
@@ -28,6 +29,10 @@ interface SituationCMG {
 	}
 }
 
+export interface EnfantsÀCharge {
+	total: number
+	AeeH: number
+}
 interface MoisHistorique {
 	droitsOuverts: boolean
 	ressources: O.Option<M.Montant<'Euro'>>

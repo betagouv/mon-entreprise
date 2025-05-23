@@ -15,6 +15,10 @@ describe('CMG', () => {
 	describe('estÉligible', () => {
 		it('est éligible si tous les critères d’éligibilité sont remplis', () => {
 			const résultat = estÉligible({
+				enfantsÀCharge: {
+					total: 3,
+					AeeH: 0,
+				},
 				enfantsGardés: [
 					{
 						dateDeNaissance: new Date('2019-09-02'),
@@ -84,6 +88,10 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si pas de droits ouverts sur mars, avril NI mai', () => {
 			const résultat = estÉligible({
+				enfantsÀCharge: {
+					total: 3,
+					AeeH: 0,
+				},
 				enfantsGardés: [
 					{
 						dateDeNaissance: new Date('2023-07-31'),
@@ -150,6 +158,10 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si ressources de mai = plafond (8 500 €)', () => {
 			const résultat = estÉligible({
+				enfantsÀCharge: {
+					total: 3,
+					AeeH: 0,
+				},
 				enfantsGardés: [
 					{
 						dateDeNaissance: new Date('2023-07-31'),
@@ -216,6 +228,10 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si moins de 2 mois employeureuse', () => {
 			const résultat = estÉligible({
+				enfantsÀCharge: {
+					total: 3,
+					AeeH: 0,
+				},
 				enfantsGardés: [
 					{
 						dateDeNaissance: new Date('2023-07-31'),
@@ -261,6 +277,10 @@ describe('CMG', () => {
 
 		it('n’est pas éligible s’il manque les ressources sur un mois employeureuse', () => {
 			const résultat = estÉligible({
+				enfantsÀCharge: {
+					total: 3,
+					AeeH: 0,
+				},
 				enfantsGardés: [
 					{
 						dateDeNaissance: new Date('2023-07-31'),
@@ -327,6 +347,10 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si la moyenne d’heures de garde ne dépasse pas le plancher', () => {
 			const résultat = estÉligible({
+				enfantsÀCharge: {
+					total: 3,
+					AeeH: 0,
+				},
 				enfantsGardés: [
 					{
 						dateDeNaissance: new Date('2023-07-31'),
@@ -388,6 +412,10 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si aucun enfant n’ouvre droit au CMG', () => {
 			const résultat = estÉligible({
+				enfantsÀCharge: {
+					total: 3,
+					AeeH: 0,
+				},
 				enfantsGardés: [
 					{
 						dateDeNaissance: new Date('2019-09-01'),
