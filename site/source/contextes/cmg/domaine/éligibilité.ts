@@ -1,3 +1,4 @@
+import { addYears, getYear, isAfter } from 'date-fns/fp'
 import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as N from 'effect/Number'
@@ -152,13 +153,6 @@ const auMoinsUnEnfantOuvrantDroitAuCMG = (
 	enfantsGardés: Array<Enfant>
 ): boolean => A.some(enfantsGardés, enfantOuvreDroitAuCMG)
 
-export const enfantOuvreDroitAuCMG = (enfant: Enfant): boolean => {
-	if (enfant.dateDeNaissance.getFullYear() === ANNÉE_DE_NAISSANCE_EXCLUE) {
-		return false
-	}
-
-	const date6Ans = new Date(enfant.dateDeNaissance.valueOf())
-	date6Ans.setFullYear(enfant.dateDeNaissance.getFullYear() + 6)
-
-	return date6Ans > DATE_RÉFORME
-}
+export const enfantOuvreDroitAuCMG = (enfant: Enfant): boolean =>
+	getYear(enfant.dateDeNaissance) !== ANNÉE_DE_NAISSANCE_EXCLUE &&
+	pipe(enfant.dateDeNaissance, addYears(6), isAfter(DATE_RÉFORME))
