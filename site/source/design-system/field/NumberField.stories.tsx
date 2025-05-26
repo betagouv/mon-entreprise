@@ -64,24 +64,15 @@ export const WithInitialValue: Story = {
 	},
 }
 
-export const WithUnit: Story = {
+export const WithFormatting: Story = {
 	render: (args) => <NumberFieldWrapper {...args} />,
 	args: {
-		label: 'Number Input with Unit',
-		value: 1500,
-		displayedUnit: '€',
-	},
-}
-
-export const WithCurrencyFormatting: Story = {
-	render: (args) => <NumberFieldWrapper {...args} />,
-	args: {
-		label: 'Number Input with Currency Formatting',
+		label: 'Number Input with Formatting',
 		value: 1500,
 		formatOptions: {
-			style: 'currency',
-			currency: 'EUR',
-			minimumFractionDigits: 0,
+			style: 'decimal',
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2,
 		},
 	},
 }

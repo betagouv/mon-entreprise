@@ -1,4 +1,3 @@
-import { ASTNode } from 'publicodes'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
@@ -7,28 +6,48 @@ import { Spacing } from '@/design-system/layout'
 import { Link } from '@/design-system/typography/link'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 
-type InputSuggestionsProps = {
-	suggestions?: Record<string, ASTNode>
-	onFirstClick: (val: ASTNode) => void
-	onSecondClick?: (val: ASTNode) => void
+export type InputSuggestionsProps<T> = {
+	/**
+	 * Dictionnaire des suggestions à afficher (libellé -> valeur)
+	 */
+	suggestions?: Record<string, T>
+
+	/**
+	 * Fonction appelée lors du premier clic sur une suggestion
+	 */
+	onFirstClick: (val: T) => void
+
+	/**
+	 * Fonction appelée lors du second clic sur la même suggestion
+	 */
+	onSecondClick?: (val: T) => void
+
+	/**
+	 * Classe CSS additionnelle
+	 */
 	className?: string
 }
 
-export default function InputSuggestions({
-	suggestions = {},
-	onSecondClick = (x) => x,
+/**
+ * Composant qui affiche une liste de suggestions cliquables
+ * Le composant gère un état interne pour détecter les clics répétés sur la même suggestion
+ */
+export function InputSuggestions<T>({
+	suggestions = {} as Record<string, T>,
+	onSecondClick = ((x: T) => x) as unknown as (val: T) => void,
 	onFirstClick,
 	className,
-}: InputSuggestionsProps) {
-	const [suggestion, setSuggestion] = useState<ASTNode>()
+}: InputSuggestionsProps<T>) {
+	const [suggestion, setSuggestion] = useState<T>()
 	const { t } = useTranslation()
+
 	if (!suggestions || !Object.keys(suggestions).length) {
 		return <Spacing md />
 	}
 
 	return (
 		<StyledInputSuggestion className={className}>
-			{Object.entries(suggestions).map(([text, value]: [string, ASTNode]) => {
+			{Object.entries(suggestions).map(([text, value]: [string, T]) => {
 				return (
 					<Link
 						key={text}

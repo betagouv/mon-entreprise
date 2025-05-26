@@ -1,14 +1,8 @@
-import { ASTNode } from 'publicodes'
 import { styled } from 'styled-components'
 
-import InputSuggestions from '@/components/conversation/InputSuggestions'
 import { NumberField } from '@/design-system'
-import {
-	montant,
-	Montant,
-	UnitéMonétaire,
-	unitéMonétaireToString,
-} from '@/domaine/Montant'
+import { InputSuggestions } from '@/design-system/suggestions/InputSuggestions'
+import { montant, Montant, UnitéMonétaire } from '@/domaine/Montant'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
@@ -16,14 +10,14 @@ interface MontantFieldProps<U extends UnitéMonétaire> {
 	value: Montant<U> | undefined
 	unité: U
 	onChange?: (value: Montant<U> | undefined) => void
-	missing?: boolean
+	placeholder?: Montant<U>
 	onSubmit?: (source?: string) => void
-	suggestions?: Record<string, ASTNode>
+	suggestions?: Record<string, Montant<U>>
 	showSuggestions?: boolean
+	avecCentimes?: boolean
 
 	id?: string
 	description?: string
-	formatOptions?: Intl.NumberFormatOptions
 
 	aria?: {
 		labelledby?: string
@@ -37,8 +31,8 @@ export default function MontantField<U extends UnitéMonétaire>({
 	suggestions,
 	onChange = NoOp,
 	onSubmit,
-	missing,
-	formatOptions,
+	placeholder,
+	avecCentimes = false,
 	showSuggestions,
 	id,
 	aria,
@@ -47,13 +41,6 @@ export default function MontantField<U extends UnitéMonétaire>({
 		value,
 		onChange,
 	})
-
-	const completeFormatOptions = {
-		style: 'currency',
-		currency: 'EUR',
-		minimumFractionDigits: 0,
-		...formatOptions,
-	}
 
 	const handleValueChange = (valeur: number | undefined) => {
 		handleChange(
@@ -72,18 +59,22 @@ export default function MontantField<U extends UnitéMonétaire>({
 				aria-labelledby={aria?.labelledby}
 				aria-label={aria?.label}
 				description={''}
-				displayedUnit={unitéMonétaireToString(unité)}
 				onChange={handleValueChange}
-				formatOptions={completeFormatOptions}
-				placeholder={missing && value != null ? value.valeur : undefined}
+				formatOptions={{
+					style: 'currency',
+					currency: 'EUR',
+					minimumFractionDigits: avecCentimes ? 2 : 0,
+					maximumFractionDigits: avecCentimes ? 2 : 0,
+				}}
+				placeholder={placeholder?.valeur}
 				value={currentValue?.valeur}
 			/>
 			{showSuggestions && suggestions && (
-				<InputSuggestions
+				<InputSuggestions<Montant<U>>
 					className="print-hidden"
 					suggestions={suggestions}
-					onFirstClick={(node: ASTNode) => {
-						handleChange(montant(node.rawNode.valeur as number, unité))
+					onFirstClick={(montantSuggestion: Montant<U>) => {
+						handleChange(montantSuggestion)
 					}}
 					onSecondClick={() => onSubmit?.('suggestion')}
 				/>

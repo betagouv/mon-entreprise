@@ -15,7 +15,7 @@ import {
 	useRef,
 	useState,
 } from 'react'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import { omit } from '@/utils'
 
@@ -26,7 +26,6 @@ import {
 	StyledInput,
 	StyledInputContainer,
 	StyledLabel,
-	StyledSuffix,
 } from './TextField'
 
 type NumberFieldProps = Omit<
@@ -60,9 +59,16 @@ export default function NumberField(props: NumberFieldProps) {
 		  )
 		: 1
 
+	const completeProps: NumberFieldProps = {
+		...props,
+		formatOptions: props.displayedUnit
+			? { ...props.formatOptions, style: 'unit', unit: props.displayedUnit }
+			: props.formatOptions,
+	}
+
 	const ref = useRef<HTMLInputElement>(null)
 	const state = useSimpleNumberFieldState({
-		...props,
+		...completeProps,
 		step,
 		locale,
 	})
@@ -74,7 +80,7 @@ export default function NumberField(props: NumberFieldProps) {
 		errorMessageProps,
 		groupProps,
 	} = useNumberField(
-		{ ...props, step } as AriaNumberFieldProps,
+		{ ...completeProps, step } as AriaNumberFieldProps,
 		state as NumberFieldState,
 		ref
 	)
@@ -82,24 +88,6 @@ export default function NumberField(props: NumberFieldProps) {
 		inputProps,
 		ref
 	)
-
-	const handleClickOnUnit = useCallback(() => {
-		if (!ref.current) {
-			return
-		}
-		ref.current.focus()
-		const length = ref.current.value.length * 2
-		ref.current.setSelectionRange(length * 2, length * 2)
-	}, [])
-
-	const handleDoubleClickOnUnit = useCallback(() => {
-		if (!ref.current) {
-			return
-		}
-		ref.current.focus()
-		const length = ref.current.value.length * 2
-		ref.current.setSelectionRange(0, length * 2)
-	}, [])
 
 	delete inputWithCursorHandlingProps.autoCorrect
 
@@ -113,14 +101,13 @@ export default function NumberField(props: NumberFieldProps) {
 			>
 				<StyledNumberInput
 					{...(omit(
-						props as typeof props & {
+						completeProps as typeof props & {
 							dottedName?: string
 							hideDefaultValue?: boolean
 						},
 						'label',
 						'small',
 						'formatOptions',
-						'displayedUnit',
 						'hideDefaultValue',
 						'dottedName'
 					) as HTMLAttributes<HTMLInputElement>)}
@@ -131,16 +118,7 @@ export default function NumberField(props: NumberFieldProps) {
 							: ''
 					}
 					ref={ref}
-					$withUnit={!!props.displayedUnit}
 				/>
-				{props.displayedUnit && (
-					<StyledUnit
-						onClick={handleClickOnUnit}
-						onDoubleClick={handleDoubleClickOnUnit}
-					>
-						&nbsp;{props.displayedUnit}
-					</StyledUnit>
-				)}
 
 				{props.label && !props.small && (
 					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
@@ -163,22 +141,7 @@ const StyledNumberFieldContainer = styled(StyledContainer)`
 	max-width: 300px;
 `
 
-const StyledUnit = styled(StyledSuffix)`
-	color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.grey[200]
-			: theme.colors.extended.grey[600]};
-	background-color: transparent;
-	padding-left: 0 !important;
-	white-space: nowrap;
-`
-
-const StyledNumberInput = styled(StyledInput)<{ $withUnit: boolean }>`
-	${({ $withUnit }) =>
-		$withUnit &&
-		css`
-			padding-right: 0 !important;
-		`};
+const StyledNumberInput = styled(StyledInput)`
 	text-align: right;
 `
 
