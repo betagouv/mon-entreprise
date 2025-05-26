@@ -34,11 +34,17 @@ export interface EnfantsÀCharge {
 	total: number
 	AeeH: number
 }
+
+interface Enfant {
+	dateDeNaissance: Date
+}
+
 interface MoisHistorique {
 	droitsOuverts: boolean
 	ressources: O.Option<M.Montant<'Euro'>>
 	employeureuse: boolean
-	modeDeGardes: Array<DéclarationDeGarde>
+	déclarationsDeGarde: Array<DéclarationDeGarde>
+	salariées: Array<Salariée>
 }
 
 type DéclarationDeGarde = DéclarationDeGardeGED | DéclarationDeGardeAMA
@@ -59,9 +65,22 @@ type TypologieDeGardeAMA =
 
 type TypologieDeGarde = TypologieDeGardeAMA | 'GED'
 
-interface Enfant {
-	dateDeNaissance: Date
+export type Salariée = SalariéeAMA | SalariéeGED
+
+export interface SalariéeAMA {
+	type: 'AMA'
+	nbHeures: number
+	salaireNet: number
+	indemnitésEntretien: number
+	fraisDeRepas: number
 }
+interface SalariéeGED {
+	type: 'GED'
+	nbHeures: number
+	salaireNet: number
+}
+
+export type ModeDeGarde = 'AMA' | 'GED'
 
 export const estÉligible = (situation: SituationCMG): boolean =>
 	droitsOuvertsSurAuMoinsUnMois(situation.historique) &&
@@ -128,7 +147,7 @@ export const moyenneHeuresParTypologieDeGarde = (
 	return pipe(
 		historique,
 		R.values,
-		A.flatMap((m) => m.modeDeGardes),
+		A.flatMap((m) => m.déclarationsDeGarde),
 		groupeLesDéclarationsParTypologieDeGarde,
 		R.map(faitLaMoyenneDesHeuresDeGarde)
 	)
