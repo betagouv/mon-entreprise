@@ -1,8 +1,10 @@
+import { pipe } from 'effect'
 import { isNumber } from 'effect/Number'
 import * as O from 'effect/Option'
 import { isBoolean } from 'effect/Predicate'
+import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import { EvaluatedNode } from 'publicodes'
+import Engine, { ASTNode, EvaluatedNode } from 'publicodes'
 
 import {
 	isIsoDate,
@@ -13,7 +15,7 @@ import {
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
 import { SimplePublicodesExpression } from '@/domaine/engine/SimpleRuleEvaluation'
-import { isMontant, Montant, toString } from '@/domaine/Montant'
+import { isMontant, Montant } from '@/domaine/Montant'
 import { isOuiNon } from '@/domaine/OuiNon'
 
 export type Nombre = number
@@ -78,7 +80,7 @@ const encode = (
 	}
 
 	if (isMontant(valeur)) {
-		return toString(valeur)
+		return MontantAdapter.encode(optionalValeur as O.Some<Montant>)
 	}
 
 	if (isNumber(valeur)) return valeur
@@ -91,3 +93,14 @@ const encode = (
 }
 
 export const PublicodesAdapter = { decode, encode }
+
+export const decodeSuggestions = <T extends ValeurPublicodes>(
+	suggestions: Record<string, ASTNode>,
+	engine: Engine
+): Record<string, T> =>
+	pipe(
+		suggestions,
+		R.map((node) => pipe(engine.evaluate(node), PublicodesAdapter.decode)),
+		R.filter(O.isSome),
+		R.map(O.getOrThrow)
+	) as Record<string, T>
