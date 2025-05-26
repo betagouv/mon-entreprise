@@ -60,17 +60,20 @@ export const PlanContent = () => {
 				<StyledUl>
 					{Object.entries(simulatorData)
 						.filter(
-							([, { pathId }]) =>
-								pathId.startsWith('simulateurs') &&
-								!pathId.startsWith('simulateurs.profession-libérale.cipav') &&
-								!pathId.startsWith(
+							([, simulator]) =>
+								simulator.pathId.startsWith('simulateurs') &&
+								!simulator.pathId.startsWith('simulateurs.profession-libérale.cipav') &&
+								!simulator.pathId.startsWith(
 									'simulateurs.profession-libérale.auxiliaire'
 								) &&
-								!pathId.startsWith(
+								!simulator.pathId.startsWith(
 									'simulateurs.profession-libérale.chirurgien-dentiste'
 								) &&
-								!pathId.startsWith('simulateurs.profession-libérale.médecin') &&
-								!pathId.startsWith('simulateurs.profession-libérale.sage-femme')
+								!simulator.pathId.startsWith('simulateurs.profession-libérale.médecin') &&
+								!simulator.pathId.startsWith(
+									'simulateurs.profession-libérale.sage-femme'
+								) &&
+								!('hidden' in simulator && simulator.hidden)
 						)
 						.map(([simulateurKey, { path, title }]) => {
 							return (
@@ -82,9 +85,10 @@ export const PlanContent = () => {
 
 					{Object.entries(simulatorData)
 						.filter(
-							([, { pathId }]) =>
-								pathId.startsWith('assistants') &&
-								pathId !== 'assistants.pour-mon-entreprise.index'
+							([, simulator]) =>
+								simulator.pathId.startsWith('assistants') &&
+								simulator.pathId !== 'assistants.pour-mon-entreprise.index' &&
+								!('hidden' in simulator && simulator.hidden)
 						)
 						.map(([simulateurKey, { path, title }]) => {
 							return (
