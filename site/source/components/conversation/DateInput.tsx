@@ -6,6 +6,7 @@ import { styled } from 'styled-components'
 import { useEngine } from '@/components/utils/EngineContext'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
+import { InputSuggestions } from '@/design-system/suggestions'
 import {
 	dateToIsoDate,
 	IsoDate,
@@ -16,7 +17,6 @@ import {
 import { NoOp } from '@/utils/NoOp'
 
 import Skeleton from '../ui/Skeleton'
-import InputSuggestions from './InputSuggestions'
 
 const DateField = lazy(() => import('@/design-system/field/DateField'))
 

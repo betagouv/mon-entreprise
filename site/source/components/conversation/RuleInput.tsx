@@ -18,12 +18,17 @@ import { ChoiceDisplayType } from '@/design-system/field/ChoiceGroup'
 import { DateFieldProps } from '@/design-system/field/DateField'
 import { Spacing } from '@/design-system/layout'
 import { isIsoDate } from '@/domaine/Date'
-import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
+import {
+	estUneUnitéDeMontantPublicodes,
+	MontantAdapter,
+} from '@/domaine/engine/MontantAdapter'
 import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
 import {
+	decodeSuggestions,
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
+import { Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
@@ -298,32 +303,29 @@ export default function RuleInput({
 		)
 	}
 
-	if (rule.rawNode.type === 'nombre' && rule.rawNode.unité) {
-		console.warn('Est-ce un montant ?', rule.rawNode.unité)
-
-		// eslint-disable-next-line no-constant-condition
-		if (false) {
-			return (
-				<MontantField
-					value={pipe(evaluation, MontantAdapter.decode, O.getOrUndefined)}
-					unité={'Euro'} // FIXME détecter correctement l’unité
-					onChange={(value) => {
-						onChange(value, dottedName)
-					}}
-					missing={missing ?? dottedName in evaluation.missingVariables}
-					onSubmit={onSubmit}
-					suggestions={showSuggestions ? rule.suggestions : {}}
-					showSuggestions={showSuggestions}
-					id={inputId}
-					description={rule.rawNode.description}
-					formatOptions={accessibilityProps.formatOptions}
-					aria={{
-						labelledby: accessibilityProps['aria-labelledby'],
-						label: accessibilityProps['aria-label'] ?? rule.title,
-					}}
-				/>
-			)
-		}
+	if (estUneUnitéDeMontantPublicodes(rule.rawNode.unité)) {
+		return (
+			<MontantField
+				value={pipe(evaluation, MontantAdapter.decode, O.getOrUndefined)}
+				unité={'Euro'} // FIXME détecter correctement l’unité
+				onChange={(value) => {
+					onChange(value, dottedName)
+				}}
+				onSubmit={onSubmit}
+				suggestions={
+					showSuggestions
+						? decodeSuggestions<Montant>(rule.suggestions, engineValue)
+						: {}
+				}
+				showSuggestions={showSuggestions}
+				id={inputId}
+				description={rule.rawNode.description}
+				aria={{
+					labelledby: accessibilityProps['aria-labelledby'],
+					label: accessibilityProps['aria-label'] ?? rule.title,
+				}}
+			/>
+		)
 	}
 
 	return (

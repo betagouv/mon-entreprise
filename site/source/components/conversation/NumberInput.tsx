@@ -2,10 +2,9 @@ import { ASTNode } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { NumberField } from '@/design-system/field'
+import { InputSuggestions } from '@/design-system/suggestions'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
-
-import InputSuggestions from './InputSuggestions'
 
 interface NumberInputProps {
 	value: number | undefined
