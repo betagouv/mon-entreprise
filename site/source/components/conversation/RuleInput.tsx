@@ -261,11 +261,7 @@ export default function RuleInput({
 		return (
 			<>
 				<OuiNonInput
-					value={pipe(
-						value as Evaluation<boolean>,
-						OuiNonAdapter.decode,
-						O.getOrUndefined
-					)}
+					value={value as 'oui' | 'non' | undefined}
 					onChange={(value) => onChange(value, dottedName)}
 					defaultValue={O.getOrUndefined(defaultValue) as OuiNon | undefined}
 					id={inputId}
