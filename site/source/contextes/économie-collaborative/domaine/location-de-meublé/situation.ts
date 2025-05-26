@@ -3,11 +3,7 @@ import * as O from 'effect/Option'
 import { Montant } from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
-export const SITUATION_ÉCONOMIE_COLLABORATIVE =
-	'économie-collaborative' as const
-
 export interface SituationÉconomieCollaborative extends Situation {
-	_type: typeof SITUATION_ÉCONOMIE_COLLABORATIVE
 	recettes: O.Option<Montant<'EuroParAn'>>
 	regimeCotisation: O.Option<RegimeCotisation>
 	estAlsaceMoselle: O.Option<boolean>
@@ -20,10 +16,14 @@ export enum RegimeCotisation {
 	regimeGeneral = 'régime-général',
 }
 
-export const isSituationÉconomieCollaborative = (
-	situation: Situation
-): situation is SituationÉconomieCollaborative =>
-	situation._type === SITUATION_ÉCONOMIE_COLLABORATIVE
+export const initialSituationÉconomieCollaborative: SituationÉconomieCollaborative =
+	{
+		_tag: 'Situation',
+		recettes: O.none(),
+		regimeCotisation: O.none(),
+		estAlsaceMoselle: O.none(),
+		premièreAnnée: O.none(),
+	}
 
 export interface SituationÉconomieCollaborativeValide
 	extends SituationÉconomieCollaborative {
