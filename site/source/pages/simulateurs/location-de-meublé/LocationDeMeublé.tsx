@@ -5,17 +5,13 @@ import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDan
 import Value from '@/components/EngineValue/Value'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, { SimulationGoals } from '@/components/Simulation'
-import { calculeCotisations } from '@/contextes/économie-collaborative/domaine/location-de-meublé'
+import { SimulationImpossible } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
-	SimulationImpossible,
-	SituationIncomplète,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
-import { calculeRevenuNet } from '@/contextes/économie-collaborative/domaine/location-de-meublé/revenu-net'
-import {
-	estSituationValide,
+	SituationÉconomieCollaborative,
 	usagerAChoisiUnRégimeDeCotisation,
 } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/store/useEconomieCollaborative.hook'
+import { ÉconomieCollaborativeProvider } from '@/contextes/économie-collaborative/hooks/ÉconomieCollaborativeContext'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { eurosParAn } from '@/domaine/Montant'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
@@ -29,25 +25,12 @@ import {
 import { ObjectifCotisations } from './objectifs/ObjectifCotisations'
 
 const LocationDeMeublé = () => {
-	const { ready, situation } = useEconomieCollaborative()
-
-	if (!ready) {
-		return <></>
-	}
+	const { situation, cotisations, revenuNet } = useEconomieCollaborative()
 
 	const regimeCotisationChoisi = usagerAChoisiUnRégimeDeCotisation(situation)
 
-	const cotisations = calculeCotisations(situation)
-	const revenuNet = estSituationValide(situation)
-		? calculeRevenuNet(situation)
-		: Either.left(
-				new SituationIncomplète({
-					message: 'Situation incomplète',
-				})
-		  )
-
 	return (
-		<Simulation
+		<Simulation<SituationÉconomieCollaborative>
 			entrepriseSelection={false}
 			situation={situation}
 			questions={[
@@ -123,4 +106,10 @@ const LocationDeMeublé = () => {
 	)
 }
 
-export default LocationDeMeublé
+const LocationDeMeubléWithProvider = () => (
+	<ÉconomieCollaborativeProvider>
+		<LocationDeMeublé />
+	</ÉconomieCollaborativeProvider>
+)
+
+export default LocationDeMeubléWithProvider

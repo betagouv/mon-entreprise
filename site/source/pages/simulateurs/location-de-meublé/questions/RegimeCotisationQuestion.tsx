@@ -12,7 +12,7 @@ import {
 	estSituationValide,
 	RegimeCotisation,
 } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/store/useEconomieCollaborative.hook'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
 import { RadioCard, RadioCardGroup } from '@/design-system'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { toString as formatMontant } from '@/domaine/Montant'
@@ -29,22 +29,16 @@ export const RegimeCotisationQuestion: ComposantQuestion<
 	Props
 > = () => {
 	const { t } = useTranslation()
-	const { ready, situation, setSituation } = useEconomieCollaborative()
+	const { situation, set } = useEconomieCollaborative()
 
 	const handleChange = useCallback(
 		(newValue: string) => {
 			if (newValue) {
-				setSituation &&
-					setSituation({
-						...situation,
-						regimeCotisation: O.some(newValue as RegimeCotisation),
-					})
+				set.regimeCotisation(O.some(newValue as RegimeCotisation))
 			}
 		},
-		[setSituation, situation]
+		[set]
 	)
-
-	if (!ready) return null
 
 	const comparaisonRégimes = pipe(
 		situation,
