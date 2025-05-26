@@ -13,6 +13,7 @@ export function chirurgienDentisteConfig({
 	return config({
 		id: 'chirurgien-dentiste',
 		icône: '🦷',
+		hidden: true,
 		meta: {
 			title: t(
 				'pages.simulateurs.chirurgien-dentiste.meta.title',

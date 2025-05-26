@@ -9,6 +9,7 @@ import { configMédecin } from '../profession-libérale/simulationConfig'
 export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'médecin',
+		hidden: true,
 		tracking: {
 			chapter2: 'profession_liberale',
 			chapter3: 'medecin',
