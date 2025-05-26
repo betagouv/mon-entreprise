@@ -35,7 +35,7 @@ describe('CMG', () => {
 						droitsOuverts: false,
 						ressources: O.some(euros(8_500)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -46,12 +46,26 @@ describe('CMG', () => {
 								heuresDeGarde: 31,
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 150,
+								salaireNet: 750,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 31,
+								salaireNet: 310,
+							},
+						],
 					},
 					avril: {
 						droitsOuverts: false,
 						ressources: O.none(),
 						employeureuse: false,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -63,12 +77,21 @@ describe('CMG', () => {
 								typologieDeGarde: 'AMA Fratrie 0-6 ans',
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 200,
+								salaireNet: 1000,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+						],
 					},
 					mai: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
@@ -77,6 +100,20 @@ describe('CMG', () => {
 							{
 								type: 'GED',
 								heuresDeGarde: 35,
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 35,
+								salaireNet: 350,
 							},
 						],
 					},
@@ -105,7 +142,7 @@ describe('CMG', () => {
 						droitsOuverts: false,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -116,12 +153,26 @@ describe('CMG', () => {
 								heuresDeGarde: 31,
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 150,
+								salaireNet: 750,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 31,
+								salaireNet: 310,
+							},
+						],
 					},
 					avril: {
 						droitsOuverts: false,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -133,12 +184,21 @@ describe('CMG', () => {
 								typologieDeGarde: 'AMA Fratrie 0-6 ans',
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 200,
+								salaireNet: 1000,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+						],
 					},
 					mai: {
 						droitsOuverts: false,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
@@ -147,6 +207,20 @@ describe('CMG', () => {
 							{
 								type: 'GED',
 								heuresDeGarde: 35,
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 35,
+								salaireNet: 350,
 							},
 						],
 					},
@@ -175,7 +249,7 @@ describe('CMG', () => {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -186,12 +260,26 @@ describe('CMG', () => {
 								heuresDeGarde: 31,
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 150,
+								salaireNet: 750,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 31,
+								salaireNet: 310,
+							},
+						],
 					},
 					avril: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -203,12 +291,21 @@ describe('CMG', () => {
 								typologieDeGarde: 'AMA Fratrie 0-6 ans',
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 200,
+								salaireNet: 1000,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+						],
 					},
 					mai: {
 						droitsOuverts: true,
 						ressources: O.some(euros(8_500)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
@@ -217,6 +314,20 @@ describe('CMG', () => {
 							{
 								type: 'GED',
 								heuresDeGarde: 35,
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 35,
+								salaireNet: 350,
 							},
 						],
 					},
@@ -245,19 +356,21 @@ describe('CMG', () => {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: false,
-						modeDeGardes: [],
+						déclarationsDeGarde: [],
+						salariées: [],
 					},
 					avril: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: false,
-						modeDeGardes: [],
+						déclarationsDeGarde: [],
+						salariées: [],
 					},
 					mai: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
@@ -266,6 +379,20 @@ describe('CMG', () => {
 							{
 								type: 'GED',
 								heuresDeGarde: 35,
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 35,
+								salaireNet: 350,
 							},
 						],
 					},
@@ -294,7 +421,7 @@ describe('CMG', () => {
 						droitsOuverts: true,
 						ressources: O.none(),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -305,12 +432,26 @@ describe('CMG', () => {
 								heuresDeGarde: 31,
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 150,
+								salaireNet: 750,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 31,
+								salaireNet: 310,
+							},
+						],
 					},
 					avril: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: false,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -322,12 +463,21 @@ describe('CMG', () => {
 								typologieDeGarde: 'AMA Fratrie 0-6 ans',
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 200,
+								salaireNet: 1000,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+						],
 					},
 					mai: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
@@ -336,6 +486,20 @@ describe('CMG', () => {
 							{
 								type: 'GED',
 								heuresDeGarde: 35,
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 35,
+								salaireNet: 350,
 							},
 						],
 					},
@@ -364,7 +528,7 @@ describe('CMG', () => {
 						droitsOuverts: true,
 						ressources: O.none(),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -375,16 +539,39 @@ describe('CMG', () => {
 								heuresDeGarde: 31,
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 150,
+								salaireNet: 750,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 31,
+								salaireNet: 310,
+							},
+						],
 					},
 					avril: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: false,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
 								typologieDeGarde: 'AMA Fratrie 0-6 ans',
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
 							},
 						],
 					},
@@ -392,7 +579,7 @@ describe('CMG', () => {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
@@ -401,6 +588,20 @@ describe('CMG', () => {
 							{
 								type: 'GED',
 								heuresDeGarde: 35,
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 35,
+								salaireNet: 350,
 							},
 						],
 					},
@@ -432,7 +633,7 @@ describe('CMG', () => {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -443,12 +644,26 @@ describe('CMG', () => {
 								heuresDeGarde: 31,
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 150,
+								salaireNet: 750,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 31,
+								salaireNet: 310,
+							},
+						],
 					},
 					avril: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: false,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 150,
@@ -460,12 +675,21 @@ describe('CMG', () => {
 								typologieDeGarde: 'AMA Fratrie 0-6 ans',
 							},
 						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 200,
+								salaireNet: 1000,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+						],
 					},
 					mai: {
 						droitsOuverts: true,
 						ressources: O.some(euros(1_000)),
 						employeureuse: true,
-						modeDeGardes: [
+						déclarationsDeGarde: [
 							{
 								type: 'AMA',
 								heuresDeGarde: 50,
@@ -474,6 +698,20 @@ describe('CMG', () => {
 							{
 								type: 'GED',
 								heuresDeGarde: 35,
+							},
+						],
+						salariées: [
+							{
+								type: 'AMA',
+								nbHeures: 50,
+								salaireNet: 250,
+								indemnitésEntretien: 25,
+								fraisDeRepas: 50,
+							},
+							{
+								type: 'GED',
+								nbHeures: 35,
+								salaireNet: 350,
 							},
 						],
 					},
@@ -491,11 +729,20 @@ describe('CMG', () => {
 					ressources: O.none(),
 					droitsOuverts: false,
 					employeureuse: false,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 150,
 							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
+						},
+					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 150,
+							salaireNet: 750,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
 						},
 					],
 				},
@@ -503,11 +750,20 @@ describe('CMG', () => {
 					ressources: O.none(),
 					droitsOuverts: false,
 					employeureuse: false,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 150,
 							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
+						},
+					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 150,
+							salaireNet: 750,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
 						},
 					],
 				},
@@ -515,7 +771,8 @@ describe('CMG', () => {
 					ressources: O.none(),
 					droitsOuverts: false,
 					employeureuse: false,
-					modeDeGardes: [],
+					déclarationsDeGarde: [],
+					salariées: [],
 				},
 			})
 
@@ -528,7 +785,7 @@ describe('CMG', () => {
 					ressources: O.some(euros(8_500)),
 					droitsOuverts: false,
 					employeureuse: true,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 297,
@@ -540,12 +797,21 @@ describe('CMG', () => {
 							typologieDeGarde: 'AMA Enfant unique 3-6 ans',
 						},
 					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 444,
+							salaireNet: 220,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
+						},
+					],
 				},
 				avril: {
 					ressources: O.none(),
 					droitsOuverts: false,
 					employeureuse: false,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 447,
@@ -557,15 +823,31 @@ describe('CMG', () => {
 							typologieDeGarde: 'AMA Fratrie 0-6 ans',
 						},
 					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 744,
+							salaireNet: 3720,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
+						},
+					],
 				},
 				mai: {
 					ressources: O.some(euros(1_000)),
 					droitsOuverts: true,
 					employeureuse: true,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'GED',
 							heuresDeGarde: 147,
+						},
+					],
+					salariées: [
+						{
+							type: 'GED',
+							nbHeures: 147,
+							salaireNet: 1470,
 						},
 					],
 				},
@@ -582,7 +864,7 @@ describe('CMG', () => {
 					droitsOuverts: false,
 					ressources: O.some(euros(8_500)),
 					employeureuse: true,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 150,
@@ -593,12 +875,26 @@ describe('CMG', () => {
 							heuresDeGarde: 31,
 						},
 					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 150,
+							salaireNet: 750,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
+						},
+						{
+							type: 'GED',
+							nbHeures: 31,
+							salaireNet: 310,
+						},
+					],
 				},
 				avril: {
 					droitsOuverts: false,
 					ressources: O.none(),
 					employeureuse: false,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 150,
@@ -610,12 +906,21 @@ describe('CMG', () => {
 							typologieDeGarde: 'AMA Fratrie 0-6 ans',
 						},
 					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 200,
+							salaireNet: 1000,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
+						},
+					],
 				},
 				mai: {
 					droitsOuverts: true,
 					ressources: O.some(euros(1_000)),
 					employeureuse: true,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 50,
@@ -624,6 +929,20 @@ describe('CMG', () => {
 						{
 							type: 'GED',
 							heuresDeGarde: 35,
+						},
+					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 50,
+							salaireNet: 250,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
+						},
+						{
+							type: 'GED',
+							nbHeures: 35,
+							salaireNet: 350,
 						},
 					],
 				},
@@ -642,7 +961,7 @@ describe('CMG', () => {
 					droitsOuverts: false,
 					ressources: O.some(euros(8_500)),
 					employeureuse: true,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 150,
@@ -653,16 +972,39 @@ describe('CMG', () => {
 							heuresDeGarde: 31,
 						},
 					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 150,
+							salaireNet: 750,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
+						},
+						{
+							type: 'GED',
+							nbHeures: 31,
+							salaireNet: 310,
+						},
+					],
 				},
 				avril: {
 					droitsOuverts: false,
 					ressources: O.none(),
 					employeureuse: false,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 50,
 							typologieDeGarde: 'AMA Fratrie 0-6 ans',
+						},
+					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 50,
+							salaireNet: 250,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
 						},
 					],
 				},
@@ -670,7 +1012,7 @@ describe('CMG', () => {
 					droitsOuverts: true,
 					ressources: O.some(euros(1_000)),
 					employeureuse: true,
-					modeDeGardes: [
+					déclarationsDeGarde: [
 						{
 							type: 'AMA',
 							heuresDeGarde: 50,
@@ -679,6 +1021,20 @@ describe('CMG', () => {
 						{
 							type: 'GED',
 							heuresDeGarde: 35,
+						},
+					],
+					salariées: [
+						{
+							type: 'AMA',
+							nbHeures: 50,
+							salaireNet: 250,
+							indemnitésEntretien: 25,
+							fraisDeRepas: 50,
+						},
+						{
+							type: 'GED',
+							nbHeures: 35,
+							salaireNet: 350,
 						},
 					],
 				},
