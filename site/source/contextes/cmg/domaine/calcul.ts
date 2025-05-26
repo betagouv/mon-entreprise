@@ -1,7 +1,9 @@
 import { pipe } from 'effect'
 import * as R from 'effect/Record'
 
-import { EnfantsÀCharge } from './éligibilité'
+import { round } from '@/utils/number'
+
+import { EnfantsÀCharge, ModeDeGarde, Salariée } from './éligibilité'
 
 const TEH_PAR_GARDE_ET_NB_ENFANTS = {
 	AMA: {
@@ -20,7 +22,10 @@ const TEH_PAR_GARDE_ET_NB_ENFANTS = {
 	},
 }
 
-type ModeDeGarde = 'AMA' | 'GED'
+const COÛT_HORAIRE_MAXIMAL = {
+	AMA: 8.15,
+	GED: 10.3,
+}
 
 type TEHArgs = {
 	modeDeGarde: ModeDeGarde
@@ -60,4 +65,18 @@ export const tauxEffortHoraire = ({
 		TEHParNbEnfantsValeurs[indexPourNbEnfantsAeeH] ??
 		TEHParNbEnfantsValeurs[indexMax]
 	)
+}
+
+export const coûtMensuelDeLaGarde = (salariée: Salariée) => {
+	let coûtTotal = salariée.salaireNet
+	if (salariée.type === 'AMA') {
+		coûtTotal += salariée.indemnitésEntretien + salariée.fraisDeRepas
+	}
+	const coûtHoraireNet = round(coûtTotal / salariée.nbHeures, 2)
+	const coûtHoraireAppliqué = Math.min(
+		coûtHoraireNet,
+		COÛT_HORAIRE_MAXIMAL[salariée.type]
+	)
+
+	return coûtHoraireAppliqué * salariée.nbHeures
 }
