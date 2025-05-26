@@ -1,17 +1,13 @@
 import * as O from 'effect/Option'
-import { useDispatch } from 'react-redux'
 
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/store/useEconomieCollaborative.hook'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
 import MontantField from '@/design-system/conversation/MontantField'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 export const ObjectifRecettes = () => {
-	const dispatch = useDispatch()
-	const { ready, situation, setSituation } = useEconomieCollaborative()
-
-	if (!ready) return null
+	const { situation, set } = useEconomieCollaborative()
 
 	return (
 		<ObjectifSaisissableDeSimulation
@@ -19,12 +15,7 @@ export const ObjectifRecettes = () => {
 			titre="Titre"
 			valeur={O.some(eurosParAn(0))}
 			rendreChampSaisie={() => (
-				<RecettesInput
-					montant={situation.recettes}
-					onChange={(montant) =>
-						dispatch(setSituation({ ...situation, recettes: montant }))
-					}
-				/>
+				<RecettesInput montant={situation.recettes} onChange={set.recettes} />
 			)}
 		/>
 	)

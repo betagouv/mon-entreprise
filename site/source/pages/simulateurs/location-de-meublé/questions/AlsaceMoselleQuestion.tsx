@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { SituationÉconomieCollaborative } from '@/contextes/économie-collaborative/domaine/location-de-meublé'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/store/useEconomieCollaborative.hook'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
 import { Radio, ToggleGroup } from '@/design-system'
 
 interface Props {}
@@ -14,20 +14,14 @@ export const AlsaceMoselleQuestion: ComposantQuestion<
 	Props
 > = () => {
 	const { t } = useTranslation()
-	const { ready, situation, setSituation } = useEconomieCollaborative()
+	const { situation, set } = useEconomieCollaborative()
 
 	const handleChange = useCallback(
 		(newValue: string) => {
-			setSituation &&
-				setSituation({
-					...situation,
-					estAlsaceMoselle: O.some(newValue === 'oui'),
-				})
+			set.estAlsaceMoselle(O.some(newValue === 'oui'))
 		},
-		[situation, setSituation]
+		[set]
 	)
-
-	if (!ready) return null
 
 	const value = O.isSome(situation.estAlsaceMoselle)
 		? situation.estAlsaceMoselle.value

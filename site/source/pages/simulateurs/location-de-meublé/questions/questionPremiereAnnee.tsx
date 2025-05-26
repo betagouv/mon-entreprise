@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { SituationÉconomieCollaborative } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/store/useEconomieCollaborative.hook'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
 import { Radio, ToggleGroup } from '@/design-system'
 
 interface Props {}
@@ -14,21 +14,15 @@ export const PremiereAnneeQuestion: ComposantQuestion<
 	Props
 > = () => {
 	const { t } = useTranslation()
-	const { ready, situation, setSituation } = useEconomieCollaborative()
+	const { situation, set } = useEconomieCollaborative()
 
 	const handleChange = useCallback(
 		(newValue: string) => {
 			const boolValue = newValue === 'oui'
-			setSituation &&
-				setSituation({
-					...situation,
-					premièreAnnée: O.some(boolValue),
-				})
+			set.premiereAnnee(O.some(boolValue))
 		},
-		[setSituation, situation]
+		[set]
 	)
-
-	if (!ready) return null
 
 	const boolValue = O.getOrNull(situation.premièreAnnée)
 
