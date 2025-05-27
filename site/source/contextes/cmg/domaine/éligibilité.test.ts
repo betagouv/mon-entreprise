@@ -16,16 +16,12 @@ import { EnfantFactory } from './enfantFactory'
 describe('CMG', () => {
 	describe('estÉligible', () => {
 		it('est éligible si tous les critères d’éligibilité sont remplis', () => {
-			const Oscar = (new EnfantFactory()).moinsDe3Ans().build()
-			const Rose = (new EnfantFactory()).néEn(2022).build()
-			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
-
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar,
-						Rose,
-						Aurore,
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
@@ -50,14 +46,11 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si pas de droits ouverts sur mars, avril NI mai', () => {
-			const Rose = (new EnfantFactory()).néEn(2022).build()
-			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
-
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose,
-						Aurore,
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
@@ -81,14 +74,11 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si ressources de mai = plafond (8 500 €)', () => {
-			const Rose = (new EnfantFactory()).néEn(2022).build()
-			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
-	
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose,
-						Aurore,
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
@@ -106,14 +96,11 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si moins de 2 mois employeureuse', () => {
-			const Rose = (new EnfantFactory()).néEn(2022).build()
-			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
-
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose,
-						Aurore,
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
@@ -128,14 +115,11 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible s’il manque les ressources sur un mois employeureuse', () => {
-			const Rose = (new EnfantFactory()).néEn(2022).build()
-			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
-
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose,
-						Aurore,
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
@@ -150,16 +134,12 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si la moyenne d’heures de garde ne dépasse pas le plancher', () => {
-			const Oscar = (new EnfantFactory()).moinsDe3Ans().build()
-			const Rose = (new EnfantFactory()).néEn(2022).build()
-			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
-
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar,
-						Rose,
-						Aurore,
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
@@ -183,13 +163,13 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si tous les enfants ont plus de 6 ans à la réforme ou sont nés en 2022', () => {
-			const Oscar = (new EnfantFactory()).plusDe6Ans().build()
-			const Rose = (new EnfantFactory()).néEn(2022).build()
-			const Aurore = (new EnfantFactory()).plusDe6Ans().build()
-
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					enfants: {Oscar, Rose, Aurore},
+					enfants: {
+						Oscar: (new EnfantFactory()).plusDe6Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+					},
 					AeeH: 0,
 				},
 				historique: {
@@ -339,49 +319,106 @@ describe('CMG', () => {
 		})
 	})
 
-	// describe('auMoinsUnEnfantOuvrantDroitAuCMG', () => {
-	// 	it('ouvre droit si GED et 1 enfant à charge ouvrant droit', () => {
-	// 		const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
-	// 			enfantsÀCharge: {
-	// 				enfants: [
-	// 					{
-	// 						dateDeNaissance: new Date('2019-09-02'),
-	// 					}
-	// 				],
-	// 				AeeH: 0,
-	// 			},
-	// 			historique: {
-	// 				mars: {
-	// 					droitsOuverts: false,
-	// 					ressources: O.none(),
-	// 					déclarationsDeGarde: [],
-	// 				},
-	// 				avril: {
-	// 					droitsOuverts: false,
-	// 					ressources: O.none(),
-	// 					déclarationsDeGarde: [],
-	// 				},
-	// 				mai: {
-	// 					droitsOuverts: true,
-	// 					ressources: O.some(euros(1_000)),
-	// 					employeureuse: true,
-	// 					déclarationsDeGarde: [
-	// 						{
-	// 							type: 'GED',
-	// 							heuresDeGarde: 1,
-	// 						},
-	// 						{
-	// 							type: 'AMA',
-	// 							heuresDeGarde: 100,
-								
-	// 						}
-	// 					],
-	// 					salariées: [],
-	// 				},
-	// 			}
-	// 		})
-	// 	})
-	// })
+	describe('auMoinsUnEnfantOuvrantDroitAuCMG', () => {
+		it('ouvre droit si GED et 1 enfant à charge ouvrant droit', () => {
+			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+				enfantsÀCharge: {
+					enfants: {
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+					},
+					AeeH: 0,
+				},
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], 150)
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecGED(1)
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.build(),
+				},
+			})
+
+			expect(résultat).to.be.true
+		})
+
+		it('ouvre droit si AMA uniquement et 1 enfant gardé ouvrant droit', () => {
+			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+				enfantsÀCharge: {
+					enfants: {
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+					},
+					AeeH: 0,
+				},
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'])
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar', 'Rose', 'Aurore'])
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.build(),
+				},
+			})
+
+			expect(résultat).to.be.true
+		})
+
+		it('n’ouvre pas droit si AMA uniquement et aucun enfant gardé ouvrant droit', () => {
+			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+				enfantsÀCharge: {
+					enfants: {
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+					},
+					AeeH: 0,
+				},
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], 150)
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose', 'Aurore'], 150)
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.build(),
+				},
+			})
+
+			expect(résultat).to.be.false
+		})
+
+		it('n’ouvre pas droit si aucun enfant à charge ouvrant droit', () => {
+			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+				enfantsÀCharge: {
+					enfants: {
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+					},
+					AeeH: 0,
+				},
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecGED()
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.build(),
+				},
+			})
+
+			expect(résultat).to.be.false
+		})
+	})
 
 	describe('enfantOuvreDroitAuCMG', () => {
 		it('n’ouvre pas droit si né⋅e en 2022', () => {
