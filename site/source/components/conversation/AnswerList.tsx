@@ -295,12 +295,7 @@ function AnswerElement(rule: RuleNode) {
 			small
 			disableOverflowAuto // disable overflow auto for SelectCommune autocomplete to not be hidden
 			trigger={(buttonProps) => (
-				<Link
-					{...buttonProps}
-					role="button"
-					aria-haspopup="dialog"
-					aria-label="Modifier"
-				>
+				<Link {...buttonProps} aria-haspopup="dialog" aria-label="Modifier">
 					<Value expression={rule.dottedName} linkToRule={false} />{' '}
 					<span className="print-hidden">
 						<Emoji emoji="✏" />
