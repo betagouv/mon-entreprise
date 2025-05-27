@@ -1,7 +1,7 @@
 import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 
-import { euros, Montant } from '@/domaine/Montant'
+import * as M from '@/domaine/Montant'
 
 import {
 	DéclarationsDeGardeAMAFactory,
@@ -11,7 +11,7 @@ import { DéclarationDeGarde, MoisHistorique } from './éligibilité'
 
 export class MoisHistoriqueFactory<Prénom extends string = string> {
 	private droitsOuverts = true
-	private ressources = O.some(euros(2_000))
+	private ressources = O.some(M.euros(2_000))
 	private déclarationsDeGarde = [] as DéclarationDeGarde[]
 
 	sansDroitsOuverts() {
@@ -26,7 +26,7 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 		return this
 	}
 
-	avecRessources(montant: Montant<'Euro'>) {
+	avecRessources(montant: M.Montant<'Euro'>) {
 		this.ressources = O.some(montant)
 
 		return this

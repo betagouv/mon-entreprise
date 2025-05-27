@@ -9,7 +9,7 @@ import {
 	moyenneHeuresDeGardeSupérieureAuPlancher,
 	moyenneHeuresParTypologieDeGarde,
 } from '@/contextes/cmg/domaine/éligibilité'
-import { euros } from '@/domaine/Montant'
+import * as M from '@/domaine/Montant'
 
 import { EnfantFactory } from './enfantFactory'
 import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
@@ -87,7 +87,7 @@ describe('CMG', () => {
 					mars: new MoisHistoriqueFactory().avecGED().build(),
 					avril: new MoisHistoriqueFactory().avecGED().build(),
 					mai: new MoisHistoriqueFactory()
-						.avecRessources(euros(8_500))
+						.avecRessources(M.euros(8_500))
 						.avecGED()
 						.build(),
 				},
