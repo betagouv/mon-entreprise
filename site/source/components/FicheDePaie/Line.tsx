@@ -25,14 +25,16 @@ export default function Line({
 		<WhenApplicable dottedName={rule}>
 			<WhenAlreadyDefined dottedName={rule}>
 				<Condition expression={`${rule} > 0`}>
-					<RuleLink dottedName={rule}>{title}</RuleLink>
-					<Value
-						linkToRule={false}
-						expression={(negative ? '- ' : '') + rule}
-						unit={displayedUnit === '€' ? '€/mois' : displayedUnit}
-						displayedUnit={displayedUnit}
-						{...props}
-					/>
+					<div className="payslip__salaryLine">
+						<RuleLink dottedName={rule}>{title}</RuleLink>
+						<Value
+							linkToRule={false}
+							expression={(negative ? '- ' : '') + rule}
+							unit={displayedUnit === '€' ? '€/mois' : displayedUnit}
+							displayedUnit={displayedUnit}
+							{...props}
+						/>
+					</div>
 				</Condition>
 			</WhenAlreadyDefined>
 		</WhenApplicable>

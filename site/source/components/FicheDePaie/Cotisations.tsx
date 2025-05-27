@@ -5,18 +5,12 @@ import { Trans } from 'react-i18next'
 
 import './FicheDePaie.css'
 
-import { styled } from 'styled-components'
-
-import { H3, H4 } from '@/design-system/typography/heading'
+import { H3 } from '@/design-system/typography/heading'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
 import { useEngine } from '../utils/EngineContext'
 import CotisationLine from './CotisationLine'
-
-const StyledH3 = styled(H3)`
-	text-align: right;
-`
 
 function CotisationLines({ cotisations }: { cotisations: Array<DottedName> }) {
 	return cotisations.map((cotisation: DottedName) => (
@@ -29,51 +23,68 @@ export function Cotisations() {
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
 	return (
-		<div className="payslip__cotisationsSection">
+		<section className="payslip__cotisationsSection">
 			<H3>
 				<Trans>Cotisations sociales</Trans>
 			</H3>
-			<StyledH3>
-				<Trans>employeur</Trans>
-			</StyledH3>
-			<StyledH3>
-				<Trans>salarié</Trans>
-			</StyledH3>
 
 			{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
 				const section = parsedRules[sectionDottedName]
 
 				return (
 					<Fragment key={section.dottedName}>
-						<H4 className="payslip__cotisationTitle">
-							{section.title}
-							<ExplicableRule light dottedName={section.dottedName} />
-						</H4>
-						<CotisationLines cotisations={cotisations} />
+						<table className="payslip__cotisationTable">
+							<caption className="payslip__cotisationTitle">
+								{section.title}
+								<ExplicableRule light dottedName={section.dottedName} />
+							</caption>
+							<tbody>
+								<tr>
+									<td></td>
+									<th scope="col">employeur</th>
+									<th scope="col">salarié</th>
+								</tr>
+								<CotisationLines cotisations={cotisations} />
+							</tbody>
+						</table>
 					</Fragment>
 				)
 			})}
 
 			{/* Total cotisation */}
-			<H4 className="payslip__total">
-				<Trans>Total des cotisations et contributions</Trans>
-				<ExplicableRule light dottedName="salarié . cotisations" />
-			</H4>
-			<div>
-				<Value
-					expression="salarié . cotisations . employeur"
-					displayedUnit="€"
-					className="payslip__total"
-				/>
-			</div>
-			<div>
-				<Value
-					expression="salarié . cotisations . salarié"
-					displayedUnit="€"
-					className="payslip__total"
-				/>
-			</div>
-		</div>
+			<table className="payslip__cotisationTable">
+				<caption className="payslip__cotisationTitle">
+					<Trans>Total des cotisations et contributions</Trans>
+					<ExplicableRule light dottedName="salarié . cotisations" />
+				</caption>
+				<tbody>
+					<tr>
+						<td></td>
+						<th scope="col">employeur</th>
+						<th scope="col">salarié</th>
+					</tr>
+					<tr>
+						<th scope="row">
+							<Trans>Total des cotisations et contributions</Trans>
+						</th>
+						<td>
+							<Value
+								expression="salarié . cotisations . employeur"
+								displayedUnit="€"
+								className="payslip__total"
+							/>
+						</td>
+						<td>
+							<Value
+								expression="salarié . cotisations . salarié"
+								displayedUnit="€"
+								className="payslip__total"
+							/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
 	)
 }
 
