@@ -1,8 +1,8 @@
-import { Enfant } from "./éligibilité"
+import { Enfant } from './éligibilité'
 
 export class EnfantFactory {
-  private dateDeNaissance = new Date('2023-01-01')
-    
+	private dateDeNaissance = new Date('2023-01-01')
+
 	moinsDe3Ans() {
 		this.dateDeNaissance = new Date('2023-02-18')
 
@@ -29,7 +29,7 @@ export class EnfantFactory {
 
 	build() {
 		return {
-			dateDeNaissance: this.dateDeNaissance
+			dateDeNaissance: this.dateDeNaissance,
 		} as const satisfies Enfant
 	}
 }
