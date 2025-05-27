@@ -43,7 +43,6 @@ export default function SearchOrCreate() {
 						<Spacing md />
 						<AnswerGroup role="list">
 							<Button
-								role="link"
 								to={generatePath(
 									absoluteSitePaths.assistants['pour-mon-entreprise']
 										.entreprise,
