@@ -1,4 +1,4 @@
-import { addYears, getYear, isAfter } from 'date-fns/fp'
+import { addYears, getYear, isAfter, isBefore } from 'date-fns/fp'
 import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as N from 'effect/Number'
@@ -20,42 +20,40 @@ const PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE: Record<TypologieDeGarde, number> =
 const DATE_RÉFORME = new Date('2025-09-01')
 const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
 
-interface SituationCMG {
-	enfantsÀCharge: EnfantsÀCharge
-	enfantsGardés: Array<Enfant>
+interface SituationCMG<PrénomsEnfants extends string = string> {
+	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
 	historique: {
-		mars: MoisHistorique
-		avril: MoisHistorique
-		mai: MoisHistorique
+		mars: MoisHistorique<PrénomsEnfants>
+		avril: MoisHistorique<PrénomsEnfants>
+		mai: MoisHistorique<PrénomsEnfants>
 	}
 }
 
-export interface EnfantsÀCharge {
-	total: number
+export interface EnfantsÀCharge<Prénom extends string = string> {
+	enfants: Record<Prénom,Enfant>
 	AeeH: number
 }
 
-interface Enfant {
-	dateDeNaissance: Date
-}
-
-interface MoisHistorique {
+export interface MoisHistorique<PrénomsEnfants extends string = string> {
 	droitsOuverts: boolean
 	ressources: O.Option<M.Montant<'Euro'>>
-	employeureuse: boolean
-	déclarationsDeGarde: Array<DéclarationDeGarde>
-	salariées: Array<Salariée>
+	déclarationsDeGarde: Array<DéclarationDeGarde<PrénomsEnfants>>
+	// salariées: Array<Salariée>
 }
 
-type DéclarationDeGarde = DéclarationDeGardeGED | DéclarationDeGardeAMA
-interface DéclarationDeGardeGED {
+export type DéclarationDeGarde<PrénomsEnfants extends string = string> = DéclarationDeGardeGED | DéclarationDeGardeAMA<PrénomsEnfants>
+
+export interface DéclarationDeGardeGED {
 	type: 'GED'
 	heuresDeGarde: number
 }
-interface DéclarationDeGardeAMA {
+export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	type: 'AMA'
 	heuresDeGarde: number
-	typologieDeGarde: TypologieDeGardeAMA
+	enfantsGardés: Array<PrénomsEnfants>
+}
+export interface Enfant {
+	dateDeNaissance: Date
 }
 type TypologieDeGardeAMA =
 	| 'AMA Enfant unique 0-3 ans'
@@ -69,14 +67,12 @@ export type Salariée = SalariéeAMA | SalariéeGED
 
 export interface SalariéeAMA {
 	type: 'AMA'
-	nbHeures: number
 	salaireNet: number
 	indemnitésEntretien: number
 	fraisDeRepas: number
 }
 interface SalariéeGED {
 	type: 'GED'
-	nbHeures: number
 	salaireNet: number
 }
 
@@ -85,9 +81,9 @@ export type ModeDeGarde = 'AMA' | 'GED'
 export const estÉligible = (situation: SituationCMG): boolean =>
 	droitsOuvertsSurAuMoinsUnMois(situation.historique) &&
 	ressourcesDeMaiInférieuresAuPlafond(situation.historique) &&
-	nombreDeMoisEmployeureuseSuffisant(situation.historique) &&
-	moyenneHeuresDeGardeSupérieureAuPlancher(situation.historique) &&
-	auMoinsUnEnfantOuvrantDroitAuCMG(situation.enfantsGardés)
+	nombreDeMoisEmployeureuseEtRessourcesSuffisant(situation.historique) &&
+	moyenneHeuresDeGardeSupérieureAuPlancher(situation) &&
+	auMoinsUnEnfantOuvrantDroitAuCMG(situation)
 
 const droitsOuvertsSurAuMoinsUnMois = (
 	historique: SituationCMG['historique']
@@ -113,13 +109,13 @@ const ressourcesDeMaiInférieuresAuPlafond = (
 	)
 }
 
-const nombreDeMoisEmployeureuseSuffisant = (
+const nombreDeMoisEmployeureuseEtRessourcesSuffisant = (
 	historique: SituationCMG['historique']
 ): boolean => {
 	return (
 		pipe(
 			historique,
-			R.map((m) => m.employeureuse && O.isSome(m.ressources)),
+			R.map((m) => m.déclarationsDeGarde.length && O.isSome(m.ressources)),
 			R.values,
 			A.filter(Boolean),
 			A.length
@@ -128,10 +124,10 @@ const nombreDeMoisEmployeureuseSuffisant = (
 }
 
 export const moyenneHeuresDeGardeSupérieureAuPlancher = (
-	historique: SituationCMG['historique']
+	situation: SituationCMG
 ): boolean => {
 	return pipe(
-		historique,
+		situation,
 		moyenneHeuresParTypologieDeGarde,
 		R.some(
 			(moyenneHeuresDeGarde, typologieDeGarde) =>
@@ -142,23 +138,50 @@ export const moyenneHeuresDeGardeSupérieureAuPlancher = (
 }
 
 export const moyenneHeuresParTypologieDeGarde = (
-	historique: SituationCMG['historique']
-): Record<TypologieDeGarde, number> => {
-	return pipe(
-		historique,
-		R.values,
-		A.flatMap((m) => m.déclarationsDeGarde),
-		groupeLesDéclarationsParTypologieDeGarde,
-		R.map(faitLaMoyenneDesHeuresDeGarde)
-	)
+	situation: SituationCMG,
+): Record<TypologieDeGarde, number> => pipe(
+	situation.historique,
+	R.values,
+	A.flatMap((m) => m.déclarationsDeGarde),
+	groupeLesDéclarationsParTypologieDeGarde(situation.enfantsÀCharge.enfants),
+	R.map(faitLaMoyenneDesHeuresDeGarde)
+)
+
+const détermineLaTypologieDeLaGarde = <Prénom extends string>(enfants: Record<Prénom, Enfant>) => 
+	(déclarationDeGarde: DéclarationDeGarde<Prénom>): TypologieDeGarde => {
+	if (déclarationDeGarde.type === 'GED') {
+		return 'GED'
+	}
+
+	let typologie = 'AMA'
+	if (déclarationDeGarde.enfantsGardés.length > 1) {
+		typologie += ' Fratrie'
+		const unEnfantDePlusDe3Ans = déclarationDeGarde.enfantsGardés.some((prénom: Prénom) => enfantAPlusDe3Ans(enfants[prénom]))
+		if (unEnfantDePlusDe3Ans) {
+			typologie += ' 0-6 ans'
+		} else {
+			typologie += ' 0-3 ans'
+		}
+	} else {
+		typologie += ' Enfant unique'
+		const prénom = déclarationDeGarde.enfantsGardés[0]
+
+		const enfant = enfants[prénom]
+		if (enfantAPlusDe3Ans(enfant)) {
+			typologie += ' 3-6 ans'
+		} else {
+			typologie += ' 0-3 ans'
+		}
+	}
+
+	return typologie as TypologieDeGarde
 }
 
-const groupeLesDéclarationsParTypologieDeGarde: (
-	liste: DéclarationDeGarde[]
-) => Record<TypologieDeGarde, DéclarationDeGarde[]> = A.groupBy(
-	(d: DéclarationDeGarde): TypologieDeGarde =>
-		d.type === 'GED' ? 'GED' : d.typologieDeGarde
-)
+const groupeLesDéclarationsParTypologieDeGarde =  <Prénom extends string>(enfants: Record<Prénom, Enfant>) => 
+	(liste: DéclarationDeGarde<Prénom>[]): Record<TypologieDeGarde, DéclarationDeGarde[]> => 
+		A.groupBy(liste, détermineLaTypologieDeLaGarde(enfants))
+
+
 
 const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 	pipe(
@@ -168,10 +191,29 @@ const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 		(sum) => Math.ceil(sum / 3)
 	)
 
-const auMoinsUnEnfantOuvrantDroitAuCMG = (
-	enfantsGardés: Array<Enfant>
-): boolean => A.some(enfantsGardés, enfantOuvreDroitAuCMG)
+export const auMoinsUnEnfantOuvrantDroitAuCMG = (
+	situation: SituationCMG
+): boolean => {
+	const gardeGED = pipe(
+		situation.historique,
+		R.values,
+		A.flatMap((m) => m.déclarationsDeGarde),
+		A.some((d: DéclarationDeGarde) => d.type === 'GED')
+	)
+
+	if (gardeGED) {
+		return R.some(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
+	}
+
+	// console.log(gardeGED)
+	// TODO: déterminer l'ouverture des droits pour AMA
+
+	return true
+}
 
 export const enfantOuvreDroitAuCMG = (enfant: Enfant): boolean =>
 	getYear(enfant.dateDeNaissance) !== ANNÉE_DE_NAISSANCE_EXCLUE &&
 	pipe(enfant.dateDeNaissance, addYears(6), isAfter(DATE_RÉFORME))
+
+const enfantAPlusDe3Ans = (enfant: Enfant): boolean =>
+	pipe(enfant.dateDeNaissance, addYears(3), isBefore(DATE_RÉFORME))
