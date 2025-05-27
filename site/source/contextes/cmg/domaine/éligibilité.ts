@@ -209,12 +209,14 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 		return R.some(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
 	}
 
-	// TODO: à corriger
 	const enfantsGardésEnAMA = pipe(
 		situation.historique,
 		R.values,
 		A.flatMap((m) => m.déclarationsDeGarde),
-		A.filter((d) => d.type === 'AMA'),
+		A.filter(
+			(d: DéclarationDeGarde): d is DéclarationDeGardeAMA<string> =>
+				d.type === 'AMA'
+		),
 		A.flatMap((d) => d.enfantsGardés),
 		A.dedupe,
 		R.fromIterableWith((prénom) => [
