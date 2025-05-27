@@ -25,7 +25,6 @@ export default function PreviousSimulationBanner() {
 				aria-label={t(
 					'Retrouver ma précédente simulation, charger les données de ma précédente simulation.'
 				)}
-				role="button"
 			>
 				<Trans i18nKey="previousSimulationBanner.retrieveButton">
 					Retrouver ma précédente simulation
