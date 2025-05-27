@@ -5,6 +5,10 @@ import * as N from 'effect/Number'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 
+import {
+	déclarationDeGardeEstAMA,
+	déclarationDeGardeEstGED,
+} from '@/contextes/cmg/domaine/déclaration-de-garde'
 import * as M from '@/domaine/Montant'
 
 const PLAFOND_DE_RESSOURCES = M.euros(8_500)
@@ -202,21 +206,16 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 		situation.historique,
 		R.values,
 		A.flatMap((m) => m.déclarationsDeGarde),
-		A.some((d: DéclarationDeGarde) => d.type === 'GED')
+		A.some(déclarationDeGardeEstGED)
 	)
-
 	if (gardeGED) {
 		return R.some(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
 	}
-
 	const enfantsGardésEnAMA = pipe(
 		situation.historique,
 		R.values,
 		A.flatMap((m) => m.déclarationsDeGarde),
-		A.filter(
-			(d: DéclarationDeGarde): d is DéclarationDeGardeAMA<string> =>
-				d.type === 'AMA'
-		),
+		A.filter(déclarationDeGardeEstAMA),
 		A.flatMap((d) => d.enfantsGardés),
 		A.dedupe,
 		R.fromIterableWith((prénom) => [
