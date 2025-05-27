@@ -205,10 +205,17 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 		return R.some(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
 	}
 
-	// console.log(gardeGED)
-	// TODO: déterminer l'ouverture des droits pour AMA
+	const enfantsGardésEnAMA = pipe(
+		situation.historique,
+		R.values,
+		A.flatMap((m) => m.déclarationsDeGarde),
+		A.filter((d) => d.type === 'AMA'),
+		A.flatMap((d) => d.enfantsGardés),
+		A.dedupe,
+		R.fromIterableWith((prénom) => [prénom, situation.enfantsÀCharge.enfants[prénom]])
+	)
 
-	return true
+	return R.some(enfantsGardésEnAMA, enfantOuvreDroitAuCMG)
 }
 
 export const enfantOuvreDroitAuCMG = (enfant: Enfant): boolean =>
