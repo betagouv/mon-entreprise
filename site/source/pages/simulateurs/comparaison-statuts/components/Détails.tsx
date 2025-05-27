@@ -753,27 +753,6 @@ const Détails = ({
 const StyledH4 = styled(H4)`
 	color: ${({ theme }) => theme.colors.bases.primary[600]};
 `
-// TODO : décommenter une fois l'implémentation du calcul des coûts de créations
-// ajouté à modèle-social
-/*
-const StyledRuleLink = styled(RuleLink)`
-	display: inline-flex;
-	margin-left: ${({ theme }) => theme.spacings.xxs};
-	&:hover {
-		opacity: 0.8;
-	}
-`
-const Precisions = styled.span`
-	display: block;
-	font-family: ${({ theme }) => theme.fonts.main};
-	font-weight: normal;
-	font-size: 1rem;
-	color: ${({ theme }) => theme.colors.extended.grey[700]};
-	margin: 0;
-	margin-top: 0.5rem;
-	width: 100%;
-`
-*/
 
 const StyledDiv = styled.div`
 	display: flex;
