@@ -2,7 +2,10 @@ import * as O from 'effect/Option'
 
 import * as M from '@/domaine/Montant'
 
-import { DéclarationDeGardeAMA, DéclarationDeGardeGED } from './éligibilité'
+import {
+	DéclarationDeGardeAMA,
+	DéclarationDeGardeGED,
+} from './déclaration-de-garde'
 
 export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 	private enfantsGardés
