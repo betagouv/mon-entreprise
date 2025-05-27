@@ -1,17 +1,22 @@
-import { euros, Montant } from "@/domaine/Montant"
-import { DéclarationDeGarde, MoisHistorique } from "./éligibilité"
-import * as O from 'effect/Option'
 import * as A from 'effect/Array'
-import { DéclarationsDeGardeAMAFactory, DéclarationsDeGardeGEDFactory } from "./déclarationDeGardeFactory"
+import * as O from 'effect/Option'
+
+import { euros, Montant } from '@/domaine/Montant'
+
+import {
+	DéclarationsDeGardeAMAFactory,
+	DéclarationsDeGardeGEDFactory,
+} from './déclarationDeGardeFactory'
+import { DéclarationDeGarde, MoisHistorique } from './éligibilité'
 
 export class MoisHistoriqueFactory<Prénom extends string = string> {
 	private droitsOuverts = true
 	private ressources = O.some(euros(2_000))
 	private déclarationsDeGarde = [] as DéclarationDeGarde[]
 
-	sansDroitsOuverts() { 
+	sansDroitsOuverts() {
 		this.droitsOuverts = false
-		
+
 		return this
 	}
 
@@ -21,16 +26,16 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 		return this
 	}
 
-    avecRessources(montant: Montant<"Euro">) {
-        this.ressources = O.some(montant)
+	avecRessources(montant: Montant<'Euro'>) {
+		this.ressources = O.some(montant)
 
-        return this
-    }
+		return this
+	}
 
 	avecAMA(prénoms: Prénom[], nbHeures: number = 100) {
 		this.déclarationsDeGarde = [
 			...this.déclarationsDeGarde,
-			(new DéclarationsDeGardeAMAFactory(prénoms)).avecNbHeures(nbHeures).build(),
+			new DéclarationsDeGardeAMAFactory(prénoms).avecNbHeures(nbHeures).build(),
 		]
 
 		return this
@@ -39,23 +44,26 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 	avecGED(nbHeures: number = 50) {
 		this.déclarationsDeGarde = [
 			...this.déclarationsDeGarde,
-			(new DéclarationsDeGardeGEDFactory()).avecNombreHeures(nbHeures).build(),
+			new DéclarationsDeGardeGEDFactory().avecNbHeures(nbHeures).build(),
 		]
-			
-		return this
-	}
-
-	sansGED() { 
-		this.déclarationsDeGarde = A.filter(this.déclarationsDeGarde, d => d.type !== "GED")
 
 		return this
 	}
 
-	build () {	
+	sansGED() {
+		this.déclarationsDeGarde = A.filter(
+			this.déclarationsDeGarde,
+			(d) => d.type !== 'GED'
+		)
+
+		return this
+	}
+
+	build() {
 		return {
 			droitsOuverts: this.droitsOuverts,
 			ressources: this.ressources,
-			déclarationsDeGarde: this.déclarationsDeGarde
+			déclarationsDeGarde: this.déclarationsDeGarde,
 		} as const satisfies MoisHistorique
 	}
 }

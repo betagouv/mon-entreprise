@@ -10,8 +10,9 @@ import {
 	moyenneHeuresParTypologieDeGarde,
 } from '@/contextes/cmg/domaine/éligibilité'
 import { euros } from '@/domaine/Montant'
-import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
+
 import { EnfantFactory } from './enfantFactory'
+import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
 
 describe('CMG', () => {
 	describe('estÉligible', () => {
@@ -19,23 +20,23 @@ describe('CMG', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar'], 150)
 						.avecGED(31)
 						.build(),
-					avril: (new MoisHistoriqueFactory())
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Rose'], 150)
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.sansGED()
 						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mai: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.avecGED(35)
 						.build(),
@@ -49,21 +50,21 @@ describe('CMG', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory()
 						.sansDroitsOuverts()
 						.avecGED()
 						.build(),
-					avril: (new MoisHistoriqueFactory())
+					avril: new MoisHistoriqueFactory()
 						.sansDroitsOuverts()
 						.avecGED()
 						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mai: new MoisHistoriqueFactory()
 						.sansDroitsOuverts()
 						.avecGED()
 						.build(),
@@ -77,15 +78,15 @@ describe('CMG', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory()).avecGED().build(),
-					avril: (new MoisHistoriqueFactory()).avecGED().build(),
-					mai: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory().avecGED().build(),
+					avril: new MoisHistoriqueFactory().avecGED().build(),
+					mai: new MoisHistoriqueFactory()
 						.avecRessources(euros(8_500))
 						.avecGED()
 						.build(),
@@ -99,15 +100,15 @@ describe('CMG', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory()).build(),
-					avril: (new MoisHistoriqueFactory()).build(),
-					mai: (new MoisHistoriqueFactory()).avecGED().build(),
+					mars: new MoisHistoriqueFactory().build(),
+					avril: new MoisHistoriqueFactory().build(),
+					mai: new MoisHistoriqueFactory().avecGED().build(),
 				},
 			})
 
@@ -118,15 +119,15 @@ describe('CMG', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory()).sansRessources().avecGED().build(),
-					avril: (new MoisHistoriqueFactory()).sansRessources().build(),
-					mai: (new MoisHistoriqueFactory()).sansRessources().build(),
+					mars: new MoisHistoriqueFactory().sansRessources().avecGED().build(),
+					avril: new MoisHistoriqueFactory().sansRessources().build(),
+					mai: new MoisHistoriqueFactory().sansRessources().build(),
 				},
 			})
 
@@ -137,22 +138,20 @@ describe('CMG', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
-						.avecGED(31)
-						.build(),
-					avril: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory().avecGED(31).build(),
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Rose'], 150)
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.sansGED()
 						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mai: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.avecGED(35)
 						.build(),
@@ -166,20 +165,16 @@ describe('CMG', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).plusDe6Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+						Oscar: new EnfantFactory().plusDe6Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
-						.avecGED()
-						.build(),
-					avril: (new MoisHistoriqueFactory())
-						.avecAMA(['Rose'])
-						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory().avecGED().build(),
+					avril: new MoisHistoriqueFactory().avecAMA(['Rose']).build(),
+					mai: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar', 'Rose', 'Aurore'])
 						.build(),
 				},
@@ -194,23 +189,23 @@ describe('CMG', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar'], 150)
 						.avecGED(31)
 						.build(),
-					avril: (new MoisHistoriqueFactory())
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Rose'], 150)
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.sansGED()
 						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mai: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.avecGED(35)
 						.build(),
@@ -224,26 +219,24 @@ describe('CMG', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar'], 297)
 						.avecAMA(['Aurore'], 147)
 						.sansGED()
 						.build(),
-					avril: (new MoisHistoriqueFactory())
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar', 'Rose'], 447)
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 297)
 						.sansGED()
 						.build(),
-					mai: (new MoisHistoriqueFactory())
-						.avecGED(147)
-						.build(),
+					mai: new MoisHistoriqueFactory().avecGED(147).build(),
 				},
 			})
 
@@ -256,23 +249,23 @@ describe('CMG', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar'], 150)
 						.avecGED(31)
 						.build(),
-					avril: (new MoisHistoriqueFactory())
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Rose'], 150)
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.sansGED()
 						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mai: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
 						.avecGED(35)
 						.build(),
@@ -290,21 +283,21 @@ describe('CMG', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
 				enfantsÀCharge: {
 					enfants: {
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory()
 						.avecAMA(['Rose'], 150)
 						.avecGED(31)
 						.build(),
-					avril: (new MoisHistoriqueFactory())
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Rose', 'Aurore'], 50)
 						.sansGED()
 						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mai: new MoisHistoriqueFactory()
 						.avecAMA(['Rose', 'Aurore'], 50)
 						.avecGED(35)
 						.build(),
@@ -324,21 +317,16 @@ describe('CMG', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
-						.avecAMA(['Rose'], 150)
-						.build(),
-					avril: (new MoisHistoriqueFactory())
-						.avecGED(1)
-						.build(),
-					mai: (new MoisHistoriqueFactory())
-						.build(),
+					mars: new MoisHistoriqueFactory().avecAMA(['Rose'], 150).build(),
+					avril: new MoisHistoriqueFactory().avecGED(1).build(),
+					mai: new MoisHistoriqueFactory().build(),
 				},
 			})
 
@@ -349,21 +337,18 @@ describe('CMG', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
-						.avecAMA(['Rose'])
-						.build(),
-					avril: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory().avecAMA(['Rose']).build(),
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Oscar', 'Rose', 'Aurore'])
 						.build(),
-					mai: (new MoisHistoriqueFactory())
-						.build(),
+					mai: new MoisHistoriqueFactory().build(),
 				},
 			})
 
@@ -374,21 +359,18 @@ describe('CMG', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+						Oscar: new EnfantFactory().moinsDe3Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
-						.avecAMA(['Rose'], 150)
-						.build(),
-					avril: (new MoisHistoriqueFactory())
+					mars: new MoisHistoriqueFactory().avecAMA(['Rose'], 150).build(),
+					avril: new MoisHistoriqueFactory()
 						.avecAMA(['Rose', 'Aurore'], 150)
 						.build(),
-					mai: (new MoisHistoriqueFactory())
-						.build(),
+					mai: new MoisHistoriqueFactory().build(),
 				},
 			})
 
@@ -399,20 +381,15 @@ describe('CMG', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				enfantsÀCharge: {
 					enfants: {
-						Rose: (new EnfantFactory()).néEn(2022).build(),
-						Aurore: (new EnfantFactory()).plusDe6Ans().build(),
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
-						.avecGED()
-						.build(),
-					avril: (new MoisHistoriqueFactory())
-						.avecGED()
-						.build(),
-					mai: (new MoisHistoriqueFactory())
-						.build(),
+					mars: new MoisHistoriqueFactory().avecGED().build(),
+					avril: new MoisHistoriqueFactory().avecGED().build(),
+					mai: new MoisHistoriqueFactory().build(),
 				},
 			})
 
