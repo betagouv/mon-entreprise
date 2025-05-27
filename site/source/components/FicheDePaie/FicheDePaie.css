@@ -1,22 +1,39 @@
-.payslip__salarySection {
+/* .payslip__salarySection {
 	display: grid;
 	grid-template-columns: auto 8.2em;
 	overflow: visible;
 	grid-gap: 3px 0em;
+} */
+
+.payslip__salaryLine,
+.payslip__payementLine {
+	display: flex;
+	justify-content: space-between;
 }
-.payslip__salaryTitle {
+
+.payslip__salaryLine div {
+	color: hsl(var(--COLOR_HUE), calc(var(--COLOR_SATURATION) - 34%), 33%);
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	padding: 0;
+}
+
+/* .payslip__salaryTitle {
 	grid-column-end: span 2;
-}
-.payslip__cotisationsSection {
+} */
+
+/* .payslip__cotisationsSection {
 	display: grid;
 	overflow: visible;
 
 	grid-template-columns: auto auto auto;
 	grid-gap: 3px 0em;
-}
+} */
+
 .payslip__container {
 	line-height: 1.5rem;
 }
+
 .payslip__container h3 {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.85);
 	background-color: inherit;
@@ -37,7 +54,6 @@
 
 .payslip__total {
 	font-weight: bold;
-	margin-top: 1.5rem;
 	background-color: transparent !important;
 	color: inherit;
 }
@@ -48,18 +64,21 @@
 	margin-bottom: 0.5rem;
 	margin-top: 0.5rem;
 }
+
 .payslip__container h5:not(:first-of-type) {
 	margin-top: 1.5rem;
 }
+
 .payslip__container *::first-letter {
 	text-transform: capitalize;
 }
 
-.payslip__container span {
+.payslip__container span,
+.payslip__cotisationLine td {
 	display: flex;
-	align-items: flex-end;
-	font-family: 'Courier New', Courier, monospace;
 	justify-content: flex-end;
+	align-items: center;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 .payslip__cotisationsSection a:nth-of-type(2n),
@@ -71,12 +90,14 @@
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
 }
-.payslip__cotisationsSection a:nth-of-type(2n) + *,
-.payslip__salarySection a:nth-of-type(2n) + * {
+
+.payslip__salaryLine:nth-of-type(2n),
+.payslip__cotisationLine:nth-of-type(2n)+* {
 	background-color: rgba(255, 255, 255, 0.4);
 	color: inherit;
 }
-.payslip__cotisationsSection a:nth-of-type(2n) + * + * {
+
+.payslip__cotisationsSection a:nth-of-type(2n)+*+* {
 	background-color: rgba(255, 255, 255, 0.4);
 	margin-right: -0.25rem;
 	z-index: 1;
@@ -84,13 +105,63 @@
 	border-bottom-right-radius: 3px;
 	padding-right: 0.25rem;
 }
-.payslip__total + * + * {
+
+.payslip__total+*+* {
 	background-color: transparent !important;
 }
+
 .payslip__cotisationTitle {
 	grid-column-end: span 3;
 }
 
 .payslip__salaireNet {
 	font-weight: bold;
+}
+
+.payslip__cotisationTable {
+	width: 100%
+}
+
+.payslip__cotisationTable:first-of-type .payslip__cotisationTitle {
+	margin-top: 0;
+}
+
+.payslip__container caption {
+	margin: 2rem 0 0;
+	scroll-margin-top: 1rem;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	color: hsl(var(--COLOR_HUE), calc(var(--COLOR_SATURATION) - 34%), 33%);
+	font-size: 1rem;
+	line-height: 1.75rem;
+	text-align: left;
+	background-color: transparent;
+}
+
+.payslip__cotisationTable tr {
+	display: grid;
+	grid-template-columns: 3fr 1fr 1fr;
+}
+
+.payslip__cotisationTable [scope="col"],
+
+.payslip__cotisationTable [scope="row"] {
+
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	font-size: inherit;
+}
+
+.payslip__cotisationTable [scope="row"] {
+	text-align: left;
+	color: inherit;
+}
+
+.payslip__cotisationTable [scope="col"] {
+	color: hsl(var(--COLOR_HUE), calc(var(--COLOR_SATURATION) - 34%), 33%);
+	text-align: right;
+}
+
+.payslip__cotisationLine td {
+	text-align: right;
 }

@@ -10,18 +10,22 @@ import SalaireNet from './SalaireNet'
 export default function FicheDePaie() {
 	return (
 		<StyledContainer className="payslip__container">
-			<div className="payslip__salarySection">
-				<Line
-					rule="salarié . temps de travail"
-					displayedUnit="heures/mois"
-					precision={1}
-				/>
-				<Line
-					rule="salarié . temps de travail . heures supplémentaires"
-					displayedUnit="heures/mois"
-					precision={1}
-				/>
-			</div>
+			<section className="payslip__salarySection">
+				<div className="payslip__salaryLine">
+					<Line
+						rule="salarié . temps de travail"
+						displayedUnit="heures/mois"
+						precision={1}
+					/>
+				</div>
+				<div className="payslip__salaryLine">
+					<Line
+						rule="salarié . temps de travail . heures supplémentaires"
+						displayedUnit="heures/mois"
+						precision={1}
+					/>
+				</div>
+			</section>
 
 			<SalaireBrut />
 			<Cotisations />

@@ -32,21 +32,23 @@ export default function CotisationLine({
 	}
 
 	return (
-		<>
-			<RuleLink dottedName={dottedName} />
-			<span>
+		<tr className="payslip__cotisationLine">
+			<th scope="row">
+				<RuleLink dottedName={dottedName} />
+			</th>
+			<td>
 				{partPatronale?.nodeValue
 					? signePlusOuMoins +
 					  formatValue(partPatronale, { displayedUnit: '€', language })
 					: '–'}
-			</span>
-			<span>
+			</td>
+			<td>
 				{partSalariale?.nodeValue
 					? signePlusOuMoins +
 					  formatValue(partSalariale, { displayedUnit: '€', language })
 					: '–'}
-			</span>
-		</>
+			</td>
+		</tr>
 	)
 }
 
