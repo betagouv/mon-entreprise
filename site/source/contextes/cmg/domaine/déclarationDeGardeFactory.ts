@@ -1,15 +1,22 @@
-import { DéclarationDeGardeAMA, DéclarationDeGardeGED } from "./éligibilité"
+import { DéclarationDeGardeAMA, DéclarationDeGardeGED } from './éligibilité'
 
 export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 	private enfantsGardés
 	private heuresDeGarde = 100
+	private rémunération = 500
 
 	constructor(prénoms: Prénom[]) {
-    this.enfantsGardés = prénoms
+		this.enfantsGardés = prénoms
 	}
-    
+
 	avecNbHeures(nbHeures: number) {
 		this.heuresDeGarde = nbHeures
+
+		return this
+	}
+
+	avecRémunération(rémunération: number) {
+		this.rémunération = rémunération
 
 		return this
 	}
@@ -19,23 +26,32 @@ export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 			type: 'AMA',
 			heuresDeGarde: this.heuresDeGarde,
 			enfantsGardés: this.enfantsGardés,
+			rémunération: this.rémunération,
 		} as const satisfies DéclarationDeGardeAMA<Prénom>
 	}
 }
 
 export class DéclarationsDeGardeGEDFactory {
 	private heuresDeGarde = 50
+	private rémunération = 500
 
-	avecNombreHeures(nbHeures: number) {
-			this.heuresDeGarde = nbHeures
+	avecNbHeures(nbHeures: number) {
+		this.heuresDeGarde = nbHeures
 
-			return this
+		return this
+	}
+
+	avecRémunération(rémunération: number) {
+		this.rémunération = rémunération
+
+		return this
 	}
 
 	build() {
 		return {
 			type: 'GED',
-			heuresDeGarde: this.heuresDeGarde
+			heuresDeGarde: this.heuresDeGarde,
+			rémunération: this.rémunération,
 		} as const satisfies DéclarationDeGardeGED
 	}
 }
