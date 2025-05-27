@@ -1,122 +1,48 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable vitest/valid-expect */
-import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
 import {
+	auMoinsUnEnfantOuvrantDroitAuCMG,
 	enfantOuvreDroitAuCMG,
 	estÉligible,
 	moyenneHeuresDeGardeSupérieureAuPlancher,
 	moyenneHeuresParTypologieDeGarde,
 } from '@/contextes/cmg/domaine/éligibilité'
 import { euros } from '@/domaine/Montant'
+import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
+import { EnfantFactory } from './enfantFactory'
 
 describe('CMG', () => {
 	describe('estÉligible', () => {
 		it('est éligible si tous les critères d’éligibilité sont remplis', () => {
+			const Oscar = (new EnfantFactory()).moinsDe3Ans().build()
+			const Rose = (new EnfantFactory()).néEn(2022).build()
+			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
+
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					total: 3,
+					enfants: {
+						Oscar,
+						Rose,
+						Aurore,
+					},
 					AeeH: 0,
 				},
-				enfantsGardés: [
-					{
-						dateDeNaissance: new Date('2019-09-02'),
-					},
-					{
-						dateDeNaissance: new Date('2022-12-31'),
-					},
-					{
-						dateDeNaissance: new Date('2019-09-01'),
-					},
-				],
 				historique: {
-					mars: {
-						droitsOuverts: false,
-						ressources: O.some(euros(8_500)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 31,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 150,
-								salaireNet: 750,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 31,
-								salaireNet: 310,
-							},
-						],
-					},
-					avril: {
-						droitsOuverts: false,
-						ressources: O.none(),
-						employeureuse: false,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 200,
-								salaireNet: 1000,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-						],
-					},
-					mai: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 35,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 35,
-								salaireNet: 350,
-							},
-						],
-					},
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar'], 150)
+						.avecGED(31)
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], 150)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.sansGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecGED(35)
+						.build(),
 				},
 			})
 
@@ -124,106 +50,30 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si pas de droits ouverts sur mars, avril NI mai', () => {
+			const Rose = (new EnfantFactory()).néEn(2022).build()
+			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
+
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					total: 3,
+					enfants: {
+						Rose,
+						Aurore,
+					},
 					AeeH: 0,
 				},
-				enfantsGardés: [
-					{
-						dateDeNaissance: new Date('2023-07-31'),
-					},
-					{
-						dateDeNaissance: new Date('2021-02-18'),
-					},
-				],
 				historique: {
-					mars: {
-						droitsOuverts: false,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 31,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 150,
-								salaireNet: 750,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 31,
-								salaireNet: 310,
-							},
-						],
-					},
-					avril: {
-						droitsOuverts: false,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 200,
-								salaireNet: 1000,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-						],
-					},
-					mai: {
-						droitsOuverts: false,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 35,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 35,
-								salaireNet: 350,
-							},
-						],
-					},
+					mars: (new MoisHistoriqueFactory())
+						.sansDroitsOuverts()
+						.avecGED()
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.sansDroitsOuverts()
+						.avecGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.sansDroitsOuverts()
+						.avecGED()
+						.build(),
 				},
 			})
 
@@ -231,106 +81,24 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si ressources de mai = plafond (8 500 €)', () => {
+			const Rose = (new EnfantFactory()).néEn(2022).build()
+			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
+	
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					total: 3,
+					enfants: {
+						Rose,
+						Aurore,
+					},
 					AeeH: 0,
 				},
-				enfantsGardés: [
-					{
-						dateDeNaissance: new Date('2023-07-31'),
-					},
-					{
-						dateDeNaissance: new Date('2021-02-18'),
-					},
-				],
 				historique: {
-					mars: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 31,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 150,
-								salaireNet: 750,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 31,
-								salaireNet: 310,
-							},
-						],
-					},
-					avril: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 200,
-								salaireNet: 1000,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-						],
-					},
-					mai: {
-						droitsOuverts: true,
-						ressources: O.some(euros(8_500)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 35,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 35,
-								salaireNet: 350,
-							},
-						],
-					},
+					mars: (new MoisHistoriqueFactory()).avecGED().build(),
+					avril: (new MoisHistoriqueFactory()).avecGED().build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecRessources(euros(8_500))
+						.avecGED()
+						.build(),
 				},
 			})
 
@@ -338,64 +106,21 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si moins de 2 mois employeureuse', () => {
+			const Rose = (new EnfantFactory()).néEn(2022).build()
+			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
+
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					total: 3,
+					enfants: {
+						Rose,
+						Aurore,
+					},
 					AeeH: 0,
 				},
-				enfantsGardés: [
-					{
-						dateDeNaissance: new Date('2023-07-31'),
-					},
-					{
-						dateDeNaissance: new Date('2021-02-18'),
-					},
-				],
 				historique: {
-					mars: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: false,
-						déclarationsDeGarde: [],
-						salariées: [],
-					},
-					avril: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: false,
-						déclarationsDeGarde: [],
-						salariées: [],
-					},
-					mai: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 35,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 35,
-								salaireNet: 350,
-							},
-						],
-					},
+					mars: (new MoisHistoriqueFactory()).build(),
+					avril: (new MoisHistoriqueFactory()).build(),
+					mai: (new MoisHistoriqueFactory()).avecGED().build(),
 				},
 			})
 
@@ -403,106 +128,21 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible s’il manque les ressources sur un mois employeureuse', () => {
+			const Rose = (new EnfantFactory()).néEn(2022).build()
+			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
+
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					total: 3,
+					enfants: {
+						Rose,
+						Aurore,
+					},
 					AeeH: 0,
 				},
-				enfantsGardés: [
-					{
-						dateDeNaissance: new Date('2023-07-31'),
-					},
-					{
-						dateDeNaissance: new Date('2021-02-18'),
-					},
-				],
 				historique: {
-					mars: {
-						droitsOuverts: true,
-						ressources: O.none(),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 31,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 150,
-								salaireNet: 750,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 31,
-								salaireNet: 310,
-							},
-						],
-					},
-					avril: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: false,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 200,
-								salaireNet: 1000,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-						],
-					},
-					mai: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 35,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 35,
-								salaireNet: 350,
-							},
-						],
-					},
+					mars: (new MoisHistoriqueFactory()).sansRessources().avecGED().build(),
+					avril: (new MoisHistoriqueFactory()).sansRessources().build(),
+					mai: (new MoisHistoriqueFactory()).sansRessources().build(),
 				},
 			})
 
@@ -510,211 +150,58 @@ describe('CMG', () => {
 		})
 
 		it('n’est pas éligible si la moyenne d’heures de garde ne dépasse pas le plancher', () => {
+			const Oscar = (new EnfantFactory()).moinsDe3Ans().build()
+			const Rose = (new EnfantFactory()).néEn(2022).build()
+			const Aurore = (new EnfantFactory()).plusDe3Ans().build()
+
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					total: 3,
+					enfants: {
+						Oscar,
+						Rose,
+						Aurore,
+					},
 					AeeH: 0,
 				},
-				enfantsGardés: [
-					{
-						dateDeNaissance: new Date('2023-07-31'),
-					},
-					{
-						dateDeNaissance: new Date('2021-02-18'),
-					},
-				],
 				historique: {
-					mars: {
-						droitsOuverts: true,
-						ressources: O.none(),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 31,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 150,
-								salaireNet: 750,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 31,
-								salaireNet: 310,
-							},
-						],
-					},
-					avril: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: false,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-						],
-					},
-					mai: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 35,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 35,
-								salaireNet: 350,
-							},
-						],
-					},
+					mars: (new MoisHistoriqueFactory())
+						.avecGED(31)
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], 150)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.sansGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecGED(35)
+						.build(),
 				},
 			})
 
 			expect(résultat).to.be.false
 		})
 
-		it('n’est pas éligible si aucun enfant n’ouvre droit au CMG', () => {
+		it('n’est pas éligible si tous les enfants ont plus de 6 ans à la réforme ou sont nés en 2022', () => {
+			const Oscar = (new EnfantFactory()).plusDe6Ans().build()
+			const Rose = (new EnfantFactory()).néEn(2022).build()
+			const Aurore = (new EnfantFactory()).plusDe6Ans().build()
+
 			const résultat = estÉligible({
 				enfantsÀCharge: {
-					total: 3,
+					enfants: {Oscar, Rose, Aurore},
 					AeeH: 0,
 				},
-				enfantsGardés: [
-					{
-						dateDeNaissance: new Date('2019-09-01'),
-					},
-					{
-						dateDeNaissance: new Date('2022-12-31'),
-					},
-					{
-						dateDeNaissance: new Date('2022-01-01'),
-					},
-				],
 				historique: {
-					mars: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 31,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 150,
-								salaireNet: 750,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 31,
-								salaireNet: 310,
-							},
-						],
-					},
-					avril: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: false,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 150,
-								typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-							},
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 200,
-								salaireNet: 1000,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-						],
-					},
-					mai: {
-						droitsOuverts: true,
-						ressources: O.some(euros(1_000)),
-						employeureuse: true,
-						déclarationsDeGarde: [
-							{
-								type: 'AMA',
-								heuresDeGarde: 50,
-								typologieDeGarde: 'AMA Fratrie 0-6 ans',
-							},
-							{
-								type: 'GED',
-								heuresDeGarde: 35,
-							},
-						],
-						salariées: [
-							{
-								type: 'AMA',
-								nbHeures: 50,
-								salaireNet: 250,
-								indemnitésEntretien: 25,
-								fraisDeRepas: 50,
-							},
-							{
-								type: 'GED',
-								nbHeures: 35,
-								salaireNet: 350,
-							},
-						],
-					},
+					mars: (new MoisHistoriqueFactory())
+						.avecGED()
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'])
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar', 'Rose', 'Aurore'])
+						.build(),
 				},
 			})
 
@@ -725,54 +212,28 @@ describe('CMG', () => {
 	describe('moyenneHeuresDeGardeSupérieureAuPlancher', () => {
 		it('est vrai si au moins une typologie de garde a une moyenne d’heures suffisante', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
-				mars: {
-					ressources: O.none(),
-					droitsOuverts: false,
-					employeureuse: false,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 150,
-							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 150,
-							salaireNet: 750,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-					],
+				enfantsÀCharge: {
+					enfants: {
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+					},
+					AeeH: 0,
 				},
-				avril: {
-					ressources: O.none(),
-					droitsOuverts: false,
-					employeureuse: false,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 150,
-							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 150,
-							salaireNet: 750,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-					],
-				},
-				mai: {
-					ressources: O.none(),
-					droitsOuverts: false,
-					employeureuse: false,
-					déclarationsDeGarde: [],
-					salariées: [],
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar'], 150)
+						.avecGED(31)
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], 150)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.sansGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecGED(35)
+						.build(),
 				},
 			})
 
@@ -781,75 +242,28 @@ describe('CMG', () => {
 
 		it('est faux si aucune typologie de garde n’a une moyenne d’heures suffisante', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
-				mars: {
-					ressources: O.some(euros(8_500)),
-					droitsOuverts: false,
-					employeureuse: true,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 297,
-							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-						},
-						{
-							type: 'AMA',
-							heuresDeGarde: 147,
-							typologieDeGarde: 'AMA Enfant unique 3-6 ans',
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 444,
-							salaireNet: 220,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-					],
+				enfantsÀCharge: {
+					enfants: {
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+					},
+					AeeH: 0,
 				},
-				avril: {
-					ressources: O.none(),
-					droitsOuverts: false,
-					employeureuse: false,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 447,
-							typologieDeGarde: 'AMA Fratrie 0-3 ans',
-						},
-						{
-							type: 'AMA',
-							heuresDeGarde: 297,
-							typologieDeGarde: 'AMA Fratrie 0-6 ans',
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 744,
-							salaireNet: 3720,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-					],
-				},
-				mai: {
-					ressources: O.some(euros(1_000)),
-					droitsOuverts: true,
-					employeureuse: true,
-					déclarationsDeGarde: [
-						{
-							type: 'GED',
-							heuresDeGarde: 147,
-						},
-					],
-					salariées: [
-						{
-							type: 'GED',
-							nbHeures: 147,
-							salaireNet: 1470,
-						},
-					],
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar'], 297)
+						.avecAMA(['Aurore'], 147)
+						.sansGED()
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar', 'Rose'], 447)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 297)
+						.sansGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecGED(147)
+						.build(),
 				},
 			})
 
@@ -860,91 +274,28 @@ describe('CMG', () => {
 	describe('moyenneHeuresParTypologieDeGarde', () => {
 		it('le cas Aurore, Rose, Oscar', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
-				mars: {
-					droitsOuverts: false,
-					ressources: O.some(euros(8_500)),
-					employeureuse: true,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 150,
-							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-						},
-						{
-							type: 'GED',
-							heuresDeGarde: 31,
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 150,
-							salaireNet: 750,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-						{
-							type: 'GED',
-							nbHeures: 31,
-							salaireNet: 310,
-						},
-					],
+				enfantsÀCharge: {
+					enfants: {
+						Oscar: (new EnfantFactory()).moinsDe3Ans().build(),
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+					},
+					AeeH: 0,
 				},
-				avril: {
-					droitsOuverts: false,
-					ressources: O.none(),
-					employeureuse: false,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 150,
-							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-						},
-						{
-							type: 'AMA',
-							heuresDeGarde: 50,
-							typologieDeGarde: 'AMA Fratrie 0-6 ans',
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 200,
-							salaireNet: 1000,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-					],
-				},
-				mai: {
-					droitsOuverts: true,
-					ressources: O.some(euros(1_000)),
-					employeureuse: true,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 50,
-							typologieDeGarde: 'AMA Fratrie 0-6 ans',
-						},
-						{
-							type: 'GED',
-							heuresDeGarde: 35,
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 50,
-							salaireNet: 250,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-						{
-							type: 'GED',
-							nbHeures: 35,
-							salaireNet: 350,
-						},
-					],
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar'], 150)
+						.avecGED(31)
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], 150)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.sansGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecGED(35)
+						.build(),
 				},
 			})
 
@@ -957,86 +308,26 @@ describe('CMG', () => {
 
 		it('le cas Aurore, Rose', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
-				mars: {
-					droitsOuverts: false,
-					ressources: O.some(euros(8_500)),
-					employeureuse: true,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 150,
-							typologieDeGarde: 'AMA Enfant unique 0-3 ans',
-						},
-						{
-							type: 'GED',
-							heuresDeGarde: 31,
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 150,
-							salaireNet: 750,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-						{
-							type: 'GED',
-							nbHeures: 31,
-							salaireNet: 310,
-						},
-					],
+				enfantsÀCharge: {
+					enfants: {
+						Rose: (new EnfantFactory()).néEn(2022).build(),
+						Aurore: (new EnfantFactory()).plusDe3Ans().build(),
+					},
+					AeeH: 0,
 				},
-				avril: {
-					droitsOuverts: false,
-					ressources: O.none(),
-					employeureuse: false,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 50,
-							typologieDeGarde: 'AMA Fratrie 0-6 ans',
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 50,
-							salaireNet: 250,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-					],
-				},
-				mai: {
-					droitsOuverts: true,
-					ressources: O.some(euros(1_000)),
-					employeureuse: true,
-					déclarationsDeGarde: [
-						{
-							type: 'AMA',
-							heuresDeGarde: 50,
-							typologieDeGarde: 'AMA Fratrie 0-6 ans',
-						},
-						{
-							type: 'GED',
-							heuresDeGarde: 35,
-						},
-					],
-					salariées: [
-						{
-							type: 'AMA',
-							nbHeures: 50,
-							salaireNet: 250,
-							indemnitésEntretien: 25,
-							fraisDeRepas: 50,
-						},
-						{
-							type: 'GED',
-							nbHeures: 35,
-							salaireNet: 350,
-						},
-					],
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], 150)
+						.avecGED(31)
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose', 'Aurore'], 50)
+						.sansGED()
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose', 'Aurore'], 50)
+						.avecGED(35)
+						.build(),
 				},
 			})
 
@@ -1047,6 +338,50 @@ describe('CMG', () => {
 			})
 		})
 	})
+
+	// describe('auMoinsUnEnfantOuvrantDroitAuCMG', () => {
+	// 	it('ouvre droit si GED et 1 enfant à charge ouvrant droit', () => {
+	// 		const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+	// 			enfantsÀCharge: {
+	// 				enfants: [
+	// 					{
+	// 						dateDeNaissance: new Date('2019-09-02'),
+	// 					}
+	// 				],
+	// 				AeeH: 0,
+	// 			},
+	// 			historique: {
+	// 				mars: {
+	// 					droitsOuverts: false,
+	// 					ressources: O.none(),
+	// 					déclarationsDeGarde: [],
+	// 				},
+	// 				avril: {
+	// 					droitsOuverts: false,
+	// 					ressources: O.none(),
+	// 					déclarationsDeGarde: [],
+	// 				},
+	// 				mai: {
+	// 					droitsOuverts: true,
+	// 					ressources: O.some(euros(1_000)),
+	// 					employeureuse: true,
+	// 					déclarationsDeGarde: [
+	// 						{
+	// 							type: 'GED',
+	// 							heuresDeGarde: 1,
+	// 						},
+	// 						{
+	// 							type: 'AMA',
+	// 							heuresDeGarde: 100,
+								
+	// 						}
+	// 					],
+	// 					salariées: [],
+	// 				},
+	// 			}
+	// 		})
+	// 	})
+	// })
 
 	describe('enfantOuvreDroitAuCMG', () => {
 		it('n’ouvre pas droit si né⋅e en 2022', () => {
