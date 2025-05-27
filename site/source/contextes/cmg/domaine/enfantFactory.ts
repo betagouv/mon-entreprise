@@ -1,4 +1,4 @@
-import { Enfant } from './éligibilité'
+import { Enfant } from './enfant'
 
 export class EnfantFactory {
 	private dateDeNaissance = new Date('2023-01-01')
