@@ -7,12 +7,10 @@ import * as R from 'effect/Record'
 import * as M from '@/domaine/Montant'
 import { round } from '@/utils/number'
 
-import {
-	DéclarationDeGarde,
-	EnfantsÀCharge,
-	ModeDeGarde,
-	SituationCMG,
-} from './éligibilité'
+import { DéclarationDeGarde } from './déclaration-de-garde'
+import { EnfantsÀCharge } from './enfant'
+import { ModeDeGarde } from './mode-de-garde'
+import { SituationCMG } from './situationCMG'
 
 const TEH_PAR_GARDE_ET_NB_ENFANTS = {
 	AMA: {

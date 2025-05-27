@@ -3,11 +3,12 @@ import * as O from 'effect/Option'
 
 import * as M from '@/domaine/Montant'
 
+import { DéclarationDeGarde } from './déclaration-de-garde'
 import {
 	DéclarationsDeGardeAMAFactory,
 	DéclarationsDeGardeGEDFactory,
 } from './déclarationDeGardeFactory'
-import { DéclarationDeGarde, MoisHistorique } from './éligibilité'
+import { MoisHistorique } from './situationCMG'
 
 export class MoisHistoriqueFactory<Prénom extends string = string> {
 	private droitsOuverts = true

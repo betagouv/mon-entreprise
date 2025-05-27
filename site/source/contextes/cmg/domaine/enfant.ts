@@ -15,3 +15,8 @@ export const enfantNéEn = (année: number) => (enfant: Enfant) =>
 
 export const enfantAMoinsDe6Ans = (enfant: Enfant) =>
 	pipe(enfant.dateDeNaissance, addYears(6), isAfter(DATE_RÉFORME))
+
+export interface EnfantsÀCharge<Prénom extends string = string> {
+	enfants: Record<Prénom, Enfant>
+	AeeH: number
+}
