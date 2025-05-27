@@ -62,7 +62,6 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 								)
 								setLinkCopied(true)
 							}}
-							role={linkCopied ? 'status' : ''}
 						>
 							{linkCopied ? (
 								<>✅ {t('shareSimulation.button.copied', 'Copié')}</>

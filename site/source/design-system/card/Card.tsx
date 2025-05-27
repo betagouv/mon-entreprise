@@ -44,7 +44,6 @@ export function Card(props: CardProps) {
 		compact = false,
 		ctaLabel,
 		icon,
-		role,
 		tabIndex,
 		title,
 		...ariaButtonProps
@@ -86,7 +85,6 @@ export function Card(props: CardProps) {
 					$light
 					$color="primary"
 					{...buttonOrLinkProps}
-					role={role || buttonOrLinkProps?.role}
 					tabIndex={undefined}
 				>
 					{ctaLabel}
