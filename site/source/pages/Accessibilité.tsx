@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { H1, H2, H3, H4, H5 } from '@/design-system/typography/heading'
+import { H1, H2, H3, H4 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body, SmallBody } from '@/design-system/typography/paragraphs'
@@ -85,7 +85,7 @@ export default function Accessibilité() {
 			<H3>État de conformité</H3>
 			<Body>
 				Mon-entreprise - <Link href="/">https://mon-entreprise.urssaf.fr/</Link>{' '}
-				est en conformité partielle avec le{' '}
+				est partiellement conforme avec le{' '}
 				<Link
 					href="https://accessibilite.numerique.gouv.fr"
 					aria-label="Référentiel général d’amélioration
@@ -97,10 +97,16 @@ export default function Accessibilité() {
 				ci-dessous.
 			</Body>
 			<H3>Résultats des tests</H3>
-			<Body>L’audit de conformité réalisé par URBILOG révèle que :</Body>
+			<Body>
+				L’audit de conformité réalisé par la société{' '}
+				<Link href="https://boscop.fr/" aria-label="Boscop, nouvelle fenêtre">
+					boscop
+				</Link>{' '}
+				révèle que :
+			</Body>
 			<Ul>
-				<Li>81% des critères du RGAA version 4.1 sont respectés.</Li>
-				<Li>Le taux moyen de conformité du service en ligne est de 93%.</Li>
+				<Li>61.90% des critères RGAA sont respectés.</Li>
+				<Li>Le taux moyen de conformité du site s’élève à 88%.</Li>
 			</Ul>
 			<Body>
 				Nombre de critères applicables : 63 ; Nombre de critères conformes : 51
@@ -108,86 +114,29 @@ export default function Accessibilité() {
 			</Body>
 			<H3>Contenus non accessibles</H3>
 			<Body>
-				Les contenus listés ci-dessous ne sont pas accessibles pour les raisons
-				suivantes :
+				Liste des critères non conformes :
+				<Ul>
+					<Li>
+						Composants JavaScript non accessibles aux technologies d’assistance
+					</Li>
+					<Li>Liens avec des intitulés non pertinents</Li>
+					<Li>Changement de contexte sans avertir l’utilisateur</Li>
+					<Li>Message non transmis aux technologies d’assistance</Li>
+					<Li>Défaut de contraste</Li>
+					<Li>Indication uniquement par la couleur</Li>
+					<Li>Contenu non compréhensible sans style</Li>
+					<Li>Indication uniquement par la forme</Li>
+					<Li>Absence d’étiquette pour certains champs de formulaire</Li>
+					<Li>Mauvaise gestion des regroupements des éléments de formulaire</Li>
+				</Ul>
 			</Body>
-			<H4>Non conformité</H4>
-			<H5>1. Images</H5>
+			<H3>Dérogation pour charge disproportionnée</H3>
 			<Body>Néant</Body>
-			<H5>2. Cadres</H5>
-			<Body>Néant</Body>
-			<H5>3. Couleurs</H5>
-			<Ul>
-				<Li>
-					Dans chaque page web, l’information ne doit pas être donnée uniquement
-					par la couleur. Cette règle est-elle respectée ?{' '}
-				</Li>
-				<Li>
-					Dans chaque page web, les couleurs utilisées dans les composants
-					d’interface ou les éléments graphiques porteurs d’informations
-					sont-elles suffisamment contrastées (hors cas particuliers) ?
-				</Li>
-			</Ul>
-			<H5>4. Multimédia</H5>
-			<Body>Néant</Body>
-			<H5>5. Tableaux</H5>
-			<Body>
-				Pour chaque tableau de données, chaque en-tête de colonne et chaque
-				en-tête de ligne sont-ils correctement déclarés ?
-			</Body>
-			<H5>6. Liens</H5>
-			<Body>Chaque lien est-il explicite (hors cas particuliers) ?</Body>
-			<H5>7. Scripts</H5>
-			<Ul>
-				<Li>
-					Chaque script est-il, si nécessaire, compatible avec les technologies
-					d’assistance ?
-				</Li>
-				<Li>
-					Chaque script est-il contrôlable par le clavier et par tout dispositif
-					de pointage (hors cas particuliers) ?
-				</Li>
-				<Li>
-					Pour chaque script qui initie un changement de contexte, l’utilisateur
-					est-il averti ou en a-t-il le contrôle ?
-				</Li>
-			</Ul>
-			<H5>8. Éléments obligatoires</H5>
-			<Body>Néant</Body>
-			<H5>9. Structuration de l'information</H5>
-			<Body>
-				Dans chaque page web, chaque liste est-elle correctement structurée ?
-			</Body>
-			<H5>10. Présentation de l'information</H5>
-			<Body>
-				Dans chaque page web, l’information reste-t-elle compréhensible lorsque
-				les feuilles de styles sont désactivées ?
-			</Body>
-			<H5>11. Formulaires</H5>
-			<Ul>
-				<Li>
-					Dans chaque formulaire, chaque regroupement de champs de même nature
-					a-t-il une légende ?
-				</Li>
-				<Li>
-					Dans chaque formulaire, l’intitulé de chaque bouton est-il pertinent
-					(hors cas particuliers) ?
-				</Li>
-			</Ul>
-			<H5>12. Navigation</H5>
-			<Body>Néant</Body>
-			<H5>13. Consultation</H5>
-			<Body>
-				Dans chaque page web, chaque document bureautique en téléchargement
-				possède-t-il, si nécessaire, une version accessible (hors cas
-				particuliers) ?
-			</Body>
-			<H4>Dérogation pour charge disproportionnée</H4> <Body>Néant</Body>
-			<H4>Contenus non-soumis à l'obligation d'accessibilité</H4>
+			<H3>Contenus non-soumis à l'obligation d'accessibilité</H3>
 			<Body>Néant</Body>
 			<H3>Établissement de cette déclaration d'accessibilité</H3>{' '}
 			<Body>
-				Cette déclaration d'accessibilité a été établie le 11 mai 2023.
+				Cette déclaration d'accessibilité a été établie le 15 mai 2025.
 			</Body>
 			<H4>Technologies utilisées pour la réalisation du site</H4>
 			<Ul>
@@ -204,82 +153,89 @@ export default function Accessibilité() {
 				avec les versions suivantes :{' '}
 			</Body>
 			<Ul>
-				<Li> NVDA 2022.4 et Firefox 110 </Li>
-				<Li> VoiceOver Mac OS 13.2 et Safari : 16.3</Li>
+				<Li>NVDA et Firefox</Li>
+				<Li>Jaws et Firefox </Li>
+				<Li>Voiceover et Safari </Li>
 			</Ul>
 			<H4>Outils pour évaluer l'accessibilité</H4>
 			<Ul>
 				<Li>
-					Barre extension de contrôle de taux de contraste{' '}
-					<span lang="en">WCAG Color Contrast Checker</span>
+					<span lang="en">Colour Contrast Analyser</span> ;
 				</Li>
-				<Li> Barre extension Assistant RGAA V4.1 Compéthance</Li>
-				<Li> Barre extension Web Developer toolbar</Li>
-				<Li> Inspecteur du navigateur</Li>
-				<Li> UserCSS/Stylus</Li>
+				<Li>
+					Extension « <span lang="en">Web Developer</span> » ;
+				</Li>
+				<Li>Extension « Assistant RGAA » ;</Li>
+				<Li>
+					Extension « <span lang="en">WCAG Contrast checker</span> » ;
+				</Li>
+				<Li>
+					Extension « <span lang="en">ARC Toolkit</span> » ;
+				</Li>
+				<Li>Extension « HeadingsMap » ;</Li>
+				<Li>Outils pour développeurs intégrés au navigateur Firefox ;</Li>
+				<Li>Validateur HTML du W3C.</Li>
 			</Ul>
 			<H4>Pages du site ayant fait l'objet de la vérification de conformité</H4>
 			<Ul>
 				<Li>
-					<Link href="/">Accueil</Link>
+					<Link href="/">Page d'accueil</Link>{' '}
 				</Li>
 				<Li>
-					<Link href="/accessibilit%C3%A9">Accessibilité</Link>
+					<Link href="/accessibilit%C3%A99">Page accessibilité</Link>
 				</Li>
 				<Li>
-					<Link href="/plan-de-site">Plan de site</Link>
+					<Link href="/plan-de-site">Page plan du site</Link>
 				</Li>
 				<Li>
-					<Link href="/stats">Statistiques</Link>
+					<Link href="/statistiques">Page statistique</Link>{' '}
 				</Li>
 				<Li>
-					<Link href="/documentation">Documentation</Link>
+					<Link href="/documentation">Page "Documentation"</Link>
 				</Li>
 				<Li>
-					<Link href="/cr%C3%A9er">Créer une entreprise</Link>
-				</Li>
-				<Li>
-					<Link href="/cr%C3%A9er/statut-juridique/nombre-associ%C3%A9s">
-						Nombre d'associés
-					</Link>
-				</Li>
-				<Li>
-					<Link href="/cr%C3%A9er/statut-juridique/responsabilit%C3%A9">
-						Responsabilité
-					</Link>
-				</Li>
-				<Li>
-					<Link href="/cr%C3%A9er/statut-juridique/auto-entrepreneur-ou-entreprise-individuelle">
-						Choix du statut juridique
-					</Link>
-				</Li>
-				<Li>
-					<Link href="/cr%C3%A9er/statut-juridique/liste">
-						Liste des statuts juridiques
-					</Link>
-				</Li>
-				<Li>
-					<Link href="/cr%C3%A9er/apr%C3%A8s-la-cr%C3%A9ation">
-						Après la création
-					</Link>
-				</Li>
-				<Li>
-					<Link href="/simulateurs">Simulateurs</Link>
+					<Link href="/simulateurs-et-assistants">Page "Simulateurs"</Link>
 				</Li>
 				<Li>
 					<Link href="/simulateurs/salaire-brut-net">
-						Simulateur de revenus pour salarié
+						Page "Simulateur de revenus pour salarié"
 					</Link>
 				</Li>
 				<Li>
-					<Link href="/g%C3%A9rer/declaration-charges-sociales-independant">
-						Assistant à la détermination des charges sociales déductibles
+					<Link href="/assistants/declaration-charges-sociales-independant">
+						Page "Assistant à la détermination des charges sociales déductibles"
 					</Link>
 				</Li>
 				<Li>
-					<Link href="/simulateurs/profession-liberale">
-						Simulateur de revenus pour profession libérale
+					<Link href="/simulateurs/auto-entrepreneur">
+						Page "Simulateur de revenus auto-entrepreneur"
 					</Link>
+				</Li>
+				<Li>
+					<Link href="/assistants/choix-du-statut">Page "Choix du statut"</Link>
+				</Li>
+				<Li>
+					<Link href="/assistants/declaration-revenus-pam">
+						Page "Assistant à la déclaration de revenus pour les PAMC"
+					</Link>
+				</Li>
+				<Li>
+					<Link href="/nouveaut%C3%A9s/f%C3%A9vrier-2025">
+						Page "Les nouveautés"
+					</Link>
+				</Li>
+				<Li>
+					<Link href="/d%C3%A9veloppeur">
+						Page "Outils pour les développeurs"
+					</Link>
+				</Li>
+				<Li>
+					<Link href="/d%C3%A9veloppeur/biblioth%C3%A8que-de-calcul">
+						Page "Bibliothèque de calcul"
+					</Link>
+				</Li>
+				<Li>
+					<Link href="/budget">Page "Budget"</Link>{' '}
 				</Li>
 			</Ul>
 			<H3>Droit à la compensation</H3>
@@ -304,7 +260,7 @@ export default function Accessibilité() {
 				</Link>
 				.
 			</Body>
-			<H3>Défenseur des droits</H3>
+			<H3>Voies de recours</H3>
 			<Body>Cette procédure est à utiliser dans le cas suivant.</Body>
 			<Body>
 				Vous avez signalé au responsable du site internet un défaut
@@ -354,7 +310,7 @@ export default function Accessibilité() {
 					</Link>
 				</Li>
 			</Ul>
-			<SmallBody>Mis à jour le 11 mai 2023</SmallBody>
+			<SmallBody>Mis à jour le 27 mai 2025</SmallBody>
 		</Trans>
 	)
 }
