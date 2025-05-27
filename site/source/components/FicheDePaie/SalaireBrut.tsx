@@ -9,7 +9,7 @@ import './FicheDePaie.css'
 
 export default function SalaireBrut() {
 	return (
-		<div className="payslip__salarySection">
+		<section className="payslip__salarySection">
 			<H3 className="payslip__salaryTitle">
 				<Trans>Salaire brut</Trans>
 			</H3>
@@ -25,6 +25,6 @@ export default function SalaireBrut() {
 			<Condition expression="salarié . contrat . salaire brut != salarié . rémunération . brut">
 				<Line rule="salarié . rémunération . brut" />
 			</Condition>
-		</div>
+		</section>
 	)
 }
