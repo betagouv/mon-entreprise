@@ -1,9 +1,18 @@
 import { pipe } from 'effect'
+import * as A from 'effect/Array'
+import * as N from 'effect/Number'
+import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 
+import * as M from '@/domaine/Montant'
 import { round } from '@/utils/number'
 
-import { DéclarationDeGarde, EnfantsÀCharge, ModeDeGarde } from './éligibilité'
+import {
+	DéclarationDeGarde,
+	EnfantsÀCharge,
+	ModeDeGarde,
+	SituationCMG,
+} from './éligibilité'
 
 const TEH_PAR_GARDE_ET_NB_ENFANTS = {
 	AMA: {
@@ -23,19 +32,56 @@ const TEH_PAR_GARDE_ET_NB_ENFANTS = {
 }
 
 const COÛT_HORAIRE_MAXIMAL = {
-	AMA: 8.15,
-	GED: 10.3,
+	AMA: 8,
+	GED: 15,
+}
+const COÛT_HORAIRE_MÉDIAN = {
+	AMA: 4.85,
+	GED: 10.38,
 }
 
-type TEHArgs = {
-	modeDeGarde: ModeDeGarde
+// TODO: à finir
+export const calculeComplémentTransitoire = (situation: SituationCMG) => {
+	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.historique)
+	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
+}
+
+export const moyenneCMGPerçus = (historique: SituationCMG['historique']) =>
+	pipe(
+		historique,
+		R.values,
+		A.flatMap((m) => m.déclarationsDeGarde),
+		A.map((d) => O.getOrElse(d.CMGPerçu, () => M.euros(0)).valeur),
+		N.sumAll,
+		(sum) => round(sum / 3, 2),
+		M.euros
+	)
+
+// TODO: à finir
+const moyenneCMGRLinéarisés = (situation: SituationCMG) => M.euros(0)
+
+export const calculeCMGRLinéarisé = (
+	déclarationDeGarde: DéclarationDeGarde,
+	enfantsÀCharge: EnfantsÀCharge,
+	revenuMensuel: M.Montant<'Euro'>
+) => {
+	const teh = tauxEffortHoraire(déclarationDeGarde.type, enfantsÀCharge) / 100
+	const coûtMensuel = coûtMensuelDeLaGarde(déclarationDeGarde)
+	const coûtHoraireMédian = COÛT_HORAIRE_MÉDIAN[déclarationDeGarde.type]
+
+	return M.euros(
+		round(
+			coûtMensuel.valeur *
+				(1 - (revenuMensuel.valeur * teh) / coûtHoraireMédian),
+			2
+		)
+	)
+}
+
+export const tauxEffortHoraire = (
+	modeDeGarde: ModeDeGarde,
 	enfantsÀCharge: EnfantsÀCharge
-}
-
-export const tauxEffortHoraire = ({
-	modeDeGarde,
-	enfantsÀCharge,
-}: TEHArgs): number | null => {
+): number => {
 	const TEHParNbEnfants = TEH_PAR_GARDE_ET_NB_ENFANTS[modeDeGarde]
 
 	const { TEHPourNbEnfantsÀCharge, indexPourNbEnfantsÀCharge } = pipe(
@@ -71,7 +117,7 @@ export const coûtMensuelDeLaGarde = (
 	déclarationDeGarde: DéclarationDeGarde
 ) => {
 	const coûtHoraireNet = round(
-		déclarationDeGarde.rémunération / déclarationDeGarde.heuresDeGarde,
+		déclarationDeGarde.rémunération.valeur / déclarationDeGarde.heuresDeGarde,
 		2
 	)
 	const coûtHoraireAppliqué = Math.min(
@@ -79,5 +125,5 @@ export const coûtMensuelDeLaGarde = (
 		COÛT_HORAIRE_MAXIMAL[déclarationDeGarde.type]
 	)
 
-	return coûtHoraireAppliqué * déclarationDeGarde.heuresDeGarde
+	return M.euros(coûtHoraireAppliqué * déclarationDeGarde.heuresDeGarde)
 }
