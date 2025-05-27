@@ -20,7 +20,7 @@ const PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE: Record<TypologieDeGarde, number> =
 const DATE_RÉFORME = new Date('2025-09-01')
 const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
 
-interface SituationCMG<PrénomsEnfants extends string = string> {
+export interface SituationCMG<PrénomsEnfants extends string = string> {
 	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
 	historique: {
 		mars: MoisHistorique<PrénomsEnfants>
@@ -35,6 +35,7 @@ export interface EnfantsÀCharge<Prénom extends string = string> {
 }
 
 export interface MoisHistorique<PrénomsEnfants extends string = string> {
+	// TODO: à remplacer par l'utilisation de déclarationDeGarde.CMGPerçu
 	droitsOuverts: boolean
 	ressources: O.Option<M.Montant<'Euro'>>
 	déclarationsDeGarde: Array<DéclarationDeGarde<PrénomsEnfants>>
@@ -47,13 +48,15 @@ export type DéclarationDeGarde<PrénomsEnfants extends string = string> =
 export interface DéclarationDeGardeGED {
 	type: 'GED'
 	heuresDeGarde: number
-	rémunération: number
+	rémunération: M.Montant<'Euro'>
+	CMGPerçu: O.Option<M.Montant<'Euro'>>
 }
 export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	type: 'AMA'
 	heuresDeGarde: number
-	rémunération: number
+	rémunération: M.Montant<'Euro'>
 	enfantsGardés: Array<PrénomsEnfants>
+	CMGPerçu: O.Option<M.Montant<'Euro'>>
 }
 export interface Enfant {
 	dateDeNaissance: Date
@@ -206,6 +209,7 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 		return R.some(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
 	}
 
+	// TODO: à corriger
 	const enfantsGardésEnAMA = pipe(
 		situation.historique,
 		R.values,
