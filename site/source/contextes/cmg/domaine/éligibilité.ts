@@ -1,14 +1,20 @@
-import { addYears, getYear, isAfter, isBefore } from 'date-fns/fp'
 import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as N from 'effect/Number'
 import * as O from 'effect/Option'
+import { and, not } from 'effect/Predicate'
 import * as R from 'effect/Record'
 
 import {
 	déclarationDeGardeEstAMA,
 	déclarationDeGardeEstGED,
 } from '@/contextes/cmg/domaine/déclaration-de-garde'
+import {
+	Enfant,
+	enfantAMoinsDe6Ans,
+	enfantAPlusDe3Ans,
+	enfantNéEn,
+} from '@/contextes/cmg/domaine/enfant'
 import * as M from '@/domaine/Montant'
 
 const PLAFOND_DE_RESSOURCES = M.euros(8_500)
@@ -21,7 +27,6 @@ const PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE: Record<TypologieDeGarde, number> =
 		'AMA Fratrie 0-6 ans': 100,
 		GED: 50,
 	}
-const DATE_RÉFORME = new Date('2025-09-01')
 const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
 
 export interface SituationCMG<PrénomsEnfants extends string = string> {
@@ -61,9 +66,6 @@ export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	rémunération: M.Montant<'Euro'>
 	enfantsGardés: Array<PrénomsEnfants>
 	CMGPerçu: O.Option<M.Montant<'Euro'>>
-}
-export interface Enfant {
-	dateDeNaissance: Date
 }
 type TypologieDeGardeAMA =
 	| 'AMA Enfant unique 0-3 ans'
@@ -227,9 +229,7 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 	return R.some(enfantsGardésEnAMA, enfantOuvreDroitAuCMG)
 }
 
-export const enfantOuvreDroitAuCMG = (enfant: Enfant): boolean =>
-	getYear(enfant.dateDeNaissance) !== ANNÉE_DE_NAISSANCE_EXCLUE &&
-	pipe(enfant.dateDeNaissance, addYears(6), isAfter(DATE_RÉFORME))
-
-const enfantAPlusDe3Ans = (enfant: Enfant): boolean =>
-	pipe(enfant.dateDeNaissance, addYears(3), isBefore(DATE_RÉFORME))
+export const enfantOuvreDroitAuCMG = and<Enfant>(
+	not(enfantNéEn(ANNÉE_DE_NAISSANCE_EXCLUE)),
+	enfantAMoinsDe6Ans
+)
