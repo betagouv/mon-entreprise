@@ -30,7 +30,7 @@ interface SituationCMG<PrénomsEnfants extends string = string> {
 }
 
 export interface EnfantsÀCharge<Prénom extends string = string> {
-	enfants: Record<Prénom,Enfant>
+	enfants: Record<Prénom, Enfant>
 	AeeH: number
 }
 
@@ -38,18 +38,21 @@ export interface MoisHistorique<PrénomsEnfants extends string = string> {
 	droitsOuverts: boolean
 	ressources: O.Option<M.Montant<'Euro'>>
 	déclarationsDeGarde: Array<DéclarationDeGarde<PrénomsEnfants>>
-	// salariées: Array<Salariée>
 }
 
-export type DéclarationDeGarde<PrénomsEnfants extends string = string> = DéclarationDeGardeGED | DéclarationDeGardeAMA<PrénomsEnfants>
+export type DéclarationDeGarde<PrénomsEnfants extends string = string> =
+	| DéclarationDeGardeGED
+	| DéclarationDeGardeAMA<PrénomsEnfants>
 
 export interface DéclarationDeGardeGED {
 	type: 'GED'
 	heuresDeGarde: number
+	rémunération: number
 }
 export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	type: 'AMA'
 	heuresDeGarde: number
+	rémunération: number
 	enfantsGardés: Array<PrénomsEnfants>
 }
 export interface Enfant {
@@ -138,50 +141,48 @@ export const moyenneHeuresDeGardeSupérieureAuPlancher = (
 }
 
 export const moyenneHeuresParTypologieDeGarde = (
-	situation: SituationCMG,
-): Record<TypologieDeGarde, number> => pipe(
-	situation.historique,
-	R.values,
-	A.flatMap((m) => m.déclarationsDeGarde),
-	groupeLesDéclarationsParTypologieDeGarde(situation.enfantsÀCharge.enfants),
-	R.map(faitLaMoyenneDesHeuresDeGarde)
-)
+	situation: SituationCMG
+): Record<TypologieDeGarde, number> =>
+	pipe(
+		situation.historique,
+		R.values,
+		A.flatMap((m) => m.déclarationsDeGarde),
+		groupeLesDéclarationsParTypologieDeGarde(situation.enfantsÀCharge.enfants),
+		R.map(faitLaMoyenneDesHeuresDeGarde)
+	)
 
-const détermineLaTypologieDeLaGarde = <Prénom extends string>(enfants: Record<Prénom, Enfant>) => 
+const détermineLaTypologieDeLaGarde =
+	<Prénom extends string>(enfants: Record<Prénom, Enfant>) =>
 	(déclarationDeGarde: DéclarationDeGarde<Prénom>): TypologieDeGarde => {
-	if (déclarationDeGarde.type === 'GED') {
-		return 'GED'
-	}
-
-	let typologie = 'AMA'
-	if (déclarationDeGarde.enfantsGardés.length > 1) {
-		typologie += ' Fratrie'
-		const unEnfantDePlusDe3Ans = déclarationDeGarde.enfantsGardés.some((prénom: Prénom) => enfantAPlusDe3Ans(enfants[prénom]))
-		if (unEnfantDePlusDe3Ans) {
-			typologie += ' 0-6 ans'
-		} else {
-			typologie += ' 0-3 ans'
+		if (déclarationDeGarde.type === 'GED') {
+			return 'GED'
 		}
-	} else {
-		typologie += ' Enfant unique'
-		const prénom = déclarationDeGarde.enfantsGardés[0]
 
-		const enfant = enfants[prénom]
-		if (enfantAPlusDe3Ans(enfant)) {
-			typologie += ' 3-6 ans'
+		if (déclarationDeGarde.enfantsGardés.length > 1) {
+			const unEnfantDePlusDe3Ans = déclarationDeGarde.enfantsGardés.some(
+				(prénom: Prénom) => enfantAPlusDe3Ans(enfants[prénom])
+			)
+			if (unEnfantDePlusDe3Ans) {
+				return 'AMA Fratrie 0-6 ans'
+			} else {
+				return 'AMA Fratrie 0-3 ans'
+			}
 		} else {
-			typologie += ' 0-3 ans'
+			const prénom = déclarationDeGarde.enfantsGardés[0]
+			if (enfantAPlusDe3Ans(enfants[prénom])) {
+				return 'AMA Enfant unique 3-6 ans'
+			} else {
+				return 'AMA Enfant unique 0-3 ans'
+			}
 		}
 	}
 
-	return typologie as TypologieDeGarde
-}
-
-const groupeLesDéclarationsParTypologieDeGarde =  <Prénom extends string>(enfants: Record<Prénom, Enfant>) => 
-	(liste: DéclarationDeGarde<Prénom>[]): Record<TypologieDeGarde, DéclarationDeGarde[]> => 
+const groupeLesDéclarationsParTypologieDeGarde =
+	<Prénom extends string>(enfants: Record<Prénom, Enfant>) =>
+	(
+		liste: DéclarationDeGarde<Prénom>[]
+	): Record<TypologieDeGarde, DéclarationDeGarde[]> =>
 		A.groupBy(liste, détermineLaTypologieDeLaGarde(enfants))
-
-
 
 const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 	pipe(
@@ -212,7 +213,10 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 		A.filter((d) => d.type === 'AMA'),
 		A.flatMap((d) => d.enfantsGardés),
 		A.dedupe,
-		R.fromIterableWith((prénom) => [prénom, situation.enfantsÀCharge.enfants[prénom]])
+		R.fromIterableWith((prénom) => [
+			prénom,
+			situation.enfantsÀCharge.enfants[prénom],
+		])
 	)
 
 	return R.some(enfantsGardésEnAMA, enfantOuvreDroitAuCMG)
