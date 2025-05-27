@@ -5,17 +5,19 @@ import * as O from 'effect/Option'
 import { and, not } from 'effect/Predicate'
 import * as R from 'effect/Record'
 
+import * as M from '@/domaine/Montant'
+
 import {
+	DéclarationDeGarde,
 	déclarationDeGardeEstAMA,
 	déclarationDeGardeEstGED,
-} from '@/contextes/cmg/domaine/déclaration-de-garde'
+} from './déclaration-de-garde'
+import { Enfant, enfantAMoinsDe6Ans, enfantNéEn } from './enfant'
+import { SituationCMG } from './situationCMG'
 import {
-	Enfant,
-	enfantAMoinsDe6Ans,
-	enfantAPlusDe3Ans,
-	enfantNéEn,
-} from '@/contextes/cmg/domaine/enfant'
-import * as M from '@/domaine/Montant'
+	détermineLaTypologieDeLaGarde,
+	TypologieDeGarde,
+} from './typologie-de-garde'
 
 const PLAFOND_DE_RESSOURCES = M.euros(8_500)
 const NOMBRE_MIN_MOIS_EMPLOYEUREUSE = 2
@@ -28,67 +30,6 @@ const PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE: Record<TypologieDeGarde, number> =
 		GED: 50,
 	}
 const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
-
-export interface SituationCMG<PrénomsEnfants extends string = string> {
-	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
-	historique: {
-		mars: MoisHistorique<PrénomsEnfants>
-		avril: MoisHistorique<PrénomsEnfants>
-		mai: MoisHistorique<PrénomsEnfants>
-	}
-}
-
-export interface EnfantsÀCharge<Prénom extends string = string> {
-	enfants: Record<Prénom, Enfant>
-	AeeH: number
-}
-
-export interface MoisHistorique<PrénomsEnfants extends string = string> {
-	// TODO: à remplacer par l'utilisation de déclarationDeGarde.CMGPerçu
-	droitsOuverts: boolean
-	ressources: O.Option<M.Montant<'Euro'>>
-	déclarationsDeGarde: Array<DéclarationDeGarde<PrénomsEnfants>>
-}
-
-export type DéclarationDeGarde<PrénomsEnfants extends string = string> =
-	| DéclarationDeGardeGED
-	| DéclarationDeGardeAMA<PrénomsEnfants>
-
-export interface DéclarationDeGardeGED {
-	type: 'GED'
-	heuresDeGarde: number
-	rémunération: M.Montant<'Euro'>
-	CMGPerçu: O.Option<M.Montant<'Euro'>>
-}
-export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
-	type: 'AMA'
-	heuresDeGarde: number
-	rémunération: M.Montant<'Euro'>
-	enfantsGardés: Array<PrénomsEnfants>
-	CMGPerçu: O.Option<M.Montant<'Euro'>>
-}
-type TypologieDeGardeAMA =
-	| 'AMA Enfant unique 0-3 ans'
-	| 'AMA Enfant unique 3-6 ans'
-	| 'AMA Fratrie 0-3 ans'
-	| 'AMA Fratrie 0-6 ans'
-
-type TypologieDeGarde = TypologieDeGardeAMA | 'GED'
-
-export type Salariée = SalariéeAMA | SalariéeGED
-
-export interface SalariéeAMA {
-	type: 'AMA'
-	salaireNet: number
-	indemnitésEntretien: number
-	fraisDeRepas: number
-}
-interface SalariéeGED {
-	type: 'GED'
-	salaireNet: number
-}
-
-export type ModeDeGarde = 'AMA' | 'GED'
 
 export const estÉligible = (situation: SituationCMG): boolean =>
 	droitsOuvertsSurAuMoinsUnMois(situation.historique) &&
@@ -159,32 +100,6 @@ export const moyenneHeuresParTypologieDeGarde = (
 		groupeLesDéclarationsParTypologieDeGarde(situation.enfantsÀCharge.enfants),
 		R.map(faitLaMoyenneDesHeuresDeGarde)
 	)
-
-const détermineLaTypologieDeLaGarde =
-	<Prénom extends string>(enfants: Record<Prénom, Enfant>) =>
-	(déclarationDeGarde: DéclarationDeGarde<Prénom>): TypologieDeGarde => {
-		if (déclarationDeGarde.type === 'GED') {
-			return 'GED'
-		}
-
-		if (déclarationDeGarde.enfantsGardés.length > 1) {
-			const unEnfantDePlusDe3Ans = déclarationDeGarde.enfantsGardés.some(
-				(prénom: Prénom) => enfantAPlusDe3Ans(enfants[prénom])
-			)
-			if (unEnfantDePlusDe3Ans) {
-				return 'AMA Fratrie 0-6 ans'
-			} else {
-				return 'AMA Fratrie 0-3 ans'
-			}
-		} else {
-			const prénom = déclarationDeGarde.enfantsGardés[0]
-			if (enfantAPlusDe3Ans(enfants[prénom])) {
-				return 'AMA Enfant unique 3-6 ans'
-			} else {
-				return 'AMA Enfant unique 0-3 ans'
-			}
-		}
-	}
 
 const groupeLesDéclarationsParTypologieDeGarde =
 	<Prénom extends string>(enfants: Record<Prénom, Enfant>) =>
