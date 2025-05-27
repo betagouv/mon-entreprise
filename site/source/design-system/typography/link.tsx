@@ -209,6 +209,11 @@ export function useButtonOrLink(
 		)
 	)
 
+	// Remove role to avoid contradiction with final HTML tag
+	const buttonPropsWithoutRole = Object.fromEntries(
+		Object.entries(buttonProps).filter(([key]) => key !== 'role')
+	)
+
 	// Rename style if it is a function, see CustomNavLink
 	const styleProps =
 		'to' in props && typeof props.style === 'function'
@@ -223,7 +228,7 @@ export function useButtonOrLink(
 
 	const buttonOrLinkProps = {
 		...initialProps,
-		...buttonProps,
+		...buttonPropsWithoutRole,
 		...useExternalLinkProps(props),
 		...classNameProps,
 		...styleProps,
