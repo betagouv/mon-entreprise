@@ -36,7 +36,7 @@ export default function NumberInput({
 	aria,
 }: NumberInputProps) {
 	const { handleChange, currentSelection: currentValue } = useSelection({
-		value,
+		value: missing ? undefined : value,
 		onChange,
 	})
 
