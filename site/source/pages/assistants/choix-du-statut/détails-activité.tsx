@@ -19,7 +19,7 @@ import { H5 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
-import { useEngineIsIdle } from '@/hooks/useEngineIsIddle'
+import { useIsIdle } from '@/hooks/useIsIddle'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
@@ -63,7 +63,7 @@ export default function DétailsActivité() {
 		(guichet) => guichet.code === codeGuichet
 	)
 	// Wait for the update to be done before rendering the component
-	const isIdle = useEngineIsIdle()
+	const isIdle = useIsIdle()
 
 	const title = t(
 		'créer.choix-statut.détails-activité.title',
