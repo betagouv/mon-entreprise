@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -10,7 +11,6 @@ import {
 	useGuichetInfo,
 } from '@/components/GuichetInfo'
 import Skeleton from '@/components/ui/Skeleton'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Message, RadioCardGroup } from '@/design-system'
 import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
 import { Spacing } from '@/design-system/layout'
@@ -20,6 +20,7 @@ import { Link } from '@/design-system/typography/link'
 import { Li, Ul } from '@/design-system/typography/list'
 import { Body } from '@/design-system/typography/paragraphs'
 import { useIsIdle } from '@/hooks/useIsIddle'
+import { usePublicodes } from '@/hooks/usePublicodes'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
@@ -33,16 +34,21 @@ import Navigation from './_components/Navigation'
 
 export default function DétailsActivité() {
 	const { t } = useTranslation()
-	const codeApe = useEngine().evaluate(
-		'entreprise . activités . principale . code APE'
-	).nodeValue as string | undefined
-	const defaultCodeGuichet = useEngine().evaluate(
-		'entreprise . activités . principale . code guichet'
-	).nodeValue as string | undefined
+	const publicodes = usePublicodes()
+	const codeApe = O.getOrUndefined(
+		publicodes.évalue<string>('entreprise . activités . principale . code APE')
+			.valeur
+	)
+	const defaultCodeGuichet = O.getOrUndefined(
+		publicodes.évalue<string>(
+			'entreprise . activités . principale . code guichet'
+		).valeur
+	)
 
 	const [codeGuichet, setCodeGuichet] = useState<string | undefined>(undefined)
 
 	const guichetEntries = useGuichetInfo(codeApe)
+
 	const updateSituationWithGuichet =
 		useUpdateSituationWithGuichet(guichetEntries)
 
