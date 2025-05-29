@@ -7,36 +7,15 @@ import * as R from 'effect/Record'
 import * as M from '@/domaine/Montant'
 import { round } from '@/utils/number'
 
+import {
+	COÛT_HORAIRE_MAXIMAL,
+	COÛT_HORAIRE_MÉDIAN,
+	TEH_PAR_GARDE_ET_NB_ENFANTS,
+} from './constantes'
 import { DéclarationDeGarde } from './déclaration-de-garde'
 import { EnfantsÀCharge } from './enfant'
 import { ModeDeGarde } from './mode-de-garde'
 import { SituationCMG } from './situationCMG'
-
-const TEH_PAR_GARDE_ET_NB_ENFANTS = {
-	AMA: {
-		1: 0.0619,
-		2: 0.0516,
-		3: 0.0413,
-		4: 0.031,
-		8: 0.0206,
-	},
-	GED: {
-		1: 0.1238,
-		2: 0.1032,
-		3: 0.0826,
-		4: 0.062,
-		8: 0.0412,
-	},
-}
-
-const COÛT_HORAIRE_MAXIMAL = {
-	AMA: 8,
-	GED: 15,
-}
-const COÛT_HORAIRE_MÉDIAN = {
-	AMA: 4.85,
-	GED: 10.38,
-}
 
 export const calculeComplémentTransitoire = (situation: SituationCMG) => {
 	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.historique)
