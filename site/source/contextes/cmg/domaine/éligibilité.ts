@@ -19,7 +19,7 @@ import {
 	TypologieDeGarde,
 } from './typologie-de-garde'
 
-const PLAFOND_DE_RESSOURCES = M.euros(8_500)
+const PLAFOND_DE_RESSOURCES = M.eurosParMois(8_500)
 const NOMBRE_MIN_MOIS_EMPLOYEUREUSE = 2
 const PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE: Record<TypologieDeGarde, number> =
 	{
@@ -33,8 +33,8 @@ const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
 
 export const estÉligible = (situation: SituationCMG): boolean =>
 	CMGPerçu(situation.historique) &&
-	ressourcesDeMaiInférieuresAuPlafond(situation.historique) &&
-	nombreDeMoisEmployeureuseEtRessourcesSuffisant(situation.historique) &&
+	ressourcesInférieuresAuPlafond(situation.ressources) &&
+	nombreDeMoisEmployeureuseSuffisant(situation.historique) &&
 	moyenneHeuresDeGardeSupérieureAuPlancher(situation) &&
 	auMoinsUnEnfantOuvrantDroitAuCMG(situation)
 
@@ -46,26 +46,18 @@ const CMGPerçu = (historique: SituationCMG['historique']): boolean =>
 		A.some((d: DéclarationDeGarde) => O.isSome(d.CMGPerçu))
 	)
 
-const ressourcesDeMaiInférieuresAuPlafond = (
-	historique: SituationCMG['historique']
-): boolean => {
-	if (O.isNone(historique.mai.ressources)) {
-		return false
-	}
+const ressourcesInférieuresAuPlafond = (
+	ressources: SituationCMG['ressources']
+): boolean =>
+	pipe(ressources, M.toEurosParMois, M.estPlusPetitQue(PLAFOND_DE_RESSOURCES))
 
-	return pipe(
-		historique.mai.ressources.value,
-		M.estPlusPetitQue(PLAFOND_DE_RESSOURCES)
-	)
-}
-
-const nombreDeMoisEmployeureuseEtRessourcesSuffisant = (
+const nombreDeMoisEmployeureuseSuffisant = (
 	historique: SituationCMG['historique']
 ): boolean => {
 	return (
 		pipe(
 			historique,
-			R.map((m) => m.déclarationsDeGarde.length && O.isSome(m.ressources)),
+			R.map((m) => m.déclarationsDeGarde.length),
 			R.values,
 			A.filter(Boolean),
 			A.length
