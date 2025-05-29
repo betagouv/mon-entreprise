@@ -8,6 +8,7 @@ import {
 	calculeCMGRLinéarisé,
 	coûtMensuelDeLaGarde,
 	moyenneCMGPerçus,
+	moyenneCMGRLinéarisés,
 	tauxEffortHoraire,
 } from './calcul'
 import {
@@ -40,6 +41,47 @@ describe('CMG', () => {
 			})
 
 			expect(résultat).to.be.deep.equal(M.euros(553.33))
+		})
+	})
+
+	describe('moyenneCMGRLinéarisés', () => {
+		it('calcule la moyenne des CMG-R linéarisés', () => {
+			const résultat = moyenneCMGRLinéarisés({
+				ressources: M.eurosParAn(30_000),
+				enfantsÀCharge: {
+					enfants: {
+						Rose: new EnfantFactory().néEn(2022).build(),
+						Aurore: new EnfantFactory().plusDe6Ans().build(),
+					},
+					AeeH: 0,
+				},
+				historique: {
+					mars: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], {
+							nbHeures: 100,
+							rémunération: M.euros(300),
+						})
+						.build(),
+					avril: (new MoisHistoriqueFactory())
+						.avecAMA(['Rose'], {
+							nbHeures: 100,
+							rémunération: M.euros(300),
+						})
+						.avecGED({
+							nbHeures: 12,
+							rémunération: M.euros(48),
+						})
+						.build(),
+					mai: (new MoisHistoriqueFactory())
+						.avecGED({
+							nbHeures: 12,
+							rémunération: M.euros(48),
+						})
+						.build(),
+				}
+			})
+
+			expect(résultat).to.be.deep.equal(M.euros(170.85))
 		})
 	})
 
@@ -76,10 +118,10 @@ describe('CMG', () => {
 					},
 					AeeH: 0,
 				},
-				M.eurosParMois(1000)
+				M.eurosParMois(2500)
 			)
 
-			expect(résultat).to.be.deep.equal(M.euros(43.23))
+			expect(résultat).to.be.deep.equal(M.euros(36.07))
 		})
 	})
 
