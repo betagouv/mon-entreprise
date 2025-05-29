@@ -39,10 +39,10 @@ const COÛT_HORAIRE_MÉDIAN = {
 }
 
 // TODO: à finir
-export const calculeComplémentTransitoire = (situation: SituationCMG) => {
-	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.historique)
-	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
-}
+// export const calculeComplémentTransitoire = (situation: SituationCMG) => {
+// 	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.historique)
+// 	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
+// }
 
 export const moyenneCMGPerçus = (historique: SituationCMG['historique']) =>
 	pipe(
@@ -56,7 +56,12 @@ export const moyenneCMGPerçus = (historique: SituationCMG['historique']) =>
 	)
 
 // TODO: à finir
-const moyenneCMGRLinéarisés = (situation: SituationCMG) => M.euros(0)
+// const moyenneCMGRLinéarisés = (situation: SituationCMG) => pipe(
+// 	situation.historique,
+// 	R.values,
+// 	A.flatMap((m) => m.déclarationsDeGarde),
+// 	A.map((d) => calculeCMGRLinéarisé(d))
+// )
 
 export const calculeCMGRLinéarisé = (
 	déclarationDeGarde: DéclarationDeGarde,
