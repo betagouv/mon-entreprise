@@ -25,7 +25,7 @@ export interface DateFieldProps {
 	label?: string
 	isRequired?: boolean
 	'aria-label'?: string
-	'aria-labelby'?: string
+	'aria-labelledby'?: string
 	type?: 'date passé' | 'date' | 'date futur'
 }
 

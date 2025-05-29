@@ -29,7 +29,9 @@ export const initialSituationCMG: SituationCMG = {
 	_tag: 'Situation',
 	ressources: O.none(),
 	enfantsÀCharge: {
-		enfants: {},
+		enfants: {
+			'': { prénom: O.none(), dateDeNaissance: O.none()}
+		},
 		AeeH: O.none(),
 	},
 	historique: {
