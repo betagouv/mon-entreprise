@@ -6,6 +6,7 @@ import * as M from '@/domaine/Montant'
 
 import {
 	calculeCMGRLinéarisé,
+	calculeComplémentTransitoire,
 	coûtMensuelDeLaGarde,
 	moyenneCMGPerçus,
 	moyenneCMGRLinéarisés,
@@ -19,8 +20,96 @@ import { EnfantFactory } from './enfantFactory'
 import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
 
 describe('CMG', () => {
+	describe('calculeComplémentTransitoire', () => {
+		it('calcule le complément transitoire pour la garde de Jules', () => {
+			const résultat = calculeComplémentTransitoire({
+				ressources: M.eurosParAn(30_000),
+				enfantsÀCharge: {
+					enfants: {
+						Jules: new EnfantFactory().moinsDe3Ans().build(),
+						Martin: new EnfantFactory().plusDe3Ans().build(),
+					},
+					AeeH: 0,
+				},
+				historique: {
+					mars: new MoisHistoriqueFactory()
+						.avecAMA(['Jules'], {
+							nbHeures: 100,
+							rémunération: M.euros(300),
+							CMG: M.euros(250),
+						})
+						.build(),
+					avril: new MoisHistoriqueFactory()
+						.avecAMA(['Jules'], {
+							nbHeures: 100,
+							rémunération: M.euros(300),
+							CMG: M.euros(140),
+						})
+						.avecGED({
+							nbHeures: 12,
+							rémunération: M.euros(48),
+							CMG: M.euros(200),
+						})
+						.build(),
+					mai: new MoisHistoriqueFactory()
+						.avecGED({
+							nbHeures: 12,
+							rémunération: M.euros(48),
+							CMG: M.euros(70),
+						})
+						.build(),
+				},
+			})
+
+			expect(résultat).to.be.deep.equal(M.euros(49.15))
+		})
+
+		it('calcule un complément transitoire nul pour la garde de Rose', () => {
+			const résultat = calculeComplémentTransitoire({
+				ressources: M.eurosParAn(30_000),
+				enfantsÀCharge: {
+					enfants: {
+						Rose: new EnfantFactory().moinsDe3Ans().build(),
+						Aurore: new EnfantFactory().plusDe3Ans().build(),
+					},
+					AeeH: 0,
+				},
+				historique: {
+					mars: new MoisHistoriqueFactory()
+						.avecAMA(['Rose'], {
+							nbHeures: 100,
+							rémunération: M.euros(300),
+							CMG: M.euros(100),
+						})
+						.build(),
+					avril: new MoisHistoriqueFactory()
+						.avecAMA(['Rose'], {
+							nbHeures: 100,
+							rémunération: M.euros(300),
+							CMG: M.euros(100),
+						})
+						.avecGED({
+							nbHeures: 12,
+							rémunération: M.euros(48),
+							CMG: M.euros(70),
+						})
+						.build(),
+					mai: new MoisHistoriqueFactory()
+						.avecGED({
+							nbHeures: 12,
+							rémunération: M.euros(48),
+							CMG: M.euros(70),
+						})
+						.build(),
+				},
+			})
+
+			expect(résultat).to.be.deep.equal(M.euros(0))
+		})
+	})
+
 	describe('moyenneCMGPerçus', () => {
-		it('fait la moyenne de tous les CMG perçus pour Jules et Martin', () => {
+		it('fait la moyenne de tous les CMG perçus pour la garde de Jules et Martin', () => {
 			const résultat = moyenneCMGPerçus({
 				mars: new MoisHistoriqueFactory()
 					.avecAMA(['Jules'], { CMG: M.euros(250) })
@@ -42,6 +131,21 @@ describe('CMG', () => {
 
 			expect(résultat).to.be.deep.equal(M.euros(553.33))
 		})
+
+		it('fait la moyenne de tous les CMG perçus pour la garde de Jules', () => {
+			const résultat = moyenneCMGPerçus({
+				mars: new MoisHistoriqueFactory()
+					.avecAMA(['Jules'], { CMG: M.euros(250) })
+					.build(),
+				avril: new MoisHistoriqueFactory()
+					.avecAMA(['Jules'], { CMG: M.euros(140) })
+					.avecGED({ CMG: M.euros(200) })
+					.build(),
+				mai: new MoisHistoriqueFactory().avecGED({ CMG: M.euros(70) }).build(),
+			})
+
+			expect(résultat).to.be.deep.equal(M.euros(220))
+		})
 	})
 
 	describe('moyenneCMGRLinéarisés', () => {
@@ -50,20 +154,20 @@ describe('CMG', () => {
 				ressources: M.eurosParAn(30_000),
 				enfantsÀCharge: {
 					enfants: {
-						Rose: new EnfantFactory().néEn(2022).build(),
-						Aurore: new EnfantFactory().plusDe6Ans().build(),
+						Jules: new EnfantFactory().moinsDe3Ans().build(),
+						Martin: new EnfantFactory().plusDe3Ans().build(),
 					},
 					AeeH: 0,
 				},
 				historique: {
-					mars: (new MoisHistoriqueFactory())
-						.avecAMA(['Rose'], {
+					mars: new MoisHistoriqueFactory()
+						.avecAMA(['Jules'], {
 							nbHeures: 100,
 							rémunération: M.euros(300),
 						})
 						.build(),
-					avril: (new MoisHistoriqueFactory())
-						.avecAMA(['Rose'], {
+					avril: new MoisHistoriqueFactory()
+						.avecAMA(['Jules'], {
 							nbHeures: 100,
 							rémunération: M.euros(300),
 						})
@@ -72,13 +176,13 @@ describe('CMG', () => {
 							rémunération: M.euros(48),
 						})
 						.build(),
-					mai: (new MoisHistoriqueFactory())
+					mai: new MoisHistoriqueFactory()
 						.avecGED({
 							nbHeures: 12,
 							rémunération: M.euros(48),
 						})
 						.build(),
-				}
+				},
 			})
 
 			expect(résultat).to.be.deep.equal(M.euros(170.85))
