@@ -35,6 +35,12 @@ export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 		return this
 	}
 
+	sansCMG() {
+		this.CMGPerçu = O.none()
+
+		return this
+	}
+
 	build() {
 		return {
 			type: 'AMA',
@@ -65,6 +71,12 @@ export class DéclarationsDeGardeGEDFactory {
 
 	avecCMG(CMG: M.Montant<'Euro'>) {
 		this.CMGPerçu = O.some(CMG)
+
+		return this
+	}
+
+	sansCMG() {
+		this.CMGPerçu = O.none()
 
 		return this
 	}

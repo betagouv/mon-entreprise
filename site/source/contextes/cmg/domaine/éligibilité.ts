@@ -32,21 +32,18 @@ const PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE: Record<TypologieDeGarde, number> =
 const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
 
 export const estÉligible = (situation: SituationCMG): boolean =>
-	droitsOuvertsSurAuMoinsUnMois(situation.historique) &&
+	CMGPerçu(situation.historique) &&
 	ressourcesDeMaiInférieuresAuPlafond(situation.historique) &&
 	nombreDeMoisEmployeureuseEtRessourcesSuffisant(situation.historique) &&
 	moyenneHeuresDeGardeSupérieureAuPlancher(situation) &&
 	auMoinsUnEnfantOuvrantDroitAuCMG(situation)
 
-const droitsOuvertsSurAuMoinsUnMois = (
-	historique: SituationCMG['historique']
-): boolean =>
+const CMGPerçu = (historique: SituationCMG['historique']): boolean =>
 	pipe(
 		historique,
-		R.map((m) => m.droitsOuverts),
 		R.values,
-		A.filter(Boolean),
-		A.isNonEmptyArray
+		A.flatMap((m) => m.déclarationsDeGarde),
+		A.some((d: DéclarationDeGarde) => O.isSome(d.CMGPerçu))
 	)
 
 const ressourcesDeMaiInférieuresAuPlafond = (
