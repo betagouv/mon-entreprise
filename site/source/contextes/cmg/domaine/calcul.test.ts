@@ -30,8 +30,8 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: {
-						Jules: new EnfantFactory().moinsDe3Ans().build(),
-						Martin: new EnfantFactory().plusDe3Ans().build(),
+						Jules: new EnfantFactory('Jules').moinsDe3Ans().build(),
+						Martin: new EnfantFactory('Martin').plusDe3Ans().build(),
 					},
 					AeeH: O.none(),
 				},
@@ -76,8 +76,8 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: {
-						Rose: new EnfantFactory().moinsDe3Ans().build(),
-						Aurore: new EnfantFactory().plusDe3Ans().build(),
+						Rose: new EnfantFactory('Rose').moinsDe3Ans().build(),
+						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
 					AeeH: O.none(),
 				},
@@ -164,8 +164,8 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: {
-						Jules: new EnfantFactory().moinsDe3Ans().build(),
-						Martin: new EnfantFactory().plusDe3Ans().build(),
+						Jules: new EnfantFactory('Jules').moinsDe3Ans().build(),
+						Martin: new EnfantFactory('Martin').plusDe3Ans().build(),
 					},
 					AeeH: O.none(),
 				},
@@ -208,8 +208,8 @@ describe('CMG', () => {
 					.build(),
 				{
 					enfants: {
-						Rose: new EnfantFactory().néEn(2022).build(),
-						Aurore: new EnfantFactory().plusDe6Ans().build(),
+						Rose: new EnfantFactory('Rose').néEn(2022).build(),
+						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
 					AeeH: O.none(),
 				},
@@ -227,8 +227,8 @@ describe('CMG', () => {
 					.build(),
 				{
 					enfants: {
-						Rose: new EnfantFactory().néEn(2022).build(),
-						Aurore: new EnfantFactory().plusDe6Ans().build(),
+						Rose: new EnfantFactory('Rose').néEn(2022).build(),
+						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
 					AeeH: O.none(),
 				},
@@ -243,9 +243,9 @@ describe('CMG', () => {
 		it('pour une garde AMA avec 3 enfants à charge', () => {
 			const résultat = tauxEffortHoraire('AMA', {
 				enfants: {
-					Oscar: new EnfantFactory().moinsDe3Ans().build(),
-					Rose: new EnfantFactory().néEn(2022).build(),
-					Aurore: new EnfantFactory().plusDe6Ans().build(),
+					Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
+					Rose: new EnfantFactory('Rose').néEn(2022).build(),
+					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
 				AeeH: O.none(),
 			})
@@ -255,9 +255,9 @@ describe('CMG', () => {
 		it('pour une garde GED avec 3 enfants à charge', () => {
 			const résultat = tauxEffortHoraire('GED', {
 				enfants: {
-					Oscar: new EnfantFactory().moinsDe3Ans().build(),
-					Rose: new EnfantFactory().néEn(2022).build(),
-					Aurore: new EnfantFactory().plusDe6Ans().build(),
+					Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
+					Rose: new EnfantFactory('Rose').néEn(2022).build(),
+					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
 				AeeH: O.none(),
 			})
@@ -267,11 +267,11 @@ describe('CMG', () => {
 		it('pour une garde AMA avec 5 enfants à charge', () => {
 			const résultat = tauxEffortHoraire('AMA', {
 				enfants: {
-					Raphael: new EnfantFactory().moinsDe3Ans().build(),
-					Leonardo: new EnfantFactory().néEn(2022).build(),
-					Donatello: new EnfantFactory().plusDe6Ans().build(),
-					Michelangelo: new EnfantFactory().plusDe6Ans().build(),
-					Splinter: new EnfantFactory().plusDe6Ans().build(),
+					Raphael: new EnfantFactory('Raphael').moinsDe3Ans().build(),
+					Leonardo: new EnfantFactory('Leonardo').néEn(2022).build(),
+					Donatello: new EnfantFactory('Donatello').plusDe6Ans().build(),
+					Michelangelo: new EnfantFactory('Michelangelo').plusDe6Ans().build(),
+					Splinter: new EnfantFactory('Splinter').plusDe6Ans().build(),
 				},
 				AeeH: O.none(),
 			})
@@ -281,11 +281,11 @@ describe('CMG', () => {
 		it('pour une garde GED avec 5 enfants à charge', () => {
 			const résultat = tauxEffortHoraire('GED', {
 				enfants: {
-					Raphael: new EnfantFactory().moinsDe3Ans().build(),
-					Leonardo: new EnfantFactory().néEn(2022).build(),
-					Donatello: new EnfantFactory().plusDe6Ans().build(),
-					Michelangelo: new EnfantFactory().plusDe6Ans().build(),
-					Splinter: new EnfantFactory().plusDe6Ans().build(),
+					Raphael: new EnfantFactory('Raphael').moinsDe3Ans().build(),
+					Leonardo: new EnfantFactory('Leonardo').néEn(2022).build(),
+					Donatello: new EnfantFactory('Donatello').plusDe6Ans().build(),
+					Michelangelo: new EnfantFactory('Michelangelo').plusDe6Ans().build(),
+					Splinter: new EnfantFactory('Splinter').plusDe6Ans().build(),
 				},
 				AeeH: O.none(),
 			})
@@ -295,16 +295,16 @@ describe('CMG', () => {
 		it('pour une garde AMA avec 10 enfants à charge', () => {
 			const résultat = tauxEffortHoraire('AMA', {
 				enfants: {
-					Ron: new EnfantFactory().néEn(2014).build(),
-					Fred: new EnfantFactory().néEn(2016).build(),
-					George: new EnfantFactory().néEn(2016).build(),
-					Riri: new EnfantFactory().néEn(2018).build(),
-					Fifi: new EnfantFactory().néEn(2018).build(),
-					Loulou: new EnfantFactory().néEn(2018).build(),
-					Leonardo: new EnfantFactory().néEn(2020).build(),
-					Donatello: new EnfantFactory().néEn(2020).build(),
-					Michelangelo: new EnfantFactory().néEn(2022).build(),
-					Raphael: new EnfantFactory().néEn(2024).build(),
+					Ron: new EnfantFactory('Ron').néEn(2014).build(),
+					Fred: new EnfantFactory('Fred').néEn(2016).build(),
+					George: new EnfantFactory('George').néEn(2016).build(),
+					Riri: new EnfantFactory('Riri').néEn(2018).build(),
+					Fifi: new EnfantFactory('Fifi').néEn(2018).build(),
+					Loulou: new EnfantFactory('Loulou').néEn(2018).build(),
+					Leonardo: new EnfantFactory('Leonardo').néEn(2020).build(),
+					Donatello: new EnfantFactory('Donatello').néEn(2020).build(),
+					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
+					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
 				AeeH: O.none(),
 			})
@@ -314,16 +314,16 @@ describe('CMG', () => {
 		it('pour une garde GED avec 10 enfants à charge', () => {
 			const résultat = tauxEffortHoraire('GED', {
 				enfants: {
-					Ron: new EnfantFactory().néEn(2014).build(),
-					Fred: new EnfantFactory().néEn(2016).build(),
-					George: new EnfantFactory().néEn(2016).build(),
-					Riri: new EnfantFactory().néEn(2018).build(),
-					Fifi: new EnfantFactory().néEn(2018).build(),
-					Loulou: new EnfantFactory().néEn(2018).build(),
-					Leonardo: new EnfantFactory().néEn(2020).build(),
-					Donatello: new EnfantFactory().néEn(2020).build(),
-					Michelangelo: new EnfantFactory().néEn(2022).build(),
-					Raphael: new EnfantFactory().néEn(2024).build(),
+					Ron: new EnfantFactory('Ron').néEn(2014).build(),
+					Fred: new EnfantFactory('Fred').néEn(2016).build(),
+					George: new EnfantFactory('George').néEn(2016).build(),
+					Riri: new EnfantFactory('Riri').néEn(2018).build(),
+					Fifi: new EnfantFactory('Fifi').néEn(2018).build(),
+					Loulou: new EnfantFactory('Loulou').néEn(2018).build(),
+					Leonardo: new EnfantFactory('Leonardo').néEn(2020).build(),
+					Donatello: new EnfantFactory('Donatello').néEn(2020).build(),
+					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
+					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
 				AeeH: O.none(),
 			})
@@ -333,9 +333,9 @@ describe('CMG', () => {
 		it('pour une garde AMA avec 3 enfants à charge dont 2 concernés par l’AeeH', () => {
 			const résultat = tauxEffortHoraire('AMA', {
 				enfants: {
-					Oscar: new EnfantFactory().moinsDe3Ans().build(),
-					Rose: new EnfantFactory().néEn(2022).build(),
-					Aurore: new EnfantFactory().plusDe6Ans().build(),
+					Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
+					Rose: new EnfantFactory('Rose').néEn(2022).build(),
+					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
 				AeeH: O.some(2),
 			})
@@ -345,9 +345,9 @@ describe('CMG', () => {
 		it('pour une garde GED avec 3 enfants à charge dont 2 concernés par l’AeeH', () => {
 			const résultat = tauxEffortHoraire('GED', {
 				enfants: {
-					Oscar: new EnfantFactory().moinsDe3Ans().build(),
-					Rose: new EnfantFactory().néEn(2022).build(),
-					Aurore: new EnfantFactory().plusDe6Ans().build(),
+					Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
+					Rose: new EnfantFactory('Rose').néEn(2022).build(),
+					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
 				AeeH: O.some(2),
 			})
@@ -357,16 +357,16 @@ describe('CMG', () => {
 		it('pour une garde AMA avec 10 enfants à charge dont 2 concernés par l’AeeH', () => {
 			const résultat = tauxEffortHoraire('AMA', {
 				enfants: {
-					Ron: new EnfantFactory().néEn(2014).build(),
-					Fred: new EnfantFactory().néEn(2016).build(),
-					George: new EnfantFactory().néEn(2016).build(),
-					Riri: new EnfantFactory().néEn(2018).build(),
-					Fifi: new EnfantFactory().néEn(2018).build(),
-					Loulou: new EnfantFactory().néEn(2018).build(),
-					Leonardo: new EnfantFactory().néEn(2020).build(),
-					Donatello: new EnfantFactory().néEn(2020).build(),
-					Michelangelo: new EnfantFactory().néEn(2022).build(),
-					Raphael: new EnfantFactory().néEn(2024).build(),
+					Ron: new EnfantFactory('Ron').néEn(2014).build(),
+					Fred: new EnfantFactory('Fred').néEn(2016).build(),
+					George: new EnfantFactory('George').néEn(2016).build(),
+					Riri: new EnfantFactory('Riri').néEn(2018).build(),
+					Fifi: new EnfantFactory('Fifi').néEn(2018).build(),
+					Loulou: new EnfantFactory('Loulou').néEn(2018).build(),
+					Leonardo: new EnfantFactory('Leonardo').néEn(2020).build(),
+					Donatello: new EnfantFactory('Donatello').néEn(2020).build(),
+					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
+					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
 				AeeH: O.some(2),
 			})
@@ -376,16 +376,16 @@ describe('CMG', () => {
 		it('pour une garde GED avec 10 enfants à charge dont 2 concernés par l’AeeH', () => {
 			const résultat = tauxEffortHoraire('GED', {
 				enfants: {
-					Ron: new EnfantFactory().néEn(2014).build(),
-					Fred: new EnfantFactory().néEn(2016).build(),
-					George: new EnfantFactory().néEn(2016).build(),
-					Riri: new EnfantFactory().néEn(2018).build(),
-					Fifi: new EnfantFactory().néEn(2018).build(),
-					Loulou: new EnfantFactory().néEn(2018).build(),
-					Leonardo: new EnfantFactory().néEn(2020).build(),
-					Donatello: new EnfantFactory().néEn(2020).build(),
-					Michelangelo: new EnfantFactory().néEn(2022).build(),
-					Raphael: new EnfantFactory().néEn(2024).build(),
+					Ron: new EnfantFactory('Ron').néEn(2014).build(),
+					Fred: new EnfantFactory('Fred').néEn(2016).build(),
+					George: new EnfantFactory('George').néEn(2016).build(),
+					Riri: new EnfantFactory('Riri').néEn(2018).build(),
+					Fifi: new EnfantFactory('Fifi').néEn(2018).build(),
+					Loulou: new EnfantFactory('Loulou').néEn(2018).build(),
+					Leonardo: new EnfantFactory('Leonardo').néEn(2020).build(),
+					Donatello: new EnfantFactory('Donatello').néEn(2020).build(),
+					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
+					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
 				AeeH: O.some(2),
 			})
