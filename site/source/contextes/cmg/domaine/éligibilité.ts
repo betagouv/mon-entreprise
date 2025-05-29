@@ -8,6 +8,12 @@ import * as R from 'effect/Record'
 import * as M from '@/domaine/Montant'
 
 import {
+	ANNÉE_DE_NAISSANCE_EXCLUE,
+	NOMBRE_MIN_MOIS_EMPLOYEUREUSE,
+	PLAFOND_DE_RESSOURCES,
+	PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE,
+} from './constantes'
+import {
 	DéclarationDeGarde,
 	déclarationDeGardeEstAMA,
 	déclarationDeGardeEstGED,
@@ -18,18 +24,6 @@ import {
 	détermineLaTypologieDeLaGarde,
 	TypologieDeGarde,
 } from './typologie-de-garde'
-
-const PLAFOND_DE_RESSOURCES = M.eurosParMois(8_500)
-const NOMBRE_MIN_MOIS_EMPLOYEUREUSE = 2
-const PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE: Record<TypologieDeGarde, number> =
-	{
-		'AMA Enfant unique 0-3 ans': 100,
-		'AMA Enfant unique 3-6 ans': 50,
-		'AMA Fratrie 0-3 ans': 150,
-		'AMA Fratrie 0-6 ans': 100,
-		GED: 50,
-	}
-const ANNÉE_DE_NAISSANCE_EXCLUE = 2022
 
 export const estÉligible = (situation: SituationCMG): boolean =>
 	CMGPerçu(situation.historique) &&
