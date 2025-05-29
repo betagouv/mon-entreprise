@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable vitest/valid-expect */
+import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
+
+import * as M from '@/domaine/Montant'
 
 import {
 	auMoinsUnEnfantOuvrantDroitAuCMG,
@@ -8,9 +11,7 @@ import {
 	estÉligible,
 	moyenneHeuresDeGardeSupérieureAuPlancher,
 	moyenneHeuresParTypologieDeGarde,
-} from '@/contextes/cmg/domaine/éligibilité'
-import * as M from '@/domaine/Montant'
-
+} from './éligibilité'
 import { EnfantFactory } from './enfantFactory'
 import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
 
@@ -18,14 +19,17 @@ describe('CMG', () => {
 	describe('estÉligible', () => {
 		it('est éligible si tous les critères d’éligibilité sont remplis', () => {
 			const résultat = estÉligible({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -49,13 +53,16 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si pas de CMG perçu sur mars, avril NI mai', () => {
 			const résultat = estÉligible({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory().avecGED({ CMG: false }).build(),
@@ -69,13 +76,16 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si ressources = plafond (8 500 €/mois)', () => {
 			const résultat = estÉligible({
-				ressources: M.eurosParAn(102_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(102_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory().avecGED().build(),
@@ -89,13 +99,16 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si moins de 2 mois employeureuse', () => {
 			const résultat = estÉligible({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory().build(),
@@ -109,14 +122,17 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si la moyenne d’heures de garde ne dépasse pas le plancher', () => {
 			const résultat = estÉligible({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory().avecGED({ nbHeures: 31 }).build(),
@@ -137,14 +153,17 @@ describe('CMG', () => {
 
 		it('n’est pas éligible si tous les enfants ont plus de 6 ans à la réforme ou sont nés en 2022', () => {
 			const résultat = estÉligible({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().plusDe6Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory().avecGED().build(),
@@ -162,14 +181,17 @@ describe('CMG', () => {
 	describe('moyenneHeuresDeGardeSupérieureAuPlancher', () => {
 		it('est vrai si au moins une typologie de garde a une moyenne d’heures suffisante', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -193,14 +215,17 @@ describe('CMG', () => {
 
 		it('est faux si aucune typologie de garde n’a une moyenne d’heures suffisante', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -224,14 +249,17 @@ describe('CMG', () => {
 	describe('moyenneHeuresParTypologieDeGarde', () => {
 		it('le cas Aurore, Rose, Oscar', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -259,13 +287,16 @@ describe('CMG', () => {
 
 		it('le cas Aurore, Rose', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -294,14 +325,17 @@ describe('CMG', () => {
 	describe('auMoinsUnEnfantOuvrantDroitAuCMG', () => {
 		it('ouvre droit si GED et 1 enfant à charge ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -317,14 +351,17 @@ describe('CMG', () => {
 
 		it('ouvre droit si AMA uniquement et 1 enfant gardé ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory().avecAMA(['Rose']).build(),
@@ -340,14 +377,17 @@ describe('CMG', () => {
 
 		it('n’ouvre pas droit si AMA uniquement et aucun enfant gardé ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Oscar: new EnfantFactory().moinsDe3Ans().build(),
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -365,13 +405,16 @@ describe('CMG', () => {
 
 		it('n’ouvre pas droit si aucun enfant à charge ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory().avecGED().build(),
