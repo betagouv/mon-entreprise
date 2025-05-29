@@ -45,6 +45,9 @@ const rawSitePathsFr = {
 				association: 'association',
 			},
 		},
+		cmg: {
+			index: 'cmg',
+		},
 	},
 	simulateurs: {
 		index: 'simulateurs',
@@ -147,6 +150,9 @@ const rawSitePathsEn = {
 				SELASU: 'SELASU',
 				association: 'association',
 			},
+		},
+		cmg: {
+			index: 'cmg',
 		},
 	},
 	simulateurs: {
