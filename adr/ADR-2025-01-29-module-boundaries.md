@@ -1,6 +1,6 @@
 # ADR : Frontières de modules et imports contrôlés
 
-**Date** : 2025-01-29  
+**Date** : 2025-05-29
 **Auteur** : Jalil
 
 ## Contexte
@@ -8,10 +8,10 @@
 Dans une base de code qui grandit, il est important de maintenir des frontières claires entre les modules pour :
 - Éviter les couplages non désirés
 - Définir clairement les API publiques
-- Faciliter les refactorings sans casser les dépendances
+- Faciliter les réusinages sans casser les dépendances
 - Améliorer la maintenabilité
 
-Sans règles explicites, les développeurs peuvent importer n'importe quoi depuis n'importe où, créant des dépendances fragiles sur des détails d'implémentation.
+Sans règles explicites, les développeuses et développeurs peuvent importer n'importe quoi depuis n'importe où, créant des dépendances fragiles sur des détails d'implémentation.
 
 ## Décision
 
@@ -54,7 +54,7 @@ Nous établissons des **frontières de modules** avec une règle simple :
 ### Positives
 
 - **Encapsulation** : Les détails d'implémentation sont cachés
-- **Évolutivité** : On peut refactorer l'intérieur d'un module sans impacter le reste
+- **Évolutivité** : On peut réusiner l'intérieur d'un module sans impacter le reste
 - **Clarté** : L'API publique est explicite (ce qui est dans l'index)
 - **Découvrabilité** : Un seul endroit pour voir ce qu'expose un module
 
