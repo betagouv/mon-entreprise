@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable vitest/valid-expect */
+import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
 import * as M from '@/domaine/Montant'
@@ -23,13 +24,16 @@ describe('CMG', () => {
 	describe('calculeComplémentTransitoire', () => {
 		it('calcule le complément transitoire pour la garde de Jules', () => {
 			const résultat = calculeComplémentTransitoire({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Jules: new EnfantFactory().moinsDe3Ans().build(),
 						Martin: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -66,13 +70,16 @@ describe('CMG', () => {
 
 		it('calcule un complément transitoire nul pour la garde de Rose', () => {
 			const résultat = calculeComplémentTransitoire({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Rose: new EnfantFactory().moinsDe3Ans().build(),
 						Aurore: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -151,13 +158,16 @@ describe('CMG', () => {
 	describe('moyenneCMGRLinéarisés', () => {
 		it('calcule la moyenne des CMG-R linéarisés', () => {
 			const résultat = moyenneCMGRLinéarisés({
-				ressources: M.eurosParAn(30_000),
+				_tag: 'Situation',
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
+					M.Montant<'EuroParAn'>
+				>,
 				enfantsÀCharge: {
 					enfants: {
 						Jules: new EnfantFactory().moinsDe3Ans().build(),
 						Martin: new EnfantFactory().plusDe3Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
@@ -201,7 +211,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				M.eurosParMois(2500)
 			)
@@ -220,7 +230,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory().néEn(2022).build(),
 						Aurore: new EnfantFactory().plusDe6Ans().build(),
 					},
-					AeeH: 0,
+					AeeH: O.none(),
 				},
 				M.eurosParMois(2500)
 			)
@@ -237,7 +247,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory().néEn(2022).build(),
 					Aurore: new EnfantFactory().plusDe6Ans().build(),
 				},
-				AeeH: 0,
+				AeeH: O.none(),
 			})
 
 			expect(résultat).to.be.equal(0.0413)
@@ -249,7 +259,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory().néEn(2022).build(),
 					Aurore: new EnfantFactory().plusDe6Ans().build(),
 				},
-				AeeH: 0,
+				AeeH: O.none(),
 			})
 
 			expect(résultat).to.be.equal(0.0826)
@@ -263,7 +273,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory().plusDe6Ans().build(),
 					Splinter: new EnfantFactory().plusDe6Ans().build(),
 				},
-				AeeH: 0,
+				AeeH: O.none(),
 			})
 
 			expect(résultat).to.be.equal(0.031)
@@ -277,7 +287,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory().plusDe6Ans().build(),
 					Splinter: new EnfantFactory().plusDe6Ans().build(),
 				},
-				AeeH: 0,
+				AeeH: O.none(),
 			})
 
 			expect(résultat).to.be.equal(0.062)
@@ -296,7 +306,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory().néEn(2022).build(),
 					Raphael: new EnfantFactory().néEn(2024).build(),
 				},
-				AeeH: 0,
+				AeeH: O.none(),
 			})
 
 			expect(résultat).to.be.equal(0.0206)
@@ -315,7 +325,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory().néEn(2022).build(),
 					Raphael: new EnfantFactory().néEn(2024).build(),
 				},
-				AeeH: 0,
+				AeeH: O.none(),
 			})
 
 			expect(résultat).to.be.equal(0.0412)
@@ -327,7 +337,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory().néEn(2022).build(),
 					Aurore: new EnfantFactory().plusDe6Ans().build(),
 				},
-				AeeH: 2,
+				AeeH: O.some(2),
 			})
 
 			expect(résultat).to.be.equal(0.0206)
@@ -339,7 +349,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory().néEn(2022).build(),
 					Aurore: new EnfantFactory().plusDe6Ans().build(),
 				},
-				AeeH: 2,
+				AeeH: O.some(2),
 			})
 
 			expect(résultat).to.be.equal(0.0412)
@@ -358,7 +368,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory().néEn(2022).build(),
 					Raphael: new EnfantFactory().néEn(2024).build(),
 				},
-				AeeH: 2,
+				AeeH: O.some(2),
 			})
 
 			expect(résultat).to.be.equal(0.0206)
@@ -377,7 +387,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory().néEn(2022).build(),
 					Raphael: new EnfantFactory().néEn(2024).build(),
 				},
-				AeeH: 2,
+				AeeH: O.some(2),
 			})
 
 			expect(résultat).to.be.equal(0.0412)

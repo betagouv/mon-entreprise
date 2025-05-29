@@ -15,9 +15,9 @@ import {
 import { DéclarationDeGarde } from './déclaration-de-garde'
 import { EnfantsÀCharge } from './enfant'
 import { ModeDeGarde } from './mode-de-garde'
-import { SituationCMG } from './situationCMG'
+import { SituationCMGValide } from './situation'
 
-export const calculeComplémentTransitoire = (situation: SituationCMG) => {
+export const calculeComplémentTransitoire = (situation: SituationCMGValide) => {
 	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.historique)
 	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
 	const différence = M.moins(ancienCMGMensuelMoyen, CMGRLinéariséMoyen)
@@ -29,7 +29,9 @@ export const calculeComplémentTransitoire = (situation: SituationCMG) => {
 	return différence
 }
 
-export const moyenneCMGPerçus = (historique: SituationCMG['historique']) =>
+export const moyenneCMGPerçus = (
+	historique: SituationCMGValide['historique']
+) =>
 	pipe(
 		historique,
 		R.values,
@@ -40,7 +42,7 @@ export const moyenneCMGPerçus = (historique: SituationCMG['historique']) =>
 		M.euros
 	)
 
-export const moyenneCMGRLinéarisés = (situation: SituationCMG) =>
+export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 	pipe(
 		situation.historique,
 		R.values,
@@ -50,7 +52,7 @@ export const moyenneCMGRLinéarisés = (situation: SituationCMG) =>
 				calculeCMGRLinéarisé(
 					d,
 					situation.enfantsÀCharge,
-					M.toEurosParMois(situation.ressources)
+					M.toEurosParMois(situation.ressources.value)
 				).valeur
 		),
 		N.sumAll,
@@ -93,13 +95,14 @@ export const tauxEffortHoraire = (
 		)
 	)
 
-	if (enfantsÀCharge.AeeH === 0) {
+	if (O.isNone(enfantsÀCharge.AeeH) || enfantsÀCharge.AeeH.value === 0) {
 		return TEHPourNbEnfantsÀCharge
 	}
 
 	const TEHParNbEnfantsValeurs = Object.values(TEHParNbEnfants)
 	const indexMax = TEHParNbEnfantsValeurs.length - 1
-	const indexPourNbEnfantsAeeH = indexPourNbEnfantsÀCharge + enfantsÀCharge.AeeH
+	const indexPourNbEnfantsAeeH =
+		indexPourNbEnfantsÀCharge + enfantsÀCharge.AeeH.value
 
 	return (
 		TEHParNbEnfantsValeurs[indexPourNbEnfantsAeeH] ??

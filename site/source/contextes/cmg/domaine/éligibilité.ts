@@ -19,20 +19,20 @@ import {
 	déclarationDeGardeEstGED,
 } from './déclaration-de-garde'
 import { Enfant, enfantAMoinsDe6Ans, enfantNéEn } from './enfant'
-import { SituationCMG } from './situationCMG'
+import { SituationCMGValide } from './situation'
 import {
 	détermineLaTypologieDeLaGarde,
 	TypologieDeGarde,
 } from './typologie-de-garde'
 
-export const estÉligible = (situation: SituationCMG): boolean =>
+export const estÉligible = (situation: SituationCMGValide): boolean =>
 	CMGPerçu(situation.historique) &&
 	ressourcesInférieuresAuPlafond(situation.ressources) &&
 	nombreDeMoisEmployeureuseSuffisant(situation.historique) &&
 	moyenneHeuresDeGardeSupérieureAuPlancher(situation) &&
 	auMoinsUnEnfantOuvrantDroitAuCMG(situation)
 
-const CMGPerçu = (historique: SituationCMG['historique']): boolean =>
+const CMGPerçu = (historique: SituationCMGValide['historique']): boolean =>
 	pipe(
 		historique,
 		R.values,
@@ -41,12 +41,16 @@ const CMGPerçu = (historique: SituationCMG['historique']): boolean =>
 	)
 
 const ressourcesInférieuresAuPlafond = (
-	ressources: SituationCMG['ressources']
+	ressources: SituationCMGValide['ressources']
 ): boolean =>
-	pipe(ressources, M.toEurosParMois, M.estPlusPetitQue(PLAFOND_DE_RESSOURCES))
+	pipe(
+		ressources.value,
+		M.toEurosParMois,
+		M.estPlusPetitQue(PLAFOND_DE_RESSOURCES)
+	)
 
 const nombreDeMoisEmployeureuseSuffisant = (
-	historique: SituationCMG['historique']
+	historique: SituationCMGValide['historique']
 ): boolean => {
 	return (
 		pipe(
@@ -60,7 +64,7 @@ const nombreDeMoisEmployeureuseSuffisant = (
 }
 
 export const moyenneHeuresDeGardeSupérieureAuPlancher = (
-	situation: SituationCMG
+	situation: SituationCMGValide
 ): boolean => {
 	return pipe(
 		situation,
@@ -74,7 +78,7 @@ export const moyenneHeuresDeGardeSupérieureAuPlancher = (
 }
 
 export const moyenneHeuresParTypologieDeGarde = (
-	situation: SituationCMG
+	situation: SituationCMGValide
 ): Record<TypologieDeGarde, number> =>
 	pipe(
 		situation.historique,
@@ -100,7 +104,7 @@ const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 	)
 
 export const auMoinsUnEnfantOuvrantDroitAuCMG = (
-	situation: SituationCMG
+	situation: SituationCMGValide
 ): boolean => {
 	const gardeGED = pipe(
 		situation.historique,
