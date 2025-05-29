@@ -7,7 +7,7 @@ import {
 	DéclarationsDeGardeAMAFactory,
 	DéclarationsDeGardeGEDFactory,
 } from './déclarationDeGardeFactory'
-import { MoisHistorique } from './situationCMG'
+import { MoisHistorique } from './situation'
 
 type Options = {
 	nbHeures?: number
