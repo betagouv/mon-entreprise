@@ -10,16 +10,14 @@ import {
 } from './déclarationDeGardeFactory'
 import { MoisHistorique } from './situationCMG'
 
+type Options = {
+	nbHeures?: number
+	CMG?: M.Montant<'Euro'> | false
+}
+
 export class MoisHistoriqueFactory<Prénom extends string = string> {
-	private droitsOuverts = true
 	private ressources = O.some(M.euros(2_000))
 	private déclarationsDeGarde = [] as DéclarationDeGarde[]
-
-	sansDroitsOuverts() {
-		this.droitsOuverts = false
-
-		return this
-	}
 
 	sansRessources() {
 		this.ressources = O.none()
@@ -33,19 +31,39 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 		return this
 	}
 
-	avecAMA(prénoms: Prénom[], nbHeures: number = 100) {
+	avecAMA(prénoms: Prénom[], { nbHeures = 100, CMG }: Options = {}) {
+		let déclarationDeGarde = new DéclarationsDeGardeAMAFactory(prénoms)
+		if (nbHeures) {
+			déclarationDeGarde = déclarationDeGarde.avecNbHeures(nbHeures)
+		}
+		if (CMG === false) {
+			déclarationDeGarde = déclarationDeGarde.sansCMG()
+		} else if (CMG) {
+			déclarationDeGarde = déclarationDeGarde.avecCMG(CMG)
+		}
+
 		this.déclarationsDeGarde = [
 			...this.déclarationsDeGarde,
-			new DéclarationsDeGardeAMAFactory(prénoms).avecNbHeures(nbHeures).build(),
+			déclarationDeGarde.build(),
 		]
 
 		return this
 	}
 
-	avecGED(nbHeures: number = 50) {
+	avecGED({ nbHeures = 50, CMG }: Options = {}) {
+		let déclarationDeGarde = new DéclarationsDeGardeGEDFactory()
+		if (nbHeures) {
+			déclarationDeGarde = déclarationDeGarde.avecNbHeures(nbHeures)
+		}
+		if (CMG === false) {
+			déclarationDeGarde = déclarationDeGarde.sansCMG()
+		} else if (CMG) {
+			déclarationDeGarde = déclarationDeGarde.avecCMG(CMG)
+		}
+
 		this.déclarationsDeGarde = [
 			...this.déclarationsDeGarde,
-			new DéclarationsDeGardeGEDFactory().avecNbHeures(nbHeures).build(),
+			déclarationDeGarde.build(),
 		]
 
 		return this
@@ -62,7 +80,6 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 
 	build() {
 		return {
-			droitsOuverts: this.droitsOuverts,
 			ressources: this.ressources,
 			déclarationsDeGarde: this.déclarationsDeGarde,
 		} as const satisfies MoisHistorique

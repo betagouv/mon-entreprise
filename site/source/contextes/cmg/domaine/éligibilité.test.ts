@@ -28,17 +28,17 @@ describe('CMG', () => {
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], 150)
-						.avecGED(31)
+						.avecAMA(['Oscar'], { nbHeures: 150 })
+						.avecGED({ nbHeures: 31 })
 						.build(),
 					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], 150)
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecAMA(['Rose'], { nbHeures: 150 })
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
 						.sansGED()
 						.build(),
 					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
-						.avecGED(35)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
+						.avecGED({ nbHeures: 35 })
 						.build(),
 				},
 			})
@@ -46,7 +46,7 @@ describe('CMG', () => {
 			expect(résultat).to.be.true
 		})
 
-		it('n’est pas éligible si pas de droits ouverts sur mars, avril NI mai', () => {
+		it('n’est pas éligible si pas de CMG perçu sur mars, avril NI mai', () => {
 			const résultat = estÉligible({
 				enfantsÀCharge: {
 					enfants: {
@@ -56,18 +56,9 @@ describe('CMG', () => {
 					AeeH: 0,
 				},
 				historique: {
-					mars: new MoisHistoriqueFactory()
-						.sansDroitsOuverts()
-						.avecGED()
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.sansDroitsOuverts()
-						.avecGED()
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.sansDroitsOuverts()
-						.avecGED()
-						.build(),
+					mars: new MoisHistoriqueFactory().avecGED({ CMG: false }).build(),
+					avril: new MoisHistoriqueFactory().avecGED({ CMG: false }).build(),
+					mai: new MoisHistoriqueFactory().avecGED({ CMG: false }).build(),
 				},
 			})
 
@@ -145,15 +136,15 @@ describe('CMG', () => {
 					AeeH: 0,
 				},
 				historique: {
-					mars: new MoisHistoriqueFactory().avecGED(31).build(),
+					mars: new MoisHistoriqueFactory().avecGED({ nbHeures: 31 }).build(),
 					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], 150)
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecAMA(['Rose'], { nbHeures: 150 })
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
 						.sansGED()
 						.build(),
 					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
-						.avecGED(35)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
+						.avecGED({ nbHeures: 35 })
 						.build(),
 				},
 			})
@@ -197,17 +188,17 @@ describe('CMG', () => {
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], 150)
-						.avecGED(31)
+						.avecAMA(['Oscar'], { nbHeures: 150 })
+						.avecGED({ nbHeures: 31 })
 						.build(),
 					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], 150)
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecAMA(['Rose'], { nbHeures: 150 })
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
 						.sansGED()
 						.build(),
 					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
-						.avecGED(35)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
+						.avecGED({ nbHeures: 35 })
 						.build(),
 				},
 			})
@@ -227,16 +218,16 @@ describe('CMG', () => {
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], 297)
-						.avecAMA(['Aurore'], 147)
+						.avecAMA(['Oscar'], { nbHeures: 297 })
+						.avecAMA(['Aurore'], { nbHeures: 147 })
 						.sansGED()
 						.build(),
 					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose'], 447)
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 297)
+						.avecAMA(['Oscar', 'Rose'], { nbHeures: 447 })
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 297 })
 						.sansGED()
 						.build(),
-					mai: new MoisHistoriqueFactory().avecGED(147).build(),
+					mai: new MoisHistoriqueFactory().avecGED({ nbHeures: 147 }).build(),
 				},
 			})
 
@@ -257,17 +248,17 @@ describe('CMG', () => {
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], 150)
-						.avecGED(31)
+						.avecAMA(['Oscar'], { nbHeures: 150 })
+						.avecGED({ nbHeures: 31 })
 						.build(),
 					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], 150)
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
+						.avecAMA(['Rose'], { nbHeures: 150 })
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
 						.sansGED()
 						.build(),
 					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], 50)
-						.avecGED(35)
+						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
+						.avecGED({ nbHeures: 35 })
 						.build(),
 				},
 			})
@@ -290,16 +281,16 @@ describe('CMG', () => {
 				},
 				historique: {
 					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], 150)
-						.avecGED(31)
+						.avecAMA(['Rose'], { nbHeures: 150 })
+						.avecGED({ nbHeures: 31 })
 						.build(),
 					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose', 'Aurore'], 50)
+						.avecAMA(['Rose', 'Aurore'], { nbHeures: 50 })
 						.sansGED()
 						.build(),
 					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Rose', 'Aurore'], 50)
-						.avecGED(35)
+						.avecAMA(['Rose', 'Aurore'], { nbHeures: 50 })
+						.avecGED({ nbHeures: 35 })
 						.build(),
 				},
 			})
@@ -324,8 +315,10 @@ describe('CMG', () => {
 					AeeH: 0,
 				},
 				historique: {
-					mars: new MoisHistoriqueFactory().avecAMA(['Rose'], 150).build(),
-					avril: new MoisHistoriqueFactory().avecGED(1).build(),
+					mars: new MoisHistoriqueFactory()
+						.avecAMA(['Rose'], { nbHeures: 150 })
+						.build(),
+					avril: new MoisHistoriqueFactory().avecGED({ nbHeures: 1 }).build(),
 					mai: new MoisHistoriqueFactory().build(),
 				},
 			})
@@ -366,9 +359,11 @@ describe('CMG', () => {
 					AeeH: 0,
 				},
 				historique: {
-					mars: new MoisHistoriqueFactory().avecAMA(['Rose'], 150).build(),
+					mars: new MoisHistoriqueFactory()
+						.avecAMA(['Rose'], { nbHeures: 150 })
+						.build(),
 					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose', 'Aurore'], 150)
+						.avecAMA(['Rose', 'Aurore'], { nbHeures: 150 })
 						.build(),
 					mai: new MoisHistoriqueFactory().build(),
 				},

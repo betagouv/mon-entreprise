@@ -21,45 +21,22 @@ describe('CMG', () => {
 	describe('moyenneCMGPerçus', () => {
 		it('fait la moyenne de tous les CMG perçus pour Jules et Martin', () => {
 			const résultat = moyenneCMGPerçus({
-				mars: {
-					...new MoisHistoriqueFactory().build(),
-					déclarationsDeGarde: [
-						new DéclarationsDeGardeAMAFactory(['Jules'])
-							.avecCMG(M.euros(250))
-							.build(),
-						new DéclarationsDeGardeAMAFactory(['Martin'])
-							.avecCMG(M.euros(200))
-							.build(),
-						new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(120)).build(),
-					],
-				},
-				avril: {
-					...new MoisHistoriqueFactory().build(),
-					déclarationsDeGarde: [
-						new DéclarationsDeGardeAMAFactory(['Jules'])
-							.avecCMG(M.euros(140))
-							.build(),
-						new DéclarationsDeGardeAMAFactory(['Jules'])
-							.avecCMG(M.euros(230))
-							.build(),
-						new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(200)).build(),
-					],
-				},
-				mai: {
-					...new MoisHistoriqueFactory().build(),
-					déclarationsDeGarde: [
-						new DéclarationsDeGardeAMAFactory(['Jules'])
-							.avecCMG(M.euros(200))
-							.build(),
-						new DéclarationsDeGardeAMAFactory(['Martin'])
-							.avecCMG(M.euros(150))
-							.build(),
-						new DéclarationsDeGardeAMAFactory(['Jules'])
-							.avecCMG(M.euros(100))
-							.build(),
-						new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(70)).build(),
-					],
-				},
+				mars: new MoisHistoriqueFactory()
+					.avecAMA(['Jules'], { CMG: M.euros(250) })
+					.avecAMA(['Martin'], { CMG: M.euros(200) })
+					.avecGED({ CMG: M.euros(120) })
+					.build(),
+				avril: new MoisHistoriqueFactory()
+					.avecAMA(['Jules'], { CMG: M.euros(140) })
+					.avecAMA(['Jules'], { CMG: M.euros(230) })
+					.avecGED({ CMG: M.euros(200) })
+					.build(),
+				mai: new MoisHistoriqueFactory()
+					.avecAMA(['Jules'], { CMG: M.euros(200) })
+					.avecAMA(['Martin'], { CMG: M.euros(150) })
+					.avecAMA(['Jules'], { CMG: M.euros(100) })
+					.avecGED({ CMG: M.euros(70) })
+					.build(),
 			})
 
 			expect(résultat).to.be.deep.equal(M.euros(553.33))
