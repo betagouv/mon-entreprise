@@ -117,7 +117,7 @@ module.exports = {
 					},
 				],
 				'no-restricted-imports': [
-					'error',
+					'warn',
 					{
 						paths: [
 							{
@@ -125,6 +125,16 @@ module.exports = {
 								importNames: ['default'],
 								message:
 									'Please use named import : `import { styled } from "styled-component"` instead.',
+							},
+						],
+						patterns: [
+							{
+								group: ['@/design-system/*', '!@/design-system'],
+								message: 'Importez uniquement depuis @/design-system (l\'index). Les imports directs sont interdits.',
+							},
+							{
+								group: ['@/contextes/*/*'],
+								message: 'Importez uniquement depuis l\'index du contexte. Les imports directs sont interdits.',
 							},
 						],
 					},

@@ -5,13 +5,13 @@ import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDan
 import Value from '@/components/EngineValue/Value'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, { SimulationGoals } from '@/components/Simulation'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
 import { SimulationImpossible } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
 	SituationÉconomieCollaborative,
 	usagerAChoisiUnRégimeDeCotisation,
 } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
 import { ÉconomieCollaborativeProvider } from '@/contextes/économie-collaborative/hooks/ÉconomieCollaborativeContext'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
 import { SmallBody } from '@/design-system/typography/paragraphs'
 import { eurosParAn } from '@/domaine/Montant'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
