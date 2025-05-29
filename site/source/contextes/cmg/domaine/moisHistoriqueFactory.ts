@@ -1,5 +1,4 @@
 import * as A from 'effect/Array'
-import * as O from 'effect/Option'
 
 import * as M from '@/domaine/Montant'
 
@@ -16,20 +15,7 @@ type Options = {
 }
 
 export class MoisHistoriqueFactory<Prénom extends string = string> {
-	private ressources = O.some(M.euros(2_000))
 	private déclarationsDeGarde = [] as DéclarationDeGarde[]
-
-	sansRessources() {
-		this.ressources = O.none()
-
-		return this
-	}
-
-	avecRessources(montant: M.Montant<'Euro'>) {
-		this.ressources = O.some(montant)
-
-		return this
-	}
 
 	avecAMA(prénoms: Prénom[], { nbHeures = 100, CMG }: Options = {}) {
 		let déclarationDeGarde = new DéclarationsDeGardeAMAFactory(prénoms)
@@ -80,7 +66,6 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 
 	build() {
 		return {
-			ressources: this.ressources,
 			déclarationsDeGarde: this.déclarationsDeGarde,
 		} as const satisfies MoisHistorique
 	}

@@ -57,7 +57,7 @@ describe('CMG', () => {
 					},
 					AeeH: 0,
 				},
-				M.euros(2500)
+				M.eurosParMois(2500)
 			)
 
 			expect(résultat).to.be.deep.equal(M.euros(220.21))
@@ -76,7 +76,7 @@ describe('CMG', () => {
 					},
 					AeeH: 0,
 				},
-				M.euros(1000)
+				M.eurosParMois(1000)
 			)
 
 			expect(résultat).to.be.deep.equal(M.euros(43.23))
