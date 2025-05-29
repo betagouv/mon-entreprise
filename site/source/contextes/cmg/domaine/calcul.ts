@@ -51,17 +51,27 @@ export const moyenneCMGPerçus = (historique: SituationCMG['historique']) =>
 		A.flatMap((m) => m.déclarationsDeGarde),
 		A.map((d) => O.getOrElse(d.CMGPerçu, () => M.euros(0)).valeur),
 		N.sumAll,
-		(sum) => round(sum / 3, 2),
+		(sum) => sum / 3,
 		M.euros
 	)
 
-// TODO: à finir
-// const moyenneCMGRLinéarisés = (situation: SituationCMG) => pipe(
-// 	situation.historique,
-// 	R.values,
-// 	A.flatMap((m) => m.déclarationsDeGarde),
-// 	A.map((d) => calculeCMGRLinéarisé(d))
-// )
+export const moyenneCMGRLinéarisés = (situation: SituationCMG) =>
+	pipe(
+	situation.historique,
+	R.values,
+	A.flatMap((m) => m.déclarationsDeGarde),
+		A.map(
+			(d) =>
+				calculeCMGRLinéarisé(
+					d,
+					situation.enfantsÀCharge,
+					M.toEurosParMois(situation.ressources)
+				).valeur
+		),
+	N.sumAll,
+	(sum) => sum / 3,
+	M.euros
+)
 
 export const calculeCMGRLinéarisé = (
 	déclarationDeGarde: DéclarationDeGarde,
@@ -73,11 +83,7 @@ export const calculeCMGRLinéarisé = (
 	const coûtHoraireMédian = COÛT_HORAIRE_MÉDIAN[déclarationDeGarde.type]
 
 	return M.euros(
-		round(
-			coûtMensuel.valeur *
-				(1 - (revenuMensuel.valeur * teh) / coûtHoraireMédian),
-			2
-		)
+		coûtMensuel.valeur * (1 - (revenuMensuel.valeur * teh) / coûtHoraireMédian)
 	)
 }
 
