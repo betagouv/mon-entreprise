@@ -12,12 +12,16 @@ import { MoisHistorique } from './situationCMG'
 type Options = {
 	nbHeures?: number
 	CMG?: M.Montant<'Euro'> | false
+	rémunération?: M.Montant<'Euro'>
 }
 
 export class MoisHistoriqueFactory<Prénom extends string = string> {
 	private déclarationsDeGarde = [] as DéclarationDeGarde[]
 
-	avecAMA(prénoms: Prénom[], { nbHeures = 100, CMG }: Options = {}) {
+	avecAMA(
+		prénoms: Prénom[],
+		{ nbHeures = 100, CMG, rémunération }: Options = {}
+	) {
 		let déclarationDeGarde = new DéclarationsDeGardeAMAFactory(prénoms)
 		if (nbHeures) {
 			déclarationDeGarde = déclarationDeGarde.avecNbHeures(nbHeures)
@@ -26,6 +30,9 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 			déclarationDeGarde = déclarationDeGarde.sansCMG()
 		} else if (CMG) {
 			déclarationDeGarde = déclarationDeGarde.avecCMG(CMG)
+		}
+		if (rémunération) {
+			déclarationDeGarde = déclarationDeGarde.avecRémunération(rémunération)
 		}
 
 		this.déclarationsDeGarde = [
@@ -36,7 +43,7 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 		return this
 	}
 
-	avecGED({ nbHeures = 50, CMG }: Options = {}) {
+	avecGED({ nbHeures = 50, CMG, rémunération }: Options = {}) {
 		let déclarationDeGarde = new DéclarationsDeGardeGEDFactory()
 		if (nbHeures) {
 			déclarationDeGarde = déclarationDeGarde.avecNbHeures(nbHeures)
@@ -45,6 +52,9 @@ export class MoisHistoriqueFactory<Prénom extends string = string> {
 			déclarationDeGarde = déclarationDeGarde.sansCMG()
 		} else if (CMG) {
 			déclarationDeGarde = déclarationDeGarde.avecCMG(CMG)
+		}
+		if (rémunération) {
+			déclarationDeGarde = déclarationDeGarde.avecRémunération(rémunération)
 		}
 
 		this.déclarationsDeGarde = [
