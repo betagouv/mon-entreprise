@@ -10,14 +10,26 @@ export interface EnfantsÀCharge<Prénom extends string = string> {
 }
 
 export interface Enfant {
-	dateDeNaissance: Date
+	prénom: O.Option<string>
+	dateDeNaissance: O.Option<Date>
 }
 
+export interface EnfantValide extends Enfant {
+	prénom: O.Some<string>
+	dateDeNaissance: O.Some<Date>
+}
+
+export const isEnfantValide = (e: Enfant): e is EnfantValide =>
+	O.isSome(e.prénom) && O.isSome(e.dateDeNaissance)
+
 export const enfantAPlusDe3Ans = (enfant: Enfant): boolean =>
-	pipe(enfant.dateDeNaissance, addYears(3), isBefore(DATE_RÉFORME))
+	O.isSome(enfant.dateDeNaissance) &&
+	pipe(enfant.dateDeNaissance.value, addYears(3), isBefore(DATE_RÉFORME))
 
 export const enfantNéEn = (année: number) => (enfant: Enfant) =>
-	getYear(enfant.dateDeNaissance) === année
+	O.isSome(enfant.dateDeNaissance) &&
+	getYear(enfant.dateDeNaissance.value) === année
 
 export const enfantAMoinsDe6Ans = (enfant: Enfant) =>
-	pipe(enfant.dateDeNaissance, addYears(6), isAfter(DATE_RÉFORME))
+	O.isSome(enfant.dateDeNaissance) &&
+	pipe(enfant.dateDeNaissance.value, addYears(6), isAfter(DATE_RÉFORME))
