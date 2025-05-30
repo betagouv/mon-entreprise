@@ -3,21 +3,16 @@ import * as O from 'effect/Option'
 import * as M from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
-import { DéclarationDeGarde } from './déclaration-de-garde'
 import { EnfantsÀCharge } from './enfant'
-
-export interface MoisHistorique<PrénomsEnfants extends string = string> {
-	déclarationsDeGarde: Array<DéclarationDeGarde<PrénomsEnfants>>
-}
+import { SalariéeAMA, SalariéeGED } from './salariée'
 
 export interface SituationCMG<PrénomsEnfants extends string = string>
 	extends Situation {
 	ressources: O.Option<M.Montant<'EuroParAn'>>
 	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
-	historique: {
-		mars: MoisHistorique<PrénomsEnfants>
-		avril: MoisHistorique<PrénomsEnfants>
-		mai: MoisHistorique<PrénomsEnfants>
+	modesDeGarde: {
+		GED: Array<SalariéeGED>
+		AMA: Array<SalariéeAMA<PrénomsEnfants>>
 	}
 }
 
@@ -30,13 +25,12 @@ export const initialSituationCMG: SituationCMG = {
 	ressources: O.none(),
 	enfantsÀCharge: {
 		enfants: {
-			'': { prénom: O.none(), dateDeNaissance: O.none()}
+			'': { prénom: O.none(), dateDeNaissance: O.none() },
 		},
 		AeeH: O.none(),
 	},
-	historique: {
-		mars: { déclarationsDeGarde: [] },
-		avril: { déclarationsDeGarde: [] },
-		mai: { déclarationsDeGarde: [] },
+	modesDeGarde: {
+		GED: [],
+		AMA: [],
 	},
 }
