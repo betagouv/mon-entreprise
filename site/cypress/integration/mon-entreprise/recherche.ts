@@ -5,7 +5,7 @@ describe('Recherche globales', { testIsolation: false }, function () {
 		return
 	}
 
-	it('should display the search results when the magnifying glass is clicked', function () {
+	it('should display results when an input is written', function () {
 		cy.visit('/')
 
 		cy.contains('Rechercher').click()
@@ -17,10 +17,8 @@ describe('Recherche globales', { testIsolation: false }, function () {
 		// eslint-disable-next-line cypress/unsafe-to-chain-command
 		cy.get('input[type=search]').should('be.focused')
 
-		cy.contains('Simulateurs')
-			.next()
-			.find('[role="button"]')
-			.should('have.length', 6)
+		cy.contains('Simulateurs').next().find('li').should('have.length', 6)
+
 		cy.contains('Documentation des simulateurs')
 			.next()
 			.find('li')
@@ -29,17 +27,15 @@ describe('Recherche globales', { testIsolation: false }, function () {
 		// eslint-disable-next-line cypress/unsafe-to-chain-command
 		cy.focused().type('avocat')
 
-		cy.contains('Simulateurs')
-			.next()
-			.find('[role="button"]')
-			.should('have.length', 1)
+		cy.contains('Simulateurs').next().find('li').should('have.length', 1)
+
 		cy.contains('Documentation des simulateurs')
 			.next()
 			.find('li')
 			.should('have.length.of.at.least', 1)
 	})
 
-	it('should be RGAA compliant', function () {
+	it('should check minimal accessibility tests', function () {
 		checkA11Y()
 	})
 })
