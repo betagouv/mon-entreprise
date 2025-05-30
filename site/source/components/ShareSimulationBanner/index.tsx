@@ -69,9 +69,10 @@ export default function ShareOrSaveSimulationBanner({
 				style={{
 					justifyContent: 'center',
 				}}
+				role="list"
 			>
 				{customSimulationbutton && (
-					<Grid item xs={12} sm="auto">
+					<Grid item xs={12} sm="auto" role="listitem">
 						<Button light size="XS" href={customSimulationbutton.href}>
 							{customSimulationbutton.title}
 						</Button>
@@ -79,7 +80,7 @@ export default function ShareOrSaveSimulationBanner({
 				)}
 
 				{share && (
-					<Grid item xs={12} sm="auto">
+					<Grid item xs={12} sm="auto" role="listitem">
 						<PopoverWithTrigger
 							title={t('shareSimulation.modal.title', 'Votre lien de partage')}
 							trigger={(buttonProps) => (
@@ -117,7 +118,7 @@ export default function ShareOrSaveSimulationBanner({
 				)}
 
 				{print && typeof window.print === 'function' && (
-					<Grid item xs={12} sm="auto">
+					<Grid item xs={12} sm="auto" role="listitem">
 						<Button
 							light
 							size="XS"
@@ -135,7 +136,7 @@ export default function ShareOrSaveSimulationBanner({
 				)}
 
 				{conseillersEntreprises && (
-					<Grid item xs={12} sm="auto">
+					<Grid item xs={12} sm="auto" role="listitem">
 						<ConseillersEntreprisesButton variant="recrutement" />
 					</Grid>
 				)}
