@@ -53,11 +53,22 @@ export const useCMG = () => {
 				},
 			}))
 		},
+
+		AeeH: (AeeH: O.Option<number>) => {
+			updateSituation((prev) => ({
+				...prev,
+				enfantsÀCharge: {
+					...prev.enfantsÀCharge,
+					AeeH,
+				},
+			}))
+		},
 	}
 
 	return {
 		situation,
 		enfants: R.values(situation.enfantsÀCharge.enfants),
+		AeeH: situation.enfantsÀCharge.AeeH,
 		set,
 	}
 }
