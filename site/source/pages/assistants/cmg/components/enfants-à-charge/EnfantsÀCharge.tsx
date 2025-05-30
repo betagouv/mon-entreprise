@@ -6,6 +6,7 @@ import { Enfant, useCMG } from '@/contextes/cmg'
 import { Button, H2 } from '@/design-system'
 
 import EnfantInput from './EnfantInput'
+import QuestionAeeH from './QuestionAeeH'
 
 export default function EnfantsÀCharge() {
 	const { t } = useTranslation()
@@ -46,6 +47,8 @@ export default function EnfantsÀCharge() {
 					'Ajouter un enfant'
 				)}
 			</Button>
+
+			<QuestionAeeH />
 		</>
 	)
 }
