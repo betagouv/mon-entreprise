@@ -2,14 +2,17 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Message } from '@/design-system'
-import { Card } from '@/design-system/card'
-import { FocusStyle } from '@/design-system/global-style'
-import { ChevronIcon } from '@/design-system/icons'
-import { Strong } from '@/design-system/typography'
-import { StyledLink } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Card,
+	ChevronIcon,
+	FocusStyle,
+	Li,
+	Message,
+	Strong,
+	StyledLink,
+	Ul,
+} from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
 
 import { FromTop } from '../ui/animate'

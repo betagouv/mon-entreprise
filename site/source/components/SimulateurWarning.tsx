@@ -2,8 +2,7 @@ import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 
 import Warning from '@/components/ui/WarningBlock'
-import { Strong } from '@/design-system/typography'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Strong } from '@/design-system'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
 type SimulateurWarningProps = {

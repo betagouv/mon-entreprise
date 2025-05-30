@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import LectureGuide from '@/components/LectureGuide'
-import { Grid } from '@/design-system/layout'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { Grid, SmallBody } from '@/design-system'
 
 type Props = {
 	value: number

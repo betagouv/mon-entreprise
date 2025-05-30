@@ -12,7 +12,7 @@ import {
 	usagerAChoisiUnRégimeDeCotisation,
 } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
 import { ÉconomieCollaborativeProvider } from '@/contextes/économie-collaborative/hooks/ÉconomieCollaborativeContext'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { SmallBody } from '@/design-system'
 import { eurosParAn } from '@/domaine/Montant'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import { ObjectifRevenuNet } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRevenuNet'

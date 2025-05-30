@@ -1,6 +1,4 @@
-import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, HelpButtonWithPopover, Link } from '@/design-system'
 
 export function HelpGuichetUnique() {
 	return (

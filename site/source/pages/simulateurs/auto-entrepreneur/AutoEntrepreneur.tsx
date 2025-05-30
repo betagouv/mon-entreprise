@@ -9,8 +9,7 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Link } from '@/design-system/typography/link'
-import { DarkLi, Ul } from '@/design-system/typography/list'
+import { DarkLi, Link, Ul } from '@/design-system'
 import { AutoEntrepreneurDétails } from '@/pages/simulateurs/auto-entrepreneur/AutoEntrepreneurDétails'
 
 export default function AutoEntrepreneur() {

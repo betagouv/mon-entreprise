@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components'
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
 import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetraite'
 import StackedBarChart from '@/components/StackedBarChart'
-import { H3 } from '@/design-system/typography/heading'
+import { H3 } from '@/design-system'
 
 import { Condition } from '../EngineValue/Condition'
 import { WhenApplicable } from '../EngineValue/WhenApplicable'

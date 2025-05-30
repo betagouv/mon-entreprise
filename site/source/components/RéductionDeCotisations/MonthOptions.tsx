@@ -3,19 +3,24 @@ import { styled } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import { NumberField } from '@/design-system'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
 import {
+	baseTheme,
+	Body,
+	FlexCenter,
+	Grid,
+	HelpButtonWithPopover,
+	Li,
+	MontantField,
+	QuantitéField,
+	SmallBody,
+	Strong,
 	StyledInput,
 	StyledInputContainer,
 	StyledSuffix,
-} from '@/design-system/field/TextField'
-import { FlexCenter } from '@/design-system/global-style'
-import { Grid } from '@/design-system/layout'
-import { baseTheme } from '@/design-system/theme'
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+	Ul,
+} from '@/design-system'
+import { euros } from '@/domaine/Montant'
+import { heuresParMois } from '@/domaine/Quantité'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Options } from '@/utils/réductionDeCotisations'
 
@@ -121,13 +126,17 @@ export default function MonthOptions({
 				</GridItemLabel>
 				<GridItemInput item>
 					<NumberFieldContainer>
-						<NumberField
+						<QuantitéField
 							id={`option-heures-sup-${month}`}
 							small={true}
-							value={options[additionalHours]}
-							onChange={onHeuresSupChange}
+							value={
+								options[additionalHours] !== undefined
+									? heuresParMois(options[additionalHours])
+									: undefined
+							}
+							onChange={(q) => onHeuresSupChange(q?.valeur)}
 							aria-labelledby={`heures-sup-label`}
-							displayedUnit="heures"
+							unité="heures/mois"
 						/>
 					</NumberFieldContainer>
 				</GridItemInput>
@@ -160,13 +169,17 @@ export default function MonthOptions({
 				</GridItemLabel>
 				<GridItemInput item>
 					<NumberFieldContainer>
-						<NumberField
+						<MontantField
 							id={`option-rémunération-etp-${month}`}
 							small={true}
-							value={options.rémunérationETP}
-							onChange={onRémunérationETPChange}
+							value={
+								options.rémunérationETP !== undefined
+									? euros(options.rémunérationETP)
+									: undefined
+							}
+							unité="Euro"
+							onChange={(m) => onRémunérationETPChange(m?.valeur)}
 							aria-labelledby={`rémunération-etp-label`}
-							displayedUnit="€"
 						/>
 					</NumberFieldContainer>
 				</GridItemInput>
@@ -193,13 +206,17 @@ export default function MonthOptions({
 				</GridItemLabel>
 				<GridItemInput item>
 					<NumberFieldContainer>
-						<NumberField
+						<MontantField
 							id={`option-rémunération-primes-${month}`}
 							small={true}
-							value={options.rémunérationPrimes}
-							onChange={onRémunérationPrimesChange}
+							value={
+								options.rémunérationPrimes !== undefined
+									? euros(options.rémunérationPrimes)
+									: undefined
+							}
+							unité="Euro"
+							onChange={(m) => onRémunérationPrimesChange(m?.valeur)}
 							aria-labelledby={`rémunération-primes-label`}
-							displayedUnit="€"
 						/>
 					</NumberFieldContainer>
 				</GridItemInput>
@@ -220,13 +237,17 @@ export default function MonthOptions({
 				</GridItemLabel>
 				<GridItemInput item>
 					<NumberFieldContainer>
-						<NumberField
+						<MontantField
 							id={`option-rémunération-heures-sup-${month}`}
 							small={true}
-							value={options.rémunérationHeuresSup}
-							onChange={onRémunérationHeuresSupChange}
+							value={
+								options.rémunérationHeuresSup !== undefined
+									? euros(options.rémunérationHeuresSup)
+									: undefined
+							}
+							unité="Euro"
+							onChange={(m) => onRémunérationHeuresSupChange(m?.valeur)}
 							aria-labelledby={`rémunération-heures-sup-label`}
-							displayedUnit="€"
 						/>
 					</NumberFieldContainer>
 				</GridItemInput>
@@ -300,6 +321,13 @@ const StyledLabel = styled(SmallBody)`
 	margin: 0;
 	color: ${({ theme }) => theme.colors.bases.primary[800]};
 `
+// FIXME: Ce composant utilise des styled components internes de TextField
+// (StyledInputContainer, StyledInput, StyledSuffix) qui ne devraient pas être
+// exposés publiquement car ils créent un couplage fort avec l'implémentation
+// interne. Il faudrait refactorer ce code pour soit :
+// - Utiliser des props de style sur les composants de field
+// - Créer un composant dédié dans le design-system
+// - Utiliser des sélecteurs CSS génériques
 const NumberFieldContainer = styled.div`
 	max-width: 120px;
 	${StyledInputContainer} {

@@ -1,10 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import { Message } from '@/design-system'
-import { Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, Link, Message, SmallBody, Spacing } from '@/design-system'
 
 import SearchCodeAPE from './SearchCodeAPE'
 

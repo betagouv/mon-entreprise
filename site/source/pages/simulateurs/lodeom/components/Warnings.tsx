@@ -1,8 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { Message } from '@/design-system'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Message } from '@/design-system'
 
 export default function Warnings() {
 	return (

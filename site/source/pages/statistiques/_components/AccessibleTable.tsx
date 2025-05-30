@@ -2,9 +2,11 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Body } from '@/design-system/typography/paragraphs'
+import { typography } from '@/design-system'
 
 import { formatDay, formatMonth } from './utils'
+
+const { Body } = typography
 
 interface AccessibleTableProps {
 	period?: 'mois' | 'jours'

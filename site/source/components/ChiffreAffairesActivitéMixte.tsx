@@ -6,7 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Switch } from '@/design-system/switch'
+import { Switch } from '@/design-system'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,

@@ -6,12 +6,15 @@ import { generatePath, useNavigate } from 'react-router-dom'
 import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
 import { useEngine } from '@/components/utils/EngineContext'
-import AnswerGroup from '@/design-system/answer-group'
-import { Button } from '@/design-system/buttons'
-import { Grid, Spacing } from '@/design-system/layout'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
-import { H3 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	AnswerGroup,
+	Body,
+	Button,
+	Grid,
+	H3,
+	PopoverConfirm,
+	Spacing,
+} from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'

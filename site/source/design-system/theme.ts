@@ -242,4 +242,4 @@ const theme = {
 	...baseTheme,
 } satisfies Theme
 
-export default theme
+export { theme }

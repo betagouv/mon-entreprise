@@ -3,9 +3,7 @@ import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid } from '@/design-system/layout'
-import { SmallBody } from '@/design-system/typography/paragraphs'
-import { TitreObjectifSaisissable } from '@/design-system/typography/TitreObjectifSaisissable'
+import { Grid, SmallBody, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 

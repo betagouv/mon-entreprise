@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import { Grid } from '@/design-system/layout'
-import { H1 } from '@/design-system/typography/heading'
+import { Grid } from '../layout'
+import { H1 } from '../typography/heading'
 
 type FooterColumnType = {
 	children: ReactNode

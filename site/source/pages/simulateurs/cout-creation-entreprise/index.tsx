@@ -6,9 +6,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import { Grid } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
-import { DarkLi, Ul } from '@/design-system/typography/list'
+import { DarkLi, Grid, H3, Ul } from '@/design-system'
 
 export default function CoutCreationEntreprise() {
 	return (

@@ -14,10 +14,7 @@ import Simulation, {
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import StackedBarChart from '@/components/StackedBarChart'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Radio, ToggleGroup } from '@/design-system/field'
-import { H2 } from '@/design-system/typography/heading'
-import { DarkLi, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, DarkLi, H2, Radio, ToggleGroup, Ul } from '@/design-system'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {

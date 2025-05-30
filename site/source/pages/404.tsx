@@ -4,8 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import image from '@/assets/images/road-sign.svg'
 import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
-import { Button } from '@/design-system/buttons'
-import { Container, Spacing } from '@/design-system/layout'
+import { Button, Container, Spacing } from '@/design-system'
 
 export default function Page404() {
 	const { t } = useTranslation()

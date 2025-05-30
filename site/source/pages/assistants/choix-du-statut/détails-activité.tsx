@@ -11,14 +11,18 @@ import {
 	useGuichetInfo,
 } from '@/components/GuichetInfo'
 import Skeleton from '@/components/ui/Skeleton'
-import { Message, RadioCardGroup } from '@/design-system'
-import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
-import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H5 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	H5,
+	Li,
+	Link,
+	Message,
+	RadioCardGroup,
+	RadioCardSkeleton,
+	Spacing,
+	Strong,
+	Ul,
+} from '@/design-system'
 import { useIsIdle } from '@/hooks/useIsIddle'
 import { usePublicodes } from '@/hooks/usePublicodes'
 import { useSitePaths } from '@/sitePaths'

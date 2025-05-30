@@ -2,16 +2,15 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
-import { Chip } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Button, Chip, Emoji, typography } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 
 import { StatsStruct } from './types'
+
+const { headings, Link, lists, paragraphs } = typography
+const { H2, H3 } = headings
+const { Li, Ul } = lists
+const { Body } = paragraphs
 
 export default function DemandeUtilisateurs() {
 	const { data: stats } = useFetchData<StatsStruct>('/data/stats.json')

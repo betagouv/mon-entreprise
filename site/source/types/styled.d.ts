@@ -1,6 +1,6 @@
 import 'styled-components'
 
-import theme, { SpacingKey } from '@/design-system/theme'
+import { SpacingKey, theme } from '@/design-system'
 
 type Color = string
 

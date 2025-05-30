@@ -5,7 +5,7 @@ type AnswerGroupProps = {
 	role?: string
 }
 
-const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
+export const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
 	children,
 	...props
 }) => {
@@ -25,5 +25,3 @@ const AnswerGroup: FunctionComponent<AnswerGroupProps> = ({
 		</div>
 	)
 }
-
-export default AnswerGroup

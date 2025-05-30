@@ -4,11 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutType, TAG_DATA } from '@/components/StatutTag'
-import { Button } from '@/design-system/buttons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H4 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
+import { Button, Grid, H4, Li, Spacing, Strong, Ul } from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 

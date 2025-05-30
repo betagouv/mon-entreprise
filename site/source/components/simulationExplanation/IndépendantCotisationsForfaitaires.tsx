@@ -4,11 +4,7 @@ import Value from '@/components/EngineValue/Value'
 import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import Markdown from '@/components/utils/Markdown/Markdown'
-import { Message } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
-import { Intro } from '@/design-system/typography/paragraphs'
+import { Button, H3, Intro, Message, Spacing } from '@/design-system'
 
 export default function CotisationsForfaitaires() {
 	const rule = useEngine().getRule(

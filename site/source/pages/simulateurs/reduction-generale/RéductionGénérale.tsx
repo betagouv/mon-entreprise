@@ -7,8 +7,7 @@ import RégularisationSwitch from '@/components/RéductionDeCotisations/Régular
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Strong } from '@/design-system/typography'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Strong } from '@/design-system'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 import CongésPayésSwitch from './components/CongésPayésSwitch'

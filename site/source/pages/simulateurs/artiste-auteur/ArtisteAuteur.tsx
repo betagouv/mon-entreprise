@@ -12,11 +12,12 @@ import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner
 import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { useEngine } from '@/components/utils/EngineContext'
-import { H2 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { typography } from '@/design-system'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 
 import { configArtisteAuteur } from './simulationConfig'
+
+const { Body, H2 } = typography
 
 export default function ArtisteAuteur() {
 	const { pathname } = useLocation()

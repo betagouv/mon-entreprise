@@ -3,13 +3,11 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
-import { Container, Grid } from '@/design-system/layout'
-import { H1, H4 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Container, Grid, Message, typography } from '@/design-system'
 
-import { Message } from '../design-system'
 import { Logo } from './Logo'
+
+const { Body, H4, H1, Intro, Link } = typography
 
 const StyledLogo = styled.div`
 	height: 3rem;

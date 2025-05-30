@@ -1,7 +1,6 @@
 import { EvaluatedNode, PublicodesExpression } from 'publicodes'
 
-import { Item } from '@/design-system'
-import { Select } from '@/design-system/field/Select'
+import { Item, Select } from '@/design-system'
 
 const STATES = [
 	'Allemagne',

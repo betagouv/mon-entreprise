@@ -1,8 +1,8 @@
 import { DottedName } from 'modele-social'
-import Engine, { ASTNode, RuleNode } from 'publicodes'
+import Engine, { RuleNode } from 'publicodes'
 import { useCallback } from 'react'
 
-import { ChoixMultiple, ChoixOption } from '@/design-system/field/choix'
+import { ChoixMultiple, ChoixOption } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 
 interface PlusieursPossibilitésProps {
@@ -15,7 +15,6 @@ interface PlusieursPossibilitésProps {
 	description?: string
 	autoFocus?: boolean
 	onSubmit?: (source?: string) => void
-	suggestions?: Record<string, ASTNode>
 
 	aria?: {
 		labelledby?: string

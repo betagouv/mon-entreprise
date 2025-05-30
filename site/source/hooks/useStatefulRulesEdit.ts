@@ -50,7 +50,21 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 	}
 
 	const confirm = () => {
-		dispatch(ajusteLaSituation(R.map(dirtyValues, PublicodesAdapter.encode)))
+		dispatch(
+			ajusteLaSituation(
+				pipe<
+					Record<T, O.Option<ValeurPublicodes>>,
+					Record<T, ValeurPublicodes | undefined>,
+					Record<T, ValeurPublicodes>
+				>(
+					dirtyValues,
+					R.map<T, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
+						O.getOrUndefined
+					),
+					filterRecordNotUndefined
+				)
+			)
+		)
 	}
 
 	return {
@@ -61,3 +75,7 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 		confirm,
 	}
 }
+
+const filterRecordNotUndefined = <T, K extends string = string>(
+	r: Record<K, T | undefined>
+) => R.filter(r, (v: T | undefined): v is T => v !== undefined) as Record<K, T>

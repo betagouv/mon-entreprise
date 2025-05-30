@@ -10,14 +10,18 @@ import { Feedback } from '@/components/Feedback/Feedback'
 import { References } from '@/components/References'
 import { StatutType } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Article } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
-import { Container, Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H3 } from '@/design-system/typography/heading'
-import { Intro } from '@/design-system/typography/paragraphs'
+import {
+	Article,
+	Button,
+	Container,
+	Emoji,
+	Grid,
+	H3,
+	Intro,
+	Message,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'

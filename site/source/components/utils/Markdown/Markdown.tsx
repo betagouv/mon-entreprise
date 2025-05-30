@@ -1,11 +1,21 @@
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import { styled } from 'styled-components'
 
-import { Message } from '@/design-system'
-import { Strong, U } from '@/design-system/typography'
-import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
-import { Li, Ol, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	H1,
+	H2,
+	H3,
+	H4,
+	H5,
+	H6,
+	Li,
+	Message,
+	Ol,
+	Strong,
+	U,
+	Ul,
+} from '@/design-system'
 
 import ImgRenderer from './ImgRenderer'
 import LinkRenderer from './LinkRenderer'

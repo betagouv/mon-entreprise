@@ -7,9 +7,9 @@ import { WhenAlreadyDefinedMulti } from '@/components/EngineValue/WhenAlreadyDef
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import Notifications from '@/components/Notifications'
 import { Message } from '@/design-system'
-import { H2 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { H2 } from '@/design-system'
+import { Li, Ul } from '@/design-system'
+import { Body } from '@/design-system'
 
 import { SimpleField } from '../../components/Fields'
 

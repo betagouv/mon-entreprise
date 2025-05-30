@@ -5,10 +5,7 @@ import { styled } from 'styled-components'
 
 import { Choice } from '@/components/conversation/Choice'
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import { Radio } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Spacing } from '@/design-system/layout'
-import { H3, H4 } from '@/design-system/typography/heading'
+import { Emoji, H3, H4, Radio, Spacing } from '@/design-system'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
 
 export function RadioChoices<Names extends string = DottedName>({

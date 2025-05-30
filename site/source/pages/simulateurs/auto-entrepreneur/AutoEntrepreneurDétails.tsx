@@ -6,7 +6,7 @@ import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExpla
 import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetraite'
 import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import StackedBarChart from '@/components/StackedBarChart'
-import { H2 } from '@/design-system/typography/heading'
+import { H2 } from '@/design-system'
 
 export const AutoEntrepreneurDétails = () => {
 	const { t } = useTranslation()

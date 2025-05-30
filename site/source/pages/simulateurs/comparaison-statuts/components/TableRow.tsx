@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { ComponentProps } from 'react'
 
 import Value from '@/components/EngineValue/Value'
-import { H3 } from '@/design-system/typography/heading'
+import { H3 } from '@/design-system'
 
 function TableRow({
 	dottedName,

@@ -3,12 +3,12 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { H6 } from '@/design-system/typography/heading'
+import { H6 } from '../typography/heading'
 import {
 	NewWindowLinkIcon,
 	useExternalLinkProps,
-} from '@/design-system/typography/link'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+} from '../typography/link'
+import { SmallBody } from '../typography/paragraphs'
 
 import { GenericCardProps, getTitleProps } from './Card'
 

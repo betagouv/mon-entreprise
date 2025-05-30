@@ -2,7 +2,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React, { useState } from 'react'
 
-import { Switch } from '@/design-system/switch'
+import { Switch } from './'
 
 const meta: Meta<typeof Switch> = {
 	title: 'Design System/Switch',

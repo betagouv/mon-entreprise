@@ -1,8 +1,6 @@
 import { Trans } from 'react-i18next'
 
-import { Message } from '@/design-system'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Link, Message } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
 export default function PrintExportRecover() {

@@ -5,9 +5,7 @@ import { References } from '@/components/References'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
 import Markdown from '@/components/utils/Markdown/Markdown'
-import HelpButtonWithPopover from '@/design-system/buttons/HelpButtonWithPopover'
-import { Spacing } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
+import { H3, HelpButtonWithPopover, Spacing } from '@/design-system'
 import { useReferences } from '@/pages/assistants/choix-du-statut/résultat'
 
 export function ExplicableRule<Names extends string = DottedName>({

@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Radio, ToggleGroup } from '@/design-system'
-import { FlexCenter } from '@/design-system/global-style'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, FlexCenter, Radio, ToggleGroup } from '@/design-system'
 
 type Props = {
 	déclarant: '1' | '2'
