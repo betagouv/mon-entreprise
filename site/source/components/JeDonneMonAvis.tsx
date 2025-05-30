@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import donnerVotreAvisSvg from '@/assets/images/donner-votre-avis-services-publics.svg'
-import { Link } from '@/design-system/typography/link'
+import { Link } from '@/design-system'
 
 export const JeDonneMonAvis = ({ light }: { light?: boolean }) => {
 	const { t } = useTranslation()

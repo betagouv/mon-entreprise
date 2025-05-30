@@ -1,11 +1,15 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
-import { Card } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
-import { GithubIcon } from '@/design-system/icons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Card,
+	Emoji,
+	GithubIcon,
+	Grid,
+	Intro,
+	Spacing,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 import Meta from '../../components/utils/Meta'

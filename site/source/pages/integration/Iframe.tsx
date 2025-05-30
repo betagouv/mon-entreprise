@@ -7,21 +7,28 @@ import { styled } from 'styled-components'
 
 import urssafLogo from '@/assets/images/Urssaf.svg'
 import { TrackPage } from '@/components/ATInternetTracking'
-import { Item, PopoverWithTrigger, TextField } from '@/design-system'
-import { Article } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import { H1, H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Article,
+	Body,
+	Button,
+	Emoji,
+	Grid,
+	H1,
+	H2,
+	H3,
+	Intro,
+	Item,
+	Link,
+	PopoverWithTrigger,
+	Select,
+	Spacing,
+	TextField,
+} from '@/design-system'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 
 import Meta from '../../components/utils/Meta'
 
 import './iframe.css'
-
-import { Button } from '@/design-system/buttons'
-import { Select } from '@/design-system/field/Select'
 
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'

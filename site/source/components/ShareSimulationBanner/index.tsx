@@ -1,10 +1,13 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
+import {
+	Button,
+	Emoji,
+	Grid,
+	PopoverWithTrigger,
+	Spacing,
+} from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
 import { useTracking } from '../ATInternetTracking'

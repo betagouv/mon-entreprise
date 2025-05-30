@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { H2 } from '@/design-system/typography/heading'
+import { H2 } from '@/design-system'
 
 import { algoliaIndexPrefix, searchClient } from './Algolia'
 import { RulesInfiniteHits } from './RulesInfiniteHits'

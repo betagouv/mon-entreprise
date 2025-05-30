@@ -4,7 +4,12 @@ import * as O from 'effect/Option'
 import { isBoolean } from 'effect/Predicate'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import Engine, { ASTNode, EvaluatedNode } from 'publicodes'
+import Engine, {
+	ASTNode,
+	EvaluatedNode,
+	PublicodesExpression,
+	serializeUnit,
+} from 'publicodes'
 
 import {
 	isIsoDate,
@@ -14,13 +19,13 @@ import {
 } from '@/domaine/Date'
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
-import { SimplePublicodesExpression } from '@/domaine/engine/SimpleRuleEvaluation'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { isOuiNon } from '@/domaine/OuiNon'
+import { isQuantité, Quantité, quantité } from '@/domaine/Quantité'
 
 export type Nombre = number
 
-export type ValeurPublicodes = string | Montant | Nombre
+export type ValeurPublicodes = string | Montant | Quantité | Nombre
 
 const decode = (
 	node: EvaluatedNode,
@@ -52,8 +57,13 @@ const decode = (
 	}
 
 	if (typeof node.nodeValue === 'number') {
-		if (node.unit) {
+		const unitString = node.unit && serializeUnit(node.unit)
+
+		if (unitString && ['€', '€/mois', '€/an'].includes(unitString)) {
 			return MontantAdapter.decode(node)
+		} else if (unitString) {
+			// Créer un Quantité pour toute unité non monétaire
+			return O.some(quantité(node.nodeValue, unitString))
 		} else {
 			return O.some(node.nodeValue)
 		}
@@ -64,11 +74,12 @@ const decode = (
 	return O.none()
 }
 
+const plusUn: (x: number) => number = (x) => x + 1
+
 const encode = (
 	optionalValeur: O.Option<ValeurPublicodes>,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	règle?: DottedName
-): SimplePublicodesExpression => {
+	_règle?: DottedName
+): PublicodesExpression | undefined => {
 	if (O.isNone(optionalValeur)) {
 		return undefined
 	}
@@ -81,6 +92,13 @@ const encode = (
 
 	if (isMontant(valeur)) {
 		return MontantAdapter.encode(optionalValeur as O.Some<Montant>)
+	}
+
+	if (isQuantité(valeur)) {
+		return {
+			valeur: valeur.valeur,
+			unité: valeur.unité,
+		}
 	}
 
 	if (isNumber(valeur)) return valeur

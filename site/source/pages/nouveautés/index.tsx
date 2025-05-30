@@ -9,16 +9,17 @@ import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import { MarkdownWithAnchorLinks } from '@/components/utils/Markdown/MarkdownWithAnchorLinks'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Item } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Select } from '@/design-system/field/Select'
-import { Container, Grid } from '@/design-system/layout'
-import { H1 } from '@/design-system/typography/heading'
 import {
+	Body,
+	Container,
+	Emoji,
 	GenericButtonOrNavLinkProps,
+	Grid,
+	H1,
+	Item,
 	Link,
-} from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+	Select,
+} from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 

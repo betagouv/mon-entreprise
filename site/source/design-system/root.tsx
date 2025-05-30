@@ -7,10 +7,10 @@ import {
 	ThemeProvider,
 } from 'styled-components'
 
-import urssafTheme from '@/design-system/theme'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
 import { GlobalStyle } from './global-style'
+import { theme as urssafTheme } from './theme'
 
 type SystemRootProps = {
 	children: ReactNode
@@ -59,3 +59,4 @@ const BackgroundStyle = styled.div<BackgroundProps>`
 `
 
 export default SystemRoot
+export { SystemRoot as DesignSystemThemeProvider }

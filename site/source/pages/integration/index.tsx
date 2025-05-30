@@ -3,9 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 
 import { TrackChapter } from '@/components/ATInternetTracking'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Banner, InnerBanner } from '@/design-system/banner'
-import { Emoji } from '@/design-system/emoji'
-import { Link } from '@/design-system/typography/link'
+import { Banner, Emoji, InnerBanner, Link } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 

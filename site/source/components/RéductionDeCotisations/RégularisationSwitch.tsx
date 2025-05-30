@@ -5,7 +5,7 @@ import {
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from '@/design-system/réductionDeCotisations'
+} from './réductionDeCotisations'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
 type Props = {

@@ -1,7 +1,4 @@
-import { Message } from '@/design-system'
-import { Loader } from '@/design-system/icons/Loader'
-import { H1 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body, H1, Intro, Loader, Message } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 
 import StatPage from './StatsPage'

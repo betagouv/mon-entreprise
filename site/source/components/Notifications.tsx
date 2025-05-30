@@ -6,11 +6,14 @@ import { styled } from 'styled-components'
 
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import Markdown from '@/components/utils/Markdown/Markdown'
-import { Message } from '@/design-system'
-import { CloseButton } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Strong } from '@/design-system/typography'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	CloseButton,
+	Emoji,
+	Message,
+	SmallBody,
+	Strong,
+} from '@/design-system'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 

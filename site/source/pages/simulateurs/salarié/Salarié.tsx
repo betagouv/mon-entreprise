@@ -19,13 +19,17 @@ import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanat
 import { FadeIn, FromTop } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Strong } from '@/design-system/typography'
-import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Emoji,
+	H2,
+	Li,
+	Link,
+	Message,
+	SmallBody,
+	Strong,
+	Ul,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 

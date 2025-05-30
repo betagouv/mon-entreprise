@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
 import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
-import MontantField from '@/design-system/conversation/MontantField'
+import { MontantField } from '@/design-system'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
@@ -31,6 +31,8 @@ const RecettesInput = ({
 	<MontantField
 		value={O.getOrUndefined(montant)}
 		unité="EuroParAn"
-		onChange={(montant) => onChange(O.fromNullable(montant))}
+		onChange={(montant: Montant<'EuroParAn'> | undefined) =>
+			onChange(O.fromNullable(montant))
+		}
 	/>
 )

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
-import { Step, Stepper } from '@/design-system'
+import { Step, Stepper } from './'
 
 const meta: Meta<typeof Stepper> = {
 	component: Stepper,

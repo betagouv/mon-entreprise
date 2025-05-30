@@ -1,5 +1,10 @@
 import { styled } from 'styled-components'
 
+export * from './heading'
+export * from './link'
+export * from './list'
+export * from './paragraphs'
+
 export * as headings from './heading'
 export * as lists from './list'
 export * as paragraphs from './paragraphs'

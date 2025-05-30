@@ -5,9 +5,7 @@ import { connectInfiniteHits } from 'react-instantsearch-dom'
 import { styled } from 'styled-components'
 
 import { FromTop } from '@/components/ui/animate'
-import { Button } from '@/design-system/buttons'
-import { H3 } from '@/design-system/typography/heading'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, Button, H3, SmallBody } from '@/design-system'
 
 import RuleLink from '../../RuleLink'
 import { Highlight } from '../Hightlight'

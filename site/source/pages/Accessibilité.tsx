@@ -1,13 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { H1, H2, H3, H4, H5 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { TrackPage } from '@/components/ATInternetTracking'
+import { typography } from '@/design-system'
 
-import { TrackPage } from '../components/ATInternetTracking'
 import Meta from '../components/utils/Meta'
+
+const { H1, Body, H2, H3, H4, H5, Li, Link, SmallBody, Ul } = typography
 
 export default function Accessibilité() {
 	const { t } = useTranslation()

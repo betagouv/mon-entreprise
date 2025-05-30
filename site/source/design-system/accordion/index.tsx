@@ -295,3 +295,4 @@ const StyledChevronIcon = styled(ChevronIcon)<{ $isOpen?: boolean }>`
 `
 
 Accordion.StyledTitle = StyledTitle
+

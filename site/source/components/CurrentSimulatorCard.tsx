@@ -2,10 +2,7 @@ import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Grid } from '@/design-system/layout'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body, Emoji, Grid, Intro, Message } from '@/design-system'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 
 import { SimulateurCard } from './SimulateurCard'

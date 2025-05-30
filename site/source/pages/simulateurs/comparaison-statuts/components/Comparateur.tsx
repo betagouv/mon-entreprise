@@ -7,11 +7,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import { Message } from '@/design-system'
-import { Container, Spacing } from '@/design-system/layout'
-import { H4 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Container, H4, Link, Message, Spacing } from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 

@@ -3,9 +3,7 @@ import { utils } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { Grid } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
+import { Grid, Li, Link, Ul } from '@/design-system'
 import { capitalise0 } from '@/utils'
 import {
 	AGIRC_ARRCO,

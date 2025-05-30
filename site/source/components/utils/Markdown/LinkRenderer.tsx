@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 
 import { SiteNameContext } from '@/components/Provider'
-import { Link } from '@/design-system/typography/link'
+import { Link } from '@/design-system'
 
 type Props = {
 	href?: string

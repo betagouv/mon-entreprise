@@ -1,8 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Message, PopoverWithTrigger } from '@/design-system'
-import { Link, StyledLink } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Link,
+	Message,
+	PopoverWithTrigger,
+	StyledLink,
+} from '@/design-system'
 
 export default function Contact() {
 	const { t } = useTranslation()

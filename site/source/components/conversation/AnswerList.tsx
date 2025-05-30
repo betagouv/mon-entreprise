@@ -6,15 +6,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
-import { Message, PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
-import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Button,
+	Emoji,
+	Grid,
+	Message,
+	PopoverConfirm,
+	PopoverWithTrigger,
+	Spacing,
+	typography,
+} from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
@@ -32,6 +33,8 @@ import Value from '../EngineValue/Value'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'
+
+const { Body, H2, H3, Intro, Link, Strong } = typography
 
 type AnswerListProps = {
 	onClose?: () => void

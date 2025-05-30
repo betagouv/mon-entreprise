@@ -6,13 +6,7 @@ import { toAtString } from '@/components/ATInternetTracking'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Switch } from '@/design-system/switch'
-import { Strong } from '@/design-system/typography'
-import { H1, H2, H3 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Emoji, Grid, Spacing, Switch, typography } from '@/design-system'
 import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
 import PagesChart from '@/pages/statistiques/_components/PagesCharts'
 
@@ -26,6 +20,11 @@ import {
 import VisitChart from './_components/VisitChart'
 import { Filter, PageChapter2, StatsStruct } from './types'
 import { useStatistiques } from './useStatistiques'
+
+const { headings, lists, paragraphs, Strong } = typography
+const { H1, H2, H3 } = headings
+const { Li, Ul } = lists
+const { Body, Intro } = paragraphs
 
 interface StatsDetailProps {
 	stats: StatsStruct

@@ -1,6 +1,4 @@
-import { ASTNode } from 'publicodes'
-
-import { TextField } from '@/design-system/field'
+import { TextField } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
@@ -13,7 +11,6 @@ interface TextInputProps {
 	description?: string
 	autoFocus?: boolean
 	onSubmit?: (source?: string) => void
-	suggestions?: Record<string, ASTNode>
 
 	aria?: {
 		labelledby?: string

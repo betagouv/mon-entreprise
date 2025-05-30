@@ -14,15 +14,14 @@ import { useTranslation } from 'react-i18next'
 import { css, keyframes, styled } from 'styled-components'
 
 import { FromBottom } from '@/components/ui/animate'
-import { Grid } from '@/design-system/layout'
 import { wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
 import { useIFrameOffset } from '../hooks'
-import { Container } from '../layout'
+import { Container, Grid } from '../layout'
 import { H2 } from '../typography/heading'
 
-export default function Popover(
+export function Popover(
 	props: OverlayProps &
 		AriaDialogProps & {
 			children: React.ReactNode
@@ -86,7 +85,7 @@ export default function Popover(
 									minWidth: '0',
 								}}
 							>
-								{/* 
+								{/*
 								If you use an iframe in the children, be careful because you need a
 								focusable element before and after the iframe for the FocusTrap to work.
 								The CloseButton counts as the before element, so you just need a focusable element after the iframe.

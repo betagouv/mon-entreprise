@@ -13,12 +13,16 @@ import BrowserOnly from '@/components/utils/BrowserOnly'
 import { EngineProvider, useEngine } from '@/components/utils/EngineContext'
 import Markdown from '@/components/utils/Markdown/Markdown'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
-import { headings } from '@/design-system/typography'
-import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Button,
+	Emoji,
+	Grid,
+	headings,
+	Intro,
+	PopoverConfirm,
+	SmallBody,
+	Spacing,
+} from '@/design-system'
 import { hash, omit } from '@/utils'
 import {
 	buildSituationFromObject,

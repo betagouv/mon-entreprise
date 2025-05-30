@@ -13,8 +13,7 @@ import {
 	RegimeCotisation,
 } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
 import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
-import { RadioCard, RadioCardGroup } from '@/design-system'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { RadioCard, RadioCardGroup, SmallBody } from '@/design-system'
 import { toString as formatMontant } from '@/domaine/Montant'
 
 interface Props {}

@@ -1,8 +1,6 @@
 import { styled } from 'styled-components'
 
-import { Button } from '@/design-system/buttons'
-import { Drawer } from '@/design-system/drawer'
-import { Li, Ul } from '@/design-system/typography/list'
+import { Button, Drawer, Li, Ul } from '@/design-system'
 import { PlanContent } from '@/pages/Plan'
 
 export const Menu = () => {

@@ -34,7 +34,7 @@ export {
 	SuccessIcon,
 	TriangleIcon,
 	WarningIcon,
-} from '@/design-system/icons'
+} from './'
 
 const RotatingChevronExample = (
 	args: ComponentProps<typeof RotatingChevronIcon>

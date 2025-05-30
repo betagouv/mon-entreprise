@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import Montant from '@/components/RéductionDeCotisations/Montant'
-import { Grid } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Grid } from '@/design-system'
 import { MonthState, RéductionDottedName } from '@/utils/réductionDeCotisations'
 
 type Props = {

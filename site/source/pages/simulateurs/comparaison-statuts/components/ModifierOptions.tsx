@@ -4,23 +4,26 @@ import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import { Message } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Drawer } from '@/design-system/drawer'
-import { ArrowRightIcon, InfoIcon } from '@/design-system/icons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Switch } from '@/design-system/switch'
-import { Strong } from '@/design-system/typography'
-import { H2, H3, H5 } from '@/design-system/typography/heading'
-import { Link, StyledLink } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	ArrowRightIcon,
+	Body,
+	Button,
+	Drawer,
+	Grid,
+	H2,
+	H3,
+	H5,
+	InfoIcon,
+	Link,
+	Message,
+	Spacing,
+	Strong,
+	StyledLink,
+	Switch,
+} from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { OuiNon } from '@/domaine/OuiNon'
 import { useStatefulRulesEdit } from '@/hooks/useStatefulRulesEdit'
-
-
-
-
 
 const DOTTEDNAME_ENTREPRISE_IMPOSITION = 'entreprise . imposition'
 const DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE =
@@ -123,7 +126,7 @@ const ModifierOptions = () => {
 									defaultSelected={optionalOuiNonToBooleanOrUndefined(
 										values[
 											DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE
-											] as O.Option<OuiNon>
+										] as O.Option<OuiNon>
 									)}
 									light
 									/* Need this useless aria-label to silence a React-Aria warning */
@@ -210,7 +213,7 @@ const ModifierOptions = () => {
 						defaultSelected={optionalOuiNonToBooleanOrUndefined(
 							values[
 								DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE
-								] as O.Option<OuiNon>
+							] as O.Option<OuiNon>
 						)}
 						light
 						/* Need this useless aria-label to silence a React-Aria warning */

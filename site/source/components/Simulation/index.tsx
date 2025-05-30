@@ -8,9 +8,7 @@ import ShareOrSaveSimulationBanner, {
 	CustomSimulationButton,
 } from '@/components/ShareSimulationBanner'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import { Button } from '@/design-system/buttons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
+import { Button, Grid, H3, Spacing } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'

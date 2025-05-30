@@ -3,8 +3,7 @@ import { styled } from 'styled-components'
 
 import Value from '@/components/EngineValue/Value'
 import { StatutTag } from '@/components/StatutTag'
-import { Tag } from '@/design-system/tag'
-import { Strong } from '@/design-system/typography'
+import { Strong, Tag } from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 export default function RevenuTable({

@@ -5,8 +5,7 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { H1 } from '@/design-system/typography/heading'
-import { Intro } from '@/design-system/typography/paragraphs'
+import { H1, Intro } from '@/design-system'
 
 import DemandeUtilisateurs from './DemandesUtilisateurs'
 

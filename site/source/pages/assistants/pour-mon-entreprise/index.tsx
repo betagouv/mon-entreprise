@@ -26,12 +26,19 @@ import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { useEngine } from '@/components/utils/EngineContext'
 import Markdown from '@/components/utils/Markdown/Markdown'
-import { Message, Popover } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Container,
+	Grid,
+	H2,
+	H3,
+	Intro,
+	Message,
+	Popover,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'

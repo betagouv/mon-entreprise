@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import Markdown from '@/components/utils/Markdown/Markdown'
 
-import HelpButtonWithPopover from './buttons/HelpButtonWithPopover'
+import { HelpButtonWithPopover } from './molecules/HelpButtonWithPopover'
 
 export interface InfoButtonProps {
 	title: string
