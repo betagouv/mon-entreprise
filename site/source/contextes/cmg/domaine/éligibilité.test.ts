@@ -6,6 +6,10 @@ import { describe, expect, it } from 'vitest'
 import * as M from '@/domaine/Montant'
 
 import {
+	DéclarationsDeGardeAMAFactory,
+	DéclarationsDeGardeGEDFactory,
+} from './déclarationDeGardeFactory'
+import {
 	auMoinsUnEnfantOuvrantDroitAuCMG,
 	enfantOuvreDroitAuCMG,
 	estÉligible,
@@ -13,7 +17,7 @@ import {
 	moyenneHeuresParTypologieDeGarde,
 } from './éligibilité'
 import { EnfantFactory } from './enfantFactory'
-import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
+import { SalariéeAMAFactory, SalariéeGEDFactory } from './salariéeFactory'
 
 describe('CMG', () => {
 	describe('estÉligible', () => {
@@ -31,20 +35,46 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], { nbHeures: 150 })
-						.avecGED({ nbHeures: 31 })
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], { nbHeures: 150 })
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.sansGED()
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.avecGED({ nbHeures: 35 })
-						.build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build()
+							),
+							avril: O.none(),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(35).build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar'])
+									.avecNbHeures(150)
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.build()
+							),
+						},
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(150)
+									.build()
+							),
+							mai: O.none(),
+						},
+					],
 				},
 			})
 
@@ -64,10 +94,27 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory().avecGED({ CMG: false }).build(),
-					avril: new MoisHistoriqueFactory().avecGED({ CMG: false }).build(),
-					mai: new MoisHistoriqueFactory().avecGED({ CMG: false }).build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeGEDFactory().sansCMG().build()
+							),
+							avril: O.none(),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory().sansCMG().build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose']).sansCMG().build()
+							),
+							mai: O.none(),
+						},
+					],
 				},
 			})
 
@@ -87,10 +134,9 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory().avecGED().build(),
-					avril: new MoisHistoriqueFactory().avecGED().build(),
-					mai: new MoisHistoriqueFactory().avecGED().build(),
+				modesDeGarde: {
+					GED: [new SalariéeGEDFactory().build()],
+					AMA: [new SalariéeAMAFactory(['Rose']).build()],
 				},
 			})
 
@@ -110,10 +156,21 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory().build(),
-					avril: new MoisHistoriqueFactory().build(),
-					mai: new MoisHistoriqueFactory().avecGED().build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.none(),
+							avril: O.none(),
+							mai: O.some(new DéclarationsDeGardeGEDFactory().build()),
+						},
+					],
+					AMA: [
+						{
+							mars: O.none(),
+							avril: O.none(),
+							mai: O.some(new DéclarationsDeGardeAMAFactory(['Rose']).build()),
+						},
+					],
 				},
 			})
 
@@ -134,17 +191,42 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory().avecGED({ nbHeures: 31 }).build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], { nbHeures: 150 })
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.sansGED()
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.avecGED({ nbHeures: 35 })
-						.build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build()
+							),
+							avril: O.none(),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(35).build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(150)
+									.build()
+							),
+							mai: O.none(),
+						},
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.build()
+							),
+						},
+					],
 				},
 			})
 
@@ -165,12 +247,12 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory().avecGED().build(),
-					avril: new MoisHistoriqueFactory().avecAMA(['Rose']).build(),
-					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'])
-						.build(),
+				modesDeGarde: {
+					GED: [new SalariéeGEDFactory().build()],
+					AMA: [
+						new SalariéeAMAFactory(['Rose']).build(),
+						new SalariéeAMAFactory(['Oscar', 'Rose', 'Aurore']).build(),
+					],
 				},
 			})
 
@@ -193,20 +275,46 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], { nbHeures: 150 })
-						.avecGED({ nbHeures: 31 })
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], { nbHeures: 150 })
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.sansGED()
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.avecGED({ nbHeures: 35 })
-						.build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build()
+							),
+							avril: O.none(),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(35).build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar'])
+									.avecNbHeures(150)
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.build()
+							),
+						},
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(150)
+									.build()
+							),
+							mai: O.none(),
+						},
+					],
 				},
 			})
 
@@ -227,18 +335,44 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], { nbHeures: 297 })
-						.avecAMA(['Aurore'], { nbHeures: 147 })
-						.sansGED()
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose'], { nbHeures: 447 })
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 297 })
-						.sansGED()
-						.build(),
-					mai: new MoisHistoriqueFactory().avecGED({ nbHeures: 147 }).build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.none(),
+							avril: O.none(),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(147).build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar'])
+									.avecNbHeures(297)
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose'])
+									.avecNbHeures(447)
+									.build()
+							),
+							mai: O.none(),
+						},
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Aurore'])
+									.avecNbHeures(147)
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(297)
+									.build()
+							),
+							mai: O.none(),
+						},
+					],
 				},
 			})
 
@@ -249,34 +383,21 @@ describe('CMG', () => {
 	describe('moyenneHeuresParTypologieDeGarde', () => {
 		it('le cas Aurore, Rose, Oscar', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
-				_tag: 'Situation',
-				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
-					M.Montant<'EuroParAn'>
-				>,
-				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
-					AeeH: O.none(),
-				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar'], { nbHeures: 150 })
-						.avecGED({ nbHeures: 31 })
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], { nbHeures: 150 })
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.sansGED()
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'], { nbHeures: 50 })
-						.avecGED({ nbHeures: 35 })
-						.build(),
-				},
-			})
+				Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
+				Rose: new EnfantFactory('Rose').néEn(2022).build(),
+				Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
+			})([
+				new DéclarationsDeGardeAMAFactory(['Oscar']).avecNbHeures(150).build(),
+				new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build(),
+				new DéclarationsDeGardeAMAFactory(['Rose']).avecNbHeures(150).build(),
+				new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+					.avecNbHeures(50)
+					.build(),
+				new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+					.avecNbHeures(50)
+					.build(),
+				new DéclarationsDeGardeGEDFactory().avecNbHeures(35).build(),
+			])
 
 			expect(résultat).to.deep.equal({
 				'AMA Enfant unique 0-3 ans': 100,
@@ -287,32 +408,20 @@ describe('CMG', () => {
 
 		it('le cas Aurore, Rose', () => {
 			const résultat = moyenneHeuresParTypologieDeGarde({
-				_tag: 'Situation',
-				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
-					M.Montant<'EuroParAn'>
-				>,
-				enfantsÀCharge: {
-					enfants: {
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
-					AeeH: O.none(),
-				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], { nbHeures: 150 })
-						.avecGED({ nbHeures: 31 })
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose', 'Aurore'], { nbHeures: 50 })
-						.sansGED()
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecAMA(['Rose', 'Aurore'], { nbHeures: 50 })
-						.avecGED({ nbHeures: 35 })
-						.build(),
-				},
-			})
+				Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
+				Rose: new EnfantFactory('Rose').néEn(2022).build(),
+				Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
+			})([
+				new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build(),
+				new DéclarationsDeGardeAMAFactory(['Rose']).avecNbHeures(150).build(),
+				new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+					.avecNbHeures(50)
+					.build(),
+				new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+					.avecNbHeures(50)
+					.build(),
+				new DéclarationsDeGardeGEDFactory().avecNbHeures(35).build(),
+			])
 
 			expect(résultat).to.deep.equal({
 				'AMA Enfant unique 0-3 ans': 50,
@@ -337,12 +446,20 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], { nbHeures: 150 })
-						.build(),
-					avril: new MoisHistoriqueFactory().avecGED({ nbHeures: 1 }).build(),
-					mai: new MoisHistoriqueFactory().build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeGEDFactory().avecNbHeures(1).build()
+							),
+							avril: O.none(),
+							mai: O.none(),
+						},
+					],
+					AMA: [
+						new SalariéeAMAFactory(['Rose']).build(),
+						new SalariéeAMAFactory(['Rose', 'Aurore']).build(),
+					],
 				},
 			})
 
@@ -363,12 +480,12 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory().avecAMA(['Rose']).build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Oscar', 'Rose', 'Aurore'])
-						.build(),
-					mai: new MoisHistoriqueFactory().build(),
+				modesDeGarde: {
+					GED: [],
+					AMA: [
+						new SalariéeAMAFactory(['Rose']).build(),
+						new SalariéeAMAFactory(['Oscar', 'Rose', 'Aurore']).build(),
+					],
 				},
 			})
 
@@ -389,14 +506,12 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], { nbHeures: 150 })
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose', 'Aurore'], { nbHeures: 150 })
-						.build(),
-					mai: new MoisHistoriqueFactory().build(),
+				modesDeGarde: {
+					GED: [],
+					AMA: [
+						new SalariéeAMAFactory(['Rose']).build(),
+						new SalariéeAMAFactory(['Rose', 'Aurore']).build(),
+					],
 				},
 			})
 
@@ -416,10 +531,12 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory().avecGED().build(),
-					avril: new MoisHistoriqueFactory().avecGED().build(),
-					mai: new MoisHistoriqueFactory().build(),
+				modesDeGarde: {
+					GED: [new SalariéeGEDFactory().build()],
+					AMA: [
+						new SalariéeAMAFactory(['Rose']).build(),
+						new SalariéeAMAFactory(['Rose', 'Aurore']).build(),
+					],
 				},
 			})
 

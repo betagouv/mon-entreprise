@@ -12,13 +12,16 @@ import {
 	COÛT_HORAIRE_MÉDIAN,
 	TEH_PAR_GARDE_ET_NB_ENFANTS,
 } from './constantes'
-import { DéclarationDeGarde } from './déclaration-de-garde'
+import {
+	DéclarationDeGarde,
+	toutesLesDéclarations,
+} from './déclaration-de-garde'
 import { EnfantsÀCharge } from './enfant'
 import { ModeDeGarde } from './mode-de-garde'
 import { SituationCMGValide } from './situation'
 
 export const calculeComplémentTransitoire = (situation: SituationCMGValide) => {
-	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.historique)
+	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.modesDeGarde)
 	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
 	const différence = M.moins(ancienCMGMensuelMoyen, CMGRLinéariséMoyen)
 
@@ -30,12 +33,11 @@ export const calculeComplémentTransitoire = (situation: SituationCMGValide) => 
 }
 
 export const moyenneCMGPerçus = (
-	historique: SituationCMGValide['historique']
+	modesDeGarde: SituationCMGValide['modesDeGarde']
 ) =>
 	pipe(
-		historique,
-		R.values,
-		A.flatMap((m) => m.déclarationsDeGarde),
+		modesDeGarde,
+		toutesLesDéclarations,
 		A.map((d) => O.getOrElse(d.CMGPerçu, () => M.euros(0)).valeur),
 		N.sumAll,
 		(sum) => sum / 3,
@@ -44,9 +46,8 @@ export const moyenneCMGPerçus = (
 
 export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 	pipe(
-		situation.historique,
-		R.values,
-		A.flatMap((m) => m.déclarationsDeGarde),
+		situation.modesDeGarde,
+		toutesLesDéclarations,
 		A.map(
 			(d) =>
 				calculeCMGRLinéarisé(

@@ -1,6 +1,12 @@
+import { pipe } from 'effect'
+import * as A from 'effect/Array'
 import * as O from 'effect/Option'
+import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
+
+import { Salariée } from './salariée'
+import { SituationCMGValide } from './situation'
 
 export type DéclarationDeGarde<PrénomsEnfants extends string = string> =
 	| DéclarationDeGardeGED
@@ -21,10 +27,14 @@ export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	CMGPerçu: O.Option<M.Montant<'Euro'>>
 }
 
-export const déclarationDeGardeEstAMA = <Prénom extends string = string>(
-	d: DéclarationDeGarde
-): d is DéclarationDeGardeAMA<Prénom> => d.type === 'AMA'
-
-export const déclarationDeGardeEstGED = (
-	d: DéclarationDeGarde
-): d is DéclarationDeGardeGED => d.type === 'GED'
+export const toutesLesDéclarations = (
+	modesDeGarde: SituationCMGValide['modesDeGarde']
+): Array<DéclarationDeGarde> =>
+	pipe(
+		modesDeGarde,
+		R.values,
+		A.flatten,
+		A.flatMap((s: Salariée) => R.values(s)),
+		A.filter(O.isSome),
+		A.map((d: O.Some<DéclarationDeGarde>) => d.value)
+	)
