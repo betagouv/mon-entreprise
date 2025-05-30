@@ -26,6 +26,7 @@ export function SimulateurCard({
 	beta,
 	small = false,
 	fromGérer = false,
+	role,
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
@@ -36,56 +37,50 @@ export function SimulateurCard({
 			: t('pages.simulateurs.home.cta.simulateur', 'Lancer le simulateur')
 
 	return (
-		<>
+		<Grid item xs={12} sm={6} md={6} lg={4} role={role}>
 			{small ? (
-				<Grid item xs={12} sm={6} md={6} lg={4}>
-					<SmallCard
-						icon={<Emoji emoji={icône} />}
-						to={{
-							pathname:
-								(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
-						}}
-						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
-						title={
-							<span>
-								{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
-								{beta && (
-									<Chip type="info" icon={<Emoji emoji="🚧" />}>
-										Bêta
-									</Chip>
-								)}
-							</span>
-						}
-						role="link"
-					/>
-				</Grid>
+				<SmallCard
+					icon={<Emoji emoji={icône} />}
+					to={{
+						pathname:
+							(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
+					}}
+					state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
+					title={
+						<span>
+							{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+							{beta && (
+								<Chip type="info" icon={<Emoji emoji="🚧" />}>
+									Bêta
+								</Chip>
+							)}
+						</span>
+					}
+				/>
 			) : (
-				<Grid item xs={12} sm={6} md={6} lg={4}>
-					<Card
-						title={
-							<>
-								{shortName}
-								{beta && (
-									<Chip type="info" icon={<Emoji emoji="🚧" />}>
-										Bêta
-									</Chip>
-								)}
-							</>
-						}
-						icon={<Emoji emoji={icône} />}
-						ctaLabel={ctaLabel}
-						aria-label={`${shortName}, ${ctaLabel}`}
-						to={{
-							pathname:
-								(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
-						}}
-						state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
-						role="link"
-					>
-						{meta?.description}
-					</Card>
-				</Grid>
+				<Card
+					title={
+						<>
+							{shortName}
+							{beta && (
+								<Chip type="info" icon={<Emoji emoji="🚧" />}>
+									Bêta
+								</Chip>
+							)}
+						</>
+					}
+					icon={<Emoji emoji={icône} />}
+					ctaLabel={ctaLabel}
+					aria-label={`${shortName}, ${ctaLabel}`}
+					to={{
+						pathname:
+							(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
+					}}
+					state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
+				>
+					{meta?.description}
+				</Card>
 			)}
-		</>
+		</Grid>
 	)
 }

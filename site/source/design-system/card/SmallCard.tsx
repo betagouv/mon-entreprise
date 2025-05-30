@@ -16,9 +16,8 @@ export function SmallCard({
 	icon,
 	children,
 	title,
-	role,
 	...ariaButtonProps
-}: GenericCardProps & { icon: React.ReactNode; role?: string }) {
+}: GenericCardProps & { icon: React.ReactNode }) {
 	const elementType: 'a' | 'div' | typeof Link =
 		'href' in ariaButtonProps ? 'a' : 'to' in ariaButtonProps ? Link : 'div'
 
@@ -27,14 +26,17 @@ export function SmallCard({
 	const titleProps = getTitleProps(title, 'h4')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
+	// Remove role to avoid contradiction with final HTML tag
+	const elementPropsWithoutRole = Object.fromEntries(
+		Object.entries({
+			...ariaButtonProps,
+			...buttonProps,
+			...linkProps,
+		}).filter(([key]) => key !== 'role')
+	)
+
 	return (
-		<Container
-			{...ariaButtonProps}
-			{...buttonProps}
-			{...linkProps}
-			role={role || buttonProps?.role}
-			as={elementType}
-		>
+		<Container {...elementPropsWithoutRole} as={elementType}>
 			<IconPlaceholder>{icon}</IconPlaceholder>
 			<Content>
 				<H6

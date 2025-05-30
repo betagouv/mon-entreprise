@@ -37,18 +37,22 @@ export function Article({
 		...ariaButtonProps,
 	})
 
+	// Remove role to avoid contradiction with final HTML tag
+	const elementPropsWithoutRole = Object.fromEntries(
+		Object.entries({
+			...ariaButtonProps,
+			...buttonProps,
+			...linkProps,
+		}).filter(([key]) => key !== 'role')
+	)
+
 	return (
 		<StyledArticle>
 			<StyledHeader as={titleProps.as}>
 				{titleProps.children} {icon}
 			</StyledHeader>
 			<Content>{children}</Content>
-			<StyledBody
-				{...ariaButtonProps}
-				{...buttonProps}
-				{...linkProps}
-				as={elementType}
-			>
+			<StyledBody {...elementPropsWithoutRole} as={elementType}>
 				{ctaLabel}
 				{linkProps.target === '_blank' && <NewWindowLinkIcon />}
 				<StyledChevron aria-hidden />
