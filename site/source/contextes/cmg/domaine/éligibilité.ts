@@ -15,29 +15,37 @@ import {
 } from './constantes'
 import {
 	DéclarationDeGarde,
-	déclarationDeGardeEstAMA,
-	déclarationDeGardeEstGED,
+	DéclarationDeGardeAMA,
+	toutesLesDéclarations,
 } from './déclaration-de-garde'
 import { Enfant, enfantAMoinsDe6Ans, enfantNéEn } from './enfant'
+import { Salariée } from './salariée'
 import { SituationCMGValide } from './situation'
 import {
 	détermineLaTypologieDeLaGarde,
 	TypologieDeGarde,
 } from './typologie-de-garde'
 
+interface Historique<PrénomsEnfants extends string = string> {
+	mars: Array<DéclarationDeGarde<PrénomsEnfants>>
+	avril: Array<DéclarationDeGarde<PrénomsEnfants>>
+	mai: Array<DéclarationDeGarde<PrénomsEnfants>>
+}
+
 export const estÉligible = (situation: SituationCMGValide): boolean =>
-	CMGPerçu(situation.historique) &&
+	CMGPerçu(situation.modesDeGarde) &&
 	ressourcesInférieuresAuPlafond(situation.ressources) &&
-	nombreDeMoisEmployeureuseSuffisant(situation.historique) &&
+	nombreDeMoisEmployeureuseSuffisant(situation) &&
 	moyenneHeuresDeGardeSupérieureAuPlancher(situation) &&
 	auMoinsUnEnfantOuvrantDroitAuCMG(situation)
 
-const CMGPerçu = (historique: SituationCMGValide['historique']): boolean =>
+const CMGPerçu = (modesDeGarde: SituationCMGValide['modesDeGarde']): boolean =>
 	pipe(
-		historique,
-		R.values,
-		A.flatMap((m) => m.déclarationsDeGarde),
-		A.some((d: DéclarationDeGarde) => O.isSome(d.CMGPerçu))
+		modesDeGarde,
+		toutesLesDéclarations,
+		A.map((d) => O.isSome(d.CMGPerçu) && d.CMGPerçu.value.valeur > 0),
+		A.filter(Boolean),
+		A.isNonEmptyArray
 	)
 
 const ressourcesInférieuresAuPlafond = (
@@ -50,12 +58,14 @@ const ressourcesInférieuresAuPlafond = (
 	)
 
 const nombreDeMoisEmployeureuseSuffisant = (
-	historique: SituationCMGValide['historique']
+	situation: SituationCMGValide
 ): boolean => {
+	const historique = construireHistorique(situation.modesDeGarde)
+
 	return (
 		pipe(
 			historique,
-			R.map((m) => m.déclarationsDeGarde.length),
+			R.map((m) => m.length),
 			R.values,
 			A.filter(Boolean),
 			A.length
@@ -63,30 +73,53 @@ const nombreDeMoisEmployeureuseSuffisant = (
 	)
 }
 
+const construireHistorique = (
+	modesDeGarde: SituationCMGValide['modesDeGarde']
+): Historique => {
+	const salariées = pipe(modesDeGarde, R.values, A.flatten)
+
+	return {
+		mars: déclarationsPourLeMois(salariées, 'mars'),
+		avril: déclarationsPourLeMois(salariées, 'avril'),
+		mai: déclarationsPourLeMois(salariées, 'mai'),
+	}
+}
+
+const déclarationsPourLeMois = (
+	salariées: Array<Salariée>,
+	mois: keyof Salariée
+): Array<DéclarationDeGarde> =>
+	pipe(
+		salariées,
+		A.map((salariée) => salariée[mois]),
+		A.filter(O.isSome),
+		A.map((déclaration) => déclaration.value as DéclarationDeGarde)
+	)
+
 export const moyenneHeuresDeGardeSupérieureAuPlancher = (
 	situation: SituationCMGValide
-): boolean => {
-	return pipe(
-		situation,
-		moyenneHeuresParTypologieDeGarde,
+): boolean =>
+	pipe(
+		situation.modesDeGarde,
+		toutesLesDéclarations,
+		moyenneHeuresParTypologieDeGarde(situation.enfantsÀCharge.enfants),
 		R.some(
 			(moyenneHeuresDeGarde, typologieDeGarde) =>
 				moyenneHeuresDeGarde >=
 				PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE[typologieDeGarde]
 		)
 	)
-}
 
-export const moyenneHeuresParTypologieDeGarde = (
-	situation: SituationCMGValide
-): Record<TypologieDeGarde, number> =>
-	pipe(
-		situation.historique,
-		R.values,
-		A.flatMap((m) => m.déclarationsDeGarde),
-		groupeLesDéclarationsParTypologieDeGarde(situation.enfantsÀCharge.enfants),
-		R.map(faitLaMoyenneDesHeuresDeGarde)
-	)
+export const moyenneHeuresParTypologieDeGarde =
+	(enfants: Record<string, Enfant>) =>
+	(
+		déclarationsDeGarde: Array<DéclarationDeGarde>
+	): Record<TypologieDeGarde, number> =>
+		pipe(
+			déclarationsDeGarde,
+			groupeLesDéclarationsParTypologieDeGarde(enfants),
+			R.map(faitLaMoyenneDesHeuresDeGarde)
+		)
 
 const groupeLesDéclarationsParTypologieDeGarde =
 	<Prénom extends string>(enfants: Record<Prénom, Enfant>) =>
@@ -106,21 +139,18 @@ const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 	situation: SituationCMGValide
 ): boolean => {
-	const gardeGED = pipe(
-		situation.historique,
-		R.values,
-		A.flatMap((m) => m.déclarationsDeGarde),
-		A.some(déclarationDeGardeEstGED)
-	)
-	if (gardeGED) {
+	// Si GED : au moins 1 enfant **à charge** ouvrant droit
+	if (A.isNonEmptyArray(situation.modesDeGarde.GED)) {
 		return R.some(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
 	}
+
+	// Si AMA uniquement : au moins 1 enfant **gardé** ouvrant droit
 	const enfantsGardésEnAMA = pipe(
-		situation.historique,
-		R.values,
-		A.flatMap((m) => m.déclarationsDeGarde),
-		A.filter(déclarationDeGardeEstAMA),
-		A.flatMap((d) => d.enfantsGardés),
+		situation.modesDeGarde.AMA,
+		A.flatMap((s) => R.values(s)),
+		A.filter(O.isSome),
+		A.map((d: O.Some<DéclarationDeGardeAMA<string>>) => d.value.enfantsGardés),
+		A.flatten,
 		A.dedupe,
 		R.fromIterableWith((prénom) => [
 			prénom,

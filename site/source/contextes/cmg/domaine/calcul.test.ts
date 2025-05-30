@@ -18,7 +18,6 @@ import {
 	DéclarationsDeGardeGEDFactory,
 } from './déclarationDeGardeFactory'
 import { EnfantFactory } from './enfantFactory'
-import { MoisHistoriqueFactory } from './moisHistoriqueFactory'
 
 describe('CMG', () => {
 	describe('calculeComplémentTransitoire', () => {
@@ -35,33 +34,45 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Jules'], {
-							nbHeures: 100,
-							rémunération: M.euros(300),
-							CMG: M.euros(250),
-						})
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Jules'], {
-							nbHeures: 100,
-							rémunération: M.euros(300),
-							CMG: M.euros(140),
-						})
-						.avecGED({
-							nbHeures: 12,
-							rémunération: M.euros(48),
-							CMG: M.euros(200),
-						})
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecGED({
-							nbHeures: 12,
-							rémunération: M.euros(48),
-							CMG: M.euros(70),
-						})
-						.build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(12)
+									.avecRémunération(M.euros(48))
+									.avecCMG(M.euros(200))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(12)
+									.avecRémunération(M.euros(48))
+									.avecCMG(M.euros(70))
+									.build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecNbHeures(100)
+									.avecRémunération(M.euros(300))
+									.avecCMG(M.euros(250))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecNbHeures(100)
+									.avecRémunération(M.euros(300))
+									.avecCMG(M.euros(140))
+									.build()
+							),
+							mai: O.none(),
+						},
+					],
 				},
 			})
 
@@ -81,33 +92,45 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], {
-							nbHeures: 100,
-							rémunération: M.euros(300),
-							CMG: M.euros(100),
-						})
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Rose'], {
-							nbHeures: 100,
-							rémunération: M.euros(300),
-							CMG: M.euros(100),
-						})
-						.avecGED({
-							nbHeures: 12,
-							rémunération: M.euros(48),
-							CMG: M.euros(70),
-						})
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecGED({
-							nbHeures: 12,
-							rémunération: M.euros(48),
-							CMG: M.euros(70),
-						})
-						.build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(12)
+									.avecRémunération(M.euros(48))
+									.avecCMG(M.euros(70))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(12)
+									.avecRémunération(M.euros(48))
+									.avecCMG(M.euros(70))
+									.build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(100)
+									.avecRémunération(M.euros(300))
+									.avecCMG(M.euros(100))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecNbHeures(100)
+									.avecRémunération(M.euros(300))
+									.avecCMG(M.euros(100))
+									.build()
+							),
+							mai: O.none(),
+						},
+					],
 				},
 			})
 
@@ -118,22 +141,64 @@ describe('CMG', () => {
 	describe('moyenneCMGPerçus', () => {
 		it('fait la moyenne de tous les CMG perçus pour la garde de Jules et Martin', () => {
 			const résultat = moyenneCMGPerçus({
-				mars: new MoisHistoriqueFactory()
-					.avecAMA(['Jules'], { CMG: M.euros(250) })
-					.avecAMA(['Martin'], { CMG: M.euros(200) })
-					.avecGED({ CMG: M.euros(120) })
-					.build(),
-				avril: new MoisHistoriqueFactory()
-					.avecAMA(['Jules'], { CMG: M.euros(140) })
-					.avecAMA(['Jules'], { CMG: M.euros(230) })
-					.avecGED({ CMG: M.euros(200) })
-					.build(),
-				mai: new MoisHistoriqueFactory()
-					.avecAMA(['Jules'], { CMG: M.euros(200) })
-					.avecAMA(['Martin'], { CMG: M.euros(150) })
-					.avecAMA(['Jules'], { CMG: M.euros(100) })
-					.avecGED({ CMG: M.euros(70) })
-					.build(),
+				GED: [
+					{
+						mars: O.some(
+							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(120)).build()
+						),
+						avril: O.some(
+							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(200)).build()
+						),
+						mai: O.some(
+							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(70)).build()
+						),
+					},
+				],
+				AMA: [
+					{
+						mars: O.some(
+							new DéclarationsDeGardeAMAFactory(['Jules'])
+								.avecCMG(M.euros(250))
+								.build()
+						),
+						avril: O.some(
+							new DéclarationsDeGardeAMAFactory(['Jules'])
+								.avecCMG(M.euros(140))
+								.build()
+						),
+						mai: O.some(
+							new DéclarationsDeGardeAMAFactory(['Jules'])
+								.avecCMG(M.euros(200))
+								.build()
+						),
+					},
+					{
+						mars: O.some(
+							new DéclarationsDeGardeAMAFactory(['Martin'])
+								.avecCMG(M.euros(200))
+								.build()
+						),
+						avril: O.some(
+							new DéclarationsDeGardeAMAFactory(['Jules'])
+								.avecCMG(M.euros(230))
+								.build()
+						),
+						mai: O.some(
+							new DéclarationsDeGardeAMAFactory(['Martin'])
+								.avecCMG(M.euros(150))
+								.build()
+						),
+					},
+					{
+						mars: O.none(),
+						avril: O.none(),
+						mai: O.some(
+							new DéclarationsDeGardeAMAFactory(['Jules'])
+								.avecCMG(M.euros(100))
+								.build()
+						),
+					},
+				],
 			})
 
 			expect(résultat).to.be.deep.equal(M.euros(553.33))
@@ -141,14 +206,32 @@ describe('CMG', () => {
 
 		it('fait la moyenne de tous les CMG perçus pour la garde de Jules', () => {
 			const résultat = moyenneCMGPerçus({
-				mars: new MoisHistoriqueFactory()
-					.avecAMA(['Jules'], { CMG: M.euros(250) })
-					.build(),
-				avril: new MoisHistoriqueFactory()
-					.avecAMA(['Jules'], { CMG: M.euros(140) })
-					.avecGED({ CMG: M.euros(200) })
-					.build(),
-				mai: new MoisHistoriqueFactory().avecGED({ CMG: M.euros(70) }).build(),
+				GED: [
+					{
+						mars: O.none(),
+						avril: O.some(
+							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(200)).build()
+						),
+						mai: O.some(
+							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(70)).build()
+						),
+					},
+				],
+				AMA: [
+					{
+						mars: O.some(
+							new DéclarationsDeGardeAMAFactory(['Jules'])
+								.avecCMG(M.euros(250))
+								.build()
+						),
+						avril: O.some(
+							new DéclarationsDeGardeAMAFactory(['Jules'])
+								.avecCMG(M.euros(140))
+								.build()
+						),
+						mai: O.none(),
+					},
+				],
 			})
 
 			expect(résultat).to.be.deep.equal(M.euros(220))
@@ -169,29 +252,41 @@ describe('CMG', () => {
 					},
 					AeeH: O.none(),
 				},
-				historique: {
-					mars: new MoisHistoriqueFactory()
-						.avecAMA(['Jules'], {
-							nbHeures: 100,
-							rémunération: M.euros(300),
-						})
-						.build(),
-					avril: new MoisHistoriqueFactory()
-						.avecAMA(['Jules'], {
-							nbHeures: 100,
-							rémunération: M.euros(300),
-						})
-						.avecGED({
-							nbHeures: 12,
-							rémunération: M.euros(48),
-						})
-						.build(),
-					mai: new MoisHistoriqueFactory()
-						.avecGED({
-							nbHeures: 12,
-							rémunération: M.euros(48),
-						})
-						.build(),
+				modesDeGarde: {
+					GED: [
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(12)
+									.avecRémunération(M.euros(48))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(12)
+									.avecRémunération(M.euros(48))
+									.build()
+							),
+						},
+					],
+					AMA: [
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecNbHeures(100)
+									.avecRémunération(M.euros(300))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecNbHeures(100)
+									.avecRémunération(M.euros(300))
+									.build()
+							),
+							mai: O.none(),
+						},
+					],
 				},
 			})
 
