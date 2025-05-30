@@ -1,24 +1,26 @@
+import { pipe } from 'effect'
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { ASTNode } from 'publicodes'
-import { lazy, Suspense } from 'react'
-import { styled } from 'styled-components'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { DateFieldProps } from '@/design-system/field/DateField'
-import { Spacing } from '@/design-system/layout'
-import { InputSuggestions } from '@/design-system/suggestions'
+import {
+	DateField,
+	DateFieldProps,
+	InputSuggestions,
+	InputSuggestionsRecord,
+	Spacing,
+} from '@/design-system'
 import {
 	dateToIsoDate,
+	isIsoDate,
 	IsoDate,
 	isPublicodesStandardDate,
 	parseIsoDateString,
-	parsePublicodesDateString,
+	publicodesDateToIsoDate,
 } from '@/domaine/Date'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { NoOp } from '@/utils/NoOp'
-
-import Skeleton from '../ui/Skeleton'
-
-const DateField = lazy(() => import('@/design-system/field/DateField'))
 
 interface DateInputProps {
 	dottedName: DottedName
@@ -27,7 +29,7 @@ interface DateInputProps {
 	missing?: boolean
 	hideDefaultValue?: boolean
 	onSubmit?: (source?: string) => void
-	suggestions?: Record<string, ASTNode>
+	suggestions?: InputSuggestionsRecord<IsoDate | ASTNode>
 
 	title?: string
 	type: DateFieldProps['type']
@@ -58,49 +60,51 @@ export const DateInput = ({
 		onChange(value && dateToIsoDate(value))
 	}
 
+	const handleSuggestion = (value?: IsoDate) => {
+		onChange(value)
+	}
+
 	return (
 		<div className="step input">
 			<div>
 				{suggestions && (
 					<InputSuggestions
 						suggestions={suggestions}
-						onFirstClick={(node) => {
-							const value = engine.evaluate(node)
+						onFirstClick={(valeur) => {
+							if (isIsoDate(valeur)) {
+								return handleSuggestion(valeur)
+							}
+							if (isPublicodesStandardDate(valeur)) {
+								return handleSuggestion(publicodesDateToIsoDate(valeur))
+							}
 
-							handleDateChange(
-								'nodeValue' in value &&
-									typeof value.nodeValue === 'string' &&
-									isPublicodesStandardDate(value.nodeValue)
-									? parsePublicodesDateString(value.nodeValue)
-									: undefined
-							)
+							const dateÉvaluée = pipe(
+								engine.evaluate(valeur),
+								PublicodesAdapter.decode,
+								O.getOrUndefined
+							) as IsoDate | undefined
+
+							handleSuggestion(dateÉvaluée)
 						}}
 						onSecondClick={() => {
 							onSubmit?.('suggestion')
 						}}
 					/>
 				)}
-				<Suspense fallback={<Wrapper />}>
-					<DateField
-						aria-label={aria.label ?? title}
-						aria-labelledby={aria.labelledby}
-						defaultSelected={
-							(missing && hideDefaultValue) || value === undefined
-								? undefined
-								: parseIsoDateString(value)
-						}
-						onChange={handleDateChange}
-						label={title}
-						type={type}
-					/>
-				</Suspense>
+				<DateField
+					aria-label={aria.label ?? title}
+					aria-labelledby={aria.labelledby}
+					defaultSelected={
+						(missing && hideDefaultValue) || value === undefined
+							? undefined
+							: parseIsoDateString(value)
+					}
+					onChange={handleDateChange}
+					label={title}
+					type={type}
+				/>
 				<Spacing md />
 			</div>
 		</div>
 	)
 }
-
-const Wrapper = styled(Skeleton)`
-	width: 218px;
-	height: 3.5rem;
-`

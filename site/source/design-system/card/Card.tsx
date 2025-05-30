@@ -3,14 +3,14 @@ import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
 import { Link as BaseLink } from 'react-router-dom'
 import { css, IStyledComponent, styled } from 'styled-components'
 
-import { StyledButton } from '@/design-system/buttons/Button'
-import { H3, H4, HeadingUnderline } from '@/design-system/typography/heading'
+import { StyledButton } from '../buttons/Button'
+import { H3, H4, HeadingUnderline } from '../typography/heading'
 import {
 	NewWindowLinkIcon,
 	useButtonOrLink,
 	useExternalLinkProps,
-} from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+} from '../typography/link'
+import { Body } from '../typography/paragraphs'
 
 type GenericButtonOrLinkProps = (
 	| AriaButtonProps<'a'>

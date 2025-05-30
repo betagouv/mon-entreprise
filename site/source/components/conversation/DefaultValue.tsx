@@ -1,9 +1,7 @@
 import { DottedName } from 'modele-social'
 import { useSelector } from 'react-redux'
 
-import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { SmallBody, Spacing, Strong } from '@/design-system'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import Value from '../EngineValue/Value'

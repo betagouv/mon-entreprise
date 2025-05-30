@@ -2,8 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import { Button } from '@/design-system/buttons'
-import { Grid, Spacing } from '@/design-system/layout'
+import { Button, Grid, Spacing } from '@/design-system'
 import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
 import { useCurrentStep, useNextStep, usePreviousStep } from './useSteps'
@@ -133,6 +132,6 @@ const Shadow = styled.div`
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[6] : theme.elevations[6]};
 
-	/* debug 
+	/* debug
 	/* background: red; */
 `

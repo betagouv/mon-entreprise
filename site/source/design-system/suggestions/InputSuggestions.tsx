@@ -2,15 +2,14 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { Spacing } from '../layout'
+import { Link } from '../typography/link'
+import { SmallBody } from '../typography/paragraphs'
+
+export type InputSuggestionsRecord<T> = Record<string, T>
 
 export type InputSuggestionsProps<T> = {
-	/**
-	 * Dictionnaire des suggestions à afficher (libellé -> valeur)
-	 */
-	suggestions?: Record<string, T>
+	suggestions?: InputSuggestionsRecord<T>
 
 	/**
 	 * Fonction appelée lors du premier clic sur une suggestion
@@ -33,7 +32,7 @@ export type InputSuggestionsProps<T> = {
  * Le composant gère un état interne pour détecter les clics répétés sur la même suggestion
  */
 export function InputSuggestions<T>({
-	suggestions = {} as Record<string, T>,
+	suggestions = {},
 	onSecondClick = ((x: T) => x) as unknown as (val: T) => void,
 	onFirstClick,
 	className,
@@ -74,6 +73,7 @@ export function InputSuggestions<T>({
 
 export const StyledInputSuggestion = styled(SmallBody)`
 	display: flex;
+	justify-content: flex-end;
 	> * {
 		white-space: nowrap;
 	}

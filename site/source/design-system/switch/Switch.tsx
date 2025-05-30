@@ -4,8 +4,7 @@ import { ReactNode, useRef } from 'react'
 import { css, styled } from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 
-import { FocusStyle, SROnly } from '@/design-system/global-style'
-
+import { FocusStyle, SROnly } from '../global-style'
 import { Body } from '../typography/paragraphs'
 
 const HiddenInput = styled.input`

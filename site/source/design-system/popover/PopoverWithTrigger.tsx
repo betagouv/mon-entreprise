@@ -5,11 +5,11 @@ import React, { ReactElement, Ref, RefObject, useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Button } from '@/design-system/buttons'
 import { omit } from '@/utils'
 
+import { Button } from '../buttons'
 import { Link } from '../typography/link'
-import Popover from './Popover'
+import { Popover } from './Popover'
 
 type ButtonBuilderProps = AriaButtonProps & {
 	ref: Ref<HTMLButtonElement>
@@ -26,7 +26,7 @@ export type PopoverWithTriggerProps = {
 	disableOverflowAuto?: boolean
 }
 
-export default function PopoverWithTrigger({
+export function PopoverWithTrigger({
 	children,
 	title,
 	trigger,

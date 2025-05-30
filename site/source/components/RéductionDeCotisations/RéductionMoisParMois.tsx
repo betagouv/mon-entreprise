@@ -4,9 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
-import { Spacing } from '@/design-system/layout'
-import { baseTheme } from '@/design-system/theme'
-import { H3 } from '@/design-system/typography/heading'
+import { baseTheme, H3, Spacing } from '@/design-system'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import {
 	MonthState,

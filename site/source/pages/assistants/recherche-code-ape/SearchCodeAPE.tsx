@@ -6,10 +6,14 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Message, RadioCardGroup, SearchField } from '@/design-system'
-import { VisibleRadio } from '@/design-system/field/Radio/Radio'
-import { Spacing } from '@/design-system/layout'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Message,
+	RadioCardGroup,
+	SearchField,
+	SmallBody,
+	Spacing,
+	VisibleRadio,
+} from '@/design-system'
 import { usePromise } from '@/hooks/usePromise'
 
 import { Result } from './components/Result'

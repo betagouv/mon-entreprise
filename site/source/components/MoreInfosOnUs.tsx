@@ -1,11 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
-import { SmallCard } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
-import { GithubIcon } from '@/design-system/icons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { H2 } from '@/design-system/typography/heading'
+import {
+	Emoji,
+	GithubIcon,
+	Grid,
+	H2,
+	SmallCard,
+	Spacing,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 export default function MoreInfosOnUs() {

@@ -5,22 +5,21 @@ import { useDispatch } from 'react-redux'
 import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
+	HelpButtonWithPopover,
 	Message,
 	Radio,
 	RadioCard,
 	RadioCardGroup,
+	Spacing,
 	ToggleGroup,
+	typography,
 } from '@/design-system'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H3, H4 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
+
+const { Body, H4, H3, Li, Strong, Ul } = typography
 
 type State = {
 	question1: 'seul' | 'plusieurs' | undefined

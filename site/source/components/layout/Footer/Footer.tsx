@@ -6,13 +6,15 @@ import { styled } from 'styled-components'
 import Contact from '@/components/Contact'
 import FeedbackButton from '@/components/Feedback'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Emoji } from '@/design-system/emoji'
-import { FooterContainer } from '@/design-system/footer'
-import { FooterColumn } from '@/design-system/footer/column'
-import { GithubIcon } from '@/design-system/icons'
-import { Container } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Container,
+	Emoji,
+	FooterColumn,
+	FooterContainer,
+	GithubIcon,
+	Link,
+} from '@/design-system'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 

@@ -3,13 +3,13 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { ChevronIcon } from '@/design-system/icons'
-import { H4 } from '@/design-system/typography/heading'
+import { ChevronIcon } from '../icons'
+import { H4 } from '../typography/heading'
 import {
 	NewWindowLinkIcon,
 	useExternalLinkProps,
-} from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+} from '../typography/link'
+import { Body } from '../typography/paragraphs'
 
 import { GenericCardProps, getTitleProps } from './Card'
 

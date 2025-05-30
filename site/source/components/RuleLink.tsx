@@ -3,7 +3,7 @@ import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import React, { ReactNode } from 'react'
 
-import { Link } from '@/design-system/typography/link'
+import { Link } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 import { useEngine } from './utils/EngineContext'

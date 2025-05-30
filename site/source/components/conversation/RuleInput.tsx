@@ -1,7 +1,7 @@
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import Engine, { Evaluation } from 'publicodes'
+import Engine, { Evaluation, serializeUnit } from 'publicodes'
 import { useDispatch } from 'react-redux'
 
 import {
@@ -13,16 +13,20 @@ import {
 	isOnePossibility,
 } from '@/components/conversation/getOnePossibilityOptions'
 import { useEngine } from '@/components/utils/EngineContext'
-import MontantField from '@/design-system/conversation/MontantField'
-import { ChoiceDisplayType } from '@/design-system/field/ChoiceGroup'
-import { DateFieldProps } from '@/design-system/field/DateField'
-import { Spacing } from '@/design-system/layout'
+import {
+	ChoiceDisplayType,
+	InputSuggestionsRecord,
+	MontantField,
+	NumberField,
+	QuantitéField,
+	Spacing,
+	type DateFieldProps,
+} from '@/design-system'
 import { isIsoDate } from '@/domaine/Date'
 import {
 	estUneUnitéDeMontantPublicodes,
 	MontantAdapter,
 } from '@/domaine/engine/MontantAdapter'
-import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
 import {
 	decodeSuggestions,
 	PublicodesAdapter,
@@ -30,13 +34,13 @@ import {
 } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
+import { isQuantité, Quantité } from '@/domaine/Quantité'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import { DateInput } from './DateInput'
 import { DefaultValue } from './DefaultValue'
-import NumberInput from './NumberInput'
 import { OuiNonInput } from './OuiNonInput'
 import { PlusieursPossibilités } from './PlusieursPossibilités'
 import SelectCommune from './select/SelectCommune'
@@ -109,6 +113,8 @@ export default function RuleInput({
 	const value = isDefaultValue ? undefined : O.getOrUndefined(decoded)
 	const defaultValue = isDefaultValue ? decoded : O.none()
 
+	const suggestions = decodeSuggestions(rule.suggestions, engineValue)
+
 	const inputId = accessibilityProps?.id ?? normalizeRuleName.Input(dottedName)
 
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
@@ -127,7 +133,6 @@ export default function RuleInput({
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
 					autoFocus={accessibilityProps.autoFocus}
 					onSubmit={onSubmit}
-					suggestions={showSuggestions ? rule.suggestions : {}}
 					aria={{
 						labelledby: accessibilityProps['aria-labelledby'],
 						label: accessibilityProps['aria-label'],
@@ -290,7 +295,6 @@ export default function RuleInput({
 				/* eslint-disable-next-line jsx-a11y/no-autofocus */
 				autoFocus={accessibilityProps.autoFocus}
 				onSubmit={onSubmit}
-				suggestions={showSuggestions ? rule.suggestions : {}}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
 					label: accessibilityProps['aria-label'],
@@ -309,11 +313,8 @@ export default function RuleInput({
 				}}
 				onSubmit={onSubmit}
 				suggestions={
-					showSuggestions
-						? decodeSuggestions<Montant>(rule.suggestions, engineValue)
-						: {}
+					showSuggestions ? (suggestions as Record<string, Montant>) : {}
 				}
-				showSuggestions={showSuggestions}
 				id={inputId}
 				description={rule.rawNode.description}
 				aria={{
@@ -324,23 +325,58 @@ export default function RuleInput({
 		)
 	}
 
+	// Gestion des quantités avec unité (toute unité non monétaire)
+	const unitString = evaluation.unit
+		? serializeUnit(evaluation.unit)
+		: undefined
+	if (unitString) {
+		const currentQuantité = pipe(
+			evaluation,
+			PublicodesAdapter.decode,
+			O.getOrUndefined
+		)
+
+		return (
+			<QuantitéField
+				value={isQuantité(currentQuantité) ? currentQuantité : undefined}
+				unité={unitString}
+				onChange={(value) => {
+					onChange(value, dottedName)
+				}}
+				placeholder={undefined}
+				onSubmit={onSubmit}
+				suggestions={
+					showSuggestions
+						? (suggestions as Record<string, Quantité>)
+						: undefined
+				}
+				id={inputId}
+				aria={{
+					labelledby: accessibilityProps['aria-labelledby'],
+					label: accessibilityProps['aria-label'] ?? rule.title,
+				}}
+			/>
+		)
+	}
+
+	// Gestion des nombres sans unité
 	return (
-		<NumberInput
+		<NumberField
 			value={evaluation.nodeValue as number | undefined}
 			onChange={(value) => {
 				onChange(value, dottedName)
 			}}
-			missing={missing ?? dottedName in evaluation.missingVariables}
 			onSubmit={onSubmit}
-			suggestions={showSuggestions ? rule.suggestions : {}}
-			showSuggestions={showSuggestions}
+			suggestions={
+				showSuggestions
+					? (suggestions as InputSuggestionsRecord<number>)
+					: undefined
+			}
 			id={inputId}
 			description={rule.rawNode.description}
 			formatOptions={accessibilityProps.formatOptions}
-			aria={{
-				labelledby: accessibilityProps['aria-labelledby'],
-				label: accessibilityProps['aria-label'] ?? rule.title,
-			}}
+			aria-labelledby={accessibilityProps['aria-labelledby']}
+			aria-label={accessibilityProps['aria-label'] ?? rule.title}
 		/>
 	)
 }

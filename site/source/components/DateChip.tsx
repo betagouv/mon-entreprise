@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Chip } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
+import { Chip, Emoji } from '@/design-system'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import useDate from '@/hooks/useDate'
 

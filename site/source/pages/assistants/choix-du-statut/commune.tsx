@@ -6,8 +6,7 @@ import { Commune as CommuneType } from '@/api/commune'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, HelpButtonWithPopover } from '@/design-system'
 import {
 	answerBatchQuestion,
 	batchUpdateSituation,

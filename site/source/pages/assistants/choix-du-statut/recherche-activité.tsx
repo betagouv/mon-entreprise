@@ -2,11 +2,7 @@ import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { Message } from '@/design-system'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { H5 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, H5, HelpButtonWithPopover, Link, Message } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 

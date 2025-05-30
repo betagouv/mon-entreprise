@@ -3,12 +3,14 @@ import { Hit } from 'react-instantsearch-core'
 import { connectHits } from 'react-instantsearch-dom'
 import { styled } from 'styled-components'
 
-import { SmallCard } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
-import InfoBulle from '@/design-system/InfoBulle'
-import { Grid } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Emoji,
+	Grid,
+	H3,
+	InfoBulle,
+	SmallBody,
+	SmallCard,
+} from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useSitePaths } from '@/sitePaths'
 

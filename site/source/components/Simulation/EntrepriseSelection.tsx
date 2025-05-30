@@ -2,9 +2,13 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { CarretDownIcon, CarretUpIcon, SearchIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	CarretDownIcon,
+	CarretUpIcon,
+	Grid,
+	SearchIcon,
+	typography,
+} from '@/design-system'
 
 import EntrepriseInput from '../conversation/EntrepriseInput'
 import Value from '../EngineValue/Value'
@@ -12,6 +16,8 @@ import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import { useEngine } from '../utils/EngineContext'
 import WrongSimulateurWarning from '../WrongSimulateurWarning'
+
+const { Body } = typography
 
 export default function EntrepriseSelection() {
 	const { t } = useTranslation()

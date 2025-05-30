@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'

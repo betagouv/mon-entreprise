@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import SimulationBanner from '@/components/Simulation/Banner'
-import { PopoverWithTrigger } from '@/design-system'
-import { Link } from '@/design-system/typography/link'
+import { Link, PopoverWithTrigger } from '@/design-system'
 import {
 	companySituationSelector,
 	situationSelector,

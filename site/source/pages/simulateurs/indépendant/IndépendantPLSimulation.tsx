@@ -4,7 +4,7 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import { DarkLi, Ul } from '@/design-system/typography/list'
+import { DarkLi, Ul } from '@/design-system'
 import useYear from '@/hooks/useYear'
 import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
 

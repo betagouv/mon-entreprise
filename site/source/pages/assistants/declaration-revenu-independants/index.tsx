@@ -1,8 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
-import { Button } from '@/design-system/buttons'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Button } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 import illustrationSrc from './illustration.svg'

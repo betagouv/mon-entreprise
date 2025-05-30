@@ -3,13 +3,15 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
 import { useTracking } from '@/components/ATInternetTracking'
-import { Popover } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H4 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Emoji,
+	H4,
+	Popover,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'

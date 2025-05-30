@@ -3,8 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
-import { H1, H2, H3, H4, H5, H6 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
+import { H1, H2, H3, H4, H5, H6, Link } from '@/design-system'
 import { isIterable } from '@/utils'
 
 type Props = {

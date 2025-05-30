@@ -1,10 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { H2 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Emoji, H2, Message } from '@/design-system'
 
 export const SeoExplanationsEI = () => (
 	<Trans i18nKey="pages.simulateurs.ei.seo explanation">

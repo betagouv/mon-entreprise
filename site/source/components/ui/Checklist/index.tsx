@@ -4,9 +4,7 @@ import { styled } from 'styled-components'
 
 import Markdown from '@/components/utils/Markdown/Markdown'
 import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
-import { Checkbox } from '@/design-system/field'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
+import { Checkbox, Grid, Link, Spacing } from '@/design-system'
 
 type CheckItemProps = {
 	title: string

@@ -6,14 +6,17 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { FlexCenter } from '@/design-system/global-style'
-import { Grid } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H3 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Emoji,
+	FlexCenter,
+	Grid,
+	H3,
+	Li,
+	Message,
+	SmallBody,
+	Strong,
+	Ul,
+} from '@/design-system'
 
 import { ExplicableRule } from '../conversation/Explicable'
 

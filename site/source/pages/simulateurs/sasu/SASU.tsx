@@ -9,8 +9,7 @@ import Simulation, {
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
-import { H2 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, H2 } from '@/design-system'
 
 export function SASUSimulation() {
 	return (

@@ -20,14 +20,23 @@ import { FromBottom } from '@/components/ui/animate'
 import Markdown from '@/components/utils/Markdown/Markdown'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Accordion, Item } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Loader } from '@/design-system/icons/Loader'
-import { Spacing } from '@/design-system/layout'
-import { H1, H2, H3, H4, H5 } from '@/design-system/typography/heading'
-import { Link, StyledLink } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Accordion } from '@/design-system/accordion'
+import {
+	Body,
+	Button,
+	H1,
+	H2,
+	H3,
+	H4,
+	H5,
+	Item,
+	Li,
+	Link,
+	Loader,
+	Spacing,
+	StyledLink,
+	Ul,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { RootState } from '@/store/reducers/rootReducer'
 

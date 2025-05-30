@@ -1,15 +1,14 @@
 import { DottedName } from 'modele-social'
 
 import { Choice } from '@/components/conversation/Choice'
-import { ChoiceDisplayType } from '@/design-system/field/ChoiceGroup'
-import { ChoixUnique, SimpleChoiceOption } from '@/design-system/field/choix'
+import { ChoiceDisplayType, ChoixUnique, SimpleChoiceOption } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, montantToString } from '@/domaine/Montant'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
-export type { ChoiceDisplayType } from '@/design-system/field/ChoiceGroup'
+export type { ChoiceDisplayType } from '@/design-system'
 
 interface UnePossibilitéProps {
 	dottedName: DottedName

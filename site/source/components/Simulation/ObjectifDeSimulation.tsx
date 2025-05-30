@@ -3,15 +3,15 @@ import React from 'react'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid } from '@/design-system/layout'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
-import { TitreObjectif } from '@/design-system/typography/TitreObjectif'
+import { Grid, TitreObjectif, typography } from '@/design-system'
 import { toString as formatMontant, Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
+
+const { Body, SmallBody } = typography
 
 export type ObjectifDeSimulationProps = {
 	id: string

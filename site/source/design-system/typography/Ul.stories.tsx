@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Li, Ul } from '@/design-system/typography/list'
+import { Li, Ul } from './list'
 
 const meta: Meta<typeof Ul> = {
 	component: Ul,

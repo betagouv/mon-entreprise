@@ -9,7 +9,7 @@ import {
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from '@/design-system/réductionDeCotisations'
+} from '@/components/RéductionDeCotisations/réductionDeCotisations'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { réductionGénéraleDottedName } from '@/utils/réductionDeCotisations'
 

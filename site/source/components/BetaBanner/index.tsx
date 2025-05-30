@@ -1,11 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { Message } from '@/design-system'
-import { CloseButton } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Strong } from '@/design-system/typography'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, CloseButton, Emoji, Message, Strong } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 
 import { usePersistingState } from '../utils/persistState'

@@ -5,7 +5,7 @@ import logoSvgFRDark from '@/assets/images/logo-monentreprise_white.svg'
 import logoSvgFR from '@/assets/images/logo-monentreprise.svg'
 import logoSvgENDark from '@/assets/images/logo-mycompany_white.svg'
 import logoSvgEN from '@/assets/images/logo-mycompany.svg'
-import { Link } from '@/design-system/typography/link'
+import { Link } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
 /* Figma source: https://www.figma.com/file/YJUpRNO12lcPUDsEYEXzT9/logo-monentreprisee-urssaf-edition */

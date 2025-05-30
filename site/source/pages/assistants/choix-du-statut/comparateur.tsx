@@ -5,10 +5,14 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import { StatutType } from '@/components/StatutTag'
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
-import { Button } from '@/design-system/buttons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { Intro } from '@/design-system/typography/paragraphs'
+import {
+	Button,
+	Container,
+	Grid,
+	Intro,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'

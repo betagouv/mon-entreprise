@@ -1,8 +1,11 @@
-import { PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Intro,
+	Link,
+	PopoverWithTrigger,
+	Spacing,
+} from '@/design-system'
 
 import FeedbackSvg from './feedback.svg'
 

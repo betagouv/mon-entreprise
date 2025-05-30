@@ -3,22 +3,25 @@ import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import NumberInput from '@/components/conversation/NumberInput'
 import Montant from '@/components/RéductionDeCotisations/Montant'
 import MonthOptions from '@/components/RéductionDeCotisations/MonthOptions'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Button } from '@/design-system/buttons'
-import { RotatingChevronIcon } from '@/design-system/icons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Grid,
+	MontantField,
+	RotatingChevronIcon,
+	Spacing,
+} from '@/design-system'
+import { euros } from '@/domaine/Montant'
 import {
 	MonthState,
 	Options,
 	RéductionDottedName,
 	réductionGénéraleDottedName,
 	rémunérationBruteDottedName,
-	RémunérationBruteInput,
 } from '@/utils/réductionDeCotisations'
 
 type Props = {
@@ -72,25 +75,25 @@ export default function RéductionMois({
 		}
 
 		return (
-			<NumberInput
-				{...ruleInputProps}
+			<MontantField
 				id={`${rémunérationBruteDottedName.replace(
 					/\s|\./g,
 					'_'
 				)}-${monthName}`}
-				aria-label={`${engine.getRule(rémunérationBruteDottedName)
-					?.title} (${monthName})`}
-				onChange={(rémunérationBrute?: PublicodesExpression) =>
-					onRémunérationChange(
-						index,
-						(rémunérationBrute as RémunérationBruteInput).valeur
-					)
-				}
-				value={data.rémunérationBrute}
-				formatOptions={{
-					maximumFractionDigits: 2,
+				aria={{
+					label: `${engine.getRule(rémunérationBruteDottedName)
+						?.title} (${monthName})`,
 				}}
-				showSuggestions={false}
+				onChange={(montant) =>
+					onRémunérationChange(index, montant?.valeur ?? 0)
+				}
+				value={
+					data.rémunérationBrute !== undefined
+						? euros(data.rémunérationBrute)
+						: undefined
+				}
+				unité="Euro"
+				avecCentimes
 			/>
 		)
 	}

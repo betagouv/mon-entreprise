@@ -4,11 +4,7 @@ import { Trans } from 'react-i18next'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import Notifications from '@/components/Notifications'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Button, Emoji, Grid, H3, Spacing } from '@/design-system'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 interface Props {

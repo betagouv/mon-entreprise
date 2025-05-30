@@ -1,11 +1,12 @@
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Strong } from '@/design-system/typography'
-import { H4 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { typography } from '@/design-system'
 
 import Value from '../EngineValue/Value'
+
+const { Body } = typography.paragraphs
+const { H4, Strong } = typography
 
 const StyledH4 = styled(H4)`
 	margin: ${({ theme }) => theme.spacings.xxs} 0;

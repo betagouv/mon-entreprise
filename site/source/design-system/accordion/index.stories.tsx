@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { ComponentProps } from 'react'
+import { Item } from 'react-stately'
 
-import { Accordion, Item } from '@/design-system'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body } from '../typography/paragraphs'
+import { Accordion } from './'
 
 const meta: Meta<typeof Accordion> = {
 	component: Accordion,

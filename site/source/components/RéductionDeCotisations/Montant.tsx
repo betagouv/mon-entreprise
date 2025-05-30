@@ -5,9 +5,7 @@ import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Répartition from '@/components/RéductionDeCotisations/Répartition'
-import { FlexCenter } from '@/design-system/global-style'
-import { EyeIcon, WarningIcon } from '@/design-system/icons'
-import { Tooltip } from '@/design-system/tooltip'
+import { EyeIcon, FlexCenter, Tooltip, WarningIcon } from '@/design-system'
 import {
 	RéductionDottedName,
 	rémunérationBruteDottedName,
