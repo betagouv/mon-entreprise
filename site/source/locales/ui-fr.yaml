@@ -173,7 +173,6 @@ PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
 Passer: Passer
-Passer, passer la question sans répondre: Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
 Plus d'informations sur {{ title }}: Plus d'informations sur {{ title }}
@@ -237,7 +236,6 @@ Simulation en cours: Simulation en cours
 Statistiques: Statistiques
 Suivant: Suivant
 Suivant, enregistrer et passer à l'étape suivante: Suivant, enregistrer et passer à l'étape suivante
-Suivant, passer à la question suivante: Suivant, passer à la question suivante
 Suivant, voir le résultat: Suivant, voir le résultat
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
@@ -464,9 +462,6 @@ conversation:
   multiple-answer:
     aria-label: Choix multiples
   no: Non
-  radio-choices:
-    estimation:
-      label: estimation
   yes: Oui
   yes-no:
     aria-label: Oui ou non
@@ -1784,6 +1779,20 @@ pages:
       objectifs:
         cotisations: Cotisations sociales
         revenu-net: Revenu net
+      questions:
+        regime:
+          options:
+            estimation: Estimation des cotisations
+            micro-entrepreneur:
+              description: Vous payez un pourcentage fixe de votre chiffre d'affaires.
+              label: Micro-entreprise
+            régime-général:
+              description: Comme pour un salarié, des cotisations sociales seront prélevées à
+                la source.
+              label: Régime général (cotisations URSSAF)
+            travailleur-indépendant:
+              description: Vous payez des cotisations sociales sur votre bénéfice.
+              label: Travailleur indépendant
       shortname: Location de logement meublé
       title: Simulateur de revenu pour location de logement meublé
     lodeom:
