@@ -496,7 +496,7 @@ salarié . contrat . salaire brut:
   unité: €/mois
   plancher: 0 €/mois
   suggestions:
-    salaire médian: 2600 €/mois
+    salaire médian: 2700 €/mois
     SMIC: temps de travail . SMIC
   inversion numérique:
     - coût total employeur
