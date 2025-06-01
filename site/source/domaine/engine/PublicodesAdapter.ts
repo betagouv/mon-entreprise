@@ -62,7 +62,6 @@ const decode = (
 		if (unitString && ['€', '€/mois', '€/an'].includes(unitString)) {
 			return MontantAdapter.decode(node)
 		} else if (unitString) {
-			// Créer un Quantité pour toute unité non monétaire
 			return O.some(quantité(node.nodeValue, unitString))
 		} else {
 			return O.some(node.nodeValue)
@@ -74,10 +73,9 @@ const decode = (
 	return O.none()
 }
 
-const plusUn: (x: number) => number = (x) => x + 1
-
 const encode = (
 	optionalValeur: O.Option<ValeurPublicodes>,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	_règle?: DottedName
 ): PublicodesExpression | undefined => {
 	if (O.isNone(optionalValeur)) {
