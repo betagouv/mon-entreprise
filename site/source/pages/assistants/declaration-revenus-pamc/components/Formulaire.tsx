@@ -6,10 +6,7 @@ import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenAlreadyDefinedMulti } from '@/components/EngineValue/WhenAlreadyDefinedMulti'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import Notifications from '@/components/Notifications'
-import { Message } from '@/design-system'
-import { H2 } from '@/design-system'
-import { Li, Ul } from '@/design-system'
-import { Body } from '@/design-system'
+import { Body, H2, Li, Message, Ul } from '@/design-system'
 
 import { SimpleField } from '../../components/Fields'
 

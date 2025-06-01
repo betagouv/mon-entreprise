@@ -1,10 +1,11 @@
 import { styled } from 'styled-components'
 
-import { NumericInput } from '../../atoms/NumericInput'
-import { InputSuggestionsRecord } from '../../suggestions/InputSuggestions'
 import { quantité, Quantité, UnitéQuantité } from '@/domaine/Quantité'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
+
+import { NumericInput } from '../../atoms/NumericInput'
+import { InputSuggestionsRecord } from '../../suggestions/InputSuggestions'
 import { FieldWithUnit } from './FieldWithUnit'
 
 interface QuantitéFieldProps<U extends string = string> {
@@ -28,12 +29,12 @@ interface QuantitéFieldProps<U extends string = string> {
 const unitéToDisplayedUnit: Record<UnitéQuantité, string> = {
 	'%': '%',
 	'heures/mois': 'heures/mois',
-	'jours': 'jours',
+	jours: 'jours',
 	'jours ouvrés': 'jours ouvrés',
-	'mois': 'mois',
+	mois: 'mois',
 	'trimestre civil': 'trimestres',
 	'année civile': 'années',
-	'employés': 'employés',
+	employés: 'employés',
 }
 
 export const QuantitéField = <U extends string = string>({
@@ -55,36 +56,43 @@ export const QuantitéField = <U extends string = string>({
 	const handleValueChange = (valeur: number | undefined) => {
 		if (valeur === undefined) {
 			handleChange(undefined)
+
 			return
 		}
-		
+
 		// Pour les pourcentages, la valeur saisie est en décimal (0.5 pour 50%)
 		// mais nous stockons en pourcentage (50 pour 50%)
 		const valeurFinale = unité === '%' ? valeur * 100 : valeur
 		handleChange(quantité<U>(valeurFinale, unité))
 	}
 
-	const formatOptions = unité === '%' 
-		? {
-			style: 'percent',
-			maximumFractionDigits: 2,
-		}
-		: {
-			style: 'decimal',
-			maximumFractionDigits: 0,
-		}
+	const formatOptions =
+		unité === '%'
+			? {
+					style: 'percent',
+					maximumFractionDigits: 2,
+			  }
+			: {
+					style: 'decimal',
+					maximumFractionDigits: 0,
+			  }
 
 	// Pour les pourcentages, le format 'percent' multiplie par 100,
 	// donc nous devons diviser notre valeur stockée en % par 100
-	const displayValue = unité === '%' && currentValue?.valeur !== undefined
-		? currentValue.valeur / 100
-		: currentValue?.valeur
-		
-	const displayPlaceholder = unité === '%' && placeholder?.valeur !== undefined
-		? placeholder.valeur / 100
-		: placeholder?.valeur
+	const displayValue =
+		unité === '%' && currentValue?.valeur !== undefined
+			? currentValue.valeur / 100
+			: currentValue?.valeur
 
-	const displayedUnit = unité !== '%' ? (unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité) : undefined
+	const displayPlaceholder =
+		unité === '%' && placeholder?.valeur !== undefined
+			? placeholder.valeur / 100
+			: placeholder?.valeur
+
+	const displayedUnit =
+		unité !== '%'
+			? unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité
+			: undefined
 
 	return (
 		<StyledQuantitéField>
@@ -100,12 +108,16 @@ export const QuantitéField = <U extends string = string>({
 					placeholder={displayPlaceholder}
 					value={displayValue}
 					small={small}
-					suggestions={suggestions ? Object.fromEntries(
-						Object.entries(suggestions).map(([key, quantité]) => [
-							key,
-							unité === '%' ? quantité.valeur / 100 : quantité.valeur
-						])
-					) as InputSuggestionsRecord<number> : undefined}
+					suggestions={
+						suggestions
+							? (Object.fromEntries(
+									Object.entries(suggestions).map(([key, quantité]) => [
+										key,
+										unité === '%' ? quantité.valeur / 100 : quantité.valeur,
+									])
+							  ) as InputSuggestionsRecord<number>)
+							: undefined
+					}
 				/>
 			</FieldWithUnit>
 		</StyledQuantitéField>

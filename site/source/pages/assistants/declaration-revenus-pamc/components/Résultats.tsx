@@ -3,10 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { Emoji } from '@/design-system'
-import { Container, Spacing } from '@/design-system'
-import { H2, H4 } from '@/design-system'
-import { Body } from '@/design-system'
+import { Body, Container, Emoji, H2, H4, Spacing } from '@/design-system'
 import { codesImpôt } from '@/domaine/CodesImpôt'
 
 import DéclarantSelection from './DéclarantSelection'
