@@ -28,7 +28,7 @@ export type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	as?: string
 }
 
-export default function Markdown({
+export function Markdown({
 	children,
 	components = {},
 	as,

@@ -11,7 +11,6 @@ import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import { Appear } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { EngineProvider, useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
 	Button,
@@ -19,6 +18,7 @@ import {
 	Grid,
 	headings,
 	Intro,
+	Markdown,
 	PopoverConfirm,
 	SmallBody,
 	Spacing,

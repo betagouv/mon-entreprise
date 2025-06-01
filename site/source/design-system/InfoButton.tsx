@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 
-import Markdown from '@/components/utils/Markdown/Markdown'
-
+import { Markdown } from './markdown'
 import { HelpButtonWithPopover } from './molecules/HelpButtonWithPopover'
 
 export interface InfoButtonProps {

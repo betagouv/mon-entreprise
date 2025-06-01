@@ -1,5 +1,5 @@
 import HeadingWithAnchorLink from './HeadingWithAnchorLink'
-import Markdown, { MarkdownProps } from './Markdown'
+import { Markdown, MarkdownProps } from './Markdown'
 
 export const MarkdownWithAnchorLinks = ({
 	renderers = {},

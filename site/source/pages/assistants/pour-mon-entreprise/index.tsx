@@ -25,7 +25,6 @@ import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
 import {
 	Body,
 	Button,
@@ -34,6 +33,7 @@ import {
 	H2,
 	H3,
 	Intro,
+	Markdown,
 	Message,
 	Popover,
 	Spacing,
