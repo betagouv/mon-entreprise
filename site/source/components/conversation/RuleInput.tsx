@@ -1,7 +1,6 @@
-import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import Engine, { Evaluation, serializeUnit } from 'publicodes'
+import Engine, { Evaluation } from 'publicodes'
 import { useDispatch } from 'react-redux'
 
 import {
@@ -323,25 +322,22 @@ export default function RuleInput({
 		)
 	}
 
-	// Gestion des quantités avec unité (toute unité non monétaire)
-	const unitString = evaluation.unit
-		? serializeUnit(evaluation.unit)
-		: undefined
-	if (unitString) {
-		const currentQuantité = pipe(
-			evaluation,
-			PublicodesAdapter.decode,
-			O.getOrUndefined
-		)
+	const estUneQuantité =
+		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
+	const quantitéValue = value as Quantité | undefined
+	const quantitéPlaceholder = O.getOrUndefined(defaultValue) as
+		| Quantité
+		| undefined
 
+	if (estUneQuantité) {
 		return (
 			<QuantitéField
-				value={isQuantité(currentQuantité) ? currentQuantité : undefined}
-				unité={unitString}
+				value={quantitéValue}
+				unité={quantitéValue?.unité || quantitéPlaceholder?.unité || ''}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
-				placeholder={undefined}
+				placeholder={quantitéPlaceholder}
 				onSubmit={onSubmit}
 				suggestions={
 					showSuggestions
