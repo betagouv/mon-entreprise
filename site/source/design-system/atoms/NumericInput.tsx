@@ -15,10 +15,9 @@ import {
 	useRef,
 	useState,
 } from 'react'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import { omit } from '@/utils'
-import { InputSuggestions, InputSuggestionsRecord } from '../suggestions'
 
 import {
 	StyledContainer,
@@ -28,6 +27,7 @@ import {
 	StyledInputContainer,
 	StyledLabel,
 } from '../molecules/field/TextField'
+import { InputSuggestions, InputSuggestionsRecord } from '../suggestions'
 
 /**
  * @internal
@@ -101,7 +101,6 @@ export const NumericInput = (props: NumericInputProps) => {
 		[inputWithCursorHandlingProps.onKeyDown, props.onSubmit]
 	)
 
-
 	delete inputWithCursorHandlingProps.autoCorrect
 
 	return (
@@ -121,7 +120,7 @@ export const NumericInput = (props: NumericInputProps) => {
 						'label',
 						'small',
 						'formatOptions',
-							'hideDefaultValue',
+						'hideDefaultValue',
 						'dottedName',
 						'suggestions',
 						'onSubmit'
@@ -166,7 +165,6 @@ export const NumericInput = (props: NumericInputProps) => {
 const StyledNumericInputContainer = styled(StyledContainer)`
 	max-width: 300px;
 `
-
 
 const StyledNumberInput = styled(StyledInput)`
 	text-align: right;

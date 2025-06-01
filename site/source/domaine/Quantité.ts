@@ -66,5 +66,6 @@ export const isUnitéQuantité = (unité: string): unité is UnitéQuantité => 
 		'année civile',
 		'employés',
 	]
+
 	return unités.includes(unité as UnitéQuantité)
 }
