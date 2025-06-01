@@ -17,30 +17,23 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { References } from '@/components/References'
 import { FromBottom } from '@/components/ui/animate'
-import Markdown from '@/components/utils/Markdown/Markdown'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Accordion } from '@/design-system/accordion'
 import {
-	Body,
+	Accordion,
 	Button,
-	H1,
-	H2,
-	H3,
-	H4,
-	H5,
 	Item,
-	Li,
-	Link,
 	Loader,
+	Markdown,
 	Spacing,
-	StyledLink,
-	Ul,
+	typography,
 } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { RootState } from '@/store/reducers/rootReducer'
 
 import RuleLink from '../components/RuleLink'
+
+const { Body, H1, H2, H3, H4, H5, Li, Link, Ul, StyledLink } = typography
 
 const LazySearchRules = lazy(() => import('@/components/search/SearchRules'))
 

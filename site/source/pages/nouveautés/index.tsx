@@ -6,22 +6,22 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { determinant, useHideNewsBanner } from '@/components/layout/NewsBanner'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
-import { MarkdownWithAnchorLinks } from '@/components/utils/Markdown/MarkdownWithAnchorLinks'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import {
-	Body,
 	Container,
 	Emoji,
 	GenericButtonOrNavLinkProps,
 	Grid,
-	H1,
 	Item,
-	Link,
+	MarkdownWithAnchorLinks,
 	Select,
+	typography,
 } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
+
+const { Body, H1, Link } = typography
 
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 

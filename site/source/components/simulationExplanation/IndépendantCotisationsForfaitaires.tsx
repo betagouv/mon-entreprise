@@ -3,8 +3,7 @@ import { Trans } from 'react-i18next'
 import Value from '@/components/EngineValue/Value'
 import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
-import { Button, H3, Intro, Message, Spacing } from '@/design-system'
+import { Button, H3, Intro, Markdown, Message, Spacing } from '@/design-system'
 
 export default function CotisationsForfaitaires() {
 	const rule = useEngine().getRule(

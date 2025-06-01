@@ -6,19 +6,17 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
 import {
 	Article,
-	Body,
 	Container,
 	Emoji,
 	Grid,
-	H2,
-	H3,
-	Intro,
-	Link,
+	Markdown,
 	Spacing,
+	typography,
 } from '@/design-system'
+
+const { Body, H2, H3, Intro, Link } = typography
 
 export default function Résultats() {
 	const engine = useEngine()
