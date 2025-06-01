@@ -3,8 +3,7 @@ import { DottedName } from 'modele-social'
 import { References } from '@/components/References'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
-import { H3, HelpButtonWithPopover, Spacing } from '@/design-system'
+import { H3, HelpButtonWithPopover, Markdown, Spacing } from '@/design-system'
 import { useReferences } from '@/pages/assistants/choix-du-statut/résultat'
 
 export function ExplicableRule<Names extends string = DottedName>({

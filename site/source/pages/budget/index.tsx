@@ -3,7 +3,6 @@ import { useState } from 'react'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
-import Markdown from '@/components/utils/Markdown/Markdown'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import {
 	Body,
@@ -16,6 +15,7 @@ import {
 	Item,
 	Li,
 	Link,
+	Markdown,
 	Message,
 	Select,
 	Spacing,

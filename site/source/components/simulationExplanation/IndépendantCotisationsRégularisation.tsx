@@ -2,8 +2,7 @@ import { Trans } from 'react-i18next'
 
 import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
-import { Button, H3, Spacing } from '@/design-system'
+import { Button, H3, Markdown, Spacing } from '@/design-system'
 
 export default function CotisationsRégularisation() {
 	const rule = useEngine().getRule(
