@@ -55,48 +55,24 @@ export default function RéductionMois({
 	const engine = useEngine()
 	const [isOptionVisible, setOptionVisible] = useState(false)
 
-	const RémunérationInput = () => {
-		// TODO: enlever les 4 premières props après résolution de #3123
-		const ruleInputProps = {
-			dottedName,
-			suggestions: {},
-			description: undefined,
-			question: undefined,
-			engine,
-			'aria-labelledby': 'simu-update-explaining',
-			formatOptions: {
-				maximumFractionDigits: 0,
-			},
-			displayedUnit,
-			unit: {
-				numerators: ['€'],
-				denominators: [],
-			},
-		}
-
-		return (
-			<MontantField
-				id={`${rémunérationBruteDottedName.replace(
-					/\s|\./g,
-					'_'
-				)}-${monthName}`}
-				aria={{
-					label: `${engine.getRule(rémunérationBruteDottedName)
-						?.title} (${monthName})`,
-				}}
-				onChange={(montant) =>
-					onRémunérationChange(index, montant?.valeur ?? 0)
-				}
-				value={
-					data.rémunérationBrute !== undefined
-						? euros(data.rémunérationBrute)
-						: undefined
-				}
-				unité="Euro"
-				avecCentimes
-			/>
-		)
-	}
+	const RémunérationInput = () => (
+		<MontantField
+			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+			aria={{
+				label: `${engine.getRule(rémunérationBruteDottedName)
+					?.title} (${monthName})`,
+				labelledby: 'simu-update-explaining',
+			}}
+			onChange={(montant) => onRémunérationChange(index, montant?.valeur ?? 0)}
+			value={
+				data.rémunérationBrute !== undefined
+					? euros(data.rémunérationBrute)
+					: undefined
+			}
+			unité="Euro"
+			avecCentimes={false}
+		/>
+	)
 
 	const OptionsButton = () => {
 		return (
