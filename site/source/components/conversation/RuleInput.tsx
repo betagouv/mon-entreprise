@@ -368,7 +368,6 @@ export default function RuleInput({
 					: undefined
 			}
 			id={inputId}
-			description={rule.rawNode.description}
 			formatOptions={accessibilityProps.formatOptions}
 			aria-labelledby={accessibilityProps['aria-labelledby']}
 			aria-label={accessibilityProps['aria-label'] ?? rule.title}
