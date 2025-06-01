@@ -5,10 +5,7 @@ import { styled } from 'styled-components'
 
 import LectureGuide from '@/components/LectureGuide'
 import { useEngine } from '@/components/utils/EngineContext'
-import { FlexCenter } from '@/design-system'
-import { Grid } from '@/design-system'
-import { Strong } from '@/design-system'
-import { Body } from '@/design-system'
+import { Body, FlexCenter, Grid, Strong } from '@/design-system'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import CheckboxImpôts from './CheckboxImpôts'
