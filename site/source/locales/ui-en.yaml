@@ -168,7 +168,6 @@ PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
 Passer: Pass
-Passer, passer la question sans répondre: Pass, pass the question without answering
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
 Plus de 50 salariés: More than 50 employees
@@ -226,7 +225,6 @@ Simulation en cours: Simulation in progress
 Statistiques: Statistics
 Suivant: Next
 Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
-Suivant, passer à la question suivante: Next, move on to the next question
 Suivant, voir le résultat: Next, see the result
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
@@ -442,9 +440,6 @@ conversation:
   multiple-answer:
     aria-label: Multiple choice
   no: No
-  radio-choices:
-    estimation:
-      label: estimate
   yes: Yes
   yes-no:
     aria-label: Yes or no
@@ -1666,6 +1661,20 @@ pages:
       objectifs:
         cotisations: Social security contributions
         revenu-net: Net income
+      questions:
+        regime:
+          options:
+            estimation: Estimated contributions
+            micro-entrepreneur:
+              description: You pay a fixed percentage of your sales.
+              label: Micro-business
+            régime-général:
+              description: As with an employee, social security contributions will be deducted
+                at source.
+              label: General scheme (URSSAF contributions)
+            travailleur-indépendant:
+              description: You pay social security contributions on your profits.
+              label: Self-employed
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
     lodeom:

@@ -1,7 +1,7 @@
 import { Array, pipe } from 'effect'
 import * as O from 'effect/Option'
 import { useCallback } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import {
@@ -81,10 +81,11 @@ export const RegimeCotisationQuestion: ComposantQuestion<
 								onSome: (résultat) =>
 									résultat.applicable ? (
 										<SmallBody>
-											<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation">
-												Estimation des cotisations :{' '}
-												<strong>{formatMontant(résultat.cotisations)}</strong>
-											</Trans>
+											{t(
+												'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
+												'Estimation des cotisations'
+											)}{' '}
+											: <strong>{formatMontant(résultat.cotisations)}</strong>
 										</SmallBody>
 									) : null,
 							})
@@ -117,10 +118,11 @@ export const RegimeCotisationQuestion: ComposantQuestion<
 								onSome: (résultat) =>
 									résultat.applicable ? (
 										<SmallBody>
-											<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation">
-												Estimation des cotisations :{' '}
-												<strong>{formatMontant(résultat.cotisations)}</strong>
-											</Trans>
+											{t(
+												'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
+												'Estimation des cotisations'
+											)}{' '}
+											: <strong>{formatMontant(résultat.cotisations)}</strong>
 										</SmallBody>
 									) : null,
 							})
@@ -153,10 +155,11 @@ export const RegimeCotisationQuestion: ComposantQuestion<
 								onSome: (résultat) =>
 									résultat.applicable ? (
 										<SmallBody>
-											<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation">
-												Estimation des cotisations :{' '}
-												<strong>{formatMontant(résultat.cotisations)}</strong>
-											</Trans>
+											{t(
+												'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
+												'Estimation des cotisations'
+											)}{' '}
+											: <strong>{formatMontant(résultat.cotisations)}</strong>
 										</SmallBody>
 									) : null,
 							})
