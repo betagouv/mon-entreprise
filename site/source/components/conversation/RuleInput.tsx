@@ -23,10 +23,7 @@ import {
 	type DateFieldProps,
 } from '@/design-system'
 import { isIsoDate } from '@/domaine/Date'
-import {
-	estUneUnitéDeMontantPublicodes,
-	MontantAdapter,
-} from '@/domaine/engine/MontantAdapter'
+import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
 	decodeSuggestions,
 	PublicodesAdapter,
@@ -306,7 +303,8 @@ export default function RuleInput({
 	if (estUneUnitéDeMontantPublicodes(rule.rawNode.unité)) {
 		return (
 			<MontantField
-				value={pipe(evaluation, MontantAdapter.decode, O.getOrUndefined)}
+				value={value as Montant | undefined}
+				placeholder={O.getOrUndefined(defaultValue) as Montant | undefined}
 				unité={'Euro'} // FIXME détecter correctement l’unité
 				onChange={(value) => {
 					onChange(value, dottedName)
