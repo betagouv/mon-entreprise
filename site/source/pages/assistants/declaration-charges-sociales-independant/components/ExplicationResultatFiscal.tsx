@@ -1,7 +1,13 @@
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { HelpButtonWithPopover, Li, Ul, baseParagraphStyle, Body } from '@/design-system'
+import {
+	baseParagraphStyle,
+	Body,
+	HelpButtonWithPopover,
+	Li,
+	Ul,
+} from '@/design-system'
 
 export const StyledTable = styled.table`
 	${baseParagraphStyle}
