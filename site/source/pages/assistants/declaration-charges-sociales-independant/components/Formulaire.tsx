@@ -104,6 +104,6 @@ export default function Formulaire() {
 }
 
 const StyledSmallBody = styled(SmallBody)`
-	color: '#ff2d96';
+	color: #ff2d96;
 	background-color: 'inherit';
 `
