@@ -1,10 +1,11 @@
 import { Option as O } from 'effect'
-import { beforeAll, describe, expect, it } from 'vitest'
 import Engine from 'publicodes'
+import { beforeAll, describe, expect, it } from 'vitest'
 
-import { PublicodesAdapter } from './PublicodesAdapter'
 import * as Montant from '@/domaine/Montant'
 import * as Quantité from '@/domaine/Quantité'
+
+import { PublicodesAdapter } from './PublicodesAdapter'
 
 describe('PublicodesAdapter', () => {
 	let engine: Engine
@@ -27,12 +28,12 @@ describe('PublicodesAdapter', () => {
 				valeur: 50,
 				unité: 'employés',
 			},
-			'salaire': {
+			salaire: {
 				valeur: 2000,
 				unité: '€/mois',
 			},
 			'nombre titres': 15,
-			'texte': "'Hello world'",
+			texte: "'Hello world'",
 		})
 	})
 

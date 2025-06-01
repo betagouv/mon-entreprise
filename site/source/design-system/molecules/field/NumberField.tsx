@@ -19,7 +19,7 @@ type NumberFieldProps = {
 
 /**
  * Composant de saisie numérique générique pour les nombres sans unité spécifique.
- * 
+ *
  * Pour les montants monétaires, utilisez MontantField.
  * Pour les quantités avec unités, utilisez QuantitéField.
  */

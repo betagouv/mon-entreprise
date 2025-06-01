@@ -5,12 +5,8 @@ import { styled } from 'styled-components'
 
 import { ChevronIcon } from '../icons'
 import { H4 } from '../typography/heading'
-import {
-	NewWindowLinkIcon,
-	useExternalLinkProps,
-} from '../typography/link'
+import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'
 import { Body } from '../typography/paragraphs'
-
 import { GenericCardProps, getTitleProps } from './Card'
 
 type ArticleProps = GenericCardProps & {

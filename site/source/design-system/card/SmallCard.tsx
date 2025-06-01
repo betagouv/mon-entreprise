@@ -4,12 +4,8 @@ import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { H6 } from '../typography/heading'
-import {
-	NewWindowLinkIcon,
-	useExternalLinkProps,
-} from '../typography/link'
+import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'
 import { SmallBody } from '../typography/paragraphs'
-
 import { GenericCardProps, getTitleProps } from './Card'
 
 export function SmallCard({

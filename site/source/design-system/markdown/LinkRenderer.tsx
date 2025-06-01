@@ -27,11 +27,14 @@ export default function LinkRenderer({ href, children, ...otherProps }: Props) {
 		try {
 			const linkUrl = new URL(href)
 			const currentUrl = new URL(window.location.href)
-			
+
 			// If the link is on the same host, convert to relative
 			if (linkUrl.hostname === currentUrl.hostname) {
 				return (
-					<Link to={linkUrl.pathname + linkUrl.search + linkUrl.hash} {...otherProps}>
+					<Link
+						to={linkUrl.pathname + linkUrl.search + linkUrl.hash}
+						{...otherProps}
+					>
 						{children}
 					</Link>
 				)
