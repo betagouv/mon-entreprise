@@ -28,19 +28,20 @@ type ToggleGroupProps = AriaRadioGroupProps & {
 } & AriaLabelRequired
 
 export function ToggleGroup(props: ToggleGroupProps) {
-	const { children, label, className, onChange, value, name, isDisabled } = props
-	const state = useRadioGroupState({ 
-		onChange, 
-		value, 
-		name, 
-		isDisabled
+	const { children, label, className, onChange, value, name, isDisabled } =
+		props
+	const state = useRadioGroupState({
+		onChange,
+		value,
+		name,
+		isDisabled,
 	})
 	const { radioGroupProps, labelProps } = useRadioGroup(
-		{ 
+		{
 			'aria-label': props['aria-label'],
 			'aria-labelledby': props['aria-labelledby'],
 			orientation: 'horizontal',
-			isDisabled
+			isDisabled,
 		},
 		state
 	)

@@ -1,7 +1,11 @@
 import { DottedName } from 'modele-social'
 
 import { Choice } from '@/components/conversation/Choice'
-import { ChoiceDisplayType, ChoixUnique, SimpleChoiceOption } from '@/design-system'
+import {
+	ChoiceDisplayType,
+	ChoixUnique,
+	SimpleChoiceOption,
+} from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, montantToString } from '@/domaine/Montant'
 import { relativeDottedName } from '@/domaine/relativeDottedName'

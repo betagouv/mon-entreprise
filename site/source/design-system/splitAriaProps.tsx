@@ -20,5 +20,5 @@ export const splitAriaProps = <T extends object>(props: T) =>
 		{ aria: {}, rest: {} } as {
 			aria: Record<string, unknown>
 			rest: Record<string, unknown>
-		},
+		}
 	) as { aria: OnlyAriaType<T>; rest: Omit<T, keyof OnlyAriaType<T>> }
