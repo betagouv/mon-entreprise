@@ -22,13 +22,12 @@ import {
 	type DateFieldProps,
 } from '@/design-system'
 import { isIsoDate } from '@/domaine/Date'
-import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
 	decodeSuggestions,
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
-import { Montant } from '@/domaine/Montant'
+import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
 import { isQuantité, Quantité } from '@/domaine/Quantité'
 import { enregistreLesRéponses } from '@/store/actions/actions'
@@ -107,7 +106,7 @@ export default function RuleInput({
 		PublicodesAdapter.decode(evaluation)
 
 	const value = isDefaultValue ? undefined : O.getOrUndefined(decoded)
-	const defaultValue = isDefaultValue ? decoded : O.none()
+	const defaultValue = isDefaultValue ? O.getOrUndefined(decoded) : undefined
 
 	const suggestions = decodeSuggestions(rule.suggestions, engineValue)
 
@@ -152,7 +151,7 @@ export default function RuleInput({
 				<UnePossibilité
 					dottedName={dottedName}
 					value={value}
-					defaultValue={O.getOrUndefined(defaultValue)}
+					defaultValue={defaultValue}
 					onChange={(value) => onChange(value, dottedName)}
 					missing={missing ?? dottedName in evaluation.missingVariables}
 					id={inputId}
@@ -264,7 +263,7 @@ export default function RuleInput({
 				<OuiNonInput
 					value={value as 'oui' | 'non' | undefined}
 					onChange={(value) => onChange(value, dottedName)}
-					defaultValue={O.getOrUndefined(defaultValue) as OuiNon | undefined}
+					defaultValue={defaultValue as OuiNon | undefined}
 					id={inputId}
 					title={rule.title}
 					description={rule.rawNode.description}
@@ -299,11 +298,14 @@ export default function RuleInput({
 		)
 	}
 
-	if (estUneUnitéDeMontantPublicodes(rule.rawNode.unité)) {
+	const estUnMontant =
+		(value && isMontant(value)) || (defaultValue && isMontant(defaultValue))
+
+	if (estUnMontant) {
 		return (
 			<MontantField
 				value={value as Montant | undefined}
-				placeholder={O.getOrUndefined(defaultValue) as Montant | undefined}
+				placeholder={defaultValue as Montant | undefined}
 				unité={'Euro'} // FIXME détecter correctement l’unité
 				onChange={(value) => {
 					onChange(value, dottedName)
@@ -324,10 +326,9 @@ export default function RuleInput({
 
 	const estUneQuantité =
 		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
+
 	const quantitéValue = value as Quantité | undefined
-	const quantitéPlaceholder = O.getOrUndefined(defaultValue) as
-		| Quantité
-		| undefined
+	const quantitéPlaceholder = defaultValue as Quantité | undefined
 
 	if (estUneQuantité) {
 		return (
@@ -353,10 +354,10 @@ export default function RuleInput({
 		)
 	}
 
-	// Gestion des nombres sans unité
 	return (
 		<NumberField
-			value={evaluation.nodeValue as number | undefined}
+			value={value as number | undefined}
+			placeholder={defaultValue as number | undefined}
 			onChange={(value) => {
 				onChange(value, dottedName)
 			}}
