@@ -788,6 +788,42 @@ pages:
         recherche sont extraites du PDF des nomenclatures d'activités françaises
         de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
   assistants:
+    cmg:
+      AMA:
+        add-button-label: Ajouter un⋅e salarié⋅e
+        enfants-gardés:
+          legend: Enfants gardés
+        h2: Assistant⋅e Maternel⋅le Agréé⋅e
+      GED:
+        CMG-perçu:
+          label: CMG perçu
+        add-button-label: Ajouter un⋅e salarié⋅e
+        h2: Garde d’Enfant à Domicile
+        heures-de-garde:
+          label: Heures de garde
+        rémunération:
+          label: Rémunération totale
+      description: <0>Cet outil vous permet d’estimer le montant <2>théorique</2> du
+        complément transitoire au CMG Rémunération.</0>
+      enfants:
+        add-button-label: Ajouter un enfant
+        h2: Enfants à charge
+      meta:
+        description: Ce simulateur permet d’estimer le montant du complément transitoire
+          au CMG Rémunération.
+        titre: Simulateur de complément transitoire au CMG
+      questions:
+        AeeH:
+          label: Combien de vos enfants sont concernés par l’AeeH (allocation d’éducation
+            de l’enfant handicapé) ?
+        date-de-naissance:
+          label: Date de naissance
+        prénom:
+          label: Prénom
+        ressources:
+          label: Quel est le revenu fiscal de référence de votre foyer pour l’année 2023 ?
+      shortname: Complément transitoire au CMG
+      title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
       description: <0><0>Cet outil est une aide à la déclaration de revenus à
         destination des <2>travailleurs indépendants</2>. Il vous permet de

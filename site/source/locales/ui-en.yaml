@@ -746,6 +746,42 @@ pages:
         taken from INSEE's PDF of French activity nomenclatures, available on
         <2>this page</2>.</4>"
   assistants:
+    cmg:
+      AMA:
+        add-button-label: Add a⋅e employee⋅e
+        enfants-gardés:
+          legend: Children in care
+        h2: Assistant⋅e Maternel⋅le Agréé⋅e
+      GED:
+        CMG-perçu:
+          label: CMG received
+        add-button-label: Add a⋅e employee⋅e
+        h2: Home Childcare
+        heures-de-garde:
+          label: On-call hours
+        rémunération:
+          label: Total compensation
+      description: <0>This tool enables you to estimate the <2>theoretical</2> amount
+        of the transitional supplement to the CMG Remuneration.</0>
+      enfants:
+        add-button-label: Add a child
+        h2: Dependent children
+      meta:
+        description: This simulator enables you to estimate the amount of the
+          transitional supplement to the CMG Remuneration.
+        titre: CMG transitional top-up simulator
+      questions:
+        AeeH:
+          label: How many of your children are eligible for the AeeH (Allocation
+            d'éducation de l'enfant handicapé)?
+        date-de-naissance:
+          label: Date of birth
+        prénom:
+          label: First name
+        ressources:
+          label: What is your household's reference tax income for 2023?
+      shortname: Transitional supplement to CMG
+      title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:
       description: <0><0>This tool is designed to help <2>self-employed workers</2>
         file their tax returns. It enables you to find out the amount of
