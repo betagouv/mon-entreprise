@@ -5,6 +5,7 @@ import * as R from 'effect/Record'
 import { Montant } from '@/domaine/Montant'
 
 import { Enfant } from '../domaine/enfant'
+import { SalariéeAMA, SalariéeGED } from '../domaine/salariée'
 import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 import { useSituationContext } from './CMGContext'
 
@@ -63,12 +64,68 @@ export const useCMG = () => {
 				},
 			}))
 		},
+
+		salariéesGED: (salariéesGED: Array<SalariéeGED>) => {
+			updateSituation((prev) => ({
+				...prev,
+				modesDeGarde: {
+					AMA: prev.modesDeGarde.AMA,
+					GED: salariéesGED,
+				},
+			}))
+		},
+
+		nouvelleGED: () => {
+			updateSituation((prev) => ({
+				...prev,
+				modesDeGarde: {
+					AMA: prev.modesDeGarde.AMA,
+					GED: [
+						...prev.modesDeGarde.GED,
+						{
+							mars: O.none(),
+							avril: O.none(),
+							mai: O.none(),
+						},
+					],
+				},
+			}))
+		},
+
+		salariéesAMA: (salariéesAMA: Array<SalariéeAMA<string>>) => {
+			updateSituation((prev) => ({
+				...prev,
+				modesDeGarde: {
+					GED: prev.modesDeGarde.GED,
+					AMA: salariéesAMA,
+				},
+			}))
+		},
+
+		nouvelleAMA: () => {
+			updateSituation((prev) => ({
+				...prev,
+				modesDeGarde: {
+					GED: prev.modesDeGarde.GED,
+					AMA: [
+						...prev.modesDeGarde.AMA,
+						{
+							mars: O.none(),
+							avril: O.none(),
+							mai: O.none(),
+						},
+					],
+				},
+			}))
+		},
 	}
 
 	return {
 		situation,
 		enfants: R.values(situation.enfantsÀCharge.enfants),
 		AeeH: situation.enfantsÀCharge.AeeH,
+		salariéesGED: situation.modesDeGarde.GED,
+		salariéesAMA: situation.modesDeGarde.AMA,
 		set,
 	}
 }

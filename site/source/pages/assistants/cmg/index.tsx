@@ -5,7 +5,9 @@ import Warning from '@/components/ui/WarningBlock'
 import { CMGProvider } from '@/contextes/cmg'
 import { Body, Intro, Strong } from '@/design-system'
 
+import AMA from './components/AMA/AMA'
 import EnfantsÀCharge from './components/enfants-à-charge/EnfantsÀCharge'
+import GED from './components/GED/GED'
 import QuestionRessources from './components/QuestionRessources'
 
 const CMG = () => {
@@ -37,6 +39,9 @@ const CMG = () => {
 			<QuestionRessources />
 
 			<EnfantsÀCharge />
+
+			<GED />
+			<AMA />
 		</>
 	)
 }

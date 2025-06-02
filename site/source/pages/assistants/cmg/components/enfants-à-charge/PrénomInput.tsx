@@ -15,13 +15,13 @@ export default function PrénomInput({ idSuffix, valeur, onChange }: Props) {
 
 	return (
 		<>
-			<Body id={`prénom-label${idSuffix}`}>
+			<Body id={`prénom-label-${idSuffix}`}>
 				{t('pages.assistants.cmg.questions.prénom.label', 'Prénom')}
 			</Body>
 			<TextField
 				value={O.getOrUndefined(valeur)}
 				onChange={(valeur) => onChange(O.fromNullable(valeur))}
-				aria-labelledby={`prénom-label${idSuffix}`}
+				aria-labelledby={`prénom-label-${idSuffix}`}
 			/>
 		</>
 	)
