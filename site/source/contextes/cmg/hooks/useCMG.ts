@@ -2,15 +2,30 @@ import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 
-import { Montant } from '@/domaine/Montant'
+import { euros, Montant } from '@/domaine/Montant'
 
+import { calculeComplémentTransitoire } from '../domaine/calcul'
+import { estÉligible } from '../domaine/éligibilité'
 import { Enfant } from '../domaine/enfant'
 import { SalariéeAMA, SalariéeGED } from '../domaine/salariée'
-import { initialSituationCMG, SituationCMG } from '../domaine/situation'
+import {
+	estSituationCMGValide,
+	initialSituationCMG,
+	SituationCMG,
+} from '../domaine/situation'
 import { useSituationContext } from './CMGContext'
 
 export const useCMG = () => {
 	const { situation, updateSituation } = useSituationContext()
+
+	const éligible = estSituationCMGValide(situation)
+		? estÉligible(situation)
+		: false
+	const montantCT = estSituationCMGValide(situation)
+		? estÉligible(situation)
+			? calculeComplémentTransitoire(situation)
+			: euros(0)
+		: euros(0)
 
 	const set = {
 		situation: (situation: SituationCMG) => {
@@ -126,6 +141,8 @@ export const useCMG = () => {
 		AeeH: situation.enfantsÀCharge.AeeH,
 		salariéesGED: situation.modesDeGarde.GED,
 		salariéesAMA: situation.modesDeGarde.AMA,
+		éligible,
+		montantCT,
 		set,
 	}
 }
