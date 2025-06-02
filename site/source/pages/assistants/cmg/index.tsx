@@ -9,6 +9,7 @@ import AMA from './components/AMA/AMA'
 import EnfantsÀCharge from './components/enfants-à-charge/EnfantsÀCharge'
 import GED from './components/GED/GED'
 import QuestionRessources from './components/QuestionRessources'
+import Résultats from './components/Résultats/Résultats'
 
 const CMG = () => {
 	return (
@@ -42,6 +43,8 @@ const CMG = () => {
 
 			<GED />
 			<AMA />
+
+			<Résultats />
 		</>
 	)
 }
