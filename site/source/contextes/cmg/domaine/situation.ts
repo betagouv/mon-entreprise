@@ -20,6 +20,10 @@ export interface SituationCMGValide extends SituationCMG {
 	ressources: O.Some<M.Montant<'EuroParAn'>>
 }
 
+export const estSituationCMGValide = (
+	situation: SituationCMG
+): situation is SituationCMGValide => O.isSome(situation.ressources)
+
 export const initialSituationCMG: SituationCMG = {
 	_tag: 'Situation',
 	ressources: O.none(),

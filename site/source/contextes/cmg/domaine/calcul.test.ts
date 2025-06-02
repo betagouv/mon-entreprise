@@ -65,7 +65,7 @@ describe('CMG', () => {
 							),
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Jules'])
-									.avecNbHeures(100)
+									.avecNbHeures(200)
 									.avecRémunération(M.euros(300))
 									.avecCMG(M.euros(140))
 									.build()
