@@ -19,7 +19,7 @@ export default function DateDeNaissanceInput({
 
 	return (
 		<>
-			<Body id={`date-de-naissance-label${idSuffix}`}>
+			<Body id={`date-de-naissance-label-${idSuffix}`}>
 				{t(
 					'pages.assistants.cmg.questions.date-de-naissance.label',
 					'Date de naissance'
@@ -28,7 +28,7 @@ export default function DateDeNaissanceInput({
 			<DateField
 				defaultSelected={O.getOrUndefined(valeur)}
 				onChange={(date) => onChange(O.fromNullable(date))}
-				aria-labelledby={`date-de-naissance-label${idSuffix}`}
+				aria-labelledby={`date-de-naissance-label-${idSuffix}`}
 			/>
 		</>
 	)
