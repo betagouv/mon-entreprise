@@ -19,6 +19,14 @@ export interface EnfantValide extends Enfant {
 	dateDeNaissance: O.Some<Date>
 }
 
+function estEnfantValide(enfant: Enfant): enfant is EnfantValide {
+	return O.isSome(enfant.prénom) && O.isSome(enfant.dateDeNaissance)
+}
+
+export function estEnfantGardable(enfant: Enfant): enfant is EnfantValide {
+	return estEnfantValide(enfant) && enfantAMoinsDe6Ans(enfant)
+}
+
 export const isEnfantValide = (e: Enfant): e is EnfantValide =>
 	O.isSome(e.prénom) && O.isSome(e.dateDeNaissance)
 
