@@ -153,7 +153,7 @@ export default function Footer() {
 											<Link
 												href="https://github.com/betagouv/mon-entreprise"
 												noUnderline
-												aria-label={`${t('footer.github.new-window')}`}
+												aria-label={t('footer.github.new-window')}
 											>
 												<Trans i18nKey="footer.github.text">
 													Voir le code source sur Github
