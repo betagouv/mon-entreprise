@@ -21,7 +21,7 @@ export function Logo() {
 	return (
 		<StyledLogo
 			data-test-id="logo img"
-			alt={t('navbar.logo', 'logo Mon entreprise')}
+			alt={t('navbar.logo', 'Urssaf Mon entreprise')}
 			src={
 				language === 'fr'
 					? isDarkModeEnabled
