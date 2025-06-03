@@ -24,8 +24,8 @@ export const useCMG = () => {
 		: false
 
 	const montantCT = éligible
-			? calculeComplémentTransitoire(situation as SituationCMGValide)
-			: euros(0)
+		? calculeComplémentTransitoire(situation as SituationCMGValide)
+		: euros(0)
 
 	const set = {
 		situation: (situation: SituationCMG) => {
