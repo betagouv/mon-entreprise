@@ -131,7 +131,4 @@ const Shadow = styled.div`
 	background: transparent;
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[6] : theme.elevations[6]};
-
-	/* debug
-	/* background: red; */
 `
