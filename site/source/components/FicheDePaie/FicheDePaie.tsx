@@ -11,16 +11,18 @@ export default function FicheDePaie() {
 	return (
 		<StyledContainer className="payslip__container">
 			<section className="payslip__salarySection">
-				<Line
-					rule="salarié . temps de travail"
-					displayedUnit="heures/mois"
-					precision={1}
-				/>
-				<Line
-					rule="salarié . temps de travail . heures supplémentaires"
-					displayedUnit="heures/mois"
-					precision={1}
-				/>
+				<ul>
+					<Line
+						rule="salarié . temps de travail"
+						displayedUnit="heures/mois"
+						precision={1}
+					/>
+					<Line
+						rule="salarié . temps de travail . heures supplémentaires"
+						displayedUnit="heures/mois"
+						precision={1}
+					/>
+				</ul>
 			</section>
 
 			<SalaireBrut />

@@ -32,75 +32,77 @@ export default function SalaireNet() {
 				<Trans>Salaire net</Trans>
 			</H3>
 
-			<article>
-				<SalaireLine
-					rule="salarié . rémunération . montant net social"
-					title={t('Montant net social')}
-				/>
-			</article>
+			<ul>
+				<li>
+					<SalaireLine
+						rule="salarié . rémunération . montant net social"
+						title={t('Montant net social')}
+					/>
+				</li>
 
-			<article>
-				<Condition
-					expression={{
-						'une de ces conditions': [
-							'salarié . rémunération . frais professionnels . trajets domicile travail . déductible > 0',
-							'salarié . rémunération . frais professionnels . titres-restaurant', // bool
-							'salarié . rémunération . avantages en nature', // bool
-						],
-					}}
-				>
+				<li>
+					<Condition
+						expression={{
+							'une de ces conditions': [
+								'salarié . rémunération . frais professionnels . trajets domicile travail . déductible > 0',
+								'salarié . rémunération . frais professionnels . titres-restaurant', // bool
+								'salarié . rémunération . avantages en nature', // bool
+							],
+						}}
+					>
+						<H4>
+							<Trans>Remboursements et déductions diverses</Trans>
+						</H4>
+					</Condition>
+
+					<Line
+						rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
+						title={t('Frais de transport')}
+					/>
+					<Line
+						negative
+						rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
+						title={t('Titres-restaurant')}
+					/>
+					<Line
+						negative
+						rule="salarié . rémunération . avantages en nature . montant"
+					/>
+				</li>
+
+				<li>
+					<SalaireLine
+						rule="salarié . rémunération . net . à payer avant impôt"
+						title={t('Montant net à payer avant impôt sur le revenu')}
+					/>
+				</li>
+				<li>
 					<H4>
-						<Trans>Remboursements et déductions diverses</Trans>
+						<Trans>Impôt sur le revenu</Trans>
 					</H4>
-				</Condition>
 
-				<Line
-					rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
-					title={t('Frais de transport')}
-				/>
-				<Line
-					negative
-					rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
-					title={t('Titres-restaurant')}
-				/>
-				<Line
-					negative
-					rule="salarié . rémunération . avantages en nature . montant"
-				/>
-			</article>
+					<Line
+						rule="salarié . rémunération . net . imposable"
+						title={t('Montant net imposable')}
+					/>
+					<Line
+						rule="salarié . rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées"
+						title={t('Montant net des HC/HS exonérées')}
+					/>
+					<Line
+						negative
+						rule="impôt . montant"
+						title={t('impôt sur le revenu prélevé à la source')}
+					/>
+				</li>
 
-			<article>
-				<SalaireLine
-					rule="salarié . rémunération . net . à payer avant impôt"
-					title={t('Montant net à payer avant impôt sur le revenu')}
-				/>
-			</article>
-			<article>
-				<H4>
-					<Trans>Impôt sur le revenu</Trans>
-				</H4>
-
-				<Line
-					rule="salarié . rémunération . net . imposable"
-					title={t('Montant net imposable')}
-				/>
-				<Line
-					rule="salarié . rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées"
-					title={t('Montant net des HC/HS exonérées')}
-				/>
-				<Line
-					negative
-					rule="impôt . montant"
-					title={t('impôt sur le revenu prélevé à la source')}
-				/>
-			</article>
-
-			<article>
-				<SalaireLine
-					rule="salarié . rémunération . net . payé après impôt"
-					title={t('Montant net à payer')}
-				/>
-			</article>
+				<li>
+					<SalaireLine
+						rule="salarié . rémunération . net . payé après impôt"
+						title={t('Montant net à payer')}
+					/>
+				</li>
+			</ul>
 		</section>
 	)
 }
