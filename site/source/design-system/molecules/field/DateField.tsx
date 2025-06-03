@@ -278,17 +278,18 @@ const StyledBody = styled(Body)`
 const Wrapper = styled.div`
 	width: fit-content;
 	position: relative;
-	& input {
-		height: 3.5rem;
-	}
 `
 
 const StyledButton = styled(Button)`
 	position: absolute;
-	max-width: 55px;
+	width: 35px;
+	height: 35px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	right: 0;
 	top: 0;
-	margin: 0.7rem;
+	margin: 0.2rem;
 	background-color: ${({ theme }) =>
 		theme.darkMode && theme.colors.bases.primary[700]};
 `
