@@ -35,5 +35,5 @@ export const toutesLesDéclarations = (
 		R.values,
 		A.flatten,
 		A.flatMap((s: Salariée) => R.values(s)),
-		A.getSomes,
+		A.getSomes
 	)
