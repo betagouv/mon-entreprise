@@ -25,7 +25,7 @@ export default function Line({
 		<WhenApplicable dottedName={rule}>
 			<WhenAlreadyDefined dottedName={rule}>
 				<Condition expression={`${rule} > 0`}>
-					<div className="payslip__salaryLine">
+					<li className="payslip__salaryLine">
 						<RuleLink dottedName={rule}>{title}</RuleLink>
 						<Value
 							linkToRule={false}
@@ -34,7 +34,7 @@ export default function Line({
 							displayedUnit={displayedUnit}
 							{...props}
 						/>
-					</div>
+					</li>
 				</Condition>
 			</WhenAlreadyDefined>
 		</WhenApplicable>
