@@ -227,6 +227,7 @@ Statistiques: Statistics
 Suivant: Next
 Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
 Suivant, voir le résultat: Next, see the result
+Supprimer: Delete
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
   site, by month.
@@ -751,7 +752,7 @@ pages:
         add-button-label: Add an employee
         enfants-gardés:
           legend: Children in care
-        h2: Approved Nursery Assistant
+        h2: Approved Nursery Assistants
       GED:
         CMG-perçu:
           label: CMG Remuneration received
@@ -765,23 +766,26 @@ pages:
         of the transitional supplement to the CMG Remuneration.</0>
       enfants:
         add-button-label: Add a child
+        date-de-naissance:
+          label: Date of birth
         h2: Dependent children
+        perçoit-AeeH:
+          label: Do you receive the AeeH (education allowance for disabled children)?
+        prénom:
+          label: First name
+        question: Who are your dependent children?
+      informations-générales:
+        ressources:
+          description: Enter the reference tax income shown on the tax notice(s) of the
+            members of your household
+          label: What is your household income for 2023?
       meta:
         description: This simulator enables you to estimate the amount of the
           transitional supplement to the CMG Remuneration.
         titre: CMG transitional top-up simulator
       questions:
         AeeH:
-          label: How many of your children are eligible for the AeeH (Allocation
-            d'éducation de l'enfant handicapé)?
-        date-de-naissance:
-          label: Date of birth
-        prénom:
-          label: First name
-        ressources:
-          description: Enter the reference tax income shown on the tax notice(s) of the
-            members of your household
-          label: What is your household income for 2023?
+          label: Number of children concerned
       shortname: Transitional supplement to CMG
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:

@@ -22,7 +22,7 @@ export default function AMA() {
 	return (
 		<>
 			<H2>
-				{t('pages.assistants.cmg.AMA.h2', 'Assistante Maternelle Agréée')}
+				{t('pages.assistants.cmg.AMA.h2', 'Assistantes Maternelles Agréées')}
 			</H2>
 
 			{salariéesAMA.map((salariéeAMA, index) => (
