@@ -34,6 +34,11 @@
 	line-height: 1.5rem;
 }
 
+.payslip__container ul {
+	list-style-type: "";
+	padding-left: 0;
+}
+
 .payslip__container h3 {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.85);
 	background-color: inherit;
@@ -119,7 +124,8 @@
 }
 
 .payslip__cotisationTable {
-	width: 100%
+	width: 100%;
+	border-spacing: 0;
 }
 
 .payslip__cotisationTable:first-of-type .payslip__cotisationTitle {
