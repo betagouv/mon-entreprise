@@ -12,6 +12,7 @@ import {
 	estSituationCMGValide,
 	initialSituationCMG,
 	SituationCMG,
+	SituationCMGValide,
 } from '../domaine/situation'
 import { useSituationContext } from './CMGContext'
 
@@ -21,11 +22,10 @@ export const useCMG = () => {
 	const éligible = estSituationCMGValide(situation)
 		? estÉligible(situation)
 		: false
-	const montantCT = estSituationCMGValide(situation)
-		? estÉligible(situation)
-			? calculeComplémentTransitoire(situation)
+
+	const montantCT = éligible
+			? calculeComplémentTransitoire(situation as SituationCMGValide)
 			: euros(0)
-		: euros(0)
 
 	const set = {
 		situation: (situation: SituationCMG) => {

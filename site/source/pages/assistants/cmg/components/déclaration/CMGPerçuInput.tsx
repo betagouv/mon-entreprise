@@ -17,7 +17,7 @@ export default function CMGPerçuInput({ idSuffix, valeur, onChange }: Props) {
 	return (
 		<>
 			<Body id={`CMG-perçu-label-${idSuffix}`}>
-				{t('pages.assistants.cmg.GED.CMG-perçu.label', 'CMG perçu')}
+				{t('pages.assistants.cmg.GED.CMG-perçu.label', 'CMG Rémunération perçu')}
 			</Body>
 			<MontantField
 				value={O.getOrUndefined(valeur)}
