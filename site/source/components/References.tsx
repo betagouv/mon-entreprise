@@ -90,24 +90,25 @@ function Reference({ href, title }: { href: string; title: string }) {
 						style={{
 							display: 'flex',
 						}}
+						aria-label={title + ', nouvelle fenêtre'}
 					>
 						{capitalise0(title)}
 					</Link>
 				</Grid>
-				<Grid
-					item
-					xs="auto"
-					style={{
-						textAlign: 'right',
-					}}
-				>
-					{domain in referencesImages && (
+				{domain in referencesImages && (
+					<Grid
+						item
+						xs="auto"
+						style={{
+							textAlign: 'right',
+						}}
+					>
 						<StyledImage
 							src={referencesImages[domain as keyof typeof referencesImages]}
 							alt=""
 						/>
-					)}
-				</Grid>
+					</Grid>
+				)}
 			</Grid>
 		</Li>
 	)
