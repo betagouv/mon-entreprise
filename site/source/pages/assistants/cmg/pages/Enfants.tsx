@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next'
 import { Enfant, useCMG } from '@/contextes/cmg'
 import { Button, H2 } from '@/design-system'
 
-import EnfantInput from './EnfantInput'
-import QuestionAeeH from './QuestionAeeH'
+import EnfantInput from '../components/enfants-à-charge/EnfantInput'
+import QuestionAeeH from '../components/enfants-à-charge/QuestionAeeH'
 
-export default function EnfantsÀCharge() {
+export default function Enfants() {
 	const { t } = useTranslation()
 	const { enfants, set } = useCMG()
 
