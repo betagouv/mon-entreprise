@@ -7,6 +7,7 @@ import { Button, H2 } from '@/design-system'
 
 import EnfantInput from '../components/enfants-à-charge/EnfantInput'
 import QuestionAeeH from '../components/enfants-à-charge/QuestionAeeH'
+import Navigation from '../components/Navigation'
 
 export default function Enfants() {
 	const { t } = useTranslation()
@@ -49,6 +50,8 @@ export default function Enfants() {
 			</Button>
 
 			<QuestionAeeH />
+
+			<Navigation précédent="informations" suivant="GED" />
 		</>
 	)
 }
