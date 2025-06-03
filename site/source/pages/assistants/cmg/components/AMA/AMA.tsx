@@ -21,7 +21,7 @@ export default function AMA() {
 	return (
 		<>
 			<H2>
-				{t('pages.assistants.cmg.AMA.h2', 'Assistant⋅e Maternel⋅le Agréé⋅e')}
+				{t('pages.assistants.cmg.AMA.h2', 'Assistante Maternelle Agréée')}
 			</H2>
 
 			{salariéesAMA.map((salariéeAMA, index) => (
@@ -37,7 +37,7 @@ export default function AMA() {
 			<Button size="XXS" light onPress={set.nouvelleAMA}>
 				{t(
 					'pages.assistants.cmg.AMA.add-button-label',
-					'Ajouter un⋅e salarié⋅e'
+					'Ajouter une salariée'
 				)}
 			</Button>
 		</>

@@ -759,14 +759,14 @@ pages:
   assistants:
     cmg:
       AMA:
-        add-button-label: Add a⋅e employee⋅e
+        add-button-label: Add an employee
         enfants-gardés:
           legend: Children in care
-        h2: Assistant⋅e Maternel⋅le Agréé⋅e
+        h2: Approved Nursery Assistant
       GED:
         CMG-perçu:
-          label: CMG received
-        add-button-label: Add a⋅e employee⋅e
+          label: CMG Remuneration received
+        add-button-label: Add an employee
         h2: Home Childcare
         heures-de-garde:
           label: On-call hours
@@ -790,7 +790,9 @@ pages:
         prénom:
           label: First name
         ressources:
-          label: What is your household's reference tax income for 2023?
+          description: Enter the reference tax income shown on the tax notice(s) of the
+            members of your household
+          label: What is your household income for 2023?
       shortname: Transitional supplement to CMG
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:

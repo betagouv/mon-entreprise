@@ -807,14 +807,14 @@ pages:
   assistants:
     cmg:
       AMA:
-        add-button-label: Ajouter un⋅e salarié⋅e
+        add-button-label: Ajouter une salariée
         enfants-gardés:
           legend: Enfants gardés
-        h2: Assistant⋅e Maternel⋅le Agréé⋅e
+        h2: Assistante Maternelle Agréée
       GED:
         CMG-perçu:
-          label: CMG perçu
-        add-button-label: Ajouter un⋅e salarié⋅e
+          label: CMG Rémunération perçu
+        add-button-label: Ajouter une salariée
         h2: Garde d’Enfant à Domicile
         heures-de-garde:
           label: Heures de garde
@@ -838,7 +838,9 @@ pages:
         prénom:
           label: Prénom
         ressources:
-          label: Quel est le revenu fiscal de référence de votre foyer pour l’année 2023 ?
+          description: Renseignez le revenu fiscal de référence figurant sur le ou les
+            avis d’imposition des membres de votre foyer
+          label: Quel est le revenu de votre foyer pour l’année 2023 ?
       shortname: Complément transitoire au CMG
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
