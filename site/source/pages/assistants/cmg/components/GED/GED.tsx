@@ -35,7 +35,7 @@ export default function GED() {
 			<Button size="XXS" light onPress={set.nouvelleGED}>
 				{t(
 					'pages.assistants.cmg.GED.add-button-label',
-					'Ajouter un⋅e salarié⋅e'
+					'Ajouter une salariée'
 				)}
 			</Button>
 		</>
