@@ -181,9 +181,7 @@ export default function Accessibilité() {
 				<Li>
 					<Link href="/">Page d'accueil</Link>{' '}
 				</Li>
-				<Li>
-					<Link href="/accessibilit%C3%A99">Page accessibilité</Link>
-				</Li>
+				<Li>Page accessibilité</Li>
 				<Li>
 					<Link href="/plan-de-site">Page plan du site</Link>
 				</Li>
