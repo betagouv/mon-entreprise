@@ -35,6 +35,5 @@ export const toutesLesDéclarations = (
 		R.values,
 		A.flatten,
 		A.flatMap((s: Salariée) => R.values(s)),
-		A.filter(O.isSome),
-		A.map((d: O.Some<DéclarationDeGarde>) => d.value)
+		A.getSomes,
 	)

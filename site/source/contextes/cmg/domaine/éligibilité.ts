@@ -15,7 +15,6 @@ import {
 } from './constantes'
 import {
 	DéclarationDeGarde,
-	DéclarationDeGardeAMA,
 	toutesLesDéclarations,
 } from './déclaration-de-garde'
 import { Enfant, enfantAMoinsDe6Ans, enfantNéEn } from './enfant'
@@ -92,8 +91,7 @@ const déclarationsPourLeMois = (
 	pipe(
 		salariées,
 		A.map((salariée) => salariée[mois]),
-		A.filter(O.isSome),
-		A.map((déclaration) => déclaration.value as DéclarationDeGarde)
+		A.getSomes
 	)
 
 export const moyenneHeuresDeGardeSupérieureAuPlancher = (
@@ -148,8 +146,8 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 	const enfantsGardésEnAMA = pipe(
 		situation.modesDeGarde.AMA,
 		A.flatMap((s) => R.values(s)),
-		A.filter(O.isSome),
-		A.map((d: O.Some<DéclarationDeGardeAMA<string>>) => d.value.enfantsGardés),
+		A.getSomes,
+		A.map((d) => d.enfantsGardés),
 		A.flatten,
 		A.dedupe,
 		R.fromIterableWith((prénom) => [
