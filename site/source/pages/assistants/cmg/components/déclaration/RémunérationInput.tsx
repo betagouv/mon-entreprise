@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
-import { Body, MontantField } from '@/design-system'
+import { MontantField } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
+
+import { Label } from '../styled-components'
 
 type Props = {
 	idSuffix?: string
@@ -18,19 +20,19 @@ export default function RémunérationInput({
 	const { t } = useTranslation()
 
 	return (
-		<>
-			<Body id={`rémunération-label-${idSuffix}`}>
+		<div>
+			<Label id={`rémunération-label-${idSuffix}`}>
 				{t(
 					'pages.assistants.cmg.GED.rémunération.label',
 					'Rémunération totale'
 				)}
-			</Body>
+			</Label>
 			<MontantField
 				value={valeur}
 				unité="Euro"
 				onChange={onChange}
 				aria-labelledby={`rémunération-label-${idSuffix}`}
 			/>
-		</>
+		</div>
 	)
 }

@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import { Body, NumberField } from '@/design-system'
+import { NumberField } from '@/design-system'
 import { ChangeHandler } from '@/utils/ChangeHandler'
+
+import { Label } from '../styled-components'
 
 type Props = {
 	idSuffix?: string
@@ -17,15 +19,15 @@ export default function HeuresDeGardeInput({
 	const { t } = useTranslation()
 
 	return (
-		<>
-			<Body id={`heures-de-garde-label-${idSuffix}`}>
+		<div>
+			<Label id={`heures-de-garde-label-${idSuffix}`}>
 				{t('pages.assistants.cmg.GED.heures-de-garde.label', 'Heures de garde')}
-			</Body>
+			</Label>
 			<NumberField
 				value={valeur}
 				onChange={onChange}
 				aria-labelledby={`heures-de-garde-label-${idSuffix}`}
 			/>
-		</>
+		</div>
 	)
 }

@@ -1,8 +1,10 @@
 import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
-import { Body, DateField } from '@/design-system'
+import { DateField } from '@/design-system'
 import { ChangeHandler } from '@/utils/ChangeHandler'
+
+import { Label } from '../styled-components'
 
 type Props = {
 	idSuffix?: string
@@ -18,18 +20,18 @@ export default function DateDeNaissanceInput({
 	const { t } = useTranslation()
 
 	return (
-		<>
-			<Body id={`date-de-naissance-label-${idSuffix}`}>
+		<div>
+			<Label id={`date-de-naissance-label-${idSuffix}`}>
 				{t(
-					'pages.assistants.cmg.questions.date-de-naissance.label',
+					'pages.assistants.cmg.enfants.date-de-naissance.label',
 					'Date de naissance'
 				)}
-			</Body>
+			</Label>
 			<DateField
 				defaultSelected={O.getOrUndefined(valeur)}
 				onChange={(date) => onChange(O.fromNullable(date))}
 				aria-labelledby={`date-de-naissance-label-${idSuffix}`}
 			/>
-		</>
+		</div>
 	)
 }
