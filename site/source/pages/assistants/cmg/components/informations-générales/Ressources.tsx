@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useCMG } from '@/contextes/cmg'
 import { Intro, MontantField, SmallBody } from '@/design-system'
 
-export default function QuestionRessources() {
+export default function Ressources() {
 	const { situation, set } = useCMG()
 	const { t } = useTranslation()
 
@@ -12,13 +12,13 @@ export default function QuestionRessources() {
 		<>
 			<Intro id="ressources-label">
 				{t(
-					'pages.assistants.cmg.questions.ressources.label',
+					'pages.assistants.cmg.informations-générales.ressources.label',
 					'Quel est le revenu de votre foyer pour l’année 2023 ?'
 				)}
 			</Intro>
 			<SmallBody>
 				{t(
-					'pages.assistants.cmg.questions.ressources.description',
+					'pages.assistants.cmg.informations-générales.ressources.description',
 					'Renseignez le revenu fiscal de référence figurant sur le ou les avis d’imposition des membres de votre foyer'
 				)}
 			</SmallBody>

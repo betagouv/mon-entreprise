@@ -1,10 +1,10 @@
 import Navigation from '../components/Navigation'
-import QuestionRessources from '../components/QuestionRessources'
+import Ressources from '../components/informations-générales/Ressources'
 
 export default function InformationsGénérales() {
 	return (
 		<>
-			<QuestionRessources />
+			<Ressources />
 
 			<Navigation précédent="index" suivant="enfants" />
 		</>
