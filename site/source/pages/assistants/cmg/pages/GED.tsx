@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { SalariéeGED, useCMG } from '@/contextes/cmg'
 import { Button, H2 } from '@/design-system'
 
-import GEDInput from './GEDInput'
+import GEDInput from '../components/GED/GEDInput'
 
 export default function GED() {
 	const { t } = useTranslation()
@@ -33,10 +33,7 @@ export default function GED() {
 			))}
 
 			<Button size="XXS" light onPress={set.nouvelleGED}>
-				{t(
-					'pages.assistants.cmg.GED.add-button-label',
-					'Ajouter une salariée'
-				)}
+				{t('pages.assistants.cmg.GED.add-button-label', 'Ajouter une salariée')}
 			</Button>
 		</>
 	)

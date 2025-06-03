@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { SalariéeAMA, useCMG } from '@/contextes/cmg'
 import { Button, H2 } from '@/design-system'
 
-import AMAInput from './AMAInput'
+import AMAInput from '../components/AMA/AMAInput'
 
 export default function AMA() {
 	const { t } = useTranslation()
@@ -35,10 +35,7 @@ export default function AMA() {
 			))}
 
 			<Button size="XXS" light onPress={set.nouvelleAMA}>
-				{t(
-					'pages.assistants.cmg.AMA.add-button-label',
-					'Ajouter une salariée'
-				)}
+				{t('pages.assistants.cmg.AMA.add-button-label', 'Ajouter une salariée')}
 			</Button>
 		</>
 	)
