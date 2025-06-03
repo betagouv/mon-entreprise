@@ -519,6 +519,7 @@ footer:
   accessibilitéAriaLabel: "Accessibility: partially compliant, find out more"
   github:
     text: View source code on Github
+    new-window: View source code on Github, new window
 février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
 gérer:

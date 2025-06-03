@@ -546,6 +546,7 @@ footer:
   accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
   github:
     text: Voir le code source sur Github
+    new-window: Voir le code source sur Github, nouvelle fenêtre
 février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérer:
