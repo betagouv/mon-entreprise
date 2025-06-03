@@ -5,6 +5,7 @@ import { SalariéeAMA, useCMG } from '@/contextes/cmg'
 import { Button, H2 } from '@/design-system'
 
 import AMAInput from '../components/AMA/AMAInput'
+import Navigation from '../components/Navigation'
 
 export default function AMA() {
 	const { t } = useTranslation()
@@ -37,6 +38,8 @@ export default function AMA() {
 			<Button size="XXS" light onPress={set.nouvelleAMA}>
 				{t('pages.assistants.cmg.AMA.add-button-label', 'Ajouter une salariée')}
 			</Button>
+
+			<Navigation précédent="GED" suivant="résultat" />
 		</>
 	)
 }

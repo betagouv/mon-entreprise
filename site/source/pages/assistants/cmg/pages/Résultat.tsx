@@ -2,17 +2,24 @@ import { useCMG } from '@/contextes/cmg'
 import { Body } from '@/design-system'
 import { toString as formatMontant } from '@/domaine/Montant'
 
+import Navigation from '../components/Navigation'
+import NonÉligible from './NonÉligible'
+
 export default function Résultat() {
 	const { éligible, montantCT } = useCMG()
 
-	if (!éligible || !montantCT.valeur) {
-		return
-	}
-
 	return (
-		<Body>
-			Montant théorique du complément transitoire :&nbsp;
-			{formatMontant(montantCT)}
-		</Body>
+		<>
+			{éligible && montantCT.valeur ? (
+				<Body>
+					Montant théorique du complément transitoire :&nbsp;
+					{formatMontant(montantCT)}
+				</Body>
+			) : (
+				<NonÉligible />
+			)}
+
+			<Navigation précédent="AMA" />
+		</>
 	)
 }
