@@ -157,7 +157,7 @@ export default function Accessibilité() {
 				<Li>Jaws et Firefox </Li>
 				<Li>Voiceover et Safari </Li>
 			</Ul>
-			<H4>Outils pour évaluer l'accessibilité</H4>
+			<H4>Les outils utilisés lors de l’évaluation</H4>
 			<Ul>
 				<Li>
 					<span lang="en">Colour Contrast Analyser</span> ;
