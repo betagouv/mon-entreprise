@@ -2,10 +2,13 @@ import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import { EnfantValide, estEnfantGardable, useCMG } from '@/contextes/cmg'
 import { Checkbox } from '@/design-system'
 import { ChangeHandler } from '@/utils/ChangeHandler'
+
+import { Label } from '../styled-components'
 
 type Props = {
 	enfantsGardés: Array<string>
@@ -35,16 +38,28 @@ export default function EnfantsGardésInput({ enfantsGardés, onChange }: Props)
 	return (
 		<fieldset>
 			<legend>
-				{t('pages.assistants.cmg.AMA.enfants-gardés.legend', 'Enfants gardés')}
+				<Label>
+					{t(
+						'pages.assistants.cmg.AMA.enfants-gardés.legend',
+						'Enfants gardés'
+					)}
+				</Label>
 			</legend>
-			{enfantsGardables.map((enfant, index) => (
-				<Checkbox
-					key={index}
-					label={enfant.prénom.value}
-					isSelected={isEnfantGardé(enfant)}
-					onChange={onCheckboxChange(enfant.prénom.value)}
-				/>
-			))}
+			<CheckboxContainer>
+				{enfantsGardables.map((enfant, index) => (
+					<Checkbox
+						key={index}
+						label={enfant.prénom.value}
+						isSelected={isEnfantGardé(enfant)}
+						onChange={onCheckboxChange(enfant.prénom.value)}
+					/>
+				))}
+			</CheckboxContainer>
 		</fieldset>
 	)
 }
+
+const CheckboxContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+`

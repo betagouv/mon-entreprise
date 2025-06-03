@@ -1,14 +1,15 @@
 import * as O from 'effect/Option'
 import { useMemo } from 'react'
+import { styled } from 'styled-components'
 
 import { DéclarationDeGardeAMA } from '@/contextes/cmg'
-import { Intro } from '@/design-system'
 import { euros, Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import CMGPerçuInput from '../déclaration/CMGPerçuInput'
 import HeuresDeGardeInput from '../déclaration/HeuresDeGardeInput'
 import RémunérationInput from '../déclaration/RémunérationInput'
+import { Question } from '../styled-components'
 import EnfantsGardésInput from './EnfantsGardésInput'
 
 type Props = {
@@ -76,8 +77,8 @@ export default function DéclarationAMAInput({
 	}
 
 	return (
-		<>
-			<Intro>{month}</Intro>
+		<Container>
+			<StyledQuestion>{month}</StyledQuestion>
 			<EnfantsGardésInput
 				enfantsGardés={currentDéclaration.enfantsGardés}
 				onChange={onEnfantsGardésChange}
@@ -97,6 +98,16 @@ export default function DéclarationAMAInput({
 				valeur={currentDéclaration.CMGPerçu}
 				onChange={onCMGPerçuChange}
 			/>
-		</>
+		</Container>
 	)
 }
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${({ theme }) => theme.spacings.sm};
+`
+const StyledQuestion = styled(Question)`
+	margin-top: 0;
+	align-self: center;
+`

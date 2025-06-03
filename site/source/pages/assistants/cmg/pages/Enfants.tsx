@@ -3,11 +3,12 @@ import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
 import { Enfant, useCMG } from '@/contextes/cmg'
-import { Button, H2 } from '@/design-system'
+import { Button, H2, Spacing } from '@/design-system'
 
-import EnfantInput from '../components/enfants-à-charge/EnfantInput'
-import QuestionAeeH from '../components/enfants-à-charge/QuestionAeeH'
+import AeeH from '../components/enfants/AeeH'
+import EnfantInput from '../components/enfants/EnfantInput'
 import Navigation from '../components/Navigation'
+import { Question } from '../components/styled-components'
 
 export default function Enfants() {
 	const { t } = useTranslation()
@@ -27,15 +28,28 @@ export default function Enfants() {
 		<>
 			<H2>{t('pages.assistants.cmg.enfants.h2', 'Enfants à charge')}</H2>
 
-			{enfants.map((enfant, index) => (
-				<EnfantInput
-					key={index}
-					idSuffix={`${index}`}
-					enfant={enfant}
-					onChange={onChange(index)}
-					onDelete={onDelete(index)}
-				/>
-			))}
+			<fieldset>
+				<legend>
+					<Question>
+						{t(
+							'pages.assistants.cmg.enfants.question',
+							'Quels sont vos enfants à charge ?'
+						)}
+					</Question>
+				</legend>
+
+				<Spacing md />
+
+				{enfants.map((enfant, index) => (
+					<EnfantInput
+						key={index}
+						idSuffix={`${index}`}
+						enfant={enfant}
+						onChange={onChange(index)}
+						onDelete={onDelete(index)}
+					/>
+				))}
+			</fieldset>
 
 			<Button
 				size="XXS"
@@ -49,7 +63,7 @@ export default function Enfants() {
 				)}
 			</Button>
 
-			<QuestionAeeH />
+			<AeeH />
 
 			<Navigation précédent="informations" suivant="GED" />
 		</>

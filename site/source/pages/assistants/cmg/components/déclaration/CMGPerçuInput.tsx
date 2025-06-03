@@ -1,9 +1,11 @@
 import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
-import { Body, MontantField } from '@/design-system'
+import { MontantField } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
+
+import { Label } from '../styled-components'
 
 type Props = {
 	idSuffix?: string
@@ -15,19 +17,19 @@ export default function CMGPerçuInput({ idSuffix, valeur, onChange }: Props) {
 	const { t } = useTranslation()
 
 	return (
-		<>
-			<Body id={`CMG-perçu-label-${idSuffix}`}>
+		<div>
+			<Label id={`CMG-perçu-label-${idSuffix}`}>
 				{t(
 					'pages.assistants.cmg.GED.CMG-perçu.label',
 					'CMG Rémunération perçu'
 				)}
-			</Body>
+			</Label>
 			<MontantField
 				value={O.getOrUndefined(valeur)}
 				unité="Euro"
 				onChange={(montant) => onChange(O.fromNullable(montant))}
 				aria-labelledby={`CMG-perçu-label-${idSuffix}`}
 			/>
-		</>
+		</div>
 	)
 }

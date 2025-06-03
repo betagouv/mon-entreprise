@@ -21,7 +21,7 @@ export default function GED() {
 
 	return (
 		<>
-			<H2>{t('pages.assistants.cmg.GED.h2', 'Garde d’Enfant à Domicile')}</H2>
+			<H2>{t('pages.assistants.cmg.GED.h2', 'Gardes d’Enfant à Domicile')}</H2>
 
 			{salariéesGED.map((salariéeGED, index) => (
 				<GEDInput
