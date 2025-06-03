@@ -2,7 +2,9 @@ import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
 import { useCMG } from '@/contextes/cmg'
-import { Intro, MontantField, SmallBody } from '@/design-system'
+import { MontantField } from '@/design-system'
+
+import { DescriptionQuestion, Question } from '../styled-components'
 
 export default function Ressources() {
 	const { situation, set } = useCMG()
@@ -10,18 +12,18 @@ export default function Ressources() {
 
 	return (
 		<>
-			<Intro id="ressources-label">
+			<Question id="ressources-label">
 				{t(
 					'pages.assistants.cmg.informations-générales.ressources.label',
 					'Quel est le revenu de votre foyer pour l’année 2023 ?'
 				)}
-			</Intro>
-			<SmallBody>
+			</Question>
+			<DescriptionQuestion>
 				{t(
 					'pages.assistants.cmg.informations-générales.ressources.description',
 					'Renseignez le revenu fiscal de référence figurant sur le ou les avis d’imposition des membres de votre foyer'
 				)}
-			</SmallBody>
+			</DescriptionQuestion>
 			<MontantField
 				value={O.getOrUndefined(situation.ressources)}
 				unité="EuroParAn"

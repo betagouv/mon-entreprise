@@ -240,6 +240,7 @@ Statistiques: Statistiques
 Suivant: Suivant
 Suivant, enregistrer et passer à l'étape suivante: Suivant, enregistrer et passer à l'étape suivante
 Suivant, voir le résultat: Suivant, voir le résultat
+Supprimer: Supprimer
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
   le site mon-entreprise par mois.
@@ -793,12 +794,12 @@ pages:
         add-button-label: Ajouter une salariée
         enfants-gardés:
           legend: Enfants gardés
-        h2: Assistante Maternelle Agréée
+        h2: Assistantes Maternelles Agréées
       GED:
         CMG-perçu:
           label: CMG Rémunération perçu
         add-button-label: Ajouter une salariée
-        h2: Garde d’Enfant à Domicile
+        h2: Gardes d’Enfant à Domicile
         heures-de-garde:
           label: Heures de garde
         rémunération:
@@ -807,23 +808,26 @@ pages:
         complément transitoire au CMG Rémunération.</0>
       enfants:
         add-button-label: Ajouter un enfant
+        date-de-naissance:
+          label: Date de naissance
         h2: Enfants à charge
+        perçoit-AeeH:
+          label: Percevez-vous l’AeeH (allocation d’éducation de l’enfant handicapé) ?
+        prénom:
+          label: Prénom
+        question: Quels sont vos enfants à charge ?
+      informations-générales:
+        ressources:
+          description: Renseignez le revenu fiscal de référence figurant sur le ou les
+            avis d’imposition des membres de votre foyer
+          label: Quel est le revenu de votre foyer pour l’année 2023 ?
       meta:
         description: Ce simulateur permet d’estimer le montant du complément transitoire
           au CMG Rémunération.
         titre: Simulateur de complément transitoire au CMG
       questions:
         AeeH:
-          label: Combien de vos enfants sont concernés par l’AeeH (allocation d’éducation
-            de l’enfant handicapé) ?
-        date-de-naissance:
-          label: Date de naissance
-        prénom:
-          label: Prénom
-        ressources:
-          description: Renseignez le revenu fiscal de référence figurant sur le ou les
-            avis d’imposition des membres de votre foyer
-          label: Quel est le revenu de votre foyer pour l’année 2023 ?
+          label: Nombre d’enfants concernés
       shortname: Complément transitoire au CMG
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
