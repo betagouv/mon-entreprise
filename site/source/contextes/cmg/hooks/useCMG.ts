@@ -36,6 +36,10 @@ export const useCMG = () => {
 			updateSituation(() => initialSituationCMG)
 		},
 
+		parentIsolé: (parentIsolé: O.Option<boolean>) => {
+			updateSituation((prev) => ({ ...prev, parentIsolé }))
+		},
+
 		ressources: (ressources: O.Option<Montant<'EuroParAn'>>) => {
 			updateSituation((prev) => ({ ...prev, ressources }))
 		},
