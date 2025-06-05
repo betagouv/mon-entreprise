@@ -821,6 +821,12 @@ pages:
           description: Renseignez le revenu fiscal de référence figurant sur le ou les
             avis d’imposition des membres de votre foyer
           label: Quel est le revenu de votre foyer pour l’année 2023 ?
+        situation-familiale:
+          couple:
+            label: En couple
+          label: Quelle est votre situation familiale ?
+          parent-isolé:
+            label: Seul / seule
       meta:
         description: Ce simulateur permet d’estimer le montant du complément transitoire
           au CMG Rémunération.
