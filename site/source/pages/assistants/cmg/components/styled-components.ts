@@ -6,7 +6,6 @@ export const Question = styled(Intro)`
 	margin-bottom: 0;
 	font-weight: bold;
 	color: ${({ theme }) => theme.colors.bases.primary['700']};
-	text-transform: capitalize;
 `
 
 export const DescriptionQuestion = styled(SmallBody)`
