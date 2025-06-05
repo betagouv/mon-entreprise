@@ -15,6 +15,7 @@ import {
 	estÉligible,
 	moyenneHeuresDeGardeSupérieureAuPlancher,
 	moyenneHeuresParTypologieDeGarde,
+	plafondDeRessources,
 } from './éligibilité'
 import { EnfantFactory } from './enfantFactory'
 import { SalariéeAMAFactory, SalariéeGEDFactory } from './salariéeFactory'
@@ -24,6 +25,7 @@ describe('CMG', () => {
 		it('est éligible si tous les critères d’éligibilité sont remplis', () => {
 			const résultat = estÉligible({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -84,6 +86,7 @@ describe('CMG', () => {
 		it('n’est pas éligible si pas de CMG perçu sur mars, avril NI mai', () => {
 			const résultat = estÉligible({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -121,10 +124,11 @@ describe('CMG', () => {
 			expect(résultat).to.be.false
 		})
 
-		it('n’est pas éligible si ressources = plafond (8 500 €/mois)', () => {
+		it('n’est pas éligible si ressources > plafond (60 659 €/an pour un couple avec 2 enfants à charge)', () => {
 			const résultat = estÉligible({
 				_tag: 'Situation',
-				ressources: O.some(M.eurosParAn(102_000)) as O.Some<
+				parentIsolé: O.some(false) as O.Some<boolean>,
+				ressources: O.some(M.eurosParAn(60_660)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
@@ -146,6 +150,7 @@ describe('CMG', () => {
 		it('n’est pas éligible si moins de 2 mois employeureuse', () => {
 			const résultat = estÉligible({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -180,6 +185,7 @@ describe('CMG', () => {
 		it('n’est pas éligible si la moyenne d’heures de garde ne dépasse pas le plancher', () => {
 			const résultat = estÉligible({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -236,6 +242,7 @@ describe('CMG', () => {
 		it('n’est pas éligible si tous les enfants ont plus de 6 ans à la réforme ou sont nés en 2022', () => {
 			const résultat = estÉligible({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -260,10 +267,37 @@ describe('CMG', () => {
 		})
 	})
 
+	describe('plafondDeRessources', () => {
+		it('est de 53 119 € pour un couple avec 1 enfant à charge', () => {
+			const résultat = plafondDeRessources(1, false)
+
+			expect(résultat).to.be.deep.equal(M.eurosParAn(53_119))
+		})
+
+		it('est majoré de 7 540 € par enfant', () => {
+			const résultat = plafondDeRessources(2, false)
+
+			expect(résultat).to.be.deep.equal(M.eurosParAn(53119 + 7540))
+		})
+
+		it('est majoré de 40% pour un parent isolé', () => {
+			const résultat = plafondDeRessources(1, true)
+
+			expect(résultat).to.be.deep.equal(M.eurosParAn(53119 * 1.4))
+		})
+
+		it('est de 106 034,6 € pour un parent isolée avec 4 enfants à charge', () => {
+			const résultat = plafondDeRessources(4, true)
+
+			expect(résultat).to.be.deep.equal(M.eurosParAn(106_034.6))
+		})
+	})
+
 	describe('moyenneHeuresDeGardeSupérieureAuPlancher', () => {
 		it('est vrai si au moins une typologie de garde a une moyenne d’heures suffisante', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -324,6 +358,7 @@ describe('CMG', () => {
 		it('est faux si aucune typologie de garde n’a une moyenne d’heures suffisante', () => {
 			const résultat = moyenneHeuresDeGardeSupérieureAuPlancher({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -435,6 +470,7 @@ describe('CMG', () => {
 		it('ouvre droit si GED et 1 enfant à charge ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -469,6 +505,7 @@ describe('CMG', () => {
 		it('ouvre droit si AMA uniquement et 1 enfant gardé ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -495,6 +532,7 @@ describe('CMG', () => {
 		it('n’ouvre pas droit si AMA uniquement et aucun enfant gardé ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -521,6 +559,7 @@ describe('CMG', () => {
 		it('n’ouvre pas droit si aucun enfant à charge ouvrant droit', () => {
 			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
