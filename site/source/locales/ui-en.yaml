@@ -779,6 +779,12 @@ pages:
           description: Enter the reference tax income shown on the tax notice(s) of the
             members of your household
           label: What is your household income for 2023?
+        situation-familiale:
+          couple:
+            label: In couple
+          label: What is your family situation?
+          parent-isolé:
+            label: Alone
       meta:
         description: This simulator enables you to estimate the amount of the
           transitional supplement to the CMG Remuneration.
