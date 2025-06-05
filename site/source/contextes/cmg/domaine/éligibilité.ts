@@ -9,8 +9,10 @@ import * as M from '@/domaine/Montant'
 
 import {
 	ANNÉE_DE_NAISSANCE_EXCLUE,
+	MAJORATION_PAR_ENFANT,
+	MAJORATION_PARENT_ISOLÉ,
 	NOMBRE_MIN_MOIS_EMPLOYEUREUSE,
-	PLAFOND_DE_RESSOURCES,
+	PLAFOND_DE_RESSOURCES_COUPLE_1_ENFANT,
 	PLANCHER_HEURES_DE_GARDE_PAR_TYPOLOGIE,
 } from './constantes'
 import {
@@ -33,7 +35,7 @@ interface Historique<PrénomsEnfants extends string = string> {
 
 export const estÉligible = (situation: SituationCMGValide): boolean =>
 	CMGPerçu(situation.modesDeGarde) &&
-	ressourcesInférieuresAuPlafond(situation.ressources) &&
+	ressourcesInférieuresAuPlafond(situation) &&
 	nombreDeMoisEmployeureuseSuffisant(situation) &&
 	moyenneHeuresDeGardeSupérieureAuPlancher(situation) &&
 	auMoinsUnEnfantOuvrantDroitAuCMG(situation)
@@ -48,12 +50,23 @@ const CMGPerçu = (modesDeGarde: SituationCMGValide['modesDeGarde']): boolean =>
 	)
 
 const ressourcesInférieuresAuPlafond = (
-	ressources: SituationCMGValide['ressources']
+	situation: SituationCMGValide
 ): boolean =>
 	pipe(
-		ressources.value,
-		M.toEurosParMois,
-		M.estPlusPetitQue(PLAFOND_DE_RESSOURCES)
+		situation.ressources.value,
+		M.estPlusPetitOuÉgalÀ(
+			plafondDeRessources(
+				R.size(situation.enfantsÀCharge.enfants),
+				situation.parentIsolé.value
+			)
+		)
+	)
+
+export const plafondDeRessources = (nbEnfants: number, parentIsolé: boolean) =>
+	pipe(
+		PLAFOND_DE_RESSOURCES_COUPLE_1_ENFANT,
+		M.plus(M.fois(MAJORATION_PAR_ENFANT, nbEnfants - 1)),
+		M.fois(parentIsolé ? MAJORATION_PARENT_ISOLÉ : 1)
 	)
 
 const nombreDeMoisEmployeureuseSuffisant = (
