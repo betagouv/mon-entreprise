@@ -4,7 +4,9 @@ import { TypologieDeGarde } from './typologie-de-garde'
 
 export const DATE_RÉFORME = new Date('2025-09-01')
 
-export const PLAFOND_DE_RESSOURCES = M.eurosParMois(8_500)
+export const PLAFOND_DE_RESSOURCES_COUPLE_1_ENFANT = M.eurosParAn(53_119)
+export const MAJORATION_PAR_ENFANT = M.eurosParAn(7_540)
+export const MAJORATION_PARENT_ISOLÉ = 1.4 // +40%
 
 export const NOMBRE_MIN_MOIS_EMPLOYEUREUSE = 2
 

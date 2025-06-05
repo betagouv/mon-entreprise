@@ -24,6 +24,7 @@ describe('CMG', () => {
 		it('calcule le complément transitoire pour la garde de Jules', () => {
 			const résultat = calculeComplémentTransitoire({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -82,6 +83,7 @@ describe('CMG', () => {
 		it('calcule un complément transitoire nul pour la garde de Rose', () => {
 			const résultat = calculeComplémentTransitoire({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
@@ -242,6 +244,7 @@ describe('CMG', () => {
 		it('calcule la moyenne des CMG-R linéarisés', () => {
 			const résultat = moyenneCMGRLinéarisés({
 				_tag: 'Situation',
+				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
 					M.Montant<'EuroParAn'>
 				>,
