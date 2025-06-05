@@ -96,4 +96,5 @@ const Container = styled.div`
 const StyledQuestion = styled(Question)`
 	margin-top: 0;
 	align-self: center;
+	text-transform: capitalize;
 `
