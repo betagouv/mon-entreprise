@@ -21,7 +21,7 @@ export default function Ressources() {
 			<DescriptionQuestion>
 				{t(
 					'pages.assistants.cmg.informations-générales.ressources.description',
-					'Renseignez le revenu fiscal de référence figurant sur le ou les avis d’imposition des membres de votre foyer'
+					'Renseignez le revenu fiscal de référence figurant sur le ou les avis d’imposition des membres de votre foyer.'
 				)}
 			</DescriptionQuestion>
 			<MontantField
