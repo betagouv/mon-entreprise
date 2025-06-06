@@ -10,6 +10,7 @@ import { H3 } from '@/design-system/typography/heading'
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
 import { useEngine } from '../utils/EngineContext'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 import CotisationLine from './CotisationLine'
 
 function CotisationLines({ cotisations }: { cotisations: Array<DottedName> }) {
@@ -33,11 +34,17 @@ export function Cotisations() {
 
 				return (
 					<Fragment key={section.dottedName}>
-						<table className="payslip__cotisationTable">
-							<caption className="payslip__cotisationTitle">
-								{section.title}
-								<ExplicableRule light dottedName={section.dottedName} />
-							</caption>
+						<h4
+							id={normalizeRuleName(section.dottedName)}
+							className="payslip__cotisationTitle"
+						>
+							{section.title}
+							<ExplicableRule light dottedName={section.dottedName} />
+						</h4>
+						<table
+							className="payslip__cotisationTable"
+							aria-labelledby={normalizeRuleName(section.dottedName)}
+						>
 							<tbody>
 								<tr>
 									<td></td>
@@ -52,11 +59,14 @@ export function Cotisations() {
 			})}
 
 			{/* Total cotisation */}
-			<table className="payslip__cotisationTable">
-				<caption className="payslip__cotisationTitle">
-					<Trans>Total des cotisations et contributions</Trans>
-					<ExplicableRule light dottedName="salarié . cotisations" />
-				</caption>
+			<h4 id="total_cotisation" className="payslip__cotisationTitle">
+				<Trans>Total des cotisations et contributions</Trans>
+				<ExplicableRule light dottedName="salarié . cotisations" />
+			</h4>
+			<table
+				className="payslip__cotisationTable"
+				aria-labelledby="total_cotisation"
+			>
 				<tbody>
 					<tr>
 						<td></td>
