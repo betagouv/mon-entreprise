@@ -1,4 +1,5 @@
 import { DottedName } from 'modele-social'
+import { useTranslation } from 'react-i18next'
 
 import { References } from '@/components/References'
 import RuleLink from '@/components/RuleLink'
@@ -24,12 +25,11 @@ export function ExplicableRule<Names extends string = DottedName>({
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
 	const références = useReferences(rule)
+	const { t } = useTranslation()
 
 	if (rule.rawNode.description == null) {
 		return null
 	}
-
-	// TODO montrer les variables de type 'une possibilité'
 
 	return (
 		<HelpButtonWithPopover
@@ -45,11 +45,14 @@ export function ExplicableRule<Names extends string = DottedName>({
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
 
-			<RuleLink dottedName={dottedName as DottedName}>
+			<RuleLink
+				dottedName={dottedName as DottedName}
+				aria-label={t('Lire la documentation au sujet de :') + ' ' + rule.title}
+			>
 				Lire la documentation
 			</RuleLink>
 
-			{références && (
+			{références && Object.keys(références).length > 0 && (
 				<>
 					<H3>Liens utiles</H3>
 					<References references={références} />
