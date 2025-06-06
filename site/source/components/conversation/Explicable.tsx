@@ -31,8 +31,6 @@ export function ExplicableRule<Names extends string = DottedName>({
 		return null
 	}
 
-	// TODO montrer les variables de type 'une possibilité'
-
 	return (
 		<HelpButtonWithPopover
 			key={rule.dottedName}
@@ -54,7 +52,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 				Lire la documentation
 			</RuleLink>
 
-			{références && (
+			{références && Object.keys(références).length > 0 && (
 				<>
 					<H3>Liens utiles</H3>
 					<References references={références} />
