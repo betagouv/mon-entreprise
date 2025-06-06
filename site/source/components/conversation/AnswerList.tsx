@@ -14,6 +14,7 @@ import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
 import { Strong } from '@/design-system/typography'
 import { H2, H3 } from '@/design-system/typography/heading'
 import { Link } from '@/design-system/typography/link'
+import { Ul } from '@/design-system/typography/list'
 import { Body, Intro } from '@/design-system/typography/paragraphs'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
@@ -246,11 +247,11 @@ function StepsTable({
 	const { t } = useTranslation()
 
 	return (
-		<>
+		<Ul>
 			{rules
 				.filter((rule) => !('nodeValue' in rule) || rule.nodeValue !== null)
 				.map((rule) => (
-					<StyledAnswerList container key={rule.dottedName}>
+					<StyledAnswerLine as="li" container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
 							<ExplicableRule
@@ -264,9 +265,9 @@ function StepsTable({
 						<StyledAnswer item xs="auto">
 							<AnswerElement {...rule} />
 						</StyledAnswer>
-					</StyledAnswerList>
+					</StyledAnswerLine>
 				))}
-		</>
+		</Ul>
 	)
 }
 
@@ -339,7 +340,8 @@ function AnswerElement(rule: RuleNode) {
 const StyledAnswer = styled(Grid)`
 	text-align: right;
 `
-const StyledAnswerList = styled(Grid)`
+const StyledAnswerLine = styled(Grid)`
+	display: flex;
 	margin: ${({ theme }) => `${theme.spacings.md} 0`};
 	align-items: baseline;
 	justify-content: flex-end;
@@ -349,6 +351,8 @@ const StyledAnswerList = styled(Grid)`
 			? theme.colors.bases.primary[100]
 			: theme.colors.extended.dark[500]};
 	font-family: ${({ theme }) => theme.fonts.main};
+	line-height: 1;
+
 	&:nth-child(2n) {
 		background-color: ${({ theme }) =>
 			theme.darkMode
