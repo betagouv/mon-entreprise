@@ -237,6 +237,7 @@ Statistiques: Statistiques
 Suivant: Suivant
 Suivant, enregistrer et passer à l'étape suivante: Suivant, enregistrer et passer à l'étape suivante
 Suivant, voir le résultat: Suivant, voir le résultat
+Supprimer: Supprimer
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
   le site mon-entreprise par mois.
@@ -805,6 +806,53 @@ pages:
         recherche sont extraites du PDF des nomenclatures d'activités françaises
         de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
   assistants:
+    cmg:
+      AMA:
+        add-button-label: Ajouter une salariée
+        enfants-gardés:
+          legend: Enfants gardés
+        h2: Assistantes Maternelles Agréées
+      GED:
+        CMG-perçu:
+          label: CMG Rémunération perçu
+        add-button-label: Ajouter une salariée
+        h2: Gardes d’Enfant à Domicile
+        heures-de-garde:
+          label: Heures de garde
+        rémunération:
+          label: Rémunération totale
+      description: <0>Cet outil vous permet d’estimer le montant <2>théorique</2> du
+        complément transitoire au CMG Rémunération.</0>
+      enfants:
+        add-button-label: Ajouter un enfant
+        date-de-naissance:
+          label: Date de naissance
+        h2: Enfants à charge
+        perçoit-AeeH:
+          label: Percevez-vous l’AeeH (allocation d’éducation de l’enfant handicapé) ?
+        prénom:
+          label: Prénom
+        question: Quels sont vos enfants à charge ?
+      informations-générales:
+        ressources:
+          description: Renseignez le revenu fiscal de référence figurant sur le ou les
+            avis d’imposition des membres de votre foyer.
+          label: Quel est le revenu de votre foyer pour l’année 2023 ?
+        situation-familiale:
+          couple:
+            label: En couple
+          label: Quelle est votre situation familiale ?
+          parent-isolé:
+            label: Seul / seule
+      meta:
+        description: Ce simulateur permet d’estimer le montant du complément transitoire
+          au CMG Rémunération.
+        titre: Simulateur de complément transitoire au CMG
+      questions:
+        AeeH:
+          label: Nombre d’enfants concernés
+      shortname: Complément transitoire au CMG
+      title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
       description: <0><0>Cet outil est une aide à la déclaration de revenus à
         destination des <2>travailleurs indépendants</2>. Il vous permet de

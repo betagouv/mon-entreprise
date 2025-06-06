@@ -45,6 +45,15 @@ const rawSitePathsFr = {
 				association: 'association',
 			},
 		},
+		cmg: {
+			index: 'cmg',
+			informations: 'informations-générales',
+			enfants: 'enfants',
+			GED: 'garde-enfant-à-domicile',
+			AMA: 'assistante-maternelle',
+			inéligibilité: 'inéligible',
+			résultat: 'résultat',
+		},
 	},
 	simulateurs: {
 		index: 'simulateurs',
@@ -147,6 +156,15 @@ const rawSitePathsEn = {
 				SELASU: 'SELASU',
 				association: 'association',
 			},
+		},
+		cmg: {
+			index: 'cmg',
+			informations: 'general-information',
+			enfants: 'children',
+			GED: 'home-childcare',
+			AMA: 'approved-nursery-assistant',
+			inéligibilité: 'ineligible',
+			résultat: 'result',
 		},
 	},
 	simulateurs: {

@@ -84,6 +84,94 @@ export const eurosParHeure = (valeur: number): Montant<'EuroParHeure'> =>
 		unité: 'EuroParHeure',
 	}) as Montant<'EuroParHeure'>
 
+export const toEurosParMois = (
+	montant: Montant<UnitéMonétaire>
+): Montant<'EuroParMois'> => {
+	let valeur = montant.valeur
+	switch (montant.unité) {
+		case 'EuroParAn':
+			valeur = valeur / 12
+			break
+		case 'EuroParJour':
+			valeur = (valeur * 365) / 12
+			break
+		case 'EuroParHeure':
+			valeur = (valeur * 24 * 365) / 12
+			break
+	}
+
+	return makeMontant({
+		valeur: arrondirAuCentime(valeur),
+		unité: 'EuroParMois',
+	}) as Montant<'EuroParMois'>
+}
+
+export const toEurosParAn = (
+	montant: Montant<UnitéMonétaire>
+): Montant<'EuroParAn'> => {
+	let valeur = montant.valeur
+	switch (montant.unité) {
+		case 'EuroParMois':
+			valeur = valeur * 12
+			break
+		case 'EuroParJour':
+			valeur = valeur * 365
+			break
+		case 'EuroParHeure':
+			valeur = valeur * 24 * 365
+			break
+	}
+
+	return makeMontant({
+		valeur: arrondirAuCentime(valeur),
+		unité: 'EuroParAn',
+	}) as Montant<'EuroParAn'>
+}
+
+export const toEurosParJour = (
+	montant: Montant<UnitéMonétaire>
+): Montant<'EuroParJour'> => {
+	let valeur = montant.valeur
+	switch (montant.unité) {
+		case 'EuroParAn':
+			valeur = valeur / 365
+			break
+		case 'EuroParMois':
+			valeur = (valeur * 12) / 365
+			break
+		case 'EuroParHeure':
+			valeur = valeur * 24
+			break
+	}
+
+	return makeMontant({
+		valeur: arrondirAuCentime(valeur),
+		unité: 'EuroParJour',
+	}) as Montant<'EuroParJour'>
+}
+
+export const toEurosParHeure = (
+	montant: Montant<UnitéMonétaire>
+): Montant<'EuroParHeure'> => {
+	let valeur = montant.valeur
+	switch (montant.unité) {
+		case 'EuroParAn':
+			valeur = valeur / (365 * 24)
+			break
+		case 'EuroParMois':
+			valeur = (valeur * 12) / (365 * 24)
+			break
+		case 'EuroParJour':
+			valeur = valeur / 24
+			break
+	}
+
+	return makeMontant({
+		valeur: arrondirAuCentime(valeur),
+		unité: 'EuroParHeure',
+	}) as Montant<'EuroParHeure'>
+}
+
 export const montant = <U extends UnitéMonétaire>(
 	valeur: number,
 	unité: U

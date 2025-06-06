@@ -1,8 +1,7 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
+import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
 import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
-
-import PourMonEntreprise from '.'
 
 export function pourMonEntrepriseConfig({
 	t,
@@ -38,6 +37,6 @@ export function pourMonEntrepriseConfig({
 			chapter2: 'pour_mon_entreprise',
 		},
 		externalLinks: [premiersMoisUrssaf],
-		component: PourMonEntreprise as () => JSX.Element, // avoid types loop error
+		component: PourMonEntreprise,
 	} as const)
 }

@@ -14,11 +14,12 @@ export function déclarationRevenusPAMCConfig({
 		pathId: 'assistants.déclaration-revenus-pamc',
 		path: sitePaths.assistants['déclaration-revenus-pamc'],
 		iframePath: 'déclaration-revenus-pamc',
-		icône: '📑',
 		tracking: {
 			chapter1: 'assistant',
 			chapter2: 'declaration_revenus_pamc',
 		},
+		component: DéclarationRevenusPAMC,
+		icône: '📑',
 		meta: {
 			description: t(
 				'pages.assistants.declaration-revenus-pamc.meta.description',
@@ -37,7 +38,6 @@ export function déclarationRevenusPAMCConfig({
 			'pages.assistants.declaration-revenus-pamc.title',
 			'Assistant à la déclaration de revenus pour les PAMC'
 		),
-		component: DéclarationRevenusPAMC,
 		externalLinks: [
 			{
 				url: 'https://www.urssaf.fr/accueil/independant/declarer-vos-revenus/declaration-revenus-independants.html',
