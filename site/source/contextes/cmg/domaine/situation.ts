@@ -8,6 +8,8 @@ import { SalariéeAMA, SalariéeGED } from './salariée'
 
 export interface SituationCMG<PrénomsEnfants extends string = string>
 	extends Situation {
+	aPerçuCMG: O.Option<boolean>
+	plusDe2MoisDeDéclaration: O.Option<boolean>
 	parentIsolé: O.Option<boolean>
 	ressources: O.Option<M.Montant<'EuroParAn'>>
 	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
@@ -18,6 +20,8 @@ export interface SituationCMG<PrénomsEnfants extends string = string>
 }
 
 export interface SituationCMGValide extends SituationCMG {
+	aPerçuCMG: O.Some<boolean>
+	plusDe2MoisDeDéclaration: O.Some<boolean>
 	parentIsolé: O.Some<boolean>
 	ressources: O.Some<M.Montant<'EuroParAn'>>
 }
@@ -25,10 +29,15 @@ export interface SituationCMGValide extends SituationCMG {
 export const estSituationCMGValide = (
 	situation: SituationCMG
 ): situation is SituationCMGValide =>
-	O.isSome(situation.parentIsolé) && O.isSome(situation.ressources)
+	O.isSome(situation.aPerçuCMG) &&
+	O.isSome(situation.plusDe2MoisDeDéclaration) &&
+	O.isSome(situation.parentIsolé) &&
+	O.isSome(situation.ressources)
 
 export const initialSituationCMG: SituationCMG = {
 	_tag: 'Situation',
+	aPerçuCMG: O.none(),
+	plusDe2MoisDeDéclaration: O.none(),
 	parentIsolé: O.none(),
 	ressources: O.none(),
 	enfantsÀCharge: {

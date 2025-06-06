@@ -44,6 +44,14 @@ export const useCMG = () => {
 			updateSituation((prev) => ({ ...prev, ressources }))
 		},
 
+		aPerçuCMG: (aPerçuCMG: O.Option<boolean>) => {
+			updateSituation((prev) => ({ ...prev, aPerçuCMG }))
+		},
+
+		plusDe2MoisDeDéclaration: (plusDe2MoisDeDéclaration: O.Option<boolean>) => {
+			updateSituation((prev) => ({ ...prev, plusDe2MoisDeDéclaration }))
+		},
+
 		enfants: (enfants: Array<Enfant>) => {
 			const nouveauxEnfants = pipe(
 				enfants,
