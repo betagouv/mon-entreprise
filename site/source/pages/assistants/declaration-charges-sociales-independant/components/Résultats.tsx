@@ -6,13 +6,17 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
-import { Article } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
-import { Container, Grid, Spacing } from '@/design-system/layout'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Article,
+	Container,
+	Emoji,
+	Grid,
+	Markdown,
+	Spacing,
+	typography,
+} from '@/design-system'
+
+const { Body, H2, H3, Intro, Link } = typography
 
 export default function Résultats() {
 	const engine = useEngine()

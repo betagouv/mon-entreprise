@@ -1,9 +1,6 @@
 import { Trans } from 'react-i18next'
 
-import { Strong } from '@/design-system/typography'
-import { H2 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, H2, Li, Strong, Ul } from '@/design-system'
 
 import ChoixDuStatut from '.'
 import { config } from '../../simulateurs/_configs/config'

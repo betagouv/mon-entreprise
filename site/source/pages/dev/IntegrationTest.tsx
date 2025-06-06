@@ -2,8 +2,7 @@ import ColorPicker from '@atomik-color/component'
 import { str2Color } from '@atomik-color/core'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import { Button } from '@/design-system/buttons'
-import { H2 } from '@/design-system/typography/heading'
+import { Button, H2 } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 
 export default function IntegrationTest() {

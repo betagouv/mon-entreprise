@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
+import { enregistreLaRéponse } from '@/store/actions/actions'
+
 import {
 	SwitchContainer,
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from '@/design-system/réductionDeCotisations'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+} from './réductionDeCotisations'
 
 export default function EffectifSwitch() {
 	const dispatch = useDispatch()

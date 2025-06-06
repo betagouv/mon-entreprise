@@ -2,17 +2,22 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
+import { SimulateurCard } from '@/components/SimulateurCard'
 import Meta from '@/components/utils/Meta'
-import { Grid } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Grid,
+	H2,
+	H3,
+	Intro,
+	Li,
+	Link,
+	Strong,
+	Ul,
+} from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { SimulateurCard } from '../../components/SimulateurCard'
 import simulatorSvg from './illustration-simulateur.svg'
 
 export default function SimulateursEtAssistants() {

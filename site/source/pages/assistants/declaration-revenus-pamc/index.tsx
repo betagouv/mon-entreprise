@@ -9,12 +9,18 @@ import PageHeader from '@/components/PageHeader'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Warning from '@/components/ui/WarningBlock'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Button } from '@/design-system/buttons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Grid,
+	Intro,
+	Li,
+	Link,
+	SmallBody,
+	Spacing,
+	Strong,
+	Ul,
+} from '@/design-system'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 import { resetSimulation } from '@/store/actions/actions'

@@ -5,17 +5,21 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import { StatutType } from '@/components/StatutTag'
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
-import { Button } from '@/design-system/buttons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { Intro } from '@/design-system/typography/paragraphs'
+import {
+	Button,
+	Container,
+	Grid,
+	Intro,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
 import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/StatutChoice'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
-import { Situation } from '@/store/reducers/rootReducer'
+import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import { usePreviousStep } from './_components/useSteps'
 
@@ -127,7 +131,7 @@ function usePossibleStatuts(): Array<StatutType> {
 	}
 }
 
-function getSituationFromStatut(statut: StatutType): Situation {
+function getSituationFromStatut(statut: StatutType): SituationPublicodes {
 	return {
 		'entreprise . catégorie juridique . remplacements': 'oui',
 		'entreprise . catégorie juridique':

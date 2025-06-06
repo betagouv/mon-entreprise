@@ -1,7 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Card } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
+import { Card, Emoji } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 export function ImpotSocieteCard() {

@@ -3,22 +3,25 @@ import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import NumberInput from '@/components/conversation/NumberInput'
 import Montant from '@/components/RéductionDeCotisations/Montant'
 import MonthOptions from '@/components/RéductionDeCotisations/MonthOptions'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Button } from '@/design-system/buttons'
-import { RotatingChevronIcon } from '@/design-system/icons'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Grid,
+	MontantField,
+	RotatingChevronIcon,
+	Spacing,
+} from '@/design-system'
+import { euros } from '@/domaine/Montant'
 import {
 	MonthState,
 	Options,
 	RéductionDottedName,
 	réductionGénéraleDottedName,
 	rémunérationBruteDottedName,
-	RémunérationBruteInput,
 } from '@/utils/réductionDeCotisations'
 
 type Props = {
@@ -52,48 +55,24 @@ export default function RéductionMois({
 	const engine = useEngine()
 	const [isOptionVisible, setOptionVisible] = useState(false)
 
-	const RémunérationInput = () => {
-		// TODO: enlever les 4 premières props après résolution de #3123
-		const ruleInputProps = {
-			dottedName,
-			suggestions: {},
-			description: undefined,
-			question: undefined,
-			engine,
-			'aria-labelledby': 'simu-update-explaining',
-			formatOptions: {
-				maximumFractionDigits: 0,
-			},
-			displayedUnit,
-			unit: {
-				numerators: ['€'],
-				denominators: [],
-			},
-		}
-
-		return (
-			<NumberInput
-				{...ruleInputProps}
-				id={`${rémunérationBruteDottedName.replace(
-					/\s|\./g,
-					'_'
-				)}-${monthName}`}
-				aria-label={`${engine.getRule(rémunérationBruteDottedName)
-					?.title} (${monthName})`}
-				onChange={(rémunérationBrute?: PublicodesExpression) =>
-					onRémunérationChange(
-						index,
-						(rémunérationBrute as RémunérationBruteInput).valeur
-					)
-				}
-				value={data.rémunérationBrute}
-				formatOptions={{
-					maximumFractionDigits: 2,
-				}}
-				showSuggestions={false}
-			/>
-		)
-	}
+	const RémunérationInput = () => (
+		<MontantField
+			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+			aria={{
+				label: `${engine.getRule(rémunérationBruteDottedName)
+					?.title} (${monthName})`,
+				labelledby: 'simu-update-explaining',
+			}}
+			onChange={(montant) => onRémunérationChange(index, montant?.valeur ?? 0)}
+			value={
+				data.rémunérationBrute !== undefined
+					? euros(data.rémunérationBrute)
+					: undefined
+			}
+			unité="Euro"
+			avecCentimes={false}
+		/>
+	)
 
 	const OptionsButton = () => {
 		return (

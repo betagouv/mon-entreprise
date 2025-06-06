@@ -7,7 +7,7 @@ import './FicheDePaie.css'
 
 import { styled } from 'styled-components'
 
-import { H3, H4 } from '@/design-system/typography/heading'
+import { H3, H4 } from '@/design-system'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'

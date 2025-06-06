@@ -4,11 +4,7 @@ import { styled } from 'styled-components'
 import Value from '@/components/EngineValue/Value'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
-import { CardContainer } from '@/design-system/card/Card'
-import { EditIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, CardContainer, EditIcon, Grid, Link } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 const RevenuEstimé = () => {

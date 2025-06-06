@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Li, Ol } from '@/design-system/typography/list'
+import { Li, Ol } from './list'
 
 const meta: Meta<typeof Ol> = {
 	component: Ol,

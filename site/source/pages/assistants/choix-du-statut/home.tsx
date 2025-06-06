@@ -5,14 +5,19 @@ import { TrackPage } from '@/components/ATInternetTracking'
 import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import PageHeader from '@/components/PageHeader'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { ClockIcon } from '@/design-system/icons'
-import { Grid, Spacing } from '@/design-system/layout'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
-import { Strong } from '@/design-system/typography'
-import { H3 } from '@/design-system/typography/heading'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	ClockIcon,
+	Grid,
+	H3,
+	Intro,
+	Message,
+	PopoverConfirm,
+	SmallBody,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 

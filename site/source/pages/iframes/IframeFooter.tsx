@@ -1,7 +1,7 @@
 import FeedbackButton from '@/components/Feedback'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { LogoWithLink } from '@/components/Logo'
-import { Spacing } from '@/design-system/layout'
+import { Spacing } from '@/design-system'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 export default function IframeFooter() {

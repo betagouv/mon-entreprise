@@ -1,13 +1,11 @@
 import { DottedName } from 'modele-social'
-import { PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { Body, Grid } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
@@ -38,11 +36,11 @@ export function AssistantGoal({
 	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
 	const initialRender = useInitialRender()
 	const onChange = useCallback(
-		(x?: PublicodesExpression) => {
+		(x?: ValeurPublicodes) => {
 			dispatch(
 				ajusteLaSituation({ [dottedName]: x } as Record<
 					DottedName,
-					SimpleRuleEvaluation
+					ValeurPublicodes
 				>)
 			)
 		},

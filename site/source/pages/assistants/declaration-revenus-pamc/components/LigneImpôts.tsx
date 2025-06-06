@@ -5,11 +5,7 @@ import { styled } from 'styled-components'
 
 import LectureGuide from '@/components/LectureGuide'
 import { useEngine } from '@/components/utils/EngineContext'
-import { FlexCenter } from '@/design-system/global-style'
-import { Grid } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { Body } from '@/design-system/typography/paragraphs'
-import { toOuiNon } from '@/domaine/engine/toOuiNon'
+import { Body, FlexCenter, Grid, Strong } from '@/design-system'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import CheckboxImpôts from './CheckboxImpôts'
@@ -35,7 +31,7 @@ export function LigneImpôts({
 
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		arrondi: toOuiNon(arrondi),
+		arrondi,
 		unité: currentUnit,
 	})
 	const noValue =

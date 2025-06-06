@@ -4,11 +4,14 @@ import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
-import { NumberField } from '@/design-system'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { Strong } from '@/design-system/typography'
-import { H3 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	H3,
+	HelpButtonWithPopover,
+	MontantField,
+	Strong,
+} from '@/design-system'
+import { eurosParAn } from '@/domaine/Montant'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { debounce } from '@/utils'
 
@@ -55,14 +58,14 @@ function RémunérationEntrepriseUnipersonnelle() {
 					</Trans>
 				}
 			>
-				<NumberField
-					value={CA}
-					onChange={(value) => setState({ CA: value })}
+				<MontantField
+					value={CA !== undefined ? eurosParAn(CA) : undefined}
+					unité="EuroParAn"
+					onChange={(m) => setState({ CA: m?.valeur })}
 					label={t(
 						'choix-statut.rémunération.CA.label',
 						"Montant du chiffre d'affaires HT"
 					)}
-					displayedUnit="€/an"
 					id="CA"
 				/>
 				<Trans i18nKey="choix-statut.rémunération.charges.title">
@@ -87,14 +90,14 @@ function RémunérationEntrepriseUnipersonnelle() {
 						</HelpButtonWithPopover>
 					</H3>
 				</Trans>
-				<NumberField
-					value={charges}
+				<MontantField
+					value={charges !== undefined ? eurosParAn(charges) : undefined}
+					unité="EuroParAn"
 					label={t(
 						'choix-statut.rémunération.charges.label',
 						'Montant des charges HT'
 					)}
-					displayedUnit="€/an"
-					onChange={(value) => setState({ charges: value })}
+					onChange={(m) => setState({ charges: m?.valeur })}
 					id="charges"
 				/>
 
@@ -133,14 +136,18 @@ function RémunérationSociétéAssociésMultiples() {
 					</Trans>
 				}
 			>
-				<NumberField
-					value={rémunérationTotale}
-					onChange={(value) => setState({ rémunérationTotale: value })}
+				<MontantField
+					value={
+						rémunérationTotale !== undefined
+							? eurosParAn(rémunérationTotale)
+							: undefined
+					}
+					unité="EuroParAn"
+					onChange={(m) => setState({ rémunérationTotale: m?.valeur })}
 					label={t(
 						'choix-statut.rémunération.rémunérationTotale.label',
 						'Montant de la rémunération totale'
 					)}
-					displayedUnit="€/an"
 					id="rémunérationTotale"
 				/>
 

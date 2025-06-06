@@ -2,9 +2,7 @@ import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 
 import { DistributionDesCotisations } from '@/components/simulationExplanation/DistributionDesCotisations'
-import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { H2, Link, SmallBody } from '@/design-system'
 
 interface Props {
 	regroupement: Partial<Record<DottedName, Array<string>>>

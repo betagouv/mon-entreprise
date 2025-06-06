@@ -2,11 +2,11 @@ import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button } from '@/design-system/buttons'
-
+import { Button } from '../buttons'
 import { Grid } from '../layout'
 import { H3 } from '../typography/heading'
-import PopoverWithTrigger, {
+import {
+	PopoverWithTrigger,
 	PopoverWithTriggerProps,
 } from './PopoverWithTrigger'
 
@@ -17,7 +17,7 @@ type PopoverConfirm = Omit<PopoverWithTriggerProps, 'children'> & {
 	children?: ReactElement | string
 }
 
-export default function PopoverConfirm({
+export function PopoverConfirm({
 	children,
 	title,
 	trigger,

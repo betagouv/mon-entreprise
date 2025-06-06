@@ -4,7 +4,7 @@ import './FicheDePaie.css'
 
 import { DottedName } from 'modele-social'
 
-import { H3, H4 } from '@/design-system/typography/heading'
+import { H3, H4 } from '@/design-system'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import { Condition } from '../EngineValue/Condition'

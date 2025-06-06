@@ -3,18 +3,23 @@ import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
+import { SimulateurCard } from '@/components/SimulateurCard'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import Meta from '@/components/utils/Meta'
-import { Button } from '@/design-system/buttons'
-import { Container, Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Container,
+	Grid,
+	H2,
+	Intro,
+	Link,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { SimulateurCard } from '../../components/SimulateurCard'
 import illustrationSvg from './illustration.svg'
 import illustration2Svg from './illustration2.svg'
 import SearchOrCreate from './SearchOrCreate'

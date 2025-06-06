@@ -58,7 +58,7 @@ const Container = styled.span`
 	vertical-align: bottom;
 `
 
-export default function InfoBulle({ children }: { children: React.ReactNode }) {
+export function InfoBulle({ children }: { children: React.ReactNode }) {
 	return (
 		<Container>
 			<QuestionMark>?</QuestionMark>

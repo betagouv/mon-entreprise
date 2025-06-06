@@ -13,12 +13,7 @@ import {
 } from 'recharts'
 import { styled } from 'styled-components'
 
-import { Radio, ToggleGroup } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Emoji, Radio, Spacing, ToggleGroup, typography } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
 import { round } from '@/utils/number'
@@ -26,6 +21,8 @@ import { round } from '@/utils/number'
 import { Satisfaction, SatisfactionLevel } from '../types'
 import { AccessibleTable } from './AccessibleTable'
 import { RealResponsiveContainer } from './Chart'
+
+const { Body, Li, Ul, Strong } = typography
 
 export const SatisfactionStyle = [
 	[SatisfactionLevel.Mauvais, { emoji: '🙁', color: '#D3675F' }],

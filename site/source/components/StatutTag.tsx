@@ -3,13 +3,13 @@ import { styled } from 'styled-components'
 
 import {
 	CircleIcon,
+	Colors,
 	HexagonIcon,
 	RhombusIcon,
 	SquareIcon,
+	Tag,
 	TriangleIcon,
-} from '@/design-system/icons'
-import { Tag } from '@/design-system/tag'
-import { Colors } from '@/design-system/theme'
+} from '@/design-system'
 
 export const TAG_DATA = {
 	EI: {

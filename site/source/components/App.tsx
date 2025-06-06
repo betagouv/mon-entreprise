@@ -13,7 +13,7 @@ import {
 	useEngine,
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
-import { Container } from '@/design-system/layout'
+import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'

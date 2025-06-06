@@ -1,20 +1,36 @@
-import { Evaluation } from 'publicodes'
-import { useCallback } from 'react'
+import { TextField } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { useSelection } from '@/hooks/UseSelection'
+import { NoOp } from '@/utils/NoOp'
 
-import { TextField } from '@/design-system/field'
+interface TextInputProps {
+	value: ValeurPublicodes | undefined
+	onChange?: (value: ValeurPublicodes | undefined) => void
+	missing?: boolean
+	title?: string
+	description?: string
+	autoFocus?: boolean
+	onSubmit?: (source?: string) => void
 
-import { debounce } from '../../utils'
-import { InputProps } from './RuleInput'
+	aria?: {
+		labelledby?: string
+		label?: string
+	}
+}
 
 export default function TextInput({
-	onChange,
+	onChange = NoOp,
 	value,
 	description,
 	title,
 	missing,
 	autoFocus,
-}: InputProps & { value: Evaluation<string> }) {
-	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
+	aria = {},
+}: TextInputProps) {
+	const { handleChange } = useSelection({
+		value,
+		onChange,
+	})
 
 	return (
 		<TextField
@@ -23,13 +39,15 @@ export default function TextInput({
 			// eslint-disable-next-line jsx-a11y/no-autofocus
 			autoFocus={autoFocus}
 			onChange={(value) => {
-				debouncedOnChange(`'${value}'`)
+				handleChange(`'${value}'`)
 			}}
 			description={description}
 			{...{
 				[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
 			}}
 			autoComplete="off"
+			aria-label={aria.label ?? title}
+			aria-labelledby={aria.labelledby}
 		/>
 	)
 }

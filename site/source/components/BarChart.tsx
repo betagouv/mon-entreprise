@@ -4,9 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { animated, config, useSpring } from 'react-spring'
 import { styled, useTheme } from 'styled-components'
 
-import { Emoji } from '@/design-system/emoji'
-import { Spacing } from '@/design-system/layout'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import { Body, Emoji, SmallBody, Spacing } from '@/design-system'
 import useDisplayOnIntersecting from '@/hooks/useDisplayOnIntersecting'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'

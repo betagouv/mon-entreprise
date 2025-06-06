@@ -1,49 +1,68 @@
-import { lazy, Suspense, useCallback, useMemo } from 'react'
-import { styled } from 'styled-components'
+import { pipe } from 'effect'
+import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
+import { ASTNode } from 'publicodes'
 
-import { InputProps } from '@/components/conversation/RuleInput'
-import { DateFieldProps } from '@/design-system/field/DateField'
-import { Spacing } from '@/design-system/layout'
+import { useEngine } from '@/components/utils/EngineContext'
+import {
+	DateField,
+	DateFieldProps,
+	InputSuggestions,
+	InputSuggestionsRecord,
+	Spacing,
+} from '@/design-system'
+import {
+	dateToIsoDate,
+	isIsoDate,
+	IsoDate,
+	isPublicodesStandardDate,
+	parseIsoDateString,
+	publicodesDateToIsoDate,
+} from '@/domaine/Date'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { NoOp } from '@/utils/NoOp'
 
-import Skeleton from '../ui/Skeleton'
-import { useEngine } from '../utils/EngineContext'
-import InputSuggestions from './InputSuggestions'
+interface DateInputProps {
+	dottedName: DottedName
+	value?: IsoDate
+	onChange?: (value: IsoDate | undefined) => void
+	missing?: boolean
+	hideDefaultValue?: boolean
+	onSubmit?: (source?: string) => void
+	suggestions?: InputSuggestionsRecord<IsoDate | ASTNode>
 
-const DateField = lazy(() => import('@/design-system/field/DateField'))
+	title?: string
+	type: DateFieldProps['type']
 
-export default function DateInput({
-	suggestions,
-	onChange,
+	aria?: {
+		labelledby?: string
+		label?: string
+	}
+}
+
+export const DateInput = ({
+	suggestions = {},
+	onChange = NoOp,
 	missing,
 	title,
 	hideDefaultValue,
 	onSubmit,
-	required,
 	value,
 	type,
-}: InputProps & { type: DateFieldProps['type'] }) {
+	aria = {},
+}: DateInputProps) => {
 	const engine = useEngine()
 
-	const convertDate = (val?: unknown) => {
-		if (!val || typeof val !== 'string') {
-			return undefined
+	const handleDateChange = (value?: Date) => {
+		if (!value) {
+			return onChange(undefined)
 		}
-		const [day, month, year] = val.split('/')
-
-		return `${year}-${month}-${day}T12:00:00`
+		onChange(value && dateToIsoDate(value))
 	}
 
-	const handleDateChange = useCallback(
-		(value?: string) => {
-			if (!value) {
-				return onChange(undefined)
-			}
-			onChange(value)
-		},
-		[onChange]
-	)
-
-	const dateValue = useMemo(() => new Date(convertDate(value) ?? NaN), [value])
+	const handleSuggestion = (value?: IsoDate) => {
+		onChange(value)
+	}
 
 	return (
 		<div className="step input">
@@ -51,45 +70,41 @@ export default function DateInput({
 				{suggestions && (
 					<InputSuggestions
 						suggestions={suggestions}
-						onFirstClick={(node) => {
-							const value = engine.evaluate(node)
+						onFirstClick={(valeur) => {
+							if (isIsoDate(valeur)) {
+								return handleSuggestion(valeur)
+							}
+							if (isPublicodesStandardDate(valeur)) {
+								return handleSuggestion(publicodesDateToIsoDate(valeur))
+							}
 
-							handleDateChange(
-								'nodeValue' in value && typeof value.nodeValue === 'string'
-									? value.nodeValue
-									: undefined
-							)
+							const dateÉvaluée = pipe(
+								engine.evaluate(valeur),
+								PublicodesAdapter.decode,
+								O.getOrUndefined
+							) as IsoDate | undefined
+
+							handleSuggestion(dateÉvaluée)
 						}}
 						onSecondClick={() => {
 							onSubmit?.('suggestion')
 						}}
 					/>
 				)}
-				<Suspense fallback={<DateFieldFallback />}>
-					<DateField
-						defaultSelected={
-							(missing && hideDefaultValue) || isNaN(+dateValue)
-								? undefined
-								: dateValue
-						}
-						isRequired={required}
-						onChange={handleDateChange}
-						aria-label={title}
-						label={title}
-						type={type}
-					/>
-				</Suspense>
+				<DateField
+					aria-label={aria.label ?? title}
+					aria-labelledby={aria.labelledby}
+					defaultSelected={
+						(missing && hideDefaultValue) || value === undefined
+							? undefined
+							: parseIsoDateString(value)
+					}
+					onChange={handleDateChange}
+					label={title}
+					type={type}
+				/>
 				<Spacing md />
 			</div>
 		</div>
 	)
 }
-function DateFieldFallback() {
-	return <Wrapper />
-}
-
-const Wrapper = styled(Skeleton)`
-	width: 218px;
-
-	height: 3.5rem;
-`

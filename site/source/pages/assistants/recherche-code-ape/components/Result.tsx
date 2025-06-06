@@ -4,14 +4,19 @@ import { css, styled } from 'styled-components'
 
 import GuichetInfo from '@/components/GuichetInfo'
 import { Appear } from '@/components/ui/animate'
-import { Chip } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { RadioCardSkeleton } from '@/design-system/field/Radio/RadioCard'
-import { RotatingChevronIcon } from '@/design-system/icons'
-import { Grid } from '@/design-system/layout'
-import { H4, H5, H6 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Button,
+	Chip,
+	Grid,
+	H4,
+	H5,
+	H6,
+	Li,
+	RadioCardSkeleton,
+	RotatingChevronIcon,
+	SmallBody,
+	Ul,
+} from '@/design-system'
 
 import { HelpGuichetUnique } from './HelpGuichetUnique'
 

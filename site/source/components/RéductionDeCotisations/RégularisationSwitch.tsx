@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
+import { RégularisationMethod } from '@/utils/réductionDeCotisations'
+
 import {
 	SwitchContainer,
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from '@/design-system/réductionDeCotisations'
-import { RégularisationMethod } from '@/utils/réductionDeCotisations'
+} from './réductionDeCotisations'
 
 type Props = {
 	régularisationMethod: RégularisationMethod

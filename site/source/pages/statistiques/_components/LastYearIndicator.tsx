@@ -1,11 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Grid } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H2 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body, Emoji, Grid, H2, Intro, Message, Strong } from '@/design-system'
 
 import { QuestionRépondues, Satisfaction, Visites } from '../types'
 import {

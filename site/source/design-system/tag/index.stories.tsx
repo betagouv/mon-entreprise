@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import { Tag } from '.'
 import { HexagonIcon } from '../icons'
-import theme from '../theme'
+import { theme } from '../theme'
 
 const meta: Meta<typeof Tag> = {
 	component: Tag,

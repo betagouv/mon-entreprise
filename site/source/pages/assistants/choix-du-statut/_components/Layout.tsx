@@ -1,5 +1,4 @@
-import { Grid } from '@/design-system/layout'
-import { H3 } from '@/design-system/typography/heading'
+import { Grid, H3 } from '@/design-system'
 
 import StatutsPossibles from './StatutsPossibles'
 

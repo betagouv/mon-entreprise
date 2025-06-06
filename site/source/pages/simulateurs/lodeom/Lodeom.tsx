@@ -7,8 +7,7 @@ import RégularisationSwitch from '@/components/RéductionDeCotisations/Régular
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Emoji } from '@/design-system/emoji'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Emoji } from '@/design-system'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 

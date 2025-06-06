@@ -1,10 +1,6 @@
 import { useMemo } from 'react'
 
-import { Chip, Message } from '@/design-system'
-import { Strong } from '@/design-system/typography'
-import { H5 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Chip, H5, Li, Message, Strong, Ul } from '@/design-system'
 import { usePromise } from '@/hooks/usePromise'
 import { capitalise0 } from '@/utils'
 

@@ -4,16 +4,22 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
-import { Accordion, Item } from '@/design-system'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { ExternalLinkIcon, PlusCircleIcon } from '@/design-system/icons'
-import { Container } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H2, H4 } from '@/design-system/typography/heading'
-import { StyledLink } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Accordion,
+	Body,
+	Container,
+	Emoji,
+	ExternalLinkIcon,
+	H2,
+	H4,
+	HelpButtonWithPopover,
+	Item,
+	Li,
+	PlusCircleIcon,
+	Strong,
+	StyledLink,
+	Ul,
+} from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 import DetailsRowCards from './DetailsRowCards'

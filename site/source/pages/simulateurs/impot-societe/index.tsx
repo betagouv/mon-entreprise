@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
-import { StyledInputSuggestion } from '@/components/conversation/InputSuggestions'
 import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue/Value'
 import Notifications from '@/components/Notifications'
@@ -16,9 +15,7 @@ import {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
-import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
 import useYear from '@/hooks/useYear'
 import {
 	batchUpdateSituation,

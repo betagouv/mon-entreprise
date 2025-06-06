@@ -1,6 +1,6 @@
 import { Trans } from 'react-i18next'
 
-import { H3 } from '@/design-system/typography/heading'
+import { H3 } from '@/design-system'
 
 import { Condition } from '../EngineValue/Condition'
 import Line from './Line'

@@ -11,14 +11,18 @@ import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import { Appear } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { EngineProvider, useEngine } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
-import { headings } from '@/design-system/typography'
-import { Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Button,
+	Emoji,
+	Grid,
+	headings,
+	Intro,
+	Markdown,
+	PopoverConfirm,
+	SmallBody,
+	Spacing,
+} from '@/design-system'
 import { hash, omit } from '@/utils'
 import {
 	buildSituationFromObject,
@@ -192,6 +196,7 @@ function FormulairePublicodes() {
 										<RuleInput
 											id={dottedName.replace(/\s|\./g, '_')}
 											dottedName={dottedName as DottedName}
+											// @ts-ignore
 											onChange={(value) => onChange(dottedName, value)}
 											hideDefaultValue
 											aria-label={

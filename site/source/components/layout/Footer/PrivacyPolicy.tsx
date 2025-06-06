@@ -2,12 +2,17 @@ import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { PopoverWithTrigger } from '@/design-system'
-import { Checkbox } from '@/design-system/field'
-import { H2 } from '@/design-system/typography/heading'
-import { Link, StyledLink } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Checkbox,
+	H2,
+	Li,
+	Link,
+	PopoverWithTrigger,
+	SmallBody,
+	StyledLink,
+	Ul,
+} from '@/design-system'
 
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 import { TrackPage, useTracking } from '../../ATInternetTracking'

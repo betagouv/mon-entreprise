@@ -3,17 +3,14 @@ import { styled } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Button } from '@/design-system/buttons'
-import { Code, Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ol, Ul } from '@/design-system/typography/list'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Button, typography } from '@/design-system'
 
 import Meta from '../../components/utils/Meta'
 import { CasParticuliers } from './components/CasParticuliers'
 import StepByStep from './components/StepByStep'
 import illustration from './images/API_illustration.svg'
+
+const { Body, Li, Link, Ul, H2, H3, Intro, Code, Ol, Strong } = typography
 
 export default function API() {
 	const { t } = useTranslation()

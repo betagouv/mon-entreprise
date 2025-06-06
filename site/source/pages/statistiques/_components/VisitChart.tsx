@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Message, Radio, ToggleGroup } from '@/design-system'
-import { Spacing } from '@/design-system/layout'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Message,
+	Radio,
+	Spacing,
+	ToggleGroup,
+	typography,
+} from '@/design-system'
 
 import { Visites } from '../types'
 import { AccessibleTable } from './AccessibleTable'
 import Chart, { formatLegend } from './Chart'
+
+const { Body } = typography
 
 type Period = 'jours' | 'mois'
 

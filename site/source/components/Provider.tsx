@@ -11,7 +11,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { TrackingProvider } from '@/components/TrackingProvider'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
-import DesignSystemThemeProvider from '@/design-system/root'
+import { DesignSystemThemeProvider } from '@/design-system'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
 
 import { makeStore } from '../store/store'

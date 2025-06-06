@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Message } from '@/design-system'
-import { CloseButton } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, CloseButton, Emoji, Link, Message } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 

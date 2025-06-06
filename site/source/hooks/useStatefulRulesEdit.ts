@@ -1,13 +1,16 @@
 import { pipe, Record } from 'effect'
+import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import { Evaluation } from 'publicodes'
+import { EvaluatedNode } from 'publicodes'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { RèglePublicodeAdapter } from '@/domaine/engine/RèglePublicodeAdapter'
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 export const useStatefulRulesEdit = <T extends DottedName>(
@@ -16,23 +19,21 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
-	const engineValues = (): Record<T, SimpleRuleEvaluation> =>
-		pipe<Record<T, Evaluation>, Record<T, SimpleRuleEvaluation>>(
+	const engineValues = (): Record<T, O.Option<ValeurPublicodes>> =>
+		pipe<Record<T, EvaluatedNode>, Record<T, O.Option<ValeurPublicodes>>>(
 			R.fromIterableWith(rules, (rule) => [
 				rule,
-				engine.evaluate(rule).nodeValue,
-			]) as Record<T, Evaluation>,
-			R.map((nodeValue: Evaluation, rule: T) =>
-				RèglePublicodeAdapter.decode(rule, nodeValue as SimpleRuleEvaluation)
-			)
+				engine.evaluate(rule),
+			]) as Record<T, EvaluatedNode>,
+			R.map((node: EvaluatedNode) => PublicodesAdapter.decode(node))
 		)
 
 	const [dirtyValues, setDirtyValues] = useState(engineValues())
 
 	const read = R.map(
 		dirtyValues,
-		(_, rule: T) => () => dirtyValues[rule]
-	) as Record<T, () => SimpleRuleEvaluation>
+		(_, rule: T) => () => O.getOrUndefined(dirtyValues[rule])
+	) as Record<T, () => ValeurPublicodes | undefined>
 
 	const set = R.map(
 		dirtyValues,
@@ -51,8 +52,16 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 	const confirm = () => {
 		dispatch(
 			ajusteLaSituation(
-				R.map(dirtyValues, (dirtyValue, rule) =>
-					RèglePublicodeAdapter.encode(rule, dirtyValue)
+				pipe<
+					Record<T, O.Option<ValeurPublicodes>>,
+					Record<T, ValeurPublicodes | undefined>,
+					Record<T, ValeurPublicodes>
+				>(
+					dirtyValues,
+					R.map<T, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
+						O.getOrUndefined
+					),
+					filterRecordNotUndefined
 				)
 			)
 		)
@@ -66,3 +75,7 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 		confirm,
 	}
 }
+
+const filterRecordNotUndefined = <T, K extends string = string>(
+	r: Record<K, T | undefined>
+) => R.filter(r, (v: T | undefined): v is T => v !== undefined) as Record<K, T>

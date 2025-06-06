@@ -1,7 +1,7 @@
 import {
 	RuleSwitchLabel,
 	SwitchContainer,
-} from '@/design-system/réductionDeCotisations'
+} from '@/components/RéductionDeCotisations/réductionDeCotisations'
 import { zonesLodeomDottedName } from '@/hooks/useZoneLodeom'
 import { SimpleField } from '@/pages/assistants/components/Fields'
 

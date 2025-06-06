@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Card } from '@/design-system/card'
-import TextField from '@/design-system/field/TextField'
-import { Spacing } from '@/design-system/layout'
+import { Card, Spacing, TextField } from '@/design-system'
 
 import Worker from './SelectTauxRisque.worker?worker'
 

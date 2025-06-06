@@ -1,8 +1,7 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import { CircledArrowIcon } from '@/design-system/icons'
-import { H3 } from '@/design-system/typography/heading'
+import { CircledArrowIcon, H3 } from '@/design-system'
 
 const ItemTitle = ({ children }: { children: ReactNode }) => {
 	return (

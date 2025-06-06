@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Message } from '@/design-system'
-
 import { Body } from '../typography/paragraphs'
+import { Message } from './'
 
 const meta: Meta<typeof Message> = {
 	component: Message,

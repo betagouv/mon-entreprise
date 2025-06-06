@@ -2,9 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Loader } from '@/design-system/icons/Loader'
+import { Button, Loader, PopoverWithTrigger } from '@/design-system'
 
 const LazySearchRulesAndSimulators = lazy(
 	() => import('./search/SearchRulesAndSimulators')

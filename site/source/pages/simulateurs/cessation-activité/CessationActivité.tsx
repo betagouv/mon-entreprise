@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body } from '@/design-system'
 import { useParamsFromSituation } from '@/hooks/useSearchParamsSimulationSharing'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSiteUrl } from '@/hooks/useSiteUrl'

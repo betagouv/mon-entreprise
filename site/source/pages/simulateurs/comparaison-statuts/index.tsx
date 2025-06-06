@@ -2,14 +2,10 @@ import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 
 import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Strong } from '@/design-system/typography'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
-import { AutoEntrepreneurContexte } from '@/domaine/AutoEntrepreneurContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
+import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 import { useSitePaths } from '@/sitePaths'
 
 import Comparateur from './components/Comparateur'
@@ -32,7 +28,7 @@ function ComparateurStatutsUI() {
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
-				...AutoEntrepreneurContexte,
+				...AutoEntrepreneurContexteDansPublicodes,
 			}),
 		[situation, engine]
 	)

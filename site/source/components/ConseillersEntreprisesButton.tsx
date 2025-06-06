@@ -2,11 +2,13 @@ import { ComponentType, lazy, Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Loader } from '@/design-system/icons/Loader'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Emoji,
+	Loader,
+	PopoverWithTrigger,
+} from '@/design-system'
 
 const LazyIframe = lazy<ComponentType<{ src: string; onLoad: () => void }>>(
 	async () => {

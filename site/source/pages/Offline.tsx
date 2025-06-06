@@ -4,9 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { ErrorLayout } from '@/components/ErrorPage'
 import Meta from '@/components/utils/Meta'
-import { Message } from '@/design-system'
-import { Grid } from '@/design-system/layout'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Body, Grid, Intro, Message } from '@/design-system'
 
 export const CatchOffline = ({ error }: ComponentProps<FallbackRender>) => {
 	if (error.message.includes('dynamically imported module')) {

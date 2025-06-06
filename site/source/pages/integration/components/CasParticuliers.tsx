@@ -1,12 +1,19 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { Message } from '@/design-system'
-import { Code, Strong } from '@/design-system/typography'
-import { H2, H3, H4, H5 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Code,
+	H2,
+	H3,
+	H4,
+	H5,
+	Li,
+	Link,
+	Message,
+	Strong,
+	Ul,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 export function CasParticuliers() {

@@ -2,8 +2,7 @@ import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { SearchableSelectField } from '@/design-system/field/SearchableSelectField/SearchableSelectField'
-import { Grid } from '@/design-system/layout'
+import { Grid, SearchableSelectField } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
 import useSearchCompany from '@/hooks/useSearchCompany'
 

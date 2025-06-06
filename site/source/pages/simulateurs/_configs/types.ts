@@ -60,6 +60,12 @@ export interface PageConfig {
 	 */
 	private?: boolean
 
+	/** Indique si le simulateur doit être masqué des menus et listes
+	 *
+	 * Le simulateur reste accessible par son URL directe
+	 */
+	hidden?: boolean
+
 	/** Indique si la page est en version bêta (affiche un petit bandeau) */
 	beta?: boolean
 

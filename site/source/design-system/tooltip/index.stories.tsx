@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Tooltip } from '@/design-system/tooltip'
-
 import { Link } from '../typography/link'
+import { Tooltip } from './'
 
 const meta: Meta<typeof Tooltip> = {
 	component: Tooltip,

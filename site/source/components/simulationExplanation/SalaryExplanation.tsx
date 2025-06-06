@@ -7,12 +7,16 @@ import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExpla
 import StackedBarChart from '@/components/StackedBarChart'
 import { FromTop } from '@/components/ui/animate'
 import { useInversionFail } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Container, Grid, Spacing } from '@/design-system/layout'
-import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Container,
+	Emoji,
+	Grid,
+	H2,
+	Link,
+	Message,
+	Spacing,
+} from '@/design-system'
 
 import FicheDePaie from '../FicheDePaie/FicheDePaie'
 

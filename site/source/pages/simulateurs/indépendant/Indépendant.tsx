@@ -8,8 +8,8 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import { Body } from '@/design-system/typography/paragraphs'
-import { SimpleRuleEvaluation } from '@/domaine/engine/SimpleRuleEvaluation'
+import { Body } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import useYear from '@/hooks/useYear'
 import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
 import { ajusteLaSituation } from '@/store/actions/actions'
@@ -48,7 +48,7 @@ export default function IndépendantSimulation() {
 									dispatch(
 										ajusteLaSituation({
 											'entreprise . imposition': imposition,
-										} as Record<DottedName, SimpleRuleEvaluation>)
+										} as Record<DottedName, ValeurPublicodes>)
 									)
 								}}
 							/>

@@ -2,11 +2,7 @@ import { ComponentType } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Message } from '@/design-system'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H4 } from '@/design-system/typography/heading'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Grid, H4, Message, Spacing, Strong } from '@/design-system'
 
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
 import Value from '../EngineValue/Value'

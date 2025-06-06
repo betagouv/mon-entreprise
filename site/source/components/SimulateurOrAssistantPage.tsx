@@ -3,10 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import Meta from '@/components/utils/Meta'
-import { Chip } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { H1 } from '@/design-system/typography/heading'
-import { Intro } from '@/design-system/typography/paragraphs'
+import { Chip, Emoji, H1, Intro } from '@/design-system'
 import {
 	MergedSimulatorDataValues,
 	useCurrentSimulatorData,

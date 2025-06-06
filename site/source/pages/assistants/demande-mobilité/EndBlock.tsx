@@ -7,16 +7,24 @@ import { useTheme } from 'styled-components'
 import { TrackPage, useTracking } from '@/components/ATInternetTracking'
 import { Condition } from '@/components/EngineValue/Condition'
 import { EngineProvider, useEngine } from '@/components/utils/EngineContext'
-import { Message, PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Checkbox, TextField } from '@/design-system/field'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Checkbox,
+	Emoji,
+	Grid,
+	H2,
+	Intro,
+	Li,
+	Link,
+	Message,
+	PopoverWithTrigger,
+	SmallBody,
+	Spacing,
+	Strong,
+	TextField,
+	Ul,
+} from '@/design-system'
 
 import PDFDocument from './PDFDocument'
 

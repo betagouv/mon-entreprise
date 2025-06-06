@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
-import { Drawer } from '@/design-system/drawer'
-
 import { Button } from '../buttons'
+import { Drawer } from './'
 import { DrawerButtonProps } from './Drawer'
 
 const meta: Meta<typeof Drawer> = {

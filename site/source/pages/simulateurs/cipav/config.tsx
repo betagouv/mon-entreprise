@@ -10,6 +10,7 @@ export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'cipav',
 		icône: '📐',
+		hidden: true,
 		tracking: {
 			chapter2: 'profession_liberale',
 			chapter3: 'cipav',

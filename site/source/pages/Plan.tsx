@@ -1,13 +1,11 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { H1 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
+import { TrackPage } from '@/components/ATInternetTracking'
+import { H1, Li, Link, Ul } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import { TrackPage } from '../components/ATInternetTracking'
 import Meta from '../components/utils/Meta'
 
 export default function Plan() {
@@ -60,17 +58,9 @@ export const PlanContent = () => {
 				<StyledUl>
 					{Object.entries(simulatorData)
 						.filter(
-							([, { pathId }]) =>
-								pathId.startsWith('simulateurs') &&
-								!pathId.startsWith('simulateurs.profession-libérale.cipav') &&
-								!pathId.startsWith(
-									'simulateurs.profession-libérale.auxiliaire'
-								) &&
-								!pathId.startsWith(
-									'simulateurs.profession-libérale.chirurgien-dentiste'
-								) &&
-								!pathId.startsWith('simulateurs.profession-libérale.médecin') &&
-								!pathId.startsWith('simulateurs.profession-libérale.sage-femme')
+							([, simulator]) =>
+								simulator.pathId.startsWith('simulateurs') &&
+								!('hidden' in simulator && simulator.hidden)
 						)
 						.map(([simulateurKey, { path, title }]) => {
 							return (
@@ -82,9 +72,10 @@ export const PlanContent = () => {
 
 					{Object.entries(simulatorData)
 						.filter(
-							([, { pathId }]) =>
-								pathId.startsWith('assistants') &&
-								pathId !== 'assistants.pour-mon-entreprise.index'
+							([, simulator]) =>
+								simulator.pathId.startsWith('assistants') &&
+								simulator.pathId !== 'assistants.pour-mon-entreprise.index' &&
+								!('hidden' in simulator && simulator.hidden)
 						)
 						.map(([simulateurKey, { path, title }]) => {
 							return (

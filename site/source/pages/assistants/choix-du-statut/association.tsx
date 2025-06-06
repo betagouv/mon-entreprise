@@ -4,10 +4,15 @@ import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Message, RadioCard, RadioCardGroup } from '@/design-system'
-import { HelpButtonWithPopover } from '@/design-system/buttons'
-import { Strong } from '@/design-system/typography'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	HelpButtonWithPopover,
+	Message,
+	RadioCard,
+	RadioCardGroup,
+	SmallBody,
+	Strong,
+} from '@/design-system'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'

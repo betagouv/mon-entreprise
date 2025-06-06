@@ -2,10 +2,12 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { FocusStyle } from '@/design-system/global-style'
-import { EditIcon } from '@/design-system/icons'
+import {
+	Button,
+	EditIcon,
+	FocusStyle,
+	PopoverWithTrigger,
+} from '@/design-system'
 
 import Answers from './AnswerList'
 

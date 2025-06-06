@@ -4,14 +4,20 @@ import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
-import { Checkbox, Message, TextAreaField, TextField } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H1, H4 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Button,
+	Checkbox,
+	Emoji,
+	H1,
+	H4,
+	Link,
+	Message,
+	Spacing,
+	Strong,
+	TextAreaField,
+	TextField,
+} from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
 type SubmitError = {

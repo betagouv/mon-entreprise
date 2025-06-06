@@ -1,5 +1,4 @@
 import { DottedName } from 'modele-social'
-import { PublicodesExpression } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -9,8 +8,8 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { Condition } from '@/components/EngineValue/Condition'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { FromTop } from '@/components/ui/animate'
-import { H2 } from '@/design-system/typography/heading'
-import { SmallBody } from '@/design-system/typography/paragraphs'
+import { H2, SmallBody } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import useYear from '@/hooks/useYear'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
@@ -22,7 +21,7 @@ export default function ImpositionSection() {
 	const { t } = useTranslation()
 
 	const setSituation = useCallback(
-		(value: PublicodesExpression | undefined, dottedName: DottedName) => {
+		(value: ValeurPublicodes | undefined, dottedName: DottedName) => {
 			dispatch(enregistreLaRéponse(dottedName, value))
 		},
 		[dispatch]

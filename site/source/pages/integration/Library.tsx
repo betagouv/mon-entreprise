@@ -2,13 +2,21 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Code, Strong } from '@/design-system/typography'
-import { H2, H3, H4 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ol } from '@/design-system/typography/list'
-import { Body, Intro, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Code,
+	Emoji,
+	H2,
+	H3,
+	H4,
+	Intro,
+	Li,
+	Link,
+	Message,
+	Ol,
+	SmallBody,
+	Strong,
+} from '@/design-system'
 
 import Meta from '../../components/utils/Meta'
 import { StyledExempleIframe } from './API'

@@ -1,7 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Article } from '@/design-system/card'
-import { Emoji } from '@/design-system/emoji'
+import { Article, Emoji } from '@/design-system'
 
 type IframeIntegrationCardProps = {
 	sitePaths: { développeur: { iframe: string } }

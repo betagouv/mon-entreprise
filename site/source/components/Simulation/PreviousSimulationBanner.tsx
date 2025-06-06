@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import SimulationBanner from '@/components/Simulation/Banner'
-import { Link } from '@/design-system/typography/link'
+import { Link } from '@/design-system'
 import { loadPreviousSimulation } from '@/store/actions/actions'
 import { previousSimulationSelector } from '@/store/selectors/simulationSelectors'
 

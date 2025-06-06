@@ -9,11 +9,16 @@ import urssafSrc from '@/assets/images/Urssaf.svg'
 import RuleLink from '@/components/RuleLink'
 import { FromBottom } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Emoji,
+	Grid,
+	H2,
+	H3,
+	Message,
+	SmallBody,
+	Spacing,
+} from '@/design-system'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import * as logosSrc from '@/utils/logos'
 

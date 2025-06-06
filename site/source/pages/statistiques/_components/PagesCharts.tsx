@@ -11,9 +11,7 @@ import {
 } from 'recharts'
 import { css, styled } from 'styled-components'
 
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Li, Strong, Ul } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { AccessibleTable } from '@/pages/statistiques/_components/AccessibleTable'
 import { RealResponsiveContainer } from '@/pages/statistiques/_components/Chart'

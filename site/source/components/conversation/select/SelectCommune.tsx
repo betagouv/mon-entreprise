@@ -8,8 +8,7 @@ import {
 	SearchCommune,
 	searchCommunes,
 } from '@/api/commune'
-import { TextField } from '@/design-system/field'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, TextField } from '@/design-system'
 import { debounce } from '@/utils'
 
 function formatCommune(value: SearchCommune) {

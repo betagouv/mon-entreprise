@@ -1,11 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Chip } from '@/design-system'
-import { Card } from '@/design-system/card'
-import { SmallCard } from '@/design-system/card/SmallCard'
-import { Emoji } from '@/design-system/emoji'
-import InfoBulle from '@/design-system/InfoBulle'
-import { Grid } from '@/design-system/layout'
+import { Card, Chip, Emoji, Grid, InfoBulle, SmallCard } from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 

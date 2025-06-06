@@ -1,7 +1,6 @@
-import { Item } from '@/design-system'
-import { Select } from '@/design-system/field/Select'
+import { EvaluatedNode, PublicodesExpression } from 'publicodes'
 
-import { InputProps } from '../RuleInput'
+import { Item, Select } from '@/design-system'
 
 const STATES = [
 	'Allemagne',
@@ -54,12 +53,19 @@ const STATES = [
 	'Autre',
 ]
 
+interface SelectPaysDétachementProps {
+	id?: string
+	value?: EvaluatedNode['nodeValue']
+	onChange: (value: PublicodesExpression | undefined) => void
+	plusFrance?: boolean
+}
+
 export default function SelectPaysDétachement({
 	value,
 	onChange,
 	id,
 	plusFrance = false,
-}: InputProps & { plusFrance: boolean }) {
+}: SelectPaysDétachementProps) {
 	const states = plusFrance ? ['France', ...STATES] : STATES
 	const statesWithID = states.map((name, id) => ({
 		name,

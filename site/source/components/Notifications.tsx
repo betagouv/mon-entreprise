@@ -5,17 +5,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
-import Markdown from '@/components/utils/Markdown/Markdown'
-import { Message } from '@/design-system'
-import { CloseButton } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Strong } from '@/design-system/typography'
-import { Body, SmallBody } from '@/design-system/typography/paragraphs'
+import {
+	CloseButton,
+	Emoji,
+	Markdown,
+	Message,
+	typography,
+} from '@/design-system'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
+
+const { Body, Strong, SmallBody } = typography
 
 // To add a new notification to a simulator, you should create a publicodes rule
 // with the "type: notification" attribute. The display can be customized with

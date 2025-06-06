@@ -1,8 +1,7 @@
 import { Preview } from '@storybook/react'
-import React from 'react'
 
-import DesignSystemThemeProvider from '../source/design-system/root'
-import theme from '../source/design-system/theme'
+import { DesignSystemThemeProvider } from '../source/design-system/root'
+import { theme } from '../source/design-system/theme'
 
 const preview: Preview = {
 	decorators: [

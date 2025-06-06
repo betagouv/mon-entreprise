@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { Emoji } from '@/design-system/emoji'
+import { Emoji } from '@/design-system'
 
 export type FeedbackT = 'mauvais' | 'moyen' | 'bien' | 'très bien'
 

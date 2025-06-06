@@ -2,11 +2,7 @@ import { ReactNode } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { usePersistingState } from '@/components/utils/persistState'
-import { Message } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
-import { Intro } from '@/design-system/typography/paragraphs'
+import { Button, Intro, Link, Message, Spacing } from '@/design-system'
 
 import { FromTop } from './animate'
 

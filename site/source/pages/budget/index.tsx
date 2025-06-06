@@ -3,17 +3,25 @@ import { useState } from 'react'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
-import Markdown from '@/components/utils/Markdown/Markdown'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Item, Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Select } from '@/design-system/field/Select'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H1, H2, H3, H4 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import {
+	Body,
+	Emoji,
+	Grid,
+	H1,
+	H2,
+	H3,
+	H4,
+	Item,
+	Li,
+	Link,
+	Markdown,
+	Message,
+	Select,
+	Spacing,
+	Strong,
+	Ul,
+} from '@/design-system'
 
 import Meta from '../../components/utils/Meta'
 import rawBudget from './budget.yaml'

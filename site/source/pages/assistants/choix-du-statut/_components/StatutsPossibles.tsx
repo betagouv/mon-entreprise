@@ -5,9 +5,7 @@ import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Message } from '@/design-system'
-import { H5 } from '@/design-system/typography/heading'
-import { Li, Ul } from '@/design-system/typography/list'
+import { H5, Li, Message, Ul } from '@/design-system'
 
 export default function StatutsPossibles() {
 	const engine = useEngine()

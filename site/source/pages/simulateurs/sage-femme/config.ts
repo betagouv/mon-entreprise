@@ -10,6 +10,7 @@ export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'sage-femme',
 		icône: '👶',
+		hidden: true,
 		tracking: {
 			chapter2: 'profession_liberale',
 			chapter3: 'sage_femme',

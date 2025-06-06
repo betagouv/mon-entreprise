@@ -1,6 +1,6 @@
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
-import Popover from '@/design-system/popover/Popover'
+import { Popover } from '@/design-system'
 import Documentation from '@/pages/Documentation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { CheckList as CheckListComponent } from '@/design-system'
+import { CheckList as CheckListComponent } from './'
 
 const meta: Meta<typeof CheckListComponent> = {
 	component: CheckListComponent,

@@ -1,23 +1,26 @@
 import { pipe } from 'effect'
-import { isString } from 'effect/Predicate'
+import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import { PublicodesExpression } from 'publicodes'
 
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
-import { Situation } from '@/domaine/Situation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ImmutableType } from '@/types/utils'
 
 export function updateSituationMultiple(
 	config: ImmutableType<SimulationConfig>,
-	currentSituation: Situation,
+	currentSituation: SituationPublicodes,
 	préfixe: DottedName,
-	valeurs: Record<string, PublicodesExpression>
-): Situation {
+	valeurs: Record<string, ValeurPublicodes>
+): SituationPublicodes {
 	const nouvellesValeurs = pipe(
 		valeurs,
 		R.mapKeys((suffixe) => `${préfixe} . ${suffixe}`),
-		R.map((valeur) => (isString(valeur) ? `'${valeur}'` : valeur)) // 😭
+		R.map((valeur) => PublicodesAdapter.encode(O.some(valeur)))
 	)
 
 	return { ...currentSituation, ...nouvellesValeurs }

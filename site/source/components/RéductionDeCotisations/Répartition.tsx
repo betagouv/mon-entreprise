@@ -2,9 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RépartitionValue from '@/components/RéductionDeCotisations/RépartitionValue'
-import { Strong } from '@/design-system/typography'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, Li, Strong, Ul } from '@/design-system'
 import {
 	RéductionDottedName,
 	Répartition as RépartitionType,

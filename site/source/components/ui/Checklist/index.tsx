@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import Markdown from '@/components/utils/Markdown/Markdown'
 import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
-import { Checkbox } from '@/design-system/field'
-import { Grid, Spacing } from '@/design-system/layout'
-import { Link } from '@/design-system/typography/link'
+import { Checkbox, Grid, Link, Markdown, Spacing } from '@/design-system'
 
 type CheckItemProps = {
 	title: string

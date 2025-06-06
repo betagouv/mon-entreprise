@@ -1,11 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Message } from '@/design-system'
-import { Emoji } from '@/design-system/emoji'
-import { Grid } from '@/design-system/layout'
-import { Strong } from '@/design-system/typography'
-import { H2 } from '@/design-system/typography/heading'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import { Emoji, Grid, Message, typography } from '@/design-system'
 
 import { useStatistiques } from '../useStatistiques'
 import {
@@ -15,6 +10,10 @@ import {
 	formatProgression,
 	messageTypeSatisfaction,
 } from './utils'
+
+const { headings, paragraphs, Strong } = typography
+const { H2 } = headings
+const { Body, Intro } = paragraphs
 
 export function MainIndicators({
 	questionsRépondues,

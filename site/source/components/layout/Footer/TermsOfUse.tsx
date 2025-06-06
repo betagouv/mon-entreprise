@@ -1,10 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { PopoverWithTrigger } from '@/design-system'
-import { H2 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Li, Ul } from '@/design-system/typography/list'
-import { Body } from '@/design-system/typography/paragraphs'
+import { Body, H2, Li, Link, PopoverWithTrigger, Ul } from '@/design-system'
 
 export default function TermsOfUse() {
 	const { t } = useTranslation()

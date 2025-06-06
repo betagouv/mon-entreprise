@@ -3,10 +3,7 @@ import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
-import { CardContainer } from '@/design-system/card/Card'
-import { Emoji } from '@/design-system/emoji'
-import { Grid } from '@/design-system/layout'
-import { Tooltip } from '@/design-system/tooltip'
+import { CardContainer, Emoji, Grid, Tooltip } from '@/design-system'
 
 type StatutCardType = {
 	statut: StatutType[]

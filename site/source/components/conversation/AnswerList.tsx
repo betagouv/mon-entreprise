@@ -1,20 +1,22 @@
 import { DottedName } from 'modele-social'
-import { PublicodesExpression, RuleNode, utils } from 'publicodes'
-import { useCallback, useMemo } from 'react'
+import { RuleNode, utils } from 'publicodes'
+import React, { useCallback, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
-import { Message, PopoverWithTrigger } from '@/design-system'
-import { Button } from '@/design-system/buttons'
-import { Emoji } from '@/design-system/emoji'
-import { Grid, Spacing } from '@/design-system/layout'
-import PopoverConfirm from '@/design-system/popover/PopoverConfirm'
-import { Strong } from '@/design-system/typography'
-import { H2, H3 } from '@/design-system/typography/heading'
-import { Link } from '@/design-system/typography/link'
-import { Body, Intro } from '@/design-system/typography/paragraphs'
+import {
+	Button,
+	Emoji,
+	Grid,
+	Message,
+	PopoverConfirm,
+	PopoverWithTrigger,
+	Spacing,
+	typography,
+} from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
@@ -32,12 +34,17 @@ import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'
 
+const { Body, H2, H3, Intro, Link, Strong } = typography
+
 type AnswerListProps = {
-	onClose: () => void
+	onClose?: () => void
 	children?: React.ReactNode
 }
 
-export default function AnswerList({ onClose, children }: AnswerListProps) {
+export default function AnswerList({
+	onClose = () => {},
+	children,
+}: AnswerListProps) {
 	const { t } = useTranslation()
 	const { currentSimulatorData } = useCurrentSimulatorData()
 	const dispatch = useDispatch()
@@ -282,7 +289,7 @@ function AnswerElement(rule: RuleNode) {
 		: undefined
 
 	const handleChange = useCallback(
-		(value: PublicodesExpression | undefined) => {
+		(value: ValeurPublicodes | undefined) => {
 			questionDottedName &&
 				dispatch(enregistreLaRéponse(questionDottedName, value))
 		},
