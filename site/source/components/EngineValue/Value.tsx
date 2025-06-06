@@ -19,6 +19,7 @@ export default function Value<Names extends string>({
 	...props
 }: ValueProps<Names>) {
 	const { language, t } = useTranslation().i18n
+	const { language, t } = useTranslation().i18n
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
@@ -51,7 +52,7 @@ export default function Value<Names extends string>({
 			<RuleLink
 				dottedName={dottedName}
 				documentationPath={documentationPath}
-				aria-label={t('Voir le calcul de ') + ' ' + value}
+				aria-label={t('Voir la documentation du calcul de ') + ' ' + value}
 			>
 				<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
 					{value}
