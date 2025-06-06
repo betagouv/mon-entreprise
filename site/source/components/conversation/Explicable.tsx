@@ -1,4 +1,5 @@
 import { DottedName } from 'modele-social'
+import { useTranslation } from 'react-i18next'
 
 import { References } from '@/components/References'
 import RuleLink from '@/components/RuleLink'
@@ -24,6 +25,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
 	const références = useReferences(rule)
+	const { t } = useTranslation()
 
 	if (rule.rawNode.description == null) {
 		return null
@@ -47,7 +49,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 
 			<RuleLink
 				dottedName={dottedName as DottedName}
-				aria-label={`Lire la documentation au sujet de : ${rule.title}`}
+				aria-label={t('Lire la documentation au sujet de :') + ' ' + rule.title}
 			>
 				Lire la documentation
 			</RuleLink>
