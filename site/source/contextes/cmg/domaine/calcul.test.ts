@@ -33,6 +33,7 @@ describe('CMG', () => {
 						Jules: new EnfantFactory('Jules').moinsDe3Ans().build(),
 						Martin: new EnfantFactory('Martin').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -92,6 +93,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').moinsDe3Ans().build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -253,6 +255,7 @@ describe('CMG', () => {
 						Jules: new EnfantFactory('Jules').moinsDe3Ans().build(),
 						Martin: new EnfantFactory('Martin').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -309,6 +312,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				M.eurosParMois(2500)
@@ -328,6 +332,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				M.eurosParMois(2500)
@@ -345,6 +350,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory('Rose').néEn(2022).build(),
 					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
+				perçoitAeeH: O.some(false),
 				AeeH: O.none(),
 			})
 
@@ -357,6 +363,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory('Rose').néEn(2022).build(),
 					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
+				perçoitAeeH: O.some(false),
 				AeeH: O.none(),
 			})
 
@@ -371,6 +378,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory('Michelangelo').plusDe6Ans().build(),
 					Splinter: new EnfantFactory('Splinter').plusDe6Ans().build(),
 				},
+				perçoitAeeH: O.some(false),
 				AeeH: O.none(),
 			})
 
@@ -385,6 +393,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory('Michelangelo').plusDe6Ans().build(),
 					Splinter: new EnfantFactory('Splinter').plusDe6Ans().build(),
 				},
+				perçoitAeeH: O.some(false),
 				AeeH: O.none(),
 			})
 
@@ -404,6 +413,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
 					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
+				perçoitAeeH: O.some(false),
 				AeeH: O.none(),
 			})
 
@@ -423,6 +433,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
 					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
+				perçoitAeeH: O.some(false),
 				AeeH: O.none(),
 			})
 
@@ -435,6 +446,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory('Rose').néEn(2022).build(),
 					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
+				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 
@@ -447,6 +459,7 @@ describe('CMG', () => {
 					Rose: new EnfantFactory('Rose').néEn(2022).build(),
 					Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 				},
+				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 
@@ -466,6 +479,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
 					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
+				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 
@@ -485,6 +499,7 @@ describe('CMG', () => {
 					Michelangelo: new EnfantFactory('Michelangelo').néEn(2022).build(),
 					Raphael: new EnfantFactory('Raphael').néEn(2024).build(),
 				},
+				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 

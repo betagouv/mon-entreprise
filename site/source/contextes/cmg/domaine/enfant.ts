@@ -6,6 +6,7 @@ import { DATE_RÉFORME } from './constantes'
 
 export interface EnfantsÀCharge<Prénom extends string = string> {
 	enfants: Record<Prénom, Enfant>
+	perçoitAeeH: O.Option<boolean>
 	AeeH: O.Option<number>
 }
 

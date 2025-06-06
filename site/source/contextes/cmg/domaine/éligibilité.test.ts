@@ -35,6 +35,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -95,6 +96,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -136,6 +138,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -159,6 +162,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -195,6 +199,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -252,6 +257,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -307,6 +313,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -368,6 +375,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -480,6 +488,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -515,6 +524,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -542,6 +552,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
@@ -568,6 +579,7 @@ describe('CMG', () => {
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				modesDeGarde: {

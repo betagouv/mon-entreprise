@@ -74,6 +74,16 @@ export const useCMG = () => {
 			}))
 		},
 
+		perçoitAeeH: (perçoitAeeH: O.Option<boolean>) => {
+			updateSituation((prev) => ({
+				...prev,
+				enfantsÀCharge: {
+					...prev.enfantsÀCharge,
+					perçoitAeeH,
+				},
+			}))
+		},
+
 		AeeH: (AeeH: O.Option<number>) => {
 			updateSituation((prev) => ({
 				...prev,
@@ -142,6 +152,7 @@ export const useCMG = () => {
 	return {
 		situation,
 		enfants: R.values(situation.enfantsÀCharge.enfants),
+		perçoitAeeH: situation.enfantsÀCharge.perçoitAeeH,
 		AeeH: situation.enfantsÀCharge.AeeH,
 		salariéesGED: situation.modesDeGarde.GED,
 		salariéesAMA: situation.modesDeGarde.AMA,

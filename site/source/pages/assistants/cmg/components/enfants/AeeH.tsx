@@ -1,18 +1,38 @@
 import * as O from 'effect/Option'
-import { useState } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
-import { OuiNonInput } from '@/components/conversation/OuiNonInput'
 import { useCMG } from '@/contextes/cmg'
-import { NumberField, Spacing } from '@/design-system'
-import { OuiNon } from '@/domaine/OuiNon'
+import { NumberField, Radio, Spacing, ToggleGroup } from '@/design-system'
 
 import { Label, Question } from '../styled-components'
 
 export default function AeeH() {
-	const { AeeH, set } = useCMG()
+	const { perçoitAeeH, AeeH, set } = useCMG()
 	const { t } = useTranslation()
-	const [perçoitAeeH, setPerçoitAeeH] = useState<OuiNon | undefined>()
+
+	const valeur = useMemo(() => {
+		if (O.isNone(perçoitAeeH)) {
+			return undefined
+		} else if (perçoitAeeH.value) {
+			return 'oui'
+		} else {
+			return 'non'
+		}
+	}, [perçoitAeeH])
+
+	const onChange = (valeur: string) => {
+		if (valeur === 'oui') {
+			set.perçoitAeeH(O.some(true))
+		} else if (valeur === 'non') {
+			set.perçoitAeeH(O.some(false))
+			set.AeeH(O.none())
+		} else {
+			set.perçoitAeeH(O.none())
+			set.AeeH(O.none())
+		}
+	}
 
 	return (
 		<>
@@ -22,14 +42,23 @@ export default function AeeH() {
 					'Percevez-vous l’AeeH (allocation d’éducation de l’enfant handicapé) ?'
 				)}
 			</Question>
-			<Spacing xxs />
-			<OuiNonInput
-				value={perçoitAeeH}
-				aria={{ labelledby: 'perçoit-AeeH-label' }}
-				onChange={setPerçoitAeeH}
-			/>
 
-			{perçoitAeeH === 'oui' && (
+			<Spacing xxs />
+
+			<ToggleGroup
+				aria-labelledby="perçoit-AeeH-label"
+				onChange={onChange}
+				value={valeur}
+			>
+				<StyledRadio value="oui" id="input-perçoit-AeeH-oui">
+					{t('Oui')}
+				</StyledRadio>
+				<StyledRadio value="non" id="input-perçoit-AeeH-non">
+					{t('Non')}
+				</StyledRadio>
+			</ToggleGroup>
+
+			{O.isSome(perçoitAeeH) && perçoitAeeH.value && (
 				<>
 					<Spacing md />
 					<Label id="AeeH-label">
@@ -48,3 +77,10 @@ export default function AeeH() {
 		</>
 	)
 }
+
+const StyledRadio = styled(Radio)`
+	& > span {
+		border: none !important;
+		border-radius: 0 !important;
+	}
+`
