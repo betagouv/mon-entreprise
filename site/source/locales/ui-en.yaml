@@ -434,9 +434,9 @@ contact:
     confidentiality reasons), and we cannot legally give advice on a specific
     situation.
   title: Contact us
-  urssaf: If you have any questions about your situation or the steps to be taken,
-    please contact an Urssaf advisor
-    directly:<1></1><2>https://www.urssaf.fr/accueil/contacter-urssaf.html</2>
+  urssaf: If you have any questions about your situation, or would like to take
+    any action, please <2>contact an Urssaf advisor who</2>will be able to help
+    you.
 conversation:
   multiple-answer:
     aria-label: Multiple choice
@@ -517,6 +517,7 @@ footer:
   accessibilité: "Accessibility: partially compliant"
   accessibilitéAriaLabel: "Accessibility: partially compliant, find out more"
   github:
+    new-window: View source code on Github, new window
     text: View source code on Github
 février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
@@ -633,7 +634,7 @@ modifier-options:
 moins: less
 mois: month
 navbar:
-  logo: logo My company
+  logo: Urssaf My company
 news:
   description: We're constantly improving the site based on your feedback.
     Discover the latest news

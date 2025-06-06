@@ -42,17 +42,16 @@ export default function Contact() {
 			<Body>
 				<Trans i18nKey="contact.urssaf">
 					Pour une question sur votre situation ou une démarche à effectuer,
-					nous vous invitons à contacter directement un conseiller de l'Urssaf
-					qui pourra vous renseigner :
-					<br />
+					nous vous invitons à{' '}
 					<Link
 						href="https://www.urssaf.fr/accueil/contacter-urssaf.html"
-						aria-label="Ouvrir le lien dans une nouvelle fenêtre"
+						aria-label="contacter directement un conseiller de l'Urssaf, nouvelle fenêtre"
 						target="_blank"
 						rel="noreferrer"
 					>
-						https://www.urssaf.fr/accueil/contacter-urssaf.html
+						contacter directement un conseiller de l'Urssaf
 					</Link>
+					qui pourra vous renseigner.
 				</Trans>
 			</Body>
 		</PopoverWithTrigger>
