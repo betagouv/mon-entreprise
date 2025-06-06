@@ -96,7 +96,7 @@ export default function Notifications() {
 						<Absolute $isMultiline={isMultiline(résumé ?? description ?? '')}>
 							<ExplicableRule dottedName={dottedName} light />
 							<CloseButton
-								aria-label={t('Fermer')}
+								aria-label={t('Cacher le message')}
 								onPress={() => dispatch(hideNotification(dottedName))}
 								color={sévérité === 'avertissement' ? 'tertiary' : 'primary'}
 							/>
