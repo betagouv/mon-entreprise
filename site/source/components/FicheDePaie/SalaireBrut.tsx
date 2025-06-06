@@ -13,18 +13,20 @@ export default function SalaireBrut() {
 			<H3 className="payslip__salaryTitle">
 				<Trans>Salaire brut</Trans>
 			</H3>
-			<Line rule="salarié . contrat . salaire brut" />
-			<Line rule="salarié . rémunération . heures supplémentaires" />
-			<Line rule="salarié . rémunération . heures complémentaires" />
-			<Line rule="salarié . rémunération . primes" />
-			<Line rule="salarié . rémunération . indemnités CDD" />
-			<Line rule="salarié . rémunération . avantages en nature . montant" />
-			<Line rule="salarié . rémunération . frais professionnels" />
-			<Line rule="salarié . activité partielle . retrait absence" />
-			<Line rule="salarié . activité partielle . indemnités" />
-			<Condition expression="salarié . contrat . salaire brut != salarié . rémunération . brut">
-				<Line rule="salarié . rémunération . brut" />
-			</Condition>
+			<ul>
+				<Line rule="salarié . contrat . salaire brut" />
+				<Line rule="salarié . rémunération . heures supplémentaires" />
+				<Line rule="salarié . rémunération . heures complémentaires" />
+				<Line rule="salarié . rémunération . primes" />
+				<Line rule="salarié . rémunération . indemnités CDD" />
+				<Line rule="salarié . rémunération . avantages en nature . montant" />
+				<Line rule="salarié . rémunération . frais professionnels" />
+				<Line rule="salarié . activité partielle . retrait absence" />
+				<Line rule="salarié . activité partielle . indemnités" />
+				<Condition expression="salarié . contrat . salaire brut != salarié . rémunération . brut">
+					<Line rule="salarié . rémunération . brut" />
+				</Condition>
+			</ul>
 		</section>
 	)
 }
