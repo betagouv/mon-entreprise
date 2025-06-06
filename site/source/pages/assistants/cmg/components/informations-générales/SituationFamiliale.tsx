@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { useCMG } from '@/contextes/cmg'
-import { Radio, ToggleGroup } from '@/design-system'
+import { Radio, Spacing, ToggleGroup } from '@/design-system'
 
 import { Question } from '../styled-components'
 
@@ -40,6 +40,9 @@ export default function SituationFamiliale() {
 					'Quelle est votre situation familiale ?'
 				)}
 			</Question>
+
+			<Spacing xxs />
+
 			<ToggleGroup
 				aria-labelledby="situation-familiale-label"
 				onChange={onChange}
@@ -65,5 +68,6 @@ export default function SituationFamiliale() {
 const StyledRadio = styled(Radio)`
 	& > span {
 		border: none !important;
+		border-radius: 0 !important;
 	}
 `
