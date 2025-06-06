@@ -47,7 +47,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 
 			<RuleLink
 				dottedName={dottedName as DottedName}
-				aria-label={`Lire la documentation du calcul de ${rule.title}`}
+				aria-label={`Lire la documentation au sujet de : ${rule.title}`}
 			>
 				Lire la documentation
 			</RuleLink>
