@@ -211,7 +211,14 @@ export default function StackedRulesChart({
 				key: dottedName,
 				value: engine.evaluate({ valeur: dottedName, unité: targetUnit })
 					.nodeValue,
-				legend: <RuleLink dottedName={dottedName}>{title}</RuleLink>,
+				legend: (
+					<RuleLink
+						dottedName={dottedName}
+						aria-label={`Voir les détails du calcul de ${title}`}
+					>
+						{title}
+					</RuleLink>
+				),
 				title,
 				color,
 			}))}
