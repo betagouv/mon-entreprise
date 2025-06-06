@@ -788,7 +788,7 @@ pages:
       informations-générales:
         ressources:
           description: Enter the reference tax income shown on the tax notice(s) of the
-            members of your household
+            members of your household.
           label: What is your household income for 2023?
         situation-familiale:
           couple:

@@ -836,7 +836,7 @@ pages:
       informations-générales:
         ressources:
           description: Renseignez le revenu fiscal de référence figurant sur le ou les
-            avis d’imposition des membres de votre foyer
+            avis d’imposition des membres de votre foyer.
           label: Quel est le revenu de votre foyer pour l’année 2023 ?
         situation-familiale:
           couple:
