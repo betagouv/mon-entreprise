@@ -45,43 +45,70 @@ type RaisonInéligibilité =
 	| 'enfants'
 
 export const éligibilité = (situation: SituationCMGValide): Éligibilité => {
-	let estÉligible = true
-	const raisonsInéligibilité = []
+	const éligibilité = {
+		estÉligible: true,
+		raisonsInéligibilité: [] as Array<RaisonInéligibilité>,
+	}
 
-	if (!CMGPerçu(situation.modesDeGarde)) {
-		estÉligible = false
-		raisonsInéligibilité.push('CMG-perçu')
+	// Premier round d'inéligibilité
+	if (!situation.aPerçuCMG.value) {
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('CMG-perçu')
+	}
+
+	if (!situation.plusDe2MoisDeDéclaration.value) {
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('déclarations')
+	}
+
+	if (!éligibilité.estÉligible) {
+		return éligibilité
+	}
+
+	// Deuxième round d'inéligibilité, seulement si le 1er est passé
+	if (
+		!auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(situation.enfantsÀCharge.enfants)
+	) {
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('enfants')
 	}
 
 	if (!ressourcesInférieuresAuPlafond(situation)) {
-		estÉligible = false
-		raisonsInéligibilité.push('ressources')
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('ressources')
+	}
+
+	if (!éligibilité.estÉligible) {
+		return éligibilité
+	}
+
+	// Troisième round d'inéligibilité, seulement si le 2ème est passé
+	if (!CMGPerçu(situation)) {
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('CMG-perçu')
 	}
 
 	if (!nombreDeMoisEmployeureuseSuffisant(situation)) {
-		estÉligible = false
-		raisonsInéligibilité.push('déclarations')
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('déclarations')
 	}
 
 	if (!moyenneHeuresDeGardeSupérieureAuPlancher(situation)) {
-		estÉligible = false
-		raisonsInéligibilité.push('heures-de-garde')
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('heures-de-garde')
 	}
 
 	if (!auMoinsUnEnfantOuvrantDroitAuCMG(situation)) {
-		estÉligible = false
-		raisonsInéligibilité.push('enfants')
+		éligibilité.estÉligible = false
+		éligibilité.raisonsInéligibilité.push('enfants')
 	}
 
-	return {
-		estÉligible,
-		raisonsInéligibilité: raisonsInéligibilité as Array<RaisonInéligibilité>,
-	}
+	return éligibilité
 }
 
-const CMGPerçu = (modesDeGarde: SituationCMGValide['modesDeGarde']): boolean =>
+const CMGPerçu = (situation: SituationCMGValide): boolean =>
 	pipe(
-		modesDeGarde,
+		situation.modesDeGarde,
 		toutesLesDéclarations,
 		A.map((d) => O.isSome(d.CMGPerçu) && d.CMGPerçu.value.valeur > 0),
 		A.filter(Boolean),
@@ -191,7 +218,9 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 ): boolean => {
 	// Si GED : au moins 1 enfant **à charge** ouvrant droit
 	if (A.isNonEmptyArray(situation.modesDeGarde.GED)) {
-		return R.some(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
+		return auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(
+			situation.enfantsÀCharge.enfants
+		)
 	}
 
 	// Si AMA uniquement : au moins 1 enfant **gardé** ouvrant droit
@@ -210,6 +239,10 @@ export const auMoinsUnEnfantOuvrantDroitAuCMG = (
 
 	return R.some(enfantsGardésEnAMA, enfantOuvreDroitAuCMG)
 }
+
+const auMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
+	enfants: Record<string, Enfant>
+): boolean => R.some(enfants, enfantOuvreDroitAuCMG)
 
 export const enfantOuvreDroitAuCMG = and<Enfant>(
 	not(enfantNéEn(ANNÉE_DE_NAISSANCE_EXCLUE)),
