@@ -459,9 +459,8 @@ contact:
     conseil sur une situation spécifique.
   title: Nous contacter
   urssaf: Pour une question sur votre situation ou une démarche à effectuer, nous
-    vous invitons à contacter directement un conseiller de l'Urssaf qui pourra
-    vous renseigner
-    :<1></1><2>https://www.urssaf.fr/accueil/contacter-urssaf.html</2>
+    vous invitons à <2>contacter directement un conseiller de l'Urssaf</2>qui
+    pourra vous renseigner.
 conversation:
   multiple-answer:
     aria-label: Choix multiples
@@ -545,8 +544,8 @@ footer:
   accessibilité: "Accessibilité : partiellement conforme"
   accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
   github:
-    text: Voir le code source sur Github
     new-window: Voir le code source sur Github, nouvelle fenêtre
+    text: Voir le code source sur Github
 février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérer:
@@ -668,7 +667,7 @@ modifier-options:
 moins: moins
 mois: mois
 navbar:
-  logo: logo Mon entreprise
+  logo: Urssaf Mon entreprise
 news:
   description: Nous améliorons le site en continu à partir de vos retours.
     Découvrez les dernières nouveautés
