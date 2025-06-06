@@ -39,36 +39,37 @@ export default function SalaireNet() {
 						title={t('Montant net social')}
 					/>
 				</li>
-
-				<li>
-					<Condition
-						expression={{
-							'une de ces conditions': [
-								'salarié . rémunération . frais professionnels . trajets domicile travail . déductible > 0',
-								'salarié . rémunération . frais professionnels . titres-restaurant', // bool
-								'salarié . rémunération . avantages en nature', // bool
-							],
-						}}
-					>
+				<Condition
+					expression={{
+						'une de ces conditions': [
+							'salarié . rémunération . frais professionnels . trajets domicile travail . déductible > 0',
+							'salarié . rémunération . frais professionnels . titres-restaurant', // bool
+							'salarié . rémunération . avantages en nature', // bool
+						],
+					}}
+				>
+					<li>
 						<H4>
 							<Trans>Remboursements et déductions diverses</Trans>
 						</H4>
-					</Condition>
 
-					<Line
-						rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
-						title={t('Frais de transport')}
-					/>
-					<Line
-						negative
-						rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
-						title={t('Titres-restaurant')}
-					/>
-					<Line
-						negative
-						rule="salarié . rémunération . avantages en nature . montant"
-					/>
-				</li>
+						<ul>
+							<Line
+								rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
+								title={t('Frais de transport')}
+							/>
+							<Line
+								negative
+								rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
+								title={t('Titres-restaurant')}
+							/>
+							<Line
+								negative
+								rule="salarié . rémunération . avantages en nature . montant"
+							/>
+						</ul>
+					</li>
+				</Condition>
 
 				<li>
 					<SalaireLine
@@ -81,19 +82,21 @@ export default function SalaireNet() {
 						<Trans>Impôt sur le revenu</Trans>
 					</H4>
 
-					<Line
-						rule="salarié . rémunération . net . imposable"
-						title={t('Montant net imposable')}
-					/>
-					<Line
-						rule="salarié . rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées"
-						title={t('Montant net des HC/HS exonérées')}
-					/>
-					<Line
-						negative
-						rule="impôt . montant"
-						title={t('impôt sur le revenu prélevé à la source')}
-					/>
+					<ul>
+						<Line
+							rule="salarié . rémunération . net . imposable"
+							title={t('Montant net imposable')}
+						/>
+						<Line
+							rule="salarié . rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées"
+							title={t('Montant net des HC/HS exonérées')}
+						/>
+						<Line
+							negative
+							rule="impôt . montant"
+							title={t('impôt sur le revenu prélevé à la source')}
+						/>
+					</ul>
 				</li>
 
 				<li>
