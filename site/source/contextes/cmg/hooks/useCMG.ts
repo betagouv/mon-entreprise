@@ -5,7 +5,7 @@ import * as R from 'effect/Record'
 import { euros, Montant } from '@/domaine/Montant'
 
 import { calculeComplémentTransitoire } from '../domaine/calcul'
-import { estÉligible } from '../domaine/éligibilité'
+import { éligibilité } from '../domaine/éligibilité'
 import { Enfant } from '../domaine/enfant'
 import { SalariéeAMA, SalariéeGED } from '../domaine/salariée'
 import {
@@ -20,7 +20,7 @@ export const useCMG = () => {
 	const { situation, updateSituation } = useSituationContext()
 
 	const éligible = estSituationCMGValide(situation)
-		? estÉligible(situation)
+		? éligibilité(situation).estÉligible
 		: false
 
 	const montantCT = éligible

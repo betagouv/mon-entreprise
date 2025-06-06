@@ -11,8 +11,8 @@ import {
 } from './déclarationDeGardeFactory'
 import {
 	auMoinsUnEnfantOuvrantDroitAuCMG,
+	éligibilité,
 	enfantOuvreDroitAuCMG,
-	estÉligible,
 	moyenneHeuresDeGardeSupérieureAuPlancher,
 	moyenneHeuresParTypologieDeGarde,
 	plafondDeRessources,
@@ -21,9 +21,9 @@ import { EnfantFactory } from './enfantFactory'
 import { SalariéeAMAFactory, SalariéeGEDFactory } from './salariéeFactory'
 
 describe('CMG', () => {
-	describe('estÉligible', () => {
+	describe('éligibilité', () => {
 		it('est éligible si tous les critères d’éligibilité sont remplis', () => {
-			const résultat = estÉligible({
+			const résultat = éligibilité({
 				_tag: 'Situation',
 				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
@@ -81,11 +81,14 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.true
+			expect(résultat).to.be.deep.equal({
+				estÉligible: true,
+				raisonsInéligibilité: [],
+			})
 		})
 
 		it('n’est pas éligible si pas de CMG perçu sur mars, avril NI mai', () => {
-			const résultat = estÉligible({
+			const résultat = éligibilité({
 				_tag: 'Situation',
 				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
@@ -93,6 +96,7 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: {
+						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
@@ -103,19 +107,48 @@ describe('CMG', () => {
 					GED: [
 						{
 							mars: O.some(
-								new DéclarationsDeGardeGEDFactory().sansCMG().build()
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(31)
+									.sansCMG()
+									.build()
 							),
 							avril: O.none(),
 							mai: O.some(
-								new DéclarationsDeGardeGEDFactory().sansCMG().build()
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(35)
+									.sansCMG()
+									.build()
 							),
 						},
 					],
 					AMA: [
 						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar'])
+									.avecNbHeures(150)
+									.sansCMG()
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.sansCMG()
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.sansCMG()
+									.build()
+							),
+						},
+						{
 							mars: O.none(),
 							avril: O.some(
-								new DéclarationsDeGardeAMAFactory(['Rose']).sansCMG().build()
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(150)
+									.sansCMG()
+									.build()
 							),
 							mai: O.none(),
 						},
@@ -123,11 +156,14 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.false
+			expect(résultat).to.be.deep.equal({
+				estÉligible: false,
+				raisonsInéligibilité: ['CMG-perçu'],
+			})
 		})
 
 		it('n’est pas éligible si ressources > plafond (60 659 €/an pour un couple avec 2 enfants à charge)', () => {
-			const résultat = estÉligible({
+			const résultat = éligibilité({
 				_tag: 'Situation',
 				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(60_660)) as O.Some<
@@ -147,11 +183,14 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.false
+			expect(résultat).to.be.deep.equal({
+				estÉligible: false,
+				raisonsInéligibilité: ['ressources'],
+			})
 		})
 
 		it('n’est pas éligible si moins de 2 mois employeureuse', () => {
-			const résultat = estÉligible({
+			const résultat = éligibilité({
 				_tag: 'Situation',
 				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
@@ -159,6 +198,7 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: {
+						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
 					},
@@ -166,28 +206,38 @@ describe('CMG', () => {
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
-					GED: [
-						{
-							mars: O.none(),
-							avril: O.none(),
-							mai: O.some(new DéclarationsDeGardeGEDFactory().build()),
-						},
-					],
+					GED: [],
 					AMA: [
 						{
 							mars: O.none(),
-							avril: O.none(),
-							mai: O.some(new DéclarationsDeGardeAMAFactory(['Rose']).build()),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
+									.avecNbHeures(300)
+									.build()
+							),
+							mai: O.none(),
+						},
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(150)
+									.build()
+							),
+							mai: O.none(),
 						},
 					],
 				},
 			})
 
-			expect(résultat).to.be.false
+			expect(résultat).to.be.deep.equal({
+				estÉligible: false,
+				raisonsInéligibilité: ['déclarations'],
+			})
 		})
 
 		it('n’est pas éligible si la moyenne d’heures de garde ne dépasse pas le plancher', () => {
-			const résultat = estÉligible({
+			const résultat = éligibilité({
 				_tag: 'Situation',
 				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
@@ -241,11 +291,14 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.false
+			expect(résultat).to.be.deep.equal({
+				estÉligible: false,
+				raisonsInéligibilité: ['heures-de-garde'],
+			})
 		})
 
 		it('n’est pas éligible si tous les enfants ont plus de 6 ans à la réforme ou sont nés en 2022', () => {
-			const résultat = estÉligible({
+			const résultat = éligibilité({
 				_tag: 'Situation',
 				parentIsolé: O.some(false) as O.Some<boolean>,
 				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
@@ -269,7 +322,10 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.false
+			expect(résultat).to.be.deep.equal({
+				estÉligible: false,
+				raisonsInéligibilité: ['enfants'],
+			})
 		})
 	})
 
