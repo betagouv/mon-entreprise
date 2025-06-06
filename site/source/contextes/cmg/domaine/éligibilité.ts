@@ -33,12 +33,51 @@ interface Historique<PrénomsEnfants extends string = string> {
 	mai: Array<DéclarationDeGarde<PrénomsEnfants>>
 }
 
-export const estÉligible = (situation: SituationCMGValide): boolean =>
-	CMGPerçu(situation.modesDeGarde) &&
-	ressourcesInférieuresAuPlafond(situation) &&
-	nombreDeMoisEmployeureuseSuffisant(situation) &&
-	moyenneHeuresDeGardeSupérieureAuPlancher(situation) &&
-	auMoinsUnEnfantOuvrantDroitAuCMG(situation)
+interface Éligibilité {
+	estÉligible: boolean
+	raisonsInéligibilité: Array<RaisonInéligibilité>
+}
+type RaisonInéligibilité =
+	| 'CMG-perçu'
+	| 'ressources'
+	| 'déclarations'
+	| 'heures-de-garde'
+	| 'enfants'
+
+export const éligibilité = (situation: SituationCMGValide): Éligibilité => {
+	let estÉligible = true
+	const raisonsInéligibilité = []
+
+	if (!CMGPerçu(situation.modesDeGarde)) {
+		estÉligible = false
+		raisonsInéligibilité.push('CMG-perçu')
+	}
+
+	if (!ressourcesInférieuresAuPlafond(situation)) {
+		estÉligible = false
+		raisonsInéligibilité.push('ressources')
+	}
+
+	if (!nombreDeMoisEmployeureuseSuffisant(situation)) {
+		estÉligible = false
+		raisonsInéligibilité.push('déclarations')
+	}
+
+	if (!moyenneHeuresDeGardeSupérieureAuPlancher(situation)) {
+		estÉligible = false
+		raisonsInéligibilité.push('heures-de-garde')
+	}
+
+	if (!auMoinsUnEnfantOuvrantDroitAuCMG(situation)) {
+		estÉligible = false
+		raisonsInéligibilité.push('enfants')
+	}
+
+	return {
+		estÉligible,
+		raisonsInéligibilité: raisonsInéligibilité as Array<RaisonInéligibilité>,
+	}
+}
 
 const CMGPerçu = (modesDeGarde: SituationCMGValide['modesDeGarde']): boolean =>
 	pipe(
