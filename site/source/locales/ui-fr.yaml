@@ -135,6 +135,7 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
+"Lire la documentation au sujet de :": "Lire la documentation au sujet de :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
 Liste des intégrations: Liste des intégrations
