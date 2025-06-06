@@ -132,7 +132,7 @@
 	margin-top: 0;
 }
 
-.payslip__container caption {
+.payslip__container h4 {
 	margin: 2rem 0 0;
 	scroll-margin-top: 1rem;
 	font-family: "Montserrat", sans-serif;
