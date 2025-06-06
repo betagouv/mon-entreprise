@@ -19,7 +19,6 @@ export default function Value<Names extends string>({
 	...props
 }: ValueProps<Names>) {
 	const { language, t } = useTranslation().i18n
-	const { language, t } = useTranslation().i18n
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
