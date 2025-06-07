@@ -4,9 +4,8 @@ import { CMGProvider } from '@/contextes/cmg'
 import { useSitePaths } from '@/sitePaths'
 
 import Accueil from './pages/Accueil'
-import AMA from './pages/AMA'
+import Déclarations from './pages/Déclarations'
 import Enfants from './pages/Enfants'
-import GED from './pages/GED'
 import InformationsGénérales from './pages/InformationsGénérales'
 import NonÉligible from './pages/NonÉligible'
 import Résultat from './pages/Résultat'
@@ -23,8 +22,7 @@ const CMG = () => {
 				element={<InformationsGénérales />}
 			/>
 			<Route path={childrenPaths.enfants} element={<Enfants />} />
-			<Route path={childrenPaths.GED} element={<GED />} />
-			<Route path={childrenPaths.AMA} element={<AMA />} />
+			<Route path={childrenPaths.déclarations} element={<Déclarations />} />
 			<Route path={childrenPaths.inéligibilité} element={<NonÉligible />} />
 			<Route path={childrenPaths.résultat} element={<Résultat />} />
 		</Routes>
