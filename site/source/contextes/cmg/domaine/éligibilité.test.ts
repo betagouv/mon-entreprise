@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable vitest/valid-expect */
+import * as E from 'effect/Either'
 import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
@@ -10,7 +11,7 @@ import {
 	DéclarationsDeGardeGEDFactory,
 } from './déclarationDeGardeFactory'
 import {
-	auMoinsUnEnfantOuvrantDroitAuCMG,
+	auMoinsUnEnfantGardéOuvrantDroitAuCMG,
 	éligibilité,
 	enfantOuvreDroitAuCMG,
 	moyenneHeuresDeGardeSupérieureAuPlancher,
@@ -44,11 +45,17 @@ describe('CMG', () => {
 					GED: [
 						{
 							mars: O.some(
-								new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build()
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(31)
+									.avecCMG(M.euros(400))
+									.build()
 							),
 							avril: O.none(),
 							mai: O.some(
-								new DéclarationsDeGardeGEDFactory().avecNbHeures(35).build()
+								new DéclarationsDeGardeGEDFactory()
+									.avecNbHeures(35)
+									.avecCMG(M.euros(400))
+									.build()
 							),
 						},
 					],
@@ -57,16 +64,19 @@ describe('CMG', () => {
 							mars: O.some(
 								new DéclarationsDeGardeAMAFactory(['Oscar'])
 									.avecNbHeures(150)
+									.avecCMG(M.euros(400))
 									.build()
 							),
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
 									.avecNbHeures(50)
+									.avecCMG(M.euros(400))
 									.build()
 							),
 							mai: O.some(
 								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
 									.avecNbHeures(50)
+									.avecCMG(M.euros(400))
 									.build()
 							),
 						},
@@ -75,6 +85,7 @@ describe('CMG', () => {
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Rose'])
 									.avecNbHeures(150)
+									.avecCMG(M.euros(400))
 									.build()
 							),
 							mai: O.none(),
@@ -83,10 +94,14 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: true,
-				raisonsInéligibilité: [],
-			})
+			expect(résultat).to.be.deep.equal(
+				E.right(
+					E.right({
+						estÉligible: true,
+						montantCT: M.euros(70.28),
+					})
+				)
+			)
 		})
 
 		it('n’est pas éligible si pas de CMG perçu sur mars, avril NI mai', () => {
@@ -160,10 +175,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['CMG-perçu'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['CMG-perçu']))
 		})
 
 		it('n’est pas éligible si ressources > plafond (60 659 €/an pour un couple avec 2 enfants à charge)', () => {
@@ -189,10 +201,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['ressources'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['ressources']))
 		})
 
 		it('n’est pas éligible si moins de 2 mois employeureuse', () => {
@@ -238,10 +247,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['déclarations'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['déclarations']))
 		})
 
 		it('n’est pas éligible si la moyenne d’heures de garde ne dépasse pas le plancher', () => {
@@ -301,13 +307,10 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['heures-de-garde'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['heures-de-garde']))
 		})
 
-		it('n’est pas éligible si tous les enfants ont plus de 6 ans à la réforme ou sont nés en 2022', () => {
+		it('n’est pas éligible si tous les enfants gardés ont plus de 6 ans à la réforme ou sont nés en 2022', () => {
 			const résultat = éligibilité({
 				_tag: 'Situation',
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
@@ -318,7 +321,7 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: {
-						Oscar: new EnfantFactory('Oscar').plusDe6Ans().build(),
+						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
 						Rose: new EnfantFactory('Rose').néEn(2022).build(),
 						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
 					},
@@ -326,18 +329,43 @@ describe('CMG', () => {
 					AeeH: O.none(),
 				},
 				modesDeGarde: {
-					GED: [new SalariéeGEDFactory().build()],
+					GED: [],
 					AMA: [
-						new SalariéeAMAFactory(['Rose']).build(),
-						new SalariéeAMAFactory(['Oscar', 'Rose', 'Aurore']).build(),
+						{
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(150)
+									.avecCMG(M.euros(400))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.avecCMG(M.euros(400))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose', 'Aurore'])
+									.avecNbHeures(50)
+									.avecCMG(M.euros(400))
+									.build()
+							),
+						},
+						{
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Rose'])
+									.avecNbHeures(150)
+									.avecCMG(M.euros(400))
+									.build()
+							),
+							mai: O.none(),
+						},
 					],
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['enfants'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['enfants-gardés']))
 		})
 
 		it('n’est pas éligible si n’a pas perçu de CMG', () => {
@@ -360,10 +388,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['CMG-perçu'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['CMG-perçu']))
 		})
 
 		it('n’est pas éligible si a saisi moins de 2 déclarations', () => {
@@ -386,10 +411,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['déclarations'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['déclarations']))
 		})
 
 		it('n’est pas éligible si aucun enfant à charge ouvrant droit', () => {
@@ -416,10 +438,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal({
-				estÉligible: false,
-				raisonsInéligibilité: ['enfants'],
-			})
+			expect(résultat).to.be.deep.equal(E.left(['enfants-à-charge']))
 		})
 	})
 
@@ -628,9 +647,9 @@ describe('CMG', () => {
 		})
 	})
 
-	describe('auMoinsUnEnfantOuvrantDroitAuCMG', () => {
+	describe('auMoinsUnEnfantGardéOuvrantDroitAuCMG', () => {
 		it('ouvre droit si GED et 1 enfant à charge ouvrant droit', () => {
-			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+			const résultat = auMoinsUnEnfantGardéOuvrantDroitAuCMG({
 				_tag: 'Situation',
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
 				plusDe2MoisDeDéclaration: O.some(true) as O.Some<boolean>,
@@ -668,7 +687,7 @@ describe('CMG', () => {
 		})
 
 		it('ouvre droit si AMA uniquement et 1 enfant gardé ouvrant droit', () => {
-			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+			const résultat = auMoinsUnEnfantGardéOuvrantDroitAuCMG({
 				_tag: 'Situation',
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
 				plusDe2MoisDeDéclaration: O.some(true) as O.Some<boolean>,
@@ -698,7 +717,7 @@ describe('CMG', () => {
 		})
 
 		it('n’ouvre pas droit si AMA uniquement et aucun enfant gardé ouvrant droit', () => {
-			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+			const résultat = auMoinsUnEnfantGardéOuvrantDroitAuCMG({
 				_tag: 'Situation',
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
 				plusDe2MoisDeDéclaration: O.some(true) as O.Some<boolean>,
@@ -728,7 +747,7 @@ describe('CMG', () => {
 		})
 
 		it('n’ouvre pas droit si aucun enfant à charge ouvrant droit', () => {
-			const résultat = auMoinsUnEnfantOuvrantDroitAuCMG({
+			const résultat = auMoinsUnEnfantGardéOuvrantDroitAuCMG({
 				_tag: 'Situation',
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
 				plusDe2MoisDeDéclaration: O.some(true) as O.Some<boolean>,

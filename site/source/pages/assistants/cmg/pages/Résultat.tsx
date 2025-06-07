@@ -6,20 +6,20 @@ import Navigation from '../components/Navigation'
 import NonÉligible from './NonÉligible'
 
 export default function Résultat() {
-	const { éligible, montantCT } = useCMG()
+	const { montantCT } = useCMG()
+
+	if (!montantCT) {
+		return <NonÉligible précédent="déclarations" />
+	}
 
 	return (
 		<>
-			{éligible && montantCT.valeur ? (
-				<Body>
-					Montant théorique du complément transitoire :&nbsp;
-					{formatMontant(montantCT)}
-				</Body>
-			) : (
-				<NonÉligible />
-			)}
+			<Body>
+				Montant théorique du complément transitoire :&nbsp;
+				{formatMontant(montantCT)}
+			</Body>
 
-			<Navigation précédent="AMA" />
+			<Navigation précédent="déclarations" />
 		</>
 	)
 }
