@@ -366,7 +366,7 @@ const groupeLesDéclarationsParTypologieDeGarde =
 const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 	pipe(
 		liste,
-		A.map((d) => d.heuresDeGarde),
+		A.map((d) => O.getOrElse(d.heuresDeGarde, () => 0)),
 		N.sumAll,
 		(sum) => Math.ceil(sum / 3)
 	)

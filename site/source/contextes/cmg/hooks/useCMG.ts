@@ -1,4 +1,5 @@
 import { pipe } from 'effect'
+import * as A from 'effect/Array'
 import * as E from 'effect/Either'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
@@ -6,10 +7,18 @@ import { useTranslation } from 'react-i18next'
 
 import { Montant } from '@/domaine/Montant'
 
+import {
+	estDéclarationAMAVide,
+	estDéclarationGEDVide,
+} from '../domaine/déclaration-de-garde'
 import { éligibilité, RaisonInéligibilité } from '../domaine/éligibilité'
 import { Enfant } from '../domaine/enfant'
 import { Résultat } from '../domaine/résultat'
-import { SalariéeAMA, SalariéeGED } from '../domaine/salariée'
+import {
+	auMoinsUneDéclaration,
+	SalariéeAMA,
+	SalariéeGED,
+} from '../domaine/salariée'
 import { SituationCMG } from '../domaine/situation'
 import { useSituationContext } from './CMGContext'
 
@@ -90,11 +99,21 @@ export const useCMG = () => {
 		},
 
 		salariéesGED: (salariéesGED: Array<SalariéeGED>) => {
+			const newSalariéesGED = pipe(
+				salariéesGED,
+				A.filter(auMoinsUneDéclaration),
+				A.map((déclarations) =>
+					R.map(déclarations, (déclaration) =>
+						estDéclarationGEDVide(déclaration) ? O.none() : déclaration
+					)
+				)
+			)
+
 			updateSituation((prev) => ({
 				...prev,
 				modesDeGarde: {
 					AMA: prev.modesDeGarde.AMA,
-					GED: salariéesGED,
+					GED: newSalariéesGED,
 				},
 			}))
 		},
@@ -117,11 +136,21 @@ export const useCMG = () => {
 		},
 
 		salariéesAMA: (salariéesAMA: Array<SalariéeAMA<string>>) => {
+			const newSalariéesAMA = pipe(
+				salariéesAMA,
+				A.filter(auMoinsUneDéclaration),
+				A.map((déclarations) =>
+					R.map(déclarations, (déclaration) =>
+						estDéclarationAMAVide(déclaration) ? O.none() : déclaration
+					)
+				)
+			)
+
 			updateSituation((prev) => ({
 				...prev,
 				modesDeGarde: {
 					GED: prev.modesDeGarde.GED,
-					AMA: salariéesAMA,
+					AMA: newSalariéesAMA,
 				},
 			}))
 		},
@@ -173,6 +202,10 @@ export const useCMG = () => {
 		'enfants-gardés': t(
 			'pages.assistants.cmg.raisons-inéligibilité.enfants-gardés',
 			'Aucun de vos enfants gardés n’ouvre droit au complément transitoire.'
+		),
+		'réforme-avantageuse': t(
+			'pages.assistants.cmg.raisons-inéligibilité.réforme-avantageuse',
+			'La réforme du CMG vous est favorable (à situation identique, vous allez percevoir au moins autant).'
 		),
 	} as Record<RaisonInéligibilité, string>
 
