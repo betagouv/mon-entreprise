@@ -54,9 +54,7 @@ export const initialSituationCMG: SituationCMG = {
 	parentIsolé: O.none(),
 	ressources: O.none(),
 	enfantsÀCharge: {
-		enfants: {
-			'': { prénom: O.none(), dateDeNaissance: O.none() },
-		},
+		enfants: {},
 		perçoitAeeH: O.none(),
 		AeeH: O.none(),
 	},
