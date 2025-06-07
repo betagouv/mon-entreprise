@@ -65,7 +65,7 @@ export default function Enfants() {
 
 			<AeeH />
 
-			<Navigation précédent="informations" suivant="GED" />
+			<Navigation précédent="informations" suivant="déclarations" />
 		</>
 	)
 }
