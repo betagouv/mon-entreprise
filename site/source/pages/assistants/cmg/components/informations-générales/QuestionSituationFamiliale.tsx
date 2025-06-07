@@ -8,7 +8,7 @@ import { Radio, Spacing, ToggleGroup } from '@/design-system'
 
 import { Question } from '../styled-components'
 
-export default function SituationFamiliale() {
+export default function QuestionSituationFamiliale() {
 	const { situation, set } = useCMG()
 	const { t } = useTranslation()
 

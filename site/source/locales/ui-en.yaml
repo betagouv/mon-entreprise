@@ -817,6 +817,8 @@ pages:
           supplement.
         heures-de-garde: You did not declare enough on-call hours between March and May 2025.
         ressources: Your income exceeds the ceiling.
+        réforme-avantageuse: The reform of the CMG benefits you (you will receive at
+          least as much for the same situation).
       shortname: Transitional supplement to CMG
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:

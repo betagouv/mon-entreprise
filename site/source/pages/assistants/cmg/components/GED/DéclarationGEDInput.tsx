@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { styled } from 'styled-components'
 
 import { DéclarationDeGardeGED } from '@/contextes/cmg'
-import { euros, Montant } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import CMGPerçuInput from '../déclaration/CMGPerçuInput'
@@ -31,28 +31,28 @@ export default function DéclarationGEDInput({
 				() =>
 					({
 						type: 'GED',
-						heuresDeGarde: 0,
-						rémunération: euros(0),
+						heuresDeGarde: O.none(),
+						rémunération: O.none(),
 						CMGPerçu: O.none(),
 					}) satisfies DéclarationDeGardeGED
 			),
 		[déclaration]
 	)
 
-	const onHeuresDeGardeChange = (heuresDeGarde: number | undefined) => {
+	const onHeuresDeGardeChange = (heuresDeGarde: O.Option<number>) => {
 		onChange(
 			O.some({
 				...currentDéclaration,
-				heuresDeGarde: heuresDeGarde || 0,
+				heuresDeGarde,
 			})
 		)
 	}
 
-	const onRémunérationChange = (rémunération: Montant<'Euro'> | undefined) => {
+	const onRémunérationChange = (rémunération: O.Option<Montant<'Euro'>>) => {
 		onChange(
 			O.some({
 				...currentDéclaration,
-				rémunération: rémunération || euros(0),
+				rémunération,
 			})
 		)
 	}
