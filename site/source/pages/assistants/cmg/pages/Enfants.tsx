@@ -1,5 +1,6 @@
 import * as A from 'effect/Array'
 import * as O from 'effect/Option'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Enfant, useCMG } from '@/contextes/cmg'
@@ -13,6 +14,12 @@ import { Question } from '../components/styled-components'
 export default function Enfants() {
 	const { t } = useTranslation()
 	const { enfants, set } = useCMG()
+
+	useEffect(() => {
+		if (!enfants.length) {
+			set.nouvelEnfant()
+		}
+	}, [])
 
 	const onChange = (index: number) => (enfant: Enfant) => {
 		set.enfants(A.replace(enfants, index, enfant))
