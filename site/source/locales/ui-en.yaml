@@ -775,6 +775,10 @@ pages:
           label: First name
         question: Who are your dependent children?
       informations-générales:
+        CMG-perçu:
+          label: Did you receive a CMG between March and May 2025?
+        mois-déclarations:
+          label: Have you declared at least 2 months between March and May 2025?
         ressources:
           description: Enter the reference tax income shown on the tax notice(s) of the
             members of your household.
