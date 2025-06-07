@@ -11,7 +11,7 @@ type Props = {
 }
 
 export default function NonÉligible({ précédent }: Props) {
-	const { raisonsInéligibilité } = useCMG()
+	const { raisonsInéligibilité, getRaisonsInéligibilitéHumaines } = useCMG()
 	const { t } = useTranslation()
 
 	if (!raisonsInéligibilité.length) {
@@ -27,9 +27,11 @@ export default function NonÉligible({ précédent }: Props) {
 				)}
 			</Body>
 			<Ul>
-				{raisonsInéligibilité.map((raison, index) => (
-					<Li key={index}>{raison}</Li>
-				))}
+				{getRaisonsInéligibilitéHumaines(raisonsInéligibilité).map(
+					(raison, index) => (
+						<Li key={index}>{raison}</Li>
+					)
+				)}
 			</Ul>
 
 			<Navigation précédent={précédent} />
