@@ -789,9 +789,19 @@ pages:
         description: This simulator enables you to estimate the amount of the
           transitional supplement to the CMG Remuneration.
         titre: CMG transitional top-up simulator
+      non-éligible: "You are not eligible for the transitional supplement for the
+        following reasons:"
       questions:
         AeeH:
           label: Number of children concerned
+      raisons-inéligibilité:
+        CMG-perçu: You were not eligible for CMG between March and May 2025.
+        déclarations: You have not entered enough declarations between March and May 2025.
+        enfants-gardés: None of your children qualify for the transitional supplement.
+        enfants-à-charge: None of your dependent children qualify for the transitional
+          supplement.
+        heures-de-garde: You did not declare enough on-call hours between March and May 2025.
+        ressources: Your income exceeds the ceiling.
       shortname: Transitional supplement to CMG
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:

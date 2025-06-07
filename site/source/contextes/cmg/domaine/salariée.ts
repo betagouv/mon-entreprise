@@ -1,9 +1,13 @@
+import { pipe } from 'effect'
 import * as O from 'effect/Option'
+import * as R from 'effect/Record'
 
 import {
 	DéclarationDeGarde,
 	DéclarationDeGardeAMA,
 	DéclarationDeGardeGED,
+	estDéclarationDeGardeAMAValide,
+	estDéclarationDeGardeGEDValide,
 } from './déclaration-de-garde'
 
 export interface Salariée {
@@ -21,3 +25,11 @@ export interface SalariéeAMA<PrénomsEnfants extends string> {
 	avril: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
 	mai: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
 }
+
+export const estSalariéeGEDValide = (salariée: SalariéeGED): boolean =>
+	R.some(salariée, O.isSome) &&
+	pipe(salariée, R.getSomes, R.every(estDéclarationDeGardeGEDValide))
+
+export const estSalariéeAMAValide = (salariée: SalariéeAMA<string>): boolean =>
+	R.some(salariée, O.isSome) &&
+	pipe(salariée, R.getSomes, R.every(estDéclarationDeGardeAMAValide))

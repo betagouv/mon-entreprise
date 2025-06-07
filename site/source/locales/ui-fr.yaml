@@ -831,9 +831,20 @@ pages:
         description: Ce simulateur permet d’estimer le montant du complément transitoire
           au CMG Rémunération.
         titre: Simulateur de complément transitoire au CMG
+      non-éligible: "Vous n’êtes pas éligible au complément transitoire pour les
+        raisons suivantes :"
       questions:
         AeeH:
           label: Nombre d’enfants concernés
+      raisons-inéligibilité:
+        CMG-perçu: Vous n’avez pas été éligible au CMG entre mars et mai 2025.
+        déclarations: Vous n’avez pas saisi suffisamment de déclarations entre mars et
+          mai 2025.
+        enfants-gardés: Aucun de vos enfants gardés n’ouvre droit au complément transitoire.
+        enfants-à-charge: Aucun de vos enfants à charge n’ouvre droit au complément transitoire.
+        heures-de-garde: Vous n’avez pas déclaré suffisamment d’heures de garde entre
+          mars et mai 2025.
+        ressources: Vos ressources dépassent le plafond.
       shortname: Complément transitoire au CMG
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
