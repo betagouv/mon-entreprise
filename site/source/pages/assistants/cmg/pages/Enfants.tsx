@@ -3,17 +3,22 @@ import * as O from 'effect/Option'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Enfant, useCMG } from '@/contextes/cmg'
+import { Enfant, RaisonInéligibilité, useCMG } from '@/contextes/cmg'
 import { Button, H2, Spacing } from '@/design-system'
 
 import AeeH from '../components/enfants/AeeH'
 import EnfantInput from '../components/enfants/EnfantInput'
 import Navigation from '../components/Navigation'
 import { Question } from '../components/styled-components'
+import NonÉligible from './NonÉligible'
 
 export default function Enfants() {
 	const { t } = useTranslation()
-	const { enfants, set } = useCMG()
+	const { raisonsInéligibilité, enfants, set } = useCMG()
+	const raisonsInéligibilitéValables: Array<RaisonInéligibilité> = [
+		'CMG-perçu',
+		'déclarations',
+	]
 
 	useEffect(() => {
 		if (!enfants.length) {
@@ -30,6 +35,14 @@ export default function Enfants() {
 	}
 
 	const isButtonDisabled = enfants.some((enfant) => O.isNone(enfant.prénom))
+
+	if (
+		raisonsInéligibilitéValables.some((raison) =>
+			raisonsInéligibilité.includes(raison)
+		)
+	) {
+		return <NonÉligible précédent="informations" />
+	}
 
 	return (
 		<>
