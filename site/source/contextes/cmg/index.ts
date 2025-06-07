@@ -7,3 +7,4 @@ export type {
 	DéclarationDeGardeAMA,
 	DéclarationDeGardeGED,
 } from './domaine/déclaration-de-garde'
+export type { RaisonInéligibilité } from './domaine/éligibilité'
