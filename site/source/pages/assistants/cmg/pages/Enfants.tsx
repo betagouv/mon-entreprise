@@ -3,18 +3,23 @@ import * as O from 'effect/Option'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Enfant, RaisonInéligibilité, useCMG } from '@/contextes/cmg'
+import {
+	Enfant,
+	estEnfantsÀChargeValide,
+	RaisonInéligibilité,
+	useCMG,
+} from '@/contextes/cmg'
 import { Button, H2, Spacing } from '@/design-system'
 
-import AeeH from '../components/enfants/AeeH'
 import EnfantInput from '../components/enfants/EnfantInput'
+import QuestionsAeeH from '../components/enfants/QuestionsAeeH'
 import Navigation from '../components/Navigation'
 import { Question } from '../components/styled-components'
 import NonÉligible from './NonÉligible'
 
 export default function Enfants() {
 	const { t } = useTranslation()
-	const { raisonsInéligibilité, enfants, set } = useCMG()
+	const { raisonsInéligibilité, situation, enfants, set } = useCMG()
 	const raisonsInéligibilitéValables: Array<RaisonInéligibilité> = [
 		'CMG-perçu',
 		'déclarations',
@@ -34,7 +39,9 @@ export default function Enfants() {
 		set.enfants(A.remove(enfants, index))
 	}
 
-	const isButtonDisabled = enfants.some((enfant) => O.isNone(enfant.prénom))
+	const isAddButtonDisabled = enfants.some((enfant) => O.isNone(enfant.prénom))
+
+	const isSuivantDisabled = !estEnfantsÀChargeValide(situation.enfantsÀCharge)
 
 	if (
 		raisonsInéligibilitéValables.some((raison) =>
@@ -75,7 +82,7 @@ export default function Enfants() {
 				size="XXS"
 				light
 				onPress={set.nouvelEnfant}
-				isDisabled={isButtonDisabled}
+				isDisabled={isAddButtonDisabled}
 			>
 				{t(
 					'pages.assistants.cmg.enfants.add-button-label',
@@ -83,9 +90,13 @@ export default function Enfants() {
 				)}
 			</Button>
 
-			<AeeH />
+			<QuestionsAeeH />
 
-			<Navigation précédent="informations" suivant="déclarations" />
+			<Navigation
+				précédent="informations"
+				suivant="déclarations"
+				isSuivantDisabled={isSuivantDisabled}
+			/>
 		</>
 	)
 }

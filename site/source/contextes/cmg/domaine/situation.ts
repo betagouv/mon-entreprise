@@ -1,3 +1,4 @@
+import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
@@ -5,8 +6,13 @@ import * as R from 'effect/Record'
 import * as M from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
+import {
+	estDéclarationDeGardeAMAValide,
+	estDéclarationDeGardeGEDValide,
+} from './déclaration-de-garde'
 import { EnfantsÀCharge } from './enfant'
 import {
+	auMoinsUneDéclaration,
 	estSalariéeAMAValide,
 	estSalariéeGEDValide,
 	SalariéeAMA,
@@ -63,3 +69,30 @@ export const initialSituationCMG: SituationCMG = {
 		AMA: [],
 	},
 }
+
+export const estModesDeGardeValide = (
+	modesDeGarde: SituationCMG['modesDeGarde']
+): boolean =>
+	// Il y a au moins une salariée
+	(A.isNonEmptyArray(modesDeGarde.AMA) ||
+		A.isNonEmptyArray(modesDeGarde.GED)) &&
+	// et chaque salariée a au moins une déclaration
+	pipe(modesDeGarde.AMA, A.every(auMoinsUneDéclaration)) &&
+	pipe(modesDeGarde.GED, A.every(auMoinsUneDéclaration)) &&
+	// et chaque déclaration est soit vide, soit valide.
+	modesDeGarde.AMA.every((déclarations) =>
+		R.every(
+			déclarations,
+			(déclaration) =>
+				O.isNone(déclaration) ||
+				estDéclarationDeGardeAMAValide(déclaration.value)
+		)
+	) &&
+	modesDeGarde.GED.every((déclarations) =>
+		R.every(
+			déclarations,
+			(déclaration) =>
+				O.isNone(déclaration) ||
+				estDéclarationDeGardeGEDValide(déclaration.value)
+		)
+	)

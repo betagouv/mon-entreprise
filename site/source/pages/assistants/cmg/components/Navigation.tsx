@@ -7,9 +7,14 @@ import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 type Props = {
 	précédent?: keyof RelativeSitePaths['assistants']['cmg']
 	suivant?: keyof RelativeSitePaths['assistants']['cmg']
+	isSuivantDisabled?: boolean
 }
 
-export default function Navigation({ précédent, suivant }: Props) {
+export default function Navigation({
+	précédent,
+	suivant,
+	isSuivantDisabled,
+}: Props) {
 	const { absoluteSitePaths } = useSitePaths()
 	const cmgPaths = absoluteSitePaths.assistants.cmg
 	const { submit } = useCMG()
@@ -22,7 +27,12 @@ export default function Navigation({ précédent, suivant }: Props) {
 				</Button>
 			)}
 			{suivant && (
-				<Button size="XS" onClick={submit} to={cmgPaths[suivant]}>
+				<Button
+					size="XS"
+					onClick={submit}
+					to={cmgPaths[suivant]}
+					isDisabled={isSuivantDisabled}
+				>
 					Suivant
 				</Button>
 			)}

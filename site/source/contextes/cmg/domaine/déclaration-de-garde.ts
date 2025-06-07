@@ -14,31 +14,57 @@ export type DéclarationDeGarde<PrénomsEnfants extends string = string> =
 
 export interface DéclarationDeGardeGED {
 	type: 'GED'
-	heuresDeGarde: number
-	rémunération: M.Montant<'Euro'>
+	heuresDeGarde: O.Option<number>
+	rémunération: O.Option<M.Montant<'Euro'>>
 	CMGPerçu: O.Option<M.Montant<'Euro'>>
 }
 
 export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	type: 'AMA'
-	heuresDeGarde: number
-	rémunération: M.Montant<'Euro'>
+	heuresDeGarde: O.Option<number>
+	rémunération: O.Option<M.Montant<'Euro'>>
 	enfantsGardés: Array<PrénomsEnfants>
 	CMGPerçu: O.Option<M.Montant<'Euro'>>
 }
+
+const estOptionVide = (option: O.Option<unknown>): boolean =>
+	O.isNone(option) || (O.isSome(option) && !option.value)
+
+export const estDéclarationGEDVide = (
+	déclaration: O.Option<DéclarationDeGardeGED>
+): boolean =>
+	O.isSome(déclaration) &&
+	estOptionVide(déclaration.value.heuresDeGarde) &&
+	estOptionVide(déclaration.value.rémunération) &&
+	estOptionVide(déclaration.value.CMGPerçu)
+
+export const estDéclarationAMAVide = (
+	déclaration: O.Option<DéclarationDeGardeAMA<string>>
+): boolean =>
+	O.isSome(déclaration) &&
+	A.isEmptyArray(déclaration.value.enfantsGardés) &&
+	estOptionVide(déclaration.value.heuresDeGarde) &&
+	estOptionVide(déclaration.value.rémunération) &&
+	estOptionVide(déclaration.value.CMGPerçu)
 
 export const estDéclarationDeGardeGEDValide = ({
 	heuresDeGarde,
 	rémunération,
 }: DéclarationDeGardeGED): boolean =>
-	heuresDeGarde > 0 && M.estPositif(rémunération)
+	O.isSome(heuresDeGarde) &&
+	heuresDeGarde.value > 0 &&
+	O.isSome(rémunération) &&
+	M.estPositif(rémunération.value)
 
 export const estDéclarationDeGardeAMAValide = ({
 	heuresDeGarde,
 	rémunération,
 	enfantsGardés,
 }: DéclarationDeGardeAMA<string>): boolean =>
-	heuresDeGarde > 0 && M.estPositif(rémunération) && !!enfantsGardés.length
+	estDéclarationDeGardeGEDValide({
+		heuresDeGarde,
+		rémunération,
+	} as DéclarationDeGardeGED) && A.isNonEmptyArray(enfantsGardés)
 
 export const toutesLesDéclarations = (
 	modesDeGarde: SituationCMGValide['modesDeGarde']
