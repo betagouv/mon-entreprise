@@ -12,7 +12,7 @@ type Props = {
 	idSuffix: string
 	enfant: Enfant
 	onChange: ChangeHandler<Enfant>
-	onDelete: () => void
+	onDelete?: () => void
 }
 
 export default function EnfantInput({
@@ -46,7 +46,7 @@ export default function EnfantInput({
 					}
 				/>
 			</InputsContainer>
-			<DeleteButton onDelete={onDelete} />
+			{onDelete && <DeleteButton onDelete={onDelete} />}
 		</Container>
 	)
 }
