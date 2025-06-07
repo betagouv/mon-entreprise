@@ -817,6 +817,10 @@ pages:
           label: Prénom
         question: Quels sont vos enfants à charge ?
       informations-générales:
+        CMG-perçu:
+          label: Avez-vous perçu un CMG entre mars et mai 2025 ?
+        mois-déclarations:
+          label: Avez-vous déclaré au moins 2 mois entre mars et mai 2025 ?
         ressources:
           description: Renseignez le revenu fiscal de référence figurant sur le ou les
             avis d’imposition des membres de votre foyer.
