@@ -27,6 +27,19 @@ export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	CMGPerçu: O.Option<M.Montant<'Euro'>>
 }
 
+export const estDéclarationDeGardeGEDValide = ({
+	heuresDeGarde,
+	rémunération,
+}: DéclarationDeGardeGED): boolean =>
+	heuresDeGarde > 0 && M.estPositif(rémunération)
+
+export const estDéclarationDeGardeAMAValide = ({
+	heuresDeGarde,
+	rémunération,
+	enfantsGardés,
+}: DéclarationDeGardeAMA<string>): boolean =>
+	heuresDeGarde > 0 && M.estPositif(rémunération) && !!enfantsGardés.length
+
 export const toutesLesDéclarations = (
 	modesDeGarde: SituationCMGValide['modesDeGarde']
 ): Array<DéclarationDeGarde> =>

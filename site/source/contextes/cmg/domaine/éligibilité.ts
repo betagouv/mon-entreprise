@@ -1,5 +1,6 @@
 import { pipe } from 'effect'
 import * as A from 'effect/Array'
+import * as E from 'effect/Either'
 import * as N from 'effect/Number'
 import * as O from 'effect/Option'
 import { and, not } from 'effect/Predicate'
@@ -7,6 +8,7 @@ import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
 
+import { calculeComplémentTransitoire } from './calcul'
 import {
 	ANNÉE_DE_NAISSANCE_EXCLUE,
 	MAJORATION_PAR_ENFANT,
@@ -21,7 +23,11 @@ import {
 } from './déclaration-de-garde'
 import { Enfant, enfantAMoinsDe6Ans, enfantNéEn } from './enfant'
 import { Salariée } from './salariée'
-import { SituationCMGValide } from './situation'
+import {
+	estSituationCMGValide,
+	SituationCMG,
+	SituationCMGValide,
+} from './situation'
 import {
 	détermineLaTypologieDeLaGarde,
 	TypologieDeGarde,
@@ -33,80 +39,232 @@ interface Historique<PrénomsEnfants extends string = string> {
 	mai: Array<DéclarationDeGarde<PrénomsEnfants>>
 }
 
-interface Éligibilité {
-	estÉligible: boolean
-	raisonsInéligibilité: Array<RaisonInéligibilité>
+interface Éligible {
+	estÉligible: true
+	montantCT: M.Montant<'Euro'>
 }
-type RaisonInéligibilité =
+
+const SITUATION_INCOMPLÈTE = 'Situation Incomplète' as const
+type SituationIncomplète = typeof SITUATION_INCOMPLÈTE
+
+export type RaisonInéligibilité =
 	| 'CMG-perçu'
-	| 'ressources'
 	| 'déclarations'
+	| 'enfants-à-charge'
+	| 'ressources'
 	| 'heures-de-garde'
-	| 'enfants'
+	| 'enfants-gardés'
+	| 'réforme-avantageuse'
 
-export const éligibilité = (situation: SituationCMGValide): Éligibilité => {
-	const éligibilité = {
-		estÉligible: true,
-		raisonsInéligibilité: [] as Array<RaisonInéligibilité>,
-	}
+type FonctionÉligibilité = E.Either<
+	E.Either<Éligible, SituationIncomplète>,
+	RaisonInéligibilité[]
+>
 
-	// Premier round d'inéligibilité
-	if (!situation.aPerçuCMG.value) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('CMG-perçu')
-	}
+export const éligibilité = (situation: SituationCMG): FonctionÉligibilité => {
+	const éligibilité = pipe(
+		[
+			ditAvoirPerçuCMG,
+			ditAvoirPlusDe2MoisDeDéclaration,
+			aAuMoinsUnEnfantÀChargeOuvrantDroitAuCMG,
+			aDesRessourcesInférieuresAuPlafond,
+			aPerçuCMG,
+			aUnNombreDeMoisEmployeureuseSuffisant,
+			aDéclaréAssezDHeuresDeGarde,
+			aAuMoinsUnEnfantGardéOuvrantDroitAuCMG,
+		],
+		A.map((f) => f(situation)),
+		(éligibilités) => {
+			// On n'utilise pas directement Either.all car on veut concaténer les raisons d'inéligibilité
+			if (A.some(éligibilités, E.isLeft)) {
+				return pipe(
+					éligibilités,
+					A.filter(E.isLeft),
+					A.map((raisonsInéligibilité) => {
+						return O.getOrElse(E.getLeft(raisonsInéligibilité), () => [])
+					}),
+					A.flatten,
+					E.left
+				)
+			} else {
+				return E.all(éligibilités)
+			}
+		},
+		E.map((éligibilités) =>
+			A.some(éligibilités, E.isLeft)
+				? E.left(SITUATION_INCOMPLÈTE)
+				: E.right({
+						estÉligible: true,
+						montantCT: M.euros(0),
+				  } as Éligible)
+		),
+		E.mapLeft(A.dedupe)
+	)
 
-	if (!situation.plusDe2MoisDeDéclaration.value) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('déclarations')
-	}
-
-	if (!éligibilité.estÉligible) {
-		return éligibilité
-	}
-
-	// Deuxième round d'inéligibilité, seulement si le 1er est passé
-	if (
-		!auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(situation.enfantsÀCharge.enfants)
-	) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('enfants')
-	}
-
-	if (!ressourcesInférieuresAuPlafond(situation)) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('ressources')
-	}
-
-	if (!éligibilité.estÉligible) {
-		return éligibilité
-	}
-
-	// Troisième round d'inéligibilité, seulement si le 2ème est passé
-	if (!CMGPerçu(situation)) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('CMG-perçu')
-	}
-
-	if (!nombreDeMoisEmployeureuseSuffisant(situation)) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('déclarations')
-	}
-
-	if (!moyenneHeuresDeGardeSupérieureAuPlancher(situation)) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('heures-de-garde')
-	}
-
-	if (!auMoinsUnEnfantOuvrantDroitAuCMG(situation)) {
-		éligibilité.estÉligible = false
-		éligibilité.raisonsInéligibilité.push('enfants')
+	if (E.isRight(éligibilité) && E.isRight(éligibilité.right)) {
+		return estDésavantagéParLaRéforme(situation)
 	}
 
 	return éligibilité
 }
 
-const CMGPerçu = (situation: SituationCMGValide): boolean =>
+const situationIncomplète = E.right(
+	E.left(SITUATION_INCOMPLÈTE)
+) as FonctionÉligibilité
+const éligible = E.right(
+	E.right({
+		estÉligible: true,
+		montantCT: M.euros(0),
+	})
+) as FonctionÉligibilité
+const inéligible = (raison: RaisonInéligibilité) => E.left([raison])
+
+const ditAvoirPerçuCMG = (situation: SituationCMG): FonctionÉligibilité => {
+	if (O.isNone(situation.aPerçuCMG)) {
+		return situationIncomplète
+	}
+
+	if (situation.aPerçuCMG.value) {
+		return éligible
+	} else {
+		return inéligible('CMG-perçu')
+	}
+}
+
+const ditAvoirPlusDe2MoisDeDéclaration = (
+	situation: SituationCMG
+): FonctionÉligibilité => {
+	if (O.isNone(situation.plusDe2MoisDeDéclaration)) {
+		return situationIncomplète
+	}
+
+	if (situation.plusDe2MoisDeDéclaration.value) {
+		return éligible
+	} else {
+		return inéligible('déclarations')
+	}
+}
+
+const aAuMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
+	situation: SituationCMG
+): FonctionÉligibilité => {
+	const enfants = situation.enfantsÀCharge.enfants
+	if (!R.size(enfants)) {
+		return situationIncomplète
+	}
+
+	if (auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(enfants)) {
+		return éligible
+	} else {
+		return inéligible('enfants-à-charge')
+	}
+}
+
+const aDesRessourcesInférieuresAuPlafond = (
+	situation: SituationCMG
+): FonctionÉligibilité => {
+	if (
+		O.isNone(situation.parentIsolé) ||
+		O.isNone(situation.ressources) ||
+		!R.size(situation.enfantsÀCharge.enfants)
+	) {
+		return situationIncomplète
+	}
+
+	if (ressourcesInférieuresAuPlafond(situation as SituationCMGValide)) {
+		return éligible
+	} else {
+		return inéligible('ressources')
+	}
+}
+
+const aPerçuCMG = (situation: SituationCMG): FonctionÉligibilité => {
+	if (
+		!situation.modesDeGarde.AMA.length &&
+		!situation.modesDeGarde.GED.length
+	) {
+		return situationIncomplète
+	}
+
+	if (CMGPerçu(situation)) {
+		return éligible
+	} else {
+		return inéligible('CMG-perçu')
+	}
+}
+
+const aUnNombreDeMoisEmployeureuseSuffisant = (
+	situation: SituationCMG
+): FonctionÉligibilité => {
+	if (
+		!situation.modesDeGarde.AMA.length &&
+		!situation.modesDeGarde.GED.length
+	) {
+		return situationIncomplète
+	}
+
+	if (nombreDeMoisEmployeureuseSuffisant(situation)) {
+		return éligible
+	} else {
+		return inéligible('déclarations')
+	}
+}
+
+const aDéclaréAssezDHeuresDeGarde = (
+	situation: SituationCMG
+): FonctionÉligibilité => {
+	if (
+		!R.size(situation.enfantsÀCharge.enfants) ||
+		(!situation.modesDeGarde.AMA.length && !situation.modesDeGarde.GED.length)
+	) {
+		return situationIncomplète
+	}
+
+	if (moyenneHeuresDeGardeSupérieureAuPlancher(situation)) {
+		return éligible
+	} else {
+		return inéligible('heures-de-garde')
+	}
+}
+
+const aAuMoinsUnEnfantGardéOuvrantDroitAuCMG = (
+	situation: SituationCMG
+): FonctionÉligibilité => {
+	if (
+		!R.size(situation.enfantsÀCharge.enfants) ||
+		(!situation.modesDeGarde.AMA.length && !situation.modesDeGarde.GED.length)
+	) {
+		return situationIncomplète
+	}
+
+	if (auMoinsUnEnfantGardéOuvrantDroitAuCMG(situation)) {
+		return éligible
+	} else {
+		return inéligible('enfants-gardés')
+	}
+}
+
+const estDésavantagéParLaRéforme = (
+	situation: SituationCMG
+): FonctionÉligibilité => {
+	if (!estSituationCMGValide(situation)) {
+		return situationIncomplète
+	}
+
+	const montantCT = calculeComplémentTransitoire(situation)
+	if (M.estPositif(montantCT)) {
+		return E.right(
+			E.right({
+				estÉligible: true,
+				montantCT,
+			})
+		)
+	} else {
+		return inéligible('réforme-avantageuse')
+	}
+}
+
+const CMGPerçu = (situation: SituationCMG): boolean =>
 	pipe(
 		situation.modesDeGarde,
 		toutesLesDéclarations,
@@ -136,7 +294,7 @@ export const plafondDeRessources = (nbEnfants: number, parentIsolé: boolean) =>
 	)
 
 const nombreDeMoisEmployeureuseSuffisant = (
-	situation: SituationCMGValide
+	situation: SituationCMG
 ): boolean => {
 	const historique = construireHistorique(situation.modesDeGarde)
 
@@ -174,7 +332,7 @@ const déclarationsPourLeMois = (
 	)
 
 export const moyenneHeuresDeGardeSupérieureAuPlancher = (
-	situation: SituationCMGValide
+	situation: SituationCMG
 ): boolean =>
 	pipe(
 		situation.modesDeGarde,
@@ -213,8 +371,8 @@ const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 		(sum) => Math.ceil(sum / 3)
 	)
 
-export const auMoinsUnEnfantOuvrantDroitAuCMG = (
-	situation: SituationCMGValide
+export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
+	situation: SituationCMG
 ): boolean => {
 	// Si GED : au moins 1 enfant **à charge** ouvrant droit
 	if (A.isNonEmptyArray(situation.modesDeGarde.GED)) {
