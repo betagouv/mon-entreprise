@@ -1,10 +1,13 @@
 import React, { createContext, useContext, useState } from 'react'
 
+import { initialRésultat, Résultat } from '../domaine/résultat'
 import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 
 type SituationContextType = {
 	situation: SituationCMG
 	updateSituation: (updater: (prev: SituationCMG) => SituationCMG) => void
+	résultat: Résultat
+	updateRésultat: (updater: (prev: Résultat) => Résultat) => void
 }
 
 const SituationContext = createContext<SituationContextType | null>(null)
@@ -13,9 +16,14 @@ export const CMGProvider: React.FC<{
 	children: React.ReactNode
 }> = ({ children }) => {
 	const [situation, setSituation] = useState<SituationCMG>(initialSituationCMG)
+	const [résultat, setRésultat] = useState<Résultat>(initialRésultat)
 
 	const updateSituation = (updater: (prev: SituationCMG) => SituationCMG) => {
 		setSituation(updater)
+	}
+
+	const updateRésultat = (updater: (prev: Résultat) => Résultat) => {
+		setRésultat(updater)
 	}
 
 	return (
@@ -23,6 +31,8 @@ export const CMGProvider: React.FC<{
 			value={{
 				situation,
 				updateSituation,
+				résultat,
+				updateRésultat,
 			}}
 		>
 			{children}
