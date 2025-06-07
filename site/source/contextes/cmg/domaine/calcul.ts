@@ -114,8 +114,13 @@ export const tauxEffortHoraire = (
 export const coûtMensuelDeLaGarde = (
 	déclarationDeGarde: DéclarationDeGarde
 ) => {
+	if (O.isNone(déclarationDeGarde.heuresDeGarde)) {
+		return M.euros(0)
+	}
+
 	const coûtHoraireNet = round(
-		déclarationDeGarde.rémunération.valeur / déclarationDeGarde.heuresDeGarde,
+		O.getOrElse(déclarationDeGarde.rémunération, () => M.euros(0)).valeur /
+			déclarationDeGarde.heuresDeGarde.value,
 		2
 	)
 	const coûtHoraireAppliqué = Math.min(
@@ -123,5 +128,5 @@ export const coûtMensuelDeLaGarde = (
 		COÛT_HORAIRE_MAXIMAL[déclarationDeGarde.type]
 	)
 
-	return M.euros(coûtHoraireAppliqué * déclarationDeGarde.heuresDeGarde)
+	return M.euros(coûtHoraireAppliqué * déclarationDeGarde.heuresDeGarde.value)
 }

@@ -8,7 +8,7 @@ import { NumberField, Radio, Spacing, ToggleGroup } from '@/design-system'
 
 import { Label, Question } from '../styled-components'
 
-export default function AeeH() {
+export default function QuestionsAeeH() {
 	const { perçoitAeeH, AeeH, set } = useCMG()
 	const { t } = useTranslation()
 

@@ -849,6 +849,8 @@ pages:
         heures-de-garde: Vous n’avez pas déclaré suffisamment d’heures de garde entre
           mars et mai 2025.
         ressources: Vos ressources dépassent le plafond.
+        réforme-avantageuse: La réforme du CMG vous est favorable (à situation
+          identique, vous allez percevoir au moins autant).
       shortname: Complément transitoire au CMG
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:

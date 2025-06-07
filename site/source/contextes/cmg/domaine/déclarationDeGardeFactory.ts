@@ -9,8 +9,8 @@ import {
 
 export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 	private enfantsGardés
-	private heuresDeGarde = 100
-	private rémunération = M.euros(500)
+	private heuresDeGarde = O.some(100)
+	private rémunération = O.some(M.euros(500))
 	private CMGPerçu = O.some(M.euros(200))
 
 	constructor(prénoms: Prénom[]) {
@@ -18,13 +18,13 @@ export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 	}
 
 	avecNbHeures(nbHeures: number) {
-		this.heuresDeGarde = nbHeures
+		this.heuresDeGarde = O.some(nbHeures)
 
 		return this
 	}
 
 	avecRémunération(rémunération: M.Montant<'Euro'>) {
-		this.rémunération = rémunération
+		this.rémunération = O.some(rémunération)
 
 		return this
 	}
@@ -53,18 +53,18 @@ export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 }
 
 export class DéclarationsDeGardeGEDFactory {
-	private heuresDeGarde = 50
-	private rémunération = M.euros(500)
+	private heuresDeGarde = O.some(50)
+	private rémunération = O.some(M.euros(500))
 	private CMGPerçu = O.some(M.euros(200))
 
 	avecNbHeures(nbHeures: number) {
-		this.heuresDeGarde = nbHeures
+		this.heuresDeGarde = O.some(nbHeures)
 
 		return this
 	}
 
 	avecRémunération(rémunération: M.Montant<'Euro'>) {
-		this.rémunération = rémunération
+		this.rémunération = O.some(rémunération)
 
 		return this
 	}

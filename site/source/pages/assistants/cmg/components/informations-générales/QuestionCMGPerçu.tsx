@@ -8,7 +8,7 @@ import { Radio, Spacing, ToggleGroup } from '@/design-system'
 
 import { Question } from '../styled-components'
 
-export default function CMGPerçu() {
+export default function QuestionCMGPerçu() {
 	const { situation, set } = useCMG()
 	const { t } = useTranslation()
 

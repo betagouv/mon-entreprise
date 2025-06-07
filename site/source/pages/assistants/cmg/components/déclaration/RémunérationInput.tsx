@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
 import { MontantField } from '@/design-system'
@@ -8,8 +9,8 @@ import { Label } from '../styled-components'
 
 type Props = {
 	idSuffix?: string
-	valeur: Montant<'Euro'>
-	onChange: ChangeHandler<Montant<'Euro'> | undefined>
+	valeur: O.Option<Montant<'Euro'>>
+	onChange: ChangeHandler<O.Option<Montant<'Euro'>>>
 }
 
 export default function RémunérationInput({
@@ -28,9 +29,9 @@ export default function RémunérationInput({
 				)}
 			</Label>
 			<MontantField
-				value={valeur}
+				value={O.getOrUndefined(valeur)}
 				unité="Euro"
-				onChange={onChange}
+				onChange={(montant) => onChange(O.fromNullable(montant))}
 				aria-labelledby={`rémunération-label-${idSuffix}`}
 			/>
 		</div>
