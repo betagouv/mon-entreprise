@@ -46,7 +46,7 @@ export default function Enfants() {
 						idSuffix={`${index}`}
 						enfant={enfant}
 						onChange={onChange(index)}
-						onDelete={onDelete(index)}
+						onDelete={enfants.length > 1 ? onDelete(index) : undefined}
 					/>
 				))}
 			</fieldset>
