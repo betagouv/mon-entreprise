@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
 import { NumberField } from '@/design-system'
@@ -7,8 +8,8 @@ import { Label } from '../styled-components'
 
 type Props = {
 	idSuffix?: string
-	valeur: number
-	onChange: ChangeHandler<number | undefined>
+	valeur: O.Option<number>
+	onChange: ChangeHandler<O.Option<number>>
 }
 
 export default function HeuresDeGardeInput({
@@ -24,8 +25,8 @@ export default function HeuresDeGardeInput({
 				{t('pages.assistants.cmg.GED.heures-de-garde.label', 'Heures de garde')}
 			</Label>
 			<NumberField
-				value={valeur}
-				onChange={onChange}
+				value={O.getOrUndefined(valeur)}
+				onChange={(valeur) => onChange(O.fromNullable(valeur))}
 				aria-labelledby={`heures-de-garde-label-${idSuffix}`}
 			/>
 		</div>

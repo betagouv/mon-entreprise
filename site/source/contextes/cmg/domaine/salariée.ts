@@ -26,10 +26,13 @@ export interface SalariéeAMA<PrénomsEnfants extends string> {
 	mai: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
 }
 
+export const auMoinsUneDéclaration = (salariée: Salariée): boolean =>
+	R.some(salariée, O.isSome)
+
 export const estSalariéeGEDValide = (salariée: SalariéeGED): boolean =>
-	R.some(salariée, O.isSome) &&
+	auMoinsUneDéclaration(salariée) &&
 	pipe(salariée, R.getSomes, R.every(estDéclarationDeGardeGEDValide))
 
 export const estSalariéeAMAValide = (salariée: SalariéeAMA<string>): boolean =>
-	R.some(salariée, O.isSome) &&
+	auMoinsUneDéclaration(salariée) &&
 	pipe(salariée, R.getSomes, R.every(estDéclarationDeGardeAMAValide))

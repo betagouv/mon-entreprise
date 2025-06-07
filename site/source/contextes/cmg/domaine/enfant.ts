@@ -1,6 +1,7 @@
 import { addYears, getYear, isAfter, isBefore } from 'date-fns/fp'
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
+import * as R from 'effect/Record'
 
 import { DATE_RÉFORME } from './constantes'
 
@@ -20,13 +21,22 @@ export interface EnfantValide extends Enfant {
 	dateDeNaissance: O.Some<Date>
 }
 
-function estEnfantValide(enfant: Enfant): enfant is EnfantValide {
-	return O.isSome(enfant.prénom) && O.isSome(enfant.dateDeNaissance)
-}
+export const estEnfantsÀChargeValide = (
+	enfantsÀCharge: EnfantsÀCharge
+): boolean =>
+	!R.isEmptyRecord(enfantsÀCharge.enfants) &&
+	pipe(enfantsÀCharge.enfants, R.every(estEnfantValide)) &&
+	O.isSome(enfantsÀCharge.perçoitAeeH) &&
+	(!enfantsÀCharge.perçoitAeeH.value ||
+		(enfantsÀCharge.perçoitAeeH.value && O.isSome(enfantsÀCharge.AeeH)))
 
-export function estEnfantGardable(enfant: Enfant): enfant is EnfantValide {
-	return estEnfantValide(enfant) && enfantAMoinsDe6Ans(enfant)
-}
+const estEnfantValide = (enfant: Enfant): enfant is EnfantValide =>
+	O.isSome(enfant.prénom) &&
+	!!enfant.prénom.value &&
+	O.isSome(enfant.dateDeNaissance)
+
+export const estEnfantGardable = (enfant: Enfant): enfant is EnfantValide =>
+	estEnfantValide(enfant) && enfantAMoinsDe6Ans(enfant)
 
 export const isEnfantValide = (e: Enfant): e is EnfantValide =>
 	O.isSome(e.prénom) && O.isSome(e.dateDeNaissance)

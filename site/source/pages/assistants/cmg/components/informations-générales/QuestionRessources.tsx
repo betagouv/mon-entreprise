@@ -6,7 +6,7 @@ import { MontantField } from '@/design-system'
 
 import { DescriptionQuestion, Question } from '../styled-components'
 
-export default function Ressources() {
+export default function QuestionRessources() {
 	const { situation, set } = useCMG()
 	const { t } = useTranslation()
 
