@@ -21,7 +21,12 @@ import {
 	DéclarationDeGarde,
 	toutesLesDéclarations,
 } from './déclaration-de-garde'
-import { Enfant, enfantAMoinsDe6Ans, enfantNéEn } from './enfant'
+import {
+	Enfant,
+	enfantAMoinsDe6Ans,
+	enfantNéEn,
+	getEnfantFromPrénom,
+} from './enfant'
 import { Salariée } from './salariée'
 import {
 	estSituationCMGValide,
@@ -149,7 +154,7 @@ const aAuMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
 	const enfants = situation.enfantsÀCharge.enfants
-	if (!R.size(enfants)) {
+	if (A.isEmptyArray(enfants)) {
 		return situationIncomplète
 	}
 
@@ -166,7 +171,7 @@ const aDesRessourcesInférieuresAuPlafond = (
 	if (
 		O.isNone(situation.parentIsolé) ||
 		O.isNone(situation.ressources) ||
-		!R.size(situation.enfantsÀCharge.enfants)
+		A.isEmptyArray(situation.enfantsÀCharge.enfants)
 	) {
 		return situationIncomplète
 	}
@@ -214,7 +219,7 @@ const aDéclaréAssezDHeuresDeGarde = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
 	if (
-		!R.size(situation.enfantsÀCharge.enfants) ||
+		A.isEmptyArray(situation.enfantsÀCharge.enfants) ||
 		(!situation.modesDeGarde.AMA.length && !situation.modesDeGarde.GED.length)
 	) {
 		return situationIncomplète
@@ -231,7 +236,7 @@ const aAuMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
 	if (
-		!R.size(situation.enfantsÀCharge.enfants) ||
+		A.isEmptyArray(situation.enfantsÀCharge.enfants) ||
 		(!situation.modesDeGarde.AMA.length && !situation.modesDeGarde.GED.length)
 	) {
 		return situationIncomplète
@@ -280,7 +285,7 @@ const ressourcesInférieuresAuPlafond = (
 		situation.ressources.value,
 		M.estPlusPetitOuÉgalÀ(
 			plafondDeRessources(
-				R.size(situation.enfantsÀCharge.enfants),
+				situation.enfantsÀCharge.enfants.length,
 				situation.parentIsolé.value
 			)
 		)
@@ -346,7 +351,7 @@ export const moyenneHeuresDeGardeSupérieureAuPlancher = (
 	)
 
 export const moyenneHeuresParTypologieDeGarde =
-	(enfants: Record<string, Enfant>) =>
+	(enfants: Array<Enfant>) =>
 	(
 		déclarationsDeGarde: Array<DéclarationDeGarde>
 	): Record<TypologieDeGarde, number> =>
@@ -357,7 +362,7 @@ export const moyenneHeuresParTypologieDeGarde =
 		)
 
 const groupeLesDéclarationsParTypologieDeGarde =
-	<Prénom extends string>(enfants: Record<Prénom, Enfant>) =>
+	<Prénom extends string>(enfants: Array<Enfant>) =>
 	(
 		liste: DéclarationDeGarde<Prénom>[]
 	): Record<TypologieDeGarde, DéclarationDeGarde[]> =>
@@ -389,18 +394,16 @@ export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 		A.map((d) => d.enfantsGardés),
 		A.flatten,
 		A.dedupe,
-		R.fromIterableWith((prénom) => [
-			prénom,
-			situation.enfantsÀCharge.enfants[prénom],
-		])
+		A.map(getEnfantFromPrénom(situation.enfantsÀCharge.enfants)),
+		A.getSomes
 	)
 
-	return R.some(enfantsGardésEnAMA, enfantOuvreDroitAuCMG)
+	return A.some(enfantsGardésEnAMA, enfantOuvreDroitAuCMG)
 }
 
 const auMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
-	enfants: Record<string, Enfant>
-): boolean => R.some(enfants, enfantOuvreDroitAuCMG)
+	enfants: Array<Enfant>
+): boolean => A.some(enfants, enfantOuvreDroitAuCMG)
 
 export const enfantOuvreDroitAuCMG = and<Enfant>(
 	not(enfantNéEn(ANNÉE_DE_NAISSANCE_EXCLUE)),
