@@ -1,3 +1,4 @@
+import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	estModesDeGardeValide,
 	RaisonInéligibilité,
@@ -28,6 +29,8 @@ export default function Déclarations() {
 
 	return (
 		<>
+			<TrackPage chapter3="pas_a_pas" name="déclarations" />
+
 			<AMA />
 			<GED />
 

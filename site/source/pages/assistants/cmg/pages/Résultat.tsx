@@ -1,5 +1,6 @@
 import * as O from 'effect/Option'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 import { Body } from '@/design-system'
 import { toString as formatMontant } from '@/domaine/Montant'
@@ -16,6 +17,8 @@ export default function Résultat() {
 
 	return (
 		<>
+			<TrackPage chapter3="pas_a_pas" name="résultat" />
+
 			<Body>
 				Montant théorique du complément transitoire :&nbsp;
 				{formatMontant(montantCT.value)}
