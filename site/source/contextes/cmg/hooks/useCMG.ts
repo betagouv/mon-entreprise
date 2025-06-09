@@ -49,15 +49,11 @@ export const useCMG = () => {
 		},
 
 		enfants: (enfants: Array<Enfant>) => {
-			const nouveauxEnfants = pipe(
-				enfants,
-				R.fromIterableWith((e) => [O.getOrElse(e.prénom, () => ''), e])
-			)
 			updateSituation((prev) => ({
 				...prev,
 				enfantsÀCharge: {
 					...prev.enfantsÀCharge,
-					enfants: nouveauxEnfants,
+					enfants,
 				},
 			}))
 		},
@@ -67,13 +63,13 @@ export const useCMG = () => {
 				...prev,
 				enfantsÀCharge: {
 					...prev.enfantsÀCharge,
-					enfants: {
+					enfants: [
 						...prev.enfantsÀCharge.enfants,
-						'': {
+						{
 							prénom: O.none(),
 							dateDeNaissance: O.none(),
 						},
-					},
+					],
 				},
 			}))
 		},
@@ -211,7 +207,7 @@ export const useCMG = () => {
 
 	return {
 		situation,
-		enfants: R.values(situation.enfantsÀCharge.enfants),
+		enfants: situation.enfantsÀCharge.enfants,
 		perçoitAeeH: situation.enfantsÀCharge.perçoitAeeH,
 		AeeH: situation.enfantsÀCharge.AeeH,
 		salariéesGED: situation.modesDeGarde.GED,

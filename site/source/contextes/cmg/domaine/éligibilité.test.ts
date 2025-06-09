@@ -33,11 +33,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe3Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -114,11 +114,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe3Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -188,10 +188,10 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe3Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -214,11 +214,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe3Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -260,11 +260,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe3Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -320,11 +320,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe6Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -378,7 +378,7 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {},
+					enfants: [],
 					perçoitAeeH: O.none(),
 					AeeH: O.none(),
 				},
@@ -401,7 +401,7 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {},
+					enfants: [],
 					perçoitAeeH: O.none(),
 					AeeH: O.none(),
 				},
@@ -424,11 +424,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').plusDe6Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').plusDe6Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe6Ans().build(),
+					],
 					perçoitAeeH: O.none(),
 					AeeH: O.none(),
 				},
@@ -479,11 +479,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe3Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -543,11 +543,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe3Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -598,11 +598,11 @@ describe('CMG', () => {
 
 	describe('moyenneHeuresParTypologieDeGarde', () => {
 		it('le cas Aurore, Rose, Oscar', () => {
-			const résultat = moyenneHeuresParTypologieDeGarde({
-				Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-				Rose: new EnfantFactory('Rose').néEn(2022).build(),
-				Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-			})([
+			const résultat = moyenneHeuresParTypologieDeGarde([
+				new EnfantFactory('Oscar').moinsDe3Ans().build(),
+				new EnfantFactory('Rose').néEn(2022).build(),
+				new EnfantFactory('Aurore').plusDe3Ans().build(),
+			])([
 				new DéclarationsDeGardeAMAFactory(['Oscar']).avecNbHeures(150).build(),
 				new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build(),
 				new DéclarationsDeGardeAMAFactory(['Rose']).avecNbHeures(150).build(),
@@ -623,11 +623,11 @@ describe('CMG', () => {
 		})
 
 		it('le cas Aurore, Rose', () => {
-			const résultat = moyenneHeuresParTypologieDeGarde({
-				Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-				Rose: new EnfantFactory('Rose').néEn(2022).build(),
-				Aurore: new EnfantFactory('Aurore').plusDe3Ans().build(),
-			})([
+			const résultat = moyenneHeuresParTypologieDeGarde([
+				new EnfantFactory('Oscar').moinsDe3Ans().build(),
+				new EnfantFactory('Rose').néEn(2022).build(),
+				new EnfantFactory('Aurore').plusDe3Ans().build(),
+			])([
 				new DéclarationsDeGardeGEDFactory().avecNbHeures(31).build(),
 				new DéclarationsDeGardeAMAFactory(['Rose']).avecNbHeures(150).build(),
 				new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
@@ -658,11 +658,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe6Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -696,11 +696,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe6Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -726,11 +726,11 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Oscar: new EnfantFactory('Oscar').moinsDe3Ans().build(),
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Oscar').moinsDe3Ans().build(),
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe6Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
@@ -756,10 +756,10 @@ describe('CMG', () => {
 					M.Montant<'EuroParAn'>
 				>,
 				enfantsÀCharge: {
-					enfants: {
-						Rose: new EnfantFactory('Rose').néEn(2022).build(),
-						Aurore: new EnfantFactory('Aurore').plusDe6Ans().build(),
-					},
+					enfants: [
+						new EnfantFactory('Rose').néEn(2022).build(),
+						new EnfantFactory('Aurore').plusDe6Ans().build(),
+					],
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
