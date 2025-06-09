@@ -1,5 +1,6 @@
 import { Trans } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Intro, Strong } from '@/design-system'
@@ -9,6 +10,8 @@ import Navigation from '../components/Navigation'
 export default function Accueil() {
 	return (
 		<>
+			<TrackPage name="accueil" />
+
 			<PageHeader>
 				<Trans i18nKey="pages.assistants.cmg.description">
 					<Intro>
