@@ -1,5 +1,4 @@
 import * as A from 'effect/Array'
-import * as O from 'effect/Option'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -39,7 +38,7 @@ export default function Enfants() {
 		set.enfants(A.remove(enfants, index))
 	}
 
-	const isAddButtonDisabled = enfants.some((enfant) => O.isNone(enfant.prénom))
+	const isAddButtonDisabled = enfants.length > 18
 
 	const isSuivantDisabled = !estEnfantsÀChargeValide(situation.enfantsÀCharge)
 
