@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 import { Body, Li, Ul } from '@/design-system'
 import { RelativeSitePaths } from '@/sitePaths'
@@ -20,6 +21,8 @@ export default function NonÉligible({ précédent }: Props) {
 
 	return (
 		<>
+			<TrackPage chapter3="pas_a_pas" name="résultat" />
+
 			<Body>
 				{t(
 					'pages.assistants.cmg.non-éligible',
