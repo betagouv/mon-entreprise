@@ -2,6 +2,7 @@ import * as A from 'effect/Array'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Enfant,
 	estEnfantsÀChargeValide,
@@ -52,6 +53,8 @@ export default function Enfants() {
 
 	return (
 		<>
+			<TrackPage chapter3="pas_a_pas" name="enfants" />
+
 			<H2>{t('pages.assistants.cmg.enfants.h2', 'Enfants à charge')}</H2>
 
 			<fieldset>

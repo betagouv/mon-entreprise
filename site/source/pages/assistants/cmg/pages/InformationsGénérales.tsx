@@ -1,5 +1,6 @@
 import * as O from 'effect/Option'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 
 import QuestionCMGPerçu from '../components/informations-générales/QuestionCMGPerçu'
@@ -18,6 +19,8 @@ export default function InformationsGénérales() {
 
 	return (
 		<>
+			<TrackPage chapter3="pas_a_pas" name="informations" />
+
 			<QuestionNombreMoisDéclarationsSuffisant />
 			<QuestionCMGPerçu />
 			<QuestionSituationFamiliale />
