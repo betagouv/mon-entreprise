@@ -86,7 +86,7 @@ export const tauxEffortHoraire = (
 		R.reduce(
 			{ TEHPourNbEnfantsÀCharge: 0, indexPourNbEnfantsÀCharge: -1 },
 			(résultat, teh, nbEnfants) => {
-				if (R.values(enfantsÀCharge.enfants).length >= +nbEnfants) {
+				if (enfantsÀCharge.enfants.length >= +nbEnfants) {
 					résultat.TEHPourNbEnfantsÀCharge = teh
 					résultat.indexPourNbEnfantsÀCharge++
 				}
