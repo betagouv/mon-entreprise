@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
@@ -12,11 +13,13 @@ type Props = {
 }
 
 export default function NonÉligible({ précédent }: Props) {
+	const navigate = useNavigate()
+	const location = useLocation()
 	const { raisonsInéligibilité, getRaisonsInéligibilitéHumaines } = useCMG()
 	const { t } = useTranslation()
 
 	if (!raisonsInéligibilité.length) {
-		return
+		navigate('/assistants/cmg')
 	}
 
 	return (
@@ -42,7 +45,9 @@ export default function NonÉligible({ précédent }: Props) {
 				)}
 			</Ul>
 
-			<Navigation précédent={précédent} />
+			<Navigation
+				précédent={précédent || (location.state as Props).précédent}
+			/>
 		</>
 	)
 }
