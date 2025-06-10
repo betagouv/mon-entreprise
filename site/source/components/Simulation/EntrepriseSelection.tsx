@@ -35,27 +35,31 @@ export default function EntrepriseSelection() {
 
 					<LectureGuide />
 
-					<Grid item onClick={() => setSearchVisible(!isSearchVisible)}>
-						<ValueBody>
-							{companySIREN ? (
-								<>
-									<Value expression="entreprise . nom" linkToRule={false} />
-									{isSearchVisible ? <ShowLessIcon /> : <ShowMoreIcon />}
-								</>
-							) : (
-								<>
-									<span
-										role="button"
-										aria-label={t(
-											"Rechercher, afficher le champ de recherche d'entreprise."
-										)}
-									>
-										{t('Rechercher')}
-									</span>
-									<SearchIcon aria-hidden />
-								</>
-							)}
-						</ValueBody>
+					<Grid item>
+						<DisclosureButton
+							aria-expanded={isSearchVisible}
+							onClick={() => setSearchVisible(!isSearchVisible)}
+						>
+							<ValueBody>
+								{companySIREN ? (
+									<>
+										<Value expression="entreprise . nom" linkToRule={false} />
+										{isSearchVisible ? <ShowLessIcon /> : <ShowMoreIcon />}
+									</>
+								) : (
+									<>
+										<span
+											aria-label={t(
+												"Rechercher, afficher le champ de recherche d'entreprise."
+											)}
+										>
+											{t('Rechercher')}
+										</span>
+										<SearchIcon aria-hidden />
+									</>
+								)}
+							</ValueBody>
+						</DisclosureButton>
 					</Grid>
 				</Grid>
 				<WrongSimulateurWarning />
@@ -125,8 +129,13 @@ const TitleBody = styled(Body)`
 	font-weight: bold;
 `
 
-const ValueBody = styled(Body)`
+const DisclosureButton = styled.button`
+	background: transparent;
+	border: none;
 	cursor: pointer;
+`
+
+const ValueBody = styled(Body)`
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
