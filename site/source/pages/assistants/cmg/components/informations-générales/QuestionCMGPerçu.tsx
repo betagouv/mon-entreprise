@@ -37,7 +37,7 @@ export default function QuestionCMGPerçu() {
 			<Question id="CMG-perçu-label">
 				{t(
 					'pages.assistants.cmg.informations-générales.CMG-perçu.label',
-					'Avez-vous perçu un CMG entre mars et mai 2025 ?'
+					'Avez-vous perçu un CMG au titre des déclarations réalisées entre mars et mai 2025 ?'
 				)}
 			</Question>
 

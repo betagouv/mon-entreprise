@@ -866,7 +866,8 @@ pages:
           mai 2025 ?
       informations-générales:
         CMG-perçu:
-          label: Avez-vous perçu un CMG entre mars et mai 2025 ?
+          label: Avez-vous perçu un CMG au titre des déclarations réalisées entre mars et
+            mai 2025 ?
         erreurs: Toutes les questions sont obligatoires.
         mois-déclarations:
           label: Avez-vous déclaré au moins 2 mois entre mars et mai 2025 ?

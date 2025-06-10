@@ -815,7 +815,7 @@ pages:
         question: Who were your dependent children in March, April and May 2025?
       informations-générales:
         CMG-perçu:
-          label: Did you receive a CMG between March and May 2025?
+          label: Have you received CMG for declarations made between March and May 2025?
         erreurs: All questions are mandatory.
         mois-déclarations:
           label: Have you declared at least 2 months between March and May 2025?
