@@ -117,6 +117,7 @@ Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôt sur le revenu: Impôt sur le revenu
 Impôts: Impôts
+Info sur {{ title }}: Info sur {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
@@ -178,7 +179,6 @@ Passer: Passer
 Passer, passer la question sans répondre: Passer, passer la question sans répondre
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
-Plus d'informations sur {{ title }}: Plus d'informations sur {{ title }}
 Plus de 50 salariés: Plus de 50 salariés
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:

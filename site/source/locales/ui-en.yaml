@@ -112,6 +112,7 @@ Impôt: Tax
 Impôt au barème: Tax scale
 Impôt sur le revenu: Income tax
 Impôts: Taxes
+Info sur {{ title }}: Info on {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
@@ -170,7 +171,6 @@ Passer: Pass
 Passer, passer la question sans répondre: Pass, pass the question without answering
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
-Plus d'informations sur {{ title }}: More information on {{ title }}
 Plus de 50 salariés: More than 50 employees
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
