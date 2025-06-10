@@ -74,7 +74,7 @@ export function Cotisations() {
 						<th scope="col">salarié</th>
 					</tr>
 					<tr>
-						<th scope="row">
+						<th scope="row" className="payslip__total-th">
 							<Trans>Total des cotisations et contributions</Trans>
 						</th>
 						<td>
