@@ -21,6 +21,7 @@ export type PopoverWithTriggerProps = {
 	) => ReactElement<typeof Button> | ReactElement<typeof Link>
 	children: React.ReactNode | ((close: () => void) => React.ReactNode)
 	title?: string
+	ariaLabel?: string
 	small?: boolean
 	contentRef?: RefObject<HTMLDivElement>
 	disableOverflowAuto?: boolean
@@ -29,6 +30,7 @@ export type PopoverWithTriggerProps = {
 export function PopoverWithTrigger({
 	children,
 	title,
+	ariaLabel,
 	trigger,
 	small,
 	contentRef,
@@ -68,6 +70,7 @@ export function PopoverWithTrigger({
 						{...overlayProps}
 						disableOverflowAuto={disableOverflowAuto}
 						title={title}
+						ariaLabel={ariaLabel}
 						onClose={() => {
 							state.close()
 						}}
