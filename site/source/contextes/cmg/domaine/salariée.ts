@@ -1,4 +1,5 @@
 import { pipe } from 'effect'
+import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 
@@ -9,6 +10,7 @@ import {
 	estDéclarationDeGardeAMAValide,
 	estDéclarationDeGardeGEDValide,
 } from './déclaration-de-garde'
+import { SituationCMG } from './situation'
 
 export interface Salariée {
 	mars: O.Option<DéclarationDeGarde>
@@ -36,3 +38,50 @@ export const estSalariéeGEDValide = (salariée: SalariéeGED): boolean =>
 export const estSalariéeAMAValide = (salariée: SalariéeAMA<string>): boolean =>
 	auMoinsUneDéclaration(salariée) &&
 	pipe(salariée, R.getSomes, R.every(estDéclarationDeGardeAMAValide))
+
+export const estSalariéesValide = (
+	salariées: SituationCMG['salariées']
+): boolean =>
+	auMoinsUneSalariée(salariées) &&
+	chaqueSalariéeAAuMoinsUneDéclaration(salariées) &&
+	chaqueSalariéeAMAEstValide(salariées) &&
+	chaqueSalariéeGEDEstValide(salariées)
+
+export const auMoinsUneSalariée = (
+	salariées: SituationCMG['salariées']
+): boolean =>
+	A.isNonEmptyArray(salariées.AMA) || A.isNonEmptyArray(salariées.GED)
+
+export const chaqueSalariéeAAuMoinsUneDéclaration = (
+	salariées: SituationCMG['salariées']
+): boolean =>
+	pipe(salariées.AMA, A.every(auMoinsUneDéclaration)) &&
+	pipe(salariées.GED, A.every(auMoinsUneDéclaration))
+
+export const chaqueSalariéeAMAEstValide = (
+	salariées: SituationCMG['salariées']
+): boolean =>
+	salariées.AMA.every((salariée) =>
+		pipe(
+			salariée,
+			R.every(
+				(déclaration) =>
+					O.isNone(déclaration) ||
+					estDéclarationDeGardeAMAValide(déclaration.value)
+			)
+		)
+	)
+
+export const chaqueSalariéeGEDEstValide = (
+	salariées: SituationCMG['salariées']
+): boolean =>
+	salariées.GED.every((salariée) =>
+		pipe(
+			salariée,
+			R.every(
+				(déclaration) =>
+					O.isNone(déclaration) ||
+					estDéclarationDeGardeGEDValide(déclaration.value)
+			)
+		)
+	)
