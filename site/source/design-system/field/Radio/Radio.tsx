@@ -29,7 +29,7 @@ export function Radio(props: RadioProps) {
 
 export const RadioSkeleton = (props: RadioProps) => {
 	const { visibleRadioAs, id, ...ariaProps } = props
-	const { children } = ariaProps
+	const { children, value } = ariaProps
 	const state = useContext(RadioContext)
 	if (!state) {
 		throw new Error("Radio can't be instanciated outside a RadioContext")
@@ -39,7 +39,7 @@ export const RadioSkeleton = (props: RadioProps) => {
 	const { inputProps } = useRadio(ariaProps, state, ref)
 
 	return (
-		<Label htmlFor={id} className={props.className}>
+		<Label htmlFor={id || `input-radio-${value}`} className={props.className}>
 			<InputRadio
 				{...inputProps}
 				// Avoid react-aria focus next element (input, button, etc.) on keydown for rgaa
@@ -48,7 +48,7 @@ export const RadioSkeleton = (props: RadioProps) => {
 				tabIndex={undefined}
 				className="sr-only"
 				ref={ref}
-				id={id}
+				id={id || `input-radio-${value}`}
 			/>
 			<VisibleRadio as={visibleRadioAs} $inert={props.isDisabled}>
 				{children}
