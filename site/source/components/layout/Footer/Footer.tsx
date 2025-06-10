@@ -158,9 +158,6 @@ export default function Footer() {
 													'Voir le code source sur Github, nouvelle fenêtre'
 												)}
 											>
-												<Trans i18nKey="footer.github.text">
-													Voir le code source sur Github
-												</Trans>{' '}
 												<GithubIcon
 													style={{
 														width: '18px',
@@ -170,6 +167,9 @@ export default function Footer() {
 														fill: '#e6edf3',
 													}}
 												/>
+												<Trans i18nKey="footer.github.text">
+													Voir le code source sur Github
+												</Trans>{' '}
 											</Link>
 										</StyledLi>
 										{altHref && (
