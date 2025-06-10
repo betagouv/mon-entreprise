@@ -107,7 +107,7 @@ export default function Footer() {
 										<ul>
 											<StyledLi>
 												<Link to={absoluteSitePaths.plan} noUnderline>
-													<Trans>Plan du site</Trans> <Emoji emoji="🧭" />
+													<Trans>Plan du site</Trans>
 												</Link>
 											</StyledLi>
 											<StyledLi>
@@ -180,9 +180,15 @@ export default function Footer() {
 													openInSameWindow
 													lang={isFrenchMode ? 'en' : 'fr'}
 												>
-													{isFrenchMode
-														? 'Switch to the English version'
-														: 'Passer à la version française'}
+													{isFrenchMode ? (
+														<>
+															<Emoji emoji="🇬🇧" /> Switch to the English version
+														</>
+													) : (
+														<>
+															<Emoji emoji="🇫🇷" /> Passer à la version française
+														</>
+													)}
 												</Link>
 											</StyledLi>
 										)}
