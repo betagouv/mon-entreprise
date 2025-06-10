@@ -27,10 +27,6 @@ export default function CotisationLine({
 	)
 	const signePlusOuMoins = isExoneration(dottedName) ? '-' : ''
 
-	if (!partPatronale.nodeValue && !partSalariale.nodeValue) {
-		return null
-	}
-
 	return (
 		<tr className="payslip__cotisationLine">
 			<th scope="row">
