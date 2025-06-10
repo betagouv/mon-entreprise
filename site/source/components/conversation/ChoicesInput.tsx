@@ -232,7 +232,7 @@ function RadioChoices<Names extends string = DottedName>({
 								<ExplicableRule
 									light
 									dottedName={node.dottedName as DottedName}
-									aria-label={t("Plus d'informations sur {{ title }}", {
+									aria-label={t('Info sur {{ title }}', {
 										title: node.title,
 									})}
 								/>

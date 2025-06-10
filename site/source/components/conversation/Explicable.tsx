@@ -40,7 +40,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 			bigPopover={bigPopover}
 			className="print-hidden"
 			aria-haspopup="dialog"
-			aria-label={`Plus d'informations sur ${rule.title}`}
+			aria-label={`Info sur ${rule.title}`}
 			{...props}
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
