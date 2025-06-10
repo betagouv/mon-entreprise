@@ -67,10 +67,10 @@ export const estDéclarationDeGardeAMAValide = ({
 	} as DéclarationDeGardeGED) && A.isNonEmptyArray(enfantsGardés)
 
 export const toutesLesDéclarations = (
-	modesDeGarde: SituationCMGValide['modesDeGarde']
+	salariées: SituationCMGValide['salariées']
 ): Array<DéclarationDeGarde> =>
 	pipe(
-		modesDeGarde,
+		salariées,
 		R.values,
 		A.flatten,
 		A.flatMap((s: Salariée) => R.values(s)),

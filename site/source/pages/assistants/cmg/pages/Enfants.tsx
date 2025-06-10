@@ -6,9 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Enfant,
+	estAeeHInférieurOuÉgalAuNombreDEnfants,
+	estAeeHRépondue,
 	estEnfantsÀChargeValide,
 	estInformationsValides,
+	pasDePrénomEndouble,
 	RaisonInéligibilité,
+	tousLesEnfantsSontValides,
 	useCMG,
 } from '@/contextes/cmg'
 import { Button, H2, Spacing } from '@/design-system'
@@ -16,7 +20,10 @@ import { Button, H2, Spacing } from '@/design-system'
 import EnfantInput from '../components/enfants/EnfantInput'
 import QuestionsAeeH from '../components/enfants/QuestionsAeeH'
 import Navigation from '../components/Navigation'
-import { Question } from '../components/styled-components'
+import {
+	MessageFormulaireInvalide,
+	Question,
+} from '../components/styled-components'
 
 export default function Enfants() {
 	const navigate = useNavigate()
@@ -106,6 +113,49 @@ export default function Enfants() {
 				suivant="déclarations"
 				isSuivantDisabled={isSuivantDisabled}
 			/>
+
+			{isSuivantDisabled && (
+				<MessageFormulaireInvalide>
+					{!tousLesEnfantsSontValides(enfants) && (
+						<>
+							{t(
+								'pages.assistants.cmg.enfants.erreurs.enfants-invalides',
+								'Chaque enfant doit avoir un prénom et une date de naissance antérieure au 01/06/2025.'
+							)}
+							<br />
+						</>
+					)}
+					{!pasDePrénomEndouble(enfants) && (
+						<>
+							{t(
+								'pages.assistants.cmg.enfants.erreurs.doublon-prénom',
+								'Chaque enfant doit avoir un prénom différent.'
+							)}
+							<br />
+						</>
+					)}
+					{!estAeeHRépondue(situation.enfantsÀCharge) && (
+						<>
+							{t(
+								'pages.assistants.cmg.enfants.erreurs.AeeH-obligatoire',
+								'La question sur l’AeeH est obligatoire.'
+							)}
+							<br />
+						</>
+					)}
+					{!estAeeHInférieurOuÉgalAuNombreDEnfants(
+						situation.enfantsÀCharge
+					) && (
+						<>
+							{t(
+								'pages.assistants.cmg.enfants.erreurs.AeeH-invalide',
+								'Il ne peut pas y avoir plus d’enfants concernés par l’AeeH que d’enfants à charge.'
+							)}
+							<br />
+						</>
+					)}
+				</MessageFormulaireInvalide>
+			)}
 		</>
 	)
 }

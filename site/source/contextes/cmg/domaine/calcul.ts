@@ -21,7 +21,7 @@ import { ModeDeGarde } from './mode-de-garde'
 import { SituationCMGValide } from './situation'
 
 export const calculeComplémentTransitoire = (situation: SituationCMGValide) => {
-	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.modesDeGarde)
+	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.salariées)
 	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
 	const différence = M.moins(ancienCMGMensuelMoyen, CMGRLinéariséMoyen)
 
@@ -32,11 +32,9 @@ export const calculeComplémentTransitoire = (situation: SituationCMGValide) => 
 	return différence
 }
 
-export const moyenneCMGPerçus = (
-	modesDeGarde: SituationCMGValide['modesDeGarde']
-) =>
+export const moyenneCMGPerçus = (salariées: SituationCMGValide['salariées']) =>
 	pipe(
-		modesDeGarde,
+		salariées,
 		toutesLesDéclarations,
 		A.map((d) => O.getOrElse(d.CMGPerçu, () => M.euros(0)).valeur),
 		N.sumAll,
@@ -46,7 +44,7 @@ export const moyenneCMGPerçus = (
 
 export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 	pipe(
-		situation.modesDeGarde,
+		situation.salariées,
 		toutesLesDéclarations,
 		A.map(
 			(d) =>

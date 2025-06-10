@@ -184,10 +184,7 @@ const aDesRessourcesInférieuresAuPlafond = (
 }
 
 const aPerçuCMG = (situation: SituationCMG): FonctionÉligibilité => {
-	if (
-		!situation.modesDeGarde.AMA.length &&
-		!situation.modesDeGarde.GED.length
-	) {
+	if (!situation.salariées.AMA.length && !situation.salariées.GED.length) {
 		return situationIncomplète
 	}
 
@@ -201,10 +198,7 @@ const aPerçuCMG = (situation: SituationCMG): FonctionÉligibilité => {
 const aUnNombreDeMoisEmployeureuseSuffisant = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
-	if (
-		!situation.modesDeGarde.AMA.length &&
-		!situation.modesDeGarde.GED.length
-	) {
+	if (!situation.salariées.AMA.length && !situation.salariées.GED.length) {
 		return situationIncomplète
 	}
 
@@ -220,7 +214,7 @@ const aDéclaréAssezDHeuresDeGarde = (
 ): FonctionÉligibilité => {
 	if (
 		A.isEmptyArray(situation.enfantsÀCharge.enfants) ||
-		(!situation.modesDeGarde.AMA.length && !situation.modesDeGarde.GED.length)
+		(!situation.salariées.AMA.length && !situation.salariées.GED.length)
 	) {
 		return situationIncomplète
 	}
@@ -237,7 +231,7 @@ const aAuMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 ): FonctionÉligibilité => {
 	if (
 		A.isEmptyArray(situation.enfantsÀCharge.enfants) ||
-		(!situation.modesDeGarde.AMA.length && !situation.modesDeGarde.GED.length)
+		(!situation.salariées.AMA.length && !situation.salariées.GED.length)
 	) {
 		return situationIncomplète
 	}
@@ -271,7 +265,7 @@ const estDésavantagéParLaRéforme = (
 
 const CMGPerçu = (situation: SituationCMG): boolean =>
 	pipe(
-		situation.modesDeGarde,
+		situation.salariées,
 		toutesLesDéclarations,
 		A.map((d) => O.isSome(d.CMGPerçu) && d.CMGPerçu.value.valeur > 0),
 		A.filter(Boolean),
@@ -301,7 +295,7 @@ export const plafondDeRessources = (nbEnfants: number, parentIsolé: boolean) =>
 const nombreDeMoisEmployeureuseSuffisant = (
 	situation: SituationCMG
 ): boolean => {
-	const historique = construireHistorique(situation.modesDeGarde)
+	const historique = construireHistorique(situation.salariées)
 
 	return (
 		pipe(
@@ -315,14 +309,14 @@ const nombreDeMoisEmployeureuseSuffisant = (
 }
 
 const construireHistorique = (
-	modesDeGarde: SituationCMGValide['modesDeGarde']
+	salariées: SituationCMGValide['salariées']
 ): Historique => {
-	const salariées = pipe(modesDeGarde, R.values, A.flatten)
+	const déclarations = pipe(salariées, R.values, A.flatten)
 
 	return {
-		mars: déclarationsPourLeMois(salariées, 'mars'),
-		avril: déclarationsPourLeMois(salariées, 'avril'),
-		mai: déclarationsPourLeMois(salariées, 'mai'),
+		mars: déclarationsPourLeMois(déclarations, 'mars'),
+		avril: déclarationsPourLeMois(déclarations, 'avril'),
+		mai: déclarationsPourLeMois(déclarations, 'mai'),
 	}
 }
 
@@ -340,7 +334,7 @@ export const moyenneHeuresDeGardeSupérieureAuPlancher = (
 	situation: SituationCMG
 ): boolean =>
 	pipe(
-		situation.modesDeGarde,
+		situation.salariées,
 		toutesLesDéclarations,
 		moyenneHeuresParTypologieDeGarde(situation.enfantsÀCharge.enfants),
 		R.some(
@@ -380,7 +374,7 @@ export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): boolean => {
 	// Si GED : au moins 1 enfant **à charge** ouvrant droit
-	if (A.isNonEmptyArray(situation.modesDeGarde.GED)) {
+	if (A.isNonEmptyArray(situation.salariées.GED)) {
 		return auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(
 			situation.enfantsÀCharge.enfants
 		)
@@ -388,7 +382,7 @@ export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 
 	// Si AMA uniquement : au moins 1 enfant **gardé** ouvrant droit
 	const enfantsGardésEnAMA = pipe(
-		situation.modesDeGarde.AMA,
+		situation.salariées.AMA,
 		A.flatMap((s) => R.values(s)),
 		A.getSomes,
 		A.map((d) => d.enfantsGardés),
