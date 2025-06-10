@@ -27,6 +27,7 @@ export default function CMGPerçuInput({ idSuffix, valeur, onChange }: Props) {
 			<MontantField
 				value={O.getOrUndefined(valeur)}
 				unité="Euro"
+				avecCentimes={true}
 				onChange={(montant) => onChange(O.fromNullable(montant))}
 				aria-labelledby={`CMG-perçu-label-${idSuffix}`}
 			/>
