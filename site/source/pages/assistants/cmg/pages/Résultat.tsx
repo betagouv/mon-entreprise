@@ -1,5 +1,6 @@
 import * as O from 'effect/Option'
 import { Trans } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
@@ -7,13 +8,17 @@ import { Body, Message, SmallBody, Strong } from '@/design-system'
 import { toString as formatMontant } from '@/domaine/Montant'
 
 import Navigation from '../components/Navigation'
-import NonÉligible from './NonÉligible'
 
 export default function Résultat() {
+	const navigate = useNavigate()
 	const { montantCT } = useCMG()
 
 	if (!O.isSome(montantCT) || !montantCT.value) {
-		return <NonÉligible précédent="déclarations" />
+		navigate('/assistants/cmg/inéligible', {
+			state: { précédent: 'déclarations' },
+		})
+
+		return
 	}
 
 	const amount = formatMontant(montantCT.value)

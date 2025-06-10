@@ -8,4 +8,7 @@ export type {
 	DéclarationDeGardeGED,
 } from './domaine/déclaration-de-garde'
 export type { RaisonInéligibilité } from './domaine/éligibilité'
-export { estModesDeGardeValide } from './domaine/situation'
+export {
+	estInformationsValides,
+	estModesDeGardeValide,
+} from './domaine/situation'

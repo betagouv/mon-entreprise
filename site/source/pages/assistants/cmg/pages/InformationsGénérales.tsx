@@ -1,7 +1,5 @@
-import * as O from 'effect/Option'
-
 import { TrackPage } from '@/components/ATInternetTracking'
-import { useCMG } from '@/contextes/cmg'
+import { estInformationsValides, useCMG } from '@/contextes/cmg'
 
 import QuestionCMGPerçu from '../components/informations-générales/QuestionCMGPerçu'
 import QuestionNombreMoisDéclarationsSuffisant from '../components/informations-générales/QuestionNombreMoisDéclarationsSuffisant'
@@ -11,11 +9,7 @@ import Navigation from '../components/Navigation'
 
 export default function InformationsGénérales() {
 	const { situation } = useCMG()
-	const isSuivantDisabled =
-		O.isNone(situation.aPerçuCMG) ||
-		O.isNone(situation.plusDe2MoisDeDéclaration) ||
-		O.isNone(situation.parentIsolé) ||
-		O.isNone(situation.ressources)
+	const isSuivantDisabled = !estInformationsValides(situation)
 
 	return (
 		<>

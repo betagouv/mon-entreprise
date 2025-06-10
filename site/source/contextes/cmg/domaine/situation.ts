@@ -36,10 +36,7 @@ export interface SituationCMGValide extends SituationCMG {
 export const estSituationCMGValide = (
 	situation: SituationCMG
 ): situation is SituationCMGValide =>
-	O.isSome(situation.aPerçuCMG) &&
-	O.isSome(situation.plusDe2MoisDeDéclaration) &&
-	O.isSome(situation.parentIsolé) &&
-	O.isSome(situation.ressources) &&
+	estInformationsValides(situation) &&
 	estEnfantsÀChargeValide(situation.enfantsÀCharge) &&
 	estModesDeGardeValide(situation.modesDeGarde)
 
@@ -59,6 +56,12 @@ export const initialSituationCMG: SituationCMG = {
 		AMA: [],
 	},
 }
+
+export const estInformationsValides = (situation: SituationCMG): boolean =>
+	O.isSome(situation.aPerçuCMG) &&
+	O.isSome(situation.plusDe2MoisDeDéclaration) &&
+	O.isSome(situation.parentIsolé) &&
+	O.isSome(situation.ressources)
 
 export const estModesDeGardeValide = (
 	modesDeGarde: SituationCMG['modesDeGarde']
