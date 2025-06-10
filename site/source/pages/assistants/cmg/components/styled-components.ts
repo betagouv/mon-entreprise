@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { Body, Intro, SmallBody } from '@/design-system'
+import { Body, ExtraSmallBody, Intro, SmallBody } from '@/design-system'
 
 export const Question = styled(Intro)`
 	margin-bottom: 0;
@@ -16,4 +16,8 @@ export const DescriptionQuestion = styled(SmallBody)`
 export const Label = styled(Body)`
 	margin-top: 0;
 	margin-bottom: ${({ theme }) => theme.spacings.xxs};
+`
+
+export const MessageFormulaireInvalide = styled(ExtraSmallBody)`
+	text-align: right;
 `

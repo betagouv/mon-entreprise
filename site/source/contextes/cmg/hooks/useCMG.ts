@@ -107,8 +107,8 @@ export const useCMG = () => {
 
 			updateSituation((prev) => ({
 				...prev,
-				modesDeGarde: {
-					AMA: prev.modesDeGarde.AMA,
+				salariées: {
+					AMA: prev.salariées.AMA,
 					GED: newSalariéesGED,
 				},
 			}))
@@ -117,10 +117,10 @@ export const useCMG = () => {
 		nouvelleGED: () => {
 			updateSituation((prev) => ({
 				...prev,
-				modesDeGarde: {
-					AMA: prev.modesDeGarde.AMA,
+				salariées: {
+					AMA: prev.salariées.AMA,
 					GED: [
-						...prev.modesDeGarde.GED,
+						...prev.salariées.GED,
 						{
 							mars: O.none(),
 							avril: O.none(),
@@ -144,8 +144,8 @@ export const useCMG = () => {
 
 			updateSituation((prev) => ({
 				...prev,
-				modesDeGarde: {
-					GED: prev.modesDeGarde.GED,
+				salariées: {
+					GED: prev.salariées.GED,
 					AMA: newSalariéesAMA,
 				},
 			}))
@@ -154,10 +154,10 @@ export const useCMG = () => {
 		nouvelleAMA: () => {
 			updateSituation((prev) => ({
 				...prev,
-				modesDeGarde: {
-					GED: prev.modesDeGarde.GED,
+				salariées: {
+					GED: prev.salariées.GED,
 					AMA: [
-						...prev.modesDeGarde.AMA,
+						...prev.salariées.AMA,
 						{
 							mars: O.none(),
 							avril: O.none(),
@@ -210,8 +210,8 @@ export const useCMG = () => {
 		enfants: situation.enfantsÀCharge.enfants,
 		perçoitAeeH: situation.enfantsÀCharge.perçoitAeeH,
 		AeeH: situation.enfantsÀCharge.AeeH,
-		salariéesGED: situation.modesDeGarde.GED,
-		salariéesAMA: situation.modesDeGarde.AMA,
+		salariéesGED: situation.salariées.GED,
+		salariéesAMA: situation.salariées.AMA,
 		...résultat,
 		set,
 		submit,

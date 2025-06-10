@@ -26,16 +26,20 @@ export const estEnfantsÀChargeValide = (
 	enfantsÀCharge: EnfantsÀCharge
 ): boolean =>
 	A.isNonEmptyArray(enfantsÀCharge.enfants) &&
-	pipe(enfantsÀCharge.enfants, A.every(estEnfantValide)) &&
+	tousLesEnfantsSontValides(enfantsÀCharge.enfants) &&
 	pasDePrénomEndouble(enfantsÀCharge.enfants) &&
-	estAeeHValide(enfantsÀCharge.perçoitAeeH, enfantsÀCharge.AeeH)
+	estAeeHValide(enfantsÀCharge)
+
+export const tousLesEnfantsSontValides = (enfants: Array<Enfant>): boolean =>
+	pipe(enfants, A.every(estEnfantValide))
 
 const estEnfantValide = (enfant: Enfant): enfant is EnfantValide =>
 	O.isSome(enfant.prénom) &&
 	!!enfant.prénom.value &&
-	O.isSome(enfant.dateDeNaissance)
+	O.isSome(enfant.dateDeNaissance) &&
+	pipe(enfant.dateDeNaissance.value, isBefore(new Date('2025-06-01')))
 
-const pasDePrénomEndouble = (enfants: Array<Enfant>): boolean =>
+export const pasDePrénomEndouble = (enfants: Array<Enfant>): boolean =>
 	pipe(
 		enfants,
 		A.map((enfant) => enfant.prénom),
@@ -44,12 +48,20 @@ const pasDePrénomEndouble = (enfants: Array<Enfant>): boolean =>
 		A.length
 	) === enfants.length
 
-const estAeeHValide = (
-	perçoitAeeH: O.Option<boolean>,
-	AeeH: O.Option<number>
+export const estAeeHValide = (enfantsÀCharge: EnfantsÀCharge): boolean =>
+	estAeeHRépondue(enfantsÀCharge) &&
+	estAeeHInférieurOuÉgalAuNombreDEnfants(enfantsÀCharge)
+
+export const estAeeHRépondue = (enfantsÀCharge: EnfantsÀCharge): boolean =>
+	O.isSome(enfantsÀCharge.perçoitAeeH) &&
+	(!enfantsÀCharge.perçoitAeeH.value ||
+		(enfantsÀCharge.perçoitAeeH.value && O.isSome(enfantsÀCharge.AeeH)))
+
+export const estAeeHInférieurOuÉgalAuNombreDEnfants = (
+	enfantsÀCharge: EnfantsÀCharge
 ): boolean =>
-	O.isSome(perçoitAeeH) &&
-	(!perçoitAeeH.value || (perçoitAeeH.value && O.isSome(AeeH)))
+	O.isNone(enfantsÀCharge.AeeH) ||
+	enfantsÀCharge.AeeH.value <= enfantsÀCharge.enfants.length
 
 export const estEnfantGardable = (enfant: Enfant): enfant is EnfantValide =>
 	estEnfantValide(enfant) && enfantAMoinsDe6Ans(enfant)
