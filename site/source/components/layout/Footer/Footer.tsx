@@ -115,17 +115,17 @@ export default function Footer() {
 													to={absoluteSitePaths.nouveautés.index}
 													noUnderline
 												>
-													Nouveautés <Emoji emoji="✨" />
+													Nouveautés
 												</Link>
 											</StyledLi>
 											<StyledLi>
 												<Link to={absoluteSitePaths.budget} noUnderline>
-													Budget <Emoji emoji="🔦" />
+													Budget
 												</Link>
 											</StyledLi>
 											<StyledLi>
 												<Link to={absoluteSitePaths.stats} noUnderline>
-													Statistiques <Emoji emoji="📊" />
+													Statistiques
 												</Link>
 											</StyledLi>
 										</ul>
@@ -141,12 +141,11 @@ export default function Footer() {
 												noUnderline
 											>
 												<Trans>Intégrer nos simulateurs</Trans>{' '}
-												<Emoji emoji="📥" />
 											</Link>
 										</StyledLi>
 										{language === 'fr' && (
 											<StyledLi>
-												<InscriptionBetaTesteur /> <Emoji emoji="💌" />
+												<InscriptionBetaTesteur />
 											</StyledLi>
 										)}
 										<StyledLi>
