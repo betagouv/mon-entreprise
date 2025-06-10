@@ -38,7 +38,7 @@ describe('CMG', () => {
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
-				modesDeGarde: {
+				salariées: {
 					GED: [
 						{
 							mars: O.none(),
@@ -100,7 +100,7 @@ describe('CMG', () => {
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
-				modesDeGarde: {
+				salariées: {
 					GED: [
 						{
 							mars: O.none(),
@@ -264,7 +264,7 @@ describe('CMG', () => {
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
-				modesDeGarde: {
+				salariées: {
 					GED: [
 						{
 							mars: O.none(),

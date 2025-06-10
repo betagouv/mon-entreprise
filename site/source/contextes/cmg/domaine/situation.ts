@@ -1,17 +1,10 @@
-import { pipe } from 'effect'
-import * as A from 'effect/Array'
 import * as O from 'effect/Option'
-import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
-import {
-	estDéclarationDeGardeAMAValide,
-	estDéclarationDeGardeGEDValide,
-} from './déclaration-de-garde'
 import { EnfantsÀCharge, estEnfantsÀChargeValide } from './enfant'
-import { auMoinsUneDéclaration, SalariéeAMA, SalariéeGED } from './salariée'
+import { estSalariéesValide, SalariéeAMA, SalariéeGED } from './salariée'
 
 export interface SituationCMG<PrénomsEnfants extends string = string>
 	extends Situation {
@@ -20,7 +13,7 @@ export interface SituationCMG<PrénomsEnfants extends string = string>
 	parentIsolé: O.Option<boolean>
 	ressources: O.Option<M.Montant<'EuroParAn'>>
 	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
-	modesDeGarde: {
+	salariées: {
 		GED: Array<SalariéeGED>
 		AMA: Array<SalariéeAMA<PrénomsEnfants>>
 	}
@@ -38,7 +31,7 @@ export const estSituationCMGValide = (
 ): situation is SituationCMGValide =>
 	estInformationsValides(situation) &&
 	estEnfantsÀChargeValide(situation.enfantsÀCharge) &&
-	estModesDeGardeValide(situation.modesDeGarde)
+	estSalariéesValide(situation.salariées)
 
 export const initialSituationCMG: SituationCMG = {
 	_tag: 'Situation',
@@ -51,7 +44,7 @@ export const initialSituationCMG: SituationCMG = {
 		perçoitAeeH: O.none(),
 		AeeH: O.none(),
 	},
-	modesDeGarde: {
+	salariées: {
 		GED: [],
 		AMA: [],
 	},
@@ -62,30 +55,3 @@ export const estInformationsValides = (situation: SituationCMG): boolean =>
 	O.isSome(situation.plusDe2MoisDeDéclaration) &&
 	O.isSome(situation.parentIsolé) &&
 	O.isSome(situation.ressources)
-
-export const estModesDeGardeValide = (
-	modesDeGarde: SituationCMG['modesDeGarde']
-): boolean =>
-	// Il y a au moins une salariée
-	(A.isNonEmptyArray(modesDeGarde.AMA) ||
-		A.isNonEmptyArray(modesDeGarde.GED)) &&
-	// et chaque salariée a au moins une déclaration
-	pipe(modesDeGarde.AMA, A.every(auMoinsUneDéclaration)) &&
-	pipe(modesDeGarde.GED, A.every(auMoinsUneDéclaration)) &&
-	// et chaque déclaration est soit vide, soit valide.
-	modesDeGarde.AMA.every((déclarations) =>
-		R.every(
-			déclarations,
-			(déclaration) =>
-				O.isNone(déclaration) ||
-				estDéclarationDeGardeAMAValide(déclaration.value)
-		)
-	) &&
-	modesDeGarde.GED.every((déclarations) =>
-		R.every(
-			déclarations,
-			(déclaration) =>
-				O.isNone(déclaration) ||
-				estDéclarationDeGardeGEDValide(déclaration.value)
-		)
-	)

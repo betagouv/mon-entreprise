@@ -833,6 +833,14 @@ pages:
         add-button-label: Ajouter une salariée
         enfants-gardés:
           legend: Enfant(s) gardé(s)
+        erreurs:
+          aucune-déclaration: Chaque salariée doit avoir au moins une déclaration.
+          aucune-salariée: Il doit y avoir au moins une salariée.
+          déclarations-AMA-invalides: Chaque déclaration d’assistante maternelle doit
+            avoir au moins un enfant gardé, un nombre d’heures de garde et une
+            rémunération.
+          déclarations-GED-invalides: Chaque déclaration de garde d’enfants à domicile
+            doit avoir un nombre d’heures de garde et une rémunération.
         heures-de-garde:
           label: Nombre d’heures de garde
         rémunération:
@@ -842,6 +850,13 @@ pages:
         add-button-label: Ajouter un enfant
         date-de-naissance:
           label: Date de naissance
+        erreurs:
+          AeeH-invalide: Il ne peut pas y avoir plus d’enfants concernés par l’AeeH que
+            d’enfants à charge.
+          AeeH-obligatoire: La question sur l’AeeH est obligatoire.
+          doublon-prénom: Chaque enfant doit avoir un prénom différent.
+          enfants-invalides: Chaque enfant doit avoir un prénom et une date de naissance
+            antérieure au 01/06/2025.
         h2: Enfants à charge
         perçoit-AeeH:
           label: Percevez-vous l’AeeH (allocation d’éducation de l’enfant handicapé) ?
@@ -852,6 +867,7 @@ pages:
       informations-générales:
         CMG-perçu:
           label: Avez-vous perçu un CMG entre mars et mai 2025 ?
+        erreurs: Toutes les questions sont obligatoires.
         mois-déclarations:
           label: Avez-vous déclaré au moins 2 mois entre mars et mai 2025 ?
         ressources:

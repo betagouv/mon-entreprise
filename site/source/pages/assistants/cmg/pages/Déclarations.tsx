@@ -1,10 +1,15 @@
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
+	auMoinsUneSalariée,
+	chaqueSalariéeAAuMoinsUneDéclaration,
+	chaqueSalariéeAMAEstValide,
+	chaqueSalariéeGEDEstValide,
 	estEnfantsÀChargeValide,
 	estInformationsValides,
-	estModesDeGardeValide,
+	estSalariéesValide,
 	RaisonInéligibilité,
 	useCMG,
 } from '@/contextes/cmg'
@@ -12,9 +17,11 @@ import {
 import AMA from '../components/AMA/AMA'
 import GED from '../components/GED/GED'
 import Navigation from '../components/Navigation'
+import { MessageFormulaireInvalide } from '../components/styled-components'
 
 export default function Déclarations() {
 	const navigate = useNavigate()
+	const { t } = useTranslation()
 	const { raisonsInéligibilité, situation } = useCMG()
 
 	if (
@@ -36,7 +43,7 @@ export default function Déclarations() {
 		navigate('/assistants/cmg/inéligible', { state: { précédent: 'enfants' } })
 	}
 
-	const isSuivantDisabled = !estModesDeGardeValide(situation.modesDeGarde)
+	const isSuivantDisabled = !estSalariéesValide(situation.salariées)
 
 	return (
 		<>
@@ -50,6 +57,47 @@ export default function Déclarations() {
 				suivant="résultat"
 				isSuivantDisabled={isSuivantDisabled}
 			/>
+
+			{isSuivantDisabled && (
+				<MessageFormulaireInvalide>
+					{!auMoinsUneSalariée(situation.salariées) && (
+						<>
+							{t(
+								'pages.assistants.cmg.déclarations.erreurs.aucune-salariée',
+								'Il doit y avoir au moins une salariée.'
+							)}
+							<br />
+						</>
+					)}
+					{!chaqueSalariéeAAuMoinsUneDéclaration(situation.salariées) && (
+						<>
+							{t(
+								'pages.assistants.cmg.déclarations.erreurs.aucune-déclaration',
+								'Chaque salariée doit avoir au moins une déclaration.'
+							)}
+							<br />
+						</>
+					)}
+					{!chaqueSalariéeAMAEstValide(situation.salariées) && (
+						<>
+							{t(
+								'pages.assistants.cmg.déclarations.erreurs.déclarations-AMA-invalides',
+								'Chaque déclaration d’assistante maternelle doit avoir au moins un enfant gardé, un nombre d’heures de garde et une rémunération.'
+							)}
+							<br />
+						</>
+					)}
+					{!chaqueSalariéeGEDEstValide(situation.salariées) && (
+						<>
+							{t(
+								'pages.assistants.cmg.déclarations.erreurs.déclarations-GED-invalides',
+								'Chaque déclaration de garde d’enfants à domicile doit avoir un nombre d’heures de garde et une rémunération.'
+							)}
+							<br />
+						</>
+					)}
+				</MessageFormulaireInvalide>
+			)}
 		</>
 	)
 }

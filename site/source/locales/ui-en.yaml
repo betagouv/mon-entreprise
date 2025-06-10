@@ -784,6 +784,13 @@ pages:
         add-button-label: Add an employee
         enfants-gardés:
           legend: Child(ren) in care
+        erreurs:
+          aucune-déclaration: Each employee must have at least one declaration.
+          aucune-salariée: There must be at least one employee.
+          déclarations-AMA-invalides: Each childminder declaration must have at least one
+            child in care, a number of hours of care and a remuneration.
+          déclarations-GED-invalides: Each home childcare declaration must include a
+            number of hours of care and a remuneration.
         heures-de-garde:
           label: Number of on-call hours
         rémunération:
@@ -793,6 +800,13 @@ pages:
         add-button-label: Add a child
         date-de-naissance:
           label: Date of birth
+        erreurs:
+          AeeH-invalide: There cannot be more children eligible for the AeeH than there
+            are dependent children.
+          AeeH-obligatoire: The AeeH question is compulsory.
+          doublon-prénom: Each child must have a different first name.
+          enfants-invalides: Each child must have a first name and a date of birth before
+            01/06/2025.
         h2: Dependent children
         perçoit-AeeH:
           label: Do you receive the AeeH (education allowance for disabled children)?
@@ -802,6 +816,7 @@ pages:
       informations-générales:
         CMG-perçu:
           label: Did you receive a CMG between March and May 2025?
+        erreurs: All questions are mandatory.
         mois-déclarations:
           label: Have you declared at least 2 months between March and May 2025?
         ressources:
