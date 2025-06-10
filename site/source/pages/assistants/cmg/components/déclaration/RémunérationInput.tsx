@@ -31,6 +31,7 @@ export default function RémunérationInput({
 			<MontantField
 				value={O.getOrUndefined(valeur)}
 				unité="Euro"
+				avecCentimes={true}
 				onChange={(montant) => onChange(O.fromNullable(montant))}
 				aria-labelledby={`rémunération-label-${idSuffix}`}
 			/>
