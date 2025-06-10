@@ -30,6 +30,7 @@ export default function SeeAnswersButton({
 						)}
 					</StyledButton>
 				)}
+				ariaLabel="Modifier mes réponses"
 			>
 				{(close) => <Answers onClose={close}>{children}</Answers>}
 			</PopoverWithTrigger>
