@@ -10,7 +10,6 @@ import {
 import { AriaDialogProps } from '@react-types/dialog'
 import FocusTrap from 'focus-trap-react'
 import React, { RefObject, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { css, keyframes, styled } from 'styled-components'
 
 import { FromBottom } from '@/components/ui/animate'
@@ -26,6 +25,7 @@ export function Popover(
 		AriaDialogProps & {
 			children: React.ReactNode
 			title?: string
+			ariaLabel?: string
 			small?: boolean
 			contentRef?: RefObject<HTMLDivElement>
 			onClose?: () => void
@@ -34,9 +34,7 @@ export function Popover(
 			disableOverflowAuto?: boolean
 		}
 ) {
-	const { title, children, small, contentRef } = props
-
-	const { t } = useTranslation()
+	const { title, ariaLabel, children, small, contentRef } = props
 
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
@@ -107,7 +105,7 @@ export function Popover(
 											}
 										}}
 										ref={ref}
-										aria-label={title || t('Boite de dialogue')}
+										aria-label={title || ariaLabel}
 										data-cy="modal"
 										aria-modal={true}
 									>
