@@ -29,18 +29,13 @@ export default function Progress({
 	const total = Math.min(progress, maxValue).toString()
 
 	return (
-		<div
-			aria-live="polite"
-			style={{
-				position: 'relative',
-			}}
-		>
+		<div style={{ position: 'relative' }}>
 			<ProgressContainer {...progressBarProps}>
 				<ProgressBar
 					style={{ width: `${(progress * 100) / (maxValue || 1)}%` }}
 				/>
 			</ProgressContainer>
-			<StyledBody {...labelProps} aria-hidden>
+			<StyledBody {...labelProps}>
 				{t('Étape {{ total }} sur {{ maxValue }}', { total, maxValue })}
 			</StyledBody>
 		</div>
