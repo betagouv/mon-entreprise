@@ -1,5 +1,9 @@
+import { useNavigate } from 'react-router-dom'
+
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
+	estEnfantsÀChargeValide,
+	estInformationsValides,
 	estModesDeGardeValide,
 	RaisonInéligibilité,
 	useCMG,
@@ -8,24 +12,31 @@ import {
 import AMA from '../components/AMA/AMA'
 import GED from '../components/GED/GED'
 import Navigation from '../components/Navigation'
-import NonÉligible from './NonÉligible'
 
 export default function Déclarations() {
+	const navigate = useNavigate()
 	const { raisonsInéligibilité, situation } = useCMG()
+
+	if (
+		!estInformationsValides(situation) ||
+		!estEnfantsÀChargeValide(situation.enfantsÀCharge)
+	) {
+		navigate('/assistants/cmg')
+	}
+
 	const raisonsInéligibilitéValables: Array<RaisonInéligibilité> = [
 		'ressources',
 		'enfants-à-charge',
 	]
-
-	const isSuivantDisabled = !estModesDeGardeValide(situation.modesDeGarde)
-
 	if (
 		raisonsInéligibilitéValables.some((raison) =>
 			raisonsInéligibilité.includes(raison)
 		)
 	) {
-		return <NonÉligible précédent="enfants" />
+		navigate('/assistants/cmg/inéligible', { state: { précédent: 'enfants' } })
 	}
+
+	const isSuivantDisabled = !estModesDeGardeValide(situation.modesDeGarde)
 
 	return (
 		<>

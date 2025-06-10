@@ -1,11 +1,13 @@
 import * as A from 'effect/Array'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Enfant,
 	estEnfantsÀChargeValide,
+	estInformationsValides,
 	RaisonInéligibilité,
 	useCMG,
 } from '@/contextes/cmg'
@@ -15,15 +17,29 @@ import EnfantInput from '../components/enfants/EnfantInput'
 import QuestionsAeeH from '../components/enfants/QuestionsAeeH'
 import Navigation from '../components/Navigation'
 import { Question } from '../components/styled-components'
-import NonÉligible from './NonÉligible'
 
 export default function Enfants() {
+	const navigate = useNavigate()
 	const { t } = useTranslation()
 	const { raisonsInéligibilité, situation, enfants, set } = useCMG()
+
+	if (!estInformationsValides(situation)) {
+		navigate('/assistants/cmg')
+	}
+
 	const raisonsInéligibilitéValables: Array<RaisonInéligibilité> = [
 		'CMG-perçu',
 		'déclarations',
 	]
+	if (
+		raisonsInéligibilitéValables.some((raison) =>
+			raisonsInéligibilité.includes(raison)
+		)
+	) {
+		navigate('/assistants/cmg/inéligible', {
+			state: { précédent: 'informations' },
+		})
+	}
 
 	useEffect(() => {
 		if (!enfants.length) {
@@ -40,16 +56,7 @@ export default function Enfants() {
 	}
 
 	const isAddButtonDisabled = enfants.length > 18
-
 	const isSuivantDisabled = !estEnfantsÀChargeValide(situation.enfantsÀCharge)
-
-	if (
-		raisonsInéligibilitéValables.some((raison) =>
-			raisonsInéligibilité.includes(raison)
-		)
-	) {
-		return <NonÉligible précédent="informations" />
-	}
 
 	return (
 		<>
