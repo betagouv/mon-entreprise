@@ -286,6 +286,15 @@ assistants:
       body: Find all public information about your company at
       cta: Visit the site
       title: View your public data
+  warning:
+    cmg: <0><0>Calculations are indicative.</0> They are based on the information
+      you have entered and on the applicable regulations, but they do not take
+      account of your entire situation.<2></2>They have no contractual value and
+      cannot engage the responsibility of Urssaf, Caf or MSA.</0><1>No element
+      of this simulation will be kept.</1><2><0>What do you need?</0> Your
+      taxable income for 2023, as well as the number of hours of childcare, the
+      amount of remuneration and the CMG received for the months of March, April
+      and May 2025, for each of your employees.</2>
 avril: April
 betawarning: "<0><0>This tool is in beta version</0>: we are working on
   <3>validating the information and calculations</3>, but <6>errors may</6>
@@ -748,22 +757,27 @@ pages:
         <2>this page</2>.</4>"
   assistants:
     cmg:
-      AMA:
-        add-button-label: Add an employee
-        enfants-gardés:
-          legend: Children in care
-        h2: Approved Nursery Assistants
-      GED:
+      description: <0>The reform of the CMG calculation method may result in a
+        reduction in the amount of your benefit (see the <2>Evaluate your
+        remaining expenses</2> simulator). In this case, you may be entitled to
+        a transitional supplement if you meet the conditions.<4></4>This tool
+        enables you to estimate whether you are entitled to this supplement, and
+        if so, what the <6>indicative</6> amount will be.</0>
+      déclarations:
+        AMA:
+          h2: Approved Nursery Assistants
         CMG-perçu:
           label: CMG Remuneration received
+        GED:
+          h2: Home childcare
         add-button-label: Add an employee
-        h2: Home Childcare
+        enfants-gardés:
+          legend: Child(ren) in care
         heures-de-garde:
-          label: On-call hours
+          label: Number of on-call hours
         rémunération:
           label: Total compensation
-      description: <0>This tool enables you to estimate the <2>theoretical</2> amount
-        of the transitional supplement to the CMG Remuneration.</0>
+        titre: "Declaration(s) on the reference period for the employee :"
       enfants:
         add-button-label: Add a child
         date-de-naissance:
@@ -773,7 +787,7 @@ pages:
           label: Do you receive the AeeH (education allowance for disabled children)?
         prénom:
           label: First name
-        question: Who are your dependent children?
+        question: Who were your dependent children in March, April and May 2025?
       informations-générales:
         CMG-perçu:
           label: Did you receive a CMG between March and May 2025?
@@ -793,8 +807,11 @@ pages:
         description: This simulator enables you to estimate the amount of the
           transitional supplement to the CMG Remuneration.
         titre: CMG transitional top-up simulator
-      non-éligible: "You are not eligible for the transitional supplement for the
-        following reasons:"
+      non-éligible:
+        one: "Based on the information provided, you are not eligible for the
+          transitional supplement for the following reason:"
+        other: "Based on the information provided, you are not eligible for the
+          transitional supplement for the following reasons:"
       questions:
         AeeH:
           label: Number of children concerned
@@ -808,7 +825,16 @@ pages:
         ressources: Your income exceeds the ceiling.
         réforme-avantageuse: The reform of the CMG benefits you (you will receive at
           least as much for the same situation).
+      résultat: "<0>For an <1>identical situation</1>, the <4>indicative</4> amount of
+        your transitional supplement would be : <6>{{amount}}</6>.<8></8>This
+        supplement to the CMG prevents a significant variation in your
+        out-of-pocket expenses.</0><1><0>The result of this simulation is given
+        as an indication only.<1></1>No element entered during this simulation
+        is valid as a declaration of a change in situation or as a claim for
+        benefit.<3></3>No element of this simulation will be kept.</0></1>"
       shortname: Transitional supplement to CMG
+      simulateur-1:
+        aria-label: Go to the page "Evaluez votre reste à charge" on urssaf.fr, new window.
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:
       description: <0><0>This tool is designed to help <2>self-employed workers</2>

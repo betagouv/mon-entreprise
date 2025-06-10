@@ -40,8 +40,8 @@ export default function EnfantsGardésInput({ enfantsGardés, onChange }: Props)
 			<legend>
 				<Label>
 					{t(
-						'pages.assistants.cmg.AMA.enfants-gardés.legend',
-						'Enfants gardés'
+						'pages.assistants.cmg.déclarations.enfants-gardés.legend',
+						'Enfant(s) gardé(s)'
 					)}
 				</Label>
 			</legend>

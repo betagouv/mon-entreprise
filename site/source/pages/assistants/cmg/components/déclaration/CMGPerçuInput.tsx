@@ -20,7 +20,7 @@ export default function CMGPerçuInput({ idSuffix, valeur, onChange }: Props) {
 		<div>
 			<Label id={`CMG-perçu-label-${idSuffix}`}>
 				{t(
-					'pages.assistants.cmg.GED.CMG-perçu.label',
+					'pages.assistants.cmg.déclarations.CMG-perçu.label',
 					'CMG Rémunération perçu'
 				)}
 			</Label>

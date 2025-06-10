@@ -22,7 +22,10 @@ export default function HeuresDeGardeInput({
 	return (
 		<div>
 			<Label id={`heures-de-garde-label-${idSuffix}`}>
-				{t('pages.assistants.cmg.GED.heures-de-garde.label', 'Heures de garde')}
+				{t(
+					'pages.assistants.cmg.déclarations.heures-de-garde.label',
+					'Nombre d’heures de garde'
+				)}
 			</Label>
 			<NumberField
 				value={O.getOrUndefined(valeur)}
