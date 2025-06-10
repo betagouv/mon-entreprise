@@ -149,7 +149,7 @@ export default function Footer() {
 											</StyledLi>
 										)}
 										<StyledLi>
-											<Link
+											<LinkAligned
 												href="https://github.com/betagouv/mon-entreprise"
 												noUnderline
 												aria-label={t(
@@ -161,7 +161,6 @@ export default function Footer() {
 													style={{
 														width: '18px',
 														height: '18px',
-														margin: '0 0.2rem',
 														verticalAlign: 'middle',
 														fill: '#e6edf3',
 													}}
@@ -169,11 +168,11 @@ export default function Footer() {
 												<Trans i18nKey="footer.github.text">
 													Voir le code source sur Github
 												</Trans>{' '}
-											</Link>
+											</LinkAligned>
 										</StyledLi>
 										{altHref && (
 											<StyledLi>
-												<Link
+												<LinkAligned
 													href={altHref}
 													noUnderline
 													openInSameWindow
@@ -188,7 +187,7 @@ export default function Footer() {
 															<Emoji emoji="🇫🇷" /> Passer à la version française
 														</>
 													)}
-												</Link>
+												</LinkAligned>
 											</StyledLi>
 										)}
 									</ul>
@@ -239,4 +238,9 @@ export default function Footer() {
 
 const StyledLi = styled.li`
 	margin-top: ${({ theme }) => theme.spacings.sm};
+`
+const LinkAligned = styled(Link)`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 `
