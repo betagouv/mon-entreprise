@@ -1,8 +1,9 @@
 import * as O from 'effect/Option'
+import { Trans } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
-import { Body } from '@/design-system'
+import { Body, Message, SmallBody, Strong } from '@/design-system'
 import { toString as formatMontant } from '@/domaine/Montant'
 
 import Navigation from '../components/Navigation'
@@ -15,14 +16,32 @@ export default function Résultat() {
 		return <NonÉligible précédent="déclarations" />
 	}
 
+	const amount = formatMontant(montantCT.value)
+
 	return (
 		<>
 			<TrackPage chapter3="pas_a_pas" name="résultat" />
 
-			<Body>
-				Montant théorique du complément transitoire :&nbsp;
-				{formatMontant(montantCT.value)}
-			</Body>
+			<Trans i18nKey="pages.assistants.cmg.résultat">
+				<Body>
+					Pour une <Strong>situation identique</Strong>, le montant{' '}
+					<Strong>indicatif</Strong> de votre complément transitoire s’élèverait
+					à&nbsp;: <Strong>{{ amount }}</Strong>.<br />
+					Ce complément du CMG permet d’éviter une variation importante des
+					dépenses restant à votre charge.
+				</Body>
+				<Message type="info" icon={true}>
+					<SmallBody>
+						Le résultat de cette simulation est communiqué à titre indicatif.
+						<br />
+						Aucun élément saisi au cours de cette simulation ne vaut pour
+						déclaration de changement de situation ou pour demande de
+						prestation.
+						<br />
+						Aucun élément de cette simulation ne sera conservé.
+					</SmallBody>
+				</Message>
+			</Trans>
 
 			<Navigation précédent="déclarations" />
 		</>
