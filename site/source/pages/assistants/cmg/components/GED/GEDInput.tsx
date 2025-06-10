@@ -1,7 +1,8 @@
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { SalariéeGED } from '@/contextes/cmg'
-import { FlexCenter } from '@/design-system'
+import { Body, FlexCenter, Strong } from '@/design-system'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import DeleteButton from '../DeleteButton'
@@ -20,8 +21,18 @@ export default function GEDInput({
 	onChange,
 	onDelete,
 }: Props) {
+	const { t } = useTranslation()
+
 	return (
 		<Container>
+			<Body>
+				<Strong>
+					{t(
+						'pages.assistants.cmg.déclarations.titre',
+						'Déclaration(s) sur la période de référence pour la salariée :'
+					)}
+				</Strong>
+			</Body>
 			<InputsContainer>
 				{Object.keys(salariée).map((month) => (
 					<DéclarationGEDInput

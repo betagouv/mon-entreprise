@@ -302,6 +302,16 @@ assistants:
         sur
       cta: Visiter le site
       title: Voir vos données publiques
+  warning:
+    cmg: <0><0>Les calculs sont indicatifs.</0> Ils sont faits à partir des éléments
+      que vous avez saisis et des éléments réglementaires applicables, mais ils
+      ne tiennent pas compte de l’ensemble de votre situation.<2></2>Ils n’ont
+      pas de valeur contractuelle et ne peuvent engager la responsabilité de
+      l’Urssaf, de la Caf ou de la MSA.</0><1>Aucun élément de cette simulation
+      ne sera conservé.</1><2><0>De quoi avez-vous besoin ?</0> De votre revenu
+      fiscal 2023, ainsi que du nombre d’heures de garde, du montant des
+      rémunérations et du CMG perçu pour les mois de mars, avril et mai 2025,
+      pour chacune de vos salariées.</2>
 avril: avril
 betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
   <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
@@ -807,22 +817,27 @@ pages:
         de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
   assistants:
     cmg:
-      AMA:
-        add-button-label: Ajouter une salariée
-        enfants-gardés:
-          legend: Enfants gardés
-        h2: Assistantes Maternelles Agréées
-      GED:
+      description: <0>La réforme du mode de calcul du CMG peut entraîner une
+        diminution du montant de votre prestation (voir le simulateur <2>Évaluez
+        votre reste à charge</2>). Dans ce cas, vous pouvez bénéficier d’un
+        complément transitoire si vous remplissez les conditions.<4></4>Cet
+        outil vous permet d’estimer si vous avez droit à ce complément et si
+        oui, quel sera son montant <6>à titre indicatif</6>.</0>
+      déclarations:
+        AMA:
+          h2: Assistantes Maternelles Agréées
         CMG-perçu:
           label: CMG Rémunération perçu
+        GED:
+          h2: Gardes d’enfants à domicile
         add-button-label: Ajouter une salariée
-        h2: Gardes d’Enfant à Domicile
+        enfants-gardés:
+          legend: Enfant(s) gardé(s)
         heures-de-garde:
-          label: Heures de garde
+          label: Nombre d’heures de garde
         rémunération:
           label: Rémunération totale
-      description: <0>Cet outil vous permet d’estimer le montant <2>théorique</2> du
-        complément transitoire au CMG Rémunération.</0>
+        titre: "Déclaration(s) sur la période de référence pour la salariée :"
       enfants:
         add-button-label: Ajouter un enfant
         date-de-naissance:
@@ -832,7 +847,8 @@ pages:
           label: Percevez-vous l’AeeH (allocation d’éducation de l’enfant handicapé) ?
         prénom:
           label: Prénom
-        question: Quels sont vos enfants à charge ?
+        question: Quels étaient vos enfants à charge sur la période de mars, avril et
+          mai 2025 ?
       informations-générales:
         CMG-perçu:
           label: Avez-vous perçu un CMG entre mars et mai 2025 ?
@@ -852,8 +868,11 @@ pages:
         description: Ce simulateur permet d’estimer le montant du complément transitoire
           au CMG Rémunération.
         titre: Simulateur de complément transitoire au CMG
-      non-éligible: "Vous n’êtes pas éligible au complément transitoire pour les
-        raisons suivantes :"
+      non-éligible:
+        one: "Au vu des données renseignées, vous n’êtes pas éligible au complément
+          transitoire pour la raison suivante :"
+        other: "Au vu des données renseignées, vous n’êtes pas éligible au complément
+          transitoire pour les raisons suivantes :"
       questions:
         AeeH:
           label: Nombre d’enfants concernés
@@ -868,7 +887,19 @@ pages:
         ressources: Vos ressources dépassent le plafond.
         réforme-avantageuse: La réforme du CMG vous est favorable (à situation
           identique, vous allez percevoir au moins autant).
+      résultat: "<0>Pour une <1>situation identique</1>, le montant <4>indicatif</4>
+        de votre complément transitoire s’élèverait à :
+        <6>{{amount}}</6>.<8></8>Ce complément du CMG permet d’éviter une
+        variation importante des dépenses restant à votre charge.</0><1><0>Le
+        résultat de cette simulation est communiqué à titre
+        indicatif.<1></1>Aucun élément saisi au cours de cette simulation ne
+        vaut pour déclaration de changement de situation ou pour demande de
+        prestation.<3></3>Aucun élément de cette simulation ne sera
+        conservé.</0></1>"
       shortname: Complément transitoire au CMG
+      simulateur-1:
+        aria-label: Aller sur la page "Évaluez votre reste à charge" sur urssaf.fr,
+          nouvelle fenêtre.
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
       description: <0><0>Cet outil est une aide à la déclaration de revenus à
