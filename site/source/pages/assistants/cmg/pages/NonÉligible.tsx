@@ -24,10 +24,15 @@ export default function NonÉligible({ précédent }: Props) {
 			<TrackPage chapter3="pas_a_pas" name="résultat" />
 
 			<Body>
-				{t(
-					'pages.assistants.cmg.non-éligible',
-					'Vous n’êtes pas éligible au complément transitoire pour les raisons suivantes :'
-				)}
+				{raisonsInéligibilité.length > 1
+					? t(
+							'pages.assistants.cmg.non-éligible.other',
+							'Au vu des données renseignées, vous n’êtes pas éligible au complément transitoire pour les raisons suivantes :'
+					  )
+					: t(
+							'pages.assistants.cmg.non-éligible.one',
+							'Au vu des données renseignées, vous n’êtes pas éligible au complément transitoire pour la raison suivante :'
+					  )}
 			</Body>
 			<Ul>
 				{getRaisonsInéligibilitéHumaines(raisonsInéligibilité).map(

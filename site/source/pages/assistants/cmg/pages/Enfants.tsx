@@ -62,7 +62,7 @@ export default function Enfants() {
 					<Question>
 						{t(
 							'pages.assistants.cmg.enfants.question',
-							'Quels sont vos enfants à charge ?'
+							'Quels étaient vos enfants à charge sur la période de mars, avril et mai 2025 ?'
 						)}
 					</Question>
 				</legend>

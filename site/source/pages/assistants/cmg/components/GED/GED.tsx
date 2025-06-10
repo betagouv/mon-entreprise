@@ -20,7 +20,12 @@ export default function GED() {
 
 	return (
 		<>
-			<H2>{t('pages.assistants.cmg.GED.h2', 'Gardes d’Enfant à Domicile')}</H2>
+			<H2>
+				{t(
+					'pages.assistants.cmg.déclarations.GED.h2',
+					'Gardes d’enfants à domicile'
+				)}
+			</H2>
 
 			{salariéesGED.map((salariéeGED, index) => (
 				<GEDInput
@@ -33,7 +38,10 @@ export default function GED() {
 			))}
 
 			<Button size="XXS" light onPress={set.nouvelleGED}>
-				{t('pages.assistants.cmg.GED.add-button-label', 'Ajouter une salariée')}
+				{t(
+					'pages.assistants.cmg.déclarations.add-button-label',
+					'Ajouter une salariée'
+				)}
 			</Button>
 		</>
 	)

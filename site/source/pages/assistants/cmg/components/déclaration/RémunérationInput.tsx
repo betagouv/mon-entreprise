@@ -24,7 +24,7 @@ export default function RémunérationInput({
 		<div>
 			<Label id={`rémunération-label-${idSuffix}`}>
 				{t(
-					'pages.assistants.cmg.GED.rémunération.label',
+					'pages.assistants.cmg.déclarations.rémunération.label',
 					'Rémunération totale'
 				)}
 			</Label>
