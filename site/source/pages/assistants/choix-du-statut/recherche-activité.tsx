@@ -30,7 +30,7 @@ export default function RechercheActivité() {
 				dispatch(
 					enregistreLaRéponse(
 						'entreprise . activités . principale . code APE',
-						`'${codeApe}'`
+						codeApe
 					)
 				)
 			}}

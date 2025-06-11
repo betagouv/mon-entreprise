@@ -142,7 +142,7 @@ function useAssociationSelection(): [
 				dispatch(
 					batchUpdateSituation({
 						'entreprise . catégorie juridique . association': undefined,
-						'entreprise . catégorie juridique': "'association'",
+						'entreprise . catégorie juridique': 'association',
 					})
 				)
 				break

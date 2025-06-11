@@ -261,11 +261,12 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 			const activité = getActivitéFromGuichet(guichet)
 			dispatch(
 				batchUpdateSituation({
-					'entreprise . activités . principale . code guichet': `'${guichet.code}'`,
-					'entreprise . imposition . IR . type de bénéfices': `'${guichet.typeBénéfice}'`,
+					'entreprise . activités . principale . code guichet': guichet.code,
+					'entreprise . imposition . IR . type de bénéfices':
+						guichet.typeBénéfice,
 					...(activité
 						? {
-								'entreprise . activité . nature': `'${activité}'`,
+								'entreprise . activité . nature': activité,
 								[`entreprise . activités . ${activité}`]: 'oui',
 						  }
 						: {}),
