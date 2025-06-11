@@ -34,5 +34,6 @@ const RecettesInput = ({
 		onChange={(montant: Montant<'EuroParAn'> | undefined) =>
 			onChange(O.fromNullable(montant))
 		}
+		aria={{ label: 'Montant' }}
 	/>
 )
