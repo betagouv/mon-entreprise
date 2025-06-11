@@ -3,6 +3,7 @@
 
 import path from 'path'
 
+import mdx from '@mdx-js/rollup'
 import replace from '@rollup/plugin-replace'
 import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
@@ -27,7 +28,7 @@ const sentryReleaseName = (mode: string) =>
 export default defineConfig(({ command, mode }) => ({
 	resolve: {
 		alias: [{ find: '@', replacement: path.resolve('./source') }],
-		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+		extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.mdx'],
 	},
 	publicDir: 'source/public',
 	build: {
@@ -65,6 +66,7 @@ export default defineConfig(({ command, mode }) => ({
 				preventAssignment: false,
 			}),
 
+		mdx(),
 		react(),
 
 		yaml({

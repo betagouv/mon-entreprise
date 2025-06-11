@@ -3,7 +3,13 @@ import { dedupe, filter } from 'effect/Array'
 import { isNotUndefined, isUndefined, Predicate } from 'effect/Predicate'
 import { fromEntries } from 'effect/Record'
 import { DottedName } from 'modele-social'
-import { FunctionComponent, useCallback, useEffect, useState } from 'react'
+import {
+	FunctionComponent,
+	useCallback,
+	useEffect,
+	useMemo,
+	useState,
+} from 'react'
 import { useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
@@ -45,13 +51,18 @@ type QuestionFournie<S extends Situation> = Omit<
 } & FunctionComponent
 const fromQuestionFournie = <S extends Situation>(
 	q: ComposantQuestion<S>
-): QuestionFournie<S> =>
-	Object.assign(q, {
+): QuestionFournie<S> => {
+	// Capturer les références originales avant de les écraser
+	const originalRépondue = q.répondue
+	const originalApplicable = q.applicable
+
+	return Object.assign(q, {
 		répondue: (situation?: S) =>
-			situation === undefined ? false : q.répondue(situation),
+			situation === undefined ? false : originalRépondue(situation),
 		applicable: (situation?: S) =>
-			situation === undefined ? false : q.applicable(situation),
+			situation === undefined ? false : originalApplicable(situation),
 	})
+}
 
 export type Question<S extends Situation> =
 	| QuestionFournie<S>
@@ -71,26 +82,42 @@ export function useQuestions<S extends Situation>({
 	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
 	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
 
-	const toutesLesQuestionsApplicables = pipe(
+	const toutesLesQuestionsApplicables = useMemo(
+		() =>
+			pipe(
+				[
+					...questions.map(fromQuestionFournie),
+					...(avecQuestionsPublicodes
+						? [
+								...publicodesQuestionsRépondues.map(
+									fromQuestionPublicodeRépondue
+								),
+								...publicodesQuestionsSuivantes.map(
+									fromQuestionsPublicodesSuivante
+								),
+						  ]
+						: []),
+				] as Question<S>[],
+				filter((q: Question<S>): boolean => q.applicable(situation))
+			),
 		[
-			...questions.map(fromQuestionFournie),
-			...(avecQuestionsPublicodes
-				? [
-						...publicodesQuestionsRépondues.map(fromQuestionPublicodeRépondue),
-						...publicodesQuestionsSuivantes.map(
-							fromQuestionsPublicodesSuivante
-						),
-				  ]
-				: []),
-		] as Question<S>[],
-		filter((q: Question<S>): boolean => q.applicable(situation))
+			questions,
+			avecQuestionsPublicodes,
+			publicodesQuestionsRépondues,
+			publicodesQuestionsSuivantes,
+			situation,
+		]
 	)
 
-	const questionsParId = fromEntries(
-		toutesLesQuestionsApplicables.map((q) => [q.id, q])
+	const questionsParId = useMemo(
+		() => fromEntries(toutesLesQuestionsApplicables.map((q) => [q.id, q])),
+		[toutesLesQuestionsApplicables]
 	)
 
-	const idsDesQuestions = dedupe(Object.keys(questionsParId))
+	const idsDesQuestions = useMemo(
+		() => dedupe(Object.keys(questionsParId)),
+		[questionsParId]
+	)
 
 	const [activeQuestionId, setActiveQuestionId] = useState<
 		Question<S>['id'] | undefined

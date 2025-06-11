@@ -5,9 +5,7 @@ import { Trans } from 'react-i18next'
 
 import './FicheDePaie.css'
 
-import { styled } from 'styled-components'
-
-import { H3, H4 } from '@/design-system'
+import { H3 } from '@/design-system'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'

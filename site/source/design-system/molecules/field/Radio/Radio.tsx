@@ -87,16 +87,16 @@ export const RadioSkeleton = (props: RadioProps) => {
 
 	return (
 		<>
-			<Label htmlFor={id|| `input-radio-${value}`} className={className}>
+			<Label htmlFor={id || `input-radio-${value}`} className={className}>
 				<InputRadio
-					{...inputProps}
+					{...ariaInputProps}
 					// Avoid react-aria focus next element (input, button, etc.) on keydown for rgaa
 					onKeyDown={undefined}
 					onKeyUp={undefined}
 					tabIndex={undefined}
 					className="sr-only"
 					ref={ref}
-					id={id|| `input-radio-${value}`}
+					id={id || `input-radio-${value}`}
 				/>
 				<VisibleRadio as={visibleRadioAs} $inert={props.isDisabled}>
 					<>{children}</>

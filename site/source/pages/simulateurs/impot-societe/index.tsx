@@ -1,3 +1,5 @@
+import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,6 +18,7 @@ import {
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
 import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import useYear from '@/hooks/useYear'
 import {
 	batchUpdateSituation,
@@ -86,9 +89,9 @@ function ExerciceDate() {
 								onPress={() => {
 									dispatch(
 										batchUpdateSituation({
-											'entreprise . exercice . début': `01/01/${year}`,
-											'entreprise . exercice . fin': `31/12/${year}`,
-										})
+											'entreprise . exercice . début': O.some(`01/01/${year}`),
+											'entreprise . exercice . fin': O.some(`31/12/${year}`),
+										} as Record<DottedName, O.Option<ValeurPublicodes>>)
 									)
 								}}
 							>

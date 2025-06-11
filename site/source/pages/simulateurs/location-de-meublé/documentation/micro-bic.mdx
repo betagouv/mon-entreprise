@@ -1,0 +1,101 @@
+import {
+	ABATTEMENT_REGIME_GENERAL,
+	PLAFOND_REGIME_GENERAL
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/régime-général'
+import { Attention, Conseil, ExemplePratique, Info, Tableau, Valeur } from '@/design-system'
+import { eurosParAn, montantToString } from '@/domaine/Montant'
+export const metadata = {
+	title: 'Le régime micro-BIC',
+	description: 'Comprenez le régime fiscal simplifié pour les petits loueurs en meublé.'
+}
+
+export const TableauSeuilsDynamique = () => {
+	return (
+		<Tableau>
+			<thead>
+				<tr>
+					<th>Type de location</th>
+					<th>Plafond annuel</th>
+					<th>Abattement forfaitaire</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Location meublée classique</td>
+					<td><Valeur $couleur="primary">{montantToString(PLAFOND_REGIME_GENERAL)}</Valeur></td>
+					<td><strong>{ABATTEMENT_REGIME_GENERAL*100}%</strong></td>
+				</tr>
+				<tr>
+					<td>Location meublée de tourisme classée</td>
+					<td><Valeur $couleur="primary"></Valeur></td>
+					<td><strong>{0}%</strong></td>
+				</tr>
+			</tbody>
+		</Tableau>
+	)
+}
+
+# Le régime micro-BIC
+
+Le régime micro-BIC (Bénéfices Industriels et Commerciaux) est un régime fiscal simplifié pour les loueurs en meublé dont les recettes ne dépassent pas certains plafonds.
+
+## Plafonds de recettes
+
+<TableauSeuilsDynamique />
+
+<Attention>
+Au-delà de ces plafonds, vous basculez automatiquement au régime réel d'imposition.
+</Attention>
+
+## Avantages du régime
+
+- **Simplicité** : Pas de comptabilité complexe à tenir
+- **Déclaration simplifiée** : Une simple déclaration de recettes suffit
+- **Abattement automatique** : Les charges sont déduites forfaitairement
+
+export const ExempleCalculDynamique = () => {
+	const { situation } = useEconomieCollaborative()
+	const recettesExemple = eurosParAn(20_000)
+	const abattement = ABATTEMENT_REGIME_GENERAL
+	const montantAbattement = eurosParAn(20_000 * abattement)
+	const baseImposable = eurosParAn(20_000 * (1 - abattement))
+
+	return (
+		<ExemplePratique>
+			Pour des recettes de {montantToString(recettesExemple)} en location classique :
+			<ul>
+				<li>Abattement de {abattement*100}% : <strong>{montantToString(montantAbattement)}</strong></li>
+				<li>Base imposable : <strong>{montantToString(baseImposable)}</strong></li>
+			</ul>
+		</ExemplePratique>
+	)
+}
+
+<ExempleCalculDynamique />
+
+## Obligations comptables
+
+- Tenir un livre de recettes
+- Conserver les justificatifs pendant 6 ans
+- Déclarer les recettes brutes annuelles
+
+<Conseil>
+Utilisez un logiciel de gestion locative ou un simple tableur pour suivre vos recettes tout au long de l'année.
+</Conseil>
+
+## Passage au régime réel
+
+Le passage au régime réel est :
+
+### Obligatoire si :
+- Dépassement des plafonds de recettes
+- Activité exercée dans le cadre d'une société
+
+### Optionnel si :
+- Vos charges réelles dépassent l'abattement forfaitaire
+- Vous souhaitez reporter un déficit
+- Vous voulez récupérer la TVA sur les travaux
+
+<Info>
+L'option pour le régime réel est valable 2 ans minimum et se reconduit tacitement par période de 2 ans.
+</Info>
