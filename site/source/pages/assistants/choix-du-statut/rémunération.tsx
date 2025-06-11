@@ -175,15 +175,8 @@ function useChiffreAffairesState(): [
 		debounce(1000, (newState: CAState) => {
 			dispatch(
 				batchUpdateSituation({
-					"entreprise . chiffre d'affaires": newState.CA
-						? {
-								valeur: newState.CA,
-								unité: '€/an',
-						  }
-						: undefined,
-					'entreprise . charges': newState.charges
-						? { valeur: newState.charges, unité: '€/an' }
-						: undefined,
+					"entreprise . chiffre d'affaires": newState.CA,
+					'entreprise . charges': newState.charges,
 					'dirigeant . rémunération . totale': undefined,
 				})
 			)
@@ -233,12 +226,7 @@ function useRémunérationTotaleState(): [
 				batchUpdateSituation({
 					"entreprise . chiffre d'affaires": undefined,
 					'entreprise . charges': undefined,
-					'dirigeant . rémunération . totale': newState.rémunérationTotale
-						? {
-								valeur: newState.rémunérationTotale,
-								unité: '€/an',
-						  }
-						: undefined,
+					'dirigeant . rémunération . totale': newState.rémunérationTotale,
 				})
 			)
 		}),

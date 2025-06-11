@@ -236,9 +236,9 @@ function useAssociésSelection(): [
 			batchUpdateSituation({
 				'entreprise . associés':
 					newState.question1 === 'seul'
-						? "'unique'"
+						? 'unique'
 						: newState.question1 === 'plusieurs'
-						? "'multiples'"
+						? 'multiples'
 						: undefined,
 
 				'entreprise . catégorie juridique . EI':
