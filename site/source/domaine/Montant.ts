@@ -133,6 +133,16 @@ export const abattement = dual<
 	return makeMontant({ valeur: valeurProduit, unité: a.unité }) as M
 })
 
+/**
+ * Divise un montant par un nombre pour obtenir un nouveau montant de même unité.
+ *
+ * @param a - Le montant à diviser
+ * @param diviseur - Le nombre par lequel diviser (ne peut pas être 0)
+ * @returns Un nouveau montant de même unité que le montant initial, ou une erreur DivisionParZéro
+ *
+ * @example
+ * const résultat = diviséPar(euros(100), 2) // Right(euros(50))
+ */
 export const diviséPar = dual<
 	<M extends Montant>(
 		diviseur: number
@@ -156,6 +166,42 @@ export const diviséPar = dual<
 		return Either.right(
 			makeMontant({ valeur: valeurQuotient, unité: a.unité }) as M
 		)
+	}
+)
+
+/**
+ * Calcule la proportion d'un montant par rapport à un autre montant de même unité.
+ * Retourne un nombre représentant le ratio (sans unité).
+ *
+ * @param a - Le montant numérateur
+ * @param diviseur - Le montant dénominateur (ne peut pas être zéro)
+ * @returns Un nombre représentant le ratio a/diviseur, ou une erreur DivisionParZéro
+ *
+ * @example
+ * // 50€ par rapport à 100€ donne 0.5 (soit 50%)
+ * const résultat = parRapportÀ(euros(50), euros(100)) // Right(0.5)
+ */
+export const parRapportÀ = dual<
+	<M extends Montant>(
+		diviseur: M
+	) => (a: M) => Either.Either<number, DivisionParZéro>,
+	<M extends Montant>(
+		a: M,
+		diviseur: M
+	) => Either.Either<number, DivisionParZéro>
+>(
+	2,
+	<M extends Montant>(
+		a: M,
+		diviseur: M
+	): Either.Either<number, DivisionParZéro> => {
+		if (estZéro(diviseur)) {
+			return Either.left(new DivisionParZéro())
+		}
+
+		const rapport = a.valeur / diviseur.valeur
+
+		return Either.right(rapport)
 	}
 )
 
