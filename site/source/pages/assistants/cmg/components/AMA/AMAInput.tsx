@@ -2,14 +2,16 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { SalariéeAMA } from '@/contextes/cmg'
-import { Body, FlexCenter, Strong } from '@/design-system'
+import { H3 } from '@/design-system'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import DeleteButton from '../DeleteButton'
+import AideSaisieAMA from './AideSaisieAMA'
 import DéclarationAMAInput from './DéclarationAMAInput'
 
 type Props = {
 	idSuffix: string
+	number: number
 	salariée: SalariéeAMA<string>
 	onChange: ChangeHandler<SalariéeAMA<string>>
 	onDelete: () => void
@@ -17,6 +19,7 @@ type Props = {
 
 export default function AMAInput({
 	idSuffix,
+	number,
 	salariée,
 	onChange,
 	onDelete,
@@ -24,16 +27,19 @@ export default function AMAInput({
 	const { t } = useTranslation()
 
 	return (
-		<Container>
-			<Body>
-				<Strong>
+		<>
+			<Container>
+				<H3>
 					{t(
-						'pages.assistants.cmg.déclarations.titre',
-						'Déclaration(s) sur la période de référence pour la salariée :'
+						'pages.assistants.cmg.déclarations.AMA.h3',
+						'Assistante maternelle {{ count }} - Déclaration(s) sur la période de référence',
+						{ count: number }
 					)}
-				</Strong>
-			</Body>
+				</H3>
+				<DeleteButton onDelete={onDelete} />
+			</Container>
 			<InputsContainer>
+				<AideSaisieAMA />
 				{Object.keys(salariée).map((month) => (
 					<DéclarationAMAInput
 						key={month}
@@ -49,25 +55,20 @@ export default function AMAInput({
 					/>
 				))}
 			</InputsContainer>
-			<ButtonContainer>
-				<DeleteButton onDelete={onDelete} />
-			</ButtonContainer>
-		</Container>
+		</>
 	)
 }
 
 const Container = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`
+const InputsContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
 	background-color: ${({ theme }) => theme.colors.extended.grey['200']};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
 	margin-bottom: ${({ theme }) => theme.spacings.sm};
-`
-const InputsContainer = styled.div`
-	${FlexCenter};
-	justify-content: space-between;
-`
-const ButtonContainer = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	margin-top: ${({ theme }) => theme.spacings.sm};
 `

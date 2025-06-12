@@ -761,11 +761,39 @@ pages:
       déclarations:
         AMA:
           h2: Approved Nursery Assistants
+          h3_many: Assistante maternelle {{ count }} - Declaration(s) for the reference
+            period
+          h3_one: Assistante maternelle {{ count }} - Declaration(s) for the reference
+            period
+          h3_other: Assistante maternelle {{ count }} - Declaration(s) for the reference
+            period
         CMG-perçu:
           label: CMG Remuneration received
         GED:
           h2: Home childcare
+          h3_many: Garde à domicile {{ count }} - Declaration(s) for the reference period
+          h3_one: Garde à domicile {{ count }} - Declaration(s) for the reference period
+          h3_other: Garde à domicile {{ count }} - Declaration(s) for the reference period
         add-button-label: Add an employee
+        aise-saisie:
+          CMG:
+            contenu: <0>Where can I find the information?</0><1></1>on the monthly
+              statement<3></3><4>Expected amount:</4><5></5>CMG salary amount
+              Remuneration.
+            titre: CMG Remuneration received
+          enfants:
+            contenu: Indicate the child(ren) cared for during these reference months.
+            titre: Children in care
+          heures-de-garde:
+            contenu: <0>Where can I find this information?</0><1></1>on the
+              payslip<3></3><4>Expected amount:</4><5></5>Sum of the number of
+              normal hours + number of overtime hours or hours with bonus.
+            titre: Number of on-call hours
+          rémunération:
+            contenu: <0>Where can I find the information?</0><1></1>on the monthly
+              statement<3></3><4>Expected amount:</4><5></5>Salary amount
+              (including allowances and deposit).
+            titre: Total compensation
         enfants-gardés:
           legend: Child(ren) in care
         erreurs:
@@ -779,7 +807,6 @@ pages:
           label: Number of on-call hours
         rémunération:
           label: Total compensation
-        titre: "Declaration(s) on the reference period for the employee :"
       enfants:
         add-button-label: Add a child
         date-de-naissance:

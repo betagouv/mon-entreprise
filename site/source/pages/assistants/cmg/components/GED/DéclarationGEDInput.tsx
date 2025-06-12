@@ -68,7 +68,7 @@ export default function DéclarationGEDInput({
 
 	return (
 		<Container>
-			<StyledQuestion>{month}</StyledQuestion>
+			<StyledQuestion>{month} 2025</StyledQuestion>
 			<HeuresDeGardeInput
 				idSuffix={idSuffix}
 				valeur={currentDéclaration.heuresDeGarde}
@@ -95,6 +95,5 @@ const Container = styled.div`
 `
 const StyledQuestion = styled(Question)`
 	margin-top: 0;
-	align-self: center;
 	text-transform: capitalize;
 `
