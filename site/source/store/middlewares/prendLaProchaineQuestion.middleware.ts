@@ -1,41 +1,28 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import deepEql from 'deep-eql'
 import * as Array from 'effect/Array'
-import { NonEmptyArray } from 'effect/Array'
 import * as String from 'effect/String'
 import Engine from 'publicodes'
 import { Dispatch, Middleware } from 'redux'
 
-import { isComparateurConfig } from '@/domaine/ComparateurConfig'
 import { détermineLesProchainesQuestions } from '@/domaine/engine/détermineLesProchainesQuestions'
 import {
 	Action,
 	applicabilitéDesQuestionsRépondues,
 	questionsSuivantes,
 } from '@/store/actions/actions'
-import {
-	RootState,
-	SimulationConfig,
-	Situation,
-} from '@/store/reducers/rootReducer'
+import { RootState, Situation } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
-import {
-	completeSituationSelector,
-	rawSituationsSelonContextesSelector,
-} from '@/store/selectors/simulationSelectors'
+import { completeSituationSelector } from '@/store/selectors/simulationSelectors'
 import { complement } from '@/utils/complement'
 
 let lastSimulation: Simulation | null = null
-let lastConfig: SimulationConfig | null = null
-let lastSituationsAvecContextes: NonEmptyArray<Situation> | null = null
-let engines: NonEmptyArray<Engine> | null = null
+let lastSituation: Situation | null = null
 
 export const prendLaProchaineQuestionMiddleware =
 	(engine: Engine): Middleware<object, RootState, Dispatch<Action>> =>
 	(store) =>
 	(next) =>
-	(action) => {
+	(action: Action) => {
 		const result = next(action)
 
 		const newState = store.getState()
@@ -46,43 +33,22 @@ export const prendLaProchaineQuestionMiddleware =
 		const questionsRépondues = simulation?.questionsRépondues
 		const questionsSuivantesActuelles = simulation?.questionsSuivantes || []
 
-		const configHasChanged = lastConfig !== config
-
-		if (config && configHasChanged) {
-			engines = isComparateurConfig(config)
-				? (config.contextes.map(() =>
-						engine.shallowCopy()
-				  ) as NonEmptyArray<Engine>)
-				: [engine]
-			lastSituationsAvecContextes = null
-		}
-
 		if (action.type === 'SET_SIMULATION') {
-			lastConfig = null
-			lastSituationsAvecContextes = null
+			lastSituation = null
 			lastSimulation = null
 		}
 
-		if (situation && config && engines && simulation !== lastSimulation) {
-			const situationsAvecContextes =
-				rawSituationsSelonContextesSelector(newState)
-
+		if (situation && config && engine && simulation !== lastSimulation) {
 			const situationAChangé =
-				!!lastSituationsAvecContextes &&
-				!deepEql<NonEmptyArray<Situation>, NonEmptyArray<Situation>>(
-					situationsAvecContextes,
-					lastSituationsAvecContextes
-				)
+				!!lastSituation &&
+				!deepEql<Situation, Situation>(situation, lastSituation)
 
-			if (!lastSituationsAvecContextes || situationAChangé) {
-				lastSituationsAvecContextes = situationsAvecContextes
+			if (!lastSituation || situationAChangé) {
+				lastSituation = situation
 
-				engines.forEach((engine, index) => {
-					engine.setSituation(situationsAvecContextes[index])
-				})
+				engine.setSituation(situation)
 
 				lastSimulation = simulation
-				lastConfig = config
 
 				store.dispatch(
 					applicabilitéDesQuestionsRépondues(
@@ -96,7 +62,7 @@ export const prendLaProchaineQuestionMiddleware =
 				)
 
 				const prochainesQuestions = détermineLesProchainesQuestions(
-					engines,
+					engine,
 					config,
 					questionsRépondues
 				)

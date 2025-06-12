@@ -1,5 +1,5 @@
 import { Order, pipe } from 'effect'
-import { filter, map, NonEmptyArray, sort } from 'effect/Array'
+import { filter, map, sort } from 'effect/Array'
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 
@@ -9,7 +9,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
 export const détermineLesProchainesQuestions = (
-	engines: NonEmptyArray<Engine>,
+	engine: Engine,
 	config: SimulationConfig | ComparateurConfig,
 	answeredQuestions: Array<QuestionRépondue> = []
 ): Array<DottedName> => {
@@ -32,10 +32,11 @@ export const détermineLesProchainesQuestions = (
 	}
 
 	return pipe(
-		listeLesVariablesManquantes(engines, [
-			...(config['objectifs exclusifs'] ?? []),
-			...(config.objectifs ?? []),
-		]),
+		listeLesVariablesManquantes(
+			engine,
+			[...(config['objectifs exclusifs'] ?? []), ...(config.objectifs ?? [])],
+			'contextes' in config ? config.contextes : undefined
+		),
 		Object.entries,
 		sort(([, a], [, b]) => Order.number(b, a)),
 		map(([name]) => name as DottedName),
@@ -44,7 +45,7 @@ export const détermineLesProchainesQuestions = (
 				!answeredQuestions.some((question) => question.règle === name)
 		),
 		filter(
-			(step) =>
+			(step: DottedName) =>
 				(!liste.length || liste.some((name) => step.startsWith(name))) &&
 				(!listeNoire.length || !listeNoire.some((name) => step === name)) &&
 				(!config['objectifs exclusifs']?.length ||
@@ -53,7 +54,7 @@ export const détermineLesProchainesQuestions = (
 		sort((a: DottedName, b: DottedName) => Order.number(score(a), score(b))),
 		filter(
 			(question: DottedName) =>
-				engines[0].getRule(question).rawNode.question !== undefined
+				engine.getRule(question).rawNode.question !== undefined
 		)
 	)
 }
