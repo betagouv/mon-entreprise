@@ -1,21 +1,15 @@
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
-import { Body, Li, Ul } from '@/design-system'
-import { RelativeSitePaths } from '@/sitePaths'
+import { Body, Button, FlexCenter, Li, Ul } from '@/design-system'
 
-import Navigation from '../components/Navigation'
-
-type Props = {
-	précédent?: keyof RelativeSitePaths['assistants']['cmg']
-}
-
-export default function NonÉligible({ précédent }: Props) {
+export default function NonÉligible() {
 	const navigate = useNavigate()
-	const location = useLocation()
-	const { raisonsInéligibilité, getRaisonsInéligibilitéHumaines } = useCMG()
+	const { raisonsInéligibilité, getRaisonsInéligibilitéHumaines, set } =
+		useCMG()
 	const { t } = useTranslation()
 
 	if (!raisonsInéligibilité.length) {
@@ -44,10 +38,17 @@ export default function NonÉligible({ précédent }: Props) {
 					)
 				)}
 			</Ul>
-
-			<Navigation
-				précédent={précédent || (location.state as Props).précédent}
-			/>
+			<ButtonContainer>
+				<Button size="XS" light onClick={set.reset} to="/assistants/cmg">
+					{t('Faire une nouvelle simulation')}
+				</Button>
+			</ButtonContainer>
 		</>
 	)
 }
+
+const ButtonContainer = styled.div`
+	margin-top: ${({ theme }) => theme.spacings.xl};
+	${FlexCenter}
+	justify-content: end;
+`

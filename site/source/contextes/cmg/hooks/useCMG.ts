@@ -19,7 +19,7 @@ import {
 	SalariéeAMA,
 	SalariéeGED,
 } from '../domaine/salariée'
-import { SituationCMG } from '../domaine/situation'
+import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 import { useSituationContext } from './CMGContext'
 
 export const useCMG = () => {
@@ -32,6 +32,10 @@ export const useCMG = () => {
 	}
 
 	const set = {
+		reset: () => {
+			updateSituation(() => initialSituationCMG)
+		},
+
 		parentIsolé: (parentIsolé: O.Option<boolean>) => {
 			updateSituation((prev) => ({ ...prev, parentIsolé }))
 		},

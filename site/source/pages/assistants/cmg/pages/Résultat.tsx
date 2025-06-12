@@ -14,9 +14,7 @@ export default function Résultat() {
 	const { montantCT } = useCMG()
 
 	if (!O.isSome(montantCT) || !montantCT.value) {
-		navigate('/assistants/cmg/inéligible', {
-			state: { précédent: 'déclarations' },
-		})
+		navigate('/assistants/cmg/inéligible')
 
 		return
 	}
