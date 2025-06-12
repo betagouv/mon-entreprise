@@ -43,9 +43,7 @@ export default function Enfants() {
 			raisonsInéligibilité.includes(raison)
 		)
 	) {
-		navigate('/assistants/cmg/inéligible', {
-			state: { précédent: 'informations' },
-		})
+		navigate('/assistants/cmg/inéligible')
 	}
 
 	useEffect(() => {
