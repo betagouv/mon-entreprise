@@ -15,8 +15,12 @@ export default function IframeFooter() {
 				}}
 			>
 				<Spacing md />
-				<FeedbackButton isEmbedded />
-				<Spacing md />
+				{!currentSimulatorData?.disableIframeFeedback && (
+					<>
+						<FeedbackButton isEmbedded />
+						<Spacing md />
+					</>
+				)}
 				<PrivacyPolicy noUnderline={false} />
 				<Spacing lg />
 				{!currentSimulatorData?.pathId.startsWith('simulateur') && (
