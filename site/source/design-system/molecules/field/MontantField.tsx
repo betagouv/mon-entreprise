@@ -61,7 +61,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 				formatOptions={{
 					style: 'currency',
 					currency: 'EUR',
-					minimumFractionDigits: avecCentimes ? 2 : 0,
+					minimumFractionDigits: 0,
 					maximumFractionDigits: avecCentimes ? 2 : 0,
 				}}
 				placeholder={placeholder?.valeur}
