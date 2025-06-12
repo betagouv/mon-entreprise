@@ -97,6 +97,10 @@ export interface PageConfig {
 	 */
 	hideDate?: boolean
 
+	/** Indique si le formulaire de retour doit être désactivé en iframe
+	 */
+	disableIframeFeedback?: boolean
+
 	/** Composant React de la page
 	 *
 	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche
