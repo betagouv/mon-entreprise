@@ -70,7 +70,7 @@ function OptionBarèmeSwitch() {
 			value={currentOptionPFU}
 			onChange={(value) => {
 				setCurrentOptionPFU(value)
-				dispatch(enregistreLaRéponse(dottedName, `'${value}'`))
+				dispatch(enregistreLaRéponse(dottedName, value))
 			}}
 			aria-label={t("Régime d'imposition")}
 		>
