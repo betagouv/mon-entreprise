@@ -1,6 +1,6 @@
 # ADR : Frontières de modules et imports contrôlés
 
-**Date** : 2025-01-29  
+**Date** : 2025-05-29  
 **Auteur** : Jalil
 
 ## Contexte
@@ -11,7 +11,7 @@ Dans une base de code qui grandit, il est important de maintenir des frontières
 - Faciliter les refactorings sans casser les dépendances
 - Améliorer la maintenabilité
 
-Sans règles explicites, les développeurs peuvent importer n'importe quoi depuis n'importe où, créant des dépendances fragiles sur des détails d'implémentation.
+Sans règles explicites, les développeureuses peuvent importer n'importe quoi depuis n'importe où, créant des dépendances fragiles sur des détails d'implémentation.
 
 ## Décision
 
