@@ -49,6 +49,7 @@ export default function DéclarationAMAInput({
 			})
 		)
 	}
+
 	const onHeuresDeGardeChange = (heuresDeGarde: O.Option<number>) => {
 		onChange(
 			O.some({
@@ -77,7 +78,7 @@ export default function DéclarationAMAInput({
 	}
 
 	return (
-		<Container>
+		<>
 			<StyledQuestion>{month} 2025</StyledQuestion>
 			<EnfantsGardésInput
 				enfantsGardés={currentDéclaration.enfantsGardés}
@@ -98,15 +99,10 @@ export default function DéclarationAMAInput({
 				valeur={currentDéclaration.CMGPerçu}
 				onChange={onCMGPerçuChange}
 			/>
-		</Container>
+		</>
 	)
 }
 
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: ${({ theme }) => theme.spacings.sm};
-`
 const StyledQuestion = styled(Question)`
 	margin-top: 0;
 	text-transform: capitalize;

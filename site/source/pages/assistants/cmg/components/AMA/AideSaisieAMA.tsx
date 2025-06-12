@@ -12,28 +12,30 @@ export default function AideSaisieAMA() {
 	const { t } = useTranslation()
 
 	return (
-		<Container>
-			<StyledQuestion>
-				{t(
-					'pages.assistants.cmg.déclarations.aise-saisie.enfants.titre',
-					'Enfants gardés'
-				)}
-			</StyledQuestion>
-			<StyledBody>
-				{t(
-					'pages.assistants.cmg.déclarations.aise-saisie.enfants.contenu',
-					'Indiquez le ou les enfants gardés sur ces mois de référence.'
-				)}
-			</StyledBody>
+		<>
+			<AideSaisieEnfantsContainer>
+				<StyledQuestion>
+					{t(
+						'pages.assistants.cmg.déclarations.aise-saisie.enfants.titre',
+						'Enfants gardés'
+					)}
+				</StyledQuestion>
+				<StyledBody>
+					{t(
+						'pages.assistants.cmg.déclarations.aise-saisie.enfants.contenu',
+						'Indiquez le ou les enfants gardés sur ces mois de référence.'
+					)}
+				</StyledBody>
+			</AideSaisieEnfantsContainer>
 			<AideSaisieHeuresDeGarde />
 			<AideSaisieRémunération />
 			<AideSaisieCMG />
-		</Container>
+		</>
 	)
 }
 
-const Container = styled.div`
-	max-width: 25%;
+const AideSaisieEnfantsContainer = styled.div`
+	grid-row-start: 2;
 `
 const StyledQuestion = styled(Question)`
 	margin-top: 0;

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { Body, ExtraSmallBody, Intro, SmallBody } from '@/design-system'
+import { Body, ExtraSmallBody, H3, Intro, SmallBody } from '@/design-system'
 
 export const Question = styled(Intro)`
 	margin-bottom: 0;
@@ -21,4 +21,8 @@ export const Label = styled(Body)`
 
 export const MessageFormulaireInvalide = styled(ExtraSmallBody)`
 	text-align: right;
+`
+
+export const Titre3 = styled(H3)`
+	margin: 0;
 `

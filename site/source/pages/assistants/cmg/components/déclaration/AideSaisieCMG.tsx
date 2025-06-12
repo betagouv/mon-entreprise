@@ -9,7 +9,7 @@ export default function AideSaisieCMG() {
 	const { t } = useTranslation()
 
 	return (
-		<>
+		<div>
 			<StyledQuestion>
 				{t(
 					'pages.assistants.cmg.déclarations.aise-saisie.CMG.titre',
@@ -27,7 +27,7 @@ export default function AideSaisieCMG() {
 					Montant du salaire CMG Rémunération.
 				</Trans>
 			</StyledBody>
-		</>
+		</div>
 	)
 }
 
