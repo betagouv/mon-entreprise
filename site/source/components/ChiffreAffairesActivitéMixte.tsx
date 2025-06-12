@@ -1,3 +1,5 @@
+import { pipe } from 'effect'
+import * as E from 'effect/Either'
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { serializeEvaluation } from 'publicodes'
@@ -11,8 +13,8 @@ import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
+import { diviséPar, eurosParAn, Montant } from '@/domaine/Montant'
 import { batchUpdateSituation } from '@/store/actions/actions'
-import { catchDivideByZeroError } from '@/utils/publicodes'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition } from './EngineValue/Condition'
@@ -42,8 +44,8 @@ export default function ChiffreAffairesActivitéMixte({
 		dispatch(
 			batchUpdateSituation(
 				Object.values(proportions).reduce(
-					(acc, chiffreAffaires) => ({ ...acc, [chiffreAffaires]: undefined }),
-					{}
+					(acc, chiffreAffaires) => ({ ...acc, [chiffreAffaires]: O.none() }),
+					{} as Record<DottedName, O.Option<ValeurPublicodes>>
 				)
 			)
 		)
@@ -82,7 +84,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 	return useCallback(
 		(name: DottedName, valeur?: ValeurPublicodes) => {
-			const value = valeur && PublicodesAdapter.encode(O.some(valeur))
+			const value = valeur && PublicodesAdapter.encode(O.some(valeur), name)
 
 			const checkValue = (
 				val: unknown
@@ -103,38 +105,44 @@ function useAdjustProportions(CADottedName: DottedName) {
 					)
 				)
 			)
-			const nouveauCA = serializeEvaluation(
-				engine.evaluate({ somme: old.filter(Boolean) })
+			const nouveauCA = pipe(
+				engine.evaluate({ somme: old.filter(Boolean) }),
+				PublicodesAdapter.decode
 			)
 
-			if (nouveauCA === '0€/an') {
-				return // Avoid division by 0
-			}
 			const situation = Object.entries(proportions).reduce(
 				(acc, [proportionName, valueName]) => {
-					const newValue = serializeEvaluation(
+					const newValue = pipe(
 						engine.evaluate(
 							valueName === name && checkValue(value)
 								? value
 								: { valeur: valueName, 'par défaut': '0€/an' }
-						)
+						),
+						PublicodesAdapter.decode
 					)
-					const newProportion = serializeEvaluation(
-						catchDivideByZeroError(() =>
-							engine.evaluate({
-								valeur: `${newValue ?? ''} / ${nouveauCA ?? ''}`,
-								unité: '%',
-							})
-						)
+
+					const nouvelleProportion = pipe(
+						newValue as O.Option<Montant<'EuroParAn'>>,
+						O.getOrElse(() => eurosParAn(0)),
+						diviséPar(
+							pipe(
+								nouveauCA as O.Option<Montant<'EuroParAn'>>,
+								O.getOrElse(() => eurosParAn(0))
+							).valeur
+						),
+						E.getOrElse(() => eurosParAn(0))
 					)
 
 					return {
 						...acc,
-						[proportionName]: newProportion,
+						[proportionName]: nouvelleProportion.valeur,
 						[valueName]: undefined,
 					}
 				},
-				{ [CADottedName]: nouveauCA }
+				{ [CADottedName]: nouveauCA } as Record<
+					DottedName,
+					O.Option<ValeurPublicodes>
+				>
 			)
 			dispatch(batchUpdateSituation(situation))
 		},
@@ -153,12 +161,12 @@ function ActivitéMixte() {
 			dispatch(
 				batchUpdateSituation(
 					Object.values(proportions).reduce(
-						(acc, dottedName) => ({ ...acc, [dottedName]: undefined }),
+						(acc, dottedName) => ({ ...acc, [dottedName]: O.none() }),
 						{
-							'entreprise . activités . revenus mixtes': checked
-								? 'oui'
-								: 'non',
-						}
+							'entreprise . activités . revenus mixtes': O.some(
+								checked ? 'oui' : 'non'
+							),
+						} as Record<DottedName, O.Option<ValeurPublicodes>>
 					)
 				)
 			)

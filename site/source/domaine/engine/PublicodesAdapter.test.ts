@@ -1,4 +1,5 @@
 import { Option as O } from 'effect'
+import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeAll, describe, expect, it } from 'vitest'
 
@@ -95,7 +96,10 @@ describe('PublicodesAdapter', () => {
 	describe('encode', () => {
 		it('encode une quantité avec unité', () => {
 			const quantité = Quantité.heuresParMois(35)
-			const result = PublicodesAdapter.encode(O.some(quantité))
+			const result = PublicodesAdapter.encode(
+				O.some(quantité),
+				'contrat salarié . temps de travail' as DottedName
+			)
 
 			expect(result).toEqual({
 				valeur: 35,
@@ -105,7 +109,10 @@ describe('PublicodesAdapter', () => {
 
 		it('encode un pourcentage', () => {
 			const pourcentage = Quantité.pourcentage(15.5)
-			const result = PublicodesAdapter.encode(O.some(pourcentage))
+			const result = PublicodesAdapter.encode(
+				O.some(pourcentage),
+				'contrat salarié . pourcentage' as DottedName
+			)
 
 			expect(result).toEqual({
 				valeur: 15.5,
@@ -115,23 +122,35 @@ describe('PublicodesAdapter', () => {
 
 		it('encode un montant', () => {
 			const montant = Montant.eurosParMois(1500)
-			const result = PublicodesAdapter.encode(O.some(montant))
+			const result = PublicodesAdapter.encode(
+				O.some(montant),
+				'contrat salarié . rémunération . brut de base' as DottedName
+			)
 
 			expect(result).toBe('1500 €/mois')
 		})
 
 		it('encode un nombre', () => {
-			const result = PublicodesAdapter.encode(O.some(42))
+			const result = PublicodesAdapter.encode(
+				O.some(42),
+				'entreprise . effectif' as DottedName
+			)
 			expect(result).toBe(42)
 		})
 
 		it('encode une chaîne', () => {
-			const result = PublicodesAdapter.encode(O.some('test'))
+			const result = PublicodesAdapter.encode(
+				O.some('test'),
+				'entreprise . nom' as DottedName
+			)
 			expect(result).toBe("'test'")
 		})
 
 		it('encode None en undefined', () => {
-			const result = PublicodesAdapter.encode(O.none())
+			const result = PublicodesAdapter.encode(
+				O.none(),
+				'entreprise . effectif' as DottedName
+			)
 			expect(result).toBeUndefined()
 		})
 	})

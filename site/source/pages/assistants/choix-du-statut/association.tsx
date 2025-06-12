@@ -1,3 +1,5 @@
+import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -13,6 +15,7 @@ import {
 	SmallBody,
 	Strong,
 } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
@@ -133,25 +136,25 @@ function useAssociationSelection(): [
 			case 'gagner-argent':
 				dispatch(
 					batchUpdateSituation({
-						'entreprise . catégorie juridique . association': 'non',
-						'entreprise . catégorie juridique': undefined,
-					})
+						'entreprise . catégorie juridique . association': O.some('non'),
+						'entreprise . catégorie juridique': O.none(),
+					} as Record<DottedName, O.Option<ValeurPublicodes>>)
 				)
 				break
 			case 'non-lucratif':
 				dispatch(
 					batchUpdateSituation({
-						'entreprise . catégorie juridique . association': undefined,
-						'entreprise . catégorie juridique': 'association',
-					})
+						'entreprise . catégorie juridique . association': O.none(),
+						'entreprise . catégorie juridique': O.some('association'),
+					} as Record<DottedName, O.Option<ValeurPublicodes>>)
 				)
 				break
 			case undefined:
 				dispatch(
 					batchUpdateSituation({
-						'entreprise . catégorie juridique . association': undefined,
-						'entreprise . catégorie juridique': undefined,
-					})
+						'entreprise . catégorie juridique . association': O.none(),
+						'entreprise . catégorie juridique': O.none(),
+					} as Record<DottedName, O.Option<ValeurPublicodes>>)
 				)
 				break
 		}

@@ -1,3 +1,5 @@
+import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -7,9 +9,10 @@ import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import { Body, HelpButtonWithPopover } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import {
-	answerBatchQuestion,
 	batchUpdateSituation,
+	enregistreLesRéponses,
 } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
@@ -70,23 +73,23 @@ function useCommuneSelection(): [
 
 	const handleChange = (commune: CommuneType) => {
 		setState({ commune })
-		dispatch(answerBatchQuestion('établissement . commune', commune))
+		dispatch(enregistreLesRéponses('établissement . commune', commune))
 	}
 
 	useEffect(() => {
 		state.commune &&
-			dispatch(answerBatchQuestion('établissement . commune', state.commune))
+			dispatch(enregistreLesRéponses('établissement . commune', state.commune))
 	}, [])
 
 	const reset = () => {
 		setState({ commune: undefined })
 		dispatch(
 			batchUpdateSituation({
-				'établissement . commune . code postal': undefined,
-				'établissement . commune . département': undefined,
-				'établissement . commune . nom': undefined,
-				'établissement . commune . taux versement mobilité': undefined,
-			})
+				'établissement . commune . code postal': O.none(),
+				'établissement . commune . département': O.none(),
+				'établissement . commune . nom': O.none(),
+				'établissement . commune . taux versement mobilité': O.none(),
+			} as Record<DottedName, O.Option<ValeurPublicodes>>)
 		)
 	}
 

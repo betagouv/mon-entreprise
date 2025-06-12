@@ -1,11 +1,10 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression } from 'publicodes'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { buildSituationFromObject } from '@/utils/publicodes'
 
 import { CompanyActions } from './companyActions'
 import { HiringChecklistAction } from './hiringChecklistAction'
@@ -101,7 +100,7 @@ export const deleteFromSituation = (fieldName: DottedName) =>
 	}) as const
 
 export const batchUpdateSituation = (
-	situation: NonNullable<Parameters<Engine<DottedName>['setSituation']>[0]>
+	situation: Record<DottedName, O.Option<ValeurPublicodes>>
 ) =>
 	({
 		type: 'BATCH_UPDATE_SITUATION',
@@ -147,11 +146,6 @@ export const applicabilitéDesQuestionsRépondues = (
 		type: 'APPLICABILITÉ_DES_QUESTIONS_RÉPONDUES',
 		questionsRépondues,
 	}) as const
-
-export const answerBatchQuestion = (
-	dottedName: DottedName,
-	value: Record<string, PublicodesExpression>
-) => batchUpdateSituation(buildSituationFromObject(dottedName, value))
 
 export const miseÀJourSituation = (situation: SituationPublicodes) =>
 	({

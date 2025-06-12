@@ -1,3 +1,6 @@
+import { pipe } from 'effect'
+import * as O from 'effect/Option'
+import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
 import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
@@ -5,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
 import { useEngine } from '@/components/utils/EngineContext'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import {
 	batchUpdateSituation,
 	setActiveTarget,
@@ -44,7 +48,14 @@ export default function useSearchParamsSimulationSharing() {
 			dottedNameParamName
 		)
 		if (Object.keys(newSituation).length > 0) {
-			dispatch(batchUpdateSituation(newSituation as SituationPublicodes))
+			dispatch(
+				batchUpdateSituation(
+					pipe(
+						newSituation as Record<DottedName, ValeurPublicodes>,
+						R.map((valeur) => O.fromNullable(valeur))
+					)
+				)
+			)
 		}
 
 		const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>

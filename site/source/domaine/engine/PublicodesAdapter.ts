@@ -76,7 +76,7 @@ const decode = (
 const encode = (
 	optionalValeur: O.Option<ValeurPublicodes>,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	_règle?: DottedName
+	règle: DottedName
 ): PublicodesExpression | undefined => {
 	if (O.isNone(optionalValeur)) {
 		return undefined
