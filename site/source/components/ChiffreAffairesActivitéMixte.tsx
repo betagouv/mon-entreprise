@@ -117,8 +117,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 						O.map((ca) =>
 							pipe(
 								ca,
-								M.diviséPar(nouveauCA.valeur),
-								E.map((division) => division.valeur),
+								M.parRapportÀ(nouveauCA),
 								E.getOrElse(() => 0)
 							)
 						)
