@@ -48,6 +48,7 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
 dirigeant . auto-entrepreneur . chiffre d'affaires:
   question: Quel est votre chiffre d’affaires ?
   résumé: Montant total des recettes (hors taxe)
+  unité: €/an
   inversion numérique:
     - revenu net
     - revenu net . après impôt
