@@ -22,6 +22,7 @@ import {
 	type DateFieldProps,
 } from '@/design-system'
 import { isIsoDate } from '@/domaine/Date'
+import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
 	decodeSuggestions,
 	PublicodesAdapter,
@@ -299,7 +300,9 @@ export default function RuleInput({
 	}
 
 	const estUnMontant =
-		(value && isMontant(value)) || (defaultValue && isMontant(defaultValue))
+		(value && isMontant(value)) ||
+		(defaultValue && isMontant(defaultValue)) ||
+		estUneUnitéDeMontantPublicodes(rule.rawNode.unité)
 
 	if (estUnMontant) {
 		return (
