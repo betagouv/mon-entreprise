@@ -10,6 +10,7 @@ export function CMGConfig({ t, sitePaths }: SimulatorsDataParams) {
 		pathId: 'assistants.cmg.index',
 		path: sitePaths.assistants.cmg.index,
 		iframePath: 'cmg',
+		disableIframeFeedback: true,
 		tracking: {
 			chapter1: 'assistant',
 			chapter2: 'cmg',
