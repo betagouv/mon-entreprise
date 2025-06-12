@@ -102,6 +102,10 @@ export const plus = dual<
 	return makeMontant({ valeur: valeurSomme, unité: a.unité }) as M
 })
 
+export const somme = <T extends UnitéMonétaire>(
+	montants: ReadonlyArray<Montant<T>>
+): Montant<T> => montants.reduce((a, b) => plus(a, b))
+
 export const moins = dual<
 	<M extends Montant>(b: M) => (a: M) => M,
 	<M extends Montant>(a: M, b: M) => M
