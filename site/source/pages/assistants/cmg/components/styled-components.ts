@@ -16,6 +16,7 @@ export const DescriptionQuestion = styled(SmallBody)`
 export const Label = styled(Body)`
 	margin-top: 0;
 	margin-bottom: ${({ theme }) => theme.spacings.xxs};
+	font-weight: bold;
 `
 
 export const MessageFormulaireInvalide = styled(ExtraSmallBody)`

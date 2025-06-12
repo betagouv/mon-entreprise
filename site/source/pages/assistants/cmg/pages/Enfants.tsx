@@ -85,6 +85,7 @@ export default function Enfants() {
 
 			<Button
 				size="XXS"
+				color="secondary"
 				light
 				onPress={set.nouvelEnfant}
 				isDisabled={isAddButtonDisabled}

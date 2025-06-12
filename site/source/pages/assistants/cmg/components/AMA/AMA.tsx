@@ -30,6 +30,7 @@ export default function AMA() {
 			{salariéesAMA.map((salariéeAMA, index) => (
 				<AMAInput
 					key={index}
+					number={index + 1}
 					idSuffix={`${index}`}
 					salariée={salariéeAMA}
 					onChange={onChange(index)}
@@ -37,7 +38,7 @@ export default function AMA() {
 				/>
 			))}
 
-			<Button size="XXS" light onPress={set.nouvelleAMA}>
+			<Button size="XXS" color="secondary" light onPress={set.nouvelleAMA}>
 				{t(
 					'pages.assistants.cmg.déclarations.add-button-label',
 					'Ajouter une salariée'
