@@ -40,7 +40,7 @@ export default function Déclarations() {
 			raisonsInéligibilité.includes(raison)
 		)
 	) {
-		navigate('/assistants/cmg/inéligible', { state: { précédent: 'enfants' } })
+		navigate('/assistants/cmg/inéligible')
 	}
 
 	const isSuivantDisabled = !estSalariéesValide(situation.salariées)
