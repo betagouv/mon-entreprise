@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { useCMG } from '@/contextes/cmg'
@@ -18,12 +19,13 @@ export default function Navigation({
 	const { absoluteSitePaths } = useSitePaths()
 	const cmgPaths = absoluteSitePaths.assistants.cmg
 	const { submit } = useCMG()
+	const { t } = useTranslation()
 
 	return (
 		<Container>
 			{précédent && (
-				<Button size="XS" light onClick={submit} to={cmgPaths[précédent]}>
-					Précédent
+				<Button size="XS" light to={cmgPaths[précédent]}>
+					{t('Précédent')}
 				</Button>
 			)}
 			{suivant && (
@@ -33,7 +35,7 @@ export default function Navigation({
 					to={cmgPaths[suivant]}
 					isDisabled={isSuivantDisabled}
 				>
-					Suivant
+					{t('Suivant')}
 				</Button>
 			)}
 		</Container>
