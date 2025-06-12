@@ -178,6 +178,7 @@ Page d'accueil: Page d'accueil
 Passer: Passer
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
+Plus d'informations sur {{ title }}: Plus d'informations sur {{ title }}
 Plus de 50 salariés: Plus de 50 salariés
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
@@ -503,7 +504,6 @@ design-system:
     prev-month: Mois précédent
     year: Année
 décembre: décembre
-employeur: employeur
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
 error:
@@ -2148,7 +2148,6 @@ recherche lancée automatiquement après l'entrée de caractères, les résultat
   s'afficheront à la suite de cet élément.
 recherche-globale:
   placeholder: "Mot-clé ou acronyme (exemple : CSG)"
-salarié: salarié
 salarié, accéder au simulateur salarié: salarié, accéder au simulateur salarié
 search-code-ape:
   alternative: Vous pouvez essayer "{{proposal}}" au lieu de "{{match}}"

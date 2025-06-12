@@ -170,6 +170,7 @@ Page d'accueil: Home page
 Passer: Pass
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
+Plus d'informations sur {{ title }}: More information on {{ title }}
 Plus de 50 salariés: More than 50 employees
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
@@ -478,7 +479,6 @@ design-system:
     prev-month: Previous month
     year: Year
 décembre: December
-employeur: employer
 en incluant: including
 en titres-restaurant: in meal vouchers
 error:
@@ -2031,7 +2031,6 @@ recherche lancée automatiquement après l'entrée de caractères, les résultat
   displayed after this element.
 recherche-globale:
   placeholder: Keyword or acronym (e.g. CSG)
-salarié: employee
 salarié, accéder au simulateur salarié: employee, access the employee simulator
 search-code-ape:
   alternative: You can try "{{proposal}}" instead of "{{match}}".
