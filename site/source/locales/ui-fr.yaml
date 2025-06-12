@@ -801,12 +801,6 @@ pages:
         de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
   assistants:
     cmg:
-      description: <0>La réforme du mode de calcul du CMG peut entraîner une
-        diminution du montant de votre prestation (voir le simulateur <2>Évaluez
-        votre reste à charge</2>). Dans ce cas, vous pouvez bénéficier d’un
-        complément transitoire si vous remplissez les conditions.<4></4>Cet
-        outil vous permet d’estimer si vous avez droit à ce complément et si
-        oui, quel sera son montant <6>à titre indicatif</6>.</0>
       déclarations:
         AMA:
           h2: Assistantes Maternelles Agréées
@@ -898,9 +892,6 @@ pages:
         prestation.<3></3>Aucun élément de cette simulation ne sera
         conservé.</0></1>"
       shortname: Complément transitoire au CMG
-      simulateur-1:
-        aria-label: Aller sur la page "Évaluez votre reste à charge" sur urssaf.fr,
-          nouvelle fenêtre.
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
       description: <0><0>Cet outil est une aide à la déclaration de revenus à

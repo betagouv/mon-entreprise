@@ -758,12 +758,6 @@ pages:
         <2>this page</2>.</4>"
   assistants:
     cmg:
-      description: <0>The reform of the CMG calculation method may result in a
-        reduction in the amount of your benefit (see the <2>Evaluate your
-        remaining expenses</2> simulator). In this case, you may be entitled to
-        a transitional supplement if you meet the conditions.<4></4>This tool
-        enables you to estimate whether you are entitled to this supplement, and
-        if so, what the <6>indicative</6> amount will be.</0>
       déclarations:
         AMA:
           h2: Approved Nursery Assistants
@@ -849,8 +843,6 @@ pages:
         is valid as a declaration of a change in situation or as a claim for
         benefit.<3></3>No element of this simulation will be kept.</0></1>"
       shortname: Transitional supplement to CMG
-      simulateur-1:
-        aria-label: Go to the page "Evaluez votre reste à charge" on urssaf.fr, new window.
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:
       description: <0><0>This tool is designed to help <2>self-employed workers</2>
