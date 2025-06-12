@@ -1,3 +1,5 @@
+import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -14,6 +16,7 @@ import {
 	ToggleGroup,
 	typography,
 } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
@@ -236,16 +239,16 @@ function useAssociésSelection(): [
 			batchUpdateSituation({
 				'entreprise . associés':
 					newState.question1 === 'seul'
-						? 'unique'
+						? O.some('unique')
 						: newState.question1 === 'plusieurs'
-						? 'multiples'
-						: undefined,
+						? O.some('multiples')
+						: O.none(),
 
 				'entreprise . catégorie juridique . EI':
 					newState.question2 === 'oui' || newState.question3 === 'oui'
-						? 'non'
-						: undefined,
-			})
+						? O.some('non')
+						: O.none(),
+			} as Record<DottedName, O.Option<ValeurPublicodes>>)
 		)
 	}
 

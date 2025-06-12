@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
@@ -22,9 +23,9 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
-import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
@@ -145,9 +146,9 @@ function setAllStatutTo(value: undefined | 'non') {
 	return Object.values(STATUT_TO_DOTTEDNAME).reduce(
 		(acc, dottedName) => ({
 			...acc,
-			[dottedName]: value,
+			[dottedName]: O.fromNullable(value),
 		}),
-		{} as SituationPublicodes
+		{} as Record<DottedName, O.Option<ValeurPublicodes>>
 	)
 }
 

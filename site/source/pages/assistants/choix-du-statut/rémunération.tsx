@@ -1,3 +1,5 @@
+import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -11,7 +13,8 @@ import {
 	MontantField,
 	Strong,
 } from '@/design-system'
-import { eurosParAn } from '@/domaine/Montant'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { eurosParAn, Montant } from '@/domaine/Montant'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { debounce } from '@/utils'
 
@@ -59,9 +62,11 @@ function RémunérationEntrepriseUnipersonnelle() {
 				}
 			>
 				<MontantField
-					value={CA !== undefined ? eurosParAn(CA) : undefined}
+					value={CA}
 					unité="EuroParAn"
-					onChange={(m) => setState({ CA: m?.valeur })}
+					onChange={(m) => {
+						setState({ CA: m })
+					}}
 					label={t(
 						'choix-statut.rémunération.CA.label',
 						"Montant du chiffre d'affaires HT"
@@ -91,13 +96,13 @@ function RémunérationEntrepriseUnipersonnelle() {
 					</H3>
 				</Trans>
 				<MontantField
-					value={charges !== undefined ? eurosParAn(charges) : undefined}
+					value={charges}
 					unité="EuroParAn"
 					label={t(
 						'choix-statut.rémunération.charges.label',
 						'Montant des charges HT'
 					)}
-					onChange={(m) => setState({ charges: m?.valeur })}
+					onChange={(m) => setState({ charges: m })}
 					id="charges"
 				/>
 
@@ -157,7 +162,10 @@ function RémunérationSociétéAssociésMultiples() {
 	)
 }
 
-type CAState = { CA: number | undefined; charges: number | undefined }
+type CAState = {
+	CA: Montant<'EuroParAn'> | undefined
+	charges: Montant<'EuroParAn'> | undefined
+}
 function useChiffreAffairesState(): [
 	state: CAState,
 	setState: (value: Partial<CAState>) => void,
@@ -175,10 +183,10 @@ function useChiffreAffairesState(): [
 		debounce(1000, (newState: CAState) => {
 			dispatch(
 				batchUpdateSituation({
-					"entreprise . chiffre d'affaires": newState.CA,
-					'entreprise . charges': newState.charges,
-					'dirigeant . rémunération . totale': undefined,
-				})
+					"entreprise . chiffre d'affaires": O.some(newState.CA),
+					'entreprise . charges': O.some(newState.charges),
+					'dirigeant . rémunération . totale': O.none(),
+				} as Record<DottedName, O.Option<ValeurPublicodes>>)
 			)
 		}),
 		[]
@@ -224,10 +232,12 @@ function useRémunérationTotaleState(): [
 		debounce(1000, (newState: RémunérationState) => {
 			dispatch(
 				batchUpdateSituation({
-					"entreprise . chiffre d'affaires": undefined,
-					'entreprise . charges': undefined,
-					'dirigeant . rémunération . totale': newState.rémunérationTotale,
-				})
+					"entreprise . chiffre d'affaires": O.none(),
+					'entreprise . charges': O.none(),
+					'dirigeant . rémunération . totale': O.fromNullable(
+						newState.rémunérationTotale
+					),
+				} as Record<DottedName, O.Option<ValeurPublicodes>>)
 			)
 		}),
 		[]

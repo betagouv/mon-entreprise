@@ -45,13 +45,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 	})
 
 	const handleValueChange = (valeur: number | undefined) => {
-		handleChange(
-			valeur === undefined
-				? undefined
-				: currentValue
-				? { ...currentValue, valeur }
-				: montant<U>(valeur, unité)
-		)
+		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
 
 	return (

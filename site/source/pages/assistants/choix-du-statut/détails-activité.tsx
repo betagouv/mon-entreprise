@@ -1,4 +1,5 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -23,6 +24,7 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useIsIdle } from '@/hooks/useIsIddle'
 import { usePublicodes } from '@/hooks/usePublicodes'
 import { useSitePaths } from '@/sitePaths'
@@ -241,18 +243,17 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 			if (!guichet) {
 				dispatch(
 					batchUpdateSituation({
-						'entreprise . activités . principale . code guichet': undefined,
-						'entreprise . imposition . IR . type de bénéfices': undefined,
-						'entreprise . activités . libérale': undefined,
-						'entreprise . activités . artisanale': undefined,
-						'entreprise . activités . agricole': undefined,
-						'entreprise . activités . commerciale': undefined,
-						'entreprise . activité . nature': undefined,
-						'artiste-auteur': undefined,
-						'entreprise . activité . nature . libérale . réglementée':
-							undefined,
-						'dirigeant . indépendant . PL . métier': undefined,
-					})
+						'entreprise . activités . principale . code guichet': O.none(),
+						'entreprise . imposition . IR . type de bénéfices': O.none(),
+						'entreprise . activités . libérale': O.none(),
+						'entreprise . activités . artisanale': O.none(),
+						'entreprise . activités . agricole': O.none(),
+						'entreprise . activités . commerciale': O.none(),
+						'entreprise . activité . nature': O.none(),
+						'artiste-auteur': O.none(),
+						'entreprise . activité . nature . libérale . réglementée': O.none(),
+						'dirigeant . indépendant . PL . métier': O.none(),
+					} as Record<DottedName, O.Option<ValeurPublicodes>>)
 				)
 
 				return
@@ -261,21 +262,26 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 			const activité = getActivitéFromGuichet(guichet)
 			dispatch(
 				batchUpdateSituation({
-					'entreprise . activités . principale . code guichet': guichet.code,
-					'entreprise . imposition . IR . type de bénéfices':
-						guichet.typeBénéfice,
+					'entreprise . activités . principale . code guichet': O.some(
+						guichet.code
+					),
+					'entreprise . imposition . IR . type de bénéfices': O.some(
+						guichet.typeBénéfice
+					),
 					...(activité
 						? {
-								'entreprise . activité . nature': activité,
-								[`entreprise . activités . ${activité}`]: 'oui',
+								'entreprise . activité . nature': O.some(activité),
+								[`entreprise . activités . ${activité}`]: O.some('oui'),
 						  }
 						: {}),
-					'entreprise . activité . nature . libérale . réglementée': PLRMétier
-						? 'oui'
-						: 'non',
-					'dirigeant . indépendant . PL . métier': PLRMétier,
-					'artiste-auteur': guichet.artisteAuteurPossible ? 'oui' : 'non',
-				})
+					'entreprise . activité . nature . libérale . réglementée': O.some(
+						PLRMétier ? 'oui' : 'non'
+					),
+					'dirigeant . indépendant . PL . métier': O.fromNullable(PLRMétier),
+					'artiste-auteur': O.some(
+						guichet.artisteAuteurPossible ? 'oui' : 'non'
+					),
+				} as Record<DottedName, O.Option<ValeurPublicodes>>)
 			)
 		},
 		[dispatch, guichetEntries]

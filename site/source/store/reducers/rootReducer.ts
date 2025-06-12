@@ -1,8 +1,8 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import {
@@ -39,10 +39,7 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 		(newState, [fieldName, value]) =>
 			mainReducer(
 				newState ?? undefined,
-				updateSituationAction(
-					fieldName as DottedName,
-					value as ValeurPublicodes
-				)
+				updateSituationAction(fieldName as DottedName, O.getOrUndefined(value))
 			),
 		state
 	)

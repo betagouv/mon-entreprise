@@ -29,7 +29,9 @@ export function updateSituationMulti(
 
 	const [règlesNormales, règlesExclusives] = pipe(
 		àAjuster,
-		R.map((valeur) => PublicodesAdapter.encode(O.fromNullable(valeur))),
+		R.map((valeur, règle: DottedName) =>
+			PublicodesAdapter.encode(O.fromNullable(valeur), règle)
+		),
 		R.partition((_valeur, règle) => estUnObjectifExclusif(règle))
 	)
 
