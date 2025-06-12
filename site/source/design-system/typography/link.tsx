@@ -236,7 +236,7 @@ export function useButtonOrLink(
 		ref,
 	} as const
 
-	// Very ugly mais sinon on se récupère un warning parce qu’on passe `openInSameWindow` au DOM … qui n’est même pas censé être dans `propsToPass` d’après TypeScript ! 😭
+	// FIXME Very ugly mais sinon on se récupère un warning parce qu’on passe `openInSameWindow` au DOM … qui n’est même pas censé être dans `propsToPass` d’après TypeScript ! 😭
 	// @ts-ignore
 	return omit(propsToPass, 'openInSameWindow') as typeof propsToPass
 }
