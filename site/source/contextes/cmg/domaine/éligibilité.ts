@@ -25,10 +25,12 @@ import {
 	Enfant,
 	enfantAMoinsDe6Ans,
 	enfantNéEn,
+	estEnfantsÀChargeValide,
 	getEnfantFromPrénom,
 } from './enfant'
 import { Salariée } from './salariée'
 import {
+	estInformationsValides,
 	estSituationCMGValide,
 	SituationCMG,
 	SituationCMGValide,
@@ -154,7 +156,7 @@ const aAuMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
 	const enfants = situation.enfantsÀCharge.enfants
-	if (A.isEmptyArray(enfants)) {
+	if (!estEnfantsÀChargeValide(situation.enfantsÀCharge)) {
 		return situationIncomplète
 	}
 
@@ -169,9 +171,8 @@ const aDesRessourcesInférieuresAuPlafond = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
 	if (
-		O.isNone(situation.parentIsolé) ||
-		O.isNone(situation.ressources) ||
-		A.isEmptyArray(situation.enfantsÀCharge.enfants)
+		!estInformationsValides(situation) ||
+		!estEnfantsÀChargeValide(situation.enfantsÀCharge)
 	) {
 		return situationIncomplète
 	}
@@ -184,7 +185,7 @@ const aDesRessourcesInférieuresAuPlafond = (
 }
 
 const aPerçuCMG = (situation: SituationCMG): FonctionÉligibilité => {
-	if (!situation.salariées.AMA.length && !situation.salariées.GED.length) {
+	if (!estSituationCMGValide(situation)) {
 		return situationIncomplète
 	}
 
@@ -198,7 +199,7 @@ const aPerçuCMG = (situation: SituationCMG): FonctionÉligibilité => {
 const aUnNombreDeMoisEmployeureuseSuffisant = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
-	if (!situation.salariées.AMA.length && !situation.salariées.GED.length) {
+	if (!estSituationCMGValide(situation)) {
 		return situationIncomplète
 	}
 
@@ -212,10 +213,7 @@ const aUnNombreDeMoisEmployeureuseSuffisant = (
 const aDéclaréAssezDHeuresDeGarde = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
-	if (
-		A.isEmptyArray(situation.enfantsÀCharge.enfants) ||
-		(!situation.salariées.AMA.length && !situation.salariées.GED.length)
-	) {
+	if (!estSituationCMGValide(situation)) {
 		return situationIncomplète
 	}
 
@@ -229,10 +227,7 @@ const aDéclaréAssezDHeuresDeGarde = (
 const aAuMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
-	if (
-		A.isEmptyArray(situation.enfantsÀCharge.enfants) ||
-		(!situation.salariées.AMA.length && !situation.salariées.GED.length)
-	) {
+	if (!estSituationCMGValide(situation)) {
 		return situationIncomplète
 	}
 

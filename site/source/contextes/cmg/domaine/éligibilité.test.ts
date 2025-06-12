@@ -429,7 +429,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.none(),
+					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
 				salariées: {
