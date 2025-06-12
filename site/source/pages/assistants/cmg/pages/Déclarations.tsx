@@ -10,7 +10,6 @@ import {
 	estEnfantsÀChargeValide,
 	estInformationsValides,
 	estSalariéesValide,
-	RaisonInéligibilité,
 	useCMG,
 } from '@/contextes/cmg'
 
@@ -31,15 +30,7 @@ export default function Déclarations() {
 		navigate('/assistants/cmg')
 	}
 
-	const raisonsInéligibilitéValables: Array<RaisonInéligibilité> = [
-		'ressources',
-		'enfants-à-charge',
-	]
-	if (
-		raisonsInéligibilitéValables.some((raison) =>
-			raisonsInéligibilité.includes(raison)
-		)
-	) {
+	if (raisonsInéligibilité.length) {
 		navigate('/assistants/cmg/inéligible')
 	}
 
