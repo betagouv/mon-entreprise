@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { Names } from 'modele-social/dist/names'
 import Engine, { PublicodesExpression, Rule } from 'publicodes'
@@ -23,6 +24,7 @@ import {
 	SmallBody,
 	Spacing,
 } from '@/design-system'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { hash, omit } from '@/utils'
 import {
 	buildSituationFromObject,
@@ -196,8 +198,15 @@ function FormulairePublicodes() {
 										<RuleInput
 											id={dottedName.replace(/\s|\./g, '_')}
 											dottedName={dottedName as DottedName}
-											// @ts-ignore
-											onChange={(value) => onChange(dottedName, value)}
+											onChange={(value) =>
+												onChange(
+													dottedName,
+													PublicodesAdapter.encode(
+														O.fromNullable(value),
+														dottedName as DottedName
+													)
+												)
+											}
 											hideDefaultValue
 											aria-label={
 												question &&
