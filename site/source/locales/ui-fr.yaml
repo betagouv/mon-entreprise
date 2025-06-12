@@ -804,11 +804,42 @@ pages:
       déclarations:
         AMA:
           h2: Assistantes Maternelles Agréées
+          h3_many: Assistante maternelle {{ count }} - Déclaration(s) sur la période de
+            référence
+          h3_one: Assistante maternelle {{ count }} - Déclaration(s) sur la période de
+            référence
+          h3_other: Assistante maternelle {{ count }} - Déclaration(s) sur la période de
+            référence
         CMG-perçu:
           label: CMG Rémunération perçu
         GED:
           h2: Gardes d’enfants à domicile
+          h3_many: Garde à domicile {{ count }} - Déclaration(s) sur la période de
+            référence
+          h3_one: Garde à domicile {{ count }} - Déclaration(s) sur la période de
+            référence
+          h3_other: Garde à domicile {{ count }} - Déclaration(s) sur la période de
+            référence
         add-button-label: Ajouter une salariée
+        aise-saisie:
+          CMG:
+            contenu: <0>Où trouver l’information ?</0><1></1>sur le relevé
+              mensuel<3></3><4>Montant attendu :</4><5></5>Montant du salaire
+              CMG Rémunération.
+            titre: CMG Rémunération perçu
+          enfants:
+            contenu: Indiquez le ou les enfants gardés sur ces mois de référence.
+            titre: Enfants gardés
+          heures-de-garde:
+            contenu: <0>Où trouver l’information ?</0><1></1>sur le bulletin de
+              salaire<3></3><4>Montant attendu :</4><5></5>Somme du nombre
+              d’heures normales + nombre d’heures complémentaires ou majorées.
+            titre: Nombre d’heures de garde
+          rémunération:
+            contenu: <0>Où trouver l’information ?</0><1></1>sur le relevé
+              mensuel<3></3><4>Montant attendu :</4><5></5>Montant du salaire
+              (dont indemnités et acompte).
+            titre: Rémunération totale
         enfants-gardés:
           legend: Enfant(s) gardé(s)
         erreurs:
@@ -823,7 +854,6 @@ pages:
           label: Nombre d’heures de garde
         rémunération:
           label: Rémunération totale
-        titre: "Déclaration(s) sur la période de référence pour la salariée :"
       enfants:
         add-button-label: Ajouter un enfant
         date-de-naissance:

@@ -30,6 +30,7 @@ export default function GED() {
 			{salariéesGED.map((salariéeGED, index) => (
 				<GEDInput
 					key={index}
+					number={index + 1}
 					idSuffix={`${index}`}
 					salariée={salariéeGED}
 					onChange={onChange(index)}
@@ -37,7 +38,7 @@ export default function GED() {
 				/>
 			))}
 
-			<Button size="XXS" light onPress={set.nouvelleGED}>
+			<Button size="XXS" color="secondary" light onPress={set.nouvelleGED}>
 				{t(
 					'pages.assistants.cmg.déclarations.add-button-label',
 					'Ajouter une salariée'
