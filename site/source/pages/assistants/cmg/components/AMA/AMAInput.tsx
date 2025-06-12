@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { SalariéeAMA } from '@/contextes/cmg'
-import { H3 } from '@/design-system'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import DeleteButton from '../DeleteButton'
+import { Titre3 } from '../styled-components'
 import AideSaisieAMA from './AideSaisieAMA'
 import DéclarationAMAInput from './DéclarationAMAInput'
 
@@ -28,16 +28,16 @@ export default function AMAInput({
 
 	return (
 		<>
-			<Container>
-				<H3>
+			<TitreContainer>
+				<Titre3>
 					{t(
 						'pages.assistants.cmg.déclarations.AMA.h3',
 						'Assistante maternelle {{ count }} - Déclaration(s) sur la période de référence',
 						{ count: number }
 					)}
-				</H3>
+				</Titre3>
 				<DeleteButton onDelete={onDelete} />
-			</Container>
+			</TitreContainer>
 			<InputsContainer>
 				<AideSaisieAMA />
 				{Object.keys(salariée).map((month) => (
@@ -59,14 +59,18 @@ export default function AMAInput({
 	)
 }
 
-const Container = styled.div`
+const TitreContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-bottom: ${({ theme }) => theme.spacings.lg};
 `
 const InputsContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-rows: repeat(5, min-content);
+	grid-template-columns: 30% repeat(3, 1fr);
+	grid-auto-flow: column;
+	grid-column-gap: ${({ theme }) => theme.spacings.xl};
 	background-color: ${({ theme }) => theme.colors.extended.grey['200']};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};

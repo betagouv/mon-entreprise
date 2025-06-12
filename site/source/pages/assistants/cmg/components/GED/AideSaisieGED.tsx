@@ -6,13 +6,16 @@ import AideSaisieRémunération from '../déclaration/AideSaisieRémunération'
 
 export default function AideSaisieGED() {
 	return (
-		<Container>
-			<AideSaisieHeuresDeGarde />
+		<>
+			<AideSaisieHeuresDeGardeContainer>
+				<AideSaisieHeuresDeGarde />
+			</AideSaisieHeuresDeGardeContainer>
 			<AideSaisieRémunération />
 			<AideSaisieCMG />
-		</Container>
+		</>
 	)
 }
-const Container = styled.div`
-	max-width: 25%;
+
+const AideSaisieHeuresDeGardeContainer = styled.div`
+	grid-row-start: 2;
 `
