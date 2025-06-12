@@ -1,8 +1,9 @@
 import { pipe } from 'effect'
+import * as A from 'effect/Array'
 import * as E from 'effect/Either'
 import * as O from 'effect/Option'
+import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import { serializeEvaluation } from 'publicodes'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -13,7 +14,7 @@ import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
-import { diviséPar, eurosParAn, Montant } from '@/domaine/Montant'
+import * as M from '@/domaine/Montant'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import { ExplicableRule } from './conversation/Explicable'
@@ -31,6 +32,14 @@ const proportions = {
 	'entreprise . activités . revenus mixtes . proportions . vente restauration hébergement':
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
+
+const caÀNone = pipe(
+	proportions,
+	R.toEntries,
+	A.map(([règleProportion, règleCA]) => [règleCA, règleProportion] as const),
+	R.fromEntries,
+	R.map(() => O.none())
+)
 
 export default function ChiffreAffairesActivitéMixte({
 	dottedName,
@@ -84,66 +93,45 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 	return useCallback(
 		(name: DottedName, valeur?: ValeurPublicodes) => {
-			const value = valeur && PublicodesAdapter.encode(O.some(valeur), name)
+			const nouvelleValeurPour = (règleCA: DottedName): O.Option<M.Montant> =>
+				règleCA === name
+					? O.fromNullable((valeur as M.Montant | undefined) || M.eurosParAn(0))
+					: (pipe(
+							engine.evaluate(règleCA),
+							PublicodesAdapter.decode
+					  ) as O.Option<M.Montant>)
 
-			const checkValue = (
-				val: unknown
-			): val is { valeur: number; unité: string } =>
-				val != null &&
-				typeof val === 'object' &&
-				'valeur' in val &&
-				'unité' in val &&
-				typeof val.valeur === 'number' &&
-				typeof val.unité === 'string'
+			const nouveauCA = pipe(
+				Object.values(proportions),
+				A.map(nouvelleValeurPour),
+				A.getSomes,
+				M.somme
+			)
 
-			const old = Object.values(proportions).map((chiffreAffaire) =>
-				serializeEvaluation(
-					engine.evaluate(
-						name === chiffreAffaire && checkValue(value)
-							? value
-							: chiffreAffaire
+			const nouvellesProportions = pipe(
+				proportions,
+				R.map((règleCA) =>
+					pipe(
+						règleCA,
+						nouvelleValeurPour,
+						O.map((ca) =>
+							pipe(
+								ca,
+								M.diviséPar(nouveauCA.valeur),
+								E.map((division) => division.valeur),
+								E.getOrElse(() => 0)
+							)
+						)
 					)
 				)
 			)
-			const nouveauCA = pipe(
-				engine.evaluate({ somme: old.filter(Boolean) }),
-				PublicodesAdapter.decode
-			)
 
-			const situation = Object.entries(proportions).reduce(
-				(acc, [proportionName, valueName]) => {
-					const newValue = pipe(
-						engine.evaluate(
-							valueName === name && checkValue(value)
-								? value
-								: { valeur: valueName, 'par défaut': '0€/an' }
-						),
-						PublicodesAdapter.decode
-					)
+			const situation = {
+				[CADottedName]: O.some(nouveauCA),
+				...caÀNone,
+				...nouvellesProportions,
+			} as Record<DottedName, O.Option<ValeurPublicodes>>
 
-					const nouvelleProportion = pipe(
-						newValue as O.Option<Montant<'EuroParAn'>>,
-						O.getOrElse(() => eurosParAn(0)),
-						diviséPar(
-							pipe(
-								nouveauCA as O.Option<Montant<'EuroParAn'>>,
-								O.getOrElse(() => eurosParAn(0))
-							).valeur
-						),
-						E.getOrElse(() => eurosParAn(0))
-					)
-
-					return {
-						...acc,
-						[proportionName]: nouvelleProportion.valeur,
-						[valueName]: undefined,
-					}
-				},
-				{ [CADottedName]: nouveauCA } as Record<
-					DottedName,
-					O.Option<ValeurPublicodes>
-				>
-			)
 			dispatch(batchUpdateSituation(situation))
 		},
 		[CADottedName, engine, dispatch]
