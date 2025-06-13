@@ -74,14 +74,20 @@ rule without:
 
 	describe('getSituationFromSearchParams', () => {
 		it('reads search params with and without identifiant court', () => {
-			expect(
-				getSituationFromSearchParams(
-					new URLSearchParams('panta=2000€/mois&rule without=1000€/mois'),
-					dottedNameParamName
-				)
-			).toEqual({
-				'rule with': '2000€/mois',
-				'rule without': '1000€/mois',
+			const result = getSituationFromSearchParams(
+				new URLSearchParams('panta=2000€/mois&rule without=1000€/mois'),
+				dottedNameParamName
+			)
+
+			expect(result['rule with']).toMatchObject({
+				_tag: 'Montant',
+				valeur: 2000,
+				unité: 'EuroParMois',
+			})
+			expect(result['rule without']).toMatchObject({
+				_tag: 'Montant',
+				valeur: 1000,
+				unité: 'EuroParMois',
 			})
 		})
 		it('handles empty search params with proper defaults', () => {

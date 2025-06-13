@@ -9,6 +9,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { SearchParamsAdapter } from '@/SearchParamsAdapter'
 import {
 	batchUpdateSituation,
 	setActiveTarget,
@@ -51,7 +52,7 @@ export default function useSearchParamsSimulationSharing() {
 			dispatch(
 				batchUpdateSituation(
 					pipe(
-						newSituation as Record<DottedName, ValeurPublicodes>,
+						newSituation,
 						R.map((valeur) => O.fromNullable(valeur))
 					)
 				)
@@ -151,9 +152,8 @@ export function getSearchParams(
 export function getSituationFromSearchParams(
 	searchParams: URLSearchParams,
 	dottedNameParamName: [DottedName, ParamName][]
-) {
-	const situation: { [key in DottedName]?: string | Record<string, unknown> } =
-		{}
+): Record<DottedName, ValeurPublicodes> {
+	const situation = {} as Record<DottedName, ValeurPublicodes>
 
 	const paramNameDottedName = dottedNameParamName.reduce(
 		(dottedNameBySearchParamName, [dottedName, paramName]) => ({
@@ -165,20 +165,10 @@ export function getSituationFromSearchParams(
 
 	searchParams.forEach((value, paramName) => {
 		if (Object.prototype.hasOwnProperty.call(paramNameDottedName, paramName)) {
-			situation[paramNameDottedName[paramName]] = value
-
-			if (value.startsWith('{') && value.endsWith('}')) {
-				try {
-					const parsed = JSON.parse(value) as Record<string, unknown>
-					if ('unité' in parsed) {
-						parsed['unité'] = (parsed['unité'] as string).replace(' / ', '/')
-					}
-					situation[paramNameDottedName[paramName]] = parsed
-				} catch (error) {
-					// eslint-disable-next-line no-console
-					console.error(error)
-				}
-			}
+			const dottedName = paramNameDottedName[paramName]
+			situation[dottedName] = SearchParamsAdapter.decode(
+				value
+			) as ValeurPublicodes
 		}
 	})
 
