@@ -54,6 +54,8 @@ export default function EnfantInput({
 const Container = styled.div`
 	${FlexCenter};
 	justify-content: space-between;
+	flex-wrap: wrap;
+	row-gap: ${({ theme }) => theme.spacings.lg};
 	background-color: ${({ theme }) => theme.colors.extended.grey['200']};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
@@ -61,5 +63,7 @@ const Container = styled.div`
 `
 const InputsContainer = styled.div`
 	${FlexCenter};
-	gap: ${({ theme }) => theme.spacings.xl};
+	flex-wrap: wrap;
+	column-gap: ${({ theme }) => theme.spacings.xl};
+	row-gap: ${({ theme }) => theme.spacings.md};
 `

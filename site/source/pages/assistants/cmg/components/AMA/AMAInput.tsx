@@ -63,6 +63,8 @@ const TitreContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: wrap;
+	row-gap: ${({ theme }) => theme.spacings.md};
 	margin-bottom: ${({ theme }) => theme.spacings.lg};
 `
 const InputsContainer = styled.div`
