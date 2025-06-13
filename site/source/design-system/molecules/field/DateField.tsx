@@ -282,14 +282,18 @@ const Wrapper = styled.div`
 
 const StyledButton = styled(Button)`
 	position: absolute;
-	width: 35px;
-	height: 35px;
+	right: 0.2rem;
+	top: 0.1625rem;
+	width: 36px;
+	height: 36px;
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		top: 0.175rem;
+		width: 33px;
+		height: 33px;
+	}
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	right: 0;
-	top: 0;
-	margin: 0.2rem;
 	background-color: ${({ theme }) =>
 		theme.darkMode && theme.colors.bases.primary[700]};
 `
