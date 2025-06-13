@@ -45,5 +45,6 @@ export default function Navigation({
 const Container = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.xl};
 	${FlexCenter}
-	justify-content: space-between;
+	justify-content: end;
+	gap: ${({ theme }) => theme.spacings.md};
 `

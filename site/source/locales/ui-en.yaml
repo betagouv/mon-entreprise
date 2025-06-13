@@ -94,7 +94,6 @@ Envoyer: Send
 "Exemple : Des informations plus claires, un calcul détaillé...": "Example: clearer information, detailed calculation..."
 ExportSimulation:
   Banner: Print or save as PDF
-Faire une nouvelle simulation: Make a new simulation
 Fermer: Close
 Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Pay slip
@@ -760,7 +759,7 @@ pages:
     cmg:
       déclarations:
         AMA:
-          h2: Approved Nursery Assistants
+          h2: Approved childminders
           h3_many: Assistante maternelle {{ count }} - Declaration(s) for the reference
             period
           h3_one: Assistante maternelle {{ count }} - Declaration(s) for the reference
@@ -774,7 +773,7 @@ pages:
           h3_many: Garde à domicile {{ count }} - Declaration(s) for the reference period
           h3_one: Garde à domicile {{ count }} - Declaration(s) for the reference period
           h3_other: Garde à domicile {{ count }} - Declaration(s) for the reference period
-        add-button-label: Add an employee
+        add-button-label: Registering an employee
         aise-saisie:
           CMG:
             contenu: <0>Where can I find the information?</0><1></1>on the monthly
@@ -807,6 +806,7 @@ pages:
           label: Number of on-call hours
         rémunération:
           label: Total compensation
+      démarrer: Start a simulation
       enfants:
         add-button-label: Add a child
         date-de-naissance:
@@ -849,6 +849,7 @@ pages:
           transitional supplement for the following reason:"
         other: "Based on the information provided, you are not eligible for the
           transitional supplement for the following reasons:"
+      nouvelle-simulation: Make a new simulation
       questions:
         AeeH:
           label: Number of children concerned

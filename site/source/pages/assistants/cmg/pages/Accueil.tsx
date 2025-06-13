@@ -1,12 +1,12 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import Warning from '@/components/ui/WarningBlock'
-import { Body, Strong } from '@/design-system'
-
-import Navigation from '../components/Navigation'
+import { Body, Button, Strong } from '@/design-system'
 
 export default function Accueil() {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage name="accueil" />
@@ -32,7 +32,9 @@ export default function Accueil() {
 				</Trans>
 			</Warning>
 
-			<Navigation suivant="informations" />
+			<Button size="XS" to="informations-générales">
+				{t('pages.assistants.cmg.démarrer', 'Démarrer une simulation')}
+			</Button>
 		</>
 	)
 }

@@ -2,8 +2,9 @@ import * as A from 'effect/Array'
 import { useTranslation } from 'react-i18next'
 
 import { SalariéeAMA, useCMG } from '@/contextes/cmg'
-import { Button, H2 } from '@/design-system'
+import { Button } from '@/design-system'
 
+import { Titre2 } from '../styled-components'
 import AMAInput from './AMAInput'
 
 export default function AMA() {
@@ -20,12 +21,12 @@ export default function AMA() {
 
 	return (
 		<>
-			<H2>
+			<Titre2>
 				{t(
 					'pages.assistants.cmg.déclarations.AMA.h2',
-					'Assistantes Maternelles Agréées'
+					'Assistantes maternelles agréées'
 				)}
-			</H2>
+			</Titre2>
 
 			{salariéesAMA.map((salariéeAMA, index) => (
 				<AMAInput
@@ -41,7 +42,7 @@ export default function AMA() {
 			<Button size="XXS" color="secondary" light onPress={set.nouvelleAMA}>
 				{t(
 					'pages.assistants.cmg.déclarations.add-button-label',
-					'Ajouter une salariée'
+					'Déclarer une salariée'
 				)}
 			</Button>
 		</>
