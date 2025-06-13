@@ -106,10 +106,10 @@ export default function Associés() {
 								}
 								value={question2}
 							>
-								<Radio value={'oui'}>
+								<Radio id="question-2-oui" value={'oui'}>
 									<Trans>Oui</Trans>
 								</Radio>
-								<Radio value={'non'}>
+								<Radio id="question-2-non" value={'non'}>
 									<Trans>Non</Trans>
 								</Radio>
 							</ToggleGroup>
@@ -185,10 +185,10 @@ export default function Associés() {
 								}
 								value={question3}
 							>
-								<Radio value={'oui'}>
+								<Radio id="question-3-oui" value={'oui'}>
 									<Trans>Oui</Trans>
 								</Radio>
-								<Radio value={'non'}>
+								<Radio id="question-3-non" value={'non'}>
 									<Trans>Non</Trans>
 								</Radio>
 							</ToggleGroup>
