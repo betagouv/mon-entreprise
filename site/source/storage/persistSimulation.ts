@@ -8,7 +8,7 @@ import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
 
-const VERSION = 7
+const VERSION = 8
 
 const localStorageKey = (pathname: string) =>
 	`mon-entreprise::persisted-simulation::v${VERSION}::${pathname}`

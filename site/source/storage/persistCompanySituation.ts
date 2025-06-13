@@ -6,7 +6,7 @@ import { RootState, SituationPublicodes } from '@/store/reducers/rootReducer'
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'
 
-const VERSION = 4
+const VERSION = 5
 
 const LOCAL_STORAGE_KEY = `mon-entreprise::companySituation::v${VERSION}`
 
