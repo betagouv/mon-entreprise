@@ -777,7 +777,7 @@ pages:
         aise-saisie:
           CMG:
             contenu: <0>Where can I find the information?</0><1></1>on the monthly
-              statement<3></3><4>Expected amount:</4><5></5>CMG salary amount
+              statement<3></3><4>Expected amount:</4><5></5>CMG amount
               Remuneration.
             titre: CMG Remuneration received
           enfants:
