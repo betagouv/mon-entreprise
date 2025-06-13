@@ -40,16 +40,21 @@ export default function GEDInput({
 			</TitreContainer>
 			<InputsContainer>
 				<AideSaisieGED />
-				{Object.keys(salariée).map((month) => (
+				{Object.keys(salariée.déclarations).map((month) => (
 					<DéclarationGEDInput
 						key={month}
 						idSuffix={`${idSuffix}-${month}`}
 						month={month}
-						déclaration={salariée[month as keyof SalariéeGED]}
+						déclaration={
+							salariée.déclarations[month as keyof SalariéeGED['déclarations']]
+						}
 						onChange={(value) =>
 							onChange({
 								...salariée,
-								[month]: value,
+								déclarations: {
+									...salariée.déclarations,
+									[month]: value,
+								},
 							})
 						}
 					/>

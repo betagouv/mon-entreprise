@@ -41,40 +41,46 @@ describe('CMG', () => {
 				salariées: {
 					GED: [
 						{
-							mars: O.none(),
-							avril: O.some(
-								new DéclarationsDeGardeGEDFactory()
-									.avecNbHeures(12)
-									.avecRémunération(M.euros(48))
-									.avecCMG(M.euros(200))
-									.build()
-							),
-							mai: O.some(
-								new DéclarationsDeGardeGEDFactory()
-									.avecNbHeures(12)
-									.avecRémunération(M.euros(48))
-									.avecCMG(M.euros(70))
-									.build()
-							),
+							moisDifférents: O.some(false),
+							déclarations: {
+								mars: O.none(),
+								avril: O.some(
+									new DéclarationsDeGardeGEDFactory()
+										.avecNbHeures(12)
+										.avecRémunération(M.euros(48))
+										.avecCMG(M.euros(200))
+										.build()
+								),
+								mai: O.some(
+									new DéclarationsDeGardeGEDFactory()
+										.avecNbHeures(12)
+										.avecRémunération(M.euros(48))
+										.avecCMG(M.euros(70))
+										.build()
+								),
+							},
 						},
 					],
 					AMA: [
 						{
-							mars: O.some(
-								new DéclarationsDeGardeAMAFactory(['Jules'])
-									.avecNbHeures(100)
-									.avecRémunération(M.euros(300))
-									.avecCMG(M.euros(250))
-									.build()
-							),
-							avril: O.some(
-								new DéclarationsDeGardeAMAFactory(['Jules'])
-									.avecNbHeures(200)
-									.avecRémunération(M.euros(300))
-									.avecCMG(M.euros(140))
-									.build()
-							),
-							mai: O.none(),
+							moisDifférents: O.some(false),
+							déclarations: {
+								mars: O.some(
+									new DéclarationsDeGardeAMAFactory(['Jules'])
+										.avecNbHeures(100)
+										.avecRémunération(M.euros(300))
+										.avecCMG(M.euros(250))
+										.build()
+								),
+								avril: O.some(
+									new DéclarationsDeGardeAMAFactory(['Jules'])
+										.avecNbHeures(200)
+										.avecRémunération(M.euros(300))
+										.avecCMG(M.euros(140))
+										.build()
+								),
+								mai: O.none(),
+							},
 						},
 					],
 				},
@@ -103,40 +109,46 @@ describe('CMG', () => {
 				salariées: {
 					GED: [
 						{
-							mars: O.none(),
-							avril: O.some(
-								new DéclarationsDeGardeGEDFactory()
-									.avecNbHeures(12)
-									.avecRémunération(M.euros(48))
-									.avecCMG(M.euros(70))
-									.build()
-							),
-							mai: O.some(
-								new DéclarationsDeGardeGEDFactory()
-									.avecNbHeures(12)
-									.avecRémunération(M.euros(48))
-									.avecCMG(M.euros(70))
-									.build()
-							),
+							moisDifférents: O.some(false),
+							déclarations: {
+								mars: O.none(),
+								avril: O.some(
+									new DéclarationsDeGardeGEDFactory()
+										.avecNbHeures(12)
+										.avecRémunération(M.euros(48))
+										.avecCMG(M.euros(70))
+										.build()
+								),
+								mai: O.some(
+									new DéclarationsDeGardeGEDFactory()
+										.avecNbHeures(12)
+										.avecRémunération(M.euros(48))
+										.avecCMG(M.euros(70))
+										.build()
+								),
+							},
 						},
 					],
 					AMA: [
 						{
-							mars: O.some(
-								new DéclarationsDeGardeAMAFactory(['Rose'])
-									.avecNbHeures(100)
-									.avecRémunération(M.euros(300))
-									.avecCMG(M.euros(100))
-									.build()
-							),
-							avril: O.some(
-								new DéclarationsDeGardeAMAFactory(['Jules'])
-									.avecNbHeures(100)
-									.avecRémunération(M.euros(300))
-									.avecCMG(M.euros(100))
-									.build()
-							),
-							mai: O.none(),
+							moisDifférents: O.some(false),
+							déclarations: {
+								mars: O.some(
+									new DéclarationsDeGardeAMAFactory(['Rose'])
+										.avecNbHeures(100)
+										.avecRémunération(M.euros(300))
+										.avecCMG(M.euros(100))
+										.build()
+								),
+								avril: O.some(
+									new DéclarationsDeGardeAMAFactory(['Jules'])
+										.avecNbHeures(100)
+										.avecRémunération(M.euros(300))
+										.avecCMG(M.euros(100))
+										.build()
+								),
+								mai: O.none(),
+							},
 						},
 					],
 				},
@@ -151,60 +163,76 @@ describe('CMG', () => {
 			const résultat = moyenneCMGPerçus({
 				GED: [
 					{
-						mars: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(120)).build()
-						),
-						avril: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(200)).build()
-						),
-						mai: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(70)).build()
-						),
+						moisDifférents: O.some(false),
+						déclarations: {
+							mars: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecCMG(M.euros(120))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecCMG(M.euros(200))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(70)).build()
+							),
+						},
 					},
 				],
 				AMA: [
 					{
-						mars: O.some(
-							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(M.euros(250))
-								.build()
-						),
-						avril: O.some(
-							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(M.euros(140))
-								.build()
-						),
-						mai: O.some(
-							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(M.euros(200))
-								.build()
-						),
+						moisDifférents: O.some(false),
+						déclarations: {
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecCMG(M.euros(250))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecCMG(M.euros(140))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecCMG(M.euros(200))
+									.build()
+							),
+						},
 					},
 					{
-						mars: O.some(
-							new DéclarationsDeGardeAMAFactory(['Martin'])
-								.avecCMG(M.euros(200))
-								.build()
-						),
-						avril: O.some(
-							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(M.euros(230))
-								.build()
-						),
-						mai: O.some(
-							new DéclarationsDeGardeAMAFactory(['Martin'])
-								.avecCMG(M.euros(150))
-								.build()
-						),
+						moisDifférents: O.some(false),
+						déclarations: {
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Martin'])
+									.avecCMG(M.euros(200))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecCMG(M.euros(230))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Martin'])
+									.avecCMG(M.euros(150))
+									.build()
+							),
+						},
 					},
 					{
-						mars: O.none(),
-						avril: O.none(),
-						mai: O.some(
-							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(M.euros(100))
-								.build()
-						),
+						moisDifférents: O.some(false),
+						déclarations: {
+							mars: O.none(),
+							avril: O.none(),
+							mai: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecCMG(M.euros(100))
+									.build()
+							),
+						},
 					},
 				],
 			})
@@ -216,28 +244,36 @@ describe('CMG', () => {
 			const résultat = moyenneCMGPerçus({
 				GED: [
 					{
-						mars: O.none(),
-						avril: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(200)).build()
-						),
-						mai: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(70)).build()
-						),
+						moisDifférents: O.some(false),
+						déclarations: {
+							mars: O.none(),
+							avril: O.some(
+								new DéclarationsDeGardeGEDFactory()
+									.avecCMG(M.euros(200))
+									.build()
+							),
+							mai: O.some(
+								new DéclarationsDeGardeGEDFactory().avecCMG(M.euros(70)).build()
+							),
+						},
 					},
 				],
 				AMA: [
 					{
-						mars: O.some(
-							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(M.euros(250))
-								.build()
-						),
-						avril: O.some(
-							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(M.euros(140))
-								.build()
-						),
-						mai: O.none(),
+						moisDifférents: O.some(false),
+						déclarations: {
+							mars: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecCMG(M.euros(250))
+									.build()
+							),
+							avril: O.some(
+								new DéclarationsDeGardeAMAFactory(['Jules'])
+									.avecCMG(M.euros(140))
+									.build()
+							),
+							mai: O.none(),
+						},
 					},
 				],
 			})
@@ -267,36 +303,42 @@ describe('CMG', () => {
 				salariées: {
 					GED: [
 						{
-							mars: O.none(),
-							avril: O.some(
-								new DéclarationsDeGardeGEDFactory()
-									.avecNbHeures(12)
-									.avecRémunération(M.euros(48))
-									.build()
-							),
-							mai: O.some(
-								new DéclarationsDeGardeGEDFactory()
-									.avecNbHeures(12)
-									.avecRémunération(M.euros(48))
-									.build()
-							),
+							moisDifférents: O.some(false),
+							déclarations: {
+								mars: O.none(),
+								avril: O.some(
+									new DéclarationsDeGardeGEDFactory()
+										.avecNbHeures(12)
+										.avecRémunération(M.euros(48))
+										.build()
+								),
+								mai: O.some(
+									new DéclarationsDeGardeGEDFactory()
+										.avecNbHeures(12)
+										.avecRémunération(M.euros(48))
+										.build()
+								),
+							},
 						},
 					],
 					AMA: [
 						{
-							mars: O.some(
-								new DéclarationsDeGardeAMAFactory(['Jules'])
-									.avecNbHeures(100)
-									.avecRémunération(M.euros(300))
-									.build()
-							),
-							avril: O.some(
-								new DéclarationsDeGardeAMAFactory(['Jules'])
-									.avecNbHeures(100)
-									.avecRémunération(M.euros(300))
-									.build()
-							),
-							mai: O.none(),
+							moisDifférents: O.some(false),
+							déclarations: {
+								mars: O.some(
+									new DéclarationsDeGardeAMAFactory(['Jules'])
+										.avecNbHeures(100)
+										.avecRémunération(M.euros(300))
+										.build()
+								),
+								avril: O.some(
+									new DéclarationsDeGardeAMAFactory(['Jules'])
+										.avecNbHeures(100)
+										.avecRémunération(M.euros(300))
+										.build()
+								),
+								mai: O.none(),
+							},
 						},
 					],
 				},

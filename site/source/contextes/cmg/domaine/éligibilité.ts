@@ -306,7 +306,12 @@ const nombreDeMoisEmployeureuseSuffisant = (
 const construireHistorique = (
 	salariées: SituationCMGValide['salariées']
 ): Historique => {
-	const déclarations = pipe(salariées, R.values, A.flatten)
+	const déclarations = pipe(
+		salariées,
+		R.values,
+		A.flatten,
+		A.map((s) => s.déclarations)
+	)
 
 	return {
 		mars: déclarationsPourLeMois(déclarations, 'mars'),
@@ -316,12 +321,12 @@ const construireHistorique = (
 }
 
 const déclarationsPourLeMois = (
-	salariées: Array<Salariée>,
-	mois: keyof Salariée
+	déclarations: Array<Salariée['déclarations']>,
+	mois: keyof Salariée['déclarations']
 ): Array<DéclarationDeGarde> =>
 	pipe(
-		salariées,
-		A.map((salariée) => salariée[mois]),
+		déclarations,
+		A.map((déclaration) => déclaration[mois]),
 		A.getSomes
 	)
 
@@ -378,7 +383,7 @@ export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 	// Si AMA uniquement : au moins 1 enfant **gardé** ouvrant droit
 	const enfantsGardésEnAMA = pipe(
 		situation.salariées.AMA,
-		A.flatMap((s) => R.values(s)),
+		A.flatMap((s) => R.values(s.déclarations)),
 		A.getSomes,
 		A.map((d) => d.enfantsGardés),
 		A.flatten,

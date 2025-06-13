@@ -40,16 +40,23 @@ export default function AMAInput({
 			</TitreContainer>
 			<InputsContainer>
 				<AideSaisieAMA />
-				{Object.keys(salariée).map((month) => (
+				{Object.keys(salariée.déclarations).map((month) => (
 					<DéclarationAMAInput
 						key={month}
 						idSuffix={`${idSuffix}-${month}`}
 						month={month}
-						déclaration={salariée[month as keyof SalariéeAMA<string>]}
+						déclaration={
+							salariée.déclarations[
+								month as keyof SalariéeAMA<string>['déclarations']
+							]
+						}
 						onChange={(value) =>
 							onChange({
 								...salariée,
-								[month]: value,
+								déclarations: {
+									...salariée.déclarations,
+									[month]: value,
+								},
 							})
 						}
 					/>
