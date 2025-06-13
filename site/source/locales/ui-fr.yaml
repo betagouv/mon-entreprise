@@ -839,6 +839,9 @@ pages:
               mensuel<3></3><4>Montant attendu :</4><5></5>Montant du salaire
               (dont indemnités et acompte).
             titre: Rémunération totale
+        déclarations-identiques:
+          checkbox-label: Déclarations différentes selon les mois
+          titre-formulaire: Mars / Avril / Mai 2025
         enfants-gardés:
           legend: Enfant(s) gardé(s)
         erreurs:

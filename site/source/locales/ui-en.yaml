@@ -793,6 +793,9 @@ pages:
               statement<3></3><4>Expected amount:</4><5></5>Salary amount
               (including allowances and deposit).
             titre: Total compensation
+        déclarations-identiques:
+          checkbox-label: Different declarations for different months
+          titre-formulaire: March / April / May 2025
         enfants-gardés:
           legend: Child(ren) in care
         erreurs:
