@@ -20,8 +20,9 @@ export default function DemandeUtilisateurs() {
 		<section>
 			<H2 id="demandes-utilisateurs">Demandes utilisateurs</H2>
 			<Body>
-				Demandes formulées en utilisant le bouton "<Emoji emoji="👋" />" à
-				droite de votre écran.{' '}
+				Demandes formulées en utilisant le bouton "<Emoji emoji="👋" />"
+				<span className="sr-only">"Donner votre avis"</span> à droite de votre
+				écran.{' '}
 				<Link
 					href="https://github.com/betagouv/mon-entreprise/blob/master/CONTRIBUTING.md#retours-utilisateurs"
 					target="_blank"
