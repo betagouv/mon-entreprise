@@ -86,6 +86,16 @@ export const SearchParamsAdapter = {
 			return nombre
 		}
 
+		const doubleSingleQuoteMatch = valeur.match(/^''([^']*)''$/)
+		if (doubleSingleQuoteMatch) {
+			return doubleSingleQuoteMatch[1]
+		}
+
+		const singleQuoteMatch = valeur.match(/^'([^']*)'$/)
+		if (singleQuoteMatch) {
+			return singleQuoteMatch[1]
+		}
+
 		return valeur
 	},
 }
