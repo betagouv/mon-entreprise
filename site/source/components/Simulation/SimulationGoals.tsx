@@ -85,20 +85,29 @@ export const SimulationGoalsContainer = styled.div<{
 	transition: border-radius 0.15s;
 	background: ${({ theme }) => theme.colors.bases.primary[600]};
 
-	@media print {
-		background: initial;
-		padding: 0;
-	}
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		border-start-end-radius: ${({ theme }) => theme.box.borderRadius};
-	}
-
 	#simu-update-explaining {
 		text-align: center;
 	}
 
 	& > div:not(.sr-only) {
 		margin-top: 1rem;
+	}
+
+	@media print {
+		background: initial;
+		padding: 0;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		border-start-end-radius: ${({ theme }) => theme.box.borderRadius};
+
+		#simu-update-explaining {
+			text-align: left;
+		}
+
+		& > div:not(.sr-only) {
+			margin-top: 0.5rem;
+		}
 	}
 `
 
