@@ -16,7 +16,7 @@ describe.skip('Persistence (simulateur salarié)', function () {
 		cy.get('body').should(() => {
 			expect(
 				window.localStorage.getItem(
-					'mon-entreprise::persisted-simulation::v7::/simulateurs/salaire-brut-net'
+					'mon-entreprise::persisted-simulation::v8::/simulateurs/salaire-brut-net'
 				)
 			).to.be.not.null
 		})
