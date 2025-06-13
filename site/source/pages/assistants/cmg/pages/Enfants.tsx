@@ -31,11 +31,11 @@ export default function Enfants() {
 	const { raisonsInéligibilité, situation, enfants, set } = useCMG()
 
 	if (!estInformationsValides(situation)) {
-		navigate('/assistants/cmg')
+		navigate('/assistants/cmg', { replace: true })
 	}
 
 	if (raisonsInéligibilité.length) {
-		navigate('/assistants/cmg/inéligible')
+		navigate('/assistants/cmg/inéligible', { replace: true })
 	}
 
 	useEffect(() => {

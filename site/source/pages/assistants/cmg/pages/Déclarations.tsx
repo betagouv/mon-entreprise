@@ -29,11 +29,11 @@ export default function Déclarations() {
 		!estInformationsValides(situation) ||
 		!estEnfantsÀChargeValide(situation.enfantsÀCharge)
 	) {
-		navigate('/assistants/cmg')
+		navigate('/assistants/cmg', { replace: true })
 	}
 
 	if (raisonsInéligibilité.length) {
-		navigate('/assistants/cmg/inéligible')
+		navigate('/assistants/cmg/inéligible', { replace: true })
 	}
 
 	const isSuivantDisabled = !estSalariéesValide(situation.salariées)

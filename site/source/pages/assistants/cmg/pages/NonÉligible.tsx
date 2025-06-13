@@ -13,7 +13,7 @@ export default function NonÉligible() {
 	const { t } = useTranslation()
 
 	if (!raisonsInéligibilité.length) {
-		navigate('/assistants/cmg')
+		navigate('/assistants/cmg', { replace: true })
 	}
 
 	return (
