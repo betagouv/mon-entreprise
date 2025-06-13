@@ -107,24 +107,11 @@ export function Questions<S extends Situation>({
 
 				{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
 					<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
-						<div
-							style={{
-								display: 'inline-flex',
-								alignItems: 'baseline',
-							}}
-						>
-							<H3 id="questionHeader" as="h2">
+						<fieldset>
+							<H3 as="legend">
 								{evaluateQuestion(engine, engine.getRule(QuestionCourante.id))}
 								<ExplicableRule light dottedName={QuestionCourante.id} />
 							</H3>
-						</div>
-						<fieldset>
-							<legend className="sr-only">
-								<Trans>
-									Répondez à quelques questions additionnelles afin de préciser
-									votre résultat.
-								</Trans>
-							</legend>
 							<RuleInput
 								dottedName={QuestionCourante.id}
 								onChange={(value, name) =>
@@ -132,7 +119,6 @@ export function Questions<S extends Situation>({
 								}
 								key={QuestionCourante.id}
 								onSubmit={goToNext}
-								aria-labelledby="questionHeader"
 							/>
 						</fieldset>
 						<Conversation
