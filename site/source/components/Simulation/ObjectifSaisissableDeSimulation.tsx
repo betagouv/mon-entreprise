@@ -134,7 +134,12 @@ const GridCentered = styled(Grid)`
 	}
 
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		grid-template-columns: 1fr;
 		max-width: 100%;
+
+		& > div {
+			text-align: left;
+		}
 	}
 `
 
