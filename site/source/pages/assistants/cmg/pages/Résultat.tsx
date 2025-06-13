@@ -21,7 +21,7 @@ export default function Résultat() {
 	const { t } = useTranslation()
 
 	if (!O.isSome(montantCT) || !montantCT.value) {
-		navigate('/assistants/cmg/inéligible')
+		navigate('/assistants/cmg/inéligible', { replace: true })
 
 		return
 	}
