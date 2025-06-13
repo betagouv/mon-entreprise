@@ -207,7 +207,7 @@ export const SeoExplanations = () => {
 			<div className="print-hidden">
 				<H2>Échanger avec un conseiller pour votre projet de recrutement</H2>
 				<Body as="div">
-					Vous souhaitez :
+					<p>Vous souhaitez :</p>
 					<Ul>
 						<Li>
 							Être conseillé(e) sur les aides à l'embauche mobilisables pour
