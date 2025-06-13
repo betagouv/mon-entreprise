@@ -53,6 +53,7 @@ export default function AMAInput({
 							})
 						}
 						avecAideSaisie={month === 'mars'}
+						avecEspacement={month !== 'mars'}
 					/>
 				))}
 			</InputsContainer>

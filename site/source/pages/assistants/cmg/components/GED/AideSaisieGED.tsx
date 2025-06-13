@@ -11,9 +11,6 @@ export default function AideSaisieGED() {
 				<AideSaisieHeuresDeGarde />
 			</AideSaisieHeuresDeGardeContainer>
 			<MobileHiddenContainer>
-				<AideSaisieHeuresDeGarde />
-			</MobileHiddenContainer>
-			<MobileHiddenContainer>
 				<AideSaisieRémunération />
 			</MobileHiddenContainer>
 			<MobileHiddenContainer>
