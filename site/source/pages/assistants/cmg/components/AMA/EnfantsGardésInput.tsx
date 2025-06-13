@@ -49,6 +49,7 @@ export default function EnfantsGardésInput({ enfantsGardés, onChange }: Props)
 				{enfantsGardables.map((enfant, index) => (
 					<Checkbox
 						key={index}
+						id={`checkbox-enfant-${index}`}
 						label={enfant.prénom.value}
 						isSelected={isEnfantGardé(enfant)}
 						onChange={onCheckboxChange(enfant.prénom.value)}
