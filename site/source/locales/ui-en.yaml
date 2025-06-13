@@ -2156,7 +2156,7 @@ privacyPolicy:
       checkboxLabel: I do not want to send anonymous data about my use of the platform
         for audience measurement purposes.
       confirmation: Your preferences have been saved
-      content: "You can opt out of this platform usage measure by unchecking the
+      content: "You can opt out of this platform usage measure by checking the
         corresponding box below:"
     title: Cookies and trackers
 recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
