@@ -305,6 +305,7 @@ export default function PrivacyPolicy({
 			</Body>
 			<Body>
 				<Checkbox
+					id="opt-out-mesure-audience"
 					name="opt-out mesure audience"
 					onChange={handleChange}
 					defaultSelected={tracker?.consent.getMode().name === 'opt-out'}

@@ -10,6 +10,7 @@ import { Body } from '../../typography/paragraphs'
 export function Checkbox(
 	props: AriaCheckboxProps &
 		(
+			| { id: string }
 			| { label: string }
 			| { children: string }
 			| { 'aria-labelledby': string }
@@ -27,8 +28,14 @@ export function Checkbox(
 	const { inputProps } = useCheckbox(props, state, ref)
 
 	return (
-		<CheckboxContainer>
-			<input type="checkbox" className="sr-only" ref={ref} {...inputProps} />
+		<CheckboxContainer htmlFor={props.id}>
+			<input
+				id={props.id}
+				type="checkbox"
+				className="sr-only"
+				ref={ref}
+				{...inputProps}
+			/>
 			<VisibleContainer>
 				<CheckboxVisualContainer aria-hidden>
 					<CheckboxVisual viewBox="0 0 18 18">
