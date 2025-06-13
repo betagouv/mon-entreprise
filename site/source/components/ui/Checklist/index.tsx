@@ -47,6 +47,7 @@ export function CheckItem({
 		>
 			<CheckItemHeader>
 				<Checkbox
+					id={`checkbox-${title.replace(' ', '-')}`}
 					name={name}
 					onChange={handleChecked}
 					defaultSelected={defaultChecked}

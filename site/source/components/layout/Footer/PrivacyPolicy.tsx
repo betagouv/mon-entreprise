@@ -300,11 +300,12 @@ export default function PrivacyPolicy({
 			<Body>
 				{t(
 					'privacyPolicy.tracking.optOut.content',
-					"Vous pouvez vous soustraire de cette mesure d'utilisation de la plateforme en décochant la case correspondante ci-dessous :"
+					"Vous pouvez vous soustraire de cette mesure d'utilisation de la plateforme en cochant la case correspondante ci-dessous :"
 				)}
 			</Body>
 			<Body>
 				<Checkbox
+					id="opt-out-mesure-audience"
 					name="opt-out mesure audience"
 					onChange={handleChange}
 					defaultSelected={tracker?.consent.getMode().name === 'opt-out'}

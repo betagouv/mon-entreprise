@@ -234,6 +234,7 @@ export default function FeedbackForm({
 
 							{!hideShare && urlParams.length > 0 && (
 								<Checkbox
+									id="checkbox-share"
 									onChange={(isSelected) => setShare(isSelected)}
 									label={t(
 										'components.feedback.form.share.checkbox',
