@@ -14,7 +14,7 @@ import {
 	tousLesEnfantsSontValides,
 	useCMG,
 } from '@/contextes/cmg'
-import { Button, H2, Spacing } from '@/design-system'
+import { Button, Spacing } from '@/design-system'
 
 import EnfantInput from '../components/enfants/EnfantInput'
 import QuestionsAeeH from '../components/enfants/QuestionsAeeH'
@@ -22,6 +22,7 @@ import Navigation from '../components/Navigation'
 import {
 	MessageFormulaireInvalide,
 	Question,
+	Titre2,
 } from '../components/styled-components'
 
 export default function Enfants() {
@@ -58,7 +59,9 @@ export default function Enfants() {
 		<>
 			<TrackPage chapter3="pas_a_pas" name="enfants" />
 
-			<H2>{t('pages.assistants.cmg.enfants.h2', 'Enfants à charge')}</H2>
+			<Titre2>
+				{t('pages.assistants.cmg.enfants.h2', 'Enfants à charge')}
+			</Titre2>
 
 			<fieldset>
 				<legend>

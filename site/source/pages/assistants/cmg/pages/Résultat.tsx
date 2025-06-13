@@ -1,17 +1,24 @@
 import * as O from 'effect/Option'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
-import { Body, Message, SmallBody, Strong } from '@/design-system'
+import {
+	Body,
+	Button,
+	FlexCenter,
+	Message,
+	SmallBody,
+	Strong,
+} from '@/design-system'
 import { toString as formatMontant } from '@/domaine/Montant'
-
-import Navigation from '../components/Navigation'
 
 export default function Résultat() {
 	const navigate = useNavigate()
-	const { montantCT } = useCMG()
+	const { montantCT, set } = useCMG()
+	const { t } = useTranslation()
 
 	if (!O.isSome(montantCT) || !montantCT.value) {
 		navigate('/assistants/cmg/inéligible')
@@ -46,7 +53,20 @@ export default function Résultat() {
 				</Message>
 			</Trans>
 
-			<Navigation précédent="déclarations" />
+			<ButtonContainer>
+				<Button size="XS" light onClick={set.reset} to="/assistants/cmg">
+					{t(
+						'pages.assistants.cmg.nouvelle-simulation',
+						'Faire une nouvelle simulation'
+					)}
+				</Button>
+			</ButtonContainer>
 		</>
 	)
 }
+
+const ButtonContainer = styled.div`
+	margin-top: ${({ theme }) => theme.spacings.xl};
+	${FlexCenter}
+	justify-content: end;
+`
