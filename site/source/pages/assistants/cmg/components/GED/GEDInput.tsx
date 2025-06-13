@@ -53,6 +53,7 @@ export default function GEDInput({
 							})
 						}
 						avecAideSaisie={month === 'mars'}
+						avecEspacement={month !== 'mars'}
 					/>
 				))}
 			</InputsContainer>

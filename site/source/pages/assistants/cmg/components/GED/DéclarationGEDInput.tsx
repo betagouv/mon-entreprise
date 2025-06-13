@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 import { useMemo } from 'react'
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { DéclarationDeGardeGED } from '@/contextes/cmg'
 import { Montant } from '@/domaine/Montant'
@@ -20,6 +20,7 @@ type Props = {
 	déclaration: O.Option<DéclarationDeGardeGED>
 	onChange: ChangeHandler<O.Option<DéclarationDeGardeGED>>
 	avecAideSaisie?: boolean
+	avecEspacement?: boolean
 }
 
 export default function DéclarationGEDInput({
@@ -28,6 +29,7 @@ export default function DéclarationGEDInput({
 	déclaration,
 	onChange,
 	avecAideSaisie,
+	avecEspacement,
 }: Props) {
 	const currentDéclaration = useMemo(
 		() =>
@@ -73,7 +75,9 @@ export default function DéclarationGEDInput({
 
 	return (
 		<>
-			<StyledQuestion>{month} 2025</StyledQuestion>
+			<StyledQuestion $avecEspacement={!!avecEspacement}>
+				{month} 2025
+			</StyledQuestion>
 			{avecAideSaisie && (
 				<DesktopHiddenContainer>
 					<AideSaisieHeuresDeGarde />
@@ -107,8 +111,17 @@ export default function DéclarationGEDInput({
 		</>
 	)
 }
-
-const StyledQuestion = styled(Question)`
+type StyledQuestionProps = {
+	$avecEspacement: boolean
+}
+const StyledQuestion = styled(Question)<StyledQuestionProps>`
+	${({ $avecEspacement }) =>
+		$avecEspacement &&
+		css`
+			@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+				margin-top: ${({ theme }) => theme.spacings.xxl};
+			}
+		`}
 	margin-top: 0;
 	text-transform: capitalize;
 `
