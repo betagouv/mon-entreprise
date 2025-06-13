@@ -9,7 +9,7 @@ export default function AideSaisieHeuresDeGarde() {
 	const { t } = useTranslation()
 
 	return (
-		<div>
+		<>
 			<StyledQuestion>
 				{t(
 					'pages.assistants.cmg.déclarations.aise-saisie.heures-de-garde.titre',
@@ -28,7 +28,7 @@ export default function AideSaisieHeuresDeGarde() {
 					majorées.
 				</Trans>
 			</StyledBody>
-		</div>
+		</>
 	)
 }
 
@@ -36,5 +36,5 @@ const StyledQuestion = styled(Question)`
 	margin: 0;
 `
 const StyledBody = styled(Body)`
-	margin-top: 0;
+	margin: 0;
 `

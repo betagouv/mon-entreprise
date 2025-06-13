@@ -6,10 +6,14 @@ import { DéclarationDeGardeAMA } from '@/contextes/cmg'
 import { Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
+import AideSaisieCMG from '../déclaration/AideSaisieCMG'
+import AideSaisieHeuresDeGarde from '../déclaration/AideSaisieHeuresDeGarde'
+import AideSaisieRémunération from '../déclaration/AideSaisieRémunération'
 import CMGPerçuInput from '../déclaration/CMGPerçuInput'
 import HeuresDeGardeInput from '../déclaration/HeuresDeGardeInput'
 import RémunérationInput from '../déclaration/RémunérationInput'
 import { Question } from '../styled-components'
+import AideSaisieEnfants from './AideSaisieEnfants'
 import EnfantsGardésInput from './EnfantsGardésInput'
 
 type Props = {
@@ -17,6 +21,7 @@ type Props = {
 	month: string
 	déclaration: O.Option<DéclarationDeGardeAMA<string>>
 	onChange: ChangeHandler<O.Option<DéclarationDeGardeAMA<string>>>
+	avecAideSaisie?: boolean
 }
 
 export default function DéclarationAMAInput({
@@ -24,6 +29,7 @@ export default function DéclarationAMAInput({
 	month,
 	déclaration,
 	onChange,
+	avecAideSaisie,
 }: Props) {
 	const currentDéclaration = useMemo(
 		() =>
@@ -80,20 +86,40 @@ export default function DéclarationAMAInput({
 	return (
 		<>
 			<StyledQuestion>{month} 2025</StyledQuestion>
+			{avecAideSaisie && (
+				<DesktopHiddenContainer>
+					<AideSaisieEnfants />
+				</DesktopHiddenContainer>
+			)}
 			<EnfantsGardésInput
 				enfantsGardés={currentDéclaration.enfantsGardés}
 				onChange={onEnfantsGardésChange}
 			/>
+			{avecAideSaisie && (
+				<DesktopHiddenContainer>
+					<AideSaisieHeuresDeGarde />
+				</DesktopHiddenContainer>
+			)}
 			<HeuresDeGardeInput
 				idSuffix={idSuffix}
 				valeur={currentDéclaration.heuresDeGarde}
 				onChange={onHeuresDeGardeChange}
 			/>
+			{avecAideSaisie && (
+				<DesktopHiddenContainer>
+					<AideSaisieRémunération />
+				</DesktopHiddenContainer>
+			)}
 			<RémunérationInput
 				idSuffix={idSuffix}
 				valeur={currentDéclaration.rémunération}
 				onChange={onRémunérationChange}
 			/>
+			{avecAideSaisie && (
+				<DesktopHiddenContainer>
+					<AideSaisieCMG />
+				</DesktopHiddenContainer>
+			)}
 			<CMGPerçuInput
 				idSuffix={idSuffix}
 				valeur={currentDéclaration.CMGPerçu}
@@ -106,4 +132,9 @@ export default function DéclarationAMAInput({
 const StyledQuestion = styled(Question)`
 	margin-top: 0;
 	text-transform: capitalize;
+`
+const DesktopHiddenContainer = styled.div`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		display: none;
+	}
 `

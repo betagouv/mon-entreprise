@@ -823,8 +823,8 @@ pages:
         aise-saisie:
           CMG:
             contenu: <0>Où trouver l’information ?</0><1></1>sur le relevé
-              mensuel<3></3><4>Montant attendu :</4><5></5>Montant du salaire
-              CMG Rémunération.
+              mensuel<3></3><4>Montant attendu :</4><5></5>Montant du CMG
+              Rémunération.
             titre: CMG Rémunération perçu
           enfants:
             contenu: Indiquez le ou les enfants gardés sur ces mois de référence.

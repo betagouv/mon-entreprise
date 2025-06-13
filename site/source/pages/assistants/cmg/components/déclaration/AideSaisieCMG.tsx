@@ -9,7 +9,7 @@ export default function AideSaisieCMG() {
 	const { t } = useTranslation()
 
 	return (
-		<div>
+		<>
 			<StyledQuestion>
 				{t(
 					'pages.assistants.cmg.déclarations.aise-saisie.CMG.titre',
@@ -24,10 +24,10 @@ export default function AideSaisieCMG() {
 					<br />
 					<Strong>Montant attendu&nbsp;:</Strong>
 					<br />
-					Montant du salaire CMG Rémunération.
+					Montant du CMG Rémunération.
 				</Trans>
 			</StyledBody>
-		</div>
+		</>
 	)
 }
 
@@ -35,5 +35,5 @@ const StyledQuestion = styled(Question)`
 	margin: 0;
 `
 const StyledBody = styled(Body)`
-	margin-top: 0;
+	margin: 0;
 `
