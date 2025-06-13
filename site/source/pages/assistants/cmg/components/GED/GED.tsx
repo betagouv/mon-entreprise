@@ -2,8 +2,9 @@ import * as A from 'effect/Array'
 import { useTranslation } from 'react-i18next'
 
 import { SalariéeGED, useCMG } from '@/contextes/cmg'
-import { Button, H2 } from '@/design-system'
+import { Button } from '@/design-system'
 
+import { Titre2 } from '../styled-components'
 import GEDInput from './GEDInput'
 
 export default function GED() {
@@ -20,12 +21,12 @@ export default function GED() {
 
 	return (
 		<>
-			<H2>
+			<Titre2>
 				{t(
 					'pages.assistants.cmg.déclarations.GED.h2',
 					'Gardes d’enfants à domicile'
 				)}
-			</H2>
+			</Titre2>
 
 			{salariéesGED.map((salariéeGED, index) => (
 				<GEDInput
@@ -41,7 +42,7 @@ export default function GED() {
 			<Button size="XXS" color="secondary" light onPress={set.nouvelleGED}>
 				{t(
 					'pages.assistants.cmg.déclarations.add-button-label',
-					'Ajouter une salariée'
+					'Déclarer une salariée'
 				)}
 			</Button>
 		</>
