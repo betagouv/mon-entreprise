@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Situation } from '@/domaine/Situation'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
+import { configSelector } from '@/store/selectors/config.selector'
 import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
 import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
 
@@ -52,7 +53,6 @@ type QuestionFournie<S extends Situation> = Omit<
 const fromQuestionFournie = <S extends Situation>(
 	q: ComposantQuestion<S>
 ): QuestionFournie<S> => {
-	// Capturer les références originales avant de les écraser
 	const originalRépondue = q.répondue
 	const originalApplicable = q.applicable
 
@@ -81,6 +81,15 @@ export function useQuestions<S extends Situation>({
 }: UseQuestionsProps<S>) {
 	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
 	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
+	const config = useSelector(configSelector)
+
+	const publicodesQuestionsRéponduesFiltrées = useMemo(
+		() =>
+			publicodesQuestionsRépondues.filter(
+				(q) => !(config.questions?.['liste noire'] ?? []).includes(q.règle)
+			),
+		[publicodesQuestionsRépondues, config]
+	)
 
 	const toutesLesQuestionsApplicables = useMemo(
 		() =>
@@ -89,7 +98,7 @@ export function useQuestions<S extends Situation>({
 					...questions.map(fromQuestionFournie),
 					...(avecQuestionsPublicodes
 						? [
-								...publicodesQuestionsRépondues.map(
+								...publicodesQuestionsRéponduesFiltrées.map(
 									fromQuestionPublicodeRépondue
 								),
 								...publicodesQuestionsSuivantes.map(
@@ -103,7 +112,7 @@ export function useQuestions<S extends Situation>({
 		[
 			questions,
 			avecQuestionsPublicodes,
-			publicodesQuestionsRépondues,
+			publicodesQuestionsRéponduesFiltrées,
 			publicodesQuestionsSuivantes,
 			situation,
 		]
