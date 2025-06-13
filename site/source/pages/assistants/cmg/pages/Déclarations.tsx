@@ -14,6 +14,7 @@ import {
 } from '@/contextes/cmg'
 
 import AMA from '../components/AMA/AMA'
+import QuestionModesDeGarde from '../components/déclaration/QuestionModesDeGarde'
 import GED from '../components/GED/GED'
 import Navigation from '../components/Navigation'
 import { MessageFormulaireInvalide } from '../components/styled-components'
@@ -21,7 +22,8 @@ import { MessageFormulaireInvalide } from '../components/styled-components'
 export default function Déclarations() {
 	const navigate = useNavigate()
 	const { t } = useTranslation()
-	const { raisonsInéligibilité, situation } = useCMG()
+	const { raisonsInéligibilité, situation, salariéesAMA, salariéesGED } =
+		useCMG()
 
 	if (
 		!estInformationsValides(situation) ||
@@ -40,8 +42,10 @@ export default function Déclarations() {
 		<>
 			<TrackPage chapter3="pas_a_pas" name="déclarations" />
 
-			<AMA />
-			<GED />
+			<QuestionModesDeGarde />
+
+			{!!salariéesAMA.length && <AMA />}
+			{!!salariéesGED.length && <GED />}
 
 			<Navigation
 				précédent="enfants"

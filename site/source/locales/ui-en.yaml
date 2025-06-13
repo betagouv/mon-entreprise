@@ -804,6 +804,13 @@ pages:
             number of hours of care and a remuneration.
         heures-de-garde:
           label: Number of on-call hours
+        modes-de-garde:
+          AMA:
+            label: Certified childminder
+          GED:
+            label: Home care
+          label: "Indicate the type(s) of childcare for the reference period March, April,
+            May 2025 :"
         rémunération:
           label: Total compensation
       démarrer: Start a simulation

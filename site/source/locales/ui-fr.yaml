@@ -851,6 +851,13 @@ pages:
             doit avoir un nombre d’heures de garde et une rémunération.
         heures-de-garde:
           label: Nombre d’heures de garde
+        modes-de-garde:
+          AMA:
+            label: Assistante maternelle agréée
+          GED:
+            label: Garde à domicile
+          label: "Indiquez le ou les modes de garde pour la période de référence mars,
+            avril, mai 2025 :"
         rémunération:
           label: Rémunération totale
       démarrer: Démarrer une simulation
