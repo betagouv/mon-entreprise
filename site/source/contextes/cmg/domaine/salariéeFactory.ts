@@ -15,9 +15,12 @@ export class SalariéeAMAFactory<Prénom extends string = string> {
 
 	build() {
 		return {
-			mars: O.some(new DéclarationsDeGardeAMAFactory(this.prénoms).build()),
-			avril: O.some(new DéclarationsDeGardeAMAFactory(this.prénoms).build()),
-			mai: O.some(new DéclarationsDeGardeAMAFactory(this.prénoms).build()),
+			moisDifférents: O.some(true),
+			déclarations: {
+				mars: O.some(new DéclarationsDeGardeAMAFactory(this.prénoms).build()),
+				avril: O.some(new DéclarationsDeGardeAMAFactory(this.prénoms).build()),
+				mai: O.some(new DéclarationsDeGardeAMAFactory(this.prénoms).build()),
+			},
 		} as const satisfies SalariéeAMA<Prénom>
 	}
 }
@@ -25,9 +28,12 @@ export class SalariéeAMAFactory<Prénom extends string = string> {
 export class SalariéeGEDFactory {
 	build() {
 		return {
-			mars: O.some(new DéclarationsDeGardeGEDFactory().build()),
-			avril: O.some(new DéclarationsDeGardeGEDFactory().build()),
-			mai: O.some(new DéclarationsDeGardeGEDFactory().build()),
+			moisDifférents: O.some(true),
+			déclarations: {
+				mars: O.some(new DéclarationsDeGardeGEDFactory().build()),
+				avril: O.some(new DéclarationsDeGardeGEDFactory().build()),
+				mai: O.some(new DéclarationsDeGardeGEDFactory().build()),
+			},
 		} as const satisfies SalariéeGED
 	}
 }

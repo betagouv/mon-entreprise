@@ -13,14 +13,14 @@ import { Question } from '../styled-components'
 
 type Props = {
 	idSuffix: string
-	month: string
+	titre: string
 	déclaration: O.Option<DéclarationDeGardeGED>
 	onChange: ChangeHandler<O.Option<DéclarationDeGardeGED>>
 }
 
 export default function DéclarationGEDInput({
 	idSuffix,
-	month,
+	titre,
 	déclaration,
 	onChange,
 }: Props) {
@@ -68,7 +68,7 @@ export default function DéclarationGEDInput({
 
 	return (
 		<>
-			<StyledQuestion>{month} 2025</StyledQuestion>
+			<StyledQuestion>{titre}</StyledQuestion>
 			<HeuresDeGardeInput
 				idSuffix={idSuffix}
 				valeur={currentDéclaration.heuresDeGarde}

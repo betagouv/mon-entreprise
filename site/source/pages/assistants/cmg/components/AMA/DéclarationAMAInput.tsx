@@ -14,14 +14,14 @@ import EnfantsGardésInput from './EnfantsGardésInput'
 
 type Props = {
 	idSuffix: string
-	month: string
+	titre: string
 	déclaration: O.Option<DéclarationDeGardeAMA<string>>
 	onChange: ChangeHandler<O.Option<DéclarationDeGardeAMA<string>>>
 }
 
 export default function DéclarationAMAInput({
 	idSuffix,
-	month,
+	titre,
 	déclaration,
 	onChange,
 }: Props) {
@@ -79,7 +79,7 @@ export default function DéclarationAMAInput({
 
 	return (
 		<>
-			<StyledQuestion>{month} 2025</StyledQuestion>
+			<StyledQuestion>{titre}</StyledQuestion>
 			<EnfantsGardésInput
 				enfantsGardés={currentDéclaration.enfantsGardés}
 				onChange={onEnfantsGardésChange}

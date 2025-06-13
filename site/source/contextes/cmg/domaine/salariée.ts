@@ -13,31 +13,48 @@ import {
 import { SituationCMG } from './situation'
 
 export interface Salariée {
-	mars: O.Option<DéclarationDeGarde>
-	avril: O.Option<DéclarationDeGarde>
-	mai: O.Option<DéclarationDeGarde>
+	moisDifférents: O.Option<boolean>
+	déclarations: {
+		mars: O.Option<DéclarationDeGarde>
+		avril: O.Option<DéclarationDeGarde>
+		mai: O.Option<DéclarationDeGarde>
+	}
 }
 export interface SalariéeGED {
-	mars: O.Option<DéclarationDeGardeGED>
-	avril: O.Option<DéclarationDeGardeGED>
-	mai: O.Option<DéclarationDeGardeGED>
+	moisDifférents: O.Option<boolean>
+	déclarations: {
+		mars: O.Option<DéclarationDeGardeGED>
+		avril: O.Option<DéclarationDeGardeGED>
+		mai: O.Option<DéclarationDeGardeGED>
+	}
 }
 export interface SalariéeAMA<PrénomsEnfants extends string> {
-	mars: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
-	avril: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
-	mai: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
+	moisDifférents: O.Option<boolean>
+	déclarations: {
+		mars: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
+		avril: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
+		mai: O.Option<DéclarationDeGardeAMA<PrénomsEnfants>>
+	}
 }
 
 export const auMoinsUneDéclaration = (salariée: Salariée): boolean =>
-	R.some(salariée, O.isSome)
+	R.some(salariée.déclarations, O.isSome)
 
 export const estSalariéeGEDValide = (salariée: SalariéeGED): boolean =>
 	auMoinsUneDéclaration(salariée) &&
-	pipe(salariée, R.getSomes, R.every(estDéclarationDeGardeGEDValide))
+	pipe(
+		salariée.déclarations,
+		R.getSomes,
+		R.every(estDéclarationDeGardeGEDValide)
+	)
 
 export const estSalariéeAMAValide = (salariée: SalariéeAMA<string>): boolean =>
 	auMoinsUneDéclaration(salariée) &&
-	pipe(salariée, R.getSomes, R.every(estDéclarationDeGardeAMAValide))
+	pipe(
+		salariée.déclarations,
+		R.getSomes,
+		R.every(estDéclarationDeGardeAMAValide)
+	)
 
 export const estSalariéesValide = (
 	salariées: SituationCMG['salariées']
@@ -63,7 +80,7 @@ export const chaqueSalariéeAMAEstValide = (
 ): boolean =>
 	salariées.AMA.every((salariée) =>
 		pipe(
-			salariée,
+			salariée.déclarations,
 			R.every(
 				(déclaration) =>
 					O.isNone(déclaration) ||
@@ -77,7 +94,7 @@ export const chaqueSalariéeGEDEstValide = (
 ): boolean =>
 	salariées.GED.every((salariée) =>
 		pipe(
-			salariée,
+			salariée.déclarations,
 			R.every(
 				(déclaration) =>
 					O.isNone(déclaration) ||

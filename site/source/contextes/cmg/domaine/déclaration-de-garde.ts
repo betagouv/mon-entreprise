@@ -73,6 +73,6 @@ export const toutesLesDéclarations = (
 		salariées,
 		R.values,
 		A.flatten,
-		A.flatMap((s: Salariée) => R.values(s)),
+		A.flatMap((s: Salariée) => R.values(s.déclarations)),
 		A.getSomes
 	)

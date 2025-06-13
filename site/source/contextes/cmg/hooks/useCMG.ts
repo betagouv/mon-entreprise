@@ -102,11 +102,16 @@ export const useCMG = () => {
 			const newSalariéesGED = pipe(
 				salariéesGED,
 				A.filter(auMoinsUneDéclaration),
-				A.map((déclarations) =>
-					R.map(déclarations, (déclaration) =>
+				A.map((salariée) => {
+					const déclarations = R.map(salariée.déclarations, (déclaration) =>
 						estDéclarationGEDVide(déclaration) ? O.none() : déclaration
 					)
-				)
+
+					return {
+						...salariée,
+						déclarations,
+					}
+				})
 			)
 
 			updateSituation((prev) => ({
@@ -126,9 +131,12 @@ export const useCMG = () => {
 					GED: [
 						...prev.salariées.GED,
 						{
-							mars: O.none(),
-							avril: O.none(),
-							mai: O.none(),
+							moisDifférents: O.none(),
+							déclarations: {
+								mars: O.none(),
+								avril: O.none(),
+								mai: O.none(),
+							},
 						},
 					],
 				},
@@ -138,12 +146,20 @@ export const useCMG = () => {
 		salariéesAMA: (salariéesAMA: Array<SalariéeAMA<string>>) => {
 			const newSalariéesAMA = pipe(
 				salariéesAMA,
-				A.filter(auMoinsUneDéclaration),
-				A.map((déclarations) =>
-					R.map(déclarations, (déclaration) =>
+				A.filter(
+					(salariée: SalariéeAMA<string>) =>
+						O.isSome(salariée.moisDifférents) || auMoinsUneDéclaration(salariée)
+				),
+				A.map((salariée) => {
+					const déclarations = R.map(salariée.déclarations, (déclaration) =>
 						estDéclarationAMAVide(déclaration) ? O.none() : déclaration
 					)
-				)
+
+					return {
+						...salariée,
+						déclarations,
+					}
+				})
 			)
 
 			updateSituation((prev) => ({
@@ -163,9 +179,12 @@ export const useCMG = () => {
 					AMA: [
 						...prev.salariées.AMA,
 						{
-							mars: O.none(),
-							avril: O.none(),
-							mai: O.none(),
+							moisDifférents: O.none(),
+							déclarations: {
+								mars: O.none(),
+								avril: O.none(),
+								mai: O.none(),
+							},
 						},
 					],
 				},
