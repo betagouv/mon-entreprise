@@ -7,7 +7,6 @@ import { Grid, SmallBody, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
-import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
@@ -55,15 +54,8 @@ export function ObjectifSaisissableDeSimulation({
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal $small={small}>
-				<Grid
-					container
-					style={{
-						alignItems: 'baseline',
-						justifyContent: 'space-between',
-					}}
-					spacing={2}
-				>
-					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
+				<GridCentered container spacing={2}>
+					<Grid item>
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
@@ -87,8 +79,7 @@ export function ObjectifSaisissableDeSimulation({
 							</StyledSmallBody>
 						)}
 					</Grid>
-					<LectureGuide />
-					<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
+					<Grid item>
 						{!isFocused && !small && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
@@ -96,11 +87,56 @@ export function ObjectifSaisissableDeSimulation({
 							{rendreChampSaisie()}
 						</div>
 					</Grid>
-				</Grid>
+				</GridCentered>
 			</StyledGoal>
 		</Appear>
 	)
 }
+
+const GridCentered = styled(Grid)`
+	display: grid;
+	grid-template-columns: 1.5fr 1fr;
+	gap: 1rem;
+	max-width: 50%;
+	margin: 0 auto;
+
+	& > div {
+		padding: 0;
+		text-align: right;
+
+		&:nth-child(2) {
+			& [role*='presentation'] > div > div {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+
+				p {
+					margin-bottom: 0;
+				}
+
+				span:empty {
+					display: none;
+				}
+			}
+		}
+	}
+
+	p {
+		margin-top: 0;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		max-width: 75%;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		max-width: 75%;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		max-width: 100%;
+	}
+`
 
 const StyledGoal = styled.div<{ $small: boolean }>`
 	position: relative;

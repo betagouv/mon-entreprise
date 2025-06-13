@@ -92,6 +92,14 @@ export const SimulationGoalsContainer = styled.div<{
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		border-start-end-radius: ${({ theme }) => theme.box.borderRadius};
 	}
+
+	#simu-update-explaining {
+		text-align: center;
+	}
+
+	& > div:not(.sr-only) {
+		margin-top: 1rem;
+	}
 `
 
 function TopSection({ toggles }: { toggles?: React.ReactNode }) {
