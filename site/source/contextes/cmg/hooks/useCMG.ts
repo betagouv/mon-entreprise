@@ -20,11 +20,17 @@ import {
 	SalariéeGED,
 } from '../domaine/salariée'
 import { initialSituationCMG, SituationCMG } from '../domaine/situation'
-import { useSituationContext } from './CMGContext'
+import { MoisIdentiques, useSituationContext } from './CMGContext'
 
 export const useCMG = () => {
-	const { situation, updateSituation, résultat, updateRésultat } =
-		useSituationContext()
+	const {
+		situation,
+		updateSituation,
+		moisIdentiques,
+		updateMoisIdentiques,
+		résultat,
+		updateRésultat,
+	} = useSituationContext()
 	const { t } = useTranslation()
 
 	const submit = () => {
@@ -133,6 +139,10 @@ export const useCMG = () => {
 					],
 				},
 			}))
+			updateMoisIdentiques((prev: MoisIdentiques) => ({
+				AMA: prev.AMA,
+				GED: [...prev.GED, false],
+			}))
 		},
 
 		salariéesAMA: (salariéesAMA: Array<SalariéeAMA<string>>) => {
@@ -170,6 +180,14 @@ export const useCMG = () => {
 					],
 				},
 			}))
+			updateMoisIdentiques((prev: MoisIdentiques) => ({
+				GED: prev.GED,
+				AMA: [...prev.AMA, false],
+			}))
+		},
+
+		moisIdentiques: (moisIdentiques: MoisIdentiques) => {
+			updateMoisIdentiques(() => moisIdentiques)
 		},
 	}
 
@@ -216,6 +234,7 @@ export const useCMG = () => {
 		AeeH: situation.enfantsÀCharge.AeeH,
 		salariéesGED: situation.salariées.GED,
 		salariéesAMA: situation.salariées.AMA,
+		moisIdentiques,
 		...résultat,
 		set,
 		submit,

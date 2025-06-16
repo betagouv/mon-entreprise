@@ -811,6 +811,7 @@ pages:
             label: Home care
           label: "Indicate the type(s) of childcare for the reference period March, April,
             May 2025 :"
+        mois-identiques: Enter the same information for April and May
         rémunération:
           label: Total compensation
       démarrer: Start a simulation
