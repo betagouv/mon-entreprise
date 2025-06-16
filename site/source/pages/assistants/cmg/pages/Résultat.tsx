@@ -30,6 +30,7 @@ export default function Résultat() {
 
 	return (
 		<>
+			<TrackPage name="simulation terminée" />
 			<TrackPage chapter3="pas_a_pas" name="résultat" />
 
 			<Trans i18nKey="pages.assistants.cmg.résultat">
