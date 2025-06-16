@@ -3,7 +3,11 @@ import * as O from 'effect/Option'
 import * as M from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
-import { EnfantsÀCharge, estEnfantsÀChargeValide } from './enfant'
+import {
+	EnfantsÀCharge,
+	EnfantsÀChargeValide,
+	estEnfantsÀChargeValide,
+} from './enfant'
 import { estSalariéesValide, SalariéeAMA, SalariéeGED } from './salariée'
 
 export interface SituationCMG<PrénomsEnfants extends string = string>
@@ -24,6 +28,7 @@ export interface SituationCMGValide extends SituationCMG {
 	plusDe2MoisDeDéclaration: O.Some<boolean>
 	parentIsolé: O.Some<boolean>
 	ressources: O.Some<M.Montant<'EuroParAn'>>
+	enfantsÀCharge: EnfantsÀChargeValide<string>
 }
 
 export const estSituationCMGValide = (

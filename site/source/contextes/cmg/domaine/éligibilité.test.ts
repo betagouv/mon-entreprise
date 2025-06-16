@@ -18,6 +18,7 @@ import {
 	moyenneHeuresParTypologieDeGarde,
 	plafondDeRessources,
 } from './éligibilité'
+import { EnfantValide } from './enfant'
 import { EnfantFactory } from './enfantFactory'
 import { SalariéeAMAFactory, SalariéeGEDFactory } from './salariéeFactory'
 
@@ -484,8 +485,8 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					perçoitAeeH: O.some(false) as O.Some<false>,
+					AeeH: O.none() as O.None<number>,
 				},
 				salariées: {
 					GED: [
@@ -548,8 +549,8 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					perçoitAeeH: O.some(false) as O.Some<false>,
+					AeeH: O.none() as O.None<number>,
 				},
 				salariées: {
 					GED: [
@@ -779,26 +780,26 @@ describe('CMG', () => {
 	describe('enfantOuvreDroitAuCMG', () => {
 		it('n’ouvre pas droit si né⋅e en 2022', () => {
 			const résultat = enfantOuvreDroitAuCMG({
-				prénom: O.none(),
+				prénom: O.some('Riri'),
 				dateDeNaissance: O.some(new Date('2022-12-31')),
-			})
+			} as EnfantValide)
 
 			expect(résultat).to.be.false
 		})
 		it('n’ouvre pas droit si plus de 6 ans au 01/09/2025', () => {
 			const résultat = enfantOuvreDroitAuCMG({
-				prénom: O.none(),
+				prénom: O.some('Fifi'),
 				dateDeNaissance: O.some(new Date('2019-09-01')),
-			})
+			} as EnfantValide)
 
 			expect(résultat).to.be.false
 		})
 
 		it('ouvre droit si moins de 6 ans au 01/09/2025 et pas né⋅e en 2022', () => {
 			const résultat = enfantOuvreDroitAuCMG({
-				prénom: O.none(),
+				prénom: O.some('Loulou'),
 				dateDeNaissance: O.some(new Date('2019-09-02')),
-			})
+			} as EnfantValide)
 
 			expect(résultat).to.be.true
 		})

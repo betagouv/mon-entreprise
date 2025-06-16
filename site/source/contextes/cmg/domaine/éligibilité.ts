@@ -22,9 +22,9 @@ import {
 	toutesLesDéclarations,
 } from './déclaration-de-garde'
 import {
-	Enfant,
 	enfantAMoinsDe6Ans,
 	enfantNéEn,
+	EnfantValide,
 	estEnfantsÀChargeValide,
 	getEnfantFromPrénom,
 } from './enfant'
@@ -155,12 +155,13 @@ const ditAvoirPlusDe2MoisDeDéclaration = (
 const aAuMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): FonctionÉligibilité => {
-	const enfants = situation.enfantsÀCharge.enfants
 	if (!estEnfantsÀChargeValide(situation.enfantsÀCharge)) {
 		return situationIncomplète
 	}
 
-	if (auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(enfants)) {
+	if (
+		auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(situation.enfantsÀCharge.enfants)
+	) {
 		return éligible
 	} else {
 		return inéligible('enfants-à-charge')
@@ -326,7 +327,7 @@ const déclarationsPourLeMois = (
 	)
 
 export const moyenneHeuresDeGardeSupérieureAuPlancher = (
-	situation: SituationCMG
+	situation: SituationCMGValide
 ): boolean =>
 	pipe(
 		situation.salariées,
@@ -340,7 +341,7 @@ export const moyenneHeuresDeGardeSupérieureAuPlancher = (
 	)
 
 export const moyenneHeuresParTypologieDeGarde =
-	(enfants: Array<Enfant>) =>
+	(enfants: Array<EnfantValide>) =>
 	(
 		déclarationsDeGarde: Array<DéclarationDeGarde>
 	): Record<TypologieDeGarde, number> =>
@@ -351,7 +352,7 @@ export const moyenneHeuresParTypologieDeGarde =
 		)
 
 const groupeLesDéclarationsParTypologieDeGarde =
-	<Prénom extends string>(enfants: Array<Enfant>) =>
+	<Prénom extends string>(enfants: Array<EnfantValide>) =>
 	(
 		liste: DéclarationDeGarde<Prénom>[]
 	): Record<TypologieDeGarde, DéclarationDeGarde[]> =>
@@ -367,16 +368,35 @@ const faitLaMoyenneDesHeuresDeGarde = (liste: DéclarationDeGarde[]) =>
 
 export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 	situation: SituationCMG
-): boolean => {
-	// Si GED : au moins 1 enfant **à charge** ouvrant droit
+): boolean => A.isNonEmptyArray(enfantsGardésOuvrantDroitAuCMG(situation))
+
+export const enfantsGardésOuvrantDroitAuCMG = (
+	situation: SituationCMG
+): EnfantValide[] => {
+	const enfantsOuvrantDroit: EnfantValide[] = []
+
+	if (!estSituationCMGValide(situation)) {
+		return enfantsOuvrantDroit
+	}
+
+	// Si GED : enfants **à charge** ouvrant droit
 	if (A.isNonEmptyArray(situation.salariées.GED)) {
-		return auMoinsUnEnfantÀChargeOuvrantDroitAuCMG(
-			situation.enfantsÀCharge.enfants
+		enfantsOuvrantDroit.push(
+			...A.filter(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
+		)
+	}
+	// Si AMA : enfants **gardés** ouvrant droit
+	if (A.isNonEmptyArray(situation.salariées.AMA)) {
+		enfantsOuvrantDroit.push(
+			...A.filter(enfantsGardésEnAMA(situation), enfantOuvreDroitAuCMG)
 		)
 	}
 
-	// Si AMA uniquement : au moins 1 enfant **gardé** ouvrant droit
-	const enfantsGardésEnAMA = pipe(
+	return A.dedupe(enfantsOuvrantDroit)
+}
+
+const enfantsGardésEnAMA = (situation: SituationCMGValide): EnfantValide[] =>
+	pipe(
 		situation.salariées.AMA,
 		A.flatMap((s) => R.values(s)),
 		A.getSomes,
@@ -387,14 +407,11 @@ export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 		A.getSomes
 	)
 
-	return A.some(enfantsGardésEnAMA, enfantOuvreDroitAuCMG)
-}
-
 const auMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
-	enfants: Array<Enfant>
+	enfants: Array<EnfantValide>
 ): boolean => A.some(enfants, enfantOuvreDroitAuCMG)
 
-export const enfantOuvreDroitAuCMG = and<Enfant>(
+export const enfantOuvreDroitAuCMG = and<EnfantValide>(
 	not(enfantNéEn(ANNÉE_DE_NAISSANCE_EXCLUE)),
 	enfantAMoinsDe6Ans
 )

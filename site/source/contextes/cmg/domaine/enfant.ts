@@ -16,15 +16,28 @@ export interface Enfant<Prénom extends string = string> {
 	prénom: O.Option<Prénom>
 	dateDeNaissance: O.Option<Date>
 }
+export type EnfantsÀChargeValide<Prénom extends string = string> =
+	| EnfantsÀChargeValideAvecAeeH<Prénom>
+	| EnfantsÀChargeValideSansAeeH<Prénom>
+interface EnfantsÀChargeValideAvecAeeH<Prénom extends string> {
+	enfants: Array<EnfantValide<Prénom>>
+	perçoitAeeH: O.Some<true>
+	AeeH: O.Some<number>
+}
+interface EnfantsÀChargeValideSansAeeH<Prénom extends string> {
+	enfants: Array<EnfantValide<Prénom>>
+	perçoitAeeH: O.Some<false>
+	AeeH: O.None<number>
+}
 
-export interface EnfantValide extends Enfant {
-	prénom: O.Some<string>
+export interface EnfantValide<Prénom extends string = string> extends Enfant {
+	prénom: O.Some<Prénom>
 	dateDeNaissance: O.Some<Date>
 }
 
 export const estEnfantsÀChargeValide = (
 	enfantsÀCharge: EnfantsÀCharge
-): boolean =>
+): enfantsÀCharge is EnfantsÀChargeValide =>
 	A.isNonEmptyArray(enfantsÀCharge.enfants) &&
 	tousLesEnfantsSontValides(enfantsÀCharge.enfants) &&
 	pasDePrénomEndouble(enfantsÀCharge.enfants) &&
@@ -33,7 +46,7 @@ export const estEnfantsÀChargeValide = (
 export const tousLesEnfantsSontValides = (enfants: Array<Enfant>): boolean =>
 	pipe(enfants, A.every(estEnfantValide))
 
-const estEnfantValide = (enfant: Enfant): enfant is EnfantValide =>
+export const estEnfantValide = (enfant: Enfant): enfant is EnfantValide =>
 	O.isSome(enfant.prénom) &&
 	!!enfant.prénom.value &&
 	O.isSome(enfant.dateDeNaissance) &&
@@ -84,23 +97,20 @@ export const enfantAMoinsDe6Ans = (enfant: Enfant) =>
 
 export const getEnfantFromPrénom = dual<
 	<Prénom extends string>(
-		enfants: Array<Enfant<Prénom>>
-	) => (prénom: Prénom) => O.Option<Enfant>,
+		enfants: Array<EnfantValide<Prénom>>
+	) => (prénom: Prénom) => O.Option<EnfantValide>,
 	<Prénom extends string>(
 		prénom: Prénom,
-		enfants: Array<Enfant<Prénom>>
+		enfants: Array<EnfantValide<Prénom>>
 	) => O.Option<Enfant>
 >(
 	2,
 	<Prénom extends string>(
 		prénom: Prénom,
-		enfants: Array<Enfant<Prénom>>
-	): O.Option<Enfant> =>
+		enfants: Array<EnfantValide<Prénom>>
+	): O.Option<EnfantValide> =>
 		pipe(
 			enfants,
-			A.findFirst(
-				(enfant: Enfant) =>
-					O.isSome(enfant.prénom) && enfant.prénom.value === prénom
-			)
+			A.findFirst((enfant: EnfantValide) => enfant.prénom.value === prénom)
 		)
 )

@@ -35,8 +35,8 @@ describe('CMG', () => {
 						new EnfantFactory('Jules').moinsDe3Ans().build(),
 						new EnfantFactory('Martin').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					perçoitAeeH: O.some(false) as O.Some<false>,
+					AeeH: O.none() as O.None<number>,
 				},
 				salariées: {
 					GED: [
@@ -97,8 +97,8 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').moinsDe3Ans().build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					perçoitAeeH: O.some(false) as O.Some<false>,
+					AeeH: O.none() as O.None<number>,
 				},
 				salariées: {
 					GED: [
@@ -261,8 +261,8 @@ describe('CMG', () => {
 						new EnfantFactory('Jules').moinsDe3Ans().build(),
 						new EnfantFactory('Martin').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					perçoitAeeH: O.some(false) as O.Some<false>,
+					AeeH: O.none() as O.None<number>,
 				},
 				salariées: {
 					GED: [
@@ -318,8 +318,8 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					perçoitAeeH: O.some(false) as O.Some<false>,
+					AeeH: O.none() as O.None<number>,
 				},
 				M.eurosParMois(2500)
 			)
@@ -338,8 +338,8 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					perçoitAeeH: O.some(false) as O.Some<false>,
+					AeeH: O.none() as O.None<number>,
 				},
 				M.eurosParMois(2500)
 			)
