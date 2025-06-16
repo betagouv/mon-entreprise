@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { Body, ExtraSmallBody, H2, H3, Intro, SmallBody } from '@/design-system'
 
@@ -30,4 +30,15 @@ export const Titre2 = styled(H2)`
 `
 export const Titre3 = styled(H3)`
 	margin: 0;
+`
+
+export const MobileHidden = css`
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		display: none;
+	}
+`
+export const DesktopHidden = css`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		display: none;
+	}
 `

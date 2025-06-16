@@ -858,6 +858,7 @@ pages:
             label: Garde à domicile
           label: "Indiquez le ou les modes de garde pour la période de référence mars,
             avril, mai 2025 :"
+        mois-identiques: Saisir les mêmes informations pour avril et mai
         rémunération:
           label: Rémunération totale
       démarrer: Démarrer une simulation
