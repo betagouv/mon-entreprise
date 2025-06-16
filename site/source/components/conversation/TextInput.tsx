@@ -39,7 +39,7 @@ export default function TextInput({
 			// eslint-disable-next-line jsx-a11y/no-autofocus
 			autoFocus={autoFocus}
 			onChange={(value) => {
-				handleChange(`'${value}'`)
+				handleChange(value)
 			}}
 			description={description}
 			{...{

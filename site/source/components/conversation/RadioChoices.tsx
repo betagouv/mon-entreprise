@@ -67,18 +67,18 @@ export function RadioChoices<Names extends string = DottedName>({
 										// Doit autoFocus si correspond à la valeur par défaut
 										(defaultValue &&
 											defaultValue ===
-												`'${relativeDottedName(
+												`${relativeDottedName(
 													rootDottedName,
 													node.dottedName
-												)}'` &&
+												)}` &&
 											autoFocus) ||
 										// Sinon doit autoFocus automatiquement
 										autoFocus
 									}
-									value={`'${relativeDottedName(
+									value={`${relativeDottedName(
 										rootDottedName,
 										node.dottedName
-									)}'`}
+									)}`}
 									id={`radio-input-${relativeDottedName(
 										rootDottedName,
 										node.dottedName

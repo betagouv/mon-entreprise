@@ -136,20 +136,20 @@ function getSituationFromStatut(statut: StatutType): SituationPublicodes {
 		'entreprise . catégorie juridique . remplacements': 'oui',
 		'entreprise . catégorie juridique':
 			statut === 'SASU'
-				? "'SAS'"
+				? 'SAS'
 				: statut === 'EURL'
-				? "'SARL'"
+				? 'SARL'
 				: statut === 'AE'
-				? "'EI'"
+				? 'EI'
 				: statut === 'SELARLU'
-				? "'SELARL'"
+				? 'SELARL'
 				: statut === 'SELASU'
-				? "'SELAS'"
-				: `'${statut}'`,
+				? 'SELAS'
+				: statut,
 		'entreprise . catégorie juridique . EI . auto-entrepreneur':
 			statut === 'AE' ? 'oui' : 'non',
 		'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(statut)
-			? "'multiple'"
-			: "'unique'",
+			? 'multiple'
+			: 'unique',
 	}
 }
