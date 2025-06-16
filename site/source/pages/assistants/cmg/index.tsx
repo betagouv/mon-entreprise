@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
+import useScrollToTop from '@/components/utils/Scroll/useScrollToTop'
 import { CMGProvider } from '@/contextes/cmg'
 import { useSitePaths } from '@/sitePaths'
 
@@ -11,6 +12,7 @@ import NonÉligible from './pages/NonÉligible'
 import Résultat from './pages/Résultat'
 
 const CMG = () => {
+	useScrollToTop()
 	const { relativeSitePaths } = useSitePaths()
 	const childrenPaths = relativeSitePaths.assistants.cmg
 
