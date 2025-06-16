@@ -9,14 +9,35 @@ import GEDInput from './GEDInput'
 
 export default function GED() {
 	const { t } = useTranslation()
-	const { salariéesGED, set } = useCMG()
+	const { salariéesGED, moisIdentiques, set } = useCMG()
 
-	const onChange = (index: number) => (salariéeGED: SalariéeGED) => {
+	const onSalariéeChange = (index: number) => (salariéeGED: SalariéeGED) => {
 		set.salariéesGED(A.replace(salariéesGED, index, salariéeGED))
 	}
 
-	const onDelete = (index: number) => () => {
+	const onSalariéeDelete = (index: number) => () => {
 		set.salariéesGED(A.remove(salariéesGED, index))
+		set.moisIdentiques({
+			AMA: moisIdentiques.AMA,
+			GED: A.remove(moisIdentiques.GED, index),
+		})
+	}
+
+	const onMoisIdentiquesChange = (index: number) => (value: boolean) => {
+		set.moisIdentiques({
+			AMA: moisIdentiques.AMA,
+			GED: A.replace(moisIdentiques.GED, index, value),
+		})
+		if (value) {
+			const déclarationMars = salariéesGED[index].mars
+			set.salariéesGED(
+				A.replace(salariéesGED, index, {
+					mars: déclarationMars,
+					avril: déclarationMars,
+					mai: déclarationMars,
+				})
+			)
+		}
 	}
 
 	return (
@@ -34,8 +55,10 @@ export default function GED() {
 					number={index + 1}
 					idSuffix={`${index}`}
 					salariée={salariéeGED}
-					onChange={onChange(index)}
-					onDelete={onDelete(index)}
+					moisIdentiques={moisIdentiques.GED[index]}
+					onSalariéeChange={onSalariéeChange(index)}
+					onSalariéeDelete={onSalariéeDelete(index)}
+					onMoisIdentiquesChange={onMoisIdentiquesChange(index)}
 				/>
 			))}
 

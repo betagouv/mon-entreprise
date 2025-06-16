@@ -1,8 +1,10 @@
 import * as O from 'effect/Option'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { DéclarationDeGardeAMA } from '@/contextes/cmg'
+import { Checkbox } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
@@ -12,7 +14,7 @@ import AideSaisieRémunération from '../déclaration/AideSaisieRémunération'
 import CMGPerçuInput from '../déclaration/CMGPerçuInput'
 import HeuresDeGardeInput from '../déclaration/HeuresDeGardeInput'
 import RémunérationInput from '../déclaration/RémunérationInput'
-import { Question } from '../styled-components'
+import { DesktopHidden, Question } from '../styled-components'
 import AideSaisieEnfants from './AideSaisieEnfants'
 import EnfantsGardésInput from './EnfantsGardésInput'
 
@@ -20,7 +22,9 @@ type Props = {
 	idSuffix: string
 	month: string
 	déclaration: O.Option<DéclarationDeGardeAMA<string>>
-	onChange: ChangeHandler<O.Option<DéclarationDeGardeAMA<string>>>
+	onDéclarationChange: ChangeHandler<O.Option<DéclarationDeGardeAMA<string>>>
+	onMoisIdentiquesChange: ChangeHandler<boolean>
+	moisIdentiques: O.Option<boolean>
 	avecAideSaisie?: boolean
 	avecEspacement?: boolean
 }
@@ -29,10 +33,14 @@ export default function DéclarationAMAInput({
 	idSuffix,
 	month,
 	déclaration,
-	onChange,
+	onDéclarationChange,
+	onMoisIdentiquesChange,
+	moisIdentiques,
 	avecAideSaisie,
 	avecEspacement,
 }: Props) {
+	const { t } = useTranslation()
+
 	const currentDéclaration = useMemo(
 		() =>
 			O.getOrElse(
@@ -50,7 +58,7 @@ export default function DéclarationAMAInput({
 	)
 
 	const onEnfantsGardésChange = (enfantsGardés: Array<string>) => {
-		onChange(
+		onDéclarationChange(
 			O.some({
 				...currentDéclaration,
 				enfantsGardés,
@@ -59,7 +67,7 @@ export default function DéclarationAMAInput({
 	}
 
 	const onHeuresDeGardeChange = (heuresDeGarde: O.Option<number>) => {
-		onChange(
+		onDéclarationChange(
 			O.some({
 				...currentDéclaration,
 				heuresDeGarde,
@@ -68,7 +76,7 @@ export default function DéclarationAMAInput({
 	}
 
 	const onRémunérationChange = (rémunération: O.Option<Montant<'Euro'>>) => {
-		onChange(
+		onDéclarationChange(
 			O.some({
 				...currentDéclaration,
 				rémunération,
@@ -77,7 +85,7 @@ export default function DéclarationAMAInput({
 	}
 
 	const onCMGPerçuChange = (CMGPerçu: O.Option<Montant<'Euro'>>) => {
-		onChange(
+		onDéclarationChange(
 			O.some({
 				...currentDéclaration,
 				CMGPerçu,
@@ -124,11 +132,24 @@ export default function DéclarationAMAInput({
 					<AideSaisieCMG />
 				</DesktopHiddenContainer>
 			)}
-			<CMGPerçuInput
-				idSuffix={idSuffix}
-				valeur={currentDéclaration.CMGPerçu}
-				onChange={onCMGPerçuChange}
-			/>
+			<DoubleRowContainer $double={O.isNone(moisIdentiques)}>
+				<CMGPerçuInput
+					idSuffix={idSuffix}
+					valeur={currentDéclaration.CMGPerçu}
+					onChange={onCMGPerçuChange}
+				/>
+			</DoubleRowContainer>
+			{O.isSome(moisIdentiques) && (
+				<Checkbox
+					label={t(
+						'pages.assistants.cmg.déclarations.mois-identiques',
+						'Saisir les mêmes informations pour avril et mai'
+					)}
+					isSelected={moisIdentiques.value}
+					onChange={onMoisIdentiquesChange}
+					alignment="start"
+				/>
+			)}
 		</>
 	)
 }
@@ -148,7 +169,18 @@ const StyledQuestion = styled(Question)<StyledQuestionProps>`
 	text-transform: capitalize;
 `
 const DesktopHiddenContainer = styled.div`
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		display: none;
-	}
+	${DesktopHidden}
+`
+type DoubleRowContainerProps = {
+	$double: boolean
+}
+const DoubleRowContainer = styled.div<DoubleRowContainerProps>`
+	${({ $double }) =>
+		$double
+			? css`
+					grid-row: span 2;
+			  `
+			: css`
+					margin-bottom: ${({ theme }) => theme.spacings.lg};
+			  `}
 `
