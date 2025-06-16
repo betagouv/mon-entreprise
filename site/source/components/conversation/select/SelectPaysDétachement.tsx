@@ -84,7 +84,7 @@ export default function SelectPaysDétachement({
 			defaultSelectedKey={valueId}
 			onSelectionChange={(k) => {
 				const state = statesWithID.find((s) => s.id === k)
-				state && onChange(`'${state.name}'`)
+				state && onChange(state.name)
 			}}
 			label="Pays"
 		>

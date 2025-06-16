@@ -35,7 +35,7 @@ export default function EffectifSwitch() {
 				value={currentEffectif}
 				onChange={(value) => {
 					setCurrentEffectif(value)
-					dispatch(enregistreLaRéponse(dottedName, `'${value}'`))
+					dispatch(enregistreLaRéponse(dottedName, value))
 				}}
 				aria-labelledby="effectif-switch-label"
 			>

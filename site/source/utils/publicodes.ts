@@ -46,7 +46,7 @@ export function buildSituationFromObject<Names extends string = DottedName>(
 		Object.entries(situationObject).map(
 			([key, value]: [string, PublicodesExpression]) => [
 				`${contextDottedName} . ${key}` as Names,
-				value,
+				typeof value === 'string' ? `'${value}'` : value,
 			]
 		)
 	)
