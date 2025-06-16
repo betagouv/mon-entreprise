@@ -11,7 +11,11 @@ import {
 	estDéclarationAMAVide,
 	estDéclarationGEDVide,
 } from '../domaine/déclaration-de-garde'
-import { éligibilité, RaisonInéligibilité } from '../domaine/éligibilité'
+import {
+	éligibilité,
+	enfantsGardésOuvrantDroitAuCMG,
+	RaisonInéligibilité,
+} from '../domaine/éligibilité'
 import { Enfant } from '../domaine/enfant'
 import { Résultat } from '../domaine/résultat'
 import {
@@ -272,9 +276,12 @@ const calculeÉLigibilité = (situation: SituationCMG): Résultat => {
 		O.fromNullable
 	)
 
+	const enfantsOuvrantDroit = enfantsGardésOuvrantDroitAuCMG(situation)
+
 	return {
 		estÉligible,
 		raisonsInéligibilité,
 		montantCT,
+		enfantsOuvrantDroit,
 	}
 }

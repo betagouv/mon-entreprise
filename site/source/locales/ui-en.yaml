@@ -871,13 +871,18 @@ pages:
         ressources: Your income exceeds the ceiling.
         réforme-avantageuse: The reform of the CMG benefits you (you will receive at
           least as much for the same situation).
-      résultat: "<0>For an <1>identical situation</1>, the <4>indicative</4> amount of
-        your transitional supplement would be : <6>{{amount}}</6>.<8></8>This
-        supplement to the CMG prevents a significant variation in your
-        out-of-pocket expenses.</0><1><0>The result of this simulation is given
-        as an indication only.<1></1>No element entered during this simulation
-        is valid as a declaration of a change in situation or as a claim for
-        benefit.<3></3>No element of this simulation will be kept.</0></1>"
+      résultat:
+        disclaimer: The result of this simulation is given as an indication.<1></1>No
+          element entered during this simulation is valid as a declaration of a
+          change of situation or as a claim for benefits.<3></3>No element of
+          this simulation will be saved.
+        enfants:
+          one: "The child who entitles you to this transitional supplement is :"
+          other: "The children who entitle you to this transitional supplement are :"
+        montant: "For an <1>identical situation</1>, the <4>indicative</4> amount of
+          your transitional supplement would be : <6>{{amount}}</6>.<8></8>This
+          supplement to the CMG will help you avoid a significant variation in
+          the expenses you will have to pay."
       shortname: Transitional supplement to CMG
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:

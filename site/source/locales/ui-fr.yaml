@@ -921,15 +921,19 @@ pages:
         ressources: Vos ressources dépassent le plafond.
         réforme-avantageuse: La réforme du CMG vous est favorable (à situation
           identique, vous allez percevoir au moins autant).
-      résultat: "<0>Pour une <1>situation identique</1>, le montant <4>indicatif</4>
-        de votre complément transitoire s’élèverait à :
-        <6>{{amount}}</6>.<8></8>Ce complément du CMG permet d’éviter une
-        variation importante des dépenses restant à votre charge.</0><1><0>Le
-        résultat de cette simulation est communiqué à titre
-        indicatif.<1></1>Aucun élément saisi au cours de cette simulation ne
-        vaut pour déclaration de changement de situation ou pour demande de
-        prestation.<3></3>Aucun élément de cette simulation ne sera
-        conservé.</0></1>"
+      résultat:
+        disclaimer: Le résultat de cette simulation est communiqué à titre
+          indicatif.<1></1>Aucun élément saisi au cours de cette simulation ne
+          vaut pour déclaration de changement de situation ou pour demande de
+          prestation.<3></3>Aucun élément de cette simulation ne sera conservé.
+        enfants:
+          one: "L’enfant qui vous ouvre le droit à ce complément transitoire est :"
+          other: "Les enfants qui vous ouvrent le droit à ce complément transitoire
+            sont :"
+        montant: "Pour une <1>situation identique</1>, le montant <4>indicatif</4> de
+          votre complément transitoire s’élèverait à :
+          <6>{{amount}}</6>.<8></8>Ce complément du CMG permet d’éviter une
+          variation importante des dépenses restant à votre charge."
       shortname: Complément transitoire au CMG
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
