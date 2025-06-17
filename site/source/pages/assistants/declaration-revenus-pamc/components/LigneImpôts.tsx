@@ -31,7 +31,7 @@ export function LigneImpôts({
 
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		arrondi,
+		arrondi: arrondi ? 'oui' : 'non',
 		unité: currentUnit,
 	})
 	const noValue =
