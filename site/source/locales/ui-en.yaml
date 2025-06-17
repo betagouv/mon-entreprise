@@ -1979,7 +1979,7 @@ pages:
         ogTitle: "Gross salary, net salary, net salary after tax, total cost: the
           all-in-one simulator for employees and employers"
         titre: "Gross/net salary: the Urssaf converter"
-      seo: "<0>How do you calculate net salary?</0><1>During the job interview, the
+      seo: "<0><0>How do you calculate net salary?</0><1>During the job interview, the
         employer generally proposes a gross salary. This amount includes the
         employee's social security contributions, which are deducted from the
         \"net\" salary received by the employee.</1><2>You can use our simulator
@@ -1991,25 +1991,25 @@ pages:
         do this, the Direction Générale des Finances Publiques (DGFiP) sends the
         employer the tax rate calculated from the employee's tax return. If the
         employee's tax rate is unknown, for example in the first year of
-        employment, the employer uses the <4>neutral rate</4>.</4><5>How do I
-        calculate the cost of hiring?</5><6>If you're looking to hire, you can
-        calculate the total cost of remunerating your employee, as well as the
-        corresponding employer and employee contributions. This will enable you
-        to define the level of remuneration, knowing the overall cost to your
-        company.</6><7>In addition to salary, our simulator takes into account
-        the calculation of benefits in kind (telephone, company car, etc.), as
-        well as compulsory health insurance.</7><8>There are also <2>deferred
-        recruitment subsidies</2> which are not all taken into account by our
-        simulator. You can find them on <6>the official
-        portal</6>.</8><9><0>Talk to an advisor about your recruitment
-        project</0><1>You would like to :<1><0>be advised on the hiring aids
+        employment, the employer uses the <4>neutral rate</4>.</4></0><1><0>How
+        do I calculate the cost of hiring?</0><1>If you're looking to hire, you
+        can calculate the total cost of remunerating your employee, as well as
+        the corresponding employer and employee contributions. This will enable
+        you to define the level of remuneration, knowing the overall cost to
+        your company.</1><2>In addition to salary, our simulator takes into
+        account the calculation of benefits in kind (telephone, company car,
+        etc.), as well as compulsory health insurance.</2><3>There are also
+        <2>deferred</2> hiring <2>subsidies</2> which are not all taken into
+        account by our simulator. You can find them on <6>the official
+        portal</6>.</3></1><2><0>Talk to an advisor about your recruitment
+        project</0><1>You would like to :</1><2><0>be advised on the hiring aids
         available for your recruitment project</0><1>Find out about
         apprenticeships, professionalization contracts, \"emplois francs\" in
-        priority neighborhoods, <2>VTE</2>, etc.</1><2>Find
-        candidates</2><3>Recruiting a disabled person</3></1><2>Fast, simple
+        priority neighborhoods, <1>VTE</1>, etc.</1><2>Find
+        candidates</2><3>Recruiting a disabled person</3></2><3><0>Fast, simple
         public service: you'll be called back by the advisor who can help
-        you.</2></1><2>Partners: France Travail, Apec, Cap Emploi, local
-        missions...</2><3></3></9>"
+        you.</0></3><4>Partners: France Travail, Apec, Cap Emploi, local
+        missions...</4><5></5></2>"
       shortname: Employee
       title: Income simulator for employees
       warning: The simulator does not currently take into account collective
