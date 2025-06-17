@@ -30,10 +30,7 @@ export function SASUSimulation() {
 						</Body>
 					}
 				/>
-				<SimulationGoals
-					toggles={<PeriodSwitch />}
-					legend="Vos revenus de dirigeant de SAS(U)"
-				>
+				<SimulationGoals toggles={<PeriodSwitch />}>
 					<SimulationGoal dottedName="dirigeant . rémunération . totale" />
 					<SimulationGoal
 						editable

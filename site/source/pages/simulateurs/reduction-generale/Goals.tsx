@@ -29,11 +29,9 @@ import WarningSalaireTrans from './components/WarningSalaireTrans'
 
 export default function RéductionGénéraleSimulationGoals({
 	toggles,
-	legend,
 	régularisationMethod,
 }: {
 	toggles?: React.ReactNode
-	legend: string
 	régularisationMethod: RégularisationMethod
 }) {
 	const engine = useEngine()
@@ -112,7 +110,7 @@ export default function RéductionGénéraleSimulationGoals({
 	}
 
 	return (
-		<SimulationGoals toggles={toggles} legend={legend}>
+		<SimulationGoals toggles={toggles}>
 			{monthByMonth ? (
 				<RéductionMoisParMois
 					dottedName={réductionGénéraleDottedName}

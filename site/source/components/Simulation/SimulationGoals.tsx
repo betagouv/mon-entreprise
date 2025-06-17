@@ -12,17 +12,11 @@ import { firstStepCompletedSelector } from '@/store/selectors/simulationSelector
 import { LogoWithLink } from '../Logo'
 
 type SimulationGoalsProps = {
-	legend: string
-
 	children: React.ReactNode
 	toggles?: React.ReactNode
 }
 
-export function SimulationGoals({
-	legend,
-	toggles,
-	children,
-}: SimulationGoalsProps) {
+export function SimulationGoals({ toggles, children }: SimulationGoalsProps) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const isEmbeded = useIsEmbedded()
 
@@ -38,9 +32,6 @@ export function SimulationGoals({
 					aria-live="polite"
 				>
 					<ForceThemeProvider forceTheme="dark">
-						<div className="sr-only" aria-hidden id="simulator-legend-label">
-							{legend}
-						</div>
 						<Body className="print-hidden" id="simu-update-explaining">
 							<em>
 								<Trans>
