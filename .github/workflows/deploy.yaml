@@ -61,6 +61,7 @@ jobs:
         run: yarn workspace site build
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_LOG_LEVEL: debug
           VITE_AT_INTERNET_SITE_ID: ${{ vars.VITE_AT_INTERNET_SITE_ID }}
           VITE_ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           VITE_ALGOLIA_SEARCH_KEY: ${{secrets.ALGOLIA_SEARCH_KEY}}
