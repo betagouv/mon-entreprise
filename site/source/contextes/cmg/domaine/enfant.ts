@@ -9,7 +9,6 @@ import { ANNÉE_DE_NAISSANCE_EXCLUE, DATE_RÉFORME } from './constantes'
 
 export interface EnfantsÀCharge<Prénom extends string = string> {
 	enfants: Array<Enfant<Prénom>>
-	perçoitAeeH: O.Option<boolean>
 	AeeH: O.Option<number>
 }
 
@@ -17,18 +16,10 @@ export interface Enfant<Prénom extends string = string> {
 	prénom: O.Option<Prénom>
 	dateDeNaissance: O.Option<Date>
 }
-export type EnfantsÀChargeValide<Prénom extends string = string> =
-	| EnfantsÀChargeValideAvecAeeH<Prénom>
-	| EnfantsÀChargeValideSansAeeH<Prénom>
-interface EnfantsÀChargeValideAvecAeeH<Prénom extends string> {
+export interface EnfantsÀChargeValide<Prénom extends string = string>
+	extends EnfantsÀCharge {
 	enfants: Array<EnfantValide<Prénom>>
-	perçoitAeeH: O.Some<true>
 	AeeH: O.Some<number>
-}
-interface EnfantsÀChargeValideSansAeeH<Prénom extends string> {
-	enfants: Array<EnfantValide<Prénom>>
-	perçoitAeeH: O.Some<false>
-	AeeH: O.None<number>
 }
 
 export interface EnfantValide<Prénom extends string = string> extends Enfant {
@@ -67,9 +58,7 @@ export const estAeeHValide = (enfantsÀCharge: EnfantsÀCharge): boolean =>
 	estAeeHInférieurOuÉgalAuNombreDEnfants(enfantsÀCharge)
 
 export const estAeeHRépondue = (enfantsÀCharge: EnfantsÀCharge): boolean =>
-	O.isSome(enfantsÀCharge.perçoitAeeH) &&
-	(!enfantsÀCharge.perçoitAeeH.value ||
-		(enfantsÀCharge.perçoitAeeH.value && O.isSome(enfantsÀCharge.AeeH)))
+	O.isSome(enfantsÀCharge.AeeH)
 
 export const estAeeHInférieurOuÉgalAuNombreDEnfants = (
 	enfantsÀCharge: EnfantsÀCharge

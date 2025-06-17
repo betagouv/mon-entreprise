@@ -25,9 +25,10 @@ export default function QuestionsAeeH() {
 	const onChange = (valeur: string) => {
 		if (valeur === 'oui') {
 			set.perçoitAeeH(O.some(true))
+			set.AeeH(O.none())
 		} else if (valeur === 'non') {
 			set.perçoitAeeH(O.some(false))
-			set.AeeH(O.none())
+			set.AeeH(O.some(0))
 		} else {
 			set.perçoitAeeH(O.none())
 			set.AeeH(O.none())

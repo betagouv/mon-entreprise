@@ -37,8 +37,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -118,8 +117,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -191,8 +189,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [new SalariéeGEDFactory().build()],
@@ -218,8 +215,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -264,8 +260,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -324,8 +319,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -378,7 +372,6 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: [],
-					perçoitAeeH: O.none(),
 					AeeH: O.none(),
 				},
 				salariées: {
@@ -401,7 +394,6 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: [],
-					perçoitAeeH: O.none(),
 					AeeH: O.none(),
 				},
 				salariées: {
@@ -428,8 +420,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -483,8 +474,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false) as O.Some<false>,
-					AeeH: O.none() as O.None<number>,
+					AeeH: O.some(0) as O.Some<number>,
 				},
 				salariées: {
 					GED: [
@@ -547,8 +537,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false) as O.Some<false>,
-					AeeH: O.none() as O.None<number>,
+					AeeH: O.some(0) as O.Some<number>,
 				},
 				salariées: {
 					GED: [
@@ -662,8 +651,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -700,8 +688,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -730,8 +717,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -759,8 +745,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [new SalariéeGEDFactory().build()],

@@ -35,8 +35,7 @@ describe('CMG', () => {
 						new EnfantFactory('Jules').moinsDe3Ans().build(),
 						new EnfantFactory('Martin').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false) as O.Some<false>,
-					AeeH: O.none() as O.None<number>,
+					AeeH: O.some(0) as O.Some<number>,
 				},
 				salariées: {
 					GED: [
@@ -97,8 +96,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').moinsDe3Ans().build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false) as O.Some<false>,
-					AeeH: O.none() as O.None<number>,
+					AeeH: O.some(0) as O.Some<number>,
 				},
 				salariées: {
 					GED: [
@@ -261,8 +259,7 @@ describe('CMG', () => {
 						new EnfantFactory('Jules').moinsDe3Ans().build(),
 						new EnfantFactory('Martin').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false) as O.Some<false>,
-					AeeH: O.none() as O.None<number>,
+					AeeH: O.some(0) as O.Some<number>,
 				},
 				salariées: {
 					GED: [
@@ -318,8 +315,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false) as O.Some<false>,
-					AeeH: O.none() as O.None<number>,
+					AeeH: O.some(0),
 				},
 				M.eurosParMois(2500)
 			)
@@ -338,8 +334,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false) as O.Some<false>,
-					AeeH: O.none() as O.None<number>,
+					AeeH: O.some(0),
 				},
 				M.eurosParMois(2500)
 			)
@@ -356,8 +351,7 @@ describe('CMG', () => {
 					new EnfantFactory('Rose').néEn(2022).build(),
 					new EnfantFactory('Aurore').plusDe6Ans().build(),
 				],
-				perçoitAeeH: O.some(false),
-				AeeH: O.none(),
+				AeeH: O.some(0),
 			})
 
 			expect(résultat).to.be.equal(0.0413)
@@ -369,8 +363,7 @@ describe('CMG', () => {
 					new EnfantFactory('Rose').néEn(2022).build(),
 					new EnfantFactory('Aurore').plusDe6Ans().build(),
 				],
-				perçoitAeeH: O.some(false),
-				AeeH: O.none(),
+				AeeH: O.some(0),
 			})
 
 			expect(résultat).to.be.equal(0.0826)
@@ -384,8 +377,7 @@ describe('CMG', () => {
 					new EnfantFactory('Michelangelo').plusDe6Ans().build(),
 					new EnfantFactory('Splinter').plusDe6Ans().build(),
 				],
-				perçoitAeeH: O.some(false),
-				AeeH: O.none(),
+				AeeH: O.some(0),
 			})
 
 			expect(résultat).to.be.equal(0.031)
@@ -399,8 +391,7 @@ describe('CMG', () => {
 					new EnfantFactory('Michelangelo').plusDe6Ans().build(),
 					new EnfantFactory('Splinter').plusDe6Ans().build(),
 				],
-				perçoitAeeH: O.some(false),
-				AeeH: O.none(),
+				AeeH: O.some(0),
 			})
 
 			expect(résultat).to.be.equal(0.062)
@@ -419,8 +410,7 @@ describe('CMG', () => {
 					new EnfantFactory('Michelangelo').néEn(2022).build(),
 					new EnfantFactory('Raphael').néEn(2024).build(),
 				],
-				perçoitAeeH: O.some(false),
-				AeeH: O.none(),
+				AeeH: O.some(0),
 			})
 
 			expect(résultat).to.be.equal(0.0206)
@@ -439,8 +429,7 @@ describe('CMG', () => {
 					new EnfantFactory('Michelangelo').néEn(2022).build(),
 					new EnfantFactory('Raphael').néEn(2024).build(),
 				],
-				perçoitAeeH: O.some(false),
-				AeeH: O.none(),
+				AeeH: O.some(0),
 			})
 
 			expect(résultat).to.be.equal(0.0412)
@@ -452,7 +441,6 @@ describe('CMG', () => {
 					new EnfantFactory('Rose').néEn(2022).build(),
 					new EnfantFactory('Aurore').plusDe6Ans().build(),
 				],
-				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 
@@ -465,7 +453,6 @@ describe('CMG', () => {
 					new EnfantFactory('Rose').néEn(2022).build(),
 					new EnfantFactory('Aurore').plusDe6Ans().build(),
 				],
-				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 
@@ -485,7 +472,6 @@ describe('CMG', () => {
 					new EnfantFactory('Michelangelo').néEn(2022).build(),
 					new EnfantFactory('Raphael').néEn(2024).build(),
 				],
-				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 
@@ -505,7 +491,6 @@ describe('CMG', () => {
 					new EnfantFactory('Michelangelo').néEn(2022).build(),
 					new EnfantFactory('Raphael').néEn(2024).build(),
 				],
-				perçoitAeeH: O.some(true),
 				AeeH: O.some(2),
 			})
 

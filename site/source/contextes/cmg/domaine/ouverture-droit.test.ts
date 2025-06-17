@@ -26,8 +26,7 @@ describe('CMG', () => {
 							new EnfantFactory('Rose').néEn(2022).build(),
 							new EnfantFactory('Aurore').plusDe6Ans().build(),
 						],
-						perçoitAeeH: O.some(false),
-						AeeH: O.none(),
+						AeeH: O.some(0),
 					},
 					salariées: {
 						GED: [new SalariéeGEDFactory().build()],
@@ -56,8 +55,7 @@ describe('CMG', () => {
 							new EnfantFactory('Rose').néEn(2022).build(),
 							new EnfantFactory('Aurore').plusDe6Ans().build(),
 						],
-						perçoitAeeH: O.some(false),
-						AeeH: O.none(),
+						AeeH: O.some(0),
 					},
 					salariées: {
 						GED: [],
@@ -86,8 +84,7 @@ describe('CMG', () => {
 					>,
 					enfantsÀCharge: {
 						enfants: [Oscar, Rose, Aurore],
-						perçoitAeeH: O.some(false),
-						AeeH: O.none(),
+						AeeH: O.some(0),
 					},
 					salariées: {
 						GED: [new SalariéeGEDFactory().build()],

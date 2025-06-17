@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import React, { createContext, useContext, useState } from 'react'
 
 import { initialRésultat, Résultat } from '../domaine/résultat'
@@ -6,6 +7,8 @@ import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 type SituationContextType = {
 	situation: SituationCMG
 	updateSituation: (updater: (prev: SituationCMG) => SituationCMG) => void
+	perçoitAeeH: O.Option<boolean>
+	setPerçoitAeeH: (value: O.Option<boolean>) => void
 	moisIdentiques: MoisIdentiques
 	updateMoisIdentiques: (
 		updater: (prev: MoisIdentiques) => MoisIdentiques
@@ -29,6 +32,7 @@ export const CMGProvider: React.FC<{
 		GED: [],
 		AMA: [],
 	})
+	const [perçoitAeeH, setPerçoitAeeH] = useState<O.Option<boolean>>(O.none())
 	const [résultat, setRésultat] = useState<Résultat>(initialRésultat)
 
 	const updateSituation = (updater: (prev: SituationCMG) => SituationCMG) => {
@@ -50,6 +54,8 @@ export const CMGProvider: React.FC<{
 			value={{
 				situation,
 				updateSituation,
+				perçoitAeeH,
+				setPerçoitAeeH,
 				moisIdentiques,
 				updateMoisIdentiques,
 				résultat,

@@ -46,7 +46,6 @@ export const initialSituationCMG: SituationCMG = {
 	ressources: O.none(),
 	enfantsÀCharge: {
 		enfants: [],
-		perçoitAeeH: O.none(),
 		AeeH: O.none(),
 	},
 	salariées: {

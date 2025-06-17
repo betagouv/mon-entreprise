@@ -27,6 +27,8 @@ export const useCMG = () => {
 	const {
 		situation,
 		updateSituation,
+		perçoitAeeH,
+		setPerçoitAeeH,
 		moisIdentiques,
 		updateMoisIdentiques,
 		résultat,
@@ -86,13 +88,7 @@ export const useCMG = () => {
 		},
 
 		perçoitAeeH: (perçoitAeeH: O.Option<boolean>) => {
-			updateSituation((prev) => ({
-				...prev,
-				enfantsÀCharge: {
-					...prev.enfantsÀCharge,
-					perçoitAeeH,
-				},
-			}))
+			setPerçoitAeeH(perçoitAeeH)
 		},
 
 		AeeH: (AeeH: O.Option<number>) => {
@@ -231,7 +227,7 @@ export const useCMG = () => {
 	return {
 		situation,
 		enfants: situation.enfantsÀCharge.enfants,
-		perçoitAeeH: situation.enfantsÀCharge.perçoitAeeH,
+		perçoitAeeH,
 		AeeH: situation.enfantsÀCharge.AeeH,
 		salariéesGED: situation.salariées.GED,
 		salariéesAMA: situation.salariées.AMA,
