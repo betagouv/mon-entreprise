@@ -83,17 +83,15 @@ export const estEnfantGardable = (enfant: Enfant): enfant is EnfantValide =>
 export const isEnfantValide = (e: Enfant): e is EnfantValide =>
 	O.isSome(e.prénom) && O.isSome(e.dateDeNaissance)
 
-export const enfantAPlusDe3Ans = (enfant: O.Option<Enfant>): boolean =>
+export const enfantAPlusDe3Ans = (enfant: O.Option<EnfantValide>): boolean =>
 	O.isSome(enfant) &&
-	O.isSome(enfant.value.dateDeNaissance) &&
 	pipe(enfant.value.dateDeNaissance.value, addYears(3), isBefore(DATE_RÉFORME))
 
 export const enfantNéEn = (année: number) => (enfant: Enfant) =>
 	O.isSome(enfant.dateDeNaissance) &&
 	getYear(enfant.dateDeNaissance.value) === année
 
-export const enfantAMoinsDe6Ans = (enfant: Enfant) =>
-	O.isSome(enfant.dateDeNaissance) &&
+export const enfantAMoinsDe6Ans = (enfant: EnfantValide) =>
 	pipe(enfant.dateDeNaissance.value, addYears(6), isAfter(DATE_RÉFORME))
 
 export const getEnfantFromPrénom = dual<
@@ -103,7 +101,7 @@ export const getEnfantFromPrénom = dual<
 	<Prénom extends string>(
 		prénom: Prénom,
 		enfants: Array<EnfantValide<Prénom>>
-	) => O.Option<Enfant>
+	) => O.Option<EnfantValide>
 >(
 	2,
 	<Prénom extends string>(

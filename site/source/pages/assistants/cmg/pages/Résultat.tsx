@@ -55,8 +55,17 @@ export default function Résultat() {
 							'L’enfant qui vous ouvre le droit à ce complément transitoire est :'
 					  )}
 				<Ul>
-					{enfantsOuvrantDroit.map((enfant, index) => (
-						<Li key={index}>{enfant.prénom.value}</Li>
+					{enfantsOuvrantDroit.map(({ enfant, dateDeFin }, index) => (
+						<Li key={index}>
+							{t(
+								'pages.assistants.cmg.résultat.enfants.li',
+								'{{ prénom }}, jusqu’au {{- dateDeFin }}',
+								{
+									prénom: enfant.prénom.value,
+									dateDeFin: dateDeFin.toLocaleDateString(),
+								}
+							)}
+						</Li>
 					))}
 				</Ul>
 			</Body>

@@ -877,6 +877,7 @@ pages:
           change of situation or as a claim for benefits.<3></3>No element of
           this simulation will be saved.
         enfants:
+          li: "{{ prénom }}until {{- dateDeFin }}"
           one: "The child who entitles you to this transitional supplement is :"
           other: "The children who entitle you to this transitional supplement are :"
         montant: "For an <1>identical situation</1>, the <4>indicative</4> amount of

@@ -927,6 +927,7 @@ pages:
           vaut pour déclaration de changement de situation ou pour demande de
           prestation.<3></3>Aucun élément de cette simulation ne sera conservé.
         enfants:
+          li: "{{ prénom }}, jusqu’au {{- dateDeFin }}"
           one: "L’enfant qui vous ouvre le droit à ce complément transitoire est :"
           other: "Les enfants qui vous ouvrent le droit à ce complément transitoire
             sont :"
