@@ -110,6 +110,9 @@ export default defineConfig(({ command, mode }) => ({
 			url: 'https://sentry.incubateur.net/',
 			authToken: process.env.SENTRY_AUTH_TOKEN,
 			telemetry: false,
+			errorHandler: (err) => {
+				console.warn(err)
+			},
 			release: {
 				// Use same release name as the one used in the app.
 				name: sentryReleaseName(mode),
