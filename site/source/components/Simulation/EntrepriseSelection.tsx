@@ -22,7 +22,7 @@ const { Body } = typography
 export default function EntrepriseSelection() {
 	const { t } = useTranslation()
 	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
-	const [isSearchVisible, setSearchVisible] = useState(false)
+	const [isSearchVisible, setIsSearchVisible] = useState(false)
 
 	return (
 		<Container>
@@ -44,7 +44,7 @@ export default function EntrepriseSelection() {
 					<Grid item>
 						<DisclosureButton
 							as="button"
-							onClick={() => setSearchVisible(!isSearchVisible)}
+							onClick={() => setIsSearchVisible(!isSearchVisible)}
 							aria-expanded={isSearchVisible}
 							aria-controls="entreprise-search-panel"
 						>
@@ -73,7 +73,7 @@ export default function EntrepriseSelection() {
 			<div aria-controls="entreprise-search-panel">
 				{isSearchVisible && (
 					<Appear>
-						<EntrepriseInput onSubmit={() => setSearchVisible(false)} />
+						<EntrepriseInput onSubmit={() => setIsSearchVisible(false)} />
 					</Appear>
 				)}
 			</div>
