@@ -59,7 +59,7 @@ export function ObjectifSaisissableDeSimulation({
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
-							noWrap={true}
+							noWrap={false}
 						>
 							{titre}
 						</TitreObjectifSaisissable>
@@ -101,8 +101,6 @@ const GridCentered = styled(Grid)`
 	display: grid;
 	grid-template-columns: 1.25fr 1fr;
 	gap: 1rem;
-	max-width: 75%;
-	margin: 0 auto;
 
 	& > div {
 		padding: 0;
@@ -129,17 +127,8 @@ const GridCentered = styled(Grid)`
 		margin-top: 0;
 	}
 
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-		max-width: 75%;
-	}
-
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		max-width: 75%;
-	}
-
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		grid-template-columns: 1fr;
-		max-width: 100%;
 
 		& > div {
 			text-align: left;
