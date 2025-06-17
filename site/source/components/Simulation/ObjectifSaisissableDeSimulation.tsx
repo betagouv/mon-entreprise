@@ -65,9 +65,9 @@ export function ObjectifSaisissableDeSimulation({
 						</TitreObjectifSaisissable>
 
 						{explication && (
-							<ForceThemeProvider forceTheme="default">
+							<BiggerForceThemeProvider forceTheme="default">
 								{explication}
-							</ForceThemeProvider>
+							</BiggerForceThemeProvider>
 						)}
 
 						{description && (
@@ -83,9 +83,13 @@ export function ObjectifSaisissableDeSimulation({
 						{!isFocused && !small && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
-						<div onFocus={handleFocus} onBlur={handleBlur} role="presentation">
+						<LargeInputContainer
+							onFocus={handleFocus}
+							onBlur={handleBlur}
+							role="presentation"
+						>
 							{rendreChampSaisie()}
-						</div>
+						</LargeInputContainer>
 					</Grid>
 				</GridCentered>
 			</StyledGoal>
@@ -95,9 +99,9 @@ export function ObjectifSaisissableDeSimulation({
 
 const GridCentered = styled(Grid)`
 	display: grid;
-	grid-template-columns: 1.5fr 1fr;
+	grid-template-columns: 1.25fr 1fr;
 	gap: 1rem;
-	max-width: 50%;
+	max-width: 75%;
 	margin: 0 auto;
 
 	& > div {
@@ -155,4 +159,16 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 
 const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
+	font-size: 1rem;
+`
+
+const BiggerForceThemeProvider = styled(ForceThemeProvider)`
+	font-size: 1rem;
+`
+
+const LargeInputContainer = styled.div`
+	input {
+		font-size: 1.125rem;
+		line-height: 1.5;
+	}
 `
