@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Body, Grid, SmallBody } from '@/design-system'
+import { Body, Grid } from '@/design-system'
 import { WatchInitialRender } from '@/hooks/useInitialRender'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
