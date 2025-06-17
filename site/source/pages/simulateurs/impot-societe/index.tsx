@@ -27,8 +27,6 @@ import {
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function ISSimulation() {
-	const { t } = useTranslation()
-
 	return (
 		<SimulationContainer>
 			<SimulateurWarning
@@ -45,13 +43,7 @@ export default function ISSimulation() {
 			/>
 			<Notifications />
 
-			<SimulationGoals
-				toggles={<ExerciceDate />}
-				legend={t(
-					'pages.simulateurs.impot-société.légende',
-					'Résultat imposable de l’entreprise'
-				)}
-			>
+			<SimulationGoals toggles={<ExerciceDate />}>
 				<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
 			</SimulationGoals>
 			<Explanations />
