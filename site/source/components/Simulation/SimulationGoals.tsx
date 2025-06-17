@@ -84,6 +84,15 @@ export const SimulationGoalsContainer = styled.div<{
 		margin-top: 1rem;
 	}
 
+	& > :is(div, fieldset) {
+		max-width: 75%;
+		margin-inline: auto;
+
+		@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+			max-width: 100%;
+		}
+	}
+
 	@media print {
 		background: initial;
 		padding: 0;

@@ -69,16 +69,18 @@ export default function ChiffreAffairesActivitéMixte({
 			<WhenApplicable dottedName="entreprise . activités . revenus mixtes">
 				<FromTop>
 					<ActivitéMixte />
-					<Condition expression="entreprise . activités . revenus mixtes">
-						{Object.values(proportions).map((chiffreAffaires) => (
-							<SimulationGoal
-								small
-								key={chiffreAffaires}
-								onUpdateSituation={adjustProportions}
-								dottedName={chiffreAffaires}
-							/>
-						))}
-					</Condition>
+					<ConditionWrapper>
+						<Condition expression="entreprise . activités . revenus mixtes">
+							{Object.values(proportions).map((chiffreAffaires) => (
+								<SimulationGoal
+									small
+									key={chiffreAffaires}
+									onUpdateSituation={adjustProportions}
+									dottedName={chiffreAffaires}
+								/>
+							))}
+						</Condition>
+					</ConditionWrapper>
 				</FromTop>
 			</WhenApplicable>
 		</fieldset>
@@ -190,5 +192,16 @@ const StyledActivitéMixteContainer = styled.div`
 		// margin-top: -1.5rem;
 		position: relative;
 		z-index: 2;
+	}
+`
+const ConditionWrapper = styled.div`
+	margin-top: 0.75rem;
+
+	& > div {
+		height: auto !important;
+
+		& > div > div > div > div {
+			margin-top: 0.75rem;
+		}
 	}
 `
