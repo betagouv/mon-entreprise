@@ -30,47 +30,24 @@ export interface OuvertureDroit {
 export const enfantsGardésOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): OuvertureDroit[] => {
-	const ouverturesDeDroit: OuvertureDroit[] = []
-
 	if (!estSituationCMGValide(situation)) {
-		return ouverturesDeDroit
+		return []
 	}
 
-	// Si GED : enfants **à charge** ouvrant droit
-	if (A.isNonEmptyArray(situation.salariées.GED)) {
-		const ouverturesDeDroitGED = pipe(
-			situation.enfantsÀCharge.enfants,
-			A.filter(enfantOuvreDroitAuCMG),
-			A.map(
-				(enfant) =>
-					({
-						enfant,
-						dateDeFin: dateDeFinDeDroit(enfant),
-					}) satisfies OuvertureDroit
-			)
-		)
-		ouverturesDeDroit.push(...ouverturesDeDroitGED)
-	}
-	// Si AMA : enfants **gardés** ouvrant droit
-	if (A.isNonEmptyArray(situation.salariées.AMA)) {
-		const ouverturesDeDroitAMA = pipe(
-			situation,
-			enfantsGardésEnAMA,
-			A.filter(enfantOuvreDroitAuCMG),
-			A.map(
-				(enfant) =>
-					({
-						enfant,
-						dateDeFin: dateDeFinDeDroit(enfant),
-					}) satisfies OuvertureDroit
-			)
-		)
-		ouverturesDeDroit.push(...ouverturesDeDroitAMA)
-	}
-
-	return A.dedupeWith(
-		ouverturesDeDroit,
-		(self, that) => self.enfant.prénom.value === that.enfant.prénom.value
+	return pipe(
+		A.isNonEmptyArray(situation.salariées.GED)
+			? // Si GED : enfants **à charge** ouvrant droit
+			  A.filter(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
+			: [],
+		A.appendAll(
+			// Si AMA : enfants **gardés** ouvrant droit
+			A.filter(enfantsGardésEnAMA(situation), enfantOuvreDroitAuCMG)
+		),
+		A.dedupe,
+		A.map((enfant) => ({
+			enfant,
+			dateDeFin: dateDeFinDeDroit(enfant),
+		}))
 	)
 }
 
