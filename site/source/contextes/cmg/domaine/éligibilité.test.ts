@@ -13,7 +13,6 @@ import {
 import {
 	auMoinsUnEnfantGardéOuvrantDroitAuCMG,
 	éligibilité,
-	enfantOuvreDroitAuCMG,
 	moyenneHeuresDeGardeSupérieureAuPlancher,
 	moyenneHeuresParTypologieDeGarde,
 	plafondDeRessources,
@@ -38,8 +37,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -119,8 +117,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -192,8 +189,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [new SalariéeGEDFactory().build()],
@@ -219,8 +215,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -265,8 +260,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -325,8 +319,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -379,7 +372,6 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: [],
-					perçoitAeeH: O.none(),
 					AeeH: O.none(),
 				},
 				salariées: {
@@ -402,7 +394,6 @@ describe('CMG', () => {
 				>,
 				enfantsÀCharge: {
 					enfants: [],
-					perçoitAeeH: O.none(),
 					AeeH: O.none(),
 				},
 				salariées: {
@@ -429,8 +420,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -484,8 +474,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0) as O.Some<number>,
 				},
 				salariées: {
 					GED: [
@@ -548,8 +537,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe3Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0) as O.Some<number>,
 				},
 				salariées: {
 					GED: [
@@ -663,8 +651,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [
@@ -701,8 +688,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -731,8 +717,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [],
@@ -760,8 +745,7 @@ describe('CMG', () => {
 						new EnfantFactory('Rose').néEn(2022).build(),
 						new EnfantFactory('Aurore').plusDe6Ans().build(),
 					],
-					perçoitAeeH: O.some(false),
-					AeeH: O.none(),
+					AeeH: O.some(0),
 				},
 				salariées: {
 					GED: [new SalariéeGEDFactory().build()],
@@ -773,34 +757,6 @@ describe('CMG', () => {
 			})
 
 			expect(résultat).to.be.false
-		})
-	})
-
-	describe('enfantOuvreDroitAuCMG', () => {
-		it('n’ouvre pas droit si né⋅e en 2022', () => {
-			const résultat = enfantOuvreDroitAuCMG({
-				prénom: O.none(),
-				dateDeNaissance: O.some(new Date('2022-12-31')),
-			})
-
-			expect(résultat).to.be.false
-		})
-		it('n’ouvre pas droit si plus de 6 ans au 01/09/2025', () => {
-			const résultat = enfantOuvreDroitAuCMG({
-				prénom: O.none(),
-				dateDeNaissance: O.some(new Date('2019-09-01')),
-			})
-
-			expect(résultat).to.be.false
-		})
-
-		it('ouvre droit si moins de 6 ans au 01/09/2025 et pas né⋅e en 2022', () => {
-			const résultat = enfantOuvreDroitAuCMG({
-				prénom: O.none(),
-				dateDeNaissance: O.some(new Date('2019-09-02')),
-			})
-
-			expect(résultat).to.be.true
 		})
 	})
 })

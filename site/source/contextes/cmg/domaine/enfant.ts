@@ -3,12 +3,12 @@ import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import { dual } from 'effect/Function'
 import * as O from 'effect/Option'
+import { and, not } from 'effect/Predicate'
 
-import { DATE_RÉFORME } from './constantes'
+import { ANNÉE_DE_NAISSANCE_EXCLUE, DATE_RÉFORME } from './constantes'
 
 export interface EnfantsÀCharge<Prénom extends string = string> {
 	enfants: Array<Enfant<Prénom>>
-	perçoitAeeH: O.Option<boolean>
 	AeeH: O.Option<number>
 }
 
@@ -16,15 +16,20 @@ export interface Enfant<Prénom extends string = string> {
 	prénom: O.Option<Prénom>
 	dateDeNaissance: O.Option<Date>
 }
+export interface EnfantsÀChargeValide<Prénom extends string = string>
+	extends EnfantsÀCharge {
+	enfants: Array<EnfantValide<Prénom>>
+	AeeH: O.Some<number>
+}
 
-export interface EnfantValide extends Enfant {
-	prénom: O.Some<string>
+export interface EnfantValide<Prénom extends string = string> extends Enfant {
+	prénom: O.Some<Prénom>
 	dateDeNaissance: O.Some<Date>
 }
 
 export const estEnfantsÀChargeValide = (
 	enfantsÀCharge: EnfantsÀCharge
-): boolean =>
+): enfantsÀCharge is EnfantsÀChargeValide =>
 	A.isNonEmptyArray(enfantsÀCharge.enfants) &&
 	tousLesEnfantsSontValides(enfantsÀCharge.enfants) &&
 	pasDePrénomEndouble(enfantsÀCharge.enfants) &&
@@ -33,7 +38,7 @@ export const estEnfantsÀChargeValide = (
 export const tousLesEnfantsSontValides = (enfants: Array<Enfant>): boolean =>
 	pipe(enfants, A.every(estEnfantValide))
 
-const estEnfantValide = (enfant: Enfant): enfant is EnfantValide =>
+export const estEnfantValide = (enfant: Enfant): enfant is EnfantValide =>
 	O.isSome(enfant.prénom) &&
 	!!enfant.prénom.value &&
 	O.isSome(enfant.dateDeNaissance) &&
@@ -53,9 +58,7 @@ export const estAeeHValide = (enfantsÀCharge: EnfantsÀCharge): boolean =>
 	estAeeHInférieurOuÉgalAuNombreDEnfants(enfantsÀCharge)
 
 export const estAeeHRépondue = (enfantsÀCharge: EnfantsÀCharge): boolean =>
-	O.isSome(enfantsÀCharge.perçoitAeeH) &&
-	(!enfantsÀCharge.perçoitAeeH.value ||
-		(enfantsÀCharge.perçoitAeeH.value && O.isSome(enfantsÀCharge.AeeH)))
+	O.isSome(enfantsÀCharge.AeeH)
 
 export const estAeeHInférieurOuÉgalAuNombreDEnfants = (
 	enfantsÀCharge: EnfantsÀCharge
@@ -69,38 +72,38 @@ export const estEnfantGardable = (enfant: Enfant): enfant is EnfantValide =>
 export const isEnfantValide = (e: Enfant): e is EnfantValide =>
 	O.isSome(e.prénom) && O.isSome(e.dateDeNaissance)
 
-export const enfantAPlusDe3Ans = (enfant: O.Option<Enfant>): boolean =>
+export const enfantAPlusDe3Ans = (enfant: O.Option<EnfantValide>): boolean =>
 	O.isSome(enfant) &&
-	O.isSome(enfant.value.dateDeNaissance) &&
 	pipe(enfant.value.dateDeNaissance.value, addYears(3), isBefore(DATE_RÉFORME))
 
 export const enfantNéEn = (année: number) => (enfant: Enfant) =>
 	O.isSome(enfant.dateDeNaissance) &&
 	getYear(enfant.dateDeNaissance.value) === année
 
-export const enfantAMoinsDe6Ans = (enfant: Enfant) =>
-	O.isSome(enfant.dateDeNaissance) &&
+export const enfantAMoinsDe6Ans = (enfant: EnfantValide) =>
 	pipe(enfant.dateDeNaissance.value, addYears(6), isAfter(DATE_RÉFORME))
 
 export const getEnfantFromPrénom = dual<
 	<Prénom extends string>(
-		enfants: Array<Enfant<Prénom>>
-	) => (prénom: Prénom) => O.Option<Enfant>,
+		enfants: Array<EnfantValide<Prénom>>
+	) => (prénom: Prénom) => O.Option<EnfantValide>,
 	<Prénom extends string>(
 		prénom: Prénom,
-		enfants: Array<Enfant<Prénom>>
-	) => O.Option<Enfant>
+		enfants: Array<EnfantValide<Prénom>>
+	) => O.Option<EnfantValide>
 >(
 	2,
 	<Prénom extends string>(
 		prénom: Prénom,
-		enfants: Array<Enfant<Prénom>>
-	): O.Option<Enfant> =>
+		enfants: Array<EnfantValide<Prénom>>
+	): O.Option<EnfantValide> =>
 		pipe(
 			enfants,
-			A.findFirst(
-				(enfant: Enfant) =>
-					O.isSome(enfant.prénom) && enfant.prénom.value === prénom
-			)
+			A.findFirst((enfant: EnfantValide) => enfant.prénom.value === prénom)
 		)
+)
+
+export const enfantOuvreDroitAuCMG = and<EnfantValide>(
+	not(enfantNéEn(ANNÉE_DE_NAISSANCE_EXCLUE)),
+	enfantAMoinsDe6Ans
 )

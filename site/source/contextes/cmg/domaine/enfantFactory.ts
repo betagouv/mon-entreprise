@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 
-import { Enfant } from './enfant'
+import { EnfantValide } from './enfant'
 
 export class EnfantFactory {
 	private prénom
@@ -38,6 +38,6 @@ export class EnfantFactory {
 		return {
 			prénom: this.prénom,
 			dateDeNaissance: this.dateDeNaissance,
-		} as const satisfies Enfant
+		} as EnfantValide
 	}
 }
