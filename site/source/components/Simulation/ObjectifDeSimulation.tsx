@@ -107,6 +107,7 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 
 const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
+	font-size: 1rem;
 `
 
 const StyledValue = styled(Body)`

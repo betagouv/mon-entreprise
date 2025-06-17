@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid, SmallBody } from '@/design-system'
+import { Body, Grid, SmallBody } from '@/design-system'
 import { WatchInitialRender } from '@/hooks/useInitialRender'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
@@ -41,7 +41,7 @@ export function SimulationGoals({
 						<div className="sr-only" aria-hidden id="simulator-legend-label">
 							{legend}
 						</div>
-						<SmallBody className="print-hidden" id="simu-update-explaining">
+						<Body className="print-hidden" id="simu-update-explaining">
 							<em>
 								<Trans>
 									Les données de simulations se mettront automatiquement à jour
@@ -54,7 +54,7 @@ export function SimulationGoals({
 									</span>
 								</Trans>
 							</em>
-						</SmallBody>
+						</Body>
 						{children}
 					</ForceThemeProvider>
 				</SimulationGoalsContainer>

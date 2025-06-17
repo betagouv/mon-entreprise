@@ -79,4 +79,5 @@ export const StyledInputSuggestion = styled(SmallBody)`
 	}
 	gap: ${({ theme }) => theme.spacings.sm};
 	flex-wrap: wrap;
+	font-size: 1rem;
 `
