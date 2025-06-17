@@ -11,12 +11,9 @@ import {
 	estDéclarationAMAVide,
 	estDéclarationGEDVide,
 } from '../domaine/déclaration-de-garde'
-import {
-	éligibilité,
-	enfantsGardésOuvrantDroitAuCMG,
-	RaisonInéligibilité,
-} from '../domaine/éligibilité'
+import { éligibilité, RaisonInéligibilité } from '../domaine/éligibilité'
 import { Enfant } from '../domaine/enfant'
+import { enfantsGardésOuvrantDroitAuCMG } from '../domaine/ouverture-droit'
 import { Résultat } from '../domaine/résultat'
 import {
 	auMoinsUneDéclaration,

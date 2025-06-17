@@ -3,8 +3,9 @@ import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import { dual } from 'effect/Function'
 import * as O from 'effect/Option'
+import { and, not } from 'effect/Predicate'
 
-import { DATE_RÉFORME } from './constantes'
+import { ANNÉE_DE_NAISSANCE_EXCLUE, DATE_RÉFORME } from './constantes'
 
 export interface EnfantsÀCharge<Prénom extends string = string> {
 	enfants: Array<Enfant<Prénom>>
@@ -113,4 +114,9 @@ export const getEnfantFromPrénom = dual<
 			enfants,
 			A.findFirst((enfant: EnfantValide) => enfant.prénom.value === prénom)
 		)
+)
+
+export const enfantOuvreDroitAuCMG = and<EnfantValide>(
+	not(enfantNéEn(ANNÉE_DE_NAISSANCE_EXCLUE)),
+	enfantAMoinsDe6Ans
 )

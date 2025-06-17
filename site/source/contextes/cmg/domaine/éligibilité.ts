@@ -3,14 +3,12 @@ import * as A from 'effect/Array'
 import * as E from 'effect/Either'
 import * as N from 'effect/Number'
 import * as O from 'effect/Option'
-import { and, not } from 'effect/Predicate'
 import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
 
 import { calculeComplémentTransitoire } from './calcul'
 import {
-	ANNÉE_DE_NAISSANCE_EXCLUE,
 	MAJORATION_PAR_ENFANT,
 	MAJORATION_PARENT_ISOLÉ,
 	NOMBRE_MIN_MOIS_EMPLOYEUREUSE,
@@ -22,12 +20,11 @@ import {
 	toutesLesDéclarations,
 } from './déclaration-de-garde'
 import {
-	enfantAMoinsDe6Ans,
-	enfantNéEn,
+	enfantOuvreDroitAuCMG,
 	EnfantValide,
 	estEnfantsÀChargeValide,
-	getEnfantFromPrénom,
 } from './enfant'
+import { enfantsGardésOuvrantDroitAuCMG } from './ouverture-droit'
 import { Salariée } from './salariée'
 import {
 	estInformationsValides,
@@ -370,48 +367,6 @@ export const auMoinsUnEnfantGardéOuvrantDroitAuCMG = (
 	situation: SituationCMG
 ): boolean => A.isNonEmptyArray(enfantsGardésOuvrantDroitAuCMG(situation))
 
-export const enfantsGardésOuvrantDroitAuCMG = (
-	situation: SituationCMG
-): EnfantValide[] => {
-	const enfantsOuvrantDroit: EnfantValide[] = []
-
-	if (!estSituationCMGValide(situation)) {
-		return enfantsOuvrantDroit
-	}
-
-	// Si GED : enfants **à charge** ouvrant droit
-	if (A.isNonEmptyArray(situation.salariées.GED)) {
-		enfantsOuvrantDroit.push(
-			...A.filter(situation.enfantsÀCharge.enfants, enfantOuvreDroitAuCMG)
-		)
-	}
-	// Si AMA : enfants **gardés** ouvrant droit
-	if (A.isNonEmptyArray(situation.salariées.AMA)) {
-		enfantsOuvrantDroit.push(
-			...A.filter(enfantsGardésEnAMA(situation), enfantOuvreDroitAuCMG)
-		)
-	}
-
-	return A.dedupe(enfantsOuvrantDroit)
-}
-
-const enfantsGardésEnAMA = (situation: SituationCMGValide): EnfantValide[] =>
-	pipe(
-		situation.salariées.AMA,
-		A.flatMap((s) => R.values(s)),
-		A.getSomes,
-		A.map((d) => d.enfantsGardés),
-		A.flatten,
-		A.dedupe,
-		A.map(getEnfantFromPrénom(situation.enfantsÀCharge.enfants)),
-		A.getSomes
-	)
-
 const auMoinsUnEnfantÀChargeOuvrantDroitAuCMG = (
 	enfants: Array<EnfantValide>
 ): boolean => A.some(enfants, enfantOuvreDroitAuCMG)
-
-export const enfantOuvreDroitAuCMG = and<EnfantValide>(
-	not(enfantNéEn(ANNÉE_DE_NAISSANCE_EXCLUE)),
-	enfantAMoinsDe6Ans
-)
