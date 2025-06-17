@@ -41,8 +41,13 @@ export default function EntrepriseSelection() {
 
 					<LectureGuide />
 
-					<Grid item onClick={() => setSearchVisible(!isSearchVisible)}>
-						<ValueBody>
+					<Grid item>
+						<DisclosureButton
+							as="button"
+							onClick={() => setSearchVisible(!isSearchVisible)}
+							aria-expanded={isSearchVisible}
+							aria-controls="entreprise-search-panel"
+						>
 							{companySIREN ? (
 								<>
 									<Value expression="entreprise . nom" linkToRule={false} />
@@ -51,7 +56,6 @@ export default function EntrepriseSelection() {
 							) : (
 								<>
 									<span
-										role="button"
 										aria-label={t(
 											"Rechercher, afficher le champ de recherche d'entreprise."
 										)}
@@ -61,16 +65,18 @@ export default function EntrepriseSelection() {
 									<SearchIcon aria-hidden />
 								</>
 							)}
-						</ValueBody>
+						</DisclosureButton>
 					</Grid>
 				</Grid>
 				<WrongSimulateurWarning />
 			</EntrepriseRecap>
-			{isSearchVisible && (
-				<Appear>
-					<EntrepriseInput onSubmit={() => setSearchVisible(false)} />
-				</Appear>
-			)}
+			<div aria-controls="entreprise-search-panel">
+				{isSearchVisible && (
+					<Appear>
+						<EntrepriseInput onSubmit={() => setSearchVisible(false)} />
+					</Appear>
+				)}
+			</div>
 		</Container>
 	)
 }
@@ -131,8 +137,7 @@ const TitleBody = styled(Body)`
 	font-weight: bold;
 `
 
-const ValueBody = styled(Body)`
-	cursor: pointer;
+const DisclosureButton = styled(Body)`
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
@@ -140,6 +145,9 @@ const ValueBody = styled(Body)`
 	display: flex;
 	align-items: center;
 	gap: ${({ theme }) => theme.spacings.xs};
+	border: none;
+	background: transparent;
+	cursor: pointer;
 `
 
 const IconStyle = css`
