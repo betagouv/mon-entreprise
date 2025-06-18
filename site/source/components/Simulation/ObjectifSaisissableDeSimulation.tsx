@@ -129,6 +129,7 @@ const GridCentered = styled(Grid)`
 
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		grid-template-columns: 1fr;
+		gap: 0.5rem;
 
 		& > div {
 			text-align: left;
