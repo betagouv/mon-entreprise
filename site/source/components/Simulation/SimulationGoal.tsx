@@ -40,7 +40,7 @@ export function SimulationGoal({
 	round = true,
 	appear = true,
 	editable = true,
-	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
+	isTypeBoolean = false,
 	isInfoMode = false,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()

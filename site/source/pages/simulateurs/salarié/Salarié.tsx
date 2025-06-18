@@ -48,13 +48,6 @@ export default function SalariéSimulation() {
 						<Trans i18nKey="simulation-end.hiring.text">
 							Vous pouvez maintenant concrétiser votre projet d'embauche.
 						</Trans>
-						{/* <ButtonContainer>
-							<Button to={absoluteSitePaths.assistants.embaucher}>
-								<Trans i18nKey="simulation-end.cta">
-									Connaître les démarches
-								</Trans>
-							</Button>
-						</ButtonContainer> */}
 					</>
 				}
 				afterQuestionsSlot={
