@@ -30,15 +30,15 @@ export default function Enfants() {
 	const { t } = useTranslation()
 	const { raisonsInéligibilité, situation, enfants, set } = useCMG()
 
-	if (!estInformationsValides(situation)) {
-		navigate('/assistants/cmg', { replace: true })
-	}
-
-	if (raisonsInéligibilité.length) {
-		navigate('/assistants/cmg/inéligible', { replace: true })
-	}
-
 	useEffect(() => {
+		if (!estInformationsValides(situation)) {
+			navigate('/assistants/cmg', { replace: true })
+		}
+
+		if (raisonsInéligibilité.length) {
+			navigate('/assistants/cmg/inéligible', { replace: true })
+		}
+
 		if (!enfants.length) {
 			set.nouvelEnfant()
 		}

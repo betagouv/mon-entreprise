@@ -1,4 +1,5 @@
 import * as O from 'effect/Option'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
@@ -13,20 +14,21 @@ import {
 	SmallBody,
 	Strong,
 } from '@/design-system'
-import { toString as formatMontant } from '@/domaine/Montant'
+import { euros, toString as formatMontant } from '@/domaine/Montant'
 
 export default function Résultat() {
 	const navigate = useNavigate()
 	const { montantCT, set } = useCMG()
 	const { t } = useTranslation()
 
-	if (!O.isSome(montantCT) || !montantCT.value) {
-		navigate('/assistants/cmg/inéligible', { replace: true })
+	useEffect(() => {
+		if (!O.isSome(montantCT) || !montantCT.value) {
+			navigate('/assistants/cmg/inéligible', { replace: true })
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
-		return
-	}
-
-	const amount = formatMontant(montantCT.value)
+	const amount = formatMontant(O.getOrElse(montantCT, () => euros(0)))
 
 	return (
 		<>
