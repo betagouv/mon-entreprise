@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
@@ -12,9 +13,12 @@ export default function NonÉligible() {
 		useCMG()
 	const { t } = useTranslation()
 
-	if (!raisonsInéligibilité.length) {
-		navigate('/assistants/cmg', { replace: true })
-	}
+	useEffect(() => {
+		if (!raisonsInéligibilité.length) {
+			navigate('/assistants/cmg', { replace: true })
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,16 +26,19 @@ export default function Déclarations() {
 	const { raisonsInéligibilité, situation, salariéesAMA, salariéesGED } =
 		useCMG()
 
-	if (
-		!estInformationsValides(situation) ||
-		!estEnfantsÀChargeValide(situation.enfantsÀCharge)
-	) {
-		navigate('/assistants/cmg', { replace: true })
-	}
+	useEffect(() => {
+		if (
+			!estInformationsValides(situation) ||
+			!estEnfantsÀChargeValide(situation.enfantsÀCharge)
+		) {
+			navigate('/assistants/cmg', { replace: true })
+		}
 
-	if (raisonsInéligibilité.length) {
-		navigate('/assistants/cmg/inéligible', { replace: true })
-	}
+		if (raisonsInéligibilité.length) {
+			navigate('/assistants/cmg/inéligible', { replace: true })
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	const isSuivantDisabled = !estSalariéesValide(situation.salariées)
 
