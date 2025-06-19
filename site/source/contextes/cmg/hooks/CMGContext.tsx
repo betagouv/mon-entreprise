@@ -6,8 +6,17 @@ import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 type SituationContextType = {
 	situation: SituationCMG
 	updateSituation: (updater: (prev: SituationCMG) => SituationCMG) => void
+	moisIdentiques: MoisIdentiques
+	updateMoisIdentiques: (
+		updater: (prev: MoisIdentiques) => MoisIdentiques
+	) => void
 	résultat: Résultat
 	updateRésultat: (updater: (prev: Résultat) => Résultat) => void
+}
+
+export type MoisIdentiques = {
+	GED: Array<boolean>
+	AMA: Array<boolean>
 }
 
 const SituationContext = createContext<SituationContextType | null>(null)
@@ -16,10 +25,20 @@ export const CMGProvider: React.FC<{
 	children: React.ReactNode
 }> = ({ children }) => {
 	const [situation, setSituation] = useState<SituationCMG>(initialSituationCMG)
+	const [moisIdentiques, setMoisIdentiques] = useState<MoisIdentiques>({
+		GED: [],
+		AMA: [],
+	})
 	const [résultat, setRésultat] = useState<Résultat>(initialRésultat)
 
 	const updateSituation = (updater: (prev: SituationCMG) => SituationCMG) => {
 		setSituation(updater)
+	}
+
+	const updateMoisIdentiques = (
+		updater: (prev: MoisIdentiques) => MoisIdentiques
+	) => {
+		setMoisIdentiques(updater)
 	}
 
 	const updateRésultat = (updater: (prev: Résultat) => Résultat) => {
@@ -31,6 +50,8 @@ export const CMGProvider: React.FC<{
 			value={{
 				situation,
 				updateSituation,
+				moisIdentiques,
+				updateMoisIdentiques,
 				résultat,
 				updateRésultat,
 			}}

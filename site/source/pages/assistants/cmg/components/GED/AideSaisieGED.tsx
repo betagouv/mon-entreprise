@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 import AideSaisieCMG from '../déclaration/AideSaisieCMG'
 import AideSaisieHeuresDeGarde from '../déclaration/AideSaisieHeuresDeGarde'
 import AideSaisieRémunération from '../déclaration/AideSaisieRémunération'
+import { MobileHidden } from '../styled-components'
 
 export default function AideSaisieGED() {
 	return (
@@ -13,21 +14,21 @@ export default function AideSaisieGED() {
 			<MobileHiddenContainer>
 				<AideSaisieRémunération />
 			</MobileHiddenContainer>
-			<MobileHiddenContainer>
+			<AideSaisieCMGContainer>
 				<AideSaisieCMG />
-			</MobileHiddenContainer>
+			</AideSaisieCMGContainer>
 		</>
 	)
 }
 
 const AideSaisieHeuresDeGardeContainer = styled.div`
 	grid-row-start: 2;
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		display: none;
-	}
+	${MobileHidden}
+`
+const AideSaisieCMGContainer = styled.div`
+	grid-row: span 2;
+	${MobileHidden}
 `
 const MobileHiddenContainer = styled.div`
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		display: none;
-	}
+	${MobileHidden}
 `

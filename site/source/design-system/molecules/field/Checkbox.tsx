@@ -14,7 +14,9 @@ export function Checkbox(
 			| { children: string }
 			| { 'aria-labelledby': string }
 			| { 'aria-label': string }
-		)
+		) & {
+			alignment?: 'center' | 'start' | 'end'
+		}
 ) {
 	const label =
 		'label' in props
@@ -25,11 +27,12 @@ export function Checkbox(
 	const state = useToggleState(props)
 	const ref = useRef<HTMLInputElement | null>(null)
 	const { inputProps } = useCheckbox(props, state, ref)
+	const alignment = props.alignment ?? 'center'
 
 	return (
 		<CheckboxContainer>
 			<input type="checkbox" className="sr-only" ref={ref} {...inputProps} />
-			<VisibleContainer>
+			<VisibleContainer $alignItems={alignment}>
 				<CheckboxVisualContainer aria-hidden>
 					<CheckboxVisual viewBox="0 0 18 18">
 						<polyline points="1 9 7 14 15 4" />
@@ -111,13 +114,15 @@ const CheckboxVisualContainer = styled.span`
 	}
 `
 
-const VisibleContainer = styled.span`
+const VisibleContainer = styled.span<{
+	$alignItems: 'center' | 'start' | 'end'
+}>`
 	display: inline-flex;
 	z-index: 1;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	padding: 0 ${({ theme }) => theme.spacings.sm};
 	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
-	align-items: center;
+	align-items: ${({ $alignItems }) => $alignItems};
 `
 const LabelBody = styled(Body)`
 	margin: ${({ theme }) => theme.spacings.xs} 0px;
