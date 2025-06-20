@@ -105,7 +105,7 @@ export function Popover(
 											}
 										}}
 										ref={ref}
-										aria-label={title || ariaLabel}
+										aria-label={ariaLabel || title}
 										data-cy="modal"
 										aria-modal={true}
 									>
