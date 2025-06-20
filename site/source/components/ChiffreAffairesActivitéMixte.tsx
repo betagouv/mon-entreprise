@@ -5,7 +5,7 @@ import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
 import { useCallback } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -48,7 +48,6 @@ export default function ChiffreAffairesActivitéMixte({
 }) {
 	const adjustProportions = useAdjustProportions(dottedName)
 	const dispatch = useDispatch()
-	const { t } = useTranslation()
 	const clearChiffreAffaireMixte = useCallback(() => {
 		dispatch(
 			batchUpdateSituation(
@@ -62,7 +61,6 @@ export default function ChiffreAffairesActivitéMixte({
 
 	return (
 		<fieldset>
-			<legend className="sr-only">{t("Chiffre d'affaires")}</legend>
 			<SimulationGoal
 				appear={false}
 				onUpdateSituation={clearChiffreAffaireMixte}
@@ -71,16 +69,18 @@ export default function ChiffreAffairesActivitéMixte({
 			<WhenApplicable dottedName="entreprise . activités . revenus mixtes">
 				<FromTop>
 					<ActivitéMixte />
-					<Condition expression="entreprise . activités . revenus mixtes">
-						{Object.values(proportions).map((chiffreAffaires) => (
-							<SimulationGoal
-								small
-								key={chiffreAffaires}
-								onUpdateSituation={adjustProportions}
-								dottedName={chiffreAffaires}
-							/>
-						))}
-					</Condition>
+					<ConditionWrapper>
+						<Condition expression="entreprise . activités . revenus mixtes">
+							{Object.values(proportions).map((chiffreAffaires) => (
+								<SimulationGoal
+									small
+									key={chiffreAffaires}
+									onUpdateSituation={adjustProportions}
+									dottedName={chiffreAffaires}
+								/>
+							))}
+						</Condition>
+					</ConditionWrapper>
 				</FromTop>
 			</WhenApplicable>
 		</fieldset>
@@ -189,10 +189,18 @@ const StyledActivitéMixteContainer = styled.div`
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		text-align: right;
-		margin-top: -1.5rem;
 		position: relative;
 		z-index: 2;
-		display: flex;
-		align-items: center;
+	}
+`
+const ConditionWrapper = styled.div`
+	margin-top: 0.75rem;
+
+	& > div {
+		height: auto !important;
+
+		& > div > div > div > div {
+			margin-top: 0.75rem;
+		}
 	}
 `

@@ -36,7 +36,6 @@ export default function IndépendantSimulation() {
 					}
 				/>
 				<IndépendantSimulationGoals
-					legend="Vos revenus d'indépendant"
 					toggles={
 						<>
 							<RuleInput

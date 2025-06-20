@@ -87,10 +87,7 @@ function OptionBarèmeSwitch() {
 }
 
 const DividendesSimulationGoals = () => (
-	<SimulationGoals
-		toggles={<OptionBarèmeSwitch />}
-		legend="Les dividendes de l'entreprise"
-	>
+	<SimulationGoals toggles={<OptionBarèmeSwitch />}>
 		<Condition expression="entreprise . imposition = 'IS'">
 			<SimulationGoal
 				appear={false}
