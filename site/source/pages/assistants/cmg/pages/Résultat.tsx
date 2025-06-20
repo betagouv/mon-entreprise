@@ -61,7 +61,7 @@ export default function Résultat() {
 				<Button
 					size="XS"
 					light
-					onClick={set.reset}
+					onPress={set.reset}
 					to={getPath('assistants.cmg')}
 				>
 					{t(

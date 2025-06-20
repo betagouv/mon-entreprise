@@ -49,7 +49,7 @@ export default function NonÉligible() {
 				<Button
 					size="XS"
 					light
-					onClick={set.reset}
+					onPress={set.reset}
 					to={getPath('assistants.cmg')}
 				>
 					{t(

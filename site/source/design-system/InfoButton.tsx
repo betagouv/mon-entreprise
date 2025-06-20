@@ -21,8 +21,8 @@ export function InfoButton({
 	bigPopover,
 	children,
 	className,
+	onClick,
 	'aria-label': ariaLabel,
-	...props
 }: InfoButtonProps) {
 	if (!description && !children) {
 		return null
@@ -37,7 +37,7 @@ export function InfoButton({
 			className={className || 'print-hidden'}
 			aria-haspopup="dialog"
 			aria-label={ariaLabel ?? `Plus d'informations sur ${title}`}
-			{...props}
+			onClick={onClick}
 		>
 			{description && typeof description === 'string' ? (
 				<Markdown>{description}</Markdown>
