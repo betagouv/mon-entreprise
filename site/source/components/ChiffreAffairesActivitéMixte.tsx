@@ -189,7 +189,6 @@ const StyledActivitéMixteContainer = styled.div`
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		text-align: right;
-		// margin-top: -1.5rem;
 		position: relative;
 		z-index: 2;
 	}
