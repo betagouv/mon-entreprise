@@ -54,9 +54,7 @@ export type RégularisationMethod = 'annuelle' | 'progressive'
 
 export type SituationType = SituationPublicodes & {
 	[heuresSupplémentairesDottedName]?: {
-		explanation: {
-			nodeValue: number
-		}
+		nodeValue: number
 	}
 	[heuresComplémentairesDottedName]?: {
 		valeur: number
@@ -493,9 +491,9 @@ const getOptionsFromSituations = (
 	const options = {} as Partial<Options>
 
 	const previousHeuresSupplémentaires =
-		previousSituation[heuresSupplémentairesDottedName]?.explanation.nodeValue
+		previousSituation[heuresSupplémentairesDottedName]?.nodeValue
 	const newHeuresSupplémentaires =
-		newSituation[heuresSupplémentairesDottedName]?.explanation.nodeValue
+		newSituation[heuresSupplémentairesDottedName]?.nodeValue
 	if (newHeuresSupplémentaires !== previousHeuresSupplémentaires) {
 		options.heuresSupplémentaires = newHeuresSupplémentaires || 0
 	}
