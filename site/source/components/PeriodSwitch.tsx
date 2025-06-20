@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Radio, ToggleGroup } from '@/design-system'
+import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
 import { updateUnit } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -38,23 +38,37 @@ export default function PeriodSwitch({ periods }: Props) {
 	)
 
 	return (
-		<div>
-			<ToggleGroup
-				value={currentUnit}
-				onChange={onChange}
-				mode="tab"
-				hideRadio
-				aria-label={t("Mode d'affichage")}
-			>
-				{periodsValue.map(({ label, unit }) => (
-					<span
-						key={unit}
-						className={currentUnit !== unit ? 'print-hidden' : ''}
-					>
-						<Radio value={unit}>{label}</Radio>
-					</span>
-				))}
-			</ToggleGroup>
-		</div>
+		<Grid
+			container
+			style={{
+				alignItems: 'baseline',
+				justifyContent: 'space-between',
+			}}
+			spacing={2}
+			as="fieldset"
+		>
+			<Grid item md="auto" sm={9} xs={8}>
+				<TitreObjectif noWrap={true}>
+					<legend>Période de calcul</legend>
+				</TitreObjectif>
+			</Grid>
+
+			<Grid item>
+				<ToggleGroup
+					value={currentUnit}
+					onChange={onChange}
+					aria-label={t("Mode d'affichage")}
+				>
+					{periodsValue.map(({ label, unit }) => (
+						<span
+							key={unit}
+							className={currentUnit !== unit ? 'print-hidden' : ''}
+						>
+							<Radio value={unit}>{label}</Radio>
+						</span>
+					))}
+				</ToggleGroup>
+			</Grid>
+		</Grid>
 	)
 }

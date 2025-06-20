@@ -249,10 +249,8 @@ export const SeoExplanations = () => {
 
 function SalariéSimulationGoals() {
 	return (
-		<SimulationGoals
-			toggles={<PeriodSwitch />}
-			legend="Rémunération du salarié"
-		>
+		<SimulationGoals legend="Rémunération du salarié">
+			<PeriodSwitch />
 			<SimulationGoal dottedName="salarié . coût total employeur" />
 			<AidesGlimpse />
 
