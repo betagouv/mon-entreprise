@@ -10,7 +10,7 @@ export default function DeleteButton({ onDelete }: Props) {
 	const { t } = useTranslation()
 
 	return (
-		<Button size="XXS" light onClick={onDelete}>
+		<Button size="XXS" light onPress={onDelete}>
 			{t('Supprimer')}
 		</Button>
 	)
