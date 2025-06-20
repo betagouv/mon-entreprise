@@ -57,7 +57,7 @@ export default function Résultat() {
 			</Trans>
 
 			<ButtonContainer>
-				<Button size="XS" light onClick={set.reset} to="/assistants/cmg">
+				<Button size="XS" light onPress={set.reset} to="/assistants/cmg">
 					{t(
 						'pages.assistants.cmg.nouvelle-simulation',
 						'Faire une nouvelle simulation'

@@ -106,7 +106,7 @@ export const Accordion = <T extends object>(
 						<Grid item>
 							<StyledFoldButton
 								underline
-								onClick={() => (allItemsOpen ? closeAll() : openAll())}
+								onPress={() => (allItemsOpen ? closeAll() : openAll())}
 							>
 								<StyledChevronIcon $isOpen={allItemsOpen} />
 								{allItemsOpen ? (

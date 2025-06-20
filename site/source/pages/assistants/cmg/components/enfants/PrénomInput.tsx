@@ -22,7 +22,7 @@ export default function PrénomInput({ idSuffix, valeur, onChange }: Props) {
 				{t('pages.assistants.cmg.enfants.prénom.label', 'Prénom')}
 			</Label>
 			<StyledTextField
-				value={O.getOrUndefined(valeur)}
+				value={O.getOrElse(valeur, () => '')}
 				onChange={(valeur) => onChange(O.fromNullable(valeur))}
 				aria-labelledby={`prénom-label-${idSuffix}`}
 			/>

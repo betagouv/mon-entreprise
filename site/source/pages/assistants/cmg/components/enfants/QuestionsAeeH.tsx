@@ -14,7 +14,7 @@ export default function QuestionsAeeH() {
 
 	const valeur = useMemo(() => {
 		if (O.isNone(perçoitAeeH)) {
-			return undefined
+			return ''
 		} else if (perçoitAeeH.value) {
 			return 'oui'
 		} else {

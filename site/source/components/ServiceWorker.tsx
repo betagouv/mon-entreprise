@@ -114,14 +114,14 @@ export const ServiceWorker = () => {
 						<Button
 							light
 							size="XXS"
-							onClick={() => void updateServiceWorker(true)}
+							onPress={() => void updateServiceWorker(true)}
 						>
 							{t('Recharger')}
 						</Button>
 					</StyledSmallBody>
 
 					<StyledClosedButton
-						onClick={() => setNeedRefresh(false)}
+						onPress={() => setNeedRefresh(false)}
 						aria-label={t('Fermer')}
 					/>
 				</StyledMessage>
