@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -8,10 +8,13 @@ import { PopoverWithTrigger } from '../popover/PopoverWithTrigger'
 type HelpButtonProps = {
 	type: 'aide' | 'info'
 	title: string
-	children: React.ReactNode
+	description?: string | ReactNode
 	light?: boolean
 	bigPopover?: boolean
+	children: React.ReactNode
 	className?: string
+	onClick?: () => void
+	'aria-label'?: string
 }
 
 export function HelpButtonWithPopover({
@@ -21,7 +24,8 @@ export function HelpButtonWithPopover({
 	light,
 	bigPopover,
 	className,
-	...props
+	onClick,
+	'aria-label': ariaLabel,
 }: HelpButtonProps) {
 	return (
 		<PopoverWithTrigger
@@ -30,8 +34,10 @@ export function HelpButtonWithPopover({
 					$light={light}
 					className={className}
 					aria-haspopup="dialog"
+					aria-label={ariaLabel}
+					onPress={onClick}
+					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...buttonProps}
-					{...props}
 				>
 					<CircleIcon aria-hidden width="24" height="24" viewBox="0 0 24 24">
 						{type === 'info' ? (

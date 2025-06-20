@@ -14,7 +14,7 @@ export default function QuestionNombreMoisDéclarationsSuffisant() {
 
 	const valeur = useMemo(() => {
 		if (O.isNone(situation.plusDe2MoisDeDéclaration)) {
-			return undefined
+			return ''
 		} else if (situation.plusDe2MoisDeDéclaration.value) {
 			return 'oui'
 		} else {

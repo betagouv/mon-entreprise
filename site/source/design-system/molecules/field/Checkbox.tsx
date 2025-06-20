@@ -7,25 +7,28 @@ import { styled } from 'styled-components'
 import { FocusStyle } from '../../global-style'
 import { Body } from '../../typography/paragraphs'
 
-export function Checkbox(
-	props: AriaCheckboxProps &
-		(
-			| { id: string }
-			| { label: string }
-			| { children: string }
-			| { 'aria-labelledby': string }
-			| { 'aria-label': string }
-		)
-) {
+type Props = AriaCheckboxProps & {
+	id: string
+	label?: string
+	children?: string
+}
+
+export function Checkbox(props: Props) {
 	const label =
-		'label' in props
-			? props.label
-			: 'children' in props
-			? props.children
-			: false
+		'label' in props ? props.label : 'children' in props ? props.children : ''
 	const state = useToggleState(props)
 	const ref = useRef<HTMLInputElement | null>(null)
-	const { inputProps } = useCheckbox(props, state, ref)
+	const { inputProps } = useCheckbox(
+		{
+			...props,
+			// On ajoute cette propriété pour éviter l'avertissement
+			// "If you do not provide children, you must specify an
+			// aria-label for accessibility"
+			children: label,
+		},
+		state,
+		ref
+	)
 
 	return (
 		<CheckboxContainer htmlFor={props.id}>
@@ -34,6 +37,7 @@ export function Checkbox(
 				type="checkbox"
 				className="sr-only"
 				ref={ref}
+				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...inputProps}
 			/>
 			<VisibleContainer>
@@ -42,7 +46,7 @@ export function Checkbox(
 						<polyline points="1 9 7 14 15 4" />
 					</CheckboxVisual>
 				</CheckboxVisualContainer>
-				{label && <LabelBody as="span"> {label}</LabelBody>}
+				{label && <LabelBody as="span">{label}</LabelBody>}
 			</VisibleContainer>
 		</CheckboxContainer>
 	)
