@@ -3,11 +3,14 @@ import { styled } from 'styled-components'
 
 import { useCMG } from '@/contextes/cmg'
 import { Button, FlexCenter } from '@/design-system'
-import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
+import { useGetPath } from '@/hooks/useGetPath'
+import { RelativeSitePaths } from '@/sitePaths'
+
+type CMGPage = keyof RelativeSitePaths['assistants']['cmg']
 
 type Props = {
-	précédent?: keyof RelativeSitePaths['assistants']['cmg']
-	suivant?: keyof RelativeSitePaths['assistants']['cmg']
+	précédent?: CMGPage
+	suivant?: CMGPage
 	isSuivantDisabled?: boolean
 }
 
@@ -16,15 +19,17 @@ export default function Navigation({
 	suivant,
 	isSuivantDisabled,
 }: Props) {
-	const { absoluteSitePaths } = useSitePaths()
-	const cmgPaths = absoluteSitePaths.assistants.cmg
 	const { submit } = useCMG()
 	const { t } = useTranslation()
+	const getPath = useGetPath()
+
+	const getCMGPath = (page: CMGPage) =>
+		getPath(`assistants.cmg.${page}` as const)
 
 	return (
 		<Container>
 			{précédent && (
-				<Button size="XS" light to={cmgPaths[précédent]}>
+				<Button size="XS" light to={getCMGPath(précédent)}>
 					{t('Précédent')}
 				</Button>
 			)}
@@ -32,7 +37,7 @@ export default function Navigation({
 				<Button
 					size="XS"
 					onClick={submit}
-					to={cmgPaths[suivant]}
+					to={getCMGPath(suivant)}
 					isDisabled={isSuivantDisabled}
 				>
 					{t('Suivant')}
