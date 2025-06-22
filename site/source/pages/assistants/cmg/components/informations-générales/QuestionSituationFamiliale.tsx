@@ -14,7 +14,7 @@ export default function QuestionSituationFamiliale() {
 
 	const valeur = useMemo(() => {
 		if (O.isNone(situation.parentIsolé)) {
-			return undefined
+			return ''
 		} else if (situation.parentIsolé.value) {
 			return 'parent-isolé'
 		} else {

@@ -14,7 +14,7 @@ export default function QuestionCMGPerçu() {
 
 	const valeur = useMemo(() => {
 		if (O.isNone(situation.aPerçuCMG)) {
-			return undefined
+			return ''
 		} else if (situation.aPerçuCMG.value) {
 			return 'oui'
 		} else {
