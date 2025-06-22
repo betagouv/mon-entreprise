@@ -32,7 +32,7 @@ export default function AMA() {
 				<AMAInput
 					key={index}
 					number={index + 1}
-					idSuffix={`${index}`}
+					idSuffix={`AMA-${index}`}
 					salariée={salariéeAMA}
 					onChange={onChange(index)}
 					onDelete={onDelete(index)}

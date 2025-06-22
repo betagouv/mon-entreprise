@@ -96,7 +96,7 @@ export default function DéclarationAMAInput({
 				</DesktopHiddenContainer>
 			)}
 			<EnfantsGardésInput
-				mois={month}
+				idSuffix={idSuffix}
 				enfantsGardés={currentDéclaration.enfantsGardés}
 				onChange={onEnfantsGardésChange}
 			/>
