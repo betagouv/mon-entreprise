@@ -32,7 +32,7 @@ export default function GED() {
 				<GEDInput
 					key={index}
 					number={index + 1}
-					idSuffix={`${index}`}
+					idSuffix={`GED-${index}`}
 					salariée={salariéeGED}
 					onChange={onChange(index)}
 					onDelete={onDelete(index)}

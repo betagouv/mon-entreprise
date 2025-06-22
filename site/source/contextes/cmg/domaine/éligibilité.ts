@@ -28,6 +28,7 @@ import {
 	estEnfantsÀChargeValide,
 	getEnfantFromPrénom,
 } from './enfant'
+import { Mois } from './Mois'
 import { Salariée } from './salariée'
 import {
 	estInformationsValides,
@@ -317,7 +318,7 @@ const construireHistorique = (
 
 const déclarationsPourLeMois = (
 	salariées: Array<Salariée>,
-	mois: keyof Salariée
+	mois: Mois
 ): Array<DéclarationDeGarde> =>
 	pipe(
 		salariées,

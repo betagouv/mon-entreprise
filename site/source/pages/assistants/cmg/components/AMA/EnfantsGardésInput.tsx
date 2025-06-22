@@ -4,20 +4,20 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { EnfantValide, estEnfantGardable, Mois, useCMG } from '@/contextes/cmg'
+import { EnfantValide, estEnfantGardable, useCMG } from '@/contextes/cmg'
 import { Checkbox } from '@/design-system'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import { Label } from '../styled-components'
 
 type Props = {
-	mois: Mois
+	idSuffix: string
 	enfantsGardés: Array<string>
 	onChange: ChangeHandler<Array<string>>
 }
 
 export default function EnfantsGardésInput({
-	mois,
+	idSuffix,
 	enfantsGardés,
 	onChange,
 }: Props) {
@@ -54,7 +54,7 @@ export default function EnfantsGardésInput({
 				{enfantsGardables.map((enfant, index) => (
 					<Checkbox
 						key={index}
-						id={`checkbox-enfant-${index}-${mois}`}
+						id={`${idSuffix}-enfant-${index}`}
 						label={enfant.prénom.value}
 						isSelected={isEnfantGardé(enfant)}
 						onChange={onCheckboxChange(enfant.prénom.value)}

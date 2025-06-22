@@ -1,3 +1,6 @@
+import { pipe } from 'effect'
+import * as A from 'effect/Array'
+import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
@@ -40,22 +43,25 @@ export default function GEDInput({
 			</TitreContainer>
 			<InputsContainer>
 				<AideSaisieGED />
-				{Object.keys(salariée).map((month) => (
-					<DéclarationGEDInput
-						key={month}
-						idSuffix={`${idSuffix}-${month}`}
-						month={month}
-						déclaration={salariée[month as keyof SalariéeGED]}
-						onChange={(value) =>
-							onChange({
-								...salariée,
-								[month]: value,
-							})
-						}
-						avecAideSaisie={month === 'mars'}
-						avecEspacement={month !== 'mars'}
-					/>
-				))}
+				{pipe(
+					salariée,
+					R.keys,
+					A.map((month) => (
+						<DéclarationGEDInput
+							key={month}
+							idSuffix={`${idSuffix}-${month}`}
+							month={month}
+							déclaration={salariée[month]}
+							onChange={(value) =>
+								onChange({
+									...salariée,
+									[month]: value,
+								})}
+							avecAideSaisie={month === 'mars'}
+							avecEspacement={month !== 'mars'}
+						/>
+					))
+				)}
 			</InputsContainer>
 		</>
 	)
