@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 import { useMemo } from 'react'
 import { css, styled } from 'styled-components'
 
-import { DéclarationDeGardeAMA } from '@/contextes/cmg'
+import { DéclarationDeGardeAMA, Mois } from '@/contextes/cmg'
 import { Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
@@ -18,7 +18,7 @@ import EnfantsGardésInput from './EnfantsGardésInput'
 
 type Props = {
 	idSuffix: string
-	month: string
+	month: Mois
 	déclaration: O.Option<DéclarationDeGardeAMA<string>>
 	onChange: ChangeHandler<O.Option<DéclarationDeGardeAMA<string>>>
 	avecAideSaisie?: boolean
@@ -96,6 +96,7 @@ export default function DéclarationAMAInput({
 				</DesktopHiddenContainer>
 			)}
 			<EnfantsGardésInput
+				mois={month}
 				enfantsGardés={currentDéclaration.enfantsGardés}
 				onChange={onEnfantsGardésChange}
 			/>

@@ -1,3 +1,6 @@
+import { pipe } from 'effect'
+import * as A from 'effect/Array'
+import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
@@ -40,22 +43,26 @@ export default function AMAInput({
 			</TitreContainer>
 			<InputsContainer>
 				<AideSaisieAMA />
-				{Object.keys(salariée).map((month) => (
-					<DéclarationAMAInput
-						key={month}
-						idSuffix={`${idSuffix}-${month}`}
-						month={month}
-						déclaration={salariée[month as keyof SalariéeAMA<string>]}
-						onChange={(value) =>
-							onChange({
-								...salariée,
-								[month]: value,
-							})
-						}
-						avecAideSaisie={month === 'mars'}
-						avecEspacement={month !== 'mars'}
-					/>
-				))}
+				{pipe(
+					salariée,
+					R.keys,
+					A.map((month) => (
+						<DéclarationAMAInput
+							key={month}
+							idSuffix={`${idSuffix}-${month}`}
+							month={month}
+							déclaration={salariée[month]}
+							onChange={(value) =>
+								onChange({
+									...salariée,
+									[month]: value,
+								})
+							}
+							avecAideSaisie={month === 'mars'}
+							avecEspacement={month !== 'mars'}
+						/>
+					))
+				)}
 			</InputsContainer>
 		</>
 	)

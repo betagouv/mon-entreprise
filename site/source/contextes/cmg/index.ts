@@ -9,6 +9,7 @@ export {
 export { CMGProvider } from './hooks/CMGContext'
 export { useCMG } from './hooks/useCMG'
 export type { Enfant, EnfantValide } from './domaine/enfant'
+export type { Mois } from './domaine/Mois'
 export {
 	estEnfantsÀChargeValide,
 	estEnfantGardable,
