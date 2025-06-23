@@ -6,12 +6,15 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 import { Body, Button, FlexCenter, Li, Ul } from '@/design-system'
+import { useGetPath } from '@/hooks/useGetPath'
 
 export default function NonÉligible() {
 	const navigate = useNavigate()
 	const { raisonsInéligibilité, getRaisonsInéligibilitéHumaines, set } =
 		useCMG()
 	const { t } = useTranslation()
+
+	const getPath = useGetPath()
 
 	useEffect(() => {
 		if (!raisonsInéligibilité.length) {
@@ -45,7 +48,12 @@ export default function NonÉligible() {
 			</Ul>
 
 			<ButtonContainer>
-				<Button size="XS" light onClick={set.reset} to="/assistants/cmg">
+				<Button
+					size="XS"
+					light
+					onClick={set.reset}
+					to={getPath('assistants.cmg')}
+				>
 					{t(
 						'pages.assistants.cmg.nouvelle-simulation',
 						'Faire une nouvelle simulation'

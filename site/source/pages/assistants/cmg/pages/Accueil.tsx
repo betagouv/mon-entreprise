@@ -3,9 +3,11 @@ import { Trans, useTranslation } from 'react-i18next'
 import { TrackPage } from '@/components/ATInternetTracking'
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Button, Strong } from '@/design-system'
+import { useGetPath } from '@/hooks/useGetPath'
 
 export default function Accueil() {
 	const { t } = useTranslation()
+	const getPath = useGetPath()
 
 	return (
 		<>
@@ -32,7 +34,7 @@ export default function Accueil() {
 				</Trans>
 			</Warning>
 
-			<Button size="XS" to="informations-générales">
+			<Button size="XS" to={getPath('assistants.cmg.informations')}>
 				{t('pages.assistants.cmg.démarrer', 'Démarrer une simulation')}
 			</Button>
 		</>
