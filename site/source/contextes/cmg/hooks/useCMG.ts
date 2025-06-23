@@ -28,6 +28,7 @@ export const useCMG = () => {
 		updateSituation,
 		moisIdentiques,
 		updateMoisIdentiques,
+		resetMoisIdentiques,
 		résultat,
 		updateRésultat,
 	} = useSituationContext()
@@ -40,6 +41,7 @@ export const useCMG = () => {
 	const set = {
 		reset: () => {
 			updateSituation(() => initialSituationCMG)
+			resetMoisIdentiques()
 		},
 
 		parentIsolé: (parentIsolé: O.Option<boolean>) => {
