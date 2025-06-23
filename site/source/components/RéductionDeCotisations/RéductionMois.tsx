@@ -70,7 +70,7 @@ export default function RéductionMois({
 					: undefined
 			}
 			unité="Euro"
-			avecCentimes={false}
+			avecCentimes
 		/>
 	)
 
