@@ -21,14 +21,14 @@ export default function Résultat() {
 	const navigate = useNavigate()
 	const { montantCT, set } = useCMG()
 	const { t } = useTranslation()
+	const getPath = useGetPath()
 
 	useEffect(() => {
 		if (!O.isSome(montantCT) || !montantCT.value) {
-			navigate('/assistants/cmg/inéligible', { replace: true })
+			navigate(getPath('assistants.cmg.inéligibilité'), { replace: true })
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-	const getPath = useGetPath()
 
 	const amount = formatMontant(O.getOrElse(montantCT, () => euros(0)))
 

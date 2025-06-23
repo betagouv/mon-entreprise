@@ -15,6 +15,7 @@ import {
 	useCMG,
 } from '@/contextes/cmg'
 import { Button, Spacing } from '@/design-system'
+import { useGetPath } from '@/hooks/useGetPath'
 
 import EnfantInput from '../components/enfants/EnfantInput'
 import QuestionsAeeH from '../components/enfants/QuestionsAeeH'
@@ -29,20 +30,21 @@ export default function Enfants() {
 	const navigate = useNavigate()
 	const { t } = useTranslation()
 	const { raisonsInéligibilité, situation, enfants, set } = useCMG()
+	const getPath = useGetPath()
 
 	useEffect(() => {
 		if (!estInformationsValides(situation)) {
-			navigate('/assistants/cmg', { replace: true })
+			navigate(getPath('assistants.cmg'), { replace: true })
 		}
 
 		if (raisonsInéligibilité.length) {
-			navigate('/assistants/cmg/inéligible', { replace: true })
+			navigate(getPath('assistants.cmg.inéligibilité'), { replace: true })
 		}
 
 		if (!enfants.length) {
 			set.nouvelEnfant()
 		}
-	}, [])
+	}, [getPath])
 
 	const onChange = (index: number) => (enfant: Enfant) => {
 		set.enfants(A.replace(enfants, index, enfant))
