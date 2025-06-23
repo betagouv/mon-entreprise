@@ -323,6 +323,7 @@ export default function RuleInput({
 					labelledby: accessibilityProps['aria-labelledby'],
 					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
+				avecCentimes={!!accessibilityProps.formatOptions?.maximumFractionDigits}
 			/>
 		)
 	}
