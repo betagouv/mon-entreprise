@@ -13,6 +13,7 @@ import {
 	estSalariéesValide,
 	useCMG,
 } from '@/contextes/cmg'
+import { useGetPath } from '@/hooks/useGetPath'
 
 import AMA from '../components/AMA/AMA'
 import QuestionModesDeGarde from '../components/déclaration/QuestionModesDeGarde'
@@ -25,17 +26,18 @@ export default function Déclarations() {
 	const { t } = useTranslation()
 	const { raisonsInéligibilité, situation, salariéesAMA, salariéesGED } =
 		useCMG()
+	const getPath = useGetPath()
 
 	useEffect(() => {
 		if (
 			!estInformationsValides(situation) ||
 			!estEnfantsÀChargeValide(situation.enfantsÀCharge)
 		) {
-			navigate('/assistants/cmg', { replace: true })
+			navigate(getPath('assistants.cmg'), { replace: true })
 		}
 
 		if (raisonsInéligibilité.length) {
-			navigate('/assistants/cmg/inéligible', { replace: true })
+			navigate(getPath('assistants.cmg.inéligibilité'), { replace: true })
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])

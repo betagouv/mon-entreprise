@@ -13,12 +13,11 @@ export default function NonÉligible() {
 	const { raisonsInéligibilité, getRaisonsInéligibilitéHumaines, set } =
 		useCMG()
 	const { t } = useTranslation()
-
 	const getPath = useGetPath()
 
 	useEffect(() => {
 		if (!raisonsInéligibilité.length) {
-			navigate('/assistants/cmg', { replace: true })
+			navigate(getPath('assistants.cmg'), { replace: true })
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
