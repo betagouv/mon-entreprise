@@ -178,6 +178,7 @@ function useKeepCursorPositionOnUpdate(
 	const [value, setValue] = useState<string | undefined>()
 	const [rerenderSwitch, toggle] = useState(false)
 	const { onChange: inputOnChange, onKeyDown: inputOnKeyDown } = inputProps
+
 	const onChange = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
 			const input = e.target
@@ -190,6 +191,7 @@ function useKeepCursorPositionOnUpdate(
 		},
 		[inputOnChange, rerenderSwitch]
 	)
+
 	const onKeyDown = useCallback(
 		(e: KeyboardEvent<HTMLInputElement>) => {
 			inputOnKeyDown?.(e)
@@ -215,6 +217,7 @@ function useKeepCursorPositionOnUpdate(
 		},
 		[inputOnKeyDown, rerenderSwitch]
 	)
+
 	useEffect(() => {
 		const input = inputRef.current
 		if (!input || selection === null) {
