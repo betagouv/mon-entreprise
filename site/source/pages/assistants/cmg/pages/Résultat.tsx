@@ -15,6 +15,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { euros, toString as formatMontant } from '@/domaine/Montant'
+import { useGetPath } from '@/hooks/useGetPath'
 
 export default function Résultat() {
 	const navigate = useNavigate()
@@ -27,6 +28,7 @@ export default function Résultat() {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
+	const getPath = useGetPath()
 
 	const amount = formatMontant(O.getOrElse(montantCT, () => euros(0)))
 
@@ -57,7 +59,12 @@ export default function Résultat() {
 			</Trans>
 
 			<ButtonContainer>
-				<Button size="XS" light onClick={set.reset} to="/assistants/cmg">
+				<Button
+					size="XS"
+					light
+					onClick={set.reset}
+					to={getPath('assistants.cmg')}
+				>
 					{t(
 						'pages.assistants.cmg.nouvelle-simulation',
 						'Faire une nouvelle simulation'
