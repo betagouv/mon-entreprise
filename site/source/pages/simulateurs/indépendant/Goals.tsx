@@ -4,13 +4,14 @@ import PeriodSwitch from '@/components/PeriodSwitch'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 
 export const IndépendantSimulationGoals = ({
-	toggles = <PeriodSwitch />,
+	toggles,
 	legend,
 }: {
 	toggles?: React.ReactNode
 	legend: string
 }) => (
 	<SimulationGoals toggles={toggles} legend={legend}>
+		<PeriodSwitch />
 		<Condition expression="entreprise . imposition = 'IR'">
 			<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 				<SimulationGoal
