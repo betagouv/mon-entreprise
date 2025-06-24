@@ -135,18 +135,24 @@ export default function Select({
 	return (
 		<Container>
 			<TextField
-				/* role="combobox" // FIXME: Need to use a proper combobox component here */
-				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
+				role="combobox"
 				id={id}
-				autoFocus={autoFocus}
-				aria-autocomplete="list"
-				onBlur={submitFocusedElem}
-				aria-readonly="true"
-				onKeyDown={handleKeyDown}
 				label={t('Commune ou code postal')}
 				value={name}
-				onChange={handleChange}
+				autoFocus={autoFocus}
 				autoComplete="off"
+				aria-controls="liste-commune"
+				aria-expanded={!!searchResults}
+				aria-activedescendant={
+					searchResults && searchResults.length > 0
+						? `commune-${focusedElem}`
+						: undefined
+				}
+				aria-autocomplete="list"
+				onBlur={submitFocusedElem}
+				onKeyDown={handleKeyDown}
+				onChange={handleChange}
+				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
 			/>
 
 			{!!searchResults && (
