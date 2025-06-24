@@ -150,13 +150,25 @@ export default function Select({
 			/>
 
 			{!!searchResults && (
-				<OptionList role="listbox" aria-expanded="true" id="liste-commune">
+				<OptionList
+					role="listbox"
+					id="liste-commune"
+					tabIndex={0}
+					aria-label={t('Communes et code postaux correspondants')}
+					aria-activedescendant={`commune-${focusedElem}`}
+				>
 					{searchResults.map((result, i) => {
 						const nom = formatCommune(result)
 
 						return (
 							<Option
 								as="li"
+								role="option"
+								id={`commune-${i}`}
+								aria-selected={i === focusedElem}
+								focused={i === focusedElem}
+								key={nom}
+								data-role="commune-option"
 								onMouseDown={
 									// Prevent input blur and focus elem selection
 									(e: React.MouseEvent) => e.preventDefault()
@@ -164,10 +176,6 @@ export default function Select({
 								onClick={() => {
 									void handleSubmit(result)
 								}}
-								role="option"
-								focused={i === focusedElem}
-								data-role="commune-option"
-								key={nom}
 								onFocus={() => setFocusedElem(i)}
 							>
 								{nom}
