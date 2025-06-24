@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
 import { updateUnit } from '@/store/actions/actions'
@@ -54,7 +55,7 @@ export default function PeriodSwitch({ periods }: Props) {
 			</Grid>
 
 			<Grid item>
-				<ToggleGroup
+				<PeriodSwitchToggleGroup
 					value={currentUnit}
 					onChange={onChange}
 					aria-label={t("Mode d'affichage")}
@@ -67,8 +68,15 @@ export default function PeriodSwitch({ periods }: Props) {
 							<Radio value={unit}>{label}</Radio>
 						</span>
 					))}
-				</ToggleGroup>
+				</PeriodSwitchToggleGroup>
 			</Grid>
 		</Grid>
 	)
 }
+
+const PeriodSwitchToggleGroup = styled(ToggleGroup)`
+	input + span {
+		background: none !important;
+		border: none !important;
+	}
+`
