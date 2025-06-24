@@ -336,7 +336,7 @@ function useSimpleNumberFieldState(
 
 			if (
 				// Handle case for partially formatted input while typing decimal numbers
-				inputValue.match(/[\d][,.]([\d]*[0]+)?[^\d]*$/) ||
+				inputValue.match(/[\d€][,.]([\d]*[0]+)?[^\d]*$/) ||
 				// Handle case for 000015
 				inputValue.match(/^[^\d]*0([0]+|[\d\s,.]+)[^\d]*$/)
 			) {
