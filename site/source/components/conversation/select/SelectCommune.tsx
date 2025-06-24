@@ -1,5 +1,5 @@
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import {
@@ -152,7 +152,7 @@ export default function Select({
 				onBlur={submitFocusedElem}
 				onKeyDown={handleKeyDown}
 				onChange={handleChange}
-				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
+				errorMessage={noResult && t('Cette commune n’existe pas')}
 			/>
 
 			{!!searchResults && (
