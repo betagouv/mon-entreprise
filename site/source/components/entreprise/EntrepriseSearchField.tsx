@@ -60,13 +60,9 @@ export function EntrepriseSearchField(props: {
 					data-test-id="company-search-input"
 					state={state}
 					isSearchStalled={searchPending}
-					aria-label={
-						searchFieldProps.label +
-						', ' +
-						t(
-							"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément."
-						)
-					}
+					aria-label={`${searchFieldProps.label}, ${t(
+						"recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément."
+					)}`}
 					{...searchFieldProps}
 				/>
 			</Grid>
