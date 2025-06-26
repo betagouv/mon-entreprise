@@ -18,7 +18,10 @@ interface QuantitéFieldProps<U extends string> {
 	nbDécimalesMax?: number
 
 	id?: string
+<<<<<<< HEAD
 	label?: React.ReactNode
+=======
+>>>>>>> 584d9b402 (refactor: labels de MontantField et QuantitéField)
 	aria?: {
 		labelledby?: string
 		label?: string
