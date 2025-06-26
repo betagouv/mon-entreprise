@@ -61,15 +61,16 @@ interface RuleInputProps {
 	modifiers?: Record<string, string>
 	required?: boolean
 
-	id?: string
-	'aria-labelledby'?: string
-	'aria-label'?: string
 	className?: string
 	autoFocus?: boolean
 	small?: boolean
 
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
+
+	id?: string
+	'aria-labelledby'?: string
+	'aria-label'?: string
 }
 
 export const binaryQuestion = [
@@ -330,10 +331,10 @@ export default function RuleInput({
 	const estUneQuantité =
 		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
 
-	const quantitéValue = value as Quantité | undefined
-	const quantitéPlaceholder = defaultValue as Quantité | undefined
-
 	if (estUneQuantité) {
+		const quantitéValue = value as Quantité | undefined
+		const quantitéPlaceholder = defaultValue as Quantité | undefined
+
 		return (
 			<QuantitéField
 				value={quantitéValue}
@@ -372,8 +373,10 @@ export default function RuleInput({
 			}
 			id={inputId}
 			formatOptions={accessibilityProps.formatOptions}
-			aria-labelledby={accessibilityProps['aria-labelledby']}
-			aria-label={accessibilityProps['aria-label'] ?? rule.title}
+			aria={{
+				labelledby: accessibilityProps['aria-labelledby'],
+				label: accessibilityProps['aria-label'] ?? rule.title,
+			}}
 		/>
 	)
 }
