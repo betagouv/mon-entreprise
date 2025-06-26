@@ -1,0 +1,47 @@
+pfu:
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'PFU'"
+    dirigeant . régime social: "'assimilé salarié'"
+  - bénéficiaire . dividendes . bruts: 20000000 €/an
+    impôt . méthode de calcul: "'PFU'"
+    dirigeant . régime social: "'assimilé salarié'"
+
+barème défauts:
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+  - bénéficiaire . dividendes . bruts: 20000000 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 500000 €/an
+  - bénéficiaire . dividendes . bruts: 20000 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 50000 €/an
+
+barème couple 2 enfants:
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+    impôt . foyer fiscal . enfants à charge: 2
+    impôt . foyer fiscal . situation de famille: "'couple'"
+  - bénéficiaire . dividendes . bruts: 20000000 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+    impôt . foyer fiscal . enfants à charge: 2
+    impôt . foyer fiscal . situation de famille: "'couple'"
+  - bénéficiaire . dividendes . bruts: 200 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 500000 €/an
+    impôt . foyer fiscal . enfants à charge: 2
+    impôt . foyer fiscal . situation de famille: "'couple'"
+  - bénéficiaire . dividendes . bruts: 20000 €/an
+    impôt . méthode de calcul: "'barème standard'"
+    dirigeant . régime social: "'assimilé salarié'"
+    impôt . foyer fiscal . revenu imposable . autres revenus imposables: 50000 €/an
+    impôt . foyer fiscal . enfants à charge: 2
+    impôt . foyer fiscal . situation de famille: "'couple'"

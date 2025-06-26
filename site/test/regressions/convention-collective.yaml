@@ -1,0 +1,41 @@
+CCN batiment:
+  - salarié . contrat . salaire brut: 2500 €/mois
+    salarié . convention collective: "'BTP'"
+    salarié . convention collective . BTP . catégorie: "'ouvrier'"
+  - salarié . contrat . salaire brut: 2500 €/mois
+    salarié . convention collective: "'BTP'"
+    salarié . convention collective . BTP . catégorie: "'etam'"
+  - salarié . contrat . salaire brut: 2500 €/mois
+    salarié . convention collective: "'BTP'"
+    salarié . convention collective . BTP . catégorie: "'cadre'"
+
+CCN compta:
+  - salarié . contrat . salaire brut: 2500 €/mois
+    salarié . convention collective: "'compta'"
+    salarié . temps de travail . heures supplémentaires: 3 heures/mois
+
+CCN HCR:
+  - salarié . contrat . salaire brut: 2500 €/mois
+    salarié . convention collective: "'HCR'"
+    salarié . temps de travail . heures supplémentaires: 3 heures/mois
+    salarié . rémunération . avantages en nature: oui
+    salarié . rémunération . avantages en nature . nourriture: oui
+    salarié . rémunération . avantages en nature . nourriture . repas par mois: 10 repas/mois
+
+CCN optique:
+  - salarié . contrat . salaire brut: 2500 €/mois
+    salarié . convention collective: "'optique'"
+    salarié . ancienneté: 10 ans
+
+CCN spectacle vivant:
+  - salarié . contrat: "'CDD'"
+    salarié . contrat . salaire brut: 2500 €/mois
+    salarié . convention collective: "'SVP'"
+    salarié . régimes spécifiques . intermittents du spectacle: "'technicien'"
+
+CCN sport:
+  - salarié . contrat . salaire brut: 500 €/mois
+    salarié . convention collective: "'sport'"
+    salarié . convention collective . sport . primes . nombre de manifestations: 2 manifestations
+  - salarié . contrat . salaire brut: 1800 €/mois
+    salarié . convention collective: "'sport'"

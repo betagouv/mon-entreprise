@@ -1,0 +1,34 @@
+[
+  {
+    "nom": "Escoubès-Pouts",
+    "code": "65164",
+    "codesPostaux": [
+      "65100"
+    ],
+    "_score": 0.7078351011711698,
+    "departement": {
+      "code": "65",
+      "nom": "Hautes-Pyrénées"
+    },
+    "region": {
+      "code": "76",
+      "nom": "Occitanie"
+    }
+  },
+  {
+    "nom": "Ponson-Debat-Pouts",
+    "code": "64451",
+    "codesPostaux": [
+      "64460"
+    ],
+    "_score": 0.6108338859132434,
+    "departement": {
+      "code": "64",
+      "nom": "Pyrénées-Atlantiques"
+    },
+    "region": {
+      "code": "75",
+      "nom": "Nouvelle-Aquitaine"
+    }
+  }
+]

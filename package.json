@@ -1,0 +1,76 @@
+{
+	"name": "root",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git"
+	},
+	"type": "module",
+	"workspaces": [
+		"modele-social",
+		"exoneration-covid",
+		"api",
+		"site",
+		"site/scripts/NAFAndGuichetData",
+		"server"
+	],
+	"scripts": {
+		"scalingo-postbuild": "echo \"$APP_DIR\" ; CI=true ; yarn test:type && yarn \"build:$APP_DIR\" && yarn workspaces focus \"$APP_DIR\" --production",
+		"lint:eslintrc": "npx eslint-config-prettier .eslintrc.cjs",
+		"lint:eslint": "NODE_OPTIONS='--max-old-space-size=4096' eslint .",
+		"lint:eslint:fix": "yarn lint:eslint --fix",
+		"lint:prettier": "yarn run prettier --check \"**/*.{js,jsx,ts,tsx,yaml,yml}\"",
+		"lint:prettier:fix": "yarn lint:prettier --write",
+		"lint:fix": "yarn lint:eslint:fix ; yarn lint:prettier:fix",
+		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
+		"postinstall": "yarn workspaces foreach -piv --exclude site run prepack",
+		"test": "CI=true yarn workspaces foreach run test",
+		"test:type": "yarn workspaces foreach -pi run tsc --skipLibCheck --noEmit",
+		"clean": "yarn workspaces foreach run clean && rimraf node_modules",
+		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
+		"build:server": "yarn workspaces focus server && yarn workspace server run build"
+	},
+	"devDependencies": {
+		"@actions/core": "^1.10.1",
+		"@actions/github": "^5.1.1",
+		"@ianvs/prettier-plugin-sort-imports": "^4.1.0",
+		"@publicodes/codemod": "^1.1.0",
+		"@publicodes/tools": "^1.0.7",
+		"@types/got": "^9.6.12",
+		"@typescript-eslint/eslint-plugin": "^6.7.2",
+		"@typescript-eslint/parser": "^6.7.2",
+		"eslint": "^8.49.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-config-standard": "^17.1.0",
+		"eslint-plugin-cypress": "^2.15.1",
+		"eslint-plugin-import": "^2.28.1",
+		"eslint-plugin-jest": "^27.4.0",
+		"eslint-plugin-jsx-a11y": "^6.7.1",
+		"eslint-plugin-n": "^16.1.0",
+		"eslint-plugin-promise": "^6.1.1",
+		"eslint-plugin-react": "^7.33.2",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-vitest": "^0.3.22",
+		"prettier": "^3.0.3",
+		"publicodes": "^1.8.1",
+		"rimraf": "^5.0.1"
+	},
+	"resolutions": {
+		"rollup": "^3.10.0",
+		"@koa/cors": "^4.0.0",
+		"@koa/router": "^12.0.0",
+		"koa-body": "^6.0.1",
+		"@types/koa": "^2.13.8",
+		"@types/react": "^18.2.18",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"styled-components": "^6.0.7"
+	},
+	"packageManager": "yarn@3.5.0",
+	"engines": {
+		"node": "^18"
+	},
+	"dependencies": {
+		"optics-ts": "^2.4.1"
+	}
+}

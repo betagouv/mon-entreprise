@@ -1,0 +1,150 @@
+2019:
+  description: |
+    En 2019, le projet dispose d’un budget de **250 000 € HT** pris en charge :
+
+    -   Par la DINSIC (ancien nom de la [DINUM](https://www.numerique.gouv.fr/dinum/)) à hauteur de 150 000 € HT
+    -   Par l’Acoss (ancien nom de [l'Urssaf Caisse Nationale](https://www.urssaf.org/accueil.html)) à hauteur de 100 000 € HT
+
+    [➡ Voir la convention](https://static.data.gouv.fr/resources/conventions-de-partenariat/20190423-181035/convention-du-15-avril-2019.pdf)
+
+    |                            |                   |
+    | -------------------------- | ----------------: |
+    | Financement DINSIC         |      150 000 € HT |
+    | Financement Acoss initial  |      100 000 € HT |
+    | Rallonge Acoss fin d’année |       12 500 € HT |
+    | **Total HT**               |  **262 500 € HT** |
+    | **Total TTC**              | **315 000 € TTC** |
+
+    En fin d’année une rallonge est attribuée pour la réalisation d’un nouveau
+    simulateur et une expérimentation sur la paie.
+2020:
+  description: |
+    En 2020, le budget est désormais pris en charge à 100% par l’Acoss (ancien nom de
+    l'[Urssaf Caisse Nationale](https://www.urssaf.org/accueil.html)). En plus de sa
+    contribution financière, l’Acoss fournit des ressources métier expertes provenant
+    du réseau des Urssaf.
+
+    Une enveloppe est allouée pour expérimenter la transformation du moteur de
+    simulations en moteur de paie complète. La solution proposée ne sera finalement
+    pas retenue pour la refonte des offres de service de l’Urssaf. Voir le
+    [compte-rendu de l’expérimentation](https://pad.incubateur.net/s/ulS0EWvxK#).
+
+    Au quatrième trimestre mon-entreprise rejoint le
+    [programme Gamma](https://blog.beta.gouv.fr/dinsic/2020/08/20/acceleration-des-startups-d-etat-d-un-retour-d-experience-a-l-experimentation-d-un-programme-d-accompagnement-cible-1/)
+    qui accompagne l’accélération des services publics crées par beta.gouv. Ce
+    programme est financé par la [DINUM](https://www.numerique.gouv.fr/dinum/).
+  T1:
+    Développement: 73500
+    Logiciels et hébergement: 456
+    Portage: 10337
+    Déplacements: 742
+  T2:
+    Développement: 56100
+    Logiciels et hébergement: 338
+    Portage: 7514
+  T3:
+    Développement: 22350
+    Logiciels et hébergement: 294
+    Portage: 3014
+  T4:
+    Développement: 72150
+    Logiciels et hébergement: 782
+    Portage: 9631
+2021:
+  description: |
+    En 2021 l’[Urssaf Caisse Nationale](https://www.urssaf.org/accueil.html) prend en
+    charge à 100% le financement de mon-entreprise.
+
+    Au premier trimestre 2021, l’équipe mon-entreprise continue de bénéficier de
+    l’accompagnement du [programme
+    Gamma](https://beta.gouv.fr/approche/acceleration) financé par la
+    [DINUM](https://www.numerique.gouv.fr/dinum/).
+  T1:
+    Développement: 44850
+    Logiciels et hébergement: 454
+    Portage: 6045
+    Déplacements: 114
+  T2:
+    Développement: 57750
+    Logiciels et hébergement: 212
+    Portage: 7715
+  T3:
+    Développement: 35100
+    Logiciels et hébergement: 342
+    Portage: 4717
+  T4:
+    Développement: 59400
+    Logiciels et hébergement: 578
+    Portage: 7983
+2022:
+  description: |
+    En 2022 le projet devient mieux intégré au sein de
+    l’[Urssaf Caisse Nationale](https://www.urssaf.org/accueil.html).
+
+    En complément du financement apporté par l’Urssaf, le projet bénéficie du
+    programme [France Relance](https://france-relance.transformation.gouv.fr/).
+  T1:
+    Développement: 72450
+    Portage: 9643
+  T2:
+    Développement: 58950
+    Portage: 7849
+  T3:
+    Développement: 53800
+    Déploiement: 19000
+    Design: 4250
+    Portage: 10259
+  T4:
+    Développement: 74555
+    Logiciels et hébergement: 17098
+    Déploiement: 22900
+    Design: 28750
+    Portage: 10046
+2023:
+  description: |
+    En 2023, le financement complémentaire apporté par le programme
+    [France Relance](https://france-relance.transformation.gouv.fr/) prend fin.
+  T1:
+    Développement: 47500
+    Logiciels et hébergement: 7203
+    Déploiement: 10100
+    Design: 4000
+    Portage: 24921
+    # Envoyé à l'Urssaf: 82712.80
+  T2:
+    Développement: 30325
+    Logiciels et hébergement: 563
+    Portage: 7885
+    # Envoyé à l'Urssaf: 34218
+  T3:
+    Développement: 36600
+    Logiciels et hébergement: 465
+    Portage: 7520
+    # Envoyé à l'Urssaf: 39681
+  T4:
+    Développement: 10400
+    Logiciels et hébergement: 686
+    Portage: 2086
+    # Envoyé à l'Urssaf: 11723
+2024:
+  description: |
+    En 2024 mon-entreprise est financée à 100% par
+    l’[Urssaf Caisse Nationale](https://www.urssaf.org/accueil.html).
+  T1:
+    Développement: 24091
+    Logiciels et hébergement: 1069
+    Portage: 2650
+  T2:
+    Développement: 37033
+    Logiciels et hébergement: 2140
+    Portage: 4073
+    Déplacements: 564
+  T3:
+    Développement: 53450
+    Logiciels et hébergement: 1950
+    Portage: 5879
+  T4:
+    Développement: 60300
+    Logiciels et hébergement: 1950
+    Portage: 6633
+    Déplacements: 750

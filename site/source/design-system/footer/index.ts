@@ -1,0 +1,1 @@
+export { FooterContainer } from './container'

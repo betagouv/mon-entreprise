@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "ESNext",
+		"lib": ["es5", "dom"],
+		"types": ["cypress", "cypress-plugin-tab/src", "node", "cypress-axe"]
+	},
+	"include": ["**/*.ts", "../cypress.config.ts"]
+}

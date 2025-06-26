@@ -1,0 +1,12 @@
+{
+  "nom": "Paris 1er Arrondissement",
+  "code": "75101",
+  "departement": {
+    "code": "75",
+    "nom": "Paris"
+  },
+  "region": {
+    "code": "11",
+    "nom": "Île-de-France"
+  }
+}
