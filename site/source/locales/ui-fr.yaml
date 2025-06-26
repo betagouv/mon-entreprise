@@ -367,7 +367,7 @@ choix-statut:
     question1:
       label: Comment gérez-vous cette entreprise ?
       plusieurs: À plusieurs
-      seul: Seul
+      seul: Seul / seule
     question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps ?
     question3:
       help:

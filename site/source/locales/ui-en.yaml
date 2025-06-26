@@ -346,7 +346,7 @@ choix-statut:
     question1:
       label: How do you manage this business?
       plusieurs: Several
-      seul: Only
+      seul: Alone
     question2: Do you plan to add partners at a later stage?
     question3:
       help:

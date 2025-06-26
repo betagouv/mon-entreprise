@@ -10,15 +10,14 @@ interface MontantFieldProps<U extends UnitéMonétaire> {
 	value: Montant<U> | undefined
 	unité: U
 	onChange?: (value: Montant<U> | undefined) => void
-	placeholder?: Montant<U>
 	onSubmit?: (source?: string) => void
+	placeholder?: Montant<U>
 	suggestions?: Record<string, Montant<U>>
-	avecCentimes?: boolean
 	small?: boolean
+	avecCentimes?: boolean
 
 	id?: string
 	label?: React.ReactNode
-
 	aria?: {
 		labelledby?: string
 		label?: string
@@ -28,10 +27,10 @@ interface MontantFieldProps<U extends UnitéMonétaire> {
 export const MontantField = <U extends UnitéMonétaire>({
 	value,
 	unité,
-	suggestions,
 	onChange = NoOp,
 	onSubmit,
 	placeholder,
+	suggestions,
 	avecCentimes = false,
 	small,
 	id,
@@ -48,12 +47,12 @@ export const MontantField = <U extends UnitéMonétaire>({
 	}
 
 	return (
-		<StyledNumberInput>
+		<Container>
 			<NumericInput
 				id={id}
 				label={label}
-				aria-labelledby={aria?.labelledby}
-				aria-label={aria?.label}
+				aria-label={label ? '' : aria?.label}
+				aria-labelledby={label ? '' : aria?.labelledby}
 				onChange={handleValueChange}
 				onSubmit={onSubmit}
 				formatOptions={{
@@ -76,11 +75,11 @@ export const MontantField = <U extends UnitéMonétaire>({
 						: undefined
 				}
 			/>
-		</StyledNumberInput>
+		</Container>
 	)
 }
 
-const StyledNumberInput = styled.div`
+const Container = styled.div`
 	display: flex;
 	width: fit-content;
 	flex: 1;
