@@ -55,7 +55,7 @@ export const annéeCivile = (valeur: number): Quantité<'année civile'> =>
 export const employés = (valeur: number): Quantité<'employés'> =>
 	quantité(valeur, 'employés')
 
-export const isUnitéQuantité = (unité: string): unité is UnitéQuantité => {
+export const isUnitéQuantité = (unité?: string): unité is UnitéQuantité => {
 	const unités: UnitéQuantité[] = [
 		'%',
 		'heures/mois',

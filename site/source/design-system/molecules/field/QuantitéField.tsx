@@ -7,7 +7,7 @@ import { NoOp } from '@/utils/NoOp'
 import { NumericInput } from '../../atoms/NumericInput'
 import { FieldWithUnit } from './FieldWithUnit'
 
-interface QuantitéFieldProps<U extends string = string> {
+interface QuantitéFieldProps<U extends string> {
 	value: Quantité<U> | undefined
 	unité: U
 	onChange?: (value: Quantité<U> | undefined) => void
@@ -15,6 +15,7 @@ interface QuantitéFieldProps<U extends string = string> {
 	placeholder?: Quantité<U>
 	suggestions?: Record<string, Quantité<U>>
 	small?: boolean
+	nbDécimalesMax?: number
 
 	id?: string
 	aria?: {
@@ -34,7 +35,7 @@ const unitéToDisplayedUnit: Record<UnitéQuantité, string> = {
 	employés: 'employés',
 }
 
-export const QuantitéField = <U extends string = string>({
+export const QuantitéField = <U extends string>({
 	value,
 	unité,
 	onChange = NoOp,
@@ -42,6 +43,7 @@ export const QuantitéField = <U extends string = string>({
 	placeholder,
 	suggestions,
 	small,
+	nbDécimalesMax,
 	id,
 	aria,
 }: QuantitéFieldProps<U>) => {
@@ -71,9 +73,13 @@ export const QuantitéField = <U extends string = string>({
 					style: 'percent',
 					maximumFractionDigits: 2,
 			  }
+			: nbDécimalesMax !== undefined
+			? {
+					style: 'decimal',
+					maximumFractionDigits: nbDécimalesMax,
+			  }
 			: {
 					style: 'decimal',
-					maximumFractionDigits: 0,
 			  }
 	) satisfies Intl.NumberFormatOptions
 
