@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
+import PeriodSwitch from '@/components/PeriodSwitch'
 import RéductionBasique from '@/components/RéductionDeCotisations/RéductionBasique'
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
@@ -60,6 +61,24 @@ export default function LodeomSimulationGoals({
 	).nodeValue as string
 
 	const withRépartition = currentZone === 'zone un'
+
+	const periods = [
+		{
+			label: t('pages.simulateurs.lodeom.tab.month', 'Exonération mensuelle'),
+			unit: '€/mois',
+		},
+		{
+			label: t('pages.simulateurs.lodeom.tab.year', 'Exonération annuelle'),
+			unit: '€/an',
+		},
+		{
+			label: t(
+				'pages.simulateurs.lodeom.tab.month-by-month',
+				'Exonération mois par mois'
+			),
+			unit: '€',
+		},
+	]
 
 	const initializeLodeomMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(
@@ -141,6 +160,7 @@ export default function LodeomSimulationGoals({
 					</Message>
 				)}
 			</WhenApplicable>
+			{currentBarème && <PeriodSwitch periods={periods} />}
 			{currentBarème &&
 				(monthByMonth ? (
 					<RéductionMoisParMois
