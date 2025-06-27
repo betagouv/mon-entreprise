@@ -301,13 +301,14 @@ function AnswerElement(rule: RuleNode) {
 		<PopoverWithTrigger
 			small
 			disableOverflowAuto // disable overflow auto for SelectCommune autocomplete to not be hidden
+			ariaLabel={`Modifier ${rule.title}`}
 			trigger={(buttonProps) => (
 				<>
 					<Value expression={rule.dottedName} linkToRule={false} />
 					<StyledButton
 						{...buttonProps}
 						aria-haspopup="dialog"
-						aria-label={t(`Modifier ${rule.title}`)}
+						aria-label={`Modifier ${rule.title}`}
 					>
 						<span className="print-hidden">
 							<Emoji emoji="✏" />
