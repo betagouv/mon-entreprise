@@ -1,7 +1,7 @@
 import { DottedName } from 'modele-social'
 import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import './FicheDePaie.css'
 
@@ -20,6 +20,7 @@ function CotisationLines({ cotisations }: { cotisations: Array<DottedName> }) {
 }
 
 export function Cotisations() {
+	const { t } = useTranslation()
 	const parsedRules = useEngine().getParsedRules()
 	const cotisationsBySection = getCotisationsBySection(parsedRules)
 
@@ -48,8 +49,8 @@ export function Cotisations() {
 							<tbody>
 								<tr>
 									<td></td>
-									<th scope="col">employeur</th>
-									<th scope="col">salarié</th>
+									<th scope="col">{t('cotisations.employeur', 'employeur')}</th>
+									<th scope="col">{t('cotisations.salarie', 'salarié')}</th>
 								</tr>
 								<CotisationLines cotisations={cotisations} />
 							</tbody>
