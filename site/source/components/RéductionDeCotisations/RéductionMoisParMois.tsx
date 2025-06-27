@@ -109,15 +109,8 @@ export default function RéductionMoisParMois({
 										monthName={monthName}
 										data={data[monthIndex]}
 										index={monthIndex}
-										onRémunérationChange={(
-											monthIndex: number,
-											rémunérationBrute: number
-										) => {
-											onRémunérationChange(monthIndex, rémunérationBrute)
-										}}
-										onOptionsChange={(monthIndex: number, options: Options) => {
-											onOptionsChange(monthIndex, options)
-										}}
+										onRémunérationChange={onRémunérationChange}
+										onOptionsChange={onOptionsChange}
 										warningCondition={warningCondition}
 										warningTooltip={warningTooltip}
 										withRépartitionAndRégularisation={
@@ -202,15 +195,8 @@ export default function RéductionMoisParMois({
 								monthName={monthName}
 								data={data[monthIndex]}
 								index={monthIndex}
-								onRémunérationChange={(
-									monthIndex: number,
-									rémunérationBrute: number
-								) => {
-									onRémunérationChange(monthIndex, rémunérationBrute)
-								}}
-								onOptionsChange={(monthIndex: number, options: Options) => {
-									onOptionsChange(monthIndex, options)
-								}}
+								onRémunérationChange={onRémunérationChange}
+								onOptionsChange={onOptionsChange}
 								warningCondition={warningCondition}
 								warningTooltip={warningTooltip}
 								withRépartitionAndRégularisation={

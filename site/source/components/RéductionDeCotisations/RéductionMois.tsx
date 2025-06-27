@@ -6,23 +6,21 @@ import { styled } from 'styled-components'
 import Montant from '@/components/RéductionDeCotisations/Montant'
 import MonthOptions from '@/components/RéductionDeCotisations/MonthOptions'
 import RuleLink from '@/components/RuleLink'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
 	Grid,
-	MontantField,
 	RotatingChevronIcon,
 	Spacing,
 } from '@/design-system'
-import { euros } from '@/domaine/Montant'
 import {
 	MonthState,
 	Options,
 	RéductionDottedName,
 	réductionGénéraleDottedName,
-	rémunérationBruteDottedName,
 } from '@/utils/réductionDeCotisations'
+
+import RémunérationInput from './RémunérationInput'
 
 type Props = {
 	dottedName: RéductionDottedName
@@ -52,27 +50,7 @@ export default function RéductionMois({
 	const { t, i18n } = useTranslation()
 	const language = i18n.language
 	const displayedUnit = '€'
-	const engine = useEngine()
 	const [isOptionVisible, setOptionVisible] = useState(false)
-
-	const RémunérationInput = () => (
-		<MontantField
-			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
-			aria={{
-				label: `${engine.getRule(rémunérationBruteDottedName)
-					?.title} (${monthName})`,
-				labelledby: 'simu-update-explaining',
-			}}
-			onChange={(montant) => onRémunérationChange(index, montant?.valeur ?? 0)}
-			value={
-				data.rémunérationBrute !== undefined
-					? euros(data.rémunérationBrute)
-					: undefined
-			}
-			unité="Euro"
-			avecCentimes={false}
-		/>
-	)
 
 	const OptionsButton = () => {
 		return (
@@ -131,7 +109,12 @@ export default function RéductionMois({
 					<RuleLink dottedName="salarié . rémunération . brut" />
 				</Grid>
 				<Grid item xs={5} sm={5}>
-					<RémunérationInput />
+					<RémunérationInput
+						index={index}
+						monthName={monthName}
+						rémunérationBrute={data.rémunérationBrute}
+						onRémunérationChange={onRémunérationChange}
+					/>
 				</Grid>
 			</GridContainer>
 
@@ -185,7 +168,12 @@ export default function RéductionMois({
 			<tr>
 				<th scope="row">{monthName}</th>
 				<td>
-					<RémunérationInput />
+					<RémunérationInput
+						index={index}
+						monthName={monthName}
+						rémunérationBrute={data.rémunérationBrute}
+						onRémunérationChange={onRémunérationChange}
+					/>
 				</td>
 				<td>
 					<MontantRéduction />

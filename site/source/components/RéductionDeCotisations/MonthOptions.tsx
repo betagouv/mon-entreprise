@@ -180,6 +180,7 @@ export default function MonthOptions({
 							unité="Euro"
 							onChange={(m) => onRémunérationETPChange(m?.valeur)}
 							aria-labelledby={`rémunération-etp-label`}
+							avecCentimes
 						/>
 					</NumberFieldContainer>
 				</GridItemInput>
@@ -217,6 +218,7 @@ export default function MonthOptions({
 							unité="Euro"
 							onChange={(m) => onRémunérationPrimesChange(m?.valeur)}
 							aria-labelledby={`rémunération-primes-label`}
+							avecCentimes
 						/>
 					</NumberFieldContainer>
 				</GridItemInput>
@@ -248,6 +250,7 @@ export default function MonthOptions({
 							unité="Euro"
 							onChange={(m) => onRémunérationHeuresSupChange(m?.valeur)}
 							aria-labelledby={`rémunération-heures-sup-label`}
+							avecCentimes
 						/>
 					</NumberFieldContainer>
 				</GridItemInput>
