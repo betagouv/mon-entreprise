@@ -5,7 +5,7 @@ import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
 import { useCallback } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -46,6 +46,7 @@ export default function ChiffreAffairesActivitéMixte({
 }: {
 	dottedName: DottedName
 }) {
+	const { t } = useTranslation()
 	const adjustProportions = useAdjustProportions(dottedName)
 	const dispatch = useDispatch()
 	const clearChiffreAffaireMixte = useCallback(() => {
@@ -61,6 +62,7 @@ export default function ChiffreAffairesActivitéMixte({
 
 	return (
 		<fieldset>
+			<legend className="sr-only">{t("Chiffre d'affaires")}</legend>
 			<SimulationGoal
 				appear={false}
 				onUpdateSituation={clearChiffreAffaireMixte}
@@ -202,5 +204,9 @@ const ConditionWrapper = styled.div`
 		& > div > div > div > div {
 			margin-top: 0.75rem;
 		}
+	}
+
+	a {
+		font-size: 1rem;
 	}
 `
