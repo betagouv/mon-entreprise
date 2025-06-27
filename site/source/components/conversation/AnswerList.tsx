@@ -280,6 +280,7 @@ function StepsTable({
 function AnswerElement(rule: RuleNode) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
+	const { t } = useTranslation()
 
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
 	const questionDottedName = rule.rawNode.question
@@ -300,13 +301,20 @@ function AnswerElement(rule: RuleNode) {
 		<PopoverWithTrigger
 			small
 			disableOverflowAuto // disable overflow auto for SelectCommune autocomplete to not be hidden
+			ariaLabel={`Modifier ${rule.title}`}
 			trigger={(buttonProps) => (
-				<Link {...buttonProps} aria-haspopup="dialog" aria-label="Modifier">
-					<Value expression={rule.dottedName} linkToRule={false} />{' '}
-					<span className="print-hidden">
-						<Emoji emoji="✏" />
-					</span>
-				</Link>
+				<>
+					<Value expression={rule.dottedName} linkToRule={false} />
+					<StyledButton
+						{...buttonProps}
+						aria-haspopup="dialog"
+						aria-label={`Modifier ${rule.title}`}
+					>
+						<span className="print-hidden">
+							<Emoji emoji="✏" />
+						</span>
+					</StyledButton>
+				</>
 			)}
 		>
 			{(onClose) => (
@@ -343,10 +351,11 @@ const StyledAnswer = styled(Grid)`
 `
 const StyledAnswerLine = styled(Grid)`
 	display: flex;
-	margin: ${({ theme }) => `${theme.spacings.md} 0`};
-	align-items: baseline;
+	align-items: center;
 	justify-content: flex-end;
 	gap: ${({ theme }) => theme.spacings.sm};
+	min-height: 2.8rem;
+	padding: 0.25rem 0.5rem;
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.bases.primary[100]
@@ -361,12 +370,18 @@ const StyledAnswerLine = styled(Grid)`
 				: theme.colors.bases.primary[100]};
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
 		color-adjust: exact !important;
-		outline: solid
-			${({ theme }) =>
-				`calc(${theme.spacings.md} / 2) ${
-					theme.darkMode
-						? theme.colors.extended.dark[500]
-						: theme.colors.bases.primary[100]
-				}`};
+	}
+`
+
+const StyledButton = styled(Link)`
+	margin: 0 -0.5rem 0 0.5rem;
+	padding: 0.5rem 1rem;
+
+	&:hover,
+	&:focus {
+		outline: 3px solid
+			hsl(var(--COLOR_HUE), calc(var(--COLOR_SATURATION) - 34%), 33%);
+		outline-offset: 2px;
+		box-shadow: 0 0 0 2px #ffffff;
 	}
 `
