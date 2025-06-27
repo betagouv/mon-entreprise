@@ -29,10 +29,9 @@ import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
-import { estUneUnitéDeQuantitéPublicodes } from '@/domaine/engine/QuantitéAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
-import { isQuantité, Quantité } from '@/domaine/Quantité'
+import { isQuantité, isUnitéQuantité, Quantité } from '@/domaine/Quantité'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -344,7 +343,7 @@ export default function RuleInput({
 	const estUneQuantité =
 		(value && isQuantité(value)) ||
 		(defaultValue && isQuantité(defaultValue)) ||
-		estUneUnitéDeQuantitéPublicodes(unité)
+		isUnitéQuantité(unité)
 
 	if (estUneQuantité) {
 		const quantitéValue = value as Quantité | undefined
