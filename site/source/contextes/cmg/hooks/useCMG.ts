@@ -14,11 +14,7 @@ import {
 import { éligibilité, RaisonInéligibilité } from '../domaine/éligibilité'
 import { Enfant } from '../domaine/enfant'
 import { Résultat } from '../domaine/résultat'
-import {
-	auMoinsUneDéclaration,
-	SalariéeAMA,
-	SalariéeGED,
-} from '../domaine/salariée'
+import { SalariéeAMA, SalariéeGED } from '../domaine/salariée'
 import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 import { MoisIdentiques, useSituationContext } from './CMGContext'
 
@@ -109,7 +105,6 @@ export const useCMG = () => {
 		salariéesGED: (salariéesGED: Array<SalariéeGED>) => {
 			const newSalariéesGED = pipe(
 				salariéesGED,
-				A.filter(auMoinsUneDéclaration),
 				A.map((déclarations) =>
 					R.map(déclarations, (déclaration) =>
 						estDéclarationGEDVide(déclaration) ? O.none() : déclaration
@@ -150,7 +145,6 @@ export const useCMG = () => {
 		salariéesAMA: (salariéesAMA: Array<SalariéeAMA<string>>) => {
 			const newSalariéesAMA = pipe(
 				salariéesAMA,
-				A.filter(auMoinsUneDéclaration),
 				A.map((déclarations) =>
 					R.map(déclarations, (déclaration) =>
 						estDéclarationAMAVide(déclaration) ? O.none() : déclaration
