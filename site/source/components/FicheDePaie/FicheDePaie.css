@@ -1,5 +1,5 @@
 .payslip__salaryLine,
-.payslip__payementLine {
+.payslip__paymentLine {
 	display: flex;
 	justify-content: space-between;
 }
