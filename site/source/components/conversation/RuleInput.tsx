@@ -24,13 +24,14 @@ import {
 import { isIsoDate } from '@/domaine/Date'
 import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
+	decodeArrondi,
 	decodeSuggestions,
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
-import { isQuantité, Quantité } from '@/domaine/Quantité'
+import { isQuantité, isUnitéQuantité, Quantité } from '@/domaine/Quantité'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -300,10 +301,20 @@ export default function RuleInput({
 		)
 	}
 
+	/**
+	 * À partir de là, on sait qu'on traite avec un nombre, qui peut être :
+	 * - un Montant (unité de type €, €/an, €/mois...)
+	 * - une Quantité (unité de type %, heures/mois, jours, année civile...)
+	 * - un nombre sans unité
+	 */
+
+	const unité = rule.rawNode.unité
+	const nbDécimalesMax = decodeArrondi(rule.rawNode.arrondi as string)
+
 	const estUnMontant =
 		(value && isMontant(value)) ||
 		(defaultValue && isMontant(defaultValue)) ||
-		estUneUnitéDeMontantPublicodes(rule.rawNode.unité)
+		estUneUnitéDeMontantPublicodes(unité)
 
 	if (estUnMontant) {
 		return (
@@ -329,7 +340,9 @@ export default function RuleInput({
 	}
 
 	const estUneQuantité =
-		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
+		(value && isQuantité(value)) ||
+		(defaultValue && isQuantité(defaultValue)) ||
+		isUnitéQuantité(unité)
 
 	if (estUneQuantité) {
 		const quantitéValue = value as Quantité | undefined
@@ -339,6 +352,7 @@ export default function RuleInput({
 			<QuantitéField
 				value={quantitéValue}
 				unité={quantitéValue?.unité || quantitéPlaceholder?.unité || ''}
+				nbDécimalesMax={nbDécimalesMax}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}

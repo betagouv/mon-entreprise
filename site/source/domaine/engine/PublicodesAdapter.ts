@@ -112,3 +112,23 @@ export const decodeSuggestions = <T extends ValeurPublicodes>(
 		R.filter(O.isSome),
 		R.map(O.getOrThrow)
 	) as Record<string, T>
+
+/**
+ * Décode l'attribut Publicodes "arrondi" qui peut :
+ * - être absent
+ * - valoir "oui"
+ * - valoir "1 décimale"
+ * - valoir "X décimales" avec X un nombre > 1
+ */
+export const decodeArrondi = (
+	arrondiPublicodes?: string
+): number | undefined => {
+	if (arrondiPublicodes === 'oui') {
+		return 0
+	}
+
+	const regExpMatch = arrondiPublicodes?.match(/^(\d+) décimales?$/)
+	if (regExpMatch) {
+		return +regExpMatch[1]
+	}
+}
