@@ -280,6 +280,7 @@ function StepsTable({
 function AnswerElement(rule: RuleNode) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
+	const { t } = useTranslation()
 
 	const parentDottedName = utils.ruleParent(rule.dottedName) as DottedName
 	const questionDottedName = rule.rawNode.question
@@ -301,12 +302,18 @@ function AnswerElement(rule: RuleNode) {
 			small
 			disableOverflowAuto // disable overflow auto for SelectCommune autocomplete to not be hidden
 			trigger={(buttonProps) => (
-				<Link {...buttonProps} aria-haspopup="dialog" aria-label="Modifier">
+				<>
 					<Value expression={rule.dottedName} linkToRule={false} />{' '}
-					<span className="print-hidden">
-						<Emoji emoji="✏" />
-					</span>
-				</Link>
+					<Link
+						{...buttonProps}
+						aria-haspopup="dialog"
+						aria-label={t(`Modifier ${rule.title}`)}
+					>
+						<span className="print-hidden">
+							<Emoji emoji="✏" />
+						</span>
+					</Link>
+				</>
 			)}
 		>
 			{(onClose) => (
