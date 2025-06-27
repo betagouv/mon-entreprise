@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import PeriodSwitch from '@/components/PeriodSwitch'
 import RéductionBasique from '@/components/RéductionDeCotisations/RéductionBasique'
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
@@ -47,6 +48,29 @@ export default function RéductionGénéraleSimulationGoals({
 	const currentUnit = useSelector(targetUnitSelector)
 	const monthByMonth = currentUnit === '€'
 
+	const periods = [
+		{
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.month',
+				'Réduction mensuelle'
+			),
+			unit: '€/mois',
+		},
+		{
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.year',
+				'Réduction annuelle'
+			),
+			unit: '€/an',
+		},
+		{
+			label: t(
+				'pages.simulateurs.réduction-générale.tab.month-by-month',
+				'Réduction mois par mois'
+			),
+			unit: '€',
+		},
+	]
 	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(
 			réductionGénéraleDottedName,
@@ -113,6 +137,7 @@ export default function RéductionGénéraleSimulationGoals({
 
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
+			<PeriodSwitch periods={periods} />
 			{monthByMonth ? (
 				<RéductionMoisParMois
 					dottedName={réductionGénéraleDottedName}
