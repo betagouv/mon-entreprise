@@ -241,6 +241,7 @@ entreprise . imposition . IS . résultat imposable:
   titre: Résultat de l’exercice
   résumé: Imposable à l’impôt sur les sociétés
   valeur: résultat fiscal
+  unité: €/an
 
 entreprise . imposition . IS . information sur le report de déficit:
   type: notification
