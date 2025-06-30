@@ -10,11 +10,12 @@ import {
 	useMemo,
 	useState,
 } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
+import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
@@ -92,6 +93,7 @@ export function useQuestions<S extends Situation>({
 	situation,
 	avecQuestionsPublicodes = true,
 }: UseQuestionsProps<S>) {
+	const dispatch = useDispatch()
 	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
 	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
 	const publicodesListeNoire = useSelector(listeNoireSelector)
@@ -168,6 +170,11 @@ export function useQuestions<S extends Situation>({
 			return
 		}
 
+		const questionCourante = questionsParId[activeQuestionId]
+		if (questionCourante?._tag === 'QuestionPublicodes') {
+			dispatch(vaÀLaQuestionSuivante())
+		}
+
 		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
 		if (currentIndex < idsDesQuestions.length - 1) {
 			const nextId = idsDesQuestions[currentIndex + 1]
@@ -175,7 +182,7 @@ export function useQuestions<S extends Situation>({
 		} else {
 			setFinished(true)
 		}
-	}, [activeQuestionId, idsDesQuestions])
+	}, [activeQuestionId, idsDesQuestions, dispatch])
 
 	const goToPrevious = useCallback(() => {
 		if (finished) {
