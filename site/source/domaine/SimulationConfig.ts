@@ -1,5 +1,6 @@
 import { DottedName } from 'modele-social'
 
+import { RaccourciPublicodes } from './RaccourciPublicodes'
 import { SituationPublicodes } from './SituationPublicodes'
 
 export type SimulationConfig = Partial<{
@@ -41,10 +42,7 @@ export type SimulationConfig = Partial<{
 		/**
 		 * Questions "raccourcis" sélectionnables en bas du simulateur
 		 */
-		"à l'affiche"?: {
-			label: string
-			dottedName: DottedName
-		}[]
+		raccourcis?: RaccourciPublicodes[]
 	}
 
 	'unité par défaut'?: string

@@ -9,7 +9,7 @@ export const configSASU: SimulationConfig = {
 	],
 	objectifs: ['impôt . montant', 'salarié . cotisations'],
 	questions: {
-		"à l'affiche": [
+		raccourcis: [
 			{
 				label: 'ACRE',
 				dottedName: 'dirigeant . exonérations . ACRE',

@@ -9,7 +9,7 @@ export const configSalarié: SimulationConfig = {
 		'salarié . rémunération . net . payé après impôt',
 	],
 	questions: {
-		"à l'affiche": [
+		raccourcis: [
 			{
 				label: 'Type de contrat',
 				dottedName: 'salarié',
