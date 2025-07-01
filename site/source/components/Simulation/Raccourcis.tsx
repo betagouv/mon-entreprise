@@ -10,7 +10,7 @@ type Props = {
 	idQuestionCourante: string
 }
 
-export default function QuickLinks({
+export default function Raccourcis({
 	raccourcis,
 	goTo,
 	idQuestionCourante,
