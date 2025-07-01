@@ -1,35 +1,24 @@
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Link, SmallBody, Spacing } from '@/design-system'
-import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { vaÀLaQuestion } from '@/store/actions/actions'
-import { RootState } from '@/store/reducers/rootReducer'
-import { currentQuestionSelector } from '@/store/selectors/currentQuestion.selector'
-import { questionsRéponduesNomSelector } from '@/store/selectors/questionsRéponduesNom.selector'
+import { Link, SmallBody } from '@/design-system'
+import { Raccourci } from '@/hooks/useQuestions'
 
-export default function QuickLinks() {
-	const currentQuestion = useSelector(currentQuestionSelector)
-	const nextSteps = useNextQuestions()
-	const quickLinks = useSelector(
-		(state: RootState) => state.simulation?.config.questions?.["à l'affiche"]
-	)
-	const quickLinksToHide = useSelector(questionsRéponduesNomSelector)
-	const dispatch = useDispatch()
+type Props = {
+	raccourcis: Raccourci[]
+	goTo: (id: string) => void
+	idQuestionCourante: string
+}
 
+export default function QuickLinks({
+	raccourcis,
+	goTo,
+	idQuestionCourante,
+}: Props) {
 	const { t } = useTranslation()
 
-	if (!quickLinks) {
-		return <Spacing sm />
-	}
-	const links = quickLinks.filter(
-		({ dottedName }) =>
-			nextSteps.includes(dottedName) && !quickLinksToHide.includes(dottedName)
-	)
-
-	if (links.length < 1) {
-		return <Spacing lg />
+	if (!raccourcis.length) {
+		return
 	}
 
 	return (
@@ -37,19 +26,19 @@ export default function QuickLinks() {
 			<p>Aller à la question : </p>
 
 			<StyledList>
-				{links.map(({ label, dottedName }) => (
-					<li key={dottedName}>
+				{raccourcis.map(({ id, libellé }) => (
+					<li key={id}>
 						<StyledLink
-							$underline={dottedName === currentQuestion}
-							onPress={() => dispatch(vaÀLaQuestion(dottedName))}
+							$active={id === idQuestionCourante}
+							onPress={() => goTo(id)}
 							aria-label={t(
 								'{{question}}, aller à la question : {{question}}',
 								{
-									question: label,
+									question: libellé,
 								}
 							)}
 						>
-							{label}
+							{libellé}
 						</StyledLink>
 					</li>
 				))}
@@ -72,6 +61,6 @@ const StyledList = styled.ul`
 	list-style: none;
 `
 
-const StyledLink = styled(Link)<{ $underline: boolean }>`
-	text-decoration: ${({ $underline }) => ($underline ? 'underline' : '')};
+const StyledLink = styled(Link)<{ $active: boolean }>`
+	text-decoration: ${({ $active }) => ($active ? 'underline' : '')};
 `
