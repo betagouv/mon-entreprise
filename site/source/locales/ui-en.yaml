@@ -2327,6 +2327,7 @@ termsOfUse:
     and use of the services offered to users.
   title: Terms and conditions of use
 trimestres acquis: quarters acquired
+update-rule: Update {{title}}
 vos retours, accéder aux statistiques d'utilisation: your feedback, access to usage statistics
 warning:
   overwrite:
