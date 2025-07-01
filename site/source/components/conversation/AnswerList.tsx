@@ -288,6 +288,9 @@ function AnswerElement(rule: RuleNode) {
 		: parentDottedName && engine.getRule(parentDottedName).rawNode.API
 		? parentDottedName
 		: undefined
+	const ariaLabel = t('update-rule', 'Modifier {{title}}', {
+		title: rule.title,
+	})
 
 	const handleChange = useCallback(
 		(value: ValeurPublicodes | undefined) => {
@@ -301,14 +304,15 @@ function AnswerElement(rule: RuleNode) {
 		<PopoverWithTrigger
 			small
 			disableOverflowAuto // disable overflow auto for SelectCommune autocomplete to not be hidden
-			ariaLabel={`Modifier ${rule.title}`}
+			ariaLabel={ariaLabel}
 			trigger={(buttonProps) => (
 				<>
 					<Value expression={rule.dottedName} linkToRule={false} />
 					<StyledButton
 						{...buttonProps}
 						aria-haspopup="dialog"
-						aria-label={`Modifier ${rule.title}`}
+						aria-label={ariaLabel}
+						title={ariaLabel}
 					>
 						<span className="print-hidden">
 							<Emoji emoji="✏" />
@@ -355,7 +359,7 @@ const StyledAnswerLine = styled(Grid)`
 	justify-content: flex-end;
 	gap: ${({ theme }) => theme.spacings.sm};
 	min-height: 2.8rem;
-	padding: 0.25rem 0.5rem;
+	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.xs}`};
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.bases.primary[100]
@@ -374,8 +378,8 @@ const StyledAnswerLine = styled(Grid)`
 `
 
 const StyledButton = styled(Link)`
-	margin: 0 -0.5rem 0 0.5rem;
-	padding: 0.5rem 1rem;
+	margin: 0 -0.5rem 0 1rem;
+	padding: 0.75rem;
 
 	&:hover,
 	&:focus {
