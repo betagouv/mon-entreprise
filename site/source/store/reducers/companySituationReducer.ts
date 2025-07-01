@@ -49,10 +49,7 @@ export function companySituation(
 			if (isCompanyDottedName(action.fieldName)) {
 				return {
 					...state,
-					[action.fieldName]: PublicodesAdapter.encode(
-						O.some(action.value),
-						action.fieldName
-					),
+					[action.fieldName]: PublicodesAdapter.encode(O.some(action.value)),
 				}
 			}
 			break
