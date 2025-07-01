@@ -19,7 +19,7 @@ import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
-import QuickLinks from '../QuickLinks'
+import Raccourcis from './Raccourcis'
 
 export interface QuestionsProps<S extends Situation = Situation> {
 	situation?: S
@@ -140,7 +140,7 @@ export function Questions<S extends Situation>({
 				)}
 
 				{QuestionCourante && (
-					<QuickLinks
+					<Raccourcis
 						raccourcis={raccourcis}
 						goTo={goTo}
 						idQuestionCourante={QuestionCourante?.id}
