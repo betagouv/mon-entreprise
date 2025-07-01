@@ -51,11 +51,11 @@ export default function Value<Names extends string>({
 			<RuleLink
 				dottedName={dottedName}
 				documentationPath={documentationPath}
-				aria-label={
-					t('Voir la documentation du calcul de') +
-					' ' +
-					value.replace(/(\d)\s+(\d)/g, '$1$2')
-				}
+				aria-label={t(
+					'composants.engine-value.voir-la-documentation',
+					'Voir la documentation du calcul de {{valeur}}',
+					{ valeur: value.replace(/(\d)\s+(\d)/g, '$1$2') }
+				)}
 			>
 				<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
 					{value}
@@ -77,7 +77,7 @@ const flash = keyframes`
     background-color: white;
 		opacity: 0.8;
   }
-	
+
 		to {
 			background-color: transparent;
 		}
