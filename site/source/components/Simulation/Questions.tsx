@@ -1,6 +1,6 @@
 import { DottedName } from 'modele-social'
 import React, { useCallback } from 'react'
-import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -36,6 +36,7 @@ export function Questions<S extends Situation>({
 	customSituationVisualisation,
 	situation,
 }: QuestionsProps<S>) {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
@@ -64,90 +65,95 @@ export function Questions<S extends Situation>({
 	)
 
 	return (
-		<>
-			<Progress
-				progress={activeQuestionIndex + 1}
-				maxValue={nombreDeQuestions}
-			/>
-			<QuestionsContainer>
-				<div className="print-hidden">
-					{(nombreDeQuestions === 0 ||
-						nombreDeQuestionsRépondues < nombreDeQuestions) && (
-						<Body>
-							<Trans i18nKey="simulateurs.précision.défaut">
-								Améliorez votre simulation en répondant aux questions :
-							</Trans>
-						</Body>
-					)}
-				</div>
-				{finished && (
-					<VousAvezComplétéCetteSimulation
-						customEndMessages={customEndMessages}
-						onPrevious={goToPrevious}
-					/>
-				)}
-
-				{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
-					<FromTop key={`custom-question-${QuestionCourante.id}`}>
-						<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
-						<QuestionCourante />
-
-						<Conversation
-							onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
-							onNext={goToNext}
-							questionIsAnswered={questionCouranteRépondue}
-							isPreviousDisabled={activeQuestionIndex === 0}
-							customVisualisation={
-								<SeeAnswersButton>
-									{customSituationVisualisation}
-								</SeeAnswersButton>
-							}
-						>
-							{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
-							<div style={{ display: 'none' }}></div>
-						</Conversation>
-					</FromTop>
-				)}
-
-				{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
-					<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
-						<fieldset>
-							<H3 as="legend">
-								{evaluateQuestion(engine, engine.getRule(QuestionCourante.id))}
-								<ExplicableRule light dottedName={QuestionCourante.id} />
-							</H3>
-							<RuleInput
-								dottedName={QuestionCourante.id}
-								onChange={(value, name) =>
-									handlePublicodesQuestionResponse(name, value)
-								}
-								key={QuestionCourante.id}
-								onSubmit={goToNext}
-							/>
-						</fieldset>
-						<Conversation
-							onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
-							onNext={goToNext}
-							questionIsAnswered={questionCouranteRépondue}
-							isPreviousDisabled={activeQuestionIndex === 0}
-							customVisualisation={
-								<SeeAnswersButton>
-									{customSituationVisualisation}
-								</SeeAnswersButton>
-							}
+		nombreDeQuestions > 0 && (
+			<>
+				<Progress
+					progress={activeQuestionIndex + 1}
+					maxValue={nombreDeQuestions}
+				/>
+				<QuestionsContainer>
+					<div className="print-hidden">
+						{nombreDeQuestionsRépondues < nombreDeQuestions && (
+							<Body>
+								{t(
+									'simulateurs.précision.défaut',
+									'Améliorez votre simulation en répondant aux questions :'
+								)}
+							</Body>
+						)}
+					</div>
+					{finished && (
+						<VousAvezComplétéCetteSimulation
+							customEndMessages={customEndMessages}
+							onPrevious={goToPrevious}
 						/>
-					</FromTop>
-				)}
+					)}
 
-				{QuestionCourante && (
-					<Raccourcis
-						raccourcis={raccourcis}
-						goTo={goTo}
-						idQuestionCourante={QuestionCourante?.id}
-					/>
-				)}
-			</QuestionsContainer>
-		</>
+					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
+						<FromTop key={`custom-question-${QuestionCourante.id}`}>
+							<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
+							<QuestionCourante />
+
+							<Conversation
+								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
+								onNext={goToNext}
+								questionIsAnswered={questionCouranteRépondue}
+								isPreviousDisabled={activeQuestionIndex === 0}
+								customVisualisation={
+									<SeeAnswersButton>
+										{customSituationVisualisation}
+									</SeeAnswersButton>
+								}
+							>
+								{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
+								<div style={{ display: 'none' }}></div>
+							</Conversation>
+						</FromTop>
+					)}
+
+					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
+						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
+							<fieldset>
+								<H3 as="legend">
+									{evaluateQuestion(
+										engine,
+										engine.getRule(QuestionCourante.id)
+									)}
+									<ExplicableRule light dottedName={QuestionCourante.id} />
+								</H3>
+								<RuleInput
+									dottedName={QuestionCourante.id}
+									onChange={(value, name) =>
+										handlePublicodesQuestionResponse(name, value)
+									}
+									key={QuestionCourante.id}
+									onSubmit={goToNext}
+								/>
+							</fieldset>
+							<Conversation
+								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
+								onNext={goToNext}
+								questionIsAnswered={questionCouranteRépondue}
+								isPreviousDisabled={activeQuestionIndex === 0}
+								customVisualisation={
+									<SeeAnswersButton>
+										{customSituationVisualisation}
+									</SeeAnswersButton>
+								}
+							/>
+						</FromTop>
+					)}
+
+					{QuestionCourante && (
+						<Raccourcis
+							raccourcis={raccourcis}
+							goTo={goTo}
+							idQuestionCourante={QuestionCourante?.id}
+						/>
+					)}
+				</QuestionsContainer>
+			</>
+		)
 	)
 }
 
