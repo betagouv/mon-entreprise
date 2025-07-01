@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Situation } from '@/domaine/Situation'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { configSelector } from '@/store/selectors/config.selector'
+import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
 import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
 
@@ -81,14 +81,14 @@ export function useQuestions<S extends Situation>({
 }: UseQuestionsProps<S>) {
 	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
 	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
-	const config = useSelector(configSelector)
+	const publicodesListeNoire = useSelector(listeNoireSelector)
 
 	const publicodesQuestionsRéponduesFiltrées = useMemo(
 		() =>
 			publicodesQuestionsRépondues.filter(
-				(q) => !(config.questions?.['liste noire'] ?? []).includes(q.règle)
+				(q) => !publicodesListeNoire.includes(q.règle)
 			),
-		[publicodesQuestionsRépondues, config]
+		[publicodesQuestionsRépondues, publicodesListeNoire]
 	)
 
 	const toutesLesQuestionsApplicables = useMemo(
