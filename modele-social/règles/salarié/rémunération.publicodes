@@ -10,6 +10,7 @@ salarié . rémunération . brut:
     de la contribution sociale généralisée (CSG) et de la contribution au
     remboursement de la dette sociale (CRDS).
   titre: Rémunération brute
+  unité: €/mois
 
   somme:
     - contrat . salaire brut
