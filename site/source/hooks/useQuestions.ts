@@ -13,11 +13,13 @@ import {
 import { useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
 import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
+import { raccourcisSelector } from '@/store/selectors/raccourcis.selector'
 
 interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'
@@ -68,6 +70,17 @@ export type Question<S extends Situation> =
 	| QuestionFournie<S>
 	| QuestionPublicodes<S>
 
+export interface Raccourci {
+	id: string
+	libellé: string
+}
+const fromRaccourciPublicodes = (
+	quickLink: RaccourciPublicodes
+): Raccourci => ({
+	id: quickLink.dottedName,
+	libellé: quickLink.label,
+})
+
 export interface UseQuestionsProps<S extends Situation = Situation> {
 	questions?: Array<ComposantQuestion<S>>
 	situation?: S
@@ -82,6 +95,7 @@ export function useQuestions<S extends Situation>({
 	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
 	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
 	const publicodesListeNoire = useSelector(listeNoireSelector)
+	const publicodesRaccourcis = useSelector(raccourcisSelector)
 
 	const publicodesQuestionsRéponduesFiltrées = useMemo(
 		() =>
@@ -89,6 +103,12 @@ export function useQuestions<S extends Situation>({
 				(q) => !publicodesListeNoire.includes(q.règle)
 			),
 		[publicodesQuestionsRépondues, publicodesListeNoire]
+	)
+
+	// TODO: ajouter et gérer les raccourcis de questions fournies
+	const raccourcis = useMemo(
+		() => publicodesRaccourcis.map(fromRaccourciPublicodes),
+		[publicodesRaccourcis]
 	)
 
 	const toutesLesQuestionsApplicables = useMemo(
@@ -176,6 +196,17 @@ export function useQuestions<S extends Situation>({
 		}
 	}, [activeQuestionId, finished, idsDesQuestions])
 
+	const goTo = useCallback(
+		(id: string) => {
+			if (!idsDesQuestions.includes(id)) {
+				return
+			}
+
+			setActiveQuestionId(id)
+		},
+		[idsDesQuestions]
+	)
+
 	const nombreDeQuestions = toutesLesQuestionsApplicables.length
 
 	const nombreDeQuestionsRépondues = toutesLesQuestionsApplicables.filter((q) =>
@@ -195,8 +226,10 @@ export function useQuestions<S extends Situation>({
 		activeQuestionIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
+		raccourcis,
 		finished,
 		goToNext,
 		goToPrevious,
+		goTo,
 	}
 }

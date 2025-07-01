@@ -19,6 +19,8 @@ import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
+import QuickLinks from '../QuickLinks'
+
 export interface QuestionsProps<S extends Situation = Situation> {
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
@@ -43,9 +45,11 @@ export function Questions<S extends Situation>({
 		activeQuestionIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
+		raccourcis,
 		finished,
 		goToNext,
 		goToPrevious,
+		goTo,
 	} = useQuestions({
 		questions,
 		situation,
@@ -133,6 +137,14 @@ export function Questions<S extends Situation>({
 							}
 						/>
 					</FromTop>
+				)}
+
+				{QuestionCourante && (
+					<QuickLinks
+						raccourcis={raccourcis}
+						goTo={goTo}
+						idQuestionCourante={QuestionCourante?.id}
+					/>
 				)}
 			</QuestionsContainer>
 		</>
