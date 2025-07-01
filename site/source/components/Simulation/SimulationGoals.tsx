@@ -81,7 +81,7 @@ export const SimulationGoalsContainer = styled.div<{
 	}
 
 	& > div:not(.sr-only) {
-		margin-top: 1rem;
+		margin-top: ${({ theme }) => theme.spacings.md};
 	}
 
 	& > :is(div, fieldset) {
@@ -106,7 +106,7 @@ export const SimulationGoalsContainer = styled.div<{
 		}
 
 		& > div:not(.sr-only) {
-			margin-top: 0.5rem;
+			margin-top: ${({ theme }) => theme.spacings.xs};
 		}
 	}
 `

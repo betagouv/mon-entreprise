@@ -9,7 +9,7 @@ import Répartition from '@/components/RéductionDeCotisations/Répartition'
 import { SimulationGoal } from '@/components/Simulation'
 import { SimulationValue } from '@/components/Simulation/SimulationValue'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Body, Message, SmallBody, Spacing } from '@/design-system'
+import { Intro, Message, Spacing } from '@/design-system'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getRépartitionBasique,
@@ -54,7 +54,7 @@ export default function RéductionBasique({
 			<ReductionBasiqueConditionWrapper>
 				<Condition expression={warningCondition}>
 					<Message type="info">
-						<Body>{warningMessage}</Body>
+						<Intro>{warningMessage}</Intro>
 					</Message>
 				</Condition>
 			</ReductionBasiqueConditionWrapper>
@@ -77,11 +77,7 @@ export default function RéductionBasique({
 }
 
 const ReductionBasiqueConditionWrapper = styled.div`
-	a,
-	${Body} {
-		font-size: 1.125rem;
-	}
-	${SmallBody} {
-		font-size: 1rem;
+	a {
+		font-size: ${({ theme }) => theme.fontSizes.lg};
 	}
 `
