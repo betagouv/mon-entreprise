@@ -3,7 +3,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 export const configLodeom: SimulationConfig = {
 	objectifs: ['salarié . cotisations . exonérations . lodeom . montant'],
 	questions: {
-		"à l'affiche": [
+		raccourcis: [
 			{
 				label: 'Temps partiel',
 				dottedName: 'salarié . contrat . temps de travail . temps partiel',

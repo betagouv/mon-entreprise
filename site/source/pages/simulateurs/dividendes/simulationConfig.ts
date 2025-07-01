@@ -7,7 +7,7 @@ export const configDividendes: SimulationConfig = {
 	],
 	questions: {
 		// [TODO] [dividendes-indep]
-		// à l'affiche:
+		// raccourcis:
 		//   Régime social du dirigeant: dirigeant
 		'liste noire': ['impôt . méthode de calcul'],
 	},
