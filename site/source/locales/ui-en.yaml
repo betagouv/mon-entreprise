@@ -1874,6 +1874,9 @@ pages:
           in the "operating expenses" box.
         général: This simulator is intended for self-employed professionals in the BNC
           sector. It does not take into account self-employed companies.
+    raccourcis:
+      aria-label: "Go to question : {{question}}"
+      titre: "Go to question :"
     réduction-générale:
       externalLinks:
         "1":

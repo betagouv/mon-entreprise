@@ -22,8 +22,10 @@ export default function Raccourcis({
 	}
 
 	return (
-		<StyledLinks as="div">
-			<p>Aller à la question : </p>
+		<Container>
+			<StyledSmallBody>
+				{t('pages.simulateurs.raccourcis.titre', 'Aller à la question :')}
+			</StyledSmallBody>
 
 			<StyledList>
 				{raccourcis.map(({ id, libellé }) => (
@@ -32,7 +34,8 @@ export default function Raccourcis({
 							$active={id === idQuestionCourante}
 							onPress={() => goTo(id)}
 							aria-label={t(
-								'{{question}}, aller à la question : {{question}}',
+								'pages.simulateurs.raccourcis.aria-label',
+								'Aller à la question : {{question}}',
 								{
 									question: libellé,
 								}
@@ -43,24 +46,30 @@ export default function Raccourcis({
 					</li>
 				))}
 			</StyledList>
-		</StyledLinks>
+		</Container>
 	)
 }
 
-const StyledLinks = styled(SmallBody)`
+const Container = styled.div`
 	display: inline-flex;
 	flex-wrap: wrap;
 	gap: ${({ theme }) => theme.spacings.sm};
+	margin: ${({ theme }) => theme.spacings.xl} 0;
+`
+
+const StyledSmallBody = styled(SmallBody)`
+	margin: 0;
 `
 
 const StyledList = styled.ul`
 	display: flex;
-	gap: 12px;
-	margin: 1em 0;
+	gap: ${({ theme }) => theme.spacings.sm};
+	margin: 0;
+	font-size: 90%;
 	padding: 0;
 	list-style: none;
 `
 
 const StyledLink = styled(Link)<{ $active: boolean }>`
-	text-decoration: ${({ $active }) => ($active ? 'underline' : '')};
+	text-decoration: ${({ $active }) => ($active ? 'none' : 'underline')};
 `

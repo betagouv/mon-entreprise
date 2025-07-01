@@ -1987,6 +1987,9 @@ pages:
           ajoutées manuellement dans la case « charges de fonctionnement ».
         général: Ce simulateur est à destination des professions libérales en BNC. Il ne
           prend pas en compte les sociétés d’exercice libéral.
+    raccourcis:
+      aria-label: "Aller à la question : {{question}}"
+      titre: "Aller à la question :"
     réduction-générale:
       externalLinks:
         "1":
