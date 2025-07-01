@@ -158,6 +158,11 @@ export const baseTheme = {
 
 	baseFontSize: '16px',
 
+	fontSizes: {
+		lg: '1.125rem',
+		md: '1rem',
+	},
+
 	box: {
 		borderRadius: '6px',
 		borderWidth: '1px',

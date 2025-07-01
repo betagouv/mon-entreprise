@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid, SmallBody, TitreObjectifSaisissable } from '@/design-system'
+import { Body, Grid, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
@@ -71,12 +71,12 @@ export function ObjectifSaisissableDeSimulation({
 						)}
 
 						{description && (
-							<StyledSmallBody
+							<StyledBody
 								className={small ? 'sr-only' : ''}
 								id={`${id}-description`}
 							>
 								{description}
-							</StyledSmallBody>
+							</StyledBody>
 						)}
 					</Grid>
 					<Grid item>
@@ -100,7 +100,7 @@ export function ObjectifSaisissableDeSimulation({
 const GridCentered = styled(Grid)`
 	display: grid;
 	grid-template-columns: 1.25fr 1fr;
-	gap: 1rem;
+	gap: ${({ theme }) => theme.spacings.md};
 
 	& > div {
 		padding: 0;
@@ -129,7 +129,7 @@ const GridCentered = styled(Grid)`
 
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		grid-template-columns: 1fr;
-		gap: 0.5rem;
+		gap: ${({ theme }) => theme.spacings.xs};
 
 		& > div {
 			text-align: left;
@@ -147,9 +147,8 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	}
 `
 
-const StyledSmallBody = styled(SmallBody)`
+const StyledBody = styled(Body)`
 	margin-bottom: 0;
-	font-size: 1rem;
 `
 
 const BiggerForceThemeProvider = styled(ForceThemeProvider)`
@@ -158,7 +157,7 @@ const BiggerForceThemeProvider = styled(ForceThemeProvider)`
 
 const LargeInputContainer = styled.div`
 	input {
-		font-size: 1.125rem;
+		font-size: ${({ theme }) => theme.fontSizes.lg};
 		line-height: 1.5;
 	}
 `
