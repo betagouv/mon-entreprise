@@ -1,3 +1,6 @@
+import { flow, pipe } from 'effect'
+import * as O from 'effect/Option'
+import * as R from 'effect/Record'
 import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 
@@ -13,6 +16,7 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
+import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
@@ -132,24 +136,29 @@ function usePossibleStatuts(): Array<StatutType> {
 }
 
 function getSituationFromStatut(statut: StatutType): SituationPublicodes {
-	return {
-		'entreprise . catégorie juridique . remplacements': 'oui',
-		'entreprise . catégorie juridique':
-			statut === 'SASU'
-				? 'SAS'
-				: statut === 'EURL'
-				? 'SARL'
-				: statut === 'AE'
-				? 'EI'
-				: statut === 'SELARLU'
-				? 'SELARL'
-				: statut === 'SELASU'
-				? 'SELAS'
-				: statut,
-		'entreprise . catégorie juridique . EI . auto-entrepreneur':
-			statut === 'AE' ? 'oui' : 'non',
-		'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(statut)
-			? 'multiples'
-			: 'unique',
-	}
+	return pipe(
+		{
+			'entreprise . catégorie juridique . remplacements': 'oui',
+			'entreprise . catégorie juridique':
+				statut === 'SASU'
+					? 'SAS'
+					: statut === 'EURL'
+					? 'SARL'
+					: statut === 'AE'
+					? 'EI'
+					: statut === 'SELARLU'
+					? 'SELARL'
+					: statut === 'SELASU'
+					? 'SELAS'
+					: statut,
+			'entreprise . catégorie juridique . EI . auto-entrepreneur':
+				statut === 'AE' ? 'oui' : 'non',
+			'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(
+				statut
+			)
+				? 'multiples'
+				: 'unique',
+		},
+		R.map(flow(O.fromNullable, PublicodesAdapter.encode))
+	)
 }

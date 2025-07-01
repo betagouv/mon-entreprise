@@ -201,10 +201,7 @@ function FormulairePublicodes() {
 											onChange={(value) =>
 												onChange(
 													dottedName,
-													PublicodesAdapter.encode(
-														O.fromNullable(value),
-														dottedName as DottedName
-													)
+													PublicodesAdapter.encode(O.fromNullable(value))
 												)
 											}
 											hideDefaultValue

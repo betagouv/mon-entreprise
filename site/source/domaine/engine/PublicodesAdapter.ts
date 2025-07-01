@@ -3,7 +3,6 @@ import { isNumber } from 'effect/Number'
 import * as O from 'effect/Option'
 import { isBoolean } from 'effect/Predicate'
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	EvaluatedNode,
@@ -27,12 +26,7 @@ export type Nombre = number
 
 export type ValeurPublicodes = string | Montant | Quantité | Nombre
 
-const decode = (
-	node: EvaluatedNode,
-	// Décodage spécial selon la règle ?
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	_règle?: DottedName
-): O.Option<ValeurPublicodes> => {
+const decode = (node: EvaluatedNode): O.Option<ValeurPublicodes> => {
 	if (node.nodeValue === null || node.nodeValue === undefined) {
 		return O.none()
 	}
@@ -74,9 +68,7 @@ const decode = (
 }
 
 const encode = (
-	optionalValeur: O.Option<ValeurPublicodes>,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	règle: DottedName
+	optionalValeur: O.Option<ValeurPublicodes>
 ): PublicodesExpression | undefined => {
 	if (O.isNone(optionalValeur)) {
 		return undefined
