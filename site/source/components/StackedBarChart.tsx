@@ -201,6 +201,7 @@ export default function StackedRulesChart({
 	data,
 	precision = 0.1,
 }: StackedRulesChartProps) {
+	const { t } = useTranslation().i18n
 	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
 
@@ -214,7 +215,11 @@ export default function StackedRulesChart({
 				legend: (
 					<RuleLink
 						dottedName={dottedName}
-						aria-label={`Voir les détails du calcul de ${title}`}
+						aria-label={t(
+							'composants.engine-value.voir-les-details-du-calcul',
+							'Voir les détails du calcul de {{title}}',
+							{ title }
+						)}
 					>
 						{title}
 					</RuleLink>
