@@ -1,5 +1,5 @@
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import {
@@ -120,6 +120,7 @@ export default function Select({
 					e.preventDefault()
 					break
 				case 'Escape':
+				case 'Tab':
 					setName('')
 					setSearchResults(null)
 					break
@@ -135,28 +136,46 @@ export default function Select({
 	return (
 		<Container>
 			<TextField
-				/* role="combobox" // FIXME: Need to use a proper combobox component here */
-				errorMessage={noResult && <Trans>Cette commune n'existe pas</Trans>}
+				role="combobox"
 				id={id}
-				autoFocus={autoFocus}
-				aria-autocomplete="list"
-				onBlur={submitFocusedElem}
-				aria-readonly="true"
-				onKeyDown={handleKeyDown}
 				label={t('Commune ou code postal')}
 				value={name}
-				onChange={handleChange}
+				autoFocus={autoFocus}
 				autoComplete="off"
+				aria-controls="liste-commune"
+				aria-expanded={!!searchResults}
+				aria-activedescendant={
+					searchResults && searchResults.length > 0
+						? `commune-${focusedElem}`
+						: undefined
+				}
+				aria-autocomplete="list"
+				onBlur={submitFocusedElem}
+				onKeyDown={handleKeyDown}
+				onChange={handleChange}
+				errorMessage={noResult && t('Cette commune n’existe pas')}
 			/>
 
 			{!!searchResults && (
-				<OptionList role="listbox" aria-expanded="true" id="liste-commune">
+				<OptionList
+					role="listbox"
+					id="liste-commune"
+					tabIndex={0}
+					aria-label={t('Communes et code postaux correspondants')}
+					aria-activedescendant={`commune-${focusedElem}`}
+				>
 					{searchResults.map((result, i) => {
 						const nom = formatCommune(result)
 
 						return (
 							<Option
 								as="li"
+								role="option"
+								id={`commune-${i}`}
+								aria-selected={i === focusedElem}
+								focused={i === focusedElem}
+								key={nom}
+								data-role="commune-option"
 								onMouseDown={
 									// Prevent input blur and focus elem selection
 									(e: React.MouseEvent) => e.preventDefault()
@@ -164,10 +183,6 @@ export default function Select({
 								onClick={() => {
 									void handleSubmit(result)
 								}}
-								role="option"
-								focused={i === focusedElem}
-								data-role="commune-option"
-								key={nom}
 								onFocus={() => setFocusedElem(i)}
 							>
 								{nom}
