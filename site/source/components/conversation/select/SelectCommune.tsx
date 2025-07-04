@@ -120,6 +120,7 @@ export default function Select({
 					e.preventDefault()
 					break
 				case 'Escape':
+				case 'Tab':
 					setName('')
 					setSearchResults(null)
 					break
