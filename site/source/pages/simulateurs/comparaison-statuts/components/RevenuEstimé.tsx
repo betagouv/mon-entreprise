@@ -81,7 +81,7 @@ const Label = styled(Body)`
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[200]
-			: theme.colors.extended.grey[600]}!important;
+			: theme.colors.extended.grey[700]}!important;
 	font-size: 0.875rem;
 `
 
