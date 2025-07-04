@@ -7,32 +7,45 @@ import { StatutTag, StatutType } from '@/components/StatutTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import { H5, Li, Message, Ul } from '@/design-system'
 
+const STATUTS = [
+	'entreprise . catégorie juridique . EI . EI',
+	'entreprise . catégorie juridique . EI . auto-entrepreneur',
+	'entreprise . catégorie juridique . SARL . EURL',
+	'entreprise . catégorie juridique . SARL . SARL',
+	'entreprise . catégorie juridique . SAS . SAS',
+	'entreprise . catégorie juridique . SAS . SASU',
+	'entreprise . catégorie juridique . SELARL . SELARL',
+	'entreprise . catégorie juridique . SELARL . SELARLU',
+	'entreprise . catégorie juridique . SELAS . SELAS',
+	'entreprise . catégorie juridique . SELAS . SELASU',
+	'entreprise . catégorie juridique . association',
+] as DottedName[]
+
 export default function StatutsPossibles() {
 	const engine = useEngine()
-	const statuts = [
-		'entreprise . catégorie juridique . EI . EI',
-		'entreprise . catégorie juridique . EI . auto-entrepreneur',
-		'entreprise . catégorie juridique . SARL . EURL',
-		'entreprise . catégorie juridique . SARL . SARL',
-		'entreprise . catégorie juridique . SAS . SAS',
-		'entreprise . catégorie juridique . SAS . SASU',
-		'entreprise . catégorie juridique . SELARL . SELARL',
-		'entreprise . catégorie juridique . SELARL . SELARLU',
-		'entreprise . catégorie juridique . SELAS . SELAS',
-		'entreprise . catégorie juridique . SELAS . SELASU',
-		'entreprise . catégorie juridique . association',
-	].sort(
-		(a, b) =>
-			(engine.evaluate({ '=': [a, 'non'] }).nodeValue ? 1 : -1) -
-			(engine.evaluate({ '=': [b, 'non'] }).nodeValue ? 1 : -1)
-	) as DottedName[]
+
+	const nonAvailableStatus = STATUTS.filter(
+		(statut) => engine.evaluate({ '=': [statut, 'non'] }).nodeValue
+	)
+
+	const availableStatus = STATUTS.filter(
+		(statut) => !nonAvailableStatus.includes(statut)
+	)
 
 	return (
 		<StyledMessage>
-			<H5 as="h2"> Statuts disponibles</H5>
+			<H5 as="h2">Statuts disponibles</H5>
 
 			<StyledUl $noMarker as={FlipMove} typeName="ul">
-				{statuts.map((statut) => (
+				{availableStatus.map((statut) => (
+					<Statut key={statut} statut={statut} />
+				))}
+			</StyledUl>
+
+			<H5 as="h2">Statuts non disponibles</H5>
+
+			<StyledUl $noMarker as={FlipMove} typeName="ul">
+				{nonAvailableStatus.map((statut) => (
 					<Statut key={statut} statut={statut} />
 				))}
 			</StyledUl>
