@@ -453,6 +453,9 @@ conversation:
   yes-no:
     aria-label: Yes or no
 copied: Copy
+cotisations:
+  employeur: employer
+  salarie: employee
 crée:
   choix-statut:
     détails-activité:

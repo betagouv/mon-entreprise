@@ -13,7 +13,7 @@ import Line from './Line'
 
 function SalaireLine({ rule, title }: { rule: DottedName; title?: string }) {
 	return (
-		<div className="payslip__payementLine">
+		<div className="payslip__paymentLine">
 			<H4>
 				{title}
 				<ExplicableRule light dottedName={rule} />
