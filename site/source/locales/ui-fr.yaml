@@ -2470,6 +2470,7 @@ termsOfUse:
     et utilisatrices.
   title: Conditions générales d'utilisation
 trimestres acquis: trimestres acquis
+update-rule: Modifier {{title}}
 vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux statistiques d'utilisation
 warning:
   overwrite:

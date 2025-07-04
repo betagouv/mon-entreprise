@@ -267,4 +267,8 @@ const PopoverContent = styled.div<{ $disableOverflowAuto: boolean }>`
 	${({ $disableOverflowAuto }) =>
 		$disableOverflowAuto ? '' : 'overflow: auto;'}
 	padding: 0 ${({ theme }) => theme.spacings.xxl + ' ' + theme.spacings.md};
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		padding: 0 ${({ theme }) => theme.spacings.md + ' ' + theme.spacings.md};
+	}
 `
