@@ -55,7 +55,6 @@ export const MontantField = <U extends UnitéMonétaire>({
 				label={label}
 				aria-labelledby={aria?.labelledby}
 				aria-label={aria?.label}
-				description={''}
 				onChange={handleValueChange}
 				onSubmit={onSubmit}
 				formatOptions={{
