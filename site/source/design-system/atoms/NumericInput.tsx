@@ -5,9 +5,11 @@ import { NumberFieldState } from '@react-stately/numberfield'
 import { AriaNumberFieldProps } from '@react-types/numberfield'
 import {
 	ChangeEvent,
+	ChangeEventHandler,
 	HTMLAttributes,
 	InputHTMLAttributes,
 	KeyboardEvent,
+	KeyboardEventHandler,
 	RefObject,
 	useCallback,
 	useEffect,
@@ -84,24 +86,12 @@ export const NumericInput = (props: NumericInputProps) => {
 		state as NumberFieldState,
 		ref
 	)
-	const inputWithCursorHandlingProps = useKeepCursorPositionOnUpdate(
-		inputProps,
+	const { onChange, onKeyDown } = useKeepCursorPositionOnUpdate(
+		inputProps.onChange,
+		inputProps.onKeyDown,
+		props.onSubmit,
 		ref
 	)
-
-	// Handle Enter key for onSubmit
-	const handleKeyDown = useCallback(
-		(e: KeyboardEvent<HTMLInputElement>) => {
-			inputWithCursorHandlingProps.onKeyDown?.(e)
-			if (e.key === 'Enter' && props.onSubmit) {
-				e.preventDefault()
-				props.onSubmit('enter')
-			}
-		},
-		[inputWithCursorHandlingProps.onKeyDown, props.onSubmit]
-	)
-
-	delete inputWithCursorHandlingProps.autoCorrect
 
 	return (
 		<StyledNumericInputContainer>
@@ -125,8 +115,9 @@ export const NumericInput = (props: NumericInputProps) => {
 						'suggestions',
 						'onSubmit'
 					) as HTMLAttributes<HTMLInputElement>)}
-					{...inputWithCursorHandlingProps}
-					onKeyDown={handleKeyDown}
+					{...omit(inputProps, 'autoCorrect')}
+					onChange={onChange}
+					onKeyDown={onKeyDown}
 					placeholder={
 						props.placeholder != null
 							? state.formatter.format(props.placeholder)
@@ -171,13 +162,15 @@ const StyledNumberInput = styled(StyledInput)`
 `
 
 function useKeepCursorPositionOnUpdate(
-	inputProps: InputHTMLAttributes<HTMLInputElement>,
+	inputOnChange: ChangeEventHandler<HTMLInputElement> | undefined,
+	inputOnKeyDown: KeyboardEventHandler<HTMLInputElement> | undefined,
+	inputOnSubmit: ((source?: string) => void) | undefined,
 	inputRef: RefObject<HTMLInputElement>
 ): InputHTMLAttributes<HTMLInputElement> {
 	const [selection, setSelection] = useState<null | number>(null)
 	const [value, setValue] = useState<string | undefined>()
 	const [rerenderSwitch, toggle] = useState(false)
-	const { onChange: inputOnChange, onKeyDown: inputOnKeyDown } = inputProps
+
 	const onChange = useCallback(
 		(e: ChangeEvent<HTMLInputElement>) => {
 			const input = e.target
@@ -190,31 +183,34 @@ function useKeepCursorPositionOnUpdate(
 		},
 		[inputOnChange, rerenderSwitch]
 	)
+
 	const onKeyDown = useCallback(
 		(e: KeyboardEvent<HTMLInputElement>) => {
 			inputOnKeyDown?.(e)
 			const input = e.target as HTMLInputElement | undefined
 			if (
-				!(
-					e.key === 'Backspace' &&
-					input?.value
-						?.slice((input.selectionStart ?? 0) - 1, input.selectionStart ?? 0)
-						.match(/[\s]/)
-				)
+				e.key === 'Backspace' &&
+				input?.value
+					?.slice((input.selectionStart ?? 0) - 1, input.selectionStart ?? 0)
+					.match(/[\s]/)
 			) {
-				return
-			}
-			setSelection(
-				Math.max(
-					0,
-					(input.selectionStart ?? 0) - 2,
-					(input.selectionEnd ?? 0) - 2
+				setSelection(
+					Math.max(
+						0,
+						(input.selectionStart ?? 0) - 2,
+						(input.selectionEnd ?? 0) - 2
+					)
 				)
-			)
-			toggle(!rerenderSwitch)
+				toggle(!rerenderSwitch)
+			}
+			if (e.key === 'Enter' && inputOnSubmit) {
+				e.preventDefault()
+				inputOnSubmit('enter')
+			}
 		},
-		[inputOnKeyDown, rerenderSwitch]
+		[inputOnKeyDown, inputOnSubmit, rerenderSwitch]
 	)
+
 	useEffect(() => {
 		const input = inputRef.current
 		if (!input || selection === null) {
@@ -229,7 +225,7 @@ function useKeepCursorPositionOnUpdate(
 		input.selectionEnd = Math.max(adjustedSelection, 0)
 	}, [inputRef, selection, value, rerenderSwitch])
 
-	return { ...inputProps, onChange, onKeyDown }
+	return { onChange, onKeyDown } satisfies InputHTMLAttributes<HTMLInputElement>
 }
 
 /*
@@ -340,7 +336,7 @@ function useSimpleNumberFieldState(
 
 			if (
 				// Handle case for partially formatted input while typing decimal numbers
-				inputValue.match(/[\d][,.]([\d]*[0]+)?[^\d]*$/) ||
+				inputValue.match(/[\d€][,.]([\d]*[0]+)?[^\d]*$/) ||
 				// Handle case for 000015
 				inputValue.match(/^[^\d]*0([0]+|[\d\s,.]+)[^\d]*$/)
 			) {
