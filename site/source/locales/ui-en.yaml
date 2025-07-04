@@ -48,7 +48,7 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
 Budget: Budget
 Bénéfice: Profit
 Cacher le message: Hide message
-Cette commune n'existe pas: This commune does not exist
+Cette commune n’existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
 Charges: Charges
@@ -59,6 +59,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   How does it work? See the explanatory page on the github repository page, new
   window
 Commune ou code postal: Town or zip code
+Communes et code postaux correspondants: Corresponding towns and postcodes
 Confirmer: Confirm
 Cotisations: Contributions
 Cotisations sociales: Social security contributions
