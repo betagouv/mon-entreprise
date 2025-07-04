@@ -4,8 +4,8 @@ import { styled } from 'styled-components'
 export const Highlight = styled(ISHighlight)`
 	& .ais-Highlight-highlighted,
 	& .ais-Snippet-highlighted {
-		background-color: rgba(84, 104, 255, 0.1);
-		color: #5468ff;
+		background: #eff1ff;
+		color: #0522ff;
 		font-style: normal;
 	}
 `
