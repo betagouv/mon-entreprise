@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
-import { quantité, Quantité, UnitéQuantité } from '@/domaine/Quantité'
+import { quantité, Quantité } from '@/domaine/Quantité'
+import { UnitéQuantité } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 

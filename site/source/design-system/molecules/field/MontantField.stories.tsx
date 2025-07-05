@@ -2,7 +2,8 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React, { useState } from 'react'
 
-import { montant, Montant, UnitéMonétaire } from '@/domaine/Montant'
+import { montant, Montant } from '@/domaine/Montant'
+import { UnitéMonétaire } from '@/domaine/Unités'
 
 import { MontantField } from './MontantField'
 
