@@ -23,7 +23,7 @@ import {
 export function calculeCotisationsMicroEntreprise(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
-	Montant<'EuroParAn'>,
+	Montant<'€/an'>,
 	RecettesInférieuresAuSeuilRequisPourCeRégime
 > {
 	const recettes = situation.recettes.value

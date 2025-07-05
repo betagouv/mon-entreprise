@@ -63,7 +63,7 @@ function RémunérationEntrepriseUnipersonnelle() {
 			>
 				<MontantField
 					value={CA}
-					unité="EuroParAn"
+					unité="€/an"
 					onChange={(m) => {
 						setState({ CA: m })
 					}}
@@ -97,7 +97,7 @@ function RémunérationEntrepriseUnipersonnelle() {
 				</Trans>
 				<MontantField
 					value={charges}
-					unité="EuroParAn"
+					unité="€/an"
 					label={t(
 						'choix-statut.rémunération.charges.label',
 						'Montant des charges HT'
@@ -147,7 +147,7 @@ function RémunérationSociétéAssociésMultiples() {
 							? eurosParAn(rémunérationTotale)
 							: undefined
 					}
-					unité="EuroParAn"
+					unité="€/an"
 					onChange={(m) => setState({ rémunérationTotale: m?.valeur })}
 					label={t(
 						'choix-statut.rémunération.rémunérationTotale.label',
@@ -163,8 +163,8 @@ function RémunérationSociétéAssociésMultiples() {
 }
 
 type CAState = {
-	CA: Montant<'EuroParAn'> | undefined
-	charges: Montant<'EuroParAn'> | undefined
+	CA: Montant<'€/an'> | undefined
+	charges: Montant<'€/an'> | undefined
 }
 function useChiffreAffairesState(): [
 	state: CAState,

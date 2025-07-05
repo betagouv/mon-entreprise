@@ -6,7 +6,6 @@ import {
 	eurosParMois,
 	isMontant,
 	Montant,
-	unitéMonétaireToString,
 } from '@/domaine/Montant'
 import { isQuantité, Quantité, quantité } from '@/domaine/Quantité'
 
@@ -19,7 +18,7 @@ export type ValeurDomaine = string | Montant | Quantité | number
 export const SearchParamsAdapter = {
 	encode: (valeur: ValeurDomaine): string => {
 		if (isMontant(valeur)) {
-			return `${valeur.valeur}${unitéMonétaireToString(valeur.unité)}`
+			return `${valeur.valeur}${valeur.unité}`
 		}
 
 		if (isQuantité(valeur)) {

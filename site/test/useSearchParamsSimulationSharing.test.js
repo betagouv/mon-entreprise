@@ -82,12 +82,12 @@ rule without:
 			expect(result['rule with']).toMatchObject({
 				_tag: 'Montant',
 				valeur: 2000,
-				unité: 'EuroParMois',
+				unité: '€/mois',
 			})
 			expect(result['rule without']).toMatchObject({
 				_tag: 'Montant',
 				valeur: 1000,
-				unité: 'EuroParMois',
+				unité: '€/mois',
 			})
 		})
 		it('handles empty search params with proper defaults', () => {

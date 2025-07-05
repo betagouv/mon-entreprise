@@ -53,23 +53,23 @@ const MontantFieldWrapper = <U extends UnitéMonétaire>(
 export const Défaut: Story = {
 	render: (args) => <MontantFieldWrapper {...args} />,
 	args: {
-		unité: 'Euro',
+		unité: '€',
 	},
 }
 
 export const AvecValeurInitiale: Story = {
 	render: (args) => <MontantFieldWrapper {...args} />,
 	args: {
-		unité: 'Euro',
-		value: montant(1500, 'Euro'),
+		unité: '€',
+		value: montant(1500, '€'),
 	},
 }
 
 export const AvecCentimes: Story = {
 	render: (args) => <MontantFieldWrapper {...args} />,
 	args: {
-		unité: 'Euro',
-		value: montant(1234.56, 'Euro'),
+		unité: '€',
+		value: montant(1234.56, '€'),
 		avecCentimes: true,
 	},
 	parameters: {
@@ -84,18 +84,18 @@ export const AvecCentimes: Story = {
 export const AvecPlaceholder: Story = {
 	render: (args) => <MontantFieldWrapper {...args} />,
 	args: {
-		unité: 'Euro',
-		placeholder: montant(1500, 'Euro'),
+		unité: '€',
+		placeholder: montant(1500, '€'),
 	},
 }
 
 export const AvecSuggestions: Story = {
 	render: (args) => <MontantFieldWrapper {...args} />,
 	args: {
-		unité: 'Euro',
+		unité: '€',
 		suggestions: {
-			'SMIC mensuel': montant(1709.28, 'Euro'),
-			'SMIC annuel': montant(20511.36, 'Euro'),
+			'SMIC mensuel': montant(1709.28, '€'),
+			'SMIC annuel': montant(20511.36, '€'),
 		},
 	},
 	parameters: {
@@ -111,8 +111,8 @@ export const AvecSuggestions: Story = {
 export const AvecAttributsAccessibilité: Story = {
 	render: (args) => <MontantFieldWrapper {...args} />,
 	args: {
-		unité: 'Euro',
-		value: montant(1500, 'Euro'),
+		unité: '€',
+		value: montant(1500, '€'),
 		id: 'montant-salaire',
 		aria: {
 			label: 'Montant du salaire brut',
@@ -132,28 +132,28 @@ export const DifférentesUnités: Story = {
 	render: () => (
 		<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
 			<MontantFieldWrapper
-				unité="Euro"
-				value={montant(1500, 'Euro')}
+				unité="€"
+				value={montant(1500, '€')}
 				aria={{ label: 'Montant en euros' }}
 			/>
 			<MontantFieldWrapper
-				unité="EuroParMois"
-				value={montant(1500, 'EuroParMois')}
+				unité="€/mois"
+				value={montant(1500, '€/mois')}
 				aria={{ label: 'Montant en euros par mois' }}
 			/>
 			<MontantFieldWrapper
-				unité="EuroParAn"
-				value={montant(30000, 'EuroParAn')}
+				unité="€/an"
+				value={montant(30000, '€/an')}
 				aria={{ label: 'Montant en euros par an' }}
 			/>
 			<MontantFieldWrapper
-				unité="EuroParJour"
-				value={montant(75, 'EuroParJour')}
+				unité="€/jour"
+				value={montant(75, '€/jour')}
 				aria={{ label: 'Montant en euros par jour' }}
 			/>
 			<MontantFieldWrapper
-				unité="EuroParHeure"
-				value={montant(10.57, 'EuroParHeure')}
+				unité="€/heure"
+				value={montant(10.57, '€/heure')}
 				avecCentimes={true}
 				aria={{ label: 'Montant en euros par heure' }}
 			/>

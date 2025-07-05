@@ -7,7 +7,7 @@ import { Montant } from '@/domaine/Montant'
 export function ObjectifCotisations({
 	cotisations,
 }: {
-	cotisations: Montant<'EuroParAn'>
+	cotisations: Montant<'€/an'>
 }) {
 	const { t } = useTranslation()
 

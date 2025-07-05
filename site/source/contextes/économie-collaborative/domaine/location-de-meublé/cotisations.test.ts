@@ -32,7 +32,7 @@ describe('Location de meublé de courte durée', () => {
 				_type: 'économie-collaborative',
 				recettes: Option.some(
 					pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
-				) as Option.Some<Montant<'EuroParAn'>>,
+				) as Option.Some<Montant<'€/an'>>,
 				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
@@ -46,7 +46,7 @@ describe('Location de meublé de courte durée', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				recettes: Option.some(SEUIL_PROFESSIONNALISATION) as Option.Some<
-					Montant<'EuroParAn'>
+					Montant<'€/an'>
 				>,
 				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
@@ -62,7 +62,7 @@ describe('Location de meublé de courte durée', () => {
 				_type: 'économie-collaborative',
 				recettes: Option.some(
 					pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(1)))
-				) as Option.Some<Montant<'EuroParAn'>>,
+				) as Option.Some<Montant<'€/an'>>,
 				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
@@ -80,7 +80,7 @@ describe('Location de meublé de courte durée', () => {
 					_type: 'économie-collaborative',
 					recettes: Option.some(
 						pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
-					) as Option.Some<Montant<'EuroParAn'>>,
+					) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
@@ -97,7 +97,7 @@ describe('Location de meublé de courte durée', () => {
 					_type: 'économie-collaborative',
 					recettes: Option.some(
 						pipe(PLAFOND_REGIME_GENERAL, plus(eurosParAn(1)))
-					) as Option.Some<Montant<'EuroParAn'>>,
+					) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
@@ -114,7 +114,7 @@ describe('Location de meublé de courte durée', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
 					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(false),
@@ -143,7 +143,7 @@ describe('Location de meublé de courte durée', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
 					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(true),
 					premièreAnnée: Option.some(false),
@@ -172,7 +172,7 @@ describe('Location de meublé de courte durée', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
 					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
@@ -200,7 +200,7 @@ describe('Location de meublé de courte durée', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
 					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
@@ -229,7 +229,7 @@ describe('Location de meublé de courte durée', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
 					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(RegimeCotisation.microEntreprise),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
@@ -249,7 +249,7 @@ describe('Location de meublé de courte durée', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
 					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.some(
 						RegimeCotisation.travailleurIndependant
 					),
@@ -271,7 +271,7 @@ describe('Location de meublé de courte durée', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
 					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 					regimeCotisation: Option.none(),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),

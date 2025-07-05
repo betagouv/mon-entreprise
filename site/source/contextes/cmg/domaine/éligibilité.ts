@@ -49,7 +49,7 @@ interface Historique<PrénomsEnfants extends string = string> {
 
 interface Éligible {
 	estÉligible: true
-	montantCT: M.Montant<'Euro'>
+	montantCT: M.Montant<'€'>
 }
 
 const SITUATION_INCOMPLÈTE = 'Situation Incomplète' as const

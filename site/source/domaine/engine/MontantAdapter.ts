@@ -7,7 +7,6 @@ import {
 	eurosParAn,
 	eurosParMois,
 	Montant,
-	unitéMonétaireToString,
 } from '@/domaine/Montant'
 
 type UnitéDeMontantPublicodes = '€/mois' | '€/an' | '€'
@@ -51,7 +50,7 @@ export const MontantAdapter = {
 	encode: (valeur: O.Option<Montant>) =>
 		pipe(
 			valeur,
-			O.map((m) => `${m.valeur} ${unitéMonétaireToString(m.unité)}`),
+			O.map((m) => `${m.valeur} ${m.unité}`),
 			O.getOrUndefined
 		) satisfies PublicodesExpression | undefined,
 }
