@@ -20,9 +20,7 @@ export function updateSituationMultiple(
 	const nouvellesValeurs = pipe(
 		valeurs,
 		R.mapKeys((suffixe) => `${préfixe} . ${suffixe}`),
-		R.map((valeur, règle: DottedName) =>
-			PublicodesAdapter.encode(O.some(valeur), règle)
-		)
+		R.map((valeur) => PublicodesAdapter.encode(O.some(valeur)))
 	)
 
 	return { ...currentSituation, ...nouvellesValeurs }

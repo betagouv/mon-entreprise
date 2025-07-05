@@ -5,7 +5,6 @@ import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
 import { NumericInput } from '../../atoms/NumericInput'
-import { FieldWithUnit } from './FieldWithUnit'
 
 interface QuantitéFieldProps<U extends string> {
 	value: Quantité<U> | undefined
@@ -27,6 +26,7 @@ interface QuantitéFieldProps<U extends string> {
 const unitéToDisplayedUnit: Record<UnitéQuantité, string> = {
 	'%': '%',
 	'heures/mois': 'heures/mois',
+	'heures/semaine': 'heures/semaine',
 	jours: 'jours',
 	'jours ouvrés': 'jours ouvrés',
 	mois: 'mois',
@@ -101,29 +101,28 @@ export const QuantitéField = <U extends string>({
 
 	return (
 		<Container>
-			<FieldWithUnit unit={displayedUnit} small={small}>
-				<NumericInput
-					id={id}
-					aria-label={aria?.label}
-					aria-labelledby={aria?.labelledby}
-					onChange={handleValueChange}
-					onSubmit={onSubmit}
-					formatOptions={formatOptions}
-					placeholder={displayPlaceholder}
-					value={displayValue}
-					small={small}
-					suggestions={
-						suggestions
-							? Object.fromEntries(
-									Object.entries(suggestions).map(([key, quantité]) => [
-										key,
-										isPercentage ? quantité.valeur / 100 : quantité.valeur,
-									])
-							  )
-							: undefined
-					}
-				/>
-			</FieldWithUnit>
+			<NumericInput
+				id={id}
+				aria-label={aria?.label}
+				aria-labelledby={aria?.labelledby}
+				onChange={handleValueChange}
+				onSubmit={onSubmit}
+				formatOptions={formatOptions}
+				placeholder={displayPlaceholder}
+				value={displayValue}
+				small={small}
+				unit={displayedUnit}
+				suggestions={
+					suggestions
+						? Object.fromEntries(
+								Object.entries(suggestions).map(([key, quantité]) => [
+									key,
+									isPercentage ? quantité.valeur / 100 : quantité.valeur,
+								])
+						  )
+						: undefined
+				}
+			/>
 		</Container>
 	)
 }
@@ -136,4 +135,8 @@ const Container = styled.div`
 	max-width: 300px;
 	width: 100%;
 	align-items: flex-end;
+	/* Ajuster le padding de l'input à l'intérieur */
+	input {
+		padding-right: 0 !important;
+	}
 `

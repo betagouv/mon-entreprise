@@ -29,9 +29,10 @@ import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
+import { estUneUnitéDeQuantitéPublicodes } from '@/domaine/engine/QuantitéAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
-import { isQuantité, isUnitéQuantité, Quantité } from '@/domaine/Quantité'
+import { isQuantité, Quantité } from '@/domaine/Quantité'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -95,6 +96,7 @@ export default function RuleInput({
 	inputType,
 	modifiers = {},
 	engine,
+	small,
 	...accessibilityProps
 }: RuleInputProps) {
 	const dispatch = useDispatch()
@@ -341,7 +343,7 @@ export default function RuleInput({
 	const estUneQuantité =
 		(value && isQuantité(value)) ||
 		(defaultValue && isQuantité(defaultValue)) ||
-		isUnitéQuantité(unité)
+		estUneUnitéDeQuantitéPublicodes(unité)
 
 	if (estUneQuantité) {
 		const quantitéValue = value as Quantité | undefined
@@ -367,6 +369,7 @@ export default function RuleInput({
 					labelledby: accessibilityProps['aria-labelledby'],
 					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
+				small={small}
 			/>
 		)
 	}
