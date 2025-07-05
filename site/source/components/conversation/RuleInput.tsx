@@ -29,9 +29,9 @@ import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
-import { isMontant, Montant } from '@/domaine/Montant'
+import { isMontant, Montant, UnitéMonétaire } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
-import { isQuantité, isUnitéQuantité, Quantité } from '@/domaine/Quantité'
+import { isQuantité, isUnitéQuantité, Quantité, UnitéQuantité } from '@/domaine/Quantité'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -318,11 +318,14 @@ export default function RuleInput({
 		estUneUnitéDeMontantPublicodes(unité)
 
 	if (estUnMontant) {
+		const montantValue = value as Montant | undefined
+		const montantPlaceholder = defaultValue as Montant | undefined
+
 		return (
 			<MontantField
-				value={value as Montant | undefined}
-				placeholder={defaultValue as Montant | undefined}
-				unité={'€'} // FIXME détecter correctement l’unité
+				value={montantValue}
+				placeholder={montantPlaceholder}
+				unité={montantValue?.unité || montantPlaceholder?.unité || unité as UnitéMonétaire}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
@@ -352,12 +355,12 @@ export default function RuleInput({
 		return (
 			<QuantitéField
 				value={quantitéValue}
-				unité={quantitéValue?.unité || quantitéPlaceholder?.unité || ''}
+				placeholder={quantitéPlaceholder}
+				unité={quantitéValue?.unité || quantitéPlaceholder?.unité || unité as UnitéQuantité}
 				nbDécimalesMax={nbDécimalesMax}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
-				placeholder={quantitéPlaceholder}
 				onSubmit={onSubmit}
 				suggestions={
 					showSuggestions
