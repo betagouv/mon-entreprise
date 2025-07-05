@@ -1,6 +1,7 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
-import { montant, Montant, UnitéMonétaire } from '@/domaine/Montant'
+import { montant, Montant } from '@/domaine/Montant'
+import { UnitéMonétaire } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
@@ -22,6 +23,14 @@ interface MontantFieldProps<U extends UnitéMonétaire> {
 		labelledby?: string
 		label?: string
 	}
+}
+
+const unitéToDisplayedUnit: Record<UnitéMonétaire, string> = {
+	'€': '',
+	'€/an': 'par an',
+	'€/mois': 'par mois',
+	'€/jour': 'par jour',
+	'€/heure': 'par heure',
 }
 
 export const MontantField = <U extends UnitéMonétaire>({
@@ -47,7 +56,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 	}
 
 	return (
-		<Container>
+		<Container $noPadding={unité !== '€'}>
 			<NumericInput
 				id={id}
 				label={label}
@@ -63,6 +72,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 				}}
 				placeholder={placeholder?.valeur}
 				value={currentValue?.valeur}
+				unit={unitéToDisplayedUnit[unité]}
 				small={small}
 				suggestions={
 					suggestions
@@ -79,7 +89,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 	)
 }
 
-const Container = styled.div`
+const Container = styled.div<{ $noPadding: boolean }>`
 	display: flex;
 	width: fit-content;
 	flex: 1;
@@ -87,4 +97,12 @@ const Container = styled.div`
 	max-width: 300px;
 	width: 100%;
 	align-items: flex-end;
+	${({ $noPadding }) =>
+		$noPadding &&
+		css`
+			/* Ajuster le padding de l'input à l'intérieur */
+			input {
+				padding-right: 0 !important;
+			}
+		`}
 `

@@ -22,17 +22,21 @@ import {
 	type DateFieldProps,
 } from '@/design-system'
 import { isIsoDate } from '@/domaine/Date'
-import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
 	decodeArrondi,
 	decodeSuggestions,
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
-import { estUneUnitéDeQuantitéPublicodes } from '@/domaine/engine/QuantitéAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
 import { isQuantité, Quantité } from '@/domaine/Quantité'
+import {
+	isUnitéMonétaire,
+	isUnitéQuantité,
+	UnitéMonétaire,
+	UnitéQuantité,
+} from '@/domaine/Unités'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -97,6 +101,7 @@ export default function RuleInput({
 	modifiers = {},
 	engine,
 	small,
+	displayedUnit,
 	...accessibilityProps
 }: RuleInputProps) {
 	const dispatch = useDispatch()
@@ -310,20 +315,26 @@ export default function RuleInput({
 	 * - un nombre sans unité
 	 */
 
-	const unité = rule.rawNode.unité
+	const unitéPublicodes = rule.rawNode.unité
 	const nbDécimalesMax = decodeArrondi(rule.rawNode.arrondi as string)
 
 	const estUnMontant =
 		(value && isMontant(value)) ||
 		(defaultValue && isMontant(defaultValue)) ||
-		estUneUnitéDeMontantPublicodes(unité)
+		isUnitéMonétaire(unitéPublicodes)
 
 	if (estUnMontant) {
+		const montantValue = value as Montant | undefined
+		const montantPlaceholder = defaultValue as Montant | undefined
+		const unité = isUnitéMonétaire(displayedUnit)
+			? displayedUnit
+			: montantValue?.unité || montantPlaceholder?.unité || unitéPublicodes
+
 		return (
 			<MontantField
-				value={value as Montant | undefined}
-				placeholder={defaultValue as Montant | undefined}
-				unité={'Euro'} // FIXME détecter correctement l’unité
+				value={montantValue}
+				placeholder={montantPlaceholder}
+				unité={unité as UnitéMonétaire}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
@@ -343,21 +354,23 @@ export default function RuleInput({
 	const estUneQuantité =
 		(value && isQuantité(value)) ||
 		(defaultValue && isQuantité(defaultValue)) ||
-		estUneUnitéDeQuantitéPublicodes(unité)
+		isUnitéQuantité(unitéPublicodes)
 
 	if (estUneQuantité) {
 		const quantitéValue = value as Quantité | undefined
 		const quantitéPlaceholder = defaultValue as Quantité | undefined
+		const unité =
+			quantitéValue?.unité || quantitéPlaceholder?.unité || unitéPublicodes
 
 		return (
 			<QuantitéField
 				value={quantitéValue}
-				unité={quantitéValue?.unité || quantitéPlaceholder?.unité || ''}
+				placeholder={quantitéPlaceholder}
+				unité={unité as UnitéQuantité}
 				nbDécimalesMax={nbDécimalesMax}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
-				placeholder={quantitéPlaceholder}
 				onSubmit={onSubmit}
 				suggestions={
 					showSuggestions

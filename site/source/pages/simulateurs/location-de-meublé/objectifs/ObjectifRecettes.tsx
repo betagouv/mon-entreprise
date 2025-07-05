@@ -25,13 +25,13 @@ const RecettesInput = ({
 	montant,
 	onChange,
 }: {
-	montant: O.Option<Montant<'EuroParAn'>>
-	onChange: ChangeHandler<O.Option<Montant<'EuroParAn'>>>
+	montant: O.Option<Montant<'€/an'>>
+	onChange: ChangeHandler<O.Option<Montant<'€/an'>>>
 }) => (
 	<MontantField
 		value={O.getOrUndefined(montant)}
-		unité="EuroParAn"
-		onChange={(montant: Montant<'EuroParAn'> | undefined) =>
+		unité="€/an"
+		onChange={(montant: Montant<'€/an'> | undefined) =>
 			onChange(O.fromNullable(montant))
 		}
 		aria={{ label: 'Montant' }}

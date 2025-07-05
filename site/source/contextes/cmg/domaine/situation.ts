@@ -11,7 +11,7 @@ export interface SituationCMG<PrénomsEnfants extends string = string>
 	aPerçuCMG: O.Option<boolean>
 	plusDe2MoisDeDéclaration: O.Option<boolean>
 	parentIsolé: O.Option<boolean>
-	ressources: O.Option<M.Montant<'EuroParAn'>>
+	ressources: O.Option<M.Montant<'€/an'>>
 	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
 	salariées: {
 		GED: Array<SalariéeGED>
@@ -23,7 +23,7 @@ export interface SituationCMGValide extends SituationCMG {
 	aPerçuCMG: O.Some<boolean>
 	plusDe2MoisDeDéclaration: O.Some<boolean>
 	parentIsolé: O.Some<boolean>
-	ressources: O.Some<M.Montant<'EuroParAn'>>
+	ressources: O.Some<M.Montant<'€/an'>>
 }
 
 export const estSituationCMGValide = (

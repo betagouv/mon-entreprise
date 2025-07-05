@@ -120,7 +120,7 @@ describe('PublicodesAdapter', () => {
 			expect(Montant.isMontant(value)).toBe(true)
 			if (Montant.isMontant(value)) {
 				expect(value.valeur).toBe(2000)
-				expect(value.unité).toBe('EuroParMois')
+				expect(value.unité).toBe('€/mois')
 			}
 		})
 

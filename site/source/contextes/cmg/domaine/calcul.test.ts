@@ -27,9 +27,7 @@ describe('CMG', () => {
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
 				plusDe2MoisDeDéclaration: O.some(true) as O.Some<boolean>,
 				parentIsolé: O.some(false) as O.Some<boolean>,
-				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
-					M.Montant<'EuroParAn'>
-				>,
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<M.Montant<'€/an'>>,
 				enfantsÀCharge: {
 					enfants: [
 						new EnfantFactory('Jules').moinsDe3Ans().build(),
@@ -89,9 +87,7 @@ describe('CMG', () => {
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
 				plusDe2MoisDeDéclaration: O.some(true) as O.Some<boolean>,
 				parentIsolé: O.some(false) as O.Some<boolean>,
-				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
-					M.Montant<'EuroParAn'>
-				>,
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<M.Montant<'€/an'>>,
 				enfantsÀCharge: {
 					enfants: [
 						new EnfantFactory('Rose').moinsDe3Ans().build(),
@@ -253,9 +249,7 @@ describe('CMG', () => {
 				aPerçuCMG: O.some(true) as O.Some<boolean>,
 				plusDe2MoisDeDéclaration: O.some(true) as O.Some<boolean>,
 				parentIsolé: O.some(false) as O.Some<boolean>,
-				ressources: O.some(M.eurosParAn(30_000)) as O.Some<
-					M.Montant<'EuroParAn'>
-				>,
+				ressources: O.some(M.eurosParAn(30_000)) as O.Some<M.Montant<'€/an'>>,
 				enfantsÀCharge: {
 					enfants: [
 						new EnfantFactory('Jules').moinsDe3Ans().build(),

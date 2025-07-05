@@ -27,19 +27,19 @@ describe('Montant', () => {
 		it('crée correctement un montant en euros', () => {
 			const montant = euros(100)
 			expect(toString(montant)).toBe('100 €')
-			expect(montant.unité).toBe('Euro')
+			expect(montant.unité).toBe('€')
 			expect(Equal.equals(montant, euros(100))).toBe(true)
 		})
 
 		it('crée correctement un montant en euros par mois', () => {
 			const montant = eurosParMois(100)
-			expect(montant.unité).toBe('EuroParMois')
+			expect(montant.unité).toBe('€/mois')
 			expect(toString(montant)).toBe('100 €/mois')
 		})
 
 		it('crée correctement un montant en euros annuels', () => {
 			const montant = eurosParAn(100)
-			expect(montant.unité).toBe('EuroParAn')
+			expect(montant.unité).toBe('€/an')
 			expect(toString(montant)).toBe('100 €/an')
 		})
 
@@ -58,7 +58,7 @@ describe('Montant', () => {
 			const montant2 = euros(50)
 			const resultat = plus(montant1, montant2)
 			expect(Equal.equals(resultat, euros(150))).toBe(true)
-			expect(resultat.unité).toBe('Euro')
+			expect(resultat.unité).toBe('€')
 		})
 
 		it('soustrait correctement deux montants de même unité', () => {
@@ -66,14 +66,14 @@ describe('Montant', () => {
 			const montant2 = eurosParAn(50)
 			const resultat = moins(montant1, montant2)
 			expect(Equal.equals(resultat, eurosParAn(50))).toBe(true)
-			expect(resultat.unité).toBe('EuroParAn')
+			expect(resultat.unité).toBe('€/an')
 		})
 
 		it('multiplie correctement un montant par un scalaire', () => {
 			const montant = euros(100)
 			const resultat = fois(montant, 2)
 			expect(Equal.equals(resultat, euros(200))).toBe(true)
-			expect(resultat.unité).toBe('Euro')
+			expect(resultat.unité).toBe('€')
 		})
 
 		it('divise correctement un montant par un scalaire non nul', () => {
@@ -82,7 +82,7 @@ describe('Montant', () => {
 			expect(Either.isRight(resultatEither)).toBe(true)
 			if (Either.isRight(resultatEither)) {
 				expect(Equal.equals(resultatEither.right, euros(50))).toBe(true)
-				expect(resultatEither.right.unité).toBe('Euro')
+				expect(resultatEither.right.unité).toBe('€')
 			}
 		})
 
@@ -151,7 +151,7 @@ describe('Montant', () => {
 			const centEuros = euros(100)
 			const resultat = plus(centEuros, euros(50))
 
-			expectTypeOf<typeof resultat>().toMatchTypeOf<Montant<'Euro'>>()
+			expectTypeOf<typeof resultat>().toMatchTypeOf<Montant<'€'>>()
 		})
 
 		it('renvoie une erreur en cas de division par zéro', () => {

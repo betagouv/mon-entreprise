@@ -69,7 +69,7 @@ export default function RéductionMois({
 					? euros(data.rémunérationBrute)
 					: undefined
 			}
-			unité="Euro"
+			unité="€"
 			avecCentimes={false}
 		/>
 	)
