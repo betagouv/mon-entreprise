@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
-import { montant, Montant, UnitéMonétaire } from '@/domaine/Montant'
+import { montant, Montant } from '@/domaine/Montant'
+import { UnitéMonétaire } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 

@@ -1,19 +1,9 @@
 import { Data } from 'effect'
 import { isObject } from 'effect/Predicate'
 
-export type UnitéQuantité =
-	| '%'
-	| 'heures/mois'
-	| 'heures/semaine'
-	| 'jours'
-	| 'jours ouvrés'
-	| 'mois'
-	| 'trimestre civil'
-	| 'année civile'
-	| 'employés'
-	| 'titre-restaurant/mois'
+import { UnitéQuantité } from './Unités'
 
-export interface Quantité<T extends string = string> {
+export interface Quantité<T extends UnitéQuantité = UnitéQuantité> {
 	readonly _tag: 'Quantité'
 	readonly valeur: number
 	readonly unité: T

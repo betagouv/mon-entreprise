@@ -2,12 +2,7 @@ import { Data, Either } from 'effect'
 import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
-export type UnitéMonétaire =
-	| '€'
-	| '€/mois'
-	| '€/an'
-	| '€/jour'
-	| '€/heure'
+import { UnitéMonétaire } from './Unités'
 
 export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'
