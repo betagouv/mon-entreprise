@@ -15,16 +15,16 @@ export type DéclarationDeGarde<PrénomsEnfants extends string = string> =
 export interface DéclarationDeGardeGED {
 	type: 'GED'
 	heuresDeGarde: O.Option<number>
-	rémunération: O.Option<M.Montant<'Euro'>>
-	CMGPerçu: O.Option<M.Montant<'Euro'>>
+	rémunération: O.Option<M.Montant<'€'>>
+	CMGPerçu: O.Option<M.Montant<'€'>>
 }
 
 export interface DéclarationDeGardeAMA<PrénomsEnfants extends string> {
 	type: 'AMA'
 	heuresDeGarde: O.Option<number>
-	rémunération: O.Option<M.Montant<'Euro'>>
+	rémunération: O.Option<M.Montant<'€'>>
 	enfantsGardés: Array<PrénomsEnfants>
-	CMGPerçu: O.Option<M.Montant<'Euro'>>
+	CMGPerçu: O.Option<M.Montant<'€'>>
 }
 
 const estOptionVide = (option: O.Option<unknown>): boolean =>

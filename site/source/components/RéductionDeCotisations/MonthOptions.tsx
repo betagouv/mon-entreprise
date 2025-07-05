@@ -177,7 +177,7 @@ export default function MonthOptions({
 									? euros(options.rémunérationETP)
 									: undefined
 							}
-							unité="Euro"
+							unité="€"
 							onChange={(m) => onRémunérationETPChange(m?.valeur)}
 							aria-labelledby={`rémunération-etp-label`}
 							avecCentimes
@@ -215,7 +215,7 @@ export default function MonthOptions({
 									? euros(options.rémunérationPrimes)
 									: undefined
 							}
-							unité="Euro"
+							unité="€"
 							onChange={(m) => onRémunérationPrimesChange(m?.valeur)}
 							aria-labelledby={`rémunération-primes-label`}
 							avecCentimes
@@ -247,7 +247,7 @@ export default function MonthOptions({
 									? euros(options.rémunérationHeuresSup)
 									: undefined
 							}
-							unité="Euro"
+							unité="€"
 							onChange={(m) => onRémunérationHeuresSupChange(m?.valeur)}
 							aria-labelledby={`rémunération-heures-sup-label`}
 							avecCentimes

@@ -14,7 +14,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { Montant } from '@/domaine/Montant'
+import { Montant, UnitéMonétaire } from '@/domaine/Montant'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -63,7 +63,7 @@ export function SimulationGoal({
 					? undefined
 					: {
 							...(x as Montant),
-							unité: currentUnit === '€/an' ? 'EuroParAn' : 'EuroParMois',
+							unité: currentUnit as UnitéMonétaire,
 					  }
 
 			dispatch(

@@ -17,7 +17,7 @@ describe('calculeRevenuNet', () => {
 		const situation: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
 			_type: 'économie-collaborative',
-			recettes: Option.some(recettes) as Option.Some<Montant<'EuroParAn'>>,
+			recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
 			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 			estAlsaceMoselle: Option.some(false),
 			premièreAnnée: Option.some(false),
@@ -47,7 +47,7 @@ describe('calculeRevenuNet', () => {
 			_tag: 'Situation',
 			_type: 'économie-collaborative',
 			recettes: Option.some(recettesInferieures) as Option.Some<
-				Montant<'EuroParAn'>
+				Montant<'€/an'>
 			>,
 			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 			estAlsaceMoselle: Option.none(),

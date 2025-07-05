@@ -322,7 +322,7 @@ export default function RuleInput({
 			<MontantField
 				value={value as Montant | undefined}
 				placeholder={defaultValue as Montant | undefined}
-				unité={'Euro'} // FIXME détecter correctement l’unité
+				unité={'€'} // FIXME détecter correctement l’unité
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}

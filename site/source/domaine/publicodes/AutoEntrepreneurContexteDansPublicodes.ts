@@ -19,7 +19,7 @@ export const AutoEntrepreneurCotisationsEtContributionsDansPublicodes = {
 }
 
 export const AutoEntrepreneurChiffreAffaireDansPublicodes = {
-	fromMontant: (montant: Montant<'EuroParAn'>) => ({
+	fromMontant: (montant: Montant<'€/an'>) => ({
 		"dirigeant . auto-entrepreneur . chiffre d'affaires": `${montantToNumber(
 			montant
 		)} €/an`,

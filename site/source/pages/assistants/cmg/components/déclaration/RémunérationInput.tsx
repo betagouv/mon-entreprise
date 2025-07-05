@@ -9,8 +9,8 @@ import { Label } from '../styled-components'
 
 type Props = {
 	idSuffix?: string
-	valeur: O.Option<Montant<'Euro'>>
-	onChange: ChangeHandler<O.Option<Montant<'Euro'>>>
+	valeur: O.Option<Montant<'€'>>
+	onChange: ChangeHandler<O.Option<Montant<'€'>>>
 }
 
 export default function RémunérationInput({
@@ -30,7 +30,7 @@ export default function RémunérationInput({
 			</Label>
 			<MontantField
 				value={O.getOrUndefined(valeur)}
-				unité="Euro"
+				unité="€"
 				avecCentimes
 				onChange={(montant) => onChange(O.fromNullable(montant))}
 				aria-labelledby={`rémunération-label-${idSuffix}`}

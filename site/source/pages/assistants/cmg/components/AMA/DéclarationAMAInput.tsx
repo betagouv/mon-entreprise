@@ -75,7 +75,7 @@ export default function DéclarationAMAInput({
 		)
 	}
 
-	const onRémunérationChange = (rémunération: O.Option<Montant<'Euro'>>) => {
+	const onRémunérationChange = (rémunération: O.Option<Montant<'€'>>) => {
 		onDéclarationChange(
 			O.some({
 				...currentDéclaration,
@@ -84,7 +84,7 @@ export default function DéclarationAMAInput({
 		)
 	}
 
-	const onCMGPerçuChange = (CMGPerçu: O.Option<Montant<'Euro'>>) => {
+	const onCMGPerçuChange = (CMGPerçu: O.Option<Montant<'€'>>) => {
 		onDéclarationChange(
 			O.some({
 				...currentDéclaration,
