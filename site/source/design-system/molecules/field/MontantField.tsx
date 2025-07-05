@@ -24,6 +24,14 @@ interface MontantFieldProps<U extends UnitéMonétaire> {
 	}
 }
 
+const unitéToDisplayedUnit: Record<UnitéMonétaire, string> = {
+	'€': '',
+	'€/an': 'par an',
+	'€/mois': 'par mois',
+	'€/jour': 'par jour',
+	'€/heure': 'par heure',
+}
+
 export const MontantField = <U extends UnitéMonétaire>({
 	value,
 	unité,
@@ -46,6 +54,8 @@ export const MontantField = <U extends UnitéMonétaire>({
 		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
 
+	const displayedUnit = unitéToDisplayedUnit[unité] ?? unité
+
 	return (
 		<Container>
 			<NumericInput
@@ -63,6 +73,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 				}}
 				placeholder={placeholder?.valeur}
 				value={currentValue?.valeur}
+				unit={displayedUnit}
 				small={small}
 				suggestions={
 					suggestions
@@ -87,4 +98,8 @@ const Container = styled.div`
 	max-width: 300px;
 	width: 100%;
 	align-items: flex-end;
+	/* Ajuster le padding de l'input à l'intérieur */
+	input {
+		padding-right: 0 !important;
+	}
 `
