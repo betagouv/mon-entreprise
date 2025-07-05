@@ -96,6 +96,7 @@ export default function RuleInput({
 	inputType,
 	modifiers = {},
 	engine,
+	small,
 	...accessibilityProps
 }: RuleInputProps) {
 	const dispatch = useDispatch()
@@ -368,6 +369,7 @@ export default function RuleInput({
 					labelledby: accessibilityProps['aria-labelledby'],
 					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
+				small={small}
 			/>
 		)
 	}
