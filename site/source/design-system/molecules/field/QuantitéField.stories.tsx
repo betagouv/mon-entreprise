@@ -143,6 +143,11 @@ export const DifférentesUnités: Story = {
 				aria={{ label: 'Nombre d’heures par mois' }}
 			/>
 			<QuantitéFieldWrapper
+				unité="heures/semaine"
+				value={quantité(28, 'heures/semaine')}
+				aria={{ label: 'Nombre d’heures par semaine' }}
+			/>
+			<QuantitéFieldWrapper
 				unité="jours"
 				value={quantité(7, 'jours')}
 				aria={{ label: 'Nombre de jours' }}
