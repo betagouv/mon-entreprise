@@ -198,7 +198,7 @@ const ModifierOptions = () => {
 						set[DOTTEDNAME_ENTREPRISE_IMPOSITION](value as undefined | IRouIS)
 					}}
 					key="imposition"
-					aria-labelledby="questionHeader"
+					aria-labelledby="questionHeader" // FIXME: pas d'élément questionHeader correspondant
 				/>
 				<H5 as="h3">
 					Choisir mon option de versement libératoire (pour AE){' '}
