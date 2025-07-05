@@ -31,6 +31,7 @@ interface QuantitéFieldProps<U extends string> {
 const unitéToDisplayedUnit: Record<UnitéQuantité, string> = {
 	'%': '%',
 	'heures/mois': 'heures/mois',
+	'heures/semaine': 'heures/semaine',
 	jours: 'jours',
 	'jours ouvrés': 'jours ouvrés',
 	mois: 'mois',

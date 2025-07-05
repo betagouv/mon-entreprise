@@ -10,6 +10,8 @@ import {
 	unitéMonétaireToString,
 } from '@/domaine/Montant'
 
+type UnitéDeMontantPublicodes = '€/mois' | '€/an' | '€'
+
 export const MontantAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Montant> => {
 		if (
@@ -54,7 +56,6 @@ export const MontantAdapter = {
 		) satisfies PublicodesExpression | undefined,
 }
 
-export type UnitéDeMontantPublicodes = '€/mois' | '€/an' | '€'
 export const estUneUnitéDeMontantPublicodes = (
 	unité?: string
 ): unité is UnitéDeMontantPublicodes =>
