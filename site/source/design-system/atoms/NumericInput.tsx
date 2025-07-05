@@ -46,6 +46,7 @@ type NumericInputProps = Omit<
 	onChange?: (n?: number) => void
 	onSubmit?: (source?: string) => void
 	suggestions?: InputSuggestionsRecord<number>
+	unit?: string
 
 	// API of react-aria types is broken, we need to use the HTMLAttributes version
 	onFocus?: React.HTMLAttributes<HTMLInputElement>['onFocus']
@@ -129,6 +130,8 @@ export const NumericInput = (props: NumericInputProps) => {
 				{props.label && !props.small && (
 					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
 				)}
+
+				{props.unit && <Unit $small={props.small}>&nbsp;{props.unit}</Unit>}
 			</StyledInputContainer>
 			{props.errorMessage && (
 				<StyledErrorMessage {...errorMessageProps} role="alert">
@@ -159,6 +162,20 @@ const StyledNumericInputContainer = styled(StyledContainer)`
 
 const StyledNumberInput = styled(StyledInput)`
 	text-align: right;
+`
+
+const Unit = styled.span<{ $small?: boolean }>`
+	font-size: ${({ $small }) => ($small ? '0.875rem' : '1rem')};
+	line-height: 1.5rem;
+	font-family: ${({ theme }) => theme.fonts.main};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.extended.grey[800]};
+	background-color: transparent;
+	white-space: nowrap;
+	user-select: none;
+	padding-right: ${({ theme }) => theme.spacings.sm};
 `
 
 function useKeepCursorPositionOnUpdate(
