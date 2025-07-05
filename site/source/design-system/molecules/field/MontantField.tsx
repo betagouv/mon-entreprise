@@ -1,4 +1,4 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { montant, Montant } from '@/domaine/Montant'
 import { UnitéMonétaire } from '@/domaine/Unités'
@@ -55,10 +55,8 @@ export const MontantField = <U extends UnitéMonétaire>({
 		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
 
-	const displayedUnit = unitéToDisplayedUnit[unité] ?? unité
-
 	return (
-		<Container>
+		<Container $noPadding={unité !== '€'}>
 			<NumericInput
 				id={id}
 				label={label}
@@ -74,7 +72,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 				}}
 				placeholder={placeholder?.valeur}
 				value={currentValue?.valeur}
-				unit={displayedUnit}
+				unit={unitéToDisplayedUnit[unité]}
 				small={small}
 				suggestions={
 					suggestions
@@ -91,7 +89,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 	)
 }
 
-const Container = styled.div`
+const Container = styled.div<{ $noPadding: boolean }>`
 	display: flex;
 	width: fit-content;
 	flex: 1;
@@ -99,8 +97,12 @@ const Container = styled.div`
 	max-width: 300px;
 	width: 100%;
 	align-items: flex-end;
-	/* Ajuster le padding de l'input à l'intérieur */
-	input {
-		padding-right: 0 !important;
-	}
+	${({ $noPadding }) =>
+		$noPadding &&
+		css`
+			/* Ajuster le padding de l'input à l'intérieur */
+			input {
+				padding-right: 0 !important;
+			}
+		`}
 `
