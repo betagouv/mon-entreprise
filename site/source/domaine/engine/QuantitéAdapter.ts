@@ -6,20 +6,6 @@ import { EvaluatedNode, serializeUnit } from 'publicodes'
 
 import { quantité, Quantité } from '@/domaine/Quantité'
 
-const UNITÉS_QUANTITÉ = [
-	'%',
-	'heures/mois',
-	'heures/semaine',
-	'jours',
-	'jours ouvrés',
-	'mois',
-	'trimestre civil',
-	'année civile',
-	'employés',
-]
-
-type UnitéDeQuantitéPublicodes = (typeof UNITÉS_QUANTITÉ)[number]
-
 export const QuantitéAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Quantité> => {
 		if (
@@ -47,11 +33,6 @@ export const QuantitéAdapter = {
 		return O.some(quantité(numberValue, formattedUnit))
 	},
 }
-
-export const estUneUnitéDeQuantitéPublicodes = (
-	unité?: string
-): unité is UnitéDeQuantitéPublicodes =>
-	UNITÉS_QUANTITÉ.includes(unité as UnitéDeQuantitéPublicodes)
 
 const unitFormatter = (unit: string, count: number): string => {
 	const unitToPluralize = [

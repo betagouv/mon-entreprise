@@ -22,16 +22,16 @@ import {
 	type DateFieldProps,
 } from '@/design-system'
 import { isIsoDate } from '@/domaine/Date'
-import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
 	decodeArrondi,
 	decodeSuggestions,
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
-import { isMontant, Montant, UnitéMonétaire } from '@/domaine/Montant'
+import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
-import { isQuantité, isUnitéQuantité, Quantité, UnitéQuantité } from '@/domaine/Quantité'
+import { isQuantité, Quantité } from '@/domaine/Quantité'
+import { isUnitéMonétaire, isUnitéQuantité, UnitéMonétaire } from '@/domaine/Unités'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -315,7 +315,7 @@ export default function RuleInput({
 	const estUnMontant =
 		(value && isMontant(value)) ||
 		(defaultValue && isMontant(defaultValue)) ||
-		estUneUnitéDeMontantPublicodes(unité)
+		isUnitéMonétaire(unité)
 
 	if (estUnMontant) {
 		const montantValue = value as Montant | undefined
@@ -356,7 +356,12 @@ export default function RuleInput({
 			<QuantitéField
 				value={quantitéValue}
 				placeholder={quantitéPlaceholder}
-				unité={quantitéValue?.unité || quantitéPlaceholder?.unité || unité as UnitéQuantité}
+				unité={
+					quantitéValue?.unité ||
+					quantitéPlaceholder?.unité ||
+					unité ||
+					''
+				}
 				nbDécimalesMax={nbDécimalesMax}
 				onChange={(value) => {
 					onChange(value, dottedName)
