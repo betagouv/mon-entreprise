@@ -7,7 +7,7 @@ import { Montant } from '@/domaine/Montant'
 export function ObjectifRevenuNet({
 	revenuNet,
 }: {
-	revenuNet: Montant<'EuroParAn'>
+	revenuNet: Montant<'€/an'>
 }) {
 	const { t } = useTranslation()
 

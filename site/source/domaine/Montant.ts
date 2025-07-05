@@ -3,11 +3,11 @@ import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
 export type UnitéMonétaire =
-	| 'Euro'
-	| 'EuroParMois'
-	| 'EuroParAn'
-	| 'EuroParJour'
-	| 'EuroParHeure'
+	| '€'
+	| '€/mois'
+	| '€/an'
+	| '€/jour'
+	| '€/heure'
 
 export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'
@@ -28,148 +28,139 @@ export class ConversionImpossible extends Data.TaggedError(
 	readonly cible: UnitéMonétaire
 }> {}
 
-const Symbole: Record<UnitéMonétaire, string> = {
-	Euro: '€',
-	EuroParMois: '€/mois',
-	EuroParAn: '€/an',
-	EuroParJour: '€/jour',
-	EuroParHeure: '€/heure',
-} as const
-
 const arrondirAuCentime = (valeur: number): number =>
 	Math.round(valeur * 100) / 100
 
-export const estEuro = (montant: Montant): montant is Montant<'Euro'> =>
-	montant.unité === 'Euro'
+export const estEuro = (montant: Montant): montant is Montant<'€'> =>
+	montant.unité === '€'
 export const estEuroParMois = (
 	montant: Montant
-): montant is Montant<'EuroParMois'> => montant.unité === 'EuroParMois'
-export const estEuroParAn = (
-	montant: Montant
-): montant is Montant<'EuroParAn'> => montant.unité === 'EuroParAn'
+): montant is Montant<'€/mois'> => montant.unité === '€/mois'
+export const estEuroParAn = (montant: Montant): montant is Montant<'€/an'> =>
+	montant.unité === '€/an'
 export const estEuroParJour = (
 	montant: Montant
-): montant is Montant<'EuroParJour'> => montant.unité === 'EuroParJour'
+): montant is Montant<'€/jour'> => montant.unité === '€/jour'
 export const estEuroParHeure = (
 	montant: Montant
-): montant is Montant<'EuroParHeure'> => montant.unité === 'EuroParHeure'
+): montant is Montant<'€/heure'> => montant.unité === '€/heure'
 
-export const euros = (valeur: number): Montant<'Euro'> =>
+export const euros = (valeur: number): Montant<'€'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'Euro',
-	}) as Montant<'Euro'>
+		unité: '€',
+	}) as Montant<'€'>
 
-export const eurosParMois = (valeur: number): Montant<'EuroParMois'> =>
+export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParMois',
-	}) as Montant<'EuroParMois'>
+		unité: '€/mois',
+	}) as Montant<'€/mois'>
 
-export const eurosParAn = (valeur: number): Montant<'EuroParAn'> =>
+export const eurosParAn = (valeur: number): Montant<'€/an'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParAn',
-	}) as Montant<'EuroParAn'>
+		unité: '€/an',
+	}) as Montant<'€/an'>
 
-export const eurosParJour = (valeur: number): Montant<'EuroParJour'> =>
+export const eurosParJour = (valeur: number): Montant<'€/jour'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParJour',
-	}) as Montant<'EuroParJour'>
+		unité: '€/jour',
+	}) as Montant<'€/jour'>
 
-export const eurosParHeure = (valeur: number): Montant<'EuroParHeure'> =>
+export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
 	makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParHeure',
-	}) as Montant<'EuroParHeure'>
+		unité: '€/heure',
+	}) as Montant<'€/heure'>
 
 export const toEurosParMois = (
 	montant: Montant<UnitéMonétaire>
-): Montant<'EuroParMois'> => {
+): Montant<'€/mois'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
-		case 'EuroParAn':
+		case '€/an':
 			valeur = valeur / 12
 			break
-		case 'EuroParJour':
+		case '€/jour':
 			valeur = (valeur * 365) / 12
 			break
-		case 'EuroParHeure':
+		case '€/heure':
 			valeur = (valeur * 24 * 365) / 12
 			break
 	}
 
 	return makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParMois',
-	}) as Montant<'EuroParMois'>
+		unité: '€/mois',
+	}) as Montant<'€/mois'>
 }
 
 export const toEurosParAn = (
 	montant: Montant<UnitéMonétaire>
-): Montant<'EuroParAn'> => {
+): Montant<'€/an'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
-		case 'EuroParMois':
+		case '€/mois':
 			valeur = valeur * 12
 			break
-		case 'EuroParJour':
+		case '€/jour':
 			valeur = valeur * 365
 			break
-		case 'EuroParHeure':
+		case '€/heure':
 			valeur = valeur * 24 * 365
 			break
 	}
 
 	return makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParAn',
-	}) as Montant<'EuroParAn'>
+		unité: '€/an',
+	}) as Montant<'€/an'>
 }
 
 export const toEurosParJour = (
 	montant: Montant<UnitéMonétaire>
-): Montant<'EuroParJour'> => {
+): Montant<'€/jour'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
-		case 'EuroParAn':
+		case '€/an':
 			valeur = valeur / 365
 			break
-		case 'EuroParMois':
+		case '€/mois':
 			valeur = (valeur * 12) / 365
 			break
-		case 'EuroParHeure':
+		case '€/heure':
 			valeur = valeur * 24
 			break
 	}
 
 	return makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParJour',
-	}) as Montant<'EuroParJour'>
+		unité: '€/jour',
+	}) as Montant<'€/jour'>
 }
 
 export const toEurosParHeure = (
 	montant: Montant<UnitéMonétaire>
-): Montant<'EuroParHeure'> => {
+): Montant<'€/heure'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
-		case 'EuroParAn':
+		case '€/an':
 			valeur = valeur / (365 * 24)
 			break
-		case 'EuroParMois':
+		case '€/mois':
 			valeur = (valeur * 12) / (365 * 24)
 			break
-		case 'EuroParJour':
+		case '€/jour':
 			valeur = valeur / 24
 			break
 	}
 
 	return makeMontant({
 		valeur: arrondirAuCentime(valeur),
-		unité: 'EuroParHeure',
-	}) as Montant<'EuroParHeure'>
+		unité: '€/heure',
+	}) as Montant<'€/heure'>
 }
 
 export const montant = <U extends UnitéMonétaire>(
@@ -318,11 +309,7 @@ export const estZéro = (montant: Montant): boolean => montant.valeur === 0
 export const montantToNumber = (montant: Montant): number => montant.valeur
 
 export const toString = (montant: Montant): string => {
-	return `${montant.valeur.toLocaleString('fr-FR')} ${unitéMonétaireToString(
-		montant.unité
-	)}`
+	return `${montant.valeur.toLocaleString('fr-FR')} ${montant.unité}`
 }
 
 export const montantToString = toString
-
-export const unitéMonétaireToString = (u: UnitéMonétaire): string => Symbole[u]

@@ -63,7 +63,7 @@ export default function DéclarationGEDInput({
 		)
 	}
 
-	const onRémunérationChange = (rémunération: O.Option<Montant<'Euro'>>) => {
+	const onRémunérationChange = (rémunération: O.Option<Montant<'€'>>) => {
 		onDéclarationChange(
 			O.some({
 				...currentDéclaration,
@@ -72,7 +72,7 @@ export default function DéclarationGEDInput({
 		)
 	}
 
-	const onCMGPerçuChange = (CMGPerçu: O.Option<Montant<'Euro'>>) => {
+	const onCMGPerçuChange = (CMGPerçu: O.Option<Montant<'€'>>) => {
 		onDéclarationChange(
 			O.some({
 				...currentDéclaration,

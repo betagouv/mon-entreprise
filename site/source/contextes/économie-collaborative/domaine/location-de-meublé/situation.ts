@@ -4,7 +4,7 @@ import { Montant } from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
 export interface SituationÉconomieCollaborative extends Situation {
-	recettes: O.Option<Montant<'EuroParAn'>>
+	recettes: O.Option<Montant<'€/an'>>
 	regimeCotisation: O.Option<RegimeCotisation>
 	estAlsaceMoselle: O.Option<boolean>
 	premièreAnnée: O.Option<boolean>
@@ -27,7 +27,7 @@ export const initialSituationÉconomieCollaborative: SituationÉconomieCollabora
 
 export interface SituationÉconomieCollaborativeValide
 	extends SituationÉconomieCollaborative {
-	recettes: O.Some<Montant<'EuroParAn'>>
+	recettes: O.Some<Montant<'€/an'>>
 }
 
 export function estSituationValide(

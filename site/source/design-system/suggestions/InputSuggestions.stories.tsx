@@ -45,9 +45,9 @@ export const SuggestionsDeMontants: Story<Montant> = {
 	render: (args) => <InputSuggestionsWrapper {...args} />,
 	args: {
 		suggestions: {
-			'SMIC mensuel': montant(1709.28, 'Euro'),
-			'SMIC annuel': montant(20511.36, 'Euro'),
-			'Plafond Sécurité Sociale': montant(3666, 'Euro'),
+			'SMIC mensuel': montant(1709.28, '€'),
+			'SMIC annuel': montant(20511.36, '€'),
+			'Plafond Sécurité Sociale': montant(3666, '€'),
 		},
 	},
 }
