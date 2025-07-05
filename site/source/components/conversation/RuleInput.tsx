@@ -31,7 +31,12 @@ import {
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
 import { isQuantité, Quantité } from '@/domaine/Quantité'
-import { isUnitéMonétaire, isUnitéQuantité, UnitéMonétaire } from '@/domaine/Unités'
+import {
+	isUnitéMonétaire,
+	isUnitéQuantité,
+	UnitéMonétaire,
+	UnitéQuantité,
+} from '@/domaine/Unités'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -96,6 +101,7 @@ export default function RuleInput({
 	modifiers = {},
 	engine,
 	small,
+	displayedUnit,
 	...accessibilityProps
 }: RuleInputProps) {
 	const dispatch = useDispatch()
@@ -309,23 +315,26 @@ export default function RuleInput({
 	 * - un nombre sans unité
 	 */
 
-	const unité = rule.rawNode.unité
+	const unitéPublicodes = rule.rawNode.unité
 	const nbDécimalesMax = decodeArrondi(rule.rawNode.arrondi as string)
 
 	const estUnMontant =
 		(value && isMontant(value)) ||
 		(defaultValue && isMontant(defaultValue)) ||
-		isUnitéMonétaire(unité)
+		isUnitéMonétaire(unitéPublicodes)
 
 	if (estUnMontant) {
 		const montantValue = value as Montant | undefined
 		const montantPlaceholder = defaultValue as Montant | undefined
+		const unité = isUnitéMonétaire(displayedUnit)
+			? displayedUnit
+			: montantValue?.unité || montantPlaceholder?.unité || unitéPublicodes
 
 		return (
 			<MontantField
 				value={montantValue}
 				placeholder={montantPlaceholder}
-				unité={montantValue?.unité || montantPlaceholder?.unité || unité as UnitéMonétaire}
+				unité={unité as UnitéMonétaire}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
@@ -346,22 +355,19 @@ export default function RuleInput({
 	const estUneQuantité =
 		(value && isQuantité(value)) ||
 		(defaultValue && isQuantité(defaultValue)) ||
-		isUnitéQuantité(unité)
+		isUnitéQuantité(unitéPublicodes)
 
 	if (estUneQuantité) {
 		const quantitéValue = value as Quantité | undefined
 		const quantitéPlaceholder = defaultValue as Quantité | undefined
+		const unité =
+			quantitéValue?.unité || quantitéPlaceholder?.unité || unitéPublicodes
 
 		return (
 			<QuantitéField
 				value={quantitéValue}
 				placeholder={quantitéPlaceholder}
-				unité={
-					quantitéValue?.unité ||
-					quantitéPlaceholder?.unité ||
-					unité ||
-					''
-				}
+				unité={unité as UnitéQuantité}
 				nbDécimalesMax={nbDécimalesMax}
 				onChange={(value) => {
 					onChange(value, dottedName)
