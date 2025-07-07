@@ -1,4 +1,5 @@
-import { Data, Either } from 'effect'
+import { Data, Either, pipe } from 'effect'
+import * as A from 'effect/Array'
 import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
@@ -21,6 +22,9 @@ export class ConversionImpossible extends Data.TaggedError(
 )<{
 	readonly source: UnitéMonétaire
 	readonly cible: UnitéMonétaire
+}> {}
+export class SommeImpossible extends Data.TaggedError('SommeImpossible')<{
+	readonly unités: UnitéMonétaire[]
 }> {}
 
 const arrondirAuCentime = (valeur: number): number =>
@@ -178,7 +182,19 @@ export const plus = dual<
 
 export const somme = <T extends UnitéMonétaire>(
 	montants: ReadonlyArray<Montant<T>>
-): Montant<T> => montants.reduce((a, b) => plus(a, b))
+): Either.Either<Montant<T>, SommeImpossible> => {
+	const unités = pipe(
+		montants,
+		A.map((m) => m.unité),
+		A.dedupe
+	)
+
+	if (unités.length > 1) {
+		return Either.left(new SommeImpossible({ unités }))
+	}
+
+	return Either.right(montants.reduce((a, b) => plus(a, b)))
+}
 
 export const moins = dual<
 	<M extends Montant>(b: M) => (a: M) => M,
