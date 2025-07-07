@@ -155,6 +155,7 @@ export function SimulationGoal({
 			titre={titre}
 			description={description}
 			valeur={valeur}
+			displayedUnit={displayedUnit}
 			isInfoMode={isInfoMode}
 			small={small}
 			appear={appear}

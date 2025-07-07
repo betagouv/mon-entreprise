@@ -23,6 +23,7 @@ export type ObjectifDeSimulationProps = {
 	small?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
+	displayedUnit?: string
 }
 
 export function ObjectifDeSimulation({
@@ -32,6 +33,7 @@ export function ObjectifDeSimulation({
 	explication,
 	valeur,
 	messageComplementaire,
+	displayedUnit,
 	small = false,
 	appear = true,
 }: ObjectifDeSimulationProps) {
@@ -42,7 +44,7 @@ export function ObjectifDeSimulation({
 			? valeur
 			: Option.match(valeur, {
 					onNone: () => '—',
-					onSome: (montant) => formatMontant(montant),
+					onSome: (montant) => formatMontant(montant, displayedUnit),
 			  })
 
 	return (

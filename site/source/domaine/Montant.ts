@@ -303,8 +303,10 @@ export const estZéro = (montant: Montant): boolean => montant.valeur === 0
 
 export const montantToNumber = (montant: Montant): number => montant.valeur
 
-export const toString = (montant: Montant): string => {
-	return `${montant.valeur.toLocaleString('fr-FR')} ${montant.unité}`
+export const toString = (montant: Montant, displayedUnit?: string): string => {
+	return `${montant.valeur.toLocaleString('fr-FR')} ${
+		displayedUnit ?? montant.unité
+	}`
 }
 
 export const montantToString = toString
