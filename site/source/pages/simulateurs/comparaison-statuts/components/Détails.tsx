@@ -704,6 +704,7 @@ const Détails = ({
 						dottedName="entreprise . coût formalités . création"
 						namedEngines={namedEngines}
 						leastIsBest
+						displayedUnit="€ HT"
 					/>
 
 					<StyledH4>
