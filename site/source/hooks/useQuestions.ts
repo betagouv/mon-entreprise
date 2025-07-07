@@ -156,7 +156,14 @@ export function useQuestions<S extends Situation>({
 	const [finished, setFinished] = useState(false)
 
 	useEffect(() => {
-		if (activeQuestionId && !idsDesQuestions.includes(activeQuestionId)) {
+		const laQuestionActiveNEstPlusApplicable =
+			activeQuestionId && !idsDesQuestions.includes(activeQuestionId)
+		const pasDeQuestionActiveMaisIlYADesQuestionsApplicables =
+			!activeQuestionId && idsDesQuestions.length
+		if (
+			laQuestionActiveNEstPlusApplicable ||
+			pasDeQuestionActiveMaisIlYADesQuestionsApplicables
+		) {
 			setActiveQuestionId(idsDesQuestions[0])
 		}
 	}, [activeQuestionId, idsDesQuestions])
