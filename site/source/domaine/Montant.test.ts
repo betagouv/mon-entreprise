@@ -19,6 +19,8 @@ import {
 	moins,
 	Montant,
 	plus,
+	somme,
+	SommeImpossible,
 	toString,
 } from './Montant'
 
@@ -74,6 +76,26 @@ describe('Montant', () => {
 			const resultat = fois(montant, 2)
 			expect(Equal.equals(resultat, euros(200))).toBe(true)
 			expect(resultat.unité).toBe('€')
+		})
+
+		it('somme correctement plusieurs montants de même unité', () => {
+			const montants = [eurosParAn(100), eurosParAn(200), eurosParAn(300)]
+			const resultatEither = somme(montants)
+			expect(Either.isRight(resultatEither)).toBe(true)
+			if (Either.isRight(resultatEither)) {
+				expect(Equal.equals(resultatEither.right, eurosParAn(600))).toBe(true)
+				expect(resultatEither.right.unité).toBe('EuroParAn')
+			}
+		})
+
+		it("retourne une erreur lors d'une somme de montants d'unités différentes", () => {
+			const montants = [eurosParAn(100), eurosParMois(200), eurosParAn(300)]
+			const resultatEither = somme(montants)
+			expect(Either.isLeft(resultatEither)).toBe(true)
+			if (Either.isLeft(resultatEither)) {
+				expect(resultatEither.left).toBeInstanceOf(SommeImpossible)
+				expect(resultatEither.left.unités).toStrictEqual(['EuroParAn', 'EuroParMois'])
+			}
 		})
 
 		it('divise correctement un montant par un scalaire non nul', () => {

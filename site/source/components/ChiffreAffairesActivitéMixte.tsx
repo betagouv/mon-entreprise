@@ -6,7 +6,7 @@ import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Switch } from '@/design-system'
@@ -16,6 +16,7 @@ import {
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
 import { batchUpdateSituation } from '@/store/actions/actions'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition } from './EngineValue/Condition'
@@ -92,22 +93,40 @@ export default function ChiffreAffairesActivitéMixte({
 function useAdjustProportions(CADottedName: DottedName) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
+	const currentUnit = useSelector(targetUnitSelector)
 
 	return useCallback(
 		(name: DottedName, valeur?: ValeurPublicodes) => {
-			const nouvelleValeurPour = (règleCA: DottedName): O.Option<M.Montant> =>
-				règleCA === name
-					? O.fromNullable((valeur as M.Montant | undefined) || M.eurosParAn(0))
-					: (pipe(
-							engine.evaluate(règleCA),
-							PublicodesAdapter.decode
-					  ) as O.Option<M.Montant>)
+			const defaultValue =
+				currentUnit === '€/an' ? M.eurosParAn(0) : M.eurosParMois(0)
+			const convertisseur = (m: ValeurPublicodes) =>
+				currentUnit === '€/an'
+					? M.toEurosParAn(m as M.Montant)
+					: M.toEurosParMois(m as M.Montant)
+
+			const nouvelleValeurPour = (règleCA: DottedName): O.Option<M.Montant> => {
+				const nouvelleValeur =
+					règleCA === name
+						? pipe(
+								(valeur as M.Montant | undefined) || defaultValue,
+								convertisseur,
+								O.fromNullable
+						  )
+						: pipe(
+								engine.evaluate(règleCA),
+								PublicodesAdapter.decode,
+								O.map(convertisseur)
+						  )
+
+				return nouvelleValeur
+			}
 
 			const nouveauCA = pipe(
 				Object.values(proportions),
 				A.map(nouvelleValeurPour),
 				A.getSomes,
-				M.somme
+				M.somme,
+				E.getOrElse(() => defaultValue)
 			)
 
 			const nouvellesProportions = pipe(
@@ -135,7 +154,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 			dispatch(batchUpdateSituation(situation))
 		},
-		[CADottedName, engine, dispatch]
+		[CADottedName, dispatch, currentUnit, engine]
 	)
 }
 
