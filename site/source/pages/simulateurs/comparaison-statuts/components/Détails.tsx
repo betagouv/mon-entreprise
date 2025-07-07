@@ -262,6 +262,10 @@ const Détails = ({
 						dottedName="protection sociale . retraite . base"
 						namedEngines={namedEngines}
 						unit="€/mois"
+						evolutionLabel={t(
+							'pages.simulateurs.comparaison-statuts.items.retraite.base.evolution-label',
+							'avec un taux plein'
+						)}
 					/>
 
 					<StyledH4>
@@ -403,10 +407,10 @@ const Détails = ({
 					</StyledH4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.atmp.body">
-							En cas d’<Strong>accident de travail</Strong>, de{' '}
+							En cas d’<Strong>accident du travail</Strong>, de{' '}
 							<Strong>maladie professionnelle</Strong> ou d’un{' '}
 							<Strong>accident sur le trajet domicile-travail</Strong>, vous
-							serez indemnisé⋅e à hauteur de :
+							recevrez une indemnisation de&nbsp;:
 						</Trans>
 					</Body>
 					<DetailsRowCards
@@ -521,8 +525,8 @@ const Détails = ({
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.body">
 							Tous les statuts cotisent pour une{' '}
-							<Strong>pension invalidité-décès</Strong> qui les{' '}
-							<Strong>protège en cas d’invalidité</Strong> et assure à leurs
+							<Strong>pension invalidité-décès</Strong> qui vous{' '}
+							<Strong>protège en cas d’invalidité</Strong> et assure à vos
 							proches une{' '}
 							<Strong>
 								pension de réversion et un capital en cas de décès
@@ -620,12 +624,10 @@ const Détails = ({
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.2">
 							En plus du capital décès, une{' '}
-							<Strong>pension de réversion</Strong> peut être versée à la
-							conjointe survivante ou au conjoint survivant. Elle correspond aux{' '}
-							<Strong>
-								droits à la retraite acquis par la défunte ou le défunt
-							</Strong>{' '}
-							durant sa vie professionnelle.
+							<Strong>pension de réversion</Strong> peut être versée à votre
+							conjoint/conjointe. Elle correspond aux{' '}
+							<Strong>droits à la retraite que vous aurez acquis</Strong> durant
+							sa vie professionnelle.
 						</Trans>
 					</Body>
 					<DetailsRowCards
@@ -640,9 +642,8 @@ const Détails = ({
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.3">
 							Pour un décès survenu dans le cadre d’un{' '}
-							<Strong>accident professionnel</Strong>, la conjointe survivante
-							ou le conjoint survivant peut bénéficier d’une{' '}
-							<Strong>rente de décès</Strong>.
+							<Strong>accident professionnel</Strong>, votre conjoint/conjointe
+							peut bénéficier d’une <Strong>rente de décès</Strong>.
 						</Trans>
 					</Body>
 
@@ -658,9 +659,8 @@ const Détails = ({
 
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.4">
-							Un <Strong>capital « orphelin »</Strong> est versé aux{' '}
-							<Strong>enfants des travailleurses indépendant⋅es</Strong>{' '}
-							décédé⋅es, sous certaines conditions.
+							En cas de décès, un <Strong>capital « orphelin »</Strong> est
+							versé à<Strong> vos enfants</Strong>, sous certaines conditions.
 						</Trans>
 					</Body>
 
@@ -715,11 +715,11 @@ const Détails = ({
 					</StyledH4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.gestion.conjoint.body">
-							Vous êtes marié⋅e, pacsé⋅e ou en union libre avec une cheffe ou un
-							chef d’entreprise : il existe <Strong>3 statuts possibles</Strong>{' '}
-							pour vous (<Strong>conjoint⋅e collaborateurice</Strong>,{' '}
-							<Strong>conjoint⋅e associé⋅e</Strong> ou{' '}
-							<Strong>conjoint⋅e salarié⋅e</Strong>).
+							Vous êtes marié/mariée, pacsé/pacsée ou en union libre&nbsp;: il
+							existe <Strong>3 statuts possibles</Strong> pour votre
+							conjoint/conjointe (<Strong>collaborateur/collaboratrice</Strong>,{' '}
+							<Strong>associé/associée</Strong> ou{' '}
+							<Strong>salarié/salairée</Strong>).
 						</Trans>
 					</Body>
 
@@ -728,11 +728,12 @@ const Détails = ({
 							variations: [
 								{
 									si: 'entreprise . catégorie juridique . EI . auto-entrepreneur',
-									alors: '"Conjoint⋅e collaborateurice"',
+									alors: '"Conjoint collaborateur / Conjointe collaboratrice"',
 								},
 								{
 									si: 'entreprise . catégorie juridique . EI',
-									alors: '"Conjoint⋅e collaborateurice ou salarié⋅e"',
+									alors:
+										'"Conjoint collaborateur ou salarié / Conjointe collaboratrice ou salariée"',
 								},
 								{
 									si: {
@@ -742,10 +743,11 @@ const Détails = ({
 										],
 									},
 									alors:
-										'"Conjoint⋅e collaborateurice, associé⋅e ou salarié⋅e"',
+										'"Conjoint collaborateur, associé ou salarié / Conjointe collaboratrice, associée ou salariée"',
 								},
 								{
-									sinon: '"Conjoint⋅e associé⋅e ou salarié⋅e"',
+									sinon:
+										'"Conjoint associé ou salarié / Conjointe associée ou salariée"',
 								},
 							],
 						}}

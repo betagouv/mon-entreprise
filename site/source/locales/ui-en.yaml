@@ -1489,10 +1489,10 @@ pages:
       items:
         gestion:
           conjoint:
-            body: "If you are married⋅e, in a civil union⋅e or in a common-law relationship
-              with a business owner: there are <1>3 possible statuses</1> for
-              you<4>(conjoint⋅e collaborateurice</4>, <7>conjoint⋅e
-              associé⋅e</7> or <10>conjoint⋅e salarié⋅e</10>)."
+            body: Whether you're married, in a civil partnership or in a common-law
+              relationship, there are <1>3 possible statuses</1> for your
+              spouse<3>(associate</3>, <6>partner</6> or <9>salaried
+              employee</9>).
             h4: Spouse's status
           création:
             body: The formalities involved in setting up a business vary according to the
@@ -1517,22 +1517,21 @@ pages:
             label: paid in two instalments
           title: Maternity, paternity and adoption
         prévoyance:
-          body: All status employees contribute to a <2>disability-death pension</2>,
-            which <5>protects</5> them <5>in the event of disability</5>, and
-            provides their next of kin with a <8>survivor's pension and a
-            lump-sum payment in the event of death</8>.
+          body: All statuses contribute to a <2>disability-death pension</2>, which
+            <5>protects</5> you <5>in the event of disability</5> and provides
+            your loved ones with a <8>survivor's pension and a lump-sum payment
+            in the event of death</8>.
           décès:
             body:
               "1": Under certain conditions, Social Security guarantees a <2>lump-sum death
                 benefit for your dependants</2>.
               "2": In addition to the lump-sum death benefit, a <2>reversionary pension</2>
-                may be paid to the surviving spouse. This corresponds to the
-                <5>pension rights acquired by the deceased</5> during his or her
-                working life.
-              "3": In the event of death resulting from an <2>accident at work</2>, the
-                surviving spouse is entitled to a <5>death pension</5>.
-              "4": An <1>"orphan" capital</1> is paid to the <4>children of</4> deceased
-                <4>self-employed⋅es</4>, under certain conditions.
+                may be paid to your spouse. This corresponds to the <5>pension
+                rights you acquired</5> during your spouse's working life.
+              "3": If you die as a result of an <2>accident at work</2>, your spouse may be
+                entitled to a <4>death pension</4>.
+              "4": In the event of your death, an <1>orphan's benefit</1> is paid to<3> your
+                children</3>, subject to certain conditions.
             h4: Deaths
             label:
               "1": for your loved ones
@@ -1555,6 +1554,7 @@ pages:
             body: The pension calculated corresponds to <2>your best 25 years</2>, assuming
               that you have contributed enough quarters (4 quarters per year)
               and that you retire at the age required to obtain a full pension.
+            evolution-label: at full rate
             h4: Basic pension
           body: The amount of your pension is made up of <2>your basic pension + your
             supplementary pension</2>.
@@ -1586,8 +1586,8 @@ pages:
             warning: Your <1>salary</1> is <4>too low</4> to benefit from sick leave.
           atmp:
             body: "In the event of an<1>accident at work</1>, <4>occupational illness</4> or
-              an <7>accident on the way to or from work</7>, you will be
-              compensated⋅e up to :"
+              an <7>accident on the way to or from work</7>, you will receive
+              compensation of :"
             evolution-label: from day 29
             h4: Occupational injury and disease
           body: <0>All statuses entitle you to <2>reimbursement of healthcare

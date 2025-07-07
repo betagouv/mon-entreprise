@@ -101,7 +101,7 @@ const DetailsRowCards = ({
 							statut={sameValueOptions.map(({ name }) => name)}
 							footerContent={footer?.(statusObject.engine)}
 							isBestOption={
-								sameValueOptions.length !== 3 &&
+								sameValueOptions.length !== options.length &&
 								bestOptionValue === statusObject.name
 							}
 						>
