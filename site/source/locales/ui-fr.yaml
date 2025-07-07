@@ -1575,10 +1575,10 @@ pages:
       items:
         gestion:
           conjoint:
-            body: "Vous êtes marié⋅e, pacsé⋅e ou en union libre avec une cheffe ou un chef
-              d’entreprise : il existe <1>3 statuts possibles</1> pour vous
-              (<4>conjoint⋅e collaborateurice</4>, <7>conjoint⋅e associé⋅e</7>
-              ou <10>conjoint⋅e salarié⋅e</10>)."
+            body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
+              statuts possibles</1> pour votre conjoint/conjointe
+              (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
+              <9>salarié/salairée</9>)."
             h4: Statut du conjoint / de la conjointe
           création:
             body: Les formalités de création d’une entreprise diffèrent selon les statuts et
@@ -1603,22 +1603,22 @@ pages:
             label: versés en deux fois
           title: La maternité, paternité et adoption
         prévoyance:
-          body: Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les
-            <5>protège en cas d’invalidité</5> et assure à leurs proches une
+          body: Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui
+            vous <5>protège en cas d’invalidité</5> et assure à vos proches une
             <8>pension de réversion et un capital en cas de décès</8>.
           décès:
             body:
               "1": La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
                 (personnes qui sont à votre charge) sous certaines conditions.
               "2": En plus du capital décès, une <2>pension de réversion</2> peut être versée
-                à la conjointe survivante ou au conjoint survivant. Elle
-                correspond aux <5>droits à la retraite acquis par la défunte ou
-                le défunt</5> durant sa vie professionnelle.
-              "3": Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, la
-                conjointe survivante ou le conjoint survivant peut bénéficier
-                d’une <5>rente de décès</5>.
-              "4": Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurses
-                indépendant⋅es</4> décédé⋅es, sous certaines conditions.
+                à votre conjoint/conjointe. Elle correspond aux <5>droits à la
+                retraite que vous aurez acquis</5> durant sa vie
+                professionnelle.
+              "3": Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>,
+                votre conjoint/conjointe peut bénéficier d’une <4>rente de
+                décès</4>.
+              "4": En cas de décès, un <1>capital « orphelin »</1> est versé à<3> vos
+                enfants</3>, sous certaines conditions.
             h4: Décès
             label:
               "1": pour vos proches
@@ -1642,6 +1642,7 @@ pages:
               en considérant que vous avez cotisé suffisamment de trimestres (4
               trimestres par an) et que vous partez en retraite à l’âge requis
               pour obtenir un taux plein.
+            evolution-label: avec un taux plein
             h4: Retraite de base
           body: Le montant de votre retraite est constitué de <2>votre retraite de base +
             votre retraite complémentaire</2>.
@@ -1675,9 +1676,9 @@ pages:
             warning: Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier
               d’arrêt maladie.
           atmp:
-            body: "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
-              d’un <7>accident sur le trajet domicile-travail</7>, vous serez
-              indemnisé⋅e à hauteur de :"
+            body: "En cas d’<1>accident du travail</1>, de <4>maladie professionnelle</4> ou
+              d’un <7>accident sur le trajet domicile-travail</7>, vous recevrez
+              une indemnisation de :"
             evolution-label: à partir du 29ème jour
             h4: Accident du travail et maladie professionnelle
           body: <0>Tous les statuts vous ouvrent le droit au <2>remboursement des
