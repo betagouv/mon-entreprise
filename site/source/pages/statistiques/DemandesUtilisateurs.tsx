@@ -85,9 +85,11 @@ function Pagination({ title, items }: PaginationProps) {
 									search: currentSearch,
 								}}
 								state={{ ...state, [title]: i }}
-								aria-label={`${title}, Page ${i + 1}`}
+								aria-label={`${title}, Page ${i + 1}${
+									currentPage === i ? ', page actuelle' : ''
+								}`}
 								currentPage={currentPage === i}
-								aria-current={currentPage === i ? 'page' : undefined}
+								aria-current={currentPage === i}
 							>
 								{i + 1}
 							</PagerButton>
