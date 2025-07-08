@@ -459,6 +459,10 @@ components:
       share:
         checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
           répondre.
+composants:
+  engine-value:
+    voir-la-documentation: Voir la documentation du calcul de {{valeur}}
+    voir-les-details-du-calcul: Voir les détails du calcul de {{title}}
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
