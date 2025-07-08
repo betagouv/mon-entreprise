@@ -110,7 +110,7 @@ const GridCentered = styled(Grid)`
 			& [role*='presentation'] > div > div {
 				display: flex;
 				flex-direction: column;
-				gap: 0.5rem;
+				gap: ${({ theme }) => theme.spacings.xs};
 
 				p {
 					margin-bottom: 0;
