@@ -43,6 +43,7 @@ export const CessationActivitéToggles = () => {
 	return (
 		<Wrapper>
 			<CessationBlock>
+				{/* FIXME: utiliser ou supprimer l'id */}
 				<H3 id="questionHeader" as="h2">
 					{evaluateQuestion(
 						engine,

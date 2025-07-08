@@ -24,13 +24,14 @@ import {
 import { isIsoDate } from '@/domaine/Date'
 import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
+	decodeArrondi,
 	decodeSuggestions,
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
-import { isQuantité, Quantité } from '@/domaine/Quantité'
+import { isQuantité, isUnitéQuantité, Quantité } from '@/domaine/Quantité'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { getMeta } from '@/utils/publicodes'
 
@@ -61,15 +62,16 @@ interface RuleInputProps {
 	modifiers?: Record<string, string>
 	required?: boolean
 
-	id?: string
-	'aria-labelledby'?: string
-	'aria-label'?: string
 	className?: string
 	autoFocus?: boolean
 	small?: boolean
 
 	formatOptions?: Intl.NumberFormatOptions
 	displayedUnit?: string
+
+	id?: string
+	'aria-labelledby'?: string
+	'aria-label'?: string
 }
 
 export const binaryQuestion = [
@@ -299,10 +301,20 @@ export default function RuleInput({
 		)
 	}
 
+	/**
+	 * À partir de là, on sait qu'on traite avec un nombre, qui peut être :
+	 * - un Montant (unité de type €, €/an, €/mois...)
+	 * - une Quantité (unité de type %, heures/mois, jours, année civile...)
+	 * - un nombre sans unité
+	 */
+
+	const unité = rule.rawNode.unité
+	const nbDécimalesMax = decodeArrondi(rule.rawNode.arrondi as string)
+
 	const estUnMontant =
 		(value && isMontant(value)) ||
 		(defaultValue && isMontant(defaultValue)) ||
-		estUneUnitéDeMontantPublicodes(rule.rawNode.unité)
+		estUneUnitéDeMontantPublicodes(unité)
 
 	if (estUnMontant) {
 		return (
@@ -318,7 +330,6 @@ export default function RuleInput({
 					showSuggestions ? (suggestions as Record<string, Montant>) : {}
 				}
 				id={inputId}
-				description={rule.rawNode.description}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
 					label: accessibilityProps['aria-label'] ?? rule.title,
@@ -328,16 +339,19 @@ export default function RuleInput({
 	}
 
 	const estUneQuantité =
-		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
-
-	const quantitéValue = value as Quantité | undefined
-	const quantitéPlaceholder = defaultValue as Quantité | undefined
+		(value && isQuantité(value)) ||
+		(defaultValue && isQuantité(defaultValue)) ||
+		isUnitéQuantité(unité)
 
 	if (estUneQuantité) {
+		const quantitéValue = value as Quantité | undefined
+		const quantitéPlaceholder = defaultValue as Quantité | undefined
+
 		return (
 			<QuantitéField
 				value={quantitéValue}
 				unité={quantitéValue?.unité || quantitéPlaceholder?.unité || ''}
+				nbDécimalesMax={nbDécimalesMax}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
@@ -372,8 +386,10 @@ export default function RuleInput({
 			}
 			id={inputId}
 			formatOptions={accessibilityProps.formatOptions}
-			aria-labelledby={accessibilityProps['aria-labelledby']}
-			aria-label={accessibilityProps['aria-label'] ?? rule.title}
+			aria={{
+				labelledby: accessibilityProps['aria-labelledby'],
+				label: accessibilityProps['aria-label'] ?? rule.title,
+			}}
 		/>
 	)
 }
