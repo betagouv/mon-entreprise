@@ -85,7 +85,7 @@ function Pagination({ title, items }: PaginationProps) {
 									search: currentSearch,
 								}}
 								state={{ ...state, [title]: i }}
-								aria-label={`${title}, Page numéro ${i + 1}`}
+								aria-label={`${title}, Page ${i + 1}`}
 								currentPage={currentPage === i}
 								aria-current={currentPage === i ? 'page' : undefined}
 							>
