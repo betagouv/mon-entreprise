@@ -160,7 +160,6 @@ export const baseTheme = {
 
 	fontSizes: {
 		lg: '1.125rem',
-		md: '1rem',
 	},
 
 	box: {
