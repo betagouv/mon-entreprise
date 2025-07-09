@@ -15,7 +15,7 @@ class PlausibleService {
 
 		const domain: string =
 			(import.meta.env.VITE_PLAUSIBLE_DOMAIN as string | undefined) ||
-			'mon-entreprise.urssaf.fr'
+			(IS_PRODUCTION ? 'mon-entreprise.urssaf.fr' : 'dev.mon-entreprise.fr')
 		const apiHost =
 			(import.meta.env.VITE_PLAUSIBLE_API_HOST as string | undefined) ||
 			'https://plausible.io'
