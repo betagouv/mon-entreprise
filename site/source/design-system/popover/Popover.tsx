@@ -99,11 +99,6 @@ export function Popover(
 										{...modalProps}
 										{...overlayProps}
 										$offsetTop={offsetTop}
-										onKeyDown={(e) => {
-											if (props.isDismissable && e.key === 'Escape') {
-												props.onClose?.()
-											}
-										}}
 										ref={ref}
 										aria-label={ariaLabel || title}
 										data-cy="modal"
