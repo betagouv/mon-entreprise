@@ -208,7 +208,7 @@ export default function AnswerList({
 						style={{
 							textAlign: 'center',
 						}}
-					></div>
+					/>
 					<StepsTable {...{ rules: companyQuestions, onClose }} />
 					<Spacing md />
 					<div className="print-hidden">
