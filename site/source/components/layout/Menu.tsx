@@ -1,18 +1,23 @@
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Button, Drawer, Li, Ul } from '@/design-system'
 import { PlanContent } from '@/pages/Plan'
 
 export const Menu = () => {
+	const { t } = useTranslation()
+
 	return (
 		<Drawer
 			trigger={(buttonProps) => (
-				<div
+				<nav
 					style={{
 						display: 'flex',
 						alignItems: 'end',
 					}}
 					className="print-hidden"
+					role="navigation"
+					aria-label={t('main-menu', 'Menu principal')}
 				>
 					<StyledButton
 						size="XS"
@@ -32,7 +37,7 @@ export const Menu = () => {
 						</StyledSVG>{' '}
 						Menu
 					</StyledButton>
-				</div>
+				</nav>
 			)}
 		>
 			<Nav className="print-hidden">
