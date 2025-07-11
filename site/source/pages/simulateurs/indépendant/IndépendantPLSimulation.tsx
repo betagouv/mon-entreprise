@@ -45,7 +45,7 @@ export const IndépendantPLSimulation = () => {
 						</Ul>
 					}
 				/>
-				<IndépendantSimulationGoals legend="Vos revenus de profession libérale" />
+				<IndépendantSimulationGoals />
 			</Simulation>
 		</>
 	)
