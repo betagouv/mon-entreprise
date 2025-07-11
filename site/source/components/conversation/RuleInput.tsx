@@ -40,6 +40,7 @@ import { DefaultValue } from './DefaultValue'
 import { OuiNonInput } from './OuiNonInput'
 import { PlusieursPossibilités } from './PlusieursPossibilités'
 import SelectCommune from './select/SelectCommune'
+import SelectPaysDétachement from './select/SelectPaysDétachement'
 import SelectAtmp from './select/SelectTauxRisque'
 import TextInput from './TextInput'
 import { UnePossibilité } from './UnePossibilité'
@@ -191,22 +192,21 @@ export default function RuleInput({
 		)
 	}
 
-	// FIXME Utilise-t-on encore cet input ?
-	// if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
-	// 	return (
-	// 		<>
-	// 			<SelectPaysDétachement
-	// 				id={inputId}
-	// 				value={value}
-	// 				onChange={(value) =>
-	// 					onChange(value as ValeurPourPublicodes, dottedName)
-	// 				}
-	// 				plusFrance={rule.rawNode.API.endsWith('plus France')}
-	// 			/>
-	// 			<Spacing md />
-	// 		</>
-	// 	)
-	// }
+	// Utilisation dans l'assistant demande de mobilité internationale
+	// si réponse "non" à "Allez-vous exercer une activité dans un seul et unique pays ?""
+	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
+		return (
+			<>
+				<SelectPaysDétachement
+					id={inputId}
+					value={value as Evaluation<string>}
+					onChange={(value) => onChange(value as ValeurPublicodes, dottedName)}
+					plusFrance={rule.rawNode.API.endsWith('plus France')}
+				/>
+				<Spacing md />
+			</>
+		)
+	}
 
 	if (rule.rawNode.API) {
 		throw new Error(
@@ -323,6 +323,7 @@ export default function RuleInput({
 					labelledby: accessibilityProps['aria-labelledby'],
 					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
+				avecCentimes={!!accessibilityProps.formatOptions?.maximumFractionDigits}
 			/>
 		)
 	}

@@ -10,14 +10,17 @@ import {
 	useMemo,
 	useState,
 } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
+import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { configSelector } from '@/store/selectors/config.selector'
+import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
 import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
+import { raccourcisSelector } from '@/store/selectors/raccourcis.selector'
 
 interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'
@@ -68,6 +71,17 @@ export type Question<S extends Situation> =
 	| QuestionFournie<S>
 	| QuestionPublicodes<S>
 
+export interface Raccourci {
+	id: string
+	libellé: string
+}
+const fromRaccourciPublicodes = (
+	quickLink: RaccourciPublicodes
+): Raccourci => ({
+	id: quickLink.dottedName,
+	libellé: quickLink.label,
+})
+
 export interface UseQuestionsProps<S extends Situation = Situation> {
 	questions?: Array<ComposantQuestion<S>>
 	situation?: S
@@ -79,16 +93,24 @@ export function useQuestions<S extends Situation>({
 	situation,
 	avecQuestionsPublicodes = true,
 }: UseQuestionsProps<S>) {
+	const dispatch = useDispatch()
 	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
 	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
-	const config = useSelector(configSelector)
+	const publicodesListeNoire = useSelector(listeNoireSelector)
+	const publicodesRaccourcis = useSelector(raccourcisSelector)
 
 	const publicodesQuestionsRéponduesFiltrées = useMemo(
 		() =>
 			publicodesQuestionsRépondues.filter(
-				(q) => !(config.questions?.['liste noire'] ?? []).includes(q.règle)
+				(q) => !publicodesListeNoire.includes(q.règle)
 			),
-		[publicodesQuestionsRépondues, config]
+		[publicodesQuestionsRépondues, publicodesListeNoire]
+	)
+
+	// TODO: ajouter et gérer les raccourcis de questions fournies
+	const raccourcis = useMemo(
+		() => publicodesRaccourcis.map(fromRaccourciPublicodes),
+		[publicodesRaccourcis]
 	)
 
 	const toutesLesQuestionsApplicables = useMemo(
@@ -148,6 +170,11 @@ export function useQuestions<S extends Situation>({
 			return
 		}
 
+		const questionCourante = questionsParId[activeQuestionId]
+		if (questionCourante?._tag === 'QuestionPublicodes') {
+			dispatch(vaÀLaQuestionSuivante())
+		}
+
 		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
 		if (currentIndex < idsDesQuestions.length - 1) {
 			const nextId = idsDesQuestions[currentIndex + 1]
@@ -155,7 +182,7 @@ export function useQuestions<S extends Situation>({
 		} else {
 			setFinished(true)
 		}
-	}, [activeQuestionId, idsDesQuestions])
+	}, [activeQuestionId, idsDesQuestions, dispatch])
 
 	const goToPrevious = useCallback(() => {
 		if (finished) {
@@ -176,6 +203,17 @@ export function useQuestions<S extends Situation>({
 		}
 	}, [activeQuestionId, finished, idsDesQuestions])
 
+	const goTo = useCallback(
+		(id: string) => {
+			if (!idsDesQuestions.includes(id)) {
+				return
+			}
+
+			setActiveQuestionId(id)
+		},
+		[idsDesQuestions]
+	)
+
 	const nombreDeQuestions = toutesLesQuestionsApplicables.length
 
 	const nombreDeQuestionsRépondues = toutesLesQuestionsApplicables.filter((q) =>
@@ -195,8 +233,10 @@ export function useQuestions<S extends Situation>({
 		activeQuestionIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
+		raccourcis,
 		finished,
 		goToNext,
 		goToPrevious,
+		goTo,
 	}
 }

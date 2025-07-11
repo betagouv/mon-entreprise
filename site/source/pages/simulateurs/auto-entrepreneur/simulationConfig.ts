@@ -11,7 +11,7 @@ export const configAutoEntrepreneur: SimulationConfig = {
 		'dirigeant . rémunération . impôt',
 	],
 	questions: {
-		"à l'affiche": [
+		raccourcis: [
 			{
 				label: "Type d'activité",
 				dottedName: 'entreprise . activité . nature',

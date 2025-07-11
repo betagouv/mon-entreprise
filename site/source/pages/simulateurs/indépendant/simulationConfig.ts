@@ -11,7 +11,7 @@ export const configIndépendant: SimulationConfig = {
 		'dirigeant . indépendant . cotisations et contributions . début activité',
 	],
 	questions: {
-		"à l'affiche": [
+		raccourcis: [
 			{
 				label: "Type d'activité",
 				dottedName: 'entreprise . activité . nature',

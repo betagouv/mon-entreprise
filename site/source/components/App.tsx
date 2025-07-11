@@ -16,6 +16,7 @@ import {
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
 import Page404 from '@/pages/404'
@@ -90,6 +91,8 @@ const App = () => {
 	const { relativeSitePaths } = useSitePaths()
 
 	useSaveAndRestoreScrollPosition()
+	usePlausibleTracking()
+
 	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
 		// eslint-disable-next-line react-hooks/rules-of-hooks

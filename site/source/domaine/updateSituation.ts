@@ -23,7 +23,7 @@ export function updateSituation(
 
 	const objectifsExclusifs = config['objectifs exclusifs'] ?? []
 
-	const encoded = PublicodesAdapter.encode(O.some(value), dottedName)
+	const encoded = PublicodesAdapter.encode(O.some(value))
 
 	if (!objectifsExclusifs.includes(dottedName)) {
 		return {

@@ -3,7 +3,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 export const configRéductionGénérale: SimulationConfig = {
 	objectifs: ['salarié . cotisations . exonérations . réduction générale'],
 	questions: {
-		"à l'affiche": [
+		raccourcis: [
 			{
 				label: 'Temps partiel',
 				dottedName: 'salarié . contrat . temps de travail . temps partiel',

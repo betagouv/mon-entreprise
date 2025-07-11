@@ -19,6 +19,8 @@ import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
+import Raccourcis from './Raccourcis'
+
 export interface QuestionsProps<S extends Situation = Situation> {
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
@@ -43,9 +45,11 @@ export function Questions<S extends Situation>({
 		activeQuestionIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
+		raccourcis,
 		finished,
 		goToNext,
 		goToPrevious,
+		goTo,
 	} = useQuestions({
 		questions,
 		situation,
@@ -69,11 +73,11 @@ export function Questions<S extends Situation>({
 				<div className="print-hidden">
 					{(nombreDeQuestions === 0 ||
 						nombreDeQuestionsRépondues < nombreDeQuestions) && (
-						<Notice>
+						<Body>
 							<Trans i18nKey="simulateurs.précision.défaut">
 								Améliorez votre simulation en répondant aux questions :
 							</Trans>
-						</Notice>
+						</Body>
 					)}
 				</div>
 				{finished && (
@@ -134,6 +138,14 @@ export function Questions<S extends Situation>({
 						/>
 					</FromTop>
 				)}
+
+				{QuestionCourante && (
+					<Raccourcis
+						raccourcis={raccourcis}
+						goTo={goTo}
+						idQuestionCourante={QuestionCourante?.id}
+					/>
+				)}
 			</QuestionsContainer>
 		</>
 	)
@@ -148,10 +160,6 @@ const QuestionsContainer = styled.div`
 			? theme.colors.extended.grey[700]
 			: theme.colors.extended.grey[100]};
 	box-shadow: ${({ theme }) => theme.elevations[2]};
-`
-
-const Notice = styled(Body)`
-	margin-bottom: -1rem;
 `
 
 const QuestionTitle = styled.h3`

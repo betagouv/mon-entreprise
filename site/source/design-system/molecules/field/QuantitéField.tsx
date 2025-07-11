@@ -66,7 +66,7 @@ export const QuantitéField = <U extends string = string>({
 		handleChange(quantité<U>(valeurFinale, unité))
 	}
 
-	const formatOptions =
+	const formatOptions = (
 		unité === '%'
 			? {
 					style: 'percent',
@@ -76,6 +76,7 @@ export const QuantitéField = <U extends string = string>({
 					style: 'decimal',
 					maximumFractionDigits: 0,
 			  }
+	) satisfies Intl.NumberFormatOptions
 
 	// Pour les pourcentages, le format 'percent' multiplie par 100,
 	// donc nous devons diviser notre valeur stockée en % par 100

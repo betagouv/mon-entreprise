@@ -37,13 +37,13 @@ export default function DemandeUtilisateurs() {
 			<H3>En attente d'implémentation</H3>
 			<Pagination
 				items={stats?.retoursUtilisateurs.open ?? []}
-				title="Liste des demandes utilisateurs en attente d'implémentation"
+				title="Demandes en attente d'implémentation"
 			/>
 
 			<H3>Réalisées</H3>
 			<Pagination
 				items={stats?.retoursUtilisateurs.closed ?? []}
-				title="Liste des demandes utilisateurs réalisées"
+				title="Demandes réalisées"
 			/>
 		</section>
 	)
@@ -67,33 +67,35 @@ function Pagination({ title, items }: PaginationProps) {
 	const currentSearch = useLocation().search
 
 	return (
-		<nav aria-label={`${title} : menu de navigation paginée`}>
+		<>
 			<Ul>
 				{items.slice(currentPage * 10, (currentPage + 1) * 10).map((item) => (
 					<Issue key={`issue-${item.number}`} {...item} />
 				))}
 			</Ul>
-			<Pager>
-				{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
-					<li key={i}>
-						<PagerButton
-							light
-							size="XXS"
-							replace
-							to={{
-								search: currentSearch,
-							}}
-							state={{ ...state, [title]: i }}
-							aria-label={`${title}, Page numéro ${i + 1}`}
-							currentPage={currentPage === i}
-							aria-current={currentPage === i ? 'page' : undefined}
-						>
-							{i + 1}
-						</PagerButton>
-					</li>
-				))}
-			</Pager>
-		</nav>
+			<nav aria-label={`Pagination ${title}`}>
+				<Pager>
+					{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
+						<li key={i}>
+							<PagerButton
+								light
+								size="XXS"
+								replace
+								to={{
+									search: currentSearch,
+								}}
+								state={{ ...state, [title]: i }}
+								aria-label={`${title}, Page ${i + 1}`}
+								currentPage={currentPage === i}
+								aria-current={currentPage === i ? 'page' : undefined}
+							>
+								{i + 1}
+							</PagerButton>
+						</li>
+					))}
+				</Pager>
+			</nav>
+		</>
 	)
 }
 

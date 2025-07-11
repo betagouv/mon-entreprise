@@ -52,7 +52,7 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
 Budget: Budget
 Bénéfice: Bénéfice
 Cacher le message: Cacher le message
-Cette commune n'existe pas: Cette commune n'existe pas
+Cette commune n’existe pas: Cette commune n’existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
 Charges: Charges
@@ -63,6 +63,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
+Communes et code postaux correspondants: Communes et code postaux correspondants
 Confirmer: Confirmer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
@@ -477,6 +478,9 @@ conversation:
   yes-no:
     aria-label: Oui ou non
 copied: Copié
+cotisations:
+  employeur: employeur
+  salarie: salarié
 crée:
   choix-statut:
     détails-activité:
@@ -1987,6 +1991,9 @@ pages:
           ajoutées manuellement dans la case « charges de fonctionnement ».
         général: Ce simulateur est à destination des professions libérales en BNC. Il ne
           prend pas en compte les sociétés d’exercice libéral.
+    raccourcis:
+      aria-label: "Aller à la question : {{question}}"
+      titre: "Aller à la question :"
     réduction-générale:
       externalLinks:
         "1":
@@ -2467,6 +2474,7 @@ termsOfUse:
     et utilisatrices.
   title: Conditions générales d'utilisation
 trimestres acquis: trimestres acquis
+update-rule: Modifier {{title}}
 vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux statistiques d'utilisation
 warning:
   overwrite:

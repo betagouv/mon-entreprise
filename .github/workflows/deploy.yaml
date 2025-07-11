@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, synchronize]
   push:
-    branches: [master, demo, next]
+    branches: [master, main]
 
   # We display the release notes in the "news" section of mon-entreprise.urssaf.fr so
   # we want to re-deploy the site when a new release is published or edited on
