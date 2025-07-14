@@ -63,7 +63,7 @@ entreprise . durée d'activité cette année:
           depuis: date de création
           jusqu'à: période . fin d'année
     - sinon: 1 an
-  unité: jours
+  unité: jour
 
 entreprise . prorata temporis:
   description: |

@@ -1,10 +1,6 @@
-import chai from 'chai'
-import chaiHttp from 'chai-http'
-import { describe, expect, it } from 'vitest'
+import { afterAll, describe, expect, it } from 'vitest'
 
-import { server } from '../index.js'
-
-chai.use(chaiHttp)
+import { createTestApp } from './test-server.js'
 
 const transformResult = (obj: Record<string, unknown>) => {
 	if (obj && Array.isArray(obj.evaluate) && obj.evaluate.length > 0) {
@@ -23,10 +19,15 @@ const transformResult = (obj: Record<string, unknown>) => {
 }
 
 describe('e2e test mon-entreprise api', () => {
+	const testApp = createTestApp()
+
+	afterAll(() => {
+		testApp.close()
+	})
+
 	it('Test evaluate brut => net + super brut', async () => {
 		await expect(
-			chai
-				.request(server)
+			testApp
 				.post('/api/v1/evaluate')
 				.send({
 					situation: {
@@ -49,8 +50,7 @@ describe('e2e test mon-entreprise api', () => {
 
 	it('Test evaluate micro entreprise', async () => {
 		await expect(
-			chai
-				.request(server)
+			testApp
 				.post('/api/v1/evaluate')
 				.send({
 					situation: {
@@ -86,8 +86,7 @@ describe('e2e test mon-entreprise api', () => {
 
 	it('Test evaluate avocat (test units)', async () => {
 		await expect(
-			chai
-				.request(server)
+			testApp
 				.post('/api/v1/evaluate')
 				.send({
 					situation: {
@@ -114,29 +113,21 @@ describe('e2e test mon-entreprise api', () => {
 
 	it('Test openapi.json endpoint', async () => {
 		await expect(
-			chai
-				.request(server)
-				.get('/api/v1/openapi.json')
-				.then((res) => {
-					expect(res.status).toMatchInlineSnapshot('200')
+			testApp.get('/api/v1/openapi.json').then((res) => {
+				expect(res.status).toMatchInlineSnapshot('200')
 
-					return transformResult(
-						JSON.parse(res.text) as Record<string, unknown>
-					)
-				})
+				return transformResult(JSON.parse(res.text) as Record<string, unknown>)
+			})
 		).resolves.toMatchSnapshot()
 	})
 
 	it('Test doc endpoint', async () => {
 		await expect(
-			chai
-				.request(server)
-				.get('/api/v1/doc/')
-				.then((res) => {
-					expect(res.status).toMatchInlineSnapshot('200')
+			testApp.get('/api/v1/doc/').then((res) => {
+				expect(res.status).toMatchInlineSnapshot('200')
 
-					return res.text
-				})
+				return res.text
+			})
 		).resolves.toMatchInlineSnapshot(`
 			"<!-- HTML for static distribution bundle build -->
 			<!DOCTYPE html>
@@ -162,8 +153,7 @@ describe('e2e test mon-entreprise api', () => {
 	})
 
 	it('Test json mal formaté', async () => {
-		const response = await chai
-			.request(server)
+		const response = await testApp
 			.post('/api/v1/evaluate')
 			.set('Content-Type', 'application/json')
 			.send('{ x: bad json }')

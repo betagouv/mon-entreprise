@@ -24,9 +24,9 @@ salarié . convention collective . HCR . majoration heures supplémentaires:
       multiplicateur: période . semaines par mois
       tranches:
         - taux: 10%
-          plafond: 4 heures/semaine
+          plafond: 4 heure/semaine
         - taux: 20%
-          plafond: 8 heures/semaine
+          plafond: 8 heure/semaine
         - taux: 50%
 
 salarié . convention collective . HCR . prévoyance conventionnelle:

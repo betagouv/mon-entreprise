@@ -174,7 +174,7 @@ salarié . convention collective . sport . refus exonération cotisation AT:
   par défaut: non
 
 salarié . convention collective . sport . cotisations . assiette forfaitaire:
-  applicable si: assiette franchisée < SMIC . horaire * 115 heures/mois
+  applicable si: assiette franchisée < SMIC . horaire * 115 heure/mois
   remplace: salarié . cotisations . assiette forfaitaire
   unité: €/mois
   grille:
@@ -182,15 +182,15 @@ salarié . convention collective . sport . cotisations . assiette forfaitaire:
     multiplicateur: SMIC . horaire
     tranches:
       - montant: 5 * SMIC . horaire
-        plafond: 45 heures
+        plafond: 45 heure
       - montant: 15 * SMIC . horaire
-        plafond: 60 heures
+        plafond: 60 heure
       - montant: 25 * SMIC . horaire
-        plafond: 80 heures
+        plafond: 80 heure
       - montant: 35 * SMIC . horaire
-        plafond: 100 heures
+        plafond: 100 heure
       - montant: 50 * SMIC . horaire
-        plafond: 115 heures
+        plafond: 115 heure
   références:
     Barème assiette forfaitaire convention sport: https://www.urssaf.fr/portail/home/taux-et-baremes/assiettes-forfaitaires-et-franch/le-sportif-entraineur-personne-q.html
 
