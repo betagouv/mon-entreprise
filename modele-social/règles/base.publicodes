@@ -18,9 +18,9 @@ plafond sécurité sociale:
   avec:
     horaire:
       acronyme: PHSS
-      valeur: plafond sécurité sociale / 1607 heures/an
+      valeur: plafond sécurité sociale / 1607 heure/an
       arrondi: oui
-      unité: €/heures
+      unité: €/heure
       références:
         Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
         Article D242-19 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033516173&cidTexte=LEGITEXT000006073189
@@ -64,43 +64,43 @@ SMIC . horaire:
       alors:
         variations:
           - si: date >= 11/2024
-            alors: 8.98 €/heures
+            alors: 8.98 €/heure
           - si: date >= 01/2024
-            alors: 8.80 €/heures
+            alors: 8.80 €/heure
           - si: date >= 05/2023
-            alors: 8.70 €/heures
+            alors: 8.70 €/heure
           - si: date >= 01/2023
-            alors: 8.51 €/heures
+            alors: 8.51 €/heure
           - si: date >= 01/08/2022
-            alors: 8.35 €/heures
+            alors: 8.35 €/heure
           - si: date >= 01/05/2022
-            alors: 8.19 €/heures
+            alors: 8.19 €/heure
           - si: date >= 01/2022
-            alors: 7.98 €/heures
+            alors: 7.98 €/heure
           - si: date >= 01/10/2021
-            alors: 7.91 €/heures
+            alors: 7.91 €/heure
           - si: date >= 01/2021
-            alors: 7.74 €/heures
+            alors: 7.74 €/heure
     - sinon:
         variations:
           - si: date >= 11/2024
-            alors: 11.88 €/heures
+            alors: 11.88 €/heure
           - si: date >= 01/2024
-            alors: 11.65 €/heures
+            alors: 11.65 €/heure
           - si: date >= 05/2023
-            alors: 11.52 €/heures
+            alors: 11.52 €/heure
           - si: date >= 01/2023
-            alors: 11.27 €/heures
+            alors: 11.27 €/heure
           - si: date >= 01/08/2022
-            alors: 11.07 €/heures
+            alors: 11.07 €/heure
           - si: date >= 01/05/2022
-            alors: 10.85 €/heures
+            alors: 10.85 €/heure
           - si: date >= 01/2022
-            alors: 10.57 €/heures
+            alors: 10.57 €/heure
           - si: date >= 01/10/2021
-            alors: 10.48 €/heures
+            alors: 10.48 €/heure
           - si: date >= 01/2021
-            alors: 10.25 €/heures
+            alors: 10.25 €/heure
   note: |
     En principe et sauf « coup de pouce », le SMIC est revalorisé au 1er janvier
     de chaque année. Toutefois une revalorisation doit intervenir en cours
@@ -124,7 +124,7 @@ SMIC . horaire:
         date: période . début d'année . N-1
 
 durée légale du travail:
-  valeur: 35 heures/semaine
+  valeur: 35 heure/semaine
   références:
     Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/la-duree-legale-du-travail
 

@@ -48,17 +48,17 @@ protection sociale . retraite . trimestres:
         assiette: base . cotisée
         multiplicateur: SMIC . horaire . début d'année
         tranches:
-          - montant: 0 trimestres validés/an
-            plafond: 150 heures/an
-          - montant: 1 trimestres validés/an
-            plafond: 300 heures/an
-          - montant: 2 trimestres validés/an
-            plafond: 450 heures/an
-          - montant: 3 trimestres validés/an
-            plafond: 600 heures/an
-          - montant: 4 trimestres validés/an
+          - montant: 0 trimestre validé/an
+            plafond: 150 heure/an
+          - montant: 1 trimestre validé/an
+            plafond: 300 heure/an
+          - montant: 2 trimestre validé/an
+            plafond: 450 heure/an
+          - montant: 3 trimestre validé/an
+            plafond: 600 heure/an
+          - montant: 4 trimestre validé/an
     - exonération invalidité indépendant
-  plafond: 4 trimestres validés/an
+  plafond: 4 trimestre validé/an
   références:
     Durée d’assurance retraite du salarié du secteur privé: https://www.service-public.fr/particuliers/vosdroits/F1761
     # Lien mort :
@@ -71,7 +71,7 @@ protection sociale . retraite . trimestres:
         exonérations . pension invalidité
       privé: oui
       produit:
-        - 4 trimestres validés/an
+        - 4 trimestre validé/an
         - dirigeant . indépendant . cotisations et contributions . exonérations
           . pension invalidité . prorata
 
@@ -91,15 +91,15 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
           alors: 2571 €/an
         - sinon: 2421 €/an
     tranches:
-      - montant: 0 trimestres validés/an
+      - montant: 0 trimestre validé/an
         plafond: 1
-      - montant: 1 trimestres validés/an
+      - montant: 1 trimestre validé/an
         plafond: 2
-      - montant: 2 trimestres validés/an
+      - montant: 2 trimestre validé/an
         plafond: 3
-      - montant: 3 trimestres validés/an
+      - montant: 3 trimestre validé/an
         plafond: 4
-      - montant: 4 trimestres validés/an
+      - montant: 4 trimestre validé/an
   références:
     Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
     Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23369
@@ -483,18 +483,18 @@ protection sociale . retraite . base . CNAVPL:
 
     points acquis . points incapacité:
       applicable si: dirigeant . indépendant . PL . CNAVPL . exonération incapacité
-      valeur: 400 points
+      valeur: 400 point
 
     points acquis . points T1:
       produit:
-        - 525 points
+        - 525 point
         - dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 /
           cotisation maximum T1
       arrondi: 1 décimale
 
     points acquis . points T2:
       produit:
-        - 25 points
+        - 25 point
         - dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2 /
           cotisation maximum T2
       arrondi: 1 décimale

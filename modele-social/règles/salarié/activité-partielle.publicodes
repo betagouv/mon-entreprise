@@ -56,7 +56,7 @@ salarié . activité partielle:
     déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
 
 salarié . activité partielle . heures chômées:
-  unité: heures/mois
+  unité: heure/mois
   formule:
     valeur: contrat . temps de travail - heures travaillées
     plancher: 0
@@ -67,11 +67,11 @@ salarié . activité partielle . heures travaillées:
   description: >-
     Dans le cadre du chômage partiel, le nombre d'heure restantes travaillées.
     Doit être inférieur au temps contractuel.
-  par défaut: 0 heures/mois
+  par défaut: 0 heure/mois
   suggestions:
-    30 h/semaine: 130 heures/mois
-    20 h/semaine: 86.6666 heures/mois
-    10 h/semaine: 43.3333 heures/mois
+    30 h/semaine: 130 heure/mois
+    20 h/semaine: 86.6666 heure/mois
+    10 h/semaine: 43.3333 heure/mois
 
 salarié . activité partielle . heures travaillées . contrôle temps de travail:
   type: notification
@@ -105,7 +105,7 @@ salarié . activité partielle . indemnités . légale:
     à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
     somme initialement perçue par le salarié.
 
-    Cette allocation complémentaire est exonérée de cotisations et contributions dans les 
+    Cette allocation complémentaire est exonérée de cotisations et contributions dans les
     mêmes conditions que l’indemnité d’activité partielle légale.
 
   somme:
@@ -179,19 +179,19 @@ salarié . activité partielle . indemnisation entreprise:
     plancher horaire:
       variations:
         - si: date >= 05/2023
-          alors: 8.21 €/heures
+          alors: 8.21 €/heure
         - si: date >= 01/2023
-          alors: 8.03€/heures
+          alors: 8.03€/heure
         - si: date >= 08/2022
-          alors: 7.88€/heures
+          alors: 7.88€/heure
         - si: date >= 05/2022
-          alors: 7.73€/heures
+          alors: 7.73€/heure
         - si: date >= 01/2022
-          alors: 8.37 €/heures
+          alors: 8.37 €/heure
         - si: date >= 10/2021
-          alors: 8.30 €/heures
+          alors: 8.30 €/heure
         - si: date >= 01/2021
-          alors: 8.11 €/heures
+          alors: 8.11 €/heure
 
 salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
   titre: taux d'allocation

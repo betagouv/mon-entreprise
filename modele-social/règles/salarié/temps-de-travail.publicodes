@@ -1,6 +1,6 @@
 salarié . temps de travail:
   icônes: 🕰️
-  unité: heures/mois
+  unité: heure/mois
   somme:
     - contrat . temps de travail
     - heures supplémentaires
@@ -63,13 +63,13 @@ salarié . temps de travail . heures supplémentaires:
   titre: Nombre d'heures supplémentaires
   non applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures supplémentaires (non récupérées en repos) sont effectuées ?
-  par défaut: 0 heures/mois
-  unité: heures/mois
-  plancher: 0 heures/mois
+  par défaut: 0 heure/mois
+  unité: heure/mois
+  plancher: 0 heure/mois
   suggestions:
-    aucune: 0 heures/mois
-    39h / semaine: 17.33 heures/mois
-    42h / semaine: 30.33 heures/mois
+    aucune: 0 heure/mois
+    39h / semaine: 17.33 heure/mois
+    42h / semaine: 30.33 heure/mois
   références:
     service-public.fr: https://www.service-public.fr/particuliers/vosdroits/F2391
 
@@ -78,16 +78,16 @@ salarié . temps de travail . heures supplémentaires:
       type: notification
       formule:
         toutes ces conditions:
-          - heures supplémentaires > 9 heures/semaine * période . semaines par
+          - heures supplémentaires > 9 heure/semaine * période . semaines par
             mois
-          - heures supplémentaires <= 13 heures/semaine * période . semaines par
+          - heures supplémentaires <= 13 heure/semaine * période . semaines par
             mois
       description: La durée hebdomadaire moyenne de travail ne peut pas dépasser 44h
 
     contrôle 48h max:
       type: notification
       sévérité: avertissement
-      formule: heures supplémentaires > 13 heures/semaine * période . semaines par mois
+      formule: heures supplémentaires > 13 heure/semaine * période . semaines par mois
       description: La durée hebdomadaire maximale de travail ne peut pas dépasser 48h
 
 salarié . temps de travail . heures supplémentaires . majoration:
@@ -103,14 +103,14 @@ salarié . temps de travail . heures supplémentaires . majoration:
     la convention HCR (Hôtel café restaurant). Si vous dépendez d'une convention
     avec des taux spécifiques, merci de nous le signaler à
     `contact@mon-entreprise.beta.gouv.fr`
-  unité: heures/mois
+  unité: heure/mois
   formule:
     barème:
       assiette: heures supplémentaires
       multiplicateur: période . semaines par mois
       tranches:
         - taux: 25%
-          plafond: 8 heures/semaine
+          plafond: 8 heure/semaine
         - taux: 50%
 
 salarié . temps de travail . heures complémentaires:
@@ -121,9 +121,9 @@ salarié . temps de travail . heures complémentaires:
     durée légale ou conventionnelle du travail.
   applicable si: contrat . temps de travail . temps partiel
   question: Combien d'heures complémentaires (non récupérées en repos) sont effectuées ?
-  par défaut: 0 heures/mois
-  unité: heures/mois
-  plancher: 0 heures/mois
+  par défaut: 0 heure/mois
+  unité: heure/mois
+  plancher: 0 heure/mois
 
   avec:
     contrôle heures complémentaires 10 pourcents:
@@ -150,7 +150,7 @@ salarié . temps de travail . heures complémentaires:
         partiel.
 
         Si la convention le permet, les heures complémentaire au delà de ce seuil sont rémunérée avec une majoration de 25%
-      unité: heures/mois
+      unité: heure/mois
       produit:
         - contrat . temps de travail
         - 10%

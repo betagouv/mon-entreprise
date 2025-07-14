@@ -405,7 +405,7 @@ salarié . cotisations . ATMP:
     Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
 
   avec:
-    seuil taux mixte ou individuel: 20 employés
+    seuil taux mixte ou individuel: 20 employé
 
     taux:
       variations:

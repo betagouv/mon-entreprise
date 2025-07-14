@@ -171,7 +171,7 @@ salarié . contrat . apprentissage . ancienneté:
 
 salarié . contrat . apprentissage . ancienneté . moins d'un an:
   formule: ancienneté = 'moins d'un an'
-  
+
 salarié . contrat . apprentissage . ancienneté . moins de deux ans:
   formule: ancienneté = 'moins de deux ans'
 
@@ -432,11 +432,11 @@ salarié . contrat . CDD . congés pris:
   description: |
     Le contrat étant à durée déterminée, le salarié n'a pas forcément le temps de prendre tous les jours de congés qu'il a acquis comme tout salarié au cours du contrat.
     Par exemple, pour un contrat de 3 mois, le salarié acquiert 2,08 jours de congés par mois (25 jours / 12 mois = 2,08), donc 6,25 sur la durée du contrat. Or il se peut que l'entreprise le contraigne à n'en prendre que 4, donc 2,25 jours ne seront pas pris. Ils seront payés par l'employeur à la fin du contrat.
-  unité: jours ouvrés
+  unité: jour ouvré
   suggestions:
     la totalité: congés dus sur la durée du contrat
     la moitié: 50% * congés dus sur la durée du contrat
-    aucun: 0 jours ouvrés
+    aucun: 0 jour ouvré
   par défaut: congés dus sur la durée du contrat
   références:
     A-t-on droit à des congés payés pendant un CDD ?: https://www.service-public.fr/particuliers/vosdroits/F2931
@@ -444,7 +444,7 @@ salarié . contrat . CDD . congés pris:
   avec:
     congés dus sur la durée du contrat:
       produit:
-        - 25 jours ouvrés/an
+        - 25 jour ouvré/an
         - durée
       arrondi: 2 décimales
 
@@ -459,7 +459,7 @@ salarié . contrat . CDD . congés pris:
 
     jours ouvrés sur la durée du contrat:
       produit:
-        - 253 jours ouvrés/an
+        - 253 jour ouvré/an
         - durée
 
     proportion:
@@ -529,7 +529,7 @@ salarié . contrat . salaire brut:
       valeur: salaire brut / temps de travail . quotité
 
 salarié . contrat . temps de travail:
-  unité: heures/mois
+  unité: heure/mois
   produit:
     - variations:
         - si: temps partiel
@@ -560,15 +560,15 @@ salarié . contrat . temps de travail . temps partiel:
     contrôle temps min:
       type: notification
       sévérité: avertissement
-      formule: heures par semaine < 24 heures/semaine
+      formule: heures par semaine < 24 heure/semaine
       description:
         Le nombre minimum d'heures par semaine est 24. Il est possible de
         descendre plus bas dans certains cas seulement. [Plus
         d'infos](https://www.service-public.fr/particuliers/vosdroits/F32428).
 
     heures par semaine:
-      par défaut: 32 heures/semaine
-      plancher: 1 heures/semaine
+      par défaut: 32 heure/semaine
+      plancher: 1 heure/semaine
       question:
         Quel est le nombre d'heures travaillées par semaine dans le cadre du
         temps partiel ?

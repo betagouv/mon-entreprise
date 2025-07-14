@@ -35,8 +35,8 @@ salarié . convention collective . SVP . FCAP:
       - valeur: rémunération . brut
         plafond: plafond sécurité sociale
       - 0.1%
-    plancher: 80 €.employés/an / entreprise . salariés . effectif
-    plafond: 300 €.employés/an / entreprise . salariés . effectif
+    plancher: 80 €.employé/an / entreprise . salariés . effectif
+    plafond: 300 €.employé/an / entreprise . salariés . effectif
 
   références:
     Titre V de IDCC 3090: https://www.legifrance.gouv.fr/affichIDCC.do;?idSectionTA=KALISCTA000028157274&cidTexte=KALITEXT000028157267&idConvention=KALICONT000028157262
