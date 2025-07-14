@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
 
+import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import Page404 from '@/pages/404'
 
@@ -9,6 +10,7 @@ import IframeFooter from './IframeFooter'
 
 export default function Iframes() {
 	const simulators = useSimulatorsData()
+	usePlausibleTracking()
 
 	return (
 		<>
