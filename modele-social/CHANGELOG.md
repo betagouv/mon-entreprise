@@ -2,6 +2,16 @@
 
 ## next
 
+## 7.0.1
+
+### Corrections
+- Correction des unités au pluriel dans les règles publicodes pour assurer la cohérence entre l'API et l'utilisation directe du module NPM
+- Correction de problèmes de `NaN` lors de certains calculs
+
+### Mises à jour
+- Mise à jour du salaire médian avec les données INSEE 2023 (passage de 2600 €/mois à 2700 €/mois brut)
+- Suppression des règles concernant l’économie collaborative
+
 ## 7.0.0
 ### Breaking changes
 - Règle `entreprise . date de cessation` non applicable par défaut (utiliser la règle `entreprise . en cessation d'activité` pour l’activer)
