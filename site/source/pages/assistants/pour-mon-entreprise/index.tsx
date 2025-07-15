@@ -360,7 +360,7 @@ const PopoverOverwriteSituation = ({
 					<Grid item>
 						<Button
 							size="XS"
-							onClick={() => {
+							onPress={() => {
 								onOverwrite?.()
 							}}
 						>
@@ -371,7 +371,7 @@ const PopoverOverwriteSituation = ({
 						<Button
 							size="XS"
 							light
-							onClick={() => {
+							onPress={() => {
 								state.close()
 								onCancel?.()
 							}}
