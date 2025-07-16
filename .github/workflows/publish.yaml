@@ -12,6 +12,11 @@ jobs:
       matrix:
         package: ['modele-social', 'exoneration-covid']
     steps:
+      - name: Debug workflow_run context
+        run: |
+          echo "head_branch: ${{ github.event.workflow_run.head_branch }}"
+          echo "github.ref: ${{ github.ref }}"
+          echo "dry-run condition: ${{ github.event.workflow_run.head_branch != 'master' }}"
       - uses: actions/checkout@v3
       - uses: ./.github/actions/install
       - run: yarn workspace ${{ matrix.package }} run build
