@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import React, { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -18,7 +18,7 @@ import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Body, Conversation, H3 } from '@/design-system'
+import { Body, Conversation, H3, Spacing } from '@/design-system'
 import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
 import {
 	PublicodesAdapter,
@@ -48,7 +48,6 @@ export function Questions<S extends Situation>({
 	customSituationVisualisation,
 	situation,
 }: QuestionsProps<S>) {
-	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
@@ -112,54 +111,54 @@ export function Questions<S extends Situation>({
 	}
 
 	return (
-		nombreDeQuestions > 0 && (
-			<>
-				<Progress
-					progress={activeQuestionIndex + 1}
-					maxValue={nombreDeQuestions}
-				/>
-				<QuestionsContainer>
-					<div className="print-hidden">
-						{nombreDeQuestionsRépondues < nombreDeQuestions && (
-							<Body>
-								{t(
-									'simulateurs.précision.défaut',
-									'Améliorez votre simulation en répondant aux questions :'
-								)}
-							</Body>
-						)}
-					</div>
-					{finished && (
-						<VousAvezComplétéCetteSimulation
-							customEndMessages={customEndMessages}
-							onPrevious={goToPrevious}
-						/>
+		<>
+			<Progress
+				progress={activeQuestionIndex + 1}
+				maxValue={nombreDeQuestions}
+			/>
+			<QuestionsContainer>
+				<div className="print-hidden">
+					{(nombreDeQuestions === 0 ||
+						nombreDeQuestionsRépondues < nombreDeQuestions) && (
+						<Body>
+							<Trans i18nKey="simulateurs.précision.défaut">
+								Améliorez votre simulation en répondant aux questions :
+							</Trans>
+						</Body>
 					)}
+				</div>
+				{finished && (
+					<VousAvezComplétéCetteSimulation
+						customEndMessages={customEndMessages}
+						onPrevious={goToPrevious}
+					/>
+				)}
 
-					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
-						<FromTop key={`custom-question-${QuestionCourante.id}`}>
-							<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
-							<QuestionCourante />
+				{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
+					<FromTop key={`custom-question-${QuestionCourante.id}`}>
+						<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
+						<QuestionCourante />
 
-							<Conversation
-								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
-								onNext={goToNext}
-								questionIsAnswered={questionCouranteRépondue}
-								isPreviousDisabled={activeQuestionIndex === 0}
-								customVisualisation={
-									<SeeAnswersButton>
-										{customSituationVisualisation}
-									</SeeAnswersButton>
-								}
-							>
-								{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
-								<div style={{ display: 'none' }}></div>
-							</Conversation>
-						</FromTop>
-					)}
+						<Conversation
+							onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
+							onNext={goToNext}
+							questionIsAnswered={questionCouranteRépondue}
+							isPreviousDisabled={activeQuestionIndex === 0}
+							customVisualisation={
+								<SeeAnswersButton>
+									{customSituationVisualisation}
+								</SeeAnswersButton>
+							}
+						>
+							{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
+							<div style={{ display: 'none' }}></div>
+						</Conversation>
+					</FromTop>
+				)}
 
-					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
-						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
+				{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
+					<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
+						{shouldBeWrappedByFieldset ? (
 							<fieldset>
 								<H3 as="legend">
 									{evaluateQuestion(
@@ -177,30 +176,49 @@ export function Questions<S extends Situation>({
 									onSubmit={goToNext}
 								/>
 							</fieldset>
-							<Conversation
-								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
-								onNext={goToNext}
-								questionIsAnswered={questionCouranteRépondue}
-								isPreviousDisabled={activeQuestionIndex === 0}
-								customVisualisation={
-									<SeeAnswersButton>
-										{customSituationVisualisation}
-									</SeeAnswersButton>
-								}
-							/>
-						</FromTop>
-					)}
-
-					{QuestionCourante && (
-						<Raccourcis
-							raccourcis={raccourcis}
-							goTo={goTo}
-							idQuestionCourante={QuestionCourante?.id}
+						) : (
+							<>
+								<H3 as="label">
+									{evaluateQuestion(
+										engine,
+										engine.getRule(QuestionCourante.id)
+									)}
+									<ExplicableRule light dottedName={QuestionCourante.id} />
+								</H3>
+								<Spacing md />
+								<RuleInput
+									dottedName={QuestionCourante.id}
+									onChange={(value, name) =>
+										handlePublicodesQuestionResponse(name, value)
+									}
+									key={QuestionCourante.id}
+									onSubmit={goToNext}
+								/>
+							</>
+						)}
+						<Conversation
+							onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
+							onNext={goToNext}
+							questionIsAnswered={questionCouranteRépondue}
+							isPreviousDisabled={activeQuestionIndex === 0}
+							customVisualisation={
+								<SeeAnswersButton>
+									{customSituationVisualisation}
+								</SeeAnswersButton>
+							}
 						/>
-					)}
-				</QuestionsContainer>
-			</>
-		)
+					</FromTop>
+				)}
+
+				{QuestionCourante && (
+					<Raccourcis
+						raccourcis={raccourcis}
+						goTo={goTo}
+						idQuestionCourante={QuestionCourante?.id}
+					/>
+				)}
+			</QuestionsContainer>
+		</>
 	)
 }
 
