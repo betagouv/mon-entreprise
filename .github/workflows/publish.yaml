@@ -20,5 +20,5 @@ jobs:
       - uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_PUBLISH_SECRET }}
-          dry-run: ${{ github.ref != 'refs/heads/master' }}
+          dry-run: ${{ github.event.workflow_run.head_branch != 'master' }}
           package: ./${{ matrix.package }}/package.json
