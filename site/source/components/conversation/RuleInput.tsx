@@ -90,7 +90,7 @@ const MONTANT_FIELD = 'MontantField'
 const QUANTITE_FIELD = 'QuantitéField'
 const NUMBER_FIELD = 'NumberField'
 
-function getRuleInputComponent(
+export function getRuleInputComponent(
 	dottedName: DottedName,
 	engineValue: Engine<DottedName>,
 	modifiers: Record<string, string>,
@@ -173,15 +173,16 @@ export default function RuleInput({
 		(defaultValue && isMontant(defaultValue)) ||
 		estUneUnitéDeMontantPublicodes(rule.rawNode.unité)
 
-	const estUneQuantité =
+	const estUneQuantité = Boolean(
 		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
+	)
 
 	const inputComponent = getRuleInputComponent(
 		dottedName,
 		engineValue,
 		modifiers,
 		estUnMontant,
-		!!estUneQuantité
+		estUneQuantité
 	)
 
 	const suggestions = decodeSuggestions(rule.suggestions, engineValue)
