@@ -318,7 +318,6 @@ export default function RuleInput({
 					showSuggestions ? (suggestions as Record<string, Montant>) : {}
 				}
 				id={inputId}
-				description={rule.rawNode.description}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
 					label: accessibilityProps['aria-label'] ?? rule.title,

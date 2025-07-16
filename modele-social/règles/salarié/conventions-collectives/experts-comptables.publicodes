@@ -18,5 +18,5 @@ salarié . convention collective . compta . majoration heures supplémentaires:
       multiplicateur: période . semaines par mois
       tranches:
         - taux: 10%
-          plafond: 4 heures/semaine
+          plafond: 4 heure/semaine
         - taux: 25%

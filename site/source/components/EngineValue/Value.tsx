@@ -18,7 +18,7 @@ export default function Value<Names extends string>({
 	linkToRule = true,
 	...props
 }: ValueProps<Names>) {
-	const { language } = useTranslation().i18n
+	const { language, t } = useTranslation().i18n
 	if (expression === null) {
 		throw new TypeError('expression cannot be null')
 	}
@@ -48,7 +48,15 @@ export default function Value<Names extends string>({
 		}
 
 		return (
-			<RuleLink dottedName={dottedName} documentationPath={documentationPath}>
+			<RuleLink
+				dottedName={dottedName}
+				documentationPath={documentationPath}
+				aria-label={t(
+					'composants.engine-value.voir-la-documentation',
+					'Voir la documentation du calcul de {{valeur}}',
+					{ valeur: value.replace(/(\d)\s+(\d)/g, '$1$2') }
+				)}
+			>
 				<StyledValue {...props} key={value} $flashOnChange={flashOnChange}>
 					{value}
 				</StyledValue>
@@ -69,7 +77,7 @@ const flash = keyframes`
     background-color: white;
 		opacity: 0.8;
   }
-	
+
 		to {
 			background-color: transparent;
 		}

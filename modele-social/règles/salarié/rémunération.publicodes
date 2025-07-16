@@ -138,7 +138,7 @@ salarié . rémunération . net . payé après impôt:
     - (- impôt . montant)
 
 salarié . rémunération . taux horaire:
-  unité: €/heures
+  unité: €/heure
   formule: assiette de vérification du SMIC / temps de travail
 
   avec:
@@ -148,7 +148,7 @@ salarié . rémunération . taux horaire:
         Le taux horaire utilisé pour calculer la rémunération liée au heures
         supplémentaires. Il intègre les avantages en nature et les primes
         constituant la contrepartie d'un travail fourni.
-      unité: €/heures
+      unité: €/heure
       formule: (assiette de vérification du SMIC + primes . fin d'année) / contrat .
         temps de travail
       références:

@@ -9,7 +9,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
       plafond:
         valeur: exonérations . ZFU
         contexte:
-          revenu professionnel: 3042 heures/an * SMIC . horaire
+          revenu professionnel: 3042 heure/an * SMIC . horaire
     - taux
   arrondi: oui
   unité: €/an
@@ -228,7 +228,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
     Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
     cotisations 2019 sera le suivant :
 
-    `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
+    `31 jour d'acre restant en 2019 / 365 jour = 8,5%`
   unité: '%'
   arrondi: oui
   valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an

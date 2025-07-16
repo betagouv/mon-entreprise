@@ -18,7 +18,6 @@ interface MontantFieldProps<U extends UnitéMonétaire> {
 
 	id?: string
 	label?: React.ReactNode
-	description?: string
 
 	aria?: {
 		labelledby?: string
@@ -55,7 +54,6 @@ export const MontantField = <U extends UnitéMonétaire>({
 				label={label}
 				aria-labelledby={aria?.labelledby}
 				aria-label={aria?.label}
-				description={''}
 				onChange={handleValueChange}
 				onSubmit={onSubmit}
 				formatOptions={{

@@ -271,22 +271,22 @@ entreprise . capital social:
 entreprise . salariés:
 
 entreprise . salariés . effectif:
-  unité: employés
+  unité: employé
   variations:
     - si: seuil = 'moins de 5'
-      alors: 4 employés
+      alors: 4 employé
     - si: seuil = 'moins de 11'
-      alors: 10 employés
+      alors: 10 employé
     - si: seuil = 'moins de 20'
-      alors: 19 employés
+      alors: 19 employé
     - si: seuil = 'moins de 50'
-      alors: 49 employés
+      alors: 49 employé
     - si: seuil = 'moins de 150'
-      alors: 149 employés
+      alors: 149 employé
     - si: seuil = 'moins de 250'
-      alors: 250 employés
+      alors: 250 employé
     - si: seuil = 'plus de 250'
-      alors: 251 employés
+      alors: 251 employé
 
   avec:
     seuil:

@@ -85,9 +85,11 @@ function Pagination({ title, items }: PaginationProps) {
 									search: currentSearch,
 								}}
 								state={{ ...state, [title]: i }}
-								aria-label={`${title}, Page ${i + 1}`}
+								aria-label={`${title}, Page ${i + 1}${
+									currentPage === i ? ', page actuelle' : ''
+								}`}
 								currentPage={currentPage === i}
-								aria-current={currentPage === i ? 'page' : undefined}
+								aria-current={currentPage === i}
 							>
 								{i + 1}
 							</PagerButton>
@@ -157,14 +159,17 @@ const PagerButton = styled(Button)<PagerButtonProps>`
 		currentPage
 			? `2px solid ${theme.colors.bases.primary[600]}`
 			: `2px solid ${theme.colors.extended.grey[400]}`};
-	background-color: ${({ theme, currentPage }) =>
+
+	${({ theme, currentPage }) =>
 		currentPage &&
 		css`
-			${theme.colors.bases.primary[100]}
-		`};
-	&:hover {
-		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
-	}
+			color: ${theme.colors.extended.grey[100]};
+			background: ${theme.colors.bases.primary[600]};
+
+			&:hover {
+				background: ${theme.colors.bases.primary[600]};
+			}
+		`}
 `
 
 const Pager = styled.ol`

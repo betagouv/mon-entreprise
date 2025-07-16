@@ -435,6 +435,10 @@ components:
       share:
         checkbox: I'd like to share my latest simulation with you to help you respond
           better.
+composants:
+  engine-value:
+    voir-la-documentation: See the documentation for the calculation of {{valeur}}
+    voir-les-details-du-calcul: See details of the calculation of {{title}}
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:

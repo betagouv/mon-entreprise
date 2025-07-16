@@ -42,9 +42,9 @@ salarié . convention collective:
       valeur:
         convention collective = 'autre'
       description: >-
-        Attention : votre convention collective n'est pas prise en charge, 
+        Attention : votre convention collective n'est pas prise en charge,
         la simulation se basera sur le droit commun.
-  
+
 salarié . régimes spécifiques:
 
 salarié . régimes spécifiques . alsace moselle:
@@ -63,7 +63,7 @@ salarié . régimes spécifiques . alsace moselle . ATMP:
   avec:
     seuil taux mixte ou individuel:
       remplace: cotisations . ATMP . seuil taux mixte ou individuel
-      valeur: 50 employés
+      valeur: 50 employé
 
     taux fonctions support:
       références:

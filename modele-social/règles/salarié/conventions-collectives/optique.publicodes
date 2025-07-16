@@ -67,7 +67,7 @@ salarié . convention collective . optique . coefficient:
   description: >-
     Se référer à la [grille fournie par la convention
     collective](https://www.optometrie-aof.com/images/telecharger/convention_collective.pdf#page=45).
-  par défaut: 110 points
+  par défaut: 110 point
 
 salarié . convention collective . optique . prévoyance:
   non applicable si: contrat . statut cadre
