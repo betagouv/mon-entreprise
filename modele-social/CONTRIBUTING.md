@@ -44,6 +44,22 @@ Pour tester les règles, il est recommandé de :
 -   créer des cas de tests de non-régression sous la forme de nouveaux snapshots (cf.
     `site/test/regressions`).
 
+### Versioning et changelog
+
+Lors de toute modification du package `modele-social`, il est nécessaire de :
+
+1. **Mettre à jour la version** dans le fichier `package.json` en suivant le versioning sémantique :
+   - Version majeure (1.0.0) : changements incompatibles avec les versions précédentes
+   - Version mineure (0.1.0) : ajout de nouvelles fonctionnalités rétrocompatibles
+   - Version patch (0.0.1) : corrections de bugs rétrocompatibles
+
+2. **Documenter les changements** dans le fichier `CHANGELOG.md` en ajoutant une nouvelle entrée qui décrit :
+   - La nature des modifications apportées
+   - Les règles ajoutées, modifiées ou supprimées
+   - Les impacts potentiels sur les utilisateurs du package
+
+Cette pratique assure une traçabilité des évolutions et facilite la maintenance du package.
+
 ### Développement simultané de Publicodes et de mon-entreprise
 
 Il est parfois utile de tester des évolutions de publicodes sur mon-entreprise. C'est possible de la manière suivante :
