@@ -77,14 +77,14 @@ export const binaryQuestion = [
 	{ value: 'non', label: 'Non' },
 ] as const
 
-const PLUSIEURS_POSSIBILITES = 'PlusieursPossibilités'
-const UNE_POSSIBILITE = 'UnePossibilité'
+export const PLUSIEURS_POSSIBILITES = 'PlusieursPossibilités'
+export const UNE_POSSIBILITE = 'UnePossibilité'
+export const OUI_NON_INPUT = 'OuiNonInput'
 const SELECT_COMMUNE = 'SelectCommune'
 const SELECT_PAYS_DETACHEMENT = 'SelectPaysDétachement'
 const NON_EXISTING_API = 'NonExistingAPI'
 const SELECT_ATMP = 'SelectAtmp'
 const DATE_INPUT = 'DateInput'
-const OUI_NON_INPUT = 'OuiNonInput'
 const TEXT_INPUT = 'TextInput'
 const MONTANT_FIELD = 'MontantField'
 const QUANTITE_FIELD = 'QuantitéField'
