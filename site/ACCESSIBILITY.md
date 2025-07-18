@@ -4,7 +4,7 @@
 
 ### Formation express
 
-On pourra parcourir les [notices AcceDe Web](https://www.accede-web.com/) d'_Atalan_, en particulier celles destinées aux développeurs :
+On pourra parcourir les [notices AcceDe Web](https://www.accede-web.com/) d'_Atalan_, en particulier celles destinées aux dévelopeuses et développeurs :
 
 -   [Intégration HTML et CSS](https://www.accede-web.com/notices/html-et-css/)
 -   [Interfaces riches](https://www.accede-web.com/notices/interface-riche/)
@@ -13,7 +13,7 @@ Ces notices se lisent en une heure ou deux et, même en les survolant, on appren
 
 ### Formation complète
 
-Pour être deux développeurs à l'avoir suivi (@newick et @logic-fabric), nous pouvons recommander la formation [Développer des sites web accessibles et conformes au RGAA](https://formations.access42.net/formations/formation-developpement-accessible/) d'_Access42_.
+Pour être deux développeurs à l'avoir suivie (@newick et @logic-fabric), nous pouvons recommander la formation [Développer des sites web accessibles et conformes au RGAA](https://formations.access42.net/formations/formation-developpement-accessible/) d'_Access42_.
 
 ## Quelques points de vigilance
 
@@ -29,7 +29,7 @@ Elle ne mentionne que quelques erreurs relevées lors des derniers audits, de no
 ### Concernant les `aria-label`
 
 -   L`aria-label` d'un composant interactif doit toujours contenir l'intitulé visible, pour être déclenchable avec une commande vocale.
--   Plus un `aria-label` est concis, plus les utilisateurs de lecteur d'écran vous remercierons.
+-   Plus un `aria-label` est concis, plus les utilisateurs de lecteur d'écran vous remercieront.
 -   Plus on peut se passer d'`aria-label` (comme de tout autre attribut ARIA), mieux c'est.
 
 ### Concernant les images
@@ -42,3 +42,8 @@ Elle ne mentionne que quelques erreurs relevées lors des derniers audits, de no
 -   Toujours associer un `label` à chaque `input` (un placeholder ne suffit pas et n'est pas restitué par un lecteur d'écran).
 -   Toujours mettre une liaison `for/id` entre un `input` et son `label`, même lorsqu'ils sont imbriqués.
 -   Les groupes de boutons radio ou de checkboxes doivent être contenus dans un `<fieldset>` avec une `<legend>`.
+
+### Concernant les "live regions ARIA"
+
+-   Utiliser un `role="alert/status/log"` plutôt que les attributs `aria-live` et `aria-atomic`, beaucoup moins bien supportés (cf. https://a11ysupport.io).
+-   Ne pas créer dynamiquement cette "live region" au moment d'y injecter du contenu : cette "live region" sera plus fiable si elle est présente dans le DOM avant cette injection de contenu.
