@@ -333,10 +333,10 @@ export default function RuleInput({
 		return (
 			<>
 				<OuiNonInput
+					id={inputId}
 					value={value as 'oui' | 'non' | undefined}
 					onChange={(value) => onChange(value, dottedName)}
 					defaultValue={defaultValue as OuiNon | undefined}
-					id={inputId}
 					title={rule.title}
 					description={rule.rawNode.description}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
@@ -354,6 +354,7 @@ export default function RuleInput({
 	if (inputComponent === TEXT_INPUT) {
 		return (
 			<TextInput
+				id={inputId}
 				value={value}
 				onChange={(value) => onChange(value, dottedName)}
 				missing={missing ?? dottedName in evaluation.missingVariables}
