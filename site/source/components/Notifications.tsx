@@ -63,6 +63,7 @@ export default function Notifications() {
 
 	return (
 		<div
+			role="status"
 			style={{
 				marginTop: '1rem',
 			}}
