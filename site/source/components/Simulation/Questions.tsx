@@ -75,8 +75,6 @@ export function Questions<S extends Situation>({
 		[dispatch]
 	)
 
-	console.log('QuestionCourante.id >', QuestionCourante?.id)
-
 	let shouldBeWrappedByFieldset = false
 	if (!finished && QuestionCourante?._tag === 'QuestionPublicodes') {
 		const dottedName = QuestionCourante.id
@@ -101,15 +99,11 @@ export function Questions<S extends Situation>({
 			estUneQuantité
 		)
 
-		console.log('ruleInputComponent >', ruleInputComponent)
-
 		shouldBeWrappedByFieldset = [
 			PLUSIEURS_POSSIBILITES,
 			UNE_POSSIBILITE,
 			OUI_NON_INPUT,
 		].includes(ruleInputComponent)
-
-		console.log('shouldBeWrappedByFieldset >', shouldBeWrappedByFieldset)
 	}
 
 	const questionCouranteHtmlForId = QuestionCourante?.id
