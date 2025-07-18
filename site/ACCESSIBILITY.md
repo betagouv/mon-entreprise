@@ -42,3 +42,8 @@ Elle ne mentionne que quelques erreurs relevées lors des derniers audits, de no
 -   Toujours associer un `label` à chaque `input` (un placeholder ne suffit pas et n'est pas restitué par un lecteur d'écran).
 -   Toujours mettre une liaison `for/id` entre un `input` et son `label`, même lorsqu'ils sont imbriqués.
 -   Les groupes de boutons radio ou de checkboxes doivent être contenus dans un `<fieldset>` avec une `<legend>`.
+
+### Concernant les "live regions ARIA"
+
+-   Utiliser un `role="alert/status/log"` plutôt que les attributs `aria-live` et `aria-atomic`, beaucoup moins bien supportées (cf. https://a11ysupport.io).
+-   Ne pas créer dynamiquement cette "live region" au moment d'y injecter du contenu : cette "live region" sera plus fiable si elle est présente dans le DOM avant cette injection de contenu.
