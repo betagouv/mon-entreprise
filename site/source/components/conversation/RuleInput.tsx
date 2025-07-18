@@ -293,6 +293,7 @@ export default function RuleInput({
 	if (inputComponent === SELECT_ATMP) {
 		return (
 			<SelectAtmp
+				id={inputId}
 				onChange={(value) =>
 					onChange(
 						value === undefined ? undefined : parseInt(value),
