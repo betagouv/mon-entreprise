@@ -311,6 +311,7 @@ export default function RuleInput({
 	if (inputComponent === DATE_INPUT) {
 		return (
 			<DateInput
+				id={inputId}
 				dottedName={rule.dottedName}
 				value={isIsoDate(value) ? value : undefined}
 				onChange={(value) => onChange(value, dottedName)}

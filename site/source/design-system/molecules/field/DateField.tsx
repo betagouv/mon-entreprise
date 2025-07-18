@@ -19,6 +19,7 @@ import { Body } from '../../typography/paragraphs'
 import TextField from './TextField'
 
 export interface DateFieldProps {
+	id: string
 	defaultSelected?: Date
 	onChange?: (value?: Date) => void
 	placeholder?: string
@@ -32,6 +33,7 @@ export interface DateFieldProps {
 export const DateField = (props: DateFieldProps) => {
 	const { aria: ariaProps, rest } = splitAriaProps(props)
 	const {
+		id,
 		defaultSelected,
 		placeholder = 'JJ/MM/AAAA',
 		label,
@@ -47,7 +49,7 @@ export const DateField = (props: DateFieldProps) => {
 	const [selected, setSelected] = useState<Date>()
 	const [isOpen, setIsOpen] = useState(false)
 
-	const id = useId()
+	const ariaControlsId = useId()
 
 	const format = 'dd/MM/y'
 	const locale = language === 'fr' ? fr : enUS
@@ -135,6 +137,7 @@ export const DateField = (props: DateFieldProps) => {
 		<div>
 			<Wrapper>
 				<TextField
+					id={id}
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...ariaProps}
 					label={label}
@@ -172,7 +175,7 @@ export const DateField = (props: DateFieldProps) => {
 					aria-haspopup="dialog"
 					size="XXS"
 					aria-expanded={isOpen}
-					aria-controls={isOpen ? id : undefined}
+					aria-controls={isOpen ? ariaControlsId : undefined}
 					aria-label={t(
 						'design-system.date-picker.open-selector',
 						'Ouvrir le sélecteur de date'
@@ -192,7 +195,7 @@ export const DateField = (props: DateFieldProps) => {
 				>
 					<StyledBody
 						as="div"
-						id={id}
+						id={ariaControlsId}
 						tabIndex={-1}
 						className="dialog-sheet"
 						ref={refs.setFloating}
