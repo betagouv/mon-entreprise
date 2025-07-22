@@ -42,11 +42,18 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 				</Trans>
 			</Intro>
 
-			<UrlLabel as="label">{t('URL de votre simulation')}</UrlLabel>
+			<UrlLabel as="label" htmlFor="simulation-share-url">
+				{t('URL de votre simulation')}
+			</UrlLabel>
 
 			<Grid container spacing={3}>
 				<Grid item xs={12} sm>
-					<TextField inputRef={inputRef} onFocus={selectInput} value={url} />
+					<TextField
+						id="simulation-share-url"
+						inputRef={inputRef}
+						onFocus={selectInput}
+						value={url}
+					/>
 				</Grid>
 
 				{navigator.clipboard ? (
