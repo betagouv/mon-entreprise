@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import {
 	Body,
@@ -41,14 +42,11 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 				</Trans>
 			</Intro>
 
+			<UrlLabel as="label">{t('URL de votre simulation')}</UrlLabel>
+
 			<Grid container spacing={3}>
 				<Grid item xs={12} sm>
-					<TextField
-						inputRef={inputRef}
-						onFocus={selectInput}
-						value={url}
-						aria-label="URL de votre simulation"
-					/>
+					<TextField inputRef={inputRef} onFocus={selectInput} value={url} />
 				</Grid>
 
 				{navigator.clipboard ? (
@@ -107,3 +105,8 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 		</>
 	)
 }
+
+const UrlLabel = styled(SmallBody)`
+	position: relative;
+	top: -${({ theme }) => theme.spacings.xs};
+`
