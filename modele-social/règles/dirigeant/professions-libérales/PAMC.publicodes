@@ -165,7 +165,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
 
 dirigeant . indépendant . PL . PAMC . maladie:
-  # remplace: PL . maladie doesn't work because of https://github.com/betagouv/publicodes/issues/55
+  # remplace: PL . maladie doesn't work because of https://github.com/publicodes/publicodes/issues/55
   # So we need to put this bloc before PL . maladie, in order for this replace to take precedence over the next (the first replace of the file win it all)
   remplace: cotisations et contributions . maladie
   titre: maladie (après participation CPAM)

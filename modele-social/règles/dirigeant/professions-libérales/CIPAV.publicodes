@@ -156,7 +156,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
   unité: €/an
   arrondi: oui
-  # TODO : while https://github.com/betagouv/publicodes/issues/55 is not implemented
+  # TODO : while https://github.com/publicodes/publicodes/issues/55 is not implemented
   variations:
     - si: date < 01/2023
       alors: avant 2023
