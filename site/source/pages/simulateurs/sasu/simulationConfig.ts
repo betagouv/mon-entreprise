@@ -44,7 +44,7 @@ export const configSASU: SimulationConfig = {
 		'entreprise . catégorie juridique': "'SAS'",
 		'entreprise . résultat fiscal': '0 €/an',
 
-		// TODO : en attendant que la transitivité du remplacement soit implémentée (https://github.com/betagouv/publicodes/issues/55)
+		// TODO : en attendant que la transitivité du remplacement soit implémentée (https://github.com/publicodes/publicodes/issues/55)
 		'salarié . activité partielle': 'non',
 		'salarié . régimes spécifiques . DFS': 'non',
 	},
