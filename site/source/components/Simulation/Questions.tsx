@@ -8,6 +8,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
+import Notifications from '@/components/Notifications'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
@@ -141,6 +142,7 @@ export function Questions<S extends Situation>({
 									</SeeAnswersButton>
 								}
 							/>
+							<Notifications />
 						</FromTop>
 					)}
 
