@@ -19,11 +19,11 @@
 <0>Activité mixte</0>: <0>Mixed activity</0>
 <0>Impôt sur le revenu</0> (IR): <0>Income tax</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Corporate income tax</0> (IS)
-<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vrai vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
-  <0>The amount requested <1>cannot be calculated</1>...</0><1>It is not
+<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
+  <0>The amount requested <1>cannot be calculated...</1></0><1>It is not
   possible to obtain this amount in real life due to a threshold effect in the
-  calculation of contributions or tax. You can try again by changing the
-  value.</1>
+  calculation of contributions or tax. You can try again by modifying the value
+  entered.</1>
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Payment in full discharge</0> of income tax
 API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
