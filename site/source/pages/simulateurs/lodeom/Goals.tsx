@@ -32,11 +32,9 @@ import WarningSalaireTrans from './components/WarningSalaireTrans'
 
 export default function LodeomSimulationGoals({
 	toggles,
-	legend,
 	régularisationMethod,
 }: {
 	toggles?: React.ReactNode
-	legend: string
 	régularisationMethod?: RégularisationMethod
 }) {
 	const engine = useEngine()
@@ -127,7 +125,7 @@ export default function LodeomSimulationGoals({
 	}
 
 	return (
-		<SimulationGoals toggles={toggles} legend={legend}>
+		<SimulationGoals toggles={toggles}>
 			<Warnings />
 			<WhenApplicable dottedName="salarié . cotisations . exonérations . zones lodeom">
 				{!currentBarème && (

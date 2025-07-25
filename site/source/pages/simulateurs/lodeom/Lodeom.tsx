@@ -54,10 +54,6 @@ export default function LodeomSimulation() {
 					}
 				/>
 				<LodeomSimulationGoals
-					legend={t(
-						'pages.simulateurs.lodeom.legend',
-						'Rémunération brute du salarié et exonération Lodeom applicable'
-					)}
 					toggles={
 						<>
 							<ZoneSwitch />

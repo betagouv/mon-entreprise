@@ -62,10 +62,6 @@ export default function RéductionGénéraleSimulation() {
 					}
 				/>
 				<RéductionGénéraleSimulationGoals
-					legend={t(
-						'pages.simulateurs.réduction-générale.legend',
-						'Salaire brut du salarié et réduction générale applicable'
-					)}
 					toggles={
 						<>
 							<RégularisationSwitch

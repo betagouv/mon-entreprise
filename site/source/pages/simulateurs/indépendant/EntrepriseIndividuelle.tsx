@@ -11,7 +11,7 @@ export const EntrepriseIndividuelle = () => (
 			afterQuestionsSlot={<YearSelectionBanner />}
 		>
 			<SimulateurWarning simulateur="entreprise-individuelle" />
-			<IndépendantSimulationGoals legend="Vos revenus d'entreprise individuelle" />
+			<IndépendantSimulationGoals />
 		</Simulation>
 	</>
 )
