@@ -2084,6 +2084,7 @@ payslip:
     each amount is calculated. This payslip is not a substitute for a real
     payslip. For more information, visit <2>service-public.fr</2>."
   repartition: Breakdown of total expenses
+periode-calcul: Calculation period
 points: points
 pourcentage: percentage
 previousSimulationBanner:

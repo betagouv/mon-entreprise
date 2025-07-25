@@ -2208,6 +2208,7 @@ payslip:
     ne peut pas de substituer à une fiche de paie réelle. Pour plus
     d'informations, rendez-vous sur <2>service-public.fr</2>."
   repartition: Répartition du total chargé
+periode-calcul: Période de calcul
 points: points
 pourcentage: pourcentage
 previousSimulationBanner:
