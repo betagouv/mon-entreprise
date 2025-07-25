@@ -77,6 +77,64 @@ export const binaryQuestion = [
 	{ value: 'non', label: 'Non' },
 ] as const
 
+export const PLUSIEURS_POSSIBILITES = 'PlusieursPossibilités'
+export const UNE_POSSIBILITE = 'UnePossibilité'
+export const OUI_NON_INPUT = 'OuiNonInput'
+const SELECT_COMMUNE = 'SelectCommune'
+const SELECT_PAYS_DETACHEMENT = 'SelectPaysDétachement'
+const NON_EXISTING_API = 'NonExistingAPI'
+const SELECT_ATMP = 'SelectAtmp'
+const DATE_INPUT = 'DateInput'
+const TEXT_INPUT = 'TextInput'
+const MONTANT_FIELD = 'MontantField'
+const QUANTITE_FIELD = 'QuantitéField'
+const NUMBER_FIELD = 'NumberField'
+
+export function getRuleInputComponent(
+	dottedName: DottedName,
+	engineValue: Engine<DottedName>,
+	modifiers: Record<string, string>,
+	estUnMontant: boolean,
+	estUneQuantité: boolean
+): string {
+	const rule = engineValue.getRule(dottedName)
+	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
+
+	if (isMultiplePossibilities(engineValue, dottedName))
+		return PLUSIEURS_POSSIBILITES
+
+	if (isOnePossibility(engineValue.getRule(dottedName))) return UNE_POSSIBILITE
+
+	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
+
+	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement'))
+		return SELECT_PAYS_DETACHEMENT
+
+	if (rule.rawNode.API) return NON_EXISTING_API
+
+	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
+		return SELECT_ATMP
+
+	if (rule.rawNode.API && rule.rawNode.API.startsWith('date')) return DATE_INPUT
+
+	if (
+		evaluation.unit == null &&
+		['booléen', 'notification', undefined].includes(
+			rule.rawNode.type as string
+		) &&
+		typeof evaluation.nodeValue !== 'number'
+	)
+		return OUI_NON_INPUT
+
+	if (rule.rawNode.type === 'texte') return TEXT_INPUT
+
+	if (estUnMontant) return MONTANT_FIELD
+
+	if (estUneQuantité) return QUANTITE_FIELD
+
+	return NUMBER_FIELD
+}
+
 /**
  * RuleInput - Composant de routage d'une question Publicodes
  *
@@ -110,13 +168,30 @@ export default function RuleInput({
 	const value = isDefaultValue ? undefined : O.getOrUndefined(decoded)
 	const defaultValue = isDefaultValue ? O.getOrUndefined(decoded) : undefined
 
+	const estUnMontant =
+		(value && isMontant(value)) ||
+		(defaultValue && isMontant(defaultValue)) ||
+		estUneUnitéDeMontantPublicodes(rule.rawNode.unité)
+
+	const estUneQuantité = Boolean(
+		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
+	)
+
+	const inputComponent = getRuleInputComponent(
+		dottedName,
+		engineValue,
+		modifiers,
+		estUnMontant,
+		estUneQuantité
+	)
+
 	const suggestions = decodeSuggestions(rule.suggestions, engineValue)
 
 	const inputId = accessibilityProps?.id ?? normalizeRuleName.Input(dottedName)
 
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
-	if (isMultiplePossibilities(engineValue, dottedName)) {
+	if (inputComponent === PLUSIEURS_POSSIBILITES) {
 		return (
 			<>
 				<PlusieursPossibilités
@@ -140,7 +215,7 @@ export default function RuleInput({
 		)
 	}
 
-	if (isOnePossibility(engineValue.getRule(dottedName))) {
+	if (inputComponent === UNE_POSSIBILITE) {
 		const type =
 			inputType ??
 			(meta.affichage &&
@@ -174,7 +249,7 @@ export default function RuleInput({
 	}
 
 	// Gestion des API spécifiques
-	if (rule.rawNode.API && rule.rawNode.API === 'commune') {
+	if (inputComponent === SELECT_COMMUNE) {
 		return (
 			<>
 				<SelectCommune
@@ -194,30 +269,33 @@ export default function RuleInput({
 
 	// Utilisation dans l'assistant demande de mobilité internationale
 	// si réponse "non" à "Allez-vous exercer une activité dans un seul et unique pays ?""
-	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement')) {
+	if (inputComponent === SELECT_PAYS_DETACHEMENT) {
 		return (
 			<>
 				<SelectPaysDétachement
 					id={inputId}
 					value={value as Evaluation<string>}
 					onChange={(value) => onChange(value as ValeurPublicodes, dottedName)}
-					plusFrance={rule.rawNode.API.endsWith('plus France')}
+					plusFrance={
+						!!(rule.rawNode.API && rule.rawNode.API.endsWith('plus France'))
+					}
 				/>
 				<Spacing md />
 			</>
 		)
 	}
 
-	if (rule.rawNode.API) {
+	if (inputComponent === NON_EXISTING_API) {
 		throw new Error(
 			"Les seules API implémentées sont 'commune' et 'pays détachement'"
 		)
 	}
 
 	// Cas spécifique pour ATMP
-	if (rule.dottedName === 'établissement . taux ATMP . taux collectif') {
+	if (inputComponent === SELECT_ATMP) {
 		return (
 			<SelectAtmp
+				id={inputId}
 				onChange={(value) =>
 					onChange(
 						value === undefined ? undefined : parseInt(value),
@@ -232,9 +310,10 @@ export default function RuleInput({
 	}
 
 	// Gestion des entrées de date
-	if ((rule.rawNode.type as string | undefined)?.startsWith('date') /* 😭 */) {
+	if (inputComponent === DATE_INPUT) {
 		return (
 			<DateInput
+				id={inputId}
 				dottedName={rule.dottedName}
 				value={isIsoDate(value) ? value : undefined}
 				onChange={(value) => onChange(value, dottedName)}
@@ -252,20 +331,14 @@ export default function RuleInput({
 		)
 	}
 
-	if (
-		evaluation.unit == null &&
-		['booléen', 'notification', undefined].includes(
-			rule.rawNode.type as string
-		) &&
-		typeof evaluation.nodeValue !== 'number'
-	) {
+	if (inputComponent === OUI_NON_INPUT) {
 		return (
 			<>
 				<OuiNonInput
+					id={inputId}
 					value={value as 'oui' | 'non' | undefined}
 					onChange={(value) => onChange(value, dottedName)}
 					defaultValue={defaultValue as OuiNon | undefined}
-					id={inputId}
 					title={rule.title}
 					description={rule.rawNode.description}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
@@ -280,9 +353,10 @@ export default function RuleInput({
 		)
 	}
 
-	if (rule.rawNode.type === 'texte') {
+	if (inputComponent === TEXT_INPUT) {
 		return (
 			<TextInput
+				id={inputId}
 				value={value}
 				onChange={(value) => onChange(value, dottedName)}
 				missing={missing ?? dottedName in evaluation.missingVariables}
@@ -299,12 +373,7 @@ export default function RuleInput({
 		)
 	}
 
-	const estUnMontant =
-		(value && isMontant(value)) ||
-		(defaultValue && isMontant(defaultValue)) ||
-		estUneUnitéDeMontantPublicodes(rule.rawNode.unité)
-
-	if (estUnMontant) {
+	if (inputComponent === MONTANT_FIELD) {
 		return (
 			<MontantField
 				value={value as Montant | undefined}
@@ -327,13 +396,10 @@ export default function RuleInput({
 		)
 	}
 
-	const estUneQuantité =
-		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
-
 	const quantitéValue = value as Quantité | undefined
 	const quantitéPlaceholder = defaultValue as Quantité | undefined
 
-	if (estUneQuantité) {
+	if (inputComponent === QUANTITE_FIELD) {
 		return (
 			<QuantitéField
 				value={quantitéValue}

@@ -4,6 +4,7 @@ import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
 interface TextInputProps {
+	id: string
 	value: ValeurPublicodes | undefined
 	onChange?: (value: ValeurPublicodes | undefined) => void
 	missing?: boolean
@@ -19,6 +20,7 @@ interface TextInputProps {
 }
 
 export default function TextInput({
+	id,
 	onChange = NoOp,
 	value,
 	description,
@@ -34,6 +36,7 @@ export default function TextInput({
 
 	return (
 		<TextField
+			id={id}
 			type="text"
 			label={title}
 			// eslint-disable-next-line jsx-a11y/no-autofocus

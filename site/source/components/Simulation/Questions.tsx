@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -5,15 +6,26 @@ import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import RuleInput from '@/components/conversation/RuleInput'
+import RuleInput, {
+	getRuleInputComponent,
+	OUI_NON_INPUT,
+	PLUSIEURS_POSSIBILITES,
+	UNE_POSSIBILITE,
+} from '@/components/conversation/RuleInput'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Body, Conversation, H3 } from '@/design-system'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { Body, Conversation, H3, Spacing } from '@/design-system'
+import { estUneUnitéDeMontantPublicodes } from '@/domaine/engine/MontantAdapter'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
+import { isMontant } from '@/domaine/Montant'
+import { isQuantité } from '@/domaine/Quantité'
 import { Situation } from '@/domaine/Situation'
 import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
@@ -36,9 +48,9 @@ export function Questions<S extends Situation>({
 	customSituationVisualisation,
 	situation,
 }: QuestionsProps<S>) {
-	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useEngine()
+	const { t } = useTranslation()
 
 	const {
 		nombreDeQuestions,
@@ -64,6 +76,41 @@ export function Questions<S extends Situation>({
 		[dispatch]
 	)
 
+	let shouldBeWrappedByFieldset = false
+	if (!finished && QuestionCourante?._tag === 'QuestionPublicodes') {
+		const dottedName = QuestionCourante.id
+		const rule = engine.getRule(dottedName)
+		const evaluation = engine.evaluate({ valeur: dottedName })
+
+		const decoded: O.Option<ValeurPublicodes> =
+			PublicodesAdapter.decode(evaluation)
+		const value = O.getOrUndefined(decoded)
+
+		const estUnMontant =
+			(value && isMontant(value)) ||
+			estUneUnitéDeMontantPublicodes(rule.rawNode.unité)
+
+		const estUneQuantité = Boolean(value && isQuantité(value))
+
+		const ruleInputComponent = getRuleInputComponent(
+			QuestionCourante.id,
+			engine,
+			{},
+			estUnMontant,
+			estUneQuantité
+		)
+
+		shouldBeWrappedByFieldset = [
+			PLUSIEURS_POSSIBILITES,
+			UNE_POSSIBILITE,
+			OUI_NON_INPUT,
+		].includes(ruleInputComponent)
+	}
+
+	const questionCouranteHtmlForId = QuestionCourante?.id
+		.replaceAll(' . ', '_')
+		.replaceAll(' ', '-')
+
 	return (
 		nombreDeQuestions > 0 && (
 			<>
@@ -71,6 +118,7 @@ export function Questions<S extends Situation>({
 					progress={activeQuestionIndex + 1}
 					maxValue={nombreDeQuestions}
 				/>
+
 				<QuestionsContainer>
 					<div className="print-hidden">
 						{nombreDeQuestionsRépondues < nombreDeQuestions && (
@@ -82,6 +130,7 @@ export function Questions<S extends Situation>({
 							</Body>
 						)}
 					</div>
+
 					{finished && (
 						<VousAvezComplétéCetteSimulation
 							customEndMessages={customEndMessages}
@@ -92,6 +141,7 @@ export function Questions<S extends Situation>({
 					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
 						<FromTop key={`custom-question-${QuestionCourante.id}`}>
 							<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
+
 							<QuestionCourante />
 
 							<Conversation
@@ -113,23 +163,49 @@ export function Questions<S extends Situation>({
 
 					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
 						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
-							<fieldset>
-								<H3 as="legend">
-									{evaluateQuestion(
-										engine,
-										engine.getRule(QuestionCourante.id)
-									)}
-									<ExplicableRule light dottedName={QuestionCourante.id} />
-								</H3>
-								<RuleInput
-									dottedName={QuestionCourante.id}
-									onChange={(value, name) =>
-										handlePublicodesQuestionResponse(name, value)
-									}
-									key={QuestionCourante.id}
-									onSubmit={goToNext}
-								/>
-							</fieldset>
+							{shouldBeWrappedByFieldset ? (
+								<fieldset>
+									<H3 as="legend">
+										{evaluateQuestion(
+											engine,
+											engine.getRule(QuestionCourante.id)
+										)}
+										<ExplicableRule light dottedName={QuestionCourante.id} />
+									</H3>
+
+									<RuleInput
+										dottedName={QuestionCourante.id}
+										onChange={(value, name) =>
+											handlePublicodesQuestionResponse(name, value)
+										}
+										key={QuestionCourante.id}
+										onSubmit={goToNext}
+									/>
+								</fieldset>
+							) : (
+								<>
+									<H3 as="label" htmlFor={questionCouranteHtmlForId}>
+										{evaluateQuestion(
+											engine,
+											engine.getRule(QuestionCourante.id)
+										)}
+										<ExplicableRule light dottedName={QuestionCourante.id} />
+									</H3>
+
+									<Spacing md />
+
+									<RuleInput
+										id={questionCouranteHtmlForId}
+										dottedName={QuestionCourante.id}
+										onChange={(value, name) =>
+											handlePublicodesQuestionResponse(name, value)
+										}
+										key={QuestionCourante.id}
+										onSubmit={goToNext}
+									/>
+								</>
+							)}
+
 							<Conversation
 								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
 								onNext={goToNext}
