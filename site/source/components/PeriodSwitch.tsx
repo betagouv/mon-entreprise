@@ -50,7 +50,7 @@ export default function PeriodSwitch({ periods }: Props) {
 		>
 			<Grid item md="auto" sm={9} xs={8}>
 				<TitreObjectif noWrap={true}>
-					<legend>Période de calcul</legend>
+					<legend>{t('periode-calcul', 'Période de calcul')}</legend>
 				</TitreObjectif>
 			</Grid>
 
