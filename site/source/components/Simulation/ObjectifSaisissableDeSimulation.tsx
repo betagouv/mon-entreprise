@@ -1,5 +1,5 @@
 import { Option } from 'effect'
-import React, { useState } from 'react'
+import React from 'react'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -34,21 +34,8 @@ export function ObjectifSaisissableDeSimulation({
 	rendreChampSaisie,
 	small = false,
 	appear = true,
-	onFocus,
-	onBlur,
 }: ObjectifSaisissableDeSimulationProps) {
 	const initialRender = useInitialRender()
-	const [isFocused, setFocused] = useState(false)
-
-	const handleFocus = () => {
-		setFocused(true)
-		onFocus?.()
-	}
-
-	const handleBlur = () => {
-		setFocused(false)
-		onBlur?.()
-	}
 
 	const montantAnimation = Option.isSome(valeur) ? valeur.value : undefined
 
@@ -89,12 +76,10 @@ export function ObjectifSaisissableDeSimulation({
 					</Grid>
 					<LectureGuide />
 					<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
-						{!isFocused && !small && montantAnimation !== undefined && (
+						{!small && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
-						<div onFocus={handleFocus} onBlur={handleBlur} role="presentation">
-							{rendreChampSaisie()}
-						</div>
+						{rendreChampSaisie()}
 					</Grid>
 				</Grid>
 			</StyledGoal>
