@@ -62,6 +62,7 @@ export default function MoreInfosOnUs() {
 						icon={<GithubIcon style={{ width: '2rem', height: '2rem' }} />}
 						href="https://github.com/betagouv/mon-entreprise"
 						title={<h3>Le code source</h3>}
+						aria-label="Voir le code source, nouvelle fenêtre"
 					>
 						Nos travaux sont ouverts et libres de droit, ça se passe sur GitHub
 					</SmallCard>

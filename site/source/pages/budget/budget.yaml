@@ -129,7 +129,7 @@
 2024:
   description: |
     En 2024 mon-entreprise est financée à 100% par
-    l’[Urssaf Caisse Nationale](https://www.urssaf.org/accueil.html).
+    l’<a href="https://www.urssaf.org/accueil.html" aria-label="Site de l'Urssaf Caisse Nationale, nouvelle fenêtre">Urssaf Caisse Nationale</a>.
   T1:
     Développement: 24091
     Logiciels et hébergement: 1069
