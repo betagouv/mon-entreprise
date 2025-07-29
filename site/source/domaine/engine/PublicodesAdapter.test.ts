@@ -14,10 +14,6 @@ describe('PublicodesAdapter', () => {
 		engine = new Engine({
 			'heures supplémentaires': {
 				valeur: 10,
-				unité: 'heures/mois',
-			},
-			'heures complémentaires': {
-				valeur: 10,
 				unité: 'heure/mois',
 			},
 			'pourcentage majoration': {
@@ -34,7 +30,7 @@ describe('PublicodesAdapter', () => {
 			},
 			'nombre employés': {
 				valeur: 50,
-				unité: 'employés',
+				unité: 'employé',
 			},
 			salaire: {
 				valeur: 2000,
@@ -46,21 +42,8 @@ describe('PublicodesAdapter', () => {
 	})
 
 	describe('decode', () => {
-		it('décode une quantité avec unité heures/mois (au pluriel)', () => {
+		it('décode une quantité avec unité heure/mois', () => {
 			const node = engine.evaluate('heures supplémentaires')
-			const result = PublicodesAdapter.decode(node)
-
-			expect(O.isSome(result)).toBe(true)
-			const value = O.getOrNull(result)
-			expect(Quantité.isQuantité(value)).toBe(true)
-			if (Quantité.isQuantité(value)) {
-				expect(value.valeur).toBe(10)
-				expect(value.unité).toBe('heures/mois')
-			}
-		})
-
-		it('décode une quantité avec unité heure/mois (au singulier)', () => {
-			const node = engine.evaluate('heures complémentaires')
 			const result = PublicodesAdapter.decode(node)
 
 			expect(O.isSome(result)).toBe(true)
