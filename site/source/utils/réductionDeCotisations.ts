@@ -218,11 +218,10 @@ export const getInitialRéductionMoisParMois = (
 	}
 
 	return Array.from({ length: 12 }, (_item, monthIndex) => {
-		const date = getDateForContexte(monthIndex, year)
-
 		const réduction = getMonthlyRéduction(
 			dottedName,
-			date,
+			year,
+			monthIndex,
 			rémunérationBrute,
 			{
 				heuresSupplémentaires,
@@ -356,10 +355,10 @@ const reevaluateRéductionMoisParMois = (
 						: defaultRépartition
 				}
 			} else {
-				const date = getDateForContexte(monthIndex, year)
 				réduction.value = getMonthlyRéduction(
 					dottedName,
-					date,
+					year,
+					monthIndex,
 					rémunérationBrute,
 					options,
 					engine
@@ -468,21 +467,16 @@ const getOptionsFromSituations = (
 	return options
 }
 
-const getDateForContexte = (monthIndex: number, year: number): string => {
-	const date = new Date(year, monthIndex)
-
-	return date.toLocaleDateString('fr')
-}
-
 const getMonthlyRéduction = (
 	dottedName: RéductionDottedName,
-	date: string,
+	year: number,
+	monthIndex: number,
 	rémunérationBrute: number,
 	options: Options,
 	engine: Engine<DottedName>
 ): number => {
 	const SMIC = getSMICMensuelAvecOptions(
-		date,
+		year,
 		rémunérationBrute,
 		options,
 		engine
@@ -491,7 +485,7 @@ const getMonthlyRéduction = (
 		valeur: dottedName,
 		unité: '€/mois',
 		contexte: {
-			date,
+			date: new Date(year, monthIndex).toLocaleDateString('fr'),
 			[rémunérationBruteDottedName]: rémunérationBrute,
 			'salarié . temps de travail . SMIC': SMIC,
 		},
@@ -554,14 +548,20 @@ const getRépartition = (
 	}
 }
 
+/**
+ * Le Smic à utiliser est celui du 1er janvier de l'année considérée.
+ * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#710)
+ * Il faut toutefois l'adapter à la durée de travail réalisée ce mois-ci par le ou la salariée
+ * (heures supplémentaires, temps partiel, mois incomplet...).
+ */
 const getSMICMensuelAvecOptions = (
-	date: string,
+	year: number,
 	rémunérationBrute: number,
 	options: Options,
 	engine: Engine<DottedName>
 ): number => {
 	const contexte = {
-		date,
+		date: new Date(year, 0).toLocaleDateString('fr'),
 		[rémunérationBruteDottedName]: rémunérationBrute,
 		[heuresSupplémentairesDottedName]: options.heuresSupplémentaires,
 		[heuresComplémentairesDottedName]: options.heuresComplémentaires,
@@ -616,9 +616,8 @@ const getSMICCumulés = (
 			return SMICCumulés
 		}
 
-		const date = getDateForContexte(monthIndex, year)
 		const SMIC = getSMICMensuelAvecOptions(
-			date,
+			year,
 			monthData.rémunérationBrute,
 			monthData.options,
 			engine
