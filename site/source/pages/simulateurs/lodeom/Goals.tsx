@@ -1,10 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
-import PeriodSwitch from '@/components/PeriodSwitch'
-import RéductionBasique from '@/components/RéductionDeCotisations/RéductionBasique'
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -12,10 +10,7 @@ import { Body, Message } from '@/design-system'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import {
-	situationSelector,
-	targetUnitSelector,
-} from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
@@ -39,7 +34,6 @@ export default function LodeomSimulationGoals({
 	régularisationMethod?: RégularisationMethod
 }) {
 	const engine = useEngine()
-	const dispatch = useDispatch()
 	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>([])
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
@@ -47,9 +41,6 @@ export default function LodeomSimulationGoals({
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
 	const { t } = useTranslation()
-
-	const currentUnit = useSelector(targetUnitSelector)
-	const monthByMonth = currentUnit === '€'
 
 	const codeRéduction = engine.evaluate(
 		'salarié . cotisations . exonérations . lodeom . code réduction'
@@ -59,24 +50,6 @@ export default function LodeomSimulationGoals({
 	).nodeValue as string
 
 	const withRépartition = currentZone === 'zone un'
-
-	const periods = [
-		{
-			label: t('pages.simulateurs.lodeom.tab.month', 'Exonération mensuelle'),
-			unit: '€/mois',
-		},
-		{
-			label: t('pages.simulateurs.lodeom.tab.year', 'Exonération annuelle'),
-			unit: '€/an',
-		},
-		{
-			label: t(
-				'pages.simulateurs.lodeom.tab.month-by-month',
-				'Exonération mois par mois'
-			),
-			unit: '€',
-		},
-	]
 
 	const initializeLodeomMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(
@@ -121,7 +94,6 @@ export default function LodeomSimulationGoals({
 				previousData,
 				year,
 				engine,
-				dispatch,
 				régularisationMethod,
 				withRépartition
 			)
@@ -158,43 +130,33 @@ export default function LodeomSimulationGoals({
 					</Message>
 				)}
 			</WhenApplicable>
-			{currentBarème && <PeriodSwitch periods={periods} />}
-			{currentBarème &&
-				(monthByMonth ? (
-					<RéductionMoisParMois
-						dottedName={lodeomDottedName}
-						data={lodeomMoisParMoisData}
-						onRémunérationChange={onRémunérationChange}
-						onOptionsChange={onOptionsChange}
-						caption={t(
-							'pages.simulateurs.lodeom.month-by-month.caption',
-							'Exonération Lodeom mois par mois :'
-						)}
-						warningCondition={`${lodeomDottedName} = 0`}
-						warningTooltip={<WarningSalaireTrans />}
-						codeRéduction={
-							codeRéduction &&
-							t(`code {{ code }}`, {
-								code: codeRéduction,
-							})
-						}
-						codeRégularisation={
-							codeRégularisation &&
-							t(`code {{ code }}`, {
-								code: codeRégularisation,
-							})
-						}
-						withRépartitionAndRégularisation={withRépartition}
-					/>
-				) : (
-					<RéductionBasique
-						dottedName={lodeomDottedName}
-						onUpdate={initializeLodeomMoisParMoisData}
-						warningCondition={`${lodeomDottedName} = 0`}
-						warningMessage={<WarningSalaireTrans />}
-						withRépartition={withRépartition}
-					/>
-				))}
+			{currentBarème && (
+				<RéductionMoisParMois
+					dottedName={lodeomDottedName}
+					data={lodeomMoisParMoisData}
+					onRémunérationChange={onRémunérationChange}
+					onOptionsChange={onOptionsChange}
+					caption={t(
+						'pages.simulateurs.lodeom.month-by-month.caption',
+						'Exonération Lodeom mois par mois :'
+					)}
+					warningCondition={`${lodeomDottedName} = 0`}
+					warningTooltip={<WarningSalaireTrans />}
+					codeRéduction={
+						codeRéduction &&
+						t(`code {{ code }}`, {
+							code: codeRéduction,
+						})
+					}
+					codeRégularisation={
+						codeRégularisation &&
+						t(`code {{ code }}`, {
+							code: codeRégularisation,
+						})
+					}
+					withRépartitionAndRégularisation={withRépartition}
+				/>
+			)}
 		</SimulationGoals>
 	)
 }
