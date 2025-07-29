@@ -19,8 +19,9 @@ import {
 	moins,
 	Montant,
 	plus,
-	somme,
-	SommeImpossible,
+	sommeEnEuros,
+	sommeEnEurosParAn,
+	sommeEnEurosParMois,
 	toString,
 } from './Montant'
 
@@ -78,24 +79,25 @@ describe('Montant', () => {
 			expect(resultat.unité).toBe('€')
 		})
 
-		it('somme correctement plusieurs montants de même unité', () => {
-			const montants = [eurosParAn(100), eurosParAn(200), eurosParAn(300)]
-			const resultatEither = somme(montants)
-			expect(Either.isRight(resultatEither)).toBe(true)
-			if (Either.isRight(resultatEither)) {
-				expect(Equal.equals(resultatEither.right, eurosParAn(600))).toBe(true)
-				expect(resultatEither.right.unité).toBe('EuroParAn')
-			}
+		it('somme correctement plusieurs montants de même unité ponctuelle', () => {
+			const montants = [euros(200), euros(300), euros(500)]
+			const resultat = sommeEnEuros(montants)
+			expect(Equal.equals(resultat, euros(1000))).toBe(true)
+			expect(resultat.unité).toBe('€')
 		})
 
-		it("retourne une erreur lors d'une somme de montants d'unités différentes", () => {
-			const montants = [eurosParAn(100), eurosParMois(200), eurosParAn(300)]
-			const resultatEither = somme(montants)
-			expect(Either.isLeft(resultatEither)).toBe(true)
-			if (Either.isLeft(resultatEither)) {
-				expect(resultatEither.left).toBeInstanceOf(SommeImpossible)
-				expect(resultatEither.left.unités).toStrictEqual(['EuroParAn', 'EuroParMois'])
-			}
+		it('somme correctement plusieurs montants en €/mois et retourne un résultat en €/mois', () => {
+			const montants = [eurosParMois(200), eurosParMois(300), eurosParMois(500)]
+			const resultat = sommeEnEurosParMois(montants)
+			expect(Equal.equals(resultat, eurosParMois(1000))).toBe(true)
+			expect(resultat.unité).toBe('€/mois')
+		})
+
+		it('somme correctement plusieurs montants en €/mois et retourne un résultat en €/an', () => {
+			const montants = [eurosParMois(200), eurosParMois(300), eurosParMois(500)]
+			const resultat = sommeEnEurosParAn(montants)
+			expect(Equal.equals(resultat, eurosParAn(12000))).toBe(true)
+			expect(resultat.unité).toBe('€/an')
 		})
 
 		it('divise correctement un montant par un scalaire non nul', () => {
