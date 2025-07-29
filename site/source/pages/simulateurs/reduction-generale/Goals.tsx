@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
@@ -31,6 +31,7 @@ export default function RéductionGénéraleSimulationGoals({
 	régularisationMethod: RégularisationMethod
 }) {
 	const engine = useEngine()
+	const dispatch = useDispatch()
 	const [réductionGénéraleMoisParMoisData, setData] = useState<MonthState[]>([])
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
@@ -81,6 +82,7 @@ export default function RéductionGénéraleSimulationGoals({
 				previousData,
 				year,
 				engine,
+				dispatch,
 				régularisationMethod
 			)
 		})

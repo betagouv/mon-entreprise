@@ -1,8 +1,11 @@
 import { sumAll } from 'effect/Number'
 import { DottedName } from 'modele-social'
-import Engine from 'publicodes'
+import Engine, { PublicodesExpression } from 'publicodes'
+import { AnyAction, Dispatch } from 'redux'
 
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
+import { ajusteLaSituation } from '@/store/actions/actions'
 
 /********************************************************************/
 /* Types et méthodes communes à la Réduction générale et au Lodeom */
@@ -114,6 +117,7 @@ export const getDataAfterRémunérationChange = (
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
+	dispatch: Dispatch<AnyAction>,
 	régularisationMethod?: RégularisationMethod,
 	withRépartition: boolean = true
 ): MonthState[] => {
@@ -122,6 +126,8 @@ export const getDataAfterRémunérationChange = (
 		...updatedData[monthIndex],
 		rémunérationBrute,
 	}
+
+	updateRémunérationBruteAnnuelle(updatedData, dispatch)
 
 	return reevaluateRéductionMoisParMois(
 		dottedName,
@@ -455,6 +461,25 @@ const getOptionsFromSituations = (
 	}
 
 	return options
+}
+
+const updateRémunérationBruteAnnuelle = (
+	data: MonthState[],
+	dispatch: Dispatch<AnyAction>
+): void => {
+	const rémunérationBruteAnnuelle = data.reduce(
+		(total: number, monthState: MonthState) =>
+			total + monthState.rémunérationBrute,
+		0
+	)
+	dispatch(
+		ajusteLaSituation({
+			[rémunérationBruteDottedName]: {
+				valeur: rémunérationBruteAnnuelle,
+				unité: '€/an',
+			} as PublicodesExpression,
+		} as Record<DottedName, ValeurPublicodes>)
+	)
 }
 
 const getMonthlyRéduction = (
