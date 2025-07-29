@@ -3,7 +3,7 @@ import * as A from 'effect/Array'
 import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
-import { UnitéMonétaire } from './Unités'
+import { UnitéMonétaire, UnitéMonétaireRécurrente } from './Unités'
 
 export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'
@@ -75,7 +75,7 @@ export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
 	}) as Montant<'€/heure'>
 
 export const toEurosParMois = (
-	montant: Montant<UnitéMonétaire>
+	montant: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/mois'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
@@ -97,7 +97,7 @@ export const toEurosParMois = (
 }
 
 export const toEurosParAn = (
-	montant: Montant<UnitéMonétaire>
+	montant: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/an'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
@@ -119,7 +119,7 @@ export const toEurosParAn = (
 }
 
 export const toEurosParJour = (
-	montant: Montant<UnitéMonétaire>
+	montant: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/jour'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
@@ -141,7 +141,7 @@ export const toEurosParJour = (
 }
 
 export const toEurosParHeure = (
-	montant: Montant<UnitéMonétaire>
+	montant: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/heure'> => {
 	let valeur = montant.valeur
 	switch (montant.unité) {
