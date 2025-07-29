@@ -1,6 +1,8 @@
-export const UNITÉS_MONÉTAIRES = ['€', '€/an', '€/mois', '€/jour', '€/heure']
+export type UnitéMonétairePonctuelle = '€'
+export type UnitéMonétaireRécurrente = '€/mois' | '€/an' | '€/jour' | '€/heure'
+export type UnitéMonétaire = UnitéMonétairePonctuelle | UnitéMonétaireRécurrente
 
-export type UnitéMonétaire = (typeof UNITÉS_MONÉTAIRES)[number]
+export const UNITÉS_MONÉTAIRES = ['€', '€/an', '€/mois', '€/jour', '€/heure']
 
 export const isUnitéMonétaire = (unité?: string): unité is UnitéMonétaire =>
 	UNITÉS_MONÉTAIRES.includes(unité as UnitéMonétaire)

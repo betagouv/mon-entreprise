@@ -24,6 +24,7 @@ import { WhenApplicable } from './EngineValue/WhenApplicable'
 import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
 import { useEngine } from './utils/EngineContext'
+import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
 
 const proportions = {
 	'entreprise . activités . revenus mixtes . proportions . service BIC':
@@ -101,8 +102,8 @@ function useAdjustProportions(CADottedName: DottedName) {
 				currentUnit === '€/an' ? M.eurosParAn(0) : M.eurosParMois(0)
 			const convertisseur = (m: ValeurPublicodes) =>
 				currentUnit === '€/an'
-					? M.toEurosParAn(m as M.Montant)
-					: M.toEurosParMois(m as M.Montant)
+					? M.toEurosParAn(m as M.Montant<UnitéMonétaireRécurrente>)
+					: M.toEurosParMois(m as M.Montant<UnitéMonétaireRécurrente>)
 
 			const nouvelleValeurPour = (règleCA: DottedName): O.Option<M.Montant> => {
 				const nouvelleValeur =
