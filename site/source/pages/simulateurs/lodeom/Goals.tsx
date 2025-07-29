@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
@@ -34,6 +34,7 @@ export default function LodeomSimulationGoals({
 	régularisationMethod?: RégularisationMethod
 }) {
 	const engine = useEngine()
+	const dispatch = useDispatch()
 	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>([])
 	const year = useYear()
 	const situation = useSelector(situationSelector) as SituationType
@@ -94,6 +95,7 @@ export default function LodeomSimulationGoals({
 				previousData,
 				year,
 				engine,
+				dispatch,
 				régularisationMethod,
 				withRépartition
 			)
