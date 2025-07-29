@@ -1,11 +1,8 @@
 import { sumAll } from 'effect/Number'
 import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression } from 'publicodes'
-import { AnyAction, Dispatch } from 'redux'
+import Engine from 'publicodes'
 
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
-import { ajusteLaSituation } from '@/store/actions/actions'
 
 /********************************************************************/
 /* Types et méthodes communes à la Réduction générale et au Lodeom */
@@ -127,7 +124,6 @@ export const getDataAfterRémunérationChange = (
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
-	dispatch: Dispatch<AnyAction>,
 	régularisationMethod?: RégularisationMethod,
 	withRépartition: boolean = true
 ): MonthState[] => {
@@ -136,8 +132,6 @@ export const getDataAfterRémunérationChange = (
 		...updatedData[monthIndex],
 		rémunérationBrute,
 	}
-
-	updateRémunérationBruteAnnuelle(updatedData, dispatch)
 
 	return reevaluateRéductionMoisParMois(
 		dottedName,
@@ -264,7 +258,7 @@ export const getInitialRéductionMoisParMois = (
 	})
 }
 
-export const reevaluateRéductionMoisParMois = (
+const reevaluateRéductionMoisParMois = (
 	dottedName: RéductionDottedName,
 	data: MonthState[],
 	year: number,
@@ -295,11 +289,6 @@ export const reevaluateRéductionMoisParMois = (
 
 	const rémunérationBruteCumulées = getRémunérationBruteCumulées(data)
 	const SMICCumulés = getSMICCumulés(data, year, engine)
-	// Si on laisse l'engine calculer T dans le calcul de la réduction,
-	// le résultat ne sera pas bon à cause de l'assiette de cotisations du contexte
-	const coefT = engine.evaluate({
-		valeur: 'salarié . cotisations . exonérations . T',
-	}).nodeValue as number
 
 	const reevaluatedData = data.reduce(
 		(reevaluatedData: MonthState[], monthState, monthIndex) => {
@@ -335,7 +324,6 @@ export const reevaluateRéductionMoisParMois = (
 					dottedName,
 					rémunérationBruteCumulées[monthIndex],
 					SMICCumulés[monthIndex],
-					coefT,
 					engine
 				)
 				const réductionCumulée = sumAll(
@@ -388,7 +376,6 @@ export const reevaluateRéductionMoisParMois = (
 						dottedName,
 						rémunérationBruteCumulées[monthIndex],
 						SMICCumulés[monthIndex],
-						coefT,
 						engine
 					)
 					const currentRéductionGénéraleCumulée =
@@ -450,34 +437,6 @@ export const reevaluateRéductionMoisParMois = (
 	return reevaluatedData
 }
 
-export const getRépartitionBasique = (
-	dottedName: RéductionDottedName,
-	currentUnit: string,
-	engine: Engine<DottedName>
-): Répartition => {
-	const IRC =
-		(engine.evaluate({
-			valeur: `${dottedName} . imputation retraite complémentaire`,
-			unité: currentUnit,
-		})?.nodeValue as number) ?? 0
-	const Urssaf =
-		(engine.evaluate({
-			valeur: `${dottedName} . imputation sécurité sociale`,
-			unité: currentUnit,
-		})?.nodeValue as number) ?? 0
-	const chômage =
-		(engine.evaluate({
-			valeur: `${dottedName} . imputation chômage`,
-			unité: currentUnit,
-		})?.nodeValue as number) ?? 0
-
-	return {
-		IRC,
-		Urssaf,
-		chômage,
-	}
-}
-
 const emptyRépartition = {
 	IRC: 0,
 	Urssaf: 0,
@@ -507,25 +466,6 @@ const getOptionsFromSituations = (
 	}
 
 	return options
-}
-
-const updateRémunérationBruteAnnuelle = (
-	data: MonthState[],
-	dispatch: Dispatch<AnyAction>
-): void => {
-	const rémunérationBruteAnnuelle = data.reduce(
-		(total: number, monthState: MonthState) =>
-			total + monthState.rémunérationBrute,
-		0
-	)
-	dispatch(
-		ajusteLaSituation({
-			[rémunérationBruteDottedName]: {
-				valeur: rémunérationBruteAnnuelle,
-				unité: '€/an',
-			} as PublicodesExpression,
-		} as Record<DottedName, ValeurPublicodes>)
-	)
 }
 
 const getDateForContexte = (monthIndex: number, year: number): string => {
@@ -564,7 +504,6 @@ const getTotalRéduction = (
 	dottedName: RéductionDottedName,
 	rémunérationBrute: number,
 	SMIC: number,
-	coefT: number,
 	engine: Engine<DottedName>
 ): number => {
 	const réduction = engine.evaluate({
@@ -573,7 +512,6 @@ const getTotalRéduction = (
 		contexte: {
 			[rémunérationBruteDottedName]: rémunérationBrute,
 			'salarié . temps de travail . SMIC': SMIC,
-			'salarié . cotisations . exonérations . T': coefT,
 		},
 	})
 
