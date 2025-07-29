@@ -49,10 +49,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 				<FocusTrap>
 					<ForceThemeProvider forceTheme="dark">
 						<CloseButtonContainer>
-							<CloseButton
-								onClick={handleClose}
-								aria-label={t('Fermer le module "Donner son avis"')}
-							>
+							<CloseButton onClick={handleClose} aria-expanded={true}>
 								Fermer
 								<svg
 									role="img"
@@ -96,7 +93,6 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 			aria-label={t('Donner votre avis')}
 			onClick={() => setIsFormOpen(true)}
 			$isEmbedded={isEmbedded}
-			aria-haspopup="dialog"
 			aria-expanded={false}
 		>
 			<Emoji emoji="👋" />
