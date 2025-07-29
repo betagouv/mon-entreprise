@@ -34,6 +34,7 @@ const unitéToDisplayedUnit: Record<UnitéQuantité, string> = {
 	'trimestre civil': 'trimestres',
 	'année civile': 'années',
 	employés: 'employés',
+	'titre-restaurant/mois': 'titres-restaurant/mois',
 }
 
 export const QuantitéField = <U extends string>({
