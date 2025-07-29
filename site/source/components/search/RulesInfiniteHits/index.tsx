@@ -60,7 +60,7 @@ const Hit = (hit: THit) => {
 	)
 }
 
-const HitList = styled.ol`
+const HitList = styled.ul`
 	display: flex;
 	flex-direction: column;
 	margin: 0;
