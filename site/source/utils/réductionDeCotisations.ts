@@ -85,16 +85,6 @@ export const getDataAfterSituationChange = (
 	régularisationMethod?: RégularisationMethod,
 	withRépartition: boolean = true
 ): MonthState[] => {
-	const pasDeSituation = !Object.keys(situation).length
-	if (pasDeSituation) {
-		return getInitialRéductionMoisParMois(
-			dottedName,
-			year,
-			engine,
-			withRépartition
-		)
-	}
-
 	const newOptions = getOptionsFromSituations(previousSituation, situation)
 
 	const updatedData = previousData.map((data) => {
