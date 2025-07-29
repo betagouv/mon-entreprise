@@ -131,8 +131,10 @@ export function CasParticuliers() {
 					correspondant est automatiquement déterminé.
 				</Body>
 				<Body as="div">
-					Il vous faudra préciser le taux vous-même pour refaire le calcul. Vous
-					pouvez le retrouver :
+					<Body>
+						Il vous faudra préciser le taux vous-même pour refaire le calcul.
+						Vous pouvez le retrouver :
+					</Body>
 					<Ul>
 						<Li>
 							En saisissant votre commune dans un simulateur, puis en
@@ -159,8 +161,10 @@ export function CasParticuliers() {
 					</Code>
 				</Body>
 				<Body as="div">
-					Ce taux collectif doit être retrouvé manuellement. Vous pouvez
-					utiliser :
+					<Body>
+						Ce taux collectif doit être retrouvé manuellement. Vous pouvez
+						utiliser :
+					</Body>
 					<Ul>
 						<Li>
 							<Link
