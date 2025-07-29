@@ -42,7 +42,7 @@ export const configLodeom: SimulationConfig = {
 		],
 		'non prioritaires': ['salarié . convention collective'],
 	},
-	'unité par défaut': '€/an',
+	'unité par défaut': '€',
 	situation: {
 		dirigeant: 'non',
 		'entreprise . catégorie juridique': "''",
