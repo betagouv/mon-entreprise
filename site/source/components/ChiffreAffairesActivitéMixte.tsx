@@ -15,6 +15,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
+import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -24,7 +25,6 @@ import { WhenApplicable } from './EngineValue/WhenApplicable'
 import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
 import { useEngine } from './utils/EngineContext'
-import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
 
 const proportions = {
 	'entreprise . activités . revenus mixtes . proportions . service BIC':
@@ -35,7 +35,7 @@ const proportions = {
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
 
-const caÀNone = pipe(
+const CAÀNone = pipe(
 	proportions,
 	R.toEntries,
 	A.map(([règleProportion, règleCA]) => [règleCA, règleProportion] as const),
@@ -102,8 +102,16 @@ function useAdjustProportions(CADottedName: DottedName) {
 				currentUnit === '€/an'
 					? M.toEurosParAn(m as M.Montant<UnitéMonétaireRécurrente>)
 					: M.toEurosParMois(m as M.Montant<UnitéMonétaireRécurrente>)
+			const somme = (
+				m: ReadonlyArray<M.Montant<UnitéMonétaireRécurrente>>
+			): M.Montant<UnitéMonétaireRécurrente> =>
+				currentUnit === '€/an'
+					? M.sommeEnEurosParAn(m)
+					: M.sommeEnEurosParMois(m)
 
-			const nouvelleValeurPour = (règleCA: DottedName): O.Option<M.Montant> => {
+			const nouvelleValeurPour = (
+				règleCA: DottedName
+			): O.Option<M.Montant<UnitéMonétaireRécurrente>> => {
 				const nouvelleValeur =
 					règleCA === name
 						? pipe(
@@ -124,8 +132,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 				Object.values(proportions),
 				A.map(nouvelleValeurPour),
 				A.getSomes,
-				M.somme,
-				E.getOrElse(() => defaultValue)
+				somme
 			)
 
 			const nouvellesProportions = pipe(
@@ -134,9 +141,9 @@ function useAdjustProportions(CADottedName: DottedName) {
 					pipe(
 						règleCA,
 						nouvelleValeurPour,
-						O.map((ca) =>
+						O.map((CA) =>
 							pipe(
-								ca,
+								CA,
 								M.parRapportÀ(nouveauCA),
 								E.getOrElse(() => 0)
 							)
@@ -147,7 +154,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 			const situation = {
 				[CADottedName]: O.some(nouveauCA),
-				...caÀNone,
+				...CAÀNone,
 				...nouvellesProportions,
 			} as Record<DottedName, O.Option<ValeurPublicodes>>
 

@@ -1,9 +1,12 @@
-import { Data, Either, pipe } from 'effect'
-import * as A from 'effect/Array'
+import { Data, Either } from 'effect'
 import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
-import { UnitéMonétaire, UnitéMonétaireRécurrente } from './Unités'
+import {
+	UnitéMonétaire,
+	UnitéMonétairePonctuelle,
+	UnitéMonétaireRécurrente,
+} from './Unités'
 
 export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'
@@ -22,9 +25,6 @@ export class ConversionImpossible extends Data.TaggedError(
 )<{
 	readonly source: UnitéMonétaire
 	readonly cible: UnitéMonétaire
-}> {}
-export class SommeImpossible extends Data.TaggedError('SommeImpossible')<{
-	readonly unités: UnitéMonétaire[]
 }> {}
 
 const arrondirAuCentime = (valeur: number): number =>
@@ -180,21 +180,17 @@ export const plus = dual<
 	return makeMontant({ valeur: valeurSomme, unité: a.unité }) as M
 })
 
-export const somme = <T extends UnitéMonétaire>(
-	montants: ReadonlyArray<Montant<T>>
-): Either.Either<Montant<T>, SommeImpossible> => {
-	const unités = pipe(
-		montants,
-		A.map((m) => m.unité),
-		A.dedupe
-	)
+export const sommeEnEuros = (
+	montants: ReadonlyArray<Montant<UnitéMonétairePonctuelle>>
+): Montant<UnitéMonétairePonctuelle> => montants.reduce(plus)
 
-	if (unités.length > 1) {
-		return Either.left(new SommeImpossible({ unités }))
-	}
+export const sommeEnEurosParMois = (
+	montants: ReadonlyArray<Montant<UnitéMonétaireRécurrente>>
+): Montant<'€/mois'> => montants.map(toEurosParMois).reduce(plus)
 
-	return Either.right(montants.reduce((a, b) => plus(a, b)))
-}
+export const sommeEnEurosParAn = (
+	montants: ReadonlyArray<Montant<UnitéMonétaireRécurrente>>
+): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus)
 
 export const moins = dual<
 	<M extends Montant>(b: M) => (a: M) => M,
@@ -268,8 +264,8 @@ export const diviséPar = dual<
  * @returns Un nombre représentant le ratio a/diviseur, ou une erreur DivisionParZéro
  *
  * @example
- * // 50€ par rapport à 100€ donne 0.5 (soit 50%)
- * const résultat = parRapportÀ(euros(50), euros(100)) // Right(0.5)
+ * // 20€ par rapport à 100€ donne 0.25 (soit 25%)
+ * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
  */
 export const parRapportÀ = dual<
 	<M extends Montant>(
@@ -289,7 +285,17 @@ export const parRapportÀ = dual<
 			return Either.left(new DivisionParZéro())
 		}
 
-		const rapport = a.valeur / diviseur.valeur
+		let numérateur = a.valeur
+		let dénominateur = diviseur.valeur
+
+		if (a.unité !== '€') {
+			numérateur = toEurosParAn(a as Montant<UnitéMonétaireRécurrente>).valeur
+			dénominateur = toEurosParAn(
+				diviseur as Montant<UnitéMonétaireRécurrente>
+			).valeur
+		}
+
+		const rapport = numérateur / dénominateur
 
 		return Either.right(rapport)
 	}
