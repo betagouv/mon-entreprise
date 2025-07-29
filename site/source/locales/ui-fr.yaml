@@ -207,7 +207,6 @@ Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
-Rémunération brute: Rémunération brute
 Rémunération totale pour l'année de cessation: Rémunération totale pour l'année de cessation
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Résultat fiscal: Résultat fiscal
@@ -1944,10 +1943,6 @@ pages:
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
       shortname: Exonération Lodeom
-      tab:
-        month: Exonération mensuelle
-        month-by-month: Exonération mois par mois
-        year: Exonération annuelle
       title: Simulateur d'exonération Lodeom
       warning: <0></0> Les taux et répartitions de cotisations dérogatoires ne sont
         pas pris en compte.
@@ -2061,10 +2056,6 @@ pages:
         retraite: IRC
         urssaf: URSSAF
       shortname: Réduction générale
-      tab:
-        month: Réduction mensuelle
-        month-by-month: Réduction mois par mois
-        year: Réduction annuelle
       title: Simulateur de réduction générale des cotisations
       warning: Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
         spécifiques (Entreprises de Travail Temporaire, salariés des transports
