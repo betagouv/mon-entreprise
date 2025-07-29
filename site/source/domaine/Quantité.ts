@@ -11,6 +11,7 @@ export type UnitéQuantité =
 	| 'trimestre civil'
 	| 'année civile'
 	| 'employés'
+	| 'titre-restaurant/mois'
 
 export interface Quantité<T extends string = string> {
 	readonly _tag: 'Quantité'
