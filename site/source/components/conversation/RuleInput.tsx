@@ -229,16 +229,32 @@ export default function RuleInput({
 		return (
 			<>
 				<PlusieursPossibilités
-					value={value}
-					choices={getMultiplePossibilitiesOptions(engineValue, dottedName)}
-					onChange={onChange}
+					règle={dottedName}
+					onChange={(choixSélectionnés: DottedName[]) => {
+						const toutesLesPossibilités = getMultiplePossibilitiesOptions(
+							engineValue,
+							dottedName
+						)
+						const valeurs = toutesLesPossibilités.reduce<
+							Record<string, OuiNon>
+						>((acc, possibilité) => {
+							const suffixe = possibilité.dottedName.replace(
+								`${dottedName} . `,
+								''
+							)
+
+							return {
+								...acc,
+								[suffixe]: choixSélectionnés.includes(possibilité.dottedName)
+									? 'oui'
+									: 'non',
+							}
+						}, {})
+
+						dispatch(enregistreLesRéponses(dottedName, valeurs))
+					}}
 					engine={engineValue}
 					id={inputId}
-					title={rule.title}
-					description={rule.rawNode.description}
-					/* eslint-disable-next-line jsx-a11y/no-autofocus */
-					autoFocus={accessibilityProps.autoFocus}
-					onSubmit={onSubmit}
 					aria={{
 						labelledby: accessibilityProps['aria-labelledby'],
 						label: accessibilityProps['aria-label'],

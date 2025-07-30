@@ -13,8 +13,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import { useEngine } from '@/components/utils/EngineContext'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
+import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
 import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
@@ -30,20 +32,22 @@ interface QuestionPublicodes<S extends Situation> {
 }
 
 const fromQuestionPublicodeRépondue = <S extends Situation>(
-	q: QuestionRépondue
+	q: QuestionRépondue,
+	estRépondue: (dottedName: DottedName) => boolean
 ): QuestionPublicodes<S> => ({
 	_tag: 'QuestionPublicodes',
 	id: q.règle,
 	applicable: () => q.applicable,
-	répondue: () => true,
+	répondue: () => estRépondue(q.règle),
 })
 const fromQuestionsPublicodesSuivante = <S extends Situation>(
-	dottedName: DottedName
+	dottedName: DottedName,
+	estRépondue: (dottedName: DottedName) => boolean
 ): QuestionPublicodes<S> => ({
 	_tag: 'QuestionPublicodes',
 	id: dottedName,
 	applicable: () => true,
-	répondue: () => false,
+	répondue: () => estRépondue(dottedName),
 })
 
 type QuestionFournie<S extends Situation> = Omit<
@@ -94,6 +98,7 @@ export function useQuestions<S extends Situation>({
 	avecQuestionsPublicodes = true,
 }: UseQuestionsProps<S>) {
 	const dispatch = useDispatch()
+	const engine = useEngine()
 	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
 	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
 	const publicodesListeNoire = useSelector(listeNoireSelector)
@@ -107,35 +112,53 @@ export function useQuestions<S extends Situation>({
 		[publicodesQuestionsRépondues, publicodesListeNoire]
 	)
 
+	const estQuestionPublicodesRépondue = useMemo(
+		() =>
+			estCeQueLaQuestionPublicodesEstRépondue(
+				engine,
+				publicodesQuestionsRéponduesFiltrées
+			),
+		[engine, publicodesQuestionsRéponduesFiltrées]
+	)
+
 	// TODO: ajouter et gérer les raccourcis de questions fournies
 	const raccourcis = useMemo(
 		() => publicodesRaccourcis.map(fromRaccourciPublicodes),
 		[publicodesRaccourcis]
 	)
 
+	const toutesLesQuestionsPublicodes = useMemo(() => {
+		const questionsRépondues = publicodesQuestionsRéponduesFiltrées.map((q) =>
+			fromQuestionPublicodeRépondue(q, estQuestionPublicodesRépondue)
+		)
+
+		const questionsSuivantes = publicodesQuestionsSuivantes.map((dottedName) =>
+			fromQuestionsPublicodesSuivante(dottedName, estQuestionPublicodesRépondue)
+		)
+
+		const toutesLesQuestions = [...questionsRépondues, ...questionsSuivantes]
+		const questionsParId = fromEntries(toutesLesQuestions.map((q) => [q.id, q]))
+
+		return Object.values(questionsParId)
+	}, [
+		publicodesQuestionsRéponduesFiltrées,
+		publicodesQuestionsSuivantes,
+		estQuestionPublicodesRépondue,
+	])
+
 	const toutesLesQuestionsApplicables = useMemo(
 		() =>
 			pipe(
 				[
 					...questions.map(fromQuestionFournie),
-					...(avecQuestionsPublicodes
-						? [
-								...publicodesQuestionsRéponduesFiltrées.map(
-									fromQuestionPublicodeRépondue
-								),
-								...publicodesQuestionsSuivantes.map(
-									fromQuestionsPublicodesSuivante
-								),
-						  ]
-						: []),
+					...(avecQuestionsPublicodes ? toutesLesQuestionsPublicodes : []),
 				] as Question<S>[],
 				filter((q: Question<S>): boolean => q.applicable(situation))
 			),
 		[
 			questions,
 			avecQuestionsPublicodes,
-			publicodesQuestionsRéponduesFiltrées,
-			publicodesQuestionsSuivantes,
+			toutesLesQuestionsPublicodes,
 			situation,
 		]
 	)
@@ -189,7 +212,7 @@ export function useQuestions<S extends Situation>({
 		} else {
 			setFinished(true)
 		}
-	}, [activeQuestionId, idsDesQuestions, dispatch])
+	}, [activeQuestionId, questionsParId, idsDesQuestions, dispatch])
 
 	const goToPrevious = useCallback(() => {
 		if (finished) {
