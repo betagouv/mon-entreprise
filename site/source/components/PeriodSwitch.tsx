@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
 import { updateUnit } from '@/store/actions/actions'
