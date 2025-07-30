@@ -1,14 +1,16 @@
 import { DottedName } from 'modele-social'
-import Engine, { RuleNode } from 'publicodes'
+import Engine from 'publicodes'
 import { useCallback } from 'react'
 
 import { ChoixMultiple, ChoixOption } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 
+import { getMultiplePossibilitiesOptions } from './getMultiplePossibilitiesOptions'
+
 interface PlusieursPossibilitésProps {
-	choices: Array<RuleNode<DottedName>>
+	règle: DottedName
 	engine: Engine<DottedName>
-	onChange?: (value: ValeurPublicodes, name: DottedName) => void
+	onChange?: (selectedChoices: DottedName[]) => void
 	value?: ValeurPublicodes
 	id?: string
 	title?: string
@@ -23,12 +25,13 @@ interface PlusieursPossibilitésProps {
 }
 
 export function PlusieursPossibilités({
-	choices,
+	règle,
 	onChange,
 	engine,
 	aria = {},
 	id,
 }: PlusieursPossibilitésProps) {
+	const choices = getMultiplePossibilitiesOptions(engine, règle)
 	const options: ChoixOption[] = choices
 		.map((node) => {
 			const evaluation = engine.evaluate(node)
@@ -45,15 +48,22 @@ export function PlusieursPossibilités({
 
 	const handleChange = useCallback(
 		(id: string, isSelected: boolean) => {
-			choices.forEach((choice) => {
-				const dottedName = choice.dottedName
-				const value =
-					id === dottedName ? isSelected : engine.evaluate(choice).nodeValue
+			if (!onChange) return
 
-				if (onChange) {
-					onChange(value ? 'oui' : 'non', dottedName)
+			const selectedChoices: DottedName[] = []
+			choices.forEach((choice) => {
+				const choiceDottedName = choice.dottedName
+				const isCurrentlySelected =
+					id === choiceDottedName
+						? isSelected
+						: engine.evaluate(choice).nodeValue === true
+
+				if (isCurrentlySelected) {
+					selectedChoices.push(choiceDottedName)
 				}
 			})
+
+			onChange(selectedChoices)
 		},
 		[choices, engine, onChange]
 	)
