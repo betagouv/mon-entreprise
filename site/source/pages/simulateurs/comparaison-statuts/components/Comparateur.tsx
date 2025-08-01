@@ -28,9 +28,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 				fullWidth
 				id="simulation-comparateur"
 			>
-				<SimulationGoals
-					legend={'Estimations sur votre rémunération brute et vos charges'}
-				>
+				<SimulationGoals>
 					<PeriodSwitch />
 					<SimulationGoal
 						dottedName="entreprise . chiffre d'affaires"

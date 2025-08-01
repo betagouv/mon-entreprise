@@ -40,7 +40,7 @@ export function SimulationGoal({
 	round = true,
 	appear = true,
 	editable = true,
-	isTypeBoolean = false, // TODO : remove when type inference works in publicodes
+	isTypeBoolean = false,
 	isInfoMode = false,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
@@ -165,6 +165,8 @@ export function SimulationGoal({
 }
 
 const RuleLinkAccessible = styled(RuleLink)`
+	font-size: 1.125rem;
+
 	&:hover {
 		color: ${({ theme }) => theme.colors.extended.grey[300]};
 	}

@@ -1,13 +1,12 @@
 import { Option } from 'effect'
-import React from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid, SmallBody, TitreObjectifSaisissable } from '@/design-system'
+import { Body, Grid, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
-import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
@@ -34,58 +33,108 @@ export function ObjectifSaisissableDeSimulation({
 	rendreChampSaisie,
 	small = false,
 	appear = true,
+	onFocus,
+	onBlur,
 }: ObjectifSaisissableDeSimulationProps) {
 	const initialRender = useInitialRender()
+	const [isFocused, setFocused] = useState(false)
+
+	const handleFocus = () => {
+		setFocused(true)
+		onFocus?.()
+	}
+
+	const handleBlur = () => {
+		setFocused(false)
+		onBlur?.()
+	}
 
 	const montantAnimation = Option.isSome(valeur) ? valeur.value : undefined
 
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal $small={small}>
-				<Grid
-					container
-					style={{
-						alignItems: 'baseline',
-						justifyContent: 'space-between',
-					}}
-					spacing={2}
-				>
-					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
+				<GridCentered container spacing={2}>
+					<Grid item>
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
-							noWrap={true}
+							noWrap={false}
 						>
 							{titre}
 						</TitreObjectifSaisissable>
 
 						{explication && (
-							<ForceThemeProvider forceTheme="default">
+							<BiggerForceThemeProvider forceTheme="default">
 								{explication}
-							</ForceThemeProvider>
+							</BiggerForceThemeProvider>
 						)}
 
 						{description && (
-							<StyledSmallBody
+							<StyledBody
 								className={small ? 'sr-only' : ''}
 								id={`${id}-description`}
 							>
 								{description}
-							</StyledSmallBody>
+							</StyledBody>
 						)}
 					</Grid>
-					<LectureGuide />
-					<Grid item md={small ? 2 : 3} sm={small ? 3 : 4} xs={4}>
-						{!small && montantAnimation !== undefined && (
+
+					<Grid item>
+						{!isFocused && !small && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
-						{rendreChampSaisie()}
+						<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
+							{rendreChampSaisie()}
+						</LargeInputContainer>
 					</Grid>
-				</Grid>
+				</GridCentered>
 			</StyledGoal>
 		</Appear>
 	)
 }
+
+const GridCentered = styled(Grid)`
+	display: grid;
+	grid-template-columns: 1.25fr 1fr;
+	gap: ${({ theme }) => theme.spacings.md};
+
+	& > div {
+		padding: 0;
+		text-align: right;
+
+		&:first-child {
+			p {
+				margin-top: 0;
+			}
+		}
+
+		&:nth-child(2) {
+			& [role*='presentation'] > div > div {
+				display: flex;
+				flex-direction: column;
+				gap: ${({ theme }) => theme.spacings.xs};
+
+				p {
+					margin-bottom: 0;
+				}
+
+				span:empty {
+					display: none;
+				}
+			}
+		}
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		grid-template-columns: 1fr;
+		gap: ${({ theme }) => theme.spacings.xs};
+
+		& > div {
+			text-align: left;
+		}
+	}
+`
 
 const StyledGoal = styled.div<{ $small: boolean }>`
 	position: relative;
@@ -97,6 +146,17 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	}
 `
 
-const StyledSmallBody = styled(SmallBody)`
+const StyledBody = styled(Body)`
 	margin-bottom: 0;
+`
+
+const BiggerForceThemeProvider = styled(ForceThemeProvider)`
+	font-size: 1rem;
+`
+
+const LargeInputContainer = styled.div`
+	input {
+		font-size: ${({ theme }) => theme.fontSizes.lg};
+		line-height: 1.5;
+	}
 `

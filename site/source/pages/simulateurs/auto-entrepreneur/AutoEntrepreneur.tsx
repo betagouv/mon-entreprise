@@ -53,7 +53,7 @@ export default function AutoEntrepreneur() {
 						</Ul>
 					}
 				/>
-				<SimulationGoals legend="Vos revenus d'auto-entrepreneur">
+				<SimulationGoals>
 					<PeriodSwitch />
 					<ChiffreAffairesActivitéMixte dottedName="dirigeant . auto-entrepreneur . chiffre d'affaires" />
 					<SimulationGoal
