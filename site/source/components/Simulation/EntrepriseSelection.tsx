@@ -70,7 +70,7 @@ export default function EntrepriseSelection() {
 				</Grid>
 				<WrongSimulateurWarning />
 			</EntrepriseRecap>
-			<div aria-controls="entreprise-search-panel">
+			<div id="entreprise-search-panel">
 				{isSearchVisible && (
 					<Appear>
 						<EntrepriseInput onSubmit={() => setIsSearchVisible(false)} />
