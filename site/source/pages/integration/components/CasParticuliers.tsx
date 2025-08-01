@@ -137,18 +137,22 @@ export function CasParticuliers() {
 					</Body>
 					<Ul>
 						<Li>
-							En saisissant votre commune dans un simulateur, puis en
-							recherchant la règle « versement mobilité » avec le bouton «
-							rechercher » en haut à droite
+							<Body>
+								En saisissant votre commune dans un simulateur, puis en
+								recherchant la règle « versement mobilité » avec le bouton «
+								rechercher » en haut à droite
+							</Body>
 						</Li>
 						<Li>
-							Grâce au{' '}
-							<Link
-								href="https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html"
-								aria-label="service dédié sur urssaf.fr, nouvelle fenêtre"
-							>
-								service dédié sur urssaf.fr
-							</Link>
+							<Body>
+								Grâce au{' '}
+								<Link
+									href="https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html"
+									aria-label="service dédié sur urssaf.fr, nouvelle fenêtre"
+								>
+									service dédié sur urssaf.fr
+								</Link>
+							</Body>
 						</Li>
 					</Ul>
 				</Body>
@@ -160,13 +164,14 @@ export function CasParticuliers() {
 						</RuleLink>
 					</Code>
 				</Body>
-				<Body as="div">
-					<Body>
-						Ce taux collectif doit être retrouvé manuellement. Vous pouvez
-						utiliser :
-					</Body>
-					<Ul>
-						<Li>
+
+				<Body>
+					Ce taux collectif doit être retrouvé manuellement. Vous pouvez
+					utiliser :
+				</Body>
+				<Ul>
+					<Li>
+						<Body>
 							<Link
 								href="https://github.com/betagouv/taux-collectifs-cotisation-atmp"
 								aria-label="un export CSV, accéder à l'export, nouvelle fenêtre"
@@ -174,8 +179,10 @@ export function CasParticuliers() {
 								Un export csv
 							</Link>{' '}
 							du tableau des taux nets collectifs paru au Journal Officiel
-						</Li>
-						<Li>
+						</Body>
+					</Li>
+					<Li>
+						<Body>
 							La documentation{' '}
 							<Link
 								href="https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp"
@@ -184,9 +191,9 @@ export function CasParticuliers() {
 								Cotisations AT/MP
 							</Link>{' '}
 							de l’Assurance Maladie
-						</Li>
-					</Ul>
-				</Body>
+						</Body>
+					</Li>
+				</Ul>
 			</section>
 		</Trans>
 	)
