@@ -1840,7 +1840,7 @@ pages:
         barème: Please select a location and a scale to access the simulator.
         salaire: "{{barème}} concerns only salaries below {{seuil}} Smic. In other
           words, for {{year}}, total remuneration does not exceed
-          <8>{{plafond}}</8> gross per month."
+          <8>{{plafond}}</8> gross per year."
         stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
@@ -1953,7 +1953,7 @@ pages:
           (JEI) exemption.
         salaire: The RGCP only applies to salaries below 1.6 Smic. In other words, for
           {{year}}, total remuneration does not exceed <4>{{plafond}}</4> gross
-          per month.
+          per year.
         stage: The general reduction does not apply to internship bonuses.
     sage-femme:
       meta:
