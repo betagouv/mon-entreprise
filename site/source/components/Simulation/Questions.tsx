@@ -7,7 +7,7 @@ import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput, {
-	getRuleInputComponent,
+	getRuleInputNature,
 	OUI_NON_INPUT,
 	PLUSIEURS_POSSIBILITES,
 	UNE_POSSIBILITE,
@@ -92,7 +92,7 @@ export function Questions<S extends Situation>({
 
 		const estUneQuantité = Boolean(value && isQuantité(value))
 
-		const ruleInputComponent = getRuleInputComponent(
+		const ruleInputNature = getRuleInputNature(
 			QuestionCourante.id,
 			engine,
 			{},
@@ -104,7 +104,7 @@ export function Questions<S extends Situation>({
 			PLUSIEURS_POSSIBILITES,
 			UNE_POSSIBILITE,
 			OUI_NON_INPUT,
-		].includes(ruleInputComponent)
+		].includes(ruleInputNature)
 	}
 
 	const questionCouranteHtmlForId = QuestionCourante?.id

@@ -90,20 +90,33 @@ const MONTANT_FIELD = 'MontantField'
 const QUANTITE_FIELD = 'QuantitéField'
 const NUMBER_FIELD = 'NumberField'
 
-export function getRuleInputComponent(
+type RuleInputNature =
+	| typeof PLUSIEURS_POSSIBILITES
+	| typeof UNE_POSSIBILITE
+	| typeof OUI_NON_INPUT
+	| typeof SELECT_COMMUNE
+	| typeof SELECT_PAYS_DETACHEMENT
+	| typeof NON_EXISTING_API
+	| typeof SELECT_ATMP
+	| typeof DATE_INPUT
+	| typeof TEXT_INPUT
+	| typeof MONTANT_FIELD
+	| typeof QUANTITE_FIELD
+	| typeof NUMBER_FIELD
+
+export function getRuleInputNature(
 	dottedName: DottedName,
-	engineValue: Engine<DottedName>,
+	engine: Engine<DottedName>,
 	modifiers: Record<string, string>,
 	estUnMontant: boolean,
 	estUneQuantité: boolean
-): string {
-	const rule = engineValue.getRule(dottedName)
-	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
+): RuleInputNature {
+	const rule = engine.getRule(dottedName)
+	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 
-	if (isMultiplePossibilities(engineValue, dottedName))
-		return PLUSIEURS_POSSIBILITES
+	if (isMultiplePossibilities(engine, dottedName)) return PLUSIEURS_POSSIBILITES
 
-	if (isOnePossibility(engineValue.getRule(dottedName))) return UNE_POSSIBILITE
+	if (isOnePossibility(engine.getRule(dottedName))) return UNE_POSSIBILITE
 
 	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
 
@@ -177,7 +190,7 @@ export default function RuleInput({
 		(value && isQuantité(value)) || (defaultValue && isQuantité(defaultValue))
 	)
 
-	const inputComponent = getRuleInputComponent(
+	const inputNature = getRuleInputNature(
 		dottedName,
 		engineValue,
 		modifiers,
@@ -191,7 +204,7 @@ export default function RuleInput({
 
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
-	if (inputComponent === PLUSIEURS_POSSIBILITES) {
+	if (inputNature === PLUSIEURS_POSSIBILITES) {
 		return (
 			<>
 				<PlusieursPossibilités
@@ -215,7 +228,7 @@ export default function RuleInput({
 		)
 	}
 
-	if (inputComponent === UNE_POSSIBILITE) {
+	if (inputNature === UNE_POSSIBILITE) {
 		const type =
 			inputType ??
 			(meta.affichage &&
@@ -249,7 +262,7 @@ export default function RuleInput({
 	}
 
 	// Gestion des API spécifiques
-	if (inputComponent === SELECT_COMMUNE) {
+	if (inputNature === SELECT_COMMUNE) {
 		return (
 			<>
 				<SelectCommune
@@ -269,7 +282,7 @@ export default function RuleInput({
 
 	// Utilisation dans l'assistant demande de mobilité internationale
 	// si réponse "non" à "Allez-vous exercer une activité dans un seul et unique pays ?""
-	if (inputComponent === SELECT_PAYS_DETACHEMENT) {
+	if (inputNature === SELECT_PAYS_DETACHEMENT) {
 		return (
 			<>
 				<SelectPaysDétachement
@@ -283,14 +296,14 @@ export default function RuleInput({
 		)
 	}
 
-	if (inputComponent === NON_EXISTING_API) {
+	if (inputNature === NON_EXISTING_API) {
 		throw new Error(
 			"Les seules API implémentées sont 'commune' et 'pays détachement'"
 		)
 	}
 
 	// Cas spécifique pour ATMP
-	if (inputComponent === SELECT_ATMP) {
+	if (inputNature === SELECT_ATMP) {
 		return (
 			<SelectAtmp
 				id={inputId}
@@ -308,7 +321,7 @@ export default function RuleInput({
 	}
 
 	// Gestion des entrées de date
-	if (inputComponent === DATE_INPUT) {
+	if (inputNature === DATE_INPUT) {
 		return (
 			<DateInput
 				id={inputId}
@@ -329,7 +342,7 @@ export default function RuleInput({
 		)
 	}
 
-	if (inputComponent === OUI_NON_INPUT) {
+	if (inputNature === OUI_NON_INPUT) {
 		return (
 			<>
 				<OuiNonInput
@@ -351,7 +364,7 @@ export default function RuleInput({
 		)
 	}
 
-	if (inputComponent === TEXT_INPUT) {
+	if (inputNature === TEXT_INPUT) {
 		return (
 			<TextInput
 				id={inputId}
@@ -371,7 +384,7 @@ export default function RuleInput({
 		)
 	}
 
-	if (inputComponent === MONTANT_FIELD) {
+	if (inputNature === MONTANT_FIELD) {
 		return (
 			<MontantField
 				value={value as Montant | undefined}
@@ -397,7 +410,7 @@ export default function RuleInput({
 	const quantitéValue = value as Quantité | undefined
 	const quantitéPlaceholder = defaultValue as Quantité | undefined
 
-	if (inputComponent === QUANTITE_FIELD) {
+	if (inputNature === QUANTITE_FIELD) {
 		return (
 			<QuantitéField
 				value={quantitéValue}
