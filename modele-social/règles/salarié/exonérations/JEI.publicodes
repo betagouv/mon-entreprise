@@ -35,8 +35,8 @@ salarié . cotisations . exonérations . JEI:
   par défaut: non
   rend non applicable:
     - réduction générale
-    - allocations familiales . taux réduit
-    - maladie . employeur . taux réduit
+    - allocations familiales . éligible taux réduit
+    - maladie . employeur . éligible taux réduit
     - lodeom
     - zones lodeom
 
