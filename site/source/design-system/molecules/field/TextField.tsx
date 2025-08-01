@@ -11,6 +11,7 @@ const LABEL_HEIGHT = '1rem'
 type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
+	id?: string
 	role?: string
 }
 
@@ -33,6 +34,7 @@ export default function TextField(props: TextFieldProps) {
 						'errorMessage'
 					) as HTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
+					{...(props.id && { id: props.id })}
 					role={props.role}
 					placeholder={
 						(inputProps as HTMLAttributes<HTMLInputElement>).placeholder ??

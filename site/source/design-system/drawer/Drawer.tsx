@@ -1,7 +1,7 @@
 import FocusTrap from 'focus-trap-react'
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
@@ -47,6 +47,7 @@ export const Drawer = ({
 	const panel = useRef<HTMLDivElement>(null)
 	const [isOpen, setIsOpen] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
+	const { t } = useTranslation()
 
 	const openDrawer = () => {
 		setIsMounted(true)
@@ -121,7 +122,13 @@ export const Drawer = ({
 								fallbackFocus: panel.current ?? undefined,
 							}}
 						>
-							<DrawerPanel ref={panel} $isOpen={isOpen} role="dialog">
+							<DrawerPanel
+								ref={panel}
+								$isOpen={isOpen}
+								role="dialog"
+								aria-modal="true"
+								aria-label={t('main-menu', 'Menu principal')}
+							>
 								{isDismissable && (
 									<StyledCloseButtonContainer>
 										{/* TODO : replace with Link when in design system */}

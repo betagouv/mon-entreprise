@@ -1,8 +1,6 @@
-import { AriaAttributes } from 'react'
-
 import { NumericInput } from '../../atoms/NumericInput'
 
-type NumberFieldProps = {
+interface NumberFieldProps {
 	id?: string
 	value?: number
 	onChange?: (value?: number) => void
@@ -15,7 +13,12 @@ type NumberFieldProps = {
 	errorMessage?: React.ReactNode
 	validationState?: 'valid' | 'invalid'
 	suggestions?: Record<string, number>
-} & Pick<AriaAttributes, 'aria-labelledby' | 'aria-label'>
+
+	aria?: {
+		labelledby?: string
+		label?: string
+	}
+}
 
 /**
  * Composant de saisie numérique générique pour les nombres sans unité spécifique.
@@ -36,8 +39,7 @@ export const NumberField = ({
 	errorMessage,
 	validationState,
 	suggestions,
-	'aria-labelledby': ariaLabelledby,
-	'aria-label': ariaLabel,
+	aria,
 }: NumberFieldProps) => {
 	return (
 		<NumericInput
@@ -53,8 +55,8 @@ export const NumberField = ({
 			errorMessage={errorMessage}
 			validationState={validationState}
 			suggestions={suggestions}
-			aria-labelledby={ariaLabelledby}
-			aria-label={ariaLabel}
+			aria-labelledby={aria?.labelledby}
+			aria-label={aria?.label}
 		/>
 	)
 }

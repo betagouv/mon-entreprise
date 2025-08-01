@@ -29,7 +29,7 @@ export const useEconomieCollaborative = () => {
 		  )
 
 	const set = {
-		recettes: (recettes: Option.Option<Montant<'EuroParAn'>>) => {
+		recettes: (recettes: Option.Option<Montant<'€/an'>>) => {
 			updateSituation((prev) => ({ ...prev, recettes }))
 		},
 

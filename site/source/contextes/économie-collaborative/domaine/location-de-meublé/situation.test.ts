@@ -14,9 +14,7 @@ describe('SituationLocationCourteDuree', () => {
 		const situationComplete: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
 			_type: 'économie-collaborative',
-			recettes: Option.some(eurosParAn(25_000)) as Option.Some<
-				Montant<'EuroParAn'>
-			>,
+			recettes: Option.some(eurosParAn(25_000)) as Option.Some<Montant<'€/an'>>,
 			regimeCotisation: Option.some(RegimeCotisation.microEntreprise),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),
@@ -25,9 +23,7 @@ describe('SituationLocationCourteDuree', () => {
 		const situationPartielle: SituationÉconomieCollaborativeValide = {
 			_tag: 'Situation',
 			_type: 'économie-collaborative',
-			recettes: Option.some(eurosParAn(15_000)) as Option.Some<
-				Montant<'EuroParAn'>
-			>,
+			recettes: Option.some(eurosParAn(15_000)) as Option.Some<Montant<'€/an'>>,
 			regimeCotisation: Option.none(),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),

@@ -34,7 +34,7 @@ export const ABATTEMENT_REGIME_GENERAL = 0.6
 export function calculeCotisationsRégimeGénéral(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
-	Montant<'EuroParAn'>,
+	Montant<'€/an'>,
 	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
 > {

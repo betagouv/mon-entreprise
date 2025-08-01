@@ -1,25 +1,24 @@
 import { styled } from 'styled-components'
 
-import { quantité, Quantité, UnitéQuantité } from '@/domaine/Quantité'
+import { quantité, Quantité } from '@/domaine/Quantité'
+import { UnitéQuantité } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
 import { NumericInput } from '../../atoms/NumericInput'
-import { InputSuggestionsRecord } from '../../suggestions/InputSuggestions'
-import { FieldWithUnit } from './FieldWithUnit'
 
-interface QuantitéFieldProps<U extends string = string> {
+interface QuantitéFieldProps<U extends string> {
 	value: Quantité<U> | undefined
 	unité: U
 	onChange?: (value: Quantité<U> | undefined) => void
-	placeholder?: Quantité<U>
 	onSubmit?: (source?: string) => void
+	placeholder?: Quantité<U>
 	suggestions?: Record<string, Quantité<U>>
 	small?: boolean
+	nbDécimalesMax?: number
 
 	id?: string
-	description?: string
-
+	label?: React.ReactNode
 	aria?: {
 		labelledby?: string
 		label?: string
@@ -29,25 +28,31 @@ interface QuantitéFieldProps<U extends string = string> {
 const unitéToDisplayedUnit: Record<UnitéQuantité, string> = {
 	'%': '%',
 	'heures/mois': 'heures/mois',
+	'heures/semaine': 'heures/semaine',
 	jours: 'jours',
 	'jours ouvrés': 'jours ouvrés',
 	mois: 'mois',
 	'trimestre civil': 'trimestres',
 	'année civile': 'années',
 	employés: 'employés',
+	'titre-restaurant/mois': 'titres-restaurant/mois',
 }
 
-export const QuantitéField = <U extends string = string>({
+export const QuantitéField = <U extends string>({
 	value,
 	unité,
-	suggestions,
 	onChange = NoOp,
 	onSubmit,
 	placeholder,
+	suggestions,
 	small,
+	nbDécimalesMax,
 	id,
+	label,
 	aria,
 }: QuantitéFieldProps<U>) => {
+	const isPercentage = unité === '%'
+
 	const { handleChange, currentSelection: currentValue } = useSelection({
 		value,
 		onChange,
@@ -62,70 +67,72 @@ export const QuantitéField = <U extends string = string>({
 
 		// Pour les pourcentages, la valeur saisie est en décimal (0.5 pour 50%)
 		// mais nous stockons en pourcentage (50 pour 50%)
-		const valeurFinale = unité === '%' ? valeur * 100 : valeur
+		const valeurFinale = isPercentage ? valeur * 100 : valeur
 		handleChange(quantité<U>(valeurFinale, unité))
 	}
 
 	const formatOptions = (
-		unité === '%'
+		isPercentage
 			? {
 					style: 'percent',
 					maximumFractionDigits: 2,
 			  }
+			: nbDécimalesMax !== undefined
+			? {
+					style: 'decimal',
+					maximumFractionDigits: nbDécimalesMax,
+			  }
 			: {
 					style: 'decimal',
-					maximumFractionDigits: 0,
 			  }
 	) satisfies Intl.NumberFormatOptions
 
 	// Pour les pourcentages, le format 'percent' multiplie par 100,
 	// donc nous devons diviser notre valeur stockée en % par 100
 	const displayValue =
-		unité === '%' && currentValue?.valeur !== undefined
+		isPercentage && currentValue?.valeur !== undefined
 			? currentValue.valeur / 100
 			: currentValue?.valeur
 
 	const displayPlaceholder =
-		unité === '%' && placeholder?.valeur !== undefined
+		isPercentage && placeholder?.valeur !== undefined
 			? placeholder.valeur / 100
 			: placeholder?.valeur
 
-	const displayedUnit =
-		unité !== '%'
-			? unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité
-			: undefined
+	const displayedUnit = !isPercentage
+		? unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité
+		: undefined
 
 	return (
-		<StyledQuantitéField>
-			<FieldWithUnit unit={displayedUnit} small={small}>
-				<NumericInput
-					id={id}
-					aria-labelledby={aria?.labelledby}
-					aria-label={aria?.label}
-					description={''}
-					onChange={handleValueChange}
-					onSubmit={onSubmit}
-					formatOptions={formatOptions}
-					placeholder={displayPlaceholder}
-					value={displayValue}
-					small={small}
-					suggestions={
-						suggestions
-							? (Object.fromEntries(
-									Object.entries(suggestions).map(([key, quantité]) => [
-										key,
-										unité === '%' ? quantité.valeur / 100 : quantité.valeur,
-									])
-							  ) as InputSuggestionsRecord<number>)
-							: undefined
-					}
-				/>
-			</FieldWithUnit>
-		</StyledQuantitéField>
+		<Container>
+			<NumericInput
+				id={id}
+				label={label}
+				aria-label={label ? '' : aria?.label}
+				aria-labelledby={label ? '' : aria?.labelledby}
+				onChange={handleValueChange}
+				onSubmit={onSubmit}
+				formatOptions={formatOptions}
+				placeholder={displayPlaceholder}
+				value={displayValue}
+				small={small}
+				unit={displayedUnit}
+				suggestions={
+					suggestions
+						? Object.fromEntries(
+								Object.entries(suggestions).map(([key, quantité]) => [
+									key,
+									isPercentage ? quantité.valeur / 100 : quantité.valeur,
+								])
+						  )
+						: undefined
+				}
+			/>
+		</Container>
 	)
 }
 
-const StyledQuantitéField = styled.div`
+const Container = styled.div`
 	display: flex;
 	width: fit-content;
 	flex: 1;
@@ -133,4 +140,8 @@ const StyledQuantitéField = styled.div`
 	max-width: 300px;
 	width: 100%;
 	align-items: flex-end;
+	/* Ajuster le padding de l'input à l'intérieur */
+	input {
+		padding-right: 0 !important;
+	}
 `

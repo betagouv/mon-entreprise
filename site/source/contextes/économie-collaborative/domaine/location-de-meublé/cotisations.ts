@@ -28,7 +28,7 @@ export const DEFAULTS = {
  */
 export function calculeCotisations(
 	situation: SituationÉconomieCollaborative
-): Either.Either<Montant<'EuroParAn'>, SimulationImpossible> {
+): Either.Either<Montant<'€/an'>, SimulationImpossible> {
 	if (!estSituationValide(situation)) {
 		return Either.left(
 			new SituationIncomplète({

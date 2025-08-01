@@ -63,7 +63,7 @@ export function SimulationGoal({
 					? undefined
 					: {
 							...(x as Montant),
-							unité: currentUnit === '€/an' ? 'EuroParAn' : 'EuroParMois',
+							unité: currentUnit,
 					  }
 
 			dispatch(
@@ -155,6 +155,7 @@ export function SimulationGoal({
 			titre={titre}
 			description={description}
 			valeur={valeur}
+			displayedUnit={displayedUnit}
 			isInfoMode={isInfoMode}
 			small={small}
 			appear={appear}

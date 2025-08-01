@@ -30,7 +30,7 @@ export default function EntrepriseSearchDetails({
 	return (
 		<CompanyContainer>
 			<H4
-				as="div"
+				as="h3"
 				style={{
 					margin: '0',
 				}}

@@ -76,17 +76,14 @@ export default function Associés() {
 				>
 					<RadioCard
 						value={'seul'}
-						label={
-							<Trans i18nKey="choix-statut.associés.question1.seul">Seul</Trans>
-						}
+						label={t('choix-statut.associés.question1.seul', 'Seul / seule')}
 					/>
 					<RadioCard
 						value={'plusieurs'}
-						label={
-							<Trans i18nKey="choix-statut.associés.question1.plusieurs">
-								À plusieurs
-							</Trans>
-						}
+						label={t(
+							'choix-statut.associés.question1.plusieurs',
+							'À plusieurs'
+						)}
 					/>
 				</RadioCardGroup>
 				{question1 === 'seul' && (
