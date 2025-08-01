@@ -7,14 +7,12 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Répartition from '@/components/RéductionDeCotisations/Répartition'
 import { EyeIcon, FlexCenter, Tooltip, WarningIcon } from '@/design-system'
 import {
-	RéductionDottedName,
 	rémunérationBruteDottedName,
 	Répartition as RépartitionType,
 } from '@/utils/réductionDeCotisations'
 
 type Props = {
-	id?: string
-	dottedName: RéductionDottedName
+	id: string
 	rémunérationBrute: number
 	réduction: number
 	répartition: RépartitionType
@@ -28,7 +26,6 @@ type Props = {
 
 export default function Montant({
 	id,
-	dottedName,
 	rémunérationBrute,
 	réduction,
 	répartition,
@@ -42,7 +39,7 @@ export default function Montant({
 	const { t } = useTranslation()
 
 	const tooltip = withRépartition && (
-		<Répartition dottedName={dottedName} répartition={répartition} />
+		<Répartition idPrefix={id} répartition={répartition} />
 	)
 
 	return réduction ? (
