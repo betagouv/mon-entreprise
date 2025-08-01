@@ -269,14 +269,14 @@ export default function RuleInput({
 
 	// Utilisation dans l'assistant demande de mobilité internationale
 	// si réponse "non" à "Allez-vous exercer une activité dans un seul et unique pays ?""
-	if (inputComponent === SELECT_PAYS_DETACHEMENT && rule.rawNode.API) {
+	if (inputComponent === SELECT_PAYS_DETACHEMENT) {
 		return (
 			<>
 				<SelectPaysDétachement
 					id={inputId}
 					value={value as Evaluation<string>}
 					onChange={(value) => onChange(value as ValeurPublicodes, dottedName)}
-					plusFrance={rule.rawNode.API.endsWith('plus France')}
+					plusFrance={rule.rawNode.API?.endsWith('plus France')}
 				/>
 				<Spacing md />
 			</>
