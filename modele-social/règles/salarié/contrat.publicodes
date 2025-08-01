@@ -73,8 +73,8 @@ salarié . contrat:
       valeur: contrat = 'stage'
       rend non applicable:
         - cotisations . exonérations
-        - cotisations . allocations familiales . taux réduit
-        - cotisations . maladie . employeur . taux réduit
+        - cotisations . allocations familiales . éligible taux réduit
+        - cotisations . maladie . employeur . éligible taux réduit
         - cotisations . retraite complémentaire
         - cotisations . CEG
         - cotisations . chômage

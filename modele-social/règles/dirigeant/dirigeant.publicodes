@@ -119,8 +119,8 @@ dirigeant . assimilé salarié:
     - salarié . cotisations . AGS
     - salarié . cotisations . APEC
     - salarié . cotisations . contribution au dialogue social
-    - salarié . cotisations . allocations familiales . taux réduit
-    - salarié . cotisations . maladie . employeur . taux réduit
+    - salarié . cotisations . allocations familiales . éligible taux réduit
+    - salarié . cotisations . maladie . employeur . éligible taux réduit
 
     - salarié . convention collective
     - salarié . régimes spécifiques . DFS
