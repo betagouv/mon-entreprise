@@ -1953,7 +1953,7 @@ pages:
           simulateur.
         salaire: Le {{barème}} concerne uniquement les salaires inférieurs à {{seuil}}
           Smic. C'est-à-dire, pour {{year}}, une rémunération totale qui ne
-          dépasse pas <8>{{plafond}}</8> bruts par mois.
+          dépasse pas <8>{{plafond}}</8> bruts par an.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
     médecin:
       meta:
@@ -2067,7 +2067,7 @@ pages:
           Entreprise Innovante (JEI).
         salaire: La RGCP concerne uniquement les salaires inférieurs à 1,6 Smic.
           C'est-à-dire, pour {{year}}, une rémunération totale qui ne dépasse
-          pas <4>{{plafond}}</4> bruts par mois.
+          pas <4>{{plafond}}</4> bruts par an.
         stage: La réduction générale ne s'applique pas sur les gratifications de stage.
     sage-femme:
       meta:
