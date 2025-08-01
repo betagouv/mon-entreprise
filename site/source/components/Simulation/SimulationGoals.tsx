@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid, SmallBody } from '@/design-system'
+import { Body, Grid } from '@/design-system'
 import { WatchInitialRender } from '@/hooks/useInitialRender'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
@@ -12,17 +12,11 @@ import { firstStepCompletedSelector } from '@/store/selectors/simulationSelector
 import { LogoWithLink } from '../Logo'
 
 type SimulationGoalsProps = {
-	legend: string
-
 	children: React.ReactNode
 	toggles?: React.ReactNode
 }
 
-export function SimulationGoals({
-	legend,
-	toggles,
-	children,
-}: SimulationGoalsProps) {
+export function SimulationGoals({ toggles, children }: SimulationGoalsProps) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const isEmbeded = useIsEmbedded()
 
@@ -38,10 +32,7 @@ export function SimulationGoals({
 					aria-live="polite"
 				>
 					<ForceThemeProvider forceTheme="dark">
-						<div className="sr-only" aria-hidden id="simulator-legend-label">
-							{legend}
-						</div>
-						<SmallBody className="print-hidden" id="simu-update-explaining">
+						<Body className="print-hidden" id="simu-update-explaining">
 							<em>
 								<Trans>
 									Les données de simulations se mettront automatiquement à jour
@@ -54,7 +45,7 @@ export function SimulationGoals({
 									</span>
 								</Trans>
 							</em>
-						</SmallBody>
+						</Body>
 						{children}
 					</ForceThemeProvider>
 				</SimulationGoalsContainer>
@@ -85,12 +76,34 @@ export const SimulationGoalsContainer = styled.div<{
 	transition: border-radius 0.15s;
 	background: ${({ theme }) => theme.colors.bases.primary[600]};
 
+	#simu-update-explaining {
+		text-align: center;
+	}
+	& > div:not(.sr-only) {
+		margin-top: ${({ theme }) => theme.spacings.md};
+	}
+	& > :is(div, fieldset) {
+		max-width: 75%;
+		margin-inline: auto;
+		@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+			max-width: 100%;
+		}
+	}
 	@media print {
 		background: initial;
 		padding: 0;
 	}
+
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		border-start-end-radius: ${({ theme }) => theme.box.borderRadius};
+
+		#simu-update-explaining {
+			text-align: left;
+		}
+
+		& > div:not(.sr-only) {
+			margin-top: ${({ theme }) => theme.spacings.xs};
+		}
 	}
 `
 

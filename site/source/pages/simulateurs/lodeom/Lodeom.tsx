@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
@@ -16,7 +16,6 @@ import LodeomSimulationGoals from './Goals'
 
 export default function LodeomSimulation() {
 	const currentZone = useZoneLodeom()
-	const { t } = useTranslation()
 
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
@@ -36,10 +35,6 @@ export default function LodeomSimulation() {
 					}
 				/>
 				<LodeomSimulationGoals
-					legend={t(
-						'pages.simulateurs.lodeom.legend',
-						'Rémunération brute du salarié et exonération Lodeom applicable'
-					)}
 					toggles={
 						<>
 							<ZoneSwitch />
