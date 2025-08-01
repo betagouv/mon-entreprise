@@ -19,6 +19,9 @@ import {
 	moins,
 	Montant,
 	plus,
+	sommeEnEuros,
+	sommeEnEurosParAn,
+	sommeEnEurosParMois,
 	toString,
 } from './Montant'
 
@@ -74,6 +77,27 @@ describe('Montant', () => {
 			const resultat = fois(montant, 2)
 			expect(Equal.equals(resultat, euros(200))).toBe(true)
 			expect(resultat.unité).toBe('€')
+		})
+
+		it('somme correctement plusieurs montants de même unité ponctuelle', () => {
+			const montants = [euros(200), euros(300), euros(500)]
+			const resultat = sommeEnEuros(montants)
+			expect(Equal.equals(resultat, euros(1000))).toBe(true)
+			expect(resultat.unité).toBe('€')
+		})
+
+		it('somme correctement plusieurs montants en €/mois et retourne un résultat en €/mois', () => {
+			const montants = [eurosParMois(200), eurosParMois(300), eurosParMois(500)]
+			const resultat = sommeEnEurosParMois(montants)
+			expect(Equal.equals(resultat, eurosParMois(1000))).toBe(true)
+			expect(resultat.unité).toBe('€/mois')
+		})
+
+		it('somme correctement plusieurs montants en €/mois et retourne un résultat en €/an', () => {
+			const montants = [eurosParMois(200), eurosParMois(300), eurosParMois(500)]
+			const resultat = sommeEnEurosParAn(montants)
+			expect(Equal.equals(resultat, eurosParAn(12000))).toBe(true)
+			expect(resultat.unité).toBe('€/an')
 		})
 
 		it('divise correctement un montant par un scalaire non nul', () => {
