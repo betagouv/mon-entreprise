@@ -735,12 +735,7 @@ const getParamètresRéductionParMois = (
 				monthData.options,
 				engine
 			)
-			const coefT = getCoefT(
-				year,
-				monthIndex,
-				monthData.rémunérationBrute,
-				engine
-			)
+			const coefT = getCoefT(year, monthIndex, engine)
 
 			paramètres.push({
 				rémunérationBrute,
@@ -754,52 +749,14 @@ const getParamètresRéductionParMois = (
 	)
 }
 
-// const getSMICCumulés = (
-// 	data: MonthState[],
-// 	year: number,
-// 	engine: Engine<DottedName>
-// ): number[] => {
-// 	return data.reduce((SMICCumulés: number[], monthData, monthIndex) => {
-// 		const pasDeRémunération = !monthData.rémunérationBrute
-// 		// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
-// 		// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
-// 		if (pasDeRémunération) {
-// 			SMICCumulés.push(0)
-
-// 			return SMICCumulés
-// 		}
-
-// 		const SMIC = getSMICMensuelAvecOptions(
-// 			year,
-// 			monthData.rémunérationBrute,
-// 			monthData.options,
-// 			engine
-// 		)
-
-// 		let SMICCumulé = SMIC
-// 		if (monthIndex > 0) {
-// 			// Il faut aller chercher la dernière valeur positive du SMIC cumulé.
-// 			const previousSMICCumulé =
-// 				SMICCumulés.findLast((SMICCumulé) => SMICCumulé > 0) ?? 0
-// 			SMICCumulé = previousSMICCumulé + SMIC
-// 		}
-
-// 		SMICCumulés.push(SMICCumulé)
-
-// 		return SMICCumulés
-// 	}, [])
-// }
-
 const getCoefT = (
 	year: number,
 	monthIndex: number,
-	rémunérationBrute: number,
 	engine: Engine<DottedName>
 ): number => {
 	const date = getDateForContexte(year, monthIndex)
 	const contexte = {
 		date,
-		[rémunérationBruteDottedName]: rémunérationBrute,
 	} as SituationPublicodes
 
 	return engine.evaluate({
@@ -807,65 +764,6 @@ const getCoefT = (
 		contexte,
 	}).nodeValue as number
 }
-
-// const getCoefsT = (
-// 	data: MonthState[],
-// 	year: number,
-// 	engine: Engine<DottedName>
-// ): number[] => {
-// 	return data.reduce((coefsT: number[], monthData, monthIndex) => {
-// 		const pasDeRémunération = !monthData.rémunérationBrute
-// 		// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
-// 		// et il ne faut pas compter le coef T de ce mois-ci dans le coef T pondéré.
-// 		if (pasDeRémunération) {
-// 			coefsT.push(0)
-
-// 			return coefsT
-// 		}
-
-// 		const coefT = getCoefT(
-// 			year,
-// 			monthIndex,
-// 			monthData.rémunérationBrute,
-// 			engine
-// 		)
-
-// 		coefsT.push(coefT)
-
-// 		return coefsT
-// 	}, [])
-// }
-
-// const getRémunérationBruteCumulées = (data: MonthState[]): number[] => {
-// 	return data.reduce(
-// 		(rémunérationBruteCumulées: number[], monthData, monthIndex) => {
-// 			const pasDeRémunération = !monthData.rémunérationBrute
-// 			// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
-// 			// et elle ne compte pas non plus pour la régularisation des mois à venir.
-// 			if (pasDeRémunération) {
-// 				rémunérationBruteCumulées.push(0)
-
-// 				return rémunérationBruteCumulées
-// 			}
-
-// 			let rémunérationBruteCumulée = monthData.rémunérationBrute
-// 			if (monthIndex > 0) {
-// 				// Il faut aller chercher la dernière valeur positive de la rémunération cumulée.
-// 				const previousRémunérationBruteCumulée =
-// 					rémunérationBruteCumulées.findLast(
-// 						(rémunérationBruteCumulée) => rémunérationBruteCumulée > 0
-// 					) ?? 0
-// 				rémunérationBruteCumulée =
-// 					previousRémunérationBruteCumulée + monthData.rémunérationBrute
-// 			}
-
-// 			rémunérationBruteCumulées.push(rémunérationBruteCumulée)
-
-// 			return rémunérationBruteCumulées
-// 		},
-// 		[]
-// 	)
-// }
 
 const getDateForContexte = (year: number, monthIndex: number = 0): string =>
 	new Date(year, monthIndex).toLocaleDateString('fr')
