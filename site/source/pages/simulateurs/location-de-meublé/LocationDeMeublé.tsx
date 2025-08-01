@@ -48,7 +48,7 @@ const LocationDeMeublé = () => {
 				avecQuestionsPublicodes={false}
 			>
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
-				<SimulationGoals legend="Montant de votre loyer net">
+				<SimulationGoals>
 					<ObjectifRecettes />
 					{regimeCotisationChoisi &&
 						Either.match(cotisations, {

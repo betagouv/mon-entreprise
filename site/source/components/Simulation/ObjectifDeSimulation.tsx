@@ -7,11 +7,10 @@ import { Grid, TitreObjectif, typography } from '@/design-system'
 import { toString as formatMontant, Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
-import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
-const { Body, SmallBody } = typography
+const { Body } = typography
 
 export type ObjectifDeSimulationProps = {
 	id: string
@@ -50,7 +49,7 @@ export function ObjectifDeSimulation({
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal $small={small}>
-				<Grid
+				<GridCentered
 					container
 					style={{
 						alignItems: 'baseline',
@@ -70,30 +69,40 @@ export function ObjectifDeSimulation({
 						)}
 
 						{description && (
-							<StyledSmallBody
+							<StyledBody
 								className={small ? 'sr-only' : ''}
 								id={`${id}-description`}
 							>
 								{description}
-							</StyledSmallBody>
+							</StyledBody>
 						)}
 
 						{messageComplementaire && (
-							<StyledSmallBody>{messageComplementaire}</StyledSmallBody>
+							<StyledBody>{messageComplementaire}</StyledBody>
 						)}
 					</Grid>
-					<LectureGuide />
 					<Grid item>
 						{!small && typeof valeur !== 'string' && Option.isSome(valeur) && (
 							<AnimatedTargetValue value={valeur.value} />
 						)}
 						<StyledValue id={`${id}-value`}>{valeurAffichee}</StyledValue>
 					</Grid>
-				</Grid>
+				</GridCentered>
 			</StyledGoal>
 		</Appear>
 	)
 }
+
+const GridCentered = styled(Grid)`
+	display: grid;
+	grid-template-columns: 1.25fr 1fr;
+	gap: ${({ theme }) => theme.spacings.md};
+
+	& > div:first-of-type {
+		max-width: 100%;
+		text-align: right;
+	}
+`
 
 const StyledGoal = styled.div<{ $small: boolean }>`
 	position: relative;
@@ -105,7 +114,7 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	}
 `
 
-const StyledSmallBody = styled(SmallBody)`
+const StyledBody = styled(Body)`
 	margin-bottom: 0;
 `
 

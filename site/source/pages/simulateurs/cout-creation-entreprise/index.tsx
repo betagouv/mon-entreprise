@@ -93,7 +93,7 @@ export default function CoutCreationEntreprise() {
 						</Ul>
 					}
 				/>
-				<SimulationGoals legend="Simulateur du coût de création d'une entreprise">
+				<SimulationGoals>
 					<SimulationGoal
 						displayedUnit="€ HT"
 						dottedName="entreprise . coût formalités . création"
