@@ -203,7 +203,6 @@ Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
-Rémunération brute: Gross remuneration
 Rémunération totale pour l'année de cessation: Total compensation for the year of termination
 Répartition du chiffre d'affaires: Sales breakdown
 Résultat fiscal: Taxable income
@@ -1828,10 +1827,6 @@ pages:
       month-by-month:
         caption: "Lodeom exemption month by month :"
       shortname: Lodeom exemption
-      tab:
-        month: Monthly exemption
-        month-by-month: Month-by-month exemption
-        year: Annual exemption
       title: Lodeom exemption simulator
       warning: <0></0> Derogatory contribution rates and breakdowns are not taken into
         account.
@@ -1841,7 +1836,7 @@ pages:
         barème: Please select a location and a scale to access the simulator.
         salaire: "{{barème}} concerns only salaries below {{seuil}} Smic. In other
           words, for {{year}}, total remuneration does not exceed
-          <8>{{plafond}}</8> gross per month."
+          <8>{{plafond}}</8> gross per year."
         stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
@@ -1944,10 +1939,6 @@ pages:
         retraite: IRC
         urssaf: URSSAF
       shortname: General reduction
-      tab:
-        month: Monthly discount
-        month-by-month: Monthly discount
-        year: Annual discount
       title: General contribution reduction simulator
       warning: This simulator does not take into account <2>all</2> specific
         <2>calculation rules</2> (temporary employment agencies, road haulage
@@ -1959,7 +1950,7 @@ pages:
           (JEI) exemption.
         salaire: The RGCP only applies to salaries below 1.6 Smic. In other words, for
           {{year}}, total remuneration does not exceed <4>{{plafond}}</4> gross
-          per month.
+          per year.
         stage: The general reduction does not apply to internship bonuses.
     sage-femme:
       meta:

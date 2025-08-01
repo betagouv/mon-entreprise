@@ -4,10 +4,9 @@ import { styled } from 'styled-components'
 
 import Montant from '@/components/RéductionDeCotisations/Montant'
 import { Body, Grid } from '@/design-system'
-import { MonthState, RéductionDottedName } from '@/utils/réductionDeCotisations'
+import { MonthState } from '@/utils/réductionDeCotisations'
 
 type Props = {
-	dottedName: RéductionDottedName
 	label: string
 	data: MonthState[]
 	codeRéduction?: string
@@ -22,7 +21,6 @@ export type RémunérationBruteInput = {
 }
 
 export default function RécapitulatifTrimestre({
-	dottedName,
 	label,
 	data,
 	codeRéduction,
@@ -76,7 +74,6 @@ export default function RécapitulatifTrimestre({
 		return (
 			<Montant
 				id={`recap-${label.replace(/\s|\./g, '_')}-réduction`}
-				dottedName={dottedName}
 				rémunérationBrute={rémunération}
 				réduction={réduction}
 				répartition={répartition}
@@ -92,7 +89,6 @@ export default function RécapitulatifTrimestre({
 		return (
 			<Montant
 				id={`recap-${label.replace(/\s|\./g, '_')}-régularisation`}
-				dottedName={dottedName}
 				rémunérationBrute={rémunération}
 				réduction={régularisation}
 				répartition={répartition}

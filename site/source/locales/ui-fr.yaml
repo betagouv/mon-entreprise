@@ -215,7 +215,6 @@ Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
-Rémunération brute: Rémunération brute
 Rémunération totale pour l'année de cessation: Rémunération totale pour l'année de cessation
 Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Résultat fiscal: Résultat fiscal
@@ -1940,10 +1939,6 @@ pages:
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
       shortname: Exonération Lodeom
-      tab:
-        month: Exonération mensuelle
-        month-by-month: Exonération mois par mois
-        year: Exonération annuelle
       title: Simulateur d'exonération Lodeom
       warning: <0></0> Les taux et répartitions de cotisations dérogatoires ne sont
         pas pris en compte.
@@ -1954,7 +1949,7 @@ pages:
           simulateur.
         salaire: Le {{barème}} concerne uniquement les salaires inférieurs à {{seuil}}
           Smic. C'est-à-dire, pour {{year}}, une rémunération totale qui ne
-          dépasse pas <8>{{plafond}}</8> bruts par mois.
+          dépasse pas <8>{{plafond}}</8> bruts par an.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
     médecin:
       meta:
@@ -2058,10 +2053,6 @@ pages:
         retraite: IRC
         urssaf: URSSAF
       shortname: Réduction générale
-      tab:
-        month: Réduction mensuelle
-        month-by-month: Réduction mois par mois
-        year: Réduction annuelle
       title: Simulateur de réduction générale des cotisations
       warning: Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
         spécifiques (Entreprises de Travail Temporaire, salariés des transports
@@ -2073,7 +2064,7 @@ pages:
           Entreprise Innovante (JEI).
         salaire: La RGCP concerne uniquement les salaires inférieurs à 1,6 Smic.
           C'est-à-dire, pour {{year}}, une rémunération totale qui ne dépasse
-          pas <4>{{plafond}}</4> bruts par mois.
+          pas <4>{{plafond}}</4> bruts par an.
         stage: La réduction générale ne s'applique pas sur les gratifications de stage.
     sage-femme:
       meta:
