@@ -306,11 +306,14 @@ salarié . cotisations . allocations familiales:
   avec:
     taux:
       variations:
-        - si: taux réduit
-          alors: 3.45%
-        - sinon: 5.25%
+        - si: éligible taux réduit
+          alors: taux réduit
+        - sinon: taux plein
 
-    taux réduit:
+    taux réduit: 3.45%
+    taux plein: 5.25%
+
+    éligible taux réduit:
       valeur: cotisations . assiette < plafond
       avec:
         plafond:
@@ -431,31 +434,47 @@ salarié . cotisations . ATMP:
       références:
         Taux fonctions support: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp/calcul-taux-atmp-tpe-moins-20-salaries#text_66210
         'Comprendre et expliquer : le taux fonctions support (PDF)': https://cramif.fr/sites/default/files/inline-files/comprendre-expliquer-le-taux-fonctions-supports-VDEF.pdf
-        Annexe 2 de l'Arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044616026
+        Annexe 1 de l'Arrêté du 29 avril 2025 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2025: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051533208
+        Annexe 1 de l'Arrêté du 27 décembre 2023 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2024: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048708762
 
       avec:
-        montant: 0.83%
+        montant:
+          variations:
+            - si: date >= 05/2025
+              alors: 0.7%
+            - si: date >= 01/2024
+              alors: 0.64%
+            - si: date >= 01/2023
+              alors: 0.8%
+            - sinon: 0.83%
 
     taux minimum:
       description: >-
         Le taux minimum existant pour la cotisation ATMP. Utilisé notamment pour
         le calcul de la réduction générale de cotisations
       variations:
+        - si: date >= 05/2025
+          alors: 0.5%
         - si: date >= 01/2024
           alors: 0.46%
         - si: date >= 01/2023
           alors: 0.55%
         - si: date >= 01/2022
           alors: 0.59%
-        - si: date >= 01/2021
-          alors: 0.70 %
+        - sinon: 0.70 %
       références:
         Article D241-2-4: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041460928
 
     taux moyen:
-      valeur: 2.23%
+      variations:
+        - si: date >= 01/2024
+          alors: 2.12%
+        - si: date >= 01/2023
+          alors: 2.24%
+        - sinon: 2.23%
       références:
-        Article 2 de l'arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000044616004
+        Article 2 de l'Arrêté du 29 avril 2025 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2025: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051533193
+        Article 2 de l'Arrêté du 27 décembre 2023 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2024: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048708748
 
 salarié . cotisations . contribution au dialogue social:
   description: |
@@ -736,11 +755,14 @@ salarié . cotisations . maladie:
       avec:
         taux:
           variations:
-            - si: taux réduit
+            - si: éligible taux réduit
               alors: 7%
             - sinon: 13%
 
-        taux réduit:
+        taux réduit: 7%
+        taux plein: 13%
+
+        éligible taux réduit:
           valeur: cotisations . assiette < plafond
           avec:
             plafond:
