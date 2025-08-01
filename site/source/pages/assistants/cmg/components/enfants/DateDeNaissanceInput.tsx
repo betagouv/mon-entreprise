@@ -19,15 +19,18 @@ export default function DateDeNaissanceInput({
 }: Props) {
 	const { t } = useTranslation()
 
+	const htmlForId = `date-de-naissance-label-${idSuffix}`
+
 	return (
 		<div>
-			<Label id={`date-de-naissance-label-${idSuffix}`}>
+			<Label id={htmlForId}>
 				{t(
 					'pages.assistants.cmg.enfants.date-de-naissance.label',
 					'Date de naissance'
 				)}
 			</Label>
 			<DateField
+				id={htmlForId}
 				defaultSelected={O.getOrUndefined(valeur)}
 				onChange={(date) => onChange(O.fromNullable(date))}
 				aria-labelledby={`date-de-naissance-label-${idSuffix}`}
