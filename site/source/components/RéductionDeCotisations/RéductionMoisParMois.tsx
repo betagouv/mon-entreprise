@@ -171,7 +171,6 @@ export default function RéductionMoisParMois({
 							{Object.keys(quarters).map((label, index) => (
 								<RécapitulatifTrimestre
 									key={index}
-									dottedName={dottedName}
 									label={label}
 									data={quarters[label]}
 									codeRéduction={codeRéduction}
@@ -217,7 +216,6 @@ export default function RéductionMoisParMois({
 					{Object.keys(quarters).map((label, index) => (
 						<RécapitulatifTrimestre
 							key={index}
-							dottedName={dottedName}
 							label={label}
 							data={quarters[label]}
 							codeRéduction={codeRéduction}

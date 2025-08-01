@@ -73,7 +73,6 @@ export default function RéductionMois({
 		return (
 			<Montant
 				id={`${dottedName.replace(/\s|\./g, '_')}-${monthName}`}
-				dottedName={dottedName}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.réduction.value}
 				répartition={data.réduction.répartition}
@@ -90,7 +89,6 @@ export default function RéductionMois({
 		return (
 			<Montant
 				id={`${dottedName.replace(/\s|\./g, '_')}__régularisation-${monthName}`}
-				dottedName={dottedName}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.régularisation.value}
 				répartition={data.régularisation.répartition}
