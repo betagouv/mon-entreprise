@@ -98,12 +98,6 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 	return useCallback(
 		(name: DottedName, valeur?: ValeurPublicodes) => {
-			const defaultValue =
-				currentUnit === '€/an' ? M.eurosParAn(0) : M.eurosParMois(0)
-			const convertisseur = (m: ValeurPublicodes) =>
-				currentUnit === '€/an'
-					? M.toEurosParAn(m as M.Montant<UnitéMonétaireRécurrente>)
-					: M.toEurosParMois(m as M.Montant<UnitéMonétaireRécurrente>)
 			const somme = (
 				m: ReadonlyArray<M.Montant<UnitéMonétaireRécurrente>>
 			): M.Montant<UnitéMonétaireRécurrente> =>
@@ -117,17 +111,12 @@ function useAdjustProportions(CADottedName: DottedName) {
 				const nouvelleValeur =
 					règleCA === name
 						? pipe(
-								(valeur as M.Montant | undefined) || defaultValue,
-								convertisseur,
+								(valeur as M.Montant | undefined) || M.eurosParAn(0),
 								O.fromNullable
 						  )
-						: pipe(
-								engine.evaluate(règleCA),
-								PublicodesAdapter.decode,
-								O.map(convertisseur)
-						  )
+						: pipe(engine.evaluate(règleCA), PublicodesAdapter.decode)
 
-				return nouvelleValeur
+				return nouvelleValeur as O.Option<M.Montant<UnitéMonétaireRécurrente>>
 			}
 
 			const nouveauCA = pipe(
