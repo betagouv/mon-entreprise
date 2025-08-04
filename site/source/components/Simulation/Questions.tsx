@@ -77,6 +77,8 @@ export function Questions<S extends Situation>({
 		[dispatch]
 	)
 
+	console.log('QuestionCourante.id >', QuestionCourante?.id)
+
 	let shouldBeWrappedByFieldset = false
 	if (!finished && QuestionCourante?._tag === 'QuestionPublicodes') {
 		const dottedName = QuestionCourante.id
@@ -115,6 +117,10 @@ export function Questions<S extends Situation>({
 
 		console.log('shouldBeWrappedByFieldset >', shouldBeWrappedByFieldset)
 	}
+
+	const questionCouranteHtmlForId = QuestionCourante?.id
+		.replaceAll(' . ', '_')
+		.replaceAll(' ', '-')
 
 	return (
 		nombreDeQuestions > 0 && (
@@ -185,7 +191,7 @@ export function Questions<S extends Situation>({
 								</fieldset>
 							) : (
 								<>
-									<H3 as="label">
+									<H3 as="label" htmlFor={questionCouranteHtmlForId}>
 										{evaluateQuestion(
 											engine,
 											engine.getRule(QuestionCourante.id)
@@ -193,6 +199,7 @@ export function Questions<S extends Situation>({
 										<ExplicableRule light dottedName={QuestionCourante.id} />
 									</H3>
 									<RuleInput
+										id={questionCouranteHtmlForId}
 										dottedName={QuestionCourante.id}
 										onChange={(value, name) =>
 											handlePublicodesQuestionResponse(name, value)
