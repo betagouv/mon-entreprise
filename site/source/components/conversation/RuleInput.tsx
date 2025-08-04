@@ -107,7 +107,9 @@ export function getRuleInputNature(
 	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
 		return SELECT_ATMP
 
-	if (rule.rawNode.API && rule.rawNode.API.startsWith('date')) return DATE_INPUT
+	if ((rule.rawNode.type as string | undefined)?.startsWith('date')) {
+		return DATE_INPUT
+	}
 
 	if (
 		evaluation.unit == null &&
