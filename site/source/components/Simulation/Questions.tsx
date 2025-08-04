@@ -165,23 +165,43 @@ export function Questions<S extends Situation>({
 
 					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
 						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
-							<fieldset>
-								<H3 as="legend">
-									{evaluateQuestion(
-										engine,
-										engine.getRule(QuestionCourante.id)
-									)}
-									<ExplicableRule light dottedName={QuestionCourante.id} />
-								</H3>
-								<RuleInput
-									dottedName={QuestionCourante.id}
-									onChange={(value, name) =>
-										handlePublicodesQuestionResponse(name, value)
-									}
-									key={QuestionCourante.id}
-									onSubmit={goToNext}
-								/>
-							</fieldset>
+							{shouldBeWrappedByFieldset ? (
+								<fieldset>
+									<H3 as="legend">
+										{evaluateQuestion(
+											engine,
+											engine.getRule(QuestionCourante.id)
+										)}
+										<ExplicableRule light dottedName={QuestionCourante.id} />
+									</H3>
+									<RuleInput
+										dottedName={QuestionCourante.id}
+										onChange={(value, name) =>
+											handlePublicodesQuestionResponse(name, value)
+										}
+										key={QuestionCourante.id}
+										onSubmit={goToNext}
+									/>
+								</fieldset>
+							) : (
+								<>
+									<H3 as="label">
+										{evaluateQuestion(
+											engine,
+											engine.getRule(QuestionCourante.id)
+										)}
+										<ExplicableRule light dottedName={QuestionCourante.id} />
+									</H3>
+									<RuleInput
+										dottedName={QuestionCourante.id}
+										onChange={(value, name) =>
+											handlePublicodesQuestionResponse(name, value)
+										}
+										key={QuestionCourante.id}
+										onSubmit={goToNext}
+									/>
+								</>
+							)}
 							<Conversation
 								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
 								onNext={goToNext}
