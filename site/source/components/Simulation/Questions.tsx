@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -5,7 +6,9 @@ import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import RuleInput from '@/components/conversation/RuleInput'
+import RuleInput, {
+	getRuleInputNature,
+} from '@/components/conversation/RuleInput'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
 import Notifications from '@/components/Notifications'
@@ -14,8 +17,14 @@ import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Body, Conversation, H3 } from '@/design-system'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
+import { isMontant } from '@/domaine/Montant'
+import { isQuantité } from '@/domaine/Quantité'
 import { Situation } from '@/domaine/Situation'
+import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
 import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
@@ -64,6 +73,36 @@ export function Questions<S extends Situation>({
 		},
 		[dispatch]
 	)
+
+	if (!finished && QuestionCourante?._tag === 'QuestionPublicodes') {
+		const dottedName = QuestionCourante.id
+		const rule = engine.getRule(dottedName)
+		const evaluation = engine.evaluate({ valeur: dottedName })
+
+		const decoded: O.Option<ValeurPublicodes> =
+			PublicodesAdapter.decode(evaluation)
+		const value = O.getOrUndefined(decoded)
+
+		const unitéPublicodes = rule.rawNode.unité
+
+		const estUnMontant = Boolean(
+			(value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes)
+		)
+
+		const estUneQuantité = Boolean(
+			(value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes)
+		)
+
+		const ruleInputNature = getRuleInputNature(
+			QuestionCourante.id,
+			engine,
+			{},
+			estUnMontant,
+			estUneQuantité
+		)
+
+		console.log('ruleInputNature', ruleInputNature)
+	}
 
 	return (
 		nombreDeQuestions > 0 && (

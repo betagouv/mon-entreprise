@@ -83,7 +83,7 @@ type RuleInputNature =
 	| typeof QUANTITE_FIELD
 	| typeof NUMBER_FIELD
 
-function getRuleInputNature(
+export function getRuleInputNature(
 	dottedName: DottedName,
 	engine: Engine<DottedName>,
 	modifiers: Record<string, string>,
