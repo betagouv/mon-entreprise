@@ -8,6 +8,9 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput, {
 	getRuleInputNature,
+	OUI_NON_INPUT,
+	PLUSIEURS_POSSIBILITES,
+	UNE_POSSIBILITE,
 } from '@/components/conversation/RuleInput'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
@@ -74,6 +77,7 @@ export function Questions<S extends Situation>({
 		[dispatch]
 	)
 
+	let shouldBeWrappedByFieldset = false
 	if (!finished && QuestionCourante?._tag === 'QuestionPublicodes') {
 		const dottedName = QuestionCourante.id
 		const rule = engine.getRule(dottedName)
@@ -101,7 +105,15 @@ export function Questions<S extends Situation>({
 			estUneQuantité
 		)
 
-		console.log('ruleInputNature', ruleInputNature)
+		console.log('ruleInputNature >', ruleInputNature)
+
+		shouldBeWrappedByFieldset = [
+			PLUSIEURS_POSSIBILITES,
+			UNE_POSSIBILITE,
+			OUI_NON_INPUT,
+		].includes(ruleInputNature)
+
+		console.log('shouldBeWrappedByFieldset >', shouldBeWrappedByFieldset)
 	}
 
 	return (
