@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutType, TAG_DATA } from '@/components/StatutTag'
@@ -21,24 +22,38 @@ const StatutChoice = ({
 	const gridSizes = getGridSizes(1, namedEngines.length)
 
 	return (
-		<div>
+		<StatusChoiceWrapper>
 			<Spacing lg />
-			<Grid container spacing={4}>
-				<Grid item {...gridSizes}>
+			<Grid container spacing={4} as={Ul}>
+				<Grid item {...gridSizes} as={Li}>
 					<StatutBloc {...namedEngines[0]} hideCTA={hideCTA} />
 				</Grid>
-				<Grid item {...gridSizes}>
+				<Grid item {...gridSizes} as={Li}>
 					<StatutBloc {...namedEngines[1]} hideCTA={hideCTA} />
 				</Grid>
-				<Grid item {...gridSizes}>
+				<Grid item {...gridSizes} as={Li}>
 					{namedEngines[2] && (
 						<StatutBloc {...namedEngines[2]} hideCTA={hideCTA} />
 					)}
 				</Grid>
 			</Grid>
-		</div>
+		</StatusChoiceWrapper>
 	)
 }
+
+const StatusChoiceWrapper = styled.div`
+	& > ul > li {
+		padding-left: 1rem !important;
+
+		&:empty {
+			display: none;
+		}
+
+		&::before {
+			content: none !important;
+		}
+	}
+`
 
 function StatutBloc({
 	engine,
