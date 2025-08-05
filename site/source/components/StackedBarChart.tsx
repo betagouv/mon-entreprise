@@ -31,12 +31,14 @@ const BarItem = styled.div`
 	}
 `
 
-const BarStackLegend = styled.div`
+const BarStackLegend = styled.ul`
 	font-family: ${({ theme }) => theme.fonts.main};
 	display: flex;
-	margin-top: 10px;
+	margin: 10px 0 0;
+	padding: 0;
 	flex-direction: column;
 	justify-content: space-between;
+	list-style: none;
 
 	@media (min-width: 800px) {
 		flex-direction: row;
@@ -44,7 +46,7 @@ const BarStackLegend = styled.div`
 	}
 `
 
-const BarStackLegendItem = styled.div`
+const BarStackLegendItem = styled.li`
 	font-family: ${({ theme }) => theme.fonts.main};
 	background-color: inherit;
 	strong {
