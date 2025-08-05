@@ -18,8 +18,8 @@ const RevenuEstimé = () => {
 			$inert
 		>
 			<Grid container>
-				<Grid item xs={12} sm={6} lg={9}>
-					<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
+				<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
+					<Grid item xs={12} sm={6} lg={9}>
 						<Grid container role="list">
 							<Grid
 								style={{
@@ -50,8 +50,9 @@ const RevenuEstimé = () => {
 								/>
 							</StyledGrid>
 						</Grid>
-					</WhenAlreadyDefined>
-				</Grid>
+					</Grid>
+				</WhenAlreadyDefined>
+
 				<WhenNotAlreadyDefined dottedName="entreprise . chiffre d'affaires">
 					<Grid item xs>
 						<Label>
