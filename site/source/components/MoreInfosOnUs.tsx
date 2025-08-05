@@ -8,6 +8,7 @@ import {
 	H2,
 	SmallCard,
 	Spacing,
+	Ul,
 } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
@@ -23,9 +24,9 @@ export default function MoreInfosOnUs() {
 	return (
 		<>
 			<H2>Plus d'informations sur mon-entreprise</H2>
-			<Grid container spacing={2} role="list">
+			<Grid as={Ul} container spacing={2}>
 				{!pathname.startsWith(absoluteSitePaths.nouveautés.index) && (
-					<Grid item xs={12} sm={6} md={4} role="listitem">
+					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji={'✨'} />}
 							title={<h3>Les nouveautés</h3>}
@@ -36,7 +37,7 @@ export default function MoreInfosOnUs() {
 					</Grid>
 				)}
 				{!pathname.startsWith(absoluteSitePaths.stats) && (
-					<Grid item xs={12} sm={6} md={4} role="listitem">
+					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji="📊" />}
 							to={absoluteSitePaths.stats}
@@ -47,7 +48,7 @@ export default function MoreInfosOnUs() {
 					</Grid>
 				)}
 				{!pathname.startsWith(absoluteSitePaths.budget) && (
-					<Grid item xs={12} sm={6} md={4} role="listitem">
+					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji="💶" />}
 							to={absoluteSitePaths.budget}
@@ -57,7 +58,7 @@ export default function MoreInfosOnUs() {
 						</SmallCard>
 					</Grid>
 				)}
-				<Grid item xs={12} sm={6} md={4} role="listitem">
+				<Grid as="li" item xs={12} sm={6} md={4}>
 					<SmallCard
 						icon={<GithubIcon style={{ width: '2rem', height: '2rem' }} />}
 						href="https://github.com/betagouv/mon-entreprise"
