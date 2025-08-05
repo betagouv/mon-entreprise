@@ -2,16 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import PeriodSwitch from '@/components/PeriodSwitch'
-import RéductionBasique from '@/components/RéductionDeCotisations/RéductionBasique'
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/hooks/useYear'
-import {
-	situationSelector,
-	targetUnitSelector,
-} from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
@@ -45,32 +40,6 @@ export default function RéductionGénéraleSimulationGoals({
 	const previousSituation = useRef(situation)
 	const { t } = useTranslation()
 
-	const currentUnit = useSelector(targetUnitSelector)
-	const monthByMonth = currentUnit === '€'
-
-	const periods = [
-		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.month',
-				'Réduction mensuelle'
-			),
-			unit: '€/mois',
-		},
-		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.year',
-				'Réduction annuelle'
-			),
-			unit: '€/an',
-		},
-		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.month-by-month',
-				'Réduction mois par mois'
-			),
-			unit: '€',
-		},
-	]
 	const initializeRéductionGénéraleMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(
 			réductionGénéraleDottedName,
@@ -137,36 +106,25 @@ export default function RéductionGénéraleSimulationGoals({
 
 	return (
 		<SimulationGoals toggles={toggles} legend={legend}>
-			<PeriodSwitch periods={periods} />
-			{monthByMonth ? (
-				<RéductionMoisParMois
-					dottedName={réductionGénéraleDottedName}
-					data={réductionGénéraleMoisParMoisData}
-					onRémunérationChange={onRémunérationChange}
-					onOptionsChange={onOptionsChange}
-					caption={t(
-						'pages.simulateurs.réduction-générale.month-by-month.caption',
-						'Réduction générale mois par mois :'
-					)}
-					warnings={<Warnings />}
-					warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
-					warningTooltip={<WarningSalaireTrans />}
-					codeRéduction={t(`code {{ code }}`, {
-						code: '671',
-					})}
-					codeRégularisation={t(`code {{ code }}`, {
-						code: '801',
-					})}
-				/>
-			) : (
-				<RéductionBasique
-					dottedName={réductionGénéraleDottedName}
-					onUpdate={initializeRéductionGénéraleMoisParMoisData}
-					warnings={<Warnings />}
-					warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
-					warningMessage={<WarningSalaireTrans />}
-				/>
-			)}
+			<RéductionMoisParMois
+				dottedName={réductionGénéraleDottedName}
+				data={réductionGénéraleMoisParMoisData}
+				onRémunérationChange={onRémunérationChange}
+				onOptionsChange={onOptionsChange}
+				caption={t(
+					'pages.simulateurs.réduction-générale.month-by-month.caption',
+					'Réduction générale mois par mois :'
+				)}
+				warnings={<Warnings />}
+				warningCondition={`${rémunérationBruteDottedName} > 1.6 * SMIC`}
+				warningTooltip={<WarningSalaireTrans />}
+				codeRéduction={t(`code {{ code }}`, {
+					code: '671',
+				})}
+				codeRégularisation={t(`code {{ code }}`, {
+					code: '801',
+				})}
+			/>
 		</SimulationGoals>
 	)
 }

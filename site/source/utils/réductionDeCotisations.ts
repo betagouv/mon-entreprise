@@ -1,4 +1,7 @@
+import { pipe } from 'effect'
+import { last, map, take } from 'effect/Array'
 import { sumAll } from 'effect/Number'
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { AnyAction, Dispatch } from 'redux'
@@ -78,6 +81,24 @@ const defaultRépartition = {
 	chômage: 0,
 }
 
+type ParamètresRéduction =
+	| ParamètresRéductionAvecRémunération
+	| ParamètresRéductionSansRémunération
+interface ParamètresRéductionAvecRémunération {
+	rémunérationBrute: number
+	SMIC: O.Some<number>
+	coefT: O.Some<number>
+}
+interface ParamètresRéductionSansRémunération {
+	rémunérationBrute: 0
+	SMIC: O.None<number>
+	coefT: O.None<number>
+}
+
+const isParamètresRéductionAvecRémunération = (
+	params: ParamètresRéduction
+): params is ParamètresRéductionAvecRémunération => params.rémunérationBrute > 0
+
 export const getDataAfterSituationChange = (
 	dottedName: RéductionDottedName,
 	situation: SituationType,
@@ -88,16 +109,6 @@ export const getDataAfterSituationChange = (
 	régularisationMethod?: RégularisationMethod,
 	withRépartition: boolean = true
 ): MonthState[] => {
-	const pasDeSituation = !Object.keys(situation).length
-	if (pasDeSituation) {
-		return getInitialRéductionMoisParMois(
-			dottedName,
-			year,
-			engine,
-			withRépartition
-		)
-	}
-
 	const newOptions = getOptionsFromSituations(previousSituation, situation)
 
 	const updatedData = previousData.map((data) => {
@@ -224,11 +235,10 @@ export const getInitialRéductionMoisParMois = (
 	}
 
 	return Array.from({ length: 12 }, (_item, monthIndex) => {
-		const date = getDateForContexte(monthIndex, year)
-
 		const réduction = getMonthlyRéduction(
 			dottedName,
-			date,
+			year,
+			monthIndex,
 			rémunérationBrute,
 			{
 				heuresSupplémentaires,
@@ -264,7 +274,7 @@ export const getInitialRéductionMoisParMois = (
 	})
 }
 
-export const reevaluateRéductionMoisParMois = (
+const reevaluateRéductionMoisParMois = (
 	dottedName: RéductionDottedName,
 	data: MonthState[],
 	year: number,
@@ -293,13 +303,11 @@ export const reevaluateRéductionMoisParMois = (
 		})
 	}
 
-	const rémunérationBruteCumulées = getRémunérationBruteCumulées(data)
-	const SMICCumulés = getSMICCumulés(data, year, engine)
-	// Si on laisse l'engine calculer T dans le calcul de la réduction,
-	// le résultat ne sera pas bon à cause de l'assiette de cotisations du contexte
-	const coefT = engine.evaluate({
-		valeur: 'salarié . cotisations . exonérations . T',
-	}).nodeValue as number
+	const paramètresRéductionParMois = getParamètresRéductionParMois(
+		data,
+		year,
+		engine
+	)
 
 	const reevaluatedData = data.reduce(
 		(reevaluatedData: MonthState[], monthState, monthIndex) => {
@@ -333,9 +341,7 @@ export const reevaluateRéductionMoisParMois = (
 				// et la somme des N-1 réductions déjà accordées (en incluant les régularisations).
 				const réductionTotale = getTotalRéduction(
 					dottedName,
-					rémunérationBruteCumulées[monthIndex],
-					SMICCumulés[monthIndex],
-					coefT,
+					take(paramètresRéductionParMois, monthIndex + 1),
 					engine
 				)
 				const réductionCumulée = sumAll(
@@ -368,10 +374,10 @@ export const reevaluateRéductionMoisParMois = (
 						: defaultRépartition
 				}
 			} else {
-				const date = getDateForContexte(monthIndex, year)
 				réduction.value = getMonthlyRéduction(
 					dottedName,
-					date,
+					year,
+					monthIndex,
 					rémunérationBrute,
 					options,
 					engine
@@ -386,9 +392,7 @@ export const reevaluateRéductionMoisParMois = (
 					// déjà accordées.
 					const réductionTotale = getTotalRéduction(
 						dottedName,
-						rémunérationBruteCumulées[monthIndex],
-						SMICCumulés[monthIndex],
-						coefT,
+						paramètresRéductionParMois,
 						engine
 					)
 					const currentRéductionGénéraleCumulée =
@@ -450,34 +454,6 @@ export const reevaluateRéductionMoisParMois = (
 	return reevaluatedData
 }
 
-export const getRépartitionBasique = (
-	dottedName: RéductionDottedName,
-	currentUnit: string,
-	engine: Engine<DottedName>
-): Répartition => {
-	const IRC =
-		(engine.evaluate({
-			valeur: `${dottedName} . imputation retraite complémentaire`,
-			unité: currentUnit,
-		})?.nodeValue as number) ?? 0
-	const Urssaf =
-		(engine.evaluate({
-			valeur: `${dottedName} . imputation sécurité sociale`,
-			unité: currentUnit,
-		})?.nodeValue as number) ?? 0
-	const chômage =
-		(engine.evaluate({
-			valeur: `${dottedName} . imputation chômage`,
-			unité: currentUnit,
-		})?.nodeValue as number) ?? 0
-
-	return {
-		IRC,
-		Urssaf,
-		chômage,
-	}
-}
-
 const emptyRépartition = {
 	IRC: 0,
 	Urssaf: 0,
@@ -528,21 +504,17 @@ const updateRémunérationBruteAnnuelle = (
 	)
 }
 
-const getDateForContexte = (monthIndex: number, year: number): string => {
-	const date = new Date(year, monthIndex)
-
-	return date.toLocaleDateString('fr')
-}
-
 const getMonthlyRéduction = (
 	dottedName: RéductionDottedName,
-	date: string,
+	year: number,
+	monthIndex: number,
 	rémunérationBrute: number,
 	options: Options,
 	engine: Engine<DottedName>
 ): number => {
+	const date = getDateForContexte(year, monthIndex)
 	const SMIC = getSMICMensuelAvecOptions(
-		date,
+		year,
 		rémunérationBrute,
 		options,
 		engine
@@ -560,25 +532,92 @@ const getMonthlyRéduction = (
 	return réduction.nodeValue as number
 }
 
+/**
+ * Paramètres de calcul de la réduction :
+ * - rémunération totale
+ * - SMIC équivalent au temps de travail total (pas de rémunération => pas de SMIC équivalent)
+ * En cas de variation de coef T : calcul sur chaque période de coef T identique et somme des résultats
+ */
 const getTotalRéduction = (
 	dottedName: RéductionDottedName,
-	rémunérationBrute: number,
-	SMIC: number,
-	coefT: number,
+	paramètresRéductionParMois: Array<ParamètresRéduction>,
 	engine: Engine<DottedName>
 ): number => {
-	const réduction = engine.evaluate({
-		valeur: dottedName,
-		arrondi: 'non',
-		contexte: {
-			[rémunérationBruteDottedName]: rémunérationBrute,
-			'salarié . temps de travail . SMIC': SMIC,
-			'salarié . cotisations . exonérations . T': coefT,
-		},
-	})
+	const périodes = paramètresRéductionParMois.reduce(
+		(
+			paramètresRéductionParPériode: Array<
+				Array<ParamètresRéductionAvecRémunération>
+			>,
+			paramètresRéductionMois
+		) => {
+			if (!isParamètresRéductionAvecRémunération(paramètresRéductionMois)) {
+				return paramètresRéductionParPériode
+			}
 
-	return réduction.nodeValue as number
+			const périodeEnCoursOption = last(paramètresRéductionParPériode)
+			const pasDePériodeEnCours = O.isNone(périodeEnCoursOption)
+
+			if (pasDePériodeEnCours) {
+				const nouvellePériode = [paramètresRéductionMois]
+				paramètresRéductionParPériode.push(nouvellePériode)
+
+				return paramètresRéductionParPériode
+			}
+
+			const périodeEnCours = périodeEnCoursOption.value
+			const dernierParamètresRéductionDeLaPériodeEnCours =
+				périodeEnCours[périodeEnCours.length - 1]
+
+			const rémunérationBruteCumulée =
+				dernierParamètresRéductionDeLaPériodeEnCours.rémunérationBrute
+			const SMICCumulé = dernierParamètresRéductionDeLaPériodeEnCours.SMIC.value
+			const dernierCoefT =
+				dernierParamètresRéductionDeLaPériodeEnCours.coefT.value
+			const coefTMois = paramètresRéductionMois.coefT.value
+
+			if (coefTMois !== dernierCoefT) {
+				const nouvellePériode = [paramètresRéductionMois]
+				paramètresRéductionParPériode.push(nouvellePériode)
+
+				return paramètresRéductionParPériode
+			}
+
+			const paramètresRéductionCumulés = {
+				rémunérationBrute:
+					rémunérationBruteCumulée + paramètresRéductionMois.rémunérationBrute,
+				SMIC: O.some(SMICCumulé + paramètresRéductionMois.SMIC.value),
+				coefT: O.some(dernierCoefT),
+			} as ParamètresRéductionAvecRémunération
+			périodeEnCours.push(paramètresRéductionCumulés)
+
+			return paramètresRéductionParPériode
+		},
+		[]
+	)
+
+	return pipe(
+		périodes,
+		map(last),
+		map(O.map(getRéduction(dottedName, engine))),
+		map(O.getOrThrow),
+		sumAll
+	)
 }
+
+const getRéduction =
+	(dottedName: RéductionDottedName, engine: Engine<DottedName>) =>
+	(paramètresRéduction: ParamètresRéductionAvecRémunération) => {
+		return engine.evaluate({
+			valeur: dottedName,
+			arrondi: 'non',
+			contexte: {
+				[rémunérationBruteDottedName]: paramètresRéduction.rémunérationBrute,
+				'salarié . temps de travail . SMIC': paramètresRéduction.SMIC.value,
+				'salarié . cotisations . exonérations . T':
+					paramètresRéduction.coefT.value,
+			},
+		}).nodeValue as number
+	}
 
 const getRépartition = (
 	dottedName: RéductionDottedName,
@@ -616,12 +655,19 @@ const getRépartition = (
 	}
 }
 
+/**
+ * Le Smic à utiliser est celui du 1er janvier de l'année considérée.
+ * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#710)
+ * Il faut toutefois l'adapter à la durée de travail réalisée ce mois-ci par le ou la salariée
+ * (heures supplémentaires, temps partiel, mois incomplet...).
+ */
 const getSMICMensuelAvecOptions = (
-	date: string,
+	year: number,
 	rémunérationBrute: number,
 	options: Options,
 	engine: Engine<DottedName>
 ): number => {
+	const date = getDateForContexte(year)
 	const contexte = {
 		date,
 		[rémunérationBruteDottedName]: rémunérationBrute,
@@ -663,70 +709,61 @@ const getSMICMensuelAvecOptions = (
 	return SMIC
 }
 
-const getSMICCumulés = (
+const getParamètresRéductionParMois = (
 	data: MonthState[],
 	year: number,
 	engine: Engine<DottedName>
-): number[] => {
-	return data.reduce((SMICCumulés: number[], monthData, monthIndex) => {
-		const pasDeRémunération = !monthData.rémunérationBrute
-		// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
-		// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
-		if (pasDeRémunération) {
-			SMICCumulés.push(0)
-
-			return SMICCumulés
-		}
-
-		const date = getDateForContexte(monthIndex, year)
-		const SMIC = getSMICMensuelAvecOptions(
-			date,
-			monthData.rémunérationBrute,
-			monthData.options,
-			engine
-		)
-
-		let SMICCumulé = SMIC
-		if (monthIndex > 0) {
-			// Il faut aller chercher la dernière valeur positive du SMIC cumulé.
-			const previousSMICCumulé =
-				SMICCumulés.findLast((SMICCumulé) => SMICCumulé > 0) ?? 0
-			SMICCumulé = previousSMICCumulé + SMIC
-		}
-
-		SMICCumulés.push(SMICCumulé)
-
-		return SMICCumulés
-	}, [])
-}
-
-const getRémunérationBruteCumulées = (data: MonthState[]): number[] => {
+): Array<ParamètresRéduction> => {
 	return data.reduce(
-		(rémunérationBruteCumulées: number[], monthData, monthIndex) => {
-			const pasDeRémunération = !monthData.rémunérationBrute
+		(paramètres: Array<ParamètresRéduction>, monthData, monthIndex) => {
+			const rémunérationBrute = monthData.rémunérationBrute
 			// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
-			// et elle ne compte pas non plus pour la régularisation des mois à venir.
-			if (pasDeRémunération) {
-				rémunérationBruteCumulées.push(0)
+			// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
+			if (!rémunérationBrute) {
+				paramètres.push({
+					rémunérationBrute,
+					SMIC: O.none(),
+					coefT: O.none(),
+				} as ParamètresRéduction)
 
-				return rémunérationBruteCumulées
+				return paramètres
 			}
 
-			let rémunérationBruteCumulée = monthData.rémunérationBrute
-			if (monthIndex > 0) {
-				// Il faut aller chercher la dernière valeur positive de la rémunération cumulée.
-				const previousRémunérationBruteCumulée =
-					rémunérationBruteCumulées.findLast(
-						(rémunérationBruteCumulée) => rémunérationBruteCumulée > 0
-					) ?? 0
-				rémunérationBruteCumulée =
-					previousRémunérationBruteCumulée + monthData.rémunérationBrute
-			}
+			const SMIC = getSMICMensuelAvecOptions(
+				year,
+				monthData.rémunérationBrute,
+				monthData.options,
+				engine
+			)
+			const coefT = getCoefT(year, monthIndex, engine)
 
-			rémunérationBruteCumulées.push(rémunérationBruteCumulée)
+			paramètres.push({
+				rémunérationBrute,
+				SMIC: O.some(SMIC),
+				coefT: O.some(coefT),
+			} as ParamètresRéduction)
 
-			return rémunérationBruteCumulées
+			return paramètres
 		},
 		[]
 	)
 }
+
+const getCoefT = (
+	year: number,
+	monthIndex: number,
+	engine: Engine<DottedName>
+): number => {
+	const date = getDateForContexte(year, monthIndex)
+	const contexte = {
+		date,
+	} as SituationPublicodes
+
+	return engine.evaluate({
+		valeur: 'salarié . cotisations . exonérations . T',
+		contexte,
+	}).nodeValue as number
+}
+
+const getDateForContexte = (year: number, monthIndex: number = 0): string =>
+	new Date(year, monthIndex).toLocaleDateString('fr')
