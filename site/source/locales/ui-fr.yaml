@@ -100,7 +100,6 @@ Envoyer: Envoyer
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
 Fermer: Fermer
-Fermer le module "Donner son avis": Fermer le module "Donner son avis"
 Fiche de paie: Fiche de paie
 Frais de transport: Frais de transport
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
@@ -142,7 +141,6 @@ Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir
 Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
-Menu de navigation: Menu de navigation
 Message à caractère informatif: Message à caractère informatif
 Mode d'affichage: Mode d'affichage
 Modifier mes réponses: Modifier mes réponses
@@ -1285,26 +1283,27 @@ pages:
         mobilité</2><3><0><0>établissement . commune . taux versement
         mobilité</0></0></3><4>Dans le simulateur <2>salarié</2>, il suffit de
         renseigner la commune et le taux versement mobilité correspondant est
-        automatiquement déterminé.</4><5>Il vous faudra préciser le taux
-        vous-même pour refaire le calcul. Vous pouvez le retrouver :<1><0>En
-        saisissant votre commune dans un simulateur, puis en recherchant la
-        règle « versement mobilité » avec le bouton « rechercher » en haut à
-        droite</0><1>Grâce au <2>service dédié sur
-        urssaf.fr</2></1></1></5><6>Le taux collectif
+        automatiquement déterminé.</4><5><0>Il vous faudra préciser le taux
+        vous-même pour refaire le calcul. Vous pouvez le retrouver
+        :</0><1><0><0>En saisissant votre commune dans un simulateur, puis en
+        recherchant la règle « versement mobilité » avec le bouton « rechercher
+        » en haut à droite</0></0><1><0>Grâce au <2>service dédié sur
+        urssaf.fr</2></0></1></1></5><6>Le taux collectif
         AT/MP</6><7><0><0>établissement . taux ATMP . taux
         collectif</0></0></7><8>Ce taux collectif doit être retrouvé
-        manuellement. Vous pouvez utiliser :<1><0><0>Un export csv</0> du
-        tableau des taux nets collectifs paru au Journal Officiel</0><1>La
-        documentation <2>Cotisations AT/MP</2> de l’Assurance
-        Maladie</1></1></8></4>"
-      StepByStep: <0><0>Choisir le simulateur en fonction du calcul qui nous
+        manuellement. Vous pouvez utiliser :</8><9><0><0><0>Un export csv</0> du
+        tableau des taux nets collectifs paru au Journal
+        Officiel</0></0><1><0>La documentation <2>Cotisations AT/MP</2> de
+        l’Assurance Maladie</0></1></9></4>"
+      StepByStep: <0><0><0>Choisir le simulateur en fonction du calcul qui nous
         intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
-        calculer un net à partir du brut.</0><1><0>Effectuer une simulation avec
-        les données que l'on souhaite réutiliser</0><1></1>Par exemple <4>un
-        cadre à 3400 € brut avec des titres-restaurants</4>.</1><2><0>Aller sur
-        la page de documentation de la donnée à calculer</0><1></1>Par exemple
-        en cliquant sur « Salaire net » dans le simulateur, ou en recherchant «
-        Salaire net » dans la recherche en haut à droite.</2>
+        calculer un net à partir du brut.</0></0><1><0><0>Effectuer une
+        simulation avec les données que l'on souhaite réutiliser</0><1></1>Par
+        exemple <4>un cadre à 3400 € brut avec des
+        titres-restaurants</4>.</0></1><2><0><0>Aller sur la page de
+        documentation de la donnée à calculer</0><1></1>Par exemple en cliquant
+        sur « Salaire net » dans le simulateur, ou en recherchant « Salaire net
+        » dans la recherche en haut à droite.</0></2>
     couleur: "Quelle couleur ? "
     home:
       choice:

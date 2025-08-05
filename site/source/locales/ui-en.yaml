@@ -95,7 +95,6 @@ Envoyer: Send
 ExportSimulation:
   Banner: Print or save as PDF
 Fermer: Close
-Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Pay slip
 Frais de transport: Transport costs
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
@@ -135,7 +134,6 @@ Lire les précisions, ouvrir le message condensé.: Read the details, open the c
 Liste des intégrations: List of integrations
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
-Menu de navigation: Navigation menu
 Message à caractère informatif: Informative message
 Mode d'affichage: Display mode
 Modifier mes réponses: Modify my answers
@@ -1217,24 +1215,24 @@ pages:
         . municipality . mobility payment rate</0></0></3><4>In the
         <2>employee</2> simulator, all you have to do is enter the commune and
         the corresponding mobility payment rate is automatically
-        determined.</4><5>You will need to specify the rate yourself to
-        recalculate. You can find it:<1><0>By entering your commune in a
+        determined.</4><5><0>You will need to specify the rate yourself to
+        recalculate. You can find it :</0><1><0><0>By entering your commune in a
         simulator, then searching for the \"mobility payment\" rule using the
-        \"search\" button in the top right-hand corner.</0><1>Using the
-        <2>dedicated service on urssaf.fr</2></1></1></5><6>The collective AT/MP
-        rate</6><7><0><0>establishment . rate ATMP . collective
+        \"search\" button in the top right-hand corner.</0></0><1><0>Using the
+        <2>dedicated service on urssaf.fr</2></0></1></1></5><6>The collective
+        AT/MP rate</6><7><0><0>establishment . rate ATMP . collective
         rate</0></0></7><8>This collective rate must be found manually. You can
-        use:<1><0><0>a csv export</0> of the table of collective net rates
-        published in the Journal Officiel</0><1>The Assurance Maladie's \"
-        <2>Cotisations AT/MP\"</2> documentation</1></1></8></4>"
-      StepByStep: <0><0>Choose the simulator according to the calculation you're
+        use :</8><9><0><0><0>a csv export</0> of the table of collective net
+        rates published in the Journal Officiel</0></0><1><0>Assurance Maladie's
+        \" <2>Cotisations AT/MP\"</2> documentation</0></1></9></4>"
+      StepByStep: <0><0><0>Choose the simulator according to the calculation you're
         interested in</0><1></1>For example, the <4>employee simulator</4> to
-        calculate net income from gross income.</0><1><0>Run a simulation with
-        the data you wish to re-use</0><1></1>For example, <4>an executive at
-        €3,400 gross with luncheon vouchers</4>.</1><2>Go to the<0>documentation
-        page for the data to be calculated</0><1></1>For example, click on
-        "Salaire net" in the simulator, or search for "Salaire net" in the
-        top-right search box.</2>
+        calculate net income from gross income.</0></0><1><0><0>Run a simulation
+        with the data you wish to re-use</0><1></1>For example, <4>an executive
+        at €3,400 gross with luncheon vouchers</4>.</0></1><2><0><0>Go to the
+        documentation page for the data to be calculated</0><1></1>For example,
+        click on "Salaire net" in the simulator, or search for "Salaire net" in
+        the top-right search box.</0></2>
     couleur: "What color? "
     home:
       choice:

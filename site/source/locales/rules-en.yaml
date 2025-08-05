@@ -3678,7 +3678,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
     cotisations 2019 sera le suivant :
 
 
-    `31 jour d'acre restant en 2019 / 365 jour = 8,5%`
+    `31 jours d'acre restant en 2019 / 365 jours = 8,5%`
   titre.en: '[automatic] pro rata over the year'
   titre.fr: prorata sur l'année
 dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
@@ -9739,7 +9739,7 @@ salarié . activité partielle . indemnités . légale:
     initially received by the employee.
 
 
-    This additional allowance is exempt from contributions under the same conditions
+    This additional allowance is exempt from contributions under the same conditions 
 
     same conditions as the statutory partial activity allowance.
   description.fr: >
@@ -9760,7 +9760,7 @@ salarié . activité partielle . indemnités . légale:
     somme initialement perçue par le salarié.
 
 
-    Cette allocation complémentaire est exonérée de cotisations et contributions dans les
+    Cette allocation complémentaire est exonérée de cotisations et contributions dans les 
 
     mêmes conditions que l’indemnité d’activité partielle légale.
   titre.en: '[automatic] legal'
@@ -10453,7 +10453,7 @@ salarié . convention collective:
         is not taken into account; the simulation will be based on common law.'
       description.fr:
         "Attention : votre convention collective n'est pas prise en
-        charge, la simulation se basera sur le droit commun."
+        charge,  la simulation se basera sur le droit commun."
       titre.en: '[automatic] warning other collective bargaining agreement'
       titre.fr: avertissement autre convention collective
     avertissement convention collective:
