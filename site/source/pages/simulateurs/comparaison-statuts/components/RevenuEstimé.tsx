@@ -4,7 +4,15 @@ import { styled } from 'styled-components'
 import Value from '@/components/EngineValue/Value'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
-import { Body, CardContainer, EditIcon, Grid, Link } from '@/design-system'
+import {
+	Body,
+	CardContainer,
+	EditIcon,
+	Grid,
+	Li,
+	Link,
+	Ul,
+} from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 const RevenuEstimé = () => {
@@ -20,8 +28,8 @@ const RevenuEstimé = () => {
 			<Grid container>
 				<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
 					<Grid item xs={12} sm={6} lg={9}>
-						<Grid container role="list">
-							<Grid
+						<Grid container as={Ul}>
+							<GridLi
 								style={{
 									paddingRight: '1.5rem',
 								}}
@@ -29,7 +37,7 @@ const RevenuEstimé = () => {
 								xs={12}
 								sm={6}
 								lg={4}
-								role="listitem"
+								as={Li}
 							>
 								<Label>
 									<Trans>Votre chiffre d'affaires estimé</Trans>
@@ -38,8 +46,8 @@ const RevenuEstimé = () => {
 									linkToRule={false}
 									expression="entreprise . chiffre d'affaires"
 								/>
-							</Grid>
-							<StyledGrid item xs={12} sm={6} lg={6} role="listitem">
+							</GridLi>
+							<StyledGrid item xs={12} sm={6} lg={6} as={Li}>
 								<Label>
 									<Trans>Vos charges estimées</Trans>
 								</Label>
@@ -106,10 +114,19 @@ const StyledGrid = styled(Grid)`
 	border-left: 1px solid ${({ theme }) => theme.colors.extended.grey[400]};
 	padding-left: 1.5rem;
 
+	&::before {
+		content: none !important;
+	}
+
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		border-left: none;
 		padding-left: 0;
 		margin-top: ${({ theme }) => theme.spacings.md};
+	}
+`
+const GridLi = styled(Grid)`
+	&::before {
+		content: none !important;
 	}
 `
 
