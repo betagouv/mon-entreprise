@@ -165,7 +165,7 @@ export function SimulationGoal({
 }
 
 const RuleLinkAccessible = styled(RuleLink)`
-	font-size: 1.125rem;
+	font-size: ${({ theme }) => theme.fontSizes.lg};
 
 	&:hover {
 		color: ${({ theme }) => theme.colors.extended.grey[300]};

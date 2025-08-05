@@ -7,6 +7,8 @@ import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
 import { updateUnit } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
+import { GridCentered } from './Simulation/ObjectifSaisissableDeSimulation'
+
 type Props = {
 	periods?: Array<{
 		label: string
@@ -39,18 +41,12 @@ export default function PeriodSwitch({ periods }: Props) {
 	)
 
 	return (
-		<Grid
-			container
-			style={{
-				alignItems: 'baseline',
-				justifyContent: 'space-between',
-			}}
-			spacing={2}
-			as="fieldset"
-		>
-			<Grid item md="auto" sm={9} xs={8}>
+		<GridCentered container spacing={2} as="fieldset">
+			<Grid item>
 				<TitreObjectif noWrap={true}>
-					<legend>{t('periode-calcul', 'Période de calcul')}</legend>
+					<LegendBigger>
+						{t('periode-calcul', 'Période de calcul')}
+					</LegendBigger>
 				</TitreObjectif>
 			</Grid>
 
@@ -58,7 +54,7 @@ export default function PeriodSwitch({ periods }: Props) {
 				<PeriodSwitchToggleGroup
 					value={currentUnit}
 					onChange={onChange}
-					aria-label={t("Mode d'affichage")}
+					aria-label={t('Période de calcul')}
 				>
 					{periodsValue.map(({ label, unit }) => (
 						<span
@@ -70,13 +66,24 @@ export default function PeriodSwitch({ periods }: Props) {
 					))}
 				</PeriodSwitchToggleGroup>
 			</Grid>
-		</Grid>
+		</GridCentered>
 	)
 }
 
+const LegendBigger = styled.legend`
+	font-size: ${({ theme }) => theme.fontSizes.lg};
+`
 const PeriodSwitchToggleGroup = styled(ToggleGroup)`
-	input + span {
-		background: none !important;
-		border: none !important;
+	& > div > span:not(:last-of-type) {
+		margin-bottom: 0.75rem;
+	}
+
+	input {
+		& + span {
+			padding: 0.5rem 0.75rem !important;
+			background: none !important;
+			border-radius: ${({ theme }) => theme.box.borderRadius} !important;
+			border: 1px solid white !important;
+		}
 	}
 `

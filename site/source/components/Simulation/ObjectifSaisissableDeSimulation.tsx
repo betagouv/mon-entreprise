@@ -94,7 +94,7 @@ export function ObjectifSaisissableDeSimulation({
 	)
 }
 
-const GridCentered = styled(Grid)`
+export const GridCentered = styled(Grid)`
 	display: grid;
 	grid-template-columns: 1.25fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
@@ -158,5 +158,9 @@ const LargeInputContainer = styled.div`
 	input {
 		font-size: ${({ theme }) => theme.fontSizes.lg};
 		line-height: 1.5;
+	}
+
+	span:empty {
+		display: none;
 	}
 `
