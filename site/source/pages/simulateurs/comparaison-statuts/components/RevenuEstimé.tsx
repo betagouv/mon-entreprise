@@ -53,7 +53,7 @@ const RevenuEstimé = () => {
 					</WhenAlreadyDefined>
 				</Grid>
 				<WhenNotAlreadyDefined dottedName="entreprise . chiffre d'affaires">
-					<Grid item xs role="listitem">
+					<Grid item xs>
 						<Label>
 							<Trans>Votre rémunération totale estimée</Trans>
 						</Label>
