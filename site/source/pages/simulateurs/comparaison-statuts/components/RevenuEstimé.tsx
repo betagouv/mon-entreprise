@@ -18,37 +18,42 @@ const RevenuEstimé = () => {
 			$inert
 		>
 			<Grid container>
-				<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
-					<Grid
-						style={{
-							paddingRight: '1.5rem',
-						}}
-						item
-						xs={12}
-						sm={6}
-						lg={3}
-					>
-						<Label>
-							<Trans>Votre chiffre d'affaires estimé</Trans>
-						</Label>
-						<StyledValue
-							linkToRule={false}
-							expression="entreprise . chiffre d'affaires"
-						/>
-					</Grid>
-					<StyledGrid item xs={12} sm={6} lg={5}>
-						<Label>
-							<Trans>Vos charges estimées</Trans>
-						</Label>
-						<StyledValue
-							linkToRule={false}
-							unit="€/an"
-							expression="entreprise . charges"
-						/>
-					</StyledGrid>
-				</WhenAlreadyDefined>
+				<Grid item xs={12} sm={6} lg={9}>
+					<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">
+						<Grid container role="list">
+							<Grid
+								style={{
+									paddingRight: '1.5rem',
+								}}
+								item
+								xs={12}
+								sm={6}
+								lg={4}
+								role="listitem"
+							>
+								<Label>
+									<Trans>Votre chiffre d'affaires estimé</Trans>
+								</Label>
+								<StyledValue
+									linkToRule={false}
+									expression="entreprise . chiffre d'affaires"
+								/>
+							</Grid>
+							<StyledGrid item xs={12} sm={6} lg={6} role="listitem">
+								<Label>
+									<Trans>Vos charges estimées</Trans>
+								</Label>
+								<StyledValue
+									linkToRule={false}
+									unit="€/an"
+									expression="entreprise . charges"
+								/>
+							</StyledGrid>
+						</Grid>
+					</WhenAlreadyDefined>
+				</Grid>
 				<WhenNotAlreadyDefined dottedName="entreprise . chiffre d'affaires">
-					<Grid item xs>
+					<Grid item xs role="listitem">
 						<Label>
 							<Trans>Votre rémunération totale estimée</Trans>
 						</Label>
