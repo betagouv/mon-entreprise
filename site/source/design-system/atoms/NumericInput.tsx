@@ -162,6 +162,10 @@ const StyledNumericInputContainer = styled(StyledContainer)`
 
 const StyledNumberInput = styled(StyledInput)`
 	text-align: right;
+
+	& + label + span {
+		padding-top: ${({ theme }) => theme.spacings.md};
+	}
 `
 
 const Unit = styled.span<{ $small?: boolean }>`
