@@ -71,19 +71,17 @@ export default function PeriodSwitch({ periods }: Props) {
 }
 
 const LegendBigger = styled.legend`
+	padding: 0.5rem 0 0;
 	font-size: ${({ theme }) => theme.fontSizes.lg};
 `
 const PeriodSwitchToggleGroup = styled(ToggleGroup)`
-	& > div > span:not(:last-of-type) {
-		margin-bottom: 0.75rem;
-	}
+	margin: 0 0 1.5rem;
 
 	input {
 		& + span {
-			padding: 0.5rem 0.75rem !important;
+			padding: 0.5rem 0.75rem 0.5rem 0 !important;
+			border: 0 solid transparent !important;
 			background: none !important;
-			border-radius: ${({ theme }) => theme.box.borderRadius} !important;
-			border: 1px solid white !important;
 		}
 	}
 `
