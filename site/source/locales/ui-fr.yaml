@@ -142,7 +142,6 @@ Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
-Mode d'affichage: Mode d'affichage
 Modifier mes réponses: Modifier mes réponses
 Moins de 50 salariés: Moins de 50 salariés
 Mois: Mois
@@ -186,6 +185,7 @@ Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Précédent: Précédent
 Prévisualisation: Prévisualisation
+Période de calcul: Période de calcul
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
 Quel est l’effectif de votre entreprise ?: Quel est l’effectif de votre entreprise ?
 Quelle est votre activité ?: Quelle est votre activité ?
@@ -1828,7 +1828,6 @@ pages:
         simulateur: Lancer le simulateur
     impot-société:
       exercice: Exercice {{ year }}
-      légende: Résultat imposable de l’entreprise
       meta:
         description: Calculez votre impôt sur les sociétés
         title: Impôt sur les sociétés
@@ -1931,7 +1930,6 @@ pages:
       shortname: Location de logement meublé
       title: Simulateur de revenu pour location de logement meublé
     lodeom:
-      legend: Rémunération brute du salarié et exonération Lodeom applicable
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
@@ -2008,7 +2006,6 @@ pages:
           description: Calcul, déclaration, règles... Consultez le guide de l’Urssaf sur
             la réduction générale des cotisations.
           title: La réduction générale des cotisations
-      legend: Salaire brut du salarié et réduction générale applicable
       meta:
         description: Estimation du montant de la réduction générale des cotisations
           patronales (RGCP). Cette réduction est applicable pour les salaires

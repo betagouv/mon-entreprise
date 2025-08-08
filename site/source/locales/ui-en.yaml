@@ -135,7 +135,6 @@ Liste des intégrations: List of integrations
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
-Mode d'affichage: Display mode
 Modifier mes réponses: Modify my answers
 Moins de 50 salariés: Less than 50 employees
 Mois: Month
@@ -177,6 +176,7 @@ Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
 Prévisualisation: Preview
+Période de calcul: Calculation period
 Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
@@ -1720,7 +1720,6 @@ pages:
         simulateur: Launch simulator
     impot-société:
       exercice: Exercise {{ year }}
-      légende: Company taxable income
       meta:
         description: Calculate your corporate income tax
         title: Corporate income tax
@@ -1818,7 +1817,6 @@ pages:
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
     lodeom:
-      legend: Employee's gross salary and applicable Lodeom exemption
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
           certain conditions, to overseas employees.
@@ -1893,7 +1891,6 @@ pages:
           description: Calculation, declaration, rules... Consult the Urssaf guide to the
             general reduction in contributions.
           title: General reduction in contributions
-      legend: Employee's gross salary and applicable general reduction
       meta:
         description: Estimate of the amount of the general reduction in employer
           contributions (RGCP). This reduction applies to salaries below 1.6
