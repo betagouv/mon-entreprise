@@ -140,8 +140,10 @@ export default function PrivacyPolicy({
 			<Body>
 				<StyledTable>
 					<caption className="sr-only">
-						Liste des sous-traitants destinataires des données à caractère
-						personnel
+						{t(
+							'privacyPolicy.recipients.table.caption',
+							'Liste des sous-traitants destinataires des données à caractère personnel'
+						)}
 					</caption>
 					<thead>
 						<tr>

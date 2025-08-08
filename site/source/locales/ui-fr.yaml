@@ -2245,6 +2245,7 @@ privacyPolicy:
     title: Qui est responsable de mon-entreprise ?
   recipients:
     table:
+      caption: Liste des sous-traitants destinataires des données à caractère personnel
       country: Pays destinataire
       mailer: Envoi d'e-mails
       processing: Traitement réalisé
