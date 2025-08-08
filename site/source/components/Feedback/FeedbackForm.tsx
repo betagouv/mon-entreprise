@@ -156,10 +156,14 @@ export default function FeedbackForm({
 	}
 
 	const requiredErrorMessage = t(
+		'components.feedback.form.message.error',
 		'Veuillez entrer un message avant de soumettre le formulaire.'
 	)
 
-	const requiredErrorEmail = t('Veuillez renseigner votre adresse email.')
+	const requiredErrorEmail = t(
+		'components.feedback.form.email.error',
+		'Veuillez renseigner votre adresse email. Exemple : contact@mon-entreprise.beta.gouv.fr .'
+	)
 
 	const resetSubmitErrorField = (field: keyof SubmitError) =>
 		submitError?.[field]
@@ -209,6 +213,7 @@ export default function FeedbackForm({
 								<Strong>
 									{description ??
 										t(
+											'components.feedback.form.message.label',
 											'Que pouvons-nous améliorer pour mieux répondre à vos attentes ?'
 										)}
 								</Strong>
@@ -218,6 +223,7 @@ export default function FeedbackForm({
 								label={t('Votre message (requis)')}
 								onChange={resetSubmitErrorField('message')}
 								description={t(
+									'components.feedback.form.message.explanations',
 									'Éviter de communiquer des informations personnelles'
 								)}
 								id="message"
@@ -227,6 +233,7 @@ export default function FeedbackForm({
 								placeholder={
 									placeholder ??
 									t(
+										'components.feedback.form.message.placeholder',
 										'Exemple : Des informations plus claires, un calcul détaillé...'
 									)
 								}
@@ -248,9 +255,9 @@ export default function FeedbackForm({
 									id="email"
 									name="email"
 									type="email"
-									label={t('Votre adresse e-mail (requise)')}
-									description={t(
-										'Renseigner une adresse e-mail (au format nom@domaine.com) pour recevoir une réponse'
+									label={t(
+										'components.feedback.form.email.format',
+										'Votre adresse e-mail au format nom@domaine.fr (requise)'
 									)}
 									isDisabled={isLoading}
 									maxLength={SHORT_MAX_LENGTH}
@@ -262,7 +269,7 @@ export default function FeedbackForm({
 
 							<div style={{ textAlign: 'end' }}>
 								<StyledButton isDisabled={isLoading} type="submit">
-									{t('Envoyer')}
+									{t('components.feedback.form.send', 'Envoyer le message')}
 								</StyledButton>
 							</div>
 						</form>
