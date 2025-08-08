@@ -139,6 +139,10 @@ export default function PrivacyPolicy({
 			</H2>
 			<Body>
 				<StyledTable>
+					<caption className="sr-only">
+						Liste des sous-traitants destinataires des données à caractère
+						personnel
+					</caption>
 					<thead>
 						<tr>
 							<th scope="col">
