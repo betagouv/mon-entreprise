@@ -108,7 +108,7 @@ export default function Nouveautés() {
 						</Select>
 					</MobileGridItem>
 					<DesktopGridItem item lg={3}>
-						<Sidebar>
+						<Sidebar aria-label="Lettres d'actualités">
 							<StyledUl>
 								{data.map(({ name }, index) => (
 									<li key={name}>
