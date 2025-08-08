@@ -196,9 +196,6 @@ Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
 Remboursements et déductions diverses: Remboursements et déductions diverses
-Renseigner une adresse e-mail (au format nom@domaine:
-  com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
-    nom@domaine.com) pour recevoir une réponse
 Replier: Replier
 Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
@@ -258,7 +255,11 @@ Urssaf, voir le site urssaf:
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
-Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.
+"Veuillez renseigner votre adresse email. Exemple : contact@mon-entreprise":
+  beta:
+    gouv:
+      fr .: "Veuillez renseigner votre adresse email. Exemple :
+        contact@mon-entreprise.beta.gouv.fr ."
 Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir la fiche de paie: Voir la fiche de paie
 Voir les autres simulateurs: Voir les autres simulateurs
@@ -270,7 +271,8 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos cotisations pour l’année précédente: Vos cotisations pour l’année précédente
-Votre adresse e-mail (requise): Votre adresse e-mail (requise)
+Votre adresse e-mail au format nom@domaine:
+  fr (requise): Votre adresse e-mail au format nom@domaine.fr (requise)
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre domaine d'activité: Votre domaine d'activité
