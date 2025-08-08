@@ -159,7 +159,9 @@ export default function FeedbackForm({
 		'Veuillez entrer un message avant de soumettre le formulaire.'
 	)
 
-	const requiredErrorEmail = t('Veuillez renseigner votre adresse email.')
+	const requiredErrorEmail = t(
+		'Veuillez renseigner votre adresse email. Exemple : contact@mon-entreprise.beta.gouv.fr .'
+	)
 
 	const resetSubmitErrorField = (field: keyof SubmitError) =>
 		submitError?.[field]
@@ -248,9 +250,8 @@ export default function FeedbackForm({
 									id="email"
 									name="email"
 									type="email"
-									label={t('Votre adresse e-mail (requise)')}
-									description={t(
-										'Renseigner une adresse e-mail (au format nom@domaine.com) pour recevoir une réponse'
+									label={t(
+										'Votre adresse e-mail au format nom@domaine.fr (requise)'
 									)}
 									isDisabled={isLoading}
 									maxLength={SHORT_MAX_LENGTH}
