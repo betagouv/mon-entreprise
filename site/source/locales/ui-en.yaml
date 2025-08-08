@@ -2117,6 +2117,7 @@ privacyPolicy:
     title: Who is responsible for my-company?
   recipients:
     table:
+      caption: List of subcontractors receiving personal data
       country: Destination country
       mailer: Sending e-mails
       processing: Treatment performed
