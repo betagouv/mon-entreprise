@@ -263,7 +263,7 @@ export default function FeedbackForm({
 
 							<div style={{ textAlign: 'end' }}>
 								<StyledButton isDisabled={isLoading} type="submit">
-									{t('Envoyer')}
+									{t('Envoyer le message')}
 								</StyledButton>
 							</div>
 						</form>
