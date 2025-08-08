@@ -9,10 +9,7 @@ export const CessationActivitéGoals = () => {
 	const { t } = useTranslation()
 
 	return (
-		<SimulationGoals
-			legend="Vos revenus d’activité l’année de cessation"
-			toggles={<CessationActivitéToggles />}
-		>
+		<SimulationGoals toggles={<CessationActivitéToggles />}>
 			<Condition expression="entreprise . imposition = 'IR'">
 				<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 					<SimulationGoal

@@ -1,6 +1,6 @@
 import { css, styled } from 'styled-components'
 
-const baseHeading = css`
+export const baseHeading = css`
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */

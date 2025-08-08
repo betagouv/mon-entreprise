@@ -48,7 +48,7 @@ export const useCMG = () => {
 			updateSituation((prev) => ({ ...prev, parentIsolé }))
 		},
 
-		ressources: (ressources: O.Option<Montant<'EuroParAn'>>) => {
+		ressources: (ressources: O.Option<Montant<'€/an'>>) => {
 			updateSituation((prev) => ({ ...prev, ressources }))
 		},
 

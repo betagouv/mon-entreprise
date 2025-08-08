@@ -98,137 +98,121 @@ export default function Footer() {
 
 				<Container backgroundColor={(theme) => theme.colors.bases.primary[700]}>
 					<ForceThemeProvider forceTheme="dark">
-						<FooterContainer
-							className="print-hidden"
-							role="navigation"
-							aria-label={t('Menu de navigation')}
-						>
+						<FooterContainer className="print-hidden">
 							<FooterColumn>
 								{language === 'fr' && (
-									<nav title="Première colonne du menu">
-										<ul>
-											<StyledLi>
-												<Link to={absoluteSitePaths.plan} noUnderline>
-													<Trans>Plan du site</Trans>
-												</Link>
-											</StyledLi>
-											<StyledLi>
-												<Link
-													to={absoluteSitePaths.nouveautés.index}
-													noUnderline
-												>
-													Nouveautés
-												</Link>
-											</StyledLi>
-											<StyledLi>
-												<Link to={absoluteSitePaths.budget} noUnderline>
-													Budget
-												</Link>
-											</StyledLi>
-											<StyledLi>
-												<Link to={absoluteSitePaths.stats} noUnderline>
-													Statistiques
-												</Link>
-											</StyledLi>
-										</ul>
-									</nav>
+									<ul>
+										<StyledLi>
+											<Link to={absoluteSitePaths.plan} noUnderline>
+												<Trans>Plan du site</Trans>
+											</Link>
+										</StyledLi>
+										<StyledLi>
+											<Link to={absoluteSitePaths.nouveautés.index} noUnderline>
+												Nouveautés
+											</Link>
+										</StyledLi>
+										<StyledLi>
+											<Link to={absoluteSitePaths.budget} noUnderline>
+												Budget
+											</Link>
+										</StyledLi>
+										<StyledLi>
+											<Link to={absoluteSitePaths.stats} noUnderline>
+												Statistiques
+											</Link>
+										</StyledLi>
+									</ul>
 								)}
 							</FooterColumn>
 							<FooterColumn>
-								<nav title="Deuxième colonne du menu">
-									<ul>
+								<ul>
+									<StyledLi>
+										<Link to={absoluteSitePaths.développeur.index} noUnderline>
+											<Trans>Intégrer nos simulateurs</Trans>{' '}
+										</Link>
+									</StyledLi>
+									{language === 'fr' && (
 										<StyledLi>
-											<Link
-												to={absoluteSitePaths.développeur.index}
-												noUnderline
-											>
-												<Trans>Intégrer nos simulateurs</Trans>{' '}
-											</Link>
+											<InscriptionBetaTesteur />
 										</StyledLi>
-										{language === 'fr' && (
-											<StyledLi>
-												<InscriptionBetaTesteur />
-											</StyledLi>
-										)}
+									)}
+									<StyledLi>
+										<LinkAligned
+											href="https://github.com/betagouv/mon-entreprise"
+											noUnderline
+											aria-label={t(
+												'footer.github.new-window',
+												'Voir le code source sur Github, nouvelle fenêtre'
+											)}
+										>
+											<GithubIcon
+												style={{
+													width: '18px',
+													height: '18px',
+													verticalAlign: 'middle',
+													fill: '#e6edf3',
+												}}
+											/>
+											<Trans i18nKey="footer.github.text">
+												Voir le code source sur Github
+											</Trans>{' '}
+										</LinkAligned>
+									</StyledLi>
+									{altHref && (
 										<StyledLi>
 											<LinkAligned
-												href="https://github.com/betagouv/mon-entreprise"
+												href={altHref}
 												noUnderline
-												aria-label={t(
-													'footer.github.new-window',
-													'Voir le code source sur Github, nouvelle fenêtre'
-												)}
+												openInSameWindow
+												lang={isFrenchMode ? 'en' : 'fr'}
 											>
-												<GithubIcon
-													style={{
-														width: '18px',
-														height: '18px',
-														verticalAlign: 'middle',
-														fill: '#e6edf3',
-													}}
-												/>
-												<Trans i18nKey="footer.github.text">
-													Voir le code source sur Github
-												</Trans>{' '}
+												{isFrenchMode ? (
+													<>
+														<Emoji emoji="🇬🇧" /> Switch to the English version
+													</>
+												) : (
+													<>
+														<Emoji emoji="🇫🇷" /> Passer à la version française
+													</>
+												)}
 											</LinkAligned>
 										</StyledLi>
-										{altHref && (
-											<StyledLi>
-												<LinkAligned
-													href={altHref}
-													noUnderline
-													openInSameWindow
-													lang={isFrenchMode ? 'en' : 'fr'}
-												>
-													{isFrenchMode ? (
-														<>
-															<Emoji emoji="🇬🇧" /> Switch to the English version
-														</>
-													) : (
-														<>
-															<Emoji emoji="🇫🇷" /> Passer à la version française
-														</>
-													)}
-												</LinkAligned>
-											</StyledLi>
-										)}
-									</ul>
-								</nav>
+									)}
+								</ul>
 							</FooterColumn>
 
 							<FooterColumn>
-								<nav title="Troisième colonne du menu">
-									<ul>
+								<ul>
+									<StyledLi>
+										<Contact />
+									</StyledLi>
+									<StyledLi>
+										<LegalNotice />
+									</StyledLi>
+									<StyledLi>
+										<TermsOfUse />
+									</StyledLi>
+									<StyledLi>
+										<PrivacyPolicy />
+									</StyledLi>
+									{language === 'fr' && (
 										<StyledLi>
-											<Contact />
+											<Link
+												to={absoluteSitePaths.accessibilité}
+												aria-label={t(
+													'footer.accessibilitéAriaLabel',
+													'Accessibilité : partiellement conforme, en savoir plus'
+												)}
+												noUnderline
+											>
+												<Trans i18nKey="footer.accessibilité">
+													Accessibilité : partiellement conforme
+												</Trans>
+											</Link>
 										</StyledLi>
-										<StyledLi>
-											<LegalNotice />
-										</StyledLi>
-										<StyledLi>
-											<TermsOfUse />
-										</StyledLi>
-										<StyledLi>
-											<PrivacyPolicy />
-										</StyledLi>
-										{language === 'fr' && (
-											<StyledLi>
-												<Link
-													to={absoluteSitePaths.accessibilité}
-													aria-label={t(
-														'footer.accessibilitéAriaLabel',
-														'Accessibilité : partiellement conforme, en savoir plus'
-													)}
-													noUnderline
-												>
-													<Trans i18nKey="footer.accessibilité">
-														Accessibilité : partiellement conforme
-													</Trans>
-												</Link>
-											</StyledLi>
-										)}
-									</ul>
-								</nav>
+									)}
+								</ul>
 							</FooterColumn>
 						</FooterContainer>
 					</ForceThemeProvider>

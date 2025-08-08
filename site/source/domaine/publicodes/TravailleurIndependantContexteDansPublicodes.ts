@@ -8,7 +8,7 @@ export const TravailleurIndependantContexteDansPublicodes = {
 }
 
 export const TravailleurIndependantChiffreAffaireDansPublicodes = {
-	fromMontant: (montant: Montant<'EuroParAn'>) => ({
+	fromMontant: (montant: Montant<'€/an'>) => ({
 		"entreprise . chiffre d'affaires": `${montantToNumber(montant)} €/an`,
 	}),
 }

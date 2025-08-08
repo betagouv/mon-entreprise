@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
 
-import { estEuro, Montant } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
 
 type AnimatedTargetValueProps = {
 	value: Montant
@@ -56,16 +56,6 @@ export default function AnimatedTargetValue({
 		return null
 	}
 
-	const displayUnit = estEuro(value)
-		? '€'
-		: valueUnit === 'EuroParMois'
-		? '€/mois'
-		: valueUnit === 'EuroParAn'
-		? '€/an'
-		: valueUnit === 'EuroParJour'
-		? '€/jour'
-		: '€/heure'
-
 	return (
 		<div
 			className="print-hidden"
@@ -77,7 +67,7 @@ export default function AnimatedTargetValue({
 			}}
 		>
 			<StyledEvaporate>
-				{formatDifference(difference ?? 0, language, displayUnit)}
+				{formatDifference(difference ?? 0, language, valueUnit)}
 			</StyledEvaporate>
 		</div>
 	)

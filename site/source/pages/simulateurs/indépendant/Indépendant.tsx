@@ -3,7 +3,6 @@ import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import RuleInput from '@/components/conversation/RuleInput'
-import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
@@ -36,7 +35,6 @@ export default function IndépendantSimulation() {
 					}
 				/>
 				<IndépendantSimulationGoals
-					legend="Vos revenus d'indépendant"
 					toggles={
 						<>
 							<RuleInput
@@ -52,7 +50,6 @@ export default function IndépendantSimulation() {
 									)
 								}}
 							/>
-							<PeriodSwitch />
 						</>
 					}
 				/>

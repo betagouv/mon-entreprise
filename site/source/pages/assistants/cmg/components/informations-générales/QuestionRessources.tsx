@@ -26,7 +26,7 @@ export default function QuestionRessources() {
 			</DescriptionQuestion>
 			<MontantField
 				value={O.getOrUndefined(situation.ressources)}
-				unité="EuroParAn"
+				unité="€/an"
 				onChange={(montant) => set.ressources(O.fromNullable(montant))}
 				aria={{ labelledby: 'ressources-label' }}
 			/>

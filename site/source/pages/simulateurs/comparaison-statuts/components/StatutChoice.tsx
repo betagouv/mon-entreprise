@@ -23,14 +23,14 @@ const StatutChoice = ({
 	return (
 		<div>
 			<Spacing lg />
-			<Grid container spacing={4}>
-				<Grid item {...gridSizes}>
+			<Grid container spacing={4} as={Ul}>
+				<Grid item {...gridSizes} as="li">
 					<StatutBloc {...namedEngines[0]} hideCTA={hideCTA} />
 				</Grid>
-				<Grid item {...gridSizes}>
+				<Grid item {...gridSizes} as="li">
 					<StatutBloc {...namedEngines[1]} hideCTA={hideCTA} />
 				</Grid>
-				<Grid item {...gridSizes}>
+				<Grid item {...gridSizes} as="li">
 					{namedEngines[2] && (
 						<StatutBloc {...namedEngines[2]} hideCTA={hideCTA} />
 					)}

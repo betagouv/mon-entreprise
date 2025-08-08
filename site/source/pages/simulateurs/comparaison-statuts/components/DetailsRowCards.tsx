@@ -8,7 +8,7 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import RuleLink from '@/components/RuleLink'
-import { Body, Grid, HelpIcon, Strong } from '@/design-system'
+import { Body, Grid, HelpIcon, Strong, Ul } from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 import { getBestOption, OptionType } from '../utils'
@@ -86,7 +86,7 @@ const DetailsRowCards = ({
 		.filter((arrayOfStatus) => arrayOfStatus.length > 0)
 
 	return (
-		<Grid container spacing={4}>
+		<Grid container spacing={4} as={Ul}>
 			{groupedOptions.map((sameValueOptions) => {
 				const statusObject = sameValueOptions[0]
 
@@ -94,14 +94,14 @@ const DetailsRowCards = ({
 					<Grid
 						key={statusObject.name}
 						item
+						as="li"
 						{...getGridSizes(sameValueOptions.length, options.length)}
-						as="ul"
 					>
 						<StatusCard
 							statut={sameValueOptions.map(({ name }) => name)}
 							footerContent={footer?.(statusObject.engine)}
 							isBestOption={
-								sameValueOptions.length !== 3 &&
+								sameValueOptions.length !== options.length &&
 								bestOptionValue === statusObject.name
 							}
 						>
@@ -172,9 +172,10 @@ const DetailsRowCards = ({
 												<Precisions>{evolutionLabel}</Precisions>
 											)}
 										</Condition>
-
 										<Condition
-											expression={{ 'est non défini': expressionOrDottedName }}
+											expression={{
+												'est non défini': expressionOrDottedName,
+											}}
 											engine={statusObject.engine}
 										>
 											<StyledSmall>
@@ -194,11 +195,13 @@ const DetailsRowCards = ({
 		</Grid>
 	)
 }
+
 const StyledSmall = styled.small`
 	color: ${({ theme }) => theme.colors.extended.grey[600]};
 	font-weight: normal;
 	font-size: 80%;
 `
+
 const StyledRuleLink = styled(RuleLink)`
 	display: inline-flex;
 	margin-left: ${({ theme }) => theme.spacings.xxs};

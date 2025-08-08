@@ -7,7 +7,7 @@ const ItemTitle = ({ children }: { children: ReactNode }) => {
 	return (
 		<StyledContainer>
 			<StyledCircledArrowIcon />
-			<StyledH3>{children}</StyledH3>
+			<Title as={'span'}>{children}</Title>
 		</StyledContainer>
 	)
 }
@@ -20,10 +20,8 @@ const StyledCircledArrowIcon = styled(CircledArrowIcon)`
 	margin-right: 0.5rem;
 `
 
-const StyledH3 = styled(H3)`
+const Title = styled(H3)`
 	margin: 0;
-	text-align: left;
-	align-items: baseline;
 `
 const StyledContainer = styled.div`
 	display: flex;

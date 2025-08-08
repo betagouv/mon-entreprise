@@ -23,8 +23,8 @@ export type SimulationImpossible = RégimeInapplicable | SituationIncomplète
 export class RecettesSupérieuresAuPlafondAutoriséPourCeRégime extends Data.TaggedError(
 	'RecettesSupérieuresAuPlafondAutoriséPourCeRégime'
 )<{
-	recettes: Montant<'EuroParAn'>
-	plafond: Montant<'EuroParAn'>
+	recettes: Montant<'€/an'>
+	plafond: Montant<'€/an'>
 	régime: RegimeCotisation
 }> {
 	toString(): string {
@@ -35,8 +35,8 @@ export class RecettesSupérieuresAuPlafondAutoriséPourCeRégime extends Data.Ta
 export class RecettesInférieuresAuSeuilRequisPourCeRégime extends Data.TaggedError(
 	'RecettesInférieuresAuSeuilRequisPourCeRégime'
 )<{
-	recettes: Montant<'EuroParAn'>
-	seuil: Montant<'EuroParAn'>
+	recettes: Montant<'€/an'>
+	seuil: Montant<'€/an'>
 	régime: RegimeCotisation
 }> {
 	toString(): string {

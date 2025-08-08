@@ -7,7 +7,7 @@ import { moins, Montant } from '@/domaine/Montant'
 
 export const calculeRevenuNet = (
 	situation: SituationÉconomieCollaborativeValide
-): Either.Either<Montant<'EuroParAn'>, SimulationImpossible> =>
+): Either.Either<Montant<'€/an'>, SimulationImpossible> =>
 	pipe(
 		calculeCotisations(situation),
 		Either.map((cotisations) =>

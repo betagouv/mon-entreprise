@@ -14,10 +14,6 @@ import { useTracking } from '../ATInternetTracking'
 import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
-const ButtonLabel = styled.span`
-	margin-left: 1rem;
-`
-
 export interface CustomSimulationButton {
 	href: string
 	title: string
@@ -66,13 +62,13 @@ export default function ShareOrSaveSimulationBanner({
 		<>
 			<Spacing lg />
 			<Grid
+				as={LinksList}
 				container
 				className=" print-hidden"
 				spacing={4}
 				style={{
 					justifyContent: 'center',
 				}}
-				role="list"
 			>
 				{customSimulationbutton && (
 					<Grid item xs={12} sm="auto" role="listitem">
@@ -83,7 +79,7 @@ export default function ShareOrSaveSimulationBanner({
 				)}
 
 				{share && (
-					<Grid item xs={12} sm="auto" role="listitem">
+					<Grid as="li" item xs={12} sm="auto">
 						<PopoverWithTrigger
 							title={t('shareSimulation.modal.title', 'Votre lien de partage')}
 							trigger={(buttonProps) => (
@@ -121,7 +117,7 @@ export default function ShareOrSaveSimulationBanner({
 				)}
 
 				{print && typeof window.print === 'function' && (
-					<Grid item xs={12} sm="auto" role="listitem">
+					<Grid as="li" item xs={12} sm="auto">
 						<Button
 							light
 							size="XS"
@@ -139,7 +135,7 @@ export default function ShareOrSaveSimulationBanner({
 				)}
 
 				{conseillersEntreprises && (
-					<Grid item xs={12} sm="auto" role="listitem">
+					<Grid as="li" item xs={12} sm="auto">
 						<ConseillersEntreprisesButton variant="recrutement" />
 					</Grid>
 				)}
@@ -147,3 +143,11 @@ export default function ShareOrSaveSimulationBanner({
 		</>
 	)
 }
+
+const ButtonLabel = styled.span`
+	margin-left: 1rem;
+`
+
+const LinksList = styled.ul`
+	list-style: none;
+`

@@ -3,6 +3,7 @@ import Plausible from 'plausible-tracker'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 
 class PlausibleService {
+	// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 	private plausible: ReturnType<typeof Plausible> | null = null
 	private isTrackingDisabled = false
 

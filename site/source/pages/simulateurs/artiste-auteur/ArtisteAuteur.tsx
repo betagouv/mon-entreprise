@@ -41,10 +41,8 @@ export default function ArtisteAuteur() {
 						</Body>
 					}
 				/>
-				<SimulationGoals
-					legend="Vos revenus d'artiste auteur"
-					toggles={<PeriodSwitch />}
-				>
+				<SimulationGoals>
+					<PeriodSwitch />
 					<SimulationGoal dottedName="artiste-auteur . revenus . traitements et salaires" />
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . recettes" />
 					<SimulationGoal dottedName="artiste-auteur . revenus . BNC . frais réels" />

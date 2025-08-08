@@ -15,7 +15,7 @@ type RésultatRégime =
 	| {
 			régime: RegimeCotisation
 			applicable: true
-			cotisations: Montant<'EuroParAn'>
+			cotisations: Montant<'€/an'>
 	  }
 	| {
 			régime: RegimeCotisation

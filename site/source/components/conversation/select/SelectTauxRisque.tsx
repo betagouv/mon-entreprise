@@ -27,11 +27,13 @@ export interface Result {
 function SelectComponent({
 	onChange,
 	onSubmit,
+	id,
 	options,
 	autoFocus,
 }: {
 	options: Result[]
 	autoFocus?: boolean
+	id?: string
 	onChange?: (value: string | undefined) => void
 	onSubmit?: () => void
 }) {
@@ -62,6 +64,7 @@ function SelectComponent({
 	return (
 		<>
 			<TextField
+				id={id}
 				type="search"
 				placeholder={t("Saisissez votre domaine d'activité")}
 				aria-label={t("Votre domaine d'activité")}

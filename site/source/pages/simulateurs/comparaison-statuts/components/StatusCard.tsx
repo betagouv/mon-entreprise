@@ -19,7 +19,7 @@ const StatusCard = ({
 	isBestOption,
 }: StatutCardType) => {
 	return (
-		<StyledCardContainer $inert as="li">
+		<StyledCardContainer $inert>
 			<CardBody>
 				<Grid container spacing={1}>
 					{status.map((statusString) => (

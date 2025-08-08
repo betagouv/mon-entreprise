@@ -21,16 +21,16 @@ export const Basic: Story = {
 		<RadioCardGroup {...args}>
 			<RadioCard
 				value="valueA"
-				label={'Title A'}
+				label="Title A"
 				description={'ceci est une description'}
 			/>
 			<RadioCard
 				value="valueB"
-				label={'Title B'}
+				label="Title B"
 				description={'ceci est une description'}
 			/>
-			<RadioCard value="valueC" label={'Title C'} />
-			<RadioCard isDisabled value="valueD" label={'RadioCard disabled'} />
+			<RadioCard value="valueC" label="Title C" />
+			<RadioCard isDisabled value="valueD" label="RadioCard disabled" />
 		</RadioCardGroup>
 	),
 	args: {},

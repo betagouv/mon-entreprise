@@ -65,6 +65,7 @@ export default function Options() {
 							'Commencer'
 						)}
 						bodyAs="div"
+						aria-label="Commencer à intégrer un simulateur"
 					>
 						<Body>
 							<Trans i18nKey="pages.développeur.home.choice.iframe.body">
@@ -85,6 +86,7 @@ export default function Options() {
 						to={absoluteSitePaths.développeur.api}
 						ctaLabel={t('pages.développeur.home.choice.api.cta', 'Commencer')}
 						bodyAs="div"
+						aria-label="Commencer à utiliser notre API REST"
 					>
 						<Body>
 							<Trans i18nKey="pages.développeur.home.choice.api.body">
@@ -108,6 +110,7 @@ export default function Options() {
 							'Commencer'
 						)}
 						bodyAs="div"
+						aria-label="Commencer à utiliser un tableur"
 					>
 						<Body>
 							<Trans i18nKey="pages.développeur.home.choice.spreadsheet.body">
@@ -126,6 +129,7 @@ export default function Options() {
 						)}
 						to={absoluteSitePaths.développeur.library}
 						ctaLabel={t('pages.développeur.choice.library.cta', 'Commencer')}
+						aria-label="Commencer avec la librairie de calcul"
 					>
 						<Trans i18nKey="pages.développeur.choice.library.body">
 							L'intégralité du moteur de calcul socio-fiscal développé par
@@ -141,6 +145,7 @@ export default function Options() {
 						title={t('pages.développeur.choice.publicodes.title', 'Publicodes')}
 						ctaLabel={t('pages.développeur.choice.publicodes.cta', 'Découvrir')}
 						href="https://publi.codes/"
+						aria-label="Découvrir Publicodes, nouvelle fenêtre"
 					>
 						<Trans i18nKey="pages.développeur.choice.publicodes.body">
 							Nos outils sont propulsés par Publicodes, un nouveau langage pour
@@ -160,6 +165,7 @@ export default function Options() {
 						)}
 						ctaLabel={t('pages.développeur.choice.github.cta', 'Commencer')}
 						href="https://github.com/betagouv/mon-entreprise"
+						aria-label="Commencer à contribuer sur GitHub, nouvelle fenêtre"
 					>
 						<Trans i18nKey="pages.développeur.choice.github.body">
 							Tous nos outils sont ouverts et développés publiquement sur

@@ -88,12 +88,18 @@ export default function ImpositionSection() {
 									</Trans>
 								</SmallBody>
 								<BigInput>
+									<SmallBody
+										as="label"
+										htmlFor="dirigeant___rémunération___totale-input"
+									>
+										{t('Résultat fiscal')}
+									</SmallBody>
+
 									<RuleInput
 										dottedName="dirigeant . rémunération . totale"
 										onChange={setSituation}
 										hideDefaultValue
 										displayedUnit="€"
-										aria-label={t('Résultat fiscal')}
 									/>
 								</BigInput>
 							</Condition>

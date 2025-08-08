@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 
 import { Spacing } from '../layout'
 import { Link } from '../typography/link'
-import { SmallBody } from '../typography/paragraphs'
+import { Body } from '../typography/paragraphs'
 
 export type InputSuggestionsRecord<T> = Record<string, T>
 
@@ -71,7 +71,7 @@ export function InputSuggestions<T>({
 	)
 }
 
-export const StyledInputSuggestion = styled(SmallBody)`
+export const StyledInputSuggestion = styled(Body)`
 	display: flex;
 	justify-content: flex-end;
 	> * {
@@ -79,4 +79,5 @@ export const StyledInputSuggestion = styled(SmallBody)`
 	}
 	gap: ${({ theme }) => theme.spacings.sm};
 	flex-wrap: wrap;
+	margin-top: 0.5rem !important;
 `
