@@ -95,8 +95,6 @@ EntrepriseSearchField:
     entreprise. Exemple : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET
   placeholder: "Exemple : Café de la gare ou 40123778000127"
-Envoyer: Envoyer
-"Exemple : Des informations plus claires, un calcul détaillé...": "Exemple : Des informations plus claires, un calcul détaillé..."
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
 Fermer: Fermer
@@ -186,7 +184,6 @@ Prochaines questions: Prochaines questions
 Précédent: Précédent
 Prévisualisation: Prévisualisation
 Période de calcul: Période de calcul
-Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
 Quel est l’effectif de votre entreprise ?: Quel est l’effectif de votre entreprise ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
@@ -254,12 +251,6 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
-"Veuillez renseigner votre adresse email. Exemple : contact@mon-entreprise":
-  beta:
-    gouv:
-      fr .: "Veuillez renseigner votre adresse email. Exemple :
-        contact@mon-entreprise.beta.gouv.fr ."
 Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir la fiche de paie: Voir la fiche de paie
 Voir les autres simulateurs: Voir les autres simulateurs
@@ -271,8 +262,6 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos cotisations pour l’année précédente: Vos cotisations pour l’année précédente
-Votre adresse e-mail au format nom@domaine:
-  fr (requise): Votre adresse e-mail au format nom@domaine.fr (requise)
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre domaine d'activité: Votre domaine d'activité
@@ -457,6 +446,16 @@ comparaisonRégimes:
 components:
   feedback:
     form:
+      email:
+        error: "Veuillez renseigner votre adresse email. Exemple :
+          contact@mon-entreprise.beta.gouv.fr ."
+        format: Votre adresse e-mail au format nom@domaine.fr (requise)
+      message:
+        error: Veuillez entrer un message avant de soumettre le formulaire.
+        explanations: Éviter de communiquer des informations personnelles
+        label: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+        placeholder: "Exemple : Des informations plus claires, un calcul détaillé..."
+      send: Envoyer le message
       share:
         checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
           répondre.
@@ -2494,6 +2493,5 @@ warning:
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}
-Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?

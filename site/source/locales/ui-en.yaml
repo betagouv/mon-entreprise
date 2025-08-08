@@ -90,8 +90,6 @@ EntrepriseSearchField:
     Example: 40123778000127"
   label: Company name, SIREN or SIRET
   placeholder: "Example: Café de la gare or 40123778000127"
-Envoyer: Send
-"Exemple : Des informations plus claires, un calcul détaillé...": "Example: clearer information, detailed calculation..."
 ExportSimulation:
   Banner: Print or save as PDF
 Fermer: Close
@@ -177,7 +175,6 @@ Prochaines questions: Next questions
 Précédent: Previous
 Prévisualisation: Preview
 Période de calcul: Calculation period
-Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
@@ -242,12 +239,6 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
-Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
-"Veuillez renseigner votre adresse email. Exemple : contact@mon-entreprise":
-  beta:
-    gouv:
-      fr .: "Please enter your email address. Example:
-        contact@mon-entreprise.beta.gouv.fr ."
 Voir la fiche Urssaf: See the Urssaf sheet
 Voir la fiche de paie: View pay slip
 Voir les autres simulateurs: See other simulators
@@ -257,8 +248,6 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Vos cotisations pour l’année précédente: Your contributions for the previous year
-Votre adresse e-mail au format nom@domaine:
-  fr (requise): Your e-mail address in nom@domaine.fr format (required)
 Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
 Votre domaine d'activité: Your field of activity
@@ -434,6 +423,16 @@ comparaisonRégimes:
 components:
   feedback:
     form:
+      email:
+        error: "Please enter your email address. Example:
+          contact@mon-entreprise.beta.gouv.fr ."
+        format: Your e-mail address in nom@domaine.fr format (required)
+      message:
+        error: Please enter a message before submitting the form.
+        explanations: Avoid giving out personal information
+        label: What can we do better to meet your expectations?
+        placeholder: "Example: clearer information, detailed calculation..."
+      send: Send message
       share:
         checkbox: I'd like to share my latest simulation with you to help you respond
           better.
@@ -2353,6 +2352,5 @@ warning:
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 Étape {{ total }} sur {{ maxValue }}: Step {{ total }} on {{ maxValue }}
-Éviter de communiquer des informations personnelles: Avoid giving out personal information
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered situation?
