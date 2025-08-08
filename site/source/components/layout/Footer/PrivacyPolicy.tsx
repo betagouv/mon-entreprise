@@ -137,7 +137,7 @@ export default function PrivacyPolicy({
 					'Qui sont les destinataires de vos données ?'
 				)}
 			</H2>
-			<Body>
+			<Body as="div">
 				<StyledTable>
 					<caption className="sr-only">
 						{t(
