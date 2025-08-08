@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import { baseHeading, CircledArrowIcon } from '@/design-system'
+import { CircledArrowIcon, H3 } from '@/design-system'
 
 const ItemTitle = ({ children }: { children: ReactNode }) => {
 	return (
 		<StyledContainer>
 			<StyledCircledArrowIcon />
-			<Title>{children}</Title>
+			<Title as={'span'}>{children}</Title>
 		</StyledContainer>
 	)
 }
@@ -20,10 +20,8 @@ const StyledCircledArrowIcon = styled(CircledArrowIcon)`
 	margin-right: 0.5rem;
 `
 
-const Title = styled.span`
-	${baseHeading}
-	font-size: 1.25rem;
-	line-height: 1.75rem;
+const Title = styled(H3)`
+	margin: 0;
 `
 const StyledContainer = styled.div`
 	display: flex;
