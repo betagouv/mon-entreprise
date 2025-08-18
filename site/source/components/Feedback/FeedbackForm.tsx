@@ -26,6 +26,8 @@ type SubmitError = {
 }
 
 const SHORT_MAX_LENGTH = 254
+const EMAIL_REGEX =
+	/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?(?:\.[a-zA-Z]{2,})?$/
 
 const FeedbackThankYouContent = () => {
 	return (
@@ -155,14 +157,19 @@ export default function FeedbackForm({
 		}
 	}
 
-	const requiredErrorMessage = t(
+	const requiredMessageError = t(
 		'components.feedback.form.message.error',
 		'Veuillez entrer un message avant de soumettre le formulaire.'
 	)
 
-	const requiredErrorEmail = t(
+	const requiredEmailError = t(
 		'components.feedback.form.email.error',
-		'Veuillez renseigner votre adresse email. Exemple : contact@mon-entreprise.beta.gouv.fr .'
+		'Veuillez renseigner votre adresse email. Exemple : contact@mon-entreprise.beta.gouv.fr'
+	)
+
+	const invalidEmailError = t(
+		'components.feedback.form.email.invalid',
+		'Veuillez renseigner une adresse email valide. Exemple : contact@mon-entreprise.beta.gouv.fr'
 	)
 
 	const resetSubmitErrorField = (field: keyof SubmitError) =>
@@ -182,6 +189,7 @@ export default function FeedbackForm({
 					)}
 					<StyledFeedback>
 						<form
+							noValidate
 							onSubmit={(e) => {
 								e.preventDefault()
 								const message = (
@@ -194,11 +202,19 @@ export default function FeedbackForm({
 								// message et email sont requis
 								const isMessageEmpty = !message || message === ''
 								const isEmailEmpty = !email || email === ''
+								const isEmailInvalid = !email.match(EMAIL_REGEX)
+
+								const messageError = isMessageEmpty ? requiredMessageError : ''
+								const emailError = isEmailEmpty
+									? requiredEmailError
+									: isEmailInvalid
+									? invalidEmailError
+									: ''
 
 								if (isMessageEmpty || isEmailEmpty) {
 									setSubmitError({
-										message: isMessageEmpty ? requiredErrorMessage : '',
-										email: isEmailEmpty ? requiredErrorEmail : '',
+										message: messageError,
+										email: emailError,
 									})
 
 									return
@@ -224,7 +240,7 @@ export default function FeedbackForm({
 								onChange={resetSubmitErrorField('message')}
 								description={t(
 									'components.feedback.form.message.explanations',
-									'Éviter de communiquer des informations personnelles'
+									'Évitez de communiquer des informations personnelles'
 								)}
 								id="message"
 								rows={7}
