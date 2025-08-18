@@ -118,13 +118,14 @@ export const StyledLabel = styled.label`
 `
 
 export const StyledDescription = styled(ExtraSmallBody)`
+	margin-top: ${({ theme }) => `${theme.spacings.xxs}`};
 	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.sm}`};
 	will-change: color;
 	transition: color 0.2s;
-	margin-top: ${({ theme }) => `${theme.spacings.xs}`};
 `
 
 export const StyledErrorMessage = styled(StyledDescription)`
+	padding: 0;
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
 	background-color: inherit;
 `
