@@ -448,11 +448,13 @@ components:
     form:
       email:
         error: "Veuillez renseigner votre adresse email. Exemple :
-          contact@mon-entreprise.beta.gouv.fr ."
+          contact@mon-entreprise.beta.gouv.fr"
         format: Votre adresse e-mail au format nom@domaine.fr (requise)
+        invalid: "Veuillez renseigner une adresse email valide. Exemple :
+          contact@mon-entreprise.beta.gouv.fr"
       message:
         error: Veuillez entrer un message avant de soumettre le formulaire.
-        explanations: Éviter de communiquer des informations personnelles
+        explanations: Évitez de communiquer des informations personnelles
         label: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
         placeholder: "Exemple : Des informations plus claires, un calcul détaillé..."
       send: Envoyer le message
