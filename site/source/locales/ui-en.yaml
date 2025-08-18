@@ -425,8 +425,10 @@ components:
     form:
       email:
         error: "Please enter your email address. Example:
-          contact@mon-entreprise.beta.gouv.fr ."
+          contact@mon-entreprise.beta.gouv.fr"
         format: Your e-mail address in nom@domaine.fr format (required)
+        invalid: "Please enter a valid email address. Example:
+          contact@mon-entreprise.beta.gouv.fr"
       message:
         error: Please enter a message before submitting the form.
         explanations: Avoid giving out personal information
