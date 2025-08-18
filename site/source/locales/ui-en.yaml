@@ -828,7 +828,7 @@ pages:
       enfants:
         add-button-label: Add a child
         date-de-naissance:
-          label: Date of birth
+          label: Date of birth in DD/MM/YYYY format
         erreurs:
           AeeH-invalide: There cannot be more children eligible for the AeeH than there
             are dependent children.
