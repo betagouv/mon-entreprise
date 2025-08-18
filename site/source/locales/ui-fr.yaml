@@ -874,7 +874,7 @@ pages:
       enfants:
         add-button-label: Ajouter un enfant
         date-de-naissance:
-          label: Date de naissance
+          label: Date de naissance au format JJ/MM/AAAA
         erreurs:
           AeeH-invalide: Il ne peut pas y avoir plus d’enfants concernés par l’AeeH que
             d’enfants à charge.
