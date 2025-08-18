@@ -161,10 +161,12 @@ export default function SimulateursEtAssistants() {
 					<SimulateurCard
 						{...simulators['déclaration-charges-sociales-indépendant']}
 						role="listitem"
+						titleLevel="h4"
 					/>
 					<SimulateurCard
 						{...simulators['déclaration-revenus-pamc']}
 						role="listitem"
+						titleLevel="h4"
 					/>
 				</Grid>
 

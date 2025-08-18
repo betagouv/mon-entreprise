@@ -8,6 +8,7 @@ type SimulateurCardProps = MergedSimulatorDataValues & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string
+	titleLevel?: 'h3' | 'h4'
 }
 
 export function SimulateurCard({
@@ -22,9 +23,12 @@ export function SimulateurCard({
 	small = false,
 	fromGérer = false,
 	role,
+	titleLevel = 'h3',
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
+
+	const TitleTag = titleLevel
 
 	const ctaLabel =
 		pathId.startsWith('assistants') || pathId.startsWith('gérer')
@@ -55,14 +59,14 @@ export function SimulateurCard({
 			) : (
 				<Card
 					title={
-						<>
+						<TitleTag>
 							{shortName}
 							{beta && (
 								<Chip type="info" icon={<Emoji emoji="🚧" />}>
 									Bêta
 								</Chip>
 							)}
-						</>
+						</TitleTag>
 					}
 					icon={<Emoji emoji={icône} />}
 					ctaLabel={ctaLabel}
