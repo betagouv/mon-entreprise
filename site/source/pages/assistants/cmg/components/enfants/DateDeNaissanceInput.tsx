@@ -26,7 +26,7 @@ export default function DateDeNaissanceInput({
 			<Label id={htmlForId}>
 				{t(
 					'pages.assistants.cmg.enfants.date-de-naissance.label',
-					'Date de naissance'
+					'Date de naissance au format JJ/MM/AAAA'
 				)}
 			</Label>
 			<DateField
