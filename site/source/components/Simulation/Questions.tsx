@@ -116,6 +116,10 @@ export function Questions<S extends Situation>({
 		.replaceAll(' . ', '_')
 		.replaceAll(' ', '-')
 
+	const questionCouranteLabel =
+		QuestionCourante?._tag === 'QuestionPublicodes' ?
+		evaluateQuestion(engine, engine.getRule(QuestionCourante.id)) : undefined
+
 	return (
 		nombreDeQuestions > 0 && (
 			<>
@@ -168,11 +172,8 @@ export function Questions<S extends Situation>({
 							{shouldBeWrappedByFieldset ? (
 								<fieldset>
 									<H3 as="legend">
-										{evaluateQuestion(
-											engine,
-											engine.getRule(QuestionCourante.id)
-										)}
-										<ExplicableRule light dottedName={QuestionCourante.id} />
+										{questionCouranteLabel}
+										<ExplicableRule light dottedName={QuestionCourante.id} ariaDescribedBy={questionCouranteLabel}/>
 									</H3>
 									<RuleInput
 										dottedName={QuestionCourante.id}
@@ -186,11 +187,8 @@ export function Questions<S extends Situation>({
 							) : (
 								<>
 									<H3 as="label" htmlFor={questionCouranteHtmlForId}>
-										{evaluateQuestion(
-											engine,
-											engine.getRule(QuestionCourante.id)
-										)}
-										<ExplicableRule light dottedName={QuestionCourante.id} />
+										{questionCouranteLabel}
+										<ExplicableRule light dottedName={QuestionCourante.id} ariaDescribedBy={questionCouranteLabel} />
 									</H3>
 									<RuleInput
 										id={questionCouranteHtmlForId}
