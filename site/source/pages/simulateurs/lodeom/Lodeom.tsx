@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
-import PeriodSwitch from '@/components/PeriodSwitch'
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
@@ -17,24 +16,6 @@ import LodeomSimulationGoals from './Goals'
 
 export default function LodeomSimulation() {
 	const currentZone = useZoneLodeom()
-	const { t } = useTranslation()
-	const periods = [
-		{
-			label: t('pages.simulateurs.lodeom.tab.month', 'Exonération mensuelle'),
-			unit: '€/mois',
-		},
-		{
-			label: t('pages.simulateurs.lodeom.tab.year', 'Exonération annuelle'),
-			unit: '€/an',
-		},
-		{
-			label: t(
-				'pages.simulateurs.lodeom.tab.month-by-month',
-				'Exonération mois par mois'
-			),
-			unit: '€',
-		},
-	]
 
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
@@ -54,10 +35,6 @@ export default function LodeomSimulation() {
 					}
 				/>
 				<LodeomSimulationGoals
-					legend={t(
-						'pages.simulateurs.lodeom.legend',
-						'Rémunération brute du salarié et exonération Lodeom applicable'
-					)}
 					toggles={
 						<>
 							<ZoneSwitch />
@@ -71,7 +48,6 @@ export default function LodeomSimulation() {
 									<EffectifSwitch />
 								</>
 							)}
-							<PeriodSwitch periods={periods} />
 						</>
 					}
 					régularisationMethod={

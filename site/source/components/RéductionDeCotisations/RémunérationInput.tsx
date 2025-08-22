@@ -31,7 +31,7 @@ export default function RémunérationInput({
 			value={
 				rémunérationBrute !== undefined ? euros(rémunérationBrute) : undefined
 			}
-			unité="Euro"
+			unité="€"
 			avecCentimes
 		/>
 	)

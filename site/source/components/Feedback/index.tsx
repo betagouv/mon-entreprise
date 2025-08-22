@@ -49,10 +49,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 				<FocusTrap>
 					<ForceThemeProvider forceTheme="dark">
 						<CloseButtonContainer>
-							<CloseButton
-								onClick={handleClose}
-								aria-label={t('Fermer le module "Donner son avis"')}
-							>
+							<CloseButton onClick={handleClose} aria-expanded={true}>
 								Fermer
 								<svg
 									role="img"
@@ -96,7 +93,6 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 			aria-label={t('Donner votre avis')}
 			onClick={() => setIsFormOpen(true)}
 			$isEmbedded={isEmbedded}
-			aria-haspopup="dialog"
 			aria-expanded={false}
 		>
 			<Emoji emoji="👋" />
@@ -108,7 +104,7 @@ const StyledButton = styled.button<{
 	$isEmbedded?: boolean
 }>`
 	position: fixed;
-	top: ${({ $isEmbedded }) => ($isEmbedded ? '2rem' : '10.5rem')};
+	top: ${({ $isEmbedded }) => ($isEmbedded ? '2rem' : '20%')};
 	right: 0;
 	width: 3.75rem;
 	height: 3.75rem;
@@ -171,7 +167,7 @@ const StyledButton = styled.button<{
 
 const Section = styled.section<{ $isEmbedded?: boolean }>`
 	position: fixed;
-	top: 10.5rem;
+	top: 20%;
 	${({ $isEmbedded }) => ($isEmbedded ? `top: 2rem;` : '')}
 	right: 0;
 	width: 17.375rem;

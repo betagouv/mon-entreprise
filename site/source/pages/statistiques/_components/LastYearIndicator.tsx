@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Body, Emoji, Grid, H2, Intro, Message, Strong } from '@/design-system'
+import { Emoji, Grid, H2, Intro, Message, Strong, Ul } from '@/design-system'
 
 import { QuestionRépondues, Satisfaction, Visites } from '../types'
 import {
@@ -59,8 +59,8 @@ export function LastYearIndicator({
 	return (
 		<>
 			<H2>Retour sur l'année {lastYear.date.slice(0, 4)}</H2>
-			<Grid container columnSpacing={4} role="list">
-				<Grid item xs={12} sm={6} md={4} role="listitem">
+			<Grid as={Ul} container columnSpacing={4}>
+				<Grid as="li" item xs={12} sm={6} md={4}>
 					<Message border={false} icon={<Emoji emoji="🛎️" />}>
 						<Intro>
 							<Strong>
@@ -70,7 +70,8 @@ export function LastYearIndicator({
 						</Intro>
 					</Message>
 				</Grid>
-				<Grid item xs={12} sm={6} md={4} role="listitem">
+
+				<Grid as="li" item xs={12} sm={6} md={4}>
 					<Message
 						border={false}
 						icon={<Emoji emoji={emojiSatisfaction(satisfactionRate)} />}
@@ -82,7 +83,7 @@ export function LastYearIndicator({
 					</Message>
 				</Grid>
 
-				<Grid item xs={12} sm={6} md={4} role="listitem">
+				<Grid as="li" item xs={12} sm={6} md={4}>
 					<Message border={false} icon={<Emoji emoji="🏇" />}>
 						<Intro>
 							<Strong>{conversionRate}</Strong> taux de conversion
@@ -90,15 +91,16 @@ export function LastYearIndicator({
 					</Message>
 				</Grid>
 
-				<Grid item xs={12} sm={6} md={4} role="listitem">
+				<Grid as="li" item xs={12} sm={6} md={4}>
 					<Message border={false} icon={<Emoji emoji="📈" />}>
-						<Body>
+						<Intro>
 							<Strong>{formatIndicator(visitesLastYear, language)}</Strong>{' '}
 							visites
-						</Body>
+						</Intro>
 					</Message>
 				</Grid>
-				<Grid item xs={12} sm={6} md={4} role="listitem">
+
+				<Grid as="li" item xs={12} sm={6} md={4}>
 					<Message
 						border={false}
 						icon={<Emoji emoji="👋" />}
@@ -110,12 +112,12 @@ export function LastYearIndicator({
 								: 'primary'
 						}
 					>
-						<Body>
+						<Intro>
 							<Strong>
 								{formatIndicator(cumulSatisfaction.total, language)}
 							</Strong>{' '}
 							avis collectés
-						</Body>
+						</Intro>
 					</Message>
 				</Grid>
 			</Grid>

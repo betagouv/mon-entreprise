@@ -1,17 +1,9 @@
 import { Data } from 'effect'
 import { isObject } from 'effect/Predicate'
 
-export type UnitéQuantité =
-	| '%'
-	| 'heures/mois'
-	| 'jours'
-	| 'jours ouvrés'
-	| 'mois'
-	| 'trimestre civil'
-	| 'année civile'
-	| 'employés'
+import { UnitéQuantité } from './Unités'
 
-export interface Quantité<T extends string = string> {
+export interface Quantité<T extends UnitéQuantité = UnitéQuantité> {
 	readonly _tag: 'Quantité'
 	readonly valeur: number
 	readonly unité: T
@@ -37,6 +29,9 @@ export const pourcentage = (valeur: number): Quantité<'%'> =>
 export const heuresParMois = (valeur: number): Quantité<'heures/mois'> =>
 	quantité(valeur, 'heures/mois')
 
+export const heuresParSemaine = (valeur: number): Quantité<'heures/semaine'> =>
+	quantité(valeur, 'heures/semaine')
+
 export const jours = (valeur: number): Quantité<'jours'> =>
 	quantité(valeur, 'jours')
 
@@ -55,7 +50,7 @@ export const annéeCivile = (valeur: number): Quantité<'année civile'> =>
 export const employés = (valeur: number): Quantité<'employés'> =>
 	quantité(valeur, 'employés')
 
-export const isUnitéQuantité = (unité: string): unité is UnitéQuantité => {
+export const isUnitéQuantité = (unité?: string): unité is UnitéQuantité => {
 	const unités: UnitéQuantité[] = [
 		'%',
 		'heures/mois',

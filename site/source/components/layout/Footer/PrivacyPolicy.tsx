@@ -137,8 +137,14 @@ export default function PrivacyPolicy({
 					'Qui sont les destinataires de vos données ?'
 				)}
 			</H2>
-			<Body>
+			<Body as="div">
 				<StyledTable>
+					<caption className="sr-only">
+						{t(
+							'privacyPolicy.recipients.table.caption',
+							'Liste des sous-traitants destinataires des données à caractère personnel'
+						)}
+					</caption>
 					<thead>
 						<tr>
 							<th scope="col">

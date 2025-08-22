@@ -14,7 +14,7 @@ describe('PublicodesAdapter', () => {
 		engine = new Engine({
 			'heures supplémentaires': {
 				valeur: 10,
-				unité: 'heures/mois',
+				unité: 'heure/mois',
 			},
 			'pourcentage majoration': {
 				valeur: 25,
@@ -24,9 +24,13 @@ describe('PublicodesAdapter', () => {
 				valeur: 6,
 				unité: 'mois',
 			},
+			ancienneté: {
+				valeur: 3,
+				unité: 'année civile',
+			},
 			'nombre employés': {
 				valeur: 50,
-				unité: 'employés',
+				unité: 'employé',
 			},
 			salaire: {
 				valeur: 2000,
@@ -38,7 +42,7 @@ describe('PublicodesAdapter', () => {
 	})
 
 	describe('decode', () => {
-		it('décode une quantité avec unité heures/mois', () => {
+		it('décode une quantité avec unité heure/mois', () => {
 			const node = engine.evaluate('heures supplémentaires')
 			const result = PublicodesAdapter.decode(node)
 
@@ -64,6 +68,32 @@ describe('PublicodesAdapter', () => {
 			}
 		})
 
+		it('décode une quantité avec unité invariable', () => {
+			const node = engine.evaluate('durée contrat')
+			const result = PublicodesAdapter.decode(node)
+
+			expect(O.isSome(result)).toBe(true)
+			const value = O.getOrNull(result)
+			expect(Quantité.isQuantité(value)).toBe(true)
+			if (Quantité.isQuantité(value)) {
+				expect(value.valeur).toBe(6)
+				expect(value.unité).toBe('mois')
+			}
+		})
+
+		it('décode une quantité avec unité en plusieurs mots', () => {
+			const node = engine.evaluate('ancienneté')
+			const result = PublicodesAdapter.decode(node)
+
+			expect(O.isSome(result)).toBe(true)
+			const value = O.getOrNull(result)
+			expect(Quantité.isQuantité(value)).toBe(true)
+			if (Quantité.isQuantité(value)) {
+				expect(value.valeur).toBe(3)
+				expect(value.unité).toBe('années civiles')
+			}
+		})
+
 		it('décode un montant', () => {
 			const node = engine.evaluate('salaire')
 			const result = PublicodesAdapter.decode(node)
@@ -71,6 +101,10 @@ describe('PublicodesAdapter', () => {
 			expect(O.isSome(result)).toBe(true)
 			const value = O.getOrNull(result)
 			expect(Montant.isMontant(value)).toBe(true)
+			if (Montant.isMontant(value)) {
+				expect(value.valeur).toBe(2000)
+				expect(value.unité).toBe('€/mois')
+			}
 		})
 
 		it('décode un nombre sans unité', () => {

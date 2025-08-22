@@ -23,6 +23,7 @@ import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { NoOp } from '@/utils/NoOp'
 
 interface DateInputProps {
+	id?: string
 	dottedName: DottedName
 	value?: IsoDate
 	onChange?: (value: IsoDate | undefined) => void
@@ -41,6 +42,7 @@ interface DateInputProps {
 }
 
 export const DateInput = ({
+	id,
 	suggestions = {},
 	onChange = NoOp,
 	missing,
@@ -92,6 +94,7 @@ export const DateInput = ({
 					/>
 				)}
 				<DateField
+					id={id}
 					aria-label={aria.label ?? title}
 					aria-labelledby={aria.labelledby}
 					defaultSelected={

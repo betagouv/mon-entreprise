@@ -7,7 +7,6 @@ import Engine, {
 	ASTNode,
 	EvaluatedNode,
 	PublicodesExpression,
-	serializeUnit,
 } from 'publicodes'
 
 import {
@@ -20,7 +19,9 @@ import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { isOuiNon } from '@/domaine/OuiNon'
-import { isQuantité, Quantité, quantité } from '@/domaine/Quantité'
+import { isQuantité, Quantité } from '@/domaine/Quantité'
+
+import { QuantitéAdapter } from './QuantitéAdapter'
 
 export type Nombre = number
 
@@ -51,17 +52,18 @@ const decode = (node: EvaluatedNode): O.Option<ValeurPublicodes> => {
 	}
 
 	if (typeof node.nodeValue === 'number') {
-		const unitString = node.unit && serializeUnit(node.unit)
-
-		if (unitString && ['€', '€/mois', '€/an'].includes(unitString)) {
+		if (node.unit?.numerators.includes('€')) {
 			return MontantAdapter.decode(node)
-		} else if (unitString) {
-			return O.some(quantité(node.nodeValue, unitString))
+		}
+
+		if (node.unit) {
+			return QuantitéAdapter.decode(node)
 		} else {
 			return O.some(node.nodeValue)
 		}
 	}
 
+	// eslint-disable-next-line no-console
 	console.warn('Incapable de décoder', node.nodeValue)
 
 	return O.none()
@@ -112,3 +114,23 @@ export const decodeSuggestions = <T extends ValeurPublicodes>(
 		R.filter(O.isSome),
 		R.map(O.getOrThrow)
 	) as Record<string, T>
+
+/**
+ * Décode l'attribut Publicodes "arrondi" qui peut :
+ * - être absent
+ * - valoir "oui"
+ * - valoir "1 décimale"
+ * - valoir "X décimales" avec X un nombre > 1
+ */
+export const decodeArrondi = (
+	arrondiPublicodes?: string
+): number | undefined => {
+	if (arrondiPublicodes === 'oui') {
+		return 0
+	}
+
+	const regExpMatch = arrondiPublicodes?.match(/^(\d+) décimales?$/)
+	if (regExpMatch) {
+		return +regExpMatch[1]
+	}
+}

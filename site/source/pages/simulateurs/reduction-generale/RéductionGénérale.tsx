@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
-import PeriodSwitch from '@/components/PeriodSwitch'
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
@@ -14,31 +13,6 @@ import CongésPayésSwitch from './components/CongésPayésSwitch'
 import RéductionGénéraleSimulationGoals from './Goals'
 
 export default function RéductionGénéraleSimulation() {
-	const { t } = useTranslation()
-	const periods = [
-		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.month',
-				'Réduction mensuelle'
-			),
-			unit: '€/mois',
-		},
-		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.year',
-				'Réduction annuelle'
-			),
-			unit: '€/an',
-		},
-		{
-			label: t(
-				'pages.simulateurs.réduction-générale.tab.month-by-month',
-				'Réduction mois par mois'
-			),
-			unit: '€',
-		},
-	]
-
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
 
@@ -62,10 +36,6 @@ export default function RéductionGénéraleSimulation() {
 					}
 				/>
 				<RéductionGénéraleSimulationGoals
-					legend={t(
-						'pages.simulateurs.réduction-générale.legend',
-						'Salaire brut du salarié et réduction générale applicable'
-					)}
 					toggles={
 						<>
 							<RégularisationSwitch
@@ -74,7 +44,6 @@ export default function RéductionGénéraleSimulation() {
 							/>
 							<EffectifSwitch />
 							<CongésPayésSwitch />
-							<PeriodSwitch periods={periods} />
 						</>
 					}
 					régularisationMethod={régularisationMethod}

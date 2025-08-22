@@ -21,9 +21,9 @@
 <0>Activité mixte</0>: <0>Activité mixte</0>
 <0>Impôt sur le revenu</0> (IR): <0>Impôt sur le revenu</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Impôt sur les sociétés</0> (IS)
-<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vrai vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
+<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
   <0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas
-  possible d'obtenir ce montant dans la vrai vie à cause d'un effet de seuil
+  possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil
   dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en
   modifiant la valeur renseignée.</1>
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Versement libératoire</0> de l'impôt sur le revenu
@@ -95,12 +95,9 @@ EntrepriseSearchField:
     entreprise. Exemple : 40123778000127"
   label: Nom de l'entreprise, SIREN ou SIRET
   placeholder: "Exemple : Café de la gare ou 40123778000127"
-Envoyer: Envoyer
-"Exemple : Des informations plus claires, un calcul détaillé...": "Exemple : Des informations plus claires, un calcul détaillé..."
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
 Fermer: Fermer
-Fermer le module "Donner son avis": Fermer le module "Donner son avis"
 Fiche de paie: Fiche de paie
 Frais de transport: Frais de transport
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
@@ -142,9 +139,7 @@ Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir
 Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
-Menu de navigation: Menu de navigation
 Message à caractère informatif: Message à caractère informatif
-Mode d'affichage: Mode d'affichage
 Modifier mes réponses: Modifier mes réponses
 Moins de 50 salariés: Moins de 50 salariés
 Mois: Mois
@@ -188,7 +183,7 @@ Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Précédent: Précédent
 Prévisualisation: Prévisualisation
-Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+Période de calcul: Période de calcul
 Quel est l’effectif de votre entreprise ?: Quel est l’effectif de votre entreprise ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
@@ -198,9 +193,6 @@ Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
 Remboursements et déductions diverses: Remboursements et déductions diverses
-Renseigner une adresse e-mail (au format nom@domaine:
-  com) pour recevoir une réponse: Renseigner une adresse e-mail (au format
-    nom@domaine.com) pour recevoir une réponse
 Replier: Replier
 Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
@@ -253,13 +245,12 @@ Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
 Trimestre: Trimestre
 Type: Type
+URL de votre simulation: URL de votre simulation
 Un avis sur cette page ?: Un avis sur cette page ?
 Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-Veuillez entrer un message avant de soumettre le formulaire.: Veuillez entrer un message avant de soumettre le formulaire.
-Veuillez renseigner votre adresse email.: Veuillez renseigner votre adresse email.
 Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir la fiche de paie: Voir la fiche de paie
 Voir les autres simulateurs: Voir les autres simulateurs
@@ -271,7 +262,6 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Vos cotisations pour l’année précédente: Vos cotisations pour l’année précédente
-Votre adresse e-mail (requise): Votre adresse e-mail (requise)
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre domaine d'activité: Votre domaine d'activité
@@ -366,7 +356,7 @@ choix-statut:
     question1:
       label: Comment gérez-vous cette entreprise ?
       plusieurs: À plusieurs
-      seul: Seul
+      seul: Seul / seule
     question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps ?
     question3:
       help:
@@ -456,6 +446,18 @@ comparaisonRégimes:
 components:
   feedback:
     form:
+      email:
+        error: "Veuillez renseigner votre adresse email. Exemple :
+          contact@mon-entreprise.beta.gouv.fr"
+        format: Votre adresse e-mail au format nom@domaine.fr (requise)
+        invalid: "Veuillez renseigner une adresse email valide. Exemple :
+          contact@mon-entreprise.beta.gouv.fr"
+      message:
+        error: Veuillez entrer un message avant de soumettre le formulaire.
+        explanations: Évitez de communiquer des informations personnelles
+        label: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
+        placeholder: "Exemple : Des informations plus claires, un calcul détaillé..."
+      send: Envoyer le message
       share:
         checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
           répondre.
@@ -671,6 +673,7 @@ library:
   title: Librairie de calcul
 loading: Chargement en cours...
 mai: mai
+main-menu: Menu principal
 mars: mars
 modifier-options:
   acre:
@@ -1283,26 +1286,27 @@ pages:
         mobilité</2><3><0><0>établissement . commune . taux versement
         mobilité</0></0></3><4>Dans le simulateur <2>salarié</2>, il suffit de
         renseigner la commune et le taux versement mobilité correspondant est
-        automatiquement déterminé.</4><5>Il vous faudra préciser le taux
-        vous-même pour refaire le calcul. Vous pouvez le retrouver :<1><0>En
-        saisissant votre commune dans un simulateur, puis en recherchant la
-        règle « versement mobilité » avec le bouton « rechercher » en haut à
-        droite</0><1>Grâce au <2>service dédié sur
-        urssaf.fr</2></1></1></5><6>Le taux collectif
+        automatiquement déterminé.</4><5><0>Il vous faudra préciser le taux
+        vous-même pour refaire le calcul. Vous pouvez le retrouver
+        :</0><1><0><0>En saisissant votre commune dans un simulateur, puis en
+        recherchant la règle « versement mobilité » avec le bouton « rechercher
+        » en haut à droite</0></0><1><0>Grâce au <2>service dédié sur
+        urssaf.fr</2></0></1></1></5><6>Le taux collectif
         AT/MP</6><7><0><0>établissement . taux ATMP . taux
         collectif</0></0></7><8>Ce taux collectif doit être retrouvé
-        manuellement. Vous pouvez utiliser :<1><0><0>Un export csv</0> du
-        tableau des taux nets collectifs paru au Journal Officiel</0><1>La
-        documentation <2>Cotisations AT/MP</2> de l’Assurance
-        Maladie</1></1></8></4>"
-      StepByStep: <0><0>Choisir le simulateur en fonction du calcul qui nous
+        manuellement. Vous pouvez utiliser :</8><9><0><0><0>Un export csv</0> du
+        tableau des taux nets collectifs paru au Journal
+        Officiel</0></0><1><0>La documentation <2>Cotisations AT/MP</2> de
+        l’Assurance Maladie</0></1></9></4>"
+      StepByStep: <0><0><0>Choisir le simulateur en fonction du calcul qui nous
         intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
-        calculer un net à partir du brut.</0><1><0>Effectuer une simulation avec
-        les données que l'on souhaite réutiliser</0><1></1>Par exemple <4>un
-        cadre à 3400 € brut avec des titres-restaurants</4>.</1><2><0>Aller sur
-        la page de documentation de la donnée à calculer</0><1></1>Par exemple
-        en cliquant sur « Salaire net » dans le simulateur, ou en recherchant «
-        Salaire net » dans la recherche en haut à droite.</2>
+        calculer un net à partir du brut.</0></0><1><0><0>Effectuer une
+        simulation avec les données que l'on souhaite réutiliser</0><1></1>Par
+        exemple <4>un cadre à 3400 € brut avec des
+        titres-restaurants</4>.</0></1><2><0><0>Aller sur la page de
+        documentation de la donnée à calculer</0><1></1>Par exemple en cliquant
+        sur « Salaire net » dans le simulateur, ou en recherchant « Salaire net
+        » dans la recherche en haut à droite.</0></2>
     couleur: "Quelle couleur ? "
     home:
       choice:
@@ -1573,10 +1577,10 @@ pages:
       items:
         gestion:
           conjoint:
-            body: "Vous êtes marié⋅e, pacsé⋅e ou en union libre avec une cheffe ou un chef
-              d’entreprise : il existe <1>3 statuts possibles</1> pour vous
-              (<4>conjoint⋅e collaborateurice</4>, <7>conjoint⋅e associé⋅e</7>
-              ou <10>conjoint⋅e salarié⋅e</10>)."
+            body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
+              statuts possibles</1> pour votre conjoint/conjointe
+              (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
+              <9>salarié/salairée</9>)."
             h4: Statut du conjoint / de la conjointe
           création:
             body: Les formalités de création d’une entreprise diffèrent selon les statuts et
@@ -1601,22 +1605,22 @@ pages:
             label: versés en deux fois
           title: La maternité, paternité et adoption
         prévoyance:
-          body: Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui les
-            <5>protège en cas d’invalidité</5> et assure à leurs proches une
+          body: Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui
+            vous <5>protège en cas d’invalidité</5> et assure à vos proches une
             <8>pension de réversion et un capital en cas de décès</8>.
           décès:
             body:
               "1": La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
                 (personnes qui sont à votre charge) sous certaines conditions.
               "2": En plus du capital décès, une <2>pension de réversion</2> peut être versée
-                à la conjointe survivante ou au conjoint survivant. Elle
-                correspond aux <5>droits à la retraite acquis par la défunte ou
-                le défunt</5> durant sa vie professionnelle.
-              "3": Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>, la
-                conjointe survivante ou le conjoint survivant peut bénéficier
-                d’une <5>rente de décès</5>.
-              "4": Un <1>capital « orphelin »</1> est versé aux <4>enfants des travailleurses
-                indépendant⋅es</4> décédé⋅es, sous certaines conditions.
+                à votre conjoint/conjointe. Elle correspond aux <5>droits à la
+                retraite que vous aurez acquis</5> durant sa vie
+                professionnelle.
+              "3": Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>,
+                votre conjoint/conjointe peut bénéficier d’une <4>rente de
+                décès</4>.
+              "4": En cas de décès, un <1>capital « orphelin »</1> est versé à<3> vos
+                enfants</3>, sous certaines conditions.
             h4: Décès
             label:
               "1": pour vos proches
@@ -1640,6 +1644,7 @@ pages:
               en considérant que vous avez cotisé suffisamment de trimestres (4
               trimestres par an) et que vous partez en retraite à l’âge requis
               pour obtenir un taux plein.
+            evolution-label: avec un taux plein
             h4: Retraite de base
           body: Le montant de votre retraite est constitué de <2>votre retraite de base +
             votre retraite complémentaire</2>.
@@ -1673,9 +1678,9 @@ pages:
             warning: Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier
               d’arrêt maladie.
           atmp:
-            body: "En cas d’<1>accident de travail</1>, de <4>maladie professionnelle</4> ou
-              d’un <7>accident sur le trajet domicile-travail</7>, vous serez
-              indemnisé⋅e à hauteur de :"
+            body: "En cas d’<1>accident du travail</1>, de <4>maladie professionnelle</4> ou
+              d’un <7>accident sur le trajet domicile-travail</7>, vous recevrez
+              une indemnisation de :"
             evolution-label: à partir du 29ème jour
             h4: Accident du travail et maladie professionnelle
           body: <0>Tous les statuts vous ouvrent le droit au <2>remboursement des
@@ -1826,7 +1831,6 @@ pages:
         simulateur: Lancer le simulateur
     impot-société:
       exercice: Exercice {{ year }}
-      légende: Résultat imposable de l’entreprise
       meta:
         description: Calculez votre impôt sur les sociétés
         title: Impôt sur les sociétés
@@ -1929,7 +1933,6 @@ pages:
       shortname: Location de logement meublé
       title: Simulateur de revenu pour location de logement meublé
     lodeom:
-      legend: Rémunération brute du salarié et exonération Lodeom applicable
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
@@ -2006,7 +2009,6 @@ pages:
           description: Calcul, déclaration, règles... Consultez le guide de l’Urssaf sur
             la réduction générale des cotisations.
           title: La réduction générale des cotisations
-      legend: Salaire brut du salarié et réduction générale applicable
       meta:
         description: Estimation du montant de la réduction générale des cotisations
           patronales (RGCP). Cette réduction est applicable pour les salaires
@@ -2205,6 +2207,7 @@ payslip:
     ne peut pas de substituer à une fiche de paie réelle. Pour plus
     d'informations, rendez-vous sur <2>service-public.fr</2>."
   repartition: Répartition du total chargé
+periode-calcul: Période de calcul
 points: points
 pourcentage: pourcentage
 previousSimulationBanner:
@@ -2245,6 +2248,7 @@ privacyPolicy:
     title: Qui est responsable de mon-entreprise ?
   recipients:
     table:
+      caption: Liste des sous-traitants destinataires des données à caractère personnel
       country: Pays destinataire
       mailer: Envoi d'e-mails
       processing: Traitement réalisé
@@ -2491,6 +2495,5 @@ warning:
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}
-Éviter de communiquer des informations personnelles: Éviter de communiquer des informations personnelles
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?

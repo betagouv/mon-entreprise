@@ -2,13 +2,7 @@ import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 
-import {
-	euros,
-	eurosParAn,
-	eurosParMois,
-	Montant,
-	unitéMonétaireToString,
-} from '@/domaine/Montant'
+import { euros, eurosParAn, eurosParMois, Montant } from '@/domaine/Montant'
 
 export const MontantAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Montant> => {
@@ -49,13 +43,7 @@ export const MontantAdapter = {
 	encode: (valeur: O.Option<Montant>) =>
 		pipe(
 			valeur,
-			O.map((m) => `${m.valeur} ${unitéMonétaireToString(m.unité)}`),
+			O.map((m) => `${m.valeur} ${m.unité}`),
 			O.getOrUndefined
 		) satisfies PublicodesExpression | undefined,
 }
-
-export type UnitéDeMontantPublicodes = '€/mois' | '€/an' | '€'
-export const estUneUnitéDeMontantPublicodes = (
-	unité?: string
-): unité is UnitéDeMontantPublicodes =>
-	unité === '€/mois' || unité === '€/an' || unité === '€'

@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Grid, H2, Spacing } from '@/design-system'
+import { Grid, H2, Spacing, Ul } from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
@@ -41,7 +41,7 @@ export default function NextSteps({
 			<H2>
 				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H2>
-			<Grid container spacing={3} role="list">
+			<Grid as={Ul} container spacing={3}>
 				<WhenAlreadyDefined dottedName="entreprise . SIREN">
 					<GridItem>
 						<AnnuaireEntreprises />
@@ -81,7 +81,7 @@ type GridItemProps = {
 	children: ReactNode
 }
 const GridItem = ({ children }: GridItemProps) => (
-	<Grid item xs={12} sm={6} lg={4} role="listitem">
+	<Grid as="li" item xs={12} sm={6} lg={4}>
 		{children}
 	</Grid>
 )

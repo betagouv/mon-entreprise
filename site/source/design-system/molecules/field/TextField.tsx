@@ -11,6 +11,7 @@ const LABEL_HEIGHT = '1rem'
 type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
+	id?: string
 	role?: string
 }
 
@@ -33,6 +34,7 @@ export default function TextField(props: TextFieldProps) {
 						'errorMessage'
 					) as HTMLAttributes<HTMLInputElement>)}
 					{...(inputProps as HTMLAttributes<HTMLInputElement>)}
+					{...(props.id && { id: props.id })}
 					role={props.role}
 					placeholder={
 						(inputProps as HTMLAttributes<HTMLInputElement>).placeholder ??
@@ -116,13 +118,14 @@ export const StyledLabel = styled.label`
 `
 
 export const StyledDescription = styled(ExtraSmallBody)`
+	margin-top: ${({ theme }) => `${theme.spacings.xxs}`};
 	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.sm}`};
 	will-change: color;
 	transition: color 0.2s;
-	margin-top: ${({ theme }) => `${theme.spacings.xs}`};
 `
 
 export const StyledErrorMessage = styled(StyledDescription)`
+	padding: 0;
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
 	background-color: inherit;
 `

@@ -62,9 +62,9 @@ function ChartItemBar({
 	)
 }
 
-const Value = styled.div`
+const Value = styled.p`
 	font-weight: bold;
-	margin-left: 1rem;
+	margin: 0 0 0 1rem;
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 

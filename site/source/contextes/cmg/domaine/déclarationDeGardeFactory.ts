@@ -23,13 +23,13 @@ export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 		return this
 	}
 
-	avecRémunération(rémunération: M.Montant<'Euro'>) {
+	avecRémunération(rémunération: M.Montant<'€'>) {
 		this.rémunération = O.some(rémunération)
 
 		return this
 	}
 
-	avecCMG(CMG: M.Montant<'Euro'>) {
+	avecCMG(CMG: M.Montant<'€'>) {
 		this.CMGPerçu = O.some(CMG)
 
 		return this
@@ -63,13 +63,13 @@ export class DéclarationsDeGardeGEDFactory {
 		return this
 	}
 
-	avecRémunération(rémunération: M.Montant<'Euro'>) {
+	avecRémunération(rémunération: M.Montant<'€'>) {
 		this.rémunération = O.some(rémunération)
 
 		return this
 	}
 
-	avecCMG(CMG: M.Montant<'Euro'>) {
+	avecCMG(CMG: M.Montant<'€'>) {
 		this.CMGPerçu = O.some(CMG)
 
 		return this

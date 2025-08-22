@@ -62,7 +62,7 @@ export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 export const calculeCMGRLinéarisé = (
 	déclarationDeGarde: DéclarationDeGarde,
 	enfantsÀCharge: EnfantsÀCharge,
-	revenuMensuel: M.Montant<'EuroParMois'>
+	revenuMensuel: M.Montant<'€/mois'>
 ) => {
 	const teh = tauxEffortHoraire(déclarationDeGarde.type, enfantsÀCharge) / 100
 	const coûtMensuel = coûtMensuelDeLaGarde(déclarationDeGarde)

@@ -19,11 +19,11 @@
 <0>Activité mixte</0>: <0>Mixed activity</0>
 <0>Impôt sur le revenu</0> (IR): <0>Income tax</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Corporate income tax</0> (IS)
-<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vrai vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
-  <0>The amount requested <1>cannot be calculated</1>...</0><1>It is not
+<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
+  <0>The amount requested <1>cannot be calculated...</1></0><1>It is not
   possible to obtain this amount in real life due to a threshold effect in the
-  calculation of contributions or tax. You can try again by changing the
-  value.</1>
+  calculation of contributions or tax. You can try again by modifying the value
+  entered.</1>
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Payment in full discharge</0> of income tax
 API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
@@ -90,12 +90,9 @@ EntrepriseSearchField:
     Example: 40123778000127"
   label: Company name, SIREN or SIRET
   placeholder: "Example: Café de la gare or 40123778000127"
-Envoyer: Send
-"Exemple : Des informations plus claires, un calcul détaillé...": "Example: clearer information, detailed calculation..."
 ExportSimulation:
   Banner: Print or save as PDF
 Fermer: Close
-Fermer le module "Donner son avis": Close the "Give your opinion" module
 Fiche de paie: Pay slip
 Frais de transport: Transport costs
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
@@ -135,9 +132,7 @@ Lire les précisions, ouvrir le message condensé.: Read the details, open the c
 Liste des intégrations: List of integrations
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
-Menu de navigation: Navigation menu
 Message à caractère informatif: Informative message
-Mode d'affichage: Display mode
 Modifier mes réponses: Modify my answers
 Moins de 50 salariés: Less than 50 employees
 Mois: Month
@@ -179,7 +174,7 @@ Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
 Prévisualisation: Preview
-Que pouvons-nous améliorer pour mieux répondre à vos attentes ?: What can we do better to meet your expectations?
+Période de calcul: Calculation period
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
@@ -189,8 +184,6 @@ Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
 Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
-Renseigner une adresse e-mail (au format nom@domaine:
-  com) pour recevoir une réponse: Enter an e-mail address (in nom@domaine.com format) to receive a reply.
 Replier: Fold
 Retour à la création: Back to creation
 Retour à mon activité: Back to my activity
@@ -240,13 +233,12 @@ Tout plier: Fold everything
 Tout réinitialiser: Reset all
 Trimestre: Quarter
 Type: Type
+URL de votre simulation: URL of your simulation
 Un avis sur cette page ?: What do you think of this page?
 Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
-Veuillez entrer un message avant de soumettre le formulaire.: Please enter a message before submitting the form.
-Veuillez renseigner votre adresse email.: Please enter your email address.
 Voir la fiche Urssaf: See the Urssaf sheet
 Voir la fiche de paie: View pay slip
 Voir les autres simulateurs: See other simulators
@@ -256,7 +248,6 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Vos cotisations pour l’année précédente: Your contributions for the previous year
-Votre adresse e-mail (requise): Your e-mail address (required)
 Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
 Votre domaine d'activité: Your field of activity
@@ -345,7 +336,7 @@ choix-statut:
     question1:
       label: How do you manage this business?
       plusieurs: Several
-      seul: Only
+      seul: Alone
     question2: Do you plan to add partners at a later stage?
     question3:
       help:
@@ -432,6 +423,18 @@ comparaisonRégimes:
 components:
   feedback:
     form:
+      email:
+        error: "Please enter your email address. Example:
+          contact@mon-entreprise.beta.gouv.fr"
+        format: Your e-mail address in nom@domaine.fr format (required)
+        invalid: "Please enter a valid email address. Example:
+          contact@mon-entreprise.beta.gouv.fr"
+      message:
+        error: Please enter a message before submitting the form.
+        explanations: Avoid giving out personal information
+        label: What can we do better to meet your expectations?
+        placeholder: "Example: clearer information, detailed calculation..."
+      send: Send message
       share:
         checkbox: I'd like to share my latest simulation with you to help you respond
           better.
@@ -638,6 +641,7 @@ library:
   title: Calculation library
 loading: Loading in progress...
 mai: May
+main-menu: Main menu
 mars: March
 modifier-options:
   acre:
@@ -1185,8 +1189,8 @@ pages:
       CasParticuliers: "<0>Find out more about...</0><1><0>How do I run a simulation
         in the past?</0><1>Since the end of 2021, simulator calculation rules
         have been historicized. This means that you can run a simulation using
-        the legislation in force at an earlier date. To do this, simply enter
-        the parameter <2><0>date</0></2> parameter in the
+        the legislation in force at an earlier date. To do so, simply enter the
+        parameter <2><0>date</0></2> parameter in the
         situation.</1></1><2><0><1>MissingVariables</1></0><1>In return for your
         call to <1>evaluate</1>, you'll get a <3>missingVariables</3> object.
         This contains a list of all the rules used in the calculation whose
@@ -1215,24 +1219,24 @@ pages:
         . municipality . mobility payment rate</0></0></3><4>In the
         <2>employee</2> simulator, all you have to do is enter the commune and
         the corresponding mobility payment rate is automatically
-        determined.</4><5>You will need to specify the rate yourself to
-        recalculate. You can find it:<1><0>By entering your commune in a
+        determined.</4><5><0>You will need to specify the rate yourself to
+        recalculate. You can find it :</0><1><0><0>By entering your commune in a
         simulator, then searching for the \"mobility payment\" rule using the
-        \"search\" button in the top right-hand corner.</0><1>Using the
-        <2>dedicated service on urssaf.fr</2></1></1></5><6>The collective AT/MP
-        rate</6><7><0><0>establishment . rate ATMP . collective
+        \"search\" button in the top right-hand corner.</0></0><1><0>Using the
+        <2>dedicated service on urssaf.fr</2></0></1></1></5><6>The collective
+        AT/MP rate</6><7><0><0>establishment . rate ATMP . collective
         rate</0></0></7><8>This collective rate must be found manually. You can
-        use:<1><0><0>a csv export</0> of the table of collective net rates
-        published in the Journal Officiel</0><1>The Assurance Maladie's \"
-        <2>Cotisations AT/MP\"</2> documentation</1></1></8></4>"
-      StepByStep: <0><0>Choose the simulator according to the calculation you're
+        use :</8><9><0><0><0>a csv export</0> of the table of collective net
+        rates published in the Journal Officiel</0></0><1><0>Assurance Maladie's
+        \" <2>Cotisations AT/MP\"</2> documentation</0></1></9></4>"
+      StepByStep: <0><0><0>Choose the simulator according to the calculation you're
         interested in</0><1></1>For example, the <4>employee simulator</4> to
-        calculate net income from gross income.</0><1><0>Run a simulation with
-        the data you wish to re-use</0><1></1>For example, <4>an executive at
-        €3,400 gross with luncheon vouchers</4>.</1><2>Go to the<0>documentation
-        page for the data to be calculated</0><1></1>For example, click on
-        "Salaire net" in the simulator, or search for "Salaire net" in the
-        top-right search box.</2>
+        calculate net income from gross income.</0></0><1><0><0>Run a simulation
+        with the data you wish to re-use</0><1></1>For example, <4>an executive
+        at €3,400 gross with luncheon vouchers</4>.</0></1><2><0><0>Go to the
+        documentation page for the data to be calculated</0><1></1>For example,
+        click on "Salaire net" in the simulator, or search for "Salaire net" in
+        the top-right search box.</0></2>
     couleur: "What color? "
     home:
       choice:
@@ -1487,10 +1491,10 @@ pages:
       items:
         gestion:
           conjoint:
-            body: "If you are married⋅e, in a civil union⋅e or in a common-law relationship
-              with a business owner: there are <1>3 possible statuses</1> for
-              you<4>(conjoint⋅e collaborateurice</4>, <7>conjoint⋅e
-              associé⋅e</7> or <10>conjoint⋅e salarié⋅e</10>)."
+            body: Whether you're married, in a civil partnership or in a common-law
+              relationship, there are <1>3 possible statuses</1> for your
+              spouse<3>(associate</3>, <6>partner</6> or <9>salaried
+              employee</9>).
             h4: Spouse's status
           création:
             body: The formalities involved in setting up a business vary according to the
@@ -1515,22 +1519,21 @@ pages:
             label: paid in two instalments
           title: Maternity, paternity and adoption
         prévoyance:
-          body: All status employees contribute to a <2>disability-death pension</2>,
-            which <5>protects</5> them <5>in the event of disability</5>, and
-            provides their next of kin with a <8>survivor's pension and a
-            lump-sum payment in the event of death</8>.
+          body: All statuses contribute to a <2>disability-death pension</2>, which
+            <5>protects</5> you <5>in the event of disability</5> and provides
+            your loved ones with a <8>survivor's pension and a lump-sum payment
+            in the event of death</8>.
           décès:
             body:
               "1": Under certain conditions, Social Security guarantees a <2>lump-sum death
                 benefit for your dependants</2>.
               "2": In addition to the lump-sum death benefit, a <2>reversionary pension</2>
-                may be paid to the surviving spouse. This corresponds to the
-                <5>pension rights acquired by the deceased</5> during his or her
-                working life.
-              "3": In the event of death resulting from an <2>accident at work</2>, the
-                surviving spouse is entitled to a <5>death pension</5>.
-              "4": An <1>"orphan" capital</1> is paid to the <4>children of</4> deceased
-                <4>self-employed⋅es</4>, under certain conditions.
+                may be paid to your spouse. This corresponds to the <5>pension
+                rights you acquired</5> during your spouse's working life.
+              "3": If you die as a result of an <2>accident at work</2>, your spouse may be
+                entitled to a <4>death pension</4>.
+              "4": In the event of your death, an <1>orphan's benefit</1> is paid to<3> your
+                children</3>, subject to certain conditions.
             h4: Deaths
             label:
               "1": for your loved ones
@@ -1553,6 +1556,7 @@ pages:
             body: The pension calculated corresponds to <2>your best 25 years</2>, assuming
               that you have contributed enough quarters (4 quarters per year)
               and that you retire at the age required to obtain a full pension.
+            evolution-label: at full rate
             h4: Basic pension
           body: The amount of your pension is made up of <2>your basic pension + your
             supplementary pension</2>.
@@ -1584,8 +1588,8 @@ pages:
             warning: Your <1>salary</1> is <4>too low</4> to benefit from sick leave.
           atmp:
             body: "In the event of an<1>accident at work</1>, <4>occupational illness</4> or
-              an <7>accident on the way to or from work</7>, you will be
-              compensated⋅e up to :"
+              an <7>accident on the way to or from work</7>, you will receive
+              compensation of :"
             evolution-label: from day 29
             h4: Occupational injury and disease
           body: <0>All statuses entitle you to <2>reimbursement of healthcare
@@ -1720,7 +1724,6 @@ pages:
         simulateur: Launch simulator
     impot-société:
       exercice: Exercise {{ year }}
-      légende: Company taxable income
       meta:
         description: Calculate your corporate income tax
         title: Corporate income tax
@@ -1818,7 +1821,6 @@ pages:
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
     lodeom:
-      legend: Employee's gross salary and applicable Lodeom exemption
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
           certain conditions, to overseas employees.
@@ -1893,7 +1895,6 @@ pages:
           description: Calculation, declaration, rules... Consult the Urssaf guide to the
             general reduction in contributions.
           title: General reduction in contributions
-      legend: Employee's gross salary and applicable general reduction
       meta:
         description: Estimate of the amount of the general reduction in employer
           contributions (RGCP). This reduction applies to salaries below 1.6
@@ -2082,6 +2083,7 @@ payslip:
     each amount is calculated. This payslip is not a substitute for a real
     payslip. For more information, visit <2>service-public.fr</2>."
   repartition: Breakdown of total expenses
+periode-calcul: Calculation period
 points: points
 pourcentage: percentage
 previousSimulationBanner:
@@ -2119,6 +2121,7 @@ privacyPolicy:
     title: Who is responsible for my-company?
   recipients:
     table:
+      caption: List of subcontractors receiving personal data
       country: Destination country
       mailer: Sending e-mails
       processing: Treatment performed
@@ -2351,6 +2354,5 @@ warning:
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 Étape {{ total }} sur {{ maxValue }}: Step {{ total }} on {{ maxValue }}
-Éviter de communiquer des informations personnelles: Avoid giving out personal information
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
 Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered situation?

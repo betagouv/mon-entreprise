@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Emoji, Grid, Message, typography } from '@/design-system'
+import { Emoji, Grid, Message, typography, Ul } from '@/design-system'
 
 import { useStatistiques } from '../useStatistiques'
 import {
@@ -42,8 +42,8 @@ export function MainIndicators({
 	return (
 		<>
 			<H2>Notre impact en {formatMonth(lastMonth.date, language)}</H2>
-			<Grid container spacing={4} role="list">
-				<Grid item xs={12} md={6} role="listitem">
+			<Grid as={Ul} container spacing={4}>
+				<Grid as="li" item xs={12} md={6}>
 					<Message border={false} icon={<Emoji emoji="🛎️" />}>
 						<Intro>
 							<Strong>
@@ -62,7 +62,7 @@ export function MainIndicators({
 					</Message>
 				</Grid>
 				{satisfactionLastMonth && (
-					<Grid item xs={12} md={6} role="listitem">
+					<Grid as="li" item xs={12} md={6}>
 						<Message
 							border={false}
 							type={messageTypeSatisfaction(satisfactionLastMonth.moyenne)}

@@ -63,6 +63,7 @@ export default function Notifications() {
 
 	return (
 		<div
+			role="status"
 			style={{
 				marginTop: '1rem',
 			}}
@@ -76,7 +77,7 @@ export default function Notifications() {
 							</Body>
 
 							<SmallBody $grey>
-								Il n'est pas possible d'obtenir ce montant dans la vrai vie à
+								Il n'est pas possible d'obtenir ce montant dans la vraie vie à
 								cause d'un effet de seuil dans le calcul des cotisations ou de
 								l'impôt. Vous pouvez réessayer en modifiant la valeur
 								renseignée.
