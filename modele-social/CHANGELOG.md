@@ -2,6 +2,20 @@
 
 ## next
 
+### Breaking changes
+- Renomme la règle `salarié . cotisations . allocations familiales . taux réduit` en `(...) . allocations familiales . éligible taux réduit`
+- Renomme la règle `salarié . cotisations . maladie . employeur . taux réduit` en `(...) . employeur . éligible taux réduit`
+
+### Nouveautés
+- Ajout des règles `salarié . cotisations . allocations familiales . taux réduit` et `salarié . cotisations . allocations familiales . taux plein`
+- Ajout des règles `salarié . cotisations . maladie . employeur . taux réduit` et `salarié . cotisations . maladie . employeur . taux plein`
+
+### Mises à jour
+- Mise à jour du taux de cotisation ATMP minimum (passage de 0.46% à 0.5% au 1er mai 2025)
+- Mise à jour du taux de cotisation ATMP moyen (passage de 2.23% à 2.24% au 1er janvier 2023 et à 2.12% au 1er janvier 2024)
+- Mise à jour du taux de cotisation ATMP pour les fonctions support (passage de 0.83% à 0.8% au 1er janvier 2023, à 0.64% au 1er janvier 2024 et à 0.7% au 1er mai 2025)
+- Mise à jour du taux de cotisation ATMP pour les fonctions support dans le BTP (passage de 0.6% à 0.67% au 1er mai 2025)
+
 ## 7.0.1
 
 ### Corrections

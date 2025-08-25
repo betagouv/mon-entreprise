@@ -26,7 +26,10 @@ export default function WarningSalaireTrans() {
 
 	const year = useYear()
 
-	const smic = engine.evaluate('SMIC').nodeValue as number
+	const smic = engine.evaluate({
+		valeur: 'SMIC',
+		unité: '€/an',
+	}).nodeValue as number
 	const plafond = formatValue(round(seuilDeSortie * smic, 2), {
 		displayedUnit: '€',
 	}) as string
@@ -39,7 +42,7 @@ export default function WarningSalaireTrans() {
 			<Trans i18nKey={'pages.simulateurs.lodeom.warnings.salaire'}>
 				Le {{ barème }} concerne uniquement les salaires inférieurs à{' '}
 				{{ seuil }} Smic. C'est-à-dire, pour {{ year }}, une rémunération totale
-				qui ne dépasse pas <strong>{{ plafond }}</strong> bruts par mois.
+				qui ne dépasse pas <strong>{{ plafond }}</strong> bruts par an.
 			</Trans>
 		)
 	)
