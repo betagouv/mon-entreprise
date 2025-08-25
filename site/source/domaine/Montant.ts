@@ -17,6 +17,10 @@ export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 export const isMontant = (something: unknown): something is Montant =>
 	isObject(something) && '_tag' in something && something._tag === 'Montant'
 
+export const isMontantRécurrent = (
+	montant: Montant
+): montant is Montant<UnitéMonétaireRécurrente> => montant.unité !== '€'
+
 const makeMontant = Data.tagged<Montant>('Montant')
 
 export class DivisionParZéro extends Data.TaggedError('DivisionParZéro') {}
