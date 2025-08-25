@@ -1,7 +1,10 @@
+import { pipe } from 'effect'
+import * as R from 'effect/Record'
 import { css, styled } from 'styled-components'
 
+import * as M from '@/domaine/Montant'
 import { montant, Montant } from '@/domaine/Montant'
-import { UnitéMonétaire } from '@/domaine/Unités'
+import { UnitéMonétaire, UnitéMonétaireRécurrente } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
@@ -10,6 +13,7 @@ import { NumericInput } from '../../atoms/NumericInput'
 interface MontantFieldProps<U extends UnitéMonétaire> {
 	value: Montant<U> | undefined
 	unité: U
+	unitéRécurrenteCible?: UnitéMonétaireRécurrente
 	onChange?: (value: Montant<U> | undefined) => void
 	onSubmit?: (source?: string) => void
 	placeholder?: Montant<U>
@@ -36,6 +40,7 @@ const unitéToDisplayedUnit: Record<UnitéMonétaire, string> = {
 export const MontantField = <U extends UnitéMonétaire>({
 	value,
 	unité,
+	unitéRécurrenteCible,
 	onChange = NoOp,
 	onSubmit,
 	placeholder,
@@ -54,6 +59,10 @@ export const MontantField = <U extends UnitéMonétaire>({
 	const handleValueChange = (valeur: number | undefined) => {
 		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
+
+	const convertisseur =
+		unitéRécurrenteCible &&
+		(unitéRécurrenteCible === '€/mois' ? M.toEurosParMois : M.toEurosParAn)
 
 	return (
 		<Container $noPadding={unité !== '€'}>
@@ -76,11 +85,14 @@ export const MontantField = <U extends UnitéMonétaire>({
 				small={small}
 				suggestions={
 					suggestions
-						? Object.fromEntries(
-								Object.entries(suggestions).map(([key, montant]) => [
-									key,
-									montant.valeur,
-								])
+						? R.map(suggestions, (montant) =>
+								M.isMontantRécurrent(montant) && convertisseur
+									? pipe(
+											montant as Montant<UnitéMonétaireRécurrente>,
+											convertisseur,
+											M.montantToNumber
+									  )
+									: M.montantToNumber(montant)
 						  )
 						: undefined
 				}
