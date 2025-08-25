@@ -36,7 +36,7 @@ export default function Navigation({
 			{suivant && (
 				<Button
 					size="XS"
-					onClick={submit}
+					onPress={submit}
 					to={getCMGPath(suivant)}
 					isDisabled={isSuivantDisabled}
 				>
