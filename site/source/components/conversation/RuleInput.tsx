@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
 	getMultiplePossibilitiesOptions,
@@ -38,6 +38,7 @@ import {
 	UnitéQuantité,
 } from '@/domaine/Unités'
 import { enregistreLesRéponses } from '@/store/actions/actions'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import { getMeta } from '@/utils/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
@@ -177,6 +178,8 @@ export default function RuleInput({
 	const engineValue = (engine ?? defaultEngine) as Engine<DottedName>
 	const rule = engineValue.getRule(dottedName)
 	const evaluation = engineValue.evaluate({ valeur: dottedName, ...modifiers })
+
+	const targetUnit = useSelector(targetUnitSelector)
 
 	const isDefaultValue = missing ?? dottedName in evaluation.missingVariables
 
@@ -391,6 +394,8 @@ export default function RuleInput({
 		const montantPlaceholder = defaultValue as Montant | undefined
 		const unité = isUnitéMonétaire(displayedUnit)
 			? displayedUnit
+			: isUnitéMonétaire(targetUnit)
+			? targetUnit
 			: montantValue?.unité || montantPlaceholder?.unité || unitéPublicodes
 
 		return (
