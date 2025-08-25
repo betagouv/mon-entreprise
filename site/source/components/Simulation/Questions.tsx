@@ -117,8 +117,9 @@ export function Questions<S extends Situation>({
 		.replaceAll(' ', '-')
 
 	const questionCouranteLabel =
-		QuestionCourante?._tag === 'QuestionPublicodes' ?
-		evaluateQuestion(engine, engine.getRule(QuestionCourante.id)) : undefined
+		QuestionCourante?._tag === 'QuestionPublicodes'
+			? evaluateQuestion(engine, engine.getRule(QuestionCourante.id))
+			: undefined
 
 	return (
 		nombreDeQuestions > 0 && (
@@ -173,7 +174,11 @@ export function Questions<S extends Situation>({
 								<fieldset>
 									<H3 as="legend">
 										{questionCouranteLabel}
-										<ExplicableRule light dottedName={QuestionCourante.id} ariaDescribedBy={questionCouranteLabel}/>
+										<ExplicableRule
+											light
+											dottedName={QuestionCourante.id}
+											ariaDescribedBy={questionCouranteLabel}
+										/>
 									</H3>
 									<RuleInput
 										dottedName={QuestionCourante.id}
@@ -188,7 +193,11 @@ export function Questions<S extends Situation>({
 								<>
 									<H3 as="label" htmlFor={questionCouranteHtmlForId}>
 										{questionCouranteLabel}
-										<ExplicableRule light dottedName={QuestionCourante.id} ariaDescribedBy={questionCouranteLabel} />
+										<ExplicableRule
+											light
+											dottedName={QuestionCourante.id}
+											ariaDescribedBy={questionCouranteLabel}
+										/>
 									</H3>
 									<RuleInput
 										id={questionCouranteHtmlForId}
