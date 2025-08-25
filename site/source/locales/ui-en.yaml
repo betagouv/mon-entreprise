@@ -1280,13 +1280,6 @@ pages:
       inspiration.</3><4>Example</4><5>You can find a complete example with
       <2>Google Sheets</2> by clicking on "Create a copy" (you can check the
       scripts with "View Apps script file").</5>
-  gérer:
-    demande-mobilité:
-      meta:
-        description: Interactive form to be completed when working abroad
-        title: "Self-employed: applying for mobility in Europe"
-      shortname: International mobility request
-      title: International mobility request
   offline:
     description: You are currently offline.
     title: Offline
@@ -1624,6 +1617,17 @@ pages:
         pas-reprise: This simulator calculates start-up costs for new businesses. It
           does not take into account takeovers of existing companies.
     date: Date of regulations used for calculations
+    demande-mobilité:
+      aria-label: International Mobility Service, new window
+      href: https://www.urssaf.fr/en/accueil/services/travail-etranger-mobilite.html
+      intro: From now on, for all your international mobility requests, the forms
+        corresponding to your situation are available on the <2>International
+        Mobility Service</2> page.
+      meta:
+        description: Interactive form to be completed when working abroad
+        title: "Self-employed workers: applying for mobility in Europe"
+      shortname: International mobility request
+      title: International mobility request
     dividendes:
       meta:
         description: Calculate the amount of tax and contributions on dividends paid by
