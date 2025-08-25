@@ -33,6 +33,7 @@ import { OuiNon } from '@/domaine/OuiNon'
 import { isQuantité, Quantité } from '@/domaine/Quantité'
 import {
 	isUnitéMonétaire,
+	isUnitéMonétaireRécurrente,
 	isUnitéQuantité,
 	UnitéMonétaire,
 	UnitéQuantité,
@@ -397,12 +398,16 @@ export default function RuleInput({
 			: isUnitéMonétaire(targetUnit)
 			? targetUnit
 			: montantValue?.unité || montantPlaceholder?.unité || unitéPublicodes
+		const unitéRécurrenteCible = isUnitéMonétaireRécurrente(targetUnit)
+			? targetUnit
+			: undefined
 
 		return (
 			<MontantField
 				value={montantValue}
 				placeholder={montantPlaceholder}
 				unité={unité as UnitéMonétaire}
+				unitéRécurrenteCible={unitéRécurrenteCible}
 				onChange={(value) => {
 					onChange(value, dottedName)
 				}}
