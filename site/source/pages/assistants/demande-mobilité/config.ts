@@ -17,20 +17,20 @@ export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		meta: {
 			title: t(
-				'pages.gérer.demande-mobilité.meta.title',
+				'pages.simulateurs.demande-mobilité.meta.title',
 				'Travailleur indépendant : demande de mobilité en Europe'
 			),
 			description: t(
-				'pages.gérer.demande-mobilité.meta.description',
+				'pages.simulateurs.demande-mobilité.meta.description',
 				"Formulaire interactif à compléter en cas d'exercice d'une activité professionnelle à l'étranger"
 			),
 		},
 		shortName: t(
-			'pages.gérer.demande-mobilité.shortname',
+			'pages.simulateurs.demande-mobilité.shortname',
 			'Demande de mobilité internationale'
 		),
 		title: t(
-			'pages.gérer.demande-mobilité.title',
+			'pages.simulateurs.demande-mobilité.title',
 			'Demande de mobilité internationale'
 		),
 		component: FormulaireMobilitéIndépendant,
