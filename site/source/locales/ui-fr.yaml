@@ -1353,14 +1353,6 @@ pages:
       ci-dessous.</3><4>Exemple</4><5>Vous pouvez trouver un exemple complet
       avec <2>Google Sheets</2>, cliquez sur "Créer une copie" (vous pouvez
       vérifier les scripts avec "Afficher le fichier de script Apps")</5>
-  gérer:
-    demande-mobilité:
-      meta:
-        description: Formulaire interactif à compléter en cas d'exercice d'une activité
-          professionnelle à l'étranger
-        title: "Travailleur indépendant : demande de mobilité en Europe"
-      shortname: Demande de mobilité internationale
-      title: Demande de mobilité internationale
   offline:
     description: Vous êtes actuellement hors ligne.
     title: Hors ligne
@@ -1717,6 +1709,18 @@ pages:
           entreprises. Il ne prend pas en compte le cas des reprises
           d’entreprises existantes.
     date: Date de la réglementation utilisée pour les calculs
+    demande-mobilité:
+      aria-label: service Mobilité internationale, nouvelle fenêtre
+      href: https://www.urssaf.fr/accueil/services/travail-etranger-mobilite.html
+      intro: Désormais, pour toutes vos demandes de mobilité internationale, les
+        formulaires correspondants à votre situation sont disponibles sur la
+        page du <2>service Mobilité internationale.</2>
+      meta:
+        description: Formulaire interactif à compléter en cas d'exercice d'une activité
+          professionnelle à l'étranger
+        title: "Travailleur indépendant : demande de mobilité en Europe"
+      shortname: Demande de mobilité internationale
+      title: Demande de mobilité internationale
     dividendes:
       meta:
         description: Calculez le montant de l'impôt et des cotisations sur les
