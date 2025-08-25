@@ -46,7 +46,6 @@ import { DefaultValue } from './DefaultValue'
 import { OuiNonInput } from './OuiNonInput'
 import { PlusieursPossibilités } from './PlusieursPossibilités'
 import SelectCommune from './select/SelectCommune'
-import SelectPaysDétachement from './select/SelectPaysDétachement'
 import SelectAtmp from './select/SelectTauxRisque'
 import TextInput from './TextInput'
 import { UnePossibilité } from './UnePossibilité'
@@ -55,7 +54,6 @@ export const PLUSIEURS_POSSIBILITES = 'PlusieursPossibilités'
 export const UNE_POSSIBILITE = 'UnePossibilité'
 export const OUI_NON_INPUT = 'OuiNonInput'
 const SELECT_COMMUNE = 'SelectCommune'
-const SELECT_PAYS_DETACHEMENT = 'SelectPaysDétachement'
 const NON_EXISTING_API = 'NonExistingAPI'
 const SELECT_ATMP = 'SelectAtmp'
 const DATE_INPUT = 'DateInput'
@@ -74,7 +72,6 @@ type RuleInputNature =
 	| typeof UNE_POSSIBILITE
 	| typeof OUI_NON_INPUT
 	| typeof SELECT_COMMUNE
-	| typeof SELECT_PAYS_DETACHEMENT
 	| typeof NON_EXISTING_API
 	| typeof SELECT_ATMP
 	| typeof DATE_INPUT
@@ -98,9 +95,6 @@ export function getRuleInputNature(
 	if (isOnePossibility(engine.getRule(dottedName))) return UNE_POSSIBILITE
 
 	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
-
-	if (rule.rawNode.API && rule.rawNode.API.startsWith('pays détachement'))
-		return SELECT_PAYS_DETACHEMENT
 
 	if (rule.rawNode.API) return NON_EXISTING_API
 
@@ -298,22 +292,6 @@ export default function RuleInput({
 						dispatch(enregistreLesRéponses(dottedName, c))
 					}}
 					value={value as Evaluation<string>}
-				/>
-				<Spacing md />
-			</>
-		)
-	}
-
-	// Utilisation dans l'assistant demande de mobilité internationale
-	// si réponse "non" à "Allez-vous exercer une activité dans un seul et unique pays ?"
-	if (inputNature === SELECT_PAYS_DETACHEMENT) {
-		return (
-			<>
-				<SelectPaysDétachement
-					id={inputId}
-					value={value as Evaluation<string>}
-					onChange={(value) => onChange(value as ValeurPublicodes, dottedName)}
-					plusFrance={rule.rawNode.API?.endsWith('plus France')}
 				/>
 				<Spacing md />
 			</>
