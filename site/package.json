@@ -58,7 +58,6 @@
 		"@leeoniya/ufuzzy": "^1.0.10",
 		"@publicodes/react-ui": "^1.7.1",
 		"@react-aria/accordion": "^3.0.0-alpha.17",
-		"@react-pdf/renderer": "^3.1.12",
 		"@reduxjs/toolkit": "^2.6.1",
 		"@sentry/integrations": "^7.70.0",
 		"@sentry/react": "^7.70.0",
