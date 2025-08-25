@@ -1,8 +1,13 @@
+import { pipe } from 'effect'
+import * as R from 'effect/Record'
+import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
+import * as M from '@/domaine/Montant'
 import { montant, Montant } from '@/domaine/Montant'
-import { UnitéMonétaire } from '@/domaine/Unités'
+import { UnitéMonétaire, UnitéMonétaireRécurrente } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import { NoOp } from '@/utils/NoOp'
 
 import { NumericInput } from '../../atoms/NumericInput'
@@ -55,6 +60,10 @@ export const MontantField = <U extends UnitéMonétaire>({
 		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
 
+	const targetUnit = useSelector(targetUnitSelector)
+	const convertisseur =
+		targetUnit === '€/mois' ? M.toEurosParMois : M.toEurosParAn
+
 	return (
 		<Container $noPadding={unité !== '€'}>
 			<NumericInput
@@ -76,11 +85,14 @@ export const MontantField = <U extends UnitéMonétaire>({
 				small={small}
 				suggestions={
 					suggestions
-						? Object.fromEntries(
-								Object.entries(suggestions).map(([key, montant]) => [
-									key,
-									montant.valeur,
-								])
+						? R.map(suggestions, (montant) =>
+								M.isMontantRécurrent(montant)
+									? pipe(
+											montant as Montant<UnitéMonétaireRécurrente>,
+											convertisseur,
+											M.montantToNumber
+									  )
+									: M.montantToNumber(montant)
 						  )
 						: undefined
 				}
