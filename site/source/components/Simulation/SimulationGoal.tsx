@@ -36,7 +36,7 @@ export function SimulationGoal({
 	dottedName,
 	label,
 	onUpdateSituation,
-	displayedUnit = '€',
+	displayedUnit,
 	small = false,
 	round = true,
 	appear = true,
