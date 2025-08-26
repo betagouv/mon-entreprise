@@ -14,7 +14,7 @@ describe('Partage (simulateur salarié)', function () {
 		return
 	}
 
-	it('should set input value from URL', function () {
+	it('devrait remplir les champs à partir de l’URL de partage', function () {
 		cy.visit(urlWithState)
 		cy.contains('Modifier mes réponses')
 
@@ -26,14 +26,14 @@ describe('Partage (simulateur salarié)', function () {
 		cy.contains('CDD')
 	})
 
-	it('should set URL from input value', function () {
+	it('devrait générer une URL de partage à partir de champs remplis', function () {
 		cy.visit(simulatorUrl)
 		cy.get(brutInputSelector).first().type('{selectall}1539')
 		cy.contains('De quel type de contrat').should('be.visible')
 		cy.get('label').contains('CDD').should('be.visible').click('left')
 		cy.get('button').contains('Suivant').should('be.visible')
 		cy.contains('Générer un lien').click()
-		cy.get('input[aria-label="URL de votre simulation"]')
+		cy.get('input[id="simulation-share-url"]')
 			.invoke('val')
 			.should('eq', Cypress.config().baseUrl + urlWithState)
 	})
