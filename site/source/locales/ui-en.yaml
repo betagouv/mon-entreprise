@@ -187,7 +187,6 @@ Replier: Fold
 Retour à la création: Back to creation
 Retour à mon activité: Back to my activity
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
-Revenu (incluant les dépenses liées à l'activité): Income (including activity-related expenses)
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
 Revenu disponible: Disposable income
@@ -196,7 +195,6 @@ Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
 Rémunération totale pour l'année de cessation: Total compensation for the year of termination
-Répartition du chiffre d'affaires: Sales breakdown
 Résultat fiscal: Taxable income
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
@@ -572,7 +570,6 @@ header:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
-impôt: tax
 impôt sur le revenu: income tax
 impôt sur le revenu prélevé à la source: income tax deducted at source
 info: info
@@ -1339,6 +1336,11 @@ pages:
         ogTitle: "Self-employed entrepreneurs: quickly calculate your net income from
           sales and vice versa"
         titre: "Self-employed entrepreneurs: income simulator"
+      répartition:
+        cotisations: Contributions
+        h2: Sales breakdown
+        impôt: Tax
+        revenu: Income (including activity-related expenses)
       seo explanation: <0>How do you calculate the net income of an
         auto-entrepreneur?</0><1>An auto-entrepreneur must pay social security
         contributions to the authorities. These contributions are used to

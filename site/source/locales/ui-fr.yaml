@@ -198,7 +198,6 @@ Retour à mon activité: Retour à mon activité
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.:
   Retrouver ma précédente simulation, charger les données de ma précédente
   simulation.
-Revenu (incluant les dépenses liées à l'activité): Revenu (incluant les dépenses liées à l'activité)
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Revenu disponible: Revenu disponible
@@ -207,7 +206,6 @@ Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Rémunération totale pour l'année de cessation: Rémunération totale pour l'année de cessation
-Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Résultat fiscal: Résultat fiscal
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
@@ -600,7 +598,6 @@ header:
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
-impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
 info: info
@@ -1416,6 +1413,11 @@ pages:
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
         titre: "Auto-entrepreneurs : simulateur de revenus"
+      répartition:
+        cotisations: Cotisations
+        h2: Répartition du chiffre d’affaires
+        impôt: Impôt
+        revenu: Revenu (incluant les dépenses liées à l’activité)
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
