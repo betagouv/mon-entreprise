@@ -154,7 +154,6 @@ Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were 
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: New content available, click reload to update page.
 Nouveautés: News
 Option ACRE non activée: ACRE option not activated
-Option la plus avantageuse.: Most advantageous option.
 Options: Options
 Oui: Yes
 Outils pour les développeurs: Tools for developers
@@ -1589,6 +1588,7 @@ pages:
             out a <2>supplementary insurance policy (mutuelle)</2> to improve
             reimbursement of healthcare costs.</1>
           title: Your health benefits
+      meilleure-option: Most advantageous option.
       meta:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits

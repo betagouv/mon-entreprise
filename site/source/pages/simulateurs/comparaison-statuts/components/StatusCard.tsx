@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
-import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
-import { CardContainer, Emoji, Grid, Tooltip } from '@/design-system'
+import { CardContainer, Emoji, Grid } from '@/design-system'
 
 type StatutCardType = {
 	statut: StatutType[]
@@ -18,6 +18,8 @@ const StatusCard = ({
 	footerContent,
 	isBestOption,
 }: StatutCardType) => {
+	const { t } = useTranslation()
+
 	return (
 		<StyledCardContainer $inert>
 			<CardBody>
@@ -31,9 +33,14 @@ const StatusCard = ({
 				{children}
 			</CardBody>
 			{isBestOption && (
-				<StyledTooltip tooltip={<Trans>Option la plus avantageuse.</Trans>}>
+				<AbsoluteSpan
+					title={t(
+						'pages.simulateurs.comparaison-statuts.meilleure-option',
+						'Option la plus avantageuse.'
+					)}
+				>
 					<StyledEmoji emoji="🥇" />
-				</StyledTooltip>
+				</AbsoluteSpan>
 			)}
 			{footerContent && <CardFooter>{footerContent}</CardFooter>}
 		</StyledCardContainer>
@@ -48,7 +55,7 @@ const StyledCardContainer = styled(CardContainer)`
 	padding: 0;
 `
 
-const StyledTooltip = styled(Tooltip)`
+const AbsoluteSpan = styled.span`
 	position: absolute;
 	top: 0;
 	right: 1.5rem;

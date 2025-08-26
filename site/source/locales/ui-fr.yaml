@@ -162,7 +162,6 @@ Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons p
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
 Option ACRE non activée: Option ACRE non activée
-Option la plus avantageuse.: Option la plus avantageuse.
 Options: Options
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
@@ -1679,6 +1678,7 @@ pages:
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
             améliorer le remboursement des frais de santé.</1>
           title: Vos prestations santé
+      meilleure-option: Option la plus avantageuse.
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
