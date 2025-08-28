@@ -3,7 +3,7 @@
 exports[`calculate simulations-salarié > CCN HCR 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3383
+salarié . coût total employeur: 3380
 salarié . rémunération . net . payé après impôt: 1909
 salarié . rémunération . net . à payer avant impôt: 1983
 
@@ -13,7 +13,7 @@ Notifications affichées : salarié . convention collective . avertissement conv
 exports[`calculate simulations-salarié > CCN batiment 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3737
+salarié . coût total employeur: 3734
 salarié . rémunération . net . payé après impôt: 1859
 salarié . rémunération . net . à payer avant impôt: 1931
 
@@ -23,7 +23,7 @@ Notifications affichées : salarié . convention collective . avertissement conv
 exports[`calculate simulations-salarié > CCN batiment 2`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3720
+salarié . coût total employeur: 3717
 salarié . rémunération . net . payé après impôt: 1861
 salarié . rémunération . net . à payer avant impôt: 1933
 
@@ -33,7 +33,7 @@ Notifications affichées : salarié . convention collective . avertissement conv
 exports[`calculate simulations-salarié > CCN batiment 3`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3769
+salarié . coût total employeur: 3766
 salarié . rémunération . net . payé après impôt: 1875
 salarié . rémunération . net . à payer avant impôt: 1949
 
@@ -43,7 +43,7 @@ Notifications affichées : salarié . convention collective . avertissement conv
 exports[`calculate simulations-salarié > CCN compta 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3263
+salarié . coût total employeur: 3260
 salarié . rémunération . net . payé après impôt: 1935
 salarié . rémunération . net . à payer avant impôt: 2006
 
@@ -53,7 +53,7 @@ Notifications affichées : salarié . convention collective . avertissement conv
 exports[`calculate simulations-salarié > CCN optique 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3454
+salarié . coût total employeur: 3451
 salarié . rémunération . net . payé après impôt: 1969
 salarié . rémunération . net . à payer avant impôt: 2058
 
@@ -63,7 +63,7 @@ Notifications affichées : salarié . convention collective . avertissement conv
 exports[`calculate simulations-salarié > CCN spectacle vivant 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3729
+salarié . coût total employeur: 3726
 salarié . rémunération . net . payé après impôt: 2065
 salarié . rémunération . net . à payer avant impôt: 2155
 
