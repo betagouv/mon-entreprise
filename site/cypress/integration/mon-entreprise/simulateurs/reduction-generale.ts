@@ -1,5 +1,5 @@
-import { round } from '../../../source/utils/number'
-import { checkA11Y, fr, getAmountFromText } from '../../support/utils'
+import { round } from '../../../../source/utils/number'
+import { checkA11Y, fr, getAmountFromText } from '../../../support/utils'
 
 describe(
 	'Simulateur réduction générale',

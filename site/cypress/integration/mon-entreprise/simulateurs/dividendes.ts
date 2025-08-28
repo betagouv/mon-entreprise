@@ -1,4 +1,4 @@
-import { checkA11Y } from '../../support/utils'
+import { checkA11Y } from '../../../support/utils'
 
 const inputSelector = 'div[id="simulator-legend"] input'
 const fr = Cypress.env('language') === 'fr'
