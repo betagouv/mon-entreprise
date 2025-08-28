@@ -51,15 +51,15 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > ACRE 3`] = `
-"dirigeant . rémunération . net: 32484
-dirigeant . rémunération . net . après impôt: 30015
+"dirigeant . rémunération . net: 32497
+dirigeant . rémunération . net . après impôt: 30025
 entreprise . activité . nature . libérale . réglementée: null
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1309
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 818
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 818
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1310
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 819
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 819
 protection sociale . invalidité et décès . capital décès: 3681
 protection sociale . invalidité et décès . capital décès . orphelin: null
-protection sociale . invalidité et décès . pension de reversion: 884
+protection sociale . invalidité et décès . pension de reversion: 885
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 982
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1637
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 51
@@ -69,7 +69,7 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 85
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 1637
+protection sociale . retraite . base: 1638
 protection sociale . retraite . complémentaire: 145
 protection sociale . retraite . trimestres: 4"
 `;
@@ -147,8 +147,8 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 3`] = `
-"dirigeant . rémunération . net: 732
-dirigeant . rémunération . net . après impôt: 732
+"dirigeant . rémunération . net: 733
+dirigeant . rémunération . net . après impôt: 733
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 42
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 26
@@ -156,8 +156,8 @@ protection sociale . invalidité et décès . accidents du travail et maladies p
 protection sociale . invalidité et décès . capital décès: 3681
 protection sociale . invalidité et décès . capital décès . orphelin: null
 protection sociale . invalidité et décès . pension de reversion: 306
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 31
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 52
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 32
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 53
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 2
 protection sociale . maladie . arrêt maladie: 0
 protection sociale . maladie . arrêt maladie . délai d'attente: null
@@ -219,25 +219,25 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > base 3`] = `
-"dirigeant . rémunération . net: 26920
-dirigeant . rémunération . net . après impôt: 25522
+"dirigeant . rémunération . net: 26945
+dirigeant . rémunération . net . après impôt: 25543
 entreprise . activité . nature . libérale . réglementée: null
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1147
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1148
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 717
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 717
 protection sociale . invalidité et décès . capital décès: 3681
 protection sociale . invalidité et décès . capital décès . orphelin: null
-protection sociale . invalidité et décès . pension de reversion: 774
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 860
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1433
+protection sociale . invalidité et décès . pension de reversion: 775
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 861
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1435
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 45
 protection sociale . maladie . arrêt maladie: 47
 protection sociale . maladie . arrêt maladie . délai d'attente: 5
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 74
+protection sociale . maladie . maternité paternité adoption: 75
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 1434
+protection sociale . retraite . base: 1435
 protection sociale . retraite . complémentaire: 127
 protection sociale . retraite . trimestres: 4"
 `;
@@ -291,17 +291,17 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 3`] = `
-"dirigeant . rémunération . net: 25219
-dirigeant . rémunération . net . après impôt: 24079
+"dirigeant . rémunération . net: 25242
+dirigeant . rémunération . net . après impôt: 24099
 entreprise . activité . nature . libérale . réglementée: false
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1075
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1076
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 672
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 672
 protection sociale . invalidité et décès . capital décès: 3681
 protection sociale . invalidité et décès . capital décès . orphelin: null
 protection sociale . invalidité et décès . pension de reversion: 726
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 806
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1344
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 807
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1345
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 42
 protection sociale . maladie . arrêt maladie: 44
 protection sociale . maladie . arrêt maladie . délai d'attente: 5
@@ -309,7 +309,7 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 70
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 1344
+protection sociale . retraite . base: 1345
 protection sociale . retraite . complémentaire: 119
 protection sociale . retraite . trimestres: 4"
 `;
