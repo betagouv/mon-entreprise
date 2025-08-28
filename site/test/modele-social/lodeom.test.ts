@@ -33,7 +33,10 @@ describe('Lodeom', () => {
 				})
 
 				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
 					213.85
 				)
 				expect(e).toEvaluate(
@@ -42,7 +45,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
 						arrondi: '2 décimales',
 					},
-					40.3
+					40.25
 				)
 				expect(e).toEvaluate(
 					{
@@ -50,7 +53,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					173.55
+					173.6
 				)
 				expect(e).toEvaluate(
 					{
@@ -58,7 +61,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
 						arrondi: '2 décimales',
 					},
-					26.82
+					26.79
 				)
 			})
 
@@ -70,8 +73,11 @@ describe('Lodeom', () => {
 				})
 
 				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					1116.15
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
+					1117.55
 				)
 				expect(e).toEvaluate(
 					{
@@ -87,7 +93,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					905.8
+					907.2
 				)
 				expect(e).toEvaluate(
 					{
@@ -107,8 +113,11 @@ describe('Lodeom', () => {
 				})
 
 				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					976.85
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
+					977.9
 				)
 				expect(e).toEvaluate(
 					{
@@ -116,7 +125,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
 						arrondi: '2 décimales',
 					},
-					184.1
+					184.06
 				)
 				expect(e).toEvaluate(
 					{
@@ -124,7 +133,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					792.75
+					793.84
 				)
 				expect(e).toEvaluate(
 					{
@@ -132,7 +141,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
 						arrondi: '2 décimales',
 					},
-					122.53
+					122.51
 				)
 			})
 		})
@@ -175,7 +184,10 @@ describe('Lodeom', () => {
 				})
 
 				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
 					644.0
 				)
 			})
@@ -287,8 +299,11 @@ describe('Lodeom', () => {
 				})
 
 				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					216.3
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
+					216.65
 				)
 			})
 
@@ -301,7 +316,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					1130.15
+					1131.55
 				)
 			})
 
@@ -314,7 +329,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					989.1
+					990.15
 				)
 			})
 		})
