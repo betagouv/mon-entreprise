@@ -453,7 +453,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "établissement . taux ATMP",
         "établissement . taux ATMP . taux collectif",
       ],
-      "nodeValue": 4750.46,
+      "nodeValue": 4746.610000000001,
       "unit": {
         "denominators": [
           "mois",
