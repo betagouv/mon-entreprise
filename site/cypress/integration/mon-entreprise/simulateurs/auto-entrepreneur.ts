@@ -1,4 +1,4 @@
-import { checkA11Y, fr } from '../../support/utils'
+import { checkA11Y, fr } from '../../../support/utils'
 
 describe('Simulateur auto-entrepreneur', function () {
 	if (!fr) {
