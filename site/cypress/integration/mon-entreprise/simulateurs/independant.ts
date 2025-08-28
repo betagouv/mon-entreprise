@@ -1,4 +1,4 @@
-import { fr } from '../../support/utils'
+import { fr } from '../../../support/utils'
 
 describe('Simulateur indépendant', { testIsolation: false }, function () {
 	if (!fr) {
