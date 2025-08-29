@@ -638,15 +638,6 @@ loading: Loading in progress...
 mai: May
 main-menu: Main menu
 mars: March
-modifier-options:
-  acre:
-    title: Benefit from Acre
-  activer-acre: Activate Acre in simulation
-  disclaimer: At present, this comparator does not include income tax calculations
-    for SAS(U).
-  texte: Modify my options
-  versement-libératoire: Activate final payment in simulation
-  éligible-acre: I'm eligible for Acre for my self-employed business
 moins: less
 mois: month
 navbar:
@@ -1595,6 +1586,15 @@ pages:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
         title: Legal status comparator
+      modifier-options:
+        acre:
+          title: Benefit from Acre
+        activer-acre: Activate Acre in simulation
+        disclaimer: At present, this comparator does not include income tax calculations
+          for SAS(U).
+        texte: Modify my options
+        versement-libératoire: Activate final payment in simulation
+        éligible-acre: I'm eligible for Acre for my self-employed business
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
