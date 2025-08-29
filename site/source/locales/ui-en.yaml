@@ -81,7 +81,6 @@ En savoir plus: Read more
 En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: More information on impots.gouv.fr, new window
-En savoir plus, nouvelle fenêtre: Find out more, new window
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
@@ -1588,12 +1587,31 @@ pages:
         title: Legal status comparator
       modifier-options:
         acre:
-          title: Benefit from Acre
-        activer-acre: Activate Acre in simulation
-        disclaimer: At present, this comparator does not include income tax calculations
-          for SAS(U).
-        texte: Modify my options
-        versement-libératoire: Activate final payment in simulation
+          body: Assistance for setting up or taking over a business (Acre) consists of a
+            <2>partial exemption from social security contributions</2>, known
+            as the "start-up exemption", for a <4>period of 12 months</4>.
+          body-ae: <2>Conditions of access to</2> Acre are more restrictive for
+            auto-enterprises.
+          info-title: Benefit from Acre
+          label: Activate Acre in simulation
+          title: Acre
+        confirm-label: Save options
+        imposition:
+          body: You can <2>choose between corporate and income taxation</2> for the first
+            5 years.
+          body-ae: As an auto-entrepreneur (AE),<1>income tax</1> is applied
+            automatically. In certain situations, you can also opt for the
+            <4><0>versement libératoire</0></4>.
+          hors-ae:
+            disclaimer: At present, this comparator does not include income tax calculations
+              for SAS(U).
+            label: Taxation method (excluding AE)
+          title: Taxation
+          versement-libératoire:
+            title: Payment in full discharge (for AE)
+        title: Modify my options
+        versement-libératoire:
+          label: Activate final payment in simulation
         éligible-acre: I'm eligible for Acre for my self-employed business
       revenu-table:
         net: Table showing net income calculation details for each status

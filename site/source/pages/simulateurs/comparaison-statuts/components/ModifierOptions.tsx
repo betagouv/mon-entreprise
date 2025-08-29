@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
@@ -18,7 +18,6 @@ import {
 	Message,
 	Spacing,
 	Strong,
-	StyledLink,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { OuiNon } from '@/domaine/OuiNon'
@@ -52,20 +51,23 @@ export default function ModifierOptions() {
 					{...buttonProps}
 				>
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.texte',
+						'pages.simulateurs.comparaison-statuts.modifier-options.title',
 						'Modifier mes options'
 					)}{' '}
 					<StyledArrowRightIcon />
 				</Button>
 			)}
-			confirmLabel="Enregistrer les options"
+			confirmLabel={t(
+				'pages.simulateurs.comparaison-statuts.modifier-options.confirm-label',
+				'Enregistrer les options'
+			)}
 			onConfirm={confirm}
 			onCancel={cancel}
 		>
 			<>
 				<H2>
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.texte',
+						'pages.simulateurs.comparaison-statuts.modifier-options.title',
 						'Modifier mes options'
 					)}
 				</H2>
@@ -73,40 +75,30 @@ export default function ModifierOptions() {
 				<H3>
 					{t(
 						'pages.simulateurs.comparaison-statuts.modifier-options.acre.title',
-						'Bénéficier de l’Acre'
+						'Acre'
 					)}{' '}
 					<ExplicableRule
 						dottedName={DOTTEDNAME_ACRE}
 						title={t(
-							'pages.simulateurs.comparaison-statuts.modifier-options.acre.title',
+							'pages.simulateurs.comparaison-statuts.modifier-options.acre.info-title',
 							'Bénéficier de l’Acre'
 						)}
 					/>
 				</H3>
 
 				<Body>
-					L'aide à la création ou à la reprise d'une entreprise (Acre) consiste
-					en une <Strong>exonération partielle de charges sociales</Strong>,
-					dite exonération de début d'activité <Strong>pendant 12 mois</Strong>.
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.acre.body">
+						L’aide à la création ou à la reprise d’une entreprise (Acre)
+						consiste en une{' '}
+						<Strong>exonération partielle de charges sociales</Strong>, dite
+						exonération de début d’activité, <Strong>pendant 12 mois</Strong>.
+					</Trans>
 				</Body>
-				{
-					// TODO : décommenter une fois le simulateur créé
-					<Button
-						href="https://entreprendre.service-public.fr/vosdroits/F23282"
-						aria-label={t('En savoir plus, nouvelle fenêtre')}
-						color="secondary"
-						light
-						size="XS"
-					>
-						{t('En savoir plus')}
-					</Button>
-				}
-				<H5 as="h4">Choisir mon option de simulation</H5>
 				<div aria-live="polite">
 					<FlexCentered>
 						<OuiNonSwitch
 							label={t(
-								'pages.simulateurs.comparaison-statuts.modifier-options.activer-acre',
+								'pages.simulateurs.comparaison-statuts.modifier-options.acre.label',
 								'Activer l’Acre dans la simulation'
 							)}
 							onChange={set[DOTTEDNAME_ACRE]}
@@ -117,11 +109,13 @@ export default function ModifierOptions() {
 					{values[DOTTEDNAME_ACRE] === 'oui' && (
 						<>
 							<Body>
-								Les{' '}
-								<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
-									conditions d'accès
-								</StyledLink>{' '}
-								à l’Acre sont plus restrictives pour les auto-entrepreneurs.
+								<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.acre.body-ae">
+									Les{' '}
+									<Link href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
+										conditions d’accès
+									</Link>{' '}
+									à l’Acre sont plus restrictives pour les auto-entreprises.
+								</Trans>
 							</Body>
 							<FlexCentered>
 								<OuiNonSwitch
@@ -142,23 +136,42 @@ export default function ModifierOptions() {
 				</div>
 
 				<Spacing md />
-				<H3>Quelle imposition pour mon entreprise ?</H3>
+
+				<H3>
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.title',
+						'Imposition'
+					)}
+				</H3>
 				<Body>
-					Vous pouvez{' '}
-					<Strong>
-						choisir entre l’imposition sur les sociétés et sur le revenu
-					</Strong>{' '}
-					durant les 5 premières années. En auto-entreprise (AE), c’est l’
-					<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement
-					; dans certaines situations, vous pouvez aussi opter pour le{' '}
-					<Strong>
-						<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
-							versement libératoire
-						</Link>
-					</Strong>
-					.
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.imposition.body">
+						Vous pouvez{' '}
+						<Strong>
+							choisir entre l’imposition sur les sociétés et sur le revenu
+						</Strong>{' '}
+						durant les 5 premières années.
+					</Trans>
 				</Body>
-				<H5 as="h4">Choisir mon option de simulation (hors AE)</H5>
+				<Body>
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.imposition.body-ae">
+						En tant qu’auto-entreprise (AE), c’est l’
+						<Strong>impôt sur le revenu</Strong> qui est appliqué
+						automatiquement. Dans certaines situations, vous pouvez aussi opter
+						pour le{' '}
+						<Strong>
+							<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
+								versement libératoire
+							</Link>
+						</Strong>
+						.
+					</Trans>
+				</Body>
+				<H5 as="h4" id="entreprise-imposition-label">
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.hors-ae.label',
+						'Mode d’imposition (hors AE)'
+					)}
+				</H5>
 				<Message type="secondary">
 					<Grid
 						container
@@ -184,7 +197,7 @@ export default function ModifierOptions() {
 								}}
 							>
 								{t(
-									'pages.simulateurs.comparaison-statuts.modifier-options.disclaimer',
+									'pages.simulateurs.comparaison-statuts.modifier-options.imposition.hors-ae.disclaimer',
 									'À ce jour, ce comparateur ne prend pas en compte le calcul de l’impôt sur le revenu pour les SAS(U).'
 								)}
 							</Body>
@@ -196,11 +209,13 @@ export default function ModifierOptions() {
 					onChange={(value: ValeurPublicodes | undefined) => {
 						set[DOTTEDNAME_ENTREPRISE_IMPOSITION](value as undefined | IRouIS)
 					}}
-					key="imposition"
-					aria-labelledby="questionHeader" // FIXME: pas d'élément questionHeader correspondant
+					aria-labelledby="entreprise-imposition-label"
 				/>
 				<H5 as="h3">
-					Choisir mon option de versement libératoire (pour AE){' '}
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.versement-libératoire.title',
+						'Versement libératoire (pour AE)'
+					)}{' '}
 					<ExplicableRule
 						dottedName={DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE}
 					/>
@@ -208,7 +223,7 @@ export default function ModifierOptions() {
 				<FlexCentered>
 					<OuiNonSwitch
 						label={t(
-							'pages.simulateurs.comparaison-statuts.modifier-options.versement-libératoire',
+							'pages.simulateurs.comparaison-statuts.modifier-options.versement-libératoire.label',
 							'Activer le versement libératoire dans la simulation'
 						)}
 						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
