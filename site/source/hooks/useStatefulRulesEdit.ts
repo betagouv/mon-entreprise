@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
+import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
@@ -28,25 +29,29 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 			R.map((node: EvaluatedNode) => PublicodesAdapter.decode(node))
 		)
 
-	const [dirtyValues, setDirtyValues] = useState(engineValues())
+	const [values, setValues] = useState(engineValues())
 
 	const read = R.map(
-		dirtyValues,
-		(_, rule: T) => () => O.getOrUndefined(dirtyValues[rule])
+		values,
+		(_, rule: T) => () => O.getOrUndefined(values[rule])
 	) as Record<T, () => ValeurPublicodes | undefined>
 
 	const set = R.map(
-		dirtyValues,
+		values,
 		(_, rule) => (newValue: string | boolean | undefined) => {
-			setDirtyValues({
-				...dirtyValues,
-				[rule]: newValue,
+			const valeurPublicodes =
+				typeof newValue === 'string'
+					? O.some(newValue)
+					: OuiNonAdapter.decode(newValue)
+			setValues({
+				...values,
+				[rule]: valeurPublicodes,
 			})
 		}
 	) as Record<T, (newValue: string | boolean | undefined) => void>
 
 	const cancel = () => {
-		setDirtyValues(engineValues())
+		setValues(engineValues())
 	}
 
 	const confirm = () => {
@@ -57,7 +62,7 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 					Record<T, ValeurPublicodes | undefined>,
 					Record<T, ValeurPublicodes>
 				>(
-					dirtyValues,
+					values,
 					R.map<T, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
 						O.getOrUndefined
 					),
@@ -68,7 +73,7 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 	}
 
 	return {
-		values: dirtyValues,
+		values,
 		read,
 		set,
 		cancel,
