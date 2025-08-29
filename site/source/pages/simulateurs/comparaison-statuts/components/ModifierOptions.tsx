@@ -33,7 +33,7 @@ const DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE =
 
 type IRouIS = "'IR'" | "'IS'"
 
-const ModifierOptions = () => {
+export default function ModifierOptions() {
 	const { set, cancel, confirm, values } = useStatefulRulesEdit([
 		DOTTEDNAME_ACRE,
 		DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE,
@@ -232,5 +232,3 @@ const FlexCentered = styled.div`
 const StyledArrowRightIcon = styled(ArrowRightIcon)`
 	margin-left: ${({ theme }) => theme.spacings.sm};
 `
-
-export default ModifierOptions
