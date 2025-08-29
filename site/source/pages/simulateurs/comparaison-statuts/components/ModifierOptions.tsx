@@ -1,8 +1,8 @@
-import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
+import { OuiNonSwitch } from '@/components/conversation/OuiNonSwitch'
 import RuleInput from '@/components/conversation/RuleInput'
 import {
 	ArrowRightIcon,
@@ -19,7 +19,6 @@ import {
 	Spacing,
 	Strong,
 	StyledLink,
-	Switch,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { OuiNon } from '@/domaine/OuiNon'
@@ -91,26 +90,17 @@ const ModifierOptions = () => {
 				<H5 as="h4">Choisir mon option de simulation</H5>
 				<div aria-live="polite">
 					<FlexCentered>
-						<Switch
-							id="activation-acre"
-							onChange={(value: boolean) => set[DOTTEDNAME_ACRE](value)}
-							defaultSelected={optionalOuiNonToBooleanOrUndefined(
-								values[DOTTEDNAME_ACRE] as O.Option<OuiNon>
-							)}
-							light
-							/* Need this useless aria-label to silence a React-Aria warning */
-							aria-label=""
-						>
-							{t(
+						<OuiNonSwitch
+							label={t(
 								'modifier-options.activer-acre',
 								'Activer l’Acre dans la simulation'
 							)}
-						</Switch>
+							onChange={set[DOTTEDNAME_ACRE]}
+							defaultValue={values[DOTTEDNAME_ACRE] as OuiNon | undefined}
+						/>
 					</FlexCentered>
 
-					{optionalOuiNonToBooleanOrUndefined(
-						values[DOTTEDNAME_ACRE] as O.Option<OuiNon>
-					) && (
+					{values[DOTTEDNAME_ACRE] === 'oui' && (
 						<>
 							<Body>
 								Les{' '}
@@ -120,25 +110,18 @@ const ModifierOptions = () => {
 								à l’Acre sont plus restrictives pour les auto-entrepreneurs.
 							</Body>
 							<FlexCentered>
-								<Switch
-									id="activation-acre-ae"
-									onChange={(value: boolean) =>
-										set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE](value)
-									}
-									defaultSelected={optionalOuiNonToBooleanOrUndefined(
-										values[
-											DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE
-										] as O.Option<OuiNon>
-									)}
-									light
-									/* Need this useless aria-label to silence a React-Aria warning */
-									aria-label=""
-								>
-									{t(
+								<OuiNonSwitch
+									label={t(
 										'modifier-options.éligible-acre',
 										'Je suis éligible à l’Acre pour mon auto-entreprise'
 									)}
-								</Switch>
+									onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE]}
+									defaultValue={
+										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as
+											| OuiNon
+											| undefined
+									}
+								/>
 							</FlexCentered>
 						</>
 					)}
@@ -209,23 +192,18 @@ const ModifierOptions = () => {
 					/>
 				</H5>
 				<FlexCentered>
-					<Switch
-						id="versement-liberatoire"
-						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
-						defaultSelected={optionalOuiNonToBooleanOrUndefined(
-							values[
-								DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE
-							] as O.Option<OuiNon>
-						)}
-						light
-						/* Need this useless aria-label to silence a React-Aria warning */
-						aria-label=""
-					>
-						{t(
+					<OuiNonSwitch
+						label={t(
 							'modifier-options.versement-libératoire',
 							'Activer le versement libératoire dans la simulation'
 						)}
-					</Switch>
+						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
+						defaultValue={
+							values[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE] as
+								| OuiNon
+								| undefined
+						}
+					/>
 				</FlexCentered>
 			</>
 		</Drawer>
@@ -242,10 +220,3 @@ const StyledArrowRightIcon = styled(ArrowRightIcon)`
 `
 
 export default ModifierOptions
-
-const optionalOuiNonToBooleanOrUndefined = (
-	optionalOuiNon: O.Option<OuiNon>
-): boolean | undefined =>
-	optionalOuiNon === undefined || O.isNone(optionalOuiNon)
-		? undefined
-		: optionalOuiNon.value === 'oui'
