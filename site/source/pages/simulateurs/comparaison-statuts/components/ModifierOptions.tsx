@@ -108,7 +108,9 @@ const ModifierOptions = () => {
 						</Switch>
 					</FlexCentered>
 
-					{values[DOTTEDNAME_ACRE] && (
+					{optionalOuiNonToBooleanOrUndefined(
+						values[DOTTEDNAME_ACRE] as O.Option<OuiNon>
+					) && (
 						<>
 							<Body>
 								Les{' '}
