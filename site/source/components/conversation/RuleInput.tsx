@@ -355,8 +355,6 @@ export default function RuleInput({
 					value={value as 'oui' | 'non' | undefined}
 					onChange={(value) => onChange(value, dottedName)}
 					defaultValue={defaultValue as OuiNon | undefined}
-					title={rule.title}
-					description={rule.rawNode.description}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
 					autoFocus={accessibilityProps.autoFocus}
 					aria={{
