@@ -670,15 +670,6 @@ loading: Chargement en cours...
 mai: mai
 main-menu: Menu principal
 mars: mars
-modifier-options:
-  acre:
-    title: Bénéficier de l’Acre
-  activer-acre: Activer l’Acre dans la simulation
-  disclaimer: À ce jour, ce comparateur ne prend pas en compte le calcul de
-    l’impôt sur le revenu pour les SAS(U).
-  texte: Modifier mes options
-  versement-libératoire: Activer le versement libératoire dans la simulation
-  éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
 moins: moins
 mois: mois
 navbar:
@@ -1685,6 +1676,15 @@ pages:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
         title: Comparateur de statut juridique
+      modifier-options:
+        acre:
+          title: Bénéficier de l’Acre
+        activer-acre: Activer l’Acre dans la simulation
+        disclaimer: À ce jour, ce comparateur ne prend pas en compte le calcul de
+          l’impôt sur le revenu pour les SAS(U).
+        texte: Modifier mes options
+        versement-libératoire: Activer le versement libératoire dans la simulation
+        éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
