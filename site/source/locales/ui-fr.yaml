@@ -86,7 +86,6 @@ En savoir plus: En savoir plus
 En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
-En savoir plus, nouvelle fenêtre: En savoir plus, nouvelle fenêtre
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
@@ -1678,12 +1677,31 @@ pages:
         title: Comparateur de statut juridique
       modifier-options:
         acre:
-          title: Bénéficier de l’Acre
-        activer-acre: Activer l’Acre dans la simulation
-        disclaimer: À ce jour, ce comparateur ne prend pas en compte le calcul de
-          l’impôt sur le revenu pour les SAS(U).
-        texte: Modifier mes options
-        versement-libératoire: Activer le versement libératoire dans la simulation
+          body: L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en
+            une <2>exonération partielle de charges sociales</2>, dite
+            exonération de début d’activité, <4>pendant 12 mois</4>.
+          body-ae: Les <2>conditions d’accès</2> à l’Acre sont plus restrictives pour les
+            auto-entreprises.
+          info-title: Bénéficier de l’Acre
+          label: Activer l’Acre dans la simulation
+          title: Acre
+        confirm-label: Enregistrer les options
+        imposition:
+          body: Vous pouvez <2>choisir entre l’imposition sur les sociétés et sur le
+            revenu</2> durant les 5 premières années.
+          body-ae: En tant qu’auto-entreprise (AE), c’est l’<1>impôt sur le revenu</1> qui
+            est appliqué automatiquement. Dans certaines situations, vous pouvez
+            aussi opter pour le <4><0>versement libératoire</0></4>.
+          hors-ae:
+            disclaimer: À ce jour, ce comparateur ne prend pas en compte le calcul de
+              l’impôt sur le revenu pour les SAS(U).
+            label: Mode d’imposition (hors AE)
+          title: Imposition
+          versement-libératoire:
+            title: Versement libératoire (pour AE)
+        title: Modifier mes options
+        versement-libératoire:
+          label: Activer le versement libératoire dans la simulation
         éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
