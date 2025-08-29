@@ -51,7 +51,10 @@ const ModifierOptions = () => {
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...buttonProps}
 				>
-					{t('modifier-options.texte', 'Modifier mes options')}{' '}
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.texte',
+						'Modifier mes options'
+					)}{' '}
 					<StyledArrowRightIcon />
 				</Button>
 			)}
@@ -60,13 +63,24 @@ const ModifierOptions = () => {
 			onCancel={cancel}
 		>
 			<>
-				<H2>{t('modifier-options.texte', 'Modifier mes options')}</H2>
+				<H2>
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.texte',
+						'Modifier mes options'
+					)}
+				</H2>
 
 				<H3>
-					{t('modifier-options.acre.title', 'Bénéficier de l’Acre')}{' '}
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.acre.title',
+						'Bénéficier de l’Acre'
+					)}{' '}
 					<ExplicableRule
 						dottedName={DOTTEDNAME_ACRE}
-						title={t('modifier-options.acre.title', 'Bénéficier de l’Acre')}
+						title={t(
+							'pages.simulateurs.comparaison-statuts.modifier-options.acre.title',
+							'Bénéficier de l’Acre'
+						)}
 					/>
 				</H3>
 
@@ -92,7 +106,7 @@ const ModifierOptions = () => {
 					<FlexCentered>
 						<OuiNonSwitch
 							label={t(
-								'modifier-options.activer-acre',
+								'pages.simulateurs.comparaison-statuts.modifier-options.activer-acre',
 								'Activer l’Acre dans la simulation'
 							)}
 							onChange={set[DOTTEDNAME_ACRE]}
@@ -112,7 +126,7 @@ const ModifierOptions = () => {
 							<FlexCentered>
 								<OuiNonSwitch
 									label={t(
-										'modifier-options.éligible-acre',
+										'pages.simulateurs.comparaison-statuts.modifier-options.éligible-acre',
 										'Je suis éligible à l’Acre pour mon auto-entreprise'
 									)}
 									onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE]}
@@ -170,7 +184,7 @@ const ModifierOptions = () => {
 								}}
 							>
 								{t(
-									'modifier-options.disclaimer',
+									'pages.simulateurs.comparaison-statuts.modifier-options.disclaimer',
 									'À ce jour, ce comparateur ne prend pas en compte le calcul de l’impôt sur le revenu pour les SAS(U).'
 								)}
 							</Body>
@@ -194,7 +208,7 @@ const ModifierOptions = () => {
 				<FlexCentered>
 					<OuiNonSwitch
 						label={t(
-							'modifier-options.versement-libératoire',
+							'pages.simulateurs.comparaison-statuts.modifier-options.versement-libératoire',
 							'Activer le versement libératoire dans la simulation'
 						)}
 						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
