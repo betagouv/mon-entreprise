@@ -1,8 +1,8 @@
-import * as O from 'effect/Option'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
+import { OuiNonSwitch } from '@/components/conversation/OuiNonSwitch'
 import RuleInput from '@/components/conversation/RuleInput'
 import {
 	ArrowRightIcon,
@@ -18,8 +18,6 @@ import {
 	Message,
 	Spacing,
 	Strong,
-	StyledLink,
-	Switch,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { OuiNon } from '@/domaine/OuiNon'
@@ -34,13 +32,16 @@ const DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE =
 
 type IRouIS = "'IR'" | "'IS'"
 
-const ModifierOptions = () => {
-	const { set, cancel, confirm, values } = useStatefulRulesEdit([
-		DOTTEDNAME_ACRE,
-		DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE,
-		DOTTEDNAME_ENTREPRISE_IMPOSITION,
-		DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE,
-	] as const)
+export default function ModifierOptions() {
+	const { set, cancel, confirm, values } = useStatefulRulesEdit(
+		[
+			DOTTEDNAME_ACRE,
+			DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE,
+			DOTTEDNAME_ENTREPRISE_IMPOSITION,
+			DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE,
+		] as const,
+		{ 'dirigeant . auto-entrepreneur': 'oui' }
+	)
 
 	const { t } = useTranslation()
 
@@ -52,114 +53,128 @@ const ModifierOptions = () => {
 					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...buttonProps}
 				>
-					{t('modifier-options.texte', 'Modifier mes options')}{' '}
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.title',
+						'Modifier mes options'
+					)}{' '}
 					<StyledArrowRightIcon />
 				</Button>
 			)}
-			confirmLabel="Enregistrer les options"
+			confirmLabel={t(
+				'pages.simulateurs.comparaison-statuts.modifier-options.confirm-label',
+				'Enregistrer les options'
+			)}
 			onConfirm={confirm}
 			onCancel={cancel}
 		>
 			<>
-				<H2>{t('modifier-options.texte', 'Modifier mes options')}</H2>
+				<H2>
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.title',
+						'Modifier mes options'
+					)}
+				</H2>
 
 				<H3>
-					{t('modifier-options.acre.title', 'Bénéficier de l’Acre')}{' '}
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.acre.title',
+						'Acre'
+					)}{' '}
 					<ExplicableRule
 						dottedName={DOTTEDNAME_ACRE}
-						title={t('modifier-options.acre.title', 'Bénéficier de l’Acre')}
+						title={t(
+							'pages.simulateurs.comparaison-statuts.modifier-options.acre.info-title',
+							'Bénéficier de l’Acre'
+						)}
 					/>
 				</H3>
 
 				<Body>
-					L'aide à la création ou à la reprise d'une entreprise (Acre) consiste
-					en une <Strong>exonération partielle de charges sociales</Strong>,
-					dite exonération de début d'activité <Strong>pendant 12 mois</Strong>.
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.acre.body">
+						L’aide à la création ou à la reprise d’une entreprise (Acre)
+						consiste en une{' '}
+						<Strong>exonération partielle de charges sociales</Strong>, dite
+						exonération de début d’activité, <Strong>pendant 12 mois</Strong>.
+					</Trans>
 				</Body>
-				{
-					// TODO : décommenter une fois le simulateur créé
-					<Button
-						href="https://entreprendre.service-public.fr/vosdroits/F23282"
-						aria-label={t('En savoir plus, nouvelle fenêtre')}
-						color="secondary"
-						light
-						size="XS"
-					>
-						{t('En savoir plus')}
-					</Button>
-				}
-				<H5 as="h4">Choisir mon option de simulation</H5>
 				<div aria-live="polite">
 					<FlexCentered>
-						<Switch
-							id="activation-acre"
-							onChange={(value: boolean) => set[DOTTEDNAME_ACRE](value)}
-							defaultSelected={optionalOuiNonToBooleanOrUndefined(
-								values[DOTTEDNAME_ACRE] as O.Option<OuiNon>
-							)}
-							light
-							/* Need this useless aria-label to silence a React-Aria warning */
-							aria-label=""
-						>
-							{t(
-								'modifier-options.activer-acre',
+						<OuiNonSwitch
+							label={t(
+								'pages.simulateurs.comparaison-statuts.modifier-options.acre.label',
 								'Activer l’Acre dans la simulation'
 							)}
-						</Switch>
+							onChange={set[DOTTEDNAME_ACRE]}
+							defaultValue={values[DOTTEDNAME_ACRE] as OuiNon | undefined}
+						/>
 					</FlexCentered>
 
-					{values[DOTTEDNAME_ACRE] && (
+					{values[DOTTEDNAME_ACRE] === 'oui' && (
 						<>
 							<Body>
-								Les{' '}
-								<StyledLink href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
-									conditions d'accès
-								</StyledLink>{' '}
-								à l’Acre sont plus restrictives pour les auto-entrepreneurs.
+								<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.acre.body-ae">
+									Les{' '}
+									<Link href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
+										conditions d’accès
+									</Link>{' '}
+									à l’Acre sont plus restrictives pour les auto-entreprises.
+								</Trans>
 							</Body>
 							<FlexCentered>
-								<Switch
-									id="activation-acre-ae"
-									onChange={(value: boolean) =>
-										set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE](value)
-									}
-									defaultSelected={optionalOuiNonToBooleanOrUndefined(
-										values[
-											DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE
-										] as O.Option<OuiNon>
-									)}
-									light
-									/* Need this useless aria-label to silence a React-Aria warning */
-									aria-label=""
-								>
-									{t(
-										'modifier-options.éligible-acre',
+								<OuiNonSwitch
+									label={t(
+										'pages.simulateurs.comparaison-statuts.modifier-options.éligible-acre',
 										'Je suis éligible à l’Acre pour mon auto-entreprise'
 									)}
-								</Switch>
+									onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE]}
+									defaultValue={
+										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as
+											| OuiNon
+											| undefined
+									}
+								/>
 							</FlexCentered>
 						</>
 					)}
 				</div>
 
 				<Spacing md />
-				<H3>Quelle imposition pour mon entreprise ?</H3>
+
+				<H3>
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.title',
+						'Imposition'
+					)}
+				</H3>
 				<Body>
-					Vous pouvez{' '}
-					<Strong>
-						choisir entre l’imposition sur les sociétés et sur le revenu
-					</Strong>{' '}
-					durant les 5 premières années. En auto-entreprise (AE), c’est l’
-					<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement
-					; dans certaines situations, vous pouvez aussi opter pour le{' '}
-					<Strong>
-						<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
-							versement libératoire
-						</Link>
-					</Strong>
-					.
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.imposition.body">
+						Vous pouvez{' '}
+						<Strong>
+							choisir entre l’imposition sur les sociétés et sur le revenu
+						</Strong>{' '}
+						durant les 5 premières années.
+					</Trans>
 				</Body>
-				<H5 as="h4">Choisir mon option de simulation (hors AE)</H5>
+				<Body>
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.imposition.body-ae">
+						En tant qu’auto-entreprise (AE), c’est l’
+						<Strong>impôt sur le revenu</Strong> qui est appliqué
+						automatiquement. Dans certaines situations, vous pouvez aussi opter
+						pour le{' '}
+						<Strong>
+							<Link href="https://www.impots.gouv.fr/professionnel/le-versement-liberatoire">
+								versement libératoire
+							</Link>
+						</Strong>
+						.
+					</Trans>
+				</Body>
+				<H5 as="h4" id="entreprise-imposition-label">
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.hors-ae.label',
+						'Mode d’imposition (hors AE)'
+					)}
+				</H5>
 				<Message type="secondary">
 					<Grid
 						container
@@ -185,7 +200,7 @@ const ModifierOptions = () => {
 								}}
 							>
 								{t(
-									'modifier-options.disclaimer',
+									'pages.simulateurs.comparaison-statuts.modifier-options.imposition.hors-ae.disclaimer',
 									'À ce jour, ce comparateur ne prend pas en compte le calcul de l’impôt sur le revenu pour les SAS(U).'
 								)}
 							</Body>
@@ -197,33 +212,30 @@ const ModifierOptions = () => {
 					onChange={(value: ValeurPublicodes | undefined) => {
 						set[DOTTEDNAME_ENTREPRISE_IMPOSITION](value as undefined | IRouIS)
 					}}
-					key="imposition"
-					aria-labelledby="questionHeader" // FIXME: pas d'élément questionHeader correspondant
+					aria-labelledby="entreprise-imposition-label"
 				/>
 				<H5 as="h3">
-					Choisir mon option de versement libératoire (pour AE){' '}
+					{t(
+						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.versement-libératoire.title',
+						'Versement libératoire (pour AE)'
+					)}{' '}
 					<ExplicableRule
 						dottedName={DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE}
 					/>
 				</H5>
 				<FlexCentered>
-					<Switch
-						id="versement-liberatoire"
-						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
-						defaultSelected={optionalOuiNonToBooleanOrUndefined(
-							values[
-								DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE
-							] as O.Option<OuiNon>
-						)}
-						light
-						/* Need this useless aria-label to silence a React-Aria warning */
-						aria-label=""
-					>
-						{t(
-							'modifier-options.versement-libératoire',
+					<OuiNonSwitch
+						label={t(
+							'pages.simulateurs.comparaison-statuts.modifier-options.versement-libératoire.label',
 							'Activer le versement libératoire dans la simulation'
 						)}
-					</Switch>
+						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}
+						defaultValue={
+							values[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE] as
+								| OuiNon
+								| undefined
+						}
+					/>
 				</FlexCentered>
 			</>
 		</Drawer>
@@ -238,12 +250,3 @@ const FlexCentered = styled.div`
 const StyledArrowRightIcon = styled(ArrowRightIcon)`
 	margin-left: ${({ theme }) => theme.spacings.sm};
 `
-
-export default ModifierOptions
-
-const optionalOuiNonToBooleanOrUndefined = (
-	optionalOuiNon: O.Option<OuiNon>
-): boolean | undefined =>
-	optionalOuiNon === undefined || O.isNone(optionalOuiNon)
-		? undefined
-		: optionalOuiNon.value === 'oui'

@@ -2,8 +2,8 @@ import { pipe, Record } from 'effect'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import { EvaluatedNode } from 'publicodes'
-import { useState } from 'react'
+import { EvaluatedNode, PublicodesExpression } from 'publicodes'
+import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
@@ -14,62 +14,61 @@ import {
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 export const useStatefulRulesEdit = <T extends DottedName>(
-	rules: ReadonlyArray<T>
+	rules: ReadonlyArray<T>,
+	contexte?: PublicodesExpression
 ) => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
-	const engineValues = (): Record<T, O.Option<ValeurPublicodes>> =>
-		pipe<Record<T, EvaluatedNode>, Record<T, O.Option<ValeurPublicodes>>>(
-			R.fromIterableWith(rules, (rule) => [
-				rule,
-				engine.evaluate(rule),
-			]) as Record<T, EvaluatedNode>,
-			R.map((node: EvaluatedNode) => PublicodesAdapter.decode(node))
+	const engineValues = useMemo(
+		(): Record<T, O.Option<ValeurPublicodes>> =>
+			pipe<Record<T, EvaluatedNode>, Record<T, O.Option<ValeurPublicodes>>>(
+				R.fromIterableWith(rules, (rule) => [
+					rule,
+					engine.evaluate({
+						valeur: rule,
+						contexte,
+					}),
+				]) as Record<T, EvaluatedNode>,
+				R.map((node: EvaluatedNode) => PublicodesAdapter.decode(node))
+			),
+		[rules, contexte, engine]
+	)
+
+	const [dirtyValues, setValues] = useState(engineValues)
+
+	const values = pipe<
+		Record<T, O.Option<ValeurPublicodes>>,
+		Record<T, ValeurPublicodes | undefined>
+	>(
+		dirtyValues,
+		R.map<T, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
+			O.getOrUndefined
 		)
+	)
 
-	const [dirtyValues, setDirtyValues] = useState(engineValues())
+	const set = R.map(dirtyValues, (_, rule) => (newValue: ValeurPublicodes) => {
+		setValues({
+			...dirtyValues,
+			[rule]: O.some(newValue),
+		})
+	}) as Record<T, (newValue: string | boolean | undefined) => void>
 
-	const read = R.map(
-		dirtyValues,
-		(_, rule: T) => () => O.getOrUndefined(dirtyValues[rule])
-	) as Record<T, () => ValeurPublicodes | undefined>
-
-	const set = R.map(
-		dirtyValues,
-		(_, rule) => (newValue: string | boolean | undefined) => {
-			setDirtyValues({
-				...dirtyValues,
-				[rule]: newValue,
-			})
-		}
-	) as Record<T, (newValue: string | boolean | undefined) => void>
-
-	const cancel = () => {
-		setDirtyValues(engineValues())
-	}
+	const cancel = () => setValues(engineValues)
 
 	const confirm = () => {
 		dispatch(
 			ajusteLaSituation(
 				pipe<
-					Record<T, O.Option<ValeurPublicodes>>,
 					Record<T, ValeurPublicodes | undefined>,
 					Record<T, ValeurPublicodes>
-				>(
-					dirtyValues,
-					R.map<T, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
-						O.getOrUndefined
-					),
-					filterRecordNotUndefined
-				)
+				>(values, filterRecordNotUndefined)
 			)
 		)
 	}
 
 	return {
-		values: dirtyValues,
-		read,
+		values,
 		set,
 		cancel,
 		confirm,

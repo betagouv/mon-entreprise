@@ -27,6 +27,7 @@ import {
 	companySituationSelector,
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
+import { NoOp } from '@/utils/NoOp'
 import { evaluateQuestion } from '@/utils/publicodes'
 
 import Value from '../EngineValue/Value'
@@ -42,7 +43,7 @@ type AnswerListProps = {
 }
 
 export default function AnswerList({
-	onClose = () => {},
+	onClose = NoOp,
 	children,
 }: AnswerListProps) {
 	const { t } = useTranslation()

@@ -10,8 +10,6 @@ interface OuiNonInputProps {
 	onChange?: (value: OuiNon | undefined) => void
 	defaultValue?: OuiNon
 	id?: string
-	title?: string
-	description?: string
 	autoFocus?: boolean
 
 	aria?: {
