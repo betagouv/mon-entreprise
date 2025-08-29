@@ -11,7 +11,7 @@ describe('Simulateur auto-entrepreneur', function () {
 		cy.visit('/simulateurs/auto-entrepreneur')
 	})
 
-	it('should allow to enter the date of creation', function () {
+	it('devrait afficher un raccourci vers l’Acre lorsque la date de création est inférieure à 1 an', function () {
 		cy.get(inputSelector).first().type('{selectall}50000')
 		cy.contains('Modifier mes réponses').click()
 		cy.get('div[data-cy="modal"]')
@@ -29,7 +29,7 @@ describe('Simulateur auto-entrepreneur', function () {
 		cy.contains('ACRE')
 	})
 
-	it('should not have negative value', function () {
+	it('ne devrait pas avoir de valeurs négatives', function () {
 		cy.contains('Montant mensuel').click()
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.get(inputSelector).each(($input) => {
@@ -43,7 +43,7 @@ describe('Simulateur auto-entrepreneur', function () {
 		})
 	})
 
-	it('should show a "Activité mixte" button which that shows three entries', function () {
+	it('devrait afficher un bouton "Activité mixte" qui ajoute 3 champs de chiffre d’affaires', function () {
 		cy.get(inputSelector)
 			.its('length')
 			.then((length) => {
@@ -53,7 +53,8 @@ describe('Simulateur auto-entrepreneur', function () {
 			})
 	})
 
-	it('should display the correct CA when changing the second "Activité mixte"', function () {
+	it('devrait modifier le chiffre d’affaires total lorsque le second champ de CA d’activité mixte est modifié', function () {
+		cy.contains('Montant mensuel').click()
 		cy.get(inputSelector).first().type('{selectall}5000')
 		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(2).type('{selectall}5000')
@@ -66,7 +67,8 @@ describe('Simulateur auto-entrepreneur', function () {
 			.slice(1, 4)
 			.map((elem) => parseInt(elem.value.replace(/[\s,.€]/g, '')))
 
-	it('should display the correct results of "Activité mixte" when changing CA', function () {
+	it('devrait conserver les proportions de chiffre d’affaires mixte lorsque le CA total est modifié', function () {
+		cy.contains('Montant mensuel').click()
 		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(1).type('{selectall}2500')
 		cy.get(inputSelector).eq(2).type('{selectall}5000')
@@ -82,7 +84,8 @@ describe('Simulateur auto-entrepreneur', function () {
 		})
 	})
 
-	it('should display the correct results of "Activité mixte" when changing "Revenu net Après impôt"', function () {
+	it('devrait conserver les proportions de chiffre d’affaires mixte lorsque le revenu net après impôt est modifié', function () {
+		cy.contains('Montant mensuel').click()
 		cy.get(inputSelector).first().type('{selectall}2500')
 		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(2).type('{selectall}2500')
@@ -96,14 +99,14 @@ describe('Simulateur auto-entrepreneur', function () {
 		})
 	})
 
-	it('should display the correct percentage when "Chiffre d\'affaires" is 0', function () {
+	it('devrait afficher des taux d’imposition et de cotisations à 0 lorsque le chiffre d’affaires vaut 0', function () {
 		cy.get(inputSelector).first().type('{selectall}0')
 
-		cy.contains(/[cC]otisations\s+0\s*%/)
-		cy.contains(/[Ii]mpôt\s+0\s*%/)
+		cy.contains('Cotisations 0 %')
+		cy.contains('Impôt 0 %')
 	})
 
-	it('should be RGAA compliant', function () {
+	it('devrait respecter le RGAA', function () {
 		checkA11Y()
 	})
 })

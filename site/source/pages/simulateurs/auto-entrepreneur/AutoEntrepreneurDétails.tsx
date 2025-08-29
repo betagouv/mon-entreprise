@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
 
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
@@ -15,24 +15,36 @@ export const AutoEntrepreneurDétails = () => {
 	return (
 		<section>
 			<H2>
-				<Trans>Répartition du chiffre d'affaires</Trans>
+				{t(
+					'pages.simulateurs.auto-entrepreneur.répartition.h2',
+					'Répartition du chiffre d’affaires'
+				)}
 			</H2>
 			<StackedBarChart
 				data={[
 					{
 						dottedName: 'dirigeant . rémunération . net . après impôt',
-						title: t("Revenu (incluant les dépenses liées à l'activité)"),
+						title: t(
+							'pages.simulateurs.auto-entrepreneur.répartition.revenu',
+							'Revenu (incluant les dépenses liées à l’activité)'
+						),
 						color: colors.bases.primary[600],
 					},
 					{
 						dottedName: 'impôt . montant',
-						title: t('impôt'),
+						title: t(
+							'pages.simulateurs.auto-entrepreneur.répartition.impôt',
+							'Impôt'
+						),
 						color: colors.bases.secondary[500],
 					},
 					{
 						dottedName:
 							'dirigeant . auto-entrepreneur . cotisations et contributions',
-						title: t('Cotisations'),
+						title: t(
+							'pages.simulateurs.auto-entrepreneur.répartition.cotisations',
+							'Cotisations'
+						),
 						color: colors.extended.grey[700],
 					},
 				]}

@@ -1,6 +1,6 @@
 import { fr } from '../../support/utils'
 
-const inputSelector = 'div[id="simulator-legend"] input'
+const inputSelector = 'div[id="simulator-legend"] input[inputmode="numeric"]'
 
 describe('Iframe pamc', function () {
 	if (!fr) {

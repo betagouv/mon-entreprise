@@ -162,7 +162,6 @@ Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons p
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
 Option ACRE non activée: Option ACRE non activée
-Option la plus avantageuse.: Option la plus avantageuse.
 Options: Options
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
@@ -199,7 +198,6 @@ Retour à mon activité: Retour à mon activité
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.:
   Retrouver ma précédente simulation, charger les données de ma précédente
   simulation.
-Revenu (incluant les dépenses liées à l'activité): Revenu (incluant les dépenses liées à l'activité)
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Revenu disponible: Revenu disponible
@@ -208,7 +206,6 @@ Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Rémunération totale pour l'année de cessation: Rémunération totale pour l'année de cessation
-Répartition du chiffre d'affaires: Répartition du chiffre d'affaires
 Résultat fiscal: Résultat fiscal
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
@@ -601,7 +598,6 @@ header:
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
-impôt: impôt
 impôt sur le revenu: impôt sur le revenu
 impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
 info: info
@@ -1417,6 +1413,11 @@ pages:
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
         titre: "Auto-entrepreneurs : simulateur de revenus"
+      répartition:
+        cotisations: Cotisations
+        h2: Répartition du chiffre d’affaires
+        impôt: Impôt
+        revenu: Revenu (incluant les dépenses liées à l’activité)
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
@@ -1679,6 +1680,7 @@ pages:
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
             améliorer le remboursement des frais de santé.</1>
           title: Vos prestations santé
+      meilleure-option: Option la plus avantageuse.
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
