@@ -33,12 +33,15 @@ const DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE =
 type IRouIS = "'IR'" | "'IS'"
 
 export default function ModifierOptions() {
-	const { set, cancel, confirm, values } = useStatefulRulesEdit([
-		DOTTEDNAME_ACRE,
-		DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE,
-		DOTTEDNAME_ENTREPRISE_IMPOSITION,
-		DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE,
-	] as const)
+	const { set, cancel, confirm, values } = useStatefulRulesEdit(
+		[
+			DOTTEDNAME_ACRE,
+			DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE,
+			DOTTEDNAME_ENTREPRISE_IMPOSITION,
+			DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE,
+		] as const,
+		{ 'dirigeant . auto-entrepreneur': 'oui' }
+	)
 
 	const { t } = useTranslation()
 
