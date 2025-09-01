@@ -1,6 +1,10 @@
 salarié . cotisations . exonérations . réduction générale:
   description: |
-    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer aucune cotisation. Le montant de l'allègement est égal au produit de la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité particulière à effectuer.
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro
+    cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer
+    aucune cotisation. Le montant de l'allègement est égal au produit de la
+    rémunération annuelle brute par un coefficient. Il n'y a pas de formalité
+    particulière à effectuer.
   références:
     Simulateur actuel: https://www.declaration.urssaf.fr/calcul/
     Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F24542
