@@ -12368,15 +12368,24 @@ salarié . cotisations . exonérations . réduction générale:
       titre.fr: plafond avec application de la DFS
   description.en: >
     [automatic] As part of the Responsibility and Solidarity Pact, the zero
-    contribution Urssaf scheme allows the employer of an employee earning the
-    minimum wage to pay no more contributions. The amount of the reduction is
-    equal to the product of the gross annual remuneration by a coefficient.
-    There are no particular formalities to be completed.
+
+    contributions, employers of employees earning the minimum wage no longer pay any
+
+    contributions. The amount of the reduction is equal to the product of the gross
+
+    by a coefficient. There are no special formalities
+
+    formality.
   description.fr: >
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
-    zéro cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus
-    payer aucune cotisation. Le montant de l'allègement est égal au produit de
-    la rémunération annuelle brute par un coefficient. Il n'y a pas de formalité
+    zéro
+
+    cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer
+
+    aucune cotisation. Le montant de l'allègement est égal au produit de la
+
+    rémunération annuelle brute par un coefficient. Il n'y a pas de formalité
+
     particulière à effectuer.
   titre.en: '[automatic] overall reduction'
   titre.fr: réduction générale
