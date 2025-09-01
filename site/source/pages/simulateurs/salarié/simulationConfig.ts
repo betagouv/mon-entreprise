@@ -52,6 +52,11 @@ export const configSalarié: SimulationConfig = {
 			"situation personnelle . domiciliation fiscale à l'étranger",
 			'salarié . régimes spécifiques . impatriés',
 		],
+		'liste noire': [
+			'salarié . cotisations . exonérations . zones lodeom',
+			'salarié . cotisations . exonérations . lodeom . zone un . barèmes',
+			'salarié . cotisations . exonérations . lodeom . zone deux . barèmes',
+		],
 	},
 	'unité par défaut': '€/mois',
 	situation: {
