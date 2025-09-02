@@ -2,7 +2,7 @@ import { pipe } from 'effect'
 import { join, map } from 'effect/Array'
 import * as O from 'effect/Option'
 import { split } from 'effect/String'
-import { EvaluatedNode, serializeUnit } from 'publicodes'
+import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 
 import { quantité, Quantité } from '@/domaine/Quantité'
 
@@ -32,6 +32,14 @@ export const QuantitéAdapter = {
 
 		return O.some(quantité(numberValue, formattedUnit))
 	},
+	encode: (valeur: O.Option<Quantité>) =>
+		pipe(
+			valeur,
+			O.map((q) =>
+				q.unité === '%' ? `${q.valeur}${q.unité}` : `${q.valeur} ${q.unité}`
+			),
+			O.getOrUndefined
+		) satisfies PublicodesExpression | undefined,
 }
 
 const unitFormatter = (unit: string, count: number): string => {
