@@ -87,10 +87,7 @@ const encode = (
 	}
 
 	if (isQuantité(valeur)) {
-		return {
-			valeur: valeur.valeur,
-			unité: valeur.unité,
-		}
+		return QuantitéAdapter.encode(optionalValeur as O.Some<Quantité>)
 	}
 
 	if (isNumber(valeur)) return valeur
