@@ -49,3 +49,6 @@ export const annéeCivile = (valeur: number): Quantité<'année civile'> =>
 
 export const employés = (valeur: number): Quantité<'employés'> =>
 	quantité(valeur, 'employés')
+
+export const titresRestaurantParMois = (valeur: number): Quantité<'titre-restaurant/mois'> =>
+	quantité(valeur, 'titre-restaurant/mois')
