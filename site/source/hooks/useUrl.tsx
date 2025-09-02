@@ -7,5 +7,5 @@ export function useUrl() {
 
 	const { path = '' } = currentSimulatorData ?? {}
 
-	return useSiteUrl() + path + '?' + useSearchParamsForCurrentSituation(true)
+	return useSiteUrl() + path + '?' + useSearchParamsForCurrentSituation()
 }

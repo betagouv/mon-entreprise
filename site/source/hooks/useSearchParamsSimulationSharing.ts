@@ -1,15 +1,16 @@
 import { pipe } from 'effect'
+import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
-import Engine, { ParsedRules, serializeEvaluation } from 'publicodes'
-import { useEffect, useMemo, useState } from 'react'
+import { Names } from 'modele-social/dist/names'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { SearchParamsAdapter } from '@/SearchParamsAdapter'
+import { SearchParamsAdapter, ValeurDomaine } from '@/SearchParamsAdapter'
 import {
 	batchUpdateSituation,
 	setActiveTarget,
@@ -18,11 +19,7 @@ import {
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
 
-type ShortName = string
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-type ParamName = DottedName | ShortName
-
-export const TARGET_UNIT_PARAM = 'unite'
+export const TARGET_UNIT_PARAM = 'unité'
 
 export default function useSearchParamsSimulationSharing() {
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -32,155 +29,113 @@ export default function useSearchParamsSimulationSharing() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
-	const dottedNameParamName = useMemo(
-		() => getRulesParamNames(engine.getParsedRules()),
-		[engine]
-	)
+	const rules = useMemo(() => R.keys(engine.getParsedRules()), [engine])
 
-	useEffect(() => {
-		// On load:
+	const setNewTargetUnit = useCallback(() => {
 		const newTargetUnit = getTargetUnitFromSearchParams(initialSearchParams)
 		if (newTargetUnit) {
 			dispatch(updateUnit(newTargetUnit))
 		}
+	}, [dispatch, initialSearchParams])
 
-		const newSituation = getSituationFromSearchParams(
-			initialSearchParams,
-			dottedNameParamName
-		)
-		if (Object.keys(newSituation).length > 0) {
-			dispatch(
-				batchUpdateSituation(
-					pipe(
-						newSituation,
-						R.map((valeur) => O.fromNullable(valeur))
+	const setNewSituation = useCallback(
+		(newSituation: Record<DottedName, ValeurDomaine>) => {
+			if (!R.isEmptyReadonlyRecord(newSituation)) {
+				dispatch(
+					batchUpdateSituation(
+						pipe(
+							newSituation,
+							R.map((valeur) => O.fromNullable(valeur))
+						)
 					)
 				)
+			}
+		},
+		[dispatch]
+	)
+
+	const setNewActiveTarget = useCallback(
+		(newSituation: Record<DottedName, ValeurDomaine>) => {
+			const newActiveTarget = pipe(
+				R.keys(newSituation),
+				A.findFirst((dottedName) =>
+					objectifs.includes(dottedName as DottedName)
+				)
 			)
-		}
 
-		const newActiveTarget = Object.keys(newSituation).filter((dottedName) =>
-			objectifs.includes(dottedName as DottedName)
-		)[0]
-		if (newActiveTarget) {
-			dispatch(setActiveTarget(newActiveTarget as DottedName))
-		}
+			if (O.isSome(newActiveTarget)) {
+				dispatch(setActiveTarget(newActiveTarget.value))
+			}
+		},
+		[dispatch, objectifs]
+	)
 
-		cleanSearchParams(
-			searchParams,
-			setSearchParams,
-			dottedNameParamName,
-			Object.keys(newSituation) as DottedName[]
+	const resetSearchParams = useCallback(() => {
+		const newSearchParams = searchParams
+		newSearchParams.delete(TARGET_UNIT_PARAM)
+
+		rules.forEach((dottedName) => newSearchParams.delete(dottedName))
+
+		setSearchParams(newSearchParams, { replace: true })
+	}, [rules, searchParams, setSearchParams])
+
+	// On load:
+	useEffect(() => {
+		const newSituation = getSituationFromSearchParams(
+			initialSearchParams,
+			rules
 		)
 
+		setNewTargetUnit()
+		setNewSituation(newSituation)
+		setNewActiveTarget(newSituation)
+
+		resetSearchParams()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 }
 
-export const useParamsFromSituation = (
+export const getSearchParamsFromSituation = (
 	situation: SituationPublicodes,
 	targetUnit: string
 ) => {
-	const engine = useEngine()
-	const dottedNameParamName = useMemo(
-		() => getRulesParamNames(engine.getParsedRules()),
-		[engine]
-	)
-
-	return getSearchParams(engine, situation, dottedNameParamName, targetUnit)
-}
-
-export const cleanSearchParams = (
-	searchParams: ReturnType<typeof useSearchParams>[0],
-	setSearchParams: ReturnType<typeof useSearchParams>[1],
-	dottedNameParamName: [DottedName, ParamName][],
-	dottedNames: DottedName[]
-) => {
-	const dottedNameParamNameMapping = Object.fromEntries(dottedNameParamName)
-	dottedNames.forEach((dottedName) =>
-		searchParams.delete(dottedNameParamNameMapping[dottedName])
-	)
-	searchParams.delete(TARGET_UNIT_PARAM)
-	setSearchParams(searchParams.toString(), { replace: true })
-}
-
-export const getRulesParamNames = (
-	parsedRules: ParsedRules<DottedName>
-): [DottedName, ParamName][] =>
-	(
-		Object.entries(parsedRules) as [
-			DottedName,
-			{ rawNode: { 'identifiant court'?: ShortName } },
-		][]
-	).map(([dottedName, ruleNode]) => [
-		dottedName,
-		ruleNode.rawNode['identifiant court'] || dottedName,
-	])
-
-export function getSearchParams(
-	engine: Engine,
-	situation: SituationPublicodes,
-	dottedNameParamName: [DottedName, ParamName][],
-	targetUnit: string
-): URLSearchParams {
 	const searchParams = new URLSearchParams()
-	const dottedNameParamNameMapping = Object.fromEntries(dottedNameParamName)
+	searchParams.set(TARGET_UNIT_PARAM, targetUnit)
 
-	Object.entries(situation).forEach(([dottedName, value]) => {
-		const paramName = dottedNameParamNameMapping[dottedName]
+	R.map(situation as Record<Names, ValeurDomaine>, (value, dottedName) => {
 		try {
-			const serializedValue = serializeEvaluation(engine.evaluate(value))
-
-			if (typeof serializedValue !== 'undefined') {
-				searchParams.set(paramName, serializedValue)
-			} else if (typeof value === 'object') {
-				searchParams.set(paramName, JSON.stringify(value))
-			}
+			const encodedValue = SearchParamsAdapter.encode(value)
+			searchParams.set(dottedName as string, encodedValue)
 		} catch (error) {
 			// eslint-disable-next-line no-console
 			console.error(error)
 		}
 	})
 
-	searchParams.set(TARGET_UNIT_PARAM, targetUnit)
-
 	searchParams.sort()
 
 	return searchParams
 }
 
-export function getSituationFromSearchParams(
+const getSituationFromSearchParams = (
 	searchParams: URLSearchParams,
-	dottedNameParamName: [DottedName, ParamName][]
-): Record<DottedName, ValeurPublicodes> {
+	rules: Names[]
+): Record<DottedName, ValeurPublicodes> => {
 	const situation = {} as Record<DottedName, ValeurPublicodes>
 
-	const paramNameDottedName = dottedNameParamName.reduce(
-		(dottedNameBySearchParamName, [dottedName, paramName]) => ({
-			...dottedNameBySearchParamName,
-			[paramName]: dottedName,
-		}),
-		{} as Record<ParamName, DottedName>
-	)
-
 	searchParams.forEach((value, paramName) => {
-		if (Object.prototype.hasOwnProperty.call(paramNameDottedName, paramName)) {
-			const dottedName = paramNameDottedName[paramName]
-			situation[dottedName] = SearchParamsAdapter.decode(
-				value
-			) as ValeurPublicodes
+		const dottedName = paramName as Names
+		if (rules.includes(dottedName)) {
+			situation[dottedName] = SearchParamsAdapter.decode(value)
 		}
 	})
 
 	return situation
 }
 
-export function getTargetUnitFromSearchParams(
+const getTargetUnitFromSearchParams = (
 	searchParams: URLSearchParams
-): string | null {
-	if (searchParams.has(TARGET_UNIT_PARAM)) {
-		return searchParams.get(TARGET_UNIT_PARAM)
-	}
-
-	return null
-}
+): string | null =>
+	searchParams.has(TARGET_UNIT_PARAM)
+		? searchParams.get(TARGET_UNIT_PARAM)
+		: null
