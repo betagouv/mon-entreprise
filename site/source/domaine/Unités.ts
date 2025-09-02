@@ -1,15 +1,24 @@
-export type UnitéMonétairePonctuelle = '€'
+export type UnitéMonétairePonctuelle = '€' | '€/titre-restaurant'
 export type UnitéMonétaireRécurrente = '€/mois' | '€/an' | '€/jour' | '€/heure'
 export type UnitéMonétaire = UnitéMonétairePonctuelle | UnitéMonétaireRécurrente
 
-export const UNITÉS_MONÉTAIRES = ['€', '€/an', '€/mois', '€/jour', '€/heure']
+const UNITÉS_MONÉTAIRES = [
+	'€',
+	'€/titre-restaurant',
+	'€/an',
+	'€/mois',
+	'€/jour',
+	'€/heure',
+]
 
 export const isUnitéMonétaire = (unité?: string): unité is UnitéMonétaire =>
 	UNITÉS_MONÉTAIRES.includes(unité as UnitéMonétaire)
 export const isUnitéMonétaireRécurrente = (
 	unité?: string
 ): unité is UnitéMonétaireRécurrente =>
-	isUnitéMonétaire(unité as UnitéMonétaire) && unité !== '€'
+	isUnitéMonétaire(unité as UnitéMonétaire) &&
+	unité !== '€' &&
+	unité !== '€/titre-restaurant'
 
 export const UNITÉS_QUANTITÉS = [
 	'%',
