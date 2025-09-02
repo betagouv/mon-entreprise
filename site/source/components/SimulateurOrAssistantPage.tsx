@@ -9,7 +9,7 @@ import {
 	useCurrentSimulatorData,
 } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import useSearchParamsSimulationSharing from '@/hooks/useSearchParamsSimulationSharing'
+import useSetSimulationFromSearchParams from '@/hooks/useSetSimulationFromSearchParams'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 import { Merge } from '@/types/utils'
@@ -47,7 +47,7 @@ export default function SimulateurOrAssistantPage() {
 		config: simulation as Simulation,
 		autoloadLastSimulation,
 	})
-	useSearchParamsSimulationSharing()
+	useSetSimulationFromSearchParams()
 
 	const trackInfo = {
 		chapter1:

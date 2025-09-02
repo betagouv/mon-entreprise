@@ -7,7 +7,8 @@ import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { Emoji, Grid, Spacing, Switch, typography } from '@/design-system'
-import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 import PagesChart from '@/pages/statistiques/_components/PagesCharts'
 
 import { MainIndicators } from './_components/LastMonthIndicators'
@@ -167,7 +168,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 	)
 }
 
-export function getFilter(s: SimulatorData[keyof SimulatorData]): Filter | '' {
+export function getFilter(s: SimulatorDataValues): Filter | '' {
 	if ('iframePath' in s && s.iframePath === 'pamc') {
 		return 'PAM'
 	}
