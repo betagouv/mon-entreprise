@@ -38,6 +38,10 @@ const arrondirAuCentime = (valeur: number): number =>
 
 export const estEuro = (montant: Montant): montant is Montant<'€'> =>
 	montant.unité === '€'
+export const estEuroParTitreRestaurant = (
+	montant: Montant
+): montant is Montant<'€/titre-restaurant'> =>
+	montant.unité === '€/titre-restaurant'
 export const estEuroParMois = (
 	montant: Montant
 ): montant is Montant<'€/mois'> => montant.unité === '€/mois'
@@ -55,6 +59,14 @@ export const euros = (valeur: number): Montant<'€'> =>
 		valeur: arrondirAuCentime(valeur),
 		unité: '€',
 	}) as Montant<'€'>
+
+export const eurosParTitreRestaurant = (
+	valeur: number
+): Montant<'€/titre-restaurant'> =>
+	makeMontant({
+		valeur: arrondirAuCentime(valeur),
+		unité: '€/titre-restaurant',
+	}) as Montant<'€/titre-restaurant'>
 
 export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
 	makeMontant({
@@ -178,9 +190,9 @@ export const montant = <U extends UnitéMonétaire>(
 	}) as Montant<U>
 
 export const plus = dual<
-	<M extends Montant>(b: M) => (a: M) => M,
-	<M extends Montant>(a: M, b: M) => M
->(2, <M extends Montant>(a: M, b: M): M => {
+	<M extends Montant<UnitéMonétaire>>(b: M) => (a: M) => M,
+	<M extends Montant<UnitéMonétaire>>(a: M, b: M) => M
+>(2, <M extends Montant<UnitéMonétaire>>(a: M, b: M): M => {
 	const valeurSomme = arrondirAuCentime(a.valeur + b.valeur)
 
 	return makeMontant({ valeur: valeurSomme, unité: a.unité }) as M

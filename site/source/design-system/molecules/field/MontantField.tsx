@@ -35,6 +35,7 @@ const unitéToDisplayedUnit: Record<UnitéMonétaire, string> = {
 	'€/mois': 'par mois',
 	'€/jour': 'par jour',
 	'€/heure': 'par heure',
+	'€/titre-restaurant': 'par titre-restaurant',
 }
 
 export const MontantField = <U extends UnitéMonétaire>({
