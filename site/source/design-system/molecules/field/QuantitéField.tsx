@@ -7,7 +7,7 @@ import { NoOp } from '@/utils/NoOp'
 
 import { NumericInput } from '../../atoms/NumericInput'
 
-interface QuantitéFieldProps<U extends string> {
+interface QuantitéFieldProps<U extends UnitéQuantité> {
 	value: Quantité<U> | undefined
 	unité: U
 	onChange?: (value: Quantité<U> | undefined) => void
@@ -38,7 +38,7 @@ const unitéToDisplayedUnit: Record<UnitéQuantité, string> = {
 	'titre-restaurant/mois': 'titres-restaurant/mois',
 }
 
-export const QuantitéField = <U extends string>({
+export const QuantitéField = <U extends UnitéQuantité>({
 	value,
 	unité,
 	onChange = NoOp,
