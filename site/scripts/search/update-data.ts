@@ -3,14 +3,14 @@ import dotenv from 'dotenv'
 import rawRules from 'modele-social'
 import Engine, { ParsedRules } from 'publicodes'
 
-import { MetadataSrc } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 dotenv.config()
 
 const path = '../../source/public/simulation-data.json'
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 const simuData = (await import(path, { assert: { type: 'json' } }))
-	.default as unknown as Omit<MetadataSrc, 'component'>
+	.default as unknown as Omit<SimulatorData, 'component'>
 
 const parsedRules = new Engine(rawRules).getParsedRules()
 
@@ -56,7 +56,7 @@ const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 		.filter(falsy)
 
 const formatSimulationDataToAlgolia = (
-	simulations: Omit<MetadataSrc, 'component'>
+	simulations: Omit<SimulatorData, 'component'>
 ) =>
 	Object.entries(simulations)
 		.filter(
