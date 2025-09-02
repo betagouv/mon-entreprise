@@ -99,6 +99,7 @@ export default function Simulation<S extends Situation = Situation>({
 	return (
 		<>
 			{!isFirstStepCompleted && <TrackPage name="accueil" />}
+			{isFirstStepCompleted && <TrackPage name="simulation commencée" />}
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />
