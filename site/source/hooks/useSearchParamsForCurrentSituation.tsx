@@ -1,17 +1,13 @@
 import { useSelector } from 'react-redux'
 
-import { useParamsFromSituation } from '@/hooks/useSearchParamsSimulationSharing'
+import { getSearchParamsFromSituation } from '@/hooks/useSearchParamsSimulationSharing'
 import {
 	companySituationSelector,
 	situationSelector,
 	targetUnitSelector,
 } from '@/store/selectors/simulationSelectors'
 
-export const useSearchParamsForCurrentSituation = <
-	T extends boolean | undefined,
->(
-	asString: T
-): T extends true ? string : object => {
+export const useSearchParamsForCurrentSituation = (): string => {
 	const situation = {
 		...useSelector(situationSelector),
 		...useSelector(companySituationSelector),
@@ -19,9 +15,7 @@ export const useSearchParamsForCurrentSituation = <
 
 	const targetUnit = useSelector(targetUnitSelector)
 
-	const searchParams = useParamsFromSituation(situation, targetUnit)
+	const searchParams = getSearchParamsFromSituation(situation, targetUnit)
 
-	return (asString ? searchParams.toString() : searchParams) as T extends true
-		? string
-		: object
+	return searchParams.toString()
 }

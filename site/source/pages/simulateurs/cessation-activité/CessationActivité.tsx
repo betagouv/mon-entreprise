@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { Body } from '@/design-system'
-import { useParamsFromSituation } from '@/hooks/useSearchParamsSimulationSharing'
+import { getSearchParamsFromSituation } from '@/hooks/useSearchParamsSimulationSharing'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSiteUrl } from '@/hooks/useSiteUrl'
 import { CessationActivitéGoals } from '@/pages/simulateurs/cessation-activité/Goals'
@@ -23,7 +23,10 @@ export const CessationActivitéSimulation = () => {
 	const targetUnit = useSelector(targetUnitSelector)
 	const filteredSituation = omit(situation, 'entreprise . date de cessation')
 
-	const searchParams = useParamsFromSituation(filteredSituation, targetUnit)
+	const searchParams = getSearchParamsFromSituation(
+		filteredSituation,
+		targetUnit
+	)
 
 	const path = useSimulatorsData().indépendant.path
 
