@@ -4,10 +4,13 @@ import {
 	eurosParHeure,
 	eurosParJour,
 	eurosParMois,
+	eurosParTitreRestaurant,
 	isMontant,
 	Montant,
 } from '@/domaine/Montant'
 import { isQuantité, Quantité, quantité } from '@/domaine/Quantité'
+
+import { isUnitéQuantité } from './domaine/Unités'
 
 export type ValeurDomaine = string | Montant | Quantité | number
 
@@ -40,7 +43,7 @@ export const SearchParamsAdapter = {
 	 * Decode une string d'URL param en valeur du domaine typée
 	 */
 	decode: (valeur: string): ValeurDomaine => {
-		const montantRegex = /^([0-9]+(?:[.,][0-9]+)?)\s*(€(?:\/[a-z]+)?)$/
+		const montantRegex = /^([0-9]+(?:[.,][0-9]+)?)\s*(€(?:\/[a-z-]+)?)$/
 		const montantMatch = valeur.match(montantRegex)
 		if (montantMatch) {
 			const [, numberStr, unit] = montantMatch
@@ -50,6 +53,8 @@ export const SearchParamsAdapter = {
 				switch (unit) {
 					case '€':
 						return euros(nombre)
+					case '€/titre-restaurant':
+						return eurosParTitreRestaurant(nombre)
 					case '€/mois':
 						return eurosParMois(nombre)
 					case '€/an':
@@ -62,21 +67,14 @@ export const SearchParamsAdapter = {
 			}
 		}
 
-		const quantitéRegex =
-			/^([0-9]+(?:[.,][0-9]+)?)\s*([a-zA-Z]+(?:\/[a-zA-Z]+)?)$/
+		const quantitéRegex = /^([0-9]+(?:[.,][0-9]+)?)\s?((?:\S+\s?)+)$/
 		const quantitéMatch = valeur.match(quantitéRegex)
 		if (quantitéMatch) {
-			const [, numberStr, unit] = quantitéMatch
+			const [, numberStr, unité] = quantitéMatch
 			const nombre = parseFloat(numberStr.replace(',', '.'))
 
-			const isValidUnit =
-				unit.includes('/') ||
-				['heures', 'jours', 'mois', 'ans', 'semaines', 'trimestres'].includes(
-					unit
-				)
-
-			if (!isNaN(nombre) && !unit.includes('€') && isValidUnit) {
-				return quantité(nombre, unit)
+			if (!isNaN(nombre) && isUnitéQuantité(unité)) {
+				return quantité(nombre, unité)
 			}
 		}
 
