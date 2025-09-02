@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import React, { useState } from 'react'
 
 import { quantité, Quantité } from '@/domaine/Quantité'
+import { UnitéQuantité } from '@/domaine/Unités'
 
 import { QuantitéField } from './QuantitéField'
 
@@ -34,7 +35,7 @@ Il offre des fonctionnalités spécifiques:
 
 type Story = StoryObj<typeof QuantitéField>
 
-const QuantitéFieldWrapper = <U extends string>(
+const QuantitéFieldWrapper = <U extends UnitéQuantité>(
 	args: React.ComponentProps<typeof QuantitéField<U>>
 ) => {
 	const [value, setValue] = useState<Quantité<U> | undefined>(args.value)

@@ -9,7 +9,7 @@ const UNITÉS_MONÉTAIRES = [
 	'€/mois',
 	'€/jour',
 	'€/heure',
-]
+] as const
 
 export const isUnitéMonétaire = (unité?: string): unité is UnitéMonétaire =>
 	UNITÉS_MONÉTAIRES.includes(unité as UnitéMonétaire)
@@ -31,7 +31,7 @@ export const UNITÉS_QUANTITÉS = [
 	'année civile',
 	'employés',
 	'titre-restaurant/mois',
-]
+] as const
 
 export type UnitéQuantité = (typeof UNITÉS_QUANTITÉS)[number]
 
