@@ -87,5 +87,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 	return data satisfies ImmutableType<Record<string, PageConfig>>
 }
 
-export type MetadataSrc = ReturnType<typeof getMetadataSrc>
+export type SimulatorData = ReturnType<typeof getMetadataSrc>
+export type SimulatorDataValues = SimulatorData[keyof SimulatorData]
+
 export default getMetadataSrc

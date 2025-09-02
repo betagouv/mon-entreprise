@@ -1,8 +1,9 @@
 import { useLocation } from 'react-router-dom'
 
+import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 import { Merge, ToOptional } from '@/types/utils'
 
-import useSimulatorsData, { SimulatorDataValues } from './useSimulatorsData'
+import useSimulatorsData from './useSimulatorsData'
 
 export type MergedSimulatorDataValues = ToOptional<Merge<SimulatorDataValues>>
 

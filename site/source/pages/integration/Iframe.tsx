@@ -25,17 +25,22 @@ import {
 	TextField,
 	Ul,
 } from '@/design-system'
-import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 
 import Meta from '../../components/utils/Meta'
 
 import './iframe.css'
 
+import {
+	SimulatorData,
+	SimulatorDataValues,
+} from '@/pages/simulateurs-et-assistants/metadata-src'
+
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
 
-const checkIframe = (obj: SimulatorData[keyof SimulatorData]) =>
+const checkIframe = (obj: SimulatorDataValues) =>
 	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
 
 const getFromSimu = <S extends SimulatorData, T extends string>(
