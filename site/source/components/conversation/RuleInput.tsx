@@ -190,13 +190,6 @@ export default function RuleInput({
 	const value = isDefaultValue ? undefined : O.getOrUndefined(decoded)
 	const defaultValue = isDefaultValue ? O.getOrUndefined(decoded) : undefined
 
-	/**
-	 * À partir de là, on sait qu'on traite avec un nombre, qui peut être :
-	 * - un Montant (unité de type €, €/an, €/mois...)
-	 * - une Quantité (unité de type %, heures/mois, jours, année civile...)
-	 * - un nombre sans unité
-	 */
-
 	const unitéPublicodes = rule.rawNode.unité
 	const nbDécimalesMax = decodeArrondi(rule.rawNode.arrondi as string)
 
@@ -407,11 +400,15 @@ export default function RuleInput({
 	if (inputNature === MONTANT_FIELD) {
 		const montantValue = value as Montant | undefined
 		const montantPlaceholder = defaultValue as Montant | undefined
+		const unitéDeBase =
+			montantValue?.unité || montantPlaceholder?.unité || unitéPublicodes
+		const unitéConvertie =
+			isUnitéMonétaireRécurrente(unitéDeBase) && isUnitéMonétaire(targetUnit)
+				? targetUnit
+				: unitéDeBase
 		const unité = isUnitéMonétaire(displayedUnit)
 			? displayedUnit
-			: isUnitéMonétaire(targetUnit)
-			? targetUnit
-			: montantValue?.unité || montantPlaceholder?.unité || unitéPublicodes
+			: unitéConvertie ?? undefined
 		const unitéRécurrenteCible = isUnitéMonétaireRécurrente(targetUnit)
 			? targetUnit
 			: undefined
