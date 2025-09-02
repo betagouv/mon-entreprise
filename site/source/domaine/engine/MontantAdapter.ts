@@ -2,7 +2,13 @@ import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 
-import { euros, eurosParAn, eurosParMois, Montant } from '@/domaine/Montant'
+import {
+	euros,
+	eurosParAn,
+	eurosParMois,
+	eurosParTitreRestaurant,
+	Montant,
+} from '@/domaine/Montant'
 
 export const MontantAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Montant> => {
@@ -32,6 +38,8 @@ export const MontantAdapter = {
 				return O.some(eurosParAn(numberValue))
 			case '€/mois':
 				return O.some(eurosParMois(numberValue))
+			case '€/titre-restaurant':
+				return O.some(eurosParTitreRestaurant(numberValue))
 			default:
 				console.warn(
 					`Le montant ${numberValue} est en ${formattedUnit}, ce n’est pas pris en charge.`
