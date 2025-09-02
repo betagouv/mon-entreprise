@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import getMetadataSrc from '@/pages/simulateurs-et-assistants/metadata-src'
+import getMetadataSrc, {
+	SimulatorData,
+} from '@/pages/simulateurs-et-assistants/metadata-src'
 import { useSitePaths } from '@/sitePaths'
-
-export type SimulatorData = ReturnType<typeof getMetadataSrc>
-export type SimulatorDataValues = SimulatorData[keyof SimulatorData]
 
 /**
  * Gets all simulator data

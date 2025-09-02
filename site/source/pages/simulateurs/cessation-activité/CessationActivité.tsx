@@ -4,14 +4,13 @@ import { useSelector } from 'react-redux'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { Body } from '@/design-system'
-import { getSearchParamsFromSituation } from '@/hooks/useSearchParamsSimulationSharing'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useSiteUrl } from '@/hooks/useSiteUrl'
+import { useUrl } from '@/hooks/useUrl'
 import { CessationActivitéGoals } from '@/pages/simulateurs/cessation-activité/Goals'
 import {
 	companySituationSelector,
 	situationSelector,
-	targetUnitSelector,
 } from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
 
@@ -20,17 +19,11 @@ export const CessationActivitéSimulation = () => {
 		...useSelector(situationSelector),
 		...useSelector(companySituationSelector),
 	}
-	const targetUnit = useSelector(targetUnitSelector)
+
 	const filteredSituation = omit(situation, 'entreprise . date de cessation')
-
-	const searchParams = getSearchParamsFromSituation(
-		filteredSituation,
-		targetUnit
-	)
-
-	const path = useSimulatorsData().indépendant.path
-
-	const lien = useSiteUrl() + path + '?' + searchParams.toString()
+	const path = useSimulatorsData().indépendant
+		.path as Partial<MergedSimulatorDataValues>
+	const lien = useUrl({ path, situation: filteredSituation })
 
 	const { t } = useTranslation()
 

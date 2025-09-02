@@ -3,7 +3,8 @@ import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
 import { Body, Emoji, Grid, Intro, Message } from '@/design-system'
-import useSimulatorsData, { SimulatorData } from '@/hooks/useSimulatorsData'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 import { SimulateurCard } from './SimulateurCard'
 import { useEngine } from './utils/EngineContext'

@@ -1,11 +1,22 @@
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import { useSearchParamsForCurrentSituation } from '@/hooks/useSearchParamsForCurrentSituation'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
+import {
+	MergedSimulatorDataValues,
+	useCurrentSimulatorData,
+} from '@/hooks/useCurrentSimulatorData'
+import { useSearchParamsForSituation } from '@/hooks/useSearchParamsForSituation'
 import { useSiteUrl } from '@/hooks/useSiteUrl'
 
-export function useUrl() {
+type Options = {
+	path?: Partial<MergedSimulatorDataValues>
+	situation?: SituationPublicodes
+}
+
+export function useUrl(options?: Options) {
 	const { currentSimulatorData } = useCurrentSimulatorData()
 
-	const { path = '' } = currentSimulatorData ?? {}
+	const { path = '' } = options?.path ? { path: options.path as string } : currentSimulatorData ?? {}
 
-	return useSiteUrl() + path + '?' + useSearchParamsForCurrentSituation()
+	return (
+		useSiteUrl() + path + '?' + useSearchParamsForSituation(options?.situation)
+	)
 }
