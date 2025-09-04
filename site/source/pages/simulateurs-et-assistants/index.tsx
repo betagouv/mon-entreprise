@@ -84,7 +84,6 @@ export default function SimulateursEtAssistants() {
 						{...simulators['entreprise-individuelle']}
 						role="listitem"
 					/>
-					<SimulateurCard small {...simulators.eirl} role="listitem" />
 					<SimulateurCard small {...simulators.sasu} role="listitem" />
 					<SimulateurCard small {...simulators.eurl} role="listitem" />
 					<SimulateurCard
