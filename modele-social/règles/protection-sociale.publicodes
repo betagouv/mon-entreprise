@@ -690,7 +690,11 @@ protection sociale . maladie . arrêt maladie . salarié:
       produit:
         - valeur: salarié . cotisations . assiette
           unité: €/jour
-          plafond: 1.8 * SMIC
+          plafond:
+            variations:
+              - si: date > 04/2025
+                alors: 1.4 * SMIC
+              - sinon: 1.8 * SMIC
         - 50%
       références:
         'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
