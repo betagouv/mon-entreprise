@@ -131,20 +131,14 @@ describe('PublicodesAdapter', () => {
 			const quantité = Quantité.heuresParMois(35)
 			const result = PublicodesAdapter.encode(O.some(quantité))
 
-			expect(result).toEqual({
-				valeur: 35,
-				unité: 'heures/mois',
-			})
+			expect(result).toEqual('35 heures/mois')
 		})
 
 		it('encode un pourcentage', () => {
 			const pourcentage = Quantité.pourcentage(15.5)
 			const result = PublicodesAdapter.encode(O.some(pourcentage))
 
-			expect(result).toEqual({
-				valeur: 15.5,
-				unité: '%',
-			})
+			expect(result).toEqual('15.5%')
 		})
 
 		it('encode un montant', () => {

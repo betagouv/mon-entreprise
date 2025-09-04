@@ -136,6 +136,7 @@
 		"eslint-plugin-testing-library": "^6.2.0",
 		"happy-dom": "^13.3.8",
 		"i18next-parser": "^8.7.0",
+		"jsdom": "^26.1.0",
 		"netlify-cli": "^17.10.1",
 		"serve-static": "^1.15.0",
 		"storybook": "^7.4.3",

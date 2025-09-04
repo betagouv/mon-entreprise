@@ -1,16 +1,7 @@
-import {
-	euros,
-	eurosParAn,
-	eurosParHeure,
-	eurosParJour,
-	eurosParMois,
-	eurosParTitreRestaurant,
-	isMontant,
-	Montant,
-} from '@/domaine/Montant'
+import { isMontant, montant, Montant } from '@/domaine/Montant'
 import { isQuantité, Quantité, quantité } from '@/domaine/Quantité'
 
-import { isUnitéQuantité } from './domaine/Unités'
+import { isUnitéMonétaire, isUnitéQuantité } from './domaine/Unités'
 
 export type ValeurDomaine = string | Montant | Quantité | number
 
@@ -46,24 +37,11 @@ export const SearchParamsAdapter = {
 		const montantRegex = /^([0-9]+(?:[.,][0-9]+)?)\s*(€(?:\/[a-z-]+)?)$/
 		const montantMatch = valeur.match(montantRegex)
 		if (montantMatch) {
-			const [, numberStr, unit] = montantMatch
+			const [, numberStr, unité] = montantMatch
 			const nombre = parseFloat(numberStr.replace(',', '.'))
 
-			if (!isNaN(nombre)) {
-				switch (unit) {
-					case '€':
-						return euros(nombre)
-					case '€/titre-restaurant':
-						return eurosParTitreRestaurant(nombre)
-					case '€/mois':
-						return eurosParMois(nombre)
-					case '€/an':
-						return eurosParAn(nombre)
-					case '€/jour':
-						return eurosParJour(nombre)
-					case '€/heure':
-						return eurosParHeure(nombre)
-				}
+			if (!isNaN(nombre) && isUnitéMonétaire(unité)) {
+				return montant(nombre, unité)
 			}
 		}
 
