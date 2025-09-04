@@ -14,7 +14,9 @@ type Options = {
 export function useUrl(options?: Options) {
 	const { currentSimulatorData } = useCurrentSimulatorData()
 
-	const { path = '' } = options?.path ? { path: options.path as string } : currentSimulatorData ?? {}
+	const { path = '' } = options?.path
+		? { path: options.path as string }
+		: currentSimulatorData ?? {}
 
 	return (
 		useSiteUrl() + path + '?' + useSearchParamsForSituation(options?.situation)
