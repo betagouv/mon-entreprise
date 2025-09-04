@@ -6,8 +6,20 @@ import {
 	eurosParHeure,
 	eurosParJour,
 	eurosParMois,
+	eurosParTitreRestaurant,
 } from '@/domaine/Montant'
-import { quantité } from '@/domaine/Quantité'
+import {
+	annéeCivile,
+	employés,
+	heuresParMois,
+	heuresParSemaine,
+	jours,
+	joursOuvrés,
+	mois,
+	pourcentage,
+	titresRestaurantParMois,
+	trimestreCivil,
+} from '@/domaine/Quantité'
 
 import { SearchParamsAdapter } from './SearchParamsAdapter'
 
@@ -15,6 +27,12 @@ describe('SearchParamsAdapter', () => {
 	describe('encode', () => {
 		it('devrait encoder un Montant en euros', () => {
 			expect(SearchParamsAdapter.encode(euros(1500))).toBe('1500€')
+		})
+
+		it('devrait encoder un Montant en euros par titre-restaurant', () => {
+			expect(SearchParamsAdapter.encode(eurosParTitreRestaurant(12))).toBe(
+				'12€/titre-restaurant'
+			)
 		})
 
 		it('devrait encoder un Montant en euros par mois', () => {
@@ -35,10 +53,54 @@ describe('SearchParamsAdapter', () => {
 			)
 		})
 
-		it('devrait encoder une Quantité', () => {
-			expect(SearchParamsAdapter.encode(quantité(35, 'heures/semaine'))).toBe(
-				'35heures/semaine'
+		it('devrait encoder une Quantité en heures par mois', () => {
+			expect(SearchParamsAdapter.encode(heuresParMois(35))).toBe(
+				'35heures/mois'
 			)
+		})
+
+		it('devrait encoder une Quantité en heures par semaine', () => {
+			expect(SearchParamsAdapter.encode(heuresParSemaine(17.33))).toBe(
+				'17.33heures/semaine'
+			)
+		})
+
+		it('devrait encoder une Quantité en jours', () => {
+			expect(SearchParamsAdapter.encode(jours(42))).toBe('42jours')
+		})
+
+		it('devrait encoder une Quantité en jours ouvrés', () => {
+			expect(SearchParamsAdapter.encode(joursOuvrés(2.08))).toBe(
+				'2.08jours ouvrés'
+			)
+		})
+
+		it('devrait encoder une Quantité en mois', () => {
+			expect(SearchParamsAdapter.encode(mois(3))).toBe('3mois')
+		})
+
+		it('devrait encoder une Quantité en trimestres civils', () => {
+			expect(SearchParamsAdapter.encode(trimestreCivil(2))).toBe(
+				'2trimestre civil'
+			)
+		})
+
+		it('devrait encoder une Quantité en années civiles', () => {
+			expect(SearchParamsAdapter.encode(annéeCivile(2))).toBe('2année civile')
+		})
+
+		it('devrait encoder une Quantité en employés', () => {
+			expect(SearchParamsAdapter.encode(employés(11))).toBe('11employés')
+		})
+
+		it('devrait encoder une Quantité en titres-restaurant par mois', () => {
+			expect(SearchParamsAdapter.encode(titresRestaurantParMois(22))).toBe(
+				'22titre-restaurant/mois'
+			)
+		})
+
+		it('devrait encoder un poucentage', () => {
+			expect(SearchParamsAdapter.encode(pourcentage(60))).toBe('60%')
 		})
 
 		it('devrait encoder un nombre', () => {
@@ -66,6 +128,11 @@ describe('SearchParamsAdapter', () => {
 		it('devrait décoder un montant en euros', () => {
 			const result = SearchParamsAdapter.decode('1500€')
 			expect(result).toEqual(euros(1500))
+		})
+
+		it('devrait décoder un montant en euros par titre-restaurant', () => {
+			const result = SearchParamsAdapter.decode('12€/titre-restaurant')
+			expect(result).toEqual(eurosParTitreRestaurant(12))
 		})
 
 		it('devrait décoder un montant en euros par mois', () => {
@@ -98,14 +165,59 @@ describe('SearchParamsAdapter', () => {
 			expect(result).toEqual(eurosParMois(1539))
 		})
 
-		it('devrait décoder une quantité', () => {
-			const result = SearchParamsAdapter.decode('35heures/semaine')
-			expect(result).toEqual(quantité(35, 'heures/semaine'))
+		it('devrait décoder une Quantité en heures par mois', () => {
+			const result = SearchParamsAdapter.decode('35heures/mois')
+			expect(result).toEqual(heuresParMois(35))
+		})
+
+		it('devrait décoder une Quantité en heures par semaine', () => {
+			const result = SearchParamsAdapter.decode('17.33heures/semaine')
+			expect(result).toEqual(heuresParSemaine(17.33))
+		})
+
+		it('devrait décoder une Quantité en jours', () => {
+			const result = SearchParamsAdapter.decode('42jours')
+			expect(result).toEqual(jours(42))
+		})
+
+		it('devrait décoder une Quantité en jours ouvrés', () => {
+			const result = SearchParamsAdapter.decode('2.08jours ouvrés')
+			expect(result).toEqual(joursOuvrés(2.08))
+		})
+
+		it('devrait décoder une Quantité en mois', () => {
+			const result = SearchParamsAdapter.decode('3mois')
+			expect(result).toEqual(mois(3))
+		})
+
+		it('devrait décoder une Quantité en trimestres civils', () => {
+			const result = SearchParamsAdapter.decode('2trimestre civil')
+			expect(result).toEqual(trimestreCivil(2))
+		})
+
+		it('devrait décoder une Quantité en années civiles', () => {
+			const result = SearchParamsAdapter.decode('2année civile')
+			expect(result).toEqual(annéeCivile(2))
+		})
+
+		it('devrait décoder une Quantité en employés', () => {
+			const result = SearchParamsAdapter.decode('11employés')
+			expect(result).toEqual(employés(11))
+		})
+
+		it('devrait décoder une Quantité en titres-restaurant par mois', () => {
+			const result = SearchParamsAdapter.decode('22titre-restaurant/mois')
+			expect(result).toEqual(titresRestaurantParMois(22))
+		})
+
+		it('devrait décoder un poucentage', () => {
+			const result = SearchParamsAdapter.decode('60%')
+			expect(result).toEqual(pourcentage(60))
 		})
 
 		it('devrait décoder une quantité avec espace', () => {
-			const result = SearchParamsAdapter.decode('35 heures/semaine')
-			expect(result).toEqual(quantité(35, 'heures/semaine'))
+			const result = SearchParamsAdapter.decode('3 mois')
+			expect(result).toEqual(mois(3))
 		})
 
 		it('devrait décoder un nombre', () => {
@@ -133,9 +245,9 @@ describe('SearchParamsAdapter', () => {
 			expect(result).toBe('simple')
 		})
 
-		it("devrait décoder une string qui ressemble à un nombre mais ne l'est pas", () => {
-			const result = SearchParamsAdapter.decode('42abc')
-			expect(result).toBe('42abc')
+		it('devrait décoder une string qui ressemble à une quantité mais ne l’est pas', () => {
+			const result = SearchParamsAdapter.decode('3 petits chats')
+			expect(result).toBe('3 petits chats')
 		})
 	})
 
@@ -148,7 +260,7 @@ describe('SearchParamsAdapter', () => {
 		})
 
 		it('devrait préserver les quantités', () => {
-			const original = quantité(40, 'heures/semaine')
+			const original = heuresParSemaine(40)
 			const encoded = SearchParamsAdapter.encode(original)
 			const decoded = SearchParamsAdapter.decode(encoded)
 			expect(decoded).toEqual(original)
