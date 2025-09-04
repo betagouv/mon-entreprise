@@ -45,7 +45,7 @@ export const SearchParamsAdapter = {
 			}
 		}
 
-		const quantitéRegex = /^([0-9]+(?:[.,][0-9]+)?)\s?((?:\S+\s?)+)$/
+		const quantitéRegex = /^([0-9]+(?:[.,][0-9]+)?)\s?(\S+(?:\s+\S+)*)$/
 		const quantitéMatch = valeur.match(quantitéRegex)
 		if (quantitéMatch) {
 			const [, numberStr, unité] = quantitéMatch
