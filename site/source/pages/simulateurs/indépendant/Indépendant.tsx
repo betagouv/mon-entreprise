@@ -9,6 +9,7 @@ import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { Body } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import useYear from '@/hooks/useYear'
 import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
 import { ajusteLaSituation } from '@/store/actions/actions'
@@ -16,6 +17,8 @@ import { ajusteLaSituation } from '@/store/actions/actions'
 export default function IndépendantSimulation() {
 	const dispatch = useDispatch()
 	const year = useYear()
+	const { currentSimulatorData } = useCurrentSimulatorData()
+	const { warning: WarningComponent } = currentSimulatorData
 
 	return (
 		<>
@@ -26,12 +29,15 @@ export default function IndépendantSimulation() {
 				<SimulateurWarning
 					simulateur="indépendant"
 					informationsComplémentaires={
-						<Body>
-							<Trans i18nKey="pages.simulateurs.indépendant.warning">
-								Le montant calculé correspond aux cotisations de l’année{' '}
-								{{ year }} (pour un revenu {{ year }}).
-							</Trans>
-						</Body>
+						<>
+							<WarningComponent />
+							<Body>
+								<Trans i18nKey="pages.simulateurs.indépendant.warning">
+									Le montant calculé correspond aux cotisations de l’année{' '}
+									{{ year }} (pour un revenu {{ year }}).
+								</Trans>
+							</Body>
+						</>
 					}
 				/>
 				<IndépendantSimulationGoals
