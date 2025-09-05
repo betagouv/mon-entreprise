@@ -47,3 +47,5 @@ Elle ne mentionne que quelques erreurs relevées lors des derniers audits, de no
 
 -   Utiliser un `role="alert/status/log"` plutôt que les attributs `aria-live` et `aria-atomic`, beaucoup moins bien supportés (cf. https://a11ysupport.io).
 -   Ne pas créer dynamiquement cette "live region" au moment d'y injecter du contenu : cette "live region" sera plus fiable si elle est présente dans le DOM avant cette injection de contenu.
+
+## Audit de contrôle 2025
