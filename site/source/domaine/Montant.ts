@@ -54,49 +54,29 @@ export const estEuroParHeure = (
 	montant: Montant
 ): montant is Montant<'€/heure'> => montant.unité === '€/heure'
 
-export const euros = (valeur: number): Montant<'€'> =>
-	makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€',
-	}) as Montant<'€'>
+export const euros = (valeur: number): Montant<'€'> => montant(valeur, '€')
 
 export const eurosParTitreRestaurant = (
 	valeur: number
-): Montant<'€/titre-restaurant'> =>
-	makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/titre-restaurant',
-	}) as Montant<'€/titre-restaurant'>
+): Montant<'€/titre-restaurant'> => montant(valeur, '€/titre-restaurant')
 
 export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
-	makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/mois',
-	}) as Montant<'€/mois'>
+	montant(valeur, '€/mois')
 
 export const eurosParAn = (valeur: number): Montant<'€/an'> =>
-	makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/an',
-	}) as Montant<'€/an'>
+	montant(valeur, '€/an')
 
 export const eurosParJour = (valeur: number): Montant<'€/jour'> =>
-	makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/jour',
-	}) as Montant<'€/jour'>
+	montant(valeur, '€/jour')
 
 export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
-	makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/heure',
-	}) as Montant<'€/heure'>
+	montant(valeur, '€/heure')
 
 export const toEurosParMois = (
-	montant: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/mois'> => {
-	let valeur = montant.valeur
-	switch (montant.unité) {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
 		case '€/an':
 			valeur = valeur / 12
 			break
@@ -108,17 +88,14 @@ export const toEurosParMois = (
 			break
 	}
 
-	return makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/mois',
-	}) as Montant<'€/mois'>
+	return montant(valeur, '€/mois')
 }
 
 export const toEurosParAn = (
-	montant: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/an'> => {
-	let valeur = montant.valeur
-	switch (montant.unité) {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
 		case '€/mois':
 			valeur = valeur * 12
 			break
@@ -130,17 +107,14 @@ export const toEurosParAn = (
 			break
 	}
 
-	return makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/an',
-	}) as Montant<'€/an'>
+	return montant(valeur, '€/an')
 }
 
 export const toEurosParJour = (
-	montant: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/jour'> => {
-	let valeur = montant.valeur
-	switch (montant.unité) {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
 		case '€/an':
 			valeur = valeur / 365
 			break
@@ -152,17 +126,14 @@ export const toEurosParJour = (
 			break
 	}
 
-	return makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/jour',
-	}) as Montant<'€/jour'>
+	return montant(valeur, '€/jour')
 }
 
 export const toEurosParHeure = (
-	montant: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/heure'> => {
-	let valeur = montant.valeur
-	switch (montant.unité) {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
 		case '€/an':
 			valeur = valeur / (365 * 24)
 			break
@@ -174,10 +145,7 @@ export const toEurosParHeure = (
 			break
 	}
 
-	return makeMontant({
-		valeur: arrondirAuCentime(valeur),
-		unité: '€/heure',
-	}) as Montant<'€/heure'>
+	return montant(valeur, '€/heure')
 }
 
 export const montant = <U extends UnitéMonétaire>(
@@ -192,11 +160,11 @@ export const montant = <U extends UnitéMonétaire>(
 export const plus = dual<
 	<M extends Montant<UnitéMonétaire>>(b: M) => (a: M) => M,
 	<M extends Montant<UnitéMonétaire>>(a: M, b: M) => M
->(2, <M extends Montant<UnitéMonétaire>>(a: M, b: M): M => {
-	const valeurSomme = arrondirAuCentime(a.valeur + b.valeur)
-
-	return makeMontant({ valeur: valeurSomme, unité: a.unité }) as M
-})
+>(
+	2,
+	<M extends Montant<UnitéMonétaire>>(a: M, b: M): M =>
+		montant(a.valeur + b.valeur, a.unité) as M
+)
 
 export const sommeEnEuros = (
 	montants: ReadonlyArray<Montant<UnitéMonétairePonctuelle>>
@@ -213,29 +181,29 @@ export const sommeEnEurosParAn = (
 export const moins = dual<
 	<M extends Montant>(b: M) => (a: M) => M,
 	<M extends Montant>(a: M, b: M) => M
->(2, <M extends Montant>(a: M, b: M): M => {
-	const valeurDifference = arrondirAuCentime(a.valeur - b.valeur)
-
-	return makeMontant({ valeur: valeurDifference, unité: a.unité }) as M
-})
+>(
+	2,
+	<M extends Montant>(a: M, b: M): M =>
+		montant(a.valeur - b.valeur, a.unité) as M
+)
 
 export const fois = dual<
 	<M extends Montant>(multiplicateur: number) => (a: M) => M,
 	<M extends Montant>(a: M, multiplicateur: number) => M
->(2, <M extends Montant>(a: M, multiplicateur: number): M => {
-	const valeurProduit = arrondirAuCentime(a.valeur * multiplicateur)
-
-	return makeMontant({ valeur: valeurProduit, unité: a.unité }) as M
-})
+>(
+	2,
+	<M extends Montant>(a: M, multiplicateur: number): M =>
+		montant(a.valeur * multiplicateur, a.unité) as M
+)
 
 export const abattement = dual<
 	<M extends Montant>(multiplicateur: number) => (a: M) => M,
 	<M extends Montant>(a: M, multiplicateur: number) => M
->(2, <M extends Montant>(a: M, multiplicateur: number): M => {
-	const valeurProduit = arrondirAuCentime(a.valeur * (1 - multiplicateur))
-
-	return makeMontant({ valeur: valeurProduit, unité: a.unité }) as M
-})
+>(
+	2,
+	<M extends Montant>(a: M, multiplicateur: number): M =>
+		montant(a.valeur * (1 - multiplicateur), a.unité) as M
+)
 
 /**
  * Divise un montant par un nombre pour obtenir un nouveau montant de même unité.
@@ -265,11 +233,7 @@ export const diviséPar = dual<
 			return Either.left(new DivisionParZéro())
 		}
 
-		const valeurQuotient = arrondirAuCentime(a.valeur / diviseur)
-
-		return Either.right(
-			makeMontant({ valeur: valeurQuotient, unité: a.unité }) as M
-		)
+		return Either.right(montant(a.valeur / diviseur, a.unité) as M)
 	}
 )
 
