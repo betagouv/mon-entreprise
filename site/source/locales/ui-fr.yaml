@@ -1816,6 +1816,11 @@ pages:
       shortname: Entreprise Individuelle
       title: Simulateur pour entreprise individuelle (EI)
     eirl:
+      avertissement: <0>Il n’est plus possible de créer d’EIRL depuis mai 2022. Le
+        statut d’<1>Entreprise Individuelle</1> le remplace.</0><1>Attention à
+        ne pas confondre EIRL (Entreprise Individuelle à Responsabilité Limitée)
+        avec <2>EURL (Entreprise Unipersonnelle à Responsabilité
+        Limitée)</2>.</1>
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
           des cotisations et des impôts

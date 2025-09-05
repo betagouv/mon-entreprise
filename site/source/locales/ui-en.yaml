@@ -1713,6 +1713,11 @@ pages:
       shortname: Sole proprietorship
       title: Simulator for sole proprietorships
     eirl:
+      avertissement: <0>It has no longer been possible to create an EIRL since May
+        2022. The status of<1>Sole Proprietorship</1> replaces it.</0><1>Be
+        careful not to confuse EIRL (Entreprise Individuelle à Responsabilité
+        Limitée) with <2>EURL (Entreprise Unipersonnelle à Responsabilité
+        Limitée)</2>.</1>
       meta:
         description: Income calculation based on sales, after deduction of contributions
           and taxes

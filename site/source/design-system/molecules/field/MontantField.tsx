@@ -81,7 +81,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 				}}
 				placeholder={placeholder?.valeur}
 				value={currentValue?.valeur}
-				unit={unitéToDisplayedUnit[unité]}
+				displayedUnit={unitéToDisplayedUnit[unité]}
 				small={small}
 				suggestions={
 					suggestions
