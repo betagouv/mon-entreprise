@@ -116,7 +116,7 @@ export const QuantitéField = <U extends UnitéQuantité>({
 				placeholder={displayPlaceholder}
 				value={displayValue}
 				small={small}
-				unit={displayedUnit}
+				displayedUnit={displayedUnit}
 				suggestions={
 					suggestions
 						? Object.fromEntries(

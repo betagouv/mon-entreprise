@@ -46,7 +46,7 @@ type NumericInputProps = Omit<
 	onChange?: (n?: number) => void
 	onSubmit?: (source?: string) => void
 	suggestions?: InputSuggestionsRecord<number>
-	unit?: string
+	displayedUnit?: string
 
 	// API of react-aria types is broken, we need to use the HTMLAttributes version
 	onFocus?: React.HTMLAttributes<HTMLInputElement>['onFocus']
@@ -114,7 +114,8 @@ export const NumericInput = (props: NumericInputProps) => {
 						'hideDefaultValue',
 						'dottedName',
 						'suggestions',
-						'onSubmit'
+						'onSubmit',
+						'displayedUnit'
 					) as HTMLAttributes<HTMLInputElement>)}
 					{...omit(inputProps, 'autoCorrect')}
 					onChange={onChange}
@@ -131,7 +132,9 @@ export const NumericInput = (props: NumericInputProps) => {
 					<StyledLabel {...labelProps}>{props.label}</StyledLabel>
 				)}
 
-				{props.unit && <Unit $small={props.small}>&nbsp;{props.unit}</Unit>}
+				{props.displayedUnit && (
+					<Unit $small={props.small}>&nbsp;{props.displayedUnit}</Unit>
+				)}
 			</StyledInputContainer>
 			{props.errorMessage && (
 				<StyledErrorMessage {...errorMessageProps} role="alert">
