@@ -13,10 +13,10 @@
 		"node": "^18"
 	},
 	"scripts": {
-		"extract-NAF-from-PDF": "ts-node-esm ./extract-NAF-data/convert-pdf.ts",
-		"extract-guichet": "ts-node-esm ./NomenclatureGuichet/extract.ts",
-		"fetch-nombre-etablissements": "ts-node-esm ./nombre-etablissements-par-code-ape/fetch-json.ts",
-		"merge-data": "ts-node-esm ./NAF-search/merge-data.ts",
+		"extract-NAF-from-PDF": "tsx ./extract-NAF-data/convert-pdf.ts",
+		"extract-guichet": "tsx ./NomenclatureGuichet/extract.ts",
+		"fetch-nombre-etablissements": "tsx ./nombre-etablissements-par-code-ape/fetch-json.ts",
+		"merge-data": "tsx ./NAF-search/merge-data.ts",
 		"build": "yarn extract-NAF-from-PDF && yarn extract-guichet && yarn fetch-nombre-etablissements && yarn merge-data"
 	},
 	"devDependencies": {
