@@ -6,10 +6,15 @@ import Tinypool from 'tinypool'
 
 import { absoluteSitePaths } from '../source/sitePaths.js'
 
-const filename = new URL('./prerender-worker.ts', import.meta.url).href
+const dev = argv.findIndex((val) => val === '--dev') > -1
+
+const filenameExtension = dev ? 'js' : 'ts'
+const filename = new URL(
+	`./prerender-worker.${filenameExtension}`,
+	import.meta.url
+).href
 const pool = new Tinypool({
 	filename,
-	execArgv: ['--loader', 'ts-node/esm'],
 	idleTimeout: 2000,
 })
 
@@ -59,8 +64,6 @@ export const pagesToPrerender: {
 		'/iframes/simulateur-embauche',
 	].map((val) => encodeURI(val)),
 }
-
-const dev = argv.findIndex((val) => val === '--dev') > -1
 
 const redirects = await Promise.all(
 	Object.entries(pagesToPrerender).flatMap(([site, urls]) =>
