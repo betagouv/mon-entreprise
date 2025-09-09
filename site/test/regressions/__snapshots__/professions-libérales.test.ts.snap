@@ -485,12 +485,12 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 12407
-dirigeant . rémunération . net: 37593
-dirigeant . rémunération . net . après impôt: 32744
+"dirigeant . indépendant . cotisations et contributions: 12491
+dirigeant . rémunération . net: 37509
+dirigeant . rémunération . net . après impôt: 32685
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 4849
-protection sociale . retraite . base: 287
+impôt . montant: 4824
+protection sociale . retraite . base: 286
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 4
 
@@ -498,9 +498,9 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 5335
-dirigeant . rémunération . net: 14665
-dirigeant . rémunération . net . après impôt: 14665
+"dirigeant . indépendant . cotisations et contributions: 5382
+dirigeant . rémunération . net: 14618
+dirigeant . rémunération . net . après impôt: 14618
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
 protection sociale . retraite . base: 112
@@ -511,9 +511,9 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
-"dirigeant . indépendant . cotisations et contributions: 1615
-dirigeant . rémunération . net: 2385
-dirigeant . rémunération . net . après impôt: 2385
+"dirigeant . indépendant . cotisations et contributions: 1646
+dirigeant . rémunération . net: 2354
+dirigeant . rémunération . net . après impôt: 2354
 entreprise . chiffre d'affaires: 4000
 impôt . montant: 0
 protection sociale . retraite . base: 39
@@ -524,9 +524,9 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 4`] = `
-"dirigeant . indépendant . cotisations et contributions: 5335
-dirigeant . rémunération . net: 14665
-dirigeant . rémunération . net . après impôt: 14665
+"dirigeant . indépendant . cotisations et contributions: 5382
+dirigeant . rémunération . net: 14618
+dirigeant . rémunération . net . après impôt: 14618
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
 protection sociale . retraite . base: 112
@@ -537,9 +537,9 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 5`] = `
-"dirigeant . indépendant . cotisations et contributions: 5335
-dirigeant . rémunération . net: 14665
-dirigeant . rémunération . net . après impôt: 14665
+"dirigeant . indépendant . cotisations et contributions: 5382
+dirigeant . rémunération . net: 14618
+dirigeant . rémunération . net . après impôt: 14618
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
 protection sociale . retraite . base: 112
@@ -550,9 +550,9 @@ Notifications affichées : dirigeant . indépendant . PL . CARCDSF . retraite co
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 6`] = `
-"dirigeant . indépendant . cotisations et contributions: 5335
-dirigeant . rémunération . net: 14665
-dirigeant . rémunération . net . après impôt: 14665
+"dirigeant . indépendant . cotisations et contributions: 5382
+dirigeant . rémunération . net: 14618
+dirigeant . rémunération . net . après impôt: 14618
 entreprise . chiffre d'affaires: 20000
 impôt . montant: 0
 protection sociale . retraite . base: 112
