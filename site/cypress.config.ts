@@ -18,9 +18,6 @@ export default defineConfig({
 		// Configure retry attempts for `cypress run` (Github Action)
 		// Default is 0
 		runMode: 3,
-		// Configure retry attempts for `cypress open` (yarn test:cypress)
-		// Default is 0
-		openMode: 1,
 	},
 	videoCompression: 30,
 	videoUploadOnPasses: false,
