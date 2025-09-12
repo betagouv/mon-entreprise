@@ -103,6 +103,7 @@ describe('Simulateur lodeom', function () {
 				expect(baseAmount).to.be.greaterThan(0)
 			})
 
+		cy.get(inputSelector).first().click()
 		cy.get(inputSelector).first().type('{selectall}1500')
 
 		cy.get(
@@ -121,7 +122,7 @@ describe('Simulateur lodeom', function () {
 			.should('be.visible')
 			.type('{selectall}100')
 
-		cy.get(`#${idPrefix}-janvier`)
+		cy.get(`#${idPrefix}-janvier`, { timeout: 8000 })
 			.invoke('text')
 			.should(($text) => {
 				const amount = getAmountFromText($text)
@@ -156,7 +157,7 @@ describe('Simulateur lodeom', function () {
 			)
 		})
 
-		it('devrait afficher les montants de l’exonérations', function () {
+		it('devrait afficher les montants de l’exonération', function () {
 			cy.contains('Barème de compétitivité').click()
 
 			cy.get(inputSelector).should('have.length', 12)
@@ -448,7 +449,7 @@ describe('Simulateur lodeom', function () {
 			)
 		})
 
-		it('devrait afficher les montants de l’exonérations', function () {
+		it('devrait afficher les montants de l’exonération', function () {
 			cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
 
 			cy.get(inputSelector).should('have.length', 12)
@@ -515,14 +516,18 @@ describe('Simulateur lodeom', function () {
 			).should('be.visible')
 
 			cy.contains('Barème d’exonération sectorielle').click()
+			cy.get(inputSelector).first().click()
 			cy.get(inputSelector).first().type('{selectall}5500')
 
-			cy.get(`#${idPrefix}-janvier button`).first().trigger('mouseover')
+			cy.get(`#${idPrefix}-janvier button`, { timeout: 8000 })
+				.first()
+				.trigger('mouseover')
 			cy.contains(
 				'Le barème d’exonération sectorielle concerne uniquement les salaires inférieurs à 3 Smic.'
 			).should('be.visible')
 
 			cy.contains('Barème d’exonération renforcée').click()
+			cy.get(inputSelector).first().click()
 			cy.get(inputSelector).first().type('{selectall}8200')
 
 			cy.get(`#${idPrefix}-janvier button`).first().trigger('mouseover')
