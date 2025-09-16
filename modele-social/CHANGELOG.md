@@ -2,6 +2,8 @@
 
 ## next
 
+## 8.0.0
+
 ### Breaking changes
 - Renomme la règle `salarié . cotisations . allocations familiales . taux réduit` en `(...) . allocations familiales . éligible taux réduit`
 - Renomme la règle `salarié . cotisations . maladie . employeur . taux réduit` en `(...) . employeur . éligible taux réduit`
