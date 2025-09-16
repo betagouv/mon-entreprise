@@ -92,12 +92,13 @@ dirigeant . rémunération . impôt:
 
 dirigeant . rémunération . net . après impôt:
   titre: Revenu après impôt
+  résumé: Ce que vous rapporte cette activité
   question: Quel est le revenu net après impôt souhaité ?
   description: >-
     Le revenu net après déduction de l’impôt sur le revenu et des cotisations
     sociales.
   valeur: rémunération . net - impôt . montant
-  résumé: Ce que vous rapporte cette activité
+  unité: €/an
 
 dirigeant . assimilé salarié:
   description: |

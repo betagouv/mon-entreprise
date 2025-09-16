@@ -499,10 +499,10 @@ exports[`calculate simulations-indépendant > inversions 5`] = `
 dirigeant . indépendant . revenu professionnel: 42157
 dirigeant . rémunération . cotisations: 18840
 dirigeant . rémunération . net: 40548
-dirigeant . rémunération . net . après impôt: 3000
+dirigeant . rémunération . net . après impôt: 36000
 dirigeant . rémunération . totale: 59388
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 59388
+entreprise . chiffre d'affaires: 59389
 impôt . montant: 4548"
 `;
 
