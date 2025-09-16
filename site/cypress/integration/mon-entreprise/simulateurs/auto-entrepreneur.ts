@@ -57,8 +57,15 @@ describe('Simulateur auto-entrepreneur', function () {
 	it('devrait modifier le chiffre d’affaires total lorsque le second champ de CA d’activité mixte est modifié', function () {
 		cy.contains('Montant mensuel').click()
 		cy.get(inputSelector).first().type('{selectall}5000')
+
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
+
 		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(2).type('{selectall}5000')
+
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
 
 		cy.get(inputSelector).first().should('have.value', '10 000 €')
 	})
