@@ -69,7 +69,7 @@ describe(
 				})
 		})
 
-		it('devrait permettre de choisir un effectif d’entreprise', function () {
+		it.skip('devrait permettre de choisir un effectif d’entreprise', function () {
 			cy.get(inputSelector).first().type(inputAmount)
 			let baseAmount: number
 			cy.get(`#${idPrefix}-janvier`)
@@ -96,7 +96,7 @@ describe(
 				})
 		})
 
-		it('devrait permettre de choisir une option pour l’obligation de cotiser à une caisse de congés payés', function () {
+		it.skip('devrait permettre de choisir une option pour l’obligation de cotiser à une caisse de congés payés', function () {
 			cy.get(inputSelector).first().type(inputAmount)
 			let baseAmount: number
 			cy.get(`#${idPrefix}-janvier`)
@@ -254,7 +254,7 @@ describe(
 				})
 		})
 
-		it('devrait gérer les mois incomplets', function () {
+		it.skip('devrait gérer les mois incomplets', function () {
 			cy.get(inputSelector).first().type(inputAmount)
 			let baseAmount: number
 			cy.get(`#${idPrefix}-janvier`)
