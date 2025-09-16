@@ -6,6 +6,7 @@
 
 Tests devenus instables après réusinage du code des simulateurs :
 
+- simulateurs/lodeom
 - simulateurs/reduction-generale
 - simulateurs-generic/eurl-is
 

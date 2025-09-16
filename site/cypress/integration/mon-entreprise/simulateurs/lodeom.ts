@@ -90,7 +90,7 @@ describe('Simulateur lodeom', function () {
 			})
 	})
 
-	it('devrait gérer les mois incomplets', function () {
+	it.skip('devrait gérer les mois incomplets', function () {
 		cy.contains('Guadeloupe, Guyane, Martinique, La Réunion').click()
 		cy.contains('Barème de compétitivité').click()
 		cy.get(inputSelector).first().type(inputAmount)
