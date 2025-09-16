@@ -4281,65 +4281,6 @@ dirigeant . indépendant . cotisations et contributions . retraite de base:
     privé pour une durée et un niveau de cotisation identique.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-dirigeant . indépendant . cotisations et contributions . régularisation:
-  description.en: >
-    [automatic] Contributions are calculated on a provisional basis
-
-    on the basis of the last income declared
-
-    (or the lump-sum amount, if no income has yet been declared).
-
-    Once the year is over and the professional income is known,
-
-    contributions are adjusted.
-
-
-
-    This simulator calculates contributions **after regularization**.
-
-    It therefore enables you to anticipate the amount of this regularization and to
-
-    plan your cash flow accordingly.
-
-
-
-    If your business income changes significantly from the previous year,
-
-    you have the option of providing Urssaf with a
-
-    **forecast amount for the current year, which will be used as the basis for calculation**.
-
-    (please note, however, that you will be required to provide a precise estimate).
-  description.fr: >
-    Les cotisations et contributions sont calculées à titre provisionnel
-
-    sur la base du dernier revenu déclaré
-
-    (ou du montat forfaitaire, si aucun revenu n’est encore déclaré).
-
-    Une fois l’année écoulée et le revenu professionnel connu,
-
-    les cotisations et contributions sont régularisées.
-
-
-
-    Ce simulateur calcule les cotisations **après régularisation**.
-
-    Il vous permet donc d’anticiper le montant de cette régularisation et de
-
-    planifier votre trésorerie en conséquence.
-
-
-
-    Si vos revenus d’activité changent beaucoup par rapport à l’année précédente,
-
-    vous avez la possibilité de communiquer à l’Urssaf un
-
-    **montant prévisionnel pour l’année en cours, qui sera pris comme base de calcul**
-
-    (attention cependant, vous serez tenus de faire une estimation précise).
-  titre.en: '[automatic] How does the adjustment of provisional contributions work?'
-  titre.fr: Comment fonctionne la régularisation des cotisations provisionnelles
 dirigeant . indépendant . cotisations facultatives:
   description.en: >
     [automatic] It is possible for the self-employed to take out private
