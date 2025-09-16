@@ -11,6 +11,7 @@
 - Ajout des règles `salarié . cotisations . maladie . employeur . taux réduit` et `salarié . cotisations . maladie . employeur . taux plein`
 
 ### Mises à jour
+- Mise à jour du montant de l'aide à l'embauche pour un contrat d'apprentissage (passage de 6000 à 5000 €/an au 24 février 2025)
 - Mise à jour des montants des cotisations forfaitaires pour la CARCDSF
 - Mise à jour du plafond des indemnités journalières d'arrêt maladie pour les salariés (passage de 1,8 * SMIC à 1,4 * SMIC au 1er avril 2025)
 - Mise à jour du taux de cotisation ATMP minimum (passage de 0.46% à 0.5% au 1er mai 2025)
