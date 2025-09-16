@@ -30,21 +30,20 @@ dirigeant . indépendant . cotisations et contributions . non déductibles:
     - cotisations facultatives . non déductibles
 
 dirigeant . indépendant . cotisations et contributions . cotisations:
+  somme:
+    - maladie
+    - retraite de base
+    - retraite complémentaire
+    - indemnités journalières maladie
+    - invalidité et décès
+    - allocations familiales
+    - PCV
+    - (- exonérations)
   références:
     Taux de cotisations - Artisan, commerçant et profession libérale non réglementée: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html
     Taux de cotisations - Professions libérales réglementées hors Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-hors-cipav.html
     Taux de cotisations - Profession libérale réglementée relevant de la Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
-  formule:
-    somme:
-      - maladie
-      - retraite de base
-      - retraite complémentaire
-      - indemnités journalières maladie
-      - invalidité et décès
-      - allocations familiales
-      - PCV
-      - (- exonérations)
 
 dirigeant . indépendant . cotisations et contributions . contributions spéciales:
   description: |
@@ -143,31 +142,6 @@ dirigeant . indépendant . cotisations et contributions . début activité:
       valeur: 40% * plafond sécurité sociale
       unité: €/an
       arrondi: oui
-
-dirigeant . indépendant . cotisations et contributions . régularisation:
-  titre: Comment fonctionne la régularisation des cotisations provisionnelles
-  description: |
-    Les cotisations et contributions sont calculées à titre provisionnel
-    sur la base du dernier revenu déclaré
-    (ou du montat forfaitaire, si aucun revenu n’est encore déclaré).
-    Une fois l’année écoulée et le revenu professionnel connu,
-    les cotisations et contributions sont régularisées.
-
-
-    Ce simulateur calcule les cotisations **après régularisation**.
-    Il vous permet donc d’anticiper le montant de cette régularisation et de
-    planifier votre trésorerie en conséquence.
-
-
-    Si vos revenus d’activité changent beaucoup par rapport à l’année précédente,
-    vous avez la possibilité de communiquer à l’Urssaf un
-    **montant prévisionnel pour l’année en cours, qui sera pris comme base de calcul**
-    (attention cependant, vous serez tenus de faire une estimation précise).
-
-  références:
-    'Indépendant : adapter vos cotisations à vos revenus': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/adapter-cotisations-revenus.html
-    Article L131-6-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037062224/
-    Article D131-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036475084
 
 dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
   synonymes: [maladie 2]

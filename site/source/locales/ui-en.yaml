@@ -1796,6 +1796,19 @@ pages:
         not manage acquired supplementary pension rights for the liberal
         professions.</0></1></3></0></4></0></4></0><1><0><0>Projecting your
         retirement amount</0><1><0></0><1></1></1></0></1></0>"
+      régularisation:
+        description: <0>Contributions are calculated provisionally on the basis of the
+          last income declared (or the lump sum if no income has yet been
+          declared). Once the year is over and the professional income is known,
+          contributions are adjusted.</0><1>This simulator calculates
+          contributions <2>after regularization</2>. It therefore enables you to
+          anticipate the amount of this regularization and plan your cash flow
+          accordingly.</1><2>If your business income changes significantly from
+          the previous year, you can provide Urssaf with a <2>forecast amount
+          for the current year, which will be used as the basis for
+          calculation</2>(although you will be required to make a precise
+          estimate).</2>
+        title: How does the adjustment of provisional contributions work?
       shortname: Independent
       title: Income simulator for the self-employed
       warning: The amount calculated corresponds to the contributions for the year
