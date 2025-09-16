@@ -1,0 +1,544 @@
+dirigeant . indépendant . cotisations et contributions:
+  description: |
+    C’est le montant total dû par l’indépendant au titre des cotisations et
+    contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
+
+  somme:
+    - cotisations et contributions . cotisations
+    - conjoint collaborateur . cotisations
+    - cotisations facultatives . montant
+    - CSG-CRDS
+    - contributions spéciales
+    - formation professionnelle
+  note: |
+    À la différence des cotisations, les contributions ne sont pas réintroduites
+    pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
+    réduction Acre.
+
+  avec:
+    Urssaf:
+      experimentale: oui
+      titre: cotisations recouvrées par l’Urssaf
+      valeur: cotisations et contributions
+      abattement: cotisations facultatives . montant
+
+dirigeant . indépendant . cotisations et contributions . non déductibles:
+  titre: Part non déductibles fiscalement
+  somme:
+    - CSG-CRDS . non déductible
+    - cotisations facultatives . non déductibles
+
+dirigeant . indépendant . cotisations et contributions . cotisations:
+  références:
+    Taux de cotisations - Artisan, commerçant et profession libérale non réglementée: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html
+    Taux de cotisations - Professions libérales réglementées hors Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-hors-cipav.html
+    Taux de cotisations - Profession libérale réglementée relevant de la Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html
+    Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
+  formule:
+    somme:
+      - maladie
+      - retraite de base
+      - retraite complémentaire
+      - indemnités journalières maladie
+      - invalidité et décès
+      - allocations familiales
+      - PCV
+      - (- exonérations)
+
+dirigeant . indépendant . cotisations et contributions . contributions spéciales:
+  description: |
+    Certains régimes spéciaux peuvent ajouter des contributions additionnelles
+    (par exemple, la CURPS pour les CPAM)
+  formule: non
+
+dirigeant . indépendant . cotisations et contributions . PCV:
+  titre: Prestations complémentaires vieillesse
+  acronyme: PCV
+  non applicable si: oui
+  description: |
+    Certaines catégories professionnelles bénéficient de
+    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
+    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
+    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
+    directeurs de laboratoires. Ce régime résulte de la prise en charge
+    partielle par l’Assurance maladie de leurs cotisations d’assurance
+    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
+    conventionnel.
+
+dirigeant . indépendant . cotisations et contributions . déduction tabac:
+  applicable si: entreprise . activités . commerciale . débit de tabac
+  question: Quel est le montant des revenus issus de la vente de tabac que vous
+    souhaitez exonérer de cotisation vieillesse ?
+  description: |
+    Si vous exercez une activité de débit de tabac simultanément à une activité
+    commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation
+    d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en
+    effet, les remises pour débit de tabac sont soumises par ailleurs à un
+    prélèvement vieillesse particulier). Nous attirons cependant votre attention sur
+    le fait qu’en cotisant sur une base moins importante, excluant les revenus de
+    débit de tabac, vos droits à retraite pour l’assurance vieillesse des
+    commerçants en seront diminués.
+  par défaut: 0 €/an
+
+dirigeant . indépendant . cotisations et contributions . déduction tabac . revenus déduits:
+  titre: assiette des cotisations (avec déduction tabac)
+  applicable si: déduction tabac
+  remplace:
+    références à: assiette des cotisations
+    dans:
+      - retraite de base
+      - retraite complémentaire
+      - invalidité et décès
+      - conjoint collaborateur
+
+  valeur: assiette des cotisations
+  abattement: déduction tabac
+
+dirigeant . indépendant . cotisations et contributions . début activité:
+  titre: Cotisations forfaitaires de début d’activité
+  description: |
+    Lorsque vous commencez votre activité, vos **revenus professionnels**
+    n’étant pas connus, **les cotisations et contributions des deux premières
+    années sont calculées sur une **base forfaitaire**.
+
+
+    Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels
+    de l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise
+    en compte pour le calcul des cotisations provisionnelles alors vous serez
+    redevable d’un **complément de cotisations**.
+
+
+    Ce simulateur calcule les cotisations dites définitives sur la base des revenus
+    réels de votre activité. Il vous permet donc de pouvoir anticiper le montant de
+    cette régularisation et de **planifier votre trésorerie** en conséquence.
+
+  note: La base forfaitaire s’élève à **19 % du plafond annuel de la Sécurité sociale**
+    au titre de la première et de la deuxième année d’activité (à l’exception de la
+    cotisation Maladie et indemnités journalières pour lesquelles l’assiette
+    forfaitaire est égale à 40 % du plafond annuel de la Sécurité sociale).
+  applicable si: entreprise . date de création >= période . début d'année
+  unité: €/an
+
+  références:
+    'Indépendant : Comment sont calculées vos cotisations ?': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#ancre-le-calcul-vos-cotisations
+  valeur: cotisations et contributions
+  contexte:
+    assiette des cotisations: assiette forfaitaire
+    CSG-CRDS . assiette: assiette forfaitaire
+    dirigeant . indépendant . cotisations facultatives: non
+    maladie . taux progressif . assiette: assiette forfaitaire maladie
+
+  avec:
+    assiette forfaitaire:
+      produit:
+        - PSS proratisé
+        - 19%
+      arrondi: oui
+      unité: €/an
+      références:
+        'Indépendant : Vos cotisations en début d’activité': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#titre-bonasavoir-dc7c46c0-20f6-4d0c-bb9d-d963a1afff95
+
+    assiette forfaitaire maladie:
+      valeur: 40% * plafond sécurité sociale
+      unité: €/an
+      arrondi: oui
+
+dirigeant . indépendant . cotisations et contributions . régularisation:
+  titre: Comment fonctionne la régularisation des cotisations provisionnelles
+  description: |
+    Les cotisations et contributions sont calculées à titre provisionnel
+    sur la base du dernier revenu déclaré
+    (ou du montat forfaitaire, si aucun revenu n’est encore déclaré).
+    Une fois l’année écoulée et le revenu professionnel connu,
+    les cotisations et contributions sont régularisées.
+
+
+    Ce simulateur calcule les cotisations **après régularisation**.
+    Il vous permet donc d’anticiper le montant de cette régularisation et de
+    planifier votre trésorerie en conséquence.
+
+
+    Si vos revenus d’activité changent beaucoup par rapport à l’année précédente,
+    vous avez la possibilité de communiquer à l’Urssaf un
+    **montant prévisionnel pour l’année en cours, qui sera pris comme base de calcul**
+    (attention cependant, vous serez tenus de faire une estimation précise).
+
+  références:
+    'Indépendant : adapter vos cotisations à vos revenus': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/adapter-cotisations-revenus.html
+    Article L131-6-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037062224/
+    Article D131-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036475084
+
+dirigeant . indépendant . cotisations et contributions . indemnités journalières maladie:
+  synonymes: [maladie 2]
+  description: |
+    Cette cotisation permet d’obtenir le versement d’indemnités journalières en cas
+    d’arrêt de travail pour cause de maladie ou d’accident.
+
+    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations
+    des trois dernières années.
+  produit:
+    - assiette
+    - taux
+
+  arrondi: oui
+  plafond:
+    applicable si: date >= 01/2022
+    non applicable si: date >= 01/2024
+    # Le taux indemnité est de 0.5%, dans la loi.
+    # Mais parce que l'Urssaf regorge d'inventivité et qu'ils n'ont pas envie de se baser
+    # sur la loi - non, non, ça sera trop simple - ils ont choisi de continuer d'appliquer
+    # le taux de 0.85% tout en abaissant la cotisation maladie 1 en 2022 et 2023
+    #
+    # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
+    # plafonne donc la cotis maladie 2 à ce total
+    valeur: maladie . total
+  unité: €/an
+  références:
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Quelles sont vos cotisations ?: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html
+
+  avec:
+    assiette:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . maladie
+      plafond: 5 * plafond sécurité sociale
+
+    taux:
+      valeur:
+        variations:
+          - si: date >= 01/2024
+            alors: 0.5%
+          - sinon: 0.85%
+
+dirigeant . indépendant . cotisations et contributions . maladie:
+  description: |
+    Cette cotisation permet de bénéficier de l’ensemble des prestations*
+    maladie-maternité géré par l’assurance maladie et les Cpam :
+
+    - une couverture maladie pour l’assuré et les membres de sa famille, identique
+    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
+    souscrire une assurance maladie complémentaire.
+  synonymes: [maladie 1]
+  arrondi: oui
+  valeur: total
+  abattement:
+    applicable si: date >= 01/2022
+    valeur: indemnités journalières maladie
+  unité: €/an
+  références:
+    Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747
+    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
+
+  avec:
+    total:
+      description: |
+        Le montant de la cotisation pour la couverture des risques d’assurance
+        maladie et maternité. Contient deux composantes :
+        - la cotisation maladie 1 (assurance maladie et maternité)
+        - la cotisation maladie 2 (indemnités journalières maladie)
+      note:
+        Pour calculer le montant de la cotisation maladie 1, on soustrait le
+        montant de la cotisation maladie 2 du montant total de la cotisation maladie.
+      barème:
+        assiette:
+          valeur: assiette des cotisations
+          plancher: assiette minimale . maladie
+        multiplicateur:
+          produit:
+            - plafond sécurité sociale
+            - entreprise . prorata temporis
+        tranches:
+          - taux: taux progressif
+            plafond: 5
+          - taux: 6.50%
+      références:
+        Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714760
+
+    taux progressif:
+      arrondi: 2 décimales
+      taux progressif:
+        assiette: assiette
+        multiplicateur:
+          produit:
+            - plafond sécurité sociale
+            - entreprise . prorata temporis
+        tranches:
+          - taux: 0%
+            plafond: 40%
+          - taux: 4%
+            plafond: 60%
+          - taux: 6.70%
+            plafond: 110%
+          - taux: 6.70%
+            plafond: 500%
+      références:
+        Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747/
+
+    taux progressif . assiette: assiette des cotisations
+
+    # Règles avant 2022 :
+    taux progressif avant 2022:
+      privé: oui
+      applicable si: date < 01/2022
+      remplace: taux progressif
+      taux progressif:
+        assiette: taux progressif . assiette
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - plafond: 0%
+            taux: 1.35%
+          - plafond: 110%
+            taux: 6.35%
+      abattement: réduction supplémentaire
+      arrondi: 2 décimales
+
+    réduction supplémentaire:
+      titre: réduction supplémentaire (avant 2022)
+      applicable si:
+        toutes ces conditions:
+          - date < 01/2022
+          - assiette minimale
+      déprécié: oui
+      description: |
+        La réduction supplémentaire du taux maladie pour les revenu inférieurs à
+        40 % du plafond de la sécurité sociale
+      taux progressif:
+        assiette: taux progressif . assiette
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - plafond: 0%
+            taux: 1.35%
+          - plafond: 40%
+            taux: 0%
+
+dirigeant . indépendant . cotisations et contributions . retraite de base:
+  description: |
+    Depuis 1973, la cotisation versée au titre de l’assurance vieillesse de base
+    permet aux artisans et commerçants de bénéficier d’une retraite de base calculée
+    de la même manière que les salariés.
+
+    Le régime est géré depuis 2020 par l’assurance retraite et les Carsat et se
+    fonde sur la solidarité nationale.
+
+    Il garantit des pensions égales à celles des salariés non cadres du secteur
+    privé pour une durée et un niveau de cotisation identique.
+  barème:
+    assiette:
+      valeur: assiette des cotisations
+      plancher: assiette minimale . retraite
+    tranches:
+      - taux: taux
+        plafond: plafond sécurité sociale * entreprise . prorata temporis
+      - taux: 0.6%
+  arrondi: oui
+  références:
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Retraite de base: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-de-base
+
+  avec:
+    taux: 17.75%
+
+dirigeant . indépendant . cotisations et contributions . retraite complémentaire:
+  description: |
+    Depuis le 1er janvier 2013, les artisans et les commerçants bénéficient de
+    droits identiques en matière de retraite complémentaire.
+    Ce régime commun est géré, depuis 2020 par l’assurance et les Carsat, suivant le
+    principe de répartition avec la constitution d’une réserve de sécurité qui
+    garantit à long terme son équilibre.
+
+    Il fonctionne selon les mêmes principes que les régimes de retraite
+    complémentaire des salariés.
+  barème:
+    assiette: assiette des cotisations
+    tranches:
+      - taux: 7%
+        plafond: plafond
+      - taux: 8%
+        plafond: 4 * plafond sécurité sociale
+  arrondi: oui
+  unité: €/an
+  références:
+    Retraite complémentaire: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-complementaire
+
+  avec:
+    plafond:
+      acronyme: PRCI
+      titre global: plafond retraite complémentaire des indépendants
+      valeur:
+        produit:
+          - entreprise . prorata temporis
+          - variations:
+              - si: date >= 01/2025
+                alors: 43891 €/an
+              - si: date >= 01/2024
+                alors: 42946 €/an
+              - si: date >= 01/2023
+                alors: 40784 €/an
+              - si: date >= 01/2022
+                alors: 38916 €/an
+              - si: date >= 01/2021
+                alors: 38493 €/an
+    références:
+      Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
+
+dirigeant . indépendant . cotisations et contributions . invalidité et décès:
+  description: |
+    Cette cotisation permet de bénéficier, sous certaines conditions, d’une pension
+    d’invalidité avant l’âge de départ à la retraite.
+
+    L’assurance décès garantit le versement aux ayants droit d’un capital décès quel
+    que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
+  produit:
+    - assiette
+    - 1.3%
+  unité: €/an
+  arrondi: oui
+  références:
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Invalidité-décès: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-invalidite-deces
+    Article L632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951125
+    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+    Article D632-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036471466
+
+  avec:
+    assiette:
+      experimental: oui
+      valeur: assiette des cotisations
+      plancher:
+        produit:
+          - assiette minimale . invalidité et décès
+          - entreprise . prorata temporis
+      plafond:
+        produit:
+          - plafond sécurité sociale
+          - entreprise . prorata temporis
+
+dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
+  formule:
+    somme:
+      - non déductible
+      - déductible
+
+  références:
+    CSG-CRDS: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-csg-crds
+    Les indemnités journalières et l’impôt: https://www.ameli.fr/assure/remboursements/indemnites-journalieres-maladie-maternite-paternite/arret-maladie-salarie#text_125047
+    CSG et CRDS sur les revenus d'activité et de remplacement: https://www.service-public.fr/particuliers/vosdroits/F2971
+    Article 154 quiquies du Code Général des Impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038836652/
+
+  avec:
+    déductible:
+      arrondi: oui
+      unité: €/an
+      somme:
+        - produit:
+            - assiette
+            - taux
+        - revenus de remplacement
+
+    déductible . revenus de remplacement:
+      produit:
+        - dirigeant . indépendant . IJSS . montant
+        - 3.8%
+    déductible . taux: 6.8%
+
+    non déductible:
+      arrondi: oui
+      unité: €/an
+      somme:
+        - produit:
+            - assiette
+            - taux
+        - revenus de remplacement
+
+    non déductible . revenus de remplacement:
+      produit:
+        - dirigeant . indépendant . IJSS . montant
+        - non déductible . taux
+    non déductible . taux: 2.9%
+
+dirigeant . indépendant . cotisations et contributions . CSG-CRDS . assiette:
+  note: >-
+    Seule la partie imposable des IJSS est retranchée de l’assiette de la CSG,
+    puisque la partie non imposable a déjà été retranchée du revenu net fiscal
+    fourni
+  valeur:
+    somme:
+      - assiette des cotisations . sans plancher
+      - cotisations
+      - conjoint collaborateur . cotisations
+  abattement:
+    somme:
+      - revenus étrangers . montant
+      - dirigeant . indépendant . IJSS . imposable
+  plancher: 0 €/mois
+
+dirigeant . indépendant . cotisations et contributions . formation professionnelle:
+  acronyme: CFP
+  produit:
+    - plafond sécurité sociale
+    - variations:
+        - si: entreprise . activité . nature = 'artisanale'
+          alors: 0.29%
+        - si: conjoint collaborateur
+          alors: 0.34%
+        - sinon: 0.25%
+  unité: €/an
+  arrondi: oui
+  note: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
+
+  références:
+    Contribution à la formation professionnelle (CFP): https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-formation-professionnelle
+    Contribution à la formation professionnelle (CFP) des entrepreneurs individuels: https://entreprendre.service-public.fr/vosdroits/F23459
+
+dirigeant . indépendant . cotisations et contributions . allocations familiales:
+  description: |
+    Cette cotisation permet de bénéficier des allocations familiales versées par la
+    caisse d’allocations familiales dans les mêmes conditions que les salariés :
+
+    - compensation des charges familiales (naissance, enfant à charge, garde,
+    rentrée scolaire) ;
+    - prestations liées au logement, handicap, précarité (RSA...).
+
+    Le versement de la plupart de ces prestations est soumis à des conditions de
+    ressources.
+    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
+    des revenus de la famille.
+  produit:
+    - assiette des cotisations
+    - taux
+  arrondi: oui
+  unité: €/an
+  références:
+    Allocations familiales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-allocations-familiales
+
+  avec:
+    taux:
+      taux progressif:
+        assiette: assiette des cotisations
+        multiplicateur:
+          produit:
+            - plafond sécurité sociale
+            - entreprise . prorata temporis
+        tranches:
+          - plafond: 110%
+            taux: 0%
+          - plafond: 140%
+            taux: 3.1%
+
+dirigeant . indépendant . cotisations et contributions . maladie domiciliation fiscale étranger:
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
+  titre: Maladie (domiciliation fiscale à l’étranger)
+  description:
+    En contrepartie de l’exonération de CSG, les cotisants ont un taux
+    maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
+    ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
+    fonction du revenu déclaré.
+  remplace: maladie
+  produit:
+    - assiette des cotisations
+    - 14.5%
+  unité: €/an
+  arrondi: oui
