@@ -31,7 +31,10 @@ salarié . coût total employeur . aides . embauche . apprentis:
       - contrat . apprentissage
       - contrat . apprentissage . diplôme . niveau 8 = non
 
-  valeur: 6000 €/an
+  variations:
+    - si: contrat . date d'embauche >= 24/02/2025
+      alors: 5000 €/an
+    - sinon: 6000 €/an
 
   références:
     Aides à l'embauche pour un contrat d'apprentissage: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556

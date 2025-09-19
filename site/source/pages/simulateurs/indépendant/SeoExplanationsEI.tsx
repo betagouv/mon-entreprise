@@ -7,7 +7,7 @@ export const SeoExplanationsEI = () => (
 	<Trans i18nKey="pages.simulateurs.ei.seo explanation">
 		<H2>
 			Comment calculer le revenu net d'un dirigeant d'entreprise individuelle
-			(EI) ?
+			(EI)&nbsp;?
 		</H2>
 		<Body>
 			Un dirigeant d'entreprise individuelle doit payer des cotisations et

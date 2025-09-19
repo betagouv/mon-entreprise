@@ -139,7 +139,7 @@ Notifications affichées : salarié . contrat . CDD . information"
 exports[`calculate simulations-salarié > apprentissage 1`] = `
 "salarié . contrat . salaire brut: 1500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 1048
+salarié . coût total employeur: 1132
 salarié . rémunération . net . payé après impôt: 1267
 salarié . rémunération . net . à payer avant impôt: 1267
 

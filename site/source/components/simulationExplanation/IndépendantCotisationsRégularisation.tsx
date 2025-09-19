@@ -1,33 +1,56 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { FromBottom } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
-import { Button, H3, Markdown, Spacing } from '@/design-system'
+import { Body, Button, H2, Spacing, Strong } from '@/design-system'
 
 export default function CotisationsRégularisation() {
-	const rule = useEngine().getRule(
-		'dirigeant . indépendant . cotisations et contributions . régularisation'
-	)
+	const { t } = useTranslation()
 
 	return (
 		<FromBottom>
 			<div>
-				<H3 as="h2">{rule.title}</H3>
-				<Markdown>{rule.rawNode.description ?? ''}</Markdown>
+				<H2 as="h2">
+					{t(
+						'pages.simulateurs.indépendant.régularisation.title',
+						'Comment fonctionne la régularisation des cotisations provisionnelles ?'
+					)}
+				</H2>
+				<Trans i18nKey="pages.simulateurs.indépendant.régularisation.description">
+					<Body>
+						Les cotisations et contributions sont calculées à titre provisionnel
+						sur la base du dernier revenu déclaré (ou du montat forfaitaire, si
+						aucun revenu n’est encore déclaré). Une fois l’année écoulée et le
+						revenu professionnel connu, les cotisations et contributions sont
+						régularisées.
+					</Body>
+					<Body>
+						Ce simulateur calcule les cotisations{' '}
+						<Strong>après régularisation</Strong>. Il vous permet donc
+						d’anticiper le montant de cette régularisation et de planifier votre
+						trésorerie en conséquence.
+					</Body>
+					<Body>
+						Si vos revenus d’activité changent beaucoup par rapport à l’année
+						précédente, vous avez la possibilité de communiquer à l’Urssaf un{' '}
+						<Strong>
+							montant prévisionnel pour l’année en cours, qui sera pris comme
+							base de calcul
+						</Strong>
+						(attention cependant, vous serez tenus de faire une estimation
+						précise).
+					</Body>
+				</Trans>
 
-				{rule.rawNode.références && (
-					<>
-						<Spacing lg />
-						<Button
-							light
-							size="XS"
-							href={Object.values(rule.rawNode.références)[0]}
-						>
-							<Trans>Voir la fiche Urssaf</Trans>
-						</Button>
-						<Spacing lg />
-					</>
-				)}
+				<Spacing lg />
+
+				<Button
+					light
+					size="XS"
+					href="https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/adapter-cotisations-revenus.html"
+				>
+					{t('Voir la fiche Urssaf')}
+				</Button>
+				<Spacing lg />
 			</div>
 		</FromBottom>
 	)
