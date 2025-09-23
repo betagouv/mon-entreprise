@@ -1698,18 +1698,19 @@ pages:
         you won't pay tax or contributions on their amount (unless you've opted
         for the micro-tax option).</3><4>The complete calculation formula is as
         follows</4><5>Net income = Sales - Professional expenses - Social
-        contributions</5><6>How do you calculate social security contributions
-        for a sole proprietorship?</6><7>The manager of a sole proprietorship
-        pays social security contributions, proportional to the company's
-        <2>taxable income</2>. Their amount also varies according to the type of
-        activity (liberal profession, craftsman, shopkeeper, etc.), or any
-        exemptions granted (ACRE, ZFU, RSA, etc.).</7><8> As a company's income
-        is only known at the end of the financial year, the manager pays
-        provisional contributions, which will be adjusted once the actual income
-        has been declared, the following year.</8><9>This simulator enables you
-        to calculate the exact amount of social security contributions, based on
-        your desired sales or net income. You can specify your situation by
-        answering the questions displayed below the simulation.</9>
+        security contributions</5><6>How do you calculate social security
+        contributions for a sole proprietorship?</6><7>The manager of a sole
+        proprietorship pays social security contributions, which are
+        proportional to the company's <2>taxable income</2>. Their amount also
+        varies according to the type of activity (liberal profession, craftsman,
+        shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
+        etc.).</7><8> As a company's income is only known at the end of the
+        accounting year, the manager pays provisional contributions, which will
+        be adjusted once the actual income has been declared, the following
+        year.</8><9>This simulator enables you to calculate the exact amount of
+        social security contributions, based on your desired sales or net
+        income. You can specify your situation by answering the questions
+        displayed below the simulation.</9>
       shortname: Sole proprietorship
       title: Simulator for sole proprietorships
     eirl:
