@@ -47,7 +47,7 @@ export const SeoExplanationsEI = () => (
 		</H2>
 		<Body>
 			Le dirigeant d'une entreprise individuelle paye des cotisations sociales,
-			proportionnelle au{' '}
+			proportionnelles au{' '}
 			<RuleLink dottedName="entreprise . résultat fiscal">
 				résultat fiscal
 			</RuleLink>{' '}
