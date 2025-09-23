@@ -2096,11 +2096,15 @@ pages:
         urssaf: URSSAF
       shortname: Réduction générale
       title: Simulateur de réduction générale des cotisations
-      warning: Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
+      warning: "<0>Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
         spécifiques (Entreprises de Travail Temporaire, salariés des transports
         routiers soumis à un horaire d’équivalence...). Il ne tient pas non plus
         compte des taux et/ou répartition particuliers de la cotisation de
-        retraite complémentaire appliqués dans certaines entreprises.
+        retraite complémentaire appliqués dans certaines entreprises.</0><1>En
+        outre-mer, il est possible de choisir entre la réduction générale des
+        cotisations et une autre exonération : accéder au <2>simulateur
+        d’exonération Lodeom</2>.</1>"
+      warning-link: aller sur la page du simulateur d’exonération Lodeom
       warnings:
         JEI: La réduction générale n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
