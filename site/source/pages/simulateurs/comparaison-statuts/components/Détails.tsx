@@ -719,7 +719,7 @@ const Détails = ({
 							existe <Strong>3 statuts possibles</Strong> pour votre
 							conjoint/conjointe (<Strong>collaborateur/collaboratrice</Strong>,{' '}
 							<Strong>associé/associée</Strong> ou{' '}
-							<Strong>salarié/salairée</Strong>).
+							<Strong>salarié/salariée</Strong>).
 						</Trans>
 					</Body>
 
