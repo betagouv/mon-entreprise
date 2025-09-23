@@ -1562,7 +1562,7 @@ pages:
             body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
               statuts possibles</1> pour votre conjoint/conjointe
               (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
-              <9>salarié/salairée</9>)."
+              <9>salarié/salariée</9>)."
             h4: Statut du conjoint / de la conjointe
           création:
             body: Les formalités de création d’une entreprise diffèrent selon les statuts et
