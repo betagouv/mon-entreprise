@@ -1981,11 +1981,15 @@ pages:
         urssaf: URSSAF
       shortname: General reduction
       title: General contribution reduction simulator
-      warning: This simulator does not take into account <2>all</2> specific
+      warning: "<0>This simulator does not take into account <2>all</2> specific
         <2>calculation rules</2> (temporary employment agencies, road haulage
         employees subject to equivalent working hours, etc.). Nor does it take
         into account the specific rates and/or distribution of supplementary
-        pension contributions applied in certain companies.
+        pension contributions applied in certain companies.</0><1>In overseas
+        France, it is possible to choose between the general reduction in
+        contributions and another exemption: access the <2>Lodeom exemption
+        simulator</2>.</1>"
+      warning-link: go to the Lodeom exemption simulator page
       warnings:
         JEI: The general reduction cannot be combined with the Young Innovative Company
           (JEI) exemption.
