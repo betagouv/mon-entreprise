@@ -72,6 +72,11 @@ export interface PageConfig {
 	/** Texte d'information */
 	tooltip?: string
 
+	/**
+	 * Avertissement propre au simulateur à ajouter dans l’encart générique
+	 */
+	warning?: () => JSX.Element
+
 	/** ID des pages de simulateur ou assistant à faire apparaître dans la
 	 * section « Ressources utiles » en bas de page.
 	 */

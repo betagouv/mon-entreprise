@@ -126,10 +126,6 @@ const rawSitePathsEn = {
 		},
 		déclarationIndépendant: {
 			index: 'declaration-aid-independent-v2',
-			imposition: 'taxation',
-			entreprise: 'company',
-			déclaration: 'declaration',
-			cotisations: 'contributions',
 		},
 		'choix-du-statut': {
 			index: 'choice-of-status',

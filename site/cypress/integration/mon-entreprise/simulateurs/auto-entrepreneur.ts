@@ -1,4 +1,4 @@
-import { checkA11Y, fr } from '../../../support/utils'
+import { checkA11Y, fr, getAmountFromText } from '../../../support/utils'
 
 describe('Simulateur auto-entrepreneur', function () {
 	if (!fr) {
@@ -12,6 +12,7 @@ describe('Simulateur auto-entrepreneur', function () {
 	})
 
 	it('devrait afficher un raccourci vers l’Acre lorsque la date de création est inférieure à 1 an', function () {
+		cy.contains('Montant annuel').click()
 		cy.get(inputSelector).first().type('{selectall}50000')
 		cy.contains('Modifier mes réponses').click()
 		cy.get('div[data-cy="modal"]')
@@ -56,47 +57,96 @@ describe('Simulateur auto-entrepreneur', function () {
 	it('devrait modifier le chiffre d’affaires total lorsque le second champ de CA d’activité mixte est modifié', function () {
 		cy.contains('Montant mensuel').click()
 		cy.get(inputSelector).first().type('{selectall}5000')
+
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
+
 		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(2).type('{selectall}5000')
 
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
+
 		cy.get(inputSelector).first().should('have.value', '10 000 €')
 	})
-
-	const parseActivitéMixtes = (elems: HTMLInputElement[]) =>
-		elems
-			.slice(1, 4)
-			.map((elem) => parseInt(elem.value.replace(/[\s,.€]/g, '')))
 
 	it('devrait conserver les proportions de chiffre d’affaires mixte lorsque le CA total est modifié', function () {
 		cy.contains('Montant mensuel').click()
 		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(1).type('{selectall}2500')
-		cy.get(inputSelector).eq(2).type('{selectall}5000')
-		cy.get(inputSelector).eq(3).type('{selectall}2500')
+
 		// eslint-disable-next-line cypress/no-unnecessary-waiting
-		cy.wait(500)
+		cy.wait(3000)
+
+		cy.get(inputSelector).eq(2).type('{selectall}5000')
+
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
+
+		cy.get(inputSelector).eq(3).type('{selectall}2500')
+
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
+
 		cy.get(inputSelector).first().type('{selectall}5000')
 
-		cy.get<HTMLInputElement>(inputSelector).should(($elem) => {
-			const activitéMixtes = parseActivitéMixtes($elem.toArray())
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
 
-			expect(activitéMixtes).to.deep.equal([1250, 2500, 1250])
-		})
+		cy.get(inputSelector)
+			.eq(1)
+			.invoke('val')
+			.should(($value) => expect($value).to.be.equal('1 250 €'))
+		cy.get(inputSelector)
+			.eq(2)
+			.invoke('val')
+			.should(($value) => expect($value).to.be.equal('2 500 €'))
+		cy.get(inputSelector)
+			.eq(3)
+			.invoke('val')
+			.should(($value) => expect($value).to.be.equal('1 250 €'))
 	})
 
 	it('devrait conserver les proportions de chiffre d’affaires mixte lorsque le revenu net après impôt est modifié', function () {
 		cy.contains('Montant mensuel').click()
 		cy.get(inputSelector).first().type('{selectall}2500')
+
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
+
 		cy.contains('Activité mixte').click()
 		cy.get(inputSelector).eq(2).type('{selectall}2500')
+
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
+
 		cy.get(inputSelector).last().type('{selectall}2500')
 
-		cy.get<HTMLInputElement>(inputSelector).should(($elem) => {
-			const activitéMixtes = parseActivitéMixtes($elem.toArray())
+		// eslint-disable-next-line cypress/no-unnecessary-waiting
+		cy.wait(3000)
 
-			expect(activitéMixtes[0]).to.be.equal(activitéMixtes[2])
-			expect(activitéMixtes[1]).to.be.equal(activitéMixtes[0] * 2)
-		})
+		let CA1: number
+		cy.get(inputSelector)
+			.eq(1)
+			.invoke('val')
+			.should(($value) => {
+				CA1 = getAmountFromText($value as string)
+				expect(CA1).to.be.lessThan(1250)
+			})
+		cy.get(inputSelector)
+			.eq(2)
+			.invoke('val')
+			.should(($value) => {
+				const CA2 = getAmountFromText($value as string)
+				expect(CA2).to.be.equal(2 * CA1)
+			})
+		cy.get(inputSelector)
+			.eq(3)
+			.invoke('val')
+			.should(($value) => {
+				const CA3 = getAmountFromText($value as string)
+				expect(CA3).to.be.equal(CA1)
+			})
 	})
 
 	it('devrait afficher des taux d’imposition et de cotisations à 0 lorsque le chiffre d’affaires vaut 0', function () {

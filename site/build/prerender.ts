@@ -6,10 +6,15 @@ import Tinypool from 'tinypool'
 
 import { absoluteSitePaths } from '../source/sitePaths.js'
 
-const filename = new URL('./prerender-worker.ts', import.meta.url).href
+const dev = argv.findIndex((val) => val === '--dev') > -1
+
+const filenameExtension = dev ? 'js' : 'ts'
+const filename = new URL(
+	`./prerender-worker.${filenameExtension}`,
+	import.meta.url
+).href
 const pool = new Tinypool({
 	filename,
-	execArgv: ['--loader', 'ts-node/esm'],
 	idleTimeout: 2000,
 })
 
@@ -32,25 +37,36 @@ export const pagesToPrerender: {
 		'/iframes/medecin',
 		'/iframes/choix-statut-juridique',
 		sitePathFr.assistants['choix-du-statut'].index,
+		sitePathFr.assistants['déclaration-charges-sociales-indépendant'],
+		sitePathFr.assistants['déclaration-revenus-pamc'],
 		sitePathFr.assistants['recherche-code-ape'],
 		sitePathFr.index,
 		sitePathFr.simulateursEtAssistants,
 		sitePathFr.simulateurs.index,
 		sitePathFr.simulateurs.comparaison,
 		sitePathFr.simulateurs.dividendes,
+		sitePathFr.simulateurs.eirl,
 		sitePathFr.simulateurs.eurl,
 		sitePathFr.simulateurs.indépendant,
 		sitePathFr.simulateurs.is,
+		sitePathFr.simulateurs.lodeom,
+		sitePathFr.simulateurs.pamc,
 		sitePathFr.simulateurs.salarié,
 		sitePathFr.simulateurs.sasu,
 		sitePathFr.simulateurs['artiste-auteur'],
 		sitePathFr.simulateurs['auto-entrepreneur'],
-		sitePathFr.simulateurs['chômage-partiel'],
+		sitePathFr.simulateurs['cessation-activité'],
 		sitePathFr.simulateurs['coût-création-entreprise'],
 		sitePathFr.simulateurs['entreprise-individuelle'],
 		sitePathFr.simulateurs['profession-libérale'].avocat,
+		sitePathFr.simulateurs['profession-libérale'].auxiliaire,
 		sitePathFr.simulateurs['profession-libérale']['chirurgien-dentiste'],
+		sitePathFr.simulateurs['profession-libérale'].cipav,
+		sitePathFr.simulateurs['profession-libérale']['expert-comptable'],
 		sitePathFr.simulateurs['profession-libérale'].index,
+		sitePathFr.simulateurs['profession-libérale'].médecin,
+		sitePathFr.simulateurs['profession-libérale'].pharmacien,
+		sitePathFr.simulateurs['profession-libérale']['sage-femme'],
 		sitePathFr.simulateurs['réduction-générale'],
 	].map((val) => encodeURI(val)),
 	infrance: [
@@ -59,8 +75,6 @@ export const pagesToPrerender: {
 		'/iframes/simulateur-embauche',
 	].map((val) => encodeURI(val)),
 }
-
-const dev = argv.findIndex((val) => val === '--dev') > -1
 
 const redirects = await Promise.all(
 	Object.entries(pagesToPrerender).flatMap(([site, urls]) =>

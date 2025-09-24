@@ -7,8 +7,6 @@ import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
 import { updateUnit } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
-import { GridCentered } from './Simulation/ObjectifSaisissableDeSimulation'
-
 type Props = {
 	periods?: Array<{
 		label: string
@@ -41,7 +39,7 @@ export default function PeriodSwitch({ periods }: Props) {
 	)
 
 	return (
-		<GridCentered container spacing={2} as="fieldset">
+		<GridCentered>
 			<Grid item>
 				<TitreObjectif noWrap={true}>
 					<LegendBigger>
@@ -69,6 +67,28 @@ export default function PeriodSwitch({ periods }: Props) {
 		</GridCentered>
 	)
 }
+
+const GridCentered = styled.fieldset`
+	display: grid;
+	grid-template-columns: 1.25fr 1fr;
+	gap: ${({ theme }) => theme.spacings.md};
+
+	& > div {
+		padding: 0;
+		text-align: right;
+		margin-right: ${({ theme }) => theme.spacings.xxs};
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		grid-template-columns: 1fr;
+		gap: ${({ theme }) => theme.spacings.xs};
+		margin-left: -${({ theme }) => theme.spacings.xs} !important;
+
+		& > div {
+			text-align: left;
+		}
+	}
+`
 
 const LegendBigger = styled.legend`
 	padding: 0.5rem 0 0;

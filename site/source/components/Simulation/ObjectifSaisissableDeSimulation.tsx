@@ -94,7 +94,7 @@ export function ObjectifSaisissableDeSimulation({
 	)
 }
 
-export const GridCentered = styled(Grid)`
+const GridCentered = styled(Grid)`
 	display: grid;
 	grid-template-columns: 1.25fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};

@@ -1476,8 +1476,7 @@ pages:
           conjoint:
             body: Whether you're married, in a civil partnership or in a common-law
               relationship, there are <1>3 possible statuses</1> for your
-              spouse<3>(associate</3>, <6>partner</6> or <9>salaried
-              employee</9>).
+              spouse<3>(associate</3>, <6>partner</6> or <9>employee</9>).
             h4: Spouse's status
           création:
             body: The formalities involved in setting up a business vary according to the
@@ -1698,21 +1697,27 @@ pages:
         you won't pay tax or contributions on their amount (unless you've opted
         for the micro-tax option).</3><4>The complete calculation formula is as
         follows</4><5>Net income = Sales - Professional expenses - Social
-        contributions</5><6>How do you calculate social security contributions
-        for a sole proprietorship?</6><7>The manager of a sole proprietorship
-        pays social security contributions, proportional to the company's
-        <2>taxable income</2>. Their amount also varies according to the type of
-        activity (liberal profession, craftsman, shopkeeper, etc.), or any
-        exemptions granted (ACRE, ZFU, RSA, etc.).</7><8> As a company's income
-        is only known at the end of the financial year, the manager pays
-        provisional contributions, which will be adjusted once the actual income
-        has been declared, the following year.</8><9>This simulator enables you
-        to calculate the exact amount of social security contributions, based on
-        your desired sales or net income. You can specify your situation by
-        answering the questions displayed below the simulation.</9>
+        security contributions</5><6>How do you calculate social security
+        contributions for a sole proprietorship?</6><7>The manager of a sole
+        proprietorship pays social security contributions, which are
+        proportional to the company's <2>taxable income</2>. Their amount also
+        varies according to the type of activity (liberal profession, craftsman,
+        shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
+        etc.).</7><8> As a company's income is only known at the end of the
+        accounting year, the manager pays provisional contributions, which will
+        be adjusted once the actual income has been declared, the following
+        year.</8><9>This simulator enables you to calculate the exact amount of
+        social security contributions, based on your desired sales or net
+        income. You can specify your situation by answering the questions
+        displayed below the simulation.</9>
       shortname: Sole proprietorship
       title: Simulator for sole proprietorships
     eirl:
+      avertissement: <0>It has no longer been possible to create an EIRL since May
+        2022. The status of<1>Sole Proprietorship</1> replaces it.</0><1>Be
+        careful not to confuse EIRL (Entreprise Individuelle à Responsabilité
+        Limitée) with <2>EURL (Entreprise Unipersonnelle à Responsabilité
+        Limitée)</2>.</1>
       meta:
         description: Income calculation based on sales, after deduction of contributions
           and taxes
@@ -1791,6 +1796,19 @@ pages:
         not manage acquired supplementary pension rights for the liberal
         professions.</0></1></3></0></4></0></4></0><1><0><0>Projecting your
         retirement amount</0><1><0></0><1></1></1></0></1></0>"
+      régularisation:
+        description: <0>Contributions are calculated provisionally on the basis of the
+          last income declared (or the lump sum if no income has yet been
+          declared). Once the year is over and the professional income is known,
+          contributions are adjusted.</0><1>This simulator calculates
+          contributions <2>after regularization</2>. It therefore enables you to
+          anticipate the amount of this regularization and plan your cash flow
+          accordingly.</1><2>If your business income changes significantly from
+          the previous year, you can provide Urssaf with a <2>forecast amount
+          for the current year, which will be used as the basis for
+          calculation</2>(although you will be required to make a precise
+          estimate).</2>
+        title: How does the adjustment of provisional contributions work?
       shortname: Independent
       title: Income simulator for the self-employed
       warning: The amount calculated corresponds to the contributions for the year
@@ -1963,11 +1981,15 @@ pages:
         urssaf: URSSAF
       shortname: General reduction
       title: General contribution reduction simulator
-      warning: This simulator does not take into account <2>all</2> specific
+      warning: "<0>This simulator does not take into account <2>all</2> specific
         <2>calculation rules</2> (temporary employment agencies, road haulage
         employees subject to equivalent working hours, etc.). Nor does it take
         into account the specific rates and/or distribution of supplementary
-        pension contributions applied in certain companies.
+        pension contributions applied in certain companies.</0><1>In overseas
+        France, it is possible to choose between the general reduction in
+        contributions and another exemption: access the <2>Lodeom exemption
+        simulator</2>.</1>"
+      warning-link: go to the Lodeom exemption simulator page
       warnings:
         JEI: The general reduction cannot be combined with the Young Innovative Company
           (JEI) exemption.

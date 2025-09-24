@@ -7,7 +7,7 @@ export const SeoExplanationsEI = () => (
 	<Trans i18nKey="pages.simulateurs.ei.seo explanation">
 		<H2>
 			Comment calculer le revenu net d'un dirigeant d'entreprise individuelle
-			(EI) ?
+			(EI)&nbsp;?
 		</H2>
 		<Body>
 			Un dirigeant d'entreprise individuelle doit payer des cotisations et
@@ -47,7 +47,7 @@ export const SeoExplanationsEI = () => (
 		</H2>
 		<Body>
 			Le dirigeant d'une entreprise individuelle paye des cotisations sociales,
-			proportionnelle au{' '}
+			proportionnelles au{' '}
 			<RuleLink dottedName="entreprise . résultat fiscal">
 				résultat fiscal
 			</RuleLink>{' '}

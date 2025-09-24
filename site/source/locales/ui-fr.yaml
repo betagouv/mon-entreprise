@@ -1562,7 +1562,7 @@ pages:
             body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
               statuts possibles</1> pour votre conjoint/conjointe
               (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
-              <9>salarié/salairée</9>)."
+              <9>salarié/salariée</9>)."
             h4: Statut du conjoint / de la conjointe
           création:
             body: Les formalités de création d’une entreprise diffèrent selon les statuts et
@@ -1802,7 +1802,7 @@ pages:
         professionnelles - Cotisations sociales</5><6>Comment calculer les
         cotisations sociales d'une entreprise individuelle ?</6><7>Le dirigeant
         d'une entreprise individuelle paye des cotisations sociales,
-        proportionnelle au <2>résultat fiscal</2> de l'entreprise. Leur montant
+        proportionnelles au <2>résultat fiscal</2> de l'entreprise. Leur montant
         varie également en fonction du type d'activité (profession libérale,
         artisan, commerçants, etc), où des éventuelles exonérations accordées
         (ACRE, ZFU, RSA, etc.).</7><8> Comme le résultat d'une entreprise n'est
@@ -1816,6 +1816,11 @@ pages:
       shortname: Entreprise Individuelle
       title: Simulateur pour entreprise individuelle (EI)
     eirl:
+      avertissement: <0>Il n’est plus possible de créer d’EIRL depuis mai 2022. Le
+        statut d’<1>Entreprise Individuelle</1> le remplace.</0><1>Attention à
+        ne pas confondre EIRL (Entreprise Individuelle à Responsabilité Limitée)
+        avec <2>EURL (Entreprise Unipersonnelle à Responsabilité
+        Limitée)</2>.</1>
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
           des cotisations et des impôts
@@ -1902,6 +1907,20 @@ pages:
         les professions
         libérales</0></1></3></0></4></0></4></0><1><0><0>Projection du montant
         de votre retraite</0><1><0></0><1></1></1></0></1></0>"
+      régularisation:
+        description: <0>Les cotisations et contributions sont calculées à titre
+          provisionnel sur la base du dernier revenu déclaré (ou du montat
+          forfaitaire, si aucun revenu n’est encore déclaré). Une fois l’année
+          écoulée et le revenu professionnel connu, les cotisations et
+          contributions sont régularisées.</0><1>Ce simulateur calcule les
+          cotisations <2>après régularisation</2>. Il vous permet donc
+          d’anticiper le montant de cette régularisation et de planifier votre
+          trésorerie en conséquence.</1><2>Si vos revenus d’activité changent
+          beaucoup par rapport à l’année précédente, vous avez la possibilité de
+          communiquer à l’Urssaf un <2>montant prévisionnel pour l’année en
+          cours, qui sera pris comme base de calcul</2>(attention cependant,
+          vous serez tenus de faire une estimation précise).</2>
+        title: Comment fonctionne la régularisation des cotisations provisionnelles ?
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning: Le montant calculé correspond aux cotisations de l’année {{year}} (pour
@@ -2077,11 +2096,15 @@ pages:
         urssaf: URSSAF
       shortname: Réduction générale
       title: Simulateur de réduction générale des cotisations
-      warning: Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
+      warning: "<0>Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
         spécifiques (Entreprises de Travail Temporaire, salariés des transports
         routiers soumis à un horaire d’équivalence...). Il ne tient pas non plus
         compte des taux et/ou répartition particuliers de la cotisation de
-        retraite complémentaire appliqués dans certaines entreprises.
+        retraite complémentaire appliqués dans certaines entreprises.</0><1>En
+        outre-mer, il est possible de choisir entre la réduction générale des
+        cotisations et une autre exonération : accéder au <2>simulateur
+        d’exonération Lodeom</2>.</1>"
+      warning-link: aller sur la page du simulateur d’exonération Lodeom
       warnings:
         JEI: La réduction générale n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
