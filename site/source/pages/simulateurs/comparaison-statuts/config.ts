@@ -9,7 +9,10 @@ export function comparaisonStatutsConfig({
 }: SimulatorsDataParams) {
 	return config({
 		id: 'comparaison-statuts',
-		tracking: 'comparaison_statut',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'comparaison_statut',
+		},
 		icône: '📊',
 		pathId: 'simulateurs.comparaison',
 		iframePath: 'comparaison-statuts',

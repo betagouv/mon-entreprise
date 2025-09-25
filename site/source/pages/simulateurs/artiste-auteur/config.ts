@@ -9,7 +9,10 @@ export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 		id: 'artiste-auteur',
 		path: sitePaths.simulateurs['artiste-auteur'],
 		icône: '👩‍🎨',
-		tracking: 'artiste-auteur',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'artiste-auteur',
+		},
 		iframePath: 'simulateur-artiste-auteur',
 		meta: {
 			title: t(

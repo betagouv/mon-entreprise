@@ -11,6 +11,7 @@ export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 		id: 'médecin',
 		hidden: true,
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'profession_liberale',
 			chapter3: 'medecin',
 		},

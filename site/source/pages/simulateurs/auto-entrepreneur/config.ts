@@ -12,7 +12,10 @@ import { configAutoEntrepreneur } from './simulationConfig'
 export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'auto-entrepreneur',
-		tracking: 'auto_entrepreneur',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'auto_entrepreneur',
+		},
 		icône: '🚶‍♂️',
 		iframePath: 'simulateur-autoentrepreneur',
 		meta: {
