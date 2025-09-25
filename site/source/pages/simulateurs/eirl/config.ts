@@ -15,6 +15,7 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'eirl',
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'statut_entreprise',
 			chapter3: 'EIRL',
 		},

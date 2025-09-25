@@ -12,7 +12,7 @@ export function CMGConfig({ t, sitePaths }: SimulatorsDataParams) {
 		iframePath: 'cmg',
 		disableIframeFeedback: true,
 		tracking: {
-			chapter1: 'assistant',
+			chapter1: 'assistants',
 			chapter2: 'cmg',
 		},
 		component: CMG,

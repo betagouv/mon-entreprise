@@ -12,6 +12,7 @@ export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 		icône: '📐',
 		hidden: true,
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'profession_liberale',
 			chapter3: 'cipav',
 		},

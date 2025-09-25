@@ -33,7 +33,7 @@ export function pourMonEntrepriseConfig({
 			),
 		},
 		tracking: {
-			chapter1: 'assistant',
+			chapter1: 'assistants',
 			chapter2: 'pour_mon_entreprise',
 		},
 		externalLinks: [premiersMoisUrssaf],

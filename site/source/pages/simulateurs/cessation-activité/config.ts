@@ -11,7 +11,10 @@ export function cessationActivitéConfig({
 }: SimulatorsDataParams) {
 	return config({
 		id: 'cessation-activité',
-		tracking: 'cessation_activité',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'cessation_activité',
+		},
 		icône: '📦',
 		iframePath: 'simulateur-cessation-activité',
 		pathId: 'simulateurs.cessation-activité',
