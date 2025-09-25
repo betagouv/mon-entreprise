@@ -14,6 +14,7 @@ export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'eurl',
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'statut_entreprise',
 			chapter3: 'EURL',
 		},

@@ -17,8 +17,7 @@ export default function InformationsGénérales() {
 
 	return (
 		<>
-			<TrackPage name="simulation commencée" />
-			<TrackPage chapter3="pas_a_pas" name="informations" />
+			<TrackPage chapter3="pas_a_pas" name="simulation_commencee" />
 
 			<QuestionNombreMoisDéclarationsSuffisant />
 			<QuestionCMGPerçu />

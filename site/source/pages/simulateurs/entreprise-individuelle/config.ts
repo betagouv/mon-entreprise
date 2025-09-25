@@ -18,6 +18,7 @@ export function entrepriseIndividuelleConfig({
 	return config({
 		id: 'entreprise-individuelle',
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'statut_entreprise',
 			chapter3: 'EI',
 		},
