@@ -383,7 +383,7 @@ protection sociale . maladie:
     Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de
     maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
-    ## L’assurance maladie en France en quelques chiffres
+    ### L’assurance maladie en France en quelques chiffres
       - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
       maladie et la complémentaire
       - **30 000 € / an / patient** : exemple de prise en charge complète pour une
@@ -487,11 +487,11 @@ protection sociale . maladie . maternité paternité adoption:
   avec:
     délai d'attente:
       description: |
-        ## Maternité
+        ### Maternité
         Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
         accouchement, et cesser toute activité professionnelle pendant la période de
         perception et au moins pendant 8 semaines dont 6 après l’accouchement.
-        ## Paternité / Adoption
+        ### Paternité / Adoption
         Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
         naissance / à l’adoption.
       valeur: 10 mois
@@ -701,7 +701,7 @@ protection sociale . transport:
     ubventionner les transports en commun existants ou pour développer de nouvelles
     infrastructures de transport (tramway, métro, bus...).
 
-    ## Le versement mobilité en quelques chiffres
+    ### Le versement mobilité en quelques chiffres
     - **45% de réduction** sur le coût des transports en communs dans les 12 plus
     grandes agglomérations de France.
     - **263 € / an / habitant** de gain de pouvoir d’achat pour les habitants
