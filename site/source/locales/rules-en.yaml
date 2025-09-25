@@ -781,7 +781,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             serious or long-term illness, 100% of treatment is reimbursed.
 
 
-            ## Health insurance in France in figures
+            ### Health insurance in France in a few figures
               - 92%** of healthcare expenses reimbursed on average by health insurance
               and supplementary health insurance
               - 30,000 / year / patient**: example of full coverage
@@ -813,7 +813,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             de maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
 
-            ## L’assurance maladie en France en quelques chiffres
+            ### L’assurance maladie en France en quelques chiffres
               - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
               maladie et la complémentaire
               - **30 000 € / an / patient** : exemple de prise en charge complète
@@ -2633,15 +2633,15 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     the practitioner's out-of-pocket expenses.
 
 
-    ## Rate calculation
+    ### Rate calculation
 
 
     The formula for calculating the overrun rate is as follows:
 
 
-    > Urssaf rate = (overruns - reimbursed CMU lump-sum amounts) / (reimbursable
+    > Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable acts
 
-    > procedures amounts + reimbursed CMU lump-sum amounts)
+    > reimbursed acts + amounts reimbursed CMU lump sums)
   description.fr: >
     Le « taux Urssaf » permet de calculer la part de votre cotisation
     d’assurance
@@ -2661,7 +2661,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     la part à la charge du praticien est faible.
 
 
-    ## Calcul du taux
+    ### Calcul du taux
 
 
     La formule de calcul du taux de dépassement est la suivante :
@@ -5215,19 +5215,29 @@ entreprise . associés:
       titre.fr: à plusieurs
     unique:
       titre.en: '[automatic] alone'
-      titre.fr: seul(e)
+      titre.fr: seul / seule
   description.en: >
-    [automatic] If you are the only partner of your company, then you are in the
-    case of a "one person company".
+    [automatic] If you are the only partner in your company, then you are in the
+    case of a "one-person company".
+
+    a "one-man business".
 
 
-    Thus, a SARL with only one partner is called EURL (Entreprise Unipersonnelle à Responsabilité Limitée). The same goes for the SASU, the SELASU and the SERLARLU which are the respective single-member forms of the SAS, the SELAS and the SELARL.
-  description.fr: >
+    A SARL with a single partner is called an EURL (Entreprise Unipersonnelle à Responsabilité Limité).
+
+    Unipersonnelle à Responsabilité Limité). The same applies to SASU, SELASU and SERLARLU.
+
+    SERLARLU, which are the single-member forms of SAS, SELAS and SELARLU respectively.
+
+    SELAS and SELARL.
+  description.fr: |
     Si vous êtes le seul associé de votre société, alors vous êtes dans le cas
-    d'une « société unipersonnelle ».
+    d’une « société unipersonnelle ».
 
-
-    Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la SELAS et la SELARL.
+    Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise
+    Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et
+    la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la
+    SELAS et la SELARL.
   question.en: '[automatic] I own this company...'
   question.fr: Je possède cette entreprise...
   titre.en: '[automatic] associates'
@@ -5612,19 +5622,16 @@ entreprise . charges:
   titre.en: '[automatic] expenses (excluding management remuneration)'
   titre.fr: charges (hors rémunération dirigeant)
 entreprise . chiffre d'affaires:
-  description.en: >
+  description.en: |
     [automatic] ### Estimated sales
-
-    Sales are the **sum of all sales made during your accounting period
-
-    during your accounting period** (one year): Sales = selling price x quantities
-
-    quantities sold.
+    Sales are
+    **sum of all sales made during your accounting period** (one year).
+    (one year): Sales = selling price x quantities sold.
   description.fr: |
     ### Chiffre d’affaires estimé
-    Le chiffre d’affaires est la **somme des montants des ventes réalisées
-    pendant votre exercice comptable** (un an) : CA = prix de vente x quantités
-    vendues.
+    Le chiffre d’affaires est la
+    **somme des montants des ventes réalisées pendant votre exercice comptable**
+    (un an) : CA = prix de vente x quantités vendues.
   question.en: '[automatic] What are your sales forecasts?'
   question.fr: Quel est votre chiffre d’affaires envisagé ?
   résumé.en: '[automatic] Total gross revenues (excluding tax)'
@@ -6173,19 +6180,19 @@ entreprise . imposition . IR:
 
     If your company makes money, the result is called **profit**. It
 
-    is added to other taxable income (if any): **your income tax
+    is added to other taxable income (if any):
 
-    is higher**.
+    **your income tax is higher**.
 
 
     If your company loses money, the result is called a **deficit**. It
 
-    reduces your household's taxable income: **your income tax
+    reduces your household's taxable income:
 
-    is lower**.
+    **your income tax is lower**.
 
 
-    Note: with income tax, there is no tax difference between your household income
+    Please note: with income tax, there is no tax difference between your household income and that of your partner.
 
     between your household income and that of your company.
   description.fr: >
@@ -6202,16 +6209,16 @@ entreprise . imposition . IR:
 
     Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
 
-    est ajouté aux autres revenus imposables (s’ils existent) : **votre impôt sur le
+    est ajouté aux autres revenus imposables (s’ils existent) :
 
-    revenu est plus élevé**.
+    **votre impôt sur le revenu est plus élevé**.
 
 
     Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
 
-    vient réduire le montant du revenu imposable de votre ménage : **votre impôt sur
+    vient réduire le montant du revenu imposable de votre ménage :
 
-    le revenu est moins élevé**.
+    **votre impôt sur le revenu est moins élevé**.
 
 
     À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
@@ -7094,10 +7101,10 @@ protection sociale . assurance chômage:
 
     As a result, anyone who loses their job involuntarily can receive an income in the form of an allowance, provided they have paid sufficient contributions.
 
-    ## Unemployment insurance in France in figures
+    ### Unemployment insurance in France in figures
       - 72%** of former net salary: percentage of unemployment benefit
       average
-      - 2.7 million** unemployed people receive compensation each month
+      - 2.7 million** unemployed people receive unemployment benefit each month
       - 1,020**: average net benefit per month
       - 51%** of recipients receive both benefit and salary
   description.fr: >
@@ -7109,7 +7116,7 @@ protection sociale . assurance chômage:
 
     Grâce à elle, tous ceux qui perdent leur emploi de façon involontaire peuvent toucher un revenu sous forme d’allocation à condition d’avoir cotisé suffisamment.
 
-    ## L’assurance chômage en France en quelques chiffres
+    ### L’assurance chômage en France en quelques chiffres
       - **72 %** de l’ancien salaire net : pourcentage de l’allocation chômage en
       moyenne
       - **2,7 millions** de chômeurs indemnisés chaque mois
@@ -7489,7 +7496,7 @@ protection sociale . maladie:
     serious or long-term illness, 100% of care is reimbursed.
 
 
-    ## Health insurance in France in figures
+    ### Health insurance in France in figures
       - 92%** of healthcare expenses reimbursed on average by health insurance
       and supplementary health insurance
       - 30,000 / year / patient**: example of full coverage for a person with
@@ -7515,7 +7522,7 @@ protection sociale . maladie:
     maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
 
-    ## L’assurance maladie en France en quelques chiffres
+    ### L’assurance maladie en France en quelques chiffres
       - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
       maladie et la complémentaire
       - **30 000 € / an / patient** : exemple de prise en charge complète pour une
@@ -7738,7 +7745,7 @@ protection sociale . maladie . maternité paternité adoption:
       titre.fr: allocation forfaitaire de repos maternel
     délai d'attente:
       description.en: >
-        [automatic] ## Maternity
+        [automatic] ### Maternity
 
         You must have been insured for at least 10 months prior to the expected date of childbirth.
 
@@ -7746,13 +7753,13 @@ protection sociale . maladie . maternité paternité adoption:
 
         and for at least 8 weeks, including 6 weeks after the birth.
 
-        ## Paternity / Adoption
+        ### Paternity / Adoption
 
         To benefit from this benefit, you must have 10 months' affiliation at the time of the birth/adoption.
 
         birth/adoption.
       description.fr: >
-        ## Maternité
+        ### Maternité
 
         Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
 
@@ -7760,7 +7767,7 @@ protection sociale . maladie . maternité paternité adoption:
 
         perception et au moins pendant 8 semaines dont 6 après l’accouchement.
 
-        ## Paternité / Adoption
+        ### Paternité / Adoption
 
         Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
 
@@ -8571,7 +8578,7 @@ protection sociale . transport:
     infrastructure (tramway, metro, bus, etc.).
 
 
-    ## Mobility payment in figures
+    ### Mobility payment in figures
 
     - 45% reduction** on the cost of public transport in France's 12 biggest conurbations.
 
@@ -8593,7 +8600,7 @@ protection sociale . transport:
     infrastructures de transport (tramway, métro, bus...).
 
 
-    ## Le versement mobilité en quelques chiffres
+    ### Le versement mobilité en quelques chiffres
 
     - **45% de réduction** sur le coût des transports en communs dans les 12 plus
 
@@ -10509,7 +10516,7 @@ salarié . cotisations . exonérations . lodeom:
     Un ensemble assez complexe de réductions de cotisation est disponible pour
     les salariés d’Outre-mer.
 
-    Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
+    Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
 
     Pour un autre salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
   titre.en: '[automatic] lodeom'
@@ -10606,41 +10613,41 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
       - domestic services within these departments or communities.
   description.fr: >
     Les secteurs d’activité éligibles au dispositif d’exonération « Lodeom »
-    sont les suivants :
+    sont les suivants :
 
-    - 🔬 recherche et développement ;
+    - 🔬 recherche et développement ;
 
-    - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+    - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
 
-    - 🛏️ hôtellerie ;
+    - 🛏️ hôtellerie ;
 
-    - 🌱 agronutrition ;
+    - 🌱 agronutrition ;
 
-    - 🌳 environnement ;
+    - 🌳 environnement ;
 
-    - 🔋 énergies renouvelables ;
+    - 🔋 énergies renouvelables ;
 
     - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
 
-    et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+    et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
 
-    - 🎣 pêche, cultures marines et aquaculture ;
+    - 🎣 pêche, cultures marines et aquaculture ;
 
     - 🏗 bâtiment et travaux publics
 
-    - 🍴 restauration ;
+    - 🍴 restauration ;
 
-    - 📰 presse ;
+    - 📰 presse ;
 
     - 🎥 production audiovisuelle.
 
-    - ⛵ transport fluvial ou maritime pour les employeurs assurant :
-      - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
-      - la liaison entre les ports de ces départements ou collectivités ;
+    - ⛵ transport fluvial ou maritime pour les employeurs assurant :
+      - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
+      - la liaison entre les ports de ces départements ou collectivités ;
       - la liaison entre les ports de la Réunion et de Mayotte.
-    - ✈️ transport aérien pour les employeurs assurant :
-      - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
-      - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
+    - ✈️ transport aérien pour les employeurs assurant :
+      - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
+      - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
       - la desserte intérieure de ces départements ou collectivités.
   question.en: '[automatic] Does your company belong to one of the Lodeom-eligible sectors?'
   question.fr: Votre entreprise appartient-elle à l’un des secteurs éligibles Lodeom ?
@@ -10700,7 +10707,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - research and development
           - information and communication technologies.
 
-        The employer must **also** meet **at least one of the following conditions**:
+        The employer must **also** meet **at least one of the following conditions** :
 
         - be in one of the following **sectors** :
           - 🔬 research and development ;
@@ -10712,7 +10719,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         - or benefit from the **"inward processing "** regime.
       description.fr: >
         Pour bénéficier du barème d’exonération renforcée, les employeurs
-        doivent :
+        doivent :
 
         - employer **moins de 250 salariés**,
 
@@ -10723,30 +10730,30 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         un **régime réel d’imposition**.
 
 
-        Par ailleurs, l’employeur doit remplir **au moins l’une des conditions** suivantes :
+        Par ailleurs, l’employeur doit remplir **au moins l’une des conditions** suivantes :
 
         - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
         contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
 
-        (prévue à l’article 199 undecies B du code général des impôts) ;
+        (prévue à l’article 199 undecies B du code général des impôts) ;
 
-        - soit exercer une des activités suivantes :
-          - comptabilité ;
-          - conseil aux entreprises ;
-          - ingénierie ou études techniques à destination des entreprises ;
+        - soit exercer une des activités suivantes :
+          - comptabilité ;
+          - conseil aux entreprises ;
+          - ingénierie ou études techniques à destination des entreprises ;
           - recherche et développement
           - technologies de l’information et de la communication.
 
-        L’employeur doit **également** remplir **au moins l’une des conditions** suivantes :
+        L’employeur doit **également** remplir **au moins l’une des conditions** suivantes :
 
-        - soit relever d’un des **secteurs** suivants :
-          - 🔬 recherche et développement ;
-          - 🖥️ technologies de l’information et de la communication ;
-          - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
-          - 🌱 agronutrition ;
-          - 🌳 environnement ;
-          - 🔋 énergies renouvelables ;
+        - soit relever d’un des **secteurs** suivants :
+          - 🔬 recherche et développement ;
+          - 🖥️ technologies de l’information et de la communication ;
+          - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+          - 🌱 agronutrition ;
+          - 🌳 environnement ;
+          - 🔋 énergies renouvelables ;
         - soit bénéficier du **régime de « perfectionnement actif »**.
       question.en: '[automatic] Are you eligible for the enhanced exemption scale?'
       question.fr: Êtes-vous éligible au barème d’exonération renforcée ?
@@ -10797,41 +10804,41 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         L’exonération est applicable aux employeurs, quel que soit leur
         effectif, relevant d’un des secteurs d’activité
 
-        éligibles au dispositif d’exonération « Lodeom » :
+        éligibles au dispositif d’exonération « Lodeom » :
 
-        - 🔬 recherche et développement ;
+        - 🔬 recherche et développement ;
 
-        - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+        - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
 
-        - 🛏️ hôtellerie ;
+        - 🛏️ hôtellerie ;
 
-        - 🌱 agronutrition ;
+        - 🌱 agronutrition ;
 
-        - 🌳 environnement ;
+        - 🌳 environnement ;
 
-        - 🔋 énergies renouvelables ;
+        - 🔋 énergies renouvelables ;
 
         - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
 
-        et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+        et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
 
-        - 🎣 pêche, cultures marines et aquaculture ;
+        - 🎣 pêche, cultures marines et aquaculture ;
 
         - 🏗 bâtiment et travaux publics
 
-        - 🍴 restauration ;
+        - 🍴 restauration ;
 
-        - 📰 presse ;
+        - 📰 presse ;
 
         - 🎥 production audiovisuelle.
 
-        - ⛵ transport fluvial ou maritime pour les employeurs assurant :
-          - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
-          - la liaison entre les ports de ces départements ou collectivités ;
+        - ⛵ transport fluvial ou maritime pour les employeurs assurant :
+          - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
+          - la liaison entre les ports de ces départements ou collectivités ;
           - la liaison entre les ports de la Réunion et de Mayotte.
-        - ✈️ transport aérien pour les employeurs assurant :
-          - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
-          - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
+        - ✈️ transport aérien pour les employeurs assurant :
+          - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
+          - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
           - la desserte intérieure de ces départements ou collectivités.
       titre.en: '[automatic] sector exemption scale'
       titre.fr: barème d’exonération sectorielle
@@ -10889,7 +10896,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - research and development
               - information and communication technologies.
 
-            The employer must **also** meet **at least one of the following conditions**:
+            The employer must **also** meet **at least one of the following conditions** :
 
             - be in one of the following **sectors** :
               - 🔬 research and development ;
@@ -10901,7 +10908,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             - or benefit from the **"inward processing "** regime.
           description.fr: >
             Pour bénéficier du barème d’exonération renforcée, les employeurs
-            doivent :
+            doivent :
 
             - employer **moins de 250 salariés**,
 
@@ -10912,30 +10919,30 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             un **régime réel d’imposition**.
 
 
-            Par ailleurs, l’employeur doit remplir **au moins l’une des conditions** suivantes :
+            Par ailleurs, l’employeur doit remplir **au moins l’une des conditions** suivantes :
 
             - soit relever de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
             contribuables domiciliés en France qui ont réalisés des investissements productifs neufs en outre-mer
 
-            (prévue à l’article 199 undecies B du code général des impôts) ;
+            (prévue à l’article 199 undecies B du code général des impôts) ;
 
-            - soit exercer une des activités suivantes :
-              - comptabilité ;
-              - conseil aux entreprises ;
-              - ingénierie ou études techniques à destination des entreprises ;
+            - soit exercer une des activités suivantes :
+              - comptabilité ;
+              - conseil aux entreprises ;
+              - ingénierie ou études techniques à destination des entreprises ;
               - recherche et développement
               - technologies de l’information et de la communication.
 
-            L’employeur doit **également** remplir **au moins l’une des conditions** suivantes :
+            L’employeur doit **également** remplir **au moins l’une des conditions** suivantes :
 
-            - soit relever d’un des **secteurs** suivants :
-              - 🔬 recherche et développement ;
-              - 🖥️ technologies de l’information et de la communication ;
-              - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
-              - 🌱 agronutrition ;
-              - 🌳 environnement ;
-              - 🔋 énergies renouvelables ;
+            - soit relever d’un des **secteurs** suivants :
+              - 🔬 recherche et développement ;
+              - 🖥️ technologies de l’information et de la communication ;
+              - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+              - 🌱 agronutrition ;
+              - 🌳 environnement ;
+              - 🔋 énergies renouvelables ;
             - soit bénéficier du **régime de « perfectionnement actif »**.
           titre.en: '[automatic] enhanced exemption scale'
           titre.fr: barème d’exonération renforcée
@@ -10984,41 +10991,41 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             L’exonération est applicable aux employeurs, quel que soit leur
             effectif, relevant d’un des secteurs d’activité
 
-            éligibles au dispositif d’exonération « Lodeom » :
+            éligibles au dispositif d’exonération « Lodeom » :
 
-            - 🔬 recherche et développement ;
+            - 🔬 recherche et développement ;
 
-            - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+            - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
 
-            - 🛏️ hôtellerie ;
+            - 🛏️ hôtellerie ;
 
-            - 🌱 agronutrition ;
+            - 🌱 agronutrition ;
 
-            - 🌳 environnement ;
+            - 🌳 environnement ;
 
-            - 🔋 énergies renouvelables ;
+            - 🔋 énergies renouvelables ;
 
             - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
 
-            et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+            et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
 
-            - 🎣 pêche, cultures marines et aquaculture ;
+            - 🎣 pêche, cultures marines et aquaculture ;
 
             - 🏗 bâtiment et travaux publics
 
-            - 🍴 restauration ;
+            - 🍴 restauration ;
 
-            - 📰 presse ;
+            - 📰 presse ;
 
             - 🎥 production audiovisuelle.
 
-            - ⛵ transport fluvial ou maritime pour les employeurs assurant :
-              - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
-              - la liaison entre les ports de ces départements ou collectivités ;
+            - ⛵ transport fluvial ou maritime pour les employeurs assurant :
+              - la desserte maritime ou fluviale de plusieurs points de la Guadeloupe, de la Guyane, de la Martinique, de La Réunion, de Saint-Barthélemy ou de Saint-Martin ;
+              - la liaison entre les ports de ces départements ou collectivités ;
               - la liaison entre les ports de la Réunion et de Mayotte.
-            - ✈️ transport aérien pour les employeurs assurant :
-              - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
-              - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
+            - ✈️ transport aérien pour les employeurs assurant :
+              - la liaison entre la métropole et la Guadeloupe, la Guyane, la Martinique, La Réunion, Saint-Martin, Saint-Barthélemy ;
+              - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
               - la desserte intérieure de ces départements ou collectivités.
           titre.en: '[automatic] sector exemption scale'
           titre.fr: barème d’exonération sectorielle
@@ -11036,7 +11043,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         - employers with fewer than 11 employees;
 
-        - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness scale
+        - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness or innovation and growth scales
 
         or the innovation and growth scale;
 
@@ -11053,22 +11060,22 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         and growth.
       description.fr: >
-        Le barème de compétitivité **est applicable** :
+        Le barème de compétitivité **est applicable** :
 
-        - aux employeurs de moins de 11 salariés ;
+        - aux employeurs de moins de 11 salariés ;
 
         - aux entreprises relevant des secteurs éligibles au Lodeom et qui ne bénéficient pas du barème de
 
-        compétitivité renforcée, ni du barème d’innovation et croissance ;
+        compétitivité renforcée, ni du barème d’innovation et croissance ;
 
         - aux employeurs des secteurs éligibles aux régimes de compétitivité renforcée ou d’innovation
 
         et croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés)
 
-        ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
+        ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
 
 
-        Le barème de compétitivité **n’est pas applicable** :
+        Le barème de compétitivité **n’est pas applicable** :
 
         - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
 
@@ -11120,35 +11127,35 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - engineering or technical studies.
       description.fr: >
         Pour bénéficier du barème de compétitivité renforcée, les employeurs
-        doivent :
+        doivent :
 
         - employer **moins de 250 salariés**
 
         - et réaliser un chiffre d’affaires annuel **inférieur à 50 millions d’euros**.
 
 
-        L’employeur doit remplir **au moins l’une des conditions** suivantes :
+        L’employeur doit remplir **au moins l’une des conditions** suivantes :
 
-        - soit relever d’un des **secteurs** suivants :
+        - soit relever d’un des **secteurs** suivants :
           - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
-          et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
-          - 🎣 pêche, cultures marines et aquaculture ;
-          - 🏭 industrie ;
-          - 🌳 environnement ;
-          - 🌱 agronutrition ;
-          - 🔋 énergies renouvelables ;
-          - 🍴 restauration ;
-          - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
-          - ⛵ nautisme ;
-          - 🛏️ hôtellerie ;
-          - 🔬 recherche et développement ;
-          - 🖥️ nouvelles technologies de l’information et de la communication et centres d’appel ;
-          - 📰 presse ;
+          et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+          - 🎣 pêche, cultures marines et aquaculture ;
+          - 🏭 industrie ;
+          - 🌳 environnement ;
+          - 🌱 agronutrition ;
+          - 🔋 énergies renouvelables ;
+          - 🍴 restauration ;
+          - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+          - ⛵ nautisme ;
+          - 🛏️ hôtellerie ;
+          - 🔬 recherche et développement ;
+          - 🖥️ nouvelles technologies de l’information et de la communication et centres d’appel ;
+          - 📰 presse ;
           - 🎥 production audiovisuelle.
         - soit bénéficier du **régime de « perfectionnement actif »**.
 
 
-        **En Guyane**, l’employeur peut être éligible :
+        **En Guyane**, l’employeur peut être éligible :
 
         - s’il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
@@ -11156,9 +11163,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         (prévue à l’article 199 undecies B du code général des impôts)
 
-        - ou s’il exerce une des activités suivantes :
-          - comptabilité ;
-          - conseil aux entreprises ;
+        - ou s’il exerce une des activités suivantes :
+          - comptabilité ;
+          - conseil aux entreprises ;
           - ingénierie ou études techniques.
       question.en: '[automatic] Are you eligible for the enhanced competitiveness scale?'
       question.fr: Êtes-vous éligible au barème compétitivité renforcée ?
@@ -11195,7 +11202,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
         The exemption **does not apply** to support functions: administrative financial tasks, logistics, human resources.
       description.fr: >
         Pour bénéficier du barème d’innovation et croissance, les employeurs
-        doivent :
+        doivent :
 
         - employer **moins de 250 salariés**,
 
@@ -11206,13 +11213,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
         et de la communication.
 
 
-        Ces projets doivent être réalisés dans l’un des **domaines d’activité** suivants :
-          - 📡 télécommunication ;
+        Ces projets doivent être réalisés dans l’un des **domaines d’activité** suivants :
+          - 📡 télécommunication ;
           - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
           de systèmes et d’applications, gestion d’installations, traitement des données, hébergement et activités
-          connexes ;
+          connexes ;
           - 🌐 édition de portails internet et de logiciels;
-          - 🎴 infographie, notamment conception de contenus visuels et numériques ;
+          - 🎴 infographie, notamment conception de contenus visuels et numériques ;
           - 🤖 conception d’objets connectés.
 
         Si les conditions sont réunies, l’exonération s’applique aux salariés qui participent principalement et
@@ -11220,7 +11227,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
         directement à la réalisation de projets innovants.
 
 
-        L’exonération **ne s’applique pas** aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+        L’exonération **ne s’applique pas** aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
       question.en: '[automatic] Are you eligible for the innovation and growth scale?'
       question.fr: Êtes-vous éligible au barème d’innovation et croissance ?
       titre.en: '[automatic] innovation and growth scale'
@@ -11233,7 +11240,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
             - employers with fewer than 11 employees;
 
-            - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness scale
+            - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness or innovation and growth scales
 
             or the innovation and growth scale;
 
@@ -11250,22 +11257,22 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
             and growth.
           description.fr: >
-            Le barème de compétitivité **est applicable** :
+            Le barème de compétitivité **est applicable** :
 
-            - aux employeurs de moins de 11 salariés ;
+            - aux employeurs de moins de 11 salariés ;
 
             - aux entreprises relevant des secteurs éligibles au Lodeom et qui ne bénéficient pas du barème de
 
-            compétitivité renforcée, ni du barème d’innovation et croissance ;
+            compétitivité renforcée, ni du barème d’innovation et croissance ;
 
             - aux employeurs des secteurs éligibles aux régimes de compétitivité renforcée ou d’innovation
 
             et croissance, qui ne respectent pas les conditions d’effectifs (moins de 250 salariés)
 
-            ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
+            ou de chiffres d’affaires annuel (moins de 50 millions d’euros) ;
 
 
-            Le barème de compétitivité **n’est pas applicable** :
+            Le barème de compétitivité **n’est pas applicable** :
 
             - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
 
@@ -11317,35 +11324,35 @@ salarié . cotisations . exonérations . lodeom . zone un:
               - engineering or technical studies.
           description.fr: >
             Pour bénéficier du barème de compétitivité renforcée, les employeurs
-            doivent :
+            doivent :
 
             - employer **moins de 250 salariés**
 
             - et réaliser un chiffre d’affaires annuel **inférieur à 50 millions d’euros**.
 
 
-            L’employeur doit remplir **au moins l’une des conditions** suivantes :
+            L’employeur doit remplir **au moins l’une des conditions** suivantes :
 
-            - soit relever d’un des **secteurs** suivants :
+            - soit relever d’un des **secteurs** suivants :
               - 🚜 agriculture (y compris les coopératives agricoles et sociétés d’intérêt collectif agricoles
-              et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
-              - 🎣 pêche, cultures marines et aquaculture ;
-              - 🏭 industrie ;
-              - 🌳 environnement ;
-              - 🌱 agronutrition ;
-              - 🔋 énergies renouvelables ;
-              - 🍴 restauration ;
-              - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
-              - ⛵ nautisme ;
-              - 🛏️ hôtellerie ;
-              - 🔬 recherche et développement ;
-              - 🖥️ nouvelles technologies de l’information et de la communication et centres d’appel ;
-              - 📰 presse ;
+              et leurs unions ainsi que les coopératives maritimes et leurs unions) ;
+              - 🎣 pêche, cultures marines et aquaculture ;
+              - 🏭 industrie ;
+              - 🌳 environnement ;
+              - 🌱 agronutrition ;
+              - 🔋 énergies renouvelables ;
+              - 🍴 restauration ;
+              - 📷 tourisme, y compris les activités de loisirs s’y rapportant ;
+              - ⛵ nautisme ;
+              - 🛏️ hôtellerie ;
+              - 🔬 recherche et développement ;
+              - 🖥️ nouvelles technologies de l’information et de la communication et centres d’appel ;
+              - 📰 presse ;
               - 🎥 production audiovisuelle.
             - soit bénéficier du **régime de « perfectionnement actif »**.
 
 
-            **En Guyane**, l’employeur peut être éligible :
+            **En Guyane**, l’employeur peut être éligible :
 
             - s’il relève de l’un des secteurs d’activité éligibles à la réduction d’impôt sur le revenu ouverte aux
 
@@ -11353,9 +11360,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
             (prévue à l’article 199 undecies B du code général des impôts)
 
-            - ou s’il exerce une des activités suivantes :
-              - comptabilité ;
-              - conseil aux entreprises ;
+            - ou s’il exerce une des activités suivantes :
+              - comptabilité ;
+              - conseil aux entreprises ;
               - ingénierie ou études techniques.
           titre.en: '[automatic] enhanced competitiveness scale'
           titre.fr: barème de compétitivité renforcée
@@ -11390,7 +11397,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
             The exemption **does not apply** to support functions: administrative financial tasks, logistics, human resources.
           description.fr: >
             Pour bénéficier du barème d’innovation et croissance, les employeurs
-            doivent :
+            doivent :
 
             - employer **moins de 250 salariés**,
 
@@ -11401,13 +11408,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
             et de la communication.
 
 
-            Ces projets doivent être réalisés dans l’un des **domaines d’activité** suivants :
-              - 📡 télécommunication ;
+            Ces projets doivent être réalisés dans l’un des **domaines d’activité** suivants :
+              - 📡 télécommunication ;
               - 🖥️ informatique, dont notamment programmation, conseil en systèmes et logiciels, tierce maintenance
               de systèmes et d’applications, gestion d’installations, traitement des données, hébergement et activités
-              connexes ;
+              connexes ;
               - 🌐 édition de portails internet et de logiciels;
-              - 🎴 infographie, notamment conception de contenus visuels et numériques ;
+              - 🎴 infographie, notamment conception de contenus visuels et numériques ;
               - 🤖 conception d’objets connectés.
 
             Si les conditions sont réunies, l’exonération s’applique aux salariés qui participent principalement et
@@ -11415,7 +11422,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
             directement à la réalisation de projets innovants.
 
 
-            L’exonération **ne s’applique pas** aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
+            L’exonération **ne s’applique pas** aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
           question.en: '[automatic] Are you eligible for the innovation and growth scale?'
           question.fr: Êtes-vous éligible au barème d’innovation et croissance ?
           titre.en: '[automatic] innovation and growth scale'
