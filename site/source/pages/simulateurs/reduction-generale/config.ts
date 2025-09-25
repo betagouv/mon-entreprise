@@ -14,7 +14,10 @@ export function réductionGénéraleConfig({
 	return config({
 		id: 'réduction-générale',
 		beta: true,
-		tracking: 'reduction_generale',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'reduction_generale',
+		},
 		icône: '🏷️',
 		iframePath: 'simulateur-reduction-generale',
 		pathId: 'simulateurs.réduction-générale',

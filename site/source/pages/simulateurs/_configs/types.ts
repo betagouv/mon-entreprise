@@ -1,6 +1,7 @@
 import type { TFunction } from 'i18next'
 import { PublicodesExpression } from 'publicodes'
 
+import { TrackingChapters } from '@/components/ATInternetTracking'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
@@ -37,7 +38,26 @@ export interface PageConfig {
 	title: string
 
 	/** Configuration du tracking */
-	tracking: Tracking
+
+	/**
+	 * Les informations liées au tracking, utilisées pour les statistiques.
+	 *
+	 * Exemples :
+	 * {
+	 * 		chapter1: 'simulateurs'
+	 * 		chapter2: 'auto_entrepreneur'
+	 * }
+	 * {
+	 * 		chapter1: 'assistant'
+	 * 		chapter2: 'choix_du_statut'
+	 * }
+	 * {
+	 * 		chapter1: 'simulateurs'
+	 * 		chapter2: 'profession_liberale'
+	 * 		chapter3: 'sage_femme'
+	 * }
+	 */
+	tracking: TrackingChapters
 
 	/** Métadonnées de la page */
 	meta: {
@@ -116,20 +136,6 @@ export interface PageConfig {
 	/** Composant React pour les explications SEO, qui apparaissent en dessous du simulateur */
 	seoExplanations?: () => JSX.Element
 }
-
-/**
- * Les informations liées au tracking, utilisées pour les statistiques.
- *
- * Si seul une string est utilisée, alors elle équivaut à { chapter1: 'simulateurs', chapter2: <string> }
- *
- */
-type Tracking =
-	| string
-	| {
-			chapter1?: string
-			chapter2?: string
-			chapter3?: string
-	  }
 
 export type ExternalLink = {
 	url: string

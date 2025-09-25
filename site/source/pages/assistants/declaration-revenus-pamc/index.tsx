@@ -60,7 +60,7 @@ export default function DéclarationRevenusPAMC() {
 						<TrackPage name="simulation terminée" />
 					</WhenAlreadyDefined>
 					<WhenNotAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
-						<TrackPage name="simulation commencée" />
+						<TrackPage name="simulation_commencee" />
 					</WhenNotAlreadyDefined>
 				</>
 			) : (

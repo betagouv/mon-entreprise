@@ -7,7 +7,10 @@ export function dividendesConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'dividendes',
 		icône: '🎩',
-		tracking: 'dividendes',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'dividendes',
+		},
 		iframePath: 'dividendes',
 		pathId: 'simulateurs.dividendes',
 		meta: {

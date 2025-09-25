@@ -3,7 +3,7 @@ import { SimulateurCard } from '@/components/SimulateurCard'
 import { H2 } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 
-export default function SalariéSimulation() {
+export default function PAMCHome() {
 	const simulators = useSimulatorsData()
 
 	return (

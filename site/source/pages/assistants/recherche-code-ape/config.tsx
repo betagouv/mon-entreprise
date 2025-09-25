@@ -33,7 +33,10 @@ export function rechercheCodeApeConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Assistant pour trouver le code APE qui correspond à votre activité.'
 			),
 		},
-		tracking: 'recherche_code_ape',
+		tracking: {
+			chapter1: 'assistants',
+			chapter2: 'recherche_code_ape',
+		},
 		component: SearchCodeApePage,
 		seoExplanations: SeoExplanations,
 	} as const)

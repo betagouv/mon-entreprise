@@ -24,7 +24,7 @@ export function VousAvezComplétéCetteSimulation({
 	return (
 		<>
 			<div style={{ textAlign: 'center' }}>
-				{firstRenderDone && <TrackPage name="simulation terminée" />}
+				{firstRenderDone && <TrackPage name="simulation_terminee" />}
 				<H3 as="h2">
 					<Emoji emoji="🌟" />{' '}
 					<Trans i18nKey="simulation-end.title">

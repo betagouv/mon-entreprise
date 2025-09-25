@@ -14,7 +14,10 @@ export function salariéConfig(params: SimulatorsDataParams) {
 
 	return config({
 		id: 'salarié',
-		tracking: 'salarie',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'salarie',
+		},
 		icône: '🤝',
 		title: t(
 			'pages.simulateurs.salarié.title',
