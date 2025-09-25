@@ -8,6 +8,7 @@ export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'sasu',
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'statut_entreprise',
 			chapter3: 'SASU',
 		},

@@ -32,15 +32,15 @@ type Chapter1 =
 	| 'integration'
 	| 'navigation'
 
-type Chapters = {
+export type TrackingChapters = {
 	chapter1?: Chapter1
 	chapter2?: string
 	chapter3?: string
 }
 
-const PageChapterContext = createContext<Chapters>({})
+const PageChapterContext = createContext<TrackingChapters>({})
 
-function useChapters(props: Chapters): Chapters {
+function useChapters(props: TrackingChapters): TrackingChapters {
 	let chapters = useContext(PageChapterContext)
 	if (props.chapter1) {
 		chapters = { chapter2: '', chapter3: '', ...props }
@@ -80,7 +80,7 @@ export function TrackPage({
 }: {
 	name?: string
 	children?: React.ReactNode
-} & Chapters) {
+} & TrackingChapters) {
 	const { chapter1, chapter2, chapter3 } = useChapters(chapters)
 	const tag = useTracking()
 	useEffect(() => {

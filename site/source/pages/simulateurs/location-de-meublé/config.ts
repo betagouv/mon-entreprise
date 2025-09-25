@@ -8,7 +8,10 @@ import { URSSAF } from '@/utils/logos'
 export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'location-de-logement-meublé',
-		tracking: 'location_de_logement_meublé',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'location_de_logement_meublé',
+		},
 		icône: '🛖',
 		beta: true,
 		hidden: true,
