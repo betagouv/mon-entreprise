@@ -3,9 +3,13 @@ entreprise . associés:
     - unique
     - multiples
   description: |
-    Si vous êtes le seul associé de votre société, alors vous êtes dans le cas d'une « société unipersonnelle ».
+    Si vous êtes le seul associé de votre société, alors vous êtes dans le cas
+    d’une « société unipersonnelle ».
 
-    Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la SELAS et la SELARL.
+    Ainsi, une SARL avec un seul associé est appelée EURL (Entreprise
+    Unipersonnelle à Responsabilité Limité). De même pour la SASU, la SELASU et
+    la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la
+    SELAS et la SELARL.
   question: Je possède cette entreprise...
   avec:
     multiples:
@@ -13,7 +17,7 @@ entreprise . associés:
       valeur: associés = 'multiples'
 
     unique:
-      titre: seul(e)
+      titre: seul / seule
       valeur: associés = 'unique'
 
 ### ()	La nomenclature des catégories juridiques retenue est celle du niveau III du répertoire Sirene géré par l'Insee ###
