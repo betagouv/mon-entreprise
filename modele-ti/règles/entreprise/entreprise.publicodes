@@ -8,9 +8,9 @@ entreprise . chiffre d'affaires:
   unité: €/an
   description: |
     ### Chiffre d’affaires estimé
-    Le chiffre d’affaires est la **somme des montants des ventes réalisées
-    pendant votre exercice comptable** (un an) : CA = prix de vente x quantités
-    vendues.
+    Le chiffre d’affaires est la
+    **somme des montants des ventes réalisées pendant votre exercice comptable**
+    (un an) : CA = prix de vente x quantités vendues.
   somme:
     - indépendant . rémunération . nette . après impôt
     - indépendant . rémunération . impôt

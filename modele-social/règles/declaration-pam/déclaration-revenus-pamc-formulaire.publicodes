@@ -259,7 +259,7 @@ déclaration revenus PAMC . SNIR . honoraires remboursables:
   titre: honoraires tirés d’actes conventionnés
   unité: €/an
   description: |
-    ## Si vous relevez de l’impôt sur le revenu
+    ### Si vous relevez de l’impôt sur le revenu
 
     Reportez le montant indiqué sur votre relevé
     <abbr title="Système National Inter-Régimes">SNIR</abbr>. Si vous êtes
@@ -269,7 +269,7 @@ déclaration revenus PAMC . SNIR . honoraires remboursables:
       - versées par la <abbr title="Caisse Primaire d’Assurance Maladie">CPAM</abbr>
       - perçues dans le cadre d’un contrat « loi Madelin »
 
-    ## Si vous relevez de l’impôt sur les sociétés
+    ### Si vous relevez de l’impôt sur les sociétés
 
     Si l’assurance maladie ne vous a transmis qu’
     **un seul <abbr title="Système National Inter-Régimes">SNIR</abbr> au nom de la société**,
@@ -294,14 +294,14 @@ déclaration revenus PAMC . SNIR . dépassements honoraires:
   question: dépassements d’honoraires
   unité: €/an
   description: |
-    ## Si vous relevez de l’impôt sur le revenu
+    ### Si vous relevez de l’impôt sur le revenu
 
     Reportez le montant indiqué sur votre relevé
     <abbr title="Système National Inter-Régimes">SNIR</abbr>.
 
     Si vous êtes **remplaçant/remplaçante**, renseignez zéro.
 
-    ## Si vous relevez de l’impôt sur les sociétés
+    ### Si vous relevez de l’impôt sur les sociétés
 
     Si l’assurance maladie ne vous a transmis qu’
     **un seul <abbr title="Système National Inter-Régimes">SNIR</abbr> au nom de la société**,
