@@ -242,10 +242,10 @@ entreprise . exercice:
     date trop ancienne:
       type: notification
       sévérité: avertissement
-      formule: début < 01/01/2018
+      formule: début < 01/01/2022
       description:
         La date saisie est trop ancienne. Le simulateur n’intègre pas les
-        barèmes avant 2018.
+        barèmes avant 2022.
 
     début:
       type: date
