@@ -277,12 +277,6 @@ entreprise . imposition . régime:
 
 entreprise . imposition . régime . micro-entreprise:
   titre: micro-fiscal
-  non applicable si: entreprise . imposition . IS
-  valeur: régime = 'micro-entreprise'
-  par défaut: non
-
-  rend non applicable: dirigeant . indépendant . cotisations facultatives
-  question: Avez-vous opté pour le régime micro-fiscal ?
   description: |
     Avec le régime micro-fiscal, les charges déductibles sont estimées forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
     pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme
@@ -290,6 +284,11 @@ entreprise . imposition . régime . micro-entreprise:
 
     Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
     fonctionnement sont faibles.
+  non applicable si: entreprise . imposition . IS
+  valeur: régime = 'micro-entreprise'
+  question: Avez-vous opté pour le régime micro-fiscal ?
+  par défaut: non
+  rend non applicable: dirigeant . indépendant . cotisations facultatives
   références:
     Régime micro-fiscal: https://entreprendre.service-public.fr/vosdroits/F23267
     "Changement de régime d’imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
