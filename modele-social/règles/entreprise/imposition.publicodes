@@ -246,11 +246,13 @@ entreprise . imposition . IS . résultat imposable:
 entreprise . imposition . IS . information sur le report de déficit:
   type: notification
   formule: résultat imposable < 0 €/an
-  # TODO: Support des références dans les notifications
   description: |
     Les déficits subits au cours d’un exercice peuvent être reportés sur les
     exercices suivants (report en avant), ou sur le seul exercice précédent (report
     en arrière).
+
+    [Voir la fiche « Impôt sur les sociétés (IS) : report de déficit » sur
+    Entreprendre.Service-Public.fr](https://entreprendre.service-public.fr/vosdroits/F23628)
 
 entreprise . imposition . IS . résultat net:
   résumé: Après déduction des charges et de l’impôt sur les société
