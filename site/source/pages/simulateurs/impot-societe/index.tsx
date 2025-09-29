@@ -139,7 +139,7 @@ function Explanations() {
 			<ExplanationsContainer>
 				<Intro>
 					<Value
-						expression="entreprise . imposition . IS . montant"
+						expression="entreprise . imposition . IS . total"
 						displayedUnit="€"
 						className="payslip__total"
 					/>

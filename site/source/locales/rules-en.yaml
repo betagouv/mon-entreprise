@@ -7575,6 +7575,9 @@ entreprise . imposition . IS . résultat net:
   résumé.fr: Après déduction des charges et de l’impôt sur les société
   titre.en: '[automatic] net result'
   titre.fr: résultat net
+entreprise . imposition . IS . total:
+  titre.en: '[automatic] total'
+  titre.fr: total
 entreprise . imposition . IS . éligible taux réduit:
   avec:
     capital détenu au moins à 75 pourcents par des personnes physiques:
