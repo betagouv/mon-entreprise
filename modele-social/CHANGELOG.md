@@ -2,6 +2,9 @@
 
 ## next
 
+### Breaking changes
+- Renomme la règle `entreprise . imposition . IS . capital détenu au moins à 75 pourcents par des personnes physiques` en `entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques`
+
 ### Nouveautés
 - Ajoute la règle `entreprise . imposition . IS . total` qui inclue la contribution
 sociale sur l'IS.

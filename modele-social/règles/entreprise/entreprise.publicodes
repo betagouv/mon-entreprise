@@ -333,6 +333,8 @@ entreprise . capital social:
   question: Quele est le capital social de la société ?
   unité: €
 
+entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques: oui
+
 entreprise . salariés:
 
 entreprise . salariés . effectif:
