@@ -126,6 +126,11 @@ entreprise . imposition . IS:
     Quelles sont les entreprises soumises à l’impôt sur les sociétés (IS) ?: "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/is-impot-societes"
     Comparaison IR/IS: "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices#:~:text=Principe%20de%20l%27imp%C3%B4t%20sur%20les%20soci%C3%A9t%C3%A9s,-Une%20distinction%20est&text=Les%20entreprises%20dont%20le%20chiffre,%2C%20et%2025%20%25%20au%20del%C3%A0."
 
+entreprise . imposition . IS . total:
+  somme:
+    - montant
+    - contribution sociale
+
 entreprise . imposition . IS . montant:
   unité: €/an
   applicable si: prorata temporis > 0
@@ -222,6 +227,10 @@ entreprise . imposition . IS . prorata temporis:
     Bofip: https://bofip.impots.gouv.fr/bofip/2065-PGP.html/identifiant%3DBOI-IS-LIQ-20-20-20180801
 
 entreprise . imposition . IS . contribution sociale:
+  # NB: n'est pas utilisé car le seul usage de entreprise . imposition . IS . total
+  # est dans le simulateur de l'impôt sur les sociétés, et celui-ci ne demande pas
+  # le chiffres d'affaires et dans ce cas c'est la valeur par défaut de la non
+  # applicabilité qui est utilisée.
   description: |
     La contribution sociale sur les bénéfices est un impôt distinct de l’impôt sur
     les sociétés. Son montant n’est pas déductible des résultats.
@@ -229,13 +238,21 @@ entreprise . imposition . IS . contribution sociale:
     L’assiette bénéficie d’un abattement important, et seules les entreprises
     réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette
     contribution.
+  non applicable si:
+    par défaut: oui
+    toutes ces conditions:
+      - non applicable si: entreprise . catégorie juridique . EI
+        valeur: chiffre d'affaires <= 7630 k€/an * prorata temporis
+      - capital social . détenu au moins à 75 pourcents par des personnes physiques
   formule:
     produit:
       - valeur: IS . montant
-        abattement: 763000 €/an * prorata temporis
+        abattement: 763 k€/an * prorata temporis
       - 3.3%
+  arrondi: oui
   références:
-    Bofip: https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
+    Contribution sociale sur l'impôt sur les sociétés: https://entreprendre.service-public.fr/vosdroits/F23510
+    Contribution sociale sur l'IS - Modalités de calcul : https://bofip.impots.gouv.fr/bofip/3492-PGP.html/identifiant%3DBOI-IS-AUT-10-20-20130318
 
 entreprise . imposition . IS . résultat imposable:
   titre: Résultat de l’exercice

@@ -2,6 +2,10 @@
 
 ## next
 
+### Nouveautés
+- Ajoute la règle `entreprise . imposition . IS . total` qui inclue la contribution
+sociale sur l'IS.
+
 ### Mises à jour
 - Change `entreprise . exercice . date trop ancienne` de 2018 à 2022.
 
