@@ -198,13 +198,10 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
         Il existe classes de cotisations aux choix, correspondant à des cotisations
         et des degrés d'indemnisations différents.
       par défaut: "'A'"
-      formule:
-        une possibilité:
-          choix obligatoire: oui
-          possibilités:
-            - A
-            - B
-            - C
+      une possibilité:
+        - A
+        - B
+        - C
       
       avec:
         A:

@@ -18,10 +18,8 @@ déclaration charge sociales . comptabilité:
   non applicable si: entreprise . imposition . IS
   question: Quelle méthode de gestion de la comptabilité est utilisée pour l'entreprise ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - engagement
-      - trésorerie
+    - engagement
+    - trésorerie
 
 déclaration charge sociales . comptabilité . trésorerie:
   # rend non applicable: entreprise . imposition . régime . micro-entreprise
@@ -68,13 +66,10 @@ déclaration charge sociales . nature de l'activité:
     - entreprise . activité . nature
   question: Quelle est la nature de votre activité ?
   par défaut: "'artisanale'"
-  valeur:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - artisanale
-        - commerciale
-        - libérale
+  une possibilité:
+    - artisanale
+    - commerciale
+    - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l'activité d'une entreprise ?: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32887

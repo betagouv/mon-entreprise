@@ -77,13 +77,10 @@ salarié . convention collective . sport . cotisations . régime frais de santé
 
 salarié . convention collective . sport . cotisations . régime frais de santé . option:
   question: Quel option a été choisi pour le régime des frais de santé ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - R1
-        - R2
-        - R3
+  une possibilité:
+    - R1
+    - R2
+    - R3
   par défaut: "'R1'"
   références:
     unamens.fr: https://www.umanens.fr/reglementation-couverture-sante-obligatoire/ccn-sport

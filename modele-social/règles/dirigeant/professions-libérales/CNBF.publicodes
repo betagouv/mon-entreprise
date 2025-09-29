@@ -278,13 +278,10 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
         Il existe classes de cotisations aux choix, correspondant à des cotisations
         et des degrés d'indemnisations différents.
       par défaut: "'C1'"
-      formule:
-        une possibilité:
-          choix obligatoire: oui
-          possibilités:
-            - C1
-            - C2
-            - C2P
+      une possibilité:
+        - C1
+        - C2
+        - C2P
       avec:
         C1:
           titre: classe 1
