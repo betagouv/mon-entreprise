@@ -127,12 +127,12 @@ CIPAV ACRE:
     dirigeant . rémunération . net: 50000 €/an
 
 CIPAV années précédentes:
+  - dirigeant . rémunération . net: 60000 €/an
+    date: 01/2024
   - dirigeant . rémunération . net: 50000 €/an
     date: 01/2023
   - dirigeant . rémunération . net: 40000 €/an
     date: 01/2022
-  - dirigeant . rémunération . net: 30000 €/an
-    date: 01/2021
 
 CIPAV année incomplète:
   - &AnnéeIncomplete
