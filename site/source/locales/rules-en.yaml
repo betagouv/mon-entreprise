@@ -2508,33 +2508,33 @@ dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
     **income from conventional activity / (100% + average fee overrun)**.
 
 
-    &gt; **Proof:**
+    > **Proof:**
 
-    &gt;
+    >
 
-    &gt; If we take the following variables,
+    > If we take the following variables,
 
-    &gt; - `h+` : total fees (with overrun)
+    > - `h+` : total fees (with overrun)
 
-    &gt; - `h`: fees without overrun
+    > - `h`: fees without overrun
 
-    &gt; - `d%` : average percentage fee exceeded
+    > - `d%` : average percentage fee exceeded
 
-    &gt;
+    >
 
-    &gt; We have: `h+ = h + h * d% = h * (100% + d%)`.
+    > We have: `h+ = h + h * d% = h * (100% + d%)`.
 
-    &gt; And: `total fees - total excess fees = fees without excess = h`.
+    > And: `total fees - total excess fees = fees without excess = h`.
 
-    &gt;
+    >
 
-    &gt; If we replace the CPAM participation base in the formula, we obtain :
+    > If we replace the CPAM participation base in the formula, we obtain :
 
-    1. `income from conventional activity * h / h+` &gt; 2.
+    > 1. `income from conventional activity * h / h+`
 
-    2. `income from conventional activity * h / (h * (100% + d%))` &gt; 3.
+    > 2. `income from conventional activity * h / (h * (100% + d%))`
 
-    &gt; 3. `income from conventional activity / (100% + d%)`
+    > 3. `income from conventional activity / (100% + d%)`
   note.fr: >
     La formule donnée par l’Urssaf est la suivante :
 
@@ -2606,9 +2606,9 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     The formula for calculating the overrun rate is as follows:
 
 
-    &gt; Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable &gt; procedures + amounts reimbursed CMU lump sums).
+    > Urssaf rate = (overruns - reimbursed CMU lump-sum amounts) / (reimbursable
 
-    &gt; reimbursable procedures + reimbursed CMU lump-sum amounts)
+    > procedures amounts + reimbursed CMU lump-sum amounts)
   description.fr: >
     Le « taux Urssaf » permet de calculer la part de votre cotisation
     d’assurance
@@ -3322,7 +3322,7 @@ dirigeant . indépendant . conjoint collaborateur:
 
     #### Advantages of the status of collaborating spouse
 
-    &gt; This status of collaborating spouse is flexible, simple (few administrative formalities) and of low cost for the company for a complete social protection. It can be chosen even if the spouse has an activity outside the company.
+    > This status of collaborating spouse is flexible, simple (few administrative formalities) and of low cost for the company for a complete social protection. It can be chosen even if the spouse has an activity outside the company.
   description.fr: >
     En tant que collaborateur, le conjoint d'un indépendant verse des
     cotisations en matière de retraite et d'invalidité-décès et bénéficie en
@@ -4782,7 +4782,7 @@ déclaration charge sociales . nature de l'activité . artisanale:
     and know-how.
 
 
-    &gt; For example: works, activities related to building, repair of products supplied by the client, hairdressers...
+    > For example: works, activities related to building, repair of products supplied by the client, hairdressers...
 
 
     - The company must not employ more than 10 employees (the activity becomes commercial beyond that).
@@ -5258,23 +5258,23 @@ déclaration revenus PAMC . dividendes:
     children.
 
 
-    &gt; For information, dividends are subject to :
+    > For information, dividends are subject to :
 
-    &gt; - social security contributions for the portion exceeding 10% of the share capital
+    > - social security contributions for the portion exceeding 10% of the share capital
 
-    &gt; share capital contributed by the majority shareholder, share premiums and
+    > share capital contributed by the majority shareholder, share premiums and
 
-    &gt; and contributions to shareholders' current accounts (average over the year).
+    > and contributions to shareholders' current accounts (average over the year).
 
-    &gt; contributed by the manager);
+    > contributed by the manager);
 
-    &gt; - social security contributions (17.2%) for the portion below 10% not subject to
+    > - social security contributions (17.2%) for the portion below 10% not subject to
 
-    &gt; contributions;
+    > contributions;
 
-    &gt; - income tax on all dividends (i.e. 12.8%, i.e.
+    > - income tax on all dividends (i.e. 12.8%, i.e.
 
-    &gt; progressive scale after a 40% allowance under certain conditions).
+    > progressive scale after a 40% allowance under certain conditions).
   description.fr: >
     Indiquez la part des dividendes perçus supérieure à 10% du montant du
     capital
@@ -5930,13 +5930,13 @@ entreprise . activité . nature:
         bodies (order, chamber or union).
 
 
-        &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
+        > Examples of regulated professions: architect, lawyer, nurse, doctor...
 
 
         These are other people who practice a science or art, and whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any subordinate relationship, while engaging their technical and moral responsibility.
 
 
-        &gt; Examples of non-regulated professions: developer, historian, urban planner...
+        > Examples of non-regulated professions: developer, historian, urban planner...
       description.fr: >
         Certaines professions libérales ont été classées dans le domaine libéral
         par la loi et leur titre est protégé. Leurs membres doivent respecter
@@ -6112,13 +6112,13 @@ entreprise . activités:
         bodies (order, chamber or union).
 
 
-        &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
+        > Examples of regulated professions: architect, lawyer, nurse, doctor...
 
 
         These are other people who practice a science or art, and whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any subordinate relationship, while engaging their technical and moral responsibility.
 
 
-        &gt; Examples of non-regulated professions: developer, historian, urban planner...
+        > Examples of non-regulated professions: developer, historian, urban planner...
       description.fr: >
         Certaines professions libérales ont été classées dans le domaine libéral
         par la loi et leur titre est protégé. Leurs membres doivent respecter
@@ -6295,10 +6295,10 @@ entreprise . activités . saisonnière:
     you contribute on your actual income.
 
 
-    You can request the application of this exemption from your space in urssaf: Messaging &gt; New message &gt; Another subject (information, documents or supporting documents) &gt; Request information on my account or a summary &gt; Make a request or an additional request "
+    You can request the application of this exemption from your space in urssaf: Messaging > New message > Another subject (information, documents or supporting documents) > Request information on my account or a summary > Make a request or an additional request "
 
 
-    &gt; Please note: the minimum base for the basic pension guarantees the validation of 3 quarters of old-age insurance.
+    > Please note: the minimum base for the basic pension guarantees the validation of 3 quarters of old-age insurance.
   description.fr: >
     Les professionnels exerçant une activité saisonnière peuvent bénéficier
 
@@ -6679,7 +6679,7 @@ entreprise . charges:
     expense with no fixed asset.
 
 
-    &gt; Note**: social contributions to the self-employed workers' scheme and the deductible
+    > **Note**: social contributions to the self-employed workers' scheme and the deductible
 
     and the deductible portion of CSG are deductible from taxable income and income subject to
 
@@ -6890,21 +6890,21 @@ entreprise . chiffre d'affaires . seuil micro . dépassé:
     duration of activity.
 
 
-    &gt; ##### Example:
+    > ##### Example:
 
-    &gt; A taxpayer sets up a business on August 1 and receives revenues of
+    > A taxpayer sets up a business on August 1 and receives revenues of
 
-    &gt; 50,000 over the five months of the first calendar year.
+    > 50,000 over the five months of the first calendar year.
 
-    &gt; of operations.
+    > of operations.
 
-    &gt; Revenues for this first calendar year are adjusted *prorata temporis* to &gt; compare them with the ceiling
+    > Revenues for this first calendar year are adjusted *prorata temporis* to
 
-    &gt; to compare with the ceiling:
+    > compare them with the ceiling:
 
-    &gt;
+    >
 
-    &gt; `50 000€ x (365/153) = 119 280 €`
+    > `50 000€ x (365/153) = 119 280 €`
 
 
 
@@ -7005,7 +7005,7 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     or accommodation
 
 
-    &gt; Note: for furnished rentals, only classified furnished tourist accommodation and bed and breakfast are included in this category; other furnished rentals are included in the "BIC services" category.
+    > Note: for furnished rentals, only classified furnished tourist accommodation and bed and breakfast are included in this category; other furnished rentals are included in the "BIC services" category.
 
 
     This income is taxable in the BIC category.
@@ -9048,21 +9048,21 @@ protection sociale . retraite . base:
     benefit from the **full rate**.
 
 
-    &gt; **Detailed calculation:** 50% x average annual income x pension pro rata
+    > **Detailed calculation:** 50% x average annual income x pension pro rata
 
-    &gt;
+    >
 
-    &gt; With :
+    > With :
 
-    &gt; - _average annual income_ = average of salaries and income contributed by
+    > - _average annual income_ = average of salaries and income contributed by
 
-    &gt; self-employed during the 25 most advantageous years of your
+    > self-employed during the 25 most advantageous years of your
 
-    &gt; career ;
+    > career ;
 
-    &gt; - _prorata de pension_ = length of insurance with the Assurance retraite /q
+    > - _prorata de pension_ = length of insurance with the Assurance retraite /q
 
-    &gt; insurance period to obtain a full pension.
+    > insurance period to obtain a full pension.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir de
     la
@@ -9450,7 +9450,7 @@ protection sociale . retraite . complémentaire:
     supplementary pension contributions.
 
 
-    &gt; This amount may vary between now and your retirement, depending on
+    > This amount may vary between now and your retirement, depending on
 
     point value. Nevertheless, it provides an order of magnitude
 
@@ -9820,7 +9820,7 @@ salarié . activité partielle . indemnisation entreprise:
     The employer may receive partial activity allowance up to a maximum of 1,000 hours per year and per employee**.
 
 
-    &gt; Warning**: in the event of fraud or false declaration, the employer is liable to 2 years' imprisonment and a €30,000 fine.
+    > Warning**: in the event of fraud or false declaration, the employer is liable to 2 years' imprisonment and a €30,000 fine.
   description.fr: >-
     Si l'employeur a obtenu l'autorisation administrative, il peut déposer une
     **demande d'indemnisation** qui lui permet d'obtenir le **remboursement
@@ -10201,7 +10201,7 @@ salarié . contrat . CDD . motif:
           titre.fr: Accroissement temporaire d'activité
         mission:
           description.en: >
-            [automatic] &gt; Also known as a defined purpose contract.
+            [automatic] > Also known as a defined purpose contract.
 
 
             Recruitment of engineers and managers, within the meaning of the collective agreements, with a view to achieving a defined objective when an extended branch agreement or, failing that, a company agreement so provides and defines :
@@ -12654,7 +12654,7 @@ salarié . cotisations . formation professionnelle:
     collective agreements.
 
 
-    &gt; For example, for the Syntec collective agreement, a supplement of 0.025% is mandatory.
+    > For example, for the Syntec collective agreement, a supplement of 0.025% is mandatory.
 
 
     The rate is increased to 1.3% for temporary work companies. In addition, if the threshold of 10 employees is crossed, specific rates apply in order to limit the increase of the contribution to professional training:
@@ -12987,7 +12987,7 @@ salarié . coût total employeur:
     [automatic] The total cost of hiring an employee, including deferred
     assistance in addition to the remuneration components.
 
-    &gt; It is therefore also a measure of the value that the employee brings to the company: the employer is willing to pay this amount in return for the work provided.
+    > It is therefore also a measure of the value that the employee brings to the company: the employer is willing to pay this amount in return for the work provided.
 
 
     To this total cost, you must not forget to add the expenses specific to your company: finding the right candidate, workstation, equipment, initial training, occupational medicine, etc.
@@ -14241,9 +14241,9 @@ salarié . rémunération . frais professionnels:
                 - the employer provides free transport for the employee.
 
 
-                &gt; Good to know
+                > Good to know
 
-                &gt; No proof of fuel costs is required when the employer's contribution does not exceed €200 for fuel costs, or €500 for fuel costs for electric, plug-in hybrid or hydrogen vehicles.
+                > No proof of fuel costs is required when the employer's contribution does not exceed €200 for fuel costs, or €500 for fuel costs for electric, plug-in hybrid or hydrogen vehicles.
               description.fr: >
                 Une prise en charge par l’employeur, sous forme de « prime de
                 transport », des frais de carburant et d’alimentation des
