@@ -198,9 +198,12 @@ export const fetchTranslation = async (text) => {
 			'Content-Type': 'application/x-www-form-urlencoded',
 		},
 		body: new URLSearchParams({
-			text: text.replace(/{{/g, '<keep>').replace(/}}/g, '</keep>'),
+			text: text
+				.replace(/ > /g, '<quote> > </quote>')
+				.replace(/{{/g, '<var>')
+				.replace(/}}/g, '</var>'),
 			tag_handling: 'xml',
-			ignore_tags: 'keep',
+			ignore_tags: 'var,quote',
 			source_lang: 'FR',
 			target_lang: 'EN',
 		}),
@@ -213,8 +216,9 @@ export const fetchTranslation = async (text) => {
 	try {
 		const { translations } = await response.json()
 		const translation = translations[0].text
-			.replace(/<keep>/g, '{{')
-			.replace(/<\/keep>/g, '}}')
+			.replace(/<var>/g, '{{')
+			.replace(/<\/var>/g, '}}')
+			.replace(/<quote> > <\/quote>/g, ' > ')
 		console.log(
 			`✅ Deepl translation succeeded for:\n\t${text}\n\t${translation}\n`
 		)
