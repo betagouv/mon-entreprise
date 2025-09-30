@@ -14,7 +14,6 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		icône: '🛖',
 		beta: true,
-		hidden: true,
 		iframePath: 'simulateur-location-de-logement-meuble',
 		pathId: 'simulateurs.location-de-logement-meublé',
 		shortName: t(
