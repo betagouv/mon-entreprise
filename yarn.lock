@@ -27426,6 +27426,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"modele-social-ti@workspace:^, modele-social-ti@workspace:modele-social-ti":
+  version: 0.0.0-use.local
+  resolution: "modele-social-ti@workspace:modele-social-ti"
+  dependencies:
+    js-yaml: ^4.1.0
+    onchange: ^7.1.0
+  peerDependencies:
+    publicodes: ^1.0.4
+  languageName: unknown
+  linkType: soft
+
 "modele-social@workspace:^, modele-social@workspace:modele-social":
   version: 0.0.0-use.local
   resolution: "modele-social@workspace:modele-social"
@@ -32613,6 +32624,7 @@ __metadata:
     markdown-to-jsx: ^7.3.2
     modele-social: "workspace:^"
     modele-social-as: "workspace:^"
+    modele-social-ti: "workspace:^"
     netlify-cli: ^17.10.1
     publicodes: ^1.8.1
     react: ^18.2.0

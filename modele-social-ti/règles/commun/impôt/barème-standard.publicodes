@@ -1,0 +1,268 @@
+impôt . barème standard:
+  applicable si: méthode de calcul . barème standard
+  références:
+    Impôt sur le revenu - Calcul de l'impôt: https://www.service-public.fr/particuliers/vosdroits/F34328
+    Comment calculer votre impôt d'après le barème de l'impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/gerer-mon-impot-sur-le-revenu/comment-calculer-votre-impot-dapres-le-bareme-de-limpot
+
+impôt . barème standard . revenu d'activité:
+  par défaut: 0 €/an
+
+impôt . barème standard . revenu d'activité abattu:
+  description: |
+    Dans le cas général, l’impôt est calculé après l’application d’un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
+  valeur: revenu d'activité
+  abattement:
+    valeur: 10% * revenu d'activité
+    plafond:
+      variations:
+        - si: date >= 01/2025
+          alors: 14426 €/an
+        - si: date >= 01/2024
+          alors: 14171 €/an
+        - si: date >= 01/2023
+          alors: 13522 €/an
+        - sinon: 12829 €/an
+    plancher:
+      variations:
+        - si: date >= 01/2025
+          alors: 504 €/an
+        - si: date >= 01/2024
+          alors: 495 €/an
+        - si: date >= 01/2023
+          alors: 472 €/an
+        - sinon: 448 €/an
+  références:
+    Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
+    Code des impôts - Article 83: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985819/
+
+impôt . barème standard . revenu brut global:
+  description: |
+    Le revenu brut global est la somme de tous les revenus, après leur abattement :
+    - salaire net imposable
+    - bénéfices (BIC et BNC)
+    - dividendes
+  
+    Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
+    - pensions et retraites,
+    - bénéfices agricoles (BA),
+    - revenus fonciers,
+    - autres revenus mobiliers et plus-values sur valeurs mobilières,
+    - plus-values immobilières.
+  somme:
+    - revenu d'activité abattu
+    - foyer fiscal . autres revenus imposables
+
+impôt . barème standard . revenu net global:
+  valeur: revenu brut global
+  abattement: dirigeant . indépendant . cotisations facultatives . déductibles
+
+impôt . barème standard . revenu net imposable:
+  description: |
+    Le revenu net imposable est le revenu net global après abattements spéciaux.
+
+    Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
+    conditions suivantes :
+    - vous avez 65 ans ou plus
+    - vous êtes invalide
+    - vous rattachez votre enfant marié, pacsé ou chargé de famille
+
+    Ces abattements ne sont pas encore implémentés dans nos simulateurs.
+  valeur: revenu net global
+
+impôt . barème standard . quotient familial:
+  unité: €/part/an
+  valeur: revenu net imposable / foyer fiscal . nombre de parts
+  références:
+    'Quotient familial et impôt sur le revenu : comment ça marche ?': https://www.economie.gouv.fr/particuliers/gerer-mon-impot-sur-le-revenu/quotient-familial-et-impot-sur-le-revenu-comment-ca#
+
+impôt . barème standard . quotient familial . plafond avantage:
+  somme:
+    - plafonnement général
+    - plafonnement parent isolé
+
+  références:
+    Calculer l’impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
+    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046860759
+    Bofip 2023: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20230626
+    Bofip 2022: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant=BOI-IR-LIQ-20-20-20-20220516#III._Niveau_du_plafonnement_16
+
+  avec:
+    plafonnement général:
+      produit:
+        - variations:
+            - si: date >= 01/2025
+              alors: 1791 €/demi-part/an
+            - si: date >= 01/2024
+              alors: 1759 €/demi-part/an
+            - si: date >= 01/2023
+              alors: 1678 €/demi-part/an
+            - sinon: 1592 €/demi-part/an
+        - produit:
+            - valeur: foyer fiscal . nombre de parts . rattachées
+              abattement: foyer fiscal . nombre de parts . majoration personne seule avec enfant
+            - 2 demi-part/part
+      références:
+        Article 197 du Code général des impôts (I.2.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805432
+
+    plafonnement parent isolé:
+      description: |
+        Avantage de quotient familial procuré par le premier enfant à charge des
+        contribuables célibataires ou divorcés vivant seuls.
+      applicable si: foyer fiscal . nombre de parts . majoration personne seule avec enfant
+      variations:
+        - si: date >= 01/2025
+          alors: 4224 €/an
+        - si: date >= 01/2024
+          alors: 4149 €/an
+        - si: date >= 01/2023
+          alors: 3959 €/an
+        - sinon: 3756 €/an
+      références:
+        Article 197 du Code général des impôts (I.2.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805432
+
+impôt . barème standard . impôt brut:
+  description: |
+    Voici le fameux barème de l’impôt sur le revenu. C’est un barème marginal à 5
+    tranches.
+    Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
+
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas
+    41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
+    uniquement à la part de ses revenus supérieure à 72 617 €.
+  barème:
+    assiette: quotient familial
+    tranches:
+      - taux: 0%
+        plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 11497 €/part/an
+            - si: date >= 01/2024
+              alors: 11294 €/part/an
+            - si: date >= 01/2023
+              alors: 10777 €/part/an
+            - sinon: 10225 €/part/an
+      - taux: 11%
+        plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 29315 €/part/an
+            - si: date >= 01/2024
+              alors: 28797 €/part/an
+            - si: date >= 01/2023
+              alors: 27478 €/part/an
+            - sinon: 26070 €/part/an
+      - taux: 30%
+        plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 83823 €/part/an
+            - si: date >= 01/2024
+              alors: 82341 €/part/an
+            - si: date >= 01/2023
+              alors: 78570 €/part/an
+            - sinon: 74545 €/part/an
+      - taux: 41%
+        plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 180294 €/part/an
+            - si: date >= 01/2024
+              alors: 177106 €/part/an
+            - si: date >= 01/2023
+              alors: 168994 €/part/an
+            - sinon: 160336 €/part/an
+      - taux: 45%
+  références:
+    Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
+    Comment calculer votre impôt d’après le barème de l’impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/tranches-imposition-impot-revenu
+
+impôt . barème standard . impôt net:
+  somme:
+    - impôt net . après décote
+    - CEHR
+
+impôt . barème standard . impôt net . après plafonnement effets quotient familial:
+  produit:
+    - impôt brut
+    - foyer fiscal . nombre de parts
+  plancher:
+    produit:
+      - valeur: impôt brut
+        contexte:
+          foyer fiscal . nombre de parts: foyer fiscal . nombre de parts . principales
+      - foyer fiscal . nombre de parts . principales
+    abattement: quotient familial . plafond avantage
+  références:
+    BOFIP: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant%3DBOI-IR-LIQ-20-20-20-20210330
+
+impôt . barème standard . impôt net . après décote:
+  valeur: impôt brut
+  abattement: décote
+
+impôt . barème standard . décote:
+  description:
+    Une décote est appliquée après le barème de l’impôt sur le revenu, pour réduire
+    l’impôt des bas revenus.
+  variations:
+    - si: foyer fiscal . situation de famille = 'couple'
+      alors:
+        variations:
+          - si: date >= 01/2025
+            alors: 1470 €/an
+          - si: date >= 01/2024
+            alors: 1444 €/an
+          - si: date >= 01/2023
+            alors: 1378 €/an
+          - sinon: 1307 €/an
+    - sinon:
+        variations:
+          - si: date >= 01/2025
+            alors: 889 €/an
+          - si: date >= 01/2024
+            alors: 873 €/an
+          - si: date >= 01/2023
+            alors: 833 €/an
+          - sinon: 790 €/an
+  abattement: 45.25% * impôt brut
+  références:
+    Pouvez-vous bénéficier de la décote de l’impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/decote-impot-revenu
+    Calculer l’impôt net à payer: https://www.service-public.fr/particuliers/vosdroits/F34328#fiche-item-aria-5
+    Article 197 du Code général des impôts (I.4.a.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907517
+
+impôt . barème standard . CEHR:
+  unité: €/an
+  formule:
+    variations:
+      - si: foyer fiscal . situation de famille = 'couple'
+        alors:
+          barème:
+            assiette: revenu imposable
+            tranches:
+              - taux: 0%
+                plafond: 500000 €/an
+              - taux: 3%
+                plafond: 1000000 €/an
+              - taux: 4%
+      - sinon:
+          barème:
+            assiette: revenu imposable
+            tranches:
+              - taux: 0%
+                plafond: 250000 €/an
+              - taux: 3%
+                plafond: 500000 €/an
+              - taux: 4%
+  références:
+    contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
+    Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
+    Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
+
+impôt . barème standard . taux effectif:
+  unité: '%'
+  variations:
+    - si: revenu net imposable = 0
+      alors: 0%
+    - sinon: impôt net / revenu net imposable

@@ -73,6 +73,7 @@
 		"markdown-to-jsx": "^7.3.2",
 		"modele-social": "workspace:^",
 		"modele-social-as": "workspace:^",
+		"modele-social-ti": "workspace:^",
 		"publicodes": "^1.8.1",
 		"react": "^18.2.0",
 		"react-aria": "^3.44.0",
