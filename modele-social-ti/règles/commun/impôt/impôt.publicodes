@@ -1,0 +1,96 @@
+impôt:
+  icônes: 🏛️
+
+impôt . revenu imposable:
+  description: |
+    C’est le revenu à prendre en compte pour calculer l’impôt avec un taux moyen
+    d’imposition (neutre ou personnalisé).
+  unité: €/an
+
+impôt . montant:
+  titre: Impôt sur le revenu
+  description: |
+    Montant de l’impôt sur le revenu concernant :
+    - les rémunérations de dirigeant des entreprises à l’impôt sur les sociétés,
+    - les bénéfices des entreprises individuelles à l’impôt sur le revenu,
+  variations:
+    - si: méthode de calcul . barème standard
+      alors: barème standard . impôt net
+    - sinon:
+        produit:
+          - revenu imposable
+          - taux d'imposition
+
+impôt . taux d'imposition:
+  formule:
+    variations:
+      - si: méthode de calcul . taux personnalisé
+        alors: taux personnalisé
+
+impôt . méthode de calcul:
+  description: |
+    Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
+    - *Le taux personnalisé* : indiqué sur votre avis d’imposition
+    - *Le taux neutre* : pour un célibataire sans enfant
+    - *Le barème standard * : la formule "officielle" utilisée par l’administration
+    fiscale pour obtenir le taux d’imposition
+
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre
+    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
+    n’avez pas transmis votre taux personnalisé à l’employeur et que vous souhaitez
+    comparer les résultats du simulateur à votre fiche de paie. Le barème standard
+    vous donne un résultat plus précis que le taux neutre pour un célibataire sans
+    enfant.
+  question: Comment souhaitez-vous calculer l’impôt sur le revenu ?
+  # applicable si: revenu imposable > 0
+  # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser
+  # une version plus "hacky" et moins proche de la loi. Elle posera problème le jour
+  # où l’on aura a calculer l’impot avec plusieurs sources de revenu
+  par défaut: par défaut
+  une possibilité:
+    - taux personnalisé:
+        titre: avec un taux personnalisé
+        description: Vous pouvez utiliser directement le taux personnalisé communiqué
+          par l’administration fiscale pour calculer votre impôt. Pour le connaître,
+          vous pouvez-vous rendre sur votre [espace fiscal
+          personnel](https://impots.gouv.fr).
+        valeur: impôt . méthode de calcul = 'taux personnalisé'
+    - barème standard:
+        titre: avec le barème standard
+        description:
+          Le calcul "officiel" de l’impôt, celui sur lequel l’administration
+          fiscale se base pour calculer votre taux d’imposition.
+        valeur: impôt . méthode de calcul = 'barème standard'
+
+  références:
+    Différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
+    Calcul du taux d’imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
+
+  avec:
+    par défaut: "'barème standard'"
+
+impôt . revenu fiscal de référence:
+  description: >-
+    Le revenu fiscal de référence correspond au revenu abattu du foyer ajusté
+    avec un mécanisme de quotient et majoré d’un certains nombre d’exonérations.
+    Ces dernières sont réintégrées dans le calcul.
+  valeur: revenu imposable
+  références:
+    Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000034596743&cidTexte=LEGITEXT000006069577&categorieLien=id&dateTexte=20170505
+
+impôt . taux personnalisé:
+  question: Quel est votre taux de prélèvement à la source ?
+  description: |
+    Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
+      - une fiche de paie
+      - un avis d’imposition
+      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+  unité: '%'
+
+impôt . domiciliation étranger non implémentée:
+  formule: situation personnelle . domiciliation fiscale à l'étranger
+  type: notification
+  sévérité: avertissement
+  description: |
+    La retenue à la source pour les non-résident n’est pas encore implémentée. Pour
+    en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
