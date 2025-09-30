@@ -1,0 +1,563 @@
+impôt . taux neutre:
+  description: >
+    C’est le barème à appliquer sur le salaire mensuel imposable pour obtenir
+    l’impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    leur entreprise leur taux d’imposition (ce taux peut révéler par exemple des
+    revenus du patrimoine importants).
+  note: Attention, l’abattement de 10% est inclus implicitement dans ce barème.
+    L’assiette est donc bien le salaire imposable, et non le salaire imposable
+    abattu.
+
+  variations:
+    - si: date >= 01/05/2025
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - plafond: 1620 €/mois
+              montant: 0%
+            - plafond: 1683 €/mois
+              montant: 0.5 %
+            - plafond: 1791 €/mois
+              montant: 1.3 %
+            - plafond: 1911 €/mois
+              montant: 2.1 %
+            - plafond: 2042 €/mois
+              montant: 2.9 %
+            - plafond: 2151 €/mois
+              montant: 3.5 %
+            - plafond: 2294 €/mois
+              montant: 4.1 %
+            - plafond: 2714 €/mois
+              montant: 5.3 %
+            - plafond: 3107 €/mois
+              montant: 7.5 %
+            - plafond: 3539 €/mois
+              montant: 9.9 %
+            - plafond: 3983 €/mois
+              montant: 11.9 %
+            - plafond: 4648 €/mois
+              montant: 13.8 %
+            - plafond: 5574 €/mois
+              montant: 15.8 %
+            - plafond: 6974 €/mois
+              montant: 17.9 %
+            - plafond: 8711 €/mois
+              montant: 20%
+            - plafond: 12091 €/mois
+              montant: 24%
+            - plafond: 16376 €/mois
+              montant: 28 %
+            - plafond: 25706 €/mois
+              montant: 33 %
+            - plafond: 55062 €/mois
+              montant: 38 %
+            - montant: 43 %
+    - si: date >= 01/01/2024
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - plafond: 1591 €/mois
+              montant: 0%
+            - plafond: 1653 €/mois
+              montant: 0.5 %
+            - plafond: 1759 €/mois
+              montant: 1.3 %
+            - plafond: 1877 €/mois
+              montant: 2.1 %
+            - plafond: 2006 €/mois
+              montant: 2.9 %
+            - plafond: 2113 €/mois
+              montant: 3.5 %
+            - plafond: 2253 €/mois
+              montant: 4.1 %
+            - plafond: 2666 €/mois
+              montant: 5.3 %
+            - plafond: 3052 €/mois
+              montant: 7.5 %
+            - plafond: 3476 €/mois
+              montant: 9.9 %
+            - plafond: 3913 €/mois
+              montant: 11.9 %
+            - plafond: 4566 €/mois
+              montant: 13.8 %
+            - plafond: 5475 €/mois
+              montant: 15.8 %
+            - plafond: 6851 €/mois
+              montant: 17.9 %
+            - plafond: 8557 €/mois
+              montant: 20%
+            - plafond: 11877 €/mois
+              montant: 24%
+            - plafond: 16086 €/mois
+              montant: 28 %
+            - plafond: 25251 €/mois
+              montant: 33 %
+            - plafond: 54088 €/mois
+              montant: 38 %
+            - montant: 43 %
+    - si: date >= 01/01/2023
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - plafond: 1518 €/mois
+              montant: 0%
+            - plafond: 1577 €/mois
+              montant: 0.5 %
+            - plafond: 1678 €/mois
+              montant: 1.3 %
+            - plafond: 1791 €/mois
+              montant: 2.1 %
+            - plafond: 1914 €/mois
+              montant: 2.9 %
+            - plafond: 2016 €/mois
+              montant: 3.5 %
+            - plafond: 2150 €/mois
+              montant: 4.1 %
+            - plafond: 2544 €/mois
+              montant: 5.3 %
+            - plafond: 2912 €/mois
+              montant: 7.5 %
+            - plafond: 3317 €/mois
+              montant: 9.9 %
+            - plafond: 3734 €/mois
+              montant: 11.9 %
+            - plafond: 4357 €/mois
+              montant: 13.8 %
+            - plafond: 5224 €/mois
+              montant: 15.8 %
+            - plafond: 6537 €/mois
+              montant: 17.9 %
+            - plafond: 8165 €/mois
+              montant: 20%
+            - plafond: 11333 €/mois
+              montant: 24%
+            - plafond: 15349 €/mois
+              montant: 28 %
+            - plafond: 24094 €/mois
+              montant: 33 %
+            - plafond: 51611 €/mois
+              montant: 38 %
+            - montant: 43 %
+
+    - sinon:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1440 €/mois
+            - montant: 0.5%
+              plafond: 1496 €/mois
+            - montant: 1.3%
+              plafond: 1592 €/mois
+            - montant: 2.1%
+              plafond: 1699 €/mois
+            - montant: 2.9%
+              plafond: 1816 €/mois
+            - montant: 3.5%
+              plafond: 1913 €/mois
+            - montant: 4.1%
+              plafond: 2040 €/mois
+            - montant: 5.3%
+              plafond: 2414 €/mois
+            - montant: 7.5%
+              plafond: 2763 €/mois
+            - montant: 9.9%
+              plafond: 3147 €/mois
+            - montant: 11.9%
+              plafond: 3543 €/mois
+            - montant: 13.8%
+              plafond: 4134 €/mois
+            - montant: 15.8%
+              plafond: 4956 €/mois
+            - montant: 17.9%
+              plafond: 6202 €/mois
+            - montant: 20%
+              plafond: 7747 €/mois
+            - montant: 24%
+              plafond: 10752 €/mois
+            - montant: 28%
+              plafond: 14563 €/mois
+            - montant: 33%
+              plafond: 22860 €/mois
+            - montant: 38%
+              plafond: 48967 €/mois
+            - montant: 43%
+  références:
+    BOFIP: https://bofip.impots.gouv.fr/bofip/11255-PGP.html
+    Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
+    Qu’est-ce que le taux neutre ?: https://www.economie.gouv.fr/particuliers/modifier-gerer-taux-prelevement-source#qu-est-ce-que-le-taux-non-person_5
+
+impôt . taux neutre . barème Guadeloupe Réunion Martinique:
+  icônes: 🇬🇵 🇷🇪 🇲🇶
+  applicable si: établissement . commune . département . outre-mer . Guadeloupe
+    Réunion Martinique
+  références:
+    Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
+  remplace: taux neutre
+  variations:
+    - si: date >= 01/05/2025
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1858 €/mois
+            - montant: 0.5%
+              plafond: 1971 €/mois
+            - montant: 1.3%
+              plafond: 2171 €/mois
+            - montant: 2.1%
+              plafond: 2371 €/mois
+            - montant: 2.9%
+              plafond: 2618 €/mois
+            - montant: 3.5%
+              plafond: 2761 €/mois
+            - montant: 4.1%
+              plafond: 2855 €/mois
+            - montant: 5.3%
+              plafond: 3142 €/mois
+            - montant: 7.5%
+              plafond: 3885 €/mois
+            - montant: 9.9%
+              plafond: 4971 €/mois
+            - montant: 11.9%
+              plafond: 5646 €/mois
+            - montant: 13.8%
+              plafond: 6540 €/mois
+            - montant: 15.8%
+              plafond: 7836 €/mois
+            - montant: 17.9%
+              plafond: 8711 €/mois
+            - montant: 20%
+              plafond: 9900 €/mois
+            - montant: 24%
+              plafond: 13615 €/mois
+            - montant: 28%
+              plafond: 18090 €/mois
+            - montant: 33%
+              plafond: 27610 €/mois
+            - montant: 38%
+              plafond: 60350 €/mois
+            - montant: 43%
+    - si: date >= 01/01/2024
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1825 €/mois
+            - montant: 0.5%
+              plafond: 1936 €/mois
+            - montant: 1.3%
+              plafond: 2133 €/mois
+            - montant: 2.1%
+              plafond: 2329 €/mois
+            - montant: 2.9%
+              plafond: 2572 €/mois
+            - montant: 3.5%
+              plafond: 2712 €/mois
+            - montant: 4.1%
+              plafond: 2805 €/mois
+            - montant: 5.3%
+              plafond: 3086 €/mois
+            - montant: 7.5%
+              plafond: 3816 €/mois
+            - montant: 9.9%
+              plafond: 4883 €/mois
+            - montant: 11.9%
+              plafond: 5546 €/mois
+            - montant: 13.8%
+              plafond: 6424 €/mois
+            - montant: 15.8%
+              plafond: 7679 €/mois
+            - montant: 17.9%
+              plafond: 8557 €/mois
+            - montant: 20%
+              plafond: 9725 €/mois
+            - montant: 24%
+              plafond: 13374 €/mois
+            - montant: 28%
+              plafond: 17770 €/mois
+            - montant: 33%
+              plafond: 27122 €/mois
+            - montant: 38%
+              plafond: 59283 €/mois
+            - montant: 43%
+    - si: date >= 01/01/2023
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1741 €/mois
+            - montant: 0.5%
+              plafond: 1847 €/mois
+            - montant: 1.3%
+              plafond: 2035 €/mois
+            - montant: 2.1%
+              plafond: 2222 €/mois
+            - montant: 2.9%
+              plafond: 2454 €/mois
+            - montant: 3.5%
+              plafond: 2588 €/mois
+            - montant: 4.1%
+              plafond: 2677 €/mois
+            - montant: 5.3%
+              plafond: 2945 €/mois
+            - montant: 7.5%
+              plafond: 3641 €/mois
+            - montant: 9.9%
+              plafond: 4659 €/mois
+            - montant: 11.9%
+              plafond: 5292 €/mois
+            - montant: 13.8%
+              plafond: 6130 €/mois
+            - montant: 15.8%
+              plafond: 7344 €/mois
+            - montant: 17.9%
+              plafond: 8165 €/mois
+            - montant: 20%
+              plafond: 9280 €/mois
+            - montant: 24%
+              plafond: 12761 €/mois
+            - montant: 28%
+              plafond: 16956 €/mois
+            - montant: 33%
+              plafond: 25880 €/mois
+            - montant: 38%
+              plafond: 56568 €/mois
+            - montant: 43%
+    - sinon:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1652 €/mois
+            - montant: 0.5%
+              plafond: 1752 €/mois
+            - montant: 1.3%
+              plafond: 1931 €/mois
+            - montant: 2.1%
+              plafond: 2108 €/mois
+            - montant: 2.9%
+              plafond: 2328 €/mois
+            - montant: 3.5%
+              plafond: 2455 €/mois
+            - montant: 4.1%
+              plafond: 2540 €/mois
+            - montant: 5.3%
+              plafond: 2794 €/mois
+            - montant: 7.5%
+              plafond: 3454 €/mois
+            - montant: 9.9%
+              plafond: 4420 €/mois
+            - montant: 11.9%
+              plafond: 5021 €/mois
+            - montant: 13.8%
+              plafond: 5816 €/mois
+            - montant: 15.8%
+              plafond: 6968 €/mois
+            - montant: 17.9%
+              plafond: 7747 €/mois
+            - montant: 20%
+              plafond: 8805 €/mois
+            - montant: 24%
+              plafond: 12107 €/mois
+            - montant: 28%
+              plafond: 16087 €/mois
+            - montant: 33%
+              plafond: 24554 €/mois
+            - montant: 38%
+              plafond: 53670 €/mois
+            - montant: 43%
+
+impôt . taux neutre . barème Guyane Mayotte:
+  icônes: 🇬🇫 🇾🇹
+  applicable si:
+    par défaut: non
+    une de ces conditions:
+      - établissement . commune . département = 'Guyane'
+      - établissement . commune . département = 'Mayotte'
+  remplace: taux neutre
+  références:
+    Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
+
+  variations:
+    - si: date >= 01/05/2025
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1990 €/mois
+            - montant: 0.5%
+              plafond: 2151 €/mois
+            - montant: 1.3%
+              plafond: 2393 €/mois
+            - montant: 2.1%
+              plafond: 2704 €/mois
+            - montant: 2.9%
+              plafond: 2808 €/mois
+            - montant: 3.5%
+              plafond: 2904 €/mois
+            - montant: 4.1%
+              plafond: 2999 €/mois
+            - montant: 5.3%
+              plafond: 3332 €/mois
+            - montant: 7.5%
+              plafond: 4598 €/mois
+            - montant: 9.9%
+              plafond: 5951 €/mois
+            - montant: 11.9%
+              plafond: 6712 €/mois
+            - montant: 13.8%
+              plafond: 7788 €/mois
+            - montant: 15.8%
+              plafond: 8567 €/mois
+            - montant: 17.9%
+              plafond: 9492 €/mois
+            - montant: 20%
+              plafond: 11016 €/mois
+            - montant: 24%
+              plafond: 14820 €/mois
+            - montant: 28%
+              plafond: 18850 €/mois
+            - montant: 33%
+              plafond: 30210 €/mois
+            - montant: 38%
+              plafond: 63767 €/mois
+            - montant: 43%
+    - si: date >= 01/01/2024
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1955 €/mois
+            - montant: 0.5%
+              plafond: 2113 €/mois
+            - montant: 1.3%
+              plafond: 2356 €/mois
+            - montant: 2.1%
+              plafond: 2656 €/mois
+            - montant: 2.9%
+              plafond: 2758 €/mois
+            - montant: 3.5%
+              plafond: 2853 €/mois
+            - montant: 4.1%
+              plafond: 2946 €/mois
+            - montant: 5.3%
+              plafond: 3273 €/mois
+            - montant: 7.5%
+              plafond: 4517 €/mois
+            - montant: 9.9%
+              plafond: 5846 €/mois
+            - montant: 11.9%
+              plafond: 6593 €/mois
+            - montant: 13.8%
+              plafond: 7650 €/mois
+            - montant: 15.8%
+              plafond: 8416 €/mois
+            - montant: 17.9%
+              plafond: 9324 €/mois
+            - montant: 20%
+              plafond: 10821 €/mois
+            - montant: 24%
+              plafond: 14558 €/mois
+            - montant: 28%
+              plafond: 18517 €/mois
+            - montant: 33%
+              plafond: 29676 €/mois
+            - montant: 38%
+              plafond: 62639 €/mois
+            - montant: 43%
+    - si: date >= 01/01/2023
+      alors:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1865 €/mois
+            - montant: 0.5%
+              plafond: 2016 €/mois
+            - montant: 1.3%
+              plafond: 2248 €/mois
+            - montant: 2.1%
+              plafond: 2534 €/mois
+            - montant: 2.9%
+              plafond: 2632 €/mois
+            - montant: 3.5%
+              plafond: 2722 €/mois
+            - montant: 4.1%
+              plafond: 2811 €/mois
+            - montant: 5.3%
+              plafond: 3123 €/mois
+            - montant: 7.5%
+              plafond: 4310 €/mois
+            - montant: 9.9%
+              plafond: 5578 €/mois
+            - montant: 11.9%
+              plafond: 6291 €/mois
+            - montant: 13.8%
+              plafond: 7300 €/mois
+            - montant: 15.8%
+              plafond: 8031 €/mois
+            - montant: 17.9%
+              plafond: 8897 €/mois
+            - montant: 20%
+              plafond: 10325 €/mois
+            - montant: 24%
+              plafond: 13891 €/mois
+            - montant: 28%
+              plafond: 17669 €/mois
+            - montant: 33%
+              plafond: 28317 €/mois
+            - montant: 38%
+              plafond: 59770 €/mois
+            - montant: 43%
+    - sinon:
+        grille:
+          assiette: revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1769 €/mois
+            - montant: 0.5%
+              plafond: 1913 €/mois
+            - montant: 1.3%
+              plafond: 2133 €/mois
+            - montant: 2.1%
+              plafond: 2404 €/mois
+            - montant: 2.9%
+              plafond: 2497 €/mois
+            - montant: 3.5%
+              plafond: 2583 €/mois
+            - montant: 4.1%
+              plafond: 2667 €/mois
+            - montant: 5.3%
+              plafond: 2963 €/mois
+            - montant: 7.5%
+              plafond: 4089 €/mois
+            - montant: 9.9%
+              plafond: 5292 €/mois
+            - montant: 11.9%
+              plafond: 5969 €/mois
+            - montant: 13.8%
+              plafond: 6926 €/mois
+            - montant: 15.8%
+              plafond: 7620 €/mois
+            - montant: 17.9%
+              plafond: 8441 €/mois
+            - montant: 20%
+              plafond: 9796 €/mois
+            - montant: 24%
+              plafond: 13179 €/mois
+            - montant: 28%
+              plafond: 16764 €/mois
+            - montant: 33%
+              plafond: 26866 €/mois
+            - montant: 38%
+              plafond: 56708 €/mois
+            - montant: 43%
