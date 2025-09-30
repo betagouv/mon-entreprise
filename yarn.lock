@@ -27415,6 +27415,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"modele-social-as@workspace:^, modele-social-as@workspace:modele-social-as":
+  version: 0.0.0-use.local
+  resolution: "modele-social-as@workspace:modele-social-as"
+  dependencies:
+    js-yaml: "npm:^4.1.0"
+    onchange: "npm:^7.1.0"
+  peerDependencies:
+    publicodes: ^1.0.4
+  languageName: unknown
+  linkType: soft
+
 "modele-social@workspace:^, modele-social@workspace:modele-social":
   version: 0.0.0-use.local
   resolution: "modele-social@workspace:modele-social"
@@ -32612,6 +32623,7 @@ __metadata:
     jsdom: "npm:^26.1.0"
     markdown-to-jsx: "npm:^7.3.2"
     modele-social: "workspace:^"
+    modele-social-as: "workspace:^"
     netlify-cli: "npm:^17.10.1"
     publicodes: "npm:^1.8.1"
     react: "npm:^18.2.0"
