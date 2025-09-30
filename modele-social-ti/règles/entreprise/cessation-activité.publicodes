@@ -1,0 +1,27 @@
+entreprise . en cessation d'activité:
+  valeur: non
+
+entreprise . date de cessation:
+  question: À quelle date comptez-vous déclarer la cessation d’activité ?
+  applicable si: en cessation d'activité
+  par défaut: période . fin d'année
+  description: La date de cessation est la date à laquelle l’entreprise cessera son activité.
+  type: date
+  références:
+    Comment réaliser votre cessation d’activité en tant que travailleur indépendant ?: https://www.urssaf.fr/accueil/services/services-independants/realiser-cessation-activite.html
+
+entreprise . radiée:
+  titre: Entreprise radiée
+  description: Indique si l’entreprise va être radiée.
+  formule:
+    toutes ces conditions:
+      - est défini: date de cessation
+      - est applicable: date de cessation
+
+entreprise . radiée cette année:
+  titre: Entreprise radiée cette année
+  description: Indique si l’entreprise va être radiée l’année de la simulation.
+  formule:
+    toutes ces conditions:
+      - est défini: date de cessation
+      - période . début d'année <= entreprise . date de cessation
