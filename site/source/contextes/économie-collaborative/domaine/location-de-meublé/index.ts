@@ -1,6 +1,7 @@
 export type {
 	SituationÉconomieCollaborative,
 	RegimeCotisation,
+	TypeLocation,
 } from './situation'
 export { calculeCotisations } from './cotisations'
 export { calculeCotisationsRégimeGénéral } from './régime-général'
