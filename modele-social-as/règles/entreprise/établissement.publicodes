@@ -1,0 +1,75 @@
+établissement:
+
+établissement . commune:
+  icônes: 📍
+  question: Dans quelle commune l'établissement est-il implanté ?
+  API: commune
+  variations:
+    - si:
+        est défini: nom
+      alors:
+        texte: '{{ nom }} ({{ code postal }})'
+    - sinon: nom
+
+  avec:
+    code postal:
+
+    département:
+      avec:
+        outre-mer:
+          par défaut: non
+          une de ces conditions:
+            - département = 'Guadeloupe'
+            - département = 'Martinique'
+            - département = 'Guyane'
+            - département = 'La Réunion'
+            - département . outre-mer . Mayotte
+
+          avec:
+            Guadeloupe Réunion Martinique:
+              icônes: 🇬🇵 🇷🇪 🇲🇶
+              une de ces conditions:
+                - département = 'Guadeloupe'
+                - département = 'Martinique'
+                - département = 'La Réunion'
+            Mayotte:
+              valeur: département = 'Mayotte'
+              icônes: 🇾🇹
+
+    nom:
+      titre: Commune
+
+    taux versement mobilité:
+      par défaut: 0
+      unité: '%'
+      références:
+        Moteur de recherche versement mobilité: https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html
+        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/versement-mobilite.html
+        'Versement mobilité : êtes-vous concerné ?': https://www.economie.gouv.fr/entreprises/versement-mobilite-tr
+
+établissement . taux ATMP:
+  description: |
+    Le taux de la cotisation AT/MP est déterminé pour chaque établissement en
+    fonction des éléments suivants :
+
+    - Activité principale
+    - Taille de l'établissement
+    - Secteur d'activité
+    - Fréquence et la gravité des sinistres survenus (accidents du travail, maladies
+    - professionnelles)
+
+    Si vous ne connaissez pas le taux de l'établissement, cliquez sur « Passer ».
+  question: Quel est le taux de la cotisation AT/MP pour l'établissement ?
+  unité: '%'
+  par défaut: taux collectif
+  références:
+    Connaître le taux AT/MP de votre entreprise sur votre compte AT/MP: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
+    Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665
+  plancher: assimilé salarié . cotisations . ATMP . taux minimum
+  avec:
+    taux collectif:
+      question: De quel domaine d'activité dépend votre entreprise ?
+      par défaut: assimilé salarié . cotisations . ATMP . taux moyen
+      unité: '%'
+      note: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
+        implémentés

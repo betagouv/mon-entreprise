@@ -1,0 +1,35 @@
+entreprise . date de création:
+  question: Quelle est votre date de début d’activité ?
+  par défaut: 01/01/2021
+  description: |
+    La date de début d’activité (ou date de création) est fixée lors de la
+    déclaration de votre entreprise.
+
+    Vous pouvez [renseigner votre entreprise](/), pour préremplir
+    automatiquement cette information.
+
+    Si vous n’avez pas le jour exact, le mois suffit en général pour une bonne
+    approximation.
+  suggestions:
+    Début d’année: période . début d'année
+    Début 2024: 01/01/2024
+    Il y a plus de 10 ans: 01/01/2015
+  type: date
+
+entreprise . date de création . contrôle date future:
+  type: notification
+  sévérité: avertissement
+  formule: date de création > période . fin d'année
+  description: Nous ne pouvons voir aussi loin dans le futur
+
+entreprise . date de création . contrôle date passée:
+  type: notification
+  sévérité: avertissement
+  formule: date de création < 01/1900
+  description: Il s’agit d’une très vieille entreprise ! Êtes-vous sûr de ne pas
+    vous être trompé dans la saisie ?
+
+entreprise . durée d'activité en début d'année:
+  durée:
+    depuis: date de création
+    jusqu'à: période . début d'année
