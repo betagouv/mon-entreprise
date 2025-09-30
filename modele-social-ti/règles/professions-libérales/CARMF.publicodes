@@ -1,0 +1,196 @@
+dirigeant . indépendant . PL . CARMF:
+  formule: oui
+  description: |
+    La CARMF est la caisse de retraite autonome des médecins de France.
+  applicable si: métier = 'santé . médecin'
+  références:
+    Site CARMF: http://www.carmf.fr
+  note: |
+    L’affiliation est obligatoire pour les médecins titulaires du diplôme de
+    docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
+    libérale (installation, remplacements, expertises pour les compagnies
+    d’assurance ou les laboratoires privés, secteur privé à l’hôpital, en
+    société d’exercice libéral ou toute autre activité rémunérée sous forme
+    d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
+    métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
+
+dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
+  déprécié: oui
+  titre: retraite de base CNAVPL (après participation CPAM)
+  valeur: CNAVPL . retraite
+  abattement: participation CPAM
+
+  avec:
+    participation CPAM: participation CPAM retraite
+
+dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
+  applicable si: métier . santé . médecin . secteur = 'S1'
+  description: |
+    Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
+  unité: €/an
+  produit:
+    - assiette des cotisations
+    - grille:
+        assiette: assiette des cotisations
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - montant: 2.15%
+            plafond: 140%
+          - montant: 1.51%
+            plafond: 250%
+          - montant: 1.12%
+  références:
+    Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
+    Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
+    Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
+
+dirigeant . indépendant . PL . CARMF . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  description: >-
+    La CARMF gère le régime de retraite complémentaire.
+
+    Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
+
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+  arrondi: oui
+  variations:
+    - si: entreprise . durée d'activité . en fin d'année < 2 ans
+      alors: 0€/an
+    - sinon:
+        produit:
+          - valeur: assiette des cotisations
+            plafond: 3.5 * plafond sécurité sociale
+          - variations:
+            - si: date >= 01/2024
+              alors: 10.2%
+            - sinon: 10%
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
+  unité: €/an
+  références:
+    Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
+    Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
+
+dirigeant . indépendant . PL . CARMF . invalidité décès:
+  non applicable si: CARMF . en retraite
+  remplace: cotisations et contributions . invalidité et décès
+  description: >-
+    La CARMF gère un régime de prévoyance versant une pension en cas
+    d'invalidité permanente et un capital décès ainsi qu’une rente pour les
+    conjoints et enfants survivants en cas de décès de l'assuré.
+
+    La cotisation comporte trois classes forfaitaires dont le montant est déterminé en fonction de vos revenus nets d'activité indépendante de l’avant-dernière année.
+
+    Sans communication des revenus professionnels non salariés et de l’avis d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être fixé. Dans l’attente de la réception de ce document l’indemnisation sera basée sur le taux prévu pour la classe A.
+  formule:
+    grille:
+      assiette: assiette des cotisations
+      multiplicateur: plafond sécurité sociale
+      tranches:
+        - montant:
+            variations:
+              - si: date >= 01/2025
+                alors: 623 €/an
+              - sinon: 631 €/an
+          plafond: 1
+        - montant:
+            variations:
+              - si: date >= 01/2025
+                alors:
+                  somme:
+                    - part forfaitaire
+                    - part variable maladie
+                    - part variable invalidité
+              - si: date >= 01/2023
+                alors: 712 €/an
+              - sinon: 738 €/an
+          plafond: 3
+        - montant:
+            variations:
+              - si: date >= 01/2025
+                alors: 999 €/an
+              - si: date >= 01/2023
+                alors: 828 €/an
+              - sinon: 863 €/an
+  références:
+    Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
+    Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
+  avec:
+    part forfaitaire: 434 €/an
+    part variable maladie:
+      produit:
+        - assiette des cotisations
+        - 0.32%
+    part variable invalidité:
+      produit:
+        - assiette des cotisations
+        - 0.08%
+
+dirigeant . indépendant . PL . CARMF . en retraite:
+  description: |
+    Si vous cumulez retraite et activité libérale, vous ne cotisez plus au régime invalidité-décès.
+    Votre famille et vous-même ne bénéficiez plus de certaines prestations du régime invalidité-décès :
+    indemnités journalières, rente invalidité, capital décès.
+  question: Êtes-vous à la retraite ?
+  par défaut: non
+  références:
+    Régime invalidité-décès en cas de cumul retraite et activité libérale: https://www.carmf.fr/page.php?page=cdrom/retr/retr-continuer.htm#:~:text=Si%20vous%20cumulez%20retraite%20et,%2C%20rente%20invalidit%C3%A9%2C%20capital%20d%C3%A9c%C3%A8s.
+
+dirigeant . indépendant . PL . CARMF . ASV:
+  titre: Allocations supplémentaires de vieillesse
+  remplace: cotisations et contributions . PCV
+  description: >-
+    Le régime des allocations supplémentaires de vieillesse (ASV) s'applique
+    pour les médecins conventionnés.
+
+    Il fonctionne en points et comprend une part forfaitaire et une part d’ajustement calculée sur le revenu conventionnel de N-2.
+
+    Les deux tiers de la cotisation des médecins en secteur 1 sont financés par les Caisses maladie.
+  non applicable si: métier . santé . médecin . secteur = 'non conventionné'
+  valeur: assiette
+  abattement: participation CPAM
+  arrondi: oui
+
+  références:
+    Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
+    Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
+    Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
+
+  avec:
+    assiette:
+      somme:
+        - forfaitaire
+        - ajustement
+      unité: €/an
+
+    forfaitaire:
+      variations:
+        - si: date >= 01/2025
+          alors: 5556 €/an
+        - si: date >= 01/2024
+          alors: 5421 €/an
+        - si: date >= 01/2023
+          alors: 5622 €/an
+        - sinon: 5136 €/an
+
+    ajustement:
+      produit:
+        - valeur: PAMC . revenus activité conventionnée
+          plafond: 5 * plafond sécurité sociale
+        - 3.80%
+      unité: €/an
+
+dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
+  applicable si: métier . santé . médecin . secteur = 'S1'
+  produit:
+    - assiette
+    - 2 / 3
