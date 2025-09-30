@@ -47,6 +47,36 @@ export const RegimeCotisationQuestion: ComposantQuestion<
 
 	const regimeCotisation = O.getOrUndefined(situation.regimeCotisation)
 
+	const régimeGénéralApplicable = pipe(
+		comparaisonRégimes,
+		O.flatMap((résultats) =>
+			trouveEstimationPourRégime(résultats, RegimeCotisation.regimeGeneral)
+		),
+		O.map((r) => r.applicable),
+		O.getOrElse(() => true) // Par défaut, afficher le régime
+	)
+
+	const microEntrepriseApplicable = pipe(
+		comparaisonRégimes,
+		O.flatMap((résultats) =>
+			trouveEstimationPourRégime(résultats, RegimeCotisation.microEntreprise)
+		),
+		O.map((r) => r.applicable),
+		O.getOrElse(() => true)
+	)
+
+	const travailleurIndépendantApplicable = pipe(
+		comparaisonRégimes,
+		O.flatMap((résultats) =>
+			trouveEstimationPourRégime(
+				résultats,
+				RegimeCotisation.travailleurIndependant
+			)
+		),
+		O.map((r) => r.applicable),
+		O.getOrElse(() => true)
+	)
+
 	return (
 		<RadioCardGroup
 			aria-label={t(
@@ -56,117 +86,123 @@ export const RegimeCotisationQuestion: ComposantQuestion<
 			value={regimeCotisation}
 			onChange={handleChange}
 		>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.label',
-					'Régime général (cotisations URSSAF)'
-				)}
-				value={RegimeCotisation.regimeGeneral}
-				description={
-					<>
-						{t(
-							'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description',
-							'Comme pour un salarié, des cotisations sociales seront prélevées à la source.'
-						)}
-						{pipe(
-							comparaisonRégimes,
-							O.flatMap((résultats) =>
-								trouveEstimationPourRégime(
-									résultats,
-									RegimeCotisation.regimeGeneral
-								)
-							),
-							O.match({
-								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
-								onSome: (résultat) =>
-									résultat.applicable ? (
-										<SmallBody>
-											{t(
-												'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
-												'Estimation des cotisations'
-											)}{' '}
-											: <strong>{formatMontant(résultat.cotisations)}</strong>
-										</SmallBody>
-									) : null,
-							})
-						)}
-					</>
-				}
-			/>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.label',
-					'Micro-entreprise'
-				)}
-				value={RegimeCotisation.microEntreprise}
-				description={
-					<>
-						{t(
-							'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
-							"Vous payez un pourcentage fixe de votre chiffre d'affaires."
-						)}
-						{pipe(
-							comparaisonRégimes,
-							O.flatMap((résultats) =>
-								trouveEstimationPourRégime(
-									résultats,
-									RegimeCotisation.microEntreprise
-								)
-							),
-							O.match({
-								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
-								onSome: (résultat) =>
-									résultat.applicable ? (
-										<SmallBody>
-											{t(
-												'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
-												'Estimation des cotisations'
-											)}{' '}
-											: <strong>{formatMontant(résultat.cotisations)}</strong>
-										</SmallBody>
-									) : null,
-							})
-						)}
-					</>
-				}
-			/>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.label',
-					'Travailleur indépendant'
-				)}
-				value={RegimeCotisation.travailleurIndependant}
-				description={
-					<>
-						{t(
-							'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description',
-							'Vous payez des cotisations sociales sur votre bénéfice.'
-						)}
-						{pipe(
-							comparaisonRégimes,
-							O.flatMap((résultats) =>
-								trouveEstimationPourRégime(
-									résultats,
-									RegimeCotisation.travailleurIndependant
-								)
-							),
-							O.match({
-								onNone: () => <SmallBody>Estimation impossible</SmallBody>,
-								onSome: (résultat) =>
-									résultat.applicable ? (
-										<SmallBody>
-											{t(
-												'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
-												'Estimation des cotisations'
-											)}{' '}
-											: <strong>{formatMontant(résultat.cotisations)}</strong>
-										</SmallBody>
-									) : null,
-							})
-						)}
-					</>
-				}
-			/>
+			{régimeGénéralApplicable && (
+				<RadioCard
+					label={t(
+						'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.label',
+						'Régime général (cotisations URSSAF)'
+					)}
+					value={RegimeCotisation.regimeGeneral}
+					description={
+						<>
+							{t(
+								'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description',
+								'Comme pour un salarié, des cotisations sociales seront prélevées à la source.'
+							)}
+							{pipe(
+								comparaisonRégimes,
+								O.flatMap((résultats) =>
+									trouveEstimationPourRégime(
+										résultats,
+										RegimeCotisation.regimeGeneral
+									)
+								),
+								O.match({
+									onNone: () => <SmallBody>Estimation impossible</SmallBody>,
+									onSome: (résultat) =>
+										résultat.applicable ? (
+											<SmallBody>
+												{t(
+													'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
+													'Estimation des cotisations'
+												)}{' '}
+												: <strong>{formatMontant(résultat.cotisations)}</strong>
+											</SmallBody>
+										) : null,
+								})
+							)}
+						</>
+					}
+				/>
+			)}
+			{microEntrepriseApplicable && (
+				<RadioCard
+					label={t(
+						'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.label',
+						'Micro-entreprise'
+					)}
+					value={RegimeCotisation.microEntreprise}
+					description={
+						<>
+							{t(
+								'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
+								"Vous payez un pourcentage fixe de votre chiffre d'affaires."
+							)}
+							{pipe(
+								comparaisonRégimes,
+								O.flatMap((résultats) =>
+									trouveEstimationPourRégime(
+										résultats,
+										RegimeCotisation.microEntreprise
+									)
+								),
+								O.match({
+									onNone: () => <SmallBody>Estimation impossible</SmallBody>,
+									onSome: (résultat) =>
+										résultat.applicable ? (
+											<SmallBody>
+												{t(
+													'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
+													'Estimation des cotisations'
+												)}{' '}
+												: <strong>{formatMontant(résultat.cotisations)}</strong>
+											</SmallBody>
+										) : null,
+								})
+							)}
+						</>
+					}
+				/>
+			)}
+			{travailleurIndépendantApplicable && (
+				<RadioCard
+					label={t(
+						'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.label',
+						'Travailleur indépendant'
+					)}
+					value={RegimeCotisation.travailleurIndependant}
+					description={
+						<>
+							{t(
+								'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description',
+								'Vous payez des cotisations sociales sur votre bénéfice.'
+							)}
+							{pipe(
+								comparaisonRégimes,
+								O.flatMap((résultats) =>
+									trouveEstimationPourRégime(
+										résultats,
+										RegimeCotisation.travailleurIndependant
+									)
+								),
+								O.match({
+									onNone: () => <SmallBody>Estimation impossible</SmallBody>,
+									onSome: (résultat) =>
+										résultat.applicable ? (
+											<SmallBody>
+												{t(
+													'pages.simulateurs.location-de-logement-meublé.questions.regime.options.estimation',
+													'Estimation des cotisations'
+												)}{' '}
+												: <strong>{formatMontant(résultat.cotisations)}</strong>
+											</SmallBody>
+										) : null,
+								})
+							)}
+						</>
+					}
+				/>
+			)}
 		</RadioCardGroup>
 	)
 }
