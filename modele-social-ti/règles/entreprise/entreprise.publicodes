@@ -1,0 +1,383 @@
+entreprise:
+  icônes: 🏢🧑‍💼👷‍♂️🧑‍🏭
+
+entreprise . chiffre d'affaires:
+  question: Quel est votre chiffre d’affaires envisagé ?
+  identifiant court: CA
+  résumé: Montant total des recettes brutes (hors taxe)
+  unité: €/an
+  description: |
+    ### Chiffre d’affaires estimé
+    Le chiffre d’affaires est la **somme des montants des ventes réalisées
+    pendant votre exercice comptable** (un an) : CA = prix de vente x quantités
+    vendues.
+  somme:
+    - dirigeant . rémunération . nette . après impôt
+    - dirigeant . rémunération . impôt
+    - dirigeant . rémunération . cotisations
+    - charges
+    - applicable si: imposition . IS
+      somme:
+        - imposition . IS . résultat net
+        - imposition . IS
+  plancher: 0€/an
+  arrondi: oui
+
+entreprise . chiffre d'affaires . vente restauration hébergement:
+  titre: Vente de biens, restauration, hébergement (BIC)
+  résumé: Chiffre d’affaires hors taxe
+  question:
+    Quel est le chiffre d’affaires issu de la vente de biens, restauration
+    ou hébergement ?
+  unité: €/an
+  variations:
+    - si: activités . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . vente restauration
+            hébergement
+    - sinon:
+        applicable si: activités . service ou vente = 'vente'
+        valeur: chiffre d'affaires
+  arrondi: oui
+  plancher: 0€/an
+  par défaut: 0€/an
+  description: |
+    ### Vente de biens
+    Il s’agit du chiffre d’affaires de toutes les opérations comportant
+    transfert de propriété d’un bien corporel, c’est-à-dire un bien ayant une
+    existence matérielle.
+
+    ### Restauration et hébergement
+    Il s’agit du chiffre d’affaires de toutes les opérations de restauration
+    ou hébergement
+
+    > Note : pour les locations meublées, seules les locations de meublé de tourisme classé et de chambre d’hôte entrent dans cette catégorie hébergement ; les autres locations meublées relèvent de la catégorie « Prestations de service BIC »
+
+    Ces revenus sont imposables dans la catégorie des BIC
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
+    définition vente de bien (impots.gouv): https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . chiffre d'affaires . service BIC:
+  unité: €/an
+  plancher: 0€/an
+  arrondi: oui
+  résumé: Chiffre d’affaires hors taxe
+  titre: Prestations de service commerciales ou artisanales (BIC)
+  question: Quel est le chiffre d’affaires issu de prestations de service
+    commerciales ou artisanales ?
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c’est-à-dire ayant une existence matérielle), dont
+    l’activité manuelle joue le principal rôle.
+
+    Pour simplifier on pourrait dire que ce sont toutes les prestations de
+    services qui nécessite plus qu’un ordinateur pour être effectuées.
+
+    **Exemples** : transports, service à la personne, réparation etc.
+  par défaut: 0€/an
+  variations:
+    - si: activités . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . service BIC
+    - sinon:
+        applicable si: activités . service ou vente = 'service'
+        valeur: chiffre d'affaires
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
+
+entreprise . chiffre d'affaires . service BNC:
+  titre: Autres prestations de service et activités libérales (BNC)
+  résumé: Recettes hors taxes
+  question: Quelles sont les recettes issues de l’activité libérale ?
+  arrondi: oui
+  par défaut: 0€/an
+  plancher: 0€/an
+  description: |
+    Ce sont toutes les opérations dont l’activité intellectuelle tient
+    un rôle essentiel.
+
+    **Exemples** : conseil, accompagnement, traduction, développement,
+    formation, enseignement, sportif
+
+    Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
+  variations:
+    - si: activités . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . service BNC
+    - sinon:
+        applicable si: activités . libérale
+        valeur: chiffre d'affaires
+
+  références:
+    liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . chiffre d'affaires . service:
+  titre: Chiffre d’affaires de prestation de service
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c’est-à-dire ayant une existence matérielle)
+  unité: €/an
+  somme:
+    - service BIC
+    - service BNC
+
+entreprise . chiffre d'affaires . BIC:
+  description: |
+    Le chiffre d’affaires correspondant au revenus imposable au titre des bénéfice industriels et commerciaux (BIC ou micro-BIC).
+  unité: €/an
+  somme:
+    - service BIC
+    - vente restauration hébergement
+
+entreprise . chiffre d'affaires . seuil micro:
+  experimental: oui
+
+entreprise . chiffre d'affaires . seuil micro . libérale:
+  unité: €/an
+  variations:
+    - si: date >= 01/2023
+      alors: 77700 €/an
+    - sinon: 72600 €/an
+
+entreprise . chiffre d'affaires . seuil micro . total:
+  unité: €/an
+  variations:
+    - si: date >= 01/2023
+      alors: 188700 €/an
+    - sinon: 176200 €/an
+
+entreprise . chiffre d'affaires . seuil micro . dépassé:
+  experimental: oui
+  applicable si: imposition . IR
+  unité: €/an
+  une de ces conditions:
+    - entreprise . chiffre d'affaires > total
+    - entreprise . chiffre d'affaires . service > libérale
+  description: |
+    Le statut de micro-entreprise s’applique tant que le chiffre d’affaires annuel
+    (effectivement encaissé au cours de l’année civile) ne dépasse pas les seuils du
+    régime fiscal de la micro-entreprise.
+
+    En cas de dépassement **sur deux années consécutives**, l’entreprise bascule
+    automatiquement dans le régime de [l’entreprise
+    individuelle](/simulateurs/indépendant).
+
+    À la fin de la première année d’activité, le CA est proratisé par rapport à la
+    durée d’activité.
+
+    > ##### Exemple :
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de
+    > `50 000 €` au cours des cinq mois d’activité de sa première année civile
+    > d’exploitation.
+    > Les recettes de cette première année civile sont ajustées *prorata temporis*
+    > pour les comparer au plafond :
+    >
+    > `50 000€ x (365/153) = 119 280 €`
+
+
+    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le
+    calcul des cotisations)
+
+
+    ### Multi-activité
+
+    Lorsqu’un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En effet
+    l’exercice de plusieurs activités avec la même micro-entreprise n’augmente pas
+    les seuils.
+
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
+    Article 50-0 du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
+    Bofip (dépassement micro-bnc): https://bofip.impots.gouv.fr/bofip/4807-PGP.html
+    Bofip (dépassement micro-bic): https://bofip.impots.gouv.fr/bofip/1802-PGP.html
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
+
+entreprise . TVA . franchise de TVA: oui
+
+entreprise . résultat fiscal:
+  unité: €/an
+  somme:
+    - chiffre d'affaires
+    - (- charges)
+    - (- rémunération dirigeant déductible)
+
+entreprise . résultat fiscal . rémunération dirigeant déductible:
+  titre: charges déductibles dirigeant
+  description: Les montants liés à la rémunération du dirigeant qui sont
+    déductibles d’impôt.
+  variations:
+    - si: imposition . IS
+      alors: dirigeant . rémunération . totale
+    # Note : le cas de dirigeant AS à l'IR n'est pas géré
+    # - si: dirigeant . assimilé salarié
+    #   alors: 0€/an
+    - sinon:
+        # TNS dans entreprise à l'IR
+        valeur: dirigeant . indépendant . cotisations et contributions
+        abattement: dirigeant . indépendant . cotisations et contributions . non
+          déductibles
+
+entreprise . exercice:
+  avec:
+    date trop ancienne:
+      type: notification
+      sévérité: avertissement
+      formule: début < 01/01/2022
+      description:
+        La date saisie est trop ancienne. Le simulateur n’intègre pas les
+        barèmes avant 2022.
+
+    début:
+      type: date
+      par défaut: période . début d'année
+
+    début après la fin:
+      type: notification
+      sévérité: avertissement
+      formule: début >= fin
+      description: La fin de l’exercice doit être postérieure à son début.
+
+    durée:
+      titre: durée de l’exercice
+      formule:
+        durée:
+          depuis: début
+          jusqu'à: fin
+
+    durée maximale:
+      type: notification
+      sévérité: avertissement
+      formule: durée >= 24 mois
+      description: La durée maximale d’un exercice comptable est de 24 mois.
+
+    fin:
+      type: date
+      par défaut: période . fin d'année
+
+entreprise . charges:
+  synonymes:
+    - charges d'exploitation
+    - charges de fonctionnement
+  titre: charges (hors rémunération dirigeant)
+  identifiant court: charges
+  résumé: Total des dépenses nécessaires à l’entreprise, en excluant cotisations sociales, CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement déduites par le simulateur.
+  question: Quelles sont les charges de l’entreprise ?
+  description: |
+    **Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la contribution à la formation professionnelle.**
+
+    Sont à déclarer, les dépenses de l’entreprise engagées dans l’intérêt de celle-ci,
+    hors rémunération du dirigeant. Pour les sociétés et entreprises hors
+    auto-entrepreneur, ces charges sont dites déductibles du résultat : l’entreprise
+    ne paiera pas de cotisations ou impôt dessus. Pour l’auto-entrepreneur, elles ne
+    sont pas déductibles du chiffre d’affaires encaissé.
+
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe
+    (excepté pour les auto-entrepreneurs en franchise de TVA)
+
+    Par exemple, les charges peuvent être :
+
+    - achat de matières premières pour une activité de production
+    - achat de produits en vue de leur revente, pour une activité commerciale
+    - frais de repas : le supplément par rapport au coût d’un repas à domicile
+
+    Attention : l’achat d’un ordinateur à 1000€ n’est pas une charge, mais une
+    immobilisation : c’est un bien qui va profiter à l’entreprise pendant plusieurs
+    années. Chaque année, une partie de cette immobilisation est amortie, et cet
+    amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par
+    an pendant 5 ans.
+
+    A l’inverse, un téléphone portable à moins de 500€ peut être assimilé à une
+    charge sans immobilisation.
+
+    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
+    part de CSG déductible font partie des charges déductibles du revenu imposable et
+    du revenu soumis à cotisations, mais elles ne sont pas à renseigner dans cette
+    rubrique « charges ».
+    Le simulateur les calcule à partir du chiffre d’affaires et des charges
+    renseignées, et les déduit de ce chiffre d’affaires pour estimer le montant du
+    revenu net de charges.
+  références:
+    Charges déductibles ou non du résultat fiscal d’une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
+  par défaut: 0 €/an
+
+entreprise . capital social:
+entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques: oui
+
+entreprise . salariés:
+
+entreprise . salariés . effectif:
+  unité: employé
+  variations:
+    - si: seuil = 'moins de 5'
+      alors: 4 employé
+    - si: seuil = 'moins de 50'
+      alors: 49 employé
+    - si: seuil = 'moins de 250'
+      alors: 249 employé
+    - si: seuil = 'moins de 2000'
+      alors: 251 employé
+    - si: seuil = '2000 ou plus'
+      alors: 2000 employé
+
+  avec:
+    seuil:
+      titre: seuil d’effectif
+      question: Quel est l’effectif de l’entreprise ?
+      description: >
+        De nombreuses cotisations patronales varient selon l’effectif de
+        l’entreprise.
+
+        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
+      une possibilité:
+        - moins de 5
+        - moins de 50
+        - moins de 250
+        - moins de 2000
+        - plus de 2000
+      par défaut: "'moins de 5'"
+      avec:
+        moins de 5:
+        moins de 50:
+          titre: entre 20 et 49
+        moins de 250:
+          titre: entre 150 et 249
+        moins de 2000:
+          titre: entre 250 et 1 999
+        plus de 2000:
+          titre: 2 000 et plus
+
+entreprise . salariés . ratio alternants:
+  question:
+    Quelle est la fraction de contrats d’alternance dans l’effectif moyen
+    de l’entreprise ?
+  titre: Fraction d’alternants
+  description: |
+    Cette fraction détermine la contribution supplémentaire pour l’apprentissage pour les entreprises concernées.
+  suggestions:
+    1%: 1%
+    5%: 5%
+  par défaut: 0%
+
+entreprise . TVA:
+  question: L’entreprise est-elle assujettie à la TVA ?
+  par défaut: oui
+  description: |
+    Certains types d’entreprises ne sont pas assujetties à la TVA.
+    Ces dernières payent la taxe sur les salaires en contrepartie.
+
+    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
+
+    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
+
+  références:
+    Les régimes d’imposition à la TVA: https://www.impots.gouv.fr/professionnel/les-regimes-dimposition-la-tva
+    Tout savoir sur la TVA: https://entreprendre.service-public.fr/vosdroits/N13445
+    Liste des activités exonérées (Article 61 du Code général des impôts): https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179649/
