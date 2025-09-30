@@ -4,6 +4,7 @@ import {
 	calculeCotisations,
 	RegimeCotisation,
 	SituationÉconomieCollaborative,
+	TypeLocation,
 } from '@/contextes/économie-collaborative/domaine/location-de-meublé'
 import { SituationIncomplète } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import { calculeRevenuNet } from '@/contextes/économie-collaborative/domaine/location-de-meublé/revenu-net'
@@ -29,6 +30,10 @@ export const useEconomieCollaborative = () => {
 		  )
 
 	const set = {
+		typeLocation: (typeLocation: Option.Option<TypeLocation>) => {
+			updateSituation((prev) => ({ ...prev, typeLocation }))
+		},
+
 		recettes: (recettes: Option.Option<Montant<'€/an'>>) => {
 			updateSituation((prev) => ({ ...prev, recettes }))
 		},

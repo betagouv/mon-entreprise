@@ -23,6 +23,7 @@ import {
 	AlsaceMoselleQuestion,
 	PremiereAnneeQuestion,
 	RegimeCotisationQuestion,
+	TypeLocationQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
 import { useSitePaths } from '@/sitePaths'
 
@@ -41,6 +42,7 @@ const LocationDeMeublé = () => {
 				entrepriseSelection={false}
 				situation={situation}
 				questions={[
+					TypeLocationQuestion,
 					RegimeCotisationQuestion,
 					AlsaceMoselleQuestion,
 					PremiereAnneeQuestion,
