@@ -1,0 +1,303 @@
+dirigeant . indépendant . cotisations et contributions . exonérations:
+  somme:
+    - ZFU
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU:
+  applicable si: établissement . ZFU
+  produit:
+    - valeur: maladie
+      plafond:
+        valeur: exonérations . ZFU
+        contexte:
+          revenu professionnel: 3042 heure/an * SMIC . horaire
+    - taux
+  arrondi: oui
+  unité: €/an
+
+dirigeant . indépendant . cotisations et contributions . exonérations . âge:
+  question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite »
+    de la cotisation invalidité-décès ?
+  description: |
+    ### Artisans, commerçants, et professions libérales hors Cipav
+    Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
+    avant son abrogation.
+
+    #### Professions libérales relevants de la Cipav
+    L'exonération s'applique automatique à partir de l'année de vos 68 ans.
+    Vous pouvez cependant cotiser volontairement entre 68 et 80 ans, si :
+    - vous poursuivez votre activité ;
+    - vous avez un conjoint de moins de 67 ans ou des enfants à charge de moins de 21 ans ;
+    - vous avez une personne à charge ayant un handicap majeur.
+
+  par défaut: non
+  applicable si:
+    une de ces conditions:
+      - entreprise . date de création < 01/2016
+      - PL . CIPAV
+  # L'exonération s'est arreté en 2015 pour les AC / PLNR, soit après la possibilité d'opter pour le régime général pour les PLNR CIPAV
+  non applicable si: PL . option régime général
+
+  avec:
+    invalidité et décès:
+      valeur: invalidité et décès
+      remplace: invalidité et décès
+      abattement: 100%
+
+dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité:
+  titre: exonération invalidité
+  acronyme: PI
+  question:
+    variations:
+      - si: dirigeant . indépendant . PL . PAMC #TODO demande Urssaf implémentée sans reflechir : il faudra regarder de plus près le pourquoi du comment de cette variations
+        alors:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
+            retraite ?
+      - sinon:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
+            indépendant ?
+  description: |-
+    Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
+    non agricoles, vous bénéficiez d’une exonération des cotisations de retraite de base, de
+    retraite complémentaire et maladie.
+
+    Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue.
+    Si vous avez reçu une pension d'invalidité sur l'année complète, alors l'exonération est totale.
+
+  # A faire valider par la CNAV
+  # Vous validez des trimestres de retraite pour chaque trimestre civil de perception d'une pension d'invalidité.
+
+  # Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
+  # il vous est attribué des "points gratuits".
+
+  # En règle générale, le nombre de points reçu correspond à la moyenne mensuelle des points cotisés
+  # pendant la période d'activité indépendante avant versement de la pension.
+
+  # > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
+  # > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
+
+  par défaut: non
+  rend non applicable: exonérations . ZFU
+  références:
+    Notice RSI (PDF): https://www.secu-independants.fr/fileadmin/mediatheque/Espace_telechargement/Protection_sociale/Depliant_assur_invalidite.pdf#page=8
+    Article D635-2 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966510
+    Article D621-4 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656758
+    Circulaire RSI 2013/004 du 17/01/2013: https://www.legislation.cnav.fr/Documents/circulaire_rsi_2013_004_17012013.pdf#page=24
+    Trimestres assimilés pour le régime de base des indépendants: https://www.legislation.cnav.fr/Pages/expose.aspx?Nom=independant_regime_base_duree_assurance_trimestre_assimile_ex
+
+  avec:
+    durée:
+      question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+      par défaut: 12 mois
+      plafond: 12 mois
+      plancher: 1 mois
+      unité: mois
+
+    indemnités journalières maladie:
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      valeur: indemnités journalières maladie
+      remplace:
+        références à: indemnités journalières maladie
+        sauf dans:
+          - cotisations et contributions . maladie
+          - cotisations et contributions . indemnités journalières maladie .
+            assiette
+      abattement: prorata
+
+    maladie:
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      remplace:
+        références à: maladie
+        sauf dans:
+          - cotisations et contributions . maladie . total
+          - cotisations et contributions . maladie . taux progressif
+      valeur: maladie
+      abattement: prorata
+
+    profession libérale réglementées hors Urssaf:
+      privé: oui
+      toutes ces conditions:
+        - PL . CNAVPL
+        - une de ces conditions:
+            - PL . CIPAV = non
+            - date < 01/2023
+
+    prorata:
+      valeur: durée / 1 an
+      unité: '%'
+      arrondi: oui
+
+    retraite complémentaire:
+      arrondi: oui
+      remplace: retraite complémentaire
+      valeur: retraite complémentaire
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité
+
+    retraite de base:
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      remplace: retraite de base
+      valeur: retraite de base
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE:
+  applicable si: dirigeant . exonérations . ACRE
+  valeur: oui
+  références:
+    'L’Acre pour les indépendants: quel avantages ?': https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/quels-avantages/travailleurs-independants-ne-rel.html
+
+  avec:
+    allocations familiales:
+      remplace: allocations familiales
+      valeur: cotisations et contributions . allocations familiales
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    indemnités journalières maladie:
+      # On préfère l'exonération pension invalidité si elle est plus avantageuse
+      non applicable si: pension invalidité . prorata >= prorata sur l'année
+      remplace:
+        références à: indemnités journalières maladie
+        priorité: 10
+        sauf dans:
+          - cotisations et contributions . maladie
+          - cotisations et contributions . indemnités journalières maladie .
+            assiette
+      valeur: cotisations et contributions . indemnités journalières maladie
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    invalidité et décès:
+      # On préfère l'exonération âge car elle est plus avantageuse
+      non applicable si: exonérations . âge
+      remplace:
+        références à: invalidité et décès
+        priorité: 10
+      valeur: cotisations et contributions . invalidité et décès
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    maladie:
+      # On préfère l'exonération pension invalidité si elle est plus avantageuse
+      non applicable si: pension invalidité . prorata >= prorata sur l'année
+      remplace:
+        références à: maladie
+        priorité: 10
+        sauf dans:
+          - cotisations et contributions . maladie . total
+          - cotisations et contributions . maladie . taux progressif
+      valeur: cotisations et contributions . maladie
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+    retraite de base:
+      non applicable si:
+        une de ces conditions:
+          # On préfère l'exonération incapacité car cette dernière est plus avantageuse
+          - PL . CNAVPL . exonération incapacité
+          # On préfère l'exonération pension invalidité si elle est plus avantageuse
+          - pension invalidité . prorata >= prorata sur l'année
+      remplace:
+        références à: retraite de base
+        priorité: 10
+        sauf dans: protection sociale . retraite . base . cotisée
+      valeur: cotisations et contributions . retraite de base
+      abattement: taux * prorata sur l'année
+      arrondi: oui
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . prorata sur l'année:
+  description: |
+    Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
+    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
+
+    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
+    cotisations 2019 sera le suivant :
+
+    `31 jour d'acre restant en 2019 / 365 jour = 8,5%`
+  unité: '%'
+  arrondi: oui
+  valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ACRE . taux:
+  taux progressif:
+    assiette: assiette des cotisations
+    multiplicateur: PSS proratisé
+    tranches:
+      - taux: 100%
+        plafond: 75%
+      - taux: 0%
+        plafond: 100%
+
+dirigeant . indépendant . cotisations et contributions . exonérations . ZFU . taux:
+  variations:
+    - si: entreprise . salariés . effectif < 5
+      alors:
+        taux progressif:
+          assiette: entreprise . durée d'activité . en fin d'année
+          retourne seulement le taux: oui
+          tranches:
+            - plafond: 5 ans
+              taux: 100%
+            - plafond: 6 ans
+              taux: 60%
+            - plafond: 10 ans
+              taux: 60%
+            - plafond: 11 ans
+              taux: 40%
+            - plafond: 12 ans
+              taux: 40%
+            - plafond: 13 ans
+              taux: 20%
+            - plafond: 14 ans
+              taux: 20%
+            - plafond: 15 ans
+              taux: 0%
+    - sinon:
+        taux progressif:
+          assiette: entreprise . durée d'activité . en fin d'année
+          retourne seulement le taux: oui
+          tranches:
+            - plafond: 5 ans
+              taux: 100%
+            - plafond: 6 ans
+              taux: 60%
+            - plafond: 7 ans
+              taux: 40%
+            - plafond: 8 ans
+              taux: 20%
+            - plafond: 9 ans
+              taux: 0%
+
+dirigeant . indépendant . cotisations et contributions . exonérations . DROM:
+  applicable si: établissement . commune . département . outre-mer
+  valeur: oui
+  rend non applicable: exonérations . ACRE
+  type: notification
+  sévérité: avertissement
+  titre: exonération DROM
+  résumé: |
+    Ce simulateur ne prend pas en compte les exonérations DROM.
+  description: |
+    En début d’activité pendant 24 mois, les indépendants dont l'entreprise est localisée dans les DOM bénéficient, sous conditions de revenus, d’une exonération de certaines cotisations et de contributions sociales.
+
+    Il existe également des exonérations et des abattements en régime de croisière (à partir de la troisième année).
+
+    Ce simulateur ne prend pas en compte ces exonérations pour le moment.
+  références:
+    "Exonérations de début d'activité": https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/travailleurs-independants-en-out/debut-dactivite--cotisations-et.html
+    'Exonérations et abattements en régime de croisière': https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/travailleurs-independants-en-out/exonerations-et-abattements-en-r.html
