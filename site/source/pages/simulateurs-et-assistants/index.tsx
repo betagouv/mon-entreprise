@@ -176,6 +176,10 @@ export default function SimulateursEtAssistants() {
 					<SimulateurCard {...simulators['choix-statut']} role="listitem" />
 					<SimulateurCard {...simulators.is} role="listitem" />
 					<SimulateurCard {...simulators.dividendes} role="listitem" />
+					<SimulateurCard
+						{...simulators['location-de-logement-meublé']}
+						role="listitem"
+					/>
 
 					<SimulateurCard
 						{...simulators['coût-création-entreprise']}
