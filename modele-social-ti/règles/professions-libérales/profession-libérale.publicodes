@@ -1,0 +1,260 @@
+dirigeant . indépendant . PL:
+  titre: Profession libérale
+  applicable si: entreprise . activités = 'libérale'
+  rend non applicable: entreprise . activités . revenus mixtes
+  formule: oui
+
+dirigeant . indépendant . PL . métier:
+  applicable si: entreprise . activités . libérale . réglementée
+  par défaut: "'rattaché CIPAV'"
+  question: A quelle catégorie appartient votre profession ?
+  une possibilité:
+    - santé
+    - juridique
+    - expert-comptable
+    - rattaché CIPAV
+
+dirigeant . indépendant . PL . métier . rattaché CIPAV:
+  titre: Autre métier rattaché à la Cipav
+  description: |
+    Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces métiers est :
+
+    - Architecte (architecte, architecte d’intérieur, économiste de la construction, maître d’œuvre, géomètre expert)
+    - Guide-montagne (moniteur de ski, guide de haute montagne, accompagnateur de moyenne montagne)
+    - Ostéopathe
+    - Psychologue
+    - Psychothérapeute
+    - Psychomotriciens
+    - Ergothérapeute
+    - Diététicien
+    - Chiropracteur
+    - Ingénieur conseil
+    - Guide-conférencier
+    - Artistes autres que les artistes-auteurs
+    - Experts devant les tribunaux
+    - Experts automobiles
+    - Mandataires judiciaires à la protection des majeurs
+
+dirigeant . indépendant . PL . métier . santé:
+  titre: Professions de santé
+  question: Quel métier exercez-vous en tant que professionnel de santé ?
+  description: |
+    **Exceptions** : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
+    diététicien et chiropracteur dépendent de la
+    Cipav pour leur retraite et invalidité.
+  une possibilité:
+    - médecin
+    - chirurgien-dentiste
+    - sage-femme
+    - auxiliaire médical
+    - pharmacien
+    - vétérinaire
+
+  avec:
+    auxiliaire médical:
+      description: |
+        Vous exercez un des métiers suivants : infirmier, masseur-kinésithérapeute, orthophoniste, orthoptiste ou pédicure-podologue.
+    chirurgien-dentiste:
+    médecin:
+
+    médecin . secteur:
+      applicable si: métier = 'santé . médecin'
+      question: Sur quel secteur êtes-vous conventionné ?
+      description: |
+        Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
+        fonction du régime de tarification choisie par le praticien.
+      par défaut: "'S1'"
+      une possibilité:
+        - 'S1'
+        - 'S2'
+        - 'non conventionné'
+
+      avec:
+        non conventionné:
+
+        S1:
+          titre: Secteur 1
+
+        S2:
+          titre: Secteur 2
+
+    pharmacien:
+      titre: Pharmacien ou biologiste médical
+      description: Pharmaciens libéraux, officinaux et biologistes affiliés à la CAVP.
+    sage-femme:
+
+    vétérinaire:
+      experimental: oui
+      par défaut:
+        applicable si: par défaut
+    vétérinaire . par défaut: non
+
+dirigeant . indépendant . PL . métier . juridique:
+  titre: Professions juridiques et judicaires
+  une possibilité:
+    - avocat
+    - notaire
+    - officier
+
+  avec:
+    avocat:
+      description: |
+        Les avocats cotisent auprès de la CNBF pour la retraite et la
+        prévoyance.
+
+    notaire:
+      experimental: oui
+      description: |
+        Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la prévoyance.
+      par défaut:
+        applicable si: par défaut
+    notaire . par défaut: non
+
+    officier:
+      experimental: oui
+      titre: Officier ministériel, officier public, compagnie judicaire
+      description: |
+        Les officiers ministériels, les officiers publics et les compagnies judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
+
+        Liste des métiers concernés : 
+
+        - Huissiers de justice ;
+        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
+        - Commissaires de justice ;
+        - Greffiers près les tribunaux de commerce ;
+        - Administrateurs judiciaires ;
+        - Mandataires judiciaires.
+      par défaut:
+        applicable si: par défaut
+    officier . par défaut: non
+
+dirigeant . indépendant . PL . métier . avocat:
+  déprécié: oui
+  note:
+    Utiliser `dirigeant . indépendant . PL . métier . juridique . avocat` à la
+    place
+
+dirigeant . indépendant . PL . métier . expert-comptable:
+  métier: expert-comptable, commissaire aux comptes
+  description: |
+    Les experts comptables et les commissaires aux comptes cotisent auprès de la CAVEC pour la retraite et la prévoyance.
+
+dirigeant . indépendant . PL . métier . agents généraux d'assurances:
+  experimental: oui
+  description: |
+    Les agents généraux d'assurances cotisent auprès de la CAVAMAC pour la retraite et la prévoyance.
+  par défaut: par défaut
+  avec:
+    par défaut:
+      non applicable si: oui
+
+dirigeant . indépendant . PL . régime général:
+  description: |
+    Les professions libérales non règlementées affiliées au régime général
+    bénéficient de la même protection sociale que les artisans et commerçants.
+
+    C'est le cas des professions libérales non règlementées crées avant le
+    01/2019, ou celles ayant exercé leur [droit
+    d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
+  toutes ces conditions:
+    - CIPAV = non
+    - entreprise . activités . libérale . réglementée = non
+
+dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
+  question: Avez-vous opté pour des taux spécifiques de cotisation retraite
+    complémentaire ?
+  par défaut: non
+  description: |
+    Les professions libérales non règlementées dépendant du régime général des
+    travailleurs indépendants (ou Sécurité Sociale des Indépendants) ont la
+    possibilité d’opter pour des taux spécifiques de cotisation retraite
+    complémentaire.
+
+    Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
+    spécifique de retraite complémentaire pour les professions libérales non
+    réglementées. En revanche, ce taux spécifique continuera de s'appliquer si
+    vous en avez fait la demande avant cette date.
+
+  références:
+    Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
+
+dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
+  remplace: cotisations et contributions . retraite complémentaire
+  formule:
+    barème:
+      assiette: assiette des cotisations
+      multiplicateur: plafond sécurité sociale
+      tranches:
+        - taux: 0%
+          plafond: 1
+        - taux: 14%
+          plafond: 4
+    arrondi: oui
+
+dirigeant . indépendant . PL . maladie:
+  non applicable si: régime général
+  remplace: cotisations et contributions . maladie
+  unité: €/an
+  produit:
+    - valeur: assiette des cotisations
+      plancher: assiette minimale . maladie
+    - taux
+  arrondi: oui
+  références:
+    Article D621-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656764
+
+  avec:
+    taux:
+      taux progressif:
+        assiette: assiette des cotisations
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - plafond: 40%
+            taux: 0%
+          - plafond: 60%
+            taux: 4%
+          - plafond: 110%
+            taux: 6.5%
+
+dirigeant . indépendant . PL . cotisations Urssaf:
+  remplace: cotisations et contributions . Urssaf
+  description: |
+    Les cotisations recouvrées par l'Urssaf, qui servent au financement
+    de la sécurité sociale (assurance maladie, allocations familiales,
+    dépendance).
+  formule:
+    somme:
+      - cotisations et contributions . CSG-CRDS
+      - cotisations et contributions . maladie
+      - cotisations et contributions . indemnités journalières maladie
+      - cotisations et contributions . allocations familiales
+      - cotisations et contributions . formation professionnelle
+      - PAMC . CURPS
+      - applicable si:
+          # Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
+          toutes ces conditions:
+            - CIPAV
+            - date >= 01/2023
+        somme:
+          - cotisations et contributions . retraite de base
+          - cotisations et contributions . retraite complémentaire
+          - cotisations et contributions . invalidité et décès
+    arrondi: oui
+  déprécié: oui
+
+dirigeant . indépendant . PL . cotisations caisse de retraite:
+  non applicable si:
+    # Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
+    toutes ces conditions:
+      - CIPAV
+      - date >= 01/2023
+
+  description: |
+    Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
+  formule:
+    somme:
+      - cotisations et contributions . retraite de base
+      - cotisations et contributions . retraite complémentaire
+      - cotisations et contributions . invalidité et décès
+      - cotisations et contributions . PCV
+    arrondi: oui

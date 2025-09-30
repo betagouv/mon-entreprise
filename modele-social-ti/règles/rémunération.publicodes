@@ -1,0 +1,55 @@
+dirigeant . rémunération: oui
+
+dirigeant . rémunération . totale:
+  titre: Rémunération totale
+  question: Quel montant total pensez-vous dégager pour votre rémunération ?
+  description: |
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant. Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer. On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+  titre global: Rémunération totale dirigeant
+  unité: €/an
+  résumé: Total payé par l’entreprise pour la rémunération du dirigeant
+  variations:
+    - si: entreprise . imposition . IS
+      alors:
+        somme:
+          - rémunération . nette . après impôt
+          - impôt
+          - cotisations
+        par défaut: entreprise . chiffre d'affaires - entreprise . charges
+        plancher: cotisations
+    - sinon: entreprise . chiffre d'affaires - entreprise . charges
+
+dirigeant . rémunération . nette:
+  unité: €/an
+  titre: Rémunération nette
+  question: Quelle est votre rémunération nette ?
+  résumé: Après déduction des cotisations, contributions et charges
+  somme:
+    - rémunération . totale
+    - (- cotisations)
+
+dirigeant . rémunération . cotisations:
+  valeur: indépendant . cotisations et contributions
+
+dirigeant . rémunération . nette . imposable:
+  titre: revenu imposable
+  valeur: indépendant . revenu professionnel
+
+dirigeant . rémunération . impôt:
+  titre: impôt sur le revenu
+  valeur: impôt . montant
+  contexte:
+    impôt . revenu imposable: rémunération . nette . imposable
+    impôt . barème standard . revenu d'activité:
+      applicable si: entreprise . imposition = 'IS'
+      valeur: rémunération . nette . imposable
+
+dirigeant . rémunération . nette . après impôt:
+  titre: Revenu après impôt
+  résumé: Ce que vous rapporte cette activité
+  question: Quel est le revenu net après impôt souhaité ?
+  description: >-
+    Le revenu net après déduction de l’impôt sur le revenu et des cotisations
+    sociales.
+  valeur: rémunération . nette - impôt
+  unité: €/an
