@@ -1,4 +1,4 @@
-import { waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import {
@@ -12,6 +12,23 @@ import {
 } from './test/helpers/locationDeMeubléHelpers'
 
 describe('Location de meublé', () => {
+	describe('Sélection du type de location', () => {
+		it('doit permettre de choisir le type de location', async () => {
+			render()
+			await saisirRecettes(50000)
+
+			await waitFor(() => {
+				expect(
+					screen.getByText(/Logement meublé de courte durée/i)
+				).toBeInTheDocument()
+			})
+			expect(
+				screen.getByText(/Logement meublé de tourisme classé/i)
+			).toBeInTheDocument()
+			expect(screen.getByText(/Chambre d'hôte/i)).toBeInTheDocument()
+		})
+	})
+
 	describe('Logement meublé de courte durée', () => {
 		describe('Recettes < 23 000€', () => {
 			it.skip("doit afficher un message indiquant qu'il n'y a pas d'affiliation obligatoire", async () => {

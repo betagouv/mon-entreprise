@@ -4,11 +4,14 @@ import { Montant } from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
 export interface SituationÉconomieCollaborative extends Situation {
+	typeLocation: O.Option<TypeLocation>
 	recettes: O.Option<Montant<'€/an'>>
 	regimeCotisation: O.Option<RegimeCotisation>
 	estAlsaceMoselle: O.Option<boolean>
 	premièreAnnée: O.Option<boolean>
 }
+
+export type TypeLocation = 'non-classé' | 'tourisme' | 'chambre-hôte'
 
 export enum RegimeCotisation {
 	microEntreprise = 'micro-entreprise',
@@ -19,6 +22,7 @@ export enum RegimeCotisation {
 export const initialSituationÉconomieCollaborative: SituationÉconomieCollaborative =
 	{
 		_tag: 'Situation',
+		typeLocation: O.none(),
 		recettes: O.none(),
 		regimeCotisation: O.none(),
 		estAlsaceMoselle: O.none(),
