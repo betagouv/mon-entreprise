@@ -1,0 +1,89 @@
+dirigeant . indépendant . PL . CARPIMKO:
+  description: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
+  formule: oui
+  applicable si: métier = 'santé . auxiliaire médical'
+  références:
+    Site CARPIMKO: https://www.carpimko.com
+
+dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  somme:
+    - variations:
+        - si: date >= 01/2025
+          alors: 2312 €/an
+        - si: date >= 01/2024
+          alors: 2176 €/an
+        - si: date >= 01/2023
+          alors: 1944 €/an
+        - sinon: 1840 €/an
+    - barème:
+        assiette: assiette des cotisations
+        tranches:
+          - taux: 0%
+            plafond: 25246 €/an
+          - taux: 3%
+            plafond:
+              variations:
+                - si: date >= 01/2025
+                  alors: 237179 €/an
+                - si: date >= 01/2024
+                  alors: 224713 €/an
+                - si: date >= 01/2023
+                  alors: 203446 €/an
+                - sinon: 193913 €/an
+      arrondi: oui
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
+  références:
+    Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
+
+dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
+  titre: invalidité et décès
+  remplace: cotisations et contributions . invalidité et décès
+  variations:
+    - si: date >= 01/2024
+      alors: 1022 €/an
+    - si: date >= 01/2023
+      alors: 862 €/an
+    - sinon: 776 €/an
+  références:
+    Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
+
+dirigeant . indépendant . PL . CARPIMKO . ASV:
+  titre: Avantage social vieillesse
+  remplace: cotisations et contributions . PCV
+  formule:
+    somme:
+      - forfaitaire
+      - proportionnelle
+      - (- participation CPAM)
+    arrondi: oui
+  références:
+    Taux Carpimko: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
+
+  avec:
+    forfaitaire:
+      variations:
+        - si: date >= 01/2025
+          alors: 665 €/an
+        - si: date >= 01/2024
+          alors: 657 €/an
+        - si: date >= 01/2023
+          alors: 634 €/an
+        - sinon: 601 €/an
+
+    proportionnelle:
+      produit:
+        - PAMC . assiette participation CPAM
+        - 0.40%
+
+dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
+  applicable si: PAMC
+  formule:
+    somme:
+      - produit:
+          - forfaitaire
+          - 2 / 3
+        arrondi: oui
+      - 60% * proportionnelle
