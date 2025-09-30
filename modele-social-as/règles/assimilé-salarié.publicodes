@@ -1,0 +1,249 @@
+assimilé salarié:
+
+assimilé salarié . régimes spécifiques:
+
+assimilé salarié . régimes spécifiques . alsace moselle:
+  titre: Régime Alsace-Moselle
+  description: |
+    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements.
+
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](https://regime-local.fr/affiliation/).
+  par défaut: non
+  une de ces conditions:
+    - établissement . commune . département = 'Bas-Rhin'
+    - établissement . commune . département = 'Haut-Rhin'
+    - établissement . commune . département = 'Moselle'
+
+assimilé salarié . régimes spécifiques . alsace moselle . ATMP:
+  avec:
+    seuil taux mixte ou individuel:
+      remplace: cotisations . ATMP . seuil taux mixte ou individuel
+      valeur: 50 employé
+
+    taux fonctions support:
+      références:
+        Annexe de l'Arrêté du 24 décembre 2021 Relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2022: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000044616039
+      remplace: cotisations . ATMP . taux fonctions support . montant
+      valeur: 0.86%
+
+assimilé salarié . régimes spécifiques . taux réduits:
+  titre: taux réduits cas particuliers
+  description: |
+    L’emploi de certaines professions donne lieu au paiement des cotisations de
+    Sécurité sociale à taux réduits. Sont notamment concernés :
+    - les artistes du spectacle,
+    - les mannequins,
+    - les journalistes professionnels et les pigistes,
+    - les professions médicales salariées.
+  question: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  par défaut: non
+  références:
+    Les taux réduits cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
+
+assimilé salarié . régimes spécifiques . taux réduits . profession:
+  question:
+    Quelle est la profession du salarié pour l'application de taux de cotisations
+    réduits ?
+  une possibilité:
+    - VRP multicarte
+    - journaliste
+    - profession médicale
+    - artiste du spectacle
+    - mannequin
+
+  avec:
+    VRP multicarte:
+      icônes: 💼
+      description: |
+        Concerne les voyageurs, représentants et placiers (VRP) à cartes multiples.
+      références:
+        Taux de cotisations - VRP multicarte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-VRP-multicarte.html
+
+    journaliste:
+      icônes: ✒️
+      description: |
+        Concerne les salariés pigistes et journalistes et assimilés pour les employeurs suivants :
+        - journaux d’information
+        - agences de presse
+        - entreprises de radiodiffusion et de télévision
+      références:
+        Taux réduits pour les journalistes: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-journalistes
+
+    profession médicale:
+      icônes: 🩺
+      description: |
+        Concerne les membres des professions médicales et les médecins salariés qui exercent
+        leur activité à **temps partiel régulièrement et simultanément** pour
+        plusieurs employeurs relevant du régime général.
+      références:
+        Taux réduits pour les professions médicales: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-professions-medicales
+
+    artiste du spectacle:
+      icônes: 🎭
+      description: |
+        Concerne uniquement les artistes des employeurs du spectacle vivant.
+        Les techniciens ne sont pas concernés.
+      références:
+        Taux réduits pour les artistes du spectacle: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-artistes-du-spectacle
+
+    mannequin:
+      icônes: ✨
+      description: |
+        Concerne tout mannequin percevant une rémunération.
+        mon-entreprise ne gère pas les cotisations sur les royalties.
+      références:
+        Taux réduits pour les mannequins: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html#ancre-mannequins
+
+assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
+  applicable si:
+    est défini: profession
+  variations:
+    - si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'profession médicale'
+      alors: 70%
+    - si: profession = 'journaliste'
+      alors: 80%
+
+  avec:
+    cotisations vieillesse employeur plafonnée taux:
+      remplace: cotisations . vieillesse . employeur . plafonnée . taux
+      valeur:
+        variations:
+          - si: profession = 'VRP multicarte'
+            alors: 6.9%   # Valeur en dur car pas exactement 80% du taux de base (cf référence)
+          - sinon: cotisations . vieillesse . employeur . plafonnée . taux * réduction de taux
+
+    cotisations vieillesse salarié plafonnée taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+          - profession = 'profession médicale'
+      remplace: cotisations . vieillesse . salarié . plafonnée . taux
+      valeur: cotisations . vieillesse . salarié . plafonnée . taux * réduction de taux
+
+    cotisations vieillesse employeur déplafonnée taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . vieillesse . employeur . déplafonnée . taux
+      valeur:
+        cotisations . vieillesse . employeur . déplafonnée . taux * réduction de taux
+
+    cotisations ATMP taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+          - profession = 'VRP multicarte'
+      remplace: cotisations . ATMP . taux
+      variations:
+        - si: profession = 'VRP multicarte'
+          alors: 0.96%
+        - sinon:
+            valeur: cotisations . ATMP . taux * réduction de taux
+            arrondi: 2 décimale
+
+    cotisations ATMP taux minimum:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . ATMP . taux minimum
+      valeur: cotisations . ATMP . taux minimum * réduction de taux
+      arrondi: 2 décimale
+
+    cotisations allocations familiales taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . allocations familiales . taux
+      valeur: cotisations . allocations familiales . taux * réduction de taux
+
+    cotisations versement mobilité:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+          - profession = 'journaliste'
+      remplace: cotisations . versement mobilité
+      valeur: cotisations . versement mobilité * réduction de taux
+
+    cotisations vieillesse salarié déplafonnée taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . vieillesse . salarié . déplafonnée . taux
+      valeur: cotisations . vieillesse . salarié . déplafonnée . taux * réduction de taux
+
+    cotisations maladie salarié taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . maladie . salarié . taux
+      valeur: cotisations . maladie . salarié . taux * réduction de taux
+
+    cotisations maladie employeur taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . maladie . employeur . taux
+      valeur: cotisations . maladie . employeur . taux * réduction de taux
+
+    cotisations FNAL taux:
+      applicable si:
+        une de ces conditions:
+          - profession = 'artiste du spectacle'
+          - profession = 'mannequin'
+      remplace: cotisations . FNAL . taux
+      valeur: cotisations . FNAL . taux * réduction de taux
+
+assimilé salarié . régimes spécifiques . taxe sur les salaires:
+  applicable si: entreprise . TVA = non
+  unité: €/an
+  description:
+    La taxe sur les salaires en France est un impôt progressif créé en
+    1948 que certains employeurs doivent acquitter sur les salaires qu'ils
+    distribuent.
+  barème:
+    assiette:
+      valeur: cotisations . CSG-CRDS . assiette de base
+    tranches:
+      - taux: 4.25%
+        plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 9147 €/an
+            - si: date >= 01/2024
+              alors: 8985 €/an
+            - si: date >= 01/2023
+              alors: 8573 €/an
+            - sinon: 8004 €/an
+      - taux: 8.5%
+        plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 18258 €/an
+            - si: date >= 01/2024
+              alors: 17936 €/an
+            - si: date >= 01/2023
+              alors: 17114 €/an
+            - sinon: 15981 €/an
+      - taux: 13.6%
+  note: Nous n'implémentons pas les taux spécifiques pour l'Outre-mer, ni la décôte
+  références:
+    Taxe sur les salaires: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
+    Exonérations spécifiques à la taxe sur les salaires: http://bofip.impots.gouv.fr/bofip/6691-PGP.html
