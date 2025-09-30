@@ -6,7 +6,15 @@ import { Card, Spacing, TextField } from '@/design-system'
 
 import Worker from './SelectTauxRisque.worker?worker'
 
-const worker = !import.meta.env.SSR ? new Worker() : null
+let worker: Worker | null = null
+
+const getWorker = () => {
+	if (!worker && !import.meta.env.SSR) {
+		worker = new Worker()
+	}
+
+	return worker
+}
 
 const formatTauxNet = (taux: string) => {
 	const tauxNet = parseFloat(taux.replace(',', '.'))
@@ -51,12 +59,13 @@ function SelectComponent({
 	}
 
 	useEffect(() => {
-		worker?.postMessage({
+		getWorker()?.postMessage({
 			options,
 		})
 
-		if (worker) {
-			worker.onmessage = ({ data: results }: { data: Result[] }) =>
+		const currentWorker = getWorker()
+		if (currentWorker) {
+			currentWorker.onmessage = ({ data: results }: { data: Result[] }) =>
 				setSearchResults(results)
 		}
 	}, [options])
@@ -80,7 +89,7 @@ function SelectComponent({
 
 						return
 					}
-					worker?.postMessage({ input })
+					getWorker()?.postMessage({ input })
 				}}
 			/>
 
