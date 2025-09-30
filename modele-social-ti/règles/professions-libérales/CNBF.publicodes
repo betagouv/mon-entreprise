@@ -1,0 +1,279 @@
+dirigeant . indépendant . PL . CNBF:
+  valeur: oui
+  applicable si:
+    une de ces conditions:
+      - métier = 'avocat' # deprecated / déprécié
+      - métier = 'juridique . avocat'
+  description: |
+    La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
+    sociale des avocats.
+  rend non applicable:
+    - cotisations et contributions . indemnités journalières maladie
+    # Applicable mais pas encore supporté
+    - conjoint collaborateur
+  références:
+    Site CNBF: https://www.cnbf.fr
+
+dirigeant . indépendant . PL . CNBF . retraite de base:
+  remplace: cotisations et contributions . retraite de base
+  formule:
+    somme:
+      - cotisation forfaitaire
+      - cotisation proportionnelle
+  références:
+    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
+    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf
+
+  avec:
+    cotisation forfaitaire:
+      grille:
+        assiette: entreprise . durée d'activité . en fin d'année
+        tranches:
+          - montant:
+              variations:
+                - si: date >= 01/2025
+                  alors: 351 €/an
+                - si: date >= 01/2024
+                  alors: 337 €/an
+                - si: date >= 01/2023
+                  alors: 324 €/an
+                - sinon: 303 €/an
+            plafond: 1 an
+          - montant:
+              variations:
+                - si: date >= 01/2025
+                  alors: 705 €/an
+                - si: date >= 01/2024
+                  alors: 677 €/an
+                - si: date >= 01/2023
+                  alors: 651 €/an
+                - sinon: 608 €/an
+            plafond: 2 an
+          - montant:
+              variations:
+                - si: date >= 01/2025
+                  alors: 1106 €/an
+                - si: date >= 01/2024
+                  alors: 1062 €/an
+                - si: date >= 01/2023
+                  alors: 1021 €/an
+                - sinon: 954 €/an
+            plafond: 3 an
+          - montant:
+              variations:
+                - si: date >= 01/2025
+                  alors: 1505 €/an
+                - si: date >= 01/2024
+                  alors: 1446 €/an
+                - si: date >= 01/2023
+                  alors: 1390 €/an
+                - sinon: 1299 €/an
+            plafond: 5 an
+          - montant:
+              variations:
+                - si: date >= 01/2025
+                  alors: 1921 €/an
+                - si: date >= 01/2024
+                  alors: 1845 €/an
+                - si: date >= 01/2023
+                  alors: 1774 €/an
+                - sinon: 1658 €/an
+
+    cotisation proportionnelle:
+      produit:
+        - valeur: assiette des cotisations
+          plafond: 297549 €/an
+        - 3.1%
+
+dirigeant . indépendant . PL . CNBF . retraite complémentaire:
+  remplace: cotisations et contributions . retraite complémentaire
+  barème:
+    assiette: assiette des cotisations
+    multiplicateur: 42507 €/an
+    tranches:
+      - taux:
+          variations:
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 5.2%
+                  - si: date >= 01/2024
+                    alors: 5%
+                  - si: date >= 01/2023
+                    alors: 4.8%
+                  - sinon: 4.6%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 6%
+                  - si: date >= 01/2024
+                    alors: 5.5%
+                  - si: date >= 01/2023
+                    alors: 5.4%
+            - si: classe = 'C2P'
+              alors: 6%
+        plafond: 1
+      - taux:
+          variations:
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 10%
+                  - si: date >= 01/2024
+                    alors: 9.6%
+                  - si: date >= 01/2023
+                    alors: 9.2%
+                  - sinon: 8.8%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 11.6%
+                  - si: date >= 01/2024
+                    alors: 10.6%
+                  - sinon: 10.4%
+            - si: classe = 'C2P'
+              alors: 11.6%
+        plafond: 2
+      - taux:
+          variations:
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 11.7%
+                  - si: date >= 01/2024
+                    alors: 11.2%
+                  - si: date >= 01/2023
+                    alors: 10.7%
+                  - sinon: 10.2%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 13.7%
+                  - si: date >= 01/2024
+                    alors: 12.45%
+                  - sinon: 12.2%
+            - si: classe = 'C2P'
+              alors: 13.7%
+        plafond: 3
+      - taux:
+          variations:
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 13.4%
+                  - si: date >= 01/2024
+                    alors: 12.8%
+                  - si: date >= 01/2023
+                    alors: 12.2%
+                  - sinon: 11.6%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 15.8%
+                  - si: date >= 01/2024
+                    alors: 14.3%
+                  - sinon: 14%
+            - si: classe = 'C2P'
+              alors: 15.8%
+        plafond: 4
+      - taux:
+          variations:
+            - si: classe = 'C1'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 15.1%
+                  - si: date >= 01/2024
+                    alors: 14.4%
+                  - si: date >= 01/2023
+                    alors: 13.7%
+                  - sinon: 13%
+            - si: classe = 'C2'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 17.9%
+                  - si: date >= 01/2024
+                    alors: 16.15%
+                  - si: date >= 01/2023
+                    alors: 15.8%
+            - si: classe = 'C2P'
+              alors:
+                variations:
+                  - si: date >= 01/2025
+                    alors: 20.4%
+                  - si: date >= 01/2023
+                    alors: 17.9%
+        plafond: 5
+  arrondi: oui
+  note: |
+    Avant 2025 il existait les classes 3 et 3+ à la place de la classe 2+.
+    La classe 2+ correspond à la classe 3 pour 2024 et les années précédentes.
+    La classe 3+ n'est pas implémentée.
+  références:
+    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
+    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf
+  avec:
+    classe:
+      titre: Classe de cotisation
+      question:
+        Dans quelle classe cotisez-vous pour le régime de retraite complémentaire de la
+        CNBF ?
+      description: |
+        Il existe classes de cotisations aux choix, correspondant à des cotisations
+        et des degrés d'indemnisations différents.
+      par défaut: "'C1'"
+      une possibilité:
+        - C1
+        - C2
+        - C2P
+      avec:
+        C1:
+          titre: classe 1
+        C2:
+          titre: classe 2
+        C2P:
+          titre: classe 2+
+          note: Correspond à la classe C3 pour 2024 et avant.
+
+dirigeant . indépendant . PL . CNBF . RID:
+  titre: invalidité et décès
+  remplace: cotisations et contributions . invalidité et décès
+  formule:
+    variations:
+      - si: entreprise . durée d'activité . en fin d'année < 5 an
+        alors:
+          variations:
+            - si: date >= 01/2025
+              alors: 68 €/an
+            - si: date >= 01/2024
+              alors: 65 €/an
+            - si: date >= 01/2023
+              alors: 62 €/an
+            - sinon: 58 €/an
+      - sinon:
+          variations:
+            - si: date >= 01/2025
+              alors: 170 €/an
+            - si: date >= 01/2024
+              alors: 162 €/an
+            - si: date >= 01/2023
+              alors: 153 €/an
+            - sinon: 145 €/an
+  références:
+    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
+    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf
