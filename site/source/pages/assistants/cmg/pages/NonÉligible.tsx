@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 import { Body, Button, FlexCenter, Li, Ul } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'
@@ -24,7 +24,7 @@ export default function NonÉligible() {
 
 	return (
 		<>
-			<TrackPage chapter3="pas_a_pas" name="simulation_terminee" />
+			<TrackPage chapter3="pas_a_pas" name={SIMULATION_TERMINEE} />
 
 			<Body>
 				{raisonsInéligibilité.length > 1

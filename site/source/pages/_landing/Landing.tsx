@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -31,7 +31,7 @@ export default function Landing() {
 
 	return (
 		<>
-			<TrackPage chapter1="informations" name="accueil" />
+			<TrackPage chapter1="informations" name={ACCUEIL} />
 			<Meta
 				title={t('landing.meta.title', 'Accueil')}
 				description={t(

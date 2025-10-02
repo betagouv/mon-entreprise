@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Button, Strong } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'
@@ -11,7 +11,7 @@ export default function Accueil() {
 
 	return (
 		<>
-			<TrackPage name="accueil" />
+			<TrackPage name={ACCUEIL} />
 
 			<Warning localStorageKey="pages.assistants.cmg.warning">
 				<Trans i18nKey="assistants.warning.cmg">

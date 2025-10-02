@@ -23,6 +23,10 @@ export function toAtString(string: string): string {
 	return string
 }
 
+export const ACCUEIL = 'accueil'
+export const SIMULATION_COMMENCEE = 'simulation_commencee'
+export const SIMULATION_TERMINEE = 'simulation_terminee'
+
 // Chapter definition : https://www.atinternet.com/en/glossary/chapter/
 type Chapter1 =
 	| 'simulateurs'
