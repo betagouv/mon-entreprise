@@ -14,7 +14,7 @@ import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
-import { TrackPage } from '../ATInternetTracking'
+import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../ATInternetTracking'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import { FromTop } from './../ui/animate'
@@ -98,8 +98,8 @@ export default function Simulation<S extends Situation = Situation>({
 
 	return (
 		<>
-			{!isFirstStepCompleted && <TrackPage name="accueil" />}
-			{isFirstStepCompleted && <TrackPage name="simulation_commencee" />}
+			{!isFirstStepCompleted && <TrackPage name={ACCUEIL} />}
+			{isFirstStepCompleted && <TrackPage name={SIMULATION_COMMENCEE} />}
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />

@@ -165,7 +165,7 @@ Nous utilisons ATInternet pour le reccueil des usages. La hierarchie des pages e
 -   Chapitre 2 : le nom du simulateur / de l'assistant / de la famille de simulateur
 -   Chapitre 3 : le nom du simulateur si il n'est pas dans le chapitre 2
 
-On utilise le nom de la page pour signifier les étapes dans le parcours de l'utilisateur. Par exemple, pour la plupart des simulateurs, on a les pages suivantes `accueil`, `simulation_commencée` `simulation_terminée`. Quand bien même il n'y a qu'une seule et même URL.
+On utilise le nom de la page pour signifier les étapes dans le parcours de l'utilisateur. Par exemple, pour la plupart des simulateurs, on a les pages suivantes `accueil`, `simulation_commencee` `simulation_terminee`. Quand bien même il n'y a qu'une seule et même URL.
 
 Cela permet de suivre le parcours des utilisateurs dans les simulateurs, et de voir les taux de completion facilement. Ces données sont ensuites compilées pour afficher la page /stats.
 

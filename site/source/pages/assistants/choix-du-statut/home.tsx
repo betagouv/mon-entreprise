@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import PageHeader from '@/components/PageHeader'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -34,7 +34,7 @@ export default function AccueilChoixStatut() {
 
 	return (
 		<>
-			<TrackPage name="accueil" />
+			<TrackPage name={ACCUEIL} />
 
 			<PageHeader picture={créerSvg}>
 				<Intro>

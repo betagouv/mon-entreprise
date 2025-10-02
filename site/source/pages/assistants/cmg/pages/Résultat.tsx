@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 import {
 	Body,
@@ -34,7 +34,7 @@ export default function Résultat() {
 
 	return (
 		<>
-			<TrackPage chapter3="pas_a_pas" name="simulation_terminee" />
+			<TrackPage chapter3="pas_a_pas" name={SIMULATION_TERMINEE} />
 
 			<Trans i18nKey="pages.assistants.cmg.résultat">
 				<Body>
