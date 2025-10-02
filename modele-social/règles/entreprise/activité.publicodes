@@ -18,13 +18,10 @@ entreprise . activité . nature:
     Toutefois, à partir de la troisième année civile suivant celle au cours de laquelle la situation de pluriactivité a débuté, les personnes intéressées peuvent demander que l’activité qui a procuré le montant de chiffre d’affaires ou de recettes hors taxes le plus élevé sur les trois dernières années soit considérée comme leur activité principale.
 
   par défaut: "'commerciale'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - artisanale
-        - commerciale
-        - libérale
+  une possibilité:
+    - artisanale
+    - commerciale
+    - libérale
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
     Comment déterminer la nature de l’activité d’une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
@@ -219,12 +216,9 @@ entreprise . activités . service ou vente:
       - activité . nature . artisanale
       - activité . nature . commerciale
   question: Quel est le type d’activité principale de l’entreprise ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - vente
-        - service
+  une possibilité:
+    - vente
+    - service
   par défaut:
     variations:
       - si: activité . nature . artisanale

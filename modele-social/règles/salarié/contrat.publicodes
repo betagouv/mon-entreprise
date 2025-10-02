@@ -2,13 +2,11 @@ salarié . contrat:
   icônes: 📄
   question: De quel type de contrat s'agit-il ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - CDI
-      - CDD
-      - apprentissage
-      - professionnalisation
-      - stage
+    - CDI
+    - CDD
+    - apprentissage
+    - professionnalisation
+    - stage
   par défaut: "'CDI'"
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
@@ -135,10 +133,8 @@ salarié . contrat . apprentissage . diplôme préparé:
   déprécié: oui # Était utile pour une aide à l'embauche de 2019
   question: Quel type de diplôme l'apprenti prépare-t-il ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - niveau bac ou moins
-      - niveau supérieur au bac
+    - niveau bac ou moins
+    - niveau supérieur au bac
   par défaut: "'niveau supérieur au bac'"
 
   avec:
@@ -159,14 +155,11 @@ salarié . contrat . apprentissage . diplôme préparé:
 salarié . contrat . apprentissage . ancienneté:
   déprécié: oui # Était utile pour une aide à l'embauche de 2019
   question: Depuis combien de temps l'apprenti est-il employé ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - moins d'un an
-        - moins de deux ans
-        - moins de trois ans
-        - moins de quatre ans
+  une possibilité:
+    - moins d'un an
+    - moins de deux ans
+    - moins de trois ans
+    - moins de quatre ans
   par défaut: "'moins d'un an'"
 
 salarié . contrat . apprentissage . ancienneté . moins d'un an:
@@ -246,12 +239,11 @@ salarié . contrat . CDD . motif:
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
   une possibilité:
-    choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
-    possibilités:
-      - classique
-      - contrat aidé
-      - complément formation
-      - issue d'apprentissage
+    # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
+    - classique
+    - contrat aidé
+    - complément formation
+    - issue d'apprentissage
   # les CDD d'usage "concentrent la moitié des embauches en CDD"
   par défaut: "'classique . accroissement activité'"
   références:
@@ -264,13 +256,11 @@ salarié . contrat . CDD . motif:
     classique:
       titre: motifs classiques
       une possibilité:
-        choix obligatoire: oui
-        possibilités:
-          - remplacement
-          - accroissement activité
-          - saisonnier
-          - usage
-          - mission
+        - remplacement
+        - accroissement activité
+        - saisonnier
+        - usage
+        - mission
       références:
         Code du travail - Article L1242-2: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000033024658&cidTexte=LEGITEXT000006072050&dateTexte=20170420
 

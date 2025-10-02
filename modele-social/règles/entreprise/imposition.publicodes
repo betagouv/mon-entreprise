@@ -1,10 +1,8 @@
 entreprise . imposition:
   question: Quel est le type d’imposition de votre entreprise ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - IR
-      - IS
+    - IR
+    - IS
 
   par défaut:
     variations:
@@ -48,11 +46,9 @@ entreprise . imposition . IR . type de bénéfices:
   question: Quel est le type de bénéfices de votre entreprise ?
   par défaut: oui
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - BNC
-      - BIC
-      - BA
+    - BNC
+    - BIC
+    - BA
   références:
     'Impôt sur le revenu : BIC, BNC, comment ça marche ?': https://www.economie.gouv.fr/entreprises/impot-sur-revenu-bic-bnc
 
@@ -237,12 +233,10 @@ entreprise . imposition . IS . résultat net:
 entreprise . imposition . régime:
   question: Quel est le régime d’imposition de votre entreprise ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - micro-entreprise
-      - déclaration contrôlée
-      - réel simplifié
-      - réel normal
+    - micro-entreprise
+    - déclaration contrôlée
+    - réel simplifié
+    - réel normal
   références:
     Les différents régimes d’imposition: https://www.economie.gouv.fr/entreprises/les-differents-regimes-dimposition
 

@@ -1,0 +1,18 @@
+assimilé salarié . cotisations . exonérations . JEI:
+  titre: Exonération JEI
+  description: |
+    Exonération pour les jeunes entreprises innovantes (JEI).
+  applicable si: exonérations . JEI
+  unité: €/mois
+  somme:
+    - allocations familiales
+    - maladie . employeur
+    - vieillesse . employeur
+  plafond:
+    valeur: JEI
+    contexte:
+      rémunération . brute: 4.5 * SMIC
+  références:
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F31188
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-secteur-activite/jeunes-entreprises-innovantes.html
+    Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html

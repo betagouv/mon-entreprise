@@ -1,9 +1,7 @@
 entreprise . associés:
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - unique
-      - multiples
+    - unique
+    - multiples
   description: |
     Si vous êtes le seul associé de votre société, alors vous êtes dans le cas d'une « société unipersonnelle ».
 
@@ -32,15 +30,13 @@ entreprise . catégorie juridique:
   références:
     Liste des catégories juridique de l'INSEE: https://www.insee.fr/fr/information/2028129
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - EI
-      - SARL
-      - SAS
-      - SELARL
-      - SELAS
-      - association
-      - autre
+    - EI
+    - SARL
+    - SAS
+    - SELARL
+    - SELAS
+    - association
+    - autre
   meta:
     affichage: radio
 
