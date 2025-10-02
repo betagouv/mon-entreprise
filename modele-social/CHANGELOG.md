@@ -9,6 +9,9 @@ sociale sur l'IS.
 ### Mises à jour
 - Change `entreprise . exercice . date trop ancienne` de 2018 à 2022.
 
+### Corrections
+- Corrige le calcul de `entreprise . exercice . durée`
+
 ## 8.0.0
 
 ### Breaking changes
