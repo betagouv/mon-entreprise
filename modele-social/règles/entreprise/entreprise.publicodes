@@ -259,10 +259,11 @@ entreprise . exercice:
 
     durée:
       titre: durée de l’exercice
-      formule:
-        durée:
-          depuis: début
-          jusqu'à: fin
+      somme:
+        - durée:
+            depuis: début
+            jusqu'à: fin
+        - 1 jour
 
     durée maximale:
       type: notification
