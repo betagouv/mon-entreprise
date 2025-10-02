@@ -3,19 +3,20 @@ import { Trans } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
 import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDansObjectifDeSimulateur'
-import Value from '@/components/EngineValue/Value'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, { SimulationGoals } from '@/components/Simulation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
-import { SimulationImpossible } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
 	estSituationValide,
+	PLAFOND_REGIME_GENERAL,
+	SEUIL_PROFESSIONNALISATION,
+	SimulationImpossible,
 	SituationÉconomieCollaborative,
 	usagerAChoisiUnRégimeDeCotisation,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
-import { ÉconomieCollaborativeProvider } from '@/contextes/économie-collaborative/hooks/ÉconomieCollaborativeContext'
+	useEconomieCollaborative,
+	ÉconomieCollaborativeProvider,
+} from '@/contextes/économie-collaborative'
 import { Button, SmallBody } from '@/design-system'
-import { eurosParAn } from '@/domaine/Montant'
+import { eurosParAn, toString as formatMontant } from '@/domaine/Montant'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import { ObjectifRevenuNet } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRevenuNet'
 import {
@@ -73,10 +74,7 @@ const LocationDeMeublé = () => {
 												<AvertissementDansObjectifDeSimulateur>
 													<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.dépassement-du-plafond">
 														Vous dépassez le plafond autorisé (
-														<Value
-															linkToRule={false}
-															expression="location de logement meublé . plafond régime général"
-														/>
+														<strong>{formatMontant(PLAFOND_REGIME_GENERAL)}</strong>
 														) pour déclarer vos revenus de l'économie
 														collaborative avec un statut social au régime
 														général. Vous devez vous orienter vers les statuts
@@ -91,7 +89,7 @@ const LocationDeMeublé = () => {
 												<SmallBody>
 													<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.pas-de-cotisation">
 														Le montant de vos recettes est inférieur à{' '}
-														<Value expression="location de logement meublé . seuil de professionalisation" />{' '}
+														<strong>{formatMontant(SEUIL_PROFESSIONNALISATION)}</strong>{' '}
 														et votre activité n'est pas considérée comme
 														professionnelle. Vous n'êtes pas obligé de vous
 														affilier à la sécurité sociale. Vous pouvez
