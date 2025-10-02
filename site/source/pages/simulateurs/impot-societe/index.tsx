@@ -5,7 +5,11 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import {
+	ACCUEIL,
+	SIMULATION_TERMINEE,
+	TrackPage,
+} from '@/components/ATInternetTracking'
 import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue/Value'
 import Notifications from '@/components/Notifications'
@@ -130,12 +134,12 @@ function Explanations() {
 		situation['entreprise . imposition . IS . résultat imposable']
 
 	if (!showResult) {
-		return <TrackPage name="accueil" />
+		return <TrackPage name={ACCUEIL} />
 	}
 
 	return (
 		<FromTop>
-			<TrackPage name="simulation terminée" />
+			<TrackPage name={SIMULATION_TERMINEE} />
 			<ExplanationsContainer>
 				<Intro>
 					<Value
