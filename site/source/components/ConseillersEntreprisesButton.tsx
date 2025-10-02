@@ -54,7 +54,7 @@ export const ConseillersEntreprisesButton = ({
 	const baseURL =
 		'https://' +
 		(IS_PRODUCTION
-			? 'conseillers-entreprises.service-public.fr'
+			? 'conseillers-entreprises.service-public.gouv.fr'
 			: 'reso-staging.osc-fr1.scalingo.io')
 
 	const url = new URL(baseURL + paths[variant])
