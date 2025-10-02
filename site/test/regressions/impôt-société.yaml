@@ -5,13 +5,14 @@ bénéfices:
   - entreprise . résultat fiscal: 20000 €/an
   - entreprise . résultat fiscal: 200000 €/an
   - entreprise . résultat fiscal: 2000000 €/an
-  - entreprise . résultat fiscal: 20000000 €/an
+  - entreprise . chiffre d'affaires: 20000000 €/an
+    entreprise . résultat fiscal: 20000000 €/an
 
 prorata temporis:
   - entreprise . résultat fiscal: 1000000 €/an
   - entreprise . résultat fiscal: 1000000 €/an
-    entreprise . exercice . début: 01/01/2020
-    entreprise . exercice . fin: 01/06/2020
+    entreprise . exercice . début: 01/01/2024
+    entreprise . exercice . fin: 01/06/2024
   - entreprise . résultat fiscal: 1000000 €/an
-    entreprise . exercice . début: 01/01/2020
-    entreprise . exercice . fin: 01/06/2021
+    entreprise . exercice . début: 01/01/2024
+    entreprise . exercice . fin: 01/06/2025

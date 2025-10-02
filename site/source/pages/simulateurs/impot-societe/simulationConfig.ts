@@ -6,7 +6,6 @@ const ISSimulationConfig: SimulationConfig = {
 		salarié: 'non',
 		'entreprise . catégorie juridique': "''",
 		'entreprise . imposition': "'IS'",
-		'entreprise . imposition . IS . éligible taux réduit': 'oui',
 		'entreprise . TVA . franchise de TVA': 'non',
 	},
 }
