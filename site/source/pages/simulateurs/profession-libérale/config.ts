@@ -16,6 +16,7 @@ export function professionLibéraleConfig({
 	return config({
 		id: 'profession-libérale',
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'profession_liberale',
 		},
 		icône: '💻',

@@ -3,14 +3,17 @@ import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import RéductionGénéraleSimulation from './Lodeom'
+import LodeomSimulation from './Lodeom'
 import { configLodeom } from './simulationConfig'
 
 export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'lodeom',
 		beta: true,
-		tracking: 'lodeom',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'lodeom',
+		},
 		icône: '🏷️',
 		iframePath: 'simulateur-lodeom',
 		pathId: 'simulateurs.lodeom',
@@ -30,6 +33,6 @@ export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 		externalLinks: [embaucherGérerSalariés, nouvelEmployeur],
 		path: sitePaths.simulateurs.lodeom,
 		simulation: configLodeom,
-		component: RéductionGénéraleSimulation,
+		component: LodeomSimulation,
 	} as const)
 }

@@ -14,7 +14,7 @@ import {
 } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
@@ -129,7 +129,7 @@ function PourMonEntreprise() {
 				/>
 			)}
 
-			<TrackPage name="accueil" />
+			<TrackPage name={ACCUEIL} />
 			<PageHeader picture={growth}>
 				<Intro>
 					<Trans i18nKey="pages.assistants.pour-mon-entreprise.description">
