@@ -194,13 +194,10 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
         les affiliés cotisent en « classe A » mais il est possible de cotiser en
         classe B ou C afin de bénéficier d'une meilleure couverture
         invalidité-décès.
-      formule:
-        une possibilité:
-          choix obligatoire: oui
-          possibilités:
-            - A
-            - B
-            - C
+      une possibilité:
+        - A
+        - B
+        - C
       par défaut: "'A'"
 
       avec:
@@ -262,10 +259,8 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
         complémentaire et le régime d’invalidité-décès Cipav ?
       par défaut: "'quart'"
       une possibilité:
-        choix obligatoire: oui
-        possibilités:
-          - quart
-          - moitié
+        - quart
+        - moitié
 
       avec:
         moitié:

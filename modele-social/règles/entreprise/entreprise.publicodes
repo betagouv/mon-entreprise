@@ -365,15 +365,13 @@ entreprise . salariés . effectif:
 
         Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
       une possibilité:
-        choix obligatoire: oui
-        possibilités:
-          - moins de 5
-          - moins de 11
-          - moins de 20
-          - moins de 50
-          - moins de 150
-          - moins de 250
-          - plus de 250
+        - moins de 5
+        - moins de 11
+        - moins de 20
+        - moins de 50
+        - moins de 150
+        - moins de 250
+        - plus de 250
 
       par défaut: "'moins de 5'"
 

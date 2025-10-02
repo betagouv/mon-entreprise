@@ -1,11 +1,8 @@
 salarié . cotisations . exonérations . zones lodeom:
   question: Quelle est votre localisation ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - zone un
-        - zone deux
+  une possibilité:
+    - zone un
+    - zone deux
   avec:
     zone un:
       valeur: zones lodeom = 'zone un'
@@ -83,11 +80,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
     barèmes:
       question: Quel barème envisagez-vous ?
       une possibilité:
-        choix obligatoire: oui
-        possibilités:
-          - compétitivité
-          - compétitivité renforcée
-          - innovation et croissance
+        - compétitivité
+        - compétitivité renforcée
+        - innovation et croissance
       avec:
         compétitivité:
           valeur: barèmes = 'compétitivité'
@@ -307,11 +302,9 @@ salarié . cotisations . exonérations . lodeom . zone deux:
     barèmes:
       question: Quel barème souhaitez-vous appliquer ?
       une possibilité:
-        choix obligatoire: oui
-        possibilités:
-          - moins de 11 salariés
-          - sectoriel
-          - renforcé
+        - moins de 11 salariés
+        - sectoriel
+        - renforcé
       avec:
         moins de 11 salariés:
           valeur: barèmes = 'moins de 11 salariés'
