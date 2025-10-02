@@ -2,7 +2,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import {
+	ACCUEIL,
+	SIMULATION_COMMENCEE,
+	SIMULATION_TERMINEE,
+	TrackPage,
+} from '@/components/ATInternetTracking'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import PageHeader from '@/components/PageHeader'
@@ -57,14 +62,14 @@ export default function DéclarationRevenusPAMC() {
 			{Object.keys(situation).length ? (
 				<>
 					<WhenAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
-						<TrackPage name="simulation terminée" />
+						<TrackPage name={SIMULATION_TERMINEE} />
 					</WhenAlreadyDefined>
 					<WhenNotAlreadyDefined dottedName="déclaration revenus PAMC . résultats">
-						<TrackPage name="simulation_commencee" />
+						<TrackPage name={SIMULATION_COMMENCEE} />
 					</WhenNotAlreadyDefined>
 				</>
 			) : (
-				<TrackPage name="accueil" />
+				<TrackPage name={ACCUEIL} />
 			)}
 
 			<div className="print-hidden">

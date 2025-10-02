@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import {
+	SIMULATION_COMMENCEE,
+	TrackPage,
+} from '@/components/ATInternetTracking'
 import { estInformationsValides, useCMG } from '@/contextes/cmg'
 
 import QuestionCMGPerçu from '../components/informations-générales/QuestionCMGPerçu'
@@ -17,7 +20,7 @@ export default function InformationsGénérales() {
 
 	return (
 		<>
-			<TrackPage chapter3="pas_a_pas" name="simulation_commencee" />
+			<TrackPage chapter3="pas_a_pas" name={SIMULATION_COMMENCEE} />
 
 			<QuestionNombreMoisDéclarationsSuffisant />
 			<QuestionCMGPerçu />

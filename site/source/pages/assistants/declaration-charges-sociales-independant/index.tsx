@@ -2,7 +2,11 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import {
+	ACCUEIL,
+	SIMULATION_COMMENCEE,
+	TrackPage,
+} from '@/components/ATInternetTracking'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import PageHeader from '@/components/PageHeader'
 import { FromTop } from '@/components/ui/animate'
@@ -75,9 +79,9 @@ export default function AideDéclarationIndépendant() {
 			</Trans>
 
 			{Object.keys(situation).length ? (
-				<TrackPage name="simulation_commencee" />
+				<TrackPage name={SIMULATION_COMMENCEE} />
 			) : (
-				<TrackPage name="accueil" />
+				<TrackPage name={ACCUEIL} />
 			)}
 
 			<ImpositionSection />
