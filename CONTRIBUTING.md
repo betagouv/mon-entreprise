@@ -26,11 +26,19 @@ Nous utilisons :
 -   [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
 -   [Publicodes](https://publi.codes) pour la gestion des règles métiers
 -   [React](https://reactjs.org) pour la gestion de l'interface utilisateur
--   [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
+-   [Redux](https://redux.js.org) pour gérer le "state" de l'application côté client
 -   [TypeScript](https://www.typescriptlang.org) pour ajouter un système de typage à notre code JavaScript. Le typage n'est pas utilisé partout et il n'est pas obligatoire de le prendre en compte pour contribuer.
--   [ViteJS](https://vitejs.dev) pour le “bundling” et le serveur de développement
+-   [ViteJS](https://vitejs.dev) pour le "bundling" et le serveur de développement
 -   [Vitest](https://vitest.dev) et [Cypress](https://www.cypress.io) pour l'execution des tests. Plus d'informations dans la section consacrée aux tests.
 -   [Yarn](https://yarnpkg.com) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
+
+### Patterns et bonnes pratiques
+
+#### Compound Components
+
+Pour créer des composants React réutilisables et composables, nous privilégions le **pattern Compound Components**. Ce pattern permet de créer des APIs de composants flexibles où les sous-composants sont exposés comme propriétés du composant principal, offrant une composition déclarative tout en gardant le contrôle sur le rendu final.
+
+Pour plus de détails sur ce pattern, consultez l'[ADR sur les Compound Components](./adr/ADR-2025-10-02-compound-components.md).
 
 ### Tests
 
