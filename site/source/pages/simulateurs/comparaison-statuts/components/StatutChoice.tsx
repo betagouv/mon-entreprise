@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import { StatutType, TAG_DATA } from '@/components/StatutTag'
+import { StatutTag, StatutType, TAG_DATA } from '@/components/StatutTag'
 import { Button, Grid, H4, Li, Spacing, Strong, Ul } from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
@@ -60,10 +60,52 @@ function StatutBloc({
 	const { absoluteSitePaths } = useSitePaths()
 
 	return (
-		<StatusCard
-			statut={[name]}
-			footerContent={
-				!hideCTA && (
+		<StatusCard>
+			<StatusCard.Étiquette>
+				<StatutTag statut={name} text="acronym" showIcon />
+			</StatusCard.Étiquette>
+			<StatusCard.Contenu>
+				<H4 as="h3">{TAG_DATA[name].longName}</H4>
+				<Ul
+					style={{
+						display: 'flex',
+						flex: '1',
+						marginBottom: '0',
+						flexDirection: 'column',
+					}}
+				>
+					<Li>
+						{versementLibératoire ? (
+							<Trans>
+								<Strong>Versement libératoire</Strong> de l'impôt sur le revenu
+							</Trans>
+						) : imposition === 'IS' ? (
+							<Trans>
+								<Strong>Impôt sur les sociétés</Strong> (IS)
+							</Trans>
+						) : (
+							<Trans>
+								<Strong>Impôt sur le revenu</Strong> (IR)
+							</Trans>
+						)}
+					</Li>
+					<Li>
+						<Trans i18nKey="statutchoice.regime">
+							Régime social des {{ regime }}s
+						</Trans>
+					</Li>
+					<Li>
+						{engine.evaluate({
+							valeur: 'dirigeant . exonérations . ACRE',
+						}).nodeValue
+							? t('Avec ACRE')
+							: t('Option ACRE non activée')}
+						<ExplicableRule dottedName="dirigeant . exonérations . ACRE" />
+					</Li>
+				</Ul>
+			</StatusCard.Contenu>
+			{!hideCTA && (
+				<StatusCard.Action>
 					<div
 						style={{
 							textAlign: 'center',
@@ -78,47 +120,8 @@ function StatutBloc({
 							Choisir ce statut
 						</Button>
 					</div>
-				)
-			}
-		>
-			<H4 as="h3">{TAG_DATA[name].longName}</H4>
-			<Ul
-				style={{
-					display: 'flex',
-					flex: '1',
-					marginBottom: '0',
-					flexDirection: 'column',
-				}}
-			>
-				<Li>
-					{versementLibératoire ? (
-						<Trans>
-							<Strong>Versement libératoire</Strong> de l'impôt sur le revenu
-						</Trans>
-					) : imposition === 'IS' ? (
-						<Trans>
-							<Strong>Impôt sur les sociétés</Strong> (IS)
-						</Trans>
-					) : (
-						<Trans>
-							<Strong>Impôt sur le revenu</Strong> (IR)
-						</Trans>
-					)}
-				</Li>
-				<Li>
-					<Trans i18nKey="statutchoice.regime">
-						Régime social des {{ regime }}s
-					</Trans>
-				</Li>
-				<Li>
-					{engine.evaluate({
-						valeur: 'dirigeant . exonérations . ACRE',
-					}).nodeValue
-						? t('Avec ACRE')
-						: t('Option ACRE non activée')}
-					<ExplicableRule dottedName="dirigeant . exonérations . ACRE" />
-				</Li>
-			</Ul>
+				</StatusCard.Action>
+			)}
 		</StatusCard>
 	)
 }
