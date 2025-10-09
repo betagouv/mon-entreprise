@@ -1,4 +1,4 @@
-dirigeant . indépendant . PL . option régime général:
+indépendant . PL . option régime général:
   applicable si:
     toutes ces conditions:
       - entreprise . activités . libérale . réglementée = non
@@ -23,7 +23,7 @@ dirigeant . indépendant . PL . option régime général:
     bpi-france: https://bpifrance-creation.fr/entrepreneur/actualites/nouvelle-liste-activites-liberales-non-reglementees-relevant-cipav
   par défaut: non
 
-dirigeant . indépendant . PL . CIPAV:
+indépendant . PL . CIPAV:
   une de ces conditions:
     - métier = 'rattaché CIPAV'
     - toutes ces conditions:
@@ -40,10 +40,10 @@ dirigeant . indépendant . PL . CIPAV:
 
   avec:
     cotisations et contributions retraite complémentaire:
-      remplace: cotisations et contributions . retraite complémentaire
+      remplace: cotisations et contributions . cotisations . retraite complémentaire
       valeur: retraite complémentaire
 
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
+indépendant . PL . CIPAV . retraite complémentaire:
   unité: €/an
   arrondi: oui
 
@@ -120,7 +120,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
       références:
         Guide Cipav 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
 
-dirigeant . indépendant . PL . CIPAV . invalidité et décès:
+indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès
   unité: €/an
   arrondi: oui
@@ -132,8 +132,8 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
         produit:
           - valeur: assiette des cotisations
             unité: €/an
-            plancher: 37% * dirigeant . indépendant . PSS proratisé
-            plafond: 1.85 * dirigeant . indépendant . PSS proratisé
+            plancher: 37% * indépendant . PSS proratisé
+            plafond: 1.85 * indépendant . PSS proratisé
           - 0.5%
   références:
     L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
@@ -178,7 +178,7 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès:
         C:
           titre: classe C
 
-dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
+indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
   applicable si: date < 01/2023
   question: Avez-vous demandé à être exonéré de la cotisations invalidité-décès
     Cipav ? (revenus de l'année précédente inférieurs à 6 170€)
@@ -187,11 +187,11 @@ dirigeant . indépendant . PL . CIPAV . invalidité et décès . exonération in
     L’adhérent qui justifie avoir perçu, au titre de l’année précédente, un revenu professionnel inférieur à 15 % du plafond
     de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
     peut, à sa demande expresse, être dispensé de cette cotisation.
-  rend non applicable: dirigeant . indépendant . PL . CIPAV . invalidité et décès
+  rend non applicable: CIPAV . invalidité et décès
   références:
     Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=121
 
-dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
+indépendant . PL . CIPAV . conjoint collaborateur:
   applicable si: conjoint collaborateur
   valeur: oui
 
