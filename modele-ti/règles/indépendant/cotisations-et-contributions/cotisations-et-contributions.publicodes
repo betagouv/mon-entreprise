@@ -1,0 +1,55 @@
+indépendant . cotisations et contributions:
+  description: |
+    C’est le montant total dû par l’indépendant au titre des cotisations et
+    contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
+
+  somme:
+    - cotisations et contributions . cotisations
+    - conjoint collaborateur . cotisations
+    - cotisations facultatives . montant
+    - CSG-CRDS
+    - contributions spéciales
+    - formation professionnelle
+  note: |
+    À la différence des cotisations, les contributions ne sont pas réintroduites
+    pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
+    réduction Acre.
+
+  avec:
+    Urssaf:
+      experimentale: oui
+      titre: cotisations recouvrées par l’Urssaf
+      valeur: cotisations et contributions
+      abattement: cotisations facultatives . montant
+
+indépendant . cotisations et contributions . non déductibles:
+  titre: Part non déductibles fiscalement
+  somme:
+    - CSG-CRDS . non déductible
+    - cotisations facultatives . non déductibles
+
+indépendant . cotisations et contributions . contributions spéciales:
+  description: |
+    Certains régimes spéciaux peuvent ajouter des contributions additionnelles
+    (par exemple, la CURPS pour les CPAM)
+  formule: non
+
+indépendant . cotisations et contributions . formation professionnelle:
+  acronyme: CFP
+  titre: contribution à la formation professionnelle
+  produit:
+    - plafond sécurité sociale
+    - variations:
+        - si: entreprise . activités . artisanale
+          alors: 0.29%
+        - si: conjoint collaborateur
+          alors: 0.34%
+        - sinon: 0.25%
+  unité: €/an
+  arrondi: oui
+  note: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
+
+  références:
+    Contribution à la formation professionnelle (CFP): https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-formation-professionnelle
+    Contribution à la formation professionnelle (CFP) des entrepreneurs individuels: https://entreprendre.service-public.fr/vosdroits/F23459

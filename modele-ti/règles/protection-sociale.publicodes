@@ -67,13 +67,12 @@ protection sociale . retraite . trimestres:
 
   avec:
     exonération invalidité indépendant:
-      applicable si: dirigeant . indépendant . cotisations et contributions .
-        exonérations . pension invalidité
+      applicable si: indépendant . cotisations et contributions .
+        cotisations . exonérations . pension invalidité
       privé: oui
       produit:
         - 4 trimestre validé/an
-        - dirigeant . indépendant . cotisations et contributions . exonérations
-          . pension invalidité . prorata
+        - indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . prorata
 
 protection sociale . retraite . base:
   titre: Retraite de base maximum
@@ -119,8 +118,8 @@ protection sociale . retraite . base . cotisée:
   titre: revenu cotisé pour la retraite de base
   arrondi: oui
   valeur:
-    dirigeant . indépendant . cotisations et contributions . retraite de
-    base / dirigeant . indépendant . cotisations et contributions . retraite
+    indépendant . cotisations et contributions . cotisations . retraite de
+    base / indépendant . cotisations et contributions . cotisations . retraite
     de base . taux
   plafond: plafond sécurité sociale
   description: |
@@ -197,7 +196,7 @@ protection sociale . retraite . complémentaire:
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
   titre: retraite complémentaire des indépendants
-  non applicable si: dirigeant . indépendant . PL . CNAVPL
+  non applicable si: indépendant . PL . CNAVPL
   produit:
     - points acquis
     - valeur du point
@@ -207,10 +206,10 @@ protection sociale . retraite . complémentaire . RCI:
   avec:
     points acquis:
       non applicable si:
-        dirigeant . indépendant . cotisations et contributions .
-        exonérations . pension invalidité # Non implémenté (cf règle)
+        indépendant . cotisations et contributions .
+        cotisations . exonérations . pension invalidité # Non implémenté (cf règle)
       arrondi: oui
-      valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / valeur d'acquisition
+      valeur: indépendant . cotisations et contributions . cotisations . retraite complémentaire / valeur d'acquisition
       références:
         cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
 
@@ -239,7 +238,7 @@ protection sociale . retraite . complémentaire . RCI:
         Valeur de service du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
 
 protection sociale . retraite . base . CNAVPL:
-  applicable si: dirigeant . indépendant . PL . CNAVPL
+  applicable si: indépendant . PL . CNAVPL
   titre: retraite de base CNAVPL
   remplace: retraite . base
   description: |-
@@ -286,31 +285,31 @@ protection sociale . retraite . base . CNAVPL:
       avec:
         cotisation maximum T1:
           privé: oui
-          valeur: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1
+          valeur: indépendant . PL . CNAVPL . retraite . tranche T1
           contexte:
-            dirigeant . indépendant . assiette des cotisations: plafond sécurité sociale
+            indépendant . assiette des cotisations: plafond sécurité sociale
 
         cotisation maximum T2:
           privé: oui
-          valeur: dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2
+          valeur: indépendant . PL . CNAVPL . retraite . tranche T2
           contexte:
-            dirigeant . indépendant . assiette des cotisations: 5 * plafond sécurité sociale
+            indépendant . assiette des cotisations: 5 * plafond sécurité sociale
 
     points acquis . points incapacité:
-      applicable si: dirigeant . indépendant . PL . CNAVPL . exonération incapacité
+      applicable si: indépendant . PL . CNAVPL . exonération incapacité
       valeur: 400 point
 
     points acquis . points T1:
       produit:
         - 525 point
-        - dirigeant . indépendant . PL . CNAVPL . retraite . tranche T1 /
+        - indépendant . PL . CNAVPL . retraite . tranche T1 /
           cotisation maximum T1
       arrondi: 1 décimale
 
     points acquis . points T2:
       produit:
         - 25 point
-        - dirigeant . indépendant . PL . CNAVPL . retraite . tranche T2 /
+        - indépendant . PL . CNAVPL . retraite . tranche T2 /
           cotisation maximum T2
       arrondi: 1 décimale
 
@@ -327,7 +326,7 @@ protection sociale . retraite . base . CNAVPL:
       'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
 protection sociale . retraite . complémentaire . CIPAV:
-  applicable si: dirigeant . indépendant . PL . CIPAV
+  applicable si: indépendant . PL . CIPAV
   produit:
     - points acquis
     - valeur de service du point
@@ -346,7 +345,7 @@ protection sociale . retraite . complémentaire . CIPAV:
         par un taux qui varie en fonction de la tranche de l’assiette des
         cotisations.
       variations:
-        - sinon: dirigeant . indépendant . PL . CIPAV . retraite complémentaire
+        - sinon: indépendant . PL . CIPAV . retraite complémentaire
       unité: €/an
 
     valeur d'acquisition:
@@ -400,12 +399,7 @@ protection sociale . maladie:
   avec:
     raam:
       titre: Revenu d’activité annuel moyen
-      valeur:
-        variations:
-          - si: dirigeant . indépendant
-            alors:
-              dirigeant . indépendant . cotisations et contributions . indemnités
-              journalières maladie . assiette
+      valeur: indépendant . cotisations et contributions . cotisations . indemnités journalières maladie . assiette
       plafond:
         variations:
           - si: entreprise . activités . libérale . réglementée
@@ -546,7 +540,7 @@ protection sociale . invalidité et décès:
   avec:
     revenu annuel moyen:
       applicable si: maladie . arrêt maladie . conditions . revenu
-      valeur: dirigeant . indépendant . cotisations et contributions . invalidité et
+      valeur: indépendant . cotisations et contributions . cotisations . invalidité et
         décès . assiette
       plafond: plafond sécurité sociale
 
@@ -654,7 +648,7 @@ protection sociale . invalidité et décès:
             la pension tient compte de tous vos revenus perçus qu’ils proviennent de
             votre activité salariée ou de votre activité comme indépendant.
           applicable si: maladie . arrêt maladie . conditions . revenu
-          valeur: dirigeant . indépendant . cotisations et contributions . invalidité et
+          valeur: indépendant . cotisations et contributions . cotisations . invalidité et
             décès . assiette
           plafond: plafond sécurité sociale
 
