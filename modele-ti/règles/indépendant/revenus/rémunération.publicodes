@@ -1,6 +1,6 @@
-dirigeant . rémunération: oui
+indépendant . rémunération: oui
 
-dirigeant . rémunération . totale:
+indépendant . rémunération . totale:
   titre: Rémunération totale
   question: Quel montant total pensez-vous dégager pour votre rémunération ?
   description: |
@@ -19,7 +19,7 @@ dirigeant . rémunération . totale:
         plancher: cotisations
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
 
-dirigeant . rémunération . nette:
+indépendant . rémunération . nette:
   unité: €/an
   titre: Rémunération nette
   question: Quelle est votre rémunération nette ?
@@ -28,14 +28,14 @@ dirigeant . rémunération . nette:
     - rémunération . totale
     - (- cotisations)
 
-dirigeant . rémunération . cotisations:
+indépendant . rémunération . cotisations:
   valeur: indépendant . cotisations et contributions
 
-dirigeant . rémunération . nette . imposable:
+indépendant . rémunération . nette . imposable:
   titre: revenu imposable
   valeur: indépendant . revenu professionnel
 
-dirigeant . rémunération . impôt:
+indépendant . rémunération . impôt:
   titre: impôt sur le revenu
   description: |
     Montant de l’impôt sur le revenu concernant :
@@ -47,9 +47,9 @@ dirigeant . rémunération . impôt:
     paramètres . impôt . revenu d'activité:
       applicable si: entreprise . imposition = 'IS'
       valeur: rémunération . nette . imposable
-    paramètres . impôt . abattement revenu net global: dirigeant . indépendant . cotisations facultatives . déductibles
+    paramètres . impôt . abattement revenu net global: cotisations facultatives . déductibles
 
-dirigeant . rémunération . nette . après impôt:
+indépendant . rémunération . nette . après impôt:
   titre: Revenu après impôt
   résumé: Ce que vous rapporte cette activité
   question: Quel est le revenu net après impôt souhaité ?
