@@ -33,11 +33,9 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
   par défaut: "'forfaitaire'"
 
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - forfaitaire
-      - revenu sans partage
-      - revenu avec partage
+    - forfaitaire
+    - revenu sans partage
+    - revenu avec partage
 
   avec:
     forfaitaire:
@@ -52,12 +50,9 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
       titre: Proportion revenu
       question: À quelle proportion du revenu le conjoint cotise-t-il ?
       par défaut: "'tiers'"
-      formule:
-        une possibilité:
-          choix obligatoire: oui
-          possibilités:
-            - tiers
-            - moitié
+      une possibilité:
+        - tiers
+        - moitié
 
       avec:
         moitié:

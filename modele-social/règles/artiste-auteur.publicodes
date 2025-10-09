@@ -248,12 +248,9 @@ artiste-auteur . cotisations . IRCEC . profession:
     l’IRCEC :  dans  tous  les  cas  et  si  vous  atteignez  le  seuil
     d’affiliation,  au  RAAP,  puis  selon  votre  activité  artistique  au RACD
     et/ou au RACL.
-  formule:
-    une possibilité:
-      choix obligatoire: non
-      possibilités:
-        - RACD
-        - RACL
+  une possibilité:
+    - RACD
+    - RACL
   par défaut: "''"
 
 artiste-auteur . cotisations . IRCEC . profession . RACD:
