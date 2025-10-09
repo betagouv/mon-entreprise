@@ -11,13 +11,10 @@ salarié . convention collective . BTP:
 salarié . convention collective . BTP . catégorie:
   question: À quelle catégorie le salarié appartient-t-il ?
   par défaut: "'ouvrier'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - ouvrier
-        - etam
-        - cadre
+  une possibilité:
+    - ouvrier
+    - etam
+    - cadre
 
 salarié . convention collective . BTP . catégorie . ouvrier:
   titre: Ouvrier
@@ -169,19 +166,16 @@ salarié . convention collective . BTP . congés intempéries:
 salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
   question: À quelle caisse l'entreprise est-elle rattachée pour le versement de
     la cotisation congés intempéries ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - idf
-        - nord ouest
-        - grand ouest
-        - centre ouest
-        - centre
-        - grand est
-        - rhône alpes auvergne
-        - méditerranée
-        - sud ouest
+  une possibilité:
+    - idf
+    - nord ouest
+    - grand ouest
+    - centre ouest
+    - centre
+    - grand est
+    - rhône alpes auvergne
+    - méditerranée
+    - sud ouest
   par défaut: "'idf'"
 
   avec:
