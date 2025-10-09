@@ -1,8 +1,7 @@
-dirigeant . indépendant:
-  valeur: régime social = 'indépendant'
-  par défaut: non
+indépendant:
+  valeur: oui
 
-dirigeant . indépendant . revenu professionnel:
+indépendant . revenu professionnel:
   résumé: rémunération du dirigeant au régime des indépendants
   description:
     Le revenu professionnel est la rémunération du dirigeant au régime
@@ -44,20 +43,7 @@ dirigeant . indépendant . revenu professionnel:
           - cotisations et contributions . non déductibles
     - sinon: entreprise . résultat fiscal
 
-dirigeant . indépendant . assiette des cotisations:
-  unité: €/an
-  description: |
-    Il s’agit de l’assiette des cotisations sociales, nombre forcément positif
-  valeur: sans plancher
-  plancher: 0
-
-  avec:
-    sans plancher:
-      somme:
-        - revenu professionnel
-        - cotisations facultatives . déductibles
-
-dirigeant . indépendant . PSS proratisé:
+indépendant . PSS proratisé:
   titre: plafond de la sécurité sociale proratisé
   description: |
     Le plafond de la sécurité sociale, proratisé par la durée d’activité pendant
@@ -71,175 +57,15 @@ dirigeant . indépendant . PSS proratisé:
     - entreprise . prorata temporis
   arrondi: oui
 
-dirigeant . indépendant . assiette minimale:
-  non applicable si:
-    une de ces conditions:
-      - situation personnelle . RSA
-      - entreprise . activités . saisonnière
-  valeur: oui
-  description: |
-    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
-    calcul, certaines cotisations seront portées à un montant minimum.
-    Les cotisations pour les indemnités journalières, retraite de base,
-    invalidité-décès et pour la formation ne sont plus calculées selon le revenu du
-    chef d’entreprise mais selon une « assiette » (montant retenu qui sert de base au
-    calcul d’un impôt ou d’une taxe).
-
-    Les cotisations minimales ne s’appliquent pas si vous bénéficiez du RSA ou de la
-    prime d’activité.
-  références:
-    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
-
-dirigeant . indépendant . assiette minimale . maladie:
-  description: |
-    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
-    calcul, certaines cotisations seront portées à un montant minimum.
-  produit:
-    - PSS proratisé
-    - 40%
+indépendant . assiette des cotisations:
   unité: €/an
-  arrondi: oui
-  références:
-    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
-
-dirigeant . indépendant . assiette minimale . invalidité et décès:
   description: |
-    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
-    calcul, certaines cotisations seront portées à un montant minimum.
-  produit:
-    - plafond sécurité sociale
-    - 11.5%
-  unité: €/an
-  arrondi: oui
-  références:
-    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
-    Article L632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951125
-    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+    Il s’agit de l’assiette des cotisations sociales, nombre forcément positif
+  valeur: sans plancher
+  plancher: 0
 
-dirigeant . indépendant . assiette minimale . retraite:
-  description: La cotisation minimale de retraite de base permet de valider 3
-    trimestres de retraite, quel que soit le revenu.
-  variations:
-    - si: date < 01/2023
-      alors:
-        produit:
-          - plafond sécurité sociale
-          - 11.5%
-    - si: entreprise . durée d'activité cette année < 90 jour
-      alors: 0
-    - sinon: 450 heure/an * SMIC . horaire . début d'année
-  unité: €/an
-  arrondi: oui
-  références:
-    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
-
-dirigeant . indépendant . assiette minimale . retraite . en 2022:
-  description: |
-    L’assiette minimale de 11,50 % n’était pas suffisante pour valider 3 trimestres.
-    Par conséquent cette assiette minimale a été révisée en cours d’année et sera
-    appliquée de manière rétroactive à compter du 1er janvier 2022.
-
-    L’assiette minimale est de 4 758 € pour 2022 uniquement. Depuis 2023, l’assiette
-    minimale est repassée à 11,5 % du PASS.
-  remplace:
-    références à: assiette minimale . retraite
-    sauf dans: cotisations et contributions . invalidité et décès
-  applicable si:
-    toutes ces conditions:
-      - date >= 01/2022
-      - date < 01/2023
-  valeur: 4758 €/an
-
-dirigeant . indépendant . revenus étrangers:
-  question:
-    Avez-vous perçu des revenus au titre de l’exercice d’une activité non
-    salariée à l’étranger ?
-  description: |
-    Si vous exercez une activité non salariée hors de France, dans un État de
-    l’Union Européenne (UE)\*, de l’Espace Économique Européen (EEE)\** ou en Suisse
-    ou dans un Etat hors UE/EEE/Suisse, avec lequel des dispositions de coordination
-    des régimes de protection sociale s’appliquent, et que l’exercice de votre
-    activité non salariée hors de France a donné lieu à affiliation au régime
-    général des travailleurs indépendants : indiquez le montant de votre revenu
-    établi hors de France.
-
-    En effet, les revenus provenant d’une activité exercée hors de France sont
-    uniquement soumis à cotisations sociales. Ces revenus ne sont pas soumis à la
-    CSG-CRDS.
-
-    \* États de l’UE : Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie,
-    Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande, Italie, Lettonie,
-    Lituanie, Luxembourg, Malte, Pays-Bas, Pologne, Portugal, République tchèque,
-    Roumanie, Slovaquie, Slovénie, Suède.
-
-    \** États l’EEE : Islande, Liechtenstein, Norvège.
-  par défaut: non
-
-dirigeant . indépendant . revenus étrangers . montant:
-  titre: revenus perçu à l’étranger
-  question: Quel est leur montant ?
-  par défaut: 0 €/an
-  unité: €/an
-
-dirigeant . indépendant . IJSS:
-  titre: Allocations et indemnités journalières de sécurité sociale
-  description: |
-    Il s’agit des allocations et indemnités journalières versées par votre caisse
-    primaire d’assurance maladie en cas de maladie, maternité, paternité ou
-    adoption, arrêt de travail ou garde d’enfant en lien avec l’épidémie de Covid-19.
-
-    Ces revenus de remplacement sont demandés spécifiquement car ils bénéficient
-    d’un taux réduit de CSG-CRDS.
-
-    Les indemnités complémentaires versées dans le cadre de contrats de prévoyance
-    privés (y compris contrat Madelin) ne sont pas concernées.
-
-    Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont
-    pas concernées.
-
-  question:
-    Avez-vous perçu des indemnités journalières ou allocations de sécurité
-    sociale au titre de votre activité indépendante (maladie, maternité,
-    paternité, adoption) ?
-  par défaut: non
-
-dirigeant . indépendant . IJSS . montant:
-  titre: Montant total
-  question: Quel est le montant brut total de vos allocations et indemnités
-    journalières de sécurité sociale ?
-  description: |
-    Indiquez le montant total brut de vos allocations et indemnités journalières
-    perçues, imposables et non imposables, qui figure sur le relevé de prestations
-    fourni par votre caisse primaire d’assurance maladie.
-
-    Ces revenus de remplacement sont soumis au taux réduit de CSG-CRDS.
-
-    <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
-    - indemnité journalière maladie
-    - allocation forfaitaire de repos maternel
-    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
-    - indemnité de remplacement pour maternité, paternité ou adoption
-  par défaut: 0 €/an
-  unité: €/an
-
-dirigeant . indépendant . IJSS . imposable:
-  titre: part imposable
-  résumé: Uniquement si vous ne relevez pas du régime micro-fiscal
-  question: Quel est le montant brut imposable de vos allocations et indemnités
-    journalières de sécurité sociale ?
-  description: |
-    Indiquez uniquement le montant des allocations et indemnités journalières
-    imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
-    l’exception de celles en lien avec une affection de longue durée.
-
-    Ces indemnités seront déduites de vos revenus d’activité, afin d’être soumises
-    au taux réduit de la CSG-CRDS.
-
-    <p><u>Les revenus de remplacement concernés sont :</u></p>
-    - indemnité journalière maladie
-    - allocation forfaitaire de repos maternel
-    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
-    - indemnité de remplacement pour maternité, paternité ou adoption
-    - allocation journalière du proche aidant (AJPA, versée par la CAF)
-  par défaut: 0 €/an
-  unité: €/an
+  avec:
+    sans plancher:
+      somme:
+        - revenu professionnel
+        - cotisations facultatives . déductibles
