@@ -1,28 +1,17 @@
 impôt:
   icônes: 🏛️
 
-impôt . revenu imposable:
-  description: |
-    C’est le revenu à prendre en compte pour calculer l’impôt avec un taux moyen
-    d’imposition (neutre ou personnalisé).
-  unité: €/an
-
 impôt . montant:
   titre: Impôt sur le revenu
   description: |
-    Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
-    salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
-    cas du calcul avec le barème standard, des autres revenus imposables du
-    foyer fiscal.
-
-    Ce simulateur n'inclue pas le calcul de l’impôt sur les revenus pour les
-    entreprises soumises à l’impôt sur les revenus (IR).
+    Calcule le montant de l’impôt sur le revenu à partir d’un
+    revenu imposable et d’un éventuel revenu d’activité.
   variations:
     - si: méthode de calcul . barème standard
       alors: barème standard . impôt net
     - sinon:
         produit:
-          - revenu imposable
+          - paramètres . impôt . revenu imposable
           - taux d'imposition
 
 impôt . taux d'imposition:
@@ -48,10 +37,6 @@ impôt . méthode de calcul:
     vous donne un résultat plus précis que le taux neutre pour un célibataire sans
     enfant.
   question: Comment souhaitez-vous calculer l’impôt sur le revenu ?
-  # applicable si: revenu imposable > 0
-  # bizarrement, cette condition ne semble pas marcher, on se résout donc à utiliser
-  # une version plus "hacky" et moins proche de la loi. Elle posera problème le jour
-  # où l’on aura a calculer l’impot avec plusieurs sources de revenu
   par défaut: par défaut
   une possibilité:
     - taux neutre:
@@ -61,6 +46,7 @@ impôt . méthode de calcul:
           ne pas communiquer à votre taux à l’employeur, le calcul au taux neutre
           correspond à une imposition pour un célibataire sans enfant et sans autres
           revenus / charges.
+        applicable si: paramètres . impôt . taux neutre applicable
         valeur: impôt . méthode de calcul = 'taux neutre'
     - taux personnalisé:
         titre: avec un taux personnalisé
