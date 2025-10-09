@@ -80,10 +80,19 @@ assimilé salarié . rémunération . nette . imposable:
 
 assimilé salarié . rémunération . impôt:
   titre: impôt sur le revenu
+  description: |
+    Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
+    salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
+    cas du calcul avec le barème standard, des autres revenus imposables du
+    foyer fiscal.
+
+    Ce simulateur n'inclue pas le calcul de l’impôt sur les revenus pour les
+    entreprises soumises à l’impôt sur les revenus (IR).
   valeur: impôt . montant
   contexte:
-    impôt . revenu imposable: rémunération . nette . imposable
-    impôt . barème standard . revenu d'activité: rémunération . nette . imposable
+    paramètres . impôt . revenu imposable: rémunération . nette . imposable
+    paramètres . impôt . revenu d'activité: rémunération . nette . imposable
+    paramètres . impôt . taux neutre applicable: oui
 
 assimilé salarié . rémunération . nette . après impôt:
   titre: Salaire net après impôt
