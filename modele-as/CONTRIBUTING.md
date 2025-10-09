@@ -10,7 +10,7 @@ raisonnement ayant abouti à ce langage sont dispos sur le repository
 [betagouv/publicodes](https://github.com/betagouv/publicodes/wiki)
 
 Pour se familiariser avec les règles, vous pouvez jeter un œil aux fichiers
-contenant les règles elles-mêmes (dans le dossier `modele-social-ti`)
+contenant les règles elles-mêmes (dans le dossier `modele-as`)
 mais cela peut s'avérer assez abrupt.
 
 Essayez plutôt de jeter un œil [aux tests](https://github.com/betagouv/publicodes/tree/master/core/test/m%C3%A9canismes)
@@ -24,9 +24,9 @@ Checklist :
 -   [ ] Utiliser un moteur de recherche spécialisé, comme [RFPaye](https://rfpaye.grouperf.com/).
 -   [ ] Lire les normes et noter leurs références dans les règles Publicodes.
 
-### Développement de modele-social-ti et de mon-entreprise
+### Développement de modele-as et de mon-entreprise
 
-Pour développer les règles de `modele-social-ti` et tester en temps réel sur les simulateurs de mon-entreprise, il vous faut lancer la commande suivantes : 
+Pour développer les règles de `modele-as` et tester en temps réel sur les simulateurs de mon-entreprise, il vous faut lancer la commande suivantes : 
   
   ```sh
   yarn start
@@ -45,7 +45,7 @@ Pour tester les règles, il est recommandé de :
 
 ### Versioning et changelog
 
-Lors de toute modification du package `modele-social-ti`, il est nécessaire de :
+Lors de toute modification du package `modele-as`, il est nécessaire de :
 
 1. **Mettre à jour la version** dans le fichier `package.json` en suivant le versioning sémantique :
    - Version majeure (1.0.0) : changements incompatibles avec les versions précédentes
