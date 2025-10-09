@@ -1,4 +1,4 @@
-dirigeant . indépendant . PL . CAVEC:
+indépendant . PL . CAVEC:
   formule: oui
   applicable si: métier = 'expert-comptable'
   description: |
@@ -10,8 +10,8 @@ dirigeant . indépendant . PL . CAVEC:
   références:
     Site CAVEC: https://www.cavec.fr
 
-dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
-  remplace: cotisations et contributions . retraite complémentaire
+indépendant . PL . CAVEC . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
   description: |
     Votre cotisation de l'année N est fixée selon un barème, en fonction des revenus professionnels nets non salariés de l’année N-1.
 
@@ -104,9 +104,9 @@ dirigeant . indépendant . PL . CAVEC . retraite complémentaire:
   références:
     'CAVEC: Vos cotisations retraite, prévoyance et options': https://www.cavec.fr/votre-retraite/vos-cotisations/vos-cotisations-en-tant-que-liberal-tns/montant-de-vos-cotisations/vos-cotisations-retraite-prevoyance-et-options/
 
-dirigeant . indépendant . PL . CAVEC . invalidité et décès:
+indépendant . PL . CAVEC . invalidité et décès:
   titre: invalidité et décès
-  remplace: cotisations et contributions . invalidité et décès
+  remplace: cotisations et contributions . cotisations . invalidité et décès
   formule:
     grille:
       assiette: assiette des cotisations

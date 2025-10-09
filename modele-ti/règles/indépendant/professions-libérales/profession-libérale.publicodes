@@ -1,10 +1,10 @@
-dirigeant . indépendant . PL:
+indépendant . PL:
   titre: Profession libérale
   applicable si: entreprise . activités = 'libérale'
   rend non applicable: entreprise . activités . revenus mixtes
   formule: oui
 
-dirigeant . indépendant . PL . métier:
+indépendant . PL . métier:
   applicable si: entreprise . activités . libérale . réglementée
   par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
@@ -14,7 +14,7 @@ dirigeant . indépendant . PL . métier:
     - expert-comptable
     - rattaché CIPAV
 
-dirigeant . indépendant . PL . métier . rattaché CIPAV:
+indépendant . PL . métier . rattaché CIPAV:
   titre: Autre métier rattaché à la Cipav
   description: |
     Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces métiers est :
@@ -35,7 +35,7 @@ dirigeant . indépendant . PL . métier . rattaché CIPAV:
     - Experts automobiles
     - Mandataires judiciaires à la protection des majeurs
 
-dirigeant . indépendant . PL . métier . santé:
+indépendant . PL . métier . santé:
   titre: Professions de santé
   question: Quel métier exercez-vous en tant que professionnel de santé ?
   description: |
@@ -89,7 +89,7 @@ dirigeant . indépendant . PL . métier . santé:
         applicable si: par défaut
     vétérinaire . par défaut: non
 
-dirigeant . indépendant . PL . métier . juridique:
+indépendant . PL . métier . juridique:
   titre: Professions juridiques et judicaires
   une possibilité:
     - avocat
@@ -128,12 +128,12 @@ dirigeant . indépendant . PL . métier . juridique:
         applicable si: par défaut
     officier . par défaut: non
 
-dirigeant . indépendant . PL . métier . expert-comptable:
+indépendant . PL . métier . expert-comptable:
   métier: expert-comptable, commissaire aux comptes
   description: |
     Les experts comptables et les commissaires aux comptes cotisent auprès de la CAVEC pour la retraite et la prévoyance.
 
-dirigeant . indépendant . PL . métier . agents généraux d'assurances:
+indépendant . PL . métier . agents généraux d'assurances:
   experimental: oui
   description: |
     Les agents généraux d'assurances cotisent auprès de la CAVAMAC pour la retraite et la prévoyance.
@@ -142,7 +142,7 @@ dirigeant . indépendant . PL . métier . agents généraux d'assurances:
     par défaut:
       non applicable si: oui
 
-dirigeant . indépendant . PL . régime général:
+indépendant . PL . régime général:
   description: |
     Les professions libérales non règlementées affiliées au régime général
     bénéficient de la même protection sociale que les artisans et commerçants.
@@ -154,7 +154,7 @@ dirigeant . indépendant . PL . régime général:
     - CIPAV = non
     - entreprise . activités . libérale . réglementée = non
 
-dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire:
+indépendant . PL . régime général . taux spécifique retraite complémentaire:
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite
     complémentaire ?
   par défaut: non
@@ -172,8 +172,8 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
   références:
     Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
 
-dirigeant . indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
-  remplace: cotisations et contributions . retraite complémentaire
+indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
   formule:
     barème:
       assiette: assiette des cotisations
@@ -185,9 +185,9 @@ dirigeant . indépendant . PL . régime général . taux spécifique retraite co
           plafond: 4
     arrondi: oui
 
-dirigeant . indépendant . PL . maladie:
+indépendant . PL . maladie:
   non applicable si: régime général
-  remplace: cotisations et contributions . maladie
+  remplace: cotisations et contributions . cotisations . maladie
   unité: €/an
   produit:
     - valeur: assiette des cotisations
@@ -210,7 +210,7 @@ dirigeant . indépendant . PL . maladie:
           - plafond: 110%
             taux: 6.5%
 
-dirigeant . indépendant . PL . cotisations caisse de retraite:
+indépendant . PL . cotisations caisse de retraite:
   non applicable si:
     # Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
     toutes ces conditions:
@@ -221,8 +221,8 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
   formule:
     somme:
-      - cotisations et contributions . retraite de base
-      - cotisations et contributions . retraite complémentaire
-      - cotisations et contributions . invalidité et décès
-      - cotisations et contributions . PCV
+      - cotisations et contributions . cotisations . retraite de base
+      - cotisations et contributions . cotisations . retraite complémentaire
+      - cotisations et contributions . cotisations . invalidité et décès
+      - cotisations et contributions . cotisations . PCV
     arrondi: oui

@@ -12,9 +12,9 @@ entreprise . chiffre d'affaires:
     pendant votre exercice comptable** (un an) : CA = prix de vente x quantités
     vendues.
   somme:
-    - dirigeant . rémunération . nette . après impôt
-    - dirigeant . rémunération . impôt
-    - dirigeant . rémunération . cotisations
+    - indépendant . rémunération . nette . après impôt
+    - indépendant . rémunération . impôt
+    - indépendant . rémunération . cotisations
     - charges
     - applicable si: imposition . IS
       somme:
@@ -215,15 +215,11 @@ entreprise . résultat fiscal . rémunération dirigeant déductible:
     déductibles d’impôt.
   variations:
     - si: imposition . IS
-      alors: dirigeant . rémunération . totale
-    # Note : le cas de dirigeant AS à l'IR n'est pas géré
-    # - si: dirigeant . assimilé salarié
-    #   alors: 0€/an
+      alors: indépendant . rémunération . totale
     - sinon:
         # TNS dans entreprise à l'IR
-        valeur: dirigeant . indépendant . cotisations et contributions
-        abattement: dirigeant . indépendant . cotisations et contributions . non
-          déductibles
+        valeur: indépendant . cotisations et contributions
+        abattement: indépendant . cotisations et contributions . non déductibles
 
 entreprise . exercice:
   avec:

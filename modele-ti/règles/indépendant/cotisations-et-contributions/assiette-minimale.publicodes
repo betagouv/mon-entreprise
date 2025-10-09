@@ -1,0 +1,78 @@
+indépendant . assiette minimale:
+  non applicable si:
+    une de ces conditions:
+      - situation personnelle . RSA
+      - entreprise . activités . saisonnière
+  valeur: oui
+  description: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+    Les cotisations pour les indemnités journalières, retraite de base,
+    invalidité-décès et pour la formation ne sont plus calculées selon le revenu du
+    chef d’entreprise mais selon une « assiette » (montant retenu qui sert de base au
+    calcul d’un impôt ou d’une taxe).
+
+    Les cotisations minimales ne s’appliquent pas si vous bénéficiez du RSA ou de la
+    prime d’activité.
+  références:
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+
+indépendant . assiette minimale . maladie:
+  description: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  produit:
+    - PSS proratisé
+    - 40%
+  unité: €/an
+  arrondi: oui
+  références:
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+
+indépendant . assiette minimale . invalidité et décès:
+  description: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  produit:
+    - plafond sécurité sociale
+    - 11.5%
+  unité: €/an
+  arrondi: oui
+  références:
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+    Article L632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951125
+    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+
+indépendant . assiette minimale . retraite:
+  description: La cotisation minimale de retraite de base permet de valider 3
+    trimestres de retraite, quel que soit le revenu.
+  variations:
+    - si: date < 01/2023
+      alors:
+        produit:
+          - plafond sécurité sociale
+          - 11.5%
+    - si: entreprise . durée d'activité cette année < 90 jour
+      alors: 0
+    - sinon: 450 heure/an * SMIC . horaire . début d'année
+  unité: €/an
+  arrondi: oui
+  références:
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-cotisations/cotisations-minimales/
+
+indépendant . assiette minimale . retraite . en 2022:
+  description: |
+    L’assiette minimale de 11,50 % n’était pas suffisante pour valider 3 trimestres.
+    Par conséquent cette assiette minimale a été révisée en cours d’année et sera
+    appliquée de manière rétroactive à compter du 1er janvier 2022.
+
+    L’assiette minimale est de 4 758 € pour 2022 uniquement. Depuis 2023, l’assiette
+    minimale est repassée à 11,5 % du PASS.
+  remplace:
+    références à: assiette minimale . retraite
+    sauf dans: cotisations et contributions . cotisations . invalidité et décès
+  applicable si:
+    toutes ces conditions:
+      - date >= 01/2022
+      - date < 01/2023
+  valeur: 4758 €/an
