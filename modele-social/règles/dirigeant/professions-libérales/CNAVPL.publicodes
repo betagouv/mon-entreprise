@@ -140,12 +140,9 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
             À quelle proportion du revenu le conjoint cotise-t-il pour le régime de
             base ?
   par défaut: "'quart'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - quart
-        - moitié
+  une possibilité:
+    - quart
+    - moitié
 
   avec:
     moitié:
