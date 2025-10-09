@@ -70,9 +70,9 @@ indépendant . conjoint collaborateur . assiette:
       formule: assiette = 'revenu avec partage'
       avec:
         assiette gérant:
-          valeur: assiette des cotisations - cotisations . assiette
+          valeur: cotisations et contributions . cotisations . assiette sociale - cotisations . assiette
           remplace:
-            références à: assiette des cotisations
+            références à: cotisations et contributions . cotisations . assiette sociale
             dans:
               - cotisations et contributions . cotisations . retraite de base
               - cotisations et contributions . cotisations . retraite complémentaire
@@ -105,11 +105,11 @@ indépendant . conjoint collaborateur . cotisations:
         - si: assiette . pourcentage . moitié
           alors:
             produit:
-              - assiette des cotisations
+              - cotisations et contributions . cotisations . assiette sociale
               - 50%
         - sinon:
             produit:
-              - assiette des cotisations
+              - cotisations et contributions . cotisations . assiette sociale
               - 1 / 3
 
     indemnités journalières maladie:
@@ -122,19 +122,19 @@ indépendant . conjoint collaborateur . cotisations:
     invalidité et décès:
       valeur: cotisations et contributions . cotisations . invalidité et décès
       contexte:
-        assiette des cotisations: assiette
+        cotisations et contributions . cotisations . assiette sociale: assiette
         assiette . revenu avec partage: non
 
     retraite complémentaire:
       valeur: cotisations et contributions . cotisations . retraite complémentaire
       contexte:
-        assiette des cotisations: assiette
+        cotisations et contributions . cotisations . assiette sociale: assiette
         assiette . revenu avec partage: non
 
     retraite de base:
       valeur: cotisations et contributions . cotisations . retraite de base
       contexte:
-        assiette des cotisations: assiette
+        cotisations et contributions . cotisations . assiette sociale: assiette
         assiette . revenu avec partage: non
 
 indépendant . conjoint collaborateur . notification exonérations non pris en compte:

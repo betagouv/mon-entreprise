@@ -60,3 +60,7 @@ indépendant . IJSS . imposable:
     - allocation journalière du proche aidant (AJPA, versée par la CAF)
   par défaut: 0 €/an
   unité: €/an
+
+indépendant . IJSS . après abattement:
+  valeur: IJSS . montant
+  abattement: 26%

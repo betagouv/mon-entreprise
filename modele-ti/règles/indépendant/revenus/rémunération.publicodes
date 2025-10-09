@@ -45,7 +45,7 @@ indépendant . rémunération . impôt:
   contexte:
     paramètres . impôt . revenu imposable: rémunération . nette . imposable
     paramètres . impôt . revenu d'activité:
-      applicable si: entreprise . imposition = 'IS'
+      applicable si: entreprise . imposition . IS
       valeur: rémunération . nette . imposable
     paramètres . impôt . abattement revenu net global: cotisations facultatives . déductibles
 
