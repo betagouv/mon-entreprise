@@ -37,12 +37,17 @@ dirigeant . rémunération . nette . imposable:
 
 dirigeant . rémunération . impôt:
   titre: impôt sur le revenu
+  description: |
+    Montant de l’impôt sur le revenu concernant :
+    - les rémunérations de dirigeant des entreprises à l’impôt sur les sociétés,
+    - les bénéfices des entreprises individuelles à l’impôt sur le revenu,
   valeur: impôt . montant
   contexte:
-    impôt . revenu imposable: rémunération . nette . imposable
-    impôt . barème standard . revenu d'activité:
+    paramètres . impôt . revenu imposable: rémunération . nette . imposable
+    paramètres . impôt . revenu d'activité:
       applicable si: entreprise . imposition = 'IS'
       valeur: rémunération . nette . imposable
+    paramètres . impôt . abattement revenu net global: dirigeant . indépendant . cotisations facultatives . déductibles
 
 dirigeant . rémunération . nette . après impôt:
   titre: Revenu après impôt
