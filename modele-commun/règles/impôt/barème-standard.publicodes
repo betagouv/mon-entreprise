@@ -4,17 +4,14 @@ impôt . barème standard:
     Impôt sur le revenu - Calcul de l'impôt: https://www.service-public.fr/particuliers/vosdroits/F34328
     Comment calculer votre impôt d'après le barème de l'impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/gerer-mon-impot-sur-le-revenu/comment-calculer-votre-impot-dapres-le-bareme-de-limpot
 
-impôt . barème standard . revenu d'activité:
-  par défaut: 0 €/an
-
 impôt . barème standard . revenu d'activité abattu:
   description: |
     Dans le cas général, l’impôt est calculé après l’application d’un abattement
     forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
     *frais réels*, qui viendront remplacer ce forfait par défaut.
-  valeur: revenu d'activité
+  valeur: paramètres . impôt . revenu d'activité
   abattement:
-    valeur: 10% * revenu d'activité
+    valeur: 10% * paramètres . impôt . revenu d'activité
     plafond:
       variations:
         - si: date >= 01/2025
@@ -56,7 +53,7 @@ impôt . barème standard . revenu brut global:
 
 impôt . barème standard . revenu net global:
   valeur: revenu brut global
-  abattement: dirigeant . indépendant . cotisations facultatives . déductibles
+  abattement: paramètres . impôt . abattement revenu net global
 
 impôt . barème standard . revenu net imposable:
   description: |
@@ -239,7 +236,7 @@ impôt . barème standard . CEHR:
       - si: foyer fiscal . situation de famille = 'couple'
         alors:
           barème:
-            assiette: revenu imposable
+            assiette: paramètres . impôt . revenu imposable
             tranches:
               - taux: 0%
                 plafond: 500000 €/an
@@ -248,7 +245,7 @@ impôt . barème standard . CEHR:
               - taux: 4%
       - sinon:
           barème:
-            assiette: revenu imposable
+            assiette: paramètres . impôt . revenu imposable
             tranches:
               - taux: 0%
                 plafond: 250000 €/an
