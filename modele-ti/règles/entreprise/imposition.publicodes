@@ -225,7 +225,7 @@ entreprise . imposition . IS . résultat net:
   somme:
     - chiffre d'affaires
     - (- charges)
-    - (- dirigeant . rémunération . totale)
+    - (- indépendant . rémunération . totale)
     - (- montant)
   par défaut: 0€
 
@@ -252,7 +252,7 @@ entreprise . imposition . régime . micro-entreprise:
   valeur: régime = 'micro-entreprise'
   question: Avez-vous opté pour le régime micro-fiscal ?
   par défaut: non
-  rend non applicable: dirigeant . indépendant . cotisations facultatives
+  rend non applicable: indépendant . cotisations facultatives
   références:
     Régime micro-fiscal: https://entreprendre.service-public.fr/vosdroits/F23267
     "Changement de régime d’imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition

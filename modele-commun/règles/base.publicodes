@@ -11,18 +11,21 @@ plafond sécurité sociale:
       alors: 3666 €/mois
     - sinon: 3428 €/mois
   références:
-    Montants du plafond de Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
-  note: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par
-    rapport à 2020.
+    Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
 
   avec:
+    annuel:
+      acronyme: PASS
+      valeur: plafond sécurité sociale
+      unité: €/an
+
     horaire:
       acronyme: PHSS
       valeur: plafond sécurité sociale / 1607 heure/an
       arrondi: oui
       unité: €/heure
       références:
-        Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
+        Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
         Article D242-19 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033516173&cidTexte=LEGITEXT000006073189
 
     journalier:
@@ -31,7 +34,7 @@ plafond sécurité sociale:
       arrondi: oui
       unité: €/jour
       références:
-        Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
+        Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
         Article D242-17 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006736124
 
     N-1:
