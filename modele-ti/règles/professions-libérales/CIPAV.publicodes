@@ -74,7 +74,7 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
     avant 2023:
       privé: oui
       applicable si: date < 01/2023
-      non applicable si: exonération incapacité
+      non applicable si: CNAVPL . exonération incapacité
       unité: €/an
       variations:
         - si: classe = 'Classe A'
@@ -119,16 +119,6 @@ dirigeant . indépendant . PL . CIPAV . retraite complémentaire:
           - montant: "'Classe H'"
       références:
         Guide Cipav 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
-
-dirigeant . indépendant . PL . CIPAV . exonération incapacité:
-  déprécié: oui
-  applicable si:
-    toutes ces conditions:
-      - date < 01/2023
-      - CNAVPL . exonération incapacité
-
-dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation:
-  déprécié: oui
 
 dirigeant . indépendant . PL . CIPAV . invalidité et décès:
   remplace: cotisations et contributions . invalidité et décès

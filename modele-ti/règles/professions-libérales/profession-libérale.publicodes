@@ -128,12 +128,6 @@ dirigeant . indépendant . PL . métier . juridique:
         applicable si: par défaut
     officier . par défaut: non
 
-dirigeant . indépendant . PL . métier . avocat:
-  déprécié: oui
-  note:
-    Utiliser `dirigeant . indépendant . PL . métier . juridique . avocat` à la
-    place
-
 dirigeant . indépendant . PL . métier . expert-comptable:
   métier: expert-comptable, commissaire aux comptes
   description: |
@@ -215,32 +209,6 @@ dirigeant . indépendant . PL . maladie:
             taux: 4%
           - plafond: 110%
             taux: 6.5%
-
-dirigeant . indépendant . PL . cotisations Urssaf:
-  remplace: cotisations et contributions . Urssaf
-  description: |
-    Les cotisations recouvrées par l'Urssaf, qui servent au financement
-    de la sécurité sociale (assurance maladie, allocations familiales,
-    dépendance).
-  formule:
-    somme:
-      - cotisations et contributions . CSG-CRDS
-      - cotisations et contributions . maladie
-      - cotisations et contributions . indemnités journalières maladie
-      - cotisations et contributions . allocations familiales
-      - cotisations et contributions . formation professionnelle
-      - PAMC . CURPS
-      - applicable si:
-          # Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
-          toutes ces conditions:
-            - CIPAV
-            - date >= 01/2023
-        somme:
-          - cotisations et contributions . retraite de base
-          - cotisations et contributions . retraite complémentaire
-          - cotisations et contributions . invalidité et décès
-    arrondi: oui
-  déprécié: oui
 
 dirigeant . indépendant . PL . cotisations caisse de retraite:
   non applicable si:
