@@ -1,5 +1,5 @@
 {
-	"name": "modele-social-as",
+	"name": "modele-as",
 	"version": "0.0.1",
 	"description": "Les règles publicodes du système social français pour les dirigeants assimilés salariés.",
 	"type": "module",
@@ -9,7 +9,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/betagouv/mon-entreprise.git",
-		"directory": "modele-social-as"
+		"directory": "modele-as"
 	},
 	"bugs": "https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%F0%9F%93%95+l%C3%A9gislation%22",
 	"homepage": "https://mon-entreprise.urssaf.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul",

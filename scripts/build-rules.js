@@ -5,7 +5,11 @@ import { getModelFromSource } from '@publicodes/tools/compilation'
 import Engine from 'publicodes'
 
 const outDir = './dist'
-const rules = getModelFromSource(path.resolve('./règles'), {
+const sources = [path.resolve('./règles')]
+if (!path.resolve('./').endsWith('/modele-social')) {
+	sources.push(path.resolve('../modele-commun/règles'))
+}
+const rules = getModelFromSource(sources, {
 	verbose: true,
 })
 

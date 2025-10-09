@@ -14,7 +14,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
 
     Une cotisation maladie majorée sera en revanche applicable.
   question: Votre résidence fiscale est-elle située hors de France ?
-  rend non applicable: assimilé salarié . cotisations . CSG-CRDS
   par défaut: non
   références:
     urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-taux-de-cotisations/la-csg-crds/qui-en-est-redevable.html

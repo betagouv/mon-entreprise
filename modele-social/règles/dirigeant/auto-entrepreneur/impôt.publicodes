@@ -29,7 +29,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire . seuil dépassé:
   type: notification
-  valeur: impôt . foyer fiscal . revenu fiscal de référence > 27519 €/an
+  valeur: entreprise . imposition . régime . micro-entreprise . revenu abattu > 27519 €/an
   description: |
     Le versement libératoire n’est pas disponible si le revenu fiscal de
     référence de votre ménage est supérieur à 27 519 € par part en 2018
