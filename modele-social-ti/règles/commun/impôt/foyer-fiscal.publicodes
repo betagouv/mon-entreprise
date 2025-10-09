@@ -1,0 +1,97 @@
+# TODO: "foyer fiscal" should be in its own top level namespace, but we put it
+# in the "impôt" namespace to have a better questions ordering
+impôt . foyer fiscal:
+  applicable si: méthode de calcul . barème standard
+  valeur: oui
+  icônes: 👨‍👩‍👧‍👦
+
+impôt . foyer fiscal . autres revenus imposables:
+  question: Quel est le montant total des autres revenus imposables du foyer fiscal ?
+  description: |
+    Renseignez ici le montant des autres revenus imposables de votre foyer, en y
+    appliquant les abattements :
+    - abattement forfaitaire de 10 % ou frais réels pour les salaires et
+    rémunérations de dirigeants d’entreprises soumises à l’impôt sur les sociétés ;
+    - abattement forfaitaire de 40 % sur les dividendes soumis au barème standard de
+    l’impôt sur le revenu (ne pas inclure les dividendes soumis au prélèvement 
+    forfaitaire unique) ;
+    - abattement forfaitaire micro-fiscal pour les revenus d’auto-entreprise et les
+    bénéfices soumis au régime micro-fiscal.
+  par défaut: 0 €/an
+
+impôt . foyer fiscal . situation de famille:
+  question: Quelle est votre situation familiale ?
+  une possibilité:
+    - célibataire:
+        titre: Célibataire / Divorcé(e) / Union libre
+    - couple:
+        titre: Marié(e)s / Pacsé(e)s
+    - veuf:
+        titre: Veuf(ve)
+  par défaut: "'célibataire'"
+
+impôt . foyer fiscal . enfants à charge:
+  question: Combien d’enfants sont à charge du foyer fiscal ?
+  par défaut: 0 enfant
+
+impôt . foyer fiscal . parent isolé:
+  par défaut: non
+  question:
+    variations:
+      - si: impôt . foyer fiscal . enfants à charge > 1
+        alors:
+          texte: Vivez-vous seul avec vos enfants ?
+      - sinon:
+          texte: Vivez-vous seul avec votre enfant ?
+  applicable si:
+    toutes ces conditions:
+      - enfants à charge > 0 enfant
+      - situation de famille = 'célibataire'
+
+impôt . foyer fiscal . nombre de parts:
+  unité: part
+  formule:
+    somme:
+      - principales
+      - rattachées
+      - majoration personne seule avec enfant
+      - majoration personne veuve avec enfant
+
+impôt . foyer fiscal . nombre de parts . principales:
+  formule:
+    variations:
+      - si: situation de famille = 'couple'
+        alors: 2 part
+      - sinon: 1 part
+
+impôt . foyer fiscal . nombre de parts . rattachées:
+  variations:
+    - si: enfants à charge <= 2 enfant
+      alors: 0.5 part/enfant * enfants à charge
+    - sinon: (1 part/enfant * enfants à charge) - 1 part
+
+impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
+  description: >-
+    Les contribuables célibataires, divorcés ou séparés, qui vivent seuls et
+    supportent effectivement la charge d’un ou plusieurs enfants bénéficient
+    d’une demie-part supplémentaire de quotient familial.
+  applicable si: parent isolé
+  formule: 0.5 part
+  références:
+    Bofip: https://bofip.impots.gouv.fr/bofip/2028-PGP.html/identifiant=BOI-IR-LIQ-10-20-20-10-20140326#Majoration_pour_les_personn_22
+
+impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
+  description: >-
+    Une personne veuve avec des enfants à charge bénéficie d’une part
+    supplémentaire pour le calcul du quotient familial, ce qui correspond au
+    maintient de la part de la personne décédée.
+
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d’aucune
+    majoration.
+  applicable si:
+    toutes ces conditions:
+      - situation de famille = 'veuf'
+      - enfants à charge >= 1 enfant
+  formule: 1 part
+  références:
+    Quotient familial d’une personne veuve: https://www.service-public.fr/particuliers/vosdroits/F35127

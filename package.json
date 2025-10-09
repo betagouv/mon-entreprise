@@ -9,6 +9,7 @@
 	"workspaces": [
 		"modele-social",
 		"modele-social-as",
+		"modele-social-ti",
 		"exoneration-covid",
 		"api",
 		"site",

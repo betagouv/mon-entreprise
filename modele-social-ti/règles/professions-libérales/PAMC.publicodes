@@ -1,0 +1,319 @@
+dirigeant . indépendant . PL . PAMC:
+  applicable si:
+    une de ces conditions:
+      - toutes ces conditions:
+          - métier = 'santé . médecin'
+          - métier . santé . médecin . secteur != 'non conventionné'
+      - métier = 'santé . sage-femme'
+      - métier = 'santé . chirurgien-dentiste'
+      - métier = 'santé . auxiliaire médical'
+
+  rend non applicable:
+    - conjoint collaborateur
+    - dirigeant . indépendant . revenus étrangers
+    - dirigeant . indépendant . cotisations et contributions . maladie
+      domiciliation fiscale étranger
+    - assiette minimale . maladie
+
+  formule: oui
+
+dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée:
+  question: |
+    Quel est la part de votre chiffre d’affaires liée à une activité non
+    conventionnée (estimation) ?
+  par défaut: 0%
+  suggestions:
+    10%: 10%
+    30%: 30%
+  description: |
+    Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
+    les catégories suivantes :
+
+    - Honoraires tirés des actes remboursables (y compris les
+    dépassements d’honoraires et les frais de déplacement figurant sur le relevé
+    SNIR)
+
+    - Honoraires issus de rétrocessions concernant les actes remboursables
+    perçues en qualité de remplaçant
+
+    - Toutes les rémunérations forfaitaires versées par l’assurance maladie
+    (aide à la télétransmission, indemnisation, indemnisation de la formation
+    continue, prime à l’installation, ...)
+
+dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification:
+  type: notification
+  sévérité: avertissement
+  formule: proportion recette activité non conventionnée > 100%
+  description: |
+    La proportion ne peut pas être supérieure à 100%
+
+dirigeant . indépendant . PL . PAMC . remplaçant:
+  question:
+    texte: Au {{ période . début d'année }}, exerciez-vous votre activité
+      exclusivement en tant que remplaçant ?
+  description: |
+    Les practicien et auxiliaire médical exerçant une activité de remplacement ne
+    sont pas redevables de la contribution aux unions régionales des professionnels
+    de santé (CURPS).
+  par défaut: non
+  avec:
+    offre simplifiée médecins:
+      toutes ces conditions:
+        - entreprise . chiffre d'affaires < 19000 €/an
+        - métier = 'santé . médecin'
+      type: notification
+      description:
+        Vous exercez une activité de médecin exclusivement en tant que
+        remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
+        [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
+      références:
+        Site de l’offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
+
+dirigeant . indépendant . PL . PAMC . CURPS:
+  titre: Contribution aux unions régionales des professionnels de santé
+  remplace: cotisations et contributions . contributions spéciales
+  description: |
+    Les professions libérales de santé sont représentées par des unions
+    régionales des professionnels de santé qui contribuent à l’organisation et à
+    l’évolution de l’offre de santé au niveau régional, notamment à la
+    préparation du projet régional de santé et à sa mise en œuvre.
+
+    Ces unions sont financées par une contribution recouvrée par l’Urssaf : la
+    contribution aux unions régionales des professionnels de santé (Curps).
+  note: |
+    Les remplaçants, quelle que soit leur activité, ne sont pas redevables de la
+    Curps. Si la Curps est présente sur leur échéancier de cotisations, ils sont
+    invités à se rapprocher de leur Urssaf pour que leur dossier cotisant soit
+    régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
+  acronyme: CURPS
+  applicable si:
+    toutes ces conditions:
+      - entreprise . date de création <= période . début d'année
+      - revenu professionnel > 0
+  non applicable si:
+    une de ces conditions:
+      - métier . santé . médecin . secteur = 'non conventionné'
+      - remplaçant
+  formule:
+    produit:
+      - assiette des cotisations
+      - variations:
+          - si: métier = 'santé . médecin'
+            alors: 0.5%
+          - si: métier = 'santé . chirurgien-dentiste'
+            alors: 0.3%
+          - sinon: 0.1%
+    plafond: 0.50% * plafond sécurité sociale
+    arrondi: oui
+    unité: €/an
+  références:
+    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
+
+dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
+  non applicable si: métier . santé . médecin . secteur = 'S1'
+  question: Quels est votre dépassement honoraires moyen (estimation) ?
+  par défaut: 0%
+
+dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
+  description: |
+    Les revenus conventionnés sont ceux correspondant aux recettes tirées des
+    honoraires et des rémunérations forfaitaires versées par la CPAM.
+  note: |
+    Pour éviter d’avoir à ventiler les charges entre celles issues de
+    l’activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
+    deux comptabilités distinct), on peut le calculer à partir du revenu
+    professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
+    provenant des actes conventionnés.
+  formule:
+    produit:
+      - assiette des cotisations
+      - valeur: 100% - proportion recette activité non conventionnée
+        plancher: 0%
+
+dirigeant . indépendant . PL . PAMC . assiette participation CPAM:
+  description: |
+    Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
+    l’activité conventionnée nets de dépassements d’honoraires.
+
+    Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
+    conventionnée.
+  formule: revenus activité conventionnée / (100% + dépassement d'honoraire moyen)
+  note: |
+    La formule donnée par l’Urssaf est la suivante :
+
+    **revenu de l’activité conventionnée x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires**
+
+    On peut simplififer cette formule en :
+
+    **revenu de l’activité conventionnée / (100% + dépassement d’honoraire moyen)**
+
+    > **Preuve :**
+    >
+    > Si on prends les variables suivantes,
+    > - `h+` : total des honoraires (avec dépassement)
+    > - `h` : honoraires sans dépassement
+    > - `d%` : pourcentage de dépassement d’honoraire moyen
+    >
+    > On a : `h+ = h + h * d% = h * (100% + d%)`
+    > Et : `total des honoraires - total des dépassements d’honoraires = honoraires sans dépassement = h`
+    >
+    > Si on remplace dans la formule de l’assiette participation CPAM, on obtient :
+    > 1. `revenu de l’activité conventionnée * h / h+`
+    > 2. `revenu de l’activité conventionnée * h / (h * (100% + d%))`
+    > 3. `revenu de l’activité conventionnée / (100% + d%)`
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+
+dirigeant . indépendant . PL . PAMC . maladie:
+  # remplace: PL . maladie doesn't work because of https://github.com/publicodes/publicodes/issues/55
+  # So we need to put this bloc before PL . maladie, in order for this replace to take precedence over the next (the first replace of the file win it all)
+  remplace: cotisations et contributions . maladie
+  titre: maladie (après participation CPAM)
+  somme:
+    - PL . maladie
+    - contribution additionnelle
+    - (- participation CPAM)
+
+dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
+  non applicable si: métier . santé . médecin . secteur = 'S2'
+  produit:
+    - assiette participation CPAM
+    - PL . maladie . taux - 0.1%
+  arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
+  formule:
+    produit:
+      - (assiette des cotisations - revenus activité conventionnée)
+      - taux
+    arrondi: oui
+    avec:
+      taux:
+        taux progressif:
+          assiette: assiette des cotisations
+          multiplicateur: plafond sécurité sociale
+          tranches:
+            - plafond: 40%
+              taux: 3.25%
+            - plafond: 110%
+              taux: 9.75%
+
+dirigeant . indépendant . PL . PAMC . allocations familiales:
+  applicable si: métier . santé . médecin . secteur = 'S1'
+  titre: allocations familiales (après participation CPAM)
+  remplace:
+    références à: cotisations et contributions . allocations familiales
+    sauf dans: participation CPAM
+  formule:
+    valeur: cotisations et contributions . allocations familiales
+    abattement: participation CPAM
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html
+
+dirigeant . indépendant . PL . PAMC . allocations familiales . participation CPAM:
+  formule:
+    produit:
+      - cotisations et contributions . allocations familiales
+      - grille:
+          assiette: assiette participation CPAM
+          multiplicateur: plafond sécurité sociale
+          tranches:
+            - montant: 100%
+              plafond: 140%
+            - montant: 75%
+              plafond: 250%
+            - montant: 60%
+    arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+
+dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
+  applicable si: métier = 'santé . chirurgien-dentiste'
+  titre: assiette participation CPAM (chirurgien dentiste)
+  remplace: assiette participation CPAM
+  formule:
+    produit:
+      - revenus activité conventionnée
+      - 1 - taux Urssaf / (1 + taux Urssaf)
+  références:
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
+  description: |
+    Le « taux Urssaf » permet de calculer la part de votre cotisation d’assurance
+    maladie-maternité prise en charge par la CPAM.
+
+    Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
+    est issu des données de votre Relevé individuel d’activité et de
+    prescriptions (RIAP).
+
+    Plus le taux est faible, plus la participation CPAM est importante et donc
+    la part à la charge du praticien est faible.
+
+    ## Calcul du taux
+
+    La formule de calcul du taux de dépassement est la suivante :
+
+    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
+    > remboursables actes + montants remboursés forfaits CMU)
+  question: Quel est votre « taux Urssaf » ?
+  unité: ''
+  par défaut: 1
+  références:
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
+  formule: taux Urssaf >= 100
+  type: notification
+  sévérité: avertissement
+  description: Le taux Urssaf doit être inférieur à 100
+
+dirigeant . indépendant . PL . PAMC . participation CPAM:
+  titre: Participation assurance maladie
+  description: |
+    Les professionnels de santé conventionnés bénéficient d’une prise en charge
+    d’une partie de leur cotisations par l’Assurance Maladie.
+  formule:
+    somme:
+      - PAMC . allocations familiales . participation CPAM
+      - PAMC . maladie . participation CPAM
+      - CARMF . ASV . participation CPAM
+      - CARPIMKO . ASV . participation CPAM
+      - CARCDSF . chirurgien-dentiste . PCV . participation CPAM
+      - CARCDSF . sage-femme . PCV . participation CPAM
+      - CARMF . participation CPAM retraite
+    arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+
+dirigeant . indépendant . PL . PAMC . IJSS:
+  remplace: indépendant . IJSS . imposable
+  rend non applicable: indépendant . IJSS
+  titre: indemnités journalières de sécurité sociale
+  description: >-
+    Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le
+    cas de congé maternité/paternité/adoption.
+
+
+    La CSG-CRDS est automatiquement précomptée par l’Assurance maladie lors du
+    versement. Leur montant est donc retranché à l’assiette pour le calcul de la
+    CSG-CRDS restante dûe.
+
+
+    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale
+    versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus
+    de remplacement.
+
+    Note : Les prestations d’invalidité versées par les régimes d’invalidité-décès
+    ne sont pas concernées.
+
+  question: Quel est le montant des indemnités journalières de maternité ou
+    paternité perçu au titre de votre activité libérale ?
+  par défaut: 0 €/an
