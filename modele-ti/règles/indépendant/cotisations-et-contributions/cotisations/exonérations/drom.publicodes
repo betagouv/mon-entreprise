@@ -1,0 +1,18 @@
+indépendant . cotisations et contributions . cotisations . exonérations . DROM:
+  applicable si: établissement . commune . département . outre-mer
+  valeur: oui
+  rend non applicable: exonérations . ACRE
+  type: notification
+  sévérité: avertissement
+  titre: exonération DROM
+  résumé: |
+    Ce simulateur ne prend pas en compte les exonérations DROM.
+  description: |
+    En début d’activité pendant 24 mois, les indépendants dont l'entreprise est localisée dans les DOM bénéficient, sous conditions de revenus, d’une exonération de certaines cotisations et de contributions sociales.
+
+    Il existe également des exonérations et des abattements en régime de croisière (à partir de la troisième année).
+
+    Ce simulateur ne prend pas en compte ces exonérations pour le moment.
+  références:
+    "Exonérations de début d'activité": https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/travailleurs-independants-en-out/debut-dactivite--cotisations-et.html
+    'Exonérations et abattements en régime de croisière': https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/travailleurs-independants-en-out/exonerations-et-abattements-en-r.html

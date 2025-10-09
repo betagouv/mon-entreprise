@@ -1,4 +1,4 @@
-dirigeant . indépendant . cotisations facultatives:
+indépendant . cotisations facultatives:
   question: Avez-vous souscrit à des contrats de prévoyance et / ou de retraite
     complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
   description: |
@@ -14,12 +14,12 @@ dirigeant . indépendant . cotisations facultatives:
     Je cotise à un contrat Madelin. Quel est mon avantage fiscal ?: https://www.impots.gouv.fr/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     Comment fonctionne le plan d’épargne retraite (PER) individuel ?: https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne
 
-dirigeant . indépendant . cotisations facultatives . montant:
+indépendant . cotisations facultatives . montant:
   somme:
     - contrats madelin
     - PER
 
-dirigeant . indépendant . cotisations facultatives . déductibles:
+indépendant . cotisations facultatives . déductibles:
   titre: Part déductible fiscalement
   formule:
     somme:
@@ -30,11 +30,11 @@ dirigeant . indépendant . cotisations facultatives . déductibles:
           - contrats madelin . retraite
         plafond: plafond retraite complémentaire
 
-dirigeant . indépendant . cotisations facultatives . non déductibles:
+indépendant . cotisations facultatives . non déductibles:
   titre: Part non déductible fiscalement
   formule: montant - déductibles
 
-dirigeant . indépendant . cotisations facultatives . PER:
+indépendant . cotisations facultatives . PER:
   description: Le PER individuel est ouvert à tous. Vous pouvez le souscrire
     auprès d’un établissement financier ou d’un organisme d’assurance. Ce
     nouveau plan succède au PERP et au contrat Madelin, qui ne seront plus
@@ -52,13 +52,13 @@ dirigeant . indépendant . cotisations facultatives . PER:
     Plan d’épargne retraite (PER): https://www.service-public.fr/particuliers/vosdroits/F34982
     Comment fonctionne le plan d’épargne retraite (PER) individuel ?: https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne
 
-dirigeant . indépendant . cotisations facultatives . contrats madelin:
+indépendant . cotisations facultatives . contrats madelin:
   titre: contrats Madelin
   somme:
     - prévoyance
     - retraite
 
-dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance:
+indépendant . cotisations facultatives . contrats madelin . prévoyance:
   titre: Prévoyance complémentaire
   question: Quel est le montant que vous versez pour vos contrats Madelin de
     prévoyance complémentaire (santé, perte d’emploi subie) ?
@@ -73,7 +73,7 @@ dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoy
     Article 154 bis-0 A du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288747
   par défaut: 50 €/mois
 
-dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
+indépendant . cotisations facultatives . plafond prévoyance:
   unité: €/an
   formule:
     somme:
@@ -94,7 +94,7 @@ dirigeant . indépendant . cotisations facultatives . plafond prévoyance:
     Normalement c’est le résultat fiscal qui devrait être utilisé pour l’assiette du
     plafond, mais on utilise le revenu professionnel pour éviter un cycle.
 
-dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite:
+indépendant . cotisations facultatives . contrats madelin . retraite:
   question: Quel est le montant que vous versez pour votre contrat Madelin
     retraite complémentaire ?
   description: |
@@ -107,7 +107,7 @@ dirigeant . indépendant . cotisations facultatives . contrats madelin . retrait
     Article 154 bis-0 A du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288747
   par défaut: 0 €/an
 
-dirigeant . indépendant . cotisations facultatives . plafond retraite complémentaire:
+indépendant . cotisations facultatives . plafond retraite complémentaire:
   unité: €/an
   formule:
     le maximum de:
