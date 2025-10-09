@@ -1,0 +1,17 @@
+paramètres:
+paramètres . impôt:
+paramètres . impôt . revenu imposable:
+  description: |
+    C’est le revenu à prendre en compte pour calculer l’impôt avec un taux moyen
+    d’imposition (neutre ou personnalisé).
+  unité: €/an
+paramètres . impôt . revenu d'activité:
+  description: |
+    C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
+    barème standard et auquel appliquer un abattement forfaitaire de 10 % pour les
+    frais professionnels.
+  par défaut: 0 €/an
+paramètres . impôt . taux neutre applicable:
+  par défaut: non
+paramètres . impôt . abattement revenu net global:
+  par défaut: 0 €/an
