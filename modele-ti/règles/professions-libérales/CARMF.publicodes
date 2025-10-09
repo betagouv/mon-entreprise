@@ -14,15 +14,6 @@ dirigeant . indépendant . PL . CARMF:
     d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
     métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
 
-dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
-  déprécié: oui
-  titre: retraite de base CNAVPL (après participation CPAM)
-  valeur: CNAVPL . retraite
-  abattement: participation CPAM
-
-  avec:
-    participation CPAM: participation CPAM retraite
-
 dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
   applicable si: métier . santé . médecin . secteur = 'S1'
   description: |
