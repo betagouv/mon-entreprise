@@ -1,0 +1,111 @@
+indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité:
+  titre: exonération invalidité
+  acronyme: PI
+  question:
+    variations:
+      - si: indépendant . PL . PAMC #TODO demande Urssaf implémentée sans reflechir : il faudra regarder de plus près le pourquoi du comment de cette variations
+        alors:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
+            retraite ?
+      - sinon:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
+            indépendant ?
+  description: |-
+    Si vous êtes titulaire d’une pension d’invalidité versée par un régime des travailleurs non-salariés
+    non agricoles, vous bénéficiez d’une exonération des cotisations de retraite de base, de
+    retraite complémentaire et maladie.
+
+    Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue.
+    Si vous avez reçu une pension d'invalidité sur l'année complète, alors l'exonération est totale.
+
+  # A faire valider par la CNAV
+  # Vous validez des trimestres de retraite pour chaque trimestre civil de perception d'une pension d'invalidité.
+
+  # Pour que vous puissiez continuer à accumuler des points de retraite complémentaire comme les autres travailleurs,
+  # il vous est attribué des "points gratuits".
+
+  # En règle générale, le nombre de points reçu correspond à la moyenne mensuelle des points cotisés
+  # pendant la période d'activité indépendante avant versement de la pension.
+
+  # > Par exemple, si vous avez cotisé pendant 6 ans et 11 mois pour un total de 588 points,
+  # > le nombre de points gratuits reçu chaque mois sera de : `588 / (6 * 12 + 11) = 7,08`
+
+  par défaut: non
+  rend non applicable: exonérations . ZFU
+  références:
+    Notice RSI (PDF): https://www.secu-independants.fr/fileadmin/mediatheque/Espace_telechargement/Protection_sociale/Depliant_assur_invalidite.pdf#page=8
+    Article D635-2 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966510
+    Article D621-4 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656758
+    Circulaire RSI 2013/004 du 17/01/2013: https://www.legislation.cnav.fr/Documents/circulaire_rsi_2013_004_17012013.pdf#page=24
+    Trimestres assimilés pour le régime de base des indépendants: https://www.legislation.cnav.fr/Pages/expose.aspx?Nom=independant_regime_base_duree_assurance_trimestre_assimile_ex
+
+  avec:
+    durée:
+      question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+      par défaut: 12 mois
+      plafond: 12 mois
+      plancher: 1 mois
+      unité: mois
+
+    indemnités journalières maladie:
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      valeur: indemnités journalières maladie
+      remplace:
+        références à: indemnités journalières maladie
+        sauf dans:
+          - cotisations et contributions . cotisations . maladie
+          - cotisations et contributions . cotisations . indemnités journalières maladie .
+            assiette
+      abattement: prorata
+
+    maladie:
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      remplace:
+        références à: maladie
+        sauf dans:
+          - cotisations et contributions . cotisations . maladie . total
+          - cotisations et contributions . cotisations . maladie . taux progressif
+      valeur: maladie
+      abattement: prorata
+
+    profession libérale réglementées hors Urssaf:
+      privé: oui
+      toutes ces conditions:
+        - PL . CNAVPL
+        - une de ces conditions:
+            - PL . CIPAV = non
+            - date < 01/2023
+
+    prorata:
+      valeur: durée / 1 an
+      unité: '%'
+      arrondi: oui
+
+    retraite complémentaire:
+      arrondi: oui
+      remplace: retraite complémentaire
+      valeur: retraite complémentaire
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité
+
+    retraite de base:
+      arrondi: oui
+      non applicable si: prorata < ACRE . prorata sur l'année
+      remplace: retraite de base
+      valeur: retraite de base
+      abattement:
+        valeur: prorata
+        non applicable si:
+          une de ces conditions:
+            - profession libérale réglementées hors Urssaf
+            # l'exonération incapacité est plus avantageuse
+            - PL . CNAVPL . exonération incapacité

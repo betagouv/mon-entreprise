@@ -1,0 +1,30 @@
+indépendant . revenus étrangers:
+  question:
+    Avez-vous perçu des revenus au titre de l’exercice d’une activité non
+    salariée à l’étranger ?
+  description: |
+    Si vous exercez une activité non salariée hors de France, dans un État de
+    l’Union Européenne (UE)\*, de l’Espace Économique Européen (EEE)\** ou en Suisse
+    ou dans un Etat hors UE/EEE/Suisse, avec lequel des dispositions de coordination
+    des régimes de protection sociale s’appliquent, et que l’exercice de votre
+    activité non salariée hors de France a donné lieu à affiliation au régime
+    général des travailleurs indépendants : indiquez le montant de votre revenu
+    établi hors de France.
+
+    En effet, les revenus provenant d’une activité exercée hors de France sont
+    uniquement soumis à cotisations sociales. Ces revenus ne sont pas soumis à la
+    CSG-CRDS.
+
+    \* États de l’UE : Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie,
+    Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande, Italie, Lettonie,
+    Lituanie, Luxembourg, Malte, Pays-Bas, Pologne, Portugal, République tchèque,
+    Roumanie, Slovaquie, Slovénie, Suède.
+
+    \** États l’EEE : Islande, Liechtenstein, Norvège.
+  par défaut: non
+
+indépendant . revenus étrangers . montant:
+  titre: revenus perçu à l’étranger
+  question: Quel est leur montant ?
+  par défaut: 0 €/an
+  unité: €/an

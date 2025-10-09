@@ -1,4 +1,4 @@
-dirigeant . indépendant . conjoint collaborateur:
+indépendant . conjoint collaborateur:
   question: Avez-vous un conjoint collaborateur ?
   description: |
     En tant que collaborateur, le conjoint d'un indépendant verse des cotisations en matière de retraite et d'invalidité-décès et bénéficie en contrepartie de droits propres. Il s'acquitte aussi d'une cotisation indemnités journalières et peut être indemnisé en cas d'arrêt de travail.
@@ -21,7 +21,7 @@ dirigeant . indépendant . conjoint collaborateur:
     secu-independants.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
     service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
 
-dirigeant . indépendant . conjoint collaborateur . assiette:
+indépendant . conjoint collaborateur . assiette:
   titre: Choix assiette
   question: Sur quelle base le conjoint cotise-t-il ?
   description: |
@@ -74,10 +74,10 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
           remplace:
             références à: assiette des cotisations
             dans:
-              - cotisations et contributions . retraite de base
-              - cotisations et contributions . retraite complémentaire
-              - cotisations et contributions . invalidité et décès
-              - dirigeant . indépendant . PL . CNAVPL . retraite
+              - cotisations et contributions . cotisations . retraite de base
+              - cotisations et contributions . cotisations . retraite complémentaire
+              - cotisations et contributions . cotisations . invalidité et décès
+              - PL . CNAVPL . retraite
 
     revenu sans partage:
       description:
@@ -85,7 +85,7 @@ dirigeant . indépendant . conjoint collaborateur . assiette:
         sur une part du revenu professionnel du gérant de l’entreprise.
       formule: assiette = 'revenu sans partage'
 
-dirigeant . indépendant . conjoint collaborateur . cotisations:
+indépendant . conjoint collaborateur . cotisations:
   somme:
     - retraite de base
     - retraite complémentaire
@@ -120,30 +120,30 @@ dirigeant . indépendant . conjoint collaborateur . cotisations:
       arrondi: oui
 
     invalidité et décès:
-      valeur: cotisations et contributions . invalidité et décès
+      valeur: cotisations et contributions . cotisations . invalidité et décès
       contexte:
         assiette des cotisations: assiette
         assiette . revenu avec partage: non
 
     retraite complémentaire:
-      valeur: cotisations et contributions . retraite complémentaire
+      valeur: cotisations et contributions . cotisations . retraite complémentaire
       contexte:
         assiette des cotisations: assiette
         assiette . revenu avec partage: non
 
     retraite de base:
-      valeur: cotisations et contributions . retraite de base
+      valeur: cotisations et contributions . cotisations . retraite de base
       contexte:
         assiette des cotisations: assiette
         assiette . revenu avec partage: non
 
-dirigeant . indépendant . conjoint collaborateur . notification exonérations non pris en compte:
+indépendant . conjoint collaborateur . notification exonérations non pris en compte:
   experimental: oui
   une de ces conditions:
-    - cotisations et contributions . exonérations . âge
-    - cotisations et contributions . exonérations . ZFU
-    - cotisations et contributions . exonérations . ACRE
-    - cotisations et contributions . exonérations . pension invalidité
+    - cotisations et contributions . cotisations . exonérations . âge
+    - cotisations et contributions . cotisations . exonérations . ZFU
+    - cotisations et contributions . cotisations . exonérations . ACRE
+    - cotisations et contributions . cotisations . exonérations . pension invalidité
     - PL . CNAVPL . exonération incapacité
   description: |
     Ce simulateur ne prend pas encore en compte les différentes **exonérations de cotisations** pour les **conjoints collaborateurs** (ACRE, âge, invalidité, incapacité, etc.)
