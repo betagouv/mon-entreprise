@@ -1,18 +1,18 @@
-dirigeant . indépendant . PL . CNBF:
+indépendant . PL . CNBF:
   valeur: oui
   applicable si: métier = 'juridique . avocat'
   description: |
     La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
     sociale des avocats.
   rend non applicable:
-    - cotisations et contributions . indemnités journalières maladie
+    - cotisations et contributions . cotisations . indemnités journalières maladie
     # Applicable mais pas encore supporté
     - conjoint collaborateur
   références:
     Site CNBF: https://www.cnbf.fr
 
-dirigeant . indépendant . PL . CNBF . retraite de base:
-  remplace: cotisations et contributions . retraite de base
+indépendant . PL . CNBF . retraite de base:
+  remplace: cotisations et contributions . cotisations . retraite de base
   formule:
     somme:
       - cotisation forfaitaire
@@ -84,8 +84,8 @@ dirigeant . indépendant . PL . CNBF . retraite de base:
           plafond: 297549 €/an
         - 3.1%
 
-dirigeant . indépendant . PL . CNBF . retraite complémentaire:
-  remplace: cotisations et contributions . retraite complémentaire
+indépendant . PL . CNBF . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
   barème:
     assiette: assiette des cotisations
     multiplicateur: 42507 €/an
@@ -245,9 +245,9 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
           titre: classe 2+
           note: Correspond à la classe C3 pour 2024 et avant.
 
-dirigeant . indépendant . PL . CNBF . RID:
+indépendant . PL . CNBF . RID:
   titre: invalidité et décès
-  remplace: cotisations et contributions . invalidité et décès
+  remplace: cotisations et contributions . cotisations . invalidité et décès
   formule:
     variations:
       - si: entreprise . durée d'activité . en fin d'année < 5 an
