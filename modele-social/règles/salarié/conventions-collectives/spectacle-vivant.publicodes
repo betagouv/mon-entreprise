@@ -62,12 +62,9 @@ salarié . régimes spécifiques . intermittents du spectacle:
       - convention collective . SVP
   question: A quel statut d'intermittent est rattaché l'employé ?
   par défaut: "'technicien'"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - technicien
-        - artiste
+  une possibilité:
+    - technicien
+    - artiste
 
 salarié . régimes spécifiques . intermittents du spectacle . formation professionnelle:
   remplace: formation professionnelle
