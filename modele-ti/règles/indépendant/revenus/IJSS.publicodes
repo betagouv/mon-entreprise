@@ -1,0 +1,62 @@
+indépendant . IJSS:
+  titre: Allocations et indemnités journalières de sécurité sociale
+  description: |
+    Il s’agit des allocations et indemnités journalières versées par votre caisse
+    primaire d’assurance maladie en cas de maladie, maternité, paternité ou
+    adoption, arrêt de travail ou garde d’enfant en lien avec l’épidémie de Covid-19.
+
+    Ces revenus de remplacement sont demandés spécifiquement car ils bénéficient
+    d’un taux réduit de CSG-CRDS.
+
+    Les indemnités complémentaires versées dans le cadre de contrats de prévoyance
+    privés (y compris contrat Madelin) ne sont pas concernées.
+
+    Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont
+    pas concernées.
+
+  question:
+    Avez-vous perçu des indemnités journalières ou allocations de sécurité
+    sociale au titre de votre activité indépendante (maladie, maternité,
+    paternité, adoption) ?
+  par défaut: non
+
+indépendant . IJSS . montant:
+  titre: Montant total
+  question: Quel est le montant brut total de vos allocations et indemnités
+    journalières de sécurité sociale ?
+  description: |
+    Indiquez le montant total brut de vos allocations et indemnités journalières
+    perçues, imposables et non imposables, qui figure sur le relevé de prestations
+    fourni par votre caisse primaire d’assurance maladie.
+
+    Ces revenus de remplacement sont soumis au taux réduit de CSG-CRDS.
+
+    <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
+    - indemnité journalière maladie
+    - allocation forfaitaire de repos maternel
+    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
+    - indemnité de remplacement pour maternité, paternité ou adoption
+  par défaut: 0 €/an
+  unité: €/an
+
+indépendant . IJSS . imposable:
+  titre: part imposable
+  résumé: Uniquement si vous ne relevez pas du régime micro-fiscal
+  question: Quel est le montant brut imposable de vos allocations et indemnités
+    journalières de sécurité sociale ?
+  description: |
+    Indiquez uniquement le montant des allocations et indemnités journalières
+    imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
+    l’exception de celles en lien avec une affection de longue durée.
+
+    Ces indemnités seront déduites de vos revenus d’activité, afin d’être soumises
+    au taux réduit de la CSG-CRDS.
+
+    <p><u>Les revenus de remplacement concernés sont :</u></p>
+    - indemnité journalière maladie
+    - allocation forfaitaire de repos maternel
+    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
+    - indemnité de remplacement pour maternité, paternité ou adoption
+    - allocation journalière du proche aidant (AJPA, versée par la CAF)
+  par défaut: 0 €/an
+  unité: €/an

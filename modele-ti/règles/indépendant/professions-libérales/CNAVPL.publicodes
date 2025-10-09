@@ -1,4 +1,4 @@
-dirigeant . indépendant . PL . CNAVPL:
+indépendant . PL . CNAVPL:
   description: |
     La caisse nationale d'assurance vieillesse des professions libérales est
     l'organisme qui fédère les différentes caisses existantes (Cipav, CARPIMKO,
@@ -7,12 +7,12 @@ dirigeant . indépendant . PL . CNAVPL:
   valeur: oui
   rend non applicable:
     références à: situation personnelle . RSA
-    dans: dirigeant . indépendant . cotisations et contributions
+    dans: cotisations et contributions
   références:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
     Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf
 
-dirigeant . indépendant . PL . CNAVPL . retraite:
+indépendant . PL . CNAVPL . retraite:
   titre: retraite de base
   description: |
     Toutes les professions libérale (à l'exception des avocats)
@@ -61,28 +61,28 @@ dirigeant . indépendant . PL . CNAVPL . retraite:
       unité: €/an
 
 #TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
-dirigeant . indépendant . PL . CNAVPL . remplacement retraite:
+indépendant . PL . CNAVPL . remplacement retraite:
   titre: Remplacement de la retraite de base
   non applicable si: PL . CNBF
   valeur: oui
 
   avec:
     cotisations et contributions retraite de base:
-      remplace: cotisations et contributions . retraite de base
+      remplace: cotisations et contributions . cotisations . retraite de base
       valeur: retraite
 
     cotisations et contributions retraite de base taux:
-      remplace: cotisations et contributions . retraite de base . taux
+      remplace: cotisations et contributions . cotisations . retraite de base . taux
       valeur: retraite . tranche T1 . taux
 
-dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
+indépendant . PL . CNAVPL . indemnités journalières maladie:
   description: |
     Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
     la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
     maladie.
 
     En conséquence une nouvelle cotisation est créée.
-  remplace: cotisations et contributions . indemnités journalières maladie
+  remplace: cotisations et contributions . cotisations . indemnités journalières maladie
   non applicable si: PL . CNBF
   produit:
     - assiette
@@ -108,7 +108,7 @@ dirigeant . indépendant . PL . CNAVPL . indemnités journalières maladie:
         - si: date >= 01/2021
           alors: 0.15%
 
-dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
+indépendant . PL . CNAVPL . exonération incapacité:
   question:
     Avez-vous été atteint d’une incapacité d’exercice de votre profession
     pendant au moins six mois consécutifs cette année ?
@@ -120,17 +120,17 @@ dirigeant . indépendant . PL . CNAVPL . exonération incapacité:
   références:
     Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
 
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur:
+indépendant . PL . CNAVPL . conjoint collaborateur:
   applicable si: conjoint collaborateur
   valeur: oui
 
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
+indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
   question:
     variations:
       - si:
           toutes ces conditions:
             - date >= 01/2023
-            - dirigeant . indépendant . PL . CIPAV
+            - PL . CIPAV
         alors:
           texte:
             À quelle proportion le conjoint cotise-t-il pour la retraite de base, la
@@ -153,7 +153,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
       valeur: proportion = 'quart'
       titre: '25 %'
 
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
+indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
   remplace: conjoint collaborateur . cotisations . assiette
   unité: €/an
   arrondi: oui
@@ -173,9 +173,8 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
           - assiette des cotisations
           - 50 %
 
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
-  remplace: dirigeant . indépendant . conjoint collaborateur . cotisations .
-    retraite de base
+indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
+  remplace: conjoint collaborateur . cotisations . retraite de base
   valeur: CNAVPL . retraite
   contexte:
     CNAVPL . retraite . tranche T1 . revenu cotisé:
@@ -185,7 +184,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
       valeur: conjoint collaborateur . assiette
       plancher: assiette minimale . retraite
 
-dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
+indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
   applicable si: date >= 01/2022
   remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
   produit:
