@@ -350,6 +350,7 @@ dirigeant . indépendant . cotisations et contributions . invalidité et décès
           - entreprise . prorata temporis
 
 dirigeant . indépendant . cotisations et contributions . CSG-CRDS:
+  non applicable si: situation personnelle . domiciliation fiscale à l'étranger
   formule:
     somme:
       - non déductible
