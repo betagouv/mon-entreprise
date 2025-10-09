@@ -127,10 +127,6 @@ entreprise . catégorie juridique . SARL:
         Gérant minoritaire ou majoritaire de SARL: https://bpifrance-creation.fr/encyclopedie/statut-du-dirigeant-son-conjoint/regime-social-du-dirigeant/gerant-minoritaire-ou
         Formalités de création d'une SARL: https://bpifrance-creation.fr/encyclopedie/formalites-creation-dune-entreprise/formalites-specifiques-a-creation-societes
 
-    unipersonnelle:
-      déprécié: oui
-      valeur: EURL
-
 entreprise . catégorie juridique . SAS:
   titre: SAS ou SASU
   acronyme: SAS(U)
@@ -170,9 +166,6 @@ entreprise . catégorie juridique . SAS:
         Formalités de création d'une SASU: https://bpifrance-creation.fr/encyclopedie/formalites-creation-dune-entreprise/formalites-specifiques-a-creation-societes-0
         Fiscalité de la SASU: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/regimes-fiscaux/regimes-du-benefice-reel-bic-is
         Protection sociale du président de SASU: https://bpifrance-creation.fr/encyclopedie/statut-du-dirigeant-son-conjoint/regime-social-du-dirigeant/dirigeant-assimile-salarie
-    unipersonnelle:
-      déprécié: oui
-      valeur: SASU
 
 ### (niveau 1 code 6)	Autre personne morale immatriculée au RCS ###
 
