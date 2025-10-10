@@ -14,15 +14,15 @@ indépendant . cotisations et contributions . déduction tabac:
   par défaut: 0 €/an
 
 indépendant . cotisations et contributions . déduction tabac . revenus déduits:
-  titre: assiette des cotisations (avec déduction tabac)
+  titre: assiette sociale (avec déduction tabac)
   applicable si: déduction tabac
   remplace:
-    références à: assiette des cotisations
+    références à: cotisations . assiette sociale
     dans:
       - cotisations . retraite de base
       - cotisations . retraite complémentaire
       - cotisations . invalidité et décès
       - conjoint collaborateur
 
-  valeur: assiette des cotisations
+  valeur: cotisations . assiette sociale
   abattement: déduction tabac

@@ -20,9 +20,9 @@ indépendant . PL . CARMF . participation CPAM retraite:
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
   unité: €/an
   produit:
-    - assiette des cotisations
+    - cotisations et contributions . cotisations . assiette sociale
     - grille:
-        assiette: assiette des cotisations
+        assiette: cotisations et contributions . cotisations . assiette sociale
         multiplicateur: plafond sécurité sociale
         tranches:
           - montant: 2.15%
@@ -51,7 +51,7 @@ indépendant . PL . CARMF . retraite complémentaire:
       alors: 0€/an
     - sinon:
         produit:
-          - valeur: assiette des cotisations
+          - valeur: cotisations et contributions . cotisations . assiette sociale
             plafond: 3.5 * plafond sécurité sociale
           - variations:
             - si: date >= 01/2024
@@ -80,7 +80,7 @@ indépendant . PL . CARMF . invalidité décès:
     Sans communication des revenus professionnels non salariés et de l’avis d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être fixé. Dans l’attente de la réception de ce document l’indemnisation sera basée sur le taux prévu pour la classe A.
   formule:
     grille:
-      assiette: assiette des cotisations
+      assiette: cotisations et contributions . cotisations . assiette sociale
       multiplicateur: plafond sécurité sociale
       tranches:
         - montant:
@@ -118,11 +118,11 @@ indépendant . PL . CARMF . invalidité décès:
     part forfaitaire: 434 €/an
     part variable maladie:
       produit:
-        - assiette des cotisations
+        - cotisations et contributions . cotisations . assiette sociale
         - 0.32%
     part variable invalidité:
       produit:
-        - assiette des cotisations
+        - cotisations et contributions . cotisations . assiette sociale
         - 0.08%
 
 indépendant . PL . CARMF . en retraite:

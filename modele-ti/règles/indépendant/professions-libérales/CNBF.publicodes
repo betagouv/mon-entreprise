@@ -80,14 +80,14 @@ indépendant . PL . CNBF . retraite de base:
 
     cotisation proportionnelle:
       produit:
-        - valeur: assiette des cotisations
+        - valeur: cotisations et contributions . cotisations . assiette sociale
           plafond: 297549 €/an
         - 3.1%
 
 indépendant . PL . CNBF . retraite complémentaire:
   remplace: cotisations et contributions . cotisations . retraite complémentaire
   barème:
-    assiette: assiette des cotisations
+    assiette: cotisations et contributions . cotisations . assiette sociale
     multiplicateur: 42507 €/an
     tranches:
       - taux:
