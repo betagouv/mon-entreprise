@@ -3,16 +3,7 @@ entreprise . imposition:
   une possibilité:
     - IR
     - IS
-
-  par défaut:
-    variations:
-      - si:
-          une de ces conditions:
-            - catégorie juridique . SARL . EURL
-            - catégorie juridique . SELARL . SELARL
-            - catégorie juridique . EI
-        alors: "'IR'"
-      - sinon: "'IS'"
+  par défaut: "'IS'"
   références:
     Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices
     Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
@@ -191,7 +182,7 @@ entreprise . imposition . IS . contribution sociale:
   non applicable si:
     par défaut: oui
     toutes ces conditions:
-      - non applicable si: entreprise . catégorie juridique . EI
+      - non applicable si: entreprise . EI
         valeur: chiffre d'affaires <= 7630 k€/an * prorata temporis
       - capital social . détenu au moins à 75 pourcents par des personnes physiques
   formule:
