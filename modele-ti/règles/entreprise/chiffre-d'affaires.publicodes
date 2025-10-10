@@ -8,15 +8,13 @@ entreprise . chiffre d'affaires:
     Le chiffre d’affaires est la
     **somme des montants des ventes réalisées pendant votre exercice comptable**
     (un an) : CA = prix de vente x quantités vendues.
-  somme:
+  inversion numérique:
+    - indépendant . rémunération . nette
     - indépendant . rémunération . nette . après impôt
-    - indépendant . rémunération . impôt
-    - indépendant . rémunération . cotisations
+    - indépendant . cotisations et contributions
     - charges
     - applicable si: imposition . IS
-      somme:
-        - imposition . IS . résultat net
-        - imposition . IS
+      valeur: imposition . IS . résultat net
   plancher: 0€/an
   arrondi: oui
 
