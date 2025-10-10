@@ -169,7 +169,11 @@ entreprise . activités . service ou vente:
 entreprise . activités . commerciale . débit de tabac:
   experimental: oui
   question: Exercez-vous une activité de vente de tabac ?
+  applicable si: entreprise . EI
   par défaut: non
+  références:
+    Débitant de tabac - Réglementation: https://bpifrance-creation.fr/activites-reglementees/debitant-tabac
+    Exploitation d'un bureau de tabac: https://entreprendre.service-public.gouv.fr/vosdroits/F23604
 
 entreprise . activités . revenus mixtes:
   experimental: oui
