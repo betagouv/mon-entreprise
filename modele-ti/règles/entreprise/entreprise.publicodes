@@ -1,6 +1,18 @@
 entreprise:
   icônes: 🏢🧑‍💼👷‍♂️🧑‍🏭
 
+entreprise . EI:
+  titre: entreprise individuelle (EI)
+  question: Votre entreprise est-elle une entreprise individuelle (EI) ?
+  description: |
+    L’entreprise individuelle (EI) est la forme juridique la plus fréquente pour
+    les petites entreprises. Elle peut être choisie pour exercer tout type
+    d’activité commerciale, artisanale, industrielle ou libérale.
+  références:
+    Tout ce que vous devez savoir sur l’entreprise individuelle: https://www.urssaf.fr/accueil/choisir-forme-juridique/creer-entreprise-individuelle.html
+    'Entrepreneur individuel (EI) : ce qu’il faut savoir': https://entreprendre.service-public.gouv.fr/vosdroits/F37396
+    Entrepreneur individuel: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/entrepreneur-individuel
+
 entreprise . chiffre d'affaires:
   question: Quel est votre chiffre d’affaires envisagé ?
   identifiant court: CA
