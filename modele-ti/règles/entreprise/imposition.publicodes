@@ -3,16 +3,7 @@ entreprise . imposition:
   une possibilité:
     - IR
     - IS
-
-  par défaut:
-    variations:
-      - si:
-          une de ces conditions:
-            - catégorie juridique . SARL . EURL
-            - catégorie juridique . SELARL . SELARL
-            - catégorie juridique . EI
-        alors: "'IR'"
-      - sinon: "'IS'"
+  par défaut: "'IS'"
   références:
     Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices
     Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
@@ -32,12 +23,12 @@ entreprise . imposition . IR:
     appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
 
     Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
-    est ajouté aux autres revenus imposables (s’ils existent) : **votre impôt sur le
-    revenu est plus élevé**.
+    est ajouté aux autres revenus imposables (s’ils existent) :
+    **votre impôt sur le revenu est plus élevé**.
 
     Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
-    vient réduire le montant du revenu imposable de votre ménage : **votre impôt sur
-    le revenu est moins élevé**.
+    vient réduire le montant du revenu imposable de votre ménage :
+    **votre impôt sur le revenu est moins élevé**.
 
     À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
     entre les revenus de votre foyer et ceux de votre entreprise.
@@ -191,7 +182,7 @@ entreprise . imposition . IS . contribution sociale:
   non applicable si:
     par défaut: oui
     toutes ces conditions:
-      - non applicable si: entreprise . catégorie juridique . EI
+      - non applicable si: entreprise . EI
         valeur: chiffre d'affaires <= 7630 k€/an * prorata temporis
       - capital social . détenu au moins à 75 pourcents par des personnes physiques
   formule:
@@ -225,7 +216,7 @@ entreprise . imposition . IS . résultat net:
   somme:
     - chiffre d'affaires
     - (- charges)
-    - (- dirigeant . rémunération . totale)
+    - (- indépendant . rémunération . totale)
     - (- montant)
   par défaut: 0€
 
@@ -252,7 +243,7 @@ entreprise . imposition . régime . micro-entreprise:
   valeur: régime = 'micro-entreprise'
   question: Avez-vous opté pour le régime micro-fiscal ?
   par défaut: non
-  rend non applicable: dirigeant . indépendant . cotisations facultatives
+  rend non applicable: indépendant . cotisations facultatives
   références:
     Régime micro-fiscal: https://entreprendre.service-public.fr/vosdroits/F23267
     "Changement de régime d’imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition

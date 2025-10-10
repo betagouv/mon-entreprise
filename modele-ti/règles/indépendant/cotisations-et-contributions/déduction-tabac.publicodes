@@ -1,0 +1,28 @@
+indépendant . cotisations et contributions . déduction tabac:
+  applicable si: entreprise . activités . commerciale . débit de tabac
+  question: Quel est le montant des revenus issus de la vente de tabac que vous
+    souhaitez exonérer de cotisation vieillesse ?
+  description: |
+    Si vous exercez une activité de débit de tabac simultanément à une activité
+    commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation
+    d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en
+    effet, les remises pour débit de tabac sont soumises par ailleurs à un
+    prélèvement vieillesse particulier). Nous attirons cependant votre attention sur
+    le fait qu’en cotisant sur une base moins importante, excluant les revenus de
+    débit de tabac, vos droits à retraite pour l’assurance vieillesse des
+    commerçants en seront diminués.
+  par défaut: 0 €/an
+
+indépendant . cotisations et contributions . déduction tabac . revenus déduits:
+  titre: assiette des cotisations (avec déduction tabac)
+  applicable si: déduction tabac
+  remplace:
+    références à: assiette des cotisations
+    dans:
+      - cotisations . retraite de base
+      - cotisations . retraite complémentaire
+      - cotisations . invalidité et décès
+      - conjoint collaborateur
+
+  valeur: assiette des cotisations
+  abattement: déduction tabac
