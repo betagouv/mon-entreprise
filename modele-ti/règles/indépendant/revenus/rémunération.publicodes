@@ -11,13 +11,13 @@ indépendant . rémunération . totale:
   variations:
     - si: entreprise . imposition . IS
       alors:
-        somme:
+        inversion numérique:
+          - rémunération . nette
+          - cotisations et contributions
           - rémunération . nette . après impôt
-          - impôt
-          - cotisations
-        par défaut: entreprise . chiffre d'affaires - entreprise . charges
-        plancher: cotisations
+          - rémunération . impôt
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
+  arrondi: oui
 
 indépendant . rémunération . nette:
   unité: €/an
@@ -26,10 +26,8 @@ indépendant . rémunération . nette:
   résumé: Après déduction des cotisations, contributions et charges
   somme:
     - rémunération . totale
-    - (- cotisations)
-
-indépendant . rémunération . cotisations:
-  valeur: indépendant . cotisations et contributions
+    - (- cotisations et contributions)
+  arrondi: oui
 
 indépendant . rémunération . nette . imposable:
   titre: revenu imposable
@@ -57,4 +55,5 @@ indépendant . rémunération . nette . après impôt:
     Le revenu net après déduction de l’impôt sur le revenu et des cotisations
     sociales.
   valeur: rémunération . nette - impôt
+  arrondi: oui
   unité: €/an
