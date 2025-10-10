@@ -1,0 +1,198 @@
+entreprise . chiffre d'affaires:
+  question: Quel est votre chiffre d’affaires envisagé ?
+  identifiant court: CA
+  résumé: Montant total des recettes brutes (hors taxe)
+  unité: €/an
+  description: |
+    ### Chiffre d’affaires estimé
+    Le chiffre d’affaires est la
+    **somme des montants des ventes réalisées pendant votre exercice comptable**
+    (un an) : CA = prix de vente x quantités vendues.
+  somme:
+    - indépendant . rémunération . nette . après impôt
+    - indépendant . rémunération . impôt
+    - indépendant . rémunération . cotisations
+    - charges
+    - applicable si: imposition . IS
+      somme:
+        - imposition . IS . résultat net
+        - imposition . IS
+  plancher: 0€/an
+  arrondi: oui
+
+entreprise . chiffre d'affaires . vente restauration hébergement:
+  titre: Vente de biens, restauration, hébergement (BIC)
+  résumé: Chiffre d’affaires hors taxe
+  question:
+    Quel est le chiffre d’affaires issu de la vente de biens, restauration
+    ou hébergement ?
+  unité: €/an
+  variations:
+    - si: activités . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . vente restauration
+            hébergement
+    - sinon:
+        applicable si: activités . service ou vente = 'vente'
+        valeur: chiffre d'affaires
+  arrondi: oui
+  plancher: 0€/an
+  par défaut: 0€/an
+  description: |
+    ### Vente de biens
+    Il s’agit du chiffre d’affaires de toutes les opérations comportant
+    transfert de propriété d’un bien corporel, c’est-à-dire un bien ayant une
+    existence matérielle.
+
+    ### Restauration et hébergement
+    Il s’agit du chiffre d’affaires de toutes les opérations de restauration
+    ou hébergement
+
+    > Note : pour les locations meublées, seules les locations de meublé de tourisme classé et de chambre d’hôte entrent dans cette catégorie hébergement ; les autres locations meublées relèvent de la catégorie « Prestations de service BIC »
+
+    Ces revenus sont imposables dans la catégorie des BIC
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
+    définition vente de bien (impots.gouv): https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . chiffre d'affaires . service BIC:
+  unité: €/an
+  plancher: 0€/an
+  arrondi: oui
+  résumé: Chiffre d’affaires hors taxe
+  titre: Prestations de service commerciales ou artisanales (BIC)
+  question: Quel est le chiffre d’affaires issu de prestations de service
+    commerciales ou artisanales ?
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c’est-à-dire ayant une existence matérielle), dont
+    l’activité manuelle joue le principal rôle.
+
+    Pour simplifier on pourrait dire que ce sont toutes les prestations de
+    services qui nécessite plus qu’un ordinateur pour être effectuées.
+
+    **Exemples** : transports, service à la personne, réparation etc.
+  par défaut: 0€/an
+  variations:
+    - si: activités . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . service BIC
+    - sinon:
+        applicable si: activités . service ou vente = 'service'
+        valeur: chiffre d'affaires
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32919
+
+entreprise . chiffre d'affaires . service BNC:
+  titre: Autres prestations de service et activités libérales (BNC)
+  résumé: Recettes hors taxes
+  question: Quelles sont les recettes issues de l’activité libérale ?
+  arrondi: oui
+  par défaut: 0€/an
+  plancher: 0€/an
+  description: |
+    Ce sont toutes les opérations dont l’activité intellectuelle tient
+    un rôle essentiel.
+
+    **Exemples** : conseil, accompagnement, traduction, développement,
+    formation, enseignement, sportif
+
+    Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
+  variations:
+    - si: activités . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - activités . revenus mixtes . proportions . service BNC
+    - sinon:
+        applicable si: activités . libérale
+        valeur: chiffre d'affaires
+
+  références:
+    liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . chiffre d'affaires . service:
+  titre: Chiffre d’affaires de prestation de service
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c’est-à-dire ayant une existence matérielle)
+  unité: €/an
+  somme:
+    - service BIC
+    - service BNC
+
+entreprise . chiffre d'affaires . BIC:
+  description: |
+    Le chiffre d’affaires correspondant au revenus imposable au titre des bénéfice industriels et commerciaux (BIC ou micro-BIC).
+  unité: €/an
+  somme:
+    - service BIC
+    - vente restauration hébergement
+
+entreprise . chiffre d'affaires . seuil micro:
+  experimental: oui
+
+entreprise . chiffre d'affaires . seuil micro . libérale:
+  unité: €/an
+  variations:
+    - si: date >= 01/2023
+      alors: 77700 €/an
+    - sinon: 72600 €/an
+
+entreprise . chiffre d'affaires . seuil micro . total:
+  unité: €/an
+  variations:
+    - si: date >= 01/2023
+      alors: 188700 €/an
+    - sinon: 176200 €/an
+
+entreprise . chiffre d'affaires . seuil micro . dépassé:
+  experimental: oui
+  applicable si: imposition . IR
+  unité: €/an
+  une de ces conditions:
+    - entreprise . chiffre d'affaires > total
+    - entreprise . chiffre d'affaires . service > libérale
+  description: |
+    Le statut de micro-entreprise s’applique tant que le chiffre d’affaires annuel
+    (effectivement encaissé au cours de l’année civile) ne dépasse pas les seuils du
+    régime fiscal de la micro-entreprise.
+
+    En cas de dépassement **sur deux années consécutives**, l’entreprise bascule
+    automatiquement dans le régime de [l’entreprise
+    individuelle](/simulateurs/indépendant).
+
+    À la fin de la première année d’activité, le CA est proratisé par rapport à la
+    durée d’activité.
+
+    > ##### Exemple :
+    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de
+    > `50 000 €` au cours des cinq mois d’activité de sa première année civile
+    > d’exploitation.
+    > Les recettes de cette première année civile sont ajustées *prorata temporis*
+    > pour les comparer au plafond :
+    >
+    > `50 000€ x (365/153) = 119 280 €`
+
+
+    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le
+    calcul des cotisations)
+
+
+    ### Multi-activité
+
+    Lorsqu’un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
+    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En effet
+    l’exercice de plusieurs activités avec la même micro-entreprise n’augmente pas
+    les seuils.
+
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32353
+    Article 50-0 du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
+    Bofip (dépassement micro-bnc): https://bofip.impots.gouv.fr/bofip/4807-PGP.html
+    Bofip (dépassement micro-bic): https://bofip.impots.gouv.fr/bofip/1802-PGP.html
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
