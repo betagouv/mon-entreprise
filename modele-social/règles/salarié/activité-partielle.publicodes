@@ -159,6 +159,9 @@ salarié . activité partielle . indemnisation entreprise:
     L'employeur peut percevoir l'allocation d'activité partielle dans la limite d'un plafond de **1000 heures par an et par salarié**.
 
 
+    > **Note** : Pour l'activité partielle de longue durée (APLD), le taux horaire minimum peut monter à **9,40€**.
+
+
     > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
   produit:
     - retrait absence
@@ -178,6 +181,8 @@ salarié . activité partielle . indemnisation entreprise:
   avec:
     plancher horaire:
       variations:
+        - si: date >= 12/2024
+          alors: 8.46 €/heure
         - si: date >= 05/2023
           alors: 8.21 €/heure
         - si: date >= 01/2023
