@@ -37,9 +37,13 @@ export const getOnePossibilityOptions = (
 							nodeKind: 'reference'
 						})[]
 					)
-						.filter(
-							(explanation) => engine.evaluate(explanation).nodeValue !== null
-						)
+						.filter((explanation) => {
+							return (
+								engine.evaluate(explanation).nodeValue !== null &&
+								engine.evaluate({ 'est applicable': explanation.dottedName })
+									.nodeValue
+							)
+						})
 						.map(({ dottedName }) =>
 							getOnePossibilityOptions(engine, dottedName as DottedName)
 						),
