@@ -9,11 +9,10 @@ import Value from '@/components/EngineValue/Value'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import RuleLink from '@/components/RuleLink'
 import { StatutTag } from '@/components/StatutTag'
-import { Grid, HelpIcon, Strong, Ul } from '@/design-system'
+import { Grid, HelpIcon, StatusCard, Strong, Ul } from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 import { getBestOption, OptionType } from '../utils'
-import StatusCard from './StatusCard'
 
 export const getGridSizes = (numberOptions: number, total: number) => {
 	return {
@@ -109,8 +108,8 @@ const DetailsRowCards = ({
 									<StatutTag statut={name} text="acronym" showIcon />
 								</StatusCard.Étiquette>
 							))}
-							<StatusCard.Contenu>
-								{dottedName && (
+							{dottedName && (
+								<StatusCard.Titre>
 									<WhenNotApplicable
 										dottedName={dottedName}
 										engine={statusObject.engine}
@@ -124,61 +123,61 @@ const DetailsRowCards = ({
 											<HelpIcon />
 										</StyledRuleLink>
 									</WhenNotApplicable>
-								)}
-								{expressionOrDottedName && (
-									<>
-										<Condition
-											expression={{
-												et: [
-													{ 'est défini': expressionOrDottedName },
-													{ 'est applicable': expressionOrDottedName },
-												],
-											}}
-											engine={statusObject.engine}
-										>
-											<StyledDiv>
-												<span>
-													<Value
-														linkToRule={false}
-														expression={expressionOrDottedName}
-														engine={statusObject.engine}
-														precision={0}
-														unit={unit}
-														displayedUnit={displayedUnit}
-													/>
-													{label && ' '}
-													{label && label}
-												</span>
-												{dottedName && (
-													<StyledRuleLink
-														documentationPath={`${statusObject.name}`}
-														dottedName={dottedName}
-														engine={statusObject.engine}
-													>
-														<HelpIcon />
-													</StyledRuleLink>
-												)}
-												{warning?.(statusObject.engine)}
-											</StyledDiv>
-										</Condition>
-										<Condition
-											expression={{
-												'est non défini': expressionOrDottedName,
-											}}
-											engine={statusObject.engine}
-										>
-											<StyledSmall>
-												<Trans>
-													Le montant demandé n'est{' '}
-													<Strong>pas calculable...</Strong>
-												</Trans>
-											</StyledSmall>
-										</Condition>
-									</>
-								)}
-							</StatusCard.Contenu>
+								</StatusCard.Titre>
+							)}
+							{expressionOrDottedName && (
+								<StatusCard.Valeur>
+									<Condition
+										expression={{
+											et: [
+												{ 'est défini': expressionOrDottedName },
+												{ 'est applicable': expressionOrDottedName },
+											],
+										}}
+										engine={statusObject.engine}
+									>
+										<StyledDiv>
+											<span>
+												<Value
+													linkToRule={false}
+													expression={expressionOrDottedName}
+													engine={statusObject.engine}
+													precision={0}
+													unit={unit}
+													displayedUnit={displayedUnit}
+												/>
+												{label && ' '}
+												{label && label}
+											</span>
+											{dottedName && (
+												<StyledRuleLink
+													documentationPath={`${statusObject.name}`}
+													dottedName={dottedName}
+													engine={statusObject.engine}
+												>
+													<HelpIcon />
+												</StyledRuleLink>
+											)}
+											{warning?.(statusObject.engine)}
+										</StyledDiv>
+									</Condition>
+									<Condition
+										expression={{
+											'est non défini': expressionOrDottedName,
+										}}
+										engine={statusObject.engine}
+									>
+										<StyledSmall>
+											<Trans>
+												Le montant demandé n'est{' '}
+												<Strong>pas calculable...</Strong>
+											</Trans>
+										</StyledSmall>
+									</Condition>
+								</StatusCard.Valeur>
+							)}
 							{evolutionDottedName && (
-								<StatusCard.Complément>
+								<StatusCard.ValeurSecondaire>
 									<Value
 										linkToRule={false}
 										expression={evolutionDottedName}
@@ -187,10 +186,10 @@ const DetailsRowCards = ({
 										unit={unit}
 									/>{' '}
 									{evolutionLabel}
-								</StatusCard.Complément>
+								</StatusCard.ValeurSecondaire>
 							)}
 							{!evolutionDottedName && evolutionLabel && (
-								<StatusCard.Complément>{evolutionLabel}</StatusCard.Complément>
+								<StatusCard.ValeurSecondaire>{evolutionLabel}</StatusCard.ValeurSecondaire>
 							)}
 							{footer?.(statusObject.engine) && (
 								<StatusCard.Action>
