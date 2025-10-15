@@ -46,13 +46,10 @@ impôt . méthode de calcul:
   # où l’on aura a calculer l’impot avec plusieurs sources de revenu
   non applicable si: dirigeant . auto-entrepreneur . impôt . versement libératoire > 0
   par défaut: par défaut
-  valeur:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - taux neutre
-        - taux personnalisé
-        - barème standard
+  une possibilité:
+    - taux neutre
+    - taux personnalisé
+    - barème standard
   références:
     Différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
     Calcul du taux d’imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
@@ -834,13 +831,10 @@ impôt . foyer fiscal:
 
 impôt . foyer fiscal . situation de famille:
   question: Quelle est votre situation familiale ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - célibataire
-        - couple
-        - veuf
+  une possibilité:
+    - célibataire
+    - couple
+    - veuf
   par défaut: "'célibataire'"
 
 impôt . foyer fiscal . situation de famille . célibataire:

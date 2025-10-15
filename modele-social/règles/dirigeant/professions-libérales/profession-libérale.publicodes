@@ -9,12 +9,10 @@ dirigeant . indépendant . PL . métier:
   par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - santé
-      - juridique
-      - expert-comptable
-      - rattaché CIPAV
+    - santé
+    - juridique
+    - expert-comptable
+    - rattaché CIPAV
 
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
   titre: Autre métier rattaché à la Cipav
@@ -45,14 +43,12 @@ dirigeant . indépendant . PL . métier . santé:
     diététicien et chiropracteur dépendent de la
     Cipav pour leur retraite et invalidité.
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - médecin
-      - chirurgien-dentiste
-      - sage-femme
-      - auxiliaire médical
-      - pharmacien
-      - vétérinaire
+    - médecin
+    - chirurgien-dentiste
+    - sage-femme
+    - auxiliaire médical
+    - pharmacien
+    - vétérinaire
 
   avec:
     auxiliaire médical:
@@ -68,13 +64,10 @@ dirigeant . indépendant . PL . métier . santé:
         Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
         fonction du régime de tarification choisie par le praticien.
       par défaut: "'S1'"
-      formule:
-        une possibilité:
-          choix obligatoire: oui
-          possibilités:
-            - 'S1'
-            - 'S2'
-            - 'non conventionné'
+      une possibilité:
+        - 'S1'
+        - 'S2'
+        - 'non conventionné'
 
       avec:
         non conventionné:
@@ -99,11 +92,9 @@ dirigeant . indépendant . PL . métier . santé:
 dirigeant . indépendant . PL . métier . juridique:
   titre: Professions juridiques et judicaires
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - avocat
-      - notaire
-      - officier
+    - avocat
+    - notaire
+    - officier
 
   avec:
     avocat:
