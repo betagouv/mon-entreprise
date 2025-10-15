@@ -5,18 +5,16 @@ déclaration revenus PAMC:
 déclaration revenus PAMC . profession:
   question: Quelle est votre profession ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - dentiste
-      - infirmier
-      - kinésithérapeute
-      - médecin secteur 1 généraliste
-      - médecin secteur 1 spécialiste
-      - médecin secteur 2
-      - orthophoniste
-      - orthoptiste
-      - pédicure podologue
-      - sage-femme
+    - dentiste
+    - infirmier
+    - kinésithérapeute
+    - médecin secteur 1 généraliste
+    - médecin secteur 1 spécialiste
+    - médecin secteur 2
+    - orthophoniste
+    - orthoptiste
+    - pédicure podologue
+    - sage-femme
   meta:
     requis: oui
   avec:
@@ -70,10 +68,8 @@ déclaration revenus PAMC . statut:
     remplaçant/remplaçante et que vous vous êtes installé/installée au 1er juillet,
     sélectionnez « Remplaçant / remplaçante ».
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - titulaire
-      - remplaçant
+    - titulaire
+    - remplaçant
   meta:
     requis: oui
   avec:
@@ -86,11 +82,9 @@ déclaration revenus PAMC . statut:
 déclaration revenus PAMC . régime fiscal:
   question: Quel est votre régime fiscal ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - IR micro-fiscal
-      - IR non micro-fiscal
-      - IS
+    - IR micro-fiscal
+    - IR non micro-fiscal
+    - IS
   meta:
     requis: oui
 
