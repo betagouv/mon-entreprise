@@ -159,7 +159,7 @@ salarié . activité partielle . indemnisation entreprise:
     L'employeur peut percevoir l'allocation d'activité partielle dans la limite d'un plafond de **1000 heures par an et par salarié**.
 
 
-    > **Note** : Pour l'activité partielle de longue durée (APLD), le taux horaire minimum peut monter à **9,40€**.
+    > **Note** : Pour l'activité partielle de longue durée (APLD), le taux horaire minimum peut monter à **9,40&nbsp;€**.
 
 
     > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
@@ -186,17 +186,18 @@ salarié . activité partielle . indemnisation entreprise:
         - si: date >= 05/2023
           alors: 8.21 €/heure
         - si: date >= 01/2023
-          alors: 8.03€/heure
+          alors: 8.03 €/heure
         - si: date >= 08/2022
-          alors: 7.88€/heure
+          alors: 7.88 €/heure
         - si: date >= 05/2022
-          alors: 7.73€/heure
+          alors: 7.73 €/heure
         - si: date >= 01/2022
           alors: 8.37 €/heure
         - si: date >= 10/2021
           alors: 8.30 €/heure
         - si: date >= 01/2021
           alors: 8.11 €/heure
+
 
 salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
   titre: taux d'allocation
