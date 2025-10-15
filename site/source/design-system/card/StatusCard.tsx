@@ -1,27 +1,31 @@
-import { ReactNode } from 'react'
 import { ComponentType, PropsWithChildren, ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { StatutTag, StatutType } from '@/components/StatutTag'
-import { CardContainer, Grid } from '@/design-system'
-import { Body, CardContainer, Emoji, Grid } from '@/design-system'
 import {
 	findChildByType,
 	findChildrenByType,
 } from '@/utils/react-compound-components'
 
+import { Grid } from '../layout'
+import { Body } from '../typography/paragraphs'
+import { CardContainer } from './Card'
+
 type StatusCardProps = {
 	children: ReactNode
 }
 
-const StatusCard = ({ children }: StatusCardProps) => {
-	const { t } = useTranslation()
-
+export const StatusCard = ({ children }: StatusCardProps) => {
 	const étiquettes = findChildrenByType(children, StatusCard.Étiquette)
-	const contenu = findChildByType(children, StatusCard.Contenu)
-	const compléments = findChildrenByType(children, StatusCard.Complément)
+	const titre = findChildByType(children, StatusCard.Titre)
+	const valeur = findChildByType(children, StatusCard.Valeur)
+	const valeurSecondaire = findChildByType(
+		children,
+		StatusCard.ValeurSecondaire
+	)
+	const complément = findChildByType(children, StatusCard.Complément)
 	const actions = findChildrenByType(children, StatusCard.Action)
+
+	const hasContent = titre || valeur || valeurSecondaire
 
 	return (
 		<StyledCardContainer inert>
@@ -31,10 +35,20 @@ const StatusCard = ({ children }: StatusCardProps) => {
 						{étiquettes}
 					</Grid>
 				)}
-				{contenu}
-				{compléments}
+				{hasContent && (
+					<StyledContentWrapper as="div">
+						{titre}
+						{valeur}
+						{valeurSecondaire}
+					</StyledContentWrapper>
+				)}
 			</CardBody>
-			{actions.length > 0 && <CardFooter>{actions}</CardFooter>}
+			{(complément || actions.length > 0) && (
+				<CardFooter>
+					{complément}
+					{actions}
+				</CardFooter>
+			)}
 		</StyledCardContainer>
 	)
 }
@@ -44,14 +58,24 @@ const StatusCardÉtiquette: ComponentType<PropsWithChildren> = ({
 }: PropsWithChildren) => <Grid item>{children}</Grid>
 StatusCardÉtiquette.displayName = 'StatusCard.Étiquette'
 
-const StatusCardContenu: ComponentType<PropsWithChildren> = ({
+const StatusCardTitre: ComponentType<PropsWithChildren> = ({
 	children,
-}: PropsWithChildren) => <StyledContenu as="div">{children}</StyledContenu>
-StatusCardContenu.displayName = 'StatusCard.Contenu'
+}: PropsWithChildren) => <>{children}</>
+StatusCardTitre.displayName = 'StatusCard.Titre'
+
+const StatusCardValeur: ComponentType<PropsWithChildren> = ({
+	children,
+}: PropsWithChildren) => <>{children}</>
+StatusCardValeur.displayName = 'StatusCard.Valeur'
+
+const StatusCardValeurSecondaire: ComponentType<PropsWithChildren> = ({
+	children,
+}: PropsWithChildren) => <StyledValeurSecondaire>{children}</StyledValeurSecondaire>
+StatusCardValeurSecondaire.displayName = 'StatusCard.ValeurSecondaire'
 
 const StatusCardComplément: ComponentType<PropsWithChildren> = ({
 	children,
-}: PropsWithChildren) => <StyledComplément>{children}</StyledComplément>
+}: PropsWithChildren) => <>{children}</>
 StatusCardComplément.displayName = 'StatusCard.Complément'
 
 const StatusCardAction: ComponentType<PropsWithChildren> = ({
@@ -60,11 +84,11 @@ const StatusCardAction: ComponentType<PropsWithChildren> = ({
 StatusCardAction.displayName = 'StatusCard.Action'
 
 StatusCard.Étiquette = StatusCardÉtiquette
-StatusCard.Contenu = StatusCardContenu
+StatusCard.Titre = StatusCardTitre
+StatusCard.Valeur = StatusCardValeur
+StatusCard.ValeurSecondaire = StatusCardValeurSecondaire
 StatusCard.Complément = StatusCardComplément
 StatusCard.Action = StatusCardAction
-
-export default StatusCard
 
 const StyledCardContainer = styled(CardContainer)`
 	position: relative;
@@ -86,21 +110,23 @@ const CardFooter = styled.div`
 	padding: 1.5rem;
 `
 
-const StyledContenu = styled(Body)`
+const StyledContentWrapper = styled(Body)`
 	font-size: 1.25rem;
 	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+	flex-wrap: wrap;
+	align-items: center;
 	font-weight: 700;
 	margin: 0;
 	margin-top: 0.75rem;
 `
 
-const StyledComplément = styled.span`
+const StyledValeurSecondaire = styled.span`
 	display: block;
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
 	font-size: 1rem;
 	color: ${({ theme }) => theme.colors.extended.grey[700]};
+	margin: 0 !important;
 	margin-top: 0.5rem;
+	width: 100%;
 `
