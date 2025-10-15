@@ -4,12 +4,20 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutTag, StatutType, TAG_DATA } from '@/components/StatutTag'
-import { Button, Grid, H4, Li, Spacing, Strong, Ul } from '@/design-system'
+import {
+	Button,
+	Grid,
+	H4,
+	Li,
+	Spacing,
+	StatusCard,
+	Strong,
+	Ul,
+} from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
 import { getGridSizes } from './DetailsRowCards'
-import StatusCard from './StatusCard'
 
 const StatutChoice = ({
 	namedEngines,
@@ -64,8 +72,10 @@ function StatutBloc({
 			<StatusCard.Étiquette>
 				<StatutTag statut={name} text="acronym" showIcon />
 			</StatusCard.Étiquette>
-			<StatusCard.Contenu>
+			<StatusCard.Titre>
 				<H4 as="h3">{TAG_DATA[name].longName}</H4>
+			</StatusCard.Titre>
+			<StatusCard.Complément>
 				<Ul
 					style={{
 						display: 'flex',
@@ -103,7 +113,7 @@ function StatutBloc({
 						<ExplicableRule dottedName="dirigeant . exonérations . ACRE" />
 					</Li>
 				</Ul>
-			</StatusCard.Contenu>
+			</StatusCard.Complément>
 			{!hideCTA && (
 				<StatusCard.Action>
 					<div
