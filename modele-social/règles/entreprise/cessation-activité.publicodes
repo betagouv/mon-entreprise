@@ -2,7 +2,7 @@ entreprise . en cessation d'activité:
   valeur: non
 
 entreprise . date de cessation:
-  question: À quelle date comptez-vous déclarer la cessation d’activité ?
+  question: À quelle date avez-vous ou comptez-vous déclarer la cessation d’activité ?
   applicable si: en cessation d'activité
   par défaut: période . fin d'année
   description: La date de cessation est la date à laquelle l’entreprise cessera son activité.
