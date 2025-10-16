@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
