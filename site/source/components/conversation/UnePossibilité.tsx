@@ -1,5 +1,3 @@
-import { DottedName } from 'modele-social'
-
 import { Choice, isChoice } from '@/components/conversation/Choice'
 import {
 	ChoiceDisplayType,
@@ -9,6 +7,7 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, montantToString } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'

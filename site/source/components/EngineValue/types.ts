@@ -1,8 +1,8 @@
-import { DottedName } from 'modele-social'
 import Engine, { ASTNode, PublicodesExpression } from 'publicodes'
 import React from 'react'
 
 import { Contexte } from '@/domaine/Contexte'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export type ValueProps<Names extends string> = {
 	expression: PublicodesExpression
