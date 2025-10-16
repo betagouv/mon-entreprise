@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
@@ -9,6 +8,7 @@ import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { Body } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import useYear from '@/hooks/useYear'
 import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'

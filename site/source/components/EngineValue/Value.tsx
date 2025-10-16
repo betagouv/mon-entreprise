@@ -1,7 +1,8 @@
-import { DottedName } from 'modele-social'
 import { ASTNode, formatValue } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import RuleLink from '../RuleLink'
 import { useEngine } from '../utils/EngineContext'

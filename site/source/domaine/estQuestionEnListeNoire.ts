@@ -1,5 +1,4 @@
-import { DottedName } from 'modele-social'
-
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const estQuestionEnListeNoire =
