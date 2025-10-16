@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -15,6 +14,7 @@ import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner
 import StackedBarChart from '@/components/StackedBarChart'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Body, DarkLi, H2, Radio, ToggleGroup, Ul } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {

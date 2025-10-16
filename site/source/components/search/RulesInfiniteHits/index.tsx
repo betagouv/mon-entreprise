@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import { connectInfiniteHits } from 'react-instantsearch-dom'
@@ -6,6 +5,7 @@ import { styled } from 'styled-components'
 
 import { FromTop } from '@/components/ui/animate'
 import { Body, Button, H3, SmallBody } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import RuleLink from '../../RuleLink'
 

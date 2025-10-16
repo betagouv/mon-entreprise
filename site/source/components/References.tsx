@@ -1,9 +1,9 @@
-import { DottedName } from 'modele-social'
 import { utils } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { Grid, Li, Link, Ul } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { capitalise0 } from '@/utils'
 import {
 	AGIRC_ARRCO,

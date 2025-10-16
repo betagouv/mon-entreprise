@@ -1,7 +1,7 @@
 import * as A from 'effect/Array'
-import { DottedName } from 'modele-social'
 import * as Optics from 'optics-ts'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { updateSituation } from '@/domaine/updateSituation'
