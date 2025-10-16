@@ -1,6 +1,5 @@
 import '@/components/Distribution.css'
 
-import { DottedName } from 'modele-social'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
 
@@ -8,6 +7,7 @@ import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExpla
 import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetraite'
 import StackedBarChart from '@/components/StackedBarChart'
 import { H3 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { Condition } from '../EngineValue/Condition'
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'

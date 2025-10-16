@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -25,6 +24,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { isQuantité } from '@/domaine/Quantité'
 import { Situation } from '@/domaine/Situation'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'

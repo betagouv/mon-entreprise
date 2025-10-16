@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,6 +18,7 @@ import {
 import { FromTop } from '@/components/ui/animate'
 import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import useYear from '@/hooks/useYear'
 import {
 	batchUpdateSituation,

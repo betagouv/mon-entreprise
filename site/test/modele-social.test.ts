@@ -1,9 +1,9 @@
-import rules, { DottedName } from 'modele-social'
+import rules, { RègleModeleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeAll, describe, expect, it } from 'vitest'
 
 describe('modele-social', function () {
-	let engine: Engine<DottedName>
+	let engine: Engine<RègleModeleSocial>
 	beforeAll(() => {
 		engine = new Engine(rules)
 	})

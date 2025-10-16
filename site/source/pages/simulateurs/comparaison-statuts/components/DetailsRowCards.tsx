@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
@@ -9,6 +8,7 @@ import Value from '@/components/EngineValue/Value'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import RuleLink from '@/components/RuleLink'
 import { Body, Grid, HelpIcon, Strong, Ul } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 import { getBestOption, OptionType } from '../utils'

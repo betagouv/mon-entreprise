@@ -1,5 +1,4 @@
 import { useSSRSafeId } from '@react-aria/ssr'
-import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +10,7 @@ import { FadeIn } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { H3, Intro, Markdown, SmallBody, Spacing } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import {

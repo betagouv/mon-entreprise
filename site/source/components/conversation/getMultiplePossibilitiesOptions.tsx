@@ -1,5 +1,6 @@
-import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 type RuleWithMultiplePossibilities = RuleNode & {
 	rawNode: RuleNode['rawNode'] & {

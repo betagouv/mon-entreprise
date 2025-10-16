@@ -2,7 +2,6 @@ import { pipe } from 'effect'
 import { dedupe, filter } from 'effect/Array'
 import { isNotUndefined, isUndefined, Predicate } from 'effect/Predicate'
 import { fromEntries } from 'effect/Record'
-import { DottedName } from 'modele-social'
 import {
 	FunctionComponent,
 	useCallback,
@@ -14,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
 import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
