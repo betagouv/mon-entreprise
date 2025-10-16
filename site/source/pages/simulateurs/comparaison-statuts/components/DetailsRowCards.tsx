@@ -108,25 +108,23 @@ const DetailsRowCards = ({
 									<StatutTag statut={name} text="acronym" showIcon />
 								</StatusCard.Étiquette>
 							))}
-							{dottedName && (
+							{expressionOrDottedName && (
 								<StatusCard.Titre>
-									<WhenNotApplicable
-										dottedName={dottedName}
-										engine={statusObject.engine}
-									>
-										<DisabledLabel>Ne s'applique pas</DisabledLabel>
-										<StyledRuleLink
-											documentationPath={`${statusObject.name as string}`}
+									{dottedName && (
+										<WhenNotApplicable
 											dottedName={dottedName}
 											engine={statusObject.engine}
 										>
-											<HelpIcon />
-										</StyledRuleLink>
-									</WhenNotApplicable>
-								</StatusCard.Titre>
-							)}
-							{expressionOrDottedName && (
-								<StatusCard.Valeur>
+											<DisabledLabel>Ne s'applique pas</DisabledLabel>
+											<StyledRuleLink
+												documentationPath={`${statusObject.name as string}`}
+												dottedName={dottedName}
+												engine={statusObject.engine}
+											>
+												<HelpIcon />
+											</StyledRuleLink>
+										</WhenNotApplicable>
+									)}
 									<Condition
 										expression={{
 											et: [
@@ -174,7 +172,7 @@ const DetailsRowCards = ({
 											</Trans>
 										</StyledSmall>
 									</Condition>
-								</StatusCard.Valeur>
+								</StatusCard.Titre>
 							)}
 							{evolutionDottedName && (
 								<StatusCard.ValeurSecondaire>

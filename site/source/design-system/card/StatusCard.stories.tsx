@@ -27,13 +27,13 @@ const meta: Meta<typeof StatusCard> = {
 export default meta
 type Story = StoryObj<typeof StatusCard>
 
-export const AvecValeur: Story = {
+export const AvecTitre: Story = {
 	render: () => (
 		<StatusCard>
 			<StatusCard.Étiquette>
 				<Tag color="tertiary">EI</Tag>
 			</StatusCard.Étiquette>
-			<StatusCard.Valeur>1 084 €/mois</StatusCard.Valeur>
+			<StatusCard.Titre>1 084 €/mois</StatusCard.Titre>
 			<StatusCard.ValeurSecondaire>
 				avec un taux plein
 			</StatusCard.ValeurSecondaire>
@@ -47,7 +47,7 @@ export const MeilleureOption: Story = {
 			<StatusCard.Étiquette>
 				<Tag color="success">SASU</Tag>
 			</StatusCard.Étiquette>
-			<StatusCard.Valeur>2 503 €/mois</StatusCard.Valeur>
+			<StatusCard.Titre>2 503 €/mois</StatusCard.Titre>
 		</StatusCard>
 	),
 }
@@ -58,7 +58,7 @@ export const AvecComplément: Story = {
 			<StatusCard.Étiquette>
 				<Tag color="info">SASU</Tag>
 			</StatusCard.Étiquette>
-			<StatusCard.Valeur>1 645 €/mois</StatusCard.Valeur>
+			<StatusCard.Titre>1 645 €/mois</StatusCard.Titre>
 			<StatusCard.ValeurSecondaire>
 				Soit 1 676 € avant impôts
 			</StatusCard.ValeurSecondaire>
@@ -77,7 +77,7 @@ export const AvecActions: Story = {
 			<StatusCard.Étiquette>
 				<Tag color="tertiary">EI</Tag>
 			</StatusCard.Étiquette>
-			<StatusCard.Valeur>1 084 €/mois</StatusCard.Valeur>
+			<StatusCard.Titre>1 084 €/mois</StatusCard.Titre>
 			<StatusCard.ValeurSecondaire>
 				avec un taux plein
 			</StatusCard.ValeurSecondaire>
@@ -96,7 +96,7 @@ export const Complet: Story = {
 			<StatusCard.Étiquette>
 				<Tag color="tertiary">AE</Tag>
 			</StatusCard.Étiquette>
-			<StatusCard.Valeur>2 503 €/mois</StatusCard.Valeur>
+			<StatusCard.Titre>2 503 €/mois</StatusCard.Titre>
 			<StatusCard.ValeurSecondaire>
 				Soit 2 503 € avant impôts
 			</StatusCard.ValeurSecondaire>
@@ -126,7 +126,7 @@ export const PlusieursÉtiquettes: Story = {
 			<StatusCard.Étiquette>
 				<Tag color="success">EURL</Tag>
 			</StatusCard.Étiquette>
-			<StatusCard.Valeur>2 003 €/mois</StatusCard.Valeur>
+			<StatusCard.Titre>2 003 €/mois</StatusCard.Titre>
 			<StatusCard.ValeurSecondaire>
 				Soit 2 087 € avant impôts
 			</StatusCard.ValeurSecondaire>
