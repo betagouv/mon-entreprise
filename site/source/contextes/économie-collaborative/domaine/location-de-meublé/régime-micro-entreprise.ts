@@ -1,38 +1,54 @@
-import { Either, pipe } from 'effect'
+import { Either, Option, pipe } from 'effect'
 
-import { SEUIL_PROFESSIONNALISATION } from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
-import { RecettesInférieuresAuSeuilRequisPourCeRégime } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
-import { estPlusPetitQue, eurosParAn, Montant } from '@/domaine/Montant'
+import { estPlusGrandQue, eurosParAn, Montant } from '@/domaine/Montant'
 import {
 	AutoEntrepreneurChiffreAffaireDansPublicodes,
 	AutoEntrepreneurContexteDansPublicodes,
 	AutoEntrepreneurCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 
+import { RecettesSupérieuresAuPlafondAutoriséPourCeRégime } from './erreurs'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
+	TypeLocation,
 } from './situation'
+
+export const PLAFOND_MICRO_ENTREPRISE_NON_CLASSE = eurosParAn(77_700)
+export const PLAFOND_MICRO_ENTREPRISE_TOURISME = eurosParAn(188_700)
+export const PLAFOND_MICRO_ENTREPRISE_CHAMBRE_HOTE = eurosParAn(188_700)
 
 /**
  * Calcule les cotisations sociales pour le régime micro-entreprise
- * @param situation La situation avec des recettes obligatoirement définies
- * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
+ * @param situation La situation avec des recettes
+ * @returns Un Either contenant soit les cotisations calculées, soit une erreur
  */
 export function calculeCotisationsMicroEntreprise(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
 	Montant<'€/an'>,
-	RecettesInférieuresAuSeuilRequisPourCeRégime
+	RecettesSupérieuresAuPlafondAutoriséPourCeRégime
 > {
 	const recettes = situation.recettes.value
 
-	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {
+	const typeLocation = Option.getOrElse(
+		situation.typeLocation,
+		(): TypeLocation => 'non-classé'
+	)
+
+	const plafond =
+		typeLocation === 'non-classé'
+			? PLAFOND_MICRO_ENTREPRISE_NON_CLASSE
+			: typeLocation === 'tourisme'
+			? PLAFOND_MICRO_ENTREPRISE_TOURISME
+			: PLAFOND_MICRO_ENTREPRISE_CHAMBRE_HOTE
+
+	if (pipe(recettes, estPlusGrandQue(plafond))) {
 		return Either.left(
-			new RecettesInférieuresAuSeuilRequisPourCeRégime({
+			new RecettesSupérieuresAuPlafondAutoriséPourCeRégime({
 				recettes,
-				seuil: SEUIL_PROFESSIONNALISATION,
+				plafond,
 				régime: RegimeCotisation.microEntreprise,
 			})
 		)
