@@ -1,5 +1,4 @@
-import { DottedName } from 'modele-social'
-
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { RootState } from '@/store/reducers/rootReducer'
 import {
 	QuestionRépondue,

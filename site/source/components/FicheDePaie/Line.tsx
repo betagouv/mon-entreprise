@@ -1,7 +1,6 @@
-import { DottedName } from 'modele-social'
-
 import { ValueProps } from '@/components/EngineValue/types'
 import RuleLink from '@/components/RuleLink'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { Condition } from '../EngineValue/Condition'
 import Value from '../EngineValue/Value'

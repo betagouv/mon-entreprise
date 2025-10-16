@@ -1,8 +1,7 @@
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
-import { Names } from 'modele-social/dist/names'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SearchParamsAdapter, ValeurDomaine } from '@/SearchParamsAdapter'
 
@@ -15,7 +14,7 @@ export const getSearchParamsFromSituation = (
 	const searchParams = new URLSearchParams()
 	searchParams.set(TARGET_UNIT_PARAM, targetUnit)
 
-	R.map(situation as Record<Names, ValeurDomaine>, (value, dottedName) => {
+	R.map(situation as Record<DottedName, ValeurDomaine>, (value, dottedName) => {
 		try {
 			const encodedValue = SearchParamsAdapter.encode(value)
 			searchParams.set(dottedName as string, encodedValue)
@@ -32,12 +31,12 @@ export const getSearchParamsFromSituation = (
 
 export const getSituationFromSearchParams = (
 	searchParams: URLSearchParams,
-	rules: Names[]
+	rules: DottedName[]
 ): Record<DottedName, ValeurPublicodes> => {
 	const situation = {} as Record<DottedName, ValeurPublicodes>
 
 	searchParams.forEach((value, paramName) => {
-		const dottedName = paramName as Names
+		const dottedName = paramName as DottedName
 		if (rules.includes(dottedName)) {
 			situation[dottedName] = SearchParamsAdapter.decode(value)
 		}

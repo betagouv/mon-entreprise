@@ -1,10 +1,10 @@
 import { Order, pipe } from 'effect'
 import { filter, map, NonEmptyArray, sort } from 'effect/Array'
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 import { listeLesVariablesManquantes } from '@/domaine/engine/listeLesVariablesManquantes'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 

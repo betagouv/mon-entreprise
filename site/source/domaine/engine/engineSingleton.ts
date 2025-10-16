@@ -1,5 +1,5 @@
 import i18next from 'i18next'
-import rules, { DottedName } from 'modele-social'
+import rules, { RègleModeleSocial } from 'modele-social'
 import Engine, { PublicodesExpression, Unit } from 'publicodes'
 
 import { engineFactory } from '@/components/utils/EngineContext'
@@ -9,15 +9,15 @@ import translateRules from '@/locales/translateRules'
 
 let publicodesEngine: Engine | null = null
 
-export function getPublicodesEngine(): Engine<DottedName> {
+function getPublicodesEngine(): Engine<RègleModeleSocial> {
 	if (!publicodesEngine) {
 		resetPublicodesEngine()
 	}
 
-	return publicodesEngine as Engine<DottedName>
+	return publicodesEngine as Engine<RègleModeleSocial>
 }
 
-export function resetPublicodesEngine(): void {
+function resetPublicodesEngine(): void {
 	publicodesEngine = engineFactory(
 		i18next.language === 'en'
 			? translateRules('en', ruleTranslations, rules)

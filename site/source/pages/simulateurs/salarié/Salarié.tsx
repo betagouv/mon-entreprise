@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { ASTNode, reduceAST } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -30,6 +29,7 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useSitePaths } from '@/sitePaths'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 

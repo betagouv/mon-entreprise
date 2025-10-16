@@ -1,8 +1,8 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import {

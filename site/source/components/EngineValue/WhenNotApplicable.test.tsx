@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 describe('WhenNotApplicable', () => {
 	const mockEngine = {
