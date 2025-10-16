@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
@@ -17,6 +16,7 @@ import {
 	Message,
 	Spacing,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import FicheDePaie from '../FicheDePaie/FicheDePaie'
 

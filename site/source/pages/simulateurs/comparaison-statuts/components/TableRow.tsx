@@ -1,9 +1,9 @@
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { ComponentProps } from 'react'
 
 import Value from '@/components/EngineValue/Value'
 import { H3 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 function TableRow({
 	dottedName,
