@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import Engine, {
 	ASTNode,
 	isPublicodesError,
@@ -8,6 +7,7 @@ import Engine, {
 	RuleNode,
 } from 'publicodes'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import { getValueFrom } from '.'

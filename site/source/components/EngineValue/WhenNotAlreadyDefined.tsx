@@ -1,5 +1,6 @@
-import { DottedName } from 'modele-social'
 import React from 'react'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { useEngine } from '../utils/EngineContext'
 

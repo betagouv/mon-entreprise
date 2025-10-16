@@ -1,8 +1,8 @@
-import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 
 import { DistributionDesCotisations } from '@/components/simulationExplanation/DistributionDesCotisations'
 import { H2, Link, SmallBody } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 interface Props {
 	regroupement: Partial<Record<DottedName, Array<string>>>

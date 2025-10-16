@@ -1,7 +1,8 @@
-import { DottedName } from 'modele-social'
 import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import './FicheDePaie.css'
 

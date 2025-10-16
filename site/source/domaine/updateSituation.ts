@@ -1,10 +1,10 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { ImmutableType } from '@/types/utils'
 import { objectTransform, omit } from '@/utils'
 

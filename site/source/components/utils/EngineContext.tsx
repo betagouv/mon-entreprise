@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import Engine, {
 	EngineOptions,
 	EvaluatedNode,
@@ -10,6 +9,7 @@ import Engine, {
 import { createContext, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { deleteFromSituation } from '@/store/actions/actions'
 import {
 	companySituationSelector,

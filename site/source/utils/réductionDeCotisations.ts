@@ -2,11 +2,11 @@ import { pipe } from 'effect'
 import { last, map, take } from 'effect/Array'
 import { sumAll } from 'effect/Number'
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression } from 'publicodes'
 import { AnyAction, Dispatch } from 'redux'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ajusteLaSituation } from '@/store/actions/actions'
 

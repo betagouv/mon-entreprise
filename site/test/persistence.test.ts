@@ -1,8 +1,8 @@
 import { createMemoryHistory } from 'history'
-import { DottedName } from 'modele-social'
 import { createStore, Store, StoreEnhancer } from 'redux'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { setupSimulationPersistence } from '@/storage/persistSimulation'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import {

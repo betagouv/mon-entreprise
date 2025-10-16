@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -7,6 +6,7 @@ import { animated, useSpring } from 'react-spring'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import useDisplayOnIntersecting from '@/hooks/useDisplayOnIntersecting'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 

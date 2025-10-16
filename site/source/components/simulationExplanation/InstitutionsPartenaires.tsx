@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
@@ -19,6 +18,7 @@ import {
 	SmallBody,
 	Spacing,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import * as logosSrc from '@/utils/logos'
 
