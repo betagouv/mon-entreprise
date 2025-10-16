@@ -17,7 +17,6 @@ type StatusCardProps = {
 export const StatusCard = ({ children }: StatusCardProps) => {
 	const étiquettes = findChildrenByType(children, StatusCard.Étiquette)
 	const titre = findChildByType(children, StatusCard.Titre)
-	const valeur = findChildByType(children, StatusCard.Valeur)
 	const valeurSecondaire = findChildByType(
 		children,
 		StatusCard.ValeurSecondaire
@@ -25,7 +24,7 @@ export const StatusCard = ({ children }: StatusCardProps) => {
 	const complément = findChildByType(children, StatusCard.Complément)
 	const actions = findChildrenByType(children, StatusCard.Action)
 
-	const hasContent = titre || valeur || valeurSecondaire
+	const hasContent = titre || valeurSecondaire
 
 	return (
 		<StyledCardContainer inert>
@@ -38,7 +37,6 @@ export const StatusCard = ({ children }: StatusCardProps) => {
 				{hasContent && (
 					<StyledContentWrapper as="div">
 						{titre}
-						{valeur}
 						{valeurSecondaire}
 					</StyledContentWrapper>
 				)}
@@ -63,14 +61,11 @@ const StatusCardTitre: ComponentType<PropsWithChildren> = ({
 }: PropsWithChildren) => <>{children}</>
 StatusCardTitre.displayName = 'StatusCard.Titre'
 
-const StatusCardValeur: ComponentType<PropsWithChildren> = ({
-	children,
-}: PropsWithChildren) => <>{children}</>
-StatusCardValeur.displayName = 'StatusCard.Valeur'
-
 const StatusCardValeurSecondaire: ComponentType<PropsWithChildren> = ({
 	children,
-}: PropsWithChildren) => <StyledValeurSecondaire>{children}</StyledValeurSecondaire>
+}: PropsWithChildren) => (
+	<StyledValeurSecondaire>{children}</StyledValeurSecondaire>
+)
 StatusCardValeurSecondaire.displayName = 'StatusCard.ValeurSecondaire'
 
 const StatusCardComplément: ComponentType<PropsWithChildren> = ({
@@ -85,7 +80,6 @@ StatusCardAction.displayName = 'StatusCard.Action'
 
 StatusCard.Étiquette = StatusCardÉtiquette
 StatusCard.Titre = StatusCardTitre
-StatusCard.Valeur = StatusCardValeur
 StatusCard.ValeurSecondaire = StatusCardValeurSecondaire
 StatusCard.Complément = StatusCardComplément
 StatusCard.Action = StatusCardAction
