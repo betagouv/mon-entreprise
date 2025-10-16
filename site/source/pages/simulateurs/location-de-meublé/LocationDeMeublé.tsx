@@ -17,12 +17,12 @@ import {
 } from '@/contextes/économie-collaborative'
 import { Button, SmallBody } from '@/design-system'
 import { eurosParAn, toString as formatMontant } from '@/domaine/Montant'
+import { ComparateurRégimesCards } from '@/pages/simulateurs/location-de-meublé/components/ComparateurRégimesCards'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import { ObjectifRevenuNet } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRevenuNet'
 import {
 	AlsaceMoselleQuestion,
 	PremiereAnneeQuestion,
-	RegimeCotisationQuestion,
 	TypeLocationQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
 import { useSitePaths } from '@/sitePaths'
@@ -43,7 +43,6 @@ const LocationDeMeublé = () => {
 				situation={situation}
 				questions={[
 					TypeLocationQuestion,
-					RegimeCotisationQuestion,
 					AlsaceMoselleQuestion,
 					PremiereAnneeQuestion,
 				]}
@@ -111,6 +110,7 @@ const LocationDeMeublé = () => {
 						})}
 				</SimulationGoals>
 			</Simulation>
+			{estSituationValide(situation) && <ComparateurRégimesCards />}
 			<Button
 				size="XS"
 				light
