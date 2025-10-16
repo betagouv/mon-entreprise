@@ -11,17 +11,19 @@ import {
 	SituationÉconomieCollaborativeValide,
 } from './situation'
 
-type RésultatRégime =
-	| {
-			régime: RegimeCotisation
-			applicable: true
-			cotisations: Montant<'€/an'>
-	  }
-	| {
-			régime: RegimeCotisation
-			applicable: false
-			raisonDeNonApplicabilité: RégimeInapplicable
-	  }
+export type RésultatRégimeApplicable = {
+	régime: RegimeCotisation
+	applicable: true
+	cotisations: Montant<'€/an'>
+}
+
+export type RésultatRégimeNonApplicable = {
+	régime: RegimeCotisation
+	applicable: false
+	raisonDeNonApplicabilité: RégimeInapplicable
+}
+
+type RésultatRégime = RésultatRégimeApplicable | RésultatRégimeNonApplicable
 
 export const compareRégimes = (
 	situation: SituationÉconomieCollaborativeValide
