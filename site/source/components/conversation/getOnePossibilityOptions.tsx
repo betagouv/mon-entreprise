@@ -1,7 +1,7 @@
-import { DottedName } from 'modele-social'
 import Engine, { ASTNode, reduceAST, RuleNode } from 'publicodes'
 
 import { Choice } from '@/components/conversation/Choice'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export const isOnePossibility = (node: RuleNode) =>
 	reduceAST<false | (ASTNode & { nodeKind: 'une possibilité' })>(

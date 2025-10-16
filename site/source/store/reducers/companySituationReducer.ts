@@ -1,10 +1,10 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 
 import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
 import { toPublicodeDate } from '@/domaine/Date'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { Entreprise } from '@/domaine/Entreprise'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Action } from '@/store/actions/actions'
 import { omit } from '@/utils'
 import { buildSituationFromObject } from '@/utils/publicodes'

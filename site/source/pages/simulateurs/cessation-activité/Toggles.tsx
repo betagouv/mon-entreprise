@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -8,6 +7,7 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
 import { H3 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
