@@ -7196,8 +7196,10 @@ entreprise . date de cessation:
   description.fr:
     La date de cessation est la date à laquelle l’entreprise cessera
     son activité.
-  question.en: '[automatic] When do you plan to declare your cessation of activity?'
-  question.fr: À quelle date comptez-vous déclarer la cessation d’activité ?
+  question.en:
+    '[automatic] On what date have you or do you intend to declare the
+    cessation of activity?'
+  question.fr: À quelle date avez-vous ou comptez-vous déclarer la cessation d’activité ?
   titre.en: '[automatic] termination date'
   titre.fr: date de cessation
 entreprise . date de création:
