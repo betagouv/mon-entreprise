@@ -7,10 +7,11 @@
 
 ### Nouveautés
 - Ajoute la règle `entreprise . imposition . IS . total` qui inclue la contribution
-sociale sur l'IS.
+sociale sur l'IS
 
 ### Mises à jour
-- Change `entreprise . exercice . date trop ancienne` de 2018 à 2022.
+- Change `entreprise . exercice . date trop ancienne` de 2018 à 2022
+- Reformulation de la question de `entreprise . date de cessation`
 
 ### Corrections
 - Corrige le calcul de `entreprise . exercice . durée`
