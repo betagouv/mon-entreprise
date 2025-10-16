@@ -40,10 +40,10 @@ describe('StatusCard', () => {
 		expect(screen.getByText('Étiquette 2')).toBeInTheDocument()
 	})
 
-	it('affiche la valeur et valeur secondaire', () => {
+	it('affiche le titre et valeur secondaire', () => {
 		renderWithTheme(
 			<StatusCard>
-				<StatusCard.Valeur>1 645 €/mois</StatusCard.Valeur>
+				<StatusCard.Titre>1 645 €/mois</StatusCard.Titre>
 				<StatusCard.ValeurSecondaire>
 					(invalidité partielle)
 				</StatusCard.ValeurSecondaire>
@@ -121,7 +121,9 @@ describe('StatusCard', () => {
 			<StatusCard>
 				<StatusCard.Action>Action</StatusCard.Action>
 				<StatusCard.Complément>Complément</StatusCard.Complément>
-				<StatusCard.Valeur>Valeur</StatusCard.Valeur>
+				<StatusCard.ValeurSecondaire>
+					Valeur secondaire
+				</StatusCard.ValeurSecondaire>
 				<StatusCard.Titre>Titre</StatusCard.Titre>
 				<StatusCard.Étiquette>Étiquette</StatusCard.Étiquette>
 			</StatusCard>
@@ -130,13 +132,13 @@ describe('StatusCard', () => {
 		const fullText = container.textContent || ''
 		const etiquetteIndex = fullText.indexOf('Étiquette')
 		const titreIndex = fullText.indexOf('Titre')
-		const valeurIndex = fullText.indexOf('Valeur')
+		const valeurSecondaireIndex = fullText.indexOf('Valeur secondaire')
 		const complementIndex = fullText.indexOf('Complément')
 		const actionIndex = fullText.indexOf('Action')
 
 		expect(etiquetteIndex).toBeLessThan(titreIndex)
-		expect(titreIndex).toBeLessThan(valeurIndex)
-		expect(valeurIndex).toBeLessThan(complementIndex)
+		expect(titreIndex).toBeLessThan(valeurSecondaireIndex)
+		expect(valeurSecondaireIndex).toBeLessThan(complementIndex)
 		expect(complementIndex).toBeLessThan(actionIndex)
 	})
 })
