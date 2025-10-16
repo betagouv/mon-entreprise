@@ -1,14 +1,8 @@
 import { Either, Option, pipe } from 'effect'
 
-import { SEUIL_PROFESSIONNALISATION } from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
-import {
-	RecettesInférieuresAuSeuilRequisPourCeRégime,
-	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
 	abattement,
 	estPlusGrandQue,
-	estPlusPetitQue,
 	eurosParAn,
 	fois,
 	moins,
@@ -17,8 +11,14 @@ import {
 
 import { DEFAULTS } from './cotisations'
 import {
+	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
+	RégimeNonApplicablePourCeTypeDeLocation,
+} from './erreurs'
+import { SEUIL_PROFESSIONNALISATION } from './estActiviteProfessionnelle'
+import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
+	TypeLocation,
 } from './situation'
 
 export const PLAFOND_REGIME_GENERAL = eurosParAn(77_700)
@@ -28,17 +28,31 @@ export const ABATTEMENT_REGIME_GENERAL = 0.6
 
 /**
  * Calcule les cotisations sociales pour le régime général
- * @param situation La situation avec des recettes obligatoirement définies
- * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
+ * @param situation La situation avec des recettes
+ * @returns Un Either contenant soit les cotisations calculées, soit une erreur
  */
 export function calculeCotisationsRégimeGénéral(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
 	Montant<'€/an'>,
-	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
+	| RégimeNonApplicablePourCeTypeDeLocation
 > {
 	const recettes = situation.recettes.value
+
+	const typeLocation = Option.getOrElse(
+		situation.typeLocation,
+		(): TypeLocation => 'non-classé'
+	)
+
+	if (typeLocation === 'chambre-hôte') {
+		return Either.left(
+			new RégimeNonApplicablePourCeTypeDeLocation({
+				typeLocation,
+				régime: RegimeCotisation.regimeGeneral,
+			})
+		)
+	}
 
 	const estAlsaceMoselle = Option.getOrElse(
 		situation.estAlsaceMoselle,
@@ -50,16 +64,7 @@ export function calculeCotisationsRégimeGénéral(
 		() => DEFAULTS.PREMIERE_ANNEE
 	)
 
-	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {
-		return Either.left(
-			new RecettesInférieuresAuSeuilRequisPourCeRégime({
-				recettes,
-				seuil: SEUIL_PROFESSIONNALISATION,
-				régime: RegimeCotisation.regimeGeneral,
-			})
-		)
-	}
-
+	// Vérification du plafond pour ce régime
 	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
 		return Either.left(
 			new RecettesSupérieuresAuPlafondAutoriséPourCeRégime({
@@ -71,8 +76,8 @@ export function calculeCotisationsRégimeGénéral(
 	}
 
 	const assiette = premièreAnnée
-		? pipe(recettes, estPlusGrandQue(SEUIL_PROFESSIONNALISATION))
-			? pipe(recettes, moins(SEUIL_PROFESSIONNALISATION))
+		? pipe(recettes, estPlusGrandQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ))
+			? pipe(recettes, moins(SEUIL_PROFESSIONNALISATION.MEUBLÉ))
 			: eurosParAn(0)
 		: recettes
 
