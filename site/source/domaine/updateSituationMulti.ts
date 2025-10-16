@@ -3,13 +3,13 @@ import { headNonEmpty, NonEmptyArray, of } from 'effect/Array'
 import * as O from 'effect/Option'
 import { isUndefined } from 'effect/Predicate'
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
 import { PublicodesExpression } from 'publicodes'
 
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { omit } from '@/utils'

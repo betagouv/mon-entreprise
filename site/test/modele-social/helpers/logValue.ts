@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export const logValue = (e: Engine, rule: DottedName) => {
 	const result = e.evaluate(rule)

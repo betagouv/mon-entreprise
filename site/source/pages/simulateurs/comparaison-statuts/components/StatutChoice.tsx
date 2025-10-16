@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
@@ -15,6 +14,7 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
