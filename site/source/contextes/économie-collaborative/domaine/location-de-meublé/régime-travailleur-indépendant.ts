@@ -1,42 +1,26 @@
-import { Either, pipe } from 'effect'
+import { Either } from 'effect'
 
-import { RecettesInférieuresAuSeuilRequisPourCeRégime } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
-import { estPlusPetitQue, eurosParAn, Montant } from '@/domaine/Montant'
+import { eurosParAn, Montant } from '@/domaine/Montant'
 import {
 	TravailleurIndependantChiffreAffaireDansPublicodes,
 	TravailleurIndependantContexteDansPublicodes,
 	TravailleurIndependantCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/TravailleurIndependantContexteDansPublicodes'
 
-import { SEUIL_PROFESSIONNALISATION } from './constantes'
-import {
-	RegimeCotisation,
-	SituationÉconomieCollaborativeValide,
-} from './situation'
+import { SituationÉconomieCollaborativeValide } from './situation'
 
 /**
  * Calcule les cotisations sociales pour le régime travailleur indépendant
+ * Ce régime est toujours applicable, quel que soit le montant des recettes
+ * C'est le régime "par défaut" quand les autres plafonds sont dépassés
  * @param situation La situation avec des recettes obligatoirement définies
- * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
+ * @returns Toujours les cotisations calculées (jamais d'erreur)
  */
 export function calculeCotisationsTravailleurIndépendant(
 	situation: SituationÉconomieCollaborativeValide
-): Either.Either<
-	Montant<'€/an'>,
-	RecettesInférieuresAuSeuilRequisPourCeRégime
-> {
+): Either.Either<Montant<'€/an'>, never> {
 	const recettes = situation.recettes.value
-
-	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {
-		return Either.left(
-			new RecettesInférieuresAuSeuilRequisPourCeRégime({
-				recettes,
-				seuil: SEUIL_PROFESSIONNALISATION,
-				régime: RegimeCotisation.travailleurIndependant,
-			})
-		)
-	}
 
 	const cotisations = evalueAvecPublicodes<number>(
 		{
