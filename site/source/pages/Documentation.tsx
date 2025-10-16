@@ -1,5 +1,5 @@
 import { getDocumentationSiteMap, RulePage } from '@publicodes/react-ui'
-import rules, { DottedName } from 'modele-social'
+import rules, { RègleModeleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { ComponentProps, lazy, Suspense, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -199,7 +199,7 @@ function DocumentationLanding() {
 }
 
 function DocumentationRulesList() {
-	const ruleEntries = Object.keys(rules) as DottedName[]
+	const ruleEntries = Object.keys(rules) as RègleModeleSocial[]
 
 	return (
 		<>

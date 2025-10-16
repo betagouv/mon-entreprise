@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React, { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -16,6 +15,7 @@ import Simulation, {
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Body, DarkLi, H2, Li, Link, Strong, Ul } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { catchDivideByZeroError } from '@/utils/publicodes'
 
 declare global {

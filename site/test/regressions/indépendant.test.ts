@@ -1,6 +1,6 @@
-import { DottedName } from 'modele-social'
 import { expect, it } from 'vitest'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 
 import independentSituations from './indépendant.yaml'

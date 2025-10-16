@@ -1,8 +1,8 @@
-import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
 
 import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'

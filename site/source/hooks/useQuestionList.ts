@@ -1,9 +1,9 @@
-import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { questionsRéponduesNomSelector } from '@/store/selectors/questionsRéponduesNom.selector'
