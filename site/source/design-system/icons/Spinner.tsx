@@ -1,4 +1,4 @@
-export function Loader() {
+export function Spinner() {
 	return (
 		<svg
 			aria-label="Chargement en cours"
