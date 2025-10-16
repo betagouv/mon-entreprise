@@ -9,7 +9,7 @@ import { ReactNode, useRef } from 'react'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '../../../global-style'
-import { Loader, SearchIcon } from '../../../icons'
+import { SearchIcon, Spinner } from '../../../icons'
 import {
 	StyledContainer,
 	StyledDescription,
@@ -99,7 +99,7 @@ export function SearchableSelectField(
 				) : (
 					<>
 						<IconContainer $hasLabel={!!props.label}>
-							{props.isSearchStalled ? <Loader /> : <SearchIcon aria-hidden />}
+							{props.isSearchStalled ? <Spinner /> : <SearchIcon aria-hidden />}
 						</IconContainer>
 						<SearchInput
 							{...inputProps}
