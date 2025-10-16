@@ -1,9 +1,9 @@
-import { DottedName } from 'modele-social'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 
 import {

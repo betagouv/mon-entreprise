@@ -1,5 +1,4 @@
-import { DottedName } from 'modele-social'
-
+import { DottedName } from './publicodes/DottedName'
 import { RaccourciPublicodes } from './RaccourciPublicodes'
 import { SituationPublicodes } from './SituationPublicodes'
 

@@ -1,6 +1,6 @@
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
 export const estCeQueLaQuestionPublicodesEstRépondue =
