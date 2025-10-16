@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from 'styled-components'
 
@@ -7,6 +6,7 @@ import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetrait
 import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import StackedBarChart from '@/components/StackedBarChart'
 import { H2 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export const AutoEntrepreneurDétails = () => {
 	const { t } = useTranslation()

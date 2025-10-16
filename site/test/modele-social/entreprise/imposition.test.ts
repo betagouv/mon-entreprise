@@ -1,4 +1,4 @@
-import rules, { DottedName } from 'modele-social'
+import rules, { RègleModeleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -11,7 +11,7 @@ const situationParDéfaut = {
 }
 
 describe('entreprise . imposition', () => {
-	let engine: Engine<DottedName>
+	let engine: Engine<RègleModeleSocial>
 	beforeEach(() => {
 		engine = new Engine(rules)
 	})

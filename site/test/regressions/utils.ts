@@ -4,11 +4,12 @@
 //
 // We only persist targets values in the file system, in order to be resilient to rule renaming (if a rule is
 // renamed the test configuration may be adapted but the persisted snapshot will remain unchanged).
-import rules, { DottedName } from 'modele-social'
+import rules from 'modele-social'
 import { EvaluatedNode, Evaluation } from 'publicodes'
 import { expect } from 'vitest'
 
 import { engineFactory } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
@@ -21,6 +22,7 @@ export const engine = engineFactory(rules, {
 		log: () => undefined,
 	},
 })
+// TODO: le type d'objectifs doit correspondre au modèle de règles utilisé
 export const runSimulations = (
 	situationsSpecs: SituationsSpecs,
 	objectifs: DottedName[],

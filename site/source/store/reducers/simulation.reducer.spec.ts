@@ -1,6 +1,6 @@
-import { DottedName } from 'modele-social'
 import { describe, expect, it } from 'vitest'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	Simulation,
 	simulationReducer,
