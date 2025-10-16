@@ -1,6 +1,5 @@
-import { DottedName } from 'modele-social'
-
 import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { useZoneLodeom, ZoneLodeom } from './useZoneLodeom'
 

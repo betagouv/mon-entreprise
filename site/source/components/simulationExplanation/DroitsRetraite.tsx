@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Condition } from '@/components/EngineValue/Condition'
@@ -16,6 +15,7 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export function DroitsRetraite() {
 	const { t } = useTranslation()

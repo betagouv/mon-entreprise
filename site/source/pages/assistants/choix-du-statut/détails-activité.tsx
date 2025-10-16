@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -25,6 +24,7 @@ import {
 	Ul,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useIsIdle } from '@/hooks/useIsIddle'
 import { usePublicodes } from '@/hooks/usePublicodes'
 import { useSitePaths } from '@/sitePaths'

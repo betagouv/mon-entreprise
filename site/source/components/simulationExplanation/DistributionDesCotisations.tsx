@@ -1,9 +1,9 @@
-import { DottedName } from 'modele-social'
 import { useSelector } from 'react-redux'
 
 import BarChartBranch from '@/components/BarChart'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 interface Props {

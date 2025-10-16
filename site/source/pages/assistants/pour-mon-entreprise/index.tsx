@@ -1,5 +1,4 @@
 import { useOverlayTriggerState } from '@react-stately/overlays'
-import { DottedName } from 'modele-social'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -31,6 +30,7 @@ import {
 	Spacing,
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'

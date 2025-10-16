@@ -2,9 +2,8 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import './FicheDePaie.css'
 
-import { DottedName } from 'modele-social'
-
 import { H3, H4 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import { Condition } from '../EngineValue/Condition'

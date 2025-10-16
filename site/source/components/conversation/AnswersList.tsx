@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { RuleNode, utils } from 'publicodes'
 import React, { useCallback, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -18,6 +17,7 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { estPasQuestionEnListeNoire } from '@/domaine/estPasQuestionEnListeNoire'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
