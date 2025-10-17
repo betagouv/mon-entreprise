@@ -49,7 +49,7 @@ import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { companySituationSelector } from '@/store/selectors/companySituation.selector'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import forms from './forms.svg'
 import growth from './growth.svg'

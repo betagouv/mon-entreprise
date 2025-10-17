@@ -16,7 +16,7 @@ import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Body, DarkLi, H2, Li, Link, Strong, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { catchDivideByZeroError } from '@/utils/publicodes'
+import { catchDivideByZeroError } from '@/utils/publicodes/publicodes'
 
 declare global {
 	interface Window {

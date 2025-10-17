@@ -40,7 +40,7 @@ import {
 } from '@/domaine/Unités'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
-import { getMeta } from '@/utils/publicodes'
+import { getMeta } from '@/utils/publicodes/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import { DateInput } from './DateInput'
