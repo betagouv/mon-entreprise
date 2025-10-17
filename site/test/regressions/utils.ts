@@ -8,9 +8,9 @@ import rules from 'modele-social'
 import { EvaluatedNode, Evaluation } from 'publicodes'
 import { expect } from 'vitest'
 
-import { engineFactory } from '@/components/utils/EngineContext'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Simulation } from '@/store/reducers/simulation.reducer'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 
