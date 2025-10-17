@@ -3629,18 +3629,18 @@ dirigeant . indépendant . cotisations et contributions . début activité:
       titre.en: '[automatic] sickness lump sum'
       titre.fr: assiette forfaitaire maladie
   description.en: >
-    [automatic] When you start your business, your **professional income** is
-    not known.
+    [automatic] When you start your business, as your professional income is not
+    known, your
 
-    contributions for the first two years are calculated on a **lump-sum basis**.
+    contributions** for the first two years are calculated on a **lump-sum basis**.
 
-    are calculated on a **lump-sum basis**.
+    calculated on a **lump-sum basis**.
 
 
 
     These contributions will be adjusted and regularized on the basis of your actual income
 
-    for the year in question. If your income is higher than the fixed base used to calculate
+    for the year in question. If your income exceeds the flat-rate base used to calculate
 
     taken into account for calculating provisional contributions, you will be
 
@@ -3654,11 +3654,12 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     and **plan your cash flow** accordingly.
   description.fr: >
-    Lorsque vous commencez votre activité, vos **revenus professionnels**
+    Lorsque vous commencez votre activité, vos revenus professionnels n’étant
+    pas
 
-    n’étant pas connus, **les cotisations et contributions des deux premières
+    connus, les **cotisations et contributions** des deux premières années sont
 
-    années sont calculées sur une **base forfaitaire**.
+    calculées sur une **base forfaitaire**.
 
 
 

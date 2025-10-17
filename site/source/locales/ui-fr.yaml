@@ -1885,7 +1885,7 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d’impôt sur les sociétés
     indépendant:
-      cotisations-forfaitaires: "Montant des cotisations forfaitaires : "
+      cotisations-forfaitaires: "Cotisations forfaitaires : "
       meta:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
