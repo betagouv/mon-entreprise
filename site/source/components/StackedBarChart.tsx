@@ -8,10 +8,10 @@ import { styled } from 'styled-components'
 import RuleLink from '@/components/RuleLink'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import useDisplayOnIntersecting from '@/hooks/useDisplayOnIntersecting'
+import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
-import { useEngine } from './utils/EngineContext'
 
 const BarStack = styled.div`
 	display: flex;

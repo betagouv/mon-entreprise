@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
-import { useEngine } from '@/components/utils/EngineContext'
+import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
