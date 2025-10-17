@@ -20,6 +20,8 @@ salarié . rémunération . brut:
     - heures supplémentaires
     - heures complémentaires
     - frais professionnels
+    - cotisations . retraite supplémentaire . employeur . non exonéré
+    - cotisations . prévoyance complémentaire . employeur . non exonéré
 
   abattement: activité partielle . retrait absence
 
