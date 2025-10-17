@@ -517,7 +517,7 @@ salarié . cotisations . CSG-CRDS . assiette de base:
   avec:
     assiette abattue:
       barème:
-        assiette: cotisations . assiette . sans prévoyance # - rémunération . revenus de remplacement
+        assiette: assiette avant abattement
 
         multiplicateur: temps de travail . plafond sécurité sociale
         # c'est en fait un abattement de 1,75% sur la partie en-dessous de 4 fois le plafond
@@ -525,6 +525,8 @@ salarié . cotisations . CSG-CRDS . assiette de base:
           - taux: 98.25%
             plafond: 4
           - taux: 100%
+    assiette avant abattement:
+      valeur: cotisations . assiette . sans prévoyance # - rémunération . revenus de remplacement
 
 salarié . cotisations . CSG-CRDS . assiette revenu remplacements:
   # TODO : déplacer dans une section "revenu de remplacement"
