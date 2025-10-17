@@ -30,7 +30,7 @@ import { Situation } from '@/domaine/Situation'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
 import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import Raccourcis from './Raccourcis'
 
