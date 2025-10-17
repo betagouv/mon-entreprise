@@ -23,12 +23,10 @@ import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
+import { companySituationSelector } from '@/store/selectors/companySituation.selector'
 import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
-import {
-	companySituationSelector,
-	situationSelector,
-} from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { NoOp } from '@/utils/NoOp'
 import { evaluateQuestion } from '@/utils/publicodes'
 
