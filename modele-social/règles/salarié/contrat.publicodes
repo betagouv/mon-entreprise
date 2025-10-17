@@ -234,6 +234,28 @@ salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
             abattement: 50% * SMIC
     - sinon: 0
 
+salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur les salaires:
+  description: |
+    La part du salaire des apprentis correspondant à 11 % du Smic n’est pas soumise
+    à la taxe sur les salaires.
+  remplace: régimes spécifiques . taxe sur les salaires . assiette
+  valeur: cotisations . CSG-CRDS . assiette de base
+  contexte:
+    salarié . cotisations . CSG-CRDS . assiette de base . assiette avant abattement:
+      valeur: salarié . cotisations . CSG-CRDS . assiette de base . assiette avant abattement
+      abattement: 11% * SMIC
+  références:
+    Article 231 bis I du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303786/
+
+salarié . contrat . apprentissage . exonération taxe sur les salaires:
+  description: |
+    Les entreprises de 10 salariés ou moins sont exonérées de la taxe sur les
+    salaires de ses apprentis.
+  valeur: entreprise . salariés . effectif < 11
+  rend non applicable: régimes spécifiques . taxe sur les salaires
+  références:
+    Article 231 bis I du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303786/
+
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
   question: Le salarié embauché a-t-il moins de 30 ans ?
   par défaut: oui

@@ -8,6 +8,7 @@
 ### Nouveautés
 - Ajoute la règle `entreprise . imposition . IS . total` qui inclue la contribution
 sociale sur l'IS
+- Ajoute les règles `salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur les salaires` et `salarié . contrat . apprentissage . exonération taxe sur les salaires`
 
 ### Mises à jour
 - Change `entreprise . exercice . date trop ancienne` de 2018 à 2022
