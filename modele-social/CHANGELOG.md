@@ -15,6 +15,7 @@ sociale sur l'IS
 
 ### Corrections
 - Corrige le calcul de `entreprise . exercice . durée`
+- Corrige la règle `salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS` qui ne s'appliquait pas correctement
 
 ## 8.0.0
 
