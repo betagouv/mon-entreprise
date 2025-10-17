@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 
 import RuleLink from '../RuleLink'
-import { useEngine } from '../utils/EngineContext'
 import { ValueProps } from './types'
 
 export default function Value<Names extends string>({

@@ -3,9 +3,9 @@ import FlipMove from 'react-flip-move'
 import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
-import { useEngine } from '@/components/utils/EngineContext'
 import { H5, Li, Message, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 
 const STATUTS = [
 	'entreprise . catégorie juridique . EI . EI',

@@ -3,7 +3,6 @@ import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
 	Body,
@@ -15,6 +14,7 @@ import {
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { debounce } from '@/utils'
 

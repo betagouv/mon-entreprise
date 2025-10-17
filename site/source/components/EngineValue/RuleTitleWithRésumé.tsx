@@ -1,6 +1,6 @@
-import { useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 
 export default function RuleTitleWithRésumé({
 	dottedName,
