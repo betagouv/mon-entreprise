@@ -67,7 +67,7 @@ export default function PrivacyPolicy({
 			)}
 			title={t('privacyPolicy.title', 'Politique de confidentialité')}
 		>
-			<TrackPage chapter1="informations" name={'donnees_personnelles'} />
+			<TrackPage chapter1="informations" name="donnees_personnelles" />
 			<H2>
 				{t(
 					'privacyPolicy.liability.title',

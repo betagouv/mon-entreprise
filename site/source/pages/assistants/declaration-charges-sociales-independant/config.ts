@@ -16,7 +16,7 @@ export function déclarationChargesSocialesIndépendantConfig({
 		iframePath: 'déclaration-charges-sociales-indépendant',
 		icône: '📑',
 		tracking: {
-			chapter1: 'assistant',
+			chapter1: 'assistants',
 			chapter2: 'declaration_charges_sociales_independant',
 		},
 		meta: {
