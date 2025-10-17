@@ -1,8 +1,7 @@
 import React from 'react'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-
-import { useEngine } from '../utils/EngineContext'
+import { useEngine } from '@/hooks/useEngine'
 
 export function WhenNotAlreadyDefined({
 	dottedName,

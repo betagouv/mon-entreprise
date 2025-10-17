@@ -13,7 +13,6 @@ import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDe
 import PageHeader from '@/components/PageHeader'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Warning from '@/components/ui/WarningBlock'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -26,6 +25,7 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
+import { useEngine } from '@/hooks/useEngine'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 import { resetSimulation } from '@/store/actions/actions'

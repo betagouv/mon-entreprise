@@ -8,11 +8,11 @@ import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import {
 	EngineProvider,
-	useEngine,
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
+import { useEngine } from '@/hooks/useEngine'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'

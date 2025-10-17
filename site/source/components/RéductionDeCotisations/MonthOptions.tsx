@@ -2,7 +2,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	baseTheme,
 	Body,
@@ -21,6 +20,7 @@ import {
 } from '@/design-system'
 import { euros } from '@/domaine/Montant'
 import { heuresParMois } from '@/domaine/Quantité'
+import { useEngine } from '@/hooks/useEngine'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Options } from '@/utils/réductionDeCotisations'
 

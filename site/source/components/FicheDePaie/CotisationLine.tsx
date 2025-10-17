@@ -2,8 +2,8 @@ import { formatValue } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { findReferenceInNode } from '@/utils/publicodes/publicodes'
 
 export default function CotisationLine({
