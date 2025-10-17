@@ -7,9 +7,7 @@ import { css, styled } from 'styled-components'
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import {
-	engineFactory,
 	EngineProvider,
-	Rules,
 	useEngine,
 	useSetupSafeSituation,
 } from '@/components/utils/EngineContext'
@@ -35,21 +33,18 @@ import Simulateurs from '@/pages/simulateurs'
 import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
 import Stats from '@/pages/statistiques'
 import { useSitePaths } from '@/sitePaths'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import Provider, { ProviderProps } from './Provider'
 import Redirections from './Redirections'
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	rulesPreTransform?: (rules: Rules) => Rules
 }
 
-export default function Root({
-	basename,
-	rulesPreTransform = (r) => r,
-}: RootProps) {
+export default function Root({ basename }: RootProps) {
 	const engine = useMemo(
-		() => engineFactory(rulesPreTransform(rules)),
+		() => engineFactory(rules),
 
 		// We need to keep [rules] in the dependency list for hot reload of the rules
 		// in dev mode, even if ESLint think it is unnecessary since `rules` isn't

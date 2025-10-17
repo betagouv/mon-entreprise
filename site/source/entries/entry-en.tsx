@@ -4,20 +4,13 @@ import { createRoot } from 'react-dom/client'
 
 import App from '../components/App'
 import i18next from '../locales/i18n'
-import ruleTranslations from '../locales/rules-en.yaml'
-import translateRules from '../locales/translateRules'
 import translations from '../locales/ui-en.yaml'
 
 import '../api/sentry'
 
 export const AppEn = () => (
 	<I18nProvider locale="en-GB">
-		<App
-			basename="infrance"
-			rulesPreTransform={(rules) =>
-				translateRules('en', ruleTranslations, rules)
-			}
-		/>
+		<App basename="infrance" />
 	</I18nProvider>
 )
 
