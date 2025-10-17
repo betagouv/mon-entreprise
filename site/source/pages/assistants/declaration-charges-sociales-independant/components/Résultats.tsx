@@ -5,7 +5,6 @@ import { styled } from 'styled-components'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { FromTop } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Article,
 	Container,
@@ -15,6 +14,7 @@ import {
 	Spacing,
 	typography,
 } from '@/design-system'
+import { useEngine } from '@/hooks/useEngine'
 
 const { Body, H2, H3, Intro, Link } = typography
 
