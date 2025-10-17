@@ -2655,6 +2655,10 @@ dirigeant . indépendant . PL . PAMC . maladie:
   titre.en: '[automatic] disease (after CPAM participation)'
   titre.fr: maladie (après participation CPAM)
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   titre.en: '[automatic] supplementary contribution'
   titre.fr: contribution additionnelle
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
