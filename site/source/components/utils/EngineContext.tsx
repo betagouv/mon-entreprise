@@ -4,10 +4,11 @@ import Engine, {
 	PublicodesExpression,
 	RuleNode,
 } from 'publicodes'
-import { createContext, useContext } from 'react'
+import { createContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { deleteFromSituation } from '@/store/actions/actions'
 import { companySituationSelector } from '@/store/selectors/companySituation.selector'
 import {
@@ -20,10 +21,6 @@ import { omit } from '@/utils'
 
 export const EngineContext = createContext<Engine>(new Engine())
 export const EngineProvider = EngineContext.Provider
-
-export function useEngine() {
-	return useContext(EngineContext) as Engine<DottedName>
-}
 
 export const useRawSituation = () => useSelector(completeSituationSelector)
 

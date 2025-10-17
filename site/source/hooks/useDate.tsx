@@ -1,4 +1,4 @@
-import { useEngine } from '../components/utils/EngineContext'
+import { useEngine } from './useEngine'
 
 export default function useDate() {
 	const date = useEngine().evaluate('date')

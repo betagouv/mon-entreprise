@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParMois, eurosParTitreRestaurant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -23,6 +22,7 @@ import {
 	pourcentage,
 	titresRestaurantParMois,
 } from '@/domaine/Quantité'
+import { useEngine } from '@/hooks/useEngine'
 import { batchUpdateSituation, updateUnit } from '@/store/actions/actions'
 
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
@@ -38,7 +38,7 @@ vi.mock('react-redux', () => ({
 }))
 const dispatchMock = vi.fn()
 
-vi.mock('@/components/utils/EngineContext', () => ({
+vi.mock('@/hooks/useEngine', () => ({
 	useEngine: vi.fn(),
 }))
 

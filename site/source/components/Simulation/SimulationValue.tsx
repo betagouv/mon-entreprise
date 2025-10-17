@@ -10,6 +10,7 @@ import { Contexte } from '@/domaine/Contexte'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -17,7 +18,6 @@ import LectureGuide from '../LectureGuide'
 import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
-import { useEngine } from '../utils/EngineContext'
 
 type SimulationValueProps = {
 	dottedName: DottedName

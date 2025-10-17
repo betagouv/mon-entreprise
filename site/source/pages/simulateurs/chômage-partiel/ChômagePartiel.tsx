@@ -13,9 +13,9 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Body, DarkLi, H2, Li, Link, Strong, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { catchDivideByZeroError } from '@/utils/publicodes/publicodes'
 
 declare global {

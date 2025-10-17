@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
+import { EvaluatedRule } from '@/components/utils/EngineContext'
 import {
 	Button,
 	Emoji,
@@ -18,6 +18,7 @@ import {
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'

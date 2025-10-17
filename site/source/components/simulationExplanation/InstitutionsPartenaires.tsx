@@ -7,7 +7,6 @@ import dgfipSrc from '@/assets/images/logo-dgfip.svg'
 import urssafSrc from '@/assets/images/Urssaf.svg'
 import RuleLink from '@/components/RuleLink'
 import { FromBottom } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Emoji,
@@ -19,6 +18,7 @@ import {
 	Spacing,
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import * as logosSrc from '@/utils/logos'
 

@@ -1,16 +1,15 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import {
-	useEngine,
-	useSetupSafeSituation,
-} from '@/components/utils/EngineContext'
+import { useSetupSafeSituation } from '@/components/utils/EngineContext'
 import {
 	loadPreviousSimulation,
 	setSimulationConfig,
 } from '@/store/actions/actions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { configSelector } from '@/store/selectors/config.selector'
+
+import { useEngine } from './useEngine'
 
 export default function useSimulationConfig({
 	key,

@@ -1,11 +1,12 @@
 import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 
-import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
+import { useRawSituation } from '@/components/utils/EngineContext'
 import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
+import { useEngine } from '@/hooks/useEngine'
 import { useSitePaths } from '@/sitePaths'
 
 import Comparateur from './components/Comparateur'
