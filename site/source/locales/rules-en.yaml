@@ -10437,6 +10437,19 @@ salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
     Pour les contrats conclus **avant le 1er mars 2025**, cette exonération est totale.
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
+salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur les salaires:
+  description.en: >
+    [automatic] The portion of an apprentice's salary corresponding to 11% of
+    the minimum wage is not subject to payroll tax.
+
+    payroll tax.
+  description.fr: >
+    La part du salaire des apprentis correspondant à 11 % du Smic n’est pas
+    soumise
+
+    à la taxe sur les salaires.
+  titre.en: '[automatic] payroll tax'
+  titre.fr: taxe sur les salaires
 salarié . contrat . apprentissage . diplôme:
   titre.en: '[automatic] Diploma prepared'
   titre.fr: Diplôme préparé
@@ -10480,6 +10493,17 @@ salarié . contrat . apprentissage . diplôme préparé:
   question.fr: Quel type de diplôme l'apprenti prépare-t-il ?
   titre.en: '[automatic] prepared diploma'
   titre.fr: diplôme préparé
+salarié . contrat . apprentissage . exonération taxe sur les salaires:
+  description.en: >
+    [automatic] Companies with 10 or fewer employees are exempt from payroll tax
+    on
+
+    apprentices.
+  description.fr: |
+    Les entreprises de 10 salariés ou moins sont exonérées de la taxe sur les
+    salaires de ses apprentis.
+  titre.en: '[automatic] payroll tax exemption'
+  titre.fr: exonération taxe sur les salaires
 salarié . contrat . date d'embauche:
   question.en: "[automatic] What is the employee's date of hire?"
   question.fr: Quelle est la date d'embauche du salarié ?
@@ -13776,6 +13800,10 @@ salarié . régimes spécifiques . taux réduits . réduction de taux:
   titre.en: '[automatic] rate reduction'
   titre.fr: réduction de taux
 salarié . régimes spécifiques . taxe sur les salaires:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
   description.en: '[automatic] The payroll tax in France is a progressive tax
     created in 1948 that some employers must pay on the salaries they
     distribute.'
