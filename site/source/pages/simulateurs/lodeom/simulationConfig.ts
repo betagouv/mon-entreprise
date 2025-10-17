@@ -29,6 +29,7 @@ export const configLodeom: SimulationConfig = {
 			'établissement . commune',
 			'salarié . cotisations . exonérations . zones lodeom',
 			'salarié . cotisations . exonérations . lodeom . zone un . barèmes',
+			'salarié . cotisations . exonérations . lodeom . zone deux . barèmes',
 			"salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles",
 			'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
 			'salarié . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',

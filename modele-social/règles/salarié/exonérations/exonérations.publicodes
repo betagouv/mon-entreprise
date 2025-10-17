@@ -93,8 +93,10 @@ salarié . cotisations . exonérations . T:
     - si: lodeom . zone deux
       alors:
         somme:
-          - maladie . employeur . taux
-          - allocations familiales . taux
+          - valeur: maladie . employeur . taux
+            plafond: maladie . employeur . taux réduit
+          - valeur: allocations familiales . taux
+            plafond: allocations familiales . taux réduit
           - vieillesse . employeur . déplafonnée . taux
           - vieillesse . employeur . plafonnée . taux
     - sinon:
