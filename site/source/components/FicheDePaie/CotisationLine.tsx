@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { findReferenceInNode } from '@/utils/publicodes'
+import { findReferenceInNode } from '@/utils/publicodes/publicodes'
 
 export default function CotisationLine({
 	dottedName,

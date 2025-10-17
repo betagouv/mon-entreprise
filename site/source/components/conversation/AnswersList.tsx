@@ -28,7 +28,7 @@ import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 import { NoOp } from '@/utils/NoOp'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import Value from '../EngineValue/Value'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'

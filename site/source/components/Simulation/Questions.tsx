@@ -16,7 +16,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
 import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import { RuleField } from '../conversation/RuleField'
 import Raccourcis from './Raccourcis'
