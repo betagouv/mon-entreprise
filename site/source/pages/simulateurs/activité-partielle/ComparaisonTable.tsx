@@ -8,7 +8,7 @@ import Value from '@/components/EngineValue/Value'
 import { FromTop } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system'
-import { catchDivideByZeroError } from '@/utils/publicodes'
+import { catchDivideByZeroError } from '@/utils/publicodes/publicodes'
 
 const net = 'salarié . rémunération . net . à payer avant impôt'
 const netHabituel = 'salarié . activité partielle . net habituel'
