@@ -3,11 +3,11 @@ import { Trans } from 'react-i18next'
 
 import { Body, Emoji, Grid, Intro, Message } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 import { SimulateurCard } from './SimulateurCard'
-import { useEngine } from './utils/EngineContext'
 
 export function CurrentSimulatorCard({
 	fromGérer = false,
