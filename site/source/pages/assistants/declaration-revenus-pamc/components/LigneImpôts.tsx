@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import LectureGuide from '@/components/LectureGuide'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Body, FlexCenter, Grid, Strong } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import CheckboxImpôts from './CheckboxImpôts'
