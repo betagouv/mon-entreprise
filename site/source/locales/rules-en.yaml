@@ -10422,15 +10422,19 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
   titre.fr: assiette réduite apprentissage
 salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
   description.en: >-
-    [automatic] For contracts signed on or after March 1, 2025, apprentices are
-    exempt from CSG and CRDS up to 50% of the minimum wage.
+    [automatic] For contracts signed **since March 1, 2025**, apprentices are
+    exempt from CSG and CRDS up to **50% of Smic**.
 
-    For contracts signed before, this exemption is total.
+    If the apprentice's gross remuneration is less than 50% of the minimum wage, the employer's share of the health insurance fund (which forms part of the CSG-CRDS base) is also exempt from CSG and CRDS.
+
+    For contracts signed **before March 1, 2025**, this exemption is total.
   description.fr: >-
-    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
-    d’une exonération de CSG et de CRDS jusqu’à 50% du Smic.
+    Pour les contrats conclus **depuis le 1er mars 2025**, les apprentis
+    bénéficient d’une exonération de CSG et de CRDS jusqu’à **50 % du Smic**.
 
-    Pour les contrats conclus avant, cette exonération est totale.
+    Si la rémunération brute de l’apprenti est inférieure à 50 % du Smic, alors la part employeur de la mutuelle (qui fait partie de l’assiette de la CSG-CRDS) est également exonérée de CSG et de CRDS.
+
+    Pour les contrats conclus **avant le 1er mars 2025**, cette exonération est totale.
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
 salarié . contrat . apprentissage . diplôme:
@@ -11293,6 +11297,9 @@ salarié . cotisations . CSG-CRDS . assiette de base:
     assiette abattue:
       titre.en: '[automatic] '
       titre.fr: assiette abattue
+    assiette avant abattement:
+      titre.en: '[automatic] base before allowance'
+      titre.fr: assiette avant abattement
   titre.en: '[automatic] base plate'
   titre.fr: assiette de base
 salarié . cotisations . CSG-CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
