@@ -9,7 +9,7 @@ import { H3 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 const Wrapper = styled.div`
 	flex-shrink: 0;
