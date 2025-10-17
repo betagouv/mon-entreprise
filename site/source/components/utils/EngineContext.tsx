@@ -11,8 +11,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { deleteFromSituation } from '@/store/actions/actions'
+import { companySituationSelector } from '@/store/selectors/companySituation.selector'
 import {
-	companySituationSelector,
 	completeSituationSelector,
 	configObjectifsSelector,
 	configSituationSelector,
