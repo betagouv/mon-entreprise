@@ -4,9 +4,8 @@ import React, { ReactNode } from 'react'
 
 import { Link } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useSitePaths } from '@/sitePaths'
-
-import { useEngine } from './utils/EngineContext'
 
 // TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
 export default function RuleLink(

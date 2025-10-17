@@ -8,7 +8,6 @@ import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Feedback } from '@/components/Feedback/Feedback'
 import { References } from '@/components/References'
 import { StatutType } from '@/components/StatutTag'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Article,
 	Button,
@@ -23,6 +22,7 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'

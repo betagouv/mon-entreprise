@@ -1,11 +1,11 @@
 import { Option } from 'effect/Option'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 
 export function usePublicodes() {
 	const engine = useEngine()
