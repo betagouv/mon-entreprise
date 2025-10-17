@@ -1,9 +1,7 @@
 import Engine, {
-	EngineOptions,
 	EvaluatedNode,
 	isPublicodesError,
 	PublicodesExpression,
-	Rule,
 	RuleNode,
 } from 'publicodes'
 import { createContext, useContext } from 'react'
@@ -19,67 +17,6 @@ import {
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
 import { omit } from '@/utils'
-
-import i18n from '../../locales/i18n'
-
-export type Rules = Record<DottedName, Rule>
-
-const unitsTranslations = Object.entries(
-	i18n.getResourceBundle('fr', 'units') as Record<string, string>
-)
-const engineOptions: EngineOptions = {
-	getUnitKey(unit: string): string {
-		const key = unitsTranslations
-			.find(([, trans]) => trans === unit)?.[0]
-			.replace(/_plural$/, '')
-
-		return key || unit
-	},
-	warn:
-		process.env.NODE_ENV === 'production'
-			? false
-			: {
-					experimentalRules: false,
-					deprecatedSyntax: false,
-			  },
-}
-
-let timeout: NodeJS.Timeout | null = null
-let logs: ['warn' | 'error' | 'log', string][] = []
-
-const logger = {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	warn: (message: string) => {
-		// console.warn(message)
-		logs.push(['warn', message])
-
-		timeout !== null && clearTimeout(timeout)
-		timeout = setTimeout(() => {
-			// eslint-disable-next-line no-console
-			console.groupCollapsed('Publicodes logs')
-			logs.forEach(([type, message]) => {
-				// eslint-disable-next-line no-console
-				console[type](message)
-			})
-			console.groupEnd()
-			logs = []
-		}, 1000)
-	},
-	error: (message: string) => {
-		// eslint-disable-next-line no-console
-		logs.push(['error', message])
-		console.error(message)
-	},
-	log: (message: string) => {
-		// eslint-disable-next-line no-console
-		logs.push(['log', message])
-		console.log(message)
-	},
-}
-
-export function engineFactory(rules: Rules, options = {}) {
-	return new Engine(rules, { ...engineOptions, ...options, logger })
-}
 
 export const EngineContext = createContext<Engine>(new Engine())
 export const EngineProvider = EngineContext.Provider
