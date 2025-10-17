@@ -10,8 +10,8 @@ import Simulation, {
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
-import { useEngine } from '@/components/utils/EngineContext'
 import { typography } from '@/design-system'
+import { useEngine } from '@/hooks/useEngine'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 

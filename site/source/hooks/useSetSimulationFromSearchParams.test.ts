@@ -12,7 +12,6 @@ import Engine from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParMois, eurosParTitreRestaurant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -22,6 +21,7 @@ import {
 	pourcentage,
 	titresRestaurantParMois,
 } from '@/domaine/Quantité'
+import { useEngine } from '@/hooks/useEngine'
 import { useNavigation } from '@/lib/navigation'
 import { batchUpdateSituation, updateUnit } from '@/store/actions/actions'
 
@@ -38,7 +38,7 @@ vi.mock('react-redux', () => ({
 }))
 const dispatchMock = vi.fn()
 
-vi.mock('@/components/utils/EngineContext', () => ({
+vi.mock('@/hooks/useEngine', () => ({
 	useEngine: vi.fn(),
 }))
 

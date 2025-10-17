@@ -2,8 +2,8 @@ import { Trans } from 'react-i18next'
 
 import Value from '@/components/EngineValue/Value'
 import { FromBottom } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Button, H3, Intro, Markdown, Message, Spacing } from '@/design-system'
+import { useEngine } from '@/hooks/useEngine'
 
 import { Condition } from '../EngineValue/Condition'
 

@@ -12,11 +12,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import { useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
 import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
+import { useEngine } from '@/hooks/useEngine'
 import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'

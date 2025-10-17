@@ -13,12 +13,12 @@ import {
 	ChampSaisieProps,
 	ObjectifSaisissableDeSimulation,
 } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
-import { useEngine } from '@/components/utils/EngineContext'
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaire } from '@/domaine/Unités'
+import { useEngine } from '@/hooks/useEngine'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
