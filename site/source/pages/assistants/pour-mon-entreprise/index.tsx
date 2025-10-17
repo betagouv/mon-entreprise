@@ -43,7 +43,7 @@ import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { companySituationSelector } from '@/store/selectors/simulationSelectors'
+import { companySituationSelector } from '@/store/selectors/companySituation.selector'
 import { evaluateQuestion } from '@/utils/publicodes'
 
 import forms from './forms.svg'
