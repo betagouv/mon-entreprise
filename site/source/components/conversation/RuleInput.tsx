@@ -10,7 +10,6 @@ import {
 	getOnePossibilityOptions,
 	isOnePossibility,
 } from '@/components/conversation/getOnePossibilityOptions'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	ChoiceDisplayType,
 	InputSuggestionsRecord,
@@ -38,6 +37,7 @@ import {
 	UnitéMonétaire,
 	UnitéQuantité,
 } from '@/domaine/Unités'
+import { useEngine } from '@/hooks/useEngine'
 import { enregistreLesRéponses } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import { getMeta } from '@/utils/publicodes/publicodes'

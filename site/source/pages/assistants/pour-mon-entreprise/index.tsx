@@ -23,7 +23,6 @@ import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -40,6 +39,7 @@ import {
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'

@@ -1,7 +1,7 @@
 import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { useEngine } from '@/components/utils/EngineContext'
+import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
 import { round } from '@/utils/number'
 

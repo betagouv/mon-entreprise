@@ -16,6 +16,7 @@ import {
 import * as M from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
+import { useEngine } from '@/hooks/useEngine'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -24,7 +25,6 @@ import { Condition } from './EngineValue/Condition'
 import { WhenApplicable } from './EngineValue/WhenApplicable'
 import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
-import { useEngine } from './utils/EngineContext'
 
 const proportions = {
 	'entreprise . activités . revenus mixtes . proportions . service BIC':

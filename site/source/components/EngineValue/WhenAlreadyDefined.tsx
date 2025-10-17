@@ -1,8 +1,8 @@
 import Engine from 'publicodes'
 import React from 'react'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 
 export function WhenAlreadyDefined({
 	dottedName,
