@@ -1,7 +1,7 @@
 import { PublicodesExpression } from 'publicodes'
 import { styled } from 'styled-components'
 
-import { useEngine } from '@/components/utils/EngineContext'
+import { useEngine } from '@/hooks/useEngine'
 
 type Props = {
 	expression: PublicodesExpression

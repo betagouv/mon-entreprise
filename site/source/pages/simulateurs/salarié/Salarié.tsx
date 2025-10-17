@@ -17,7 +17,6 @@ import Simulation, {
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
 import { FadeIn, FromTop } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Emoji,
@@ -30,6 +29,7 @@ import {
 	Ul,
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useSitePaths } from '@/sitePaths'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
