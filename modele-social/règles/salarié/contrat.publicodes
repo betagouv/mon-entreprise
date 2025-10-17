@@ -207,21 +207,31 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
 
 salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
   description:
-    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
-    d’une exonération de CSG et de CRDS jusqu’à 50% du Smic.
+    Pour les contrats conclus **depuis le 1er mars 2025**, les apprentis bénéficient
+    d’une exonération de CSG et de CRDS jusqu’à **50 % du Smic**.
 
-    Pour les contrats conclus avant, cette exonération est totale.
+    Si la rémunération brute de l’apprenti est inférieure à 50 % du Smic, alors la
+    part employeur de la mutuelle (qui fait partie de l’assiette de la CSG-CRDS)
+    est également exonérée de CSG et de CRDS.
+
+    Pour les contrats conclus **avant le 1er mars 2025**, cette exonération est
+    totale.
   références:
     Embaucher un alternant en contrat d’apprentissage - les exonérations: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/contrat-apprentissage.html#ancre-les-exonerations
     Contrat d’apprentissage - Quel est le salaire de l’apprenti ?: https://www.service-public.fr/particuliers/vosdroits/F2918#fiche-item-4
-  remplace:
-    références à: cotisations . assiette
-    dans: salarié . cotisations . CSG-CRDS
+    Article L136-1-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048683400
+  remplace: cotisations . CSG-CRDS . assiette de base
   variations:
-    - si: date >= 03/2025
+    - si:
+        toutes ces conditions:
+          - date >= 03/2025
+          - rémunération . brut > 50% * SMIC
       alors:
-        valeur: cotisations . assiette
-        abattement: 50% * SMIC
+        valeur: salarié . cotisations . CSG-CRDS . assiette de base
+        contexte:
+          cotisations . assiette . sans prévoyance:
+            valeur: cotisations . assiette . sans prévoyance
+            abattement: 50% * SMIC
     - sinon: 0
 
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
