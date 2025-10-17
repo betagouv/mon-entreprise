@@ -20,4 +20,5 @@ export type ConditionProps = {
 	children: React.ReactNode
 	engine?: Engine<DottedName>
 	contexte?: Contexte
+	non?: boolean
 }

@@ -1776,7 +1776,7 @@ pages:
         included in the simulator.</5>
       title: Corporate tax simulator
     indépendant:
-      cotisations-forfaitaires: "Flat-rate contributions: "
+      cotisations-forfaitaires: "Flat-rate contributions : "
       meta:
         description: Calculating net income after tax and contributions from sales and
           vice versa

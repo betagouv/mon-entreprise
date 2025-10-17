@@ -10,8 +10,6 @@ import StackedBarChart from '@/components/StackedBarChart'
 import { H3 } from '@/design-system'
 
 import { Condition } from '../EngineValue/Condition'
-import { WhenApplicable } from '../EngineValue/WhenApplicable'
-import { WhenNotApplicable } from '../EngineValue/WhenNotApplicable'
 import CotisationsForfaitaires from './IndépendantCotisationsForfaitaires'
 import CotisationsRégularisation from './IndépendantCotisationsRégularisation'
 import InstitutionsPartenaires from './InstitutionsPartenaires'
@@ -23,12 +21,15 @@ export default function IndépendantExplanation() {
 	return (
 		<>
 			<section>
-				<WhenApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+				{/* TODO: remplacer Condition par When(Not)Applicable quand
+						https://github.com/betagouv/mon-entreprise/issues/4035
+						sera résolu */}
+				<Condition expression="entreprise . date de création >= période . début d'année">
 					<CotisationsForfaitaires />
-				</WhenApplicable>
-				<WhenNotApplicable dottedName="dirigeant . indépendant . cotisations et contributions . début activité">
+				</Condition>
+				<Condition expression="entreprise . date de création < période . début d'année">
 					<CotisationsRégularisation />
-				</WhenNotApplicable>
+				</Condition>
 			</section>
 			<Condition expression="dirigeant . rémunération . net . après impôt > 0 €/an">
 				<section>
