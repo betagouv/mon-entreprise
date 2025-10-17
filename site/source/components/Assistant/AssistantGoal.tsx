@@ -8,7 +8,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { getMeta } from '@/utils/publicodes'
+import { getMeta } from '@/utils/publicodes/publicodes'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput from '../conversation/RuleInput'
