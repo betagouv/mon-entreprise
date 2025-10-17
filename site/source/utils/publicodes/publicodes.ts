@@ -10,7 +10,7 @@ import Engine, {
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
-import { getValueFrom } from '.'
+import { getValueFrom } from '..'
 
 const isMeta = <T>(rule: Rule): rule is Rule & { meta?: T } => 'meta' in rule
 

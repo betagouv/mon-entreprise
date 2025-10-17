@@ -17,7 +17,7 @@ import {
 	situationSelector,
 	targetUnitSelector,
 } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion, getMeta } from '@/utils/publicodes'
+import { evaluateQuestion, getMeta } from '@/utils/publicodes/publicodes'
 
 type SubSectionProp = {
 	dottedName: DottedName
