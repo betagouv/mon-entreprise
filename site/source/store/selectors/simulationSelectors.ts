@@ -5,6 +5,8 @@ import { isComparateurConfig } from '@/domaine/ComparateurConfig'
 import { RootState, SituationPublicodes } from '@/store/reducers/rootReducer'
 import { configSelector } from '@/store/selectors/config.selector'
 
+import { companySituationSelector } from './companySituation.selector'
+
 export const configObjectifsSelector = createSelector(
 	[
 		(state: RootState) => configSelector(state)['objectifs exclusifs'],
@@ -28,9 +30,6 @@ export const configContextesSelector = createSelector(
 	[configSelector],
 	(config) => (isComparateurConfig(config) ? config.contextes : undefined)
 )
-
-export const companySituationSelector = (state: RootState) =>
-	state.companySituation
 
 export const completeSituationSelector = createSelector(
 	[situationSelector, configSituationSelector, companySituationSelector],
