@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
-import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
+import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
 import { useEngine } from '@/components/utils/EngineContext'
 import {
@@ -42,7 +42,7 @@ export default function SearchOrCreate() {
 				{companySIREN ? (
 					<>
 						<H3 as="h2">{t('Votre entreprise')}</H3>
-						<EntrepriseDetails />
+						<EntrepriseDetailsCard />
 						<Spacing md />
 						<AnswerGroup role="list">
 							<Button
