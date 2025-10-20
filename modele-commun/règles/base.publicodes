@@ -15,6 +15,30 @@ plafond sécurité sociale:
   note: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par
     rapport à 2020.
 
+  avec:
+    horaire:
+      acronyme: PHSS
+      valeur: plafond sécurité sociale / 1607 heure/an
+      arrondi: oui
+      unité: €/heure
+      références:
+        Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
+        Article D242-19 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033516173&cidTexte=LEGITEXT000006073189
+
+    journalier:
+      acronyme: PJSS
+      valeur: plafond sécurité sociale / 218 jour/an
+      arrondi: oui
+      unité: €/jour
+      références:
+        Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
+        Article D242-17 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006736124
+
+    N-1:
+      valeur: plafond sécurité sociale
+      contexte:
+        date: période . début d'année . N-1
+
 SMIC:
   unité: €/mois
   produit:
