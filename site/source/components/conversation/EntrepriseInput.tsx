@@ -9,6 +9,7 @@ import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
+import { companySirenSelector } from '@/store/selectors/companySiren.selector'
 
 import SelectedEntrepriseDetails from '../entreprise/SelectedEntrepriseDetails'
 
@@ -17,7 +18,7 @@ type Props = {
 }
 
 export default function EntrepriseInput({ onSubmit }: Props) {
-	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	const existingCompany = !!useSelector(companySirenSelector)
 	useSetEntrepriseFromUrssafConnection()
 	const setEntreprise = useSetEntreprise()
 	const dispatch = useDispatch()
@@ -34,7 +35,7 @@ export default function EntrepriseInput({ onSubmit }: Props) {
 			<EntrepriseSearchField
 				onSubmit={handleCompanySubmit}
 				onClear={handleCompanyClear}
-				selectedValue={companySIREN ? <SelectedEntrepriseDetails /> : null}
+				selectedValue={existingCompany ? <SelectedEntrepriseDetails /> : null}
 			/>
 			<Spacing md />
 		</>
