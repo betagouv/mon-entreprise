@@ -1,0 +1,30 @@
+dirigeant . exonérations:
+
+dirigeant . exonérations . ACRE:
+  applicable si: entreprise . durée d'activité . en début d'année < 1 an
+  question: Bénéficiez-vous de l’Acre ?
+  par défaut: non
+  description: >-
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d’activité pendant 12 mois.
+
+
+    Elle est **automatique** pour les **sociétés et les entreprises individuelles**
+    (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois
+    dernières années).
+  notes: |
+    #### Historique
+
+    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019,
+    la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu
+    l’ACCRE dans les trois années précédentes
+    - Pour les entreprises créées avant le 1er janvier 2019, la l’exonération de
+    cotisation s’appelait ACCRE était soumise à conditions et n’était pas
+    automatique : il fallait en faire la demande.
+
+  références:
+    'L’Acre : une aide pour favoriser les créations et reprises d’entreprises': https://www.urssaf.fr/accueil/exoneration-acre-createur.html
+    Aide à la création ou à la reprise d’une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
+    # BPI ONLY
+    'Acre : aide aux créateurs et repreneurs d’entreprise': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
