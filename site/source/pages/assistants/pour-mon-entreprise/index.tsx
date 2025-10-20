@@ -10,7 +10,7 @@ import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
-import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
+import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
@@ -219,7 +219,7 @@ const AskCompanyMissingDetails = () => {
 
 	return (
 		<>
-			<EntrepriseDetails showSituation headingTag="h2" />
+			<EntrepriseDetailsCard showSituation headingTag="h2" />
 			{!!questions.length && (
 				<>
 					<Body
