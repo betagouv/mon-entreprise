@@ -10,6 +10,7 @@ export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'avocat',
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'profession_liberale',
 			chapter3: 'avocat',
 		},

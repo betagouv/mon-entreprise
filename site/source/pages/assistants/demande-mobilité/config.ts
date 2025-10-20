@@ -12,7 +12,7 @@ export function demandeMobilitéConfig({ t, sitePaths }: SimulatorsDataParams) {
 		icône: '🧳',
 		hideDate: true,
 		tracking: {
-			chapter1: 'assistant',
+			chapter1: 'assistants',
 			chapter2: 'demande_mobilite',
 		},
 		meta: {
