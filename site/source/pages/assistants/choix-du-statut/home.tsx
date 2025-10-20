@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
-import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
+import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
 import { useEngine } from '@/components/utils/EngineContext'
 import {
@@ -77,14 +77,14 @@ export default function AccueilChoixStatut() {
 					<>
 						<Message type="info" border={false}>
 							<Trans i18nKey="choix-statut.home.warning-entreprise-existante">
-								<H3>Une entreprise a déjà renseignée</H3>
+								<H3>Une entreprise est déjà renseignée</H3>
 								<Body>
 									Pour accéder à l'assistant, il vous faut réinitialiser les
-									données
+									données.
 								</Body>
 							</Trans>
 						</Message>
-						<EntrepriseDetails />
+						<EntrepriseDetailsCard />
 						<PopoverConfirm
 							trigger={(buttonProps) => (
 								<Button
