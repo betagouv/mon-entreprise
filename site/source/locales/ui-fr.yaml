@@ -87,7 +87,6 @@ En savoir plus sur impots:
     fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
-Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 EntrepriseSearchField:
   description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
     entreprise. Exemple : 40123778000127"
@@ -386,8 +385,8 @@ choix-statut:
     intro: La première étape pour créer votre entreprise consiste à <2>choisir un
       statut juridique adapté à votre activité</2>. Les démarches
       administratives changent en fonction de ce dernier.
-    warning-entreprise-existante: <0>Une entreprise a déjà renseignée</0><1>Pour
-      accéder à l'assistant, il vous faut réinitialiser les données</1>
+    warning-entreprise-existante: <0>Une entreprise est déjà renseignée</0><1>Pour
+      accéder à l'assistant, il vous faut réinitialiser les données.</1>
   rémunération:
     CA:
       help:
@@ -513,6 +512,8 @@ design-system:
 décembre: décembre
 en incluant: en incluant
 en titres-restaurant: en titres-restaurant
+entreprise:
+  détails: Entreprise créée le {{ date }} et domiciliée à {{ commune }}.
 error:
   back: Retourner à la page d'accueil
   body0: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
