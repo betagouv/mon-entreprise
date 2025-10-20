@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { generatePath, useNavigate } from 'react-router-dom'
 
 import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
@@ -21,15 +21,14 @@ import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
-
-// import { RootState } from '@/store/reducers/rootReducer'
+import { companySirenSelector } from '@/store/selectors/companySiren.selector'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()
 	// const statutChoisi = useSelector(
 	// 	(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	// )
-	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	const companySIREN = useSelector(companySirenSelector)
 	useSetEntrepriseFromUrssafConnection()
 	const handleCompanySubmit = useHandleCompanySubmit()
 	const dispatch = useDispatch()
@@ -49,7 +48,7 @@ export default function SearchOrCreate() {
 								to={generatePath(
 									absoluteSitePaths.assistants['pour-mon-entreprise']
 										.entreprise,
-									{ entreprise: companySIREN as string }
+									{ entreprise: companySIREN }
 								)}
 								data-test-id="cta-see-custom-simulators"
 								aria-label={t(

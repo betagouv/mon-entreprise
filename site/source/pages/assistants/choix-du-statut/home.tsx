@@ -1,10 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -20,6 +19,7 @@ import {
 } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
+import { companySirenSelector } from '@/store/selectors/companySiren.selector'
 
 import { useNextStep } from './_components/useSteps'
 import créerSvg from './_illustrations/créer.svg'
@@ -28,7 +28,7 @@ export default function AccueilChoixStatut() {
 	const nextStep = useNextStep()
 	const choixStatutPath =
 		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']
-	const existingCompany = useEngine().evaluate('entreprise . SIREN').nodeValue!
+	const existingCompany = !!useSelector(companySirenSelector)
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
 
