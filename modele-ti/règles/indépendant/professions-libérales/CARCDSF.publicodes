@@ -41,7 +41,7 @@ indépendant . PL . CARCDSF . retraite complémentaire:
     cotisation proportionnelle:
       unité: €/an
       barème:
-        assiette: assiette des cotisations
+        assiette: cotisations et contributions . cotisations . assiette sociale
         multiplicateur: plafond sécurité sociale
         tranches:
           - taux: 0%
@@ -55,7 +55,7 @@ indépendant . PL . CARCDSF . retraite complémentaire:
         arrondi: oui
 
 indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
-  formule: assiette des cotisations < 85% * plafond sécurité sociale
+  formule: cotisations et contributions . cotisations . assiette sociale < 85% * plafond sécurité sociale
   description: |
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
     pour la retraite complémentaire si vous en faites la demande. [En savoir
@@ -76,7 +76,7 @@ indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire 
     photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   unité: '%'
-  formule: assiette des cotisations / (85% * plafond sécurité sociale)
+  formule: cotisations et contributions . cotisations . assiette sociale / (85% * plafond sécurité sociale)
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
@@ -130,7 +130,7 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
 
     proportionnelle:
       produit:
-        - valeur: assiette des cotisations
+        - valeur: cotisations et contributions . cotisations . assiette sociale
           plafond: 5 * plafond sécurité sociale
         - 0.725 %
       unité: €/an
@@ -145,7 +145,7 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
 
 indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
   type: notification
-  formule: (assiette des cotisations / prix d'une consultation) <=  500 consultation/an
+  formule: (cotisations et contributions . cotisations . assiette sociale / prix d'une consultation) <=  500 consultation/an
   description: >-
     Vous avez la possibilité de bénéficier d'une exonération totale de
     cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
@@ -240,7 +240,7 @@ indépendant . PL . CARCDSF . sage-femme . PCV:
 
 indépendant . PL . CARCDSF . sage-femme . exonération PCV:
   type: notification
-  formule: assiette des cotisations <= 3120 €/an
+  formule: cotisations et contributions . cotisations . assiette sociale <= 3120 €/an
   description: >-
     Vous avez la possibilité de bénéficier d'une exonération totale de
     cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en

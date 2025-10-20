@@ -19,7 +19,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
     de revenus professionnels. Cette option est reconduite tacitement chaque année. Sur demande, vous pouvez y renoncer avant
     le 28 février de chaque année.
   grille:
-    assiette: assiette des cotisations
+    assiette: cotisations et contributions . cotisations . assiette sociale
     unité: €/an
     tranches:
       - montant:
@@ -109,7 +109,7 @@ indépendant . PL . CAVEC . invalidité et décès:
   remplace: cotisations et contributions . cotisations . invalidité et décès
   formule:
     grille:
-      assiette: assiette des cotisations
+      assiette: cotisations et contributions . cotisations . assiette sociale
       unité: €/an
       tranches:
         - montant: 288

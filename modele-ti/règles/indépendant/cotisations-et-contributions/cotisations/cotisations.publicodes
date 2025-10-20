@@ -15,6 +15,43 @@ indépendant . cotisations et contributions . cotisations:
     Taux de cotisations - Profession libérale réglementée relevant de la Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
+indépendant . cotisations et contributions . cotisations . assiette sociale:
+  description: |
+    Avec la réforme du calcul de l’assiette de cotisations et contributions
+    sociales des travailleurs indépendants portée par la Loi de Financement de la
+    Sécurité Sociale 2024,
+    **l’assiette des cotisations sociales est alignée sur l’assiette de la CSG-CRDS**.
+
+    Pour obtenir l’assiette des cotisations sociales à partir de celle de la
+    CSG-CRDS il faut :
+    - y ajouter les revenus de remplacement (hors affection de longue durée)
+    - et en soustraire la participation, l’intéressement et l’abondement au PER.
+
+  variations:
+    - si: après réforme
+      alors:
+        somme:
+          - CSG-CRDS . assiette
+          - IJSS . après abattement
+          - revenus étrangers . montant
+          # - (- cotisations facultatives . déductibles)
+    - sinon:
+        valeur: sans plancher
+        plancher: 0 €/an
+
+  avec:
+    sans plancher:
+      somme:
+        - revenu professionnel
+        - cotisations facultatives . déductibles
+
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
+    Article L131-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048683707
+    Article L3312-4 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075048
+    Article L3324-5 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038589722
+    Article L3332-27 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075039
+
 indépendant . cotisations et contributions . cotisations . maladie:
   description: |
     Cette cotisation permet de bénéficier de l’ensemble des prestations*
@@ -46,7 +83,7 @@ indépendant . cotisations et contributions . cotisations . maladie:
         montant de la cotisation maladie 2 du montant total de la cotisation maladie.
       barème:
         assiette:
-          valeur: assiette des cotisations
+          valeur: assiette sociale
           plancher: assiette minimale . maladie
         multiplicateur:
           produit:
@@ -79,7 +116,7 @@ indépendant . cotisations et contributions . cotisations . maladie:
       références:
         Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747/
 
-    taux progressif . assiette: assiette des cotisations
+    taux progressif . assiette: assiette sociale
 
 indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
   description: |
@@ -110,7 +147,7 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
 
   avec:
     assiette:
-      valeur: assiette des cotisations
+      valeur: assiette sociale
       plancher: assiette minimale . maladie
       plafond: 5 * plafond sécurité sociale
 
@@ -130,7 +167,7 @@ indépendant . cotisations et contributions . cotisations . maladie domiciliatio
     ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
     fonction du revenu déclaré.
   produit:
-    - assiette des cotisations
+    - assiette sociale
     - 14.5%
   unité: €/an
   arrondi: oui
@@ -148,7 +185,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     privé pour une durée et un niveau de cotisation identique.
   barème:
     assiette:
-      valeur: assiette des cotisations
+      valeur: assiette sociale
       plancher: assiette minimale . retraite
     tranches:
       - taux: taux
@@ -173,7 +210,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
     Il fonctionne selon les mêmes principes que les régimes de retraite
     complémentaire des salariés.
   barème:
-    assiette: assiette des cotisations
+    assiette: assiette sociale
     tranches:
       - taux: 7%
         plafond: plafond
@@ -238,7 +275,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   avec:
     assiette:
       experimental: oui
-      valeur: assiette des cotisations
+      valeur: assiette sociale
       plancher:
         produit:
           - assiette minimale . invalidité et décès
@@ -262,7 +299,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
     des revenus de la famille.
   produit:
-    - assiette des cotisations
+    - assiette sociale
     - taux
   arrondi: oui
   unité: €/an
@@ -272,7 +309,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
   avec:
     taux:
       taux progressif:
-        assiette: assiette des cotisations
+        assiette: assiette sociale
         multiplicateur:
           produit:
             - plafond sécurité sociale
