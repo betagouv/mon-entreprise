@@ -1,13 +1,17 @@
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { Article } from '@/design-system'
+import { companySirenSelector } from '@/store/selectors/companySiren.selector'
 
 export function AnnuaireEntreprises() {
 	const { t } = useTranslation()
-	const engine = useEngine()
 
-	const siren = engine.evaluate('entreprise . SIREN').nodeValue as string
+	const siren = useSelector(companySirenSelector) as string
+
+	if (!siren) {
+		return null
+	}
 
 	return (
 		<>
