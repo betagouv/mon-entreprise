@@ -1,15 +1,16 @@
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
-import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Grid, H2, Spacing, Ul } from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
 import { useSitePaths } from '@/sitePaths'
+import { companySirenSelector } from '@/store/selectors/companySiren.selector'
 
-import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { ExternalLink } from './_configs/types'
 import ExternalLinkCard from './cards/ExternalLinkCard'
 
@@ -32,6 +33,8 @@ export default function NextSteps({
 			!associatedRule || engine.evaluate(associatedRule).nodeValue
 	)
 
+	const existingCompany = !!useSelector(companySirenSelector)
+
 	if (!iframePath && !nextSteps && !externalLinks) {
 		return null
 	}
@@ -42,11 +45,11 @@ export default function NextSteps({
 				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H2>
 			<Grid as={Ul} container spacing={3}>
-				<WhenAlreadyDefined dottedName="entreprise . SIREN">
+				{existingCompany && (
 					<GridItem>
 						<AnnuaireEntreprises />
 					</GridItem>
-				</WhenAlreadyDefined>
+				)}
 
 				{nextSteps &&
 					nextSteps.map((simulatorId) => (
