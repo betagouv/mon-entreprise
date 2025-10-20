@@ -2,6 +2,8 @@
 
 ## next
 
+## 9.0.0
+
 ### Breaking changes
 - Renomme la règle `entreprise . imposition . IS . capital détenu au moins à 75 pourcents par des personnes physiques` en `entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques`
 
