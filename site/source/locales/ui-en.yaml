@@ -72,7 +72,6 @@ En savoir plus: Read more
 "En savoir plus sur ": "Find out more about "
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
-Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
 EntrepriseSearchField:
   description: "The Siret number is a 14-digit number unique to each company.
     Example: 40123778000127"
@@ -348,7 +347,7 @@ choix-statut:
       status best suited to your activity</2>. The administrative procedures
       vary according to the legal status chosen.
     warning-entreprise-existante: <0>A company has already been entered</0><1>To
-      access the wizard, you need to reset the data</1>
+      access the wizard, you need to reset the data.</1>
   rémunération:
     CA:
       help:
@@ -470,6 +469,8 @@ design-system:
 décembre: December
 en incluant: including
 en titres-restaurant: in meal vouchers
+entreprise:
+  détails: Company created on {{ date }} and domiciled at {{ commune }}.
 error:
   back: Back to home page
   body0: <0>If you would like to help us correct this problem, please describe the
