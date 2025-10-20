@@ -1,12 +1,12 @@
-dirigeant . indépendant . PL . CARPIMKO:
+indépendant . PL . CARPIMKO:
   description: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
   formule: oui
   applicable si: métier = 'santé . auxiliaire médical'
   références:
     Site CARPIMKO: https://www.carpimko.com
 
-dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
-  remplace: cotisations et contributions . retraite complémentaire
+indépendant . PL . CARPIMKO . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
   somme:
     - variations:
         - si: date >= 01/2025
@@ -38,9 +38,9 @@ dirigeant . indépendant . PL . CARPIMKO . retraite complémentaire:
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
-dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
+indépendant . PL . CARPIMKO . invalidité et décès:
   titre: invalidité et décès
-  remplace: cotisations et contributions . invalidité et décès
+  remplace: cotisations et contributions . cotisations . invalidité et décès
   variations:
     - si: date >= 01/2024
       alors: 1022 €/an
@@ -50,9 +50,9 @@ dirigeant . indépendant . PL . CARPIMKO . invalidité et décès:
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
-dirigeant . indépendant . PL . CARPIMKO . ASV:
+indépendant . PL . CARPIMKO . ASV:
   titre: Avantage social vieillesse
-  remplace: cotisations et contributions . PCV
+  remplace: cotisations et contributions . cotisations . PCV
   formule:
     somme:
       - forfaitaire
@@ -78,7 +78,7 @@ dirigeant . indépendant . PL . CARPIMKO . ASV:
         - PAMC . assiette participation CPAM
         - 0.40%
 
-dirigeant . indépendant . PL . CARPIMKO . ASV . participation CPAM:
+indépendant . PL . CARPIMKO . ASV . participation CPAM:
   applicable si: PAMC
   formule:
     somme:

@@ -1,16 +1,16 @@
-dirigeant . indépendant . PL . CAVP:
+indépendant . PL . CAVP:
   description: La CAVP est la caisse de retraite des pharmaciens.
   formule: oui
   applicable si: métier = 'santé . pharmacien'
   références:
     Site CAVP: https://www.cavp.fr/
 
-dirigeant . indépendant . PL . CAVP . directeur non médecin:
+indépendant . PL . CAVP . directeur non médecin:
   applicable si: métier = 'santé . pharmacien'
   par défaut: non
   question: Êtes-vous biologiste médical conventionné ?
 
-dirigeant . indépendant . PL . CAVP . demande reduction:
+indépendant . PL . CAVP . demande reduction:
   type: notification
   applicable si:
     est défini: assiette des cotisations
@@ -30,7 +30,7 @@ dirigeant . indépendant . PL . CAVP . demande reduction:
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
-dirigeant . indépendant . PL . CAVP . cotisation de référence:
+indépendant . PL . CAVP . cotisation de référence:
   valeur:
     variations:
       - si: date >= 01/2025
@@ -43,8 +43,8 @@ dirigeant . indépendant . PL . CAVP . cotisation de référence:
   reference:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
-dirigeant . indépendant . PL . CAVP . retraite complémentaire:
-  remplace: cotisations et contributions . retraite complémentaire
+indépendant . PL . CAVP . retraite complémentaire:
+  remplace: cotisations et contributions . cotisations . retraite complémentaire
   description: |
     La cotisation au régime complémentaire comporte :
     - une part gérée par répartition égale à 5 fois la cotisation de référence,
@@ -95,9 +95,9 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire:
         Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
         Legifrance: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039357705
 
-dirigeant . indépendant . PL . CAVP . invalidité et décès:
+indépendant . PL . CAVP . invalidité et décès:
   titre: invalidité et décès
-  remplace: cotisations et contributions . invalidité et décès
+  remplace: cotisations et contributions . cotisations . invalidité et décès
   valeur:
     variations:
       - si: date >= 01/2025
@@ -108,10 +108,10 @@ dirigeant . indépendant . PL . CAVP . invalidité et décès:
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations
 
-dirigeant . indépendant . PL . CAVP . PCV:
+indépendant . PL . CAVP . PCV:
   titre: Prestation complémentaire de vieillesse (CAVP)
-  remplace: cotisations et contributions . PCV
-  applicable si: dirigeant . indépendant . PL . CAVP . directeur non médecin
+  remplace: cotisations et contributions . cotisations . PCV
+  applicable si: CAVP . directeur non médecin
   formule:
     somme:
       - cotisations forfaitaire
@@ -145,7 +145,7 @@ dirigeant . indépendant . PL . CAVP . PCV:
               alors: 0.60%
             - sinon: 0.30%
 
-dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
+indépendant . PL . CAVP . PCV . aide CPAM:
   somme:
     - aide CPAM forfaitaire
     - aide CPAM proportionnelle
