@@ -68,7 +68,6 @@ const RevenuEstimé = () => {
 				<GridEditLink item xs={12} sm="auto">
 					<Link
 						to={absoluteSitePaths.assistants['choix-du-statut'].rémunération}
-						// $noUnderline
 						style={{
 							display: 'inline-flex',
 							alignItems: 'center',
