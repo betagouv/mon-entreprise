@@ -8,17 +8,18 @@ import { styled } from 'styled-components'
 
 import { References } from '@/components/References'
 import {
-	Body,
-	H1,
-	H2,
-	H3,
-	H4,
-	H5,
-	Li,
+	BodyStyle,
+	H1Style,
+	H2Style,
+	H3Style,
+	H4Style,
+	H5Style,
 	Link,
+	ListProps,
 	Markdown,
-	StyledLink,
-	Ul,
+	StyledLinkProps,
+	StyledLinkStyle,
+	UlStyle,
 } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
@@ -60,34 +61,31 @@ export default function DocumentationPageBody({
 	)
 }
 
-const StyledDocumentation = styled.div`
+const StyledDocumentation = styled.div<ListProps & StyledLinkProps>`
 	h1 {
-		${(props) => componentCSS(H1, props)}
+		${H1Style}
 		margin-top: 1rem;
 	}
 	h2 {
-		${(props) => componentCSS(H2, props)}
+		${H2Style}
 	}
 	h3 {
-		${(props) => componentCSS(H3, props)}
+		${H3Style}
 	}
 	h4 {
-		${(props) => componentCSS(H4, props)}
+		${H4Style}
 	}
 	h5 {
-		${(props) => componentCSS(H5, props)}
+		${H5Style}
 	}
 	p {
-		${(props) => componentCSS(Body, props)}
+		${BodyStyle}
 	}
-	Ul {
-		${(props) => componentCSS(Ul, props)}
-	}
-	Li {
-		${(props) => componentCSS(Li, props)}
+	ul {
+		${UlStyle}
 	}
 	a {
-		${(props) => componentCSS(StyledLink, props)}
+		${StyledLinkStyle}
 	}
 
 	font-family: ${({ theme }) => theme.fonts.main};
@@ -97,8 +95,7 @@ const StyledDocumentation = styled.div`
 		background-color: ${({ theme }) => theme.colors.extended.grey[200]};
 		border-radius: ${({ theme }) => theme.box.borderRadius};
 		border: none;
-		padding: ${({ theme }) => theme.spacings.xxs}
-			${({ theme }) => theme.spacings.xs};
+		padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.xs}`};
 		color: ${({ theme }) => theme.colors.extended.grey[800]};
 
 		&:hover {
@@ -115,49 +112,3 @@ const StyledDocumentation = styled.div`
 			theme.darkMode && theme.colors.extended.dark[600]};
 	}
 `
-
-type OverrideComponentType = {
-	componentStyle: {
-		rules: Array<
-			| ((
-					props: Record<string, unknown>
-			  ) =>
-					| string
-					| false
-					| null
-					| undefined
-					| OverrideComponentType['componentStyle']['rules'])
-			| string
-		>
-	}
-}
-
-// HACKKKKY THING. DO NOT DO THIS AT HOME
-function componentCSS(Compo: unknown, props: Record<never, never>): string {
-	const rules =
-		'componentStyle' in (Compo as OverrideComponentType)
-			? (Compo as OverrideComponentType).componentStyle.rules
-			: (Compo as string[])
-
-	return rules
-		.map((x) => {
-			if (typeof x !== 'function') {
-				return x
-			}
-			const result = x(props)
-			if ((result ?? false) === false) {
-				return ''
-			}
-			if (typeof result === 'string') {
-				return result
-			}
-			if (Array.isArray(result)) {
-				return componentCSS(result, props)
-			}
-			// eslint-disable-next-line no-console
-			console.error('Should not happen', result, typeof result)
-
-			return false
-		})
-		.join('')
-}
