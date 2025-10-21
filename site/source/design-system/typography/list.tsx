@@ -2,7 +2,7 @@ import { css, styled } from 'styled-components'
 
 import { baseParagraphStyle } from './paragraphs'
 
-type ListProps = {
+export type ListProps = {
 	/**
 	 * @property {'XS' | 'MD' | 'XL'} - The `size` property is an optional property that can have one
 	 * of three values: 'XS', 'MD', or 'XL'. It is used to specify the size of the list. If this property
@@ -51,7 +51,7 @@ const BaseListStyle = css<ListProps>`
 	}
 `
 
-export const Ul = styled.ul<ListProps>`
+export const UlStyle = css<ListProps>`
 	${BaseListStyle}
 	> ${Li}::before {
 		${({ $noMarker }) =>
@@ -74,6 +74,9 @@ export const Ul = styled.ul<ListProps>`
 		font-size: 60%;
 		color: ${({ theme }) => theme.colors.bases.primary[700]};
 	}
+`
+export const Ul = styled.ul<ListProps>`
+	${UlStyle}
 `
 
 export const Ol = styled.ol<ListProps>`
