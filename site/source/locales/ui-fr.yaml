@@ -965,6 +965,7 @@ pages:
     title: Choisir votre statut
   documentation:
     back: Retourner à la simulation
+    body: Explorez toutes les règles de la documentation
     meta:
       description: Documentation des règles de calcul de nos simulateurs et assistants
       descriptionBis: Explorez toutes les règles de la documentation

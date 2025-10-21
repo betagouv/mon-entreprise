@@ -913,6 +913,7 @@ pages:
     title: Choose your status
   documentation:
     back: Back to simulation
+    body: Explore all the rules of documentation
     meta:
       description: Documentation of calculation rules for our simulators and wizards
       descriptionBis: Explore all the rules of documentation
