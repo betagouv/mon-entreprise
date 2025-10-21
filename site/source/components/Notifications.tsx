@@ -1,10 +1,9 @@
-import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
+import { useInversionFail } from '@/components/utils/EngineContext'
 import {
 	CloseButton,
 	Emoji,
@@ -12,6 +11,8 @@ import {
 	Message,
 	typography,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 

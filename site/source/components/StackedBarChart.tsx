@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { EvaluatedNode } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -7,11 +6,12 @@ import { animated, useSpring } from 'react-spring'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import useDisplayOnIntersecting from '@/hooks/useDisplayOnIntersecting'
+import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
-import { useEngine } from './utils/EngineContext'
 
 const BarStack = styled.div`
 	display: flex;

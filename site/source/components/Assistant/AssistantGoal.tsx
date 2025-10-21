@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
@@ -6,15 +5,16 @@ import { styled } from 'styled-components'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Body, Grid } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { getMeta } from '@/utils/publicodes'
+import { getMeta } from '@/utils/publicodes/publicodes'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput from '../conversation/RuleInput'
 import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
-import { useEngine } from '../utils/EngineContext'
 
 type SimulationGoalProps = {
 	dottedName: DottedName

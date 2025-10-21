@@ -1,5 +1,5 @@
 import { getDocumentationSiteMap, RulePage } from '@publicodes/react-ui'
-import rules, { DottedName } from 'modele-social'
+import rules, { RègleModeleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { ComponentProps, lazy, Suspense, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -17,13 +17,13 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { References } from '@/components/References'
 import { FromBottom } from '@/components/ui/animate'
+import Loader from '@/components/utils/Loader'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import {
 	Accordion,
 	Button,
 	Item,
-	Loader,
 	Markdown,
 	Spacing,
 	typography,
@@ -191,26 +191,15 @@ function DocumentationLanding() {
 				<Trans i18nKey="pages.documentation.title">Documentation</Trans>
 			</H1>
 			<Body>Explorez toutes les règles de la documentation</Body>
-			<Suspense
-				fallback={
-					<Container style={{ height: '300px', alignItems: 'center' }}>
-						<Loader />
-					</Container>
-				}
-			>
+			<Suspense fallback={<Loader />}>
 				<LazySearchRules />
 			</Suspense>
 		</>
 	)
 }
 
-const Container = styled.div`
-	display: flex;
-	justify-content: center;
-`
-
 function DocumentationRulesList() {
-	const ruleEntries = Object.keys(rules) as DottedName[]
+	const ruleEntries = Object.keys(rules) as RègleModeleSocial[]
 
 	return (
 		<>

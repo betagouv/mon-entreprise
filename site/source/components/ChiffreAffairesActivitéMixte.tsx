@@ -3,7 +3,6 @@ import * as A from 'effect/Array'
 import * as E from 'effect/Either'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,7 +14,9 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
+import { useEngine } from '@/hooks/useEngine'
 import { batchUpdateSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
@@ -24,7 +25,6 @@ import { Condition } from './EngineValue/Condition'
 import { WhenApplicable } from './EngineValue/WhenApplicable'
 import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
-import { useEngine } from './utils/EngineContext'
 
 const proportions = {
 	'entreprise . activités . revenus mixtes . proportions . service BIC':

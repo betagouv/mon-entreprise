@@ -1,5 +1,4 @@
 import { useSSRSafeId } from '@react-aria/ssr'
-import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,16 +7,17 @@ import { IStyledComponent, styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import { H3, Intro, Markdown, SmallBody, Spacing } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import {
 	situationSelector,
 	targetUnitSelector,
 } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion, getMeta } from '@/utils/publicodes'
+import { evaluateQuestion, getMeta } from '@/utils/publicodes/publicodes'
 
 type SubSectionProp = {
 	dottedName: DottedName

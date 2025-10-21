@@ -1,8 +1,8 @@
 import règles from 'modele-social'
 import { describe, expect, it } from 'vitest'
 
-import { engineFactory } from '@/components/utils/EngineContext'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import { estCeQueLaQuestionPublicodesEstRépondue } from './estCeQueLaQuestionPublicodesEstRépondue'
 

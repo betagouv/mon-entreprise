@@ -2,17 +2,17 @@ import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
-import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
+import { useEngine } from '@/hooks/useEngine'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
 	batchUpdateSituation,

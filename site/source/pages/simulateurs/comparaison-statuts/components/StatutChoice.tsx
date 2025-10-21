@@ -1,10 +1,10 @@
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutType, TAG_DATA } from '@/components/StatutTag'
 import { Button, Grid, H4, Li, Spacing, Strong, Ul } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 

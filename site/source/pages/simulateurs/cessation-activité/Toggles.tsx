@@ -1,15 +1,15 @@
-import { DottedName } from 'modele-social'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { DefaultValue } from '@/components/conversation/DefaultValue'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import { useEngine } from '@/components/utils/EngineContext'
 import { H3 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 const Wrapper = styled.div`
 	flex-shrink: 0;

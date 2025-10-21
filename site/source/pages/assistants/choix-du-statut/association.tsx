@@ -1,10 +1,8 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
 	Body,
@@ -16,6 +14,8 @@ import {
 	Strong,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'

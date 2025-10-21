@@ -1,16 +1,16 @@
 import { pipe, Record } from 'effect'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
 import { EvaluatedNode, PublicodesExpression } from 'publicodes'
 import { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 export const useStatefulRulesEdit = <T extends DottedName>(

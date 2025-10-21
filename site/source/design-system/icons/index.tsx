@@ -495,4 +495,4 @@ export const EyeIcon = (props: HTMLAttributes<SVGElement>) => (
 	</svg>
 )
 
-export { Loader } from './Loader'
+export { Spinner } from './Spinner'

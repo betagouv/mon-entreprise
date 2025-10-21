@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -18,19 +17,20 @@ import Notifications from '@/components/Notifications'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Body, Conversation, H3 } from '@/design-system'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { isQuantité } from '@/domaine/Quantité'
 import { Situation } from '@/domaine/Situation'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
+import { useEngine } from '@/hooks/useEngine'
 import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import Raccourcis from './Raccourcis'
 

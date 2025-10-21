@@ -7,7 +7,7 @@ import { Trans } from 'react-i18next'
 import { TrackPage } from '@/components/ATInternetTracking'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import { StatutType } from '@/components/StatutTag'
-import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
+import { useRawSituation } from '@/components/utils/EngineContext'
 import {
 	Button,
 	Container,
@@ -17,6 +17,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { useEngine } from '@/hooks/useEngine'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'

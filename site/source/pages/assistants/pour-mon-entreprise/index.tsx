@@ -1,5 +1,4 @@
 import { useOverlayTriggerState } from '@react-stately/overlays'
-import { DottedName } from 'modele-social'
 import { Evaluation } from 'publicodes'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -19,12 +18,11 @@ import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprise
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
-import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
+import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -40,6 +38,8 @@ import {
 	Strong,
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
@@ -48,8 +48,8 @@ import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { companySituationSelector } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { companySituationSelector } from '@/store/selectors/companySituation.selector'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import forms from './forms.svg'
 import growth from './growth.svg'
@@ -284,7 +284,7 @@ const AskCompanyMissingDetails = () => {
 
 	return (
 		<>
-			<EntrepriseDetails showSituation headingTag="h2" />
+			<EntrepriseDetailsCard showSituation headingTag="h2" />
 			{!!questions.length && (
 				<>
 					<Body
