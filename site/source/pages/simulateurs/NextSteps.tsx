@@ -26,12 +26,12 @@ export default function NextSteps({
 	externalLinks,
 }: NextStepsProps) {
 	const { absoluteSitePaths } = useSitePaths()
-	const engine = useEngine()
+	// const engine = useEngine()
 
-	const relevantExternalLinks = externalLinks?.filter(
-		({ associatedRule }: ExternalLink) =>
-			!associatedRule || engine.evaluate(associatedRule).nodeValue
-	)
+	// const relevantExternalLinks = externalLinks?.filter(
+	// 	({ associatedRule }: ExternalLink) =>
+	// 		!associatedRule || engine.evaluate(associatedRule).nodeValue
+	// )
 
 	const existingCompany = !!useSelector(companySirenSelector)
 
@@ -58,8 +58,8 @@ export default function NextSteps({
 						</GridItem>
 					))}
 
-				{relevantExternalLinks &&
-					relevantExternalLinks.map((externalLink, index) => (
+				{externalLinks &&
+					externalLinks.map((externalLink, index) => (
 						<GridItem key={index}>
 							<ExternalLinkCard externalLink={externalLink} />
 						</GridItem>

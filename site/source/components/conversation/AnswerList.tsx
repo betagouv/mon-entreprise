@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { EvaluatedRule } from '@/components/utils/EngineContext'
 import {
 	Button,
 	Emoji,
@@ -33,6 +32,7 @@ import Value from '../EngineValue/Value'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
 import RuleInput from './RuleInput'
+import { EvaluatedRule } from '@/domaine/publicodes/EvaluatedRule'
 
 const { Body, H2, H3, Intro, Link, Strong, Ul } = typography
 

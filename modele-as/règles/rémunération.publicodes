@@ -28,16 +28,15 @@ assimilé salarié . rémunération . brute:
 
 assimilé salarié . rémunération . salaire brut:
   unité: €/mois
-  somme:
-    - rémunération . totale
-    - (- cotisations . employeur)
-  # inversion numérique:
+  # somme:
   #   - rémunération . totale
-  #   - rémunération . brute
-  #   - rémunération . nette
-  #   - rémunération . nette . à payer avant impôt
-  #   - rémunération . nette . payé après impôt
-  #   - entreprise . chiffre d'affaires
+  #   - (- cotisations . employeur)
+  inversion numérique:
+    - rémunération . totale
+    - rémunération . brute
+    - rémunération . nette
+    - rémunération . nette . à payer avant impôt
+    - rémunération . nette . après impôt
 
 assimilé salarié . rémunération . nette:
   unité: €/an

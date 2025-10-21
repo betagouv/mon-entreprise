@@ -41,13 +41,14 @@ export default function SimulateurOrAssistantPage() {
 		path,
 	} = currentSimulatorData
 
+	console.log('SimulateurOrAssistantPage', simulation)
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({
 		key: path,
 		config: simulation as Simulation,
 		autoloadLastSimulation,
 	})
-	useSetSimulationFromSearchParams()
+	// useSetSimulationFromSearchParams()
 
 	const trackInfo = {
 		chapter1:

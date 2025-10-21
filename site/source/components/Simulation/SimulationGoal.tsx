@@ -46,6 +46,7 @@ export function SimulationGoal({
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
+	console.log('simulation goal engine situation', engine.getSituation())
 	const currentUnit = useSelector(targetUnitSelector)
 	const language = useTranslation().i18n.language
 
@@ -54,6 +55,7 @@ export function SimulationGoal({
 		arrondi: round ? 'oui' : 'non',
 		...(!isTypeBoolean ? { unité: currentUnit } : {}),
 	})
+	console.log(dottedName, evaluation)
 
 	const rule = engine.getRule(dottedName)
 

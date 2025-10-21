@@ -10,6 +10,7 @@ import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { configSelector } from '@/store/selectors/config.selector'
 
 import { useEngine } from './useEngine'
+import { loadEngineFromModeleId } from '@/utils/publicodes/getEngine'
 
 export default function useSimulationConfig({
 	key,
@@ -44,5 +45,5 @@ export default function useSimulationConfig({
 		}
 	}, [config, dispatch, lastConfig, key])
 
-	useSetupSafeSituation(useEngine())
+	// useSetupSafeSituation(useEngine(config?.modeleId))
 }

@@ -1,21 +1,19 @@
 import { Trans } from 'react-i18next'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
-import RuleLink from '@/components/RuleLink'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
 import { Body, H2 } from '@/design-system'
 
 export function SASUSimulation() {
 	return (
 		<>
 			<Simulation
-				explanations={<SalaryExplanation />}
+				// explanations={<SalaryExplanation />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
@@ -32,20 +30,24 @@ export function SASUSimulation() {
 				/>
 				<SimulationGoals>
 					<PeriodSwitch />
-					<SimulationGoal dottedName="dirigeant . rémunération . totale" />
+					<SimulationGoal dottedName="assimilé salarié . rémunération . totale" />
 					<SimulationGoal
 						editable
 						small
-						dottedName="salarié . rémunération . brut"
+						dottedName="assimilé salarié . rémunération . brute"
 					/>
 					<SimulationGoal
 						editable={false}
 						small
-						dottedName="salarié . cotisations"
+						dottedName="assimilé salarié . cotisations"
 					/>
-					<SimulationGoal dottedName="salarié . rémunération . net . à payer avant impôt" />
-					<SimulationGoal small editable={false} dottedName="impôt . montant" />
-					<SimulationGoal dottedName="salarié . rémunération . net . payé après impôt" />
+					<SimulationGoal dottedName="assimilé salarié . rémunération . nette . à payer avant impôt" />
+					<SimulationGoal
+						small
+						editable={false}
+						dottedName="assimilé salarié . rémunération . impôt"
+					/>
+					<SimulationGoal dottedName="assimilé salarié . rémunération . nette . après impôt" />
 				</SimulationGoals>
 			</Simulation>
 		</>
@@ -55,7 +57,7 @@ export function SASUSimulation() {
 export const SeoExplanations = () => (
 	<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
 		<H2>Comment calculer le salaire d'un dirigeant de SAS ou SASU ? </H2>
-		<Body>
+		{/* <Body>
 			Comme pour un salarié classique, le <strong>dirigeant de SAS(U)</strong>{' '}
 			paye des cotisations sociales sur la rémunération qu'il se verse. Les
 			cotisations sont calculées de la même manière que pour le salarié : elles
@@ -88,6 +90,6 @@ export const SeoExplanations = () => (
 			à la rémunération du dirigeant. Il vous suffit pour cela saisir le montant
 			total alloué dans la case "total chargé". La simulation peut ensuite être
 			affinée en répondant aux différentes questions.
-		</Body>
+		</Body> */}
 	</Trans>
 )
