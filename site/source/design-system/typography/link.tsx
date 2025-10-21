@@ -20,12 +20,12 @@ export const StyledLinkHover = css`
 			: theme.colors.bases.primary[800]};
 `
 
-interface StyledLinkProps {
+export type StyledLinkProps = {
 	$isDisabled?: boolean
 	$noUnderline?: boolean
 }
 
-export const StyledLink = styled.a<StyledLinkProps>`
+export const StyledLinkStyle = css<StyledLinkProps>`
 	color: ${({ theme, $isDisabled }) =>
 		$isDisabled
 			? theme.colors.extended.grey[600]
@@ -63,6 +63,9 @@ export const StyledLink = styled.a<StyledLinkProps>`
 				  `
 				: ''}
 	}
+`
+export const StyledLink = styled.a<StyledLinkProps>`
+	${StyledLinkStyle}
 `
 
 export const Link = React.forwardRef<
