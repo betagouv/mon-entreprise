@@ -21,35 +21,41 @@ export const HeadingUnderline = css`
 	}
 `
 
-export const H1 = styled.h1<{ noUnderline?: boolean }>`
+export const H1Style = css`
 	${baseHeading}
+	${HeadingUnderline}
 	font-size: 2rem;
 	margin: ${({ theme }) => css`
 		${theme.spacings.xxxl} 0 ${theme.spacings.xl}
 	`};
 	line-height: 2.375rem;
-	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
 
 	@media print {
 		margin: ${({ theme }) => theme.spacings.xl} 0;
 	}
 `
+export const H1 = styled.h1`
+	${H1Style}
+`
 
-export const H2 = styled.h2<{ noUnderline?: boolean }>`
+export const H2Style = css`
 	${baseHeading}
+	${HeadingUnderline}
 	font-size: 1.625rem;
 	line-height: 2rem;
 	margin: ${({ theme }) => css`
 		${theme.spacings.xxl} 0 ${theme.spacings.lg}
 	`};
-	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
 
 	@media print {
 		margin: ${({ theme }) => theme.spacings.xl} 0;
 	}
 `
+export const H2 = styled.h2`
+	${H2Style}
+`
 
-export const H3 = styled.h3`
+export const H3Style = css`
 	${baseHeading}
 	margin: ${({ theme }) => css`
 		${theme.spacings.xl} 0 ${theme.spacings.md}
@@ -57,8 +63,11 @@ export const H3 = styled.h3`
 	font-size: 1.25rem;
 	line-height: 1.75rem;
 `
+export const H3 = styled.h3`
+	${H3Style}
+`
 
-export const H4 = styled.h4`
+export const H4Style = css`
 	${baseHeading}
 	margin: ${({ theme }) => css`
 		${theme.spacings.lg} 0 ${theme.spacings.sm}
@@ -66,14 +75,20 @@ export const H4 = styled.h4`
 	font-size: 1.125rem;
 	line-height: 1.5rem;
 `
+export const H4 = styled.h4`
+	${H4Style}
+`
 
-export const H5 = styled.h5`
+export const H5Style = css`
 	${baseHeading}
 	font-size: 1rem;
 	margin: ${({ theme }) => css`
 		${theme.spacings.md} 0 ${theme.spacings.xs}
 	`};
 	line-height: 1.5rem;
+`
+export const H5 = styled.h5`
+	${H5Style}
 `
 
 export const H6 = styled.h6`
