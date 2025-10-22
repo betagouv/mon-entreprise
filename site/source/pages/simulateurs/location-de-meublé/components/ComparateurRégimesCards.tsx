@@ -6,8 +6,8 @@ import {
 	compareRégimes,
 	estSituationValide,
 	RegimeCotisation,
-	RésultatRégimeApplicable,
 	RégimeTag,
+	RésultatRégimeApplicable,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 import {
@@ -51,7 +51,7 @@ export const ComparateurRégimesCards = () => {
 		O.getOrNull
 	)
 
-	const gridSizes = getGridSizes(1, 3)
+	const gridSizes = getGridSizes(1, 4)
 
 	return (
 		<div>
@@ -81,6 +81,11 @@ const RégimeCard = ({
 
 	const getRégimeLibellé = (régime: RegimeCotisation): string => {
 		switch (régime) {
+			case RegimeCotisation.pasDAffiliation:
+				return t(
+					'pages.simulateurs.location-de-logement-meublé.régimes.pas-d-affiliation.libellé',
+					"Pas d'affiliation"
+				)
 			case RegimeCotisation.regimeGeneral:
 				return t(
 					'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.libellé',
@@ -138,19 +143,23 @@ const RégimeCard = ({
 						}}
 					>
 						<Li>
+							{résultat.régime === RegimeCotisation.pasDAffiliation && (
+								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.pas-d-affiliation.description">
+									Vous n'êtes pas obligé de vous affilier et ne payez pas de
+									cotisations.
+								</Trans>
+							)}
 							{résultat.régime === RegimeCotisation.regimeGeneral && (
 								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description">
-									Comme pour un salarié, des cotisations sociales seront
-									prélevées à la source.
+									Comme pour un salarié.
 								</Trans>
 							)}
 							{résultat.régime === RegimeCotisation.microEntreprise && (
 								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description">
-									Vous payez un pourcentage fixe de votre chiffre d'affaires.
+									Vous payez un pourcentage de votre chiffre d'affaires.
 								</Trans>
 							)}
-							{résultat.régime ===
-								RegimeCotisation.travailleurIndependant && (
+							{résultat.régime === RegimeCotisation.travailleurIndependant && (
 								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description">
 									Vous payez des cotisations sociales sur votre bénéfice.
 								</Trans>
