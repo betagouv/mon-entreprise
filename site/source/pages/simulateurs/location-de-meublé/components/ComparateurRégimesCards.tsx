@@ -5,6 +5,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import {
 	compareRégimes,
 	estSituationValide,
+	isCotisationsEnabled,
 	RegimeCotisation,
 	RégimeTag,
 	RésultatRégimeApplicable,
@@ -42,14 +43,16 @@ export const ComparateurRégimesCards = () => {
 		Order.mapInput((r: RésultatRégimeApplicable) => r.cotisations.valeur)
 	)
 
-	const meilleurRégime = pipe(
-		résultats,
-		Array.filter((r): r is RésultatRégimeApplicable => r.applicable),
-		Array.sort(orderByCotisations),
-		Array.head,
-		O.map((r) => r.régime),
-		O.getOrNull
-	)
+	const meilleurRégime = isCotisationsEnabled
+		? pipe(
+				résultats,
+				Array.filter((r): r is RésultatRégimeApplicable => r.applicable),
+				Array.sort(orderByCotisations),
+				Array.head,
+				O.map((r) => r.régime),
+				O.getOrNull
+		  )
+		: null
 
 	const gridSizes = getGridSizes(1, 4)
 
@@ -113,10 +116,22 @@ const RégimeCard = ({
 			<StatusCard.Titre>{getRégimeLibellé(résultat.régime)}</StatusCard.Titre>
 
 			{résultat.applicable ? (
-				<StatusCard.ValeurSecondaire>
-					<span>{formatMontant(résultat.cotisations)}</span>
-					<span> de cotisations</span>
-				</StatusCard.ValeurSecondaire>
+				isCotisationsEnabled ? (
+					<StatusCard.ValeurSecondaire>
+						<span>{formatMontant(résultat.cotisations)}</span>
+						<span> de cotisations</span>
+					</StatusCard.ValeurSecondaire>
+				) : (
+					<StatusCard.ValeurSecondaire>
+						<SmallBody>
+							<Strong>
+								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.applicable">
+									Applicable
+								</Trans>
+							</Strong>
+						</SmallBody>
+					</StatusCard.ValeurSecondaire>
+				)
 			) : (
 				<StatusCard.ValeurSecondaire>
 					<SmallBody>
