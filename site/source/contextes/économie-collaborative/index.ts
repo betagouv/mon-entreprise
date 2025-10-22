@@ -1,5 +1,6 @@
 export { useEconomieCollaborative } from './hooks/useEconomieCollaborative'
 export { ÉconomieCollaborativeProvider } from './hooks/ÉconomieCollaborativeContext'
+export { isCotisationsEnabled } from './featureToggles'
 export {
 	estSituationValide,
 	type SituationÉconomieCollaborative,
