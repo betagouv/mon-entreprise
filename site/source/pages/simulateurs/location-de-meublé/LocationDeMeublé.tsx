@@ -8,7 +8,7 @@ import {
 	SituationÉconomieCollaborative,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
-import { Button } from '@/design-system'
+import { Button, ConteneurBleu } from '@/design-system'
 import { ComparateurRégimesCards } from '@/pages/simulateurs/location-de-meublé/components/ComparateurRégimesCards'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import {
@@ -42,17 +42,23 @@ const LocationDeMeublé = () => {
 					<ObjectifRecettes />
 				</SimulationGoals>
 			</Simulation>
-			{estSituationValide(situation) && <ComparateurRégimesCards />}
-			<Button
-				size="XS"
-				light
-				to={
-					absoluteSitePaths.simulateurs['location-de-logement-meublé'] +
-					'/documentation'
-				}
-			>
-				📚 Documentation
-			</Button>
+			{estSituationValide(situation) && (
+				<ConteneurBleu>
+					<ComparateurRégimesCards />
+				</ConteneurBleu>
+			)}
+			<ConteneurBleu foncé>
+				<Button
+					size="XS"
+					light
+					to={
+						absoluteSitePaths.simulateurs['location-de-logement-meublé'] +
+						'/documentation'
+					}
+				>
+					📚 Documentation
+				</Button>
+			</ConteneurBleu>
 		</>
 	)
 }

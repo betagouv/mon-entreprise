@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 import { Theme } from '@/types/styled'
 
 export { default as Container } from './Container'
+export { ConteneurBleu } from './ConteneurBleu'
 export { default as Grid } from './Grid'
 
 type SpacingProps = (
