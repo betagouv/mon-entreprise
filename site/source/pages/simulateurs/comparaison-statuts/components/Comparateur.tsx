@@ -7,7 +7,14 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import { Body, Container, H4, Link, Message, Spacing } from '@/design-system'
+import {
+	Body,
+	ConteneurBleu,
+	H4,
+	Link,
+	Message,
+	Spacing,
+} from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
@@ -61,16 +68,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 				</Message>
 			</Condition>
 			<Condition expression="entreprise . activité . nature . libérale . réglementée = non">
-				<Container
-					backgroundColor={(theme) =>
-						theme.darkMode
-							? theme.colors.extended.dark[700]
-							: theme.colors.bases.primary[100]
-					}
-					style={{
-						padding: '1rem 0',
-					}}
-				>
+				<ConteneurBleu>
 					<StatutChoice namedEngines={namedEngines} hideCTA />
 					<div
 						style={{
@@ -80,7 +78,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					>
 						<ModifierOptions />
 					</div>
-				</Container>
+				</ConteneurBleu>
 				<Détails namedEngines={namedEngines} expandRevenuSection />
 				<EngineDocumentationRoutes
 					basePath={absoluteSitePaths.simulateurs.comparaison}
