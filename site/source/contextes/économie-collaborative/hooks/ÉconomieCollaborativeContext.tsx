@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from 'react'
 import {
 	initialSituationÉconomieCollaborative,
 	SituationÉconomieCollaborative,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
+} from '../domaine/location-de-meublé/situation'
 
 type SituationContextType = {
 	situation: SituationÉconomieCollaborative
