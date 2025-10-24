@@ -3,8 +3,10 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import { SituationÉconomieCollaborative } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
+import {
+	SituationÉconomieCollaborative,
+	useEconomieCollaborative,
+} from '@/contextes/économie-collaborative'
 import { Radio, ToggleGroup } from '@/design-system'
 
 interface Props {}
@@ -43,6 +45,6 @@ PremiereAnneeQuestion._tag = 'QuestionFournie'
 PremiereAnneeQuestion.id = 'premiere-annee'
 PremiereAnneeQuestion.libellé = "Est-ce votre première année d'activité ?"
 PremiereAnneeQuestion.applicable = (situation) =>
-	O.isSome(situation.regimeCotisation) && O.isSome(situation.estAlsaceMoselle)
+	O.isSome(situation.estAlsaceMoselle)
 PremiereAnneeQuestion.répondue = (situation) =>
 	O.isSome(situation.premièreAnnée)

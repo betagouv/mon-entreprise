@@ -1929,17 +1929,11 @@ pages:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
     location-de-logement-meublé:
-      avertissement:
-        dépassement-du-plafond: Vous dépassez le plafond autorisé (<1></1>) pour
-          déclarer vos revenus de l'économie collaborative avec un statut social
-          au régime général. Vous devez vous orienter vers les statuts
-          d'auto-entrepreneur ou de travailleur indépendant.
-        pas-de-cotisation: Le montant de vos recettes est inférieur à <2></2> et votre
-          activité n'est pas considérée comme professionnelle. Vous n'êtes pas
-          obligé de vous affilier à la sécurité sociale. Vous pouvez toutefois
-          le faire si vous souhaitez bénéficier d'une protection sociale
-          (assurance maladie, retraite…) en contrepartie du paiement des
-          cotisations sociales.
+      comparateur:
+        applicable: Applicable
+        non-applicable: Non applicable
+        non-applicable-raison: avec vos recettes actuelles
+        non-applicable-raison-type-location: pour ce type de location
       externalLinks:
         "1":
           description: Vous louez des logements meublés ou des biens ? Le service Économie
@@ -1961,17 +1955,24 @@ pages:
       questions:
         regime:
           options:
-            estimation: Estimation des cotisations
             micro-entrepreneur:
-              description: Vous payez un pourcentage fixe de votre chiffre d'affaires.
-              label: Micro-entreprise
+              description: Vous payez un pourcentage de votre chiffre d'affaires.
+            pas-d-affiliation:
+              description: Vous n'êtes pas obligé de vous affilier et ne payez pas de
+                cotisations.
             régime-général:
-              description: Comme pour un salarié, des cotisations sociales seront prélevées à
-                la source.
-              label: Régime général (cotisations URSSAF)
+              description: Comme pour un salarié.
             travailleur-indépendant:
               description: Vous payez des cotisations sociales sur votre bénéfice.
-              label: Travailleur indépendant
+      régimes:
+        micro-entreprise:
+          libellé: Auto-entrepreneur
+        pas-d-affiliation:
+          libellé: Pas d'affiliation
+        régime-général:
+          libellé: Régime général
+        travailleur-indépendant:
+          libellé: Travailleur indépendant
       shortname: Location de logement meublé
       title: Simulateur de revenu pour location de logement meublé
     lodeom:

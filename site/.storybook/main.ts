@@ -15,6 +15,22 @@ const config: StorybookConfig = {
 		name: '@storybook/react-vite',
 		options: {},
 	},
+	async viteFinal(config) {
+		// Add proxy for twemoji images
+		if (config.server) {
+			config.server.proxy = {
+				...config.server.proxy,
+				'/twemoji': {
+					target: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/',
+					changeOrigin: true,
+					rewrite: (path: string) => path.replace(/^\/twemoji/, ''),
+					timeout: 3 * 1000,
+				},
+			}
+		}
+
+		return config
+	},
 
 	typescript: {
 		reactDocgenTypescriptOptions: {

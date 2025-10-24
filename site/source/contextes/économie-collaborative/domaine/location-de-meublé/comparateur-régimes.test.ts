@@ -1,10 +1,9 @@
 import { Equal, Option, pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { estPlusGrandQue, eurosParAn } from '@/domaine/Montant'
+import { estPlusGrandQue, eurosParAn, Montant } from '@/domaine/Montant'
 
 import { compareRégimes } from './comparateur-régimes'
-import { SEUIL_PROFESSIONNALISATION } from './constantes'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -12,62 +11,72 @@ import {
 
 describe('compareRégimes', () => {
 	describe('avec des recettes inférieures au seuil de professionnalisation', () => {
-		it('marque tous les régimes comme non applicables', () => {
+		it('marque tous les régimes comme applicables (affiliation volontaire + PA)', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(10_000)) as Option.Some<
-					typeof SEUIL_PROFESSIONNALISATION
+					Montant<'€/an'>
 				>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
 
-			expect(résultats.length).toBe(3)
-
+			expect(résultats.length).toBe(4)
 			résultats.forEach((régime) => {
-				expect(régime.applicable).toBe(false)
-				expect(
-					!régime.applicable && régime.raisonDeNonApplicabilité
-				).toBeDefined()
+				expect(régime.applicable).toBe(true)
 			})
 		})
 	})
 
 	describe('avec des recettes au-dessus du seuil mais en-dessous du plafond', () => {
-		it('marque tous les régimes comme applicables', () => {
+		it('marque RG, AE et TI comme applicables (PA non applicable)', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					typeof SEUIL_PROFESSIONNALISATION
+					Montant<'€/an'>
 				>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
 
-			expect(résultats.length).toBe(3)
+			expect(résultats.length).toBe(4)
 
-			résultats.forEach((régime) => {
-				expect(régime.applicable).toBe(true)
-				expect('cotisations' in régime).toBe(true)
-			})
+			const pasDAffiliation = résultats.find(
+				(r) => r.régime === RegimeCotisation.pasDAffiliation
+			)
+			expect(pasDAffiliation?.applicable).toBe(false)
+
+			const régimeGénéral = résultats.find(
+				(r) => r.régime === RegimeCotisation.regimeGeneral
+			)
+			const microEntreprise = résultats.find(
+				(r) => r.régime === RegimeCotisation.microEntreprise
+			)
+			const travailleurIndépendant = résultats.find(
+				(r) => r.régime === RegimeCotisation.travailleurIndependant
+			)
+
+			expect(régimeGénéral?.applicable).toBe(true)
+			expect(microEntreprise?.applicable).toBe(true)
+			expect(travailleurIndépendant?.applicable).toBe(true)
 		})
 
 		it('calcule des valeurs de cotisations différentes pour chaque régime', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					typeof SEUIL_PROFESSIONNALISATION
+					Montant<'€/an'>
 				>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -113,20 +122,23 @@ describe('compareRégimes', () => {
 	})
 
 	describe('avec des recettes supérieures au plafond du régime général', () => {
-		it('devrait marquer le régime général comme non applicable', () => {
+		it('devrait marquer RG, AE et PA comme non applicables, TI applicable', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(80_000)) as Option.Some<
-					typeof SEUIL_PROFESSIONNALISATION
+					Montant<'€/an'>
 				>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
 
 			const résultats = compareRégimes(situation)
 
+			const pasDAffiliation = résultats.find(
+				(r) => r.régime === RegimeCotisation.pasDAffiliation
+			)
 			const régimeGénéral = résultats.find(
 				(r) => r.régime === RegimeCotisation.regimeGeneral
 			)
@@ -137,34 +149,10 @@ describe('compareRégimes', () => {
 				(r) => r.régime === RegimeCotisation.travailleurIndependant
 			)
 
+			expect(pasDAffiliation?.applicable).toBe(false)
 			expect(régimeGénéral?.applicable).toBe(false)
-			expect(
-				régimeGénéral &&
-					!régimeGénéral.applicable &&
-					régimeGénéral.raisonDeNonApplicabilité
-			).toBeDefined()
-
-			expect(microEntreprise?.applicable).toBe(true)
+			expect(microEntreprise?.applicable).toBe(false)
 			expect(travailleurIndépendant?.applicable).toBe(true)
-		})
-	})
-
-	describe('avec un régime spécifié', () => {
-		it('devrait tout de même comparer tous les régimes', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				_tag: 'Situation',
-				_type: 'économie-collaborative',
-				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					typeof SEUIL_PROFESSIONNALISATION
-				>,
-				regimeCotisation: Option.some(RegimeCotisation.microEntreprise),
-				estAlsaceMoselle: Option.none(),
-				premièreAnnée: Option.none(),
-			}
-
-			const résultats = compareRégimes(situation)
-
-			expect(résultats.length).toBe(3)
 		})
 	})
 
@@ -172,22 +160,22 @@ describe('compareRégimes', () => {
 		it('devrait prendre en compte le paramètre estAlsaceMoselle', () => {
 			const situationNormale: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					typeof SEUIL_PROFESSIONNALISATION
+					Montant<'€/an'>
 				>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.some(false),
 				premièreAnnée: Option.none(),
 			}
 
 			const situationAlsaceMoselle: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					typeof SEUIL_PROFESSIONNALISATION
+					Montant<'€/an'>
 				>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.some(true),
 				premièreAnnée: Option.none(),
 			}

@@ -19,6 +19,12 @@ interface ImportMetaEnv {
 	VITE_REDUX_TRACE?: string
 
 	/**
+	 * Feature toggle pour activer/désactiver le calcul des cotisations en économie collaborative
+	 * Par défaut: 'false' - seule l'applicabilité des régimes est affichée
+	 */
+	VITE_ENABLE_ECONOMIE_COLLABORATIVE_COTISATIONS?: string
+
+	/**
 	 * @deprecated Use global variable IS_PRODUCTION, IS_STAGING or IS_DEVELOPMENT instead
 	 */
 	MODE: string

@@ -3,8 +3,10 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import { SituationÉconomieCollaborative } from '@/contextes/économie-collaborative/domaine/location-de-meublé'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
+import {
+	SituationÉconomieCollaborative,
+	useEconomieCollaborative,
+} from '@/contextes/économie-collaborative'
 import { Radio, ToggleGroup } from '@/design-system'
 
 interface Props {}

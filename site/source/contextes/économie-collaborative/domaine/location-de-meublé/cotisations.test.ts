@@ -2,10 +2,6 @@ import { Either, Equal, Option, pipe } from 'effect'
 import { describe, expect, expectTypeOf, it } from 'vitest'
 
 import {
-	RegimeCotisation,
-	SituationÉconomieCollaborativeValide,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
-import {
 	abattement,
 	eurosParAn,
 	fois,
@@ -14,26 +10,32 @@ import {
 	plus,
 } from '@/domaine/Montant'
 
-import { estActiviteProfessionnelle } from './activite'
-import { SEUIL_PROFESSIONNALISATION } from './constantes'
 import { calculeCotisations } from './cotisations'
+import {
+	estActiviteProfessionnelle,
+	SEUIL_PROFESSIONNALISATION,
+} from './estActiviteProfessionnelle'
 import {
 	ABATTEMENT_REGIME_GENERAL,
 	PLAFOND_REGIME_GENERAL,
 	TAUX_COTISATION_RG_ALSACE_MOSELLE,
 	TAUX_COTISATION_RG_NORMAL,
 } from './régime-général'
+import {
+	RegimeCotisation,
+	SituationÉconomieCollaborativeValide,
+} from './situation'
 
 describe('Location de meublé de courte durée', () => {
 	describe('estActiviteProfessionnelle', () => {
 		it('est faux si les recettes sont inférieures au seuil de professionalisation', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(
-					pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
+					pipe(SEUIL_PROFESSIONNALISATION.MEUBLÉ, moins(eurosParAn(1)))
 				) as Option.Some<Montant<'€/an'>>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -44,11 +46,11 @@ describe('Location de meublé de courte durée', () => {
 		it('est vrai si les recettes sont égales au seuil de professionalisation', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
-				recettes: Option.some(SEUIL_PROFESSIONNALISATION) as Option.Some<
+				recettes: Option.some(SEUIL_PROFESSIONNALISATION.MEUBLÉ) as Option.Some<
 					Montant<'€/an'>
 				>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -59,11 +61,11 @@ describe('Location de meublé de courte durée', () => {
 		it('est vrai si les recettes sont supérieures au seuil de professionalisation', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
+				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
 				recettes: Option.some(
-					pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(1)))
+					pipe(SEUIL_PROFESSIONNALISATION.MEUBLÉ, plus(eurosParAn(1)))
 				) as Option.Some<Montant<'€/an'>>,
-				regimeCotisation: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -74,36 +76,22 @@ describe('Location de meublé de courte durée', () => {
 
 	describe('calculeCotisations', () => {
 		describe('cas généraux', () => {
-			it('retourne une erreur si recettes < seuil de professionnalisation', () => {
-				const situation: SituationÉconomieCollaborativeValide = {
-					_tag: 'Situation',
-					_type: 'économie-collaborative',
-					recettes: Option.some(
-						pipe(SEUIL_PROFESSIONNALISATION, moins(eurosParAn(1)))
-					) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
-					estAlsaceMoselle: Option.none(),
-					premièreAnnée: Option.none(),
-				}
-
-				const resultat = calculeCotisations(situation)
-
-				expect(Either.isLeft(resultat)).toBe(true)
-			})
-
 			it('retourne une erreur si régime-général et recettes > plafond', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
+					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
 					recettes: Option.some(
 						pipe(PLAFOND_REGIME_GENERAL, plus(eurosParAn(1)))
 					) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
 				}
 
-				const resultat = calculeCotisations(situation)
+				const resultat = calculeCotisations(
+					situation,
+					RegimeCotisation.regimeGeneral
+				)
 				expect(Either.isLeft(resultat)).toBe(true)
 			})
 		})
@@ -113,9 +101,9 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
+					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
 					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(false),
 				}
@@ -129,7 +117,10 @@ describe('Location de meublé de courte durée', () => {
 					fois(TAUX_COTISATION_RG_NORMAL)
 				)
 
-				const resultat = calculeCotisations(situation)
+				const resultat = calculeCotisations(
+					situation,
+					RegimeCotisation.regimeGeneral
+				)
 				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
 					expect(Equal.equals(resultat.right, cotisationsAttendues)).toEqual(
@@ -142,9 +133,9 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
+					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
 					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(true),
 					premièreAnnée: Option.some(false),
 				}
@@ -158,7 +149,10 @@ describe('Location de meublé de courte durée', () => {
 					fois(TAUX_COTISATION_RG_ALSACE_MOSELLE)
 				)
 
-				const resultat = calculeCotisations(situation)
+				const resultat = calculeCotisations(
+					situation,
+					RegimeCotisation.regimeGeneral
+				)
 				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
 					expect(Equal.equals(resultat.right, cotisationsAttendues)).toEqual(
@@ -171,21 +165,24 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
+					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
 					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
 				}
 
 				const cotisationsAttendues = pipe(
 					recettes,
-					moins(SEUIL_PROFESSIONNALISATION),
+					moins(SEUIL_PROFESSIONNALISATION.MEUBLÉ),
 					fois(1 - ABATTEMENT_REGIME_GENERAL),
 					fois(TAUX_COTISATION_RG_NORMAL)
 				)
 
-				const resultat = calculeCotisations(situation)
+				const resultat = calculeCotisations(
+					situation,
+					RegimeCotisation.regimeGeneral
+				)
 				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
 					expect(Equal.equals(resultat.right, cotisationsAttendues)).toEqual(
@@ -195,25 +192,31 @@ describe('Location de meublé de courte durée', () => {
 			})
 
 			it('devrait avoir une assiette plancher à 0 pour la première année', () => {
-				const recettes = pipe(SEUIL_PROFESSIONNALISATION, plus(eurosParAn(100)))
+				const recettes = pipe(
+					SEUIL_PROFESSIONNALISATION.MEUBLÉ,
+					plus(eurosParAn(100))
+				)
 
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
+					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
 					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
 					estAlsaceMoselle: Option.some(false),
 					premièreAnnée: Option.some(true),
 				}
 
 				const cotisationsAttendues = pipe(
 					recettes,
-					moins(SEUIL_PROFESSIONNALISATION),
+					moins(SEUIL_PROFESSIONNALISATION.MEUBLÉ),
 					abattement(ABATTEMENT_REGIME_GENERAL),
 					fois(TAUX_COTISATION_RG_NORMAL)
 				)
 
-				const resultat = calculeCotisations(situation)
+				const resultat = calculeCotisations(
+					situation,
+					RegimeCotisation.regimeGeneral
+				)
 				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
 					expect(Equal.equals(resultat.right, cotisationsAttendues)).toEqual(
@@ -228,14 +231,17 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
+					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
 					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(RegimeCotisation.microEntreprise),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
 				}
 
-				const resultat = calculeCotisations(situation)
+				const resultat = calculeCotisations(
+					situation,
+					RegimeCotisation.microEntreprise
+				)
 				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
 					expect(Equal.equals(resultat.right, eurosParAn(3_720))).toEqual(true)
@@ -248,37 +254,20 @@ describe('Location de meublé de courte durée', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationÉconomieCollaborativeValide = {
 					_tag: 'Situation',
+					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
 					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.some(
-						RegimeCotisation.travailleurIndependant
-					),
 					estAlsaceMoselle: Option.none(),
 					premièreAnnée: Option.none(),
 				}
 
-				const resultat = calculeCotisations(situation)
+				const resultat = calculeCotisations(
+					situation,
+					RegimeCotisation.travailleurIndependant
+				)
 
 				expect(Either.isRight(resultat)).toBe(true)
 
-				if (Either.isRight(resultat)) {
-					expect(resultat.right.valeur).toEqual(8_847)
-				}
-			})
-
-			it('devrait traiter le cas sans régime spécifié (utilisant travailleur-indépendant par défaut)', () => {
-				const recettes = eurosParAn(30_000)
-				const situation: SituationÉconomieCollaborativeValide = {
-					_tag: 'Situation',
-					_type: 'économie-collaborative',
-					recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-					regimeCotisation: Option.none(),
-					estAlsaceMoselle: Option.none(),
-					premièreAnnée: Option.none(),
-				}
-
-				const resultat = calculeCotisations(situation)
-				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
 					expect(resultat.right.valeur).toEqual(8_847)
 				}
