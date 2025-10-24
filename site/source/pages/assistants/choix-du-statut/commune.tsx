@@ -11,8 +11,8 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import {
-	batchUpdateSituation,
-	enregistreLesRéponses,
+	enregistreLesRéponsesÀLaQuestion,
+	enregistreLesRéponsesAuxQuestions,
 } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
@@ -73,18 +73,25 @@ function useCommuneSelection(): [
 
 	const handleChange = (commune: CommuneType) => {
 		setState({ commune })
-		dispatch(enregistreLesRéponses('établissement . commune', commune))
+		dispatch(
+			enregistreLesRéponsesÀLaQuestion('établissement . commune', commune)
+		)
 	}
 
 	useEffect(() => {
 		state.commune &&
-			dispatch(enregistreLesRéponses('établissement . commune', state.commune))
+			dispatch(
+				enregistreLesRéponsesÀLaQuestion(
+					'établissement . commune',
+					state.commune
+				)
+			)
 	}, [])
 
 	const reset = () => {
 		setState({ commune: undefined })
 		dispatch(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				'établissement . commune . code postal': O.none(),
 				'établissement . commune . département': O.none(),
 				'établissement . commune . nom': O.none(),

@@ -23,9 +23,6 @@ import { companySirenSelector } from '@/store/selectors/companySiren.selector'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()
-	// const statutChoisi = useSelector(
-	// 	(state: RootState) => state.choixStatutJuridique.companyStatusChoice
-	// )
 	const companySIREN = useSelector(companySirenSelector)
 	useSetEntrepriseFromUrssafConnection()
 	const handleCompanySubmit = useHandleCompanySubmit()
