@@ -5,7 +5,10 @@ export {
 	estSituationValide,
 	type SituationÉconomieCollaborative,
 } from './domaine/location-de-meublé/situation'
-export { type SimulationImpossible } from './domaine/location-de-meublé/erreurs'
+export {
+	type SimulationImpossible,
+	RaisonInapplicabilité,
+} from './domaine/location-de-meublé/erreurs'
 export { SEUIL_PROFESSIONNALISATION } from './domaine/location-de-meublé/estActiviteProfessionnelle'
 export { PLAFOND_REGIME_GENERAL } from './domaine/location-de-meublé/régime-général'
 export { RégimeTag } from './ui/RégimeTag'

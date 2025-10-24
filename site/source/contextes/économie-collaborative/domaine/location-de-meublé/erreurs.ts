@@ -67,3 +67,28 @@ export class AffiliationObligatoire extends Data.TaggedError(
 		return `L'affiliation est obligatoire au-dessus de ${this.seuil.valeur} € de recettes (recettes : ${this.recettes.valeur} €)`
 	}
 }
+
+export const RaisonInapplicabilité = {
+	estTypeDeLocationIncompatible: (
+		erreur: RégimeInapplicable
+	): erreur is RégimeNonApplicablePourCeTypeDeLocation => {
+		return erreur._tag === 'RégimeNonApplicablePourCeTypeDeLocation'
+	},
+
+	estRecettesTropÉlevées: (
+		erreur: RégimeInapplicable
+	): erreur is RecettesSupérieuresAuPlafondAutoriséPourCeRégime => {
+		return erreur._tag === 'RecettesSupérieuresAuPlafondAutoriséPourCeRégime'
+	},
+
+	estRecettesTropFaibles: (
+		erreur: RégimeInapplicable
+	): erreur is RecettesInférieuresAuSeuilRequisPourCeRégime => {
+		return erreur._tag === 'RecettesInférieuresAuSeuilRequisPourCeRégime'
+	},
+	estAffiliationObligatoire: (
+		erreur: RégimeInapplicable
+	): erreur is AffiliationObligatoire => {
+		return erreur._tag === 'AffiliationObligatoire'
+	},
+} as const
