@@ -21,8 +21,8 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import useYear from '@/hooks/useYear'
 import {
-	batchUpdateSituation,
-	enregistreLaRéponse,
+	enregistreLaRéponseÀLaQuestion,
+	enregistreLesRéponsesAuxQuestions,
 } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
@@ -80,7 +80,7 @@ function ExerciceDate() {
 								)}
 								onPress={() => {
 									dispatch(
-										batchUpdateSituation({
+										enregistreLesRéponsesAuxQuestions({
 											'entreprise . exercice . début': O.some(`01/01/${year}`),
 											'entreprise . exercice . fin': O.some(`31/12/${year}`),
 										} as Record<DottedName, O.Option<ValeurPublicodes>>)
@@ -102,13 +102,17 @@ function ExerciceDate() {
 				<RuleInput
 					dottedName={'entreprise . exercice . début'}
 					onChange={(x) =>
-						dispatch(enregistreLaRéponse('entreprise . exercice . début', x))
+						dispatch(
+							enregistreLaRéponseÀLaQuestion('entreprise . exercice . début', x)
+						)
 					}
 				/>{' '}
 				<RuleInput
 					dottedName={'entreprise . exercice . fin'}
 					onChange={(x) =>
-						dispatch(enregistreLaRéponse('entreprise . exercice . fin', x))
+						dispatch(
+							enregistreLaRéponseÀLaQuestion('entreprise . exercice . fin', x)
+						)
 					}
 				/>
 			</ExerciceDateContainer>

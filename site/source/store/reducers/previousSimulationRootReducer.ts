@@ -21,12 +21,12 @@ export const createStateFromPreviousSimulation = (
 
 export default (state: RootState, action: Action): RootState => {
 	switch (action.type) {
-		case 'SET_SIMULATION':
+		case 'CONFIGURE_LA_SIMULATION':
 			return {
 				...state,
 				previousSimulation: retrievePersistedSimulation(action.url),
 			}
-		case 'LOAD_PREVIOUS_SIMULATION':
+		case 'CHARGE_LA_SIMULATION_PRÉCÉDENTE':
 			return {
 				...state,
 				...createStateFromPreviousSimulation(state),

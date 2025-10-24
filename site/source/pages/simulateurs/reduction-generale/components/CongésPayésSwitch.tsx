@@ -10,7 +10,7 @@ import {
 } from '@/components/RéductionDeCotisations/réductionDeCotisations'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { réductionGénéraleDottedName } from '@/utils/réductionDeCotisations'
 
 export default function CongésPayésSwitch() {
@@ -38,7 +38,7 @@ export default function CongésPayésSwitch() {
 				value={currentCongésPayés}
 				onChange={(value) => {
 					setCurrentCongésPayés(value)
-					dispatch(enregistreLaRéponse(dottedName, value))
+					dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 				}}
 				aria-labelledby="caisse-congés-payés-label"
 			>
