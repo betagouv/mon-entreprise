@@ -93,10 +93,9 @@ dirigeant . indépendant . PL . catégorie . juridique . métier:
         description: |
           Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la
           prévoyance.
-        par défaut:
-          applicable si: par défaut
-        avec:
-          par défaut: non
+
+          > Les règles de cotisation et de protection sociale de la CPRN ne sont
+          > pas implémentées.
     - officier:
         titre: Officier ministériel, officier public, compagnie judicaire
         description: |
@@ -111,10 +110,9 @@ dirigeant . indépendant . PL . catégorie . juridique . métier:
           - Greffiers près les tribunaux de commerce ;
           - Administrateurs judiciaires ;
           - Mandataires judiciaires.
-        par défaut:
-          applicable si: par défaut
-        avec:
-          par défaut: non
+
+          > Les règles de cotisation et de protection sociale de la Cavom ne sont
+          > pas implémentées.
 
 dirigeant . indépendant . PL . régime général:
   description: |

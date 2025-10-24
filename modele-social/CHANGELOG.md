@@ -13,6 +13,12 @@
 	- En tant que question à possibilités, et pour ses descendants, utiliser `dirigeant . indépendant . PL . catégorie . juridique . métier`
 - Suppression de la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
 - Suppression de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
+- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . par défaut`
+- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . officier . par défaut`
+
+### Nouveautés
+
+- Les possibilités de métier juridique `notaire` et `officier` sont désormais applicables
 
 ## 9.0.0
 
