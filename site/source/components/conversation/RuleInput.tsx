@@ -38,7 +38,7 @@ import {
 	UnitéQuantité,
 } from '@/domaine/Unités'
 import { useEngine } from '@/hooks/useEngine'
-import { enregistreLesRéponses } from '@/store/actions/actions'
+import { enregistreLesRéponsesÀLaQuestion } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 import { getMeta } from '@/utils/publicodes/publicodes'
 
@@ -244,7 +244,7 @@ export default function RuleInput({
 							}
 						}, {})
 
-						dispatch(enregistreLesRéponses(dottedName, valeurs))
+						dispatch(enregistreLesRéponsesÀLaQuestion(dottedName, valeurs))
 					}}
 					engine={engineValue}
 					id={inputId}
@@ -299,7 +299,7 @@ export default function RuleInput({
 					autoFocus={accessibilityProps.autoFocus}
 					missing={missing ?? dottedName in evaluation.missingVariables}
 					onChange={(c) => {
-						dispatch(enregistreLesRéponses(dottedName, c))
+						dispatch(enregistreLesRéponsesÀLaQuestion(dottedName, c))
 					}}
 					value={value as Evaluation<string>}
 				/>

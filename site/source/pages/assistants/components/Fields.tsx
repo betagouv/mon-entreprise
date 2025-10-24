@@ -13,7 +13,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import {
 	situationSelector,
 	targetUnitSelector,
@@ -88,7 +88,7 @@ export function SimpleField(props: SimpleFieldProps) {
 	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
 	const dispatchValue = useCallback(
 		(value: ValeurPublicodes | undefined, dottedName: DottedName) => {
-			dispatch(enregistreLaRéponse(dottedName, value))
+			dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 		},
 		[dispatch]
 	)
