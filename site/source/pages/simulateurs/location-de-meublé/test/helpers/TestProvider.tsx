@@ -14,7 +14,7 @@ interface TestProviderProps {
 }
 
 // Configurer la langue par défaut pour les tests
-i18n.changeLanguage('fr')
+void i18n.changeLanguage('fr')
 
 // Créer l'Engine avec les règles du modèle social
 // Désactiver les warnings pour les tests

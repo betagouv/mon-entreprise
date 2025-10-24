@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
 import { MontantField } from '@/design-system'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'

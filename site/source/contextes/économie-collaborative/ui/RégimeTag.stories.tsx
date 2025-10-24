@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { RegimeCotisation } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
+import { RegimeCotisation } from '@/contextes/économie-collaborative'
 
 import { RégimeTag } from './RégimeTag'
 
@@ -76,7 +76,10 @@ export const TousLesRégimesLibellésComplets: Story = {
 			}}
 		>
 			<RégimeTag régime={RegimeCotisation.regimeGeneral} affichage="libellé" />
-			<RégimeTag régime={RegimeCotisation.microEntreprise} affichage="libellé" />
+			<RégimeTag
+				régime={RegimeCotisation.microEntreprise}
+				affichage="libellé"
+			/>
 			<RégimeTag
 				régime={RegimeCotisation.travailleurIndependant}
 				affichage="libellé"
