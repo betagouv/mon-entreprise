@@ -15,7 +15,7 @@ import {
 import { useEngine } from '@/hooks/useEngine'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
-	batchUpdateSituation,
+	enregistreLesRéponsesAuxQuestions,
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
@@ -42,7 +42,7 @@ export default function useSetSimulationFromSearchParams() {
 		(newSituation: Record<DottedName, ValeurDomaine>) => {
 			if (!R.isEmptyReadonlyRecord(newSituation)) {
 				dispatch(
-					batchUpdateSituation(
+					enregistreLesRéponsesAuxQuestions(
 						pipe(
 							newSituation,
 							R.map((valeur) => O.fromNullable(valeur))

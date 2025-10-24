@@ -5,7 +5,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { questionsRéponduesNomSelector } from '@/store/selectors/questionsRéponduesNom.selector'
 
 export function useQuestionList(): [
@@ -26,7 +26,7 @@ export function useQuestionList(): [
 
 	const onQuestionAnswered =
 		(dottedName: DottedName) => (value?: ValeurPublicodes) => {
-			dispatch(enregistreLaRéponse(dottedName, value))
+			dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 		}
 
 	return [questions, onQuestionAnswered]
