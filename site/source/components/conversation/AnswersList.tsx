@@ -21,7 +21,10 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
+import {
+	enregistreLaRéponseÀLaQuestion,
+	réinitialiseLaSimulation,
+} from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
 import { companySituationSelector } from '@/store/selectors/companySituation.selector'
@@ -133,7 +136,7 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 								</Button>
 							)}
 							onConfirm={() => {
-								dispatch(resetSimulation())
+								dispatch(réinitialiseLaSimulation())
 							}}
 							title={t('Êtes-vous sûr de vouloir effacer vos réponses ?')}
 						>
@@ -200,7 +203,7 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 												</Button>
 											)}
 											onConfirm={() => {
-												dispatch(resetSimulation())
+												dispatch(réinitialiseLaSimulation())
 												dispatch(resetCompany())
 											}}
 											title={t(
@@ -305,7 +308,7 @@ function AnswerElement(rule: RuleNode) {
 	const handleChange = useCallback(
 		(value: ValeurPublicodes | undefined) => {
 			questionDottedName &&
-				dispatch(enregistreLaRéponse(questionDottedName, value))
+				dispatch(enregistreLaRéponseÀLaQuestion(questionDottedName, value))
 		},
 		[dispatch, questionDottedName]
 	)
