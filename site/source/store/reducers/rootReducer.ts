@@ -5,15 +5,11 @@ import { combineReducers, Reducer } from 'redux'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
-import {
-	Action,
-	enregistreLaRéponse as updateSituationAction,
-} from '@/store/actions/actions'
+import { Action, enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { simulationReducer } from '@/store/reducers/simulation.reducer'
 import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
 import situationReducer from '@/store/slices/simulateursSlice'
 
-import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
@@ -21,9 +17,9 @@ export type { SimulationConfig, SituationPublicodes }
 
 function activeTargetInput(state: DottedName | null = null, action: Action) {
 	switch (action.type) {
-		case 'SET_ACTIVE_TARGET_INPUT':
+		case 'SET_ACTIVE_TARGET':
 			return action.name
-		case 'RESET_SIMULATION':
+		case 'RÉINITIALISE_LA_SIMULATION':
 			return null
 		default:
 			return state
@@ -31,7 +27,7 @@ function activeTargetInput(state: DottedName | null = null, action: Action) {
 }
 
 function batchUpdateSituationReducer(state: RootState, action: Action) {
-	if (action.type !== 'BATCH_UPDATE_SITUATION') {
+	if (action.type !== 'ENREGISTRE_LES_RÉPONSES_AUX_QUESTIONS') {
 		return state
 	}
 
@@ -39,7 +35,10 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 		(newState, [fieldName, value]) =>
 			mainReducer(
 				newState ?? undefined,
-				updateSituationAction(fieldName as DottedName, O.getOrUndefined(value))
+				enregistreLaRéponseÀLaQuestion(
+					fieldName as DottedName,
+					O.getOrUndefined(value)
+				)
 			),
 		state
 	)
@@ -50,7 +49,6 @@ const mainReducer = combineReducers({
 	companySituation,
 	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
-	choixStatutJuridique,
 	situation: situationReducer,
 })
 

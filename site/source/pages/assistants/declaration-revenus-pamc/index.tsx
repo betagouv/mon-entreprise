@@ -28,7 +28,7 @@ import {
 import { useEngine } from '@/hooks/useEngine'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
-import { resetSimulation } from '@/store/actions/actions'
+import { réinitialiseLaSimulation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 import Formulaire from './components/Formulaire'
@@ -154,7 +154,7 @@ export default function DéclarationRevenusPAMC() {
 						<StyledButton
 							light
 							onPress={() => {
-								dispatch(resetSimulation())
+								dispatch(réinitialiseLaSimulation())
 							}}
 						>
 							{t(

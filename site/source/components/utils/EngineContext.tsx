@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { deleteFromSituation } from '@/store/actions/actions'
+import { supprimeLaRègleDeLaSituation } from '@/store/actions/actions'
 import { companySituationSelector } from '@/store/selectors/companySituation.selector'
 import {
 	completeSituationSelector,
@@ -100,7 +100,7 @@ export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 			}
 
 			if (faultyDottedName in simulatorSituation) {
-				dispatch(deleteFromSituation(faultyDottedName))
+				dispatch(supprimeLaRègleDeLaSituation(faultyDottedName))
 			} else {
 				throw new Error(
 					'Bad ' +

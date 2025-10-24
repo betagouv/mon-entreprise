@@ -30,7 +30,7 @@ export function simulationReducer(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
-	if (action.type === 'SET_SIMULATION') {
+	if (action.type === 'CONFIGURE_LA_SIMULATION') {
 		const { config, url } = action
 
 		return {
@@ -55,7 +55,7 @@ export function simulationReducer(
 				hiddenNotifications: [...state.hiddenNotifications, action.id],
 			}
 
-		case 'RESET_SIMULATION':
+		case 'RÉINITIALISE_LA_SIMULATION':
 			return {
 				...state,
 				hiddenNotifications: [],
@@ -75,7 +75,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'ENREGISTRE_LA_RÉPONSE': {
+		case 'ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION': {
 			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
 				(question) => question.règle === action.fieldName
 			)
@@ -99,7 +99,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'ENREGISTRE_LES_RÉPONSES': {
+		case 'ENREGISTRE_LES_RÉPONSES_À_LA_QUESTION': {
 			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
 				(question) => question.règle === action.règle
 			)
@@ -123,7 +123,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'DELETE_FROM_SITUATION': {
+		case 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION': {
 			const newState = {
 				...state,
 				questionsRépondues: reject(
@@ -236,7 +236,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'QUESTIONS_SUIVANTES': {
+		case 'MET_À_JOUR_LES_QUESTIONS_SUIVANTES': {
 			const currentQuestion = state.currentQuestion
 			const pasDeQuestionEnCours = !currentQuestion
 			const questionEnCoursNEstPasÀRépondre = currentQuestion

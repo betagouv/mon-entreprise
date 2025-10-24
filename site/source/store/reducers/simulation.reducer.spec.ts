@@ -8,10 +8,10 @@ import {
 
 import {
 	applicabilitéDesQuestionsRépondues,
-	deleteFromSituation,
-	enregistreLaRéponse,
-	enregistreLesRéponses,
+	enregistreLaRéponseÀLaQuestion,
+	enregistreLesRéponsesÀLaQuestion,
 	retourneÀLaQuestionPrécédente,
+	supprimeLaRègleDeLaSituation,
 	vaÀLaQuestion,
 	vaÀLaQuestionSuivante,
 } from '../actions/actions'
@@ -225,7 +225,7 @@ describe('simulationReducer', () => {
 			})
 		})
 	})
-	describe('ENREGISTRE_LA_RÉPONSE', () => {
+	describe('ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION', () => {
 		it('marque la question répondue si une réponse est fournie', () => {
 			const state = {
 				questionsRépondues: [
@@ -239,7 +239,7 @@ describe('simulationReducer', () => {
 			expect(
 				simulationReducer(
 					state as unknown as Simulation,
-					enregistreLaRéponse('c' as DottedName, 42)
+					enregistreLaRéponseÀLaQuestion('c' as DottedName, 42)
 				)
 			).toMatchObject({
 				questionsRépondues: [
@@ -263,7 +263,7 @@ describe('simulationReducer', () => {
 			expect(
 				simulationReducer(
 					state as unknown as Simulation,
-					enregistreLaRéponse('c' as DottedName, 42)
+					enregistreLaRéponseÀLaQuestion('c' as DottedName, 42)
 				)
 			).toMatchObject({
 				situation: {
@@ -285,7 +285,7 @@ describe('simulationReducer', () => {
 			expect(
 				simulationReducer(
 					state as unknown as Simulation,
-					enregistreLesRéponses('c' as DottedName, {
+					enregistreLesRéponsesÀLaQuestion('c' as DottedName, {
 						sub1: 42,
 						'sub2 . subC': 'hello',
 					})
@@ -298,7 +298,7 @@ describe('simulationReducer', () => {
 			})
 		})
 	})
-	describe('DELETE_FROM_SITUATION', () => {
+	describe('SUPPRIME_LA_RÈGLE_DE_LA_SITUATION', () => {
 		it('supprime la question des questions répondues si réponse effacée', () => {
 			const state = {
 				questionsRépondues: [
@@ -316,7 +316,7 @@ describe('simulationReducer', () => {
 			expect(
 				simulationReducer(
 					state as unknown as Simulation,
-					deleteFromSituation('c' as DottedName)
+					supprimeLaRègleDeLaSituation('c' as DottedName)
 				)
 			).toMatchObject({
 				questionsRépondues: [
@@ -342,7 +342,7 @@ describe('simulationReducer', () => {
 			expect(
 				simulationReducer(
 					state as unknown as Simulation,
-					deleteFromSituation('d' as DottedName)
+					supprimeLaRègleDeLaSituation('d' as DottedName)
 				)
 			).toMatchObject({
 				questionsRépondues: [

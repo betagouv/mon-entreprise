@@ -29,7 +29,7 @@ import { Situation } from '@/domaine/Situation'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
 import { useEngine } from '@/hooks/useEngine'
 import { useQuestions } from '@/hooks/useQuestions'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import Raccourcis from './Raccourcis'
@@ -72,7 +72,7 @@ export function Questions<S extends Situation>({
 
 	const handlePublicodesQuestionResponse = useCallback(
 		(dottedName: DottedName, value: ValeurPublicodes | undefined) => {
-			dispatch(enregistreLaRéponse(dottedName, value))
+			dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 		},
 		[dispatch]
 	)
