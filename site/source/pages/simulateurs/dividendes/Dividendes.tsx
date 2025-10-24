@@ -15,7 +15,7 @@ import StackedBarChart from '@/components/StackedBarChart'
 import { Body, DarkLi, H2, Radio, ToggleGroup, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {
 	return (
@@ -70,7 +70,7 @@ function OptionBarèmeSwitch() {
 			value={currentOptionPFU}
 			onChange={(value) => {
 				setCurrentOptionPFU(value)
-				dispatch(enregistreLaRéponse(dottedName, value))
+				dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 			}}
 			aria-label={t("Régime d'imposition")}
 		>
