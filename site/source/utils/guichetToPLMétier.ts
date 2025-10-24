@@ -3,15 +3,14 @@ import { GuichetEntry } from '@/components/GuichetInfo'
 type PLRMétier =
 	| "'rattaché CIPAV'"
 	| "'expert-comptable'"
-	| "'santé . médecin'"
-	| "'santé . chirurgien-dentiste'"
-	| "'santé . sage-femme'"
-	| "'santé . auxiliaire médical'"
-	| "'santé . pharmacien'"
-	| "'santé . vétérinaire'"
-	| "'juridique . avocat'"
-	| "'juridique . notaire'"
-	| "'juridique . officier'"
+	| "'santé . métier . médecin'"
+	| "'santé . métier . chirurgien-dentiste'"
+	| "'santé . métier . sage-femme'"
+	| "'santé . métier . auxiliaire médical'"
+	| "'santé . métier . pharmacien'"
+	| "'juridique . métier . avocat'"
+	| "'juridique . métier . notaire'"
+	| "'juridique . métier . officier'"
 
 export function guichetToPLMétier(
 	guichet: GuichetEntry
@@ -22,22 +21,20 @@ export function guichetToPLMétier(
 		? "'rattaché CIPAV'"
 		: caisse === 'CARCDSF'
 		? guichet.code === '07140111'
-			? "'santé . sage-femme'"
-			: "'santé . chirurgien-dentiste'"
+			? "'santé . métier . sage-femme'"
+			: "'santé . métier . chirurgien-dentiste'"
 		: caisse === 'CAVP'
-		? "'santé . pharmacien'"
+		? "'santé . métier . pharmacien'"
 		: caisse === 'CARPIMKO'
-		? "'santé . auxiliaire médical'"
+		? "'santé . métier . auxiliaire médical'"
 		: caisse === 'CARMF'
-		? "'santé . médecin'"
-		: caisse === 'CARPV'
-		? "'santé . vétérinaire'"
+		? "'santé . métier . médecin'"
 		: caisse === 'CPRN'
-		? "'juridique . notaire'"
+		? "'juridique . métier . notaire'"
 		: caisse === 'CAVOM'
-		? "'juridique . officier'"
+		? "'juridique . métier . officier'"
 		: caisse === 'CNBF'
-		? "'juridique . avocat'"
+		? "'juridique . métier . avocat'"
 		: caisse === 'CAVEC'
 		? "'expert-comptable'"
 		: !caisse

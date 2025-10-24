@@ -252,7 +252,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 						'entreprise . activité . nature': O.none(),
 						'artiste-auteur': O.none(),
 						'entreprise . activité . nature . libérale . réglementée': O.none(),
-						'dirigeant . indépendant . PL . métier': O.none(),
+						'dirigeant . indépendant . PL . catégorie': O.none(),
 					} as Record<DottedName, O.Option<ValeurPublicodes>>)
 				)
 
@@ -277,7 +277,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 					'entreprise . activité . nature . libérale . réglementée': O.some(
 						PLRMétier ? 'oui' : 'non'
 					),
-					'dirigeant . indépendant . PL . métier': O.fromNullable(PLRMétier),
+					'dirigeant . indépendant . PL . catégorie': O.fromNullable(PLRMétier),
 					'artiste-auteur': O.some(
 						guichet.artisteAuteurPossible ? 'oui' : 'non'
 					),

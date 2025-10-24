@@ -25,7 +25,7 @@ export const configProfessionLibérale: SimulationConfig = {
 		],
 		liste: [
 			'entreprise . activité . nature',
-			'dirigeant . indépendant . PL . métier',
+			'dirigeant . indépendant . PL . catégorie',
 			'',
 		],
 		'non prioritaires': configIndépendant.questions?.['non prioritaires'],
@@ -45,7 +45,7 @@ const configFromPLMetier = (metier: string): SimulationConfig => ({
 	situation: {
 		...configProfessionLibérale.situation,
 		'entreprise . activité . nature . libérale . réglementée': 'oui',
-		'dirigeant . indépendant . PL . métier': `'${metier}'`,
+		'dirigeant . indépendant . PL . catégorie': `'${metier}'`,
 	},
 })
 

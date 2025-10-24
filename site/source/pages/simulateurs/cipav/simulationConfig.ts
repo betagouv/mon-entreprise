@@ -7,7 +7,7 @@ const cipavSimulationConfig: SimulationConfig = {
 	situation: {
 		...configProfessionLibérale.situation,
 		'entreprise . activité . nature . libérale . réglementée': 'oui',
-		'dirigeant . indépendant . PL . métier': "'rattaché CIPAV'",
+		'dirigeant . indépendant . PL . catégorie': "'rattaché CIPAV'",
 	},
 }
 

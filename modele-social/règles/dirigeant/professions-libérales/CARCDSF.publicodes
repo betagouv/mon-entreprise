@@ -5,8 +5,8 @@ dirigeant . indépendant . PL . CARCDSF:
 
   applicable si:
     une de ces conditions:
-      - métier = 'santé . chirurgien-dentiste'
-      - métier = 'santé . sage-femme'
+      - catégorie . santé . métier = 'chirurgien-dentiste'
+      - catégorie . santé . métier = 'sage-femme'
   références:
     Site de la CARCDSF: http://www.carcdsf.fr
 
@@ -80,7 +80,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
-dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste: métier = 'santé . chirurgien-dentiste'
+dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste: catégorie . santé . métier = 'chirurgien-dentiste'
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   titre: invalidité et décès
@@ -155,7 +155,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
   formule: 23 €/consultation
 
-dirigeant . indépendant . PL . CARCDSF . sage-femme: métier = 'santé . sage-femme'
+dirigeant . indépendant . PL . CARCDSF . sage-femme: catégorie . santé . métier = 'sage-femme'
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
   titre: invalidité et décès
