@@ -11,6 +11,8 @@ import {
 } from './régime-micro-entreprise'
 import { SituationÉconomieCollaborativeValide } from './situation'
 
+type SomeMontantParAn = Option.Some<ReturnType<typeof eurosParAn>>
+
 describe('calculeCotisationsMicroEntreprise', () => {
 	describe('plafonds selon le type de location', () => {
 		it('plafond de 77 700€ pour un logement non-classé', () => {
@@ -32,7 +34,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('non-classé' as const),
-				recettes: Option.some(eurosParAn(50_000)),
+				recettes: Option.some(eurosParAn(50_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -47,7 +49,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('non-classé' as const),
-				recettes: Option.some(eurosParAn(80_000)),
+				recettes: Option.some(eurosParAn(80_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -64,7 +66,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('tourisme' as const),
-				recettes: Option.some(eurosParAn(150_000)),
+				recettes: Option.some(eurosParAn(150_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -79,7 +81,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('tourisme' as const),
-				recettes: Option.some(eurosParAn(200_000)),
+				recettes: Option.some(eurosParAn(200_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -96,7 +98,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('chambre-hôte' as const),
-				recettes: Option.some(eurosParAn(150_000)),
+				recettes: Option.some(eurosParAn(150_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -111,7 +113,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('chambre-hôte' as const),
-				recettes: Option.some(eurosParAn(200_000)),
+				recettes: Option.some(eurosParAn(200_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -128,7 +130,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.none(),
-				recettes: Option.some(eurosParAn(50_000)),
+				recettes: Option.some(eurosParAn(50_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -144,7 +146,7 @@ describe('calculeCotisationsMicroEntreprise', () => {
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.none(),
-				recettes: Option.some(eurosParAn(80_000)),
+				recettes: Option.some(eurosParAn(80_000)) as SomeMontantParAn,
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
