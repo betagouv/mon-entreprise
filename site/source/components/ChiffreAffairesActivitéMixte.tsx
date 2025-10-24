@@ -17,7 +17,7 @@ import * as M from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
 import { useEngine } from '@/hooks/useEngine'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import { ExplicableRule } from './conversation/Explicable'
@@ -53,7 +53,7 @@ export default function ChiffreAffairesActivitéMixte({
 	const dispatch = useDispatch()
 	const clearChiffreAffaireMixte = useCallback(() => {
 		dispatch(
-			batchUpdateSituation(
+			enregistreLesRéponsesAuxQuestions(
 				Object.values(proportions).reduce(
 					(acc, chiffreAffaires) => ({ ...acc, [chiffreAffaires]: O.none() }),
 					{} as Record<DottedName, O.Option<ValeurPublicodes>>
@@ -149,7 +149,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 				...nouvellesProportions,
 			} as Record<DottedName, O.Option<ValeurPublicodes>>
 
-			dispatch(batchUpdateSituation(situation))
+			dispatch(enregistreLesRéponsesAuxQuestions(situation))
 		},
 		[CADottedName, dispatch, currentUnit, engine]
 	)
@@ -164,7 +164,7 @@ function ActivitéMixte() {
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
-				batchUpdateSituation(
+				enregistreLesRéponsesAuxQuestions(
 					Object.values(proportions).reduce(
 						(acc, dottedName) => ({ ...acc, [dottedName]: O.none() }),
 						{
