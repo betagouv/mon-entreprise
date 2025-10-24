@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import {
-	SituationÉconomieCollaborative,
-	TypeLocation,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
+	useEconomieCollaborative,
+	type SituationÉconomieCollaborative,
+	type TypeLocation,
+} from '@/contextes/économie-collaborative'
 import { RadioCard, RadioCardGroup } from '@/design-system'
 
 interface Props {}
@@ -62,5 +62,4 @@ TypeLocationQuestion._tag = 'QuestionFournie'
 TypeLocationQuestion.id = 'type-location'
 TypeLocationQuestion.libellé = 'Quel est le type de location concernée ?'
 TypeLocationQuestion.applicable = () => true // Toujours applicable
-TypeLocationQuestion.répondue = (situation) =>
-	O.isSome(situation.typeLocation)
+TypeLocationQuestion.répondue = (situation) => O.isSome(situation.typeLocation)

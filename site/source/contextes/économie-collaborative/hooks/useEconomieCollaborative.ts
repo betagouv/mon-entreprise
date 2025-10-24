@@ -1,12 +1,12 @@
 import { Option } from 'effect'
 
-import {
-	SituationÉconomieCollaborative,
-	TypeLocation,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé'
-import { initialSituationÉconomieCollaborative } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
 import { Montant } from '@/domaine/Montant'
 
+import {
+	initialSituationÉconomieCollaborative,
+	SituationÉconomieCollaborative,
+	TypeLocation,
+} from '../domaine/location-de-meublé/situation'
 import { useSituationContext } from './ÉconomieCollaborativeContext'
 
 export const useEconomieCollaborative = () => {

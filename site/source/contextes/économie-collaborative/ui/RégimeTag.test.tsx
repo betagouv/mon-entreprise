@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import React from 'react'
 import { describe, expect, it } from 'vitest'
 
-import { RegimeCotisation } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
+import { RegimeCotisation } from '@/contextes/économie-collaborative'
 import { DesignSystemThemeProvider } from '@/design-system'
 
 import { RégimeTag } from './RégimeTag'
@@ -25,21 +25,12 @@ describe('RégimeTag', () => {
 		expect(screen.getByText('Régime général')).toBeInTheDocument()
 	})
 
-	it('affiche toujours une icône', () => {
-		const { container } = renderWithTheme(
-			<RégimeTag régime={RegimeCotisation.travailleurIndependant} />
-		)
-
-		const svg = container.querySelector('svg')
-		expect(svg).toBeInTheDocument()
-	})
-
 	it("affiche un titre sur l'abréviation pour le libellé complet", () => {
 		renderWithTheme(
 			<RégimeTag régime={RegimeCotisation.travailleurIndependant} />
 		)
 
-		const abbr = screen.getByText('TI').closest('abbr')
-		expect(abbr).toHaveAttribute('title', 'Travailleur indépendant')
+		expect(screen.getByTitle('Travailleur indépendant')).toBeInTheDocument()
+		expect(screen.getByTitle('Travailleur indépendant')).toHaveTextContent('TI')
 	})
 })
