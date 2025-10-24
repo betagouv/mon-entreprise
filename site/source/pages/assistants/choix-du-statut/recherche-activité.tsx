@@ -4,7 +4,10 @@ import { useDispatch } from 'react-redux'
 
 import { Body, H5, HelpButtonWithPopover, Link, Message } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
+import {
+	enregistreLaRéponseÀLaQuestion,
+	réinitialiseLaSimulation,
+} from '@/store/actions/actions'
 
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
@@ -17,7 +20,7 @@ export default function RechercheActivité() {
 	const dispatch = useDispatch()
 	const isEmbedded = useIsEmbedded()
 	useEffect(() => {
-		dispatch(resetSimulation())
+		dispatch(réinitialiseLaSimulation())
 	}, [])
 
 	const isBpi = useIsEmbededOnBPISite()
@@ -28,7 +31,7 @@ export default function RechercheActivité() {
 			currentStepIsComplete={!!codeApe}
 			onNextStep={() => {
 				dispatch(
-					enregistreLaRéponse(
+					enregistreLaRéponseÀLaQuestion(
 						'entreprise . activités . principale . code APE',
 						codeApe
 					)

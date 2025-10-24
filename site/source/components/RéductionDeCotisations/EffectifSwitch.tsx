@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 
 import {
 	SwitchContainer,
@@ -35,7 +35,7 @@ export default function EffectifSwitch() {
 				value={currentEffectif}
 				onChange={(value) => {
 					setCurrentEffectif(value)
-					dispatch(enregistreLaRéponse(dottedName, value))
+					dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 				}}
 				aria-labelledby="effectif-switch-label"
 			>
