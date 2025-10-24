@@ -16,7 +16,7 @@ import {
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -135,7 +135,7 @@ function useAssociationSelection(): [
 		switch (value) {
 			case 'gagner-argent':
 				dispatch(
-					batchUpdateSituation({
+					enregistreLesRéponsesAuxQuestions({
 						'entreprise . catégorie juridique . association': O.some('non'),
 						'entreprise . catégorie juridique': O.none(),
 					} as Record<DottedName, O.Option<ValeurPublicodes>>)
@@ -143,7 +143,7 @@ function useAssociationSelection(): [
 				break
 			case 'non-lucratif':
 				dispatch(
-					batchUpdateSituation({
+					enregistreLesRéponsesAuxQuestions({
 						'entreprise . catégorie juridique . association': O.none(),
 						'entreprise . catégorie juridique': O.some('association'),
 					} as Record<DottedName, O.Option<ValeurPublicodes>>)
@@ -151,7 +151,7 @@ function useAssociationSelection(): [
 				break
 			case undefined:
 				dispatch(
-					batchUpdateSituation({
+					enregistreLesRéponsesAuxQuestions({
 						'entreprise . catégorie juridique . association': O.none(),
 						'entreprise . catégorie juridique': O.none(),
 					} as Record<DottedName, O.Option<ValeurPublicodes>>)

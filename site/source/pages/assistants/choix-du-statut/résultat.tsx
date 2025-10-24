@@ -25,7 +25,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 
 import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
 
@@ -156,14 +156,14 @@ function useSetStatutInSituation(dottedName: DottedName) {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				...setAllStatutTo('non'),
 				[dottedName]: 'oui',
 			})
 		)
 
 		return () => {
-			dispatch(batchUpdateSituation(setAllStatutTo(undefined)))
+			dispatch(enregistreLesRéponsesAuxQuestions(setAllStatutTo(undefined)))
 		}
 	}, [])
 }

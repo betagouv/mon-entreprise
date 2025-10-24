@@ -23,7 +23,10 @@ import {
 } from '@/domaine/Quantité'
 import { useEngine } from '@/hooks/useEngine'
 import { useNavigation } from '@/lib/navigation'
-import { batchUpdateSituation, updateUnit } from '@/store/actions/actions'
+import {
+	enregistreLesRéponsesAuxQuestions,
+	updateUnit,
+} from '@/store/actions/actions'
 
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 
@@ -98,7 +101,7 @@ describe('useSetSimulationFromSearchParams hook', () => {
 		expect(dispatchMock).toHaveBeenCalledWith(updateUnit('€/mois'))
 
 		expect(dispatchMock).toHaveBeenCalledWith(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				'salarié . contrat': O.some('CDD'),
 				'salarié . contrat . CDD . congés pris': O.some(joursOuvrés(2.08)),
 				'salarié . contrat . salaire brut': O.some(eurosParMois(2700)),
