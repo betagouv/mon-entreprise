@@ -4,149 +4,117 @@ dirigeant . indépendant . PL:
   rend non applicable: entreprise . activités . revenus mixtes
   formule: oui
 
-dirigeant . indépendant . PL . métier:
+dirigeant . indépendant . PL . catégorie:
   applicable si: entreprise . activité . nature . libérale . réglementée
   par défaut: "'rattaché CIPAV'"
-  question: A quelle catégorie appartient votre profession ?
+  question: A quelle catégorie appartient votre profession ?
   une possibilité:
-    - santé
-    - juridique
-    - expert-comptable
-    - rattaché CIPAV
+    - santé:
+        valeur: catégorie = 'santé'
+        titre: Professions de santé
+        description: |
+          **Exceptions** : Les ostéopathe, psychologue, psychothérapeute,
+          ergothérapeute, diététicien et chiropracteur dépendent de la Cipav pour
+          leur retraite et invalidité.
+    - juridique:
+        valeur: catégorie = 'juridique'
+        titre: Professions juridiques et judicaires
+    - expert-comptable:
+        valeur: catégorie = 'expert-comptable'
+        titre: expert-comptable, commissaire aux comptes
+        description: |
+          Les experts comptables et les commissaires aux comptes cotisent auprès de
+          la CAVEC pour la retraite et la prévoyance.
+    - rattaché CIPAV:
+        valeur: catégorie = 'rattaché CIPAV'
+        titre: Autre métier rattaché à la Cipav
+        description: |
+          Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces
+          métiers est :
 
-dirigeant . indépendant . PL . métier . rattaché CIPAV:
-  titre: Autre métier rattaché à la Cipav
-  description: |
-    Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces métiers est :
+          - Architecte (architecte, architecte d’intérieur, économiste de la
+          construction, maître d’œuvre, géomètre expert)
+          - Guide-montagne (moniteur de ski, guide de haute montagne, accompagnateur
+          de moyenne montagne)
+          - Ostéopathe
+          - Psychologue
+          - Psychothérapeute
+          - Psychomotriciens
+          - Ergothérapeute
+          - Diététicien
+          - Chiropracteur
+          - Ingénieur conseil
+          - Guide-conférencier
+          - Artistes autres que les artistes-auteurs
+          - Experts devant les tribunaux
+          - Experts automobiles
+          - Mandataires judiciaires à la protection des majeurs
 
-    - Architecte (architecte, architecte d’intérieur, économiste de la construction, maître d’œuvre, géomètre expert)
-    - Guide-montagne (moniteur de ski, guide de haute montagne, accompagnateur de moyenne montagne)
-    - Ostéopathe
-    - Psychologue
-    - Psychothérapeute
-    - Psychomotriciens
-    - Ergothérapeute
-    - Diététicien
-    - Chiropracteur
-    - Ingénieur conseil
-    - Guide-conférencier
-    - Artistes autres que les artistes-auteurs
-    - Experts devant les tribunaux
-    - Experts automobiles
-    - Mandataires judiciaires à la protection des majeurs
-
-dirigeant . indépendant . PL . métier . santé:
-  titre: Professions de santé
-  question: Quel métier exercez-vous en tant que professionnel de santé ?
-  description: |
-    **Exceptions** : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
-    diététicien et chiropracteur dépendent de la
-    Cipav pour leur retraite et invalidité.
+dirigeant . indépendant . PL . catégorie . santé . métier:
+  question: Quel métier exercez-vous en tant que professionnel de santé ?
   une possibilité:
-    - médecin
-    - chirurgien-dentiste
-    - sage-femme
-    - auxiliaire médical
-    - pharmacien
-    - vétérinaire
+    - médecin:
+    - chirurgien-dentiste:
+    - sage-femme:
+    - auxiliaire médical:
+        description: |
+          Vous exercez un des métiers suivants :
+          - infirmier,
+          - masseur-kinésithérapeute,
+          - orthophoniste,
+          - orthoptiste,
+          - pédicure-podologue.
+    - pharmacien:
+        titre: Pharmacien ou biologiste médical
+        description: |
+          Pharmaciens libéraux, officinaux et biologistes affiliés à la CAVP.
 
-  avec:
-    auxiliaire médical:
-      description: |
-        Vous exercez un des métiers suivants : infirmier, masseur-kinésithérapeute, orthophoniste, orthoptiste ou pédicure-podologue.
-    chirurgien-dentiste:
-    médecin:
-
-    médecin . secteur:
-      applicable si: métier = 'santé . médecin'
-      question: Sur quel secteur êtes-vous conventionné ?
-      description: |
-        Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
-        fonction du régime de tarification choisie par le praticien.
-      par défaut: "'S1'"
-      une possibilité:
-        - 'S1'
-        - 'S2'
-        - 'non conventionné'
-
-      avec:
-        non conventionné:
-
-        S1:
-          titre: Secteur 1
-
-        S2:
-          titre: Secteur 2
-
-    pharmacien:
-      titre: Pharmacien ou biologiste médical
-      description: Pharmaciens libéraux, officinaux et biologistes affiliés à la CAVP.
-    sage-femme:
-
-    vétérinaire:
-      experimental: oui
-      par défaut:
-        applicable si: par défaut
-    vétérinaire . par défaut: non
-
-dirigeant . indépendant . PL . métier . juridique:
-  titre: Professions juridiques et judicaires
+dirigeant . indépendant . PL . catégorie . santé . métier . médecin . secteur:
+  applicable si: métier = 'médecin'
+  question: Sur quel secteur êtes-vous conventionné ?
+  description: |
+    Les taux de cotisations et remboursements de la CPAM ne sont pas les mêmes en
+    fonction du régime de tarification choisi par le praticien.
+  par défaut: "'S1'"
   une possibilité:
-    - avocat
-    - notaire
-    - officier
+    - S1:
+        titre: Secteur 1
+    - S2:
+        titre: Secteur 2
+    - non conventionné:
 
-  avec:
-    avocat:
-      description: |
-        Les avocats cotisent auprès de la CNBF pour la retraite et la
-        prévoyance.
+dirigeant . indépendant . PL . catégorie . juridique . métier:
+  question: Quel métier exercez-vous en tant que professionnel juridique ou judiciaire ?
+  une possibilité:
+    - avocat:
+        description: |
+          Les avocats cotisent auprès de la CNBF pour la retraite et la prévoyance.
+    - notaire:
+        description: |
+          Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la
+          prévoyance.
+        par défaut:
+          applicable si: par défaut
+        avec:
+          par défaut: non
+    - officier:
+        titre: Officier ministériel, officier public, compagnie judicaire
+        description: |
+          Les officiers ministériels, les officiers publics et les compagnies
+          judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
 
-    notaire:
-      experimental: oui
-      description: |
-        Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la prévoyance.
-      par défaut:
-        applicable si: par défaut
-    notaire . par défaut: non
+          Liste des métiers concernés :
 
-    officier:
-      experimental: oui
-      titre: Officier ministériel, officier public, compagnie judicaire
-      description: |
-        Les officiers ministériels, les officiers publics et les compagnies judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
-
-        Liste des métiers concernés : 
-
-        - Huissiers de justice ;
-        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
-        - Commissaires de justice ;
-        - Greffiers près les tribunaux de commerce ;
-        - Administrateurs judiciaires ;
-        - Mandataires judiciaires.
-      par défaut:
-        applicable si: par défaut
-    officier . par défaut: non
-
-dirigeant . indépendant . PL . métier . avocat:
-  déprécié: oui
-  note:
-    Utiliser `dirigeant . indépendant . PL . métier . juridique . avocat` à la
-    place
-
-dirigeant . indépendant . PL . métier . expert-comptable:
-  métier: expert-comptable, commissaire aux comptes
-  description: |
-    Les experts comptables et les commissaires aux comptes cotisent auprès de la CAVEC pour la retraite et la prévoyance.
-
-dirigeant . indépendant . PL . métier . agents généraux d'assurances:
-  experimental: oui
-  description: |
-    Les agents généraux d'assurances cotisent auprès de la CAVAMAC pour la retraite et la prévoyance.
-  par défaut: par défaut
-  avec:
-    par défaut:
-      non applicable si: oui
+          - Huissiers de justice ;
+          - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
+          - Commissaires de justice ;
+          - Greffiers près les tribunaux de commerce ;
+          - Administrateurs judiciaires ;
+          - Mandataires judiciaires.
+        par défaut:
+          applicable si: par défaut
+        avec:
+          par défaut: non
 
 dirigeant . indépendant . PL . régime général:
   description: |

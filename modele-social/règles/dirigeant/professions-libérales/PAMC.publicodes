@@ -2,11 +2,11 @@ dirigeant . indépendant . PL . PAMC:
   applicable si:
     une de ces conditions:
       - toutes ces conditions:
-          - métier = 'santé . médecin'
-          - métier . santé . médecin . secteur != 'non conventionné'
-      - métier = 'santé . sage-femme'
-      - métier = 'santé . chirurgien-dentiste'
-      - métier = 'santé . auxiliaire médical'
+          - catégorie . santé . métier = 'médecin'
+          - catégorie . santé . métier . médecin . secteur != 'non conventionné'
+      - catégorie . santé . métier = 'sage-femme'
+      - catégorie . santé . métier = 'chirurgien-dentiste'
+      - catégorie . santé . métier = 'auxiliaire médical'
 
   rend non applicable:
     - conjoint collaborateur
@@ -60,7 +60,7 @@ dirigeant . indépendant . PL . PAMC . remplaçant:
     offre simplifiée médecins:
       toutes ces conditions:
         - entreprise . chiffre d'affaires < 19000 €/an
-        - métier = 'santé . médecin'
+        - catégorie . santé . métier = 'médecin'
       type: notification
       description:
         Vous exercez une activité de médecin exclusivement en tant que
@@ -92,15 +92,15 @@ dirigeant . indépendant . PL . PAMC . CURPS:
       - revenu professionnel > 0
   non applicable si:
     une de ces conditions:
-      - métier . santé . médecin . secteur = 'non conventionné'
+      - catégorie . santé . métier . médecin . secteur = 'non conventionné'
       - remplaçant
   formule:
     produit:
       - assiette des cotisations
       - variations:
-          - si: métier = 'santé . médecin'
+          - si: catégorie . santé . métier = 'médecin'
             alors: 0.5%
-          - si: métier = 'santé . chirurgien-dentiste'
+          - si: catégorie . santé . métier = 'chirurgien-dentiste'
             alors: 0.3%
           - sinon: 0.1%
     plafond: 0.50% * plafond sécurité sociale
@@ -110,7 +110,7 @@ dirigeant . indépendant . PL . PAMC . CURPS:
     Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
 
 dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen:
-  non applicable si: métier . santé . médecin . secteur = 'S1'
+  non applicable si: catégorie . santé . métier . médecin . secteur = 'S1'
   question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
@@ -182,7 +182,7 @@ dirigeant . indépendant . PL . PAMC . maladie:
     - (- participation CPAM)
 
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
-  non applicable si: métier . santé . médecin . secteur = 'S2'
+  non applicable si: catégorie . santé . métier . médecin . secteur = 'S2'
   produit:
     - assiette participation CPAM
     - variations:
@@ -203,7 +203,7 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
   avec:
     taux:
       variations:
-        - si: métier . santé . médecin . secteur = 'S2'
+        - si: catégorie . santé . métier . médecin . secteur = 'S2'
           alors: 3.25%
         - sinon:
             taux progressif:
@@ -218,7 +218,7 @@ dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
 dirigeant . indépendant . PL . PAMC . allocations familiales:
-  applicable si: métier . santé . médecin . secteur = 'S1'
+  applicable si: catégorie . santé . métier . médecin . secteur = 'S1'
   titre: allocations familiales (après participation CPAM)
   remplace:
     références à: cotisations et contributions . allocations familiales
@@ -248,7 +248,7 @@ dirigeant . indépendant . PL . PAMC . allocations familiales . participation CP
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
 
 dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
-  applicable si: métier = 'santé . chirurgien-dentiste'
+  applicable si: catégorie . santé . métier = 'chirurgien-dentiste'
   titre: assiette participation CPAM (chirurgien dentiste)
   remplace: assiette participation CPAM
   formule:

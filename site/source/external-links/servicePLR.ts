@@ -6,7 +6,7 @@ export const servicePLR = {
 		'toutes ces conditions': [
 			'dirigeant . indépendant . PL',
 			'entreprise . activité . nature . libérale . réglementée',
-			"dirigeant . indépendant . PL . métier != 'expert-comptable'",
+			"dirigeant . indépendant . PL . catégorie != 'expert-comptable'",
 			'dirigeant . indépendant . PL . PAMC = non',
 		],
 	},

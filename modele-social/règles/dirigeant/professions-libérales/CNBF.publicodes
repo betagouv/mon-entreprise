@@ -1,9 +1,6 @@
 dirigeant . indépendant . PL . CNBF:
   valeur: oui
-  applicable si:
-    une de ces conditions:
-      - métier = 'avocat' # deprecated / déprécié
-      - métier = 'juridique . avocat'
+  applicable si: catégorie . juridique . métier = 'avocat'
   description: |
     La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
     sociale des avocats.

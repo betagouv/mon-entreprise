@@ -72,7 +72,7 @@ entreprise . catégorie juridique . EI:
           - entreprise . imposition . IR . type de bénéfices = 'BA'
           - toutes ces conditions:
               - activité . nature . libérale . réglementée
-              - dirigeant . indépendant . PL . métier . rattaché CIPAV = non
+              - dirigeant . indépendant . PL . catégorie . rattaché CIPAV = non
       experimental: oui
 
     EI:

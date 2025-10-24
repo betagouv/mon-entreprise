@@ -1,6 +1,6 @@
 dirigeant . indépendant . PL . CAVEC:
   formule: oui
-  applicable si: métier = 'expert-comptable'
+  applicable si: catégorie = 'expert-comptable'
   description: |
     La CAVEC est l’organisme de sécurité sociale des experts-comptables et des
     commissaires aux comptes.

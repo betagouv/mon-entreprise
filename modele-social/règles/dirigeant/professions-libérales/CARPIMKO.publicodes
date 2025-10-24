@@ -1,7 +1,7 @@
 dirigeant . indépendant . PL . CARPIMKO:
   description: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
   formule: oui
-  applicable si: métier = 'santé . auxiliaire médical'
+  applicable si: catégorie . santé . métier = 'auxiliaire médical'
   références:
     Site CARPIMKO: https://www.carpimko.com
 

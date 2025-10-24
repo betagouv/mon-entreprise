@@ -25,7 +25,7 @@ dirigeant . indépendant . PL . option régime général:
 
 dirigeant . indépendant . PL . CIPAV:
   une de ces conditions:
-    - métier = 'rattaché CIPAV'
+    - catégorie = 'rattaché CIPAV'
     - toutes ces conditions:
         - entreprise . date de création < 01/2019
         - option régime général = non

@@ -2,6 +2,18 @@
 
 ## next
 
+### Breaking changes
+- Suppression de la règle dépréciée `dirigeant . indépendant . PL . métier . avocat`
+- Remplacement de `dirigeant . indépendant . PL . métier` et ses descendants directs par `dirigeant . indépendant . PL . catégorie` et ses descendants directs
+- Suppression de `dirigeant . indépendant . PL . métier . santé`:
+  - En tant que possibilité de réponse à la question `dirigeant . indépendant . PL . métier`, utiiser `dirigeant . indépendant . PL . catégorie . santé`
+	- En tant que question à possibilités, et pour ses descendants, utiliser `dirigeant . indépendant . PL . catégorie . santé . métier`
+- Suppression de `dirigeant . indépendant . PL . métier . juridique`:
+  - En tant que possibilité de réponse à la question `dirigeant . indépendant . PL . métier`, utiiser `dirigeant . indépendant . PL . catégorie . juridique`
+	- En tant que question à possibilités, et pour ses descendants, utiliser `dirigeant . indépendant . PL . catégorie . juridique . métier`
+- Suppression de la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
+- Suppression de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
+
 ## 9.0.0
 
 ### Breaking changes

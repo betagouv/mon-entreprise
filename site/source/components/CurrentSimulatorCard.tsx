@@ -76,7 +76,7 @@ function infereSimulateurRevenuFromSituation(
 	}
 	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
 		const métierProfessionLibéral = engine.evaluate(
-			'dirigeant . indépendant . PL . métier'
+			'dirigeant . indépendant . PL . catégorie'
 		).nodeValue
 		switch (métierProfessionLibéral) {
 			case 'avocat':

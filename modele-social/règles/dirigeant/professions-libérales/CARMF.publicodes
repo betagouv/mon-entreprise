@@ -2,7 +2,7 @@ dirigeant . indépendant . PL . CARMF:
   formule: oui
   description: |
     La CARMF est la caisse de retraite autonome des médecins de France.
-  applicable si: métier = 'santé . médecin'
+  applicable si: catégorie . santé . métier = 'médecin'
   références:
     Site CARMF: http://www.carmf.fr
   note: |
@@ -24,7 +24,7 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
     participation CPAM: participation CPAM retraite
 
 dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
-  applicable si: métier . santé . médecin . secteur = 'S1'
+  applicable si: catégorie . santé . métier . médecin . secteur = 'S1'
   description: |
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
   unité: €/an
@@ -154,7 +154,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
     Il fonctionne en points et comprend une part forfaitaire et une part d’ajustement calculée sur le revenu conventionnel de N-2.
 
     Les deux tiers de la cotisation des médecins en secteur 1 sont financés par les Caisses maladie.
-  non applicable si: métier . santé . médecin . secteur = 'non conventionné'
+  non applicable si: catégorie . santé . métier . médecin . secteur = 'non conventionné'
   valeur: assiette
   abattement: participation CPAM
   arrondi: oui
@@ -190,7 +190,7 @@ dirigeant . indépendant . PL . CARMF . ASV:
       unité: €/an
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:
-  applicable si: métier . santé . médecin . secteur = 'S1'
+  applicable si: catégorie . santé . métier . médecin . secteur = 'S1'
   produit:
     - assiette
     - 2 / 3
