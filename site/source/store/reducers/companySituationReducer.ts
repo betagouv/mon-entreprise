@@ -45,7 +45,7 @@ export function companySituation(
 	action: Action
 ) {
 	switch (action.type) {
-		case 'ENREGISTRE_LA_RÉPONSE':
+		case 'ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION':
 			if (isCompanyDottedName(action.fieldName)) {
 				return {
 					...state,
@@ -53,7 +53,7 @@ export function companySituation(
 				}
 			}
 			break
-		case 'DELETE_FROM_SITUATION': {
+		case 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION': {
 			return omit({ ...state }, action.fieldName) as SituationPublicodes
 		}
 		case 'COMPANY::SET_EXISTING_COMPANY':
@@ -81,8 +81,8 @@ export function companySituation(
 				}),
 			}
 
-		case 'SET_SIMULATION':
-		case 'RESET_SIMULATION':
+		case 'CONFIGURE_LA_SIMULATION':
+		case 'RÉINITIALISE_LA_SIMULATION':
 			return state['entreprise . SIREN'] ? state : {}
 	}
 

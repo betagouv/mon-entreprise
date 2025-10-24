@@ -12,7 +12,7 @@ import { détermineLesProchainesQuestions } from '@/domaine/engine/détermineLes
 import {
 	Action,
 	applicabilitéDesQuestionsRépondues,
-	questionsSuivantes,
+	metÀJourLesQuestionsSuivantes,
 } from '@/store/actions/actions'
 import {
 	RootState,
@@ -58,7 +58,7 @@ export const prendLaProchaineQuestionMiddleware =
 			lastSituationsAvecContextes = null
 		}
 
-		if (action.type === 'SET_SIMULATION') {
+		if (action.type === 'CONFIGURE_LA_SIMULATION') {
 			lastConfig = null
 			lastSituationsAvecContextes = null
 			lastSimulation = null
@@ -105,7 +105,7 @@ export const prendLaProchaineQuestionMiddleware =
 				if (
 					arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
 				) {
-					store.dispatch(questionsSuivantes(prochainesQuestions))
+					store.dispatch(metÀJourLesQuestionsSuivantes(prochainesQuestions))
 				}
 			}
 		}
