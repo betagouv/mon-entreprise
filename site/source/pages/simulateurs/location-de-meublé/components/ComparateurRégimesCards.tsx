@@ -6,6 +6,7 @@ import {
 	compareRégimes,
 	estSituationValide,
 	isCotisationsEnabled,
+	RaisonInapplicabilité,
 	RegimeCotisation,
 	RégimeTag,
 	RésultatRégimeApplicable,
@@ -140,9 +141,17 @@ const RégimeCard = ({
 								Non applicable
 							</Trans>
 						</Strong>{' '}
-						<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison">
-							avec vos recettes actuelles
-						</Trans>
+						{RaisonInapplicabilité.estTypeDeLocationIncompatible(
+							résultat.raisonDeNonApplicabilité
+						) ? (
+							<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison-type-location">
+								pour ce type de location
+							</Trans>
+						) : (
+							<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison">
+								avec vos recettes actuelles
+							</Trans>
+						)}
 					</SmallBody>
 				</StatusCard.ValeurSecondaire>
 			)}
