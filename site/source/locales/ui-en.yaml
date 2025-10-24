@@ -1817,16 +1817,11 @@ pages:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
     location-de-logement-meublé:
-      avertissement:
-        dépassement-du-plafond: You exceed the authorized ceiling (<1></1>) for
-          declaring your income from the collaborative economy with a social
-          status under the general regime. You should consider the status of
-          auto-entrepreneur or self-employed worker.
-        pas-de-cotisation: Your revenue is less than <2></2> and your activity is not
-          considered professional. You are not obliged to join the social
-          security system. However, you may do so if you wish to benefit from
-          social protection (health insurance, retirement, etc.) in return for
-          paying social security contributions.
+      comparateur:
+        applicable: Applicable
+        non-applicable: Not applicable
+        non-applicable-raison: with your current recipes
+        non-applicable-raison-type-location: for this type of rental
       externalLinks:
         "1":
           description: Do you rent out furnished accommodation or goods? The Collaborative
@@ -1848,17 +1843,23 @@ pages:
       questions:
         regime:
           options:
-            estimation: Estimated contributions
             micro-entrepreneur:
-              description: You pay a fixed percentage of your sales.
-              label: Micro-business
+              description: You pay a percentage of your sales.
+            pas-d-affiliation:
+              description: You are not obliged to join and pay no contributions.
             régime-général:
-              description: As with an employee, social security contributions will be deducted
-                at source.
-              label: General scheme (URSSAF contributions)
+              description: Just like an employee.
             travailleur-indépendant:
               description: You pay social security contributions on your profits.
-              label: Self-employed
+      régimes:
+        micro-entreprise:
+          libellé: Self-employed contractor
+        pas-d-affiliation:
+          libellé: No affiliation
+        régime-général:
+          libellé: General scheme
+        travailleur-indépendant:
+          libellé: Self-employed
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
     lodeom:
