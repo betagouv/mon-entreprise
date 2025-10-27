@@ -96,19 +96,19 @@ entreprise . coût formalités . annonce légale:
   non applicable si:
     une de ces conditions:
       # art. 20 du décret n°93-78 du 13 janvier 1993
-      - dirigeant . indépendant . PL . métier = 'juridique . notaire'
+      - dirigeant . indépendant . PL . catégorie . juridique . métier = 'notaire'
 
       # art. 10 du décret n°93-492 du 25 mars 1993
-      - dirigeant . indépendant . PL . métier = 'juridique . avocat'
+      - dirigeant . indépendant . PL . catégorie . juridique . métier = 'avocat'
 
       # art. R. 814-148 du code de commerce
       # art. R. 743-124 du code de commerce
       # article 179 du décret n° 2022-950 du 29 juin 2022
-      - dirigeant . indépendant . PL . métier = 'juridique . officier'
+      - dirigeant . indépendant . PL . catégorie . juridique . métier = 'officier'
 
       # R. 6223-7 du code de la santé publique
       # R. 5125-19-1 du code de la santé publique
-      - dirigeant . indépendant . PL . métier = 'santé . pharmacien'
+      - dirigeant . indépendant . PL . catégorie . santé . métier = 'pharmacien'
 
   avec:
     départements groupe 2:
