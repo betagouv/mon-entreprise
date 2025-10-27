@@ -9,13 +9,13 @@ import {
 	PageConfig,
 	SimulatorsDataParams,
 } from '@/pages/simulateurs/_configs/types'
+import { activitéPartielleConfig } from '@/pages/simulateurs/activité-partielle/config'
 import { artisteAuteurConfig } from '@/pages/simulateurs/artiste-auteur/config'
 import { autoEntrepreneurConfig } from '@/pages/simulateurs/auto-entrepreneur/config'
 import { auxiliaireMédicalConfig } from '@/pages/simulateurs/auxiliaire-médical/config'
 import { avocatConfig } from '@/pages/simulateurs/avocat/config'
 import { cessationActivitéConfig } from '@/pages/simulateurs/cessation-activité/config'
 import { chirurgienDentisteConfig } from '@/pages/simulateurs/chirurgien-dentiste/config'
-import { chômagePartielConfig } from '@/pages/simulateurs/chômage-partiel/config'
 import { cipavConfig } from '@/pages/simulateurs/cipav/config'
 import { comparaisonStatutsConfig } from '@/pages/simulateurs/comparaison-statuts/config'
 import { coûtCréationEntrepriseConfig } from '@/pages/simulateurs/cout-creation-entreprise/config.js'
@@ -54,7 +54,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...autoEntrepreneurConfig(params),
 		...indépendantConfig(params),
 		...artisteAuteurConfig(params),
-		...chômagePartielConfig(params),
+		...activitéPartielleConfig(params),
 		...comparaisonStatutsConfig(params),
 		...pharmacienConfig(params),
 		...médecinConfig(params),
