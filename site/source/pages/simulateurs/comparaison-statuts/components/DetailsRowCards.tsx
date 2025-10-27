@@ -11,7 +11,7 @@ import RuleLink from '@/components/RuleLink'
 import { Body, Grid, HelpIcon, Strong, Ul } from '@/design-system'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
-import { getBestOption, OptionType } from '../utils'
+import { OptionType } from '../utils'
 import StatusCard from './StatusCard'
 
 export const getGridSizes = (numberOptions: number, total: number) => {
@@ -27,7 +27,6 @@ const DetailsRowCards = ({
 	dottedName,
 	expression,
 	unit,
-	leastIsBest = false,
 	evolutionDottedName,
 	evolutionLabel,
 	label,
@@ -39,7 +38,6 @@ const DetailsRowCards = ({
 	dottedName?: DottedName
 	expression?: PublicodesExpression
 	unit?: string
-	leastIsBest?: boolean
 	displayedUnit?: string
 	evolutionDottedName?: DottedName
 	evolutionLabel?: ReactNode | string
@@ -57,8 +55,6 @@ const DetailsRowCards = ({
 			...(unit && { unité: unit }),
 		}).nodeValue,
 	})) as [OptionType, OptionType, OptionType]
-
-	const bestOptionValue = getBestOption(options, leastIsBest)
 
 	const groupedOptions = options
 		.reduce(
@@ -100,10 +96,6 @@ const DetailsRowCards = ({
 						<StatusCard
 							statut={sameValueOptions.map(({ name }) => name)}
 							footerContent={footer?.(statusObject.engine)}
-							isBestOption={
-								sameValueOptions.length !== options.length &&
-								bestOptionValue === statusObject.name
-							}
 						>
 							<StyledBody as="div">
 								{dottedName && (
