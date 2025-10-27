@@ -114,6 +114,22 @@ dirigeant . indépendant . PL . catégorie . juridique . métier:
           > Les règles de cotisation et de protection sociale de la Cavom ne sont
           > pas implémentées.
 
+dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . avertissement:
+  type: notification
+  sévérité: avertissement
+  valeur: métier = 'notaire'
+  description: |
+    Les règles de cotisation et de protection sociale de la CPRN ne sont pas
+    implémentées.
+
+dirigeant . indépendant . PL . catégorie . juridique . métier . officier . avertissement:
+  type: notification
+  sévérité: avertissement
+  valeur: métier = 'officier'
+  description: |
+    Les règles de cotisation et de protection sociale de la Cavom ne sont pas
+    implémentées.
+
 dirigeant . indépendant . PL . régime général:
   description: |
     Les professions libérales non règlementées affiliées au régime général

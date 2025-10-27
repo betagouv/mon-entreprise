@@ -2802,6 +2802,28 @@ dirigeant . indépendant . PL . catégorie . juridique . métier:
   question.fr: Quel métier exercez-vous en tant que professionnel juridique ou judiciaire ?
   titre.en: '[automatic] business'
   titre.fr: métier
+dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . avertissement:
+  description.en: >
+    [automatic] CPRN's contribution and social protection rules are not
+    implemented.
+
+    implemented.
+  description.fr: |
+    Les règles de cotisation et de protection sociale de la CPRN ne sont pas
+    implémentées.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
+dirigeant . indépendant . PL . catégorie . juridique . métier . officier . avertissement:
+  description.en: >
+    [automatic] Cavom's contribution and social protection rules are not
+    implemented.
+
+    implemented.
+  description.fr: |
+    Les règles de cotisation et de protection sociale de la Cavom ne sont pas
+    implémentées.
+  titre.en: '[automatic] warning'
+  titre.fr: avertissement
 dirigeant . indépendant . PL . catégorie . santé . métier:
   question.en: '[automatic] What do you do as a healthcare professional?'
   question.fr: Quel métier exercez-vous en tant que professionnel de santé ?
