@@ -41,7 +41,6 @@ Aucun résultat: No results
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.: No results matching your search. Try other keywords.
 Aucune donnée disponible.: No data available.
 Avec ACRE: With ACRE
-Avec chômage partiel: With short-time working
 Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".:
   Hello, I'm a baker and I couldn't find "bread" or "viennoiserie" when I
   searched.
@@ -103,7 +102,6 @@ Graphique détaillant la satisfaction des utilisateurs (alternative accessible a
 Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
   Graph detailing number of visits (alternative accessible via the switch at the
   start of the section)
-Habituellement: Usually
 Impôt: Tax
 Impôt au barème: Tax scale
 Impôt sur le revenu: Income tax
@@ -197,7 +195,6 @@ Rémunération totale pour l'année de cessation: Total compensation for the yea
 Résultat fiscal: Taxable income
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
-Salaire brut mensuel: Gross monthly salary
 Salaire net: Net salary
 Salariés et embauche: Employees and hiring
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
@@ -227,7 +224,6 @@ Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
 Trimestre: Quarter
-Type: Type
 URL de votre simulation: URL of your simulation
 Un avis sur cette page ?: What do you think of this page?
 Urssaf, voir le site urssaf:
@@ -396,9 +392,6 @@ choix-statut:
         "super-gross" remuneration includes all social security contributions
         payable. It can also be considered as the monetary value of the
         executive's work.</0></1>
-chomagePartiel:
-  tableCaption: Table showing net salary and cost to the employer with or without
-    short-time working.
 code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Guichet unique categories<1></1></0>
@@ -602,7 +595,6 @@ landing:
   title: Official tools for entrepreneurs
 le portail officiel, accéder à aides-entreprises:
   fr, nouvelle fenêtre: the official portal, access to aides-entreprises.fr, new window
-le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre: Urssaf website, access to Urssaf website, new window
 legalNotice:
   accessibility:
     content: The platform is <2>partially compliant</2> with digital accessibility
@@ -1302,6 +1294,63 @@ pages:
         website,<0>free of charge</0>. To <3>find out more</3>, click
         here.</2></1>
       titre: Simulators and Assistants
+    activité-partielle:
+      aria-label-urssaf: Urssaf website, access to Urssaf website, new window
+      comparaison:
+        activité-partielle: With partial activity
+        caption: Table showing net salary and cost to the employer with or without
+          partial activity.
+        habituellement: Usually
+        net: Or <1>{{comparaisonNet}}</1> of net income
+        total: Or <1>{{comparaisonTotal}}</1> of the usual cost
+      end-message: See results above
+      meta:
+        description: Calculation of the employee's net income and the employer's
+          remaining costs after government reimbursement, taking into account
+          all social security contributions.
+        ogDescription: Get an initial estimate by entering a gross salary. You can then
+          customize your situation (part-time, agreement, etc.). Takes into
+          account all contributions, including those specific to the allowance
+          (CSG-CRDS).
+        ogTitle: "Partial activity simulator: discover the impact on net employee income
+          and total employer costs."
+        titre: "Calculating the partial activity allowance: the Urssaf simulator"
+      salaire-brut: Gross monthly salary
+      seo: "<0>How is the statutory partial activity allowance calculated?</0><1>The
+        basic partial activity allowance is set by law at <2><0></0> of gross
+        salary</2>. It is prorated according to the number of hours lost. For an
+        employee earning €2,300 gross per month, working 50% of his usual
+        working hours, this gives <5>€2,300 × 50% × 60% = €805.</5></1><2>In
+        addition to this basic allowance, there is a supplementary allowance for
+        salaries close to the minimum wage. This supplement is paid when the
+        total of the salary and the basic allowance is below one SMIC net. These
+        allowances are paid by the employer, who is then reimbursed in part or
+        in full by the State.</2><3><0></0> <2>See how the allowance is
+        calculated</2></3><4>How do I calculate the portion reimbursed by the
+        State?</4><5>The State covers part of the partial indemnity for salaries
+        up to <1>4.5 SMIC</1>, with a minimum of <4><0></0></4> per hour not
+        worked.</5><6><0></0> <2>See the detailed calculation of the indemnity
+        reimbursement</2></6><7>Talk to an advisor about partial
+        activity</7><8>You would like to :<1><0>check the allowance received,
+        and the amount still to be paid</0><1>find out about the procedure for
+        consulting the <2>Works Council</2> and requesting prior
+        authorization</1><2>find out about long-term partial
+        activity</2><3>train your part-time employees in new skills (educational
+        costs covered)</3></1><2>Quick and easy public service: the advisor who
+        can help you calls you back. Partners: departmental departments of
+        employment, labor and solidarity.</2><3></3></8><9>What social security
+        contributions do I have to pay for part-time work?</9><10>Partial
+        activity compensation is subject to CSG-CRDS and, in certain cases, a
+        health contribution. To find out more, see the explanatory page on
+        <2>the Urssaf website</2>.</10>"
+      shortname: Partial activity
+      title: Partial activity indemnity calculation simulator
+      warning:
+        "1": This simulator does not take into account gross earnings based on a 39-hour
+          week.
+        "2": Similarly, it does not take into account any additional partial activity
+          indemnities provided for by a collective agreement or unilateral
+          decision by the employer.
     artiste-auteur:
       externalLinks:
         "1":
@@ -1426,53 +1475,6 @@ pages:
         title: "Dental surgeon: income simulator"
       shortname: Dental surgeon
       title: Income simulator for self-employed dentists
-    chômage-partiel:
-      meta:
-        description: Calculation of the employee's net income and the employer's
-          remaining costs after government reimbursement, taking into account
-          all social security contributions.
-        ogDescription: Get an initial estimate by entering a gross salary. You can then
-          customize your situation (part-time, agreement, etc.). Takes into
-          account all contributions, including those specific to the allowance
-          (CSG-CRDS).
-        ogTitle: "Short-time working simulator: discover the impact on net employee
-          income and total employer costs."
-        titre: "Calculating partial unemployment benefit: the Urssaf simulator"
-      seo: "<0>How is the statutory partial activity allowance calculated?</0><1>The
-        basic partial activity allowance is set by law at <2><0></0> of gross
-        salary</2>. It is prorated according to the number of hours lost. For an
-        employee earning €2,300 gross per month, working 50% of his usual
-        working hours, this gives <4>€2,300 × 50% × 60% = €805</4>.</1><2>In
-        addition to this basic allowance, there is a supplementary allowance for
-        salaries close to the minimum wage. This additional allowance is paid
-        when the total of the salary and the basic allowance is below one SMIC
-        net. These allowances are paid by the employer, who is then reimbursed
-        in part or in full by the State.</2><3>👉 S <2>ee details of how the
-        allowance is calculated</2></3><4>How do I calculate the portion
-        reimbursed by the State?</4><5>The State covers part of the partial
-        indemnity for wages up to <1>4.5 SMIC</1>, with a minimum of<3> <1></1>
-        </3>per hour not worked.</5><6>👉 S <2>ee the detailed calculation of
-        the indemnity reimbursement</2></6><7>Talk to an advisor about partial
-        activity</7><8>You would like to:<1><0>check the allowance received, and
-        the amount still to be paid</0><1>find out about the procedure for
-        consulting the <2>Works Council</2> and requesting prior
-        authorization</1><2>find out about long-term partial
-        activity</2><3>train your part-time employees in new skills (educational
-        costs covered)</3></1><2>Quick and easy public service: you are called
-        back by the advisor who can help you. Partners: departmental departments
-        of employment, labor and solidarity.</2><3></3></8><9> What social
-        security contributions do I have to pay for part-time
-        work?</9><10>Partial activity compensation is subject to CSG/CRDS and,
-        in certain cases, a health contribution. To find out more, see the
-        explanatory page on <2>the Urssaf website</2>.</10>"
-      shortname: Short-time working
-      title: Partial unemployment benefit calculation simulator
-      warning:
-        "1": This simulator does not take into account gross earnings based on a 39-hour
-          week.
-        "2": Similarly, it does not take into account any additional partial activity
-          indemnities provided for by a collective agreement or unilateral
-          decision by the employer.
     cipav:
       meta:
         description: Calculation of net income after deduction of contributions based on

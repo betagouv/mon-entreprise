@@ -59,7 +59,10 @@ export default function SimulateursEtAssistants() {
 					aria-labelledby="salarie-employeurs"
 				>
 					<SimulateurCard {...simulators.salarié} role="listitem" />
-					<SimulateurCard {...simulators['chômage-partiel']} role="listitem" />
+					<SimulateurCard
+						{...simulators['activité-partielle']}
+						role="listitem"
+					/>
 				</Grid>
 
 				<H3 id="revenu-dirigeant">

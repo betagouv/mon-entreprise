@@ -45,7 +45,6 @@ Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-cl�
   mots-clés.
 Aucune donnée disponible.: Aucune donnée disponible.
 Avec ACRE: Avec ACRE
-Avec chômage partiel: Avec chômage partiel
 Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".:
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
@@ -108,7 +107,6 @@ Graphique détaillant la satisfaction des utilisateurs (alternative accessible a
 Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
   Graphique détaillant le nombre de visites (alternative accessible avec
   l'interrupteur en début de section)
-Habituellement: Habituellement
 Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôt sur le revenu: Impôt sur le revenu
@@ -208,7 +206,6 @@ Rémunération totale pour l'année de cessation: Rémunération totale pour l'a
 Résultat fiscal: Résultat fiscal
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
-Salaire brut mensuel: Salaire brut mensuel
 Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
@@ -239,7 +236,6 @@ Tout déplier: Tout déplier
 Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
 Trimestre: Trimestre
-Type: Type
 URL de votre simulation: URL de votre simulation
 Un avis sur cette page ?: Un avis sur cette page ?
 Urssaf, voir le site urssaf:
@@ -419,9 +415,6 @@ choix-statut:
         pour la rémunération du dirigeant. Cette rémunération "super-brute"
         inclut toutes les cotisations sociales à payer. On peut aussi considérer
         que c'est la valeur monétaire du travail du dirigeant.</0></1>
-chomagePartiel:
-  tableCaption: Tableau indiquant le salaire net et le coût pour l'employeur avec
-    ou sans chômage partiel.
 code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Catégories du Guichet unique<1></1></0>
@@ -632,7 +625,6 @@ landing:
   title: L'assistant officiel des entrepreneurs
 le portail officiel, accéder à aides-entreprises:
   fr, nouvelle fenêtre: le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre
-le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre: le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre
 legalNotice:
   accessibility:
     content: La plateforme est <2>partiellement conforme</2> aux normes
@@ -1378,6 +1370,65 @@ pages:
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
       titre: Simulateurs et Assistants
+    activité-partielle:
+      aria-label-urssaf: le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre
+      comparaison:
+        activité-partielle: Avec activité partielle
+        caption: Tableau indiquant le salaire net et le coût pour l'employeur avec ou
+          sans activité partielle.
+        habituellement: Habituellement
+        net: Soit <1>{{comparaisonNet}}</1> du revenu net
+        total: Soit <1>{{comparaisonTotal}}</1> du coût habituel
+      end-message: Voir les résultats au-dessus
+      meta:
+        description: Calcul du revenu net pour l'employé et du reste à charge pour
+          l'employeur après remboursement de l'Etat, en prenant en compte toutes
+          les cotisations sociales.
+        ogDescription: Accédez à une première estimation en saisissant à partir d'un
+          salaire brut. Vous pourrez ensuite personaliser votre situation (temps
+          partiel, convention, etc). Prends en compte la totalité des
+          cotisations, y compris celles spécifiques à l'indemnité (CSG-CRDS).
+        ogTitle: "Simulateur activité partielle : découvrez l'impact sur le revenu net
+          salarié et le coût total employeur."
+        titre: "Calcul de l'indemnité activité partielle : le simulateur Urssaf"
+      salaire-brut: Salaire brut mensuel
+      seo: "<0>Comment calculer l’indemnité d’activité partielle légale
+        ?</0><1>L’indemnité d’activité partielle de base est fixée par la loi à
+        <2><0></0> du brut</2>. Elle est proratisée en fonction du nombre
+        d’heures chômées. Pour un salarié à 2 300 € brut mensuel, qui travaille
+        à 50 % de son temps usuel, cela donne <5>2 300 € × 50 % × 60 % = 805
+        €</5></1><2>A cette indemnité de base s’ajoute l’indemnité
+        complémentaire pour les salaires proches du SMIC. Ce complément
+        intervient lorsque le cumul de la rémunération et de l’indemnité de base
+        est en dessous d’un SMIC net. Ces indemnités sont prises en charge par
+        l’employeur, qui sera ensuite remboursé en parti ou en totalité par
+        l’État.</2><3><0></0> <2>Voir le détail du calcul de
+        l’indemnité</2></3><4>Comment calculer la part remboursée par l’État
+        ?</4><5>L’État prend en charge une partie de l’indemnité partielle pour
+        les salaires allant jusqu’à <1>4,5 SMIC</1>, avec un minimum à
+        <4><0></0></4> par heures chômée.</5><6><0></0> <2>Voir le détail du
+        calcul du remboursement de l’indemnité</2></6><7>Échanger avec un
+        conseiller sur l’activité partielle</7><8>Vous souhaitez :<1><0>vérifier
+        l’allocation perçue, le reste à charge</0><1>connaître la procédure de
+        consultation du <2>CSE</2>, la demande d’autorisation
+        préalable</1><2>vous informer sur l’activité partielle longue
+        durée</2><3>former vos salariés en activité partielle à de nouvelles
+        compétences (coûts pédagogique pris en charge)</3></1><2>Service public
+        simple et rapide : le conseiller qui peut vous aider vous rappelle.
+        Partenaires mobilisés : les directions départementales de l’emploi, du
+        travail et des solidarités.</2><3></3></8><9>Quelles sont les
+        cotisations sociales à payer pour l’indemnité d’activité partielle
+        ?</9><10>L’indemnité d’activité partielle est soumise à la CSG-CRDS et à
+        une contribution maladie dans certains cas. Pour en savoir plus, voir la
+        page explicative sur <2>le site de l’Urssaf</2>.</10>"
+      shortname: Activité partielle
+      title: Simulateur du calcul de l'indemnité activité partielle
+      warning:
+        "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
+          39h hebdomadaires.
+        "2": De même, il ne prend pas en compte les indemnités complémentaire d’activité
+          partielle prévue par une convention/accord collectif ou une décision
+          unilatérale de l’employeur.
     artiste-auteur:
       externalLinks:
         "1":
@@ -1513,55 +1564,6 @@ pages:
         title: "Chirurgien-dentiste : simulateur de revenus"
       shortname: Chirurgien-dentiste
       title: Simulateur de revenus pour chirurgien-dentiste en libéral
-    chômage-partiel:
-      meta:
-        description: Calcul du revenu net pour l'employé et du reste à charge pour
-          l'employeur après remboursement de l'Etat, en prenant en compte toutes
-          les cotisations sociales.
-        ogDescription: Accédez à une première estimation en saisissant à partir d'un
-          salaire brut. Vous pourrez ensuite personaliser votre situation (temps
-          partiel, convention, etc). Prends en compte la totalité des
-          cotisations, y compris celles spécifiques à l'indemnité (CSG-CRDS).
-        ogTitle: "Simulateur chômage partiel : découvrez l'impact sur le revenu net
-          salarié et le coût total employeur."
-        titre: "Calcul de l'indemnité chômage partiel : le simulateur Urssaf"
-      seo: "<0>Comment calculer l'indemnité d'activité partielle légale
-        ?</0><1>L'indemnité d'activité partielle de base est fixée par la loi à
-        <2><0></0> du brut</2>. Elle est proratisée en fonction du nombre
-        d'heures chômées. Pour un salarié à 2300 € brut mensuel, qui travaille à
-        50% de son temps usuel, cela donne <4>2300 € × 50% × 60% = 805
-        €</4></1><2>A cette indemnité de base s'ajoute l'indemnité
-        complémentaire pour les salaires proches du SMIC. Ce complément
-        intervient lorsque le cumul de la rémunération et de l'indemnité de base
-        est en dessous d'un SMIC net. Ces indemnités sont prises en charge par
-        l'employeur, qui sera ensuite remboursé en parti ou en totalité par
-        l'État.</2><3>👉 <2>Voir le détail du calcul de
-        l'indemnité</2></3><4>Comment calculer la part remboursée par l'État
-        ?</4><5>L'État prend en charge une partie de l'indemnité partielle pour
-        les salaires allant jusqu'à <1>4,5 SMIC</1>, avec un minimum à<3>
-        <1></1> </3>par heures chômée.</5><6>👉 <2>Voir le détail du calcul du
-        remboursement de l'indemnité</2></6><7>Échanger avec un conseiller sur
-        l'activité partielle</7><8>Vous souhaitez :<1><0>vérifier l'allocation
-        perçue, le reste à charge</0><1>connaître la procédure de consultation
-        du <2>CSE</2>, la demande d'autorisation préalable</1><2>vous informer
-        sur l'activité partielle longue durée</2><3>former vos salariés en
-        activité partielle à de nouvelles compétences (coûts pédagogique pris en
-        charge)</3></1><2>Service public simple et rapide : vous êtes rappelé(e)
-        par le conseiller qui peut vous aider. Partenaires mobilisés : les
-        directions départementales de l'emploi, du travail et des
-        solidarités.</2><3></3></8><9> Quelles sont les cotisations sociales à
-        payer pour l'indemnité d'activité partielle ?</9><10>L'indemnité
-        d'activité partielle est soumise à la CSG/CRDS et à une contribution
-        maladie dans certains cas. Pour en savoir plus, voir la page explicative
-        sur <2>le site de l'Urssaf</2>.</10>"
-      shortname: Chômage partiel
-      title: Simulateur du calcul de l'indemnité chômage partiel
-      warning:
-        "1": Ce simulateur ne prend pas en compte les rémunérations brutes définies sur
-          39h hebdomadaires.
-        "2": De même, il ne prend pas en compte les indemnités complémentaire d’activité
-          partielle prévue par une convention/accord collectif ou une décision
-          unilatérale de l’employeur.
     cipav:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
