@@ -1,14 +1,12 @@
 import { ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
-import { CardContainer, Emoji, Grid } from '@/design-system'
+import { CardContainer, Grid } from '@/design-system'
 
 type StatutCardType = {
 	statut: StatutType[]
 	footerContent?: ReactNode
-	isBestOption?: boolean
 	children: ReactNode
 }
 
@@ -16,10 +14,7 @@ const StatusCard = ({
 	statut: status,
 	children,
 	footerContent,
-	isBestOption,
 }: StatutCardType) => {
-	const { t } = useTranslation()
-
 	return (
 		<StyledCardContainer $inert>
 			<CardBody>
@@ -32,16 +27,6 @@ const StatusCard = ({
 				</Grid>
 				{children}
 			</CardBody>
-			{isBestOption && (
-				<AbsoluteSpan
-					title={t(
-						'pages.simulateurs.comparaison-statuts.meilleure-option',
-						'Option la plus avantageuse.'
-					)}
-				>
-					<StyledEmoji emoji="🥇" />
-				</AbsoluteSpan>
-			)}
 			{footerContent && <CardFooter>{footerContent}</CardFooter>}
 		</StyledCardContainer>
 	)
@@ -53,15 +38,6 @@ const StyledCardContainer = styled(CardContainer)`
 	position: relative;
 	align-items: flex-start;
 	padding: 0;
-`
-
-const AbsoluteSpan = styled.span`
-	position: absolute;
-	top: 0;
-	right: 1.5rem;
-`
-const StyledEmoji = styled(Emoji)`
-	font-size: 1.5rem;
 `
 
 const CardBody = styled.div`

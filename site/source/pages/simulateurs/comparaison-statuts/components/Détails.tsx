@@ -703,7 +703,6 @@ const Détails = ({
 					<DetailsRowCards
 						dottedName="entreprise . coût formalités . création"
 						namedEngines={namedEngines}
-						leastIsBest
 						displayedUnit="€ HT"
 					/>
 
