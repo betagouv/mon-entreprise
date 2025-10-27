@@ -2,6 +2,9 @@
 
 ## next
 
+### Mises à jour
+- Renomme chômage partiel en activité partielle
+
 ## 9.0.0
 
 ### Breaking changes
