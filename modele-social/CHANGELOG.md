@@ -10,8 +10,10 @@
 - Suppression de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
 
 ### Nouveautés
-
 - Les possibilités de métier juridique `notaire` et `officier` sont désormais applicables
+
+### Mises à jour
+- Renomme chômage partiel en activité partielle
 
 ## 9.0.0
 

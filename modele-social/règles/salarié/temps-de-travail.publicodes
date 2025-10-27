@@ -51,7 +51,7 @@ salarié . temps de travail . effectif:
     quotité:
       description: >-
         Le plafond de la sécurité sociale doit être pro-ratisé en retirant les
-        absences ainsi que les jours passés au chômage partiel.
+        absences ainsi que les jours passés en activité partielle.
       valeur: temps de travail . effectif / durée légale du travail . mensuelle
       unité: '%'
 

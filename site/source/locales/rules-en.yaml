@@ -9780,41 +9780,43 @@ salarié:
   titre.en: '[automatic] employee'
   titre.fr: salarié
 salarié . activité partielle:
-  description.en: "[automatic] In the event of a company resorting to partial
-    activity, employees affected by a loss of salary are compensated (also known
-    as partial unemployment or technical unemployment) by the employer. To
-    benefit from this scheme, and to obtain the state allowance corresponding to
-    the hours called unemployed: hours not worked by decision of the employer,
-    the employer must take steps with the Dreets: Dreets: Direction régionale de
-    l'économie, de l'emploi, du travail et des solidarités (ex-Direccte)
-    (formerly Direccte). default: no"
-  description.fr: "En cas de recours à l'activité partielle au sein d'une
-    entreprise, les salariés touchés par une perte de salaire sont indemnisés
-    (dispositif appelé aussi chômage partiel ou chômage technique) par
-    l'employeur. Pour bénéficier de ce dispositif et obtenir l'allocation de
-    l'État correspondant aux heures dites chômées : Heure non travaillée sur
-    décision de l'employeur, l'employeur doit engager des démarches auprès de la
-    Dreets : Dreets : Direction régionale de l'économie, de l'emploi, du travail
-    et des solidarités (ex-Direccte) (anciennement Direccte).  par défaut: non"
+  description.en: >-
+    [automatic] In the event of partial activity (formerly known as "short-time
+    working" or "technical unemployment") within a company, employees affected
+    by a loss of wages are compensated by the employer.
+
+    To benefit from this scheme and obtain the state allowance corresponding to the hours referred to as unemployed (hours not worked by decision of the employer), the employer must take steps with <abbr title="Direction départementale de l’économie, de l’emploi, du travail et des solidarités">DDEETS &lt;/abbr> (formerly Direccte). This can be done on the website [activitepartielle.emploi.gouv.fr](https://activitepartielle.emploi.gouv.fr)
+  description.fr: >-
+    En cas de recours à l’activité partielle (dispositif anciennement appelé
+    « chômage partiel » ou « chômage technique ») au sein d’une entreprise, les
+    salariés touchés par une perte de salaire sont indemnisés par l’employeur.
+
+    Pour bénéficier de ce dispositif et obtenir l’allocation de l’État correspondant aux heures dites chômées (heures non travaillées sur décision de l’employeur), l’employeur doit engager des démarches auprès de la <abbr title="Direction départementale de l’économie, de l’emploi, du travail et des solidarités">DDEETS </abbr> (anciennement Direccte). Cette démarche Cette démarche est à réaliser sur le site [activitepartielle.emploi.gouv.fr](https://activitepartielle.emploi.gouv.fr)
   note.en: >
     [automatic] This simulator only takes into account the general case, and
-    does not take into account special cases (e.g. Mayotte, long-term allowance,
-    Covid-19).
+    does not take into account
+
+    special cases (e.g. Mayotte, long-term allowance, Covid-19).
   note.fr: >
     Ce simulateur ne prend uniquement en compte le cas général, et ne tient pas
-    compte des cas particuliers (ex: Mayotte, allocation longue durée, Covid-19)
+
+    compte des cas particuliers (ex: Mayotte, allocation longue durée, Covid-19).
   titre.en: '[automatic] partial activity'
   titre.fr: activité partielle
 salarié . activité partielle . heures chômées:
+  description.en: |
+    [automatic] Hours not worked by decision of the employer.
+  description.fr: |
+    Heures non travaillées sur décision de l’employeur.
   titre.en: '[automatic] non-working hours'
   titre.fr: heures chômées
 salarié . activité partielle . heures travaillées:
-  description.en: '[automatic] Within the framework of partial unemployment, the
-    number of remaining hours worked. Must be less than the contractual time.'
-  description.fr: Dans le cadre du chômage partiel, le nombre d'heure restantes
-    travaillées. Doit être inférieur au temps contractuel.
+  description.en: '[automatic] The number of hours remaining to be worked under
+    partial activity. Must be less than the contractual time.'
+  description.fr: Le nombre d’heures restantes travaillées dans le cadre de
+    l’activité partielle. Doit être inférieur au temps contractuel.
   question.en: '[automatic] What is the number of hours worked during the month?'
-  question.fr: Quel est le nombre d'heures travaillées sur le mois ?
+  question.fr: Quel est le nombre d’heures travaillées sur le mois ?
   suggestions.10 h/semaine.en: '[automatic] 10 hrs/week'
   suggestions.10 h/semaine.fr: 10 h/semaine
   suggestions.20 h/semaine.en: '[automatic] 20 hrs/week'
@@ -9824,10 +9826,10 @@ salarié . activité partielle . heures travaillées:
   titre.en: '[automatic] remaining hours worked'
   titre.fr: heures travaillées restantes
 salarié . activité partielle . heures travaillées . contrôle temps de travail:
-  description.en: '[automatic] In the context of partial activity, the working
-    time must be less than that specified in the employment contract.'
+  description.en: '[automatic] In the case of partial activity, the working time
+    must be less than that stipulated in the employment contract.'
   description.fr:
-    Dans le cadre de l'activité partielle, le temps de travail doit
+    Dans le cadre de l’activité partielle, le temps de travail doit
     être inférieur à celui inscrit dans le contrat de travail.
   titre.en: '[automatic] working time control'
   titre.fr: contrôle temps de travail
@@ -9838,31 +9840,25 @@ salarié . activité partielle . indemnisation entreprise:
       titre.fr: plancher horaire
   description.en: >-
     [automatic] If the employer has obtained administrative authorization, he
-    can file a **claim for compensation** which enables him to obtain
+    can file a **claim for compensation**, which enables him to obtain
     **reimbursement** of the monthly remuneration paid to the employees
     concerned.
 
-
     The employer may receive partial activity allowance up to a maximum of 1,000 hours per year and per employee**.
 
+    > **Note**: For long-term partial activity (APLD), the minimum hourly rate > may rise to **€9.40**.
 
-    > **Note**: For long-term partial activity (APLD), the minimum hourly rate may rise to **€9.40**.
-
-
-    > **Warning**: in the event of fraud or false declaration, the employer is liable to 2 years' imprisonment and a €30,000 fine.
+    > **Warning**: in the event of fraud or false declaration, the employer > is liable to 2 years' imprisonment and a €30,000 fine.
   description.fr: >-
-    Si l'employeur a obtenu l'autorisation administrative, il peut déposer une
-    **demande d'indemnisation** qui lui permet d'obtenir le **remboursement
+    Si l’employeur a obtenu l’autorisation administrative, il peut déposer une
+    **demande d’indemnisation** qui lui permet d’obtenir le **remboursement
     mensuel** des rémunérations versées aux salariés concernés.
 
+    L’employeur peut percevoir l’allocation d’activité partielle dans la limite d’un plafond de **1000 heures par an et par salarié**.
 
-    L'employeur peut percevoir l'allocation d'activité partielle dans la limite d'un plafond de **1000 heures par an et par salarié**.
+    > **Note** : Pour l’activité partielle de longue durée (APLD), le taux horaire > minimum peut monter à **9,40 €**.
 
-
-    > **Note** : Pour l’activité partielle de longue durée (APLD), le taux horaire minimum peut monter à **9,40 €**.
-
-
-    > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
+    > **Attention** : en cas de fraude ou de fausse déclaration, l’employeur > encourt jusqu’à 2 ans d’emprisonnement et 30 000 € d’amende.
   titre.en: '[automatic] Reimbursement of the indemnity'
   titre.fr: Remboursement de l'indemnité
 salarié . activité partielle . indemnisation entreprise . taux d'indemnisation:
@@ -9883,14 +9879,14 @@ salarié . activité partielle . indemnisation entreprise . taux d'indemnisation
   titre.fr: taux d'allocation
 salarié . activité partielle . indemnités:
   description.en:
-    '[automatic] Short-time work does not entitle the employee to a
-    salary but to a specific allowance. For each hour of unemployment that can
-    be compensated, the employee receives an indemnity from the company. In
-    return, the company receives a partial activity allowance from the
-    government.'
-  description.fr: La mise en chômage partiel ouvre droit non au paiement d’un
+    '[automatic] Partial activity does not entitle the employee to a
+    salary, but to a specific allowance. For each hour of unemployment for which
+    compensation can be paid, the employee receives an allowance from the
+    company. In return, the company receives a partial activity allowance from
+    the government.'
+  description.fr: La mise en activité partielle ouvre droit non au paiement d’un
     salaire mais à l’allocation spécifique. Pour chaque heure chômée
-    indemnisable, le salarié reçoit de l'entreprise une indemnité. L'entreprise
+    indemnisable, le salarié reçoit de l’entreprise une indemnité. L’entreprise
     obtient en contrepartie de l’Etat une allocation d’activité partielle.
   titre.en: '[automatic] indemnities'
   titre.fr: indemnités
@@ -9917,47 +9913,51 @@ salarié . activité partielle . indemnités . légale:
       titre.en: '[automatic] rate'
       titre.fr: taux
   description.en: >
-    [automatic] The employer must pay the employee a statutory minimum indemnity
-    equal to 60% of gross pay per hour lost.
+    [automatic] The employer must pay the employee a minimum statutory indemnity
+    equal to 60% of gross pay for each hour
+
+    gross pay per hour not worked.
 
 
     If, after payment of the partial activity indemnity, the employee's remuneration
 
     is less than the minimum monthly remuneration (RMM) guaranteed by
 
-    articles L3232-1 et seq. of the French Labor Code for full-time employees)
+    articles L3232-1 et seq. of the Labor Code for full-time employees), the
 
-    employees), the employer must pay a complementary allowance equal to the difference
+    employees), the employer must pay the employee an additional allowance equal to the difference
 
     the difference between the minimum monthly remuneration (or Smic net) and the amount
 
     initially received by the employee.
 
 
-    This additional allowance is exempt from contributions under the same conditions
+    This additional allowance is exempt from contributions and levies
 
-    same conditions as the statutory partial activity allowance.
+    under the same conditions as the statutory partial activity allowance.
   description.fr: >
-    L'employeur doit verser au salarié une indemnité minimum légale égale à 60%
-    de sa rémunération brute par heure chomée.
+    L’employeur doit verser au salarié une indemnité minimum légale égale à 60%
+    de
+
+    sa rémunération brute par heure chômée.
 
 
-    Si après versement de l’indemnité d’activité partielle la rémunération du
+    Si, après versement de l’indemnité d’activité partielle, la rémunération du
 
     salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
 
     les articles L3232-1 et suivants du code du travail pour les salariés à temps
 
-    plein), l'employeur doit  lui verser une allocation complémentaire qui est égale
+    plein), l’employeur doit  lui verser une allocation complémentaire qui est égale
 
     à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
 
     somme initialement perçue par le salarié.
 
 
-    Cette allocation complémentaire est exonérée de cotisations et contributions dans les
+    Cette allocation complémentaire est exonérée de cotisations et contributions
 
-    mêmes conditions que l’indemnité d’activité partielle légale.
+    dans les mêmes conditions que l’indemnité d’activité partielle légale.
   titre.en: '[automatic] legal'
   titre.fr: légale
 salarié . activité partielle . net habituel:
@@ -14851,15 +14851,15 @@ salarié . rémunération . revenus de remplacement:
       titre.en: '[automatic] net'
       titre.fr: net
   description.en: >-
-    [automatic] Replacement income is income received as a substitute for work
-    remuneration: unemployment or partial unemployment benefits, sickness or
-    work accident compensation, retirement pension, social integration income,
-    etc.
+    [automatic] Replacement income is income received in lieu of work
+    remuneration: unemployment or part-time work allowances, sickness or work
+    accident benefits, retirement pension, social integration income, etc. This
+    income is taxable but exempt from social security contributions.
 
-    This income is taxable but exempt from social security contributions. They are subject to CSG/CRDS at a specific rate.
+    This income is taxable, but exempt from social security contributions. They are subject to CSG/CRDS at a specific rate.
   description.fr: >-
     Les revenus de remplacement sont les revenus perçus en remplacement de la
-    rémunération du travail : allocations de chômage ou de chômage partiel,
+    rémunération du travail : allocations de chômage ou d’activité partielle,
     indemnités maladie ou accident du travail, pension de retraite, revenu
     d'intégration sociale, etc.
 
@@ -14958,9 +14958,9 @@ salarié . temps de travail . effectif:
     quotité:
       description.en:
         '[automatic] The social security ceiling must be pro-rated by
-        removing absences as well as days spent on short-time work.'
+        deducting absences and days spent on partial activity.'
       description.fr: Le plafond de la sécurité sociale doit être pro-ratisé en
-        retirant les absences ainsi que les jours passés au chômage partiel.
+        retirant les absences ainsi que les jours passés en activité partielle.
       titre.en: '[automatic] quotient'
       titre.fr: quotité
   titre.en: '[automatic] effective working time'
