@@ -8,7 +8,18 @@ export default defineConfig({
 	chromeWebSecurity: false,
 	e2e: {
 		// eslint-disable-next-line
-		setupNodeEvents(on, config) {},
+		setupNodeEvents(on, config) {
+			on('before:browser:launch', (browser, launchOptions) => {
+				if (browser.name === 'chrome' && browser.isHeadless) {
+					const version = typeof browser.majorVersion === 'string' ? parseInt(browser.majorVersion) : browser.majorVersion
+					if (version >= 112) {
+						launchOptions.args.push('--headless=new')
+					}
+				}
+
+				return launchOptions
+			})
+		},
 		baseUrl: 'http://localhost:3000/mon-entreprise',
 		specPattern: 'cypress/integration/mon-entreprise/**/*.{js,jsx,ts,tsx}',
 		experimentalRunAllSpecs: true,
