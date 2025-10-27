@@ -37,7 +37,7 @@
     <element xsi:type="archimate:ApplicationInterface" name="Assistant choix du statut" id="id-4b9cc8cc50a7469196397dc0efffabaf"/>
     <element xsi:type="archimate:ApplicationInterface" name="Simulateur artiste-auteur" id="id-4164d5a724e541a9a8415e1ff87a8d81"/>
     <element xsi:type="archimate:ApplicationInterface" name="Simulateur auto-entrepreneur" id="id-9b8297d9ccc74974b7c89e44c9ae387c"/>
-    <element xsi:type="archimate:ApplicationInterface" name="Simulateur de chômage partiel" id="id-05875e9fe0e64654a761f3724637349e"/>
+    <element xsi:type="archimate:ApplicationInterface" name="Simulateur d'activité partielle'" id="id-05875e9fe0e64654a761f3724637349e"/>
     <element xsi:type="archimate:ApplicationInterface" name="Simulateurs professions libérales" id="id-3ac274b7d84d41dc944c381d4d4d266d">
       <documentation>dont auxiliaire médicale, dentiste, médecin, pharmacien, sage-femme, avocat, expert-comptable, Cipav</documentation>
     </element>

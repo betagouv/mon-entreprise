@@ -6,7 +6,7 @@ describe('Page covid-19', { testIsolation: false }, function () {
 	}
 
 	before(function () {
-		return cy.visit(encodeURI('/simulateurs/chômage-partiel'))
+		return cy.visit(encodeURI('/simulateurs/activité-partielle'))
 	})
 	it('should not crash', function () {
 		cy.contains('Salaire brut mensuel')

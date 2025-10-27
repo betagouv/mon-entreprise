@@ -78,7 +78,7 @@ const rawSitePathsFr = {
 			'expert-comptable': 'expert-comptable',
 			cipav: 'cipav',
 		},
-		'chômage-partiel': 'chômage-partiel',
+		'activité-partielle': 'chômage-partiel',
 		is: 'impot-societe',
 		dividendes: 'dividendes',
 		'réduction-générale': 'réduction-générale',
@@ -174,7 +174,7 @@ const rawSitePathsEn = {
 		comparaison: 'social-scheme-comparaison',
 		salarié: 'salary',
 		'artiste-auteur': 'artist-author',
-		'chômage-partiel': 'partial-unemployement',
+		'activité-partielle': 'partial-unemployement',
 		'profession-libérale': {
 			index: 'liberal-profession',
 			médecin: 'doctor',

@@ -43,7 +43,7 @@ export function salariéConfig(params: SimulatorsDataParams) {
 		},
 		pathId: 'simulateurs.salarié',
 		shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
-		nextSteps: ['chômage-partiel'],
+		nextSteps: ['activité-partielle'],
 		externalLinks: [
 			{
 				url: 'https://code.travail.gouv.fr/',

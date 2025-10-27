@@ -199,7 +199,7 @@ function PourMonEntreprise() {
 					</H2>
 					<Grid container spacing={3}>
 						<SimulateurCard fromGérer {...simulateurs['salarié']} />
-						<SimulateurCard fromGérer {...simulateurs['chômage-partiel']} />
+						<SimulateurCard fromGérer {...simulateurs['activité-partielle']} />
 					</Grid>
 				</FromTop>
 			)}

@@ -11,7 +11,7 @@ export function ActivitePartielleCard() {
 		<Card
 			title={t('gérer.choix.chomage-partiel.title', 'Activité partielle')}
 			icon={<Emoji emoji="🕟" />}
-			to={absoluteSitePaths.simulateurs['chômage-partiel']}
+			to={absoluteSitePaths.simulateurs['activité-partielle']}
 			ctaLabel={t('gérer.choix.chomage-partiel.cta', 'Voir le simulateur')}
 		>
 			<Trans i18nKey="gérer.choix.chomage-partiel.body">
