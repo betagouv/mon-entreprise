@@ -2,7 +2,7 @@ salarié . rémunération . revenus de remplacement:
   experimental: oui
   description: >-
     Les revenus de remplacement sont les revenus perçus en remplacement de la
-    rémunération du travail : allocations de chômage ou de chômage partiel,
+    rémunération du travail : allocations de chômage ou d’activité partielle,
     indemnités maladie ou accident du travail, pension de retraite, revenu
     d'intégration sociale, etc.
 
@@ -37,25 +37,29 @@ salarié . rémunération . revenus de remplacement:
 salarié . activité partielle:
   experimental: oui
   description: >-
-    En cas de recours à l'activité partielle au sein d'une entreprise, les
-    salariés touchés par une perte de salaire sont indemnisés (dispositif appelé
-    aussi chômage partiel ou chômage technique) par l'employeur. Pour bénéficier
-    de ce dispositif et obtenir l'allocation de l'État correspondant aux heures
-    dites chômées : Heure non travaillée sur décision de l'employeur,
-    l'employeur doit engager des démarches auprès de la Dreets : Dreets :
-    Direction régionale de l'économie, de l'emploi, du travail et des
-    solidarités (ex-Direccte) (anciennement Direccte).  par défaut: non
+    En cas de recours à l’activité partielle (dispositif anciennement appelé
+    « chômage partiel » ou « chômage technique ») au sein d’une entreprise, les
+    salariés touchés par une perte de salaire sont indemnisés par l’employeur.
 
+    Pour bénéficier de ce dispositif et obtenir l’allocation de l’État correspondant
+    aux heures dites chômées (heures non travaillées sur décision de l’employeur),
+    l’employeur doit engager des démarches auprès de la <abbr title="Direction
+    départementale de l’économie, de l’emploi, du travail et des solidarités">DDEETS
+    </abbr> (anciennement Direccte). Cette démarche Cette démarche est à réaliser
+    sur le site [activitepartielle.emploi.gouv.fr](https://activitepartielle.emploi.gouv.fr)
   note: |
-    Ce simulateur ne prend uniquement en compte le cas général, et ne tient pas compte des cas particuliers (ex: Mayotte, allocation longue durée, Covid-19)
+    Ce simulateur ne prend uniquement en compte le cas général, et ne tient pas
+    compte des cas particuliers (ex: Mayotte, allocation longue durée, Covid-19).
   par défaut: non
   références:
-    "Chômage partiel ou technique (activité partielle) : démarches de l'employeur": https://www.service-public.fr/professionnels-entreprises/vosdroits/F23503
-    'Employeurs : comment fonctionne l’activité partielle en cas de difficultés ?': https://www.economie.gouv.fr/entreprises/activite-partielle
-    'L’activité partielle (dispositif de droit commun)': https://www.urssaf.fr/portail/home/employeur/reduire-ou-cesser-lactivite/la-reduction-ou-la-cessation-tem/lactivite-partielle-dispositif-d.html
-    déclaration employeur: https://activitepartielle.emploi.gouv.fr/aparts/
+    L'activité partielle: https://www.urssaf.fr/accueil/employeur/reduire-cesser-activite/activite-partielle.html
+    L'activité partielle (AP): https://travail-emploi.gouv.fr/lactivite-partielle-ap
+    'Chômage partiel ou technique (activité partielle) : démarches de l’employeur': https://entreprendre.service-public.gouv.fr/vosdroits/F23503
+    Démarches en ligne: https://activitepartielle.emploi.gouv.fr/aparts/
 
 salarié . activité partielle . heures chômées:
+  description: |
+    Heures non travaillées sur décision de l’employeur.
   unité: heure/mois
   formule:
     valeur: contrat . temps de travail - heures travaillées
@@ -63,9 +67,9 @@ salarié . activité partielle . heures chômées:
 
 salarié . activité partielle . heures travaillées:
   titre: heures travaillées restantes
-  question: Quel est le nombre d'heures travaillées sur le mois ?
+  question: Quel est le nombre d’heures travaillées sur le mois ?
   description: >-
-    Dans le cadre du chômage partiel, le nombre d'heure restantes travaillées.
+    Le nombre d’heures restantes travaillées dans le cadre de l’activité partielle.
     Doit être inférieur au temps contractuel.
   par défaut: 0 heure/mois
   suggestions:
@@ -78,14 +82,14 @@ salarié . activité partielle . heures travaillées . contrôle temps de travai
   sévérité: avertissement
   formule: heures travaillées > contrat . temps de travail
   description: >-
-    Dans le cadre de l'activité partielle, le temps de travail doit être
+    Dans le cadre de l’activité partielle, le temps de travail doit être
     inférieur à celui inscrit dans le contrat de travail.
 
 salarié . activité partielle . indemnités:
   description: >-
-    La mise en chômage partiel ouvre droit non au paiement d’un salaire mais à
+    La mise en activité partielle ouvre droit non au paiement d’un salaire mais à
     l’allocation spécifique. Pour chaque heure chômée indemnisable, le salarié
-    reçoit de l'entreprise une indemnité. L'entreprise obtient en contrepartie
+    reçoit de l’entreprise une indemnité. L’entreprise obtient en contrepartie
     de l’Etat une allocation d’activité partielle.
 
   somme:
@@ -96,17 +100,18 @@ salarié . activité partielle . indemnités:
 
 salarié . activité partielle . indemnités . légale:
   description: |
-    L'employeur doit verser au salarié une indemnité minimum légale égale à 60% de sa rémunération brute par heure chomée.
+    L’employeur doit verser au salarié une indemnité minimum légale égale à 60% de
+    sa rémunération brute par heure chômée.
 
-    Si après versement de l’indemnité d’activité partielle la rémunération du
+    Si, après versement de l’indemnité d’activité partielle, la rémunération du
     salarié est inférieure à la rémunération mensuelle minimale (RMM garantie par
     les articles L3232-1 et suivants du code du travail pour les salariés à temps
-    plein), l'employeur doit  lui verser une allocation complémentaire qui est égale
+    plein), l’employeur doit  lui verser une allocation complémentaire qui est égale
     à la différence entre la rémunération mensuelle minimale (ou Smic net) et la
     somme initialement perçue par le salarié.
 
-    Cette allocation complémentaire est exonérée de cotisations et contributions dans les
-    mêmes conditions que l’indemnité d’activité partielle légale.
+    Cette allocation complémentaire est exonérée de cotisations et contributions
+    dans les mêmes conditions que l’indemnité d’activité partielle légale.
 
   somme:
     - base
@@ -151,18 +156,18 @@ salarié . activité partielle . retrait absence:
 salarié . activité partielle . indemnisation entreprise:
   titre: Remboursement de l'indemnité
   description: >-
-    Si l'employeur a obtenu l'autorisation administrative, il peut déposer une
-    **demande d'indemnisation** qui lui permet d'obtenir le **remboursement
-    mensuel** des rémunérations versées aux salariés concernés.
+    Si l’employeur a obtenu l’autorisation administrative, il peut déposer une
+    **demande d’indemnisation** qui lui permet d’obtenir le
+    **remboursement mensuel** des rémunérations versées aux salariés concernés.
 
+    L’employeur peut percevoir l’allocation d’activité partielle dans la limite
+    d’un plafond de **1000 heures par an et par salarié**.
 
-    L'employeur peut percevoir l'allocation d'activité partielle dans la limite d'un plafond de **1000 heures par an et par salarié**.
+    > **Note** : Pour l’activité partielle de longue durée (APLD), le taux horaire
+    > minimum peut monter à **9,40 €**.
 
-
-    > **Note** : Pour l’activité partielle de longue durée (APLD), le taux horaire minimum peut monter à **9,40 €**.
-
-
-    > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
+    > **Attention** : en cas de fraude ou de fausse déclaration, l’employeur
+    > encourt jusqu’à 2 ans d’emprisonnement et 30 000 € d’amende.
   produit:
     - retrait absence
     - taux d'indemnisation
