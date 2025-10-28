@@ -56,7 +56,7 @@ export default function IndépendantSimulation() {
 									dispatch(
 										ajusteLaSituation({
 											'entreprise . imposition': imposition,
-										} as Record<DottedName, ValeurPublicodes>)
+										} as Record<DottedName, ValeurPublicodes | undefined>)
 									)
 								}}
 							/>
