@@ -2,7 +2,7 @@ import { Store } from 'redux'
 
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
+import { PreviousSimulation } from '@/store/selectors/simulation/currentSimulation.selector'
 
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'

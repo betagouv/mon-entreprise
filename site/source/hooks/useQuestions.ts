@@ -19,10 +19,10 @@ import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions
 import { useEngine } from '@/hooks/useEngine'
 import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
-import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
-import { raccourcisSelector } from '@/store/selectors/raccourcis.selector'
+import { listeNoireSelector } from '@/store/selectors/simulation/config/listeNoire.selector'
+import { raccourcisSelector } from '@/store/selectors/simulation/config/raccourcis.selector'
+import { questionsRéponduesSelector } from '@/store/selectors/simulation/questions/questionsRépondues.selector'
+import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
 
 interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'

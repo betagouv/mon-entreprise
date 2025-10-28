@@ -10,19 +10,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { supprimeLaRègleDeLaSituation } from '@/store/actions/actions'
-import { companySituationSelector } from '@/store/selectors/companySituation.selector'
-import {
-	completeSituationSelector,
-	configObjectifsSelector,
-	configSituationSelector,
-	situationSelector,
-} from '@/store/selectors/simulationSelectors'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
+import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
+import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
+import { configSituationSelector } from '@/store/selectors/simulation/config/configSituation.selector'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { omit } from '@/utils'
 
 export const EngineContext = createContext<Engine>(new Engine())
 export const EngineProvider = EngineContext.Provider
-
-export const useRawSituation = () => useSelector(completeSituationSelector)
 
 /**
  * Try to set situation and delete all rules with syntax/evaluation error
@@ -87,14 +83,13 @@ export const safeSetSituation = <Names extends string>(
 
 export const useSetupSafeSituation = (engine: Engine<DottedName>) => {
 	const dispatch = useDispatch()
-	const rawSituation = useRawSituation()
-
+	const completeSituation = useSelector(completeSituationSelector)
 	const simulatorSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
 	const companySituation = useSelector(companySituationSelector)
 
 	try {
-		safeSetSituation(engine, rawSituation, ({ faultyDottedName }) => {
+		safeSetSituation(engine, completeSituation, ({ faultyDottedName }) => {
 			if (!faultyDottedName) {
 				throw new Error('Bad empty faultyDottedName')
 			}
