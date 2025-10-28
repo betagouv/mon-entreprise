@@ -29,7 +29,7 @@ import { useEngine } from '@/hooks/useEngine'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 import Formulaire from './components/Formulaire'
 import Résultats from './components/Résultats'

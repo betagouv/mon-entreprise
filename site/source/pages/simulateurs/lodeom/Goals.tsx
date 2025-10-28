@@ -10,7 +10,7 @@ import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,

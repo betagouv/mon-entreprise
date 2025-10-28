@@ -19,7 +19,7 @@ import {
 } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
-import { companySirenSelector } from '@/store/selectors/companySiren.selector'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { useNextStep } from './_components/useSteps'
 import créerSvg from './_illustrations/créer.svg'
