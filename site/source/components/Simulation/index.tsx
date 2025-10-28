@@ -13,7 +13,7 @@ import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNavigation } from '@/lib/navigation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
+import { firstStepCompletedSelector } from '@/store/selectors/simulation/firstStepCompleted.selector'
 
 import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../ATInternetTracking'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'

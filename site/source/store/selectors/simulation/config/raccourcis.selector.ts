@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect'
 
-import { configSelector } from './config.selector'
-import { questionsRéponduesNomSelector } from './questionsRéponduesNom.selector'
-import { questionsSuivantesSelector } from './questionsSuivantes.selector'
+import { configSelector } from '@/store/selectors/simulation/config/config.selector'
+import { questionsRéponduesNomSelector } from '@/store/selectors/simulation/questions/questionsRéponduesNom.selector'
+import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
 
 export const raccourcisSelector = createSelector(
 	[configSelector, questionsSuivantesSelector, questionsRéponduesNomSelector],

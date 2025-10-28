@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 
-import { currentQuestionSelector } from '@/store/selectors/currentQuestion.selector'
-import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
+import { currentQuestionSelector } from '@/store/selectors/simulation/questions/currentQuestion.selector'
+import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicablesNoms.selector'
 
 export const numéroDeLaQuestionEnCoursSelector = createSelector(
 	[questionsRéponduesEncoreApplicablesNomsSelector, currentQuestionSelector],

@@ -4,6 +4,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import { RuleField } from '@/components/conversation/RuleField'
+import Value from '@/components/EngineValue/Value'
+import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import { EvaluatedRule } from '@/components/utils/EngineContext'
 import {
 	Button,
@@ -27,17 +31,12 @@ import {
 } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
-import { companySituationSelector } from '@/store/selectors/companySituation.selector'
-import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
-import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
+import { listeNoireSelector } from '@/store/selectors/simulation/config/listeNoire.selector'
+import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicablesNoms.selector'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { NoOp } from '@/utils/NoOp'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
-
-import Value from '../EngineValue/Value'
-import { JeDonneMonAvis } from '../JeDonneMonAvis'
-import { ExplicableRule } from './Explicable'
-import { RuleField } from './RuleField'
 
 const { Body, H2, H3, Intro, Link, Strong, Ul } = typography
 

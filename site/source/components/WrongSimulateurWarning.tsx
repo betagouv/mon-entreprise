@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Message, SmallBody, Strong } from '@/design-system'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { PageConfig } from '@/pages/simulateurs/_configs/types'
-import { companySituationSelector } from '@/store/selectors/companySituation.selector'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 
 export default function WrongSimulateurWarning() {
 	const company = useSelector(companySituationSelector)

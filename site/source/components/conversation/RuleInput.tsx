@@ -39,7 +39,7 @@ import {
 } from '@/domaine/Unités'
 import { useEngine } from '@/hooks/useEngine'
 import { enregistreLesRéponsesÀLaQuestion } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { getMeta } from '@/utils/publicodes/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
