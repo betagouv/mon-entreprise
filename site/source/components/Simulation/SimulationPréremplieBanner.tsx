@@ -5,8 +5,8 @@ import { styled } from 'styled-components'
 
 import SimulationBanner from '@/components/Simulation/Banner'
 import { Link, PopoverWithTrigger } from '@/design-system'
-import { companySituationSelector } from '@/store/selectors/companySituation.selector'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 import AnswerList from '../conversation/AnswerList'
 import WrongSimulateurWarning from '../WrongSimulateurWarning'

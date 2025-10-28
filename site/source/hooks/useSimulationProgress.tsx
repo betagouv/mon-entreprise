@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { numéroDeLaQuestionEnCoursSelector } from '@/store/selectors/numéroDeLaQuestionEnCours.selector'
-import { questionsRéponduesEncoreApplicablesSelector } from '@/store/selectors/questionsRéponduesEncoreApplicables.selector'
+import { numéroDeLaQuestionEnCoursSelector } from '@/store/selectors/simulation/questions/numéroDeLaQuestionEnCours.selector'
+import { questionsRéponduesEncoreApplicablesSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicables.selector'
 
 export function useSimulationProgress(): {
 	progressRatio: number

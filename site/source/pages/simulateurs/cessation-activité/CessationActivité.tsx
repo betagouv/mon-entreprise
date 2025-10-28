@@ -8,8 +8,8 @@ import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useUrl } from '@/hooks/useUrl'
 import { CessationActivitéGoals } from '@/pages/simulateurs/cessation-activité/Goals'
-import { companySituationSelector } from '@/store/selectors/companySituation.selector'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { omit } from '@/utils'
 
 export const CessationActivitéSimulation = () => {

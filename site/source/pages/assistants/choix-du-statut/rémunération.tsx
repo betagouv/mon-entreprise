@@ -15,7 +15,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { debounce } from '@/utils'
 
 import Layout from './_components/Layout'
@@ -182,7 +182,7 @@ function useChiffreAffairesState(): [
 	const debouncedUpdateSituation = useCallback(
 		debounce(1000, (newState: CAState) => {
 			dispatch(
-				batchUpdateSituation({
+				enregistreLesRéponsesAuxQuestions({
 					"entreprise . chiffre d'affaires": O.some(newState.CA),
 					'entreprise . charges': O.some(newState.charges),
 					'dirigeant . rémunération . totale': O.none(),
@@ -231,7 +231,7 @@ function useRémunérationTotaleState(): [
 	const debouncedUpdateSituation = useCallback(
 		debounce(1000, (newState: RémunérationState) => {
 			dispatch(
-				batchUpdateSituation({
+				enregistreLesRéponsesAuxQuestions({
 					"entreprise . chiffre d'affaires": O.none(),
 					'entreprise . charges': O.none(),
 					'dirigeant . rémunération . totale': O.fromNullable(

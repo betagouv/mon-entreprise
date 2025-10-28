@@ -3,11 +3,11 @@ import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import { StatutType } from '@/components/StatutTag'
-import { useRawSituation } from '@/components/utils/EngineContext'
 import {
 	Button,
 	Container,
@@ -25,6 +25,7 @@ import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/Sta
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
+import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 
 import { usePreviousStep } from './_components/useSteps'
 
@@ -92,7 +93,7 @@ export default function Comparateur() {
  */
 function useStatutComparaison(): EngineComparison {
 	const possibleStatuts = usePossibleStatuts()
-	const situation = useRawSituation()
+	const situation = useSelector(completeSituationSelector)
 	const engine = useEngine()
 
 	const namedEngines = useMemo(

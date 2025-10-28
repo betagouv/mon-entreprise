@@ -15,11 +15,11 @@ import {
 import { useEngine } from '@/hooks/useEngine'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
-	batchUpdateSituation,
+	enregistreLesRéponsesAuxQuestions,
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
-import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
+import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
 
 export default function useSetSimulationFromSearchParams() {
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -42,7 +42,7 @@ export default function useSetSimulationFromSearchParams() {
 		(newSituation: Record<DottedName, ValeurDomaine>) => {
 			if (!R.isEmptyReadonlyRecord(newSituation)) {
 				dispatch(
-					batchUpdateSituation(
+					enregistreLesRéponsesAuxQuestions(
 						pipe(
 							newSituation,
 							R.map((valeur) => O.fromNullable(valeur))

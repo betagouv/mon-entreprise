@@ -31,7 +31,7 @@ import {
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useSitePaths } from '@/sitePaths'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 import urlIllustrationNetBrutEn from './illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './illustration-net-brut.png'

@@ -6,7 +6,7 @@ import { Entreprise } from '@/domaine/Entreprise'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSetEntrepriseFromUrssafConnection from '@/hooks/useSetEntrepriseFromUrssafConnection'
 import { resetCompany } from '@/store/actions/companyActions'
-import { companySirenSelector } from '@/store/selectors/companySiren.selector'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import SelectedEntrepriseDetails from '../entreprise/SelectedEntrepriseDetails'
 

@@ -12,7 +12,7 @@ import { détermineLesProchainesQuestions } from '@/domaine/engine/détermineLes
 import {
 	Action,
 	applicabilitéDesQuestionsRépondues,
-	questionsSuivantes,
+	metÀJourLesQuestionsSuivantes,
 } from '@/store/actions/actions'
 import {
 	RootState,
@@ -20,10 +20,8 @@ import {
 	SituationPublicodes,
 } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
-import {
-	completeSituationSelector,
-	rawSituationsSelonContextesSelector,
-} from '@/store/selectors/simulationSelectors'
+import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
+import { completeSituationsSelonContextesSelector } from '@/store/selectors/completeSituationSelonContextes.selector'
 import { complement } from '@/utils/complement'
 
 let lastSimulation: Simulation | null = null
@@ -58,7 +56,7 @@ export const prendLaProchaineQuestionMiddleware =
 			lastSituationsAvecContextes = null
 		}
 
-		if (action.type === 'SET_SIMULATION') {
+		if (action.type === 'CONFIGURE_LA_SIMULATION') {
 			lastConfig = null
 			lastSituationsAvecContextes = null
 			lastSimulation = null
@@ -66,7 +64,7 @@ export const prendLaProchaineQuestionMiddleware =
 
 		if (situation && config && engines && simulation !== lastSimulation) {
 			const situationsAvecContextes =
-				rawSituationsSelonContextesSelector(newState)
+				completeSituationsSelonContextesSelector(newState)
 
 			const situationAChangé =
 				!!lastSituationsAvecContextes &&
@@ -105,7 +103,7 @@ export const prendLaProchaineQuestionMiddleware =
 				if (
 					arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
 				) {
-					store.dispatch(questionsSuivantes(prochainesQuestions))
+					store.dispatch(metÀJourLesQuestionsSuivantes(prochainesQuestions))
 				}
 			}
 		}
