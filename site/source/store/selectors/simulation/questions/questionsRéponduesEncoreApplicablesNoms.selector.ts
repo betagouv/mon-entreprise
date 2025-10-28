@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 
-import { questionsRéponduesEncoreApplicablesSelector } from '@/store/selectors/questionsRéponduesEncoreApplicables.selector'
+import { questionsRéponduesEncoreApplicablesSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicables.selector'
 
 export const questionsRéponduesEncoreApplicablesNomsSelector = createSelector(
 	[questionsRéponduesEncoreApplicablesSelector],
