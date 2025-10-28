@@ -19,7 +19,7 @@ import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSetEntrepriseFromUrssafConnection from '@/hooks/useSetEntrepriseFromUrssafConnection'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
-import { companySirenSelector } from '@/store/selectors/companySiren.selector'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()

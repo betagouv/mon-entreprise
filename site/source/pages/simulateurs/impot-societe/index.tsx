@@ -28,7 +28,7 @@ import {
 	enregistreLaRéponseÀLaQuestion,
 	enregistreLesRéponsesAuxQuestions,
 } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 export default function ISSimulation() {
 	return (

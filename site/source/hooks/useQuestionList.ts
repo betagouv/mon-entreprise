@@ -6,7 +6,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
-import { questionsRéponduesNomSelector } from '@/store/selectors/questionsRéponduesNom.selector'
+import { questionsRéponduesNomSelector } from '@/store/selectors/simulation/questions/questionsRéponduesNom.selector'
 
 export function useQuestionList(): [
 	questions: Array<RuleNode & { dottedName: DottedName }>,
