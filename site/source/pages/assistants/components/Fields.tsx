@@ -13,10 +13,8 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
-import {
-	situationSelector,
-	targetUnitSelector,
-} from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { evaluateQuestion, getMeta } from '@/utils/publicodes/publicodes'
 
 type SubSectionProp = {

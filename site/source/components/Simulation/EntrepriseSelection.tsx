@@ -10,7 +10,7 @@ import {
 	SearchIcon,
 	typography,
 } from '@/design-system'
-import { companySirenSelector } from '@/store/selectors/companySiren.selector'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import EntrepriseInput from '../conversation/EntrepriseInput'
 import Value from '../EngineValue/Value'

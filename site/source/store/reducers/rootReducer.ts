@@ -7,7 +7,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { Action, enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { simulationReducer } from '@/store/reducers/simulation.reducer'
-import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
+import { PreviousSimulation } from '@/store/selectors/simulation/currentSimulation.selector'
 import situationReducer from '@/store/slices/simulateursSlice'
 
 import { companySituation } from './companySituationReducer'

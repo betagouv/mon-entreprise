@@ -18,7 +18,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
 import { useEngine } from '@/hooks/useEngine'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition } from './EngineValue/Condition'
