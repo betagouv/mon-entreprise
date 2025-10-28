@@ -10,7 +10,7 @@ import Warning from '@/components/ui/WarningBlock'
 import { Body, H2, Intro, Li, SmallBody, Strong, Ul } from '@/design-system'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 import Formulaire from './components/Formulaire'
 import ImpositionSection from './components/ImpositionSection'

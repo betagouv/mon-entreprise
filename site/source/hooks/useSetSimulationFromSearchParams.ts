@@ -19,7 +19,7 @@ import {
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
-import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
+import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
 
 export default function useSetSimulationFromSearchParams() {
 	const [searchParams, setSearchParams] = useSearchParams()

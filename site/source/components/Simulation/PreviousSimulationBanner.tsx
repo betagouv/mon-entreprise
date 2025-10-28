@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import SimulationBanner from '@/components/Simulation/Banner'
 import { Link } from '@/design-system'
 import { chargeLaSimulationPrécédente } from '@/store/actions/actions'
-import { previousSimulationSelector } from '@/store/selectors/simulationSelectors'
+import { previousSimulationSelector } from '@/store/selectors/previousSimulation.selector'
 
 export default function PreviousSimulationBanner() {
 	const previousSimulation = useSelector(previousSimulationSelector)
