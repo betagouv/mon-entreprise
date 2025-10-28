@@ -40,7 +40,7 @@ export function AssistantGoal({
 			dispatch(
 				ajusteLaSituation({ [dottedName]: x } as Record<
 					DottedName,
-					ValeurPublicodes
+					ValeurPublicodes | undefined
 				>)
 			)
 		},
