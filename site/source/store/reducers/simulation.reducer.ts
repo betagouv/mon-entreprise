@@ -1,11 +1,11 @@
 import * as A from 'effect/Array'
+import * as R from 'effect/Record'
 import * as Optics from 'optics-ts'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { updateSituation } from '@/domaine/updateSituation'
-import { updateSituationMulti } from '@/domaine/updateSituationMulti'
 import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
 import { Action } from '@/store/actions/actions'
 import { omit, reject } from '@/utils'
@@ -67,10 +67,21 @@ export function simulationReducer(
 		case 'AJUSTE_LA_SITUATION': {
 			return {
 				...state,
-				situation: updateSituationMulti(
-					state.config,
+				situation: R.reduce(
+					action.amendement,
 					state.situation,
-					action.amendement
+					(newSituation, value, dottedName) => {
+						if (value === undefined) {
+							return omit(newSituation, dottedName)
+						}
+
+						return updateSituation(
+							state.config,
+							newSituation,
+							dottedName,
+							value
+						)
+					}
 				),
 			}
 		}
@@ -115,7 +126,6 @@ export function simulationReducer(
 				...state,
 				questionsRépondues: answeredQuestions,
 				situation: updateSituationMultiple(
-					state.config,
 					state.situation,
 					action.règle,
 					action.valeurs
