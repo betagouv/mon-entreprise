@@ -33,7 +33,7 @@ export const CessationActivitéToggles = () => {
 							dispatch(
 								ajusteLaSituation({
 									'entreprise . date de cessation': date,
-								} as Record<DottedName, ValeurPublicodes>)
+								} as Record<DottedName, ValeurPublicodes | undefined>)
 							)
 						}}
 						hideDefaultValue
