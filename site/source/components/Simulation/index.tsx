@@ -12,7 +12,7 @@ import { Button, Grid, H3, Spacing } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
+import { firstStepCompletedSelector } from '@/store/selectors/simulation/firstStepCompleted.selector'
 
 import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../ATInternetTracking'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'

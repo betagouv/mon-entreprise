@@ -9,7 +9,7 @@ import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/Annu
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
 import { useSitePaths } from '@/sitePaths'
-import { companySirenSelector } from '@/store/selectors/companySiren.selector'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { ExternalLink } from './_configs/types'
 import ExternalLinkCard from './cards/ExternalLinkCard'
