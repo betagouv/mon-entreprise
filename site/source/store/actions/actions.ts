@@ -55,9 +55,8 @@ export function chargeLaSimulationPrécédente() {
 /**
  * Modifie la situation, sans modifier la liste des questions répondues
  */
-
-export const ajusteLaSituation = <T extends DottedName>(
-	amendement: Record<T, ValeurPublicodes | undefined>
+export const ajusteLaSituation = (
+	amendement: Record<DottedName, ValeurPublicodes | undefined>
 ) =>
 	({
 		type: 'AJUSTE_LA_SITUATION',

@@ -70,7 +70,7 @@ export function SimulationGoal({
 			dispatch(
 				ajusteLaSituation({ [dottedName]: montantDansLaBonneUnité } as Record<
 					DottedName,
-					ValeurPublicodes
+					ValeurPublicodes | undefined
 				>)
 			)
 			onUpdateSituation?.(dottedName, montantDansLaBonneUnité)

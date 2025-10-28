@@ -13,23 +13,26 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
-export const useStatefulRulesEdit = <T extends DottedName>(
-	rules: ReadonlyArray<T>,
+export const useStatefulRulesEdit = (
+	rules: ReadonlyArray<DottedName>,
 	contexte?: PublicodesExpression
 ) => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
 	const engineValues = useMemo(
-		(): Record<T, O.Option<ValeurPublicodes>> =>
-			pipe<Record<T, EvaluatedNode>, Record<T, O.Option<ValeurPublicodes>>>(
+		(): Record<DottedName, O.Option<ValeurPublicodes>> =>
+			pipe<
+				Record<DottedName, EvaluatedNode>,
+				Record<DottedName, O.Option<ValeurPublicodes>>
+			>(
 				R.fromIterableWith(rules, (rule) => [
 					rule,
 					engine.evaluate({
 						valeur: rule,
 						contexte,
 					}),
-				]) as Record<T, EvaluatedNode>,
+				]) as Record<DottedName, EvaluatedNode>,
 				R.map((node: EvaluatedNode) => PublicodesAdapter.decode(node))
 			),
 		[rules, contexte, engine]
@@ -38,11 +41,11 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 	const [dirtyValues, setValues] = useState(engineValues)
 
 	const values = pipe<
-		Record<T, O.Option<ValeurPublicodes>>,
-		Record<T, ValeurPublicodes | undefined>
+		Record<DottedName, O.Option<ValeurPublicodes>>,
+		Record<DottedName, ValeurPublicodes | undefined>
 	>(
 		dirtyValues,
-		R.map<T, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
+		R.map<DottedName, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
 			O.getOrUndefined
 		)
 	)
@@ -52,19 +55,12 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 			...dirtyValues,
 			[rule]: O.some(newValue),
 		})
-	}) as Record<T, (newValue: string | boolean | undefined) => void>
+	}) as Record<DottedName, (newValue: string | boolean | undefined) => void>
 
 	const cancel = () => setValues(engineValues)
 
 	const confirm = () => {
-		dispatch(
-			ajusteLaSituation(
-				pipe<
-					Record<T, ValeurPublicodes | undefined>,
-					Record<T, ValeurPublicodes>
-				>(values, filterRecordNotUndefined)
-			)
-		)
+		dispatch(ajusteLaSituation(values))
 	}
 
 	return {
@@ -74,7 +70,3 @@ export const useStatefulRulesEdit = <T extends DottedName>(
 		confirm,
 	}
 }
-
-const filterRecordNotUndefined = <T, K extends string = string>(
-	r: Record<K, T | undefined>
-) => R.filter(r, (v: T | undefined): v is T => v !== undefined) as Record<K, T>
