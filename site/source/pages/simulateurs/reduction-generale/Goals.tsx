@@ -6,7 +6,7 @@ import RéductionMoisParMois from '@/components/RéductionDeCotisations/Réducti
 import { SimulationGoals } from '@/components/Simulation'
 import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,

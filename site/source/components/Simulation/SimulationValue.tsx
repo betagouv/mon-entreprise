@@ -12,7 +12,7 @@ import { isMontant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useInitialRender } from '@/hooks/useInitialRender'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 import LectureGuide from '../LectureGuide'
 import RuleLink from '../RuleLink'

@@ -20,10 +20,8 @@ import {
 	SituationPublicodes,
 } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
-import {
-	completeSituationSelector,
-	rawSituationsSelonContextesSelector,
-} from '@/store/selectors/simulationSelectors'
+import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
+import { completeSituationsSelonContextesSelector } from '@/store/selectors/completeSituationSelonContextes.selector'
 import { complement } from '@/utils/complement'
 
 let lastSimulation: Simulation | null = null
@@ -66,7 +64,7 @@ export const prendLaProchaineQuestionMiddleware =
 
 		if (situation && config && engines && simulation !== lastSimulation) {
 			const situationsAvecContextes =
-				rawSituationsSelonContextesSelector(newState)
+				completeSituationsSelonContextesSelector(newState)
 
 			const situationAChangé =
 				!!lastSituationsAvecContextes &&

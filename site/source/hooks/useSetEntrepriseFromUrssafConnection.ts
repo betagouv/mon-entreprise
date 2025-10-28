@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 import { getCookieValue } from '@/storage/readCookie'
-import { companySirenSelector } from '@/store/selectors/companySiren.selector'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { useEntreprisesRepository } from './useRepositories'
 import { useSetEntreprise } from './useSetEntreprise'

@@ -9,7 +9,7 @@ import RuleLink from '@/components/RuleLink'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import useDisplayOnIntersecting from '@/hooks/useDisplayOnIntersecting'
 import { useEngine } from '@/hooks/useEngine'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 import { DisableAnimationContext } from './utils/DisableAnimationContext'
 
