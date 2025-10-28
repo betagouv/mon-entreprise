@@ -1,4 +1,4 @@
-import { currentSimulationSelector } from '@/store/selectors/previousSimulationSelectors'
+import { currentSimulationSelector } from '@/store/selectors/simulation/currentSimulation.selector'
 
 export const serialize = (
 	...args: Parameters<typeof currentSimulationSelector>

@@ -6,7 +6,7 @@ import LectureGuide from '@/components/LectureGuide'
 import { Body, FlexCenter, Grid, Strong } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 import CheckboxImpôts from './CheckboxImpôts'
 import MontantImpôts from './MontantImpôts'
