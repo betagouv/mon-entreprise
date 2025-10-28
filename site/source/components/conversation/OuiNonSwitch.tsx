@@ -5,7 +5,7 @@ import { NoOp } from '@/utils/NoOp'
 interface OuiNonSwitchProps {
 	label: string
 	value?: OuiNon
-	onChange?: (value: OuiNon | undefined) => void
+	onChange?: (value: OuiNon) => void
 	defaultValue?: OuiNon
 }
 
