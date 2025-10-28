@@ -19,7 +19,7 @@ import {
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import * as logosSrc from '@/utils/logos'
 
 import { Condition } from '../EngineValue/Condition'

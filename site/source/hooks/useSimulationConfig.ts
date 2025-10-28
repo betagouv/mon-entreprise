@@ -7,7 +7,7 @@ import {
 	configureLaSimulation,
 } from '@/store/actions/actions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { configSelector } from '@/store/selectors/config.selector'
+import { configSelector } from '@/store/selectors/simulation/config/config.selector'
 
 import { useEngine } from './useEngine'
 

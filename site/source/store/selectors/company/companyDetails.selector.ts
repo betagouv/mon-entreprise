@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect'
 
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { getStringOrNullFromPublicodesExpression } from '@/utils/publicodes/getStringOrNullFromPublicodesExpression'
-
-import { companySituationSelector } from './companySituation.selector'
 
 export const companyDetailsSelector = createSelector(
 	[companySituationSelector],
