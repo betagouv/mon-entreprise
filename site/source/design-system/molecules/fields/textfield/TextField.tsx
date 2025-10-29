@@ -6,6 +6,15 @@ import {
 	TextField as RATextField,
 	type TextFieldProps as RATextFieldProps,
 } from 'react-aria-components'
+import { styled } from 'styled-components'
+
+import {
+	errorColorStyle,
+	fieldContainerStyles,
+	fieldInputStyles,
+	fieldLabelStyles,
+	labelAndInputContainerStyles,
+} from '../fieldsStyles'
 
 type TextFieldProps = RATextFieldProps & {
 	description?: string
@@ -20,20 +29,78 @@ export function TextField({
 	errorMessage,
 	placeholder,
 	label,
+	type = 'text',
 }: TextFieldProps) {
 	return (
-		<RATextField defaultValue={defaultValue}>
-			<RALabel>{label}</RALabel>
+		<StyledRATextField type={type} defaultValue={defaultValue}>
+			<StyledLabelAndInputContainer $hasError={!!errorMessage}>
+				<StyledRALabel>{label}</StyledRALabel>
 
-			<RAInput placeholder={placeholder} />
+				<StyledRAInput placeholder={placeholder} />
+			</StyledLabelAndInputContainer>
 
-			{description && <RAText slot="description">{description}</RAText>}
+			{description && (
+				<StyledRAText slot="description">{description}</StyledRAText>
+			)}
 
 			{errorMessage ? (
-				<RAText slot="errorMessage">{errorMessage}</RAText>
+				<StyledErrorMessage slot="errorMessage">
+					{errorMessage}
+				</StyledErrorMessage>
 			) : (
-				<RAFieldError />
+				<StyledRAFieldError />
 			)}
-		</RATextField>
+		</StyledRATextField>
 	)
 }
+
+const StyledRATextField = styled(RATextField)`
+	${fieldContainerStyles}
+
+	&[data-invalid] > div {
+		${({ theme }) =>
+			`border-color: ${theme.colors.extended.error[400]};
+
+            label {
+                color: ${theme.colors.extended.error[400]}
+            }
+        `}
+	}
+`
+
+const StyledLabelAndInputContainer = styled.div<{
+	$hasError: boolean
+}>`
+	${labelAndInputContainerStyles}
+
+	${({ theme, $hasError }) =>
+		$hasError &&
+		`border-color: ${theme.colors.extended.error[400]};
+
+        label {
+            color: ${theme.colors.extended.error[400]}
+        }
+        `}
+`
+
+const StyledRALabel = styled(RALabel)`
+	${fieldLabelStyles}
+`
+
+const StyledRAInput = styled(RAInput)`
+	${fieldInputStyles}
+`
+
+const StyledRAText = styled(RAText)`
+	${fieldLabelStyles}
+`
+
+const StyledErrorMessage = styled(RAText)`
+	${fieldLabelStyles}
+	${errorColorStyle}
+`
+
+const StyledRAFieldError = styled(RAFieldError)`
+	${fieldLabelStyles}
+	${errorColorStyle}
+`
