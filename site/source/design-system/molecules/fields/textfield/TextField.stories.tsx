@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { Meta, StoryObj } from '@storybook/react'
 
 import { TextField } from './TextField'
@@ -32,6 +31,7 @@ export const WithInitialValue: Story = {
 
 export const WithPlaceholder: Story = {
 	args: {
+		type: 'email',
 		label: 'Adresse email (au format "mon-adresse@example.com")',
 		placeholder: 'Votre adresse email',
 	},
@@ -39,6 +39,7 @@ export const WithPlaceholder: Story = {
 
 export const WithDescription: Story = {
 	args: {
+		type: 'password',
 		label: 'Mot de passe',
 		description: '8 caractères minimum',
 	},
@@ -46,7 +47,9 @@ export const WithDescription: Story = {
 
 export const WithErrorMessage: Story = {
 	args: {
+		type: 'password',
 		label: 'Mot de passe',
-		errorMessage: 'Le mot de passe doit contenir 8 caractères minimum',
+		description: '8 caractères minimum',
+		errorMessage: 'Votre mot de passe contient moins de 8 caractères',
 	},
 }
