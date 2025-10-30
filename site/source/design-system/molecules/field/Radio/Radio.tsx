@@ -13,8 +13,6 @@ type RadioProps = AriaRadioProps & {
 	className?: string
 	role?: string
 	visibleRadioAs?: string | React.ComponentType
-	emoji?: string
-	infoButton?: React.ReactNode
 	defaultSelected?: boolean
 }
 
@@ -28,8 +26,6 @@ export function Radio(props: RadioProps) {
 		id,
 		'aria-label': ariaLabel,
 		'aria-labelledby': ariaLabelledby,
-		emoji,
-		infoButton,
 		visibleRadioAs,
 		defaultSelected,
 	} = props
@@ -44,8 +40,6 @@ export function Radio(props: RadioProps) {
 			id={id}
 			aria-label={ariaLabel}
 			aria-labelledby={ariaLabelledby}
-			emoji={emoji}
-			infoButton={infoButton}
 			visibleRadioAs={visibleRadioAs}
 			defaultSelected={defaultSelected}
 		>
