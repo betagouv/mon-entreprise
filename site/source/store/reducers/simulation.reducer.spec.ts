@@ -20,6 +20,134 @@ const previousQuestionAction = retourneÀLaQuestionPrécédente()
 const nextQuestionAction = vaÀLaQuestionSuivante()
 
 describe('simulationReducer', () => {
+	describe('ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION', () => {
+		it('marque la question répondue si une réponse est fournie', () => {
+			const state = {
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+				],
+				config: {
+					'objectifs exclusifs': [],
+				},
+			}
+			expect(
+				simulationReducer(
+					state as unknown as Simulation,
+					enregistreLaRéponseÀLaQuestion('c' as DottedName, 42)
+				)
+			).toMatchObject({
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+					{ règle: 'c' as DottedName, applicable: true },
+				],
+			})
+		})
+		it('enregistre la réponse dans la situation', () => {
+			const state = {
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+				],
+				config: {
+					'objectifs exclusifs': [],
+				},
+			}
+
+			expect(
+				simulationReducer(
+					state as unknown as Simulation,
+					enregistreLaRéponseÀLaQuestion('c' as DottedName, 42)
+				)
+			).toMatchObject({
+				situation: {
+					c: 42,
+				},
+			})
+		})
+		it('enregistre correctement les réponses multiples', () => {
+			const state = {
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+				],
+				config: {
+					'objectifs exclusifs': [],
+				},
+			}
+
+			expect(
+				simulationReducer(
+					state as unknown as Simulation,
+					enregistreLesRéponsesÀLaQuestion('c' as DottedName, {
+						sub1: 42,
+						'sub2 . subC': 'hello',
+					})
+				)
+			).toMatchObject({
+				situation: {
+					'c . sub1': 42,
+					'c . sub2 . subC': `'hello'`,
+				},
+			})
+		})
+	})
+	describe('SUPPRIME_LA_RÈGLE_DE_LA_SITUATION', () => {
+		it('supprime la question des questions répondues si réponse effacée', () => {
+			const state = {
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+					{ règle: 'c' as DottedName, applicable: true },
+				],
+				config: {
+					'objectifs exclusifs': [],
+				},
+				situation: {
+					c: 42,
+				},
+			}
+			expect(
+				simulationReducer(
+					state as unknown as Simulation,
+					supprimeLaRègleDeLaSituation('c' as DottedName)
+				)
+			).toMatchObject({
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+				],
+			})
+		})
+		it('ne change rien sinon', () => {
+			const state = {
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+					{ règle: 'c' as DottedName, applicable: true },
+				],
+				config: {
+					'objectifs exclusifs': [],
+				},
+				situation: {
+					c: 42,
+				},
+			}
+			expect(
+				simulationReducer(
+					state as unknown as Simulation,
+					supprimeLaRègleDeLaSituation('d' as DottedName)
+				)
+			).toMatchObject({
+				questionsRépondues: [
+					{ règle: 'a' as DottedName, applicable: true },
+					{ règle: 'b' as DottedName, applicable: true },
+					{ règle: 'c' as DottedName, applicable: true },
+				],
+			})
+		})
+	})
 	describe('RETOURNE_À_LA_QUESTION_PRÉCÉDENTE', () => {
 		it('fonctionne quand la question en cours est la dernière posée', () => {
 			const state = {
@@ -221,134 +349,6 @@ describe('simulationReducer', () => {
 				questionsRépondues: [
 					{ règle: 'a' as DottedName, applicable: true },
 					{ règle: 'b' as DottedName, applicable: true },
-				],
-			})
-		})
-	})
-	describe('ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION', () => {
-		it('marque la question répondue si une réponse est fournie', () => {
-			const state = {
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-				config: {
-					'objectifs exclusifs': [],
-				},
-			}
-			expect(
-				simulationReducer(
-					state as unknown as Simulation,
-					enregistreLaRéponseÀLaQuestion('c' as DottedName, 42)
-				)
-			).toMatchObject({
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: true },
-				],
-			})
-		})
-		it('enregistre la réponse dans la situation', () => {
-			const state = {
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-				config: {
-					'objectifs exclusifs': [],
-				},
-			}
-
-			expect(
-				simulationReducer(
-					state as unknown as Simulation,
-					enregistreLaRéponseÀLaQuestion('c' as DottedName, 42)
-				)
-			).toMatchObject({
-				situation: {
-					c: 42,
-				},
-			})
-		})
-		it('enregistre correctement les réponses multiples', () => {
-			const state = {
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-				config: {
-					'objectifs exclusifs': [],
-				},
-			}
-
-			expect(
-				simulationReducer(
-					state as unknown as Simulation,
-					enregistreLesRéponsesÀLaQuestion('c' as DottedName, {
-						sub1: 42,
-						'sub2 . subC': 'hello',
-					})
-				)
-			).toMatchObject({
-				situation: {
-					'c . sub1': 42,
-					'c . sub2 . subC': `'hello'`,
-				},
-			})
-		})
-	})
-	describe('SUPPRIME_LA_RÈGLE_DE_LA_SITUATION', () => {
-		it('supprime la question des questions répondues si réponse effacée', () => {
-			const state = {
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: true },
-				],
-				config: {
-					'objectifs exclusifs': [],
-				},
-				situation: {
-					c: 42,
-				},
-			}
-			expect(
-				simulationReducer(
-					state as unknown as Simulation,
-					supprimeLaRègleDeLaSituation('c' as DottedName)
-				)
-			).toMatchObject({
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			})
-		})
-		it('ne change rien sinon', () => {
-			const state = {
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: true },
-				],
-				config: {
-					'objectifs exclusifs': [],
-				},
-				situation: {
-					c: 42,
-				},
-			}
-			expect(
-				simulationReducer(
-					state as unknown as Simulation,
-					supprimeLaRègleDeLaSituation('d' as DottedName)
-				)
-			).toMatchObject({
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: true },
 				],
 			})
 		})
