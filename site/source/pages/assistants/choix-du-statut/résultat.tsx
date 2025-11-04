@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
+import { References } from '@/components/documentation/References/References'
 import { Feedback } from '@/components/Feedback/Feedback'
-import { References } from '@/components/References'
 import { StatutType } from '@/components/StatutTag'
 import {
 	Article,
