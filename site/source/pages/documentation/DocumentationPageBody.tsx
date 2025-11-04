@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { References } from '@/components/References'
+import { References } from '@/components/documentation/References/References'
 import {
 	BodyStyle,
 	H1Style,
@@ -21,26 +21,38 @@ import {
 	StyledLinkStyle,
 	UlStyle,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
+
+type PublicodesReferencesProps = {
+	references?: Record<string, string>
+	dottedName?: string
+}
 
 export default function DocumentationPageBody({
 	documentationPath,
 	engine,
 }: {
 	documentationPath: string
-	engine: Engine
+	engine: Engine<DottedName>
 }) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { i18n } = useTranslation()
 	const params = useParams<{ '*': string }>()
 
+	const ReferencesWithEngine = ({
+		references,
+		dottedName,
+	}: PublicodesReferencesProps) =>
+		References({ engine, references, dottedName: dottedName as DottedName })
+
 	const { current: renderers } = useRef({
 		Head: Helmet,
 		Link,
 		Text: Markdown,
-		References,
+		References: ReferencesWithEngine,
 		Accordion: DocumentationAccordion,
 	} as ComponentProps<typeof RulePage>['renderers'])
 
