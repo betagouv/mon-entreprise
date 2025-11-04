@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
@@ -10,15 +11,17 @@ import {
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSetSimulationFromSearchParams from '@/hooks/useSetSimulationFromSearchParams'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
+import { RootState } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 import { Merge } from '@/types/utils'
 
 import NextSteps from '../pages/simulateurs/NextSteps'
 import { TrackChapter, TrackingChapters } from './ATInternetTracking'
 import DateChip from './DateChip'
+import Loader from './utils/Loader'
 
 export default function SimulateurOrAssistantPage() {
-	const { currentSimulatorData } = useCurrentSimulatorData()
+	const { key, currentSimulatorData } = useCurrentSimulatorData()
 	const { pathname } = useLocation()
 	if (!currentSimulatorData) {
 		throw new Error(`No simulator found with url: ${pathname}`)
@@ -42,6 +45,7 @@ export default function SimulateurOrAssistantPage() {
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({
+		id: key,
 		key: path,
 		config: simulation as Simulation,
 		autoloadLastSimulation,
@@ -49,6 +53,13 @@ export default function SimulateurOrAssistantPage() {
 	useSetSimulationFromSearchParams()
 
 	const { chapter1, chapter2, chapter3 } = tracking as TrackingChapters
+
+	const currentId = useSelector(
+		(state: RootState) => state.simulation?.id ?? null
+	)
+	if (currentId !== key) {
+		return <Loader />
+	}
 
 	const { ogTitle, ogDescription, ogImage } = meta as Merge<
 		MergedSimulatorDataValues['meta']

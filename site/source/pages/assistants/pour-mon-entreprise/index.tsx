@@ -38,16 +38,13 @@ import {
 	Strong,
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/hooks/useEngine'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
-import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
@@ -243,20 +240,6 @@ function PourMonEntreprise() {
 	)
 }
 
-const configEntrepriseDetails: SimulationConfig = {
-	questions: {
-		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
-	},
-	objectifs: [
-		'dirigeant . régime social',
-		'entreprise . imposition',
-	] as DottedName[],
-	situation: {
-		'entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut':
-			'oui',
-	},
-}
-
 const UlInColumns = styled.ul`
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
 		columns: 2;
@@ -267,12 +250,6 @@ const UlInColumns = styled.ul`
 `
 
 const AskCompanyMissingDetails = () => {
-	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig({
-		key: absoluteSitePaths.assistants.index,
-		config: configEntrepriseDetails,
-	})
-
 	const [questions, onQuestionAnswered] = useQuestionList()
 	const engine = useEngine()
 
