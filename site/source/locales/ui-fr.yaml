@@ -716,33 +716,48 @@ pages:
     l’accessibilité (RGAA)</5>, version 4.1 en raison des non-conformités et des
     dérogations énumérées ci-dessous.</13><14>Résultats des
     tests</14><15>L’audit de conformité réalisé par la société <2>boscop</2>
-    révèle que :</15><16><0>61.90% des critères RGAA sont respectés.</0><1>Le
-    taux moyen de conformité du site s’élève à 88%.</1></16><17>Nombre de
-    critères applicables : 63 ; Nombre de critères conformes : 51 ; Nombre de
-    critères non conformes : 12</17><18>Contenus non accessibles</18><19>Liste
-    des critères non conformes :<1><0>Composants JavaScript non accessibles aux
-    technologies d’assistance</0><1>Liens avec des intitulés non
-    pertinents</1><2>Changement de contexte sans avertir
-    l’utilisateur</2><3>Message non transmis aux technologies
-    d’assistance</3><4>Défaut de contraste</4><5>Indication uniquement par la
-    couleur</5><6>Contenu non compréhensible sans style</6><7>Indication
-    uniquement par la forme</7><8>Absence d’étiquette pour certains champs de
-    formulaire</8><9>Mauvaise gestion des regroupements des éléments de
-    formulaire</9></1></19><20>Dérogation pour charge
+    révèle que :</15><16><0>77,78% des critères RGAA sont respectés.</0><1>Le
+    taux moyen de conformité du site s’élève à 94%.</1><2>La page \"Simulateur
+    de revenus pour salarié\" a un taux de conformité de 91%.</2></16><17>Nombre
+    de critères applicables : 63 ; Nombre de critères conformes : 49 ; Nombre de
+    critères non conformes : 14</17><18>Contenus non accessibles</18><19>Liste
+    des critères non conformes :<1><0>Pour certaines pages web, l’information
+    est donnée uniquement par la couleur.</0><1>Pour certaines pages web, le
+    contraste entre la couleur du texte et la couleur de son arrière-plan n’est
+    pas suffisamment élevé.</1><2>Certains liens ne sont pas
+    explicites.</2><3>Certains scripts ne sont pas compatibles avec les
+    technologies d’assistance.</3><4>Pour certains scripts qui initient un
+    changement de contexte, l’utilisateur n’est pas averti ou en n’a pas le
+    contrôle.</4><5>Pour certaines pages web, l’information n’est pas structurée
+    par l’utilisation appropriée de titres.</5><6>Pour certaines pages web,
+    certaines listes ne sont pas correctement structurées.</6><7>Certains champs
+    de formulaire n’ont pas d’étiquette.</7><8>Certaines étiquettes associées à
+    un champ de formulaire ne sont pas pertinentes.</8><9>Pour certains
+    formulaires, certaines étiquettes de champ et son champ associé ne sont pas
+    accolés.</9><10>Pour certains formulaires, les champs de même nature ne sont
+    pas regroupés, si nécessaire.</10><11>Pour certains formulaires, certaines
+    légendes associées à un regroupement de champs de même nature ne sont pas
+    pertinentes.</11><12>Pour certains formulaires, certains contrôles de saisie
+    ne sont pas utilisés de manière pertinente.</12><13>Certaines zones de
+    regroupement de contenus présentes dans plusieurs pages web (zones
+    d’en-tête, de navigation principale, de contenu principal, de pied de page
+    et de moteur de recherche) ne pas peuvent être atteintes ou
+    évitées.</13></1></19><20>Dérogation pour charge
     disproportionnée</20><21>Néant</21><22>Contenus non-soumis à l'obligation
     d'accessibilité</22><23>Néant</23><24>Établissement de cette déclaration
     d'accessibilité</24> <26>Cette déclaration d'accessibilité a été établie le
     15 mai 2025.</26><27>Technologies utilisées pour la réalisation du
-    site</27><28><0> HTML 5</0><1> CSS</1><2> JavaScript </2><3> SVG </3><4>
-    Aria </4></28><29>Environnement de test</29><30>Les vérifications de
-    restitution de contenus ont été réalisées sur la base de la combinaison
-    fournie par la base de référence du RGAA 4.1, avec les versions suivantes :
-    </30><31><0>NVDA et Firefox</0><1>Jaws et Firefox </1><2>Voiceover et Safari
-    </2></31><32>Les outils utilisés lors de l’évaluation</32><33><0><0>Colour
-    Contrast Analyser</0> ;</0><1>Extension « <1>Web Developer</1> »
-    ;</1><2>Extension « Assistant RGAA » ;</2><3>Extension « <1>WCAG Contrast
-    checker</1> » ;</3><4>Extension « <1>ARC Toolkit</1> » ;</4><5>Extension «
-    HeadingsMap » ;</5><6>Outils pour développeurs intégrés au navigateur
+    site</27><28><0>HTML
+    5</0><1>CSS</1><2>JavaScript</2><3>SVG</3><4>Aria</4></28><29>Environnement
+    de test</29><30>Les vérifications de restitution de contenus ont été
+    réalisées sur la base de la combinaison fournie par la base de référence du
+    RGAA 4.1, avec les versions suivantes : </30><31><0>NVDA et
+    Firefox</0><1>Jaws et Firefox</1><2>Voiceover et Safari</2></31><32>Les
+    outils utilisés lors de l’évaluation</32><33><0><0>Colour Contrast
+    Analyser</0> ;</0><1>Extension « <1>Web Developer</1> » ;</1><2>Extension «
+    Assistant RGAA » ;</2><3>Extension « <1>WCAG Contrast checker</1> »
+    ;</3><4>Extension « <1>ARC Toolkit</1> » ;</4><5>Extension «
+    <1>HeadingsMap</1> » ;</5><6>Outils pour développeurs intégrés au navigateur
     Firefox ;</6><7>Validateur HTML du W3C.</7></33><34>Pages du site ayant fait
     l'objet de la vérification de conformité</34><35><0><0>Page d'accueil</0>
     </0><1>Page accessibilité</1><2><0>Page plan du site</0></2><3><0>Page

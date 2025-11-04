@@ -681,49 +681,60 @@ pages:
     partially compliant with the RGAA <5>(référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
     derogations listed below.</13><14>Test results</14><15>The compliance audit
-    carried out by <2>boscop</2> revealed that :</15><16><0>61.90% of RGAA
-    criteria are met.</0><1>The site's average compliance rate is
-    88%.</1></16><17>Number of applicable criteria: 63; Number of compliant
-    criteria: 51; Number of non-compliant criteria: 12</17><18>Content not
-    accessible</18><19>List of non-compliant criteria :<1><0>JavaScript
-    components not accessible to assistive technologies</0><1>Links with
-    irrelevant headings</1><2>Change of context without warning the
-    user</2><3>Message not transmitted to assistive technologies</3><4>Lack of
-    contrast</4><5>Indication by color only</5><6>Content not understandable
-    without style</6><7>Indication by form only</7><8>Lack of labels for certain
-    form fields</8><9>Poor management of form element
-    groupings</9></1></19><20>Derogation for disproportionate
+    carried out by <2>boscop</2> revealed that :</15><16><0>77.78% of RGAA
+    criteria are met.</0><1>The site's average compliance rate is 94%.</1><2>The
+    \"Income simulator for employees\" page has a compliance rate of
+    91%.</2></16><17>Number of applicable criteria: 63; Number of compliant
+    criteria: 49; Number of non-compliant criteria: 14</17><18>Content not
+    accessible</18><19>List of non-compliant criteria :<1><0>For some web pages,
+    information is provided by color only.</0><1>For some web pages, the
+    contrast between text color and background color is not sufficiently
+    high.</1><2>Some links are not self-explanatory.</2><3>Some scripts are not
+    compatible with assistive technologies.</3><4>For some scripts that initiate
+    a context switch, the user is not warned or has no control over
+    it.</4><5>For some web pages, information is not structured by the
+    appropriate use of headings.</5><6>For some web pages, certain lists are not
+    correctly structured.</6><7>Some form fields have no label.</7><8>Some
+    labels associated with a form field are irrelevant.</8><9>For some forms,
+    some field labels and their associated fields are not attached.</9><10>For
+    some forms, fields of the same nature are not grouped together, if
+    necessary.</10><11>For some forms, certain legends associated with a
+    grouping of fields of the same nature are not relevant.</11><12>For some
+    forms, certain input controls are not used appropriately.</12><13>Some
+    content grouping zones present on several web pages (header, main
+    navigation, main content, footer and search engine zones) cannot be reached
+    or avoided.</13></1></19><20>Derogation for disproportionate
     burden</20><21>None</21><22>Content not subject to accessibility
-    requirements</22><23>None</23><24>Establishment of this accessibility
+    requirements</22><23>None</23><24>Drawing up this accessibility
     declaration</24> <26>This accessibility declaration was drawn up on May 15,
-    2025.</26><27>Technologies used to create the site</27><28><0> HTML 5</0><1>
-    CSS</1><2> JavaScript </2><3> SVG </3><4> Aria </4></28><29>Test
+    2025.</26><27>Technologies used to create the site</27><28><0>HTML
+    5</0><1>CSS</1><2>JavaScript</2><3>SVG</3><4>Aria</4></28><29>Test
     environment</29><30>Content rendering checks were carried out on the basis
     of the combination provided by the RGAA 4.1 reference database, with the
-    following versions: </30><31><0>NVDA and Firefox</0><1>Jaws and Firefox
-    </1><2>Voiceover and Safari </2></31><32>Tools used during the
+    following versions: </30><31><0>NVDA and Firefox</0><1>Jaws and
+    Firefox</1><2>Voiceover and Safari</2></31><32>Tools used during the
     evaluation</32><33><0><0>Colour Contrast Analyser</0>;</0><1><1>Web
     Developer</1> extension;</1><2>RGAA Assistant\" extension;</2><3><1>WCAG
     Contrast checker</1> extension;</3><4><1>ARC Toolkit</1>
-    extension;</4><5>HeadingsMap\" extension;</5><6>Developer tools integrated
-    into the Firefox browser;</6><7>W3C HTML validator.</7></33><34>Site pages
-    checked for compliance</34><35><0><0>Home page</0> </0><1>Accessibility
-    page</1><2><0>Site map page</0></2><3><0>Statistics page</0>
-    </3><4><0>Documentation page</0></4><5><0>Simulators\"
-    page</0></5><6><0>Income simulator for employees\"
-    page</0></6><7><0>Assistant for determining deductible social charges\"
-    page</0></7><8><0>Self-employed income simulator\" page</0></8><9><0>Choose
-    status\" page</0></9><10><0>PAMC income declaration wizard\"
-    page</0></10><11><0>What's new\" page</0></11><12><0>Tools for developers\"
-    page</0></12><13><0>Calculation library\" page</0></13><14><0>Budget\"
-    page</0> </14></35><36>Right to compensation</36><37>Pending full
-    compliance, you can obtain an accessible version of documents or information
-    contained therein by sending an e-mail to <2>accessibilite@acoss.fr</2>,
-    indicating the name of the document concerned and/or the information you
-    would like to obtain. The requested information will be sent to you as soon
-    as possible.</37><38>Improvement and contact</38><39>You can help us to
-    improve the accessibility of the site by notifying us of any problems you
-    encounter. To do so, send us an e-mail to
+    extension;</4><5><1>HeadingsMap</1> \" extension;</5><6>Developer tools
+    integrated into the Firefox browser;</6><7>W3C HTML
+    validator.</7></33><34>Site pages checked for compliance</34><35><0><0>Home
+    page</0> </0><1>Accessibility page</1><2><0>Site map
+    page</0></2><3><0>Statistics page</0> </3><4><0>Documentation
+    page</0></4><5><0>Simulators\" page</0></5><6><0>Income simulator for
+    employees\" page</0></6><7><0>Assistant for determining deductible social
+    charges\" page</0></7><8><0>Self-employed income simulator\"
+    page</0></8><9><0>Choose status\" page</0></9><10><0>PAMC income declaration
+    wizard\" page</0></10><11><0>What's new\" page</0></11><12><0>Tools for
+    developers\" page</0></12><13><0>Calculation library\"
+    page</0></13><14><0>Budget\" page</0> </14></35><36>Right to
+    compensation</36><37>Pending full compliance, you can obtain an accessible
+    version of documents or information contained therein by sending an e-mail
+    to <2>accessibilite@acoss.fr</2>, indicating the name of the document
+    concerned and/or the information you would like to obtain. The requested
+    information will be sent to you as soon as possible.</37><38>Improvement and
+    contact</38><39>You can help us to improve the accessibility of the site by
+    notifying us of any problems you encounter. To do so, send us an e-mail to
     <2>accessibilite@acoss.fr.</2></39><40>Recourse</40><41>This procedure
     should be used in the following cases.</41><42>You have notified the website
     manager of a lack of accessibility that is preventing you from accessing
@@ -733,9 +744,9 @@ pages:
     Rights Defender delegate in your
     region<1>(https://www.defenseurdesdroits.fr/saisir/delegues)</1></1><2>Send
     a letter by post (free of charge, do not use a stamp) to:<1></1>Défenseur
-    des droits<3></3>Free reply 71120<5></5>75342 Paris CEDEX 07</2><3>Contact
-    the D&eacute;fenseur des droits by telephone: <2>+33 9 69 39 00
-    00</2></3></43><44>Updated on May 27, 2025</44>"
+    des droits<3></3>Libre réponse 71120<5></5>75342 Paris CEDEX
+    07</2><3>Contact the D&eacute;fenseur des droits by telephone: <2>+33 9 69
+    39 00 00</2></3></43><44>Updated on May 27, 2025</44>"
   assistant:
     recherche-code-ape:
       seo explanation: "<0>How does the APE code search work?</0><1>To find your
