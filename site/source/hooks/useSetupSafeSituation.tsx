@@ -52,15 +52,13 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 export function useInversionFail() {
 	return false
 
-	// const engine = useEngine()
-	// const objectifs = useSelector(configObjectifsSelector).map(
-	// 	(objectif) => engine.evaluate(objectif).nodeValue
-	// )
+	const engine = useEngine()
+	const objectifs = useSelector(configObjectifsSelector).map(
+		(objectif) => engine.evaluate(objectif).nodeValue
+	)
 
-	// const inversionFail =
-	// 	engine.inversionFail() && objectifs.some((o) => o === undefined)
+	const inversionFail =
+		engine.inversionFail() && objectifs.some((o) => o === undefined)
 
-	// return false
-
-	// return inversionFail
+	return inversionFail
 }
