@@ -33,6 +33,7 @@ export function EngineDocumentationRoutes({
 								<Documentation
 									engine={engine}
 									documentationPath={`${basePath}/${name}`}
+									nomModèle="modele-social"
 								/>
 							</Popover>
 						</div>
