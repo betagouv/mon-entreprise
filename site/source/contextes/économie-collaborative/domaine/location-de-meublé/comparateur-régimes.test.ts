@@ -19,6 +19,8 @@ describe('compareRégimes', () => {
 				recettes: Option.some(eurosParAn(10_000)) as Option.Some<
 					Montant<'€/an'>
 				>,
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -41,6 +43,8 @@ describe('compareRégimes', () => {
 				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
 					Montant<'€/an'>
 				>,
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				estAlsaceMoselle: Option.none(),
 				premièreAnnée: Option.none(),
 			}
@@ -71,6 +75,8 @@ describe('compareRégimes', () => {
 
 		it('calcule des valeurs de cotisations différentes pour chaque régime', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
@@ -124,6 +130,8 @@ describe('compareRégimes', () => {
 	describe('avec des recettes supérieures au plafond du régime général', () => {
 		it('devrait marquer RG, AE et PA comme non applicables, TI applicable', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
@@ -159,6 +167,8 @@ describe('compareRégimes', () => {
 	describe('avec des paramètres supplémentaires', () => {
 		it('devrait prendre en compte le paramètre estAlsaceMoselle', () => {
 			const situationNormale: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
@@ -170,6 +180,8 @@ describe('compareRégimes', () => {
 			}
 
 			const situationAlsaceMoselle: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: Option.none(),
 				_type: 'économie-collaborative',

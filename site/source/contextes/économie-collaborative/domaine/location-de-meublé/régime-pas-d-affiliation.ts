@@ -1,10 +1,21 @@
-import { Either, pipe } from 'effect'
+import { Either, Option, pipe } from 'effect'
 
-import { eurosParAn, Montant } from '@/domaine/Montant'
+import { estPlusGrandOuÉgalÀ, eurosParAn, Montant } from '@/domaine/Montant'
 
-import { AffiliationObligatoire } from './erreurs'
-import { vérifieActivitéNonProfessionnelle } from './estActiviteProfessionnelle'
-import { SituationÉconomieCollaborativeValide } from './situation'
+import {
+	AffiliationObligatoire,
+	RégimeNonApplicablePourCeTypeDeDurée,
+} from './erreurs'
+import { estActivitéPrincipale } from './estActivitéPrincipale'
+import {
+	SEUIL_PROFESSIONNALISATION,
+	vérifieActivitéNonProfessionnelle,
+} from './estActiviteProfessionnelle'
+import {
+	RegimeCotisation,
+	SituationÉconomieCollaborativeValide,
+	situationParDéfaut,
+} from './situation'
 
 /**
  * Calcule les cotisations sociales pour le régime "pas d'affiliation"
@@ -16,7 +27,31 @@ import { SituationÉconomieCollaborativeValide } from './situation'
  */
 export function calculeCotisationsPasDAffiliation(
 	situation: SituationÉconomieCollaborativeValide
-): Either.Either<Montant<'€/an'>, AffiliationObligatoire> {
+): Either.Either<
+	Montant<'€/an'>,
+	AffiliationObligatoire | RégimeNonApplicablePourCeTypeDeDurée
+> {
+	const recettes = situation.recettes.value
+
+	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
+		const typeDurée = Option.getOrElse(
+			situation.typeDurée,
+			() => situationParDéfaut.typeDurée
+		)
+
+		const estPrincipale = estActivitéPrincipale(situation)
+
+		if (estPrincipale || typeDurée === 'courte') {
+			return Either.left(
+				new RégimeNonApplicablePourCeTypeDeDurée({
+					typeDurée,
+					régime: RegimeCotisation.pasDAffiliation,
+					estActivitéPrincipale: estPrincipale,
+				})
+			)
+		}
+	}
+
 	return pipe(
 		vérifieActivitéNonProfessionnelle(situation),
 		Either.map(() => eurosParAn(0))
