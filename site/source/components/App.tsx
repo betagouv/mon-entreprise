@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
+import { useEngine } from '@/hooks/useEngine'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
@@ -16,6 +17,7 @@ import Accessibilité from '@/pages/Accessibilité'
 import Assistants from '@/pages/assistants/index'
 import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
+import Documentation from '@/pages/documentation/Documentation'
 import Iframes from '@/pages/iframes'
 import IframeFooter from '@/pages/iframes/IframeFooter'
 import Integration from '@/pages/integration/index'
@@ -69,8 +71,8 @@ const App = () => {
 		useAxeCoreAnalysis()
 	}
 
-	// const documentationPath = useSitePaths().absoluteSitePaths.documentation.index
-	// const engine = useEngine()
+	const documentationPath = useSitePaths().absoluteSitePaths.documentation.index
+	const engine = useEngine('modele-social')
 
 	return (
 		<StyledLayout $isEmbedded={isEmbedded}>
@@ -101,7 +103,7 @@ const App = () => {
 							path={relativeSitePaths.simulateursEtAssistants + '/*'}
 							element={<SimulateursEtAssistants />}
 						/>
-						{/* <Route
+						<Route
 							path={relativeSitePaths.documentation.index + '/*'}
 							element={
 								<Documentation
@@ -109,7 +111,7 @@ const App = () => {
 									engine={engine}
 								/>
 							}
-						/> */}
+						/>
 						<Route
 							path={relativeSitePaths.développeur.index + '/*'}
 							element={<Integration />}
