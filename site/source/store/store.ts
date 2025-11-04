@@ -1,6 +1,5 @@
 import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension'
 import { createReduxEnhancer } from '@sentry/react'
-import Engine from 'publicodes'
 import { applyMiddleware, createStore, StoreEnhancer } from 'redux'
 
 import {
@@ -21,9 +20,9 @@ const composeEnhancers = composeWithDevToolsDevelopmentOnly(
 
 const sentryReduxEnhancer = createReduxEnhancer({}) as StoreEnhancer
 
-export const makeStore = (engine: Engine) => {
+export const makeStore = () => {
 	const storeEnhancer = composeEnhancers(
-		applyMiddleware(prendLaProchaineQuestionMiddleware(engine)),
+		applyMiddleware(prendLaProchaineQuestionMiddleware),
 		sentryReduxEnhancer
 	)
 

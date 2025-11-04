@@ -4,6 +4,7 @@ import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 
 export const configComparateurStatuts: ComparateurConfig = {
+	nomModèle: 'modele-social',
 	contextes: [
 		AssimiléSalariéContexte,
 		AutoEntrepreneurContexteDansPublicodes,

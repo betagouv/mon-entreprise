@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configAutoEntrepreneur: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		"dirigeant . auto-entrepreneur . chiffre d'affaires",
 		'dirigeant . auto-entrepreneur . revenu net',

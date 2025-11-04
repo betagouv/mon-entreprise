@@ -24,6 +24,7 @@ const simulationConfig: SimulationConfig = {
 	'unité par défaut': '€/mois',
 }
 const initialSimulation: Simulation = {
+	id: 'simulateur',
 	config: simulationConfig,
 	url: '/someurl',
 	hiddenNotifications: [],
@@ -82,7 +83,11 @@ describe.skip('[persistence] When simulation config is set', () => {
 		history.replace('/someotherurl')
 
 		store.dispatch(
-			configureLaSimulation(simulationConfig, history.location.pathname)
+			configureLaSimulation(
+				simulationConfig,
+				history.location.pathname,
+				'simulateur'
+			)
 		)
 	})
 	describe('when previous simulation is loaded in state', () => {

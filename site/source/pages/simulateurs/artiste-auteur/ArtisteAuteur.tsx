@@ -12,17 +12,10 @@ import { DistributionBranch } from '@/components/simulationExplanation/Distribut
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { typography } from '@/design-system'
 import { useEngine } from '@/hooks/useEngine'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { useNavigation } from '@/lib/navigation'
-
-import { configArtisteAuteur } from './simulationConfig'
 
 const { Body, H2 } = typography
 
 export default function ArtisteAuteur() {
-	const { currentPath } = useNavigation()
-	useSimulationConfig({ key: currentPath, config: configArtisteAuteur })
-
 	return (
 		<>
 			<Simulation
