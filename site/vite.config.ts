@@ -41,6 +41,12 @@ export default defineConfig(({ command, mode }) => ({
 					if (id.includes('modele-social')) {
 						return 'modele-social'
 					}
+					if (id.includes('modele-as')) {
+						return 'modele-as'
+					}
+					if (id.includes('modele-ti')) {
+						return 'modele-ti'
+					}
 				},
 				chunkFileNames: (chunkInfo) => {
 					if (chunkInfo.isDynamicEntry) {
