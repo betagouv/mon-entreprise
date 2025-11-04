@@ -1,5 +1,3 @@
-import rules from 'modele-social'
-import Engine from 'publicodes'
 import { ReactNode } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -16,18 +14,8 @@ interface TestProviderProps {
 // Configurer la langue par défaut pour les tests
 void i18n.changeLanguage('fr')
 
-// Créer l'Engine avec les règles du modèle social
-// Désactiver les warnings pour les tests
-const testEngine = new Engine(rules, {
-	logger: {
-		log: () => {}, // Supprimer les logs
-		warn: () => {}, // Supprimer les warnings
-		error: console.error, // Garder les erreurs
-	},
-})
-
 // Créer le store Redux
-const testStore = makeStore(testEngine)
+const testStore = makeStore()
 
 export const TestProvider = ({ children }: TestProviderProps) => {
 	return (
