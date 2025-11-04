@@ -15,9 +15,7 @@ describe('Location de meublé', () => {
 			await saisirRecettes(50000)
 
 			await waitFor(() => {
-				expect(
-					screen.getByText(/Logement meublé de courte durée/i)
-				).toBeInTheDocument()
+				expect(screen.getByText(/^Logement meublé$/i)).toBeInTheDocument()
 			})
 			expect(
 				screen.getByText(/Logement meublé de tourisme classé/i)
