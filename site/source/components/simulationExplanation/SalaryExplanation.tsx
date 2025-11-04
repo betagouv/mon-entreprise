@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components'
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
 import StackedBarChart from '@/components/StackedBarChart'
 import { FromTop } from '@/components/ui/animate'
-import { useInversionFail } from '@/components/utils/EngineContext'
+import { useInversionFail } from '@/hooks/useSetupSafeSituation'
 import {
 	Body,
 	Container,
