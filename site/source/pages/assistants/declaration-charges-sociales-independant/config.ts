@@ -4,6 +4,7 @@ import { serviceIndépendant } from '@/external-links/serviceIndépendant'
 import DéclarationChargeSocialeIndépendant from '.'
 import { config } from '../../simulateurs/_configs/config'
 import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
+import { configDéclarationChargesSocialesIndépendant } from './simulationConfig'
 
 export function déclarationChargesSocialesIndépendantConfig({
 	t,
@@ -39,5 +40,7 @@ export function déclarationChargesSocialesIndépendantConfig({
 		),
 		externalLinks: [serviceIndépendant, premiersMoisUrssaf],
 		component: DéclarationChargeSocialeIndépendant,
+		simulation: configDéclarationChargesSocialesIndépendant,
+		autoloadLastSimulation: true,
 	} as const)
 }

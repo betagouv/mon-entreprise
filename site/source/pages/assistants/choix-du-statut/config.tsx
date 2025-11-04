@@ -5,6 +5,7 @@ import { Body, H2, Li, Strong, Ul } from '@/design-system'
 import ChoixDuStatut from '.'
 import { config } from '../../simulateurs/_configs/config'
 import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
+import { configChoixDuStatut } from './simulationConfig'
 
 export function choixStatutJuridiqueConfig({
 	t,
@@ -34,13 +35,7 @@ export function choixStatutJuridiqueConfig({
 		shortName: t('pages.choix-statut.shortname', 'Choix du statut'),
 		component: ChoixDuStatut,
 		seoExplanations: SeoExplanations,
-		simulation: {
-			situation: {
-				'entreprise . catégorie juridique . remplacements': 'non',
-				'entreprise . date de création': 'date',
-				salarié: 'non',
-			},
-		},
+		simulation: configChoixDuStatut,
 		autoloadLastSimulation: true,
 		nextSteps: ['coût-création-entreprise'],
 	} as const)

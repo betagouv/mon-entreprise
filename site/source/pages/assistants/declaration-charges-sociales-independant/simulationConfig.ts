@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const config: SimulationConfig = {
+export const configDéclarationChargesSocialesIndépendant: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		'déclaration charge sociales . résultat . cotisations obligatoires',
 		'déclaration charge sociales . résultat . total charges sociales déductible',
