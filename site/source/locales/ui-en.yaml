@@ -1359,7 +1359,10 @@ pages:
         "1":
           title: The Artist-Author online service
       meta:
-        description: Estimate social security contributions on copyright and BNC income
+        description: Estimate social security contributions on royalties and BNC income
+        ogDescription: Enter your income (royalties and bnc) and find out immediately
+          the amount of contributions you will have to pay for the year.
+        ogTitle: "Artiste-auteur: estimate your Urssaf contributions"
         title: "Artiste-auteur: calculating Urssaf contributions"
       shortname: Artist-author
       title: Artist contribution simulator

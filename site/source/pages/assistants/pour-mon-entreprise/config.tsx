@@ -3,6 +3,8 @@ import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
 import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
 
+import { configPourMonEntreprise } from './simulationConfig'
+
 export function pourMonEntrepriseConfig({
 	t,
 	sitePaths,
@@ -38,5 +40,6 @@ export function pourMonEntrepriseConfig({
 		},
 		externalLinks: [premiersMoisUrssaf],
 		component: PourMonEntreprise,
+		simulation: configPourMonEntreprise,
 	} as const)
 }

@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 const ISSimulationConfig: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'unité par défaut': '€/an',
 	situation: {
 		salarié: 'non',
