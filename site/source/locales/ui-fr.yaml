@@ -1246,8 +1246,12 @@ pages:
         "1":
           title: Le service en ligne Artiste-auteur
       meta:
-        description: Estimez les cotisations sociales sur les droits d'auteur et sur le
+        description: Estimez les cotisations sociales sur les droits d’auteur et sur le
           revenu BNC
+        ogDescription: Renseignez vos revenus (droits d’auteur et bnc) et découvrez
+          immédiatement le montant des cotisations que vous aurez à payer sur
+          l’année.
+        ogTitle: "Artiste-auteur : estimez vos cotisations Urssaf"
         title: "Artiste-auteur: calcul des cotisations Urssaf"
       shortname: Artiste-auteur
       title: Simulateur de cotisations d’artiste-auteur
