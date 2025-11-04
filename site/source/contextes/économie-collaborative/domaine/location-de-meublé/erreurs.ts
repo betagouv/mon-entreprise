@@ -2,12 +2,13 @@ import { Data } from 'effect'
 
 import { Montant } from '@/domaine/Montant'
 
-import { RegimeCotisation, TypeLocation } from './situation'
+import { RegimeCotisation, TypeDurée, TypeLocation } from './situation'
 
 export type RégimeInapplicable =
 	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
 	| RégimeNonApplicablePourCeTypeDeLocation
+	| RégimeNonApplicablePourCeTypeDeDurée
 	| AffiliationObligatoire
 
 export class SituationIncomplète extends Data.TaggedError(
@@ -57,6 +58,22 @@ export class RégimeNonApplicablePourCeTypeDeLocation extends Data.TaggedError(
 	}
 }
 
+export class RégimeNonApplicablePourCeTypeDeDurée extends Data.TaggedError(
+	'RégimeNonApplicablePourCeTypeDeDurée'
+)<{
+	typeDurée: TypeDurée
+	régime: RegimeCotisation
+	estActivitéPrincipale: boolean
+}> {
+	toString(): string {
+		return `Le régime "${
+			this.régime
+		}" n'est pas applicable pour le type de durée "${
+			this.typeDurée
+		}" (activité ${this.estActivitéPrincipale ? 'principale' : 'secondaire'})`
+	}
+}
+
 export class AffiliationObligatoire extends Data.TaggedError(
 	'AffiliationObligatoire'
 )<{
@@ -75,6 +92,12 @@ export const RaisonInapplicabilité = {
 		return erreur._tag === 'RégimeNonApplicablePourCeTypeDeLocation'
 	},
 
+	estTypeDeDuréeIncompatible: (
+		erreur: RégimeInapplicable
+	): erreur is RégimeNonApplicablePourCeTypeDeDurée => {
+		return erreur._tag === 'RégimeNonApplicablePourCeTypeDeDurée'
+	},
+
 	estRecettesTropÉlevées: (
 		erreur: RégimeInapplicable
 	): erreur is RecettesSupérieuresAuPlafondAutoriséPourCeRégime => {
@@ -86,6 +109,7 @@ export const RaisonInapplicabilité = {
 	): erreur is RecettesInférieuresAuSeuilRequisPourCeRégime => {
 		return erreur._tag === 'RecettesInférieuresAuSeuilRequisPourCeRégime'
 	},
+
 	estAffiliationObligatoire: (
 		erreur: RégimeInapplicable
 	): erreur is AffiliationObligatoire => {

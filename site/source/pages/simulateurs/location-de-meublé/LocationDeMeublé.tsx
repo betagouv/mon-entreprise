@@ -12,8 +12,10 @@ import { Button, ConteneurBleu } from '@/design-system'
 import { ComparateurRégimesCards } from '@/pages/simulateurs/location-de-meublé/components/ComparateurRégimesCards'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import {
-	AlsaceMoselleQuestion,
-	PremiereAnneeQuestion,
+	// AlsaceMoselleQuestion,
+	AutresRevenusQuestion,
+	// PremiereAnneeQuestion,
+	TypeDuréeQuestion,
 	TypeLocationQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
 import { useSitePaths } from '@/sitePaths'
@@ -30,9 +32,11 @@ const LocationDeMeublé = () => {
 				entrepriseSelection={false}
 				situation={situation}
 				questions={[
+					TypeDuréeQuestion,
+					AutresRevenusQuestion,
 					TypeLocationQuestion,
-					AlsaceMoselleQuestion,
-					PremiereAnneeQuestion,
+					// PremiereAnneeQuestion,
+					// AlsaceMoselleQuestion,
 				]}
 				showQuestionsFromBeginning={estSituationValide(situation)}
 				avecQuestionsPublicodes={false}

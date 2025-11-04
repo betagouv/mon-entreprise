@@ -30,6 +30,8 @@ describe('Location de meublé de courte durée', () => {
 	describe('estActiviteProfessionnelle', () => {
 		it('est faux si les recettes sont inférieures au seuil de professionalisation', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
@@ -45,6 +47,8 @@ describe('Location de meublé de courte durée', () => {
 
 		it('est vrai si les recettes sont égales au seuil de professionalisation', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
@@ -60,6 +64,8 @@ describe('Location de meublé de courte durée', () => {
 
 		it('est vrai si les recettes sont supérieures au seuil de professionalisation', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: Option.none(),
 				_type: 'économie-collaborative',
@@ -78,6 +84,8 @@ describe('Location de meublé de courte durée', () => {
 		describe('cas généraux', () => {
 			it('retourne une erreur si régime-général et recettes > plafond', () => {
 				const situation: SituationÉconomieCollaborativeValide = {
+					autresRevenus: Option.none(),
+					typeDurée: Option.none(),
 					_tag: 'Situation',
 					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
@@ -100,6 +108,8 @@ describe('Location de meublé de courte durée', () => {
 			it('devrait calculer correctement les cotisations avec abattement standard', () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationÉconomieCollaborativeValide = {
+					autresRevenus: Option.none(),
+					typeDurée: Option.none(),
 					_tag: 'Situation',
 					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
@@ -132,6 +142,8 @@ describe('Location de meublé de courte durée', () => {
 			it("devrait appliquer le taux Alsace-Moselle quand l'option est activée", () => {
 				const recettes = eurosParAn(30000)
 				const situation: SituationÉconomieCollaborativeValide = {
+					autresRevenus: Option.none(),
+					typeDurée: Option.none(),
 					_tag: 'Situation',
 					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
@@ -164,6 +176,8 @@ describe('Location de meublé de courte durée', () => {
 			it('devrait appliquer le calcul spécifique pour la première année', () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationÉconomieCollaborativeValide = {
+					autresRevenus: Option.none(),
+					typeDurée: Option.none(),
 					_tag: 'Situation',
 					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
@@ -198,6 +212,8 @@ describe('Location de meublé de courte durée', () => {
 				)
 
 				const situation: SituationÉconomieCollaborativeValide = {
+					autresRevenus: Option.none(),
+					typeDurée: Option.none(),
 					_tag: 'Situation',
 					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
@@ -230,6 +246,8 @@ describe('Location de meublé de courte durée', () => {
 			it("devrait appeler l'engine Publicodes avec les bons paramètres", () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationÉconomieCollaborativeValide = {
+					autresRevenus: Option.none(),
+					typeDurée: Option.none(),
 					_tag: 'Situation',
 					typeLocation: Option.none(),
 					_type: 'économie-collaborative',
@@ -253,6 +271,8 @@ describe('Location de meublé de courte durée', () => {
 			it("devrait appeler l'engine Publicodes avec les bons paramètres", () => {
 				const recettes = eurosParAn(30_000)
 				const situation: SituationÉconomieCollaborativeValide = {
+					autresRevenus: Option.none(),
+					typeDurée: Option.none(),
 					_tag: 'Situation',
 					typeLocation: Option.none(),
 					_type: 'économie-collaborative',

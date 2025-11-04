@@ -2,6 +2,7 @@ import { Either, Option, pipe } from 'effect'
 
 import {
 	abattement,
+	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
 	eurosParAn,
 	fois,
@@ -9,16 +10,17 @@ import {
 	Montant,
 } from '@/domaine/Montant'
 
-import { DEFAULTS } from './cotisations'
 import {
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
+	RégimeNonApplicablePourCeTypeDeDurée,
 	RégimeNonApplicablePourCeTypeDeLocation,
 } from './erreurs'
+import { estActivitéPrincipale } from './estActivitéPrincipale'
 import { SEUIL_PROFESSIONNALISATION } from './estActiviteProfessionnelle'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
-	TypeLocation,
+	situationParDéfaut,
 } from './situation'
 
 export const PLAFOND_REGIME_GENERAL = eurosParAn(77_700)
@@ -37,12 +39,13 @@ export function calculeCotisationsRégimeGénéral(
 	Montant<'€/an'>,
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
 	| RégimeNonApplicablePourCeTypeDeLocation
+	| RégimeNonApplicablePourCeTypeDeDurée
 > {
 	const recettes = situation.recettes.value
 
 	const typeLocation = Option.getOrElse(
 		situation.typeLocation,
-		(): TypeLocation => 'non-classé'
+		() => situationParDéfaut.typeLocation
 	)
 
 	if (typeLocation === 'chambre-hôte') {
@@ -54,14 +57,33 @@ export function calculeCotisationsRégimeGénéral(
 		)
 	}
 
+	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
+		const typeDurée = Option.getOrElse(
+			situation.typeDurée,
+			() => situationParDéfaut.typeDurée
+		)
+
+		const estPrincipale = estActivitéPrincipale(situation)
+
+		if (estPrincipale && typeDurée !== 'courte') {
+			return Either.left(
+				new RégimeNonApplicablePourCeTypeDeDurée({
+					typeDurée,
+					régime: RegimeCotisation.regimeGeneral,
+					estActivitéPrincipale: estPrincipale,
+				})
+			)
+		}
+	}
+
 	const estAlsaceMoselle = Option.getOrElse(
 		situation.estAlsaceMoselle,
-		() => DEFAULTS.EST_ALSACE_MOSELLE
+		() => situationParDéfaut.estAlsaceMoselle
 	)
 
 	const premièreAnnée = Option.getOrElse(
 		situation.premièreAnnée,
-		() => DEFAULTS.PREMIERE_ANNEE
+		() => situationParDéfaut.premièreAnnée
 	)
 
 	// Vérification du plafond pour ce régime

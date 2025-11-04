@@ -1,4 +1,4 @@
-import { Either, Option as O } from 'effect'
+import { Either, Option as O, Option } from 'effect'
 import { describe, expect, it } from 'vitest'
 
 import { eurosParAn } from '@/domaine/Montant'
@@ -10,6 +10,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 	describe('type location: non-classé', () => {
 		it('devrait calculer les cotisations pour recettes < 77 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.some('non-classé' as const),
 				recettes: O.some(eurosParAn(10_000)) as O.Some<
@@ -26,6 +28,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 
 		it('devrait calculer les cotisations pour recettes entre 23 000€ et 77 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.some('non-classé' as const),
 				recettes: O.some(eurosParAn(50_000)) as O.Some<
@@ -42,6 +46,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 
 		it('devrait retourner une erreur pour recettes > 77 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.some('non-classé' as const),
 				recettes: O.some(eurosParAn(80_000)) as O.Some<
@@ -65,6 +71,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 	describe('type location: tourisme', () => {
 		it('devrait calculer les cotisations pour recettes entre 23 000€ et 77 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.some('tourisme' as const),
 				recettes: O.some(eurosParAn(50_000)) as O.Some<
@@ -81,6 +89,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 
 		it('devrait retourner une erreur pour recettes > 77 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.some('tourisme' as const),
 				recettes: O.some(eurosParAn(100_000)) as O.Some<
@@ -104,6 +114,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 	describe('type location: chambre-hôte', () => {
 		it('devrait toujours retourner une erreur car RG non applicable pour chambre-hôte', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.some('chambre-hôte' as const),
 				recettes: O.some(eurosParAn(10_000)) as O.Some<
@@ -125,6 +137,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 
 		it('devrait retourner une erreur même pour recettes élevées', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.some('chambre-hôte' as const),
 				recettes: O.some(eurosParAn(50_000)) as O.Some<
@@ -148,6 +162,8 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 	describe('sans typeLocation (comportement par défaut)', () => {
 		it('devrait utiliser les règles pour non-classé par défaut', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				typeLocation: O.none(),
 				recettes: O.some(eurosParAn(50_000)) as O.Some<

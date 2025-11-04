@@ -14,6 +14,8 @@ describe('calculeRevenuNet', () => {
 	it('devrait correctement calculer le revenu net avec Either', () => {
 		const recettes = eurosParAn(30_000)
 		const situation: SituationÉconomieCollaborativeValide = {
+			autresRevenus: Option.none(),
+			typeDurée: Option.none(),
 			_tag: 'Situation',
 			typeLocation: Option.none(),
 			_type: 'économie-collaborative',

@@ -5,6 +5,8 @@ export {
 	estSituationValide,
 	RegimeCotisation,
 	type SituationÉconomieCollaborative,
+	type SituationÉconomieCollaborativeValide,
+	type TypeDurée,
 	type TypeLocation,
 } from './domaine/location-de-meublé/situation'
 export {
@@ -24,3 +26,4 @@ export {
 	type RésultatRégimeApplicable,
 	type RésultatRégimeNonApplicable,
 } from './domaine/location-de-meublé/comparateur-régimes'
+export { estActiviteProfessionnelle } from './domaine/location-de-meublé/estActiviteProfessionnelle'

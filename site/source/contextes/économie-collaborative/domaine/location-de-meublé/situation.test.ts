@@ -11,6 +11,8 @@ import {
 describe('SituationLocationCourteDuree', () => {
 	it('accepte les situations valides', () => {
 		const situationComplete: SituationÉconomieCollaborativeValide = {
+			autresRevenus: Option.none(),
+			typeDurée: Option.none(),
 			_tag: 'Situation',
 			typeLocation: Option.none(),
 			_type: 'économie-collaborative',
@@ -20,6 +22,8 @@ describe('SituationLocationCourteDuree', () => {
 		}
 
 		const situationPartielle: SituationÉconomieCollaborativeValide = {
+			autresRevenus: Option.none(),
+			typeDurée: Option.none(),
 			_tag: 'Situation',
 			typeLocation: Option.none(),
 			_type: 'économie-collaborative',

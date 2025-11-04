@@ -17,6 +17,8 @@ describe('estActiviteProfessionnelle', () => {
 			recettes: Option.some(
 				pipe(SEUIL_MEUBLÉ, moins(eurosParAn(1)))
 			) as Option.Some<typeof SEUIL_MEUBLÉ>,
+			autresRevenus: Option.none(),
+			typeDurée: Option.none(),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),
 		}
@@ -29,6 +31,8 @@ describe('estActiviteProfessionnelle', () => {
 			_tag: 'Situation',
 			typeLocation: Option.none(),
 			recettes: Option.some(SEUIL_MEUBLÉ) as Option.Some<typeof SEUIL_MEUBLÉ>,
+			autresRevenus: Option.none(),
+			typeDurée: Option.none(),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),
 		}
@@ -43,6 +47,8 @@ describe('estActiviteProfessionnelle', () => {
 			recettes: Option.some(
 				pipe(SEUIL_MEUBLÉ, plus(eurosParAn(1)))
 			) as Option.Some<typeof SEUIL_MEUBLÉ>,
+			autresRevenus: Option.none(),
+			typeDurée: Option.none(),
 			estAlsaceMoselle: Option.none(),
 			premièreAnnée: Option.none(),
 		}
