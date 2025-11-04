@@ -2,6 +2,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 
 export const configCessationActivité: SimulationConfig = {
+	nomModèle: 'modele-social',
 	...configIndépendant,
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",

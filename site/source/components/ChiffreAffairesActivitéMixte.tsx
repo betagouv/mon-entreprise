@@ -157,10 +157,11 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 function ActivitéMixte() {
 	const dispatch = useDispatch()
-	const rule = useEngine().getRule('entreprise . activités . revenus mixtes')
+	const engine = useEngine()
+	const rule = engine.getRule('entreprise . activités . revenus mixtes')
 	const defaultChecked =
-		useEngine().evaluate('entreprise . activités . revenus mixtes')
-			.nodeValue === true
+		engine.evaluate('entreprise . activités . revenus mixtes').nodeValue ===
+		true
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
