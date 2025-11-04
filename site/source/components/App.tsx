@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
+import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
 import { useEngine } from '@/hooks/useEngine'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
@@ -71,8 +72,12 @@ const App = () => {
 		useAxeCoreAnalysis()
 	}
 
-	const documentationPath = useSitePaths().absoluteSitePaths.documentation.index
-	const engine = useEngine('modele-social')
+	const documentationPathModèleSocial = useDocumentationPath('modele-social')
+	const engineModèleSocial = useEngine('modele-social')
+	const documentationPathModèleTI = useDocumentationPath('modele-ti')
+	const engineModèleTI = useEngine('modele-ti')
+	const documentationPathModèleAS = useDocumentationPath('modele-as')
+	const engineModèleAS = useEngine('modele-as')
 
 	return (
 		<StyledLayout $isEmbedded={isEmbedded}>
@@ -104,11 +109,32 @@ const App = () => {
 							element={<SimulateursEtAssistants />}
 						/>
 						<Route
+							path={relativeSitePaths.documentation.index + '/modele-ti/*'}
+							element={
+								<Documentation
+									documentationPath={documentationPathModèleTI}
+									engine={engineModèleTI}
+									nomModèle="modele-ti"
+								/>
+							}
+						/>
+						<Route
+							path={relativeSitePaths.documentation.index + '/modele-as/*'}
+							element={
+								<Documentation
+									documentationPath={documentationPathModèleAS}
+									engine={engineModèleAS}
+									nomModèle="modele-as"
+								/>
+							}
+						/>
+						<Route
 							path={relativeSitePaths.documentation.index + '/*'}
 							element={
 								<Documentation
-									documentationPath={documentationPath}
-									engine={engine}
+									documentationPath={documentationPathModèleSocial}
+									engine={engineModèleSocial}
+									nomModèle="modele-social"
 								/>
 							}
 						/>

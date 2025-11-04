@@ -22,6 +22,7 @@ import {
 	UlStyle,
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { NomModèle } from '@/domaine/SimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
@@ -34,9 +35,11 @@ type PublicodesReferencesProps = {
 export default function DocumentationPageBody({
 	documentationPath,
 	engine,
+	nomModèle,
 }: {
 	documentationPath: string
 	engine: Engine<DottedName>
+	nomModèle: NomModèle
 }) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { i18n } = useTranslation()
@@ -66,7 +69,7 @@ export default function DocumentationPageBody({
 				renderers={renderers}
 				apiDocumentationUrl={absoluteSitePaths.développeur.api}
 				apiEvaluateUrl="https://mon-entreprise.urssaf.fr/api/v1/evaluate"
-				npmPackage="modele-social"
+				npmPackage={nomModèle}
 				mobileMenuPortalId="mobile-menu-portal-id"
 			/>
 		</StyledDocumentation>
