@@ -5,6 +5,7 @@ import { Montant } from '@/domaine/Montant'
 import {
 	initialSituationÉconomieCollaborative,
 	SituationÉconomieCollaborative,
+	TypeDurée,
 	TypeLocation,
 } from '../domaine/location-de-meublé/situation'
 import { useSituationContext } from './ÉconomieCollaborativeContext'
@@ -19,6 +20,14 @@ export const useEconomieCollaborative = () => {
 
 		recettes: (recettes: Option.Option<Montant<'€/an'>>) => {
 			updateSituation((prev) => ({ ...prev, recettes }))
+		},
+
+		autresRevenus: (autresRevenus: Option.Option<Montant<'€/an'>>) => {
+			updateSituation((prev) => ({ ...prev, autresRevenus }))
+		},
+
+		typeDurée: (typeDurée: Option.Option<TypeDurée>) => {
+			updateSituation((prev) => ({ ...prev, typeDurée }))
 		},
 
 		estAlsaceMoselle: (estAlsaceMoselle: Option.Option<boolean>) => {

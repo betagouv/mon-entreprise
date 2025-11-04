@@ -40,14 +40,14 @@ export const TypeLocationQuestion: ComposantQuestion<
 			onChange={handleChange}
 		>
 			<RadioCard
-				label="Logement meublé de courte durée"
+				label="Logement meublé"
 				value="non-classé"
-				description="Location d'un logement meublé non classé pour de courtes durées."
+				description="Location d'un logement meublé non classé."
 			/>
 			<RadioCard
-				label="Logement meublé de tourisme classé de courte durée"
+				label="Logement meublé de tourisme classé"
 				value="tourisme"
-				description="Location d'un logement meublé classé meublé de tourisme pour de courtes durées."
+				description="Location d'un logement meublé classé meublé de tourisme."
 			/>
 			<RadioCard
 				label="Chambre d'hôte"
@@ -60,6 +60,6 @@ export const TypeLocationQuestion: ComposantQuestion<
 
 TypeLocationQuestion._tag = 'QuestionFournie'
 TypeLocationQuestion.id = 'type-location'
-TypeLocationQuestion.libellé = 'Quel est le type de location concernée ?'
+TypeLocationQuestion.libellé = 'Quel est le type de logement ?'
 TypeLocationQuestion.applicable = () => true // Toujours applicable
 TypeLocationQuestion.répondue = (situation) => O.isSome(situation.typeLocation)

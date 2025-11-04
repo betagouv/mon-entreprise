@@ -31,6 +31,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 	describe('logement non-classé', () => {
 		it('calcule les cotisations pour recettes < 77 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('non-classé' as const),
@@ -46,6 +48,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 
 		it('retourne une erreur pour recettes > 77 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('non-classé' as const),
@@ -63,6 +67,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 	describe('logement tourisme classé', () => {
 		it('calcule les cotisations pour recettes < 188 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('tourisme' as const),
@@ -78,6 +84,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 
 		it('retourne une erreur pour recettes > 188 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('tourisme' as const),
@@ -95,6 +103,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 	describe("chambre d'hôte", () => {
 		it('calcule les cotisations pour recettes < 188 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('chambre-hôte' as const),
@@ -110,6 +120,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 
 		it('retourne une erreur pour recettes > 188 700€', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.some('chambre-hôte' as const),
@@ -127,6 +139,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 	describe('sans type de location spécifié', () => {
 		it('utilise le plafond non-classé par défaut (77 700€)', () => {
 			const situationSousPlafond: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.none(),
@@ -143,6 +157,8 @@ describe('calculeCotisationsMicroEntreprise', () => {
 
 		it('retourne une erreur pour recettes > 77 700€ (plafond par défaut)', () => {
 			const situationAuDessusPlafond: SituationÉconomieCollaborativeValide = {
+				autresRevenus: Option.none(),
+				typeDurée: Option.none(),
 				_tag: 'Situation',
 				_type: 'économie-collaborative',
 				typeLocation: Option.none(),
