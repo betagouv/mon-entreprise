@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configActivitéPartielle: SimulationConfig = {
+	nomModèle: 'modele-social',
 	objectifs: [
 		'salarié . contrat . salaire brut',
 		'salarié . rémunération . net . à payer avant impôt',

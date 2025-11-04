@@ -3,6 +3,7 @@ import { URSSAF } from '@/utils/logos'
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import ArtisteAuteur from './ArtisteAuteur'
+import { configArtisteAuteur } from './simulationConfig'
 
 export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -21,11 +22,16 @@ export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 			description: t(
 				'pages.simulateurs.artiste-auteur.meta.description',
-				"Estimez les cotisations sociales sur les droits d'auteur et sur le revenu BNC"
+				'Estimez les cotisations sociales sur les droits d’auteur et sur le revenu BNC'
 			),
-			ogTitle: 'Artiste-auteur : estimez vos cotisations Urssaf',
-			ogDescription:
-				"Renseignez vos revenus (droits d'auteur et bnc) et découvrez immédiatement le montant des cotisations que vous aurez à payer sur l'année.",
+			ogTitle: t(
+				'pages.simulateurs.artiste-auteur.meta.ogTitle',
+				'Artiste-auteur : estimez vos cotisations Urssaf'
+			),
+			ogDescription: t(
+				'pages.simulateurs.artiste-auteur.meta.ogDescription',
+				'Renseignez vos revenus (droits d’auteur et bnc) et découvrez immédiatement le montant des cotisations que vous aurez à payer sur l’année.'
+			),
 		},
 		pathId: 'simulateurs.artiste-auteur',
 		title: t(
@@ -57,5 +63,6 @@ export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 		],
 		codesCatégorieJuridique: ['1000'],
 		component: ArtisteAuteur,
+		simulation: configArtisteAuteur,
 	} as const)
 }

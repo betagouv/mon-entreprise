@@ -1,5 +1,4 @@
 import { Trans } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -13,16 +12,10 @@ import { DistributionBranch } from '@/components/simulationExplanation/Distribut
 import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
 import { typography } from '@/design-system'
 import { useEngine } from '@/hooks/useEngine'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
-
-import { configArtisteAuteur } from './simulationConfig'
 
 const { Body, H2 } = typography
 
 export default function ArtisteAuteur() {
-	const { pathname } = useLocation()
-	useSimulationConfig({ key: pathname, config: configArtisteAuteur })
-
 	return (
 		<>
 			<Simulation

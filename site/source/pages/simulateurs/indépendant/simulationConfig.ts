@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configIndépendant: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
 		'dirigeant . rémunération . totale',
