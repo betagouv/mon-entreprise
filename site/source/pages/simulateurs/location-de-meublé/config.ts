@@ -2,7 +2,6 @@ import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
 import AutoEntrepreneurPreview from '@/pages/simulateurs/_images/AutoEntrepreneurPreview.png'
 import LocationDeMeublé from '@/pages/simulateurs/location-de-meublé/LocationDeMeublé'
-import { configLocationDeMeublé } from '@/pages/simulateurs/location-de-meublé/simulationConfig'
 import { URSSAF } from '@/utils/logos'
 
 export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
@@ -45,7 +44,6 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 			},
 		],
 		path: sitePaths.simulateurs['location-de-logement-meublé'],
-		simulation: configLocationDeMeublé,
 		component: LocationDeMeublé,
 		meta: {
 			title: t(
