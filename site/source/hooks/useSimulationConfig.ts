@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useSetupSafeSituation } from '@/components/utils/EngineContext'
+import { useSetupSafeSituation } from '@/hooks/useSetupSafeSituation'
 import {
 	chargeLaSimulationPrécédente,
 	configureLaSimulation,
