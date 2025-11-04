@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configArtisteAuteur: SimulationConfig = {
+	nomModèle: 'modele-social',
 	objectifs: [
 		'artiste-auteur . cotisations',
 		'artiste-auteur . cotisations . IRCEC',

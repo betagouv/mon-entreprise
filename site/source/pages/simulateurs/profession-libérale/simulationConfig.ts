@@ -3,6 +3,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { configIndépendant } from '../indépendant/simulationConfig'
 
 export const configProfessionLibérale: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
 		'dirigeant . rémunération . net',
