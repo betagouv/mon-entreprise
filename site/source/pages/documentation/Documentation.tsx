@@ -9,19 +9,22 @@ import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Spacing } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { NomModèle } from '@/domaine/SimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 
 import BackToSimulation from './BackToSimulation'
 import DocumentationLanding from './DocumentationLanding'
 import DocumentationPageBody from './DocumentationPageBody'
-import DocumentationRulesList from './DocumentationRulesList'
 
 export default function Documentation({
 	documentationPath,
 	engine,
+	nomModèle,
 }: {
 	documentationPath: string
-	engine: Engine
+	engine: Engine<DottedName>
+	nomModèle: NomModèle
 }) {
 	const { t } = useTranslation()
 	const { currentPath } = useNavigation()
@@ -34,9 +37,6 @@ export default function Documentation({
 	return (
 		<Routes>
 			<Route index element={<DocumentationLanding />} />
-			{IS_DEVELOPMENT && (
-				<Route path="dev" element={<DocumentationRulesList />} />
-			)}
 			<Route
 				path="*"
 				element={
@@ -63,6 +63,7 @@ export default function Documentation({
 								<DocumentationPageBody
 									engine={engine}
 									documentationPath={documentationPath}
+									nomModèle={nomModèle}
 								/>
 							</FromBottom>
 						</>
