@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configSASU: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		'dirigeant . rémunération . totale',
 		'salarié . rémunération . brut',

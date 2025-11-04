@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configDividendes: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		'bénéficiaire . dividendes . bruts',
 		"bénéficiaire . dividendes . nets d'impôt",
