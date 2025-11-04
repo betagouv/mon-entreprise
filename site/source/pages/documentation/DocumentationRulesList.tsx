@@ -8,7 +8,7 @@ export default function DocumentationRulesList() {
 
 	return (
 		<>
-			<H1>Liste des règles</H1>
+			<H1>Liste des règles de modele-social</H1>
 			{ruleEntries.map((name) => (
 				<RuleLink dottedName={name} key={name}>
 					{name}
