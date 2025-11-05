@@ -21,10 +21,6 @@ export default {
 			options: ['date', 'date passé', 'date futur'],
 			defaultValue: 'date',
 		},
-		isRequired: {
-			control: 'boolean',
-			defaultValue: false,
-		},
 		label: {
 			control: 'text',
 			defaultValue: 'Date de naissance',
@@ -62,12 +58,5 @@ export const WithInitialValue: Story = {
 	args: {
 		defaultSelected: new Date('2000-01-01'),
 		label: 'Avec valeur initiale',
-	},
-}
-
-export const WithRequiredField: Story = {
-	args: {
-		isRequired: true,
-		label: 'Champ obligatoire',
 	},
 }
