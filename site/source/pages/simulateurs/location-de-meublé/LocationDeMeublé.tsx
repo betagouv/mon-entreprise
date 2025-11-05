@@ -32,9 +32,9 @@ const LocationDeMeublé = () => {
 				entrepriseSelection={false}
 				situation={situation}
 				questions={[
+					TypeLocationQuestion,
 					TypeDuréeQuestion,
 					AutresRevenusQuestion,
-					TypeLocationQuestion,
 					// PremiereAnneeQuestion,
 					// AlsaceMoselleQuestion,
 				]}
