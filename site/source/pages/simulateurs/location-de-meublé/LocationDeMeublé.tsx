@@ -5,6 +5,7 @@ import Simulation, { SimulationGoals } from '@/components/Simulation'
 import {
 	ÉconomieCollaborativeProvider,
 	estSituationValide,
+	isCotisationsEnabled,
 	SituationÉconomieCollaborative,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
@@ -12,9 +13,9 @@ import { Button, ConteneurBleu } from '@/design-system'
 import { ComparateurRégimesCards } from '@/pages/simulateurs/location-de-meublé/components/ComparateurRégimesCards'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import {
-	// AlsaceMoselleQuestion,
+	AlsaceMoselleQuestion,
 	AutresRevenusQuestion,
-	// PremiereAnneeQuestion,
+	PremiereAnneeQuestion,
 	TypeDuréeQuestion,
 	TypeLocationQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
@@ -35,8 +36,9 @@ const LocationDeMeublé = () => {
 					TypeLocationQuestion,
 					TypeDuréeQuestion,
 					AutresRevenusQuestion,
-					// PremiereAnneeQuestion,
-					// AlsaceMoselleQuestion,
+					...(isCotisationsEnabled
+						? [PremiereAnneeQuestion, AlsaceMoselleQuestion]
+						: []),
 				]}
 				showQuestionsFromBeginning={estSituationValide(situation)}
 				avecQuestionsPublicodes={false}
