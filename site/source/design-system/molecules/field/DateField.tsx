@@ -22,9 +22,7 @@ export interface DateFieldProps {
 	id?: string
 	defaultSelected?: Date
 	onChange?: (value?: Date) => void
-	placeholder?: string
 	label?: string
-	isRequired?: boolean
 	'aria-label'?: string
 	'aria-labelledby'?: string
 	type?: 'date passé' | 'date' | 'date futur'
@@ -32,15 +30,7 @@ export interface DateFieldProps {
 
 export const DateField = (props: DateFieldProps) => {
 	const { aria: ariaProps, rest } = splitAriaProps(props)
-	const {
-		id,
-		defaultSelected,
-		placeholder = 'JJ/MM/AAAA',
-		label,
-		isRequired,
-		onChange,
-		type = 'date',
-	} = rest
+	const { id, defaultSelected, label, onChange, type = 'date' } = rest
 
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
@@ -145,8 +135,7 @@ export const DateField = (props: DateFieldProps) => {
 						'design-system.date-picker.label',
 						'Champ de date au format jours/mois/année'
 					)}
-					isRequired={isRequired}
-					placeholder={placeholder}
+					placeholder={language === 'fr' ? 'JJ/MM/AAAA' : 'DD/MM/YYYY'}
 					value={inputValue}
 					onChange={handleInputChange}
 					onBlur={(e) => {
