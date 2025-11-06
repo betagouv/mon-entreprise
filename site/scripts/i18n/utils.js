@@ -1,17 +1,17 @@
 import { readFileSync } from 'fs'
 
 import dotenv from 'dotenv'
+import rules from 'modele-social'
 import yaml from 'yaml'
-
-import rules from '../../../modele-social/dist/index.js'
 
 dotenv.config()
 
-const localesPath = new URL('../../source/locales/', import.meta.url).pathname
-export let UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
-export let rulesTranslationPath = localesPath + 'rules-en.yaml'
-export let UiTranslationPath = localesPath + 'ui-en.yaml'
-export let UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
+export const localesPath = new URL('../../source/locales/', import.meta.url)
+	.pathname
+export const UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
+export const rulesTranslationFile = 'rules-en.yaml'
+export const UiTranslationPath = localesPath + 'ui-en.yaml'
+export const UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
 
 let attributesToTranslate = [
 	'titre',
@@ -105,14 +105,15 @@ const recursiveRulesMissingTranslations = (currentExternalization, rules) => {
 
 export function getRulesMissingTranslations() {
 	let currentExternalization = yaml.parse(
-		readFileSync(rulesTranslationPath, 'utf-8')
+		readFileSync(localesPath + rulesTranslationFile, 'utf-8')
 	)
 
 	const { missingTranslations, resolved } = recursiveRulesMissingTranslations(
 		currentExternalization,
 		rules
 	)
-	return [missingTranslations, resolved]
+
+	return [[rulesTranslationFile, missingTranslations, resolved]]
 }
 
 export const getUiMissingTranslations = () => {
@@ -228,3 +229,16 @@ export const fetchTranslation = async (text) => {
 		return ''
 	}
 }
+
+export const translateObject = (resolved, paths, arr) =>
+	Promise.all(
+		arr.map(async ([dot, k, v]) => {
+			if (typeof v === 'string') {
+				const trad = await fetchTranslation(v)
+				const res = paths.reduce((obj, key) => obj[key], resolved)
+				res[dot][k] = '[automatic] ' + trad
+			} else {
+				return await translateObject(resolved, [...paths, dot, k], v)
+			}
+		})
+	)
