@@ -130,7 +130,7 @@ export function SimulationGoal({
 		/>
 	) : undefined
 
-	const rendreEditeur = editable ? () => editeur : undefined
+	const rendreEditeur = () => editeur
 
 	// Pour les cas où la valeur n'est pas un nombre, on utilise le format texte
 	const valeur = isTypeBoolean ? valeurFormatee : valeurMontant
@@ -142,7 +142,7 @@ export function SimulationGoal({
 				titre={titre}
 				description={description}
 				valeur={valeurMontant}
-				rendreChampSaisie={rendreEditeur as () => React.ReactNode}
+				rendreChampSaisie={rendreEditeur}
 				isInfoMode={isInfoMode}
 				small={small}
 				appear={appear}
