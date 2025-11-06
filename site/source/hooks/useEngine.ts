@@ -1,5 +1,3 @@
-import { useMemo } from 'react'
-
 import { getCachedEngine, loadEngine } from '@/domaine/engine/engineCache'
 import { NomModèle } from '@/domaine/SimulationConfig'
 
@@ -16,15 +14,13 @@ export const useEngine = (nomModèleFourni?: NomModèle) => {
 		throw new Error('Nom de modèle manquant.')
 	}
 
-	let engine = getCachedEngine(nomModèle)
+	const engine = getCachedEngine(nomModèle)
 
-	const resource = useMemo(() => {
-		return loadEngine(nomModèle)
-	}, [nomModèle])
-
-	if (!engine) {
-		engine = resource.read()
+	if (engine) {
+		return engine
 	}
 
-	return engine
+	const resource = loadEngine(nomModèle)
+
+	return resource.read()
 }
