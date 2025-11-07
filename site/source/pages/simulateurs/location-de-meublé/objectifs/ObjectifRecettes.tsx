@@ -12,7 +12,7 @@ export const ObjectifRecettes = () => {
 	return (
 		<ObjectifSaisissableDeSimulation
 			id="économie-collaborative-recettes"
-			titre="Titre"
+			titre="Recettes"
 			valeur={O.some(eurosParAn(0))}
 			rendreChampSaisie={() => (
 				<RecettesInput montant={situation.recettes} onChange={set.recettes} />
