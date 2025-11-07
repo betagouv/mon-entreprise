@@ -82,9 +82,7 @@ export const AvecActions: Story = {
 				avec un taux plein
 			</StatusCard.ValeurSecondaire>
 			<StatusCard.Action>
-				<div style={{ textAlign: 'center' }}>
-					<Button size="XS">Choisir ce statut</Button>
-				</div>
+				<Button size="XS">Choisir ce statut</Button>
 			</StatusCard.Action>
 		</StatusCard>
 	),
@@ -109,9 +107,7 @@ export const Complet: Story = {
 				</Ul>
 			</StatusCard.Complément>
 			<StatusCard.Action>
-				<div style={{ textAlign: 'center' }}>
-					<Button size="XS">Voir le détail</Button>
-				</div>
+				<Button size="XS">Voir le détail</Button>
 			</StatusCard.Action>
 		</StatusCard>
 	),
