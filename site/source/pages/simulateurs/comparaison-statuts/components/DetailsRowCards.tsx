@@ -189,7 +189,7 @@ const DetailsRowCards = ({
 }
 
 const StyledSmall = styled.small`
-	color: ${({ theme }) => theme.colors.extended.grey[600]};
+	color: ${({ theme }) => theme.colors.extended.grey[700]};
 	font-weight: normal;
 	font-size: 80%;
 `
@@ -203,7 +203,7 @@ const StyledRuleLink = styled(RuleLink)`
 `
 
 const DisabledLabel = styled.span`
-	color: ${({ theme }) => theme.colors.extended.grey[600]}!important;
+	color: ${({ theme }) => theme.colors.extended.grey[700]}!important;
 	font-size: 1.25rem;
 	font-weight: 700;
 	font-style: italic;
