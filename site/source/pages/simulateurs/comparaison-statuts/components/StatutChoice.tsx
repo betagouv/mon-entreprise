@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutTag, StatutType, TAG_DATA } from '@/components/StatutTag'
@@ -76,14 +77,7 @@ function StatutBloc({
 				<H4 as="h3">{TAG_DATA[name].longName}</H4>
 			</StatusCard.Titre>
 			<StatusCard.Complément>
-				<Ul
-					style={{
-						display: 'flex',
-						flex: '1',
-						marginBottom: '0',
-						flexDirection: 'column',
-					}}
-				>
+				<StyledComplémentList>
 					<Li>
 						{versementLibératoire ? (
 							<Trans>
@@ -112,7 +106,7 @@ function StatutBloc({
 							: t('Option ACRE non activée')}
 						<ExplicableRule dottedName="dirigeant . exonérations . ACRE" />
 					</Li>
-				</Ul>
+				</StyledComplémentList>
 			</StatusCard.Complément>
 			{!hideCTA && (
 				<StatusCard.Action>
@@ -135,5 +129,12 @@ function StatutBloc({
 		</StatusCard>
 	)
 }
+
+const StyledComplémentList = styled(Ul)`
+	display: flex;
+	flex: 1;
+	margin-bottom: 0;
+	flex-direction: column;
+`
 
 export default StatutChoice
