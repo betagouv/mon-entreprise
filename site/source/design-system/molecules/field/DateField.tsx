@@ -139,14 +139,10 @@ export const DateField = (props: DateFieldProps) => {
 					value={inputValue}
 					onChange={handleInputChange}
 					onBlur={(e) => {
-						inputProps.onBlur?.(
-							e as React.FocusEvent<HTMLInputElement, Element>
-						)
+						inputProps.onBlur?.(e)
 					}}
 					onFocus={(e) => {
-						inputProps.onFocus?.(
-							e as React.FocusEvent<HTMLInputElement, Element>
-						)
+						inputProps.onFocus?.(e)
 					}}
 					errorMessage={
 						isChangeOnce &&
