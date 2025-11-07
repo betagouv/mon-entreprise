@@ -36,7 +36,7 @@ export const ObjectifRecettes = () => {
 	return (
 		<ObjectifSaisissableDeSimulation
 			id="économie-collaborative-recettes"
-			titre="Titre"
+			titre="Recettes"
 			valeur={valeur}
 			rendreChampSaisie={RecettesInput}
 		/>
