@@ -178,7 +178,9 @@ const DetailsRowCards = ({
 								</StatusCard.ValeurSecondaire>
 							)}
 							{!evolutionDottedName && evolutionLabel && (
-								<StatusCard.ValeurSecondaire>{evolutionLabel}</StatusCard.ValeurSecondaire>
+								<StatusCard.ValeurSecondaire>
+									{evolutionLabel}
+								</StatusCard.ValeurSecondaire>
 							)}
 							{footer?.(statusObject.engine) && (
 								<StatusCard.Action>
