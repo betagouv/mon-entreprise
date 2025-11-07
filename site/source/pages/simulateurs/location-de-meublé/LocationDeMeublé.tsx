@@ -11,10 +11,10 @@ import {
 } from '@/contextes/économie-collaborative'
 import { Button, ConteneurBleu } from '@/design-system'
 import { ComparateurRégimesCards } from '@/pages/simulateurs/location-de-meublé/components/ComparateurRégimesCards'
+import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import {
 	AlsaceMoselleQuestion,
-	AutresRevenusQuestion,
 	PremiereAnneeQuestion,
 	TypeDuréeQuestion,
 	TypeLocationQuestion,
@@ -35,7 +35,6 @@ const LocationDeMeublé = () => {
 				questions={[
 					TypeLocationQuestion,
 					TypeDuréeQuestion,
-					AutresRevenusQuestion,
 					...(isCotisationsEnabled
 						? [PremiereAnneeQuestion, AlsaceMoselleQuestion]
 						: []),
@@ -46,6 +45,7 @@ const LocationDeMeublé = () => {
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
 				<SimulationGoals>
 					<ObjectifRecettes />
+					<ObjectifAutresRevenus />
 				</SimulationGoals>
 			</Simulation>
 			{estSituationValide(situation) && (
