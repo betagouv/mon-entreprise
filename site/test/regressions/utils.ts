@@ -14,14 +14,7 @@ import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 type SituationsSpecs = Record<string, Simulation['situation'][]>
 
-export const engine = engineFactory(rules, {
-	logger: {
-		warn: () => undefined,
-		// eslint-disable-next-line no-console
-		error: (m: string) => console.error(m),
-		log: () => undefined,
-	},
-})
+export const engine = engineFactory(rules)
 // TODO: le type d'objectifs doit correspondre au modèle de règles utilisé
 export const runSimulations = (
 	situationsSpecs: SituationsSpecs,
