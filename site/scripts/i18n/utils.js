@@ -1,7 +1,9 @@
 import { readFileSync } from 'fs'
 
 import dotenv from 'dotenv'
+import rulesAS from 'modele-as'
 import rules from 'modele-social'
+import rulesTI from 'modele-ti'
 import yaml from 'yaml'
 
 dotenv.config()
@@ -10,6 +12,8 @@ export const localesPath = new URL('../../source/locales/', import.meta.url)
 	.pathname
 export const UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
 export const rulesTranslationFile = 'rules-en.yaml'
+export const rulesTranslationFileTI = 'rules-ti-en.yaml'
+export const rulesTranslationFileAS = 'rules-as-en.yaml'
 export const UiTranslationPath = localesPath + 'ui-en.yaml'
 export const UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
 
@@ -104,16 +108,22 @@ const recursiveRulesMissingTranslations = (currentExternalization, rules) => {
 }
 
 export function getRulesMissingTranslations() {
-	let currentExternalization = yaml.parse(
-		readFileSync(localesPath + rulesTranslationFile, 'utf-8')
-	)
+	return [
+		[rulesTranslationFile, rules],
+		[rulesTranslationFileTI, rulesTI],
+		[rulesTranslationFileAS, rulesAS],
+	].map(([fileName, rules]) => {
+		let currentExternalization = yaml.parse(
+			readFileSync(localesPath + fileName, 'utf-8')
+		)
 
-	const { missingTranslations, resolved } = recursiveRulesMissingTranslations(
-		currentExternalization,
-		rules
-	)
+		const { missingTranslations, resolved } = recursiveRulesMissingTranslations(
+			currentExternalization,
+			rules
+		)
 
-	return [[rulesTranslationFile, missingTranslations, resolved]]
+		return [fileName, missingTranslations, resolved]
+	})
 }
 
 export const getUiMissingTranslations = () => {

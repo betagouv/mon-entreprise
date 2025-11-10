@@ -2,31 +2,16 @@ import Engine, { EngineOptions } from 'publicodes'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Rules } from '@/domaine/publicodes/Rules'
-import translateRules from '@/locales/translateRules'
-
-import i18next from '../../locales/i18n'
-import ruleTranslations from '../../locales/rules-en.yaml'
+import { NomModèle } from '@/domaine/SimulationConfig'
+import i18next from '@/locales/i18n'
+import ruleTranslationsAS from '@/locales/rules-as-en.yaml'
+import ruleTranslations from '@/locales/rules-en.yaml'
+import ruleTranslationsTI from '@/locales/rules-ti-en.yaml'
+import translateRules, { Translation } from '@/locales/translateRules'
 
 const unitsTranslations = Object.entries(
 	i18next.getResourceBundle('fr', 'units') as Record<string, string>
 )
-
-const engineOptions: EngineOptions = {
-	getUnitKey(unit: string): string {
-		const key = unitsTranslations
-			.find(([, trans]) => trans === unit)?.[0]
-			.replace(/_plural$/, '')
-
-		return key || unit
-	},
-	warn:
-		process.env.NODE_ENV === 'production'
-			? false
-			: {
-					experimentalRules: false,
-					deprecatedSyntax: false,
-			  },
-}
 
 let timeout: NodeJS.Timeout | null = null
 let logs: ['warn' | 'error' | 'log', string][] = []
@@ -61,15 +46,40 @@ const logger = {
 	},
 }
 
-export function engineFactory(rules: Rules, options = {}) {
+const engineOptions: EngineOptions = {
+	getUnitKey(unit: string): string {
+		const key = unitsTranslations
+			.find(([, trans]) => trans === unit)?.[0]
+			.replace(/_plural$/, '')
+
+		return key || unit
+	},
+	warn:
+		process.env.NODE_ENV === 'production'
+			? false
+			: {
+					experimentalRules: false,
+					deprecatedSyntax: false,
+			  },
+	logger,
+}
+
+export function engineFactory(rules: Rules, nomModèle?: NomModèle) {
 	const translatedRules =
 		i18next.language === 'en'
-			? translateRules('en', ruleTranslations, rules)
+			? translateRules('en', getRuleTranslations(nomModèle), rules)
 			: rules
 
-	return new Engine(translatedRules, {
-		...engineOptions,
-		...options,
-		logger,
-	}) as Engine<DottedName>
+	return new Engine(translatedRules, engineOptions) as Engine<DottedName>
+}
+
+const getRuleTranslations = <Names extends string>(nomModèle?: NomModèle) => {
+	switch (nomModèle) {
+		case 'modele-as':
+			return ruleTranslationsAS as Record<Names, Translation>
+		case 'modele-ti':
+			return ruleTranslationsTI as Record<Names, Translation>
+		default:
+			return ruleTranslations as Record<Names, Translation>
+	}
 }
