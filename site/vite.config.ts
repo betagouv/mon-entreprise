@@ -77,7 +77,7 @@ export default defineConfig(({ command, mode }) => ({
 
 		yaml({
 			transform(data, filePath) {
-				return filePath.endsWith('/rules-en.yaml')
+				return /\/rules(?:-(?:\S){2})?-en.yaml$/.test(filePath)
 					? cleanAutomaticTag(data)
 					: data
 			},
