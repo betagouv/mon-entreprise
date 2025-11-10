@@ -1,8 +1,9 @@
 import { Rule } from 'publicodes'
 
-type Translation = Record<string, string> & {
+export type Translation = Record<string, string> & {
 	avec?: Record<string, Translation>
 }
+
 type translateAttribute = (
 	prop: string,
 	rule: Rule,
