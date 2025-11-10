@@ -159,6 +159,9 @@ salarié . activité partielle . indemnisation entreprise:
     L'employeur peut percevoir l'allocation d'activité partielle dans la limite d'un plafond de **1000 heures par an et par salarié**.
 
 
+    > **Note** : Pour l’activité partielle de longue durée (APLD), le taux horaire minimum peut monter à **9,40 €**.
+
+
     > **Attention** : en cas de fraude ou de fausse déclaration, l'employeur encourt jusqu'à 2 ans d'emprisonnement et 30 000 € d'amende.
   produit:
     - retrait absence
@@ -174,18 +177,22 @@ salarié . activité partielle . indemnisation entreprise:
       contrat . salaire brut: 4.5 * contrat . temps de travail . SMIC
   références:
     Quelle allocation perçoit l'employeur en cas d'activité partielle ?: https://www.service-public.fr/particuliers/vosdroits/F23503#fiche-item-aria-6
+    Article D5122-13 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000050742823
+    Article 7 du Décret n° 2020-926 du 28 juillet 2020 relatif au dispositif spécifique d'activité partielle en cas de réduction d'activité durable: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050742830
 
   avec:
     plancher horaire:
       variations:
+        - si: date >= 12/2024
+          alors: 8.46 €/heure
         - si: date >= 05/2023
           alors: 8.21 €/heure
         - si: date >= 01/2023
-          alors: 8.03€/heure
+          alors: 8.03 €/heure
         - si: date >= 08/2022
-          alors: 7.88€/heure
+          alors: 7.88 €/heure
         - si: date >= 05/2022
-          alors: 7.73€/heure
+          alors: 7.73 €/heure
         - si: date >= 01/2022
           alors: 8.37 €/heure
         - si: date >= 10/2021
