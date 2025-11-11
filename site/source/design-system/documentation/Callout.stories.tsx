@@ -10,11 +10,11 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		$type: {
+		type: {
 			control: { type: 'select' },
 			options: ['tip', 'note', 'important', 'caution'],
 		},
-		$icon: {
+		icon: {
 			control: { type: 'text' },
 		},
 	},
@@ -31,8 +31,8 @@ export const Default: Story = {
 
 export const Conseil: Story = {
 	args: {
-		$type: 'tip',
-		$icon: '💡',
+		type: 'tip',
+		icon: '💡',
 		children: (
 			<>
 				<strong>Conseil</strong>
@@ -47,8 +47,8 @@ export const Conseil: Story = {
 
 export const Attention: Story = {
 	args: {
-		$type: 'caution',
-		$icon: '⚠️',
+		type: 'caution',
+		icon: '⚠️',
 		children: (
 			<>
 				<strong>Attention</strong>
@@ -63,8 +63,8 @@ export const Attention: Story = {
 
 export const Information: Story = {
 	args: {
-		$type: 'important',
-		$icon: 'ℹ️',
+		type: 'important',
+		icon: 'ℹ️',
 		children: (
 			<>
 				<strong>Information</strong>
@@ -79,8 +79,8 @@ export const Information: Story = {
 
 export const Note: Story = {
 	args: {
-		$type: 'note',
-		$icon: '📝',
+		type: 'note',
+		icon: '📝',
 		children: (
 			<>
 				<strong>Note</strong>
@@ -96,8 +96,8 @@ export const Note: Story = {
 export const AvecListeEtTitre: Story = {
 	name: 'Avec liste et titre',
 	args: {
-		$type: 'tip',
-		$icon: '💡',
+		type: 'tip',
+		icon: '💡',
 		children: (
 			<>
 				<strong>Conseil : Pour bien gérer votre location meublée</strong>
@@ -114,7 +114,7 @@ export const AvecListeEtTitre: Story = {
 export const SansIcone: Story = {
 	name: 'Sans icône',
 	args: {
-		$type: 'important',
+		type: 'important',
 		children: (
 			<p>
 				Les cotisations sociales sont calculées sur la base de vos revenus nets

@@ -11,7 +11,7 @@ export default function BarèmeSwitch() {
 
 	return (
 		currentZone && (
-			<SwitchContainer $isRule>
+			<SwitchContainer isRule>
 				<SimpleField
 					dottedName={barèmeLodeomDottedName(currentZone)}
 					labelStyle={RuleSwitchLabel}

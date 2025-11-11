@@ -84,7 +84,6 @@ export default function EntrepriseSearchResults({
 						<Li key={entreprise.siren}>
 							<StyledCard
 								onPress={() => onSubmit?.(entreprise)}
-								onClick={() => onSubmit?.(entreprise)}
 								compact
 								bodyAs="div"
 								aria-label={`${entreprise.nom}, Selectionner cette entreprise`}

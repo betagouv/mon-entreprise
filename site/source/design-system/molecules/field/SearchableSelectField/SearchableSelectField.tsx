@@ -89,8 +89,8 @@ export function SearchableSelectField(
 	return (
 		<StyledContainer>
 			<SearchInputContainer
-				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				$hasLabel={!!props.label}
+				hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				hasLabel={!!props.label}
 			>
 				{props.selectedValue ? (
 					<IconContainer ref={ref} $hasLabel={!!props.label} $hasValue={true}>

@@ -10,10 +10,7 @@ import { Body } from '../../typography/paragraphs'
 type Props = AriaCheckboxProps & {
 	id: string
 	alignment?: 'center' | 'start' | 'end'
-} & (
-	| {label?: string}
-	| {children?: string}
-)
+} & ({ label?: string } | { children?: string })
 
 export function Checkbox(props: Props) {
 	const label =

@@ -81,11 +81,7 @@ const StyledIcon = styled(CarretDownIcon)`
 	margin: 0 4px;
 `
 
-interface WrapperProps {
-	$isOpen: boolean
-}
-
-const Wrapper = styled.div<WrapperProps>`
+const Wrapper = styled.div<{ $isOpen: boolean }>`
 	overflow: hidden;
 	display: flex;
 	border-radius: ${({ theme }) => theme.box.borderRadius};

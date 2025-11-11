@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 export const SvgIcon = styled.svg`
 	/* width: ${({ theme }) => theme.spacings.lg};
@@ -27,15 +27,12 @@ export const ChevronIcon = (props: HTMLAttributes<SVGElement>) => (
 	</SvgIcon>
 )
 
-export const RotatingChevronIcon = styled(ChevronIcon)<{ $isOpen: boolean }>`
+export const RotatingChevronIcon = styled(ChevronIcon).withConfig({
+	shouldForwardProp: (prop) => prop !== 'isOpen',
+})<{ isOpen: boolean }>`
 	vertical-align: middle;
-	transform: rotate(-90deg);
-	transition: transform 0.3s;
-	${({ $isOpen }) =>
-		!$isOpen &&
-		css`
-			transform: rotate(90deg);
-		`}
+	transform: ${({ isOpen }) => (isOpen ? 'rotate(-90deg)' : 'rotate(90deg)')};
+	transition: transform 0.15s ease-in-out;
 `
 
 export const InfoIcon = (props: HTMLAttributes<SVGElement>) => (

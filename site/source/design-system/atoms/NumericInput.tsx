@@ -98,9 +98,9 @@ export const NumericInput = (props: NumericInputProps) => {
 		<StyledNumericInputContainer>
 			<StyledInputContainer
 				{...groupProps}
-				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				$hasLabel={!!props.label}
-				$small={props.small}
+				hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				hasLabel={!!props.label}
+				small={props.small}
 			>
 				<StyledNumberInput
 					{...(omit(

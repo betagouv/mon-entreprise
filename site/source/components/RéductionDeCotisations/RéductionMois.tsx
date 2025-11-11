@@ -64,7 +64,7 @@ export default function RéductionMois({
 				aria-label={!isOptionVisible ? t('Déplier') : t('Replier')}
 			>
 				{t('Options')}&nbsp;
-				<RotatingChevronIcon aria-hidden $isOpen={isOptionVisible} />
+				<RotatingChevronIcon aria-hidden isOpen={isOptionVisible} />
 			</StyledButton>
 		)
 	}
