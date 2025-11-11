@@ -45,7 +45,7 @@ const RotatingChevronExample = (
 		<>
 			<button onClick={() => setIsOpen(!isOpen)}>
 				{isOpen ? 'Ouvert' : 'Fermé'}
-				<RotatingChevronIcon {...args} $isOpen={isOpen} />
+				<RotatingChevronIcon {...args} isOpen={isOpen} />
 			</button>
 			{isOpen && <div>Visible si ouvert</div>}
 		</>

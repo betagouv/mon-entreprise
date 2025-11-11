@@ -84,7 +84,7 @@ const flash = keyframes`
 
 `
 
-export const StyledValue = styled.span<{ $flashOnChange: boolean }>`
+const StyledValue = styled.span<{ $flashOnChange: boolean }>`
 	animation: ${flash} 0.2s 1;
 	will-change: background-color, opacity;
 `

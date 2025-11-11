@@ -54,7 +54,7 @@ export function SimulationGoals({ toggles, children }: SimulationGoalsProps) {
 	)
 }
 
-export const SimulationGoalsContainer = styled.div<{
+const SimulationGoalsContainer = styled.div<{
 	$isFirstStepCompleted: boolean
 	$isEmbeded: boolean
 }>`

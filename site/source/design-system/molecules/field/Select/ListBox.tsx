@@ -40,7 +40,7 @@ const FocusedOption = css`
 `
 
 const ListItem = styled.li<{ $isFocused?: boolean; $isSelected?: boolean }>`
-	font-weight: ${({$isSelected}) => ($isSelected ? '600' : 'normal')};
+	font-weight: ${({ $isSelected }) => ($isSelected ? '600' : 'normal')};
 	cursor: default;
 	outline: none;
 	font-family: ${({ theme }) => theme.fonts.main};
@@ -71,7 +71,7 @@ const ListItem = styled.li<{ $isFocused?: boolean; $isSelected?: boolean }>`
 	margin-bottom: 0.3rem;
 	font-size: 100%;
 	padding: 0.6rem;
-	${({$isFocused}) => $isFocused && FocusedOption}
+	${({ $isFocused }) => $isFocused && FocusedOption}
 `
 
 const ItemContent = styled.div`

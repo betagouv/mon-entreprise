@@ -1,15 +1,17 @@
 import { styled } from 'styled-components'
 
-export const Alert = styled.div<{
-	$type?: 'info' | 'success' | 'warning' | 'error'
+export const Alert = styled.div.withConfig({
+	shouldForwardProp: (prop) => prop !== 'type',
+})<{
+	type?: 'info' | 'success' | 'warning' | 'error'
 }>`
 	padding: ${({ theme }) => `${theme.spacings.md} ${theme.spacings.lg}`};
 	margin: ${({ theme }) => `${theme.spacings.md} 0`};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border-left: 4px solid;
 
-	${({ $type = 'info', theme }) => {
-		switch ($type) {
+	${({ type = 'info', theme }) => {
+		switch (type) {
 			case 'success':
 				return `
 					background-color: ${theme.colors.extended.success[100]};

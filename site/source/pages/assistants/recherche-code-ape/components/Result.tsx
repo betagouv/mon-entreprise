@@ -68,7 +68,7 @@ export const Result = ({ item, disabled, hideGuichetUnique }: ResultProps) => {
 							aria-label={!open ? t('En savoir plus') : t('Replier')}
 						>
 							{!open ? t('En savoir plus') : t('Replier')}&nbsp;
-							<StyledChevron aria-hidden $isOpen={open} />
+							<StyledChevron aria-hidden isOpen={open} />
 						</StyledButton>
 					</Grid>
 				</Grid>

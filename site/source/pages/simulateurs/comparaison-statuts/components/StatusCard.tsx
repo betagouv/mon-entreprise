@@ -16,7 +16,7 @@ const StatusCard = ({
 	footerContent,
 }: StatutCardType) => {
 	return (
-		<StyledCardContainer $inert>
+		<StyledCardContainer inert>
 			<CardBody>
 				<Grid container spacing={1}>
 					{status.map((statusString) => (

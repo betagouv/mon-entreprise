@@ -28,7 +28,7 @@ export function Chip({
 		<ForceThemeProvider forceTheme="light">
 			<StyledChip className={className} $type={type} title={title}>
 				{icon && (
-					<StyledIconWrapper type={type}>
+					<StyledIconWrapper $type={type}>
 						{typeof icon !== 'boolean' ? (
 							icon
 						) : type === 'success' ? (
@@ -48,15 +48,15 @@ export function Chip({
 	)
 }
 const StyledIconWrapper = styled.span<{
-	type: ChipProps['type']
+	$type: ChipProps['type']
 }>`
 	margin-right: ${({ theme }) => theme.spacings.xxs};
 	vertical-align: middle;
 	svg {
-		fill: ${({ theme, type }) =>
-			type === 'error'
+		fill: ${({ theme, $type }) =>
+			$type === 'error'
 				? theme.colors.extended.grey[100]
-				: textColorFromType(type, theme)};
+				: textColorFromType($type, theme)};
 	}
 `
 
