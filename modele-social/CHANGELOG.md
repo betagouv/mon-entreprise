@@ -2,6 +2,17 @@
 
 ## next
 
+### Breaking changes
+- Suppression de la règle dépréciée `dirigeant . indépendant . PL . métier . avocat`
+- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . par défaut`
+- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . officier . par défaut`
+- Suppression de la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
+- Suppression de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
+
+### Nouveautés
+
+- Les possibilités de métier juridique `notaire` et `officier` sont désormais applicables
+
 ## 9.0.0
 
 ### Breaking changes

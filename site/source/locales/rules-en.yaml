@@ -2827,27 +2827,6 @@ dirigeant . indépendant . PL . métier:
   question.fr: A quelle catégorie appartient votre profession ?
   titre.en: '[automatic] profession'
   titre.fr: métier
-dirigeant . indépendant . PL . métier . agents généraux d'assurances:
-  avec:
-    par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
-  description.en: >
-    [automatic] General insurance agents contribute to CAVAMAC for retirement
-    and provident funds.
-  description.fr: >
-    Les agents généraux d'assurances cotisent auprès de la CAVAMAC pour la
-    retraite et la prévoyance.
-  titre.en: '[automatic] general insurance agents'
-  titre.fr: agents généraux d'assurances
-dirigeant . indépendant . PL . métier . avocat:
-  note.en: '[automatic] Use `executive . independent . PL . trade . legal .
-    lawyer` instead'
-  note.fr:
-    Utiliser `dirigeant . indépendant . PL . métier . juridique . avocat` à
-    la place
-  titre.en: '[automatic] lawyer'
-  titre.fr: avocat
 dirigeant . indépendant . PL . métier . expert-comptable:
   description.en: >
     [automatic] Public accountants and auditors contribute to CAVEC for
@@ -2870,62 +2849,77 @@ dirigeant . indépendant . PL . métier . juridique:
       titre.fr: avocat
     notaire:
       description.en: >
-        [automatic] Liberal notaries contribute to the CPRN for retirement and
-        provident funds.
-      description.fr: >
+        [automatic] Liberal profession notaries contribute to the CPRN for
+        retirement and provident
+
+        benefits.
+
+
+        > The CPRN's contribution and social protection rules are not implemented.
+
+        > not implemented.
+      description.fr: |
         Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la
         prévoyance.
+
+        > Les règles de cotisation et de protection sociale de la CPRN ne sont
+        > pas implémentées.
       titre.en: '[automatic] notary'
       titre.fr: notaire
-    notaire . par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
     officier:
       description.en: >
-        [automatic] The ministerial officers, public officers and judicial
-        companies are affiliated with Cavom for their retirement and provident
-        fund.
+        [automatic] Ministerial officers, public officials and judicial
+        companies
+
+        are affiliated to Cavom for their pension and provident schemes.
 
 
-        List of professions concerned : 
+        List of professions concerned:
 
 
         - Bailiffs ;
 
-        - Auctioneers (judicial and/or voluntary sales);
-
-        - Court commissioners ;
-
-        - Clerks of the commercial courts;
-
-        - Judicial administrators;
-
-        - Judicial agents.
-      description.fr: >
-        Les officiers ministériels, les officiers publics et les compagnies
-        judiciaires sont affiliées à la Cavom pour leur retraite et de
-        prévoyance.
-
-
-        Liste des métiers concernés : 
-
-
-        - Huissiers de justice ;
-
-        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
+        - Auctioneers (judicial and/or voluntary sales) ;
 
         - Commissaires de justice ;
 
-        - Greffiers près les tribunaux de commerce ;
+        - Commercial court clerks ;
 
         - Administrateurs judiciaires ;
 
+        - Court-appointed agents.
+
+
+        > Cavom's contribution and social protection rules are not implemented.
+
+        > not implemented.
+      description.fr: >
+        Les officiers ministériels, les officiers publics et les compagnies
+
+        judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
+
+
+        Liste des métiers concernés :
+
+
+        - Huissiers de justice ;
+
+        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
+
+        - Commissaires de justice ;
+
+        - Greffiers près les tribunaux de commerce ;
+
+        - Administrateurs judiciaires ;
+
         - Mandataires judiciaires.
+
+
+        > Les règles de cotisation et de protection sociale de la Cavom ne sont
+
+        > pas implémentées.
       titre.en: '[automatic] Ministerial officer, public officer, judicial company'
       titre.fr: Officier ministériel, officier public, compagnie judicaire
-    officier . par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
   titre.en: '[automatic] Legal and judicial professions'
   titre.fr: Professions juridiques et judicaires
 dirigeant . indépendant . PL . métier . rattaché CIPAV:
@@ -3053,12 +3047,6 @@ dirigeant . indépendant . PL . métier . santé:
     sage-femme:
       titre.en: '[automatic] midwife'
       titre.fr: sage-femme
-    vétérinaire:
-      titre.en: '[automatic] veterinarian'
-      titre.fr: vétérinaire
-    vétérinaire . par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
   description.en: >
     [automatic] **Exceptions** : Osteopaths, psychologists, psychotherapists,
     occupational therapists,
