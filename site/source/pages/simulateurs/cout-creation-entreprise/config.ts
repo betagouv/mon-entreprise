@@ -42,12 +42,6 @@ export function coûtCréationEntrepriseConfig({
 				'non prioritaires': ['établissement . commune'],
 			},
 			situation: {
-				'dirigeant . indépendant . PL . métier . juridique . notaire . par défaut':
-					'oui',
-				'dirigeant . indépendant . PL . métier . juridique . officier . par défaut':
-					'oui',
-				'dirigeant . indépendant . PL . métier . santé . vétérinaire . par défaut':
-					'oui',
 				'entreprise . catégorie juridique . association': {
 					'applicable si': 'non',
 				},

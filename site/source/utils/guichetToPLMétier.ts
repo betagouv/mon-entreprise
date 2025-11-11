@@ -8,7 +8,6 @@ type PLRMétier =
 	| "'santé . sage-femme'"
 	| "'santé . auxiliaire médical'"
 	| "'santé . pharmacien'"
-	| "'santé . vétérinaire'"
 	| "'juridique . avocat'"
 	| "'juridique . notaire'"
 	| "'juridique . officier'"
@@ -30,8 +29,6 @@ export function guichetToPLMétier(
 		? "'santé . auxiliaire médical'"
 		: caisse === 'CARMF'
 		? "'santé . médecin'"
-		: caisse === 'CARPV'
-		? "'santé . vétérinaire'"
 		: caisse === 'CPRN'
 		? "'juridique . notaire'"
 		: caisse === 'CAVOM'
