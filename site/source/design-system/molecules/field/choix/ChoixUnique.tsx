@@ -3,19 +3,32 @@ import { Key, useCallback, useState } from 'react'
 import {
 	CardChoiceGroup,
 	ChoiceDisplayType,
-	ChoiceOption,
 	RadioChoiceGroup,
 	SelectChoiceGroup,
 	ToggleChoiceGroup,
 } from '../ChoiceGroup'
+import { ChoiceOptionWithValue } from '../ChoiceGroup/ChoiceOption'
 
-export interface SimpleChoiceOption {
+export type SimpleChoiceOptionWithValue = {
 	value: string
+	isDefaultSelected?: boolean
 	label: string
 	description?: string
 	emoji?: string
-	isDefaultSelected?: boolean
 }
+type SimpleChoiceOptionWithChildren = {
+	children: SimpleChoiceOptionWithValue[]
+	label: string
+	description?: string
+}
+
+export type SimpleChoiceOption =
+	| SimpleChoiceOptionWithValue
+	| SimpleChoiceOptionWithChildren
+
+const isSimpleChoiceOptionWithValue = (
+	choice: SimpleChoiceOption
+): choice is SimpleChoiceOptionWithValue => Object.hasOwn(choice, 'value')
 
 export interface ChoixUniqueProps {
 	value?: string
@@ -64,14 +77,30 @@ export function ChoixUnique({
 		[onChange]
 	)
 
-	const choiceOptions: ChoiceOption[] = options.map((option) => ({
+	const getChoiceOptionWithValue = (
+		option: SimpleChoiceOptionWithValue
+	): ChoiceOptionWithValue => ({
 		key: option.value,
 		value: option.value,
 		label: option.label,
 		description: option.description,
 		emoji: option.emoji,
 		isDefaultSelected: option.isDefaultSelected || option.value === value,
-	}))
+	})
+
+	const choiceOptions = options.map((option: SimpleChoiceOption) => {
+		if (isSimpleChoiceOptionWithValue(option)) {
+			return getChoiceOptionWithValue(option)
+		}
+
+		return {
+			label: option.label,
+			description: option.description,
+			children: option.children.map((choice) =>
+				getChoiceOptionWithValue(choice)
+			),
+		}
+	})
 
 	switch (variant) {
 		case 'card':

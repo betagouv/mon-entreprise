@@ -1,8 +1,8 @@
-import { Fragment, Key } from 'react'
+import { Key } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Radio, ToggleGroup } from '../Radio'
-import { ChoiceOption } from './ChoiceOption'
+import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
 
 export interface ToggleChoiceGroupProps {
 	id?: string
@@ -38,9 +38,10 @@ export default function ToggleChoiceGroup({
 			onChange={onChange}
 			value={value}
 		>
-			{options.map((option) => (
-				<Fragment key={option.key}>
+			{options.map((option) =>
+				isChoiceOptionWithValue(option) ? (
 					<Radio
+						key={option.key}
 						value={option.value}
 						/* eslint-disable-next-line jsx-a11y/no-autofocus */
 						autoFocus={autoFocus && defaultValue === option.value}
@@ -48,8 +49,20 @@ export default function ToggleChoiceGroup({
 					>
 						{option.label}
 					</Radio>
-				</Fragment>
-			))}
+				) : (
+					option.children.map((subOption) => (
+						<Radio
+							key={subOption.key}
+							value={subOption.value}
+							/* eslint-disable-next-line jsx-a11y/no-autofocus */
+							autoFocus={autoFocus && defaultValue === subOption.value}
+							isDisabled={subOption.isDisabled}
+						>
+							{subOption.label}
+						</Radio>
+					))
+				)
+			)}
 		</ToggleGroup>
 	)
 }

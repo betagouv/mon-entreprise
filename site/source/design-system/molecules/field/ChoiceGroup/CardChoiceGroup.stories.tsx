@@ -54,6 +54,29 @@ const businessOptions = [
 	},
 ]
 
+const optionsWithSubOptions = [
+	options[0],
+	{
+		label: 'Option 2',
+		description: "Description détaillée de l'option 2",
+		children: [
+			{
+				key: 'suboption1',
+				value: 'suboption1',
+				label: 'Sous Option 1',
+				description: 'Description de la sous-option 1',
+			},
+			{
+				key: 'suboption2',
+				value: 'suboption2',
+				label: 'Sous Option 2',
+				description: 'Description de la sous-option 2',
+			},
+		],
+	},
+	options[2],
+]
+
 const meta = {
 	title: 'Design System/Field/ChoiceGroup/CardChoiceGroup',
 	component: CardChoiceGroup,
@@ -104,6 +127,24 @@ const BusinessExample = () => {
 	)
 }
 
+const CardExampleWithSubOptions = () => {
+	const [value, setValue] = React.useState('option1')
+
+	const handleChange = (newValue: React.Key) => {
+		setValue(newValue.toString())
+	}
+
+	return (
+		<CardChoiceGroup
+			options={optionsWithSubOptions}
+			title="Sélection en mode card"
+			defaultValue="option1"
+			value={value}
+			onChange={handleChange}
+		/>
+	)
+}
+
 export const Default: Story = {
 	args: {
 		options: [],
@@ -118,4 +159,12 @@ export const Business: Story = {
 		onChange: () => {},
 	},
 	render: () => <BusinessExample />,
+}
+
+export const WithSubOptions: Story = {
+	args: {
+		options: [],
+		onChange: () => {},
+	},
+	render: () => <CardExampleWithSubOptions />,
 }
