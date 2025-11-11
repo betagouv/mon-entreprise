@@ -1,8 +1,8 @@
-import { Fragment, Key } from 'react'
+import { Key } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { RadioCard, RadioCardGroup } from '../Radio'
-import { ChoiceOption } from './ChoiceOption'
+import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
 
 interface CardChoiceGroupProps {
 	id?: string
@@ -16,6 +16,7 @@ interface CardChoiceGroupProps {
 	}
 	options: ChoiceOption[]
 	title?: string
+	isSubGroup?: boolean
 }
 
 export default function CardChoiceGroup({
@@ -26,6 +27,7 @@ export default function CardChoiceGroup({
 	options,
 	title,
 	aria = {},
+	isSubGroup = false,
 }: CardChoiceGroupProps) {
 	const { t } = useTranslation()
 
@@ -39,10 +41,12 @@ export default function CardChoiceGroup({
 			onChange={onChange}
 			value={value}
 			label={title}
+			isSubGroup={isSubGroup}
 		>
-			{options.map((option) => (
-				<Fragment key={option.key}>
+			{options.map((option) =>
+				isChoiceOptionWithValue(option) ? (
 					<RadioCard
+						key={option.key}
 						// eslint-disable-next-line jsx-a11y/no-autofocus
 						autoFocus={autoFocus && defaultValue === option.value}
 						value={option.value}
@@ -51,8 +55,21 @@ export default function CardChoiceGroup({
 						description={option.description}
 						isDisabled={option.isDisabled}
 					/>
-				</Fragment>
-			))}
+				) : (
+					<CardChoiceGroup
+						key={option.label}
+						value={value}
+						onChange={onChange}
+						/* eslint-disable-next-line jsx-a11y/no-autofocus */
+						autoFocus={autoFocus}
+						defaultValue={defaultValue}
+						options={option.children}
+						title={option.label}
+						aria={aria}
+						isSubGroup={true}
+					/>
+				)
+			)}
 		</RadioCardGroup>
 	)
 }

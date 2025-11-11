@@ -12,3 +12,13 @@ export type Choice = ASTNode<'rule'> & {
 	>
 	canGiveUp?: boolean
 }
+
+export const isChoice = (
+	choiceChild:
+		| (ASTNode<'rule'> & {
+				rawNode: ASTNode<'rule'>['rawNode'] & {
+					estimation?: DottedName
+				}
+		  })
+		| Choice
+): choiceChild is Choice => Object.hasOwn(choiceChild, 'children')

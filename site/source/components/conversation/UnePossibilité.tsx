@@ -1,10 +1,11 @@
 import { DottedName } from 'modele-social'
 
-import { Choice } from '@/components/conversation/Choice'
+import { Choice, isChoice } from '@/components/conversation/Choice'
 import {
 	ChoiceDisplayType,
 	ChoixUnique,
 	SimpleChoiceOption,
+	SimpleChoiceOptionWithValue,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, montantToString } from '@/domaine/Montant'
@@ -55,7 +56,36 @@ export const UnePossibilité = ({
 		onChange,
 	})
 
+	const getSimpleChoiceOptionWithValue = (node: {
+		dottedName: string
+		title: string
+		rawNode: {
+			description?: string
+			icônes?: string
+		}
+	}): SimpleChoiceOptionWithValue => {
+		const relativeValue = relativeDottedName(dottedName, node.dottedName)
+
+		return {
+			value: relativeValue,
+			label: node.title,
+			description: node.rawNode.description,
+			emoji: node.rawNode.icônes,
+			isDefaultSelected: defaultValue === value,
+		}
+	}
+
 	const options: SimpleChoiceOption[] = choices.children.map((node) => {
+		if (isChoice(node)) {
+			return {
+				label: node.title,
+				description: node.rawNode.description,
+				children: node.children.map((subChoice) =>
+					getSimpleChoiceOptionWithValue(subChoice)
+				),
+			}
+		}
+
 		const relativeValue = relativeDottedName(dottedName, node.dottedName)
 
 		return {
