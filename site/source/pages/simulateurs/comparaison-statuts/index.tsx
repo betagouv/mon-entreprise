@@ -13,7 +13,7 @@ import { completeSituationSelector } from '@/store/selectors/completeSituation.s
 import Comparateur from './components/Comparateur'
 import { EngineComparison } from './EngineComparison'
 
-function ComparateurStatutsUI() {
+export default function ComparateurStatuts() {
 	const engine = useEngine()
 	const situation = useSelector(completeSituationSelector)
 	const { absoluteSitePaths } = useSitePaths()
@@ -79,8 +79,4 @@ function ComparateurStatutsUI() {
 			<Comparateur namedEngines={engines} />
 		</>
 	)
-}
-
-export default function ComparateurStatuts() {
-	return <ComparateurStatutsUI />
 }
