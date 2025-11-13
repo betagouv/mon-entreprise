@@ -84,7 +84,7 @@ const redirects = await Promise.all(
 			}) as Promise<string>)
 
 			// eslint-disable-next-line no-console
-			console.log(`preredering ${url} done, adding redirect`)
+			console.log(`prerendering ${url} done, adding redirect`)
 
 			return `
 [[redirects]]
