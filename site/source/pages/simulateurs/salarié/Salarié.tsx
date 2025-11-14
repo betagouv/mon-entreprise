@@ -14,7 +14,7 @@ import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
 } from '@/components/Simulation'
-import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation'
+import SalaryExplanationSalarié from '@/components/simulationExplanation/SalaryExplanation/SalaryExplanationSalarié'
 import { FadeIn, FromTop } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import {
@@ -42,7 +42,7 @@ export default function SalariéSimulation() {
 	return (
 		<>
 			<Simulation
-				explanations={<SalaryExplanation />}
+				explanations={<SalaryExplanationSalarié />}
 				customEndMessages={
 					<>
 						<Trans i18nKey="simulation-end.hiring.text">
