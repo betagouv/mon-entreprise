@@ -1,42 +1,35 @@
 échelle de rémunération:
-  - dirigeant . rémunération . totale: 100 €/an
-  - dirigeant . rémunération . totale: 1000 €/an
-  - dirigeant . rémunération . totale: 2000 €/an
-  - dirigeant . rémunération . totale: 5000 €/an
-  - dirigeant . rémunération . totale: 10000 €/an
-  - dirigeant . rémunération . totale: 20000 €/an
-  - dirigeant . rémunération . totale: 50000 €/an
-  - dirigeant . rémunération . totale: 100000 €/an
-
-avec charges:
-  - dirigeant . rémunération . totale: 10000 €/an
-    entreprise . charges: 2000 €/an
-  - dirigeant . rémunération . totale: 20000 €/an
-    entreprise . charges: 15000 €/an
+  - assimilé salarié . rémunération . totale: 500 €/an
+  - assimilé salarié . rémunération . totale: 1000 €/an
+  - assimilé salarié . rémunération . totale: 2000 €/an
+  - assimilé salarié . rémunération . totale: 5000 €/an
+  - assimilé salarié . rémunération . totale: 10000 €/an
+  - assimilé salarié . rémunération . totale: 20000 €/an
+  - assimilé salarié . rémunération . totale: 50000 €/an
+  - assimilé salarié . rémunération . totale: 100000 €/an
 
 ACRE:
   # Acre applicable avec exonération totale car rém. brute < 75% PSS
-  - dirigeant . rémunération . totale: 25000 €/an
+  - assimilé salarié . rémunération . totale: 25000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
+    assimilé salarié . exonérations . ACRE: oui
   # Acre applicable avec coefficient car 75% PSS < rém. brute < PSS
-  - dirigeant . rémunération . totale: 50000 €/an
+  - assimilé salarié . rémunération . totale: 50000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
+    assimilé salarié . exonérations . ACRE: oui
   # Acre non applicable car rém. brute > PSS
-  - dirigeant . rémunération . totale: 100000 €/an
+  - assimilé salarié . rémunération . totale: 100000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
+    assimilé salarié . exonérations . ACRE: oui
   # Acre non applicable car date de création > 1 an
-  - dirigeant . rémunération . totale: 30000 €/an
+  - assimilé salarié . rémunération . totale: 30000 €/an
     entreprise . date de création: 01/06/2024
-    dirigeant . exonérations . ACRE: oui
+    assimilé salarié . exonérations . ACRE: oui
   # Acre applicable avec date de création < 1 an mais l'année dernière
-  - dirigeant . rémunération . totale: 25000 €/an
+  - assimilé salarié . rémunération . totale: 25000 €/an
     entreprise . date de création: 01/12/2025
-    dirigeant . exonérations . ACRE: oui
+    assimilé salarié . exonérations . ACRE: oui
 
 JEI:
-  - dirigeant . rémunération . totale: 4000 €/mois
-    dirigeant . régime social: "'assimilé salarié'"
-    salarié . cotisations . exonérations . JEI: oui
+  - assimilé salarié . rémunération . totale: 4000 €/mois
+    assimilé salarié . exonérations . JEI: oui
