@@ -7,6 +7,7 @@ import { ExtraSmallBody } from '../../typography/paragraphs'
 const LABEL_HEIGHT = '1rem'
 
 type TextAreaFieldProps = AriaTextFieldOptions<'textarea'> & {
+	errorMessage?: string
 	inputRef?: RefObject<HTMLTextAreaElement>
 	small?: boolean
 	rows?: number | undefined
