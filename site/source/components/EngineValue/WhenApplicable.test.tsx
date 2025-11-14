@@ -4,8 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
 
 describe('WhenApplicable', () => {
+	vi.mock('@/hooks/useEngine', () => ({
+		useEngine: vi.fn(),
+	}))
+
 	const mockEngine = {
 		evaluate: vi.fn(),
 	}
@@ -13,6 +18,7 @@ describe('WhenApplicable', () => {
 
 	beforeEach(() => {
 		vi.clearAllMocks()
+		vi.mocked(useEngine).mockReturnValue(engine)
 	})
 
 	it('should render children when the condition is applicable', () => {
