@@ -392,9 +392,30 @@ function useSimpleNumberFieldState(
 		updateNumberValue(newValue)
 	}
 
+	const fakeValidationResultForTyping = {
+		isInvalid: false,
+		validationErrors: [],
+		validationDetails: {
+			badInput: false,
+			customError: false,
+			patternMismatch: false,
+			rangeOverflow: false,
+			rangeUnderflow: false,
+			stepMismatch: false,
+			tooLong: false,
+			tooShort: false,
+			typeMismatch: false,
+			valid: true,
+			valueMissing: false,
+		},
+	}
+
 	return {
 		numberValue,
+		setNumberValue: updateNumberValue,
+		defaultNumberValue: 0,
 		inputValue,
+		setInputValue: handleInputValueChange,
 		decrement,
 		increment,
 		minValue: props.minValue ?? -Infinity,
@@ -409,7 +430,11 @@ function useSimpleNumberFieldState(
 		},
 		incrementToMax: () => null,
 		decrementToMin: () => null,
-		setInputValue: handleInputValueChange,
+		realtimeValidation: fakeValidationResultForTyping,
+		displayValidation: fakeValidationResultForTyping,
+		updateValidation: () => null,
+		resetValidation: () => null,
+		commitValidation: () => null,
 		formatter,
 	}
 }
