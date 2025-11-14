@@ -145,12 +145,12 @@ export const DateField = (props: DateFieldProps) => {
 						inputProps.onFocus?.(e)
 					}}
 					errorMessage={
-						isChangeOnce &&
-						selected === undefined &&
-						t(
-							'design-system.date-picker.error.invalid-date',
-							'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
-						)
+						isChangeOnce && selected === undefined
+							? t(
+									'design-system.date-picker.error.invalid-date',
+									'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
+							  )
+							: ''
 					}
 				/>
 				<StyledButton
