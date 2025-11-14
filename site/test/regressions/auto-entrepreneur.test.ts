@@ -1,12 +1,17 @@
+import rules from 'modele-social'
 import { expect, it } from 'vitest'
 
 import { configAutoEntrepreneur } from '@/pages/simulateurs/auto-entrepreneur/simulationConfig'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import autoEntrepreneurSituations from './auto-entrepreneur.yaml'
-import { engine, getMissingVariables, runSimulations } from './utils'
+import { getMissingVariables, runSimulations } from './utils'
+
+const engine = engineFactory(rules)
 
 it('calculate simulations-auto-entrepreneur', () => {
 	runSimulations(
+		engine,
 		autoEntrepreneurSituations,
 		[
 			...(configAutoEntrepreneur['objectifs exclusifs'] ?? []),
