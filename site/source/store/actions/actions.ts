@@ -33,13 +33,13 @@ export type Action =
 export const configureLaSimulation = (
 	config: SimulationConfig,
 	url: string,
-	id: string
+	key: string
 ) =>
 	({
 		type: 'CONFIGURE_LA_SIMULATION',
 		url,
 		config,
-		id,
+		key,
 	}) as const
 
 // Initialisation de la simulation
