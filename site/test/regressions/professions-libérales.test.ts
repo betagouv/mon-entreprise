@@ -1,12 +1,17 @@
+import rules from 'modele-social'
 import { expect, it } from 'vitest'
 
 import { configProfessionLibérale } from '@/pages/simulateurs/profession-libérale/simulationConfig'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import professionsLibéralesSituations from './professions-libérales.yaml'
-import { engine, getMissingVariables, runSimulations } from './utils'
+import { getMissingVariables, runSimulations } from './utils'
+
+const engine = engineFactory(rules)
 
 it('calculate simulations-professions-libérales', () => {
 	runSimulations(
+		engine,
 		professionsLibéralesSituations,
 		[
 			...(configProfessionLibérale['objectifs exclusifs'] ?? []),
