@@ -38,18 +38,14 @@ export const getOrCreateEnginePromise = (
 		return existing.promise
 	}
 
-	const promise = chargeModèle(nomModèle)
-		.then((modèle) => {
-			const engine = engineFactory(modèle.default, nomModèle)
-			cache.set(nomModèle, {
-				engine,
-			})
+	const promise = chargeModèle(nomModèle).then((modèle) => {
+		const engine = engineFactory(modèle.default, nomModèle)
+		cache.set(nomModèle, {
+			engine,
+		})
 
-			return engine
-		})
-		.catch((error) => {
-			throw error
-		})
+		return engine
+	})
 
 	cache.set(nomModèle, {
 		promise,
