@@ -11,8 +11,8 @@ import {
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSetSimulationFromSearchParams from '@/hooks/useSetSimulationFromSearchParams'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { RootState } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
+import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 import { Merge } from '@/types/utils'
 
 import NextSteps from '../pages/simulateurs/NextSteps'
@@ -45,8 +45,8 @@ export default function SimulateurOrAssistantPage() {
 
 	const inIframe = useIsEmbedded()
 	useSimulationConfig({
-		id: key,
-		key: path,
+		key,
+		url: path,
 		config: simulation as Simulation,
 		autoloadLastSimulation,
 	})
@@ -54,10 +54,9 @@ export default function SimulateurOrAssistantPage() {
 
 	const { chapter1, chapter2, chapter3 } = tracking as TrackingChapters
 
-	const currentId = useSelector(
-		(state: RootState) => state.simulation?.id ?? null
-	)
-	if (currentId !== key) {
+	const currentKey = useSelector(simulationKeySelector)
+
+	if (currentKey !== key) {
 		return <Loader />
 	}
 

@@ -24,7 +24,7 @@ const simulationConfig: SimulationConfig = {
 	'unité par défaut': '€/mois',
 }
 const initialSimulation: Simulation = {
-	id: 'simulateur',
+	key: 'simulateur',
 	config: simulationConfig,
 	url: '/someurl',
 	hiddenNotifications: [],
