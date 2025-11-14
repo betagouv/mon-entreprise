@@ -1,12 +1,17 @@
+import rules from 'modele-social'
 import { expect, it } from 'vitest'
 
 import { configSalarié } from '@/pages/simulateurs/salarié/simulationConfig'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import employeeSituations from './salarié.yaml'
-import { engine, getMissingVariables, runSimulations } from './utils'
+import { getMissingVariables, runSimulations } from './utils'
+
+const engine = engineFactory(rules)
 
 it('calculate simulations-salarié', () => {
 	runSimulations(
+		engine,
 		employeeSituations,
 		[
 			...(configSalarié['objectifs exclusifs'] ?? []),
