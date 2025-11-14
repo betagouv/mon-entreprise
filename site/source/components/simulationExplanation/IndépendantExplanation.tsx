@@ -1,11 +1,10 @@
 import '@/components/Distribution.css'
 
 import { useTranslation } from 'react-i18next'
-import { useTheme } from 'styled-components'
 
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
 import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetraite'
-import StackedBarChart from '@/components/StackedBarChart'
+import StackedRulesChart from '@/components/simulationExplanation/StackedRulesChart/StackedRulesChart'
 import { H3 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
@@ -16,7 +15,6 @@ import InstitutionsPartenaires from './InstitutionsPartenaires'
 
 export default function IndépendantExplanation() {
 	const { t } = useTranslation()
-	const { colors } = useTheme()
 
 	return (
 		<>
@@ -34,24 +32,31 @@ export default function IndépendantExplanation() {
 			<Condition expression="dirigeant . rémunération . net . après impôt > 0 €/an">
 				<section>
 					<H3 as="h2">Répartition du revenu</H3>
-					<StackedBarChart
-						data={[
-							{
+					<StackedRulesChart
+						data={{
+							revenu: {
 								dottedName: 'dirigeant . rémunération . net . après impôt',
-								title: t('Revenu disponible'),
-								color: colors.bases.primary[600],
+								title: t(
+									'pages.simulateurs.indépendant.répartition.revenu',
+									'Revenu disponible'
+								),
 							},
-							{
-								dottedName: 'impôt . montant',
-								title: t('impôt sur le revenu'),
-								color: colors.bases.secondary[500],
-							},
-							{
+							cotisations: {
 								dottedName:
 									'dirigeant . indépendant . cotisations et contributions',
-								color: colors.bases.secondary[300],
+								title: t(
+									'pages.simulateurs.indépendant.répartition.cotisations',
+									'Cotisations'
+								),
 							},
-						]}
+							impôt: {
+								dottedName: 'impôt . montant',
+								title: t(
+									'pages.simulateurs.indépendant.répartition.impôt',
+									'Impôt'
+								),
+							},
+						}}
 					/>
 				</section>
 			</Condition>

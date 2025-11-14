@@ -1,16 +1,14 @@
 import { useTranslation } from 'react-i18next'
-import { useTheme } from 'styled-components'
 
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
 import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetraite'
 import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
-import StackedBarChart from '@/components/StackedBarChart'
+import StackedRulesChart from '@/components/simulationExplanation/StackedRulesChart/StackedRulesChart'
 import { H2 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export const AutoEntrepreneurDétails = () => {
 	const { t } = useTranslation()
-	const { colors } = useTheme()
 
 	return (
 		<section>
@@ -20,34 +18,31 @@ export const AutoEntrepreneurDétails = () => {
 					'Répartition du chiffre d’affaires'
 				)}
 			</H2>
-			<StackedBarChart
-				data={[
-					{
+			<StackedRulesChart
+				data={{
+					revenu: {
 						dottedName: 'dirigeant . rémunération . net . après impôt',
 						title: t(
 							'pages.simulateurs.auto-entrepreneur.répartition.revenu',
 							'Revenu (incluant les dépenses liées à l’activité)'
 						),
-						color: colors.bases.primary[600],
 					},
-					{
-						dottedName: 'impôt . montant',
-						title: t(
-							'pages.simulateurs.auto-entrepreneur.répartition.impôt',
-							'Impôt'
-						),
-						color: colors.bases.secondary[500],
-					},
-					{
+					cotisations: {
 						dottedName:
 							'dirigeant . auto-entrepreneur . cotisations et contributions',
 						title: t(
 							'pages.simulateurs.auto-entrepreneur.répartition.cotisations',
 							'Cotisations'
 						),
-						color: colors.extended.grey[700],
 					},
-				]}
+					impôt: {
+						dottedName: 'impôt . montant',
+						title: t(
+							'pages.simulateurs.auto-entrepreneur.répartition.impôt',
+							'Impôt'
+						),
+					},
+				}}
 			/>
 			<InstitutionsPartenairesAutoEntrepreneur />
 			<DroitsRetraite />
