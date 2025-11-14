@@ -1497,6 +1497,9 @@ impôt . barème standard . décote:
   titre.en: '[automatic] discount'
   titre.fr: décote
 impôt . barème standard . impôt brut:
+  titre.en: '[automatic] gross tax'
+  titre.fr: impôt brut
+impôt . barème standard . impôt brut . par part:
   description.en: >
     [automatic] This is the famous income tax scale. It's a marginal scale with
     5
@@ -1525,8 +1528,11 @@ impôt . barème standard . impôt brut:
     41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
 
     uniquement à la part de ses revenus supérieure à 72 617 €.
-  titre.en: '[automatic] gross tax'
-  titre.fr: impôt brut
+  titre.en: '[automatic] per share'
+  titre.fr: par part
+impôt . barème standard . impôt brut . sans parts rattachées:
+  titre.en: '[automatic] without attached shares'
+  titre.fr: sans parts rattachées
 impôt . barème standard . impôt net:
   titre.en: '[automatic] net tax'
   titre.fr: impôt net
