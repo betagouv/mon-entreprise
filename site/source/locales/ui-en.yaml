@@ -56,7 +56,6 @@ Confirmer: Confirm
 Cotisations: Contributions
 Cotisations sociales: Social security contributions
 "Crée le :": "Created on:"
-Dividendes nets: Net dividends
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
 Donner votre avis: Give your opinion
@@ -91,7 +90,6 @@ Graphique détaillant la satisfaction des utilisateurs (alternative accessible a
 Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
   Graph detailing number of visits (alternative accessible via the switch at the
   start of the section)
-Impôt: Tax
 Impôt au barème: Tax scale
 Impôt sur le revenu: Income tax
 Impôts: Taxes
@@ -175,7 +173,6 @@ Retour à mon activité: Back to my activity
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
-Revenu disponible: Disposable income
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
@@ -217,7 +214,6 @@ Urssaf, voir le site urssaf:
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
 Voir la fiche Urssaf: See the Urssaf sheet
-Voir la fiche de paie: View pay slip
 Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
 Voir les simulateurs personnalisés: See customized simulators
@@ -540,7 +536,6 @@ header:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
-impôt sur le revenu: income tax
 impôt sur le revenu prélevé à la source: income tax deducted at source
 info: info
 intégration:
@@ -1201,6 +1196,11 @@ pages:
       title: Artist contribution simulator
       warning: This simulator allows you to estimate the amount of your contributions
         based on your projected income.
+    assimilé-salarié:
+      répartition:
+        cotisations: Contributions
+        impôt: Tax
+        revenu: Disposable income
     auto-entrepreneur:
       externalLinks:
         "1":
@@ -1515,6 +1515,10 @@ pages:
         description: Calculate the amount of tax and contributions on dividends paid by
           your company.
         title: Dividends
+      répartition:
+        cotisations: Contributions
+        impôt: Tax
+        revenu: Net dividends
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
         year, the previous year's earnings can be kept in reserve (for future
         investment) or paid out as dividends. From the beneficiaries' point of
@@ -1673,6 +1677,10 @@ pages:
           calculation</2>(although you will be required to make a precise
           estimate).</2>
         title: How does the adjustment of provisional contributions work?
+      répartition:
+        cotisations: Contributions
+        impôt: Tax
+        revenu: Disposable income
       shortname: Independent
       title: Income simulator for the self-employed
       warning:
@@ -1897,6 +1905,10 @@ pages:
         ogTitle: "Gross salary, net salary, net salary after tax, total cost: the
           all-in-one simulator for employees and employers"
         titre: "Gross/net salary: the Urssaf converter"
+      répartition:
+        cotisations: Contributions
+        impôt: Tax
+        revenu: Disposable income
       seo: "<0><0>How do you calculate net salary?</0><1>During the job interview, the
         employer generally proposes a gross salary. This amount includes the
         employee's social security contributions, which are deducted from the
@@ -1995,6 +2007,7 @@ payslip:
     to understand your pay slip: you can click on the links to understand how
     each amount is calculated. This payslip is not a substitute for a real
     payslip. For more information, visit <2>service-public.fr</2>."
+  link: See the pay slip
   repartition: Breakdown of total expenses
 periode-calcul: Calculation period
 points: points

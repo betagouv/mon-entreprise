@@ -59,7 +59,6 @@ Confirmer: Confirmer
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 "Crée le :": "Crée le :"
-Dividendes nets: Dividendes nets
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
 Donner votre avis: Donner votre avis
@@ -95,7 +94,6 @@ Graphique détaillant la satisfaction des utilisateurs (alternative accessible a
 Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
   Graphique détaillant le nombre de visites (alternative accessible avec
   l'interrupteur en début de section)
-Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôt sur le revenu: Impôt sur le revenu
 Impôts: Impôts
@@ -185,7 +183,6 @@ Retrouver ma précédente simulation, charger les données de ma précédente si
   simulation.
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
-Revenu disponible: Revenu disponible
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
@@ -228,7 +225,6 @@ Urssaf, voir le site urssaf:
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 Voir la fiche Urssaf: Voir la fiche Urssaf
-Voir la fiche de paie: Voir la fiche de paie
 Voir les autres simulateurs: Voir les autres simulateurs
 Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
 Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
@@ -568,7 +564,6 @@ header:
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
-impôt sur le revenu: impôt sur le revenu
 impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
 info: info
 intégration:
@@ -1275,6 +1270,11 @@ pages:
       title: Simulateur de cotisations d’artiste-auteur
       warning: Ce simulateur permet d’estimer le montant de vos cotisations à partir
         de votre revenu projeté.
+    assimilé-salarié:
+      répartition:
+        cotisations: Cotisations
+        impôt: Impôt
+        revenu: Revenu disponible
     auto-entrepreneur:
       externalLinks:
         "1":
@@ -1609,6 +1609,10 @@ pages:
         description: Calculez le montant de l'impôt et des cotisations sur les
           dividendes versés par votre entreprise.
         title: Dividendes
+      répartition:
+        cotisations: Cotisations
+        impôt: Impôt
+        revenu: Dividendes nets
       seo: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
         société, le résultat de l'exercice précédent peut être conservé en
         réserve (pour de futurs investissements) ou bien être versé en
@@ -1785,6 +1789,10 @@ pages:
           cours, qui sera pris comme base de calcul</2>(attention cependant,
           vous serez tenus de faire une estimation précise).</2>
         title: Comment fonctionne la régularisation des cotisations provisionnelles ?
+      répartition:
+        cotisations: Cotisations
+        impôt: Impôt
+        revenu: Revenu disponible
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning:
@@ -2013,6 +2021,10 @@ pages:
         ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur
           tout-en-un pour salariés et employeurs"
         titre: "Salaire brut / net : le convertisseur Urssaf"
+      répartition:
+        cotisations: Cotisations
+        impôt: Impôt
+        revenu: Revenu disponible
       seo: "<0><0>Comment calculer le salaire net ?</0><1>Lors de l'entretien
         d'embauche l'employeur propose en général une rémunération exprimée en «
         brut ». Le montant annoncé inclut ainsi les cotisations salariales, qui
@@ -2120,6 +2132,7 @@ payslip:
     les liens pour comprendre le calcul de chaque montant. Cette fiche de paie
     ne peut pas de substituer à une fiche de paie réelle. Pour plus
     d'informations, rendez-vous sur <2>service-public.fr</2>."
+  link: Voir la fiche de paie
   repartition: Répartition du total chargé
 periode-calcul: Période de calcul
 points: points
