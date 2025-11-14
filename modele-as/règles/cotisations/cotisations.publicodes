@@ -449,7 +449,6 @@ assimilé salarié . cotisations . formation professionnelle:
     - taux de **0,70 %** pour le franchissement en année **N+3**  (1,3 % pour les entreprises de travail temporaire)
     - taux de **0,90 %** pour le franchissement en année **N+4** (1,3 % pour les entreprises de travail temporaire)
     - taux de **1 %** pour le franchissement en année **N+5** (1,3 % pour les entreprises de travail temporaire)
-  applicable si: entreprise . salariés . effectif > 10
 
   produit:
     - cotisations . assiette
@@ -762,7 +761,6 @@ assimilé salarié . cotisations . taxe d'apprentissage:
     La taxe d'apprentissage permet de financer par les entreprises les
     dépenses de l'apprentissage et des formations technologiques et
     professionnelles
-  applicable si: entreprise . salariés . effectif > 10
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taxe-apprentissage-csa.html
     Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F22574

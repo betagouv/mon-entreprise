@@ -1368,10 +1368,10 @@ assimilé salarié . rémunération . nette . à payer avant impôt:
     avant de payer l'impôt sur le revenu.
 
     Aussi appelé salaire net à payer avant impôt.
-  résumé.en: '[automatic] Net compensation before tax'
-  résumé.fr: Rémunération nette avant impôt
-  titre.en: '[automatic] Net remuneration'
-  titre.fr: Rémunération nette
+  résumé.en: '[automatic] Net salary before tax'
+  résumé.fr: Salaire net avant impôt
+  titre.en: '[automatic] Net salary'
+  titre.fr: Salaire net
 assimilé salarié . rémunération . salaire brut:
   titre.en: '[automatic] gross salary'
   titre.fr: salaire brut
@@ -1390,8 +1390,10 @@ assimilé salarié . rémunération . totale:
     On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
   question.en: '[automatic] How much do you expect to earn in total?'
   question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
-  titre.en: '[automatic] total'
-  titre.fr: totale
+  résumé.en: '[automatic] Total paid by the company for executive compensation'
+  résumé.fr: Total payé par l’entreprise pour la rémunération du dirigeant
+  titre.en: '[automatic] Total compensation'
+  titre.fr: Rémunération totale
 date:
   titre.en: '[automatic] date'
   titre.fr: date
@@ -1553,6 +1555,9 @@ impôt . barème standard . décote:
   titre.en: '[automatic] discount'
   titre.fr: décote
 impôt . barème standard . impôt brut:
+  titre.en: '[automatic] gross tax'
+  titre.fr: impôt brut
+impôt . barème standard . impôt brut . par part:
   description.en: >
     [automatic] This is the famous income tax scale. It's a marginal scale with
     5
@@ -1564,7 +1569,7 @@ impôt . barème standard . impôt brut:
 
     Note: for an annual income of €100,000, the taxpayer will not pay
 
-    41,000 in tax (the 4th bracket rate is 41%)! This 41% is applied
+    41,000€ in tax (the 4th bracket rate is 41%)! This 41% is applied
 
     only to the portion of income in excess of €72,617.
   description.fr: >
@@ -1581,8 +1586,11 @@ impôt . barème standard . impôt brut:
     41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
 
     uniquement à la part de ses revenus supérieure à 72 617 €.
-  titre.en: '[automatic] gross tax'
-  titre.fr: impôt brut
+  titre.en: '[automatic] per share'
+  titre.fr: par part
+impôt . barème standard . impôt brut . sans parts rattachées:
+  titre.en: '[automatic] without attached shares'
+  titre.fr: sans parts rattachées
 impôt . barème standard . impôt net:
   titre.en: '[automatic] net tax'
   titre.fr: impôt net
