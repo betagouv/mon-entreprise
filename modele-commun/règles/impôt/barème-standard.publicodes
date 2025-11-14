@@ -120,6 +120,20 @@ impôt . barème standard . quotient familial . plafond avantage:
         Article 197 du Code général des impôts (I.2.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048805432
 
 impôt . barème standard . impôt brut:
+  valeur:
+    produit:
+      - impôt brut . par part
+      - foyer fiscal . nombre de parts
+  plancher:
+    valeur:
+      produit:
+        - impôt brut . sans parts rattachées
+        - foyer fiscal . nombre de parts . principales
+    abattement: quotient familial . plafond avantage
+  références:
+    BOFIP: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant%3DBOI-IR-LIQ-20-20-20-20210330
+
+impôt . barème standard . impôt brut . par part:
   description: |
     Voici le fameux barème de l’impôt sur le revenu. C’est un barème marginal à 5
     tranches.
@@ -131,6 +145,8 @@ impôt . barème standard . impôt brut:
   barème:
     assiette: quotient familial
     tranches:
+      # HACK waiting for https://github.com/betagouv/publicodes/discussions/92#discussioncomment-1904882 to be resolved
+      &tranches
       - taux: 0%
         plafond:
           variations:
@@ -175,6 +191,11 @@ impôt . barème standard . impôt brut:
   références:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
     Comment calculer votre impôt d’après le barème de l’impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/tranches-imposition-impot-revenu
+
+impôt . barème standard . impôt brut . sans parts rattachées:
+  barème:
+    assiette: revenu net imposable / foyer fiscal . nombre de parts . principales
+    tranches: *tranches
 
 impôt . barème standard . impôt net:
   somme:
