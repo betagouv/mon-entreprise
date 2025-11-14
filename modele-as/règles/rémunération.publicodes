@@ -2,6 +2,8 @@ assimilé salarié . rémunération:
   icônes: 💶
 
 assimilé salarié . rémunération . totale:
+  titre: Rémunération totale
+  résumé: Total payé par l’entreprise pour la rémunération du dirigeant
   question: Quel montant total pensez-vous dégager pour votre rémunération ?
   description: |
     C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
@@ -11,7 +13,7 @@ assimilé salarié . rémunération . totale:
     - rémunération . brute
     - cotisations . employeur
     - régimes spécifiques . taxe sur les salaires
-  unité: €/mois
+  unité: €/an
   plancher: 0€/an
 
 assimilé salarié . rémunération . brute:
@@ -41,13 +43,13 @@ assimilé salarié . rémunération . nette:
   question: Quelle est votre rémunération nette ?
   résumé: Après déduction des cotisations, contributions et charges
   somme:
-    - salaire brut
+    - rémunération . brute
     - (- cotisations . salarié)
 
 assimilé salarié . rémunération . nette . à payer avant impôt:
-  titre: Rémunération nette
+  titre: Salaire net
   unité: €/mois
-  résumé: Rémunération nette avant impôt
+  résumé: Salaire net avant impôt
   description: >-
     C'est le montant que le dirigeant assimilé salarié touche à la fin du mois
     avant de payer l'impôt sur le revenu.
@@ -85,6 +87,7 @@ assimilé salarié . rémunération . impôt:
     Ce simulateur n'inclue pas le calcul de l’impôt sur les revenus pour les
     entreprises soumises à l’impôt sur les revenus (IR).
   valeur: impôt . montant
+  unité: €/an
   contexte:
     paramètres . impôt . revenu imposable: rémunération . nette . imposable
     paramètres . impôt . revenu d'activité: rémunération . nette . imposable
