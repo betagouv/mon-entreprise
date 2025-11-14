@@ -904,8 +904,10 @@ entreprise . date de cessation:
   description.fr:
     La date de cessation est la date à laquelle l’entreprise cessera
     son activité.
-  question.en: '[automatic] When do you plan to declare your cessation of activity?'
-  question.fr: À quelle date comptez-vous déclarer la cessation d’activité ?
+  question.en:
+    '[automatic] On what date have you or do you intend to declare the
+    cessation of activity?'
+  question.fr: À quelle date avez-vous ou comptez-vous déclarer la cessation d’activité ?
   titre.en: '[automatic] termination date'
   titre.fr: date de cessation
 entreprise . date de création:
@@ -3124,6 +3126,10 @@ indépendant . PL . PAMC . maladie:
   titre.en: '[automatic] illness (after CPAM contribution)'
   titre.fr: maladie (après participation CPAM)
 indépendant . PL . PAMC . maladie . contribution additionnelle:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   titre.en: '[automatic] additional contribution'
   titre.fr: contribution additionnelle
 indépendant . PL . PAMC . maladie . participation CPAM:
@@ -4502,18 +4508,18 @@ indépendant . cotisations et contributions . début activité:
       titre.en: '[automatic] lump-sum basis for sickness'
       titre.fr: assiette forfaitaire maladie
   description.en: >
-    [automatic] When you start your business, your **professional income** is
-    not known.
+    [automatic] When you start your business, as your professional income is not
+    known, your
 
-    contributions for the first two years are calculated on a **lump-sum basis**.
+    contributions** for the first two years are calculated on a **lump-sum basis**.
 
-    are calculated on a **lump-sum basis**.
+    calculated on a **lump-sum basis**.
 
 
 
     These contributions will be adjusted and regularized on the basis of your actual income
 
-    of the fiscal year. If your income is higher than the fixed base used to calculate
+    for the year in question. If your income exceeds the flat-rate base used to calculate
 
     taken into account for calculating provisional contributions, you will be
 
@@ -4527,11 +4533,12 @@ indépendant . cotisations et contributions . début activité:
 
     and **plan your cash flow** accordingly.
   description.fr: >
-    Lorsque vous commencez votre activité, vos **revenus professionnels**
+    Lorsque vous commencez votre activité, vos revenus professionnels n’étant
+    pas
 
-    n’étant pas connus, **les cotisations et contributions des deux premières
+    connus, les **cotisations et contributions** des deux premières années sont
 
-    années sont calculées sur une **base forfaitaire**.
+    calculées sur une **base forfaitaire**.
 
 
 
