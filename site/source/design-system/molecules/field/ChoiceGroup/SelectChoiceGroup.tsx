@@ -29,12 +29,18 @@ export default function SelectChoiceGroup({
 	title,
 	aria = {},
 }: SelectChoiceGroupProps) {
+	const handleSelectionChange = (selectedKey: Key | null) => {
+		if (selectedKey !== null) {
+			onChange(selectedKey.toString())
+		}
+	}
+
 	return (
 		<Select
 			aria-labelledby={aria.labelledby}
 			aria-label={aria.label}
 			label={title}
-			onSelectionChange={onChange}
+			onSelectionChange={handleSelectionChange}
 			defaultSelectedKey={defaultValue}
 			selectedKey={value}
 			// eslint-disable-next-line jsx-a11y/no-autofocus
