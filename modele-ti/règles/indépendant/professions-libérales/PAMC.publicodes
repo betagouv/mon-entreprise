@@ -185,21 +185,26 @@ indépendant . PL . PAMC . maladie . participation CPAM:
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
 indépendant . PL . PAMC . maladie . contribution additionnelle:
-  formule:
-    produit:
-      - (assiette des cotisations - revenus activité conventionnée)
-      - taux
-    arrondi: oui
-    avec:
-      taux:
-        taux progressif:
-          assiette: assiette des cotisations
-          multiplicateur: plafond sécurité sociale
-          tranches:
-            - plafond: 40%
-              taux: 3.25%
-            - plafond: 110%
-              taux: 9.75%
+  produit:
+    - (assiette des cotisations - revenus activité conventionnée)
+    - taux
+  arrondi: oui
+  avec:
+    taux:
+      variations:
+        - si: métier . santé . médecin . secteur = 'S2'
+          alors: 3.25%
+        - sinon:
+            taux progressif:
+              assiette: assiette des cotisations
+              multiplicateur: plafond sécurité sociale
+              tranches:
+                - plafond: 40%
+                  taux: 3.25%
+                - plafond: 110%
+                  taux: 9.75%
+  références:
+    Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
 indépendant . PL . PAMC . allocations familiales:
   applicable si: métier . santé . médecin . secteur = 'S1'
