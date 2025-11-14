@@ -153,7 +153,7 @@ export default function Select({
 				onBlur={submitFocusedElem}
 				onKeyDown={handleKeyDown}
 				onChange={handleChange}
-				errorMessage={noResult && t('Cette commune n’existe pas')}
+				errorMessage={noResult ? t('Cette commune n’existe pas') : ''}
 			/>
 
 			{!!searchResults && (
