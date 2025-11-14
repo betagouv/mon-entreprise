@@ -37,7 +37,7 @@ export function SimulateursChoice(props: {
 				if (val === '' || val === 'api-rest') {
 					return props.onChange(val)
 				}
-				if (!(val in simulateurs)) {
+				if (val === null || !(val in simulateurs)) {
 					return
 				}
 				props.onChange(getFilter(simulateurs[val as keyof typeof simulateurs]))
