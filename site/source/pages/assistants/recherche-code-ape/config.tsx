@@ -37,5 +37,8 @@ export function rechercheCodeApeConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		component: SearchCodeApePage,
 		seoExplanations: SeoExplanations,
+		simulation: {
+			nomModèle: 'modele-social',
+		},
 	} as const)
 }
