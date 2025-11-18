@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import {
+	estActiviteProfessionnelle,
+	estSituationValide,
 	useEconomieCollaborative,
 	type SituationÉconomieCollaborative,
 	type TypeDurée,
@@ -83,11 +85,6 @@ TypeDuréeQuestion.libellé = (t) =>
 		'pages.simulateurs.location-de-logement-meublé.questions.type-durée.libellé',
 		'Proposez-vous de la location courte ou longue durée ?'
 	)
-TypeDuréeQuestion.applicable = (situation) => {
-	// La question est applicable uniquement si les recettes sont supérieures à 23 000 €
-	return O.match(situation.recettes, {
-		onNone: () => false,
-		onSome: (recettes) => recettes.valeur >= 23_000,
-	})
-}
+TypeDuréeQuestion.applicable = (situation) =>
+	estSituationValide(situation) && estActiviteProfessionnelle(situation)
 TypeDuréeQuestion.répondue = (situation) => O.isSome(situation.typeDurée)
