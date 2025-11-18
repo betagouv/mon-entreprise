@@ -1,5 +1,4 @@
 export { TypeLocationQuestion } from './TypeLocationQuestion'
-export { AutresRevenusQuestion } from './AutresRevenusQuestion'
 export { TypeDuréeQuestion } from './TypeDuréeQuestion'
 export { AlsaceMoselleQuestion } from './AlsaceMoselleQuestion'
 export { PremiereAnneeQuestion } from './questionPremiereAnnee'
