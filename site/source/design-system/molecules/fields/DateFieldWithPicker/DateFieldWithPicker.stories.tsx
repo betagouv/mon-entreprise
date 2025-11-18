@@ -21,3 +21,17 @@ export const Default: Story = {
 		label: 'Date de création',
 	},
 }
+
+export const DatePasséType: Story = {
+	args: {
+		label: 'Date de naissance',
+		type: 'date passé',
+	},
+}
+
+export const DateFuturType: Story = {
+	args: {
+		label: 'Date de création envisagée',
+		type: 'date futur',
+	},
+}

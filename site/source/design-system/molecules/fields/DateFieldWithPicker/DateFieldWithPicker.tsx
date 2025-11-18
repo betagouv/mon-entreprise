@@ -1,3 +1,4 @@
+import { getLocalTimeZone, today } from '@internationalized/date'
 import {
 	Button as RAButton,
 	Calendar as RACalendar,
@@ -22,16 +23,29 @@ import { Emoji } from '@/design-system/emoji'
 type DateFieldsWithPickerProps = RADateValue &
 	RADatePickerProps<RADateValue> & {
 		label: string
+		type?: 'date passé' | 'date' | 'date futur'
 	}
 
-export function DateFieldWithPicker({ label }: DateFieldsWithPickerProps) {
+export function DateFieldWithPicker({
+	label,
+	type,
+}: DateFieldsWithPickerProps) {
 	const { i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
 	const dateFormatHelperText = language === 'fr' ? 'JJ/MM/AAAA' : 'DD/MM/YYYY'
 
+	const defaultDateValue = today(getLocalTimeZone())
+
+	const minDateValue = type === 'date futur' ? defaultDateValue : null
+	const maxDateValue = type === 'date passé' ? defaultDateValue : null
+
 	return (
-		<RADatePicker>
+		<RADatePicker
+			minValue={minDateValue}
+			maxValue={maxDateValue}
+			defaultValue={defaultDateValue}
+		>
 			<RALabel>{label}</RALabel>
 			<RAText slot="description">{` (${dateFormatHelperText})`}</RAText>
 
