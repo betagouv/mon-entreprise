@@ -78,8 +78,11 @@ export const TypeDuréeQuestion: ComposantQuestion<
 
 TypeDuréeQuestion._tag = 'QuestionFournie'
 TypeDuréeQuestion.id = 'type-duree'
-TypeDuréeQuestion.libellé =
-	'Proposez-vous de la location courte ou longue durée ?'
+TypeDuréeQuestion.libellé = (t) =>
+	t(
+		'pages.simulateurs.location-de-logement-meublé.questions.type-durée.libellé',
+		'Proposez-vous de la location courte ou longue durée ?'
+	)
 TypeDuréeQuestion.applicable = (situation) => {
 	// La question est applicable uniquement si les recettes sont supérieures à 23 000 €
 	return O.match(situation.recettes, {
