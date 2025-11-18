@@ -1712,6 +1712,10 @@ pages:
           titre: Recipes
         revenu-net: Net income
       questions:
+        alsace-moselle:
+          libellé: Is your accommodation located in Alsace-Moselle?
+        premiere-annee:
+          libellé: Is this your first year in business?
         regime:
           options:
             micro-entrepreneur:
@@ -1727,6 +1731,7 @@ pages:
             description: You only offer short-term rentals (Airbnb type, less than 3
               months).
             label: Short-term rental only
+          libellé: Do you offer short- or long-term rentals?
           longue:
             description: You only offer long-term rentals (principal residence lease, more
               than 3 months).
@@ -1734,6 +1739,18 @@ pages:
           mixte:
             description: You offer both short-term and long-term rentals.
             label: Mixed (short- and long-term)
+        type-location:
+          chambre-hôte:
+            description: Rent a room in a private home with associated services.
+            label: Bed &amp; Breakfast
+          libellé: What type of accommodation?
+          non-classé:
+            description: Rental of unclassified furnished accommodation.
+            label: Furnished accommodation
+          tourisme:
+            description: Rental of furnished accommodation classified as furnished tourist
+              accommodation.
+            label: Classified furnished tourist accommodation
       régimes:
         micro-entreprise:
           libellé: Self-employed contractor

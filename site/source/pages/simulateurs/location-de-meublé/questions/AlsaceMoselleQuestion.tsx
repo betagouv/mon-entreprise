@@ -44,8 +44,11 @@ export const AlsaceMoselleQuestion: ComposantQuestion<
 }
 AlsaceMoselleQuestion._tag = 'QuestionFournie'
 AlsaceMoselleQuestion.id = 'est-alsace-moselle'
-AlsaceMoselleQuestion.libellé =
-	'Votre hébergement est-il situé en Alsace-Moselle ?'
+AlsaceMoselleQuestion.libellé = (t) =>
+	t(
+		'pages.simulateurs.location-de-logement-meublé.questions.alsace-moselle.libellé',
+		'Votre hébergement est-il situé en Alsace-Moselle ?'
+	)
 AlsaceMoselleQuestion.applicable = () => true
 AlsaceMoselleQuestion.répondue = (situation) =>
 	O.isSome(situation.estAlsaceMoselle)
