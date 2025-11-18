@@ -148,7 +148,11 @@ export function Questions<S extends Situation>({
 
 					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
 						<FromTop key={`custom-question-${QuestionCourante.id}`}>
-							<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
+							<QuestionTitle>
+								{typeof QuestionCourante.libellé === 'function'
+									? QuestionCourante.libellé(t)
+									: QuestionCourante.libellé}
+							</QuestionTitle>
 							<QuestionCourante />
 
 							<Conversation
