@@ -1976,6 +1976,10 @@ pages:
           titre: Recettes
         revenu-net: Revenu net
       questions:
+        alsace-moselle:
+          libellé: Votre hébergement est-il situé en Alsace-Moselle ?
+        premiere-annee:
+          libellé: Est-ce votre première année d'activité ?
         regime:
           options:
             micro-entrepreneur:
@@ -1992,6 +1996,7 @@ pages:
             description: Vous proposez uniquement de la location de courte durée (type
               Airbnb, moins de 3 mois).
             label: Location courte durée uniquement
+          libellé: Proposez-vous de la location courte ou longue durée ?
           longue:
             description: Vous proposez uniquement de la location de longue durée (bail de
               résidence principale, plus de 3 mois).
@@ -2000,6 +2005,17 @@ pages:
             description: Vous proposez à la fois de la location courte durée et longue
               durée.
             label: Mixte (courte et longue durée)
+        type-location:
+          chambre-hôte:
+            description: Location d'une chambre chez l'habitant avec services associés.
+            label: Chambre d'hôte
+          libellé: Quel est le type de logement ?
+          non-classé:
+            description: Location d'un logement meublé non classé.
+            label: Logement meublé
+          tourisme:
+            description: Location d’un logement meublé classé meublé de tourisme.
+            label: Logement meublé de tourisme classé
       régimes:
         micro-entreprise:
           libellé: Auto-entrepreneur

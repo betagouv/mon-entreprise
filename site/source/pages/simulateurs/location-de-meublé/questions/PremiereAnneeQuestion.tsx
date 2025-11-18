@@ -43,7 +43,11 @@ export const PremiereAnneeQuestion: ComposantQuestion<
 }
 PremiereAnneeQuestion._tag = 'QuestionFournie'
 PremiereAnneeQuestion.id = 'premiere-annee'
-PremiereAnneeQuestion.libellé = "Est-ce votre première année d'activité ?"
+PremiereAnneeQuestion.libellé = (t) =>
+	t(
+		'pages.simulateurs.location-de-logement-meublé.questions.premiere-annee.libellé',
+		"Est-ce votre première année d'activité ?"
+	)
 PremiereAnneeQuestion.applicable = (situation) =>
 	O.isSome(situation.estAlsaceMoselle)
 PremiereAnneeQuestion.répondue = (situation) =>

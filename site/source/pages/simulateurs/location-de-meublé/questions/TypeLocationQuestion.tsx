@@ -40,19 +40,37 @@ export const TypeLocationQuestion: ComposantQuestion<
 			onChange={handleChange}
 		>
 			<RadioCard
-				label="Logement meublé"
+				label={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-location.non-classé.label',
+					'Logement meublé'
+				)}
 				value="non-classé"
-				description="Location d'un logement meublé non classé."
+				description={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-location.non-classé.description',
+					"Location d'un logement meublé non classé."
+				)}
 			/>
 			<RadioCard
-				label="Logement meublé de tourisme classé"
+				label={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-location.tourisme.label',
+					'Logement meublé de tourisme classé'
+				)}
 				value="tourisme"
-				description="Location d'un logement meublé classé meublé de tourisme."
+				description={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-location.tourisme.description',
+					'Location d’un logement meublé classé meublé de tourisme.'
+				)}
 			/>
 			<RadioCard
-				label="Chambre d'hôte"
+				label={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-location.chambre-hôte.label',
+					"Chambre d'hôte"
+				)}
 				value="chambre-hôte"
-				description="Location d'une chambre chez l'habitant avec services associés."
+				description={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-location.chambre-hôte.description',
+					"Location d'une chambre chez l'habitant avec services associés."
+				)}
 			/>
 		</RadioCardGroup>
 	)
@@ -60,6 +78,10 @@ export const TypeLocationQuestion: ComposantQuestion<
 
 TypeLocationQuestion._tag = 'QuestionFournie'
 TypeLocationQuestion.id = 'type-location'
-TypeLocationQuestion.libellé = 'Quel est le type de logement ?'
+TypeLocationQuestion.libellé = (t) =>
+	t(
+		'pages.simulateurs.location-de-logement-meublé.questions.type-location.libellé',
+		'Quel est le type de logement ?'
+	)
 TypeLocationQuestion.applicable = () => true // Toujours applicable
 TypeLocationQuestion.répondue = (situation) => O.isSome(situation.typeLocation)
