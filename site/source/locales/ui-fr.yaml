@@ -1950,7 +1950,13 @@ pages:
         ogTitle: Simulateur de revenu pour location de logement meublé
         titre: Simulateur de revenu pour location de logement meublé
       objectifs:
+        autres-revenus:
+          aria-label: Montant des autres revenus annuels
+          titre: Autres revenus annuels
         cotisations: Cotisations sociales
+        recettes:
+          aria-label: Montant des recettes
+          titre: Recettes
         revenu-net: Revenu net
       questions:
         regime:
@@ -1964,6 +1970,19 @@ pages:
               description: Comme pour un salarié.
             travailleur-indépendant:
               description: Vous payez des cotisations sociales sur votre bénéfice.
+        type-durée:
+          courte:
+            description: Vous proposez uniquement de la location de courte durée (type
+              Airbnb, moins de 3 mois).
+            label: Location courte durée uniquement
+          longue:
+            description: Vous proposez uniquement de la location de longue durée (bail de
+              résidence principale, plus de 3 mois).
+            label: Location longue durée uniquement
+          mixte:
+            description: Vous proposez à la fois de la location courte durée et longue
+              durée.
+            label: Mixte (courte et longue durée)
       régimes:
         micro-entreprise:
           libellé: Auto-entrepreneur
