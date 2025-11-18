@@ -40,19 +40,37 @@ export const TypeDuréeQuestion: ComposantQuestion<
 			onChange={handleChange}
 		>
 			<RadioCard
-				label="Location courte durée uniquement"
+				label={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.courte.label',
+					'Location courte durée uniquement'
+				)}
 				value="courte"
-				description="Vous proposez uniquement de la location de courte durée (type Airbnb, moins de 3 mois)."
+				description={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.courte.description',
+					'Vous proposez uniquement de la location de courte durée (type Airbnb, moins de 3 mois).'
+				)}
 			/>
 			<RadioCard
-				label="Location longue durée uniquement"
+				label={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.longue.label',
+					'Location longue durée uniquement'
+				)}
 				value="longue"
-				description="Vous proposez uniquement de la location de longue durée (bail de résidence principale, plus de 3 mois)."
+				description={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.longue.description',
+					'Vous proposez uniquement de la location de longue durée (bail de résidence principale, plus de 3 mois).'
+				)}
 			/>
 			<RadioCard
-				label="Mixte (courte et longue durée)"
+				label={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.mixte.label',
+					'Mixte (courte et longue durée)'
+				)}
 				value="mixte"
-				description="Vous proposez à la fois de la location courte durée et longue durée."
+				description={t(
+					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.mixte.description',
+					'Vous proposez à la fois de la location courte durée et longue durée.'
+				)}
 			/>
 		</RadioCardGroup>
 	)

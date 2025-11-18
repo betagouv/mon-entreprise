@@ -1703,7 +1703,13 @@ pages:
         ogTitle: Income simulator for renting furnished accommodation
         titre: Income simulator for renting furnished accommodation
       objectifs:
+        autres-revenus:
+          aria-label: Other annual income
+          titre: Other annual income
         cotisations: Social security contributions
+        recettes:
+          aria-label: Total revenue
+          titre: Recipes
         revenu-net: Net income
       questions:
         regime:
@@ -1716,6 +1722,18 @@ pages:
               description: Just like an employee.
             travailleur-indépendant:
               description: You pay social security contributions on your profits.
+        type-durée:
+          courte:
+            description: You only offer short-term rentals (Airbnb type, less than 3
+              months).
+            label: Short-term rental only
+          longue:
+            description: You only offer long-term rentals (principal residence lease, more
+              than 3 months).
+            label: Long-term rental only
+          mixte:
+            description: You offer both short-term and long-term rentals.
+            label: Mixed (short- and long-term)
       régimes:
         micro-entreprise:
           libellé: Self-employed contractor

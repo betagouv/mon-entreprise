@@ -1,4 +1,5 @@
 import * as O from 'effect/Option'
+import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
 
 import {
@@ -11,6 +12,7 @@ import { Montant } from '@/domaine/Montant'
 
 export const ObjectifRecettes = () => {
 	const { situation, set } = useEconomieCollaborative()
+	const { t } = useTranslation()
 
 	const valeur = situation.recettes
 	const handleChange = useCallback(
@@ -36,9 +38,13 @@ export const ObjectifRecettes = () => {
 	return (
 		<ObjectifSaisissableDeSimulation
 			id="économie-collaborative-recettes"
-			titre="Recettes"
+			titre={t(
+				'pages.simulateurs.location-de-logement-meublé.objectifs.recettes.titre',
+				'Recettes'
+			)}
 			valeur={valeur}
 			rendreChampSaisie={RecettesInput}
 		/>
 	)
 }
+

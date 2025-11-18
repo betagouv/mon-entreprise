@@ -1,5 +1,6 @@
 import * as O from 'effect/Option'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
 import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
@@ -8,6 +9,7 @@ import { eurosParAn, Montant } from '@/domaine/Montant'
 
 export const ObjectifAutresRevenus = () => {
 	const { situation, set } = useEconomieCollaborative()
+	const { t } = useTranslation()
 
 	const handleChange = useCallback(
 		(newValue: Montant<'€/an'> | undefined) => {
@@ -25,13 +27,22 @@ export const ObjectifAutresRevenus = () => {
 	return (
 		<ObjectifSaisissableDeSimulation
 			id="économie-collaborative-autres-revenus"
-			titre="Autres revenus"
+			titre={t(
+				'pages.simulateurs.location-de-logement-meublé.objectifs.autres-revenus.titre',
+				'Autres revenus annuels'
+			)}
 			valeur={O.some(eurosParAn(0))}
 			rendreChampSaisie={() => (
 				<MontantField
 					value={autresRevenus}
 					onChange={handleChange}
 					unité="€/an"
+					aria={{
+						label: t(
+							'pages.simulateurs.location-de-logement-meublé.objectifs.autres-revenus.aria-label',
+							'Montant des autres revenus annuels'
+						),
+					}}
 				/>
 			)}
 		/>
