@@ -15,6 +15,7 @@ import {
 	type DatePickerProps as RADatePickerProps,
 	type DateValue as RADateValue,
 } from 'react-aria-components'
+import { useTranslation } from 'react-i18next'
 
 import { Emoji } from '@/design-system/emoji'
 
@@ -24,10 +25,15 @@ type DateFieldsWithPickerProps = RADateValue &
 	}
 
 export function DateFieldWithPicker({ label }: DateFieldsWithPickerProps) {
+	const { i18n } = useTranslation()
+	const language = i18n.language as 'fr' | 'en'
+
+	const dateFormatHelperText = language === 'fr' ? 'JJ/MM/AAAA' : 'DD/MM/YYYY'
+
 	return (
 		<RADatePicker>
 			<RALabel>{label}</RALabel>
-			<RAText slot="description"> (JJ/MM/AAAA)</RAText>
+			<RAText slot="description">{` (${dateFormatHelperText})`}</RAText>
 
 			<RAGroup>
 				<RADateInput>
