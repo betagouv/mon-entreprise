@@ -203,7 +203,7 @@ const StyledRuleLink = styled(RuleLink)`
 `
 
 const DisabledLabel = styled.span`
-	color: ${({ theme }) => theme.colors.extended.grey[700]}!important;
+	color: ${({ theme }) => theme.colors.extended.grey[800]}!important;
 	font-size: 1.25rem;
 	font-weight: 700;
 	font-style: italic;
@@ -215,7 +215,7 @@ const Precisions = styled.span`
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
 	font-size: 1rem;
-	color: ${({ theme }) => theme.colors.extended.grey[700]};
+	color: ${({ theme }) => theme.colors.extended.grey[800]};
 	margin: 0 !important;
 	margin-top: 0.5rem;
 	width: 100%;
