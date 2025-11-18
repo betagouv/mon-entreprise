@@ -189,7 +189,7 @@ const DetailsRowCards = ({
 }
 
 const StyledSmall = styled.small`
-	color: ${({ theme }) => theme.colors.extended.grey[700]};
+	color: ${({ theme }) => theme.colors.extended.grey[800]};
 	font-weight: normal;
 	font-size: 80%;
 `
