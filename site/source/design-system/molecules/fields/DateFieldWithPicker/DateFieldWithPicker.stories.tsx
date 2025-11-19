@@ -35,3 +35,10 @@ export const DateFuturType: Story = {
 		type: 'date futur',
 	},
 }
+
+export const WithInitialValue: Story = {
+	args: {
+		defaultSelected: new Date('2000-01-31'),
+		label: 'Avec valeur initiale',
+	},
+}
