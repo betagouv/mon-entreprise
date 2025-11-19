@@ -1,4 +1,4 @@
-import { getLocalTimeZone, today } from '@internationalized/date'
+import { getLocalTimeZone, parseDate, today } from '@internationalized/date'
 import {
 	Button as RAButton,
 	Calendar as RACalendar,
@@ -29,11 +29,13 @@ import {
 
 type DateFieldsWithPickerProps = RADateValue &
 	RADatePickerProps<RADateValue> & {
+		defaultSelected?: Date
 		label: string
 		type?: 'date passé' | 'date' | 'date futur'
 	}
 
 export function DateFieldWithPicker({
+	defaultSelected,
 	label,
 	type,
 }: DateFieldsWithPickerProps) {
@@ -42,7 +44,9 @@ export function DateFieldWithPicker({
 
 	const dateFormatHelperText = language === 'fr' ? 'JJ/MM/AAAA' : 'DD/MM/YYYY'
 
-	const defaultDateValue = today(getLocalTimeZone())
+	const defaultDateValue = defaultSelected
+		? parseDate(defaultSelected?.toISOString().slice(0, 10))
+		: today(getLocalTimeZone())
 
 	const minDateValue = type === 'date futur' ? defaultDateValue : null
 	const maxDateValue = type === 'date passé' ? defaultDateValue : null
