@@ -1,12 +1,7 @@
-import { screen, waitFor } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import {
-	getMessageAffiliation,
-	getMontantCotisations,
-	render,
-	saisirRecettes,
-} from './test/helpers/locationDeMeubléHelpers'
+import { render, saisirRecettes } from './test/helpers/locationDeMeubléHelpers'
 
 describe('Location de meublé', () => {
 	describe('Sélection du type de location', () => {
@@ -25,25 +20,118 @@ describe('Location de meublé', () => {
 	})
 
 	describe('Logement meublé de courte durée', () => {
-		describe('Recettes < 23 000€', () => {
-			it.skip("doit afficher un message indiquant qu'il n'y a pas d'affiliation obligatoire", async () => {
+		describe('Recettes < 23 000€ (affiliation non obligatoire)', () => {
+			it("doit afficher un message indiquant qu'il n'y a pas d'affiliation obligatoire", async () => {
 				render()
 				await saisirRecettes(15000)
 
 				await waitFor(() => {
-					expect(getMessageAffiliation()).toBeInTheDocument()
+					expect(
+						screen.getByText(
+							/votre activité est considérée comme non-professionnelle/i
+						)
+					).toBeInTheDocument()
 				})
-				expect(getMontantCotisations()).toBeNull()
 			})
 
-			it.skip('doit afficher le message pour des recettes juste en dessous du seuil', async () => {
+			it('ne doit PAS afficher le comparateur de régimes', async () => {
 				render()
-				await saisirRecettes(22999)
+				await saisirRecettes(15000)
 
 				await waitFor(() => {
-					expect(getMessageAffiliation()).toBeInTheDocument()
+					expect(
+						screen.getByText(
+							/votre activité est considérée comme non-professionnelle/i
+						)
+					).toBeInTheDocument()
 				})
-				expect(getMontantCotisations()).toBeNull()
+
+				// Vérifie qu'aucun régime n'est affiché
+				expect(screen.queryByText(/Régime général/i)).not.toBeInTheDocument()
+				expect(screen.queryByText(/Auto-entrepreneur/i)).not.toBeInTheDocument()
+				expect(
+					screen.queryByText(/Travailleur indépendant/i)
+				).not.toBeInTheDocument()
+				expect(screen.queryByText(/Pas d'affiliation/i)).not.toBeInTheDocument()
+			})
+
+			it('doit afficher un lien vers la page URSSAF', async () => {
+				render()
+				await saisirRecettes(15000)
+
+				await waitFor(() => {
+					const lienUrssaf = screen.getByRole('link', {
+						name: /en savoir plus sur les régimes d'économie collaborative/i,
+					})
+					expect(lienUrssaf).toBeInTheDocument()
+					expect(lienUrssaf).toHaveAttribute(
+						'href',
+						expect.stringContaining('urssaf.fr')
+					)
+				})
+			})
+		})
+
+		describe('Recettes ≥ 23 000€ (affiliation obligatoire)', () => {
+			it("doit afficher un message indiquant que l'affiliation est obligatoire", async () => {
+				render()
+				await saisirRecettes(25000)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/votre activité est considérée comme professionnelle/i
+						)
+					).toBeInTheDocument()
+				})
+			})
+
+			it('doit afficher le comparateur avec seulement 3 régimes (sans "Pas d\'affiliation")', async () => {
+				render()
+				await saisirRecettes(25000)
+
+				await waitFor(() => {
+					const comparateur = screen.getByRole('list', {
+						name: /comparaison des régimes/i,
+					})
+
+					// Cherche dans le comparateur spécifiquement
+					expect(
+						within(comparateur).getByText(/Régime général/i)
+					).toBeInTheDocument()
+					expect(
+						within(comparateur).getByText(/Auto-entrepreneur/i)
+					).toBeInTheDocument()
+					expect(
+						within(comparateur).getByText(/Travailleur indépendant/i)
+					).toBeInTheDocument()
+
+					// Vérifie que "Pas d'affiliation" n'est PAS affiché
+					expect(
+						within(comparateur).queryByText(/Pas d'affiliation/i)
+					).not.toBeInTheDocument()
+				})
+			})
+
+			it("doit afficher le message d'affiliation obligatoire même juste au seuil (23 000€)", async () => {
+				render()
+				await saisirRecettes(23000)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/votre activité est considérée comme professionnelle/i
+						)
+					).toBeInTheDocument()
+
+					// Le comparateur doit être affiché avec 3 régimes
+					const comparateur = screen.getByRole('list', {
+						name: /comparaison des régimes/i,
+					})
+					expect(
+						within(comparateur).getByText(/Régime général/i)
+					).toBeInTheDocument()
+				})
 			})
 		})
 	})
