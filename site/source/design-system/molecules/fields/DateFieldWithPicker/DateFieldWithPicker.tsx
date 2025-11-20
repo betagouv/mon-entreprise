@@ -157,7 +157,8 @@ const StyledRAButton = styled(RAButton)`
 const StyledRACalendar = styled(RACalendar)`
 	z-index: 10;
 
-	padding: 1rem;
+	padding: ${({ theme }) => theme.spacings.md};
+	padding-top: 0;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
@@ -174,8 +175,8 @@ const StyledRACalendar = styled(RACalendar)`
 
 	button[slot='previous'],
 	button[slot='next'] {
-		width: 2rem;
-		height: 2rem;
+		width: ${({ theme }) => theme.spacings.xl};
+		height: ${({ theme }) => theme.spacings.xl};
 		border: none;
 		border-radius: 50%;
 
