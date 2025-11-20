@@ -1382,7 +1382,7 @@ dirigeant . indépendant . IJSS:
   description.en: >
     [automatic] These are the daily allowances and benefits paid by your Caisse
 
-    in the event of illness, maternity, paternity or adoption, sick leave or
+    primary health insurance fund in the event of illness, maternity, paternity or adoption
 
     adoption, work stoppage or childcare in connection with the Covid-19 epidemic.
 
@@ -3703,7 +3703,7 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac:
 
     special old-age pension levy). However, please note that
 
-    the fact that by contributing on a smaller basis, excluding tobacconist's income, your
+    the fact that if you contribute on a smaller basis, excluding tobacconist's revenues
 
     will reduce your pension entitlement under the old-age insurance scheme for
 
@@ -4220,7 +4220,7 @@ dirigeant . indépendant . cotisations et contributions . retraite complémentai
 
     identical supplementary pension rights.
 
-    Since 2020, this joint scheme has been managed by the insurance company and Carsat, on a pay-as-you-go basis.
+    Since 2020, this joint scheme has been managed by the insurance company and Carsat, based on the
 
     on a pay-as-you-go basis, with the creation of a security reserve to guarantee its long-term balance.
 
@@ -7283,7 +7283,7 @@ entreprise . exercice:
     date trop ancienne:
       description.en:
         '[automatic] The date entered is too old. The simulator does not
-        integrate scales before 2022.'
+        include scales before 2022.'
       description.fr:
         La date saisie est trop ancienne. Le simulateur n’intègre pas
         les barèmes avant 2022.
@@ -7578,7 +7578,7 @@ entreprise . imposition . IS . prorata temporis:
 
     &gt; **Example for a financial year running from January 1 to October 15:**
 
-    &gt; - theoretical prorata temporis = (9 full months + (15 days / 30)) / 12 = 79.17%.
+    &gt; theoretical prorata temporis = (9 full months + (15 days / 30)) / 12 = 79.17%.
 
     &gt; - calculated prorata temporis = 288 days / 365 = 78.90
   note.fr: >
@@ -10429,7 +10429,7 @@ salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
     [automatic] For contracts signed **since March 1, 2025**, apprentices are
     exempt from CSG and CRDS up to **50% of Smic**.
 
-    If the apprentice's gross remuneration is less than 50% of the minimum wage, the employer's share of the mutual insurance fund (which forms part of the CSG-CRDS base) is also exempt from CSG and CRDS.
+    If the apprentice's gross remuneration is less than 50% of the minimum wage, the employer's share of the health insurance fund (which forms part of the CSG-CRDS base) is also exempt from CSG and CRDS.
 
     For contracts signed **before March 1, 2025**, this exemption is total.
   description.fr: >-
@@ -12610,13 +12610,13 @@ salarié . cotisations . exonérations . réduction générale:
   description.en: >
     [automatic] As part of the Responsibility and Solidarity Pact, the zero
 
-    contributions, employers of employees earning the minimum wage no longer have to pay
+    contributions, employers of employees earning the minimum wage no longer pay any
 
-    contributions. The amount of the reduction is equal to the product of the
+    contributions. The amount of the reduction is equal to the product of the gross
 
     by a coefficient. There are no special formalities
 
-    to complete.
+    formality.
   description.fr: >
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
     zéro

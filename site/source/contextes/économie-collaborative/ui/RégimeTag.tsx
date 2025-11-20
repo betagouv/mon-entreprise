@@ -12,12 +12,6 @@ import {
 import { RegimeCotisation } from '../domaine/location-de-meublé/situation'
 
 export const RÉGIME_DATA = {
-	PA: {
-		color: 'secondary',
-		libellé: "Pas d'affiliation",
-		abréviation: 'PA',
-		icône: CircleIcon,
-	},
 	RG: {
 		color: 'primary',
 		libellé: 'Régime général',
@@ -49,8 +43,6 @@ export type RégimeType = keyof typeof RÉGIME_DATA
 
 const mapRégimeCotisationToTag = (régime: RegimeCotisation): RégimeType => {
 	switch (régime) {
-		case RegimeCotisation.pasDAffiliation:
-			return 'PA'
 		case RegimeCotisation.regimeGeneral:
 			return 'RG'
 		case RegimeCotisation.microEntreprise:

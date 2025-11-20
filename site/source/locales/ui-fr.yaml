@@ -1929,6 +1929,21 @@ pages:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
     location-de-logement-meublé:
+      affiliation:
+        non-obligatoire:
+          affiliation-volontaire: Vous pouvez toutefois choisir de vous affilier
+            volontairement pour bénéficier d'une protection sociale (assurance
+            maladie, retraite, etc.).
+          lien-urssaf: En savoir plus sur les régimes d'économie collaborative
+          texte: Vous n'êtes pas obligé de vous affilier à un régime de sécurité sociale
+            et ne payez pas de cotisations sociales.
+          titre: Votre activité est considérée comme non-professionnelle
+        obligatoire:
+          texte: "Vous devez obligatoirement déclarer vos revenus et des cotisations
+            sociales sont dues. Vous pouvez opter entre plusieurs régimes
+            d'affiliation : régime auto-entrepreneur, indépendant ou régime
+            général."
+          titre: Votre activité est considérée comme professionnelle
       comparateur:
         applicable: Applicable
         non-applicable: Non applicable
@@ -1967,9 +1982,6 @@ pages:
           options:
             micro-entrepreneur:
               description: Vous payez un pourcentage de votre chiffre d'affaires.
-            pas-d-affiliation:
-              description: Vous n'êtes pas obligé de vous affilier et ne payez pas de
-                cotisations.
             régime-général:
               description: Comme pour un salarié.
             travailleur-indépendant:
@@ -2002,8 +2014,6 @@ pages:
       régimes:
         micro-entreprise:
           libellé: Auto-entrepreneur
-        pas-d-affiliation:
-          libellé: Pas d'affiliation
         régime-général:
           libellé: Régime général
         travailleur-indépendant:
