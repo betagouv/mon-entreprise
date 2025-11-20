@@ -11,7 +11,7 @@ import {
 
 describe('compareRégimes', () => {
 	describe('avec des recettes inférieures au seuil de professionnalisation', () => {
-		it('marque tous les régimes comme applicables (affiliation volontaire + PA)', () => {
+		it('marque tous les régimes comme applicables (affiliation volontaire)', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
 				typeLocation: Option.none(),
@@ -25,7 +25,7 @@ describe('compareRégimes', () => {
 
 			const résultats = compareRégimes(situation)
 
-			expect(résultats.length).toBe(4)
+			expect(résultats.length).toBe(3)
 			résultats.forEach((régime) => {
 				expect(régime.applicable).toBe(true)
 			})
@@ -33,7 +33,7 @@ describe('compareRégimes', () => {
 	})
 
 	describe('avec des recettes au-dessus du seuil mais en-dessous du plafond', () => {
-		it('marque RG, AE et TI comme applicables (PA non applicable)', () => {
+		it('marque RG, AE et TI comme applicables', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
 				typeLocation: Option.none(),
@@ -47,12 +47,7 @@ describe('compareRégimes', () => {
 
 			const résultats = compareRégimes(situation)
 
-			expect(résultats.length).toBe(4)
-
-			const pasDAffiliation = résultats.find(
-				(r) => r.régime === RegimeCotisation.pasDAffiliation
-			)
-			expect(pasDAffiliation?.applicable).toBe(false)
+			expect(résultats.length).toBe(3)
 
 			const régimeGénéral = résultats.find(
 				(r) => r.régime === RegimeCotisation.regimeGeneral
@@ -122,7 +117,7 @@ describe('compareRégimes', () => {
 	})
 
 	describe('avec des recettes supérieures au plafond du régime général', () => {
-		it('devrait marquer RG, AE et PA comme non applicables, TI applicable', () => {
+		it('devrait marquer RG et AE comme non applicables, TI applicable', () => {
 			const situation: SituationÉconomieCollaborativeValide = {
 				_tag: 'Situation',
 				typeLocation: Option.none(),
@@ -136,9 +131,6 @@ describe('compareRégimes', () => {
 
 			const résultats = compareRégimes(situation)
 
-			const pasDAffiliation = résultats.find(
-				(r) => r.régime === RegimeCotisation.pasDAffiliation
-			)
 			const régimeGénéral = résultats.find(
 				(r) => r.régime === RegimeCotisation.regimeGeneral
 			)
@@ -149,7 +141,6 @@ describe('compareRégimes', () => {
 				(r) => r.régime === RegimeCotisation.travailleurIndependant
 			)
 
-			expect(pasDAffiliation?.applicable).toBe(false)
 			expect(régimeGénéral?.applicable).toBe(false)
 			expect(microEntreprise?.applicable).toBe(false)
 			expect(travailleurIndépendant?.applicable).toBe(true)
