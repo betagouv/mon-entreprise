@@ -5,7 +5,6 @@ import { Montant } from '@/domaine/Montant'
 import { SimulationImpossible } from './erreurs'
 import { calculeCotisationsRégimeGénéral } from './régime-général'
 import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
-import { calculeCotisationsPasDAffiliation } from './régime-pas-d-affiliation'
 import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
 import {
 	RegimeCotisation,
@@ -28,8 +27,6 @@ export function calculeCotisations(
 	régime: RegimeCotisation
 ): Either.Either<Montant<'€/an'>, SimulationImpossible> {
 	switch (régime) {
-		case RegimeCotisation.pasDAffiliation:
-			return calculeCotisationsPasDAffiliation(situation)
 		case RegimeCotisation.regimeGeneral:
 			return calculeCotisationsRégimeGénéral(situation)
 		case RegimeCotisation.microEntreprise:

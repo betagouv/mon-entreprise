@@ -27,7 +27,6 @@ export enum RegimeCotisation {
 	microEntreprise = 'micro-entreprise',
 	travailleurIndependant = 'travailleur-indépendant',
 	regimeGeneral = 'régime-général',
-	pasDAffiliation = 'pas-d-affiliation',
 }
 
 export const initialSituationÉconomieCollaborative: SituationÉconomieCollaborative =
