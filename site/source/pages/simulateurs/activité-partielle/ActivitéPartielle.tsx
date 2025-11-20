@@ -10,21 +10,6 @@ import { DarkLi, Ul } from '@/design-system'
 
 import ComparaisonTable from './ComparaisonTable'
 
-declare global {
-	interface Window {
-		STONLY_WID: string
-		StonlyWidget?: {
-			open: () => void
-			close: () => void
-			toggle: () => void
-			launcherShow: () => void
-			launcherHide: () => void
-			startURLWatcher: () => void
-			stopURLWatcher: () => void
-		}
-	}
-}
-
 export default function ActivitéPartielle() {
 	const { t } = useTranslation()
 
