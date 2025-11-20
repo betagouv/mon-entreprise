@@ -10,7 +10,7 @@ import {
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 import { Button, ConteneurBleu } from '@/design-system'
-import { ComparateurRégimesCards } from '@/pages/simulateurs/location-de-meublé/components/ComparateurRégimesCards'
+import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
 import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
 import {
@@ -50,7 +50,7 @@ const LocationDeMeublé = () => {
 			</Simulation>
 			{estSituationValide(situation) && (
 				<ConteneurBleu>
-					<ComparateurRégimesCards />
+					<AffichageSelonAffiliation />
 				</ConteneurBleu>
 			)}
 			<ConteneurBleu foncé>
