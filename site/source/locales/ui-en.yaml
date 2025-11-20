@@ -1682,6 +1682,19 @@ pages:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
     location-de-logement-meublé:
+      affiliation:
+        non-obligatoire:
+          affiliation-volontaire: You can, however, choose to join voluntarily to benefit
+            from social protection (health insurance, pensions, etc.).
+          lien-urssaf: Find out more about collaborative economy schemes
+          texte: You are not obliged to join a social security scheme and pay no social
+            security contributions.
+          titre: Your activity is considered non-professional
+        obligatoire:
+          texte: "You are required to declare your income and pay social security
+            contributions. You can choose between several affiliation schemes:
+            auto-entrepreneur, self-employed or general scheme."
+          titre: Your activity is considered professional
       comparateur:
         applicable: Applicable
         non-applicable: Not applicable
@@ -1720,8 +1733,6 @@ pages:
           options:
             micro-entrepreneur:
               description: You pay a percentage of your sales.
-            pas-d-affiliation:
-              description: You are not obliged to join and pay no contributions.
             régime-général:
               description: Just like an employee.
             travailleur-indépendant:
@@ -1754,8 +1765,6 @@ pages:
       régimes:
         micro-entreprise:
           libellé: Self-employed contractor
-        pas-d-affiliation:
-          libellé: No affiliation
         régime-général:
           libellé: General scheme
         travailleur-indépendant:
