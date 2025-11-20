@@ -55,12 +55,17 @@ export const ComparateurRégimesCards = () => {
 		  )
 		: null
 
-	const gridSizes = getGridSizes(1, 4)
+	const gridSizes = getGridSizes(1, 3)
 
 	return (
 		<div>
 			<Spacing lg />
-			<Grid container spacing={4} as={Ul}>
+			<Grid
+				container
+				spacing={4}
+				as={Ul}
+				aria-label="Comparaison des régimes d'affiliation"
+			>
 				{résultats.map((résultat) => (
 					<Grid key={résultat.régime} item {...gridSizes} as="li">
 						<RégimeCard
@@ -85,11 +90,6 @@ const RégimeCard = ({
 
 	const getRégimeLibellé = (régime: RegimeCotisation): string => {
 		switch (régime) {
-			case RegimeCotisation.pasDAffiliation:
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.régimes.pas-d-affiliation.libellé',
-					"Pas d'affiliation"
-				)
 			case RegimeCotisation.regimeGeneral:
 				return t(
 					'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.libellé',
@@ -167,12 +167,6 @@ const RégimeCard = ({
 						}}
 					>
 						<Li>
-							{résultat.régime === RegimeCotisation.pasDAffiliation && (
-								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.pas-d-affiliation.description">
-									Vous n'êtes pas obligé de vous affilier et ne payez pas de
-									cotisations.
-								</Trans>
-							)}
 							{résultat.régime === RegimeCotisation.regimeGeneral && (
 								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description">
 									Comme pour un salarié.

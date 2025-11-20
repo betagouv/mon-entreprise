@@ -5,7 +5,6 @@ import { Montant } from '@/domaine/Montant'
 import { RégimeInapplicable } from './erreurs'
 import { calculeCotisationsRégimeGénéral } from './régime-général'
 import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
-import { calculeCotisationsPasDAffiliation } from './régime-pas-d-affiliation'
 import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
 import {
 	RegimeCotisation,
@@ -35,10 +34,6 @@ export const compareRégimes = (
 ): RésultatRégime[] =>
 	pipe(
 		[
-			{
-				régime: RegimeCotisation.pasDAffiliation,
-				calcul: calculeCotisationsPasDAffiliation as CalculCotisations,
-			},
 			{
 				régime: RegimeCotisation.regimeGeneral,
 				calcul: calculeCotisationsRégimeGénéral as CalculCotisations,
