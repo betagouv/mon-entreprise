@@ -1,12 +1,14 @@
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
+import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 import { CODE_DU_TRAVAIL_NUMERIQUE } from '@/utils/logos'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import salaireBrutNetPreviewEN from './SalaireBrutNetPreviewEN.png'
-import salaireBrutNetPreviewFR from './SalaireBrutNetPreviewFR.png'
-import SalariéSimulation, { SeoExplanations } from './Salarié'
+import { SeoExplanations } from './components/SeoExplanations'
+import salaireBrutNetPreviewEN from './images/SalaireBrutNetPreviewEN.png'
+import salaireBrutNetPreviewFR from './images/SalaireBrutNetPreviewFR.png'
+import SalariéSimulation from './Salarié'
 import { configSalarié } from './simulationConfig'
 
 export function salariéConfig(params: SimulatorsDataParams) {
@@ -64,6 +66,7 @@ export function salariéConfig(params: SimulatorsDataParams) {
 					'Visiter le site Code du travail numérique, nouvelle fenêtre.'
 				),
 			},
+			serviceEmployeur,
 			embaucherGérerSalariés,
 			nouvelEmployeur,
 		],
