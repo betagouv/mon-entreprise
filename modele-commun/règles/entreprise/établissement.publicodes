@@ -1,0 +1,7 @@
+# Règles utilisées pour la recherche d'entreprise
+
+établissement:
+
+établissement . SIRET:
+  type: texte
+  applicable si: entreprise . SIREN
