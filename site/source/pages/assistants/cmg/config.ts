@@ -35,5 +35,10 @@ export function CMGConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Ce simulateur permet d’estimer le montant du complément transitoire au CMG Rémunération.'
 			),
 		},
+		// Nécessaire pour que useEngine ne plante pas.
+		// Étant un hook, on ne peut pas l'appeler conditionnellement.
+		simulation: {
+			nomModèle: 'modele-social',
+		},
 	} as const)
 }
