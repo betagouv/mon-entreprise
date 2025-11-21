@@ -1016,6 +1016,11 @@ pages:
           description: Modalités déclaratives et paiement des cotisations sociales pour
             les Praticiens et Auxiliaires Médicaux Conventionnés (PAM-C).
           title: Je relève du régime des PAM-C dans le cadre de mon activité libérale
+        "3":
+          description: L’Urssaf met à votre disposition un service en ligne. Il vous
+            permet de gérer votre activité, contacter un conseiller et retrouver
+            tous vos documents.
+          title: Le service en ligne Praticien ou auxiliaire médical
       formulaire:
         "0": Les champs obligatoires sont signalés par une astérisque.
         "1": Profession

@@ -956,6 +956,10 @@ pages:
           description: Declaration and payment of social security contributions for
             practitioners and auxiliaries under agreement (PAM-C).
           title: I am covered by the PAM-C scheme for my self-employed activity
+        "3":
+          description: Urssaf provides you with an online service. It allows you to manage
+            your business, contact an advisor and retrieve all your documents.
+          title: Practitioner or paramedic online service
       formulaire:
         "0": Required fields are marked with an asterisk.
         "1": Profession
