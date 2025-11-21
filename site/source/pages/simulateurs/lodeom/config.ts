@@ -1,5 +1,6 @@
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
+import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -30,7 +31,7 @@ export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 		},
 		nextSteps: ['salarié'],
-		externalLinks: [embaucherGérerSalariés, nouvelEmployeur],
+		externalLinks: [serviceEmployeur, embaucherGérerSalariés, nouvelEmployeur],
 		path: sitePaths.simulateurs.lodeom,
 		simulation: configLodeom,
 		component: LodeomSimulation,
