@@ -27,22 +27,22 @@ export const IndépendantSimulationGoals = ({
 		<Condition expression="entreprise . imposition = 'IS'">
 			<SimulationGoal
 				appear={false}
-				dottedName="dirigeant . rémunération . totale"
+				dottedName="indépendant . rémunération . totale"
 			/>
 		</Condition>
 
 		<SimulationGoal
 			small
 			editable={false}
-			dottedName="dirigeant . indépendant . cotisations et contributions"
+			dottedName="indépendant . cotisations et contributions"
 		/>
 		<Condition expression="entreprise . imposition . régime . micro-entreprise">
 			<SimulationGoal appear={false} dottedName="entreprise . charges" />
 		</Condition>
-		<SimulationGoal dottedName="dirigeant . rémunération . net" />
+		<SimulationGoal dottedName="indépendant . rémunération . nette" />
 		<Condition expression="impôt . montant > 0">
 			<SimulationGoal small editable={false} dottedName="impôt . montant" />
 		</Condition>
-		<SimulationGoal dottedName="dirigeant . rémunération . net . après impôt" />
+		<SimulationGoal dottedName="indépendant . rémunération . nette . après impôt" />
 	</SimulationGoals>
 )
