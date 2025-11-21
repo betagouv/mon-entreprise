@@ -4,12 +4,12 @@ import * as Option from 'effect/Option'
 import { estPlusGrandOuÉgalÀ } from '@/domaine/Montant'
 
 import {
-	SituationÉconomieCollaborativeValide,
+	SituationMeubléDeTourismeValide,
 	situationParDéfaut,
 } from './situation'
 
 export function estActivitéPrincipale(
-	situation: SituationÉconomieCollaborativeValide
+	situation: SituationMeubléDeTourismeValide
 ): boolean {
 	const recettes = situation.recettes.value
 

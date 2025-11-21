@@ -7,30 +7,33 @@ import { MontantField } from '@/design-system'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
-export const ObjectifRecettes = () => {
+export const ObjectifRecettesNettes = () => {
 	const { situation, set } = useEconomieCollaborative()
 	const { t } = useTranslation()
 
-	if (situation.typeHébergement !== 'meublé-tourisme') {
+	if (situation.typeHébergement !== 'chambre-hôte') {
 		return null
 	}
 
 	return (
 		<ObjectifSaisissableDeSimulation
-			id="économie-collaborative-recettes"
+			id="économie-collaborative-recettes-nettes"
 			titre={t(
-				'pages.simulateurs.location-de-logement-meublé.objectifs.recettes.titre',
-				'Recettes'
+				'pages.simulateurs.location-de-logement-meublé.objectifs.recettes-nettes.titre',
+				'Recettes nettes'
 			)}
 			valeur={O.some(eurosParAn(0))}
 			rendreChampSaisie={() => (
-				<RecettesInput montant={situation.recettes} onChange={set.recettes} />
+				<RecettesNettesInput
+					montant={situation.revenuNet}
+					onChange={set.revenuNet}
+				/>
 			)}
 		/>
 	)
 }
 
-const RecettesInput = ({
+const RecettesNettesInput = ({
 	montant,
 	onChange,
 }: {
@@ -48,8 +51,8 @@ const RecettesInput = ({
 			}
 			aria={{
 				label: t(
-					'pages.simulateurs.location-de-logement-meublé.objectifs.recettes.aria-label',
-					'Montant des recettes'
+					'pages.simulateurs.location-de-logement-meublé.objectifs.recettes-nettes.aria-label',
+					'Montant des recettes nettes'
 				),
 			}}
 		/>

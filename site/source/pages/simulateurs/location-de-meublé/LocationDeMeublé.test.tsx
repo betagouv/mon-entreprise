@@ -1,4 +1,4 @@
-import { screen, waitFor, within } from '@testing-library/react'
+import { fireEvent, screen, waitFor, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
 import { render, saisirRecettes } from './test/helpers/locationDeMeubléHelpers'
@@ -7,15 +7,11 @@ describe('Location de meublé', () => {
 	describe('Sélection du type de location', () => {
 		it('doit permettre de choisir le type de location', async () => {
 			render()
-			await saisirRecettes(50000)
 
 			await waitFor(() => {
-				expect(screen.getByText(/^Logement meublé$/i)).toBeInTheDocument()
+				expect(screen.getByText(/Meublé de tourisme/i)).toBeInTheDocument()
 			})
-			expect(
-				screen.getByText(/Logement meublé de tourisme classé/i)
-			).toBeInTheDocument()
-			expect(screen.getByText(/Chambre d'hôte/i)).toBeInTheDocument()
+			expect(screen.getByText(/Chambre d'hôtes/i)).toBeInTheDocument()
 		})
 	})
 
@@ -132,6 +128,36 @@ describe('Location de meublé', () => {
 						within(comparateur).getByText(/Régime général/i)
 					).toBeInTheDocument()
 				})
+			})
+		})
+	})
+
+	describe('Location mixte (courte et longue durée)', () => {
+		it('doit demander la part des recettes de courte durée', async () => {
+			render()
+
+			await saisirRecettes(50000)
+
+			await waitFor(() => {
+				expect(
+					screen.getByText(
+						/Proposez-vous de la location courte ou longue durée ?/i
+					)
+				).toBeInTheDocument()
+			})
+
+			const boutonMixte = screen.getByText(/Mixte \(courte et longue durée\)/i)
+			fireEvent.click(boutonMixte)
+
+			const boutonSuivant = await screen.findByText(/Suivant/i)
+			fireEvent.click(boutonSuivant)
+
+			await waitFor(() => {
+				expect(
+					screen.getByText(
+						/Quelle part des recettes provient de la location courte durée ?/i
+					)
+				).toBeInTheDocument()
 			})
 		})
 	})
