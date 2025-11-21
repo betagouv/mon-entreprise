@@ -7,7 +7,7 @@ import { companySirenSelector } from '@/store/selectors/company/companySiren.sel
 export function AnnuaireEntreprises() {
 	const { t } = useTranslation()
 
-	const siren = useSelector(companySirenSelector) as string
+	const siren = useSelector(companySirenSelector)
 
 	if (!siren) {
 		return null
