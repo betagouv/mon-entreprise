@@ -69,7 +69,7 @@ impôt . méthode de calcul:
     par défaut: "'barème standard'"
 
 impôt . taux personnalisé:
-  question: Quel est votre taux de prélèvement à la source ?
+  question: Quel est votre taux d’imposition ?
   description: |
     Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
       - une fiche de paie
