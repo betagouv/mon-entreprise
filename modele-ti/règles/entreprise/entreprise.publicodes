@@ -1,5 +1,4 @@
-entreprise:
-  icônes: 🏢🧑‍💼👷‍♂️🧑‍🏭
+# La règle parente "entreprise" est dans modele-commun
 
 entreprise . EI:
   titre: entreprise individuelle (EI)
