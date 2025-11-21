@@ -54,7 +54,7 @@ const Hit = (hit: THit) => {
 
 			<StyledRuleLink dottedName={hit.objectID} aria-label={undefined}>
 				<Body as="span" className="hit-ruleName">
-					<Highlight hit={hit} attribute="ruleName" />
+					{hit.namespace}
 				</Body>
 			</StyledRuleLink>
 		</HitContainer>
