@@ -48,7 +48,8 @@ const Hit = (hit: THit) => {
 		<HitContainer>
 			{hit.namespace && (
 				<SmallBody as="span" className="hit-namespace">
-					<Highlight hit={hit} attribute="namespace" separator=" > " />
+					{hit.namespace}
+					{/* <Highlight hit={hit} attribute="namespace" separator=" > " /> */}
 				</SmallBody>
 			)}
 
