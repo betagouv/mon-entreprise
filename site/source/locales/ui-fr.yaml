@@ -1250,10 +1250,11 @@ pages:
       warning: Ce simulateur permet d’estimer le montant de vos cotisations à partir
         de votre revenu projeté.
     assimilé-salarié:
-      répartition:
-        cotisations: Cotisations
-        impôt: Impôt
-        revenu: Revenu disponible
+      exlications:
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
     auto-entrepreneur:
       externalLinks:
         "1":
