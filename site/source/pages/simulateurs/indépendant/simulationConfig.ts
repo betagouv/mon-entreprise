@@ -1,16 +1,14 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configIndépendant: SimulationConfig = {
-	nomModèle: 'modele-social',
+	nomModèle: 'modele-ti',
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
-		'dirigeant . rémunération . totale',
-		'dirigeant . rémunération . net',
-		'dirigeant . rémunération . net . après impôt',
+		'indépendant . rémunération . totale',
+		'indépendant . rémunération . nette',
+		'indépendant . rémunération . nette . après impôt',
 	],
-	objectifs: [
-		'dirigeant . indépendant . cotisations et contributions . début activité',
-	],
+	objectifs: ['indépendant . cotisations et contributions . début activité'],
 	questions: {
 		raccourcis: [
 			{
@@ -27,15 +25,16 @@ export const configIndépendant: SimulationConfig = {
 			},
 			{
 				label: 'ACRE',
-				dottedName: 'dirigeant . exonérations . ACRE',
+				dottedName:
+					'indépendant . cotisations et contributions . cotisations . exonérations . ACRE',
 			},
 			{
 				label: 'Contrats Madelins',
-				dottedName: 'dirigeant . indépendant . cotisations facultatives',
+				dottedName: 'indépendant . cotisations facultatives',
 			},
 			{
 				label: 'Conjoint collaborateur',
-				dottedName: 'dirigeant . indépendant . conjoint collaborateur',
+				dottedName: 'indépendant . conjoint collaborateur',
 			},
 			{
 				label: 'Impôt sur le revenu',
@@ -53,26 +52,23 @@ export const configIndépendant: SimulationConfig = {
 			'entreprise . activités . revenus mixtes',
 		],
 		'non prioritaires': [
-			'dirigeant . indépendant . cotisations facultatives',
+			'indépendant . cotisations facultatives',
 			'entreprise . activités . saisonnière',
 			'situation personnelle . RSA',
-			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
-			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
-			'dirigeant . indépendant . cotisations et contributions . exonérations . âge',
+			'indépendant . PL . CNAVPL . exonération incapacité',
+			'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité',
+			'indépendant . cotisations et contributions . cotisations . exonérations . âge',
 			"situation personnelle . domiciliation fiscale à l'étranger",
-			'dirigeant . indépendant . revenus étrangers',
-			'dirigeant . indépendant . IJSS',
+			'indépendant . revenus étrangers',
+			'indépendant . IJSS',
 			'entreprise . activités . commerciale . débit de tabac',
-			'dirigeant . indépendant . PL . PAMC . IJSS',
+			'indépendant . PL . PAMC . IJSS',
 			'entreprise . salariés . effectif',
 		],
 	},
 	'unité par défaut': '€/an',
 	situation: {
-		'dirigeant . régime social': "'indépendant'",
 		'entreprise . imposition': "'IR'",
-		'entreprise . catégorie juridique': "''",
-		salarié: 'non',
 	},
 	'règles à ignorer pour déclencher les questions': ['entreprise . imposition'],
 }
@@ -80,24 +76,20 @@ export const configIndépendant: SimulationConfig = {
 export const configEntrepriseIndividuelle: SimulationConfig = {
 	...configIndépendant,
 	situation: {
-		'entreprise . catégorie juridique': "'EI'",
-		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
+		'entreprise . EI': 'oui',
 	},
 }
 
 export const configEirl: SimulationConfig = {
 	...configIndépendant,
 	situation: {
-		'entreprise . catégorie juridique': "'EI'",
-		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
+		'entreprise . EI': 'oui',
 	},
 }
 
 export const configEurl: SimulationConfig = {
 	...configIndépendant,
 	situation: {
-		'entreprise . catégorie juridique': "'SARL'",
-		'entreprise . associés': "'unique'",
-		'entreprise . imposition': "'IS'",
+		'entreprise . EI': 'non',
 	},
 }
