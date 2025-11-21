@@ -54,6 +54,15 @@ entreprise . EI:
   question.fr: Votre entreprise est-elle une entreprise individuelle (EI) ?
   titre.en: '[automatic] sole proprietorship (EI)'
   titre.fr: entreprise individuelle (EI)
+entreprise . SIREN:
+  description.en: >
+    [automatic] The Siren number is a 9-digit number unique to each company.
+    Example: 401237780
+  description.fr: >
+    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise.
+    Exemple : 401237780
+  titre.en: '[automatic] SIREN'
+  titre.fr: SIREN
 entreprise . TVA:
   description.en: >
     [automatic] Certain types of company are not subject to VAT.
@@ -82,6 +91,9 @@ entreprise . TVA:
 entreprise . TVA . franchise de TVA:
   titre.en: '[automatic] VAT exemption'
   titre.fr: franchise de TVA
+entreprise . activité:
+  titre.en: '[automatic] activity'
+  titre.fr: activité
 entreprise . activités:
   avec:
     agent commercial:
@@ -486,6 +498,32 @@ entreprise . capital social:
 entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques:
   titre.en: '[automatic] at least 75 percent owned by individuals'
   titre.fr: détenu au moins à 75 pourcents par des personnes physiques
+entreprise . catégorie juridique:
+  note.en: '[automatic] Here we use the legal categories defined by INSEE.'
+  note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
+  titre.en: '[automatic] legal category'
+  titre.fr: catégorie juridique
+entreprise . catégorie juridique . EI:
+  titre.en: '[automatic] Sole proprietorships (including auto-entrepreneurs)'
+  titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
+entreprise . catégorie juridique . SARL:
+  titre.en: '[automatic] SARL or EURL'
+  titre.fr: SARL ou EURL
+entreprise . catégorie juridique . SAS:
+  titre.en: '[automatic] SAS or SASU'
+  titre.fr: SAS ou SASU
+entreprise . catégorie juridique . SELARL:
+  titre.en: '[automatic] SELARL or SELARLU'
+  titre.fr: SELARL ou SELARLU
+entreprise . catégorie juridique . SELAS:
+  titre.en: '[automatic] SELAS or SELASU'
+  titre.fr: SELAS ou SELASU
+entreprise . catégorie juridique . association:
+  titre.en: '[automatic] association'
+  titre.fr: association
+entreprise . catégorie juridique . autre:
+  titre.en: '[automatic] other'
+  titre.fr: autre
 entreprise . charges:
   description.en: >
     [automatic] **No social security contributions, CSG-CRDS or vocational
@@ -891,6 +929,14 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
   résumé.fr: Chiffre d’affaires hors taxe
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
+entreprise . code catégorie juridique:
+  description.en:
+    "[automatic] Code representing the company's legal category, as
+    defined by INSEE."
+  description.fr: Code représentant la catégorie juridique de l'entreprise, tel
+    que défini par l'INSEE.
+  titre.en: '[automatic] legal category code'
+  titre.fr: code catégorie juridique
 entreprise . créée cette année:
   description.en: '[automatic] Indicates whether the company was created in the
     year of the simulation.'
@@ -1396,6 +1442,9 @@ entreprise . imposition . régime . réel normal:
 entreprise . imposition . régime . réel simplifié:
   titre.en: '[automatic] real simplified taxation'
   titre.fr: réel simplifié d’imposition
+entreprise . nom:
+  titre.en: '[automatic] name'
+  titre.fr: nom
 entreprise . prorata temporis:
   description.en: |
     [automatic] Percentage of the company's fiscal year in progress
@@ -6167,6 +6216,9 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement:
   titre.en: '[automatic] establishment'
   titre.fr: établissement
+établissement . SIRET:
+  titre.en: '[automatic] SIRET'
+  titre.fr: SIRET
 établissement . ZFU:
   question.en: '[automatic] Does your facility qualify for the Urban Free Zone
     (ZFU) scheme?'
