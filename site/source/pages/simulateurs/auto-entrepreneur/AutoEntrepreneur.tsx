@@ -10,13 +10,13 @@ import Simulation, {
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { DarkLi, Link, Ul } from '@/design-system'
-import { AutoEntrepreneurDétails } from '@/pages/simulateurs/auto-entrepreneur/AutoEntrepreneurDétails'
+import ExplicationsAutoEntrepreneur from '@/pages/simulateurs/auto-entrepreneur/components/Explications'
 
 export default function AutoEntrepreneur() {
 	return (
 		<>
 			<Simulation
-				explanations={<AutoEntrepreneurDétails />}
+				explanations={<ExplicationsAutoEntrepreneur />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
