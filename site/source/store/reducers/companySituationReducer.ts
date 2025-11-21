@@ -12,6 +12,8 @@ import { buildSituationFromObject } from '@/utils/publicodes/publicodes'
 import { SituationPublicodes } from './rootReducer'
 
 const SAVED_NAMESPACES = [
+	'indépendant . PL . métier',
+
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
 	'entreprise . activité . nature',
