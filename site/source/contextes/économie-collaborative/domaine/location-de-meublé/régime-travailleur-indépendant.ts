@@ -12,21 +12,24 @@ import { SituationÉconomieCollaborativeValide } from './situation'
 
 /**
  * Calcule les cotisations sociales pour le régime travailleur indépendant
- * Ce régime est toujours applicable, quel que soit le montant des recettes
+ * Ce régime est toujours applicable, quel que soit le montant des recettes/revenu net
  * C'est le régime "par défaut" quand les autres plafonds sont dépassés
- * @param situation La situation avec des recettes obligatoirement définies
+ * @param situation La situation avec des recettes ou revenu net obligatoirement définis
  * @returns Toujours les cotisations calculées (jamais d'erreur)
  */
 export function calculeCotisationsTravailleurIndépendant(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<Montant<'€/an'>, never> {
-	const recettes = situation.recettes.value
+	const montant =
+		situation._subtype === 'chambre-hôte'
+			? situation.revenuNet.value
+			: situation.recettes.value
 
 	const cotisations = evalueAvecPublicodes<number>(
 		{
 			...TravailleurIndependantContexteDansPublicodes,
 			...TravailleurIndependantChiffreAffaireDansPublicodes.fromMontant(
-				recettes
+				montant
 			),
 		},
 		TravailleurIndependantCotisationsEtContributionsDansPublicodes.enEurosParAn

@@ -2,13 +2,14 @@ import { Data } from 'effect'
 
 import { Montant } from '@/domaine/Montant'
 
-import { RegimeCotisation, TypeDurée, TypeLocation } from './situation'
+import { RegimeCotisation, TypeDurée, TypeTourisme } from './situation'
 
 export type RégimeInapplicable =
 	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
-	| RégimeNonApplicablePourCeTypeDeLocation
+	| RégimeNonApplicablePourCeTypeDeTourisme
 	| RégimeNonApplicablePourCeTypeDeDurée
+	| RégimeNonApplicablePourChambreDHôte
 	| AffiliationObligatoire
 
 export class SituationIncomplète extends Data.TaggedError(
@@ -47,14 +48,14 @@ export class RecettesInférieuresAuSeuilRequisPourCeRégime extends Data.TaggedE
 	}
 }
 
-export class RégimeNonApplicablePourCeTypeDeLocation extends Data.TaggedError(
-	'RégimeNonApplicablePourCeTypeDeLocation'
+export class RégimeNonApplicablePourCeTypeDeTourisme extends Data.TaggedError(
+	'RégimeNonApplicablePourCeTypeDeTourisme'
 )<{
-	typeLocation: TypeLocation
+	typeTourisme: TypeTourisme
 	régime: RegimeCotisation
 }> {
 	toString(): string {
-		return `Le régime "${this.régime}" n'est pas applicable pour le type de location "${this.typeLocation}"`
+		return `Le régime "${this.régime}" n'est pas applicable pour le type de tourisme "${this.typeTourisme}"`
 	}
 }
 
@@ -74,6 +75,16 @@ export class RégimeNonApplicablePourCeTypeDeDurée extends Data.TaggedError(
 	}
 }
 
+export class RégimeNonApplicablePourChambreDHôte extends Data.TaggedError(
+	'RégimeNonApplicablePourChambreDHôte'
+)<{
+	régime: RegimeCotisation
+}> {
+	toString(): string {
+		return `Le régime "${this.régime}" n'est pas applicable pour les chambres d'hôtes`
+	}
+}
+
 export class AffiliationObligatoire extends Data.TaggedError(
 	'AffiliationObligatoire'
 )<{
@@ -86,16 +97,22 @@ export class AffiliationObligatoire extends Data.TaggedError(
 }
 
 export const RaisonInapplicabilité = {
-	estTypeDeLocationIncompatible: (
+	estTypeDeTourismeIncompatible: (
 		erreur: RégimeInapplicable
-	): erreur is RégimeNonApplicablePourCeTypeDeLocation => {
-		return erreur._tag === 'RégimeNonApplicablePourCeTypeDeLocation'
+	): erreur is RégimeNonApplicablePourCeTypeDeTourisme => {
+		return erreur._tag === 'RégimeNonApplicablePourCeTypeDeTourisme'
 	},
 
 	estTypeDeDuréeIncompatible: (
 		erreur: RégimeInapplicable
 	): erreur is RégimeNonApplicablePourCeTypeDeDurée => {
 		return erreur._tag === 'RégimeNonApplicablePourCeTypeDeDurée'
+	},
+
+	estChambreDHôte: (
+		erreur: RégimeInapplicable
+	): erreur is RégimeNonApplicablePourChambreDHôte => {
+		return erreur._tag === 'RégimeNonApplicablePourChambreDHôte'
 	},
 
 	estRecettesTropÉlevées: (

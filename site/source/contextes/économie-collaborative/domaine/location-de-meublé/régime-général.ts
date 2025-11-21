@@ -13,7 +13,7 @@ import {
 import {
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
 	RégimeNonApplicablePourCeTypeDeDurée,
-	RégimeNonApplicablePourCeTypeDeLocation,
+	RégimeNonApplicablePourChambreDHôte,
 } from './erreurs'
 import { estActivitéPrincipale } from './estActivitéPrincipale'
 import { SEUIL_PROFESSIONNALISATION } from './estActiviteProfessionnelle'
@@ -38,24 +38,18 @@ export function calculeCotisationsRégimeGénéral(
 ): Either.Either<
 	Montant<'€/an'>,
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
-	| RégimeNonApplicablePourCeTypeDeLocation
+	| RégimeNonApplicablePourChambreDHôte
 	| RégimeNonApplicablePourCeTypeDeDurée
 > {
-	const recettes = situation.recettes.value
-
-	const typeLocation = Option.getOrElse(
-		situation.typeLocation,
-		() => situationParDéfaut.typeLocation
-	)
-
-	if (typeLocation === 'chambre-hôte') {
+	if (situation._subtype === 'chambre-hôte') {
 		return Either.left(
-			new RégimeNonApplicablePourCeTypeDeLocation({
-				typeLocation,
+			new RégimeNonApplicablePourChambreDHôte({
 				régime: RegimeCotisation.regimeGeneral,
 			})
 		)
 	}
+
+	const recettes = situation.recettes.value
 
 	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
 		const typeDurée = Option.getOrElse(
@@ -86,7 +80,6 @@ export function calculeCotisationsRégimeGénéral(
 		() => situationParDéfaut.premièreAnnée
 	)
 
-	// Vérification du plafond pour ce régime
 	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
 		return Either.left(
 			new RecettesSupérieuresAuPlafondAutoriséPourCeRégime({

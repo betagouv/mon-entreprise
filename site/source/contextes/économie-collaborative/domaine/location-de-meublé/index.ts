@@ -1,7 +1,13 @@
 export type {
 	SituationÉconomieCollaborative,
+	SituationÉconomieCollaborativeValide,
+	SituationMeubléDeTourisme,
+	SituationMeubléDeTourismeValide,
+	SituationChambreDHôte,
+	SituationChambreDHôteValide,
 	RegimeCotisation,
-	TypeLocation,
+	TypeTourisme,
+	TypeDurée,
 } from './situation'
 export { calculeCotisations } from './cotisations'
 export { calculeCotisationsRégimeGénéral } from './régime-général'

@@ -8,16 +8,21 @@ import {
 	AutoEntrepreneurCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 
-import { RecettesSupérieuresAuPlafondAutoriséPourCeRégime } from './erreurs'
+import {
+	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
+	RégimeNonApplicablePourCeTypeDeDurée,
+	RégimeNonApplicablePourChambreDHôte,
+} from './erreurs'
+import { estActivitéPrincipale } from './estActivitéPrincipale'
+import { estActiviteProfessionnelle } from './estActiviteProfessionnelle'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
-	TypeLocation,
+	TypeTourisme,
 } from './situation'
 
 export const PLAFOND_MICRO_ENTREPRISE_NON_CLASSE = eurosParAn(77_700)
-export const PLAFOND_MICRO_ENTREPRISE_TOURISME = eurosParAn(188_700)
-export const PLAFOND_MICRO_ENTREPRISE_CHAMBRE_HOTE = eurosParAn(188_700)
+export const PLAFOND_MICRO_ENTREPRISE_TOURISME_CLASSE = eurosParAn(188_700)
 
 /**
  * Calcule les cotisations sociales pour le régime micro-entreprise
@@ -28,21 +33,46 @@ export function calculeCotisationsMicroEntreprise(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
 	Montant<'€/an'>,
-	RecettesSupérieuresAuPlafondAutoriséPourCeRégime
+	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
+	| RégimeNonApplicablePourCeTypeDeDurée
+	| RégimeNonApplicablePourChambreDHôte
 > {
+	if (situation._subtype === 'chambre-hôte') {
+		return Either.left(
+			new RégimeNonApplicablePourChambreDHôte({
+				régime: RegimeCotisation.microEntreprise,
+			})
+		)
+	}
+
 	const recettes = situation.recettes.value
 
-	const typeLocation = Option.getOrElse(
-		situation.typeLocation,
-		(): TypeLocation => 'non-classé'
+	const typeTourisme = Option.getOrElse(
+		situation.typeTourisme,
+		(): TypeTourisme => 'tourisme-non-classé'
 	)
 
+	const typeDurée = Option.getOrUndefined(situation.typeDurée)
+
+	if (
+		estActiviteProfessionnelle(situation) &&
+		estActivitéPrincipale(situation) &&
+		typeDurée === 'courte' &&
+		typeTourisme === 'tourisme-non-classé'
+	) {
+		return Either.left(
+			new RégimeNonApplicablePourCeTypeDeDurée({
+				typeDurée,
+				régime: RegimeCotisation.microEntreprise,
+				estActivitéPrincipale: true,
+			})
+		)
+	}
+
 	const plafond =
-		typeLocation === 'non-classé'
+		typeTourisme === 'tourisme-non-classé'
 			? PLAFOND_MICRO_ENTREPRISE_NON_CLASSE
-			: typeLocation === 'tourisme'
-			? PLAFOND_MICRO_ENTREPRISE_TOURISME
-			: PLAFOND_MICRO_ENTREPRISE_CHAMBRE_HOTE
+			: PLAFOND_MICRO_ENTREPRISE_TOURISME_CLASSE
 
 	if (pipe(recettes, estPlusGrandQue(plafond))) {
 		return Either.left(

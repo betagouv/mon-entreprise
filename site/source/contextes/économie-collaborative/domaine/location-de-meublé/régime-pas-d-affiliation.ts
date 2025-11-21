@@ -22,7 +22,7 @@ import {
  * Ce régime est applicable uniquement si l'activité n'est pas professionnelle
  * Au-dessus du seuil de professionnalisation, l'affiliation devient obligatoire
  * Les cotisations sont toujours de 0€
- * @param situation La situation avec des recettes
+ * @param situation La situation avec des recettes ou revenu net
  * @returns 0€ de cotisations si l'activité n'est pas professionnelle, sinon une erreur
  */
 export function calculeCotisationsPasDAffiliation(
@@ -31,6 +31,13 @@ export function calculeCotisationsPasDAffiliation(
 	Montant<'€/an'>,
 	AffiliationObligatoire | RégimeNonApplicablePourCeTypeDeDurée
 > {
+	if (situation._subtype === 'chambre-hôte') {
+		return pipe(
+			vérifieActivitéNonProfessionnelle(situation),
+			Either.map(() => eurosParAn(0))
+		)
+	}
+
 	const recettes = situation.recettes.value
 
 	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
