@@ -3,7 +3,10 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
+import {
+	estSituationMeubléDeTourismeValide,
+	useEconomieCollaborative,
+} from '@/contextes/économie-collaborative'
 import { MontantField } from '@/design-system'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 
@@ -21,6 +24,10 @@ export const ObjectifAutresRevenus = () => {
 		},
 		[set]
 	)
+
+	if (!estSituationMeubléDeTourismeValide(situation)) {
+		return null
+	}
 
 	const autresRevenus = O.getOrUndefined(situation.autresRevenus)
 

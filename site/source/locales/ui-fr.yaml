@@ -1990,12 +1990,29 @@ pages:
         recettes:
           aria-label: Montant des recettes
           titre: Recettes
+        recettes-nettes:
+          aria-label: Montant des recettes nettes
+          titre: Recettes nettes
         revenu-net: Revenu net
       questions:
         alsace-moselle:
           libellé: Votre hébergement est-il situé en Alsace-Moselle ?
+        classement:
+          classé:
+            description: Votre hébergement est classé meublé de tourisme (de 1 à 5 étoiles).
+            label: Classé
+          libellé: Votre hébergement est-il classé meublé de tourisme ?
+          mixte:
+            description: Vous proposez à la fois des hébergements classés et non classés.
+            label: Mixte
+          non-classé:
+            description: Votre hébergement n'a pas de classement officiel.
+            label: Non classé
         premiere-annee:
           libellé: Est-ce votre première année d'activité ?
+        recettes-courte-durée:
+          aria-label: Montant des recettes pour la location courte durée
+          libellé: Quelle part des recettes provient de la location courte durée ?
         regime:
           options:
             micro-entrepreneur:
@@ -2018,17 +2035,6 @@ pages:
             description: Vous proposez à la fois de la location courte durée et longue
               durée.
             label: Mixte (courte et longue durée)
-        type-location:
-          chambre-hôte:
-            description: Location d'une chambre chez l'habitant avec services associés.
-            label: Chambre d'hôte
-          libellé: Quel est le type de logement ?
-          non-classé:
-            description: Location d'un logement meublé non classé.
-            label: Logement meublé
-          tourisme:
-            description: Location d’un logement meublé classé meublé de tourisme.
-            label: Logement meublé de tourisme classé
       régimes:
         micro-entreprise:
           libellé: Auto-entrepreneur
@@ -2038,6 +2044,10 @@ pages:
           libellé: Travailleur indépendant
       shortname: Location de logement meublé
       title: Simulateur de revenu pour location de logement meublé
+      type-hébergement:
+        aria-label: Type d'hébergement
+        chambre-hôte: Chambre d'hôtes
+        meublé-tourisme: Meublé de tourisme
     lodeom:
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération

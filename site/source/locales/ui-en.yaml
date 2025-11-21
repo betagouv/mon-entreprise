@@ -1872,12 +1872,30 @@ pages:
         recettes:
           aria-label: Total revenue
           titre: Recipes
+        recettes-nettes:
+          aria-label: Net revenue
+          titre: Net income
         revenu-net: Net income
       questions:
         alsace-moselle:
           libellé: Is your accommodation located in Alsace-Moselle?
+        classement:
+          classé:
+            description: Your accommodation is classified as furnished tourist accommodation
+              (1 to 5 stars).
+            label: Classified
+          libellé: Is your accommodation classified as furnished tourist accommodation?
+          mixte:
+            description: You offer both classified and unclassified accommodation.
+            label: Mixed
+          non-classé:
+            description: Your accommodation has no official classification.
+            label: Uncategorized
         premiere-annee:
           libellé: Is this your first year in business?
+        recettes-courte-durée:
+          aria-label: Short-term rental revenue
+          libellé: How much of your revenue comes from short-term rentals?
         regime:
           options:
             micro-entrepreneur:
@@ -1899,18 +1917,6 @@ pages:
           mixte:
             description: You offer both short-term and long-term rentals.
             label: Mixed (short- and long-term)
-        type-location:
-          chambre-hôte:
-            description: Rent a room in a private home with associated services.
-            label: Bed &amp; Breakfast
-          libellé: What type of accommodation?
-          non-classé:
-            description: Rental of unclassified furnished accommodation.
-            label: Furnished accommodation
-          tourisme:
-            description: Rental of furnished accommodation classified as furnished tourist
-              accommodation.
-            label: Classified furnished tourist accommodation
       régimes:
         micro-entreprise:
           libellé: Self-employed contractor
@@ -1920,6 +1926,10 @@ pages:
           libellé: Self-employed
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
+      type-hébergement:
+        aria-label: Type of accommodation
+        chambre-hôte: Bed &amp; Breakfast
+        meublé-tourisme: Furnished tourist accommodation
     lodeom:
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under

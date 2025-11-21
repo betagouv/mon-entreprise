@@ -11,13 +11,16 @@ import {
 } from '@/contextes/économie-collaborative'
 import { Button, ConteneurBleu } from '@/design-system'
 import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
+import { TypeHébergementSwitch } from '@/pages/simulateurs/location-de-meublé/components/TypeHébergementSwitch'
 import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
+import { ObjectifRecettesNettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettesNettes'
 import {
 	AlsaceMoselleQuestion,
+	ClassementQuestion,
 	PremiereAnneeQuestion,
+	RecettesCourteDuréeQuestion,
 	TypeDuréeQuestion,
-	TypeLocationQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
 import { useSitePaths } from '@/sitePaths'
 
@@ -27,14 +30,18 @@ const LocationDeMeublé = () => {
 	const { situation } = useEconomieCollaborative()
 	const { absoluteSitePaths } = useSitePaths()
 
+	const isMeubléDeTourisme = situation.typeHébergement === 'meublé-tourisme'
+	const isChambreDHôte = situation.typeHébergement === 'chambre-hôte'
+
 	return (
 		<>
 			<Simulation<SituationÉconomieCollaborative>
 				entrepriseSelection={false}
 				situation={situation}
 				questions={[
-					TypeLocationQuestion,
 					TypeDuréeQuestion,
+					RecettesCourteDuréeQuestion,
+					ClassementQuestion,
 					...(isCotisationsEnabled
 						? [PremiereAnneeQuestion, AlsaceMoselleQuestion]
 						: []),
@@ -43,9 +50,10 @@ const LocationDeMeublé = () => {
 				avecQuestionsPublicodes={false}
 			>
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
-				<SimulationGoals>
-					<ObjectifRecettes />
-					<ObjectifAutresRevenus />
+				<SimulationGoals toggles={<TypeHébergementSwitch />}>
+					{isMeubléDeTourisme && <ObjectifRecettes />}
+					{isChambreDHôte && <ObjectifRecettesNettes />}
+					{isMeubléDeTourisme && <ObjectifAutresRevenus />}
 				</SimulationGoals>
 			</Simulation>
 			{estSituationValide(situation) && (
