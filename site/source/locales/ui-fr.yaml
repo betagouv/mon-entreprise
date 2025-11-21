@@ -492,7 +492,6 @@ créer:
       aide-cci-cma: Si vous hésitez entre une activité artisanale ou commerciale, vous
         pouvez consulter les sites de la <2>CCI</2> ou de la <5>CMA</5>.
       title: Précisions sur votre activité
-d'aides: d'aides
 design-system:
   date-picker:
     close: Fermer
@@ -507,8 +506,6 @@ design-system:
     prev-month: Mois précédent
     year: Année
 décembre: décembre
-en incluant: en incluant
-en titres-restaurant: en titres-restaurant
 entreprise:
   détails: Entreprise créée le {{ date }} et domiciliée à {{ commune }}.
 error:
@@ -2152,9 +2149,15 @@ pages:
     salarié:
       SASU: Vous êtes dirigeant d'une SAS(U) ? <2>Accédez au simulateur de revenu
         dédié</2>
+      aides: en incluant <2></2> d'aides
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
+      explications:
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
       externalLinks:
         "1":
           ariaLabel: Visiter le site Code du travail numérique, nouvelle fenêtre.
@@ -2174,10 +2177,6 @@ pages:
         ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur
           tout-en-un pour salariés et employeurs"
         titre: "Salaire brut / net : le convertisseur Urssaf"
-      répartition:
-        cotisations: Cotisations
-        impôt: Impôt
-        revenu: Revenu disponible
       seo: "<0><0>Comment calculer le salaire net ?</0><1>Lors de l'entretien
         d'embauche l'employeur propose en général une rémunération exprimée en «
         brut ». Le montant annoncé inclut ainsi les cotisations salariales, qui
@@ -2216,6 +2215,7 @@ pages:
         locales...</4><5></5></2>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
+      titres-restaurant: en titres-restaurant
       warning: Le simulateur ne prend pour l’instant pas en compte les accords et
         conventions collectives, ni la myriade d’aides aux entreprises. Trouvez
         votre convention collective <2>ici</2>, et explorez les aides sur
@@ -2447,7 +2447,7 @@ simulateurs:
     titre: Avant de commencer...
 simulation-end:
   hiring:
-    text: Vous pouvez maintenant concrétiser votre projet d'embauche.
+    text: Vous pouvez maintenant concrétiser votre projet d’embauche.
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
   title: Vous avez complété cette simulation
 simulationPréremplieBanner:
