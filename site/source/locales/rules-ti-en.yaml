@@ -1676,11 +1676,11 @@ impôt . barème standard . revenu net imposable:
 
     following conditions:
 
-    - you are 65 or over
+    - you are 65 or over,
 
-    - you are disabled
+    - you are disabled,
 
-    - you are attaching a married or civil union child or a child with dependent children to your household income
+    - you are attaching a married or civil union child to your household.
 
 
     These allowances are not yet implemented in our simulators.
@@ -1689,9 +1689,9 @@ impôt . barème standard . revenu net imposable:
 
     Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
     conditions suivantes :
-    - vous avez 65 ans ou plus
-    - vous êtes invalide
-    - vous rattachez votre enfant marié, pacsé ou chargé de famille
+    - vous avez 65 ans ou plus,
+    - vous êtes invalide,
+    - vous rattachez votre enfant marié, pacsé ou chargé de famille.
 
     Ces abattements ne sont pas encore implémentés dans nos simulateurs.
   titre.en: '[automatic] net taxable income'
@@ -1916,8 +1916,8 @@ impôt . taux personnalisé:
       - une fiche de paie
       - un avis d’imposition
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
-  question.en: '[automatic] What is your withholding tax rate?'
-  question.fr: Quel est votre taux de prélèvement à la source ?
+  question.en: '[automatic] What is your tax rate?'
+  question.fr: Quel est votre taux d’imposition ?
   titre.en: '[automatic] personalized rate'
   titre.fr: taux personnalisé
 indépendant:
@@ -5043,23 +5043,34 @@ paramètres . impôt . revenu d'activité:
     standard tax scale, and to which a flat-rate deduction of 10% for professional
 
     business expenses.
+
+
+    It must be entered for salaried employees, assimilated employees and directors subject to corporation tax.
   description.fr: >
     C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
 
     barème standard et auquel appliquer un abattement forfaitaire de 10 % pour les
 
     frais professionnels.
+
+
+    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l'IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
 paramètres . impôt . revenu imposable:
   description.en: >
-    [automatic] This is the income used to calculate tax with an average tax
-    rate
+    [automatic] This is the income to be taken into account for income tax
+    purposes, without
 
-    tax rate (neutral or personalized).
+    to calculate income tax.
+
+
+    It must be filled in for directors liable to income tax.
   description.fr: |
-    C’est le revenu à prendre en compte pour calculer l’impôt avec un taux moyen
-    d’imposition (neutre ou personnalisé).
+    C’est le revenu à prendre en compte, sans y appliquer d'abattement
+    supplémentaire, pour calculer l’impôt sur le revenu.
+
+    Il est à renseigner pour les dirigeants à l'IR.
   titre.en: '[automatic] taxable income'
   titre.fr: revenu imposable
 paramètres . impôt . taux neutre applicable:
