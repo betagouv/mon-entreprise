@@ -1,0 +1,21 @@
+# Règles utilisées pour la recherche d'entreprise
+
+entreprise:
+
+entreprise . nom:
+  type: texte
+
+entreprise . SIREN:
+  description: |
+    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise. Exemple : 401237780
+  type: texte
+
+entreprise . code catégorie juridique:
+  description: Code représentant la catégorie juridique de l'entreprise, tel que défini par l'INSEE.
+
+entreprise . activité:
+  experimental: oui
+  type: texte
+  références:
+    "Activité de votre entreprise : code APE, code NAF, qu’est-ce que c’est ?": https://www.economie.gouv.fr/entreprises/activite-entreprise-code-ape-code-naf
+    À quoi correspond le code APE (code NAF) ?: https://entreprendre.service-public.fr/vosdroits/F33050

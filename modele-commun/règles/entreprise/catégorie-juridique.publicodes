@@ -1,0 +1,45 @@
+# Règles utilisées pour la recherche d'entreprise
+
+entreprise . catégorie juridique:
+  note: On se base ici sur les catégories juridiques définies par l'INSEE
+  une possibilité:
+    - EI
+    - SARL
+    - SAS
+    - SELARL
+    - SELAS
+    - association
+    - autre
+
+### (niveau 1 code 1)	Entrepreneur individuel ###
+
+entreprise . catégorie juridique . EI:
+  titre: Entreprise individuelle (y compris auto-entrepreneurs)
+  valeur: catégorie juridique = 'EI'
+  par défaut: oui
+
+### (niveau 1 code 5)	Société commerciale ###
+
+entreprise . catégorie juridique . SARL:
+  titre: SARL ou EURL
+  valeur: catégorie juridique = 'SARL'
+
+entreprise . catégorie juridique . SAS:
+  titre: SAS ou SASU
+  valeur: catégorie juridique = 'SAS'
+
+### (niveau 1 code 6)	Autre personne morale immatriculée au RCS ###
+
+entreprise . catégorie juridique . SELARL:
+  titre: SELARL ou SELARLU
+  valeur: catégorie juridique = 'SELARL'
+
+entreprise . catégorie juridique . SELAS:
+  titre: SELAS ou SELASU
+  valeur: catégorie juridique = 'SELAS'
+
+entreprise . catégorie juridique . association:
+  valeur: catégorie juridique = 'association'
+
+entreprise . catégorie juridique . autre:
+  valeur: catégorie juridique = 'autre'
