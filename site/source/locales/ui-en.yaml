@@ -213,7 +213,6 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
-Voir la fiche Urssaf: See the Urssaf sheet
 Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
 Voir les simulateurs personnalisés: See customized simulators
@@ -1167,6 +1166,15 @@ pages:
           indemnities provided for by a collective agreement or unilateral
           decision by the employer.
     artiste-auteur:
+      explications:
+        cotisations:
+          précompte: For your salary and wage income, these contributions are
+            "précomptée", i.e. paid at source by the broadcaster.
+          titre: Your contributions
+        institutions:
+          urssaf: Urssaf collects contributions used to finance social security (health
+            insurance, family allowances, long-term care and retirement &lt;2>
+            </2> ).
       externalLinks:
         "1":
           title: The Artist-Author online service
@@ -1187,6 +1195,30 @@ pages:
           impôt: Tax
           revenu: Disposable income
     auto-entrepreneur:
+      explications:
+        droits-retraite: "<0><0><0>Retirement: rights acquired over the
+          year</0><1><0>DROM exemptions have no impact on determining basic and
+          supplementary pension rights for auto-entrepreneurs</0></1><2><0>The
+          ACRE exemption has no impact on the calculation of basic and
+          supplementary pension rights for auto-entrepreneurs.</0></2><3><0>The
+          calculation of open pension rights has not yet been implemented for
+          cases involving contribution exemptions (ACRE, disability pension,
+          etc.).</0></3><4><0><0>Basic pension : <2></2></0><1><0>Basic pension
+          points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
+          basic pension : <2></2></0></2><3><0>Supplementary pension points
+          acquired (Cipav) : <2></2></0></3><4><0>Supplementary pension points
+          acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
+          not manage acquired supplementary pension rights for the liberal
+          professions.</0></1></3></0></4></0></4></0><1><0><0>Projecting your
+          retirement amount</0><1><0></0><1></1></1></0></1></0>"
+        institutions:
+          urssaf: Urssaf collects social security contributions (health insurance, family
+            allowances, dependence&lt;1> and retirement</1>).
+        répartition:
+          cotisations: Contributions
+          h2: Sales breakdown
+          impôt: Tax
+          revenu: Income (including activity-related expenses)
       externalLinks:
         "1":
           ariaLabel: Visit auto-entrepreneur.urssaf.fr, new window.
@@ -1210,11 +1242,6 @@ pages:
         ogTitle: "Self-employed entrepreneurs: quickly calculate your net income from
           sales and vice versa"
         titre: "Self-employed entrepreneurs: income simulator"
-      répartition:
-        cotisations: Contributions
-        h2: Sales breakdown
-        impôt: Tax
-        revenu: Income (including activity-related expenses)
       seo explanation: <0>How do you calculate the net income of an
         auto-entrepreneur?</0><1>An auto-entrepreneur must pay social security
         contributions to the authorities. These contributions are used to
@@ -1636,43 +1663,49 @@ pages:
         included in the simulator.</5>
       title: Corporate tax simulator
     indépendant:
-      cotisations-forfaitaires: "Flat-rate contributions : "
+      explications:
+        cotisations:
+          fiche: See the Urssaf sheet
+          forfaitaires: "Flat-rate contributions :"
+          régularisation:
+            description: <0>Contributions are calculated provisionally on the basis of the
+              last income declared (or the lump sum if no income has yet been
+              declared). Once the year is over and the professional income is
+              known, contributions are adjusted.</0><1>This simulator calculates
+              contributions <2>after regularization</2>. It therefore enables
+              you to anticipate the amount of this regularization and plan your
+              cash flow accordingly.</1><2>If your business income changes
+              significantly from the previous year, you can provide Urssaf with
+              a <2>forecast amount for the current year, which will be used as
+              the basis for calculation</2>(although you will be required to
+              make a precise estimate).</2>
+            titre: How does the adjustment of provisional contributions work?
+        droits-retraite: "<0><0>Retirement: rights acquired over the year</0><1><0>The
+          ACRE exemption has no impact on the calculation of basic and
+          supplementary pension rights for auto-entrepreneurs.</0></1><2><0>The
+          calculation of pension rights has not yet been implemented for cases
+          involving contribution exemptions (ACRE, disability pension,
+          etc.).</0></2><3><0><0>Basic pension : <2></2></0><1><0>Basic pension
+          points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
+          basic pension : <2></2></0></2><3>Supplementary pension points
+          acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
+          not manage acquired supplementary pension rights for the liberal
+          professions.</0></1></3></3></0></3></0><1><0><0>Projecting your
+          retirement amount</0><1><0></0><1></1></1></0></1>"
+        institutions:
+          cpam: As an approved healthcare professional, part of your contributions are
+            reimbursed by the Assurance Maladie.
+          urssaf: Urssaf collects social security contributions (health insurance, family
+            allowances, dependence&lt;1> and retirement</1>).
+        répartition:
+          cotisations: Contributions
+          impôt: Tax
+          revenu: Disposable income
+          titre: Income breakdown
       meta:
         description: Calculating net income after tax and contributions from sales and
           vice versa
         title: "Self-employed: income simulator"
-      retraite-droits-acquis: "<0><0><0>Retirement: rights acquired over the
-        year</0><1><0>DROM exemptions have no impact on determining basic and
-        supplementary pension rights for auto-entrepreneurs</0></1><2><0>The
-        ACRE exemption has no impact on the calculation of basic and
-        supplementary pension rights for auto-entrepreneurs.</0></2><3><0>The
-        calculation of open pension rights has not yet been implemented for
-        cases involving contribution exemptions (ACRE, disability pension,
-        etc.).</0></3><4><0><0>Basic pension : <2></2></0><1><0>Basic pension
-        points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
-        basic pension : <2></2></0></2><3><0>Supplementary pension points
-        acquired (Cipav) : <2></2></0></3><4><0>Supplementary pension points
-        acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
-        not manage acquired supplementary pension rights for the liberal
-        professions.</0></1></3></0></4></0></4></0><1><0><0>Projecting your
-        retirement amount</0><1><0></0><1></1></1></0></1></0>"
-      régularisation:
-        description: <0>Contributions are calculated provisionally on the basis of the
-          last income declared (or the lump sum if no income has yet been
-          declared). Once the year is over and the professional income is known,
-          contributions are adjusted.</0><1>This simulator calculates
-          contributions <2>after regularization</2>. It therefore enables you to
-          anticipate the amount of this regularization and plan your cash flow
-          accordingly.</1><2>If your business income changes significantly from
-          the previous year, you can provide Urssaf with a <2>forecast amount
-          for the current year, which will be used as the basis for
-          calculation</2>(although you will be required to make a precise
-          estimate).</2>
-        title: How does the adjustment of provisional contributions work?
-      répartition:
-        cotisations: Contributions
-        impôt: Tax
-        revenu: Disposable income
       shortname: Independent
       title: Income simulator for the self-employed
       warning:
@@ -2195,17 +2228,10 @@ simulateurs:
         provident fund file.
       CNAPL: It collects contributions related to your pension and to the
         disability-death scheme.
-      cpam: As an approved healthcare professional, part of your contributions are
-        reimbursed by the Assurance Maladie.
       dgfip: The Direction Générale des Finances Publiques (DGFiP) is the organization
         that collects income tax. <2>The amount calculated takes into <2>account
         the micro-tax allowance</2>.</2>
-      précompte-artiste-auteur: For your salary and wage income, these contributions
-        are "précomptée", i.e. paid at source by the broadcaster.
       titre: Your partner institutions
-      urssaf: Urssaf collects contributions used to finance the social security system
-        (health insurance, family allowances, long-term care<1> and <3>
-        basic</3> pensions</1>).
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
