@@ -11,11 +11,11 @@ export default function CotisationsRégularisation() {
 			<div>
 				<H2 as="h2">
 					{t(
-						'pages.simulateurs.indépendant.régularisation.title',
+						'pages.simulateurs.indépendant.explications.cotisations.régularisation.titre',
 						'Comment fonctionne la régularisation des cotisations provisionnelles ?'
 					)}
 				</H2>
-				<Trans i18nKey="pages.simulateurs.indépendant.régularisation.description">
+				<Trans i18nKey="pages.simulateurs.indépendant.explications.cotisations.régularisation.description">
 					<Body>
 						Les cotisations et contributions sont calculées à titre provisionnel
 						sur la base du dernier revenu déclaré (ou du montat forfaitaire, si
@@ -48,7 +48,10 @@ export default function CotisationsRégularisation() {
 					size="XS"
 					href="https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/adapter-cotisations-revenus.html"
 				>
-					{t('Voir la fiche Urssaf')}
+					{t(
+						'pages.simulateurs.indépendant.explications.cotisations.fiche',
+						'Voir la fiche Urssaf'
+					)}
 				</Button>
 				<Spacing lg />
 			</div>
