@@ -449,7 +449,6 @@ créer:
       aide-cci-cma: If you're not sure whether to choose a craft or commercial
         activity, you can consult the <2>CCI</2> or <5>CMA</5> websites.
       title: Details of your business
-d'aides: aids
 design-system:
   date-picker:
     close: Close
@@ -463,8 +462,6 @@ design-system:
     prev-month: Previous month
     year: Year
 décembre: December
-en incluant: including
-en titres-restaurant: in meal vouchers
 entreprise:
   détails: Company created on {{ date }} and domiciled at {{ commune }}.
 error:
@@ -1883,9 +1880,15 @@ pages:
       title: Income simulator for self-employed midwives
     salarié:
       SASU: Are you an SAS(U) director? <2>Access the dedicated income simulator</2>
+      aides: including <2> &lt;/2> aid
       alt-image1: Net salary (received by the employee) is equal to Gross salary
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).
+      explications:
+        répartition:
+          cotisations: Contributions
+          impôt: Tax
+          revenu: Disposable income
       externalLinks:
         "1":
           ariaLabel: Visit Code du travail numérique, new window.
@@ -1905,10 +1908,6 @@ pages:
         ogTitle: "Gross salary, net salary, net salary after tax, total cost: the
           all-in-one simulator for employees and employers"
         titre: "Gross/net salary: the Urssaf converter"
-      répartition:
-        cotisations: Contributions
-        impôt: Tax
-        revenu: Disposable income
       seo: "<0><0>How do you calculate net salary?</0><1>During the job interview, the
         employer generally proposes a gross salary. This amount includes the
         employee's social security contributions, which are deducted from the
@@ -1942,6 +1941,7 @@ pages:
         missions...</4><5></5></2>"
       shortname: Employee
       title: Income simulator for employees
+      titres-restaurant: in meal vouchers
       warning:
         général: The simulator does not currently take into account collective
           agreements, nor the myriad of company subsidies. Find your collective
