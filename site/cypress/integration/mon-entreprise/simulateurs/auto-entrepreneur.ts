@@ -152,8 +152,8 @@ describe('Simulateur auto-entrepreneur', function () {
 	it('devrait afficher des taux d’imposition et de cotisations à 0 lorsque le chiffre d’affaires vaut 0', function () {
 		cy.get(inputSelector).first().type('{selectall}0')
 
-		cy.contains('Cotisations 0 %')
-		cy.contains('Impôt 0 %')
+		cy.contains('Cotisations et contributions 0 €/an')
+		cy.contains('Impôt sur le revenu 0 €/an')
 	})
 
 	it('devrait respecter le RGAA', function () {
