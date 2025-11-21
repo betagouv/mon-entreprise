@@ -64,5 +64,10 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 			ogImage: AutoEntrepreneurPreview,
 		},
+		// Nécessaire pour que useEngine ne plante pas.
+		// Étant un hook, on ne peut pas l'appeler conditionnellement.
+		simulation: {
+			nomModèle: 'modele-social',
+		},
 	} as const)
 }
