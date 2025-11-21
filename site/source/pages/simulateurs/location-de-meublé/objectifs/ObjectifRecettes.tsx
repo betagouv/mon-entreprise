@@ -35,6 +35,10 @@ export const ObjectifRecettes = () => {
 		[handleChange, valeur]
 	)
 
+	if (situation.typeHébergement !== 'meublé-tourisme') {
+		return null
+	}
+
 	return (
 		<ObjectifSaisissableDeSimulation
 			id="économie-collaborative-recettes"

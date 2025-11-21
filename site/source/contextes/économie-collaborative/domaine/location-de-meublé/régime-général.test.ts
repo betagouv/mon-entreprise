@@ -1,43 +1,33 @@
-import { Either, Option as O, Option } from 'effect'
+import { Either } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { eurosParAn } from '@/domaine/Montant'
-
 import { calculeCotisationsRégimeGénéral } from './régime-général'
-import { SituationÉconomieCollaborativeValide } from './situation'
+import {
+	situationChambreDHôteBuilder,
+	situationMeubléDeTourismeBuilder,
+} from './test/situationBuilder'
 
-describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
+describe('calculeCotisationsRégimeGénéral avec typeHébergement et classement', () => {
 	describe('type location: non-classé', () => {
-		it('devrait calculer les cotisations pour recettes < 77 700€', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.some('non-classé' as const),
-				recettes: O.some(eurosParAn(10_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+		it('devrait retourner une erreur pour recettes < 23 000€ (affiliation non obligatoire)', () => {
+			const situation = situationMeubléDeTourismeBuilder()
+				.avecRecettes(10_000)
+				.avecClassement('non-classé')
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
-			expect(Either.isRight(résultat)).toBe(true)
+			expect(Either.isLeft(résultat)).toBe(true)
+			if (Either.isLeft(résultat)) {
+				expect(résultat.left._tag).toBe('AffiliationNonObligatoire')
+			}
 		})
 
 		it('devrait calculer les cotisations pour recettes entre 23 000€ et 77 700€', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.some('non-classé' as const),
-				recettes: O.some(eurosParAn(50_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+			const situation = situationMeubléDeTourismeBuilder()
+				.avecRecettes(50_000)
+				.avecClassement('non-classé')
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
@@ -45,17 +35,10 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 		})
 
 		it('devrait retourner une erreur pour recettes > 77 700€', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.some('non-classé' as const),
-				recettes: O.some(eurosParAn(80_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+			const situation = situationMeubléDeTourismeBuilder()
+				.avecRecettes(80_000)
+				.avecClassement('non-classé')
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
@@ -70,17 +53,10 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 
 	describe('type location: tourisme', () => {
 		it('devrait calculer les cotisations pour recettes entre 23 000€ et 77 700€', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.some('tourisme' as const),
-				recettes: O.some(eurosParAn(50_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+			const situation = situationMeubléDeTourismeBuilder()
+				.avecRecettes(50_000)
+				.avecClassement('classé')
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
@@ -88,17 +64,10 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 		})
 
 		it('devrait retourner une erreur pour recettes > 77 700€', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.some('tourisme' as const),
-				recettes: O.some(eurosParAn(100_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+			const situation = situationMeubléDeTourismeBuilder()
+				.avecRecettes(100_000)
+				.avecClassement('classé')
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
@@ -113,65 +82,37 @@ describe('calculeCotisationsRégimeGénéral avec typeLocation', () => {
 
 	describe('type location: chambre-hôte', () => {
 		it('devrait toujours retourner une erreur car RG non applicable pour chambre-hôte', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.some('chambre-hôte' as const),
-				recettes: O.some(eurosParAn(10_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+			const situation = situationChambreDHôteBuilder()
+				.avecRevenuNet(10_000)
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
 			expect(Either.isLeft(résultat)).toBe(true)
 			if (Either.isLeft(résultat)) {
-				expect(résultat.left._tag).toBe(
-					'RégimeNonApplicablePourCeTypeDeLocation'
-				)
+				expect(résultat.left._tag).toBe('RégimeNonApplicablePourChambreDHôte')
 			}
 		})
 
 		it('devrait retourner une erreur même pour recettes élevées', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.some('chambre-hôte' as const),
-				recettes: O.some(eurosParAn(50_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+			const situation = situationChambreDHôteBuilder()
+				.avecRevenuNet(50_000)
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
 			expect(Either.isLeft(résultat)).toBe(true)
 			if (Either.isLeft(résultat)) {
-				expect(résultat.left._tag).toBe(
-					'RégimeNonApplicablePourCeTypeDeLocation'
-				)
+				expect(résultat.left._tag).toBe('RégimeNonApplicablePourChambreDHôte')
 			}
 		})
 	})
 
-	describe('sans typeLocation (comportement par défaut)', () => {
+	describe('sans classement', () => {
 		it('devrait utiliser les règles pour non-classé par défaut', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: O.none(),
-				recettes: O.some(eurosParAn(50_000)) as O.Some<
-					ReturnType<typeof eurosParAn>
-				>,
-				estAlsaceMoselle: O.some(false),
-				premièreAnnée: O.some(false),
-			}
+			const situation = situationMeubléDeTourismeBuilder()
+				.avecRecettes(50_000)
+				.build()
 
 			const résultat = calculeCotisationsRégimeGénéral(situation)
 
