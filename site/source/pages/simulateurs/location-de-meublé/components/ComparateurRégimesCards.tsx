@@ -150,7 +150,10 @@ const RégimeCard = ({
 								'Non applicable'
 							)}
 						</Strong>{' '}
-						{RaisonInapplicabilité.estTypeDeLocationIncompatible(
+						{RaisonInapplicabilité.estTypeDeDuréeIncompatible(
+							résultat.raisonDeNonApplicabilité
+						) ||
+						RaisonInapplicabilité.estChambreDHôte(
 							résultat.raisonDeNonApplicabilité
 						)
 							? t(
