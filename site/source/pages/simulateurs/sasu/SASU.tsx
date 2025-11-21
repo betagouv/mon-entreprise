@@ -8,16 +8,17 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import SalaryExplanationAssimiléSalarié from '@/components/simulationExplanation/SalaryExplanation/SalaryExplanationAssimiléSalarié'
 import { Body, H2 } from '@/design-system'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
 import { useEngine } from '@/hooks/useEngine'
+
+import ExplicationsSalaire from './components/Explications'
 
 export function SASUSimulation() {
 	return (
 		<>
 			<Simulation
-				explanations={<SalaryExplanationAssimiléSalarié />}
+				explanations={<ExplicationsSalaire />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
