@@ -1,6 +1,6 @@
 indépendant . PL:
   titre: Profession libérale
-  applicable si: entreprise . activités = 'libérale'
+  applicable si: entreprise . activités . libérale
   rend non applicable: entreprise . activités . revenus mixtes
   formule: oui
 
