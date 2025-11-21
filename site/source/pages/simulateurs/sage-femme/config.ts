@@ -33,8 +33,7 @@ export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.sage-femme.title',
 			'Simulateur de revenus pour sage-femme en libéral'
 		),
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [servicePAM],
+		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
 		simulation: configSageFemme,
 		codesCatégorieJuridique: ['1000', '5410'],
