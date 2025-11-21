@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import RuleLink from '@/components/RuleLink'
 import { Body, Emoji, H2, Message } from '@/design-system'
 
-export const SeoExplanationsEI = () => (
+export const SeoExplanations = () => (
 	<Trans i18nKey="pages.simulateurs.ei.seo explanation">
 		<H2>
 			Comment calculer le revenu net d'un dirigeant d'entreprise individuelle
@@ -18,7 +18,7 @@ export const SeoExplanationsEI = () => (
 		</Body>
 		<Body>
 			<Emoji emoji="👉" />{' '}
-			<RuleLink dottedName="dirigeant . indépendant . cotisations et contributions">
+			<RuleLink dottedName="indépendant . cotisations et contributions">
 				Voir le détail du calcul des cotisations
 			</RuleLink>
 		</Body>

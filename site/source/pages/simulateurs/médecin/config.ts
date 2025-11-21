@@ -1,6 +1,6 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { servicePAM } from '@/external-links/servicePAM'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
+import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -38,6 +38,6 @@ export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 		path: sitePaths.simulateurs['profession-libérale'].médecin,
 		simulation: configMédecin,
 		codesCatégorieJuridique: ['1000', '5410'],
-		component: IndépendantPLSimulation,
+		component: ProfessionLibérale,
 	} as const)
 }

@@ -8,10 +8,10 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
-import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
+import { DistributionBranch } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/DistributionDesCotisations'
 import { typography } from '@/design-system'
 import { useEngine } from '@/hooks/useEngine'
+import InstitutionsPartenaires from '@/pages/simulateurs/artiste-auteur/components/InstitutionsPartenaires'
 
 const { Body, H2 } = typography
 
@@ -19,7 +19,7 @@ export default function ArtisteAuteur() {
 	return (
 		<>
 			<Simulation
-				results={<InstitutionsPartenairesArtisteAuteur />}
+				results={<InstitutionsPartenaires />}
 				explanations={<CotisationsResult />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>
