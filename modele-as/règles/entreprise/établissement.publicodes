@@ -1,4 +1,4 @@
-établissement:
+# La règle parente "établissement" est dans modele-commun
 
 établissement . commune:
   icônes: 📍
