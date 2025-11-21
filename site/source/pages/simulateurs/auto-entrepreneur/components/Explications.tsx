@@ -1,53 +1,18 @@
-import { useTranslation } from 'react-i18next'
-
-import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
-import { DroitsRetraite } from '@/components/simulationExplanation/DroitsRetraite'
-import { InstitutionsPartenairesAutoEntrepreneur } from '@/components/simulationExplanation/InstitutionsPartenaires'
-import StackedRulesChart from '@/components/simulationExplanation/StackedRulesChart/StackedRulesChart'
-import { H2 } from '@/design-system'
+import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/ÀQuoiServentMesCotisationsSection'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import DroitsRetraite from '@/pages/simulateurs/auto-entrepreneur/components/DroitsRetraite'
 
-export const AutoEntrepreneurDétails = () => {
-	const { t } = useTranslation()
+import InstitutionsPartenaires from './InstitutionsPartenaires'
+import RépartitionRevenu from './RépartitionRevenu'
 
+export default function Explications() {
 	return (
-		<section>
-			<H2>
-				{t(
-					'pages.simulateurs.auto-entrepreneur.répartition.h2',
-					'Répartition du chiffre d’affaires'
-				)}
-			</H2>
-			<StackedRulesChart
-				data={{
-					revenu: {
-						dottedName: 'dirigeant . rémunération . net . après impôt',
-						title: t(
-							'pages.simulateurs.auto-entrepreneur.répartition.revenu',
-							'Revenu (incluant les dépenses liées à l’activité)'
-						),
-					},
-					cotisations: {
-						dottedName:
-							'dirigeant . auto-entrepreneur . cotisations et contributions',
-						title: t(
-							'pages.simulateurs.auto-entrepreneur.répartition.cotisations',
-							'Cotisations'
-						),
-					},
-					impôt: {
-						dottedName: 'impôt . montant',
-						title: t(
-							'pages.simulateurs.auto-entrepreneur.répartition.impôt',
-							'Impôt'
-						),
-					},
-				}}
-			/>
-			<InstitutionsPartenairesAutoEntrepreneur />
+		<>
+			<RépartitionRevenu />
+			<InstitutionsPartenaires />
 			<DroitsRetraite />
 			<ÀQuoiServentMesCotisationsSection regroupement={CotisationsSection} />
-		</section>
+		</>
 	)
 }
 

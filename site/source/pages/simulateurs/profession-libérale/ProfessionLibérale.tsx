@@ -4,19 +4,19 @@ import AvertissementRéformeAssietteNonImplémentée from '@/components/Avertiss
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { DarkLi, Ul } from '@/design-system'
 import useYear from '@/hooks/useYear'
+import ExplicationsIndépendant from '@/pages/simulateurs/indépendant/components/Explications'
 import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
 
-export const IndépendantPLSimulation = () => {
+export default function ProfessionLibérale() {
 	const year = useYear()
 	const { t } = useTranslation()
 
 	return (
 		<>
 			<Simulation
-				explanations={<IndépendantExplanation />}
+				explanations={<ExplicationsIndépendant />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning

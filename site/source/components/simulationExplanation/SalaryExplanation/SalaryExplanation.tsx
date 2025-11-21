@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { Trans } from 'react-i18next'
 
-import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisationsSection'
+import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/ÀQuoiServentMesCotisationsSection'
 import { FromTop } from '@/components/ui/animate'
 import {
 	Body,
