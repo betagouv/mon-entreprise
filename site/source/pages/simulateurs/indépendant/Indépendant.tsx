@@ -5,12 +5,12 @@ import RuleInput from '@/components/conversation/RuleInput'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
 import { Body } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import useYear from '@/hooks/useYear'
+import ExplicationsIndépendant from '@/pages/simulateurs/indépendant/components/Explications'
 import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
@@ -23,7 +23,7 @@ export default function IndépendantSimulation() {
 	return (
 		<>
 			<Simulation
-				explanations={<IndépendantExplanation />}
+				explanations={<ExplicationsIndépendant />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>
 				<SimulateurWarning
