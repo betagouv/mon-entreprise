@@ -67,6 +67,7 @@ export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 					'Visiter le site auto-entrepreneur.urssaf.fr, nouvelle fenêtre.'
 				),
 			},
+			serviceAutoEntrepreneur,
 			{
 				url: 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/guide-officiel.html',
 				title: t(
@@ -89,7 +90,6 @@ export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 			},
 			premiersMoisUrssaf,
 		],
-		conditionalExternalLinks: [serviceAutoEntrepreneur],
 		path: sitePaths.simulateurs['auto-entrepreneur'],
 		simulation: configAutoEntrepreneur,
 		codesCatégorieJuridique: ['1000'],
