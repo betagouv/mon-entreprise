@@ -224,7 +224,6 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir les autres simulateurs: Voir les autres simulateurs
 Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
 Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
@@ -1250,6 +1249,15 @@ pages:
           partielle prévue par une convention/accord collectif ou une décision
           unilatérale de l’employeur.
     artiste-auteur:
+      explications:
+        cotisations:
+          précompte: Pour vos revenus en traitement et salaires, ces cotisations sont «
+            précomptées », c’est-à-dire payées à la source par le diffuseur.
+          titre: Vos cotisations
+        institutions:
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance et
+            retraite <2> de base</2>).
       externalLinks:
         "1":
           title: Le service en ligne Artiste-auteur
@@ -1272,6 +1280,33 @@ pages:
           impôt: Impôt
           revenu: Revenu disponible
     auto-entrepreneur:
+      explications:
+        droits-retraite: "<0><0><0>Retraite : droits acquis sur l’année</0><1><0>Les
+          exonérations DROM n’ont aucune incidence sur la détermination des
+          droits à la retraite de base et complémentaire des
+          auto-entrepreneurs</0></1><2><0>L’exonération ACRE n’a aucune
+          incidence sur la détermination des droits à la retraite de base et
+          complémentaire des auto-entrepreneurs</0></2><3><0>Le calcul des
+          droits ouverts à la retraite n’est pas encore implémenté pour les cas
+          incluants des d’exonérations de cotisations (ACRE, pension invalidité,
+          etc).</0></3><4><0><0>Retraite de base : <2></2></0><1><0>Points de
+          retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
+          pour la retraite de base : <2></2></0></2><3><0>Points de retraite
+          complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points de
+          retraite complémentaire acquis : <2><0></0></2><3><0>non
+          connue</0><1><0>Ce simulateur ne gère pas les droits acquis de
+          retraite complémentaire pour les professions
+          libérales</0></1></3></0></4></0></4></0><1><0><0>Projection du
+          montant de votre retraite</0><1><0></0><1></1></1></0></1></0>"
+        institutions:
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance<1> et
+            retraite</1>).
+        répartition:
+          cotisations: Cotisations
+          h2: Répartition du chiffre d’affaires
+          impôt: Impôt
+          revenu: Revenu (incluant les dépenses liées à l’activité)
       externalLinks:
         "1":
           ariaLabel: Visiter le site auto-entrepreneur.urssaf.fr, nouvelle fenêtre.
@@ -1299,11 +1334,6 @@ pages:
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
         titre: "Auto-entrepreneurs : simulateur de revenus"
-      répartition:
-        cotisations: Cotisations
-        h2: Répartition du chiffre d’affaires
-        impôt: Impôt
-        revenu: Revenu (incluant les dépenses liées à l’activité)
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
@@ -1753,46 +1783,55 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d’impôt sur les sociétés
     indépendant:
-      cotisations-forfaitaires: "Cotisations forfaitaires : "
+      explications:
+        cotisations:
+          fiche: Voir la fiche Urssaf
+          forfaitaires: "Cotisations forfaitaires :"
+          régularisation:
+            description: <0>Les cotisations et contributions sont calculées à titre
+              provisionnel sur la base du dernier revenu déclaré (ou du montat
+              forfaitaire, si aucun revenu n’est encore déclaré). Une fois
+              l’année écoulée et le revenu professionnel connu, les cotisations
+              et contributions sont régularisées.</0><1>Ce simulateur calcule
+              les cotisations <2>après régularisation</2>. Il vous permet donc
+              d’anticiper le montant de cette régularisation et de planifier
+              votre trésorerie en conséquence.</1><2>Si vos revenus d’activité
+              changent beaucoup par rapport à l’année précédente, vous avez la
+              possibilité de communiquer à l’Urssaf un <2>montant prévisionnel
+              pour l’année en cours, qui sera pris comme base de
+              calcul</2>(attention cependant, vous serez tenus de faire une
+              estimation précise).</2>
+            titre: Comment fonctionne la régularisation des cotisations provisionnelles ?
+        droits-retraite: "<0><0>Retraite : droits acquis sur
+          l’année</0><1><0>L’exonération ACRE n’a aucune incidence sur la
+          détermination des droits à la retraite de base et complémentaire des
+          auto-entrepreneurs</0></1><2><0>Le calcul des droits ouverts à la
+          retraite n’est pas encore implémenté pour les cas incluants des
+          d’exonérations de cotisations (ACRE, pension invalidité,
+          etc).</0></2><3><0><0>Retraite de base : <2></2></0><1><0>Points de
+          retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
+          pour la retraite de base : <2></2></0></2><3>Points de retraite
+          complémentaire acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce
+          simulateur ne gère pas les droits acquis de retraite complémentaire
+          pour les professions
+          libérales</0></1></3></3></0></3></0><1><0><0>Projection du montant de
+          votre retraite</0><1><0></0><1></1></1></0></1>"
+        institutions:
+          cpam: En tant que professionnel de santé conventionné, vous bénéficiez d’une
+            prise en charge d’une partie de vos cotisations par l’Assurance
+            Maladie.
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance<1> et
+            retraite</1>).
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
+          titre: Répartition du revenu
       meta:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
-      retraite-droits-acquis: "<0><0><0>Retraite : droits acquis sur
-        l’année</0><1><0>Les exonérations DROM n’ont aucune incidence sur la
-        détermination des droits à la retraite de base et complémentaire des
-        auto-entrepreneurs</0></1><2><0>L’exonération ACRE n’a aucune incidence
-        sur la détermination des droits à la retraite de base et complémentaire
-        des auto-entrepreneurs</0></2><3><0>Le calcul des droits ouverts à la
-        retraite n’est pas encore implémenté pour les cas incluants des
-        d’exonérations de cotisations (ACRE, pension invalidité,
-        etc).</0></3><4><0><0>Retraite de base : <2></2></0><1><0>Points de
-        retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
-        pour la retraite de base : <2></2></0></2><3><0>Points de retraite
-        complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points de retraite
-        complémentaire acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce
-        simulateur ne gère pas les droits acquis de retraite complémentaire pour
-        les professions
-        libérales</0></1></3></0></4></0></4></0><1><0><0>Projection du montant
-        de votre retraite</0><1><0></0><1></1></1></0></1></0>"
-      régularisation:
-        description: <0>Les cotisations et contributions sont calculées à titre
-          provisionnel sur la base du dernier revenu déclaré (ou du montat
-          forfaitaire, si aucun revenu n’est encore déclaré). Une fois l’année
-          écoulée et le revenu professionnel connu, les cotisations et
-          contributions sont régularisées.</0><1>Ce simulateur calcule les
-          cotisations <2>après régularisation</2>. Il vous permet donc
-          d’anticiper le montant de cette régularisation et de planifier votre
-          trésorerie en conséquence.</1><2>Si vos revenus d’activité changent
-          beaucoup par rapport à l’année précédente, vous avez la possibilité de
-          communiquer à l’Urssaf un <2>montant prévisionnel pour l’année en
-          cours, qui sera pris comme base de calcul</2>(attention cependant,
-          vous serez tenus de faire une estimation précise).</2>
-        title: Comment fonctionne la régularisation des cotisations provisionnelles ?
-      répartition:
-        cotisations: Cotisations
-        impôt: Impôt
-        revenu: Revenu disponible
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning:
@@ -2338,18 +2377,10 @@ simulateurs:
         gestion du dossier de retraite ou de prévoyance.
       CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
         d'invalidité-décès.
-      cpam: En tant que professionnel de santé conventionné, vous bénéficiez d'une
-        prise en charge d'une partie de vos cotisations par l'Assurance Maladie.
       dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
         collecte l'impôt sur le revenu. <2>Le montant calculé <2>prend en compte
         l'abattement du régime micro-fiscal</2>.</2>
-      précompte-artiste-auteur: Pour vos revenus en traitement et salaires, ces
-        cotisations sont « précomptées », c'est à dire payées à la source par le
-        diffuseur.
       titre: Vos institutions partenaires
-      urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
-        sociale (assurance maladie, allocations familiales, dépendance<1> et
-        retraite <3> de base</3></1>).
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
