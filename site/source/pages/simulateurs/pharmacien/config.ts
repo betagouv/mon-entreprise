@@ -32,8 +32,7 @@ export function pharmacienConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.pharmacien.title',
 			'Simulateur de revenus pour pharmacien en libéral'
 		),
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [servicePAM],
+		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale'].pharmacien,
 		simulation: configPharmacien,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],

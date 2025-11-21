@@ -32,8 +32,7 @@ export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Calcul du revenu net après cotisations à partir du total des recettes.'
 			),
 		},
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [servicePLR],
+		externalLinks: [servicePLR, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale'].avocat,
 		simulation: configAvocat,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
