@@ -1407,6 +1407,15 @@ durée légale du travail:
 entreprise:
   titre.en: '[automatic] company'
   titre.fr: entreprise
+entreprise . SIREN:
+  description.en: >
+    [automatic] The Siren number is a 9-digit number unique to each company.
+    Example: 401237780
+  description.fr: >
+    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise.
+    Exemple : 401237780
+  titre.en: '[automatic] SIREN'
+  titre.fr: SIREN
 entreprise . TVA:
   description.en: >
     [automatic] Certain types of company are not subject to VAT.
@@ -1432,6 +1441,43 @@ entreprise . TVA:
   question.fr: L’entreprise est-elle assujettie à la TVA ?
   titre.en: '[automatic] VAT'
   titre.fr: TVA
+entreprise . activité:
+  titre.en: '[automatic] activity'
+  titre.fr: activité
+entreprise . catégorie juridique:
+  note.en: '[automatic] Here we use the legal categories defined by INSEE.'
+  note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
+  titre.en: '[automatic] legal category'
+  titre.fr: catégorie juridique
+entreprise . catégorie juridique . EI:
+  titre.en: '[automatic] Sole proprietorships (including auto-entrepreneurs)'
+  titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
+entreprise . catégorie juridique . SARL:
+  titre.en: '[automatic] SARL or EURL'
+  titre.fr: SARL ou EURL
+entreprise . catégorie juridique . SAS:
+  titre.en: '[automatic] SAS or SASU'
+  titre.fr: SAS ou SASU
+entreprise . catégorie juridique . SELARL:
+  titre.en: '[automatic] SELARL or SELARLU'
+  titre.fr: SELARL ou SELARLU
+entreprise . catégorie juridique . SELAS:
+  titre.en: '[automatic] SELAS or SELASU'
+  titre.fr: SELAS ou SELASU
+entreprise . catégorie juridique . association:
+  titre.en: '[automatic] association'
+  titre.fr: association
+entreprise . catégorie juridique . autre:
+  titre.en: '[automatic] other'
+  titre.fr: autre
+entreprise . code catégorie juridique:
+  description.en:
+    "[automatic] Code representing the company's legal category, as
+    defined by INSEE."
+  description.fr: Code représentant la catégorie juridique de l'entreprise, tel
+    que défini par l'INSEE.
+  titre.en: '[automatic] legal category code'
+  titre.fr: code catégorie juridique
 entreprise . date de création:
   description.en: >
     [automatic] The start date (or date of creation) is set when you register
@@ -1482,6 +1528,169 @@ entreprise . date de création . contrôle date passée:
 entreprise . durée d'activité en début d'année:
   titre.en: '[automatic] duration of activity at start of year'
   titre.fr: durée d'activité en début d'année
+entreprise . imposition:
+  question.en: '[automatic] How is your company taxed?'
+  question.fr: Quel est le type d’imposition de votre entreprise ?
+  titre.en: '[automatic] taxation'
+  titre.fr: imposition
+entreprise . imposition . IR:
+  description.en: >
+    [automatic] Your company's income is subject to income tax, like your
+    household's other income.
+
+    other household income.
+
+
+    The result is determined when you fill in the **liasse fiscale** (also known as the
+
+    tax return). This is done by your chartered accountant.
+
+
+    If your company makes money, the result is called **profit**. It
+
+    is added to other taxable income (if any):
+
+    **your income tax is higher**.
+
+
+    If your company loses money, the result is called a **deficit**. It
+
+    reduces your household's taxable income:
+
+    **your income tax is lower**.
+
+
+    Please note: with income tax, there is no tax difference between your household income and that of your partner.
+
+    between your household income and that of your company.
+  description.fr: >
+    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme
+    les
+
+    autres revenus de votre foyer.
+
+
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
+
+    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
+
+    est ajouté aux autres revenus imposables (s’ils existent) :
+
+    **votre impôt sur le revenu est plus élevé**.
+
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
+
+    vient réduire le montant du revenu imposable de votre ménage :
+
+    **votre impôt sur le revenu est moins élevé**.
+
+
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
+
+    entre les revenus de votre foyer et ceux de votre entreprise.
+  titre.en: '[automatic] Income tax'
+  titre.fr: Impôt sur le revenu
+entreprise . imposition . IR . type de bénéfices:
+  question.en: '[automatic] What kind of profits does your company make?'
+  question.fr: Quel est le type de bénéfices de votre entreprise ?
+  titre.en: '[automatic] type of benefits'
+  titre.fr: type de bénéfices
+entreprise . imposition . IR . type de bénéfices . BA:
+  titre.en: '[automatic] BA'
+  titre.fr: BA
+entreprise . imposition . IR . type de bénéfices . BA possible:
+  titre.en: '[automatic] BA possible'
+  titre.fr: BA possible
+entreprise . imposition . IR . type de bénéfices . BIC:
+  titre.en: '[automatic] BIC'
+  titre.fr: BIC
+entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles:
+  titre.en: '[automatic] BIC and BNC possible'
+  titre.fr: BIC et BNC possibles
+entreprise . imposition . IR . type de bénéfices . BNC:
+  titre.en: '[automatic] BNC'
+  titre.fr: BNC
+entreprise . imposition . IS:
+  description.en: >-
+    [automatic] 
+
+    Your company's **results** are subject to corporate income tax.
+
+
+    If your company loses money, the result is called a **deficit**. It
+
+    will not have to pay corporate income tax.
+
+
+    If your company makes money, the result is called **profit**.
+
+    It will be taxed at a **fixed rate**.
+
+
+    Taxable income is determined when you fill in your **liasse fiscale** (tax return).
+
+    (also known as an income tax return). This is done by the chartered accountant.
+
+
+
+    Please note: there are **two ways to earn remuneration** with a company that pays income tax
+
+    company:
+      - You can pay yourself a salary as a director during the year.
+      the year. This remuneration is deducted (subtracted) from your income to calculate
+      your company's taxable profit. On the other hand, this remuneration is
+      added to your household's taxable income for income tax purposes.
+      income tax.
+      - You can also pay yourself dividends from previous years' profits.
+      previous years. You will have to pay a fixed tax on these: this is known as the "flat tax".
+      known as "flat tax".
+
+      In all cases, you will have to pay **social contributions** on the income you
+      income you receive.
+  description.fr: >-
+
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
+
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
+
+    n’aura pas à payer d’impôt sur les sociétés.
+
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+
+    Il sera imposé à un **taux fixe**.
+
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
+
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+
+
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
+
+    sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
+      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
+      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
+      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
+      revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
+      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
+      ce que l’on appelle la "flat tax".
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
+      revenus que vous touchez.
+  titre.en: '[automatic] Corporate income tax'
+  titre.fr: Impôt sur les sociétés
+entreprise . nom:
+  titre.en: '[automatic] name'
+  titre.fr: nom
 entreprise . salariés:
   titre.en: '[automatic] employees'
   titre.fr: salariés
@@ -2928,6 +3137,9 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement:
   titre.en: '[automatic] establishment'
   titre.fr: établissement
+établissement . SIRET:
+  titre.en: '[automatic] SIRET'
+  titre.fr: SIRET
 établissement . commune:
   avec:
     code postal:
