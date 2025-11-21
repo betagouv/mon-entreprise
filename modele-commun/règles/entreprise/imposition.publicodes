@@ -1,0 +1,106 @@
+# Dans modele-commun pour la recherche d'entreprise, à déplacer dans modele-ti sinon.
+
+entreprise . imposition:
+  question: Quel est le type d’imposition de votre entreprise ?
+  une possibilité:
+    - IR
+    - IS
+  par défaut: "'IS'"
+  références:
+    Comment seront imposés mes bénéfices ?: https://bpifrance-creation.fr/moment-de-vie/comment-seront-imposes-mes-benefices
+    Quelle imposition selon mon statut ?: https://www.economie.gouv.fr/entreprises/impot-revenu-impot-societe-statut
+    Guide complet sur les types de résultats d’une entreprise: https://www.impots.gouv.fr/professionnel/resultat-imposable-limpot-sur-le-revenu-ir-ou-limpot-sur-les-societes
+    # BPI ONLY
+    Imposition des bénéfices: https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices
+
+entreprise . imposition . IR:
+  valeur: imposition = 'IR'
+  titre: Impôt sur le revenu
+  acronyme: IR
+  description: |
+    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme les
+    autres revenus de votre foyer.
+
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
+    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
+    est ajouté aux autres revenus imposables (s’ils existent) :
+    **votre impôt sur le revenu est plus élevé**.
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
+    vient réduire le montant du revenu imposable de votre ménage :
+    **votre impôt sur le revenu est moins élevé**.
+
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
+    entre les revenus de votre foyer et ceux de votre entreprise.
+
+entreprise . imposition . IS:
+  valeur: imposition = 'IS'
+  titre: Impôt sur les sociétés
+  acronyme: IS
+  description: |-
+
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
+    n’aura pas à payer d’impôt sur les sociétés.
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+    Il sera imposé à un **taux fixe**.
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
+    sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
+      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
+      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
+      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
+      revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
+      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
+      ce que l’on appelle la "flat tax".
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
+      revenus que vous touchez.
+  références:
+    'Impôt sur les sociétés : entreprises concernées et taux d’imposition': https://entreprendre.service-public.fr/vosdroits/F23575
+    Comment choisir l’imposition sur le revenu ?: https://entreprendre.service-public.fr/vosdroits/F31265
+
+    # BPI Only
+    Quelles sont les entreprises soumises à l’impôt sur les sociétés (IS) ?: "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/is-impot-societes"
+    Comparaison IR/IS: "https://bpifrance-creation.fr/encyclopedie/fiscalite-lentreprise/generalites/imposition-benefices#:~:text=Principe%20de%20l%27imp%C3%B4t%20sur%20les%20soci%C3%A9t%C3%A9s,-Une%20distinction%20est&text=Les%20entreprises%20dont%20le%20chiffre,%2C%20et%2025%20%25%20au%20del%C3%A0."
+
+
+# Pour la recherche d'entreprise uniquement :
+
+entreprise . imposition . IR . type de bénéfices:
+  question: Quel est le type de bénéfices de votre entreprise ?
+  par défaut: oui
+  une possibilité:
+    - BNC
+    - BIC
+    - BA
+  références:
+    'Impôt sur le revenu : BIC, BNC, comment ça marche ?': https://www.economie.gouv.fr/entreprises/impot-sur-revenu-bic-bnc
+
+entreprise . imposition . IR . type de bénéfices . BNC:
+  valeur: type de bénéfices = 'BNC'
+  références:
+    'Bénéfices non commerciaux (BNC) : régimes fiscaux et déclarations': https://entreprendre.service-public.fr/vosdroits/F32105
+
+entreprise . imposition . IR . type de bénéfices . BIC:
+  valeur: type de bénéfices = 'BIC'
+  références:
+    'Bénéfices non commerciaux (BIC) : régime fiscal et déclarations': https://entreprendre.service-public.fr/vosdroits/F32919
+
+entreprise . imposition . IR . type de bénéfices . BA:
+  applicable si: BA possible
+  valeur: type de bénéfices = 'BA'
+
+entreprise . imposition . IR . type de bénéfices . BA possible: non
+
+entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles: non
