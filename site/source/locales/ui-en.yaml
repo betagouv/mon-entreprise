@@ -1194,10 +1194,11 @@ pages:
       warning: This simulator allows you to estimate the amount of your contributions
         based on your projected income.
     assimilé-salarié:
-      répartition:
-        cotisations: Contributions
-        impôt: Tax
-        revenu: Disposable income
+      exlications:
+        répartition:
+          cotisations: Contributions
+          impôt: Tax
+          revenu: Disposable income
     auto-entrepreneur:
       externalLinks:
         "1":
