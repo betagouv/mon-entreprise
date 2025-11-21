@@ -1,6 +1,6 @@
 import { Trans } from 'react-i18next'
 
-import { DistributionDesCotisations } from '@/components/simulationExplanation/DistributionDesCotisations'
+import { DistributionDesCotisations } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/DistributionDesCotisations'
 import { H2, Link, SmallBody } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 

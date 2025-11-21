@@ -3,7 +3,7 @@ import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
 import { serviceIndépendant } from '@/external-links/serviceIndépendant'
 import { servicePAM } from '@/external-links/servicePAM'
 import { servicePLR } from '@/external-links/servicePLR'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
+import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -59,6 +59,6 @@ export function professionLibéraleConfig({
 			'5460',
 			'5499',
 		],
-		component: IndépendantPLSimulation,
+		component: ProfessionLibérale,
 	} as const)
 }
