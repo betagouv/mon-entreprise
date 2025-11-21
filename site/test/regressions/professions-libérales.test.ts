@@ -1,4 +1,4 @@
-import rules from 'modele-social'
+import rules from 'modele-ti'
 import { expect, it } from 'vitest'
 
 import { configProfessionLibérale } from '@/pages/simulateurs/profession-libérale/simulationConfig'
@@ -30,29 +30,30 @@ it('calculate simulations-professions-libérales', () => {
 					...configProfessionLibérale.situation,
 					'entreprise . activité . libérale . réglementée': 'oui',
 				})
-				.evaluate('dirigeant . rémunération . net')
+				.evaluate('indépendant . rémunération . nette')
 		)
 	).toMatchInlineSnapshot(`
 		[
-		  "dirigeant . indépendant . IJSS",
-		  "dirigeant . indépendant . PL . CNAVPL . exonération incapacité",
-		  "dirigeant . indépendant . PL . métier",
-		  "dirigeant . indépendant . conjoint collaborateur",
-		  "dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité",
-		  "dirigeant . indépendant . cotisations et contributions . exonérations . âge",
-		  "dirigeant . indépendant . cotisations facultatives",
-		  "dirigeant . indépendant . revenus étrangers",
-		  "entreprise . activités",
-		  "entreprise . activités . commerciale",
-		  "entreprise . activités . saisonnière",
+		  "entreprise . activité",
+		  "entreprise . activité . commerciale . débit de tabac",
+		  "entreprise . activité . saisonnière",
 		  "entreprise . charges",
 		  "entreprise . date de création",
 		  "entreprise . imposition . régime",
 		  "entreprise . imposition . régime . micro-entreprise",
+		  "impôt . foyer fiscal . autres revenus imposables",
 		  "impôt . foyer fiscal . enfants à charge",
-		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
 		  "impôt . foyer fiscal . situation de famille",
 		  "impôt . méthode de calcul",
+		  "indépendant . IJSS",
+		  "indépendant . PL . CNAVPL . exonération incapacité",
+		  "indépendant . PL . métier",
+		  "indépendant . conjoint collaborateur",
+		  "indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité",
+		  "indépendant . cotisations et contributions . cotisations . exonérations . âge",
+		  "indépendant . cotisations facultatives",
+		  "indépendant . revenus étrangers",
+		  "paramètres . impôt . revenu imposable",
 		  "situation personnelle . RSA",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
 		  "établissement . commune . département",
