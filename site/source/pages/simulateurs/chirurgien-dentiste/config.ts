@@ -39,8 +39,7 @@ export function chirurgienDentisteConfig({
 			'pages.simulateurs.chirurgien-dentiste.title',
 			'Simulateur de revenus pour chirurgien-dentiste en libéral'
 		),
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [servicePAM],
+		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 		simulation: configDentiste,
 		codesCatégorieJuridique: ['1000', '5410'],
