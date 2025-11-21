@@ -3,14 +3,14 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { configIndépendant } from '../indépendant/simulationConfig'
 
 export const configProfessionLibérale: SimulationConfig = {
-	nomModèle: 'modele-social',
+	nomModèle: 'modele-ti',
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
-		'dirigeant . rémunération . net',
-		'dirigeant . rémunération . net . après impôt',
+		'indépendant . rémunération . nette',
+		'indépendant . rémunération . nette . après impôt',
 	],
 	objectifs: [
-		'dirigeant . indépendant . cotisations et contributions',
+		'indépendant . cotisations et contributions',
 		'impôt . montant',
 		'protection sociale . retraite . trimestres',
 		'protection sociale . retraite . complémentaire',
@@ -24,20 +24,14 @@ export const configProfessionLibérale: SimulationConfig = {
 			'entreprise . activités . revenus mixtes',
 			'entreprise . date de cessation',
 		],
-		liste: [
-			'entreprise . activité . nature',
-			'dirigeant . indépendant . PL . métier',
-			'',
-		],
+		liste: ['entreprise . activités', 'indépendant . PL . métier', ''],
 		'non prioritaires': configIndépendant.questions?.['non prioritaires'],
 	},
 	'unité par défaut': '€/an',
 	situation: {
-		salarié: 'non',
-		'entreprise . activité . nature': "'libérale'",
-		'entreprise . catégorie juridique': "'EI'",
+		'entreprise . activités . libérale': 'oui',
+		'entreprise . EI': 'oui',
 		'entreprise . imposition': "'IR'",
-		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
 	},
 }
 
@@ -45,8 +39,8 @@ const configFromPLMetier = (metier: string): SimulationConfig => ({
 	...configProfessionLibérale,
 	situation: {
 		...configProfessionLibérale.situation,
-		'entreprise . activité . nature . libérale . réglementée': 'oui',
-		'dirigeant . indépendant . PL . métier': `'${metier}'`,
+		'entreprise . activités . libérale . réglementée': 'oui',
+		'indépendant . PL . métier': `'${metier}'`,
 	},
 })
 
