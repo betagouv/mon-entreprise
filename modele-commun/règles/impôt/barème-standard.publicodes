@@ -48,7 +48,10 @@ impôt . barème standard . revenu brut global:
     - autres revenus mobiliers et plus-values sur valeurs mobilières,
     - plus-values immobilières.
   somme:
-    - revenu d'activité abattu
+    - variations:
+        - si: paramètres . impôt . revenu d'activité
+          alors: revenu d'activité abattu
+        - sinon: paramètres . impôt . revenu imposable
     - foyer fiscal . autres revenus imposables
 
 impôt . barème standard . revenu net global:
@@ -61,9 +64,9 @@ impôt . barème standard . revenu net imposable:
 
     Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
     conditions suivantes :
-    - vous avez 65 ans ou plus
-    - vous êtes invalide
-    - vous rattachez votre enfant marié, pacsé ou chargé de famille
+    - vous avez 65 ans ou plus,
+    - vous êtes invalide,
+    - vous rattachez votre enfant marié, pacsé ou chargé de famille.
 
     Ces abattements ne sont pas encore implémentés dans nos simulateurs.
   valeur: revenu net global
