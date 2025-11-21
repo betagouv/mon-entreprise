@@ -16,6 +16,7 @@ export type QuestionRépondue = {
 }
 
 export type Simulation = {
+	key: string
 	config: SimulationConfig
 	url: string
 	hiddenNotifications: Array<string>
@@ -31,9 +32,10 @@ export function simulationReducer(
 	action: Action
 ): Simulation | null {
 	if (action.type === 'CONFIGURE_LA_SIMULATION') {
-		const { config, url } = action
+		const { config, url, key } = action
 
 		return {
+			key,
 			config,
 			url,
 			hiddenNotifications: [],

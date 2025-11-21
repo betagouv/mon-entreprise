@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { References } from '@/components/References'
+import { References } from '@/components/documentation/References/References'
 import RuleLink from '@/components/RuleLink'
 import { H3, HelpButtonWithPopover, Markdown, Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'

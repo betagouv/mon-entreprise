@@ -23,6 +23,7 @@ import {
 const previousQuestionAction = retourneÀLaQuestionPrécédente()
 const nextQuestionAction = vaÀLaQuestionSuivante()
 const defaultState = {
+	key: 'simulateur',
 	config: {
 		'objectifs exclusifs': [],
 	},
@@ -45,7 +46,8 @@ describe('simulationReducer', () => {
 							'objectifs exclusifs': [],
 							'unité par défaut': '€/an',
 						},
-						'/mon-simulateur'
+						'/mon-simulateur',
+						'simulateur'
 					)
 				)
 			).toMatchObject({
@@ -65,6 +67,7 @@ describe('simulationReducer', () => {
 	describe('RÉINITIALISE_LA_SIMULATION', () => {
 		it('efface tout sauf la configuration de la simulation et l’unité sélectionnée', () => {
 			const state = {
+				key: 'simulateur',
 				config: {
 					'objectifs exclusifs': [],
 					'unité par défaut': '€/an',
