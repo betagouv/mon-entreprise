@@ -28,7 +28,7 @@ export const CessationActivitéGoals = () => {
 			<Condition expression="entreprise . imposition = 'IS'">
 				<SimulationGoal
 					appear={false}
-					dottedName="dirigeant . rémunération . totale"
+					dottedName="indépendant . rémunération . totale"
 					label={t("Rémunération totale pour l'année de cessation")}
 				/>
 			</Condition>
@@ -36,7 +36,7 @@ export const CessationActivitéGoals = () => {
 			<SimulationGoal
 				small
 				editable={false}
-				dottedName="dirigeant . indépendant . cotisations et contributions"
+				dottedName="indépendant . cotisations et contributions"
 				label={t(
 					"Total des cotisations à devoir pour l'année de cessation d'activité"
 				)}
