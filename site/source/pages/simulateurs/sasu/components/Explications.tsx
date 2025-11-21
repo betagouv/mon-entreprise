@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
+import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation/SalaryExplanation'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import SalaryExplanation from './SalaryExplanation'
-
-export default function SalaryExplanationAssimiléSalarié() {
+export default function Explications() {
 	const { t } = useTranslation()
 
 	return (
@@ -14,21 +13,21 @@ export default function SalaryExplanationAssimiléSalarié() {
 				revenu: {
 					dottedName: 'assimilé salarié . rémunération . nette . après impôt',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.répartition.revenu',
+						'pages.simulateurs.assimilé-salarié.exlications.répartition.revenu',
 						'Revenu disponible'
 					),
 				},
 				cotisations: {
 					dottedName: 'assimilé salarié . cotisations',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.répartition.cotisations',
+						'pages.simulateurs.assimilé-salarié.exlications.répartition.cotisations',
 						'Cotisations'
 					),
 				},
 				impôt: {
 					dottedName: 'impôt . montant',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.répartition.impôt',
+						'pages.simulateurs.assimilé-salarié.exlications.répartition.impôt',
 						'Impôt'
 					),
 				},
