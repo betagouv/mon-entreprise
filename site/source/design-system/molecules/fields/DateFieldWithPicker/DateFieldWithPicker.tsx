@@ -31,13 +31,11 @@ type DateFieldsWithPickerProps = RADateValue &
 	RADatePickerProps<RADateValue> & {
 		defaultSelected?: Date
 		label: string
-		type?: 'date passé' | 'date' | 'date futur'
 	}
 
 export function DateFieldWithPicker({
 	defaultSelected,
 	label,
-	type,
 }: DateFieldsWithPickerProps) {
 	const { i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
@@ -48,15 +46,8 @@ export function DateFieldWithPicker({
 		? parseDate(defaultSelected?.toISOString().slice(0, 10))
 		: today(getLocalTimeZone())
 
-	const minDateValue = type === 'date futur' ? defaultDateValue : null
-	const maxDateValue = type === 'date passé' ? defaultDateValue : null
-
 	return (
-		<StyledRADatePicker
-			minValue={minDateValue}
-			maxValue={maxDateValue}
-			defaultValue={defaultDateValue}
-		>
+		<StyledRADatePicker defaultValue={defaultDateValue}>
 			<StyledLabelAndInputContainer>
 				<StyledLabelContainer>
 					<RALabel>{label}</RALabel>

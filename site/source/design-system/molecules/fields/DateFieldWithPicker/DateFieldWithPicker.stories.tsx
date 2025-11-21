@@ -22,20 +22,6 @@ export const Default: Story = {
 	},
 }
 
-export const DatePasséType: Story = {
-	args: {
-		label: 'Date de naissance',
-		type: 'date passé',
-	},
-}
-
-export const DateFuturType: Story = {
-	args: {
-		label: 'Date de création envisagée',
-		type: 'date futur',
-	},
-}
-
 export const WithInitialValue: Story = {
 	args: {
 		defaultSelected: new Date('2000-01-31'),
