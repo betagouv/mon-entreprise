@@ -48,7 +48,6 @@ indépendant . PL . métier . santé:
     - sage-femme
     - auxiliaire médical
     - pharmacien
-    - vétérinaire
 
   avec:
     auxiliaire médical:
@@ -83,12 +82,6 @@ indépendant . PL . métier . santé:
       description: Pharmaciens libéraux, officinaux et biologistes affiliés à la CAVP.
     sage-femme:
 
-    vétérinaire:
-      experimental: oui
-      par défaut:
-        applicable si: par défaut
-    vétérinaire . par défaut: non
-
 indépendant . PL . métier . juridique:
   titre: Professions juridiques et judicaires
   une possibilité:
@@ -105,42 +98,35 @@ indépendant . PL . métier . juridique:
     notaire:
       experimental: oui
       description: |
-        Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la prévoyance.
-      par défaut:
-        applicable si: par défaut
-    notaire . par défaut: non
+        Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la
+        prévoyance.
+
+        > Les règles de cotisation et de protection sociale de la CPRN ne sont
+        > pas implémentées.
 
     officier:
       experimental: oui
       titre: Officier ministériel, officier public, compagnie judicaire
       description: |
-        Les officiers ministériels, les officiers publics et les compagnies judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
+        Les officiers ministériels, les officiers publics et les compagnies
+        judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
 
-        Liste des métiers concernés : 
+        Liste des métiers concernés :
 
-        - Huissiers de justice ;
-        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
-        - Commissaires de justice ;
-        - Greffiers près les tribunaux de commerce ;
-        - Administrateurs judiciaires ;
+        - Huissiers de justice ;
+        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
+        - Commissaires de justice ;
+        - Greffiers près les tribunaux de commerce ;
+        - Administrateurs judiciaires ;
         - Mandataires judiciaires.
-      par défaut:
-        applicable si: par défaut
-    officier . par défaut: non
+
+        > Les règles de cotisation et de protection sociale de la Cavom ne sont
+        > pas implémentées.
 
 indépendant . PL . métier . expert-comptable:
   métier: expert-comptable, commissaire aux comptes
   description: |
     Les experts comptables et les commissaires aux comptes cotisent auprès de la CAVEC pour la retraite et la prévoyance.
-
-indépendant . PL . métier . agents généraux d'assurances:
-  experimental: oui
-  description: |
-    Les agents généraux d'assurances cotisent auprès de la CAVAMAC pour la retraite et la prévoyance.
-  par défaut: par défaut
-  avec:
-    par défaut:
-      non applicable si: oui
 
 indépendant . PL . régime général:
   description: |
