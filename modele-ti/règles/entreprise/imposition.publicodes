@@ -192,7 +192,7 @@ entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   formule: chiffre d'affaires . seuil micro . dépassé
   description: Le seuil annuel de chiffre d’affaires pour le régime micro-fiscal
     est dépassé. [En savoir
-    plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
+    plus](/documentation/modele-ti/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
 
 entreprise . imposition . régime . déclaration contrôlée:
   applicable si: IR . type de bénéfices . BNC
