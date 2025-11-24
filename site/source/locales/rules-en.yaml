@@ -4830,6 +4830,83 @@ entreprise . activité . nature:
   question.fr: Quelle est la nature de votre activité principale ?
   titre.en: '[automatic] type of activity'
   titre.fr: nature de l’activité
+entreprise . activité . revenus mixtes:
+  avec:
+    proportions:
+      description.en: '[automatic] Share of different activities in sales'
+      description.fr: Part des différentes activités dans le chiffre d’affaires
+      note.en:
+        "[automatic] It is the user's responsibility to check that the sum of
+        the three percentages is 100%."
+      note.fr:
+        Il appartient à l’utilisateur de bien vérifier que la somme des trois
+        pourcentages renseignés vaut 100%.
+      titre.en: '[automatic] proportion activity'
+      titre.fr: proportion activité
+    proportions . service BIC:
+      titre.en: '[automatic] BIC service'
+      titre.fr: service BIC
+    proportions . service BNC:
+      titre.en: '[automatic] BNC service'
+      titre.fr: service BNC
+    proportions . vente restauration hébergement:
+      titre.en: '[automatic] sales catering accommodation'
+      titre.fr: vente restauration hébergement
+  description.en: >
+    [automatic] It is possible to have different types of income from the same
+    business.
+
+
+    For example, a plumbing company that invoices for the purchase and installation of a faucet
+
+    faucet has part of its revenue from the sale of materials (the faucet)
+
+    and part in the provision of services (installation).
+
+
+    There are three categories with different lump-sum expense allowance rates:
+
+
+    - Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restauration-accommodation) (71% allowance)
+
+    - Commercial or craft services (BIC)](/documentation/company/turnover/service-BIC) (50% allowance)
+
+    - Other services and liberal professions (BNC)](/documentation/company/turnover/service-BNC) (34% allowance)
+
+
+    If your company has activities corresponding to several income categories
+
+    answer yes to this question.
+  description.fr: >
+    Il est possible des activités avec des types de revenus différents pour une
+    même entreprise.
+
+
+    Par exemple, une entreprise de plomberie qui facture l’achat et la pose d’un
+
+    robinet a une partie de son chiffre d’affaires en vente de materiel (le robinet)
+
+    et une partie en prestation de service (la pose).
+
+
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
+
+
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
+
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
+
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
+
+
+    Si votre entreprise a des activités correspondants à plusieurs catégories de
+
+    revenus, répondez oui à cette question.
+  question.en: '[automatic] Does your company have different revenue streams?'
+  question.fr: Votre entreprise a-t-elle des activités avec des types de revenus
+    différents ?
+  titre.en: '[automatic] Mixed activities'
+  titre.fr: Activités mixtes
 entreprise . activités:
   avec:
     agent commercial:
@@ -5051,85 +5128,6 @@ entreprise . activités . principale:
       titre.fr: code guichet
   titre.en: '[automatic] Main activity'
   titre.fr: Activité principale
-entreprise . activités . revenus mixtes:
-  avec:
-    proportions:
-      description.en: '[automatic] Share of different activities in sales'
-      description.fr: Part des différentes activités dans le chiffre d’affaires
-      note.en:
-        "[automatic] It is the user's responsibility to check that the sum of
-        the three percentages is 100%."
-      note.fr:
-        Il appartient à l’utilisateur de bien vérifier que la somme des trois
-        pourcentages renseignés vaut 100%.
-      titre.en: '[automatic] proportion activity'
-      titre.fr: proportion activité
-    proportions . service BIC:
-      titre.en: '[automatic] BIC service'
-      titre.fr: service BIC
-    proportions . service BNC:
-      titre.en: '[automatic] BNC service'
-      titre.fr: service BNC
-    proportions . vente restauration hébergement:
-      titre.en: '[automatic] sales catering accommodation'
-      titre.fr: vente restauration hébergement
-  description.en: >
-    [automatic] It is possible to have different types of income from the same
-    business.
-
-
-    For example, a plumbing company that invoices for the purchase and installation of a faucet
-
-    faucet has part of its revenue from the sale of materials (the faucet)
-
-    and part in the provision of services (installation).
-
-
-    There are three categories with different lump-sum expense allowance rates:
-
-
-    - Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restauration-accommodation) (71% allowance)
-
-    - Commercial or craft services (BIC)](/documentation/company/turnover/service-BIC) (50% allowance)
-
-    - Other services and liberal professions (BNC)](/documentation/company/turnover/service-BNC) (34% allowance)
-
-
-    If your company has activities corresponding to several income categories
-
-    answer yes to this question.
-  description.fr: >
-    Il est possible des activités avec des types de revenus différents pour une
-    même entreprise.
-
-
-    Par exemple, une entreprise de plomberie qui facture l’achat et la pose d’un
-
-    robinet a une partie de son chiffre d’affaires en vente de materiel (le robinet)
-
-    et une partie en prestation de service (la pose).
-
-
-    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
-
-
-    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
-
-    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
-
-    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
-
-
-    Si votre entreprise a des activités correspondants à plusieurs catégories de
-
-    revenus, répondez oui à cette question.
-  question.en:
-    '[automatic] Does your company have activities with different types
-    of revenues?'
-  question.fr: Votre entreprise a-t-elle des activités avec des types de revenus
-    différents ?
-  titre.en: '[automatic] Mixed activities'
-  titre.fr: Activités mixtes
 entreprise . activités . saisonnière:
   description.en: >
     [automatic] Seasonal workers can benefit from
