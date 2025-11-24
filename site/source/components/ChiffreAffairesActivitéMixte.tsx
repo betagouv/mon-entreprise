@@ -27,11 +27,11 @@ import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
 
 const proportions = {
-	'entreprise . activités . revenus mixtes . proportions . service BIC':
+	'entreprise . activité . revenus mixtes . proportions . service BIC':
 		"entreprise . chiffre d'affaires . service BIC",
-	'entreprise . activités . revenus mixtes . proportions . service BNC':
+	'entreprise . activité . revenus mixtes . proportions . service BNC':
 		"entreprise . chiffre d'affaires . service BNC",
-	'entreprise . activités . revenus mixtes . proportions . vente restauration hébergement':
+	'entreprise . activité . revenus mixtes . proportions . vente restauration hébergement':
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
 
@@ -70,11 +70,11 @@ export default function ChiffreAffairesActivitéMixte({
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
 			/>
-			<WhenApplicable dottedName="entreprise . activités . revenus mixtes">
+			<WhenApplicable dottedName="entreprise . activité . revenus mixtes">
 				<FromTop>
 					<ActivitéMixte />
 					<ConditionWrapper>
-						<Condition expression="entreprise . activités . revenus mixtes">
+						<Condition expression="entreprise . activité . revenus mixtes">
 							{Object.values(proportions).map((chiffreAffaires) => (
 								<SimulationGoal
 									small
@@ -158,10 +158,9 @@ function useAdjustProportions(CADottedName: DottedName) {
 function ActivitéMixte() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const rule = engine.getRule('entreprise . activités . revenus mixtes')
+	const rule = engine.getRule('entreprise . activité . revenus mixtes')
 	const defaultChecked =
-		engine.evaluate('entreprise . activités . revenus mixtes').nodeValue ===
-		true
+		engine.evaluate('entreprise . activité . revenus mixtes').nodeValue === true
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
@@ -169,7 +168,7 @@ function ActivitéMixte() {
 					Object.values(proportions).reduce(
 						(acc, dottedName) => ({ ...acc, [dottedName]: O.none() }),
 						{
-							'entreprise . activités . revenus mixtes': O.some(
+							'entreprise . activité . revenus mixtes': O.some(
 								checked ? 'oui' : 'non'
 							),
 						} as Record<DottedName, O.Option<ValeurPublicodes>>

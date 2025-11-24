@@ -402,7 +402,7 @@ protection sociale . maladie:
       valeur: indépendant . cotisations et contributions . cotisations . indemnités journalières maladie . assiette
       plafond:
         variations:
-          - si: entreprise . activités . libérale . réglementée
+          - si: entreprise . activité . libérale . réglementée
             alors: 3 * plafond sécurité sociale
           - sinon: plafond sécurité sociale
 

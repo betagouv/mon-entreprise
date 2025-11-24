@@ -16,6 +16,7 @@ const SAVED_NAMESPACES = [
 
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
+	'entreprise . activité',
 	'entreprise . activité . nature',
 	'entreprise . activités',
 	'entreprise . catégorie juridique',
@@ -101,7 +102,6 @@ function getCompanySituation(entreprise: Entreprise): SituationPublicodes {
 		'entreprise . SIREN': `'${entreprise.siren}'`,
 		'entreprise . nom': `'${entreprise.nom}'`,
 		'établissement . SIRET': `'${entreprise.établissement.siret}'`,
-		'entreprise . activité': `'${entreprise.activitéPrincipale}'`,
 	}
 }
 
