@@ -59,7 +59,7 @@ indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire 
   description: |
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
     pour la retraite complémentaire si vous en faites la demande. [En savoir
-    plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
+    plus](/documentation/modele-ti/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   type: notification
 
 indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
