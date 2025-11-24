@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
+import { useState } from 'react'
 
 import { RadioGroup } from './RadioGroup'
 
@@ -14,11 +15,76 @@ export default {
 	],
 } as Meta<typeof RadioGroup>
 
+const OPTIONS = [
+	{
+		key: 'option1',
+		value: 'option1',
+		label: 'Option 1 (avec description)',
+		description: "Description de l'option 1",
+	},
+	{
+		key: 'option2',
+		value: 'option2',
+		label: 'Option 2 (sans)',
+	},
+	{
+		key: 'option3',
+		value: 'option3',
+		label: 'Option 3 (avec)',
+		description: "Description de l'option 3",
+	},
+]
+const DefaultRadioGroup = () => {
+	const defaultValue = OPTIONS[0].value
+
+	const [value, setValue] = useState(defaultValue)
+
+	const handleChange = (newValue: React.Key) => {
+		setValue(newValue.toString())
+	}
+
+	return (
+		<RadioGroup
+			defaultValue={defaultValue}
+			legend="Légende du groupe de boutons radio"
+			options={OPTIONS}
+			value={value}
+			onChange={handleChange}
+		/>
+	)
+}
+
+const RadioGroupWithoutDefaultValue = () => {
+	const [value, setValue] = useState('')
+
+	const handleChange = (newValue: React.Key) => {
+		setValue(newValue.toString())
+	}
+
+	return (
+		<RadioGroup
+			legend="Légende du groupe de boutons radio"
+			options={OPTIONS}
+			value={value}
+			onChange={handleChange}
+		/>
+	)
+}
+
 type Story = StoryObj<typeof RadioGroup>
 
 export const Default: Story = {
 	args: {
 		legend: 'Légende du radiogroup',
-		options: ['Option 1', 'Option 2', 'Option 3'],
+		options: OPTIONS,
 	},
+	render: () => <DefaultRadioGroup />,
+}
+
+export const WithoutDefaultValue: Story = {
+	args: {
+		legend: 'Légende du radiogroup',
+		options: OPTIONS,
+	},
+	render: () => <RadioGroupWithoutDefaultValue />,
 }
