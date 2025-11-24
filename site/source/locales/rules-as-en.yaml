@@ -1458,9 +1458,6 @@ entreprise . TVA:
   question.fr: L’entreprise est-elle assujettie à la TVA ?
   titre.en: '[automatic] VAT'
   titre.fr: TVA
-entreprise . activité:
-  titre.en: '[automatic] activity'
-  titre.fr: activité
 entreprise . catégorie juridique:
   note.en: '[automatic] Here we use the legal categories defined by INSEE.'
   note.fr: On se base ici sur les catégories juridiques définies par l'INSEE

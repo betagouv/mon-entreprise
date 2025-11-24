@@ -39,9 +39,9 @@ cotisations minimales:
 
 activité:
   - dirigeant . rémunération . net: 20000 €/an
-    entreprise . activité . nature: "'libérale'"
+    entreprise . activité: "'libérale'"
   - dirigeant . rémunération . net: 20000 €/an
-    entreprise . activité . nature: "'artisanale'"
+    entreprise . activité: "'artisanale'"
 
 acre:
   - dirigeant . rémunération . net: 50000 €/an

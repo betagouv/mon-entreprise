@@ -58,7 +58,7 @@ dirigeant . auto-entrepreneur . affiliation CIPAV:
   valeur: Cipav
 
 dirigeant . auto-entrepreneur . Cipav:
-  rend non applicable: entreprise . activités . revenus mixtes
+  rend non applicable: entreprise . activité . revenus mixtes
   une de ces conditions:
     - entreprise . activité . nature . libérale . réglementée
     - toutes ces conditions:
