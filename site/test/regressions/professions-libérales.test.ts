@@ -19,7 +19,7 @@ it('calculate simulations-professions-libérales', () => {
 		],
 		{
 			...configProfessionLibérale.situation,
-			'entreprise . activité . nature . libérale . réglementée': 'oui',
+			'entreprise . activité . libérale . réglementée': 'oui',
 		}
 	)
 
@@ -28,7 +28,7 @@ it('calculate simulations-professions-libérales', () => {
 			engine
 				.setSituation({
 					...configProfessionLibérale.situation,
-					'entreprise . activité . nature . libérale . réglementée': 'oui',
+					'entreprise . activité . libérale . réglementée': 'oui',
 				})
 				.evaluate('dirigeant . rémunération . net')
 		)

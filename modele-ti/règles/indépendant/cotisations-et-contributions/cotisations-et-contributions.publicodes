@@ -41,7 +41,7 @@ indépendant . cotisations et contributions . formation professionnelle:
   produit:
     - plafond sécurité sociale
     - variations:
-        - si: entreprise . activités . artisanale
+        - si: entreprise . activité . artisanale
           alors: 0.29%
         - si: conjoint collaborateur
           alors: 0.34%

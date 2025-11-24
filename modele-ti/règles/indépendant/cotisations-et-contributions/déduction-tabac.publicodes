@@ -1,5 +1,5 @@
 indépendant . cotisations et contributions . déduction tabac:
-  applicable si: entreprise . activités . commerciale . débit de tabac
+  applicable si: entreprise . activité . commerciale . débit de tabac
   question: Quel est le montant des revenus issus de la vente de tabac que vous
     souhaitez exonérer de cotisation vieillesse ?
   description: |

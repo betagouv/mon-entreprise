@@ -210,7 +210,7 @@ entreprise . activités:
 
 entreprise . activités . service ou vente:
   experimental: oui
-  non applicable si: revenus mixtes
+  non applicable si: activité . revenus mixtes
   applicable si:
     une de ces conditions:
       - activité . nature . artisanale
@@ -249,7 +249,7 @@ entreprise . activités . commerciale . débit de tabac:
   question: Exercez-vous une activité de vente de tabac ?
   par défaut: non
 
-entreprise . activités . revenus mixtes:
+entreprise . activité . revenus mixtes:
   experimental: oui
   titre: Activités mixtes
   applicable si: imposition . régime . micro-entreprise
