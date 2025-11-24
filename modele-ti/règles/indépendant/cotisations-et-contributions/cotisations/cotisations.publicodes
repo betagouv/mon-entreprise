@@ -8,7 +8,7 @@ indépendant . cotisations et contributions . cotisations:
     - PCV
     - invalidité et décès
     - allocations familiales
-    - (- exonérations)
+    - (- exonérations . ZFU)
   références:
     Taux de cotisations - Artisan, commerçant et profession libérale non réglementée: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html
     Taux de cotisations - Professions libérales réglementées hors Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-hors-cipav.html
