@@ -2,7 +2,6 @@
 
 ## next
 
-
 ## 9.0.0
 
 ### Breaking changes
@@ -24,8 +23,6 @@ sociale sur l'IS
 - Corrige le calcul de `entreprise . exercice . durée`
 - Corrige le taux de cotisation maladie sur les revenus non conventionnés pour les médecins conventionnés secteur 2
 - Corrige la règle `salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS` qui ne s'appliquait pas correctement
-
-
 
 ## 8.0.0
 

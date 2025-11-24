@@ -11,18 +11,15 @@ salarié . convention collective:
   experimental: oui
   par défaut: "'droit commun'"
   question: "Quelle convention collective est applicable à l'entreprise ?"
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - HCR
-        - BTP
-        - sport
-        - SVP
-        - compta
-        - optique
-        - autre
-        - droit commun
+  une possibilité:
+    - HCR
+    - BTP
+    - sport
+    - SVP
+    - compta
+    - optique
+    - autre
+    - droit commun
 
   avec:
     avertissement convention collective:
@@ -252,16 +249,13 @@ salarié . régimes spécifiques . DFS . profession:
   question:
     Quelle est la profession du salarié pour l'application de la déduction
     forfaitaire spécifique ?
-  formule:
-    une possibilité:
-      possibilités:
-        - journaliste
-        - ouvrier du bâtiment
-        - artiste musicien
-        - artiste dramatique
-        - pilote de ligne ou personnel navigant
-        - voyageur, représentant et placier
-      choix obligatoire: oui
+  une possibilité:
+    - journaliste
+    - ouvrier du bâtiment
+    - artiste musicien
+    - artiste dramatique
+    - pilote de ligne ou personnel navigant
+    - voyageur, représentant et placier
 
   avec:
     artiste dramatique:
@@ -339,15 +333,12 @@ salarié . régimes spécifiques . taux réduits . profession:
   question:
     Quelle est la profession du salarié pour l'application de taux de cotisations
     réduits ?
-  formule:
-    une possibilité:
-      possibilités:
-        - VRP multicarte
-        - journaliste
-        - profession médicale
-        - artiste du spectacle
-        - mannequin
-      choix obligatoire: oui
+  une possibilité:
+    - VRP multicarte
+    - journaliste
+    - profession médicale
+    - artiste du spectacle
+    - mannequin
 
   avec:
     VRP multicarte:
@@ -518,7 +509,7 @@ salarié . régimes spécifiques . taxe sur les salaires:
     distribuent.
   barème:
     assiette:
-      valeur: cotisations . CSG-CRDS . assiette de base
+      valeur: assiette
       abattement: rémunération . net . imposable . exonération prime d'impatriation
     tranches:
       - taux: 4.25%
@@ -546,6 +537,9 @@ salarié . régimes spécifiques . taxe sur les salaires:
   références:
     Taxe sur les salaires: https://www.service-public.fr/professionnels-entreprises/vosdroits/F22576
     Exonérations spécifiques à la taxe sur les salaires: http://bofip.impots.gouv.fr/bofip/6691-PGP.html
+
+  avec:
+    assiette: cotisations . CSG-CRDS . assiette de base
 
 salarié . coût total employeur:
   identifiant court: cout-total-employeur

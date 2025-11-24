@@ -2,13 +2,11 @@ salarié . contrat:
   icônes: 📄
   question: De quel type de contrat s'agit-il ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - CDI
-      - CDD
-      - apprentissage
-      - professionnalisation
-      - stage
+    - CDI
+    - CDD
+    - apprentissage
+    - professionnalisation
+    - stage
   par défaut: "'CDI'"
   description: |
     Le contrat qui lie une entreprise (via son établissement) à un individu, qui est alors son salarié.
@@ -135,10 +133,8 @@ salarié . contrat . apprentissage . diplôme préparé:
   déprécié: oui # Était utile pour une aide à l'embauche de 2019
   question: Quel type de diplôme l'apprenti prépare-t-il ?
   une possibilité:
-    choix obligatoire: oui
-    possibilités:
-      - niveau bac ou moins
-      - niveau supérieur au bac
+    - niveau bac ou moins
+    - niveau supérieur au bac
   par défaut: "'niveau supérieur au bac'"
 
   avec:
@@ -159,14 +155,11 @@ salarié . contrat . apprentissage . diplôme préparé:
 salarié . contrat . apprentissage . ancienneté:
   déprécié: oui # Était utile pour une aide à l'embauche de 2019
   question: Depuis combien de temps l'apprenti est-il employé ?
-  formule:
-    une possibilité:
-      choix obligatoire: oui
-      possibilités:
-        - moins d'un an
-        - moins de deux ans
-        - moins de trois ans
-        - moins de quatre ans
+  une possibilité:
+    - moins d'un an
+    - moins de deux ans
+    - moins de trois ans
+    - moins de quatre ans
   par défaut: "'moins d'un an'"
 
 salarié . contrat . apprentissage . ancienneté . moins d'un an:
@@ -214,22 +207,54 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
 
 salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
   description:
-    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
-    d’une exonération de CSG et de CRDS jusqu’à 50% du Smic.
+    Pour les contrats conclus **depuis le 1er mars 2025**, les apprentis bénéficient
+    d’une exonération de CSG et de CRDS jusqu’à **50 % du Smic**.
 
-    Pour les contrats conclus avant, cette exonération est totale.
+    Si la rémunération brute de l’apprenti est inférieure à 50 % du Smic, alors la
+    part employeur de la mutuelle (qui fait partie de l’assiette de la CSG-CRDS)
+    est également exonérée de CSG et de CRDS.
+
+    Pour les contrats conclus **avant le 1er mars 2025**, cette exonération est
+    totale.
   références:
     Embaucher un alternant en contrat d’apprentissage - les exonérations: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/contrat-apprentissage.html#ancre-les-exonerations
     Contrat d’apprentissage - Quel est le salaire de l’apprenti ?: https://www.service-public.fr/particuliers/vosdroits/F2918#fiche-item-4
-  remplace:
-    références à: cotisations . assiette
-    dans: salarié . cotisations . CSG-CRDS
+    Article L136-1-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048683400
+  remplace: cotisations . CSG-CRDS . assiette de base
   variations:
-    - si: date >= 03/2025
+    - si:
+        toutes ces conditions:
+          - date >= 03/2025
+          - rémunération . brut > 50% * SMIC
       alors:
-        valeur: cotisations . assiette
-        abattement: 50% * SMIC
+        valeur: salarié . cotisations . CSG-CRDS . assiette de base
+        contexte:
+          cotisations . assiette . sans prévoyance:
+            valeur: cotisations . assiette . sans prévoyance
+            abattement: 50% * SMIC
     - sinon: 0
+
+salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur les salaires:
+  description: |
+    La part du salaire des apprentis correspondant à 11 % du Smic n’est pas soumise
+    à la taxe sur les salaires.
+  remplace: régimes spécifiques . taxe sur les salaires . assiette
+  valeur: cotisations . CSG-CRDS . assiette de base
+  contexte:
+    salarié . cotisations . CSG-CRDS . assiette de base . assiette avant abattement:
+      valeur: salarié . cotisations . CSG-CRDS . assiette de base . assiette avant abattement
+      abattement: 11% * SMIC
+  références:
+    Article 231 bis I du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303786/
+
+salarié . contrat . apprentissage . exonération taxe sur les salaires:
+  description: |
+    Les entreprises de 10 salariés ou moins sont exonérées de la taxe sur les
+    salaires de ses apprentis.
+  valeur: entreprise . salariés . effectif < 11
+  rend non applicable: régimes spécifiques . taxe sur les salaires
+  références:
+    Article 231 bis I du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303786/
 
 salarié . contrat . professionnalisation . jeune de moins de 30 ans:
   question: Le salarié embauché a-t-il moins de 30 ans ?
@@ -246,12 +271,11 @@ salarié . contrat . CDD . motif:
   description: |
     Le CDD est un contrat d'exception: son recours doit être autorisé par l'un des motifs spécifiés dans la loi.
   une possibilité:
-    choix obligatoire: oui # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
-    possibilités:
-      - classique
-      - contrat aidé
-      - complément formation
-      - issue d'apprentissage
+    # cette contrainte devrait découler de la valeur CDD en amont, c'est un fix temporaire, qui devra être levé au passage à une simulation CDI / CDD
+    - classique
+    - contrat aidé
+    - complément formation
+    - issue d'apprentissage
   # les CDD d'usage "concentrent la moitié des embauches en CDD"
   par défaut: "'classique . accroissement activité'"
   références:
@@ -264,13 +288,11 @@ salarié . contrat . CDD . motif:
     classique:
       titre: motifs classiques
       une possibilité:
-        choix obligatoire: oui
-        possibilités:
-          - remplacement
-          - accroissement activité
-          - saisonnier
-          - usage
-          - mission
+        - remplacement
+        - accroissement activité
+        - saisonnier
+        - usage
+        - mission
       références:
         Code du travail - Article L1242-2: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000033024658&cidTexte=LEGITEXT000006072050&dateTexte=20170420
 
