@@ -367,11 +367,11 @@ entreprise . activité . revenus mixtes:
     rates:
 
 
-    - Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restauration-accommodation) (71% allowance)
+    - Sales of goods, catering and accommodation (BIC)](/documentation/modele-ti/business/turnover/sales-restauration-accommodation) (71% allowance)
 
-    - Commercial or craft services (BIC)](/documentation/company/turnover/service-BIC) (50% allowance)
+    - Commercial or craft services (BIC)](/documentation/modele-ti/business/turnover/service-BIC) (50% allowance)
 
-    - Other services and liberal professions (BNC)](/documentation/company/turnover/service-BNC) (34% allowance)
+    - Other services and liberal professions (BNC)](/documentation/modele-ti/entreprise/turnover/service-BNC) (34% allowance)
 
 
     If your company has activities corresponding to several income categories
@@ -395,11 +395,11 @@ entreprise . activité . revenus mixtes:
     professionnels différents :
 
 
-    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
 
-    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
 
-    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
 
 
     Si votre entreprise a des activités correspondant à plusieurs catégories de
@@ -1362,10 +1362,11 @@ entreprise . imposition . régime . micro-entreprise:
 entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
   description.en:
     '[automatic] The annual sales threshold for the micro-tax system
-    is exceeded. [Learn more](/documentation/company/sales/threshold-exceeded)'
+    is exceeded. [Learn
+    more](/documentation/modele-ti/business/sales/threshold-exceeded)'
   description.fr: Le seuil annuel de chiffre d’affaires pour le régime
     micro-fiscal est dépassé. [En savoir
-    plus](/documentation/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
+    plus](/documentation/modele-ti/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
   titre.en: '[automatic] alert threshold exceeded'
   titre.fr: alerte seuil dépassés
 entreprise . imposition . régime . micro-entreprise . revenu abattu:
@@ -2125,13 +2126,13 @@ indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire 
 
     for your supplementary pension if you so request. [To find out more
 
-    more](/documentation/manager/independent/PL/CARCDSF/supplementary-retirement/contribution-reduction-rate)
+    more](/documentation/modele-ti/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   description.fr: >
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
 
     pour la retraite complémentaire si vous en faites la demande. [En savoir
 
-    plus](/documentation/dirigeant/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
+    plus](/documentation/modele-ti/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   titre.en: '[automatic] applicable reduction'
   titre.fr: réduction applicable
 indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
@@ -3597,14 +3598,14 @@ indépendant . PL . régime général:
 
     01/2019, or those who have exercised their [right
 
-    d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
+    d'option](/documentation/modele-ti/indépendant/PL/option-régime-général)
   description.fr: |
     Les professions libérales non règlementées affiliées au régime général
     bénéficient de la même protection sociale que les artisans et commerçants.
 
     C'est le cas des professions libérales non règlementées crées avant le
     01/2019, ou celles ayant exercé leur [droit
-    d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
+    d'option](/documentation/modele-ti/indépendant/PL/option-régime-général)
   titre.en: '[automatic] general scheme'
   titre.fr: régime général
 indépendant . PL . régime général . taux spécifique retraite complémentaire:
@@ -5855,31 +5856,38 @@ protection sociale . retraite . base . cotisée:
     [automatic] The income contributed for the basic pension is equal to :
 
 
-    [Basic pension contributions](/documentation/manager/self-employed/
+    [Basic pension contributions](/documentation/modele-ti/indépendant/
 
-    cotisations-et-contributions/retraite-de-base) / [taux de cotisation à la retraite
+    cotisations-et-contributions/cotisations/retraite-de-base) / [taux de cotisation à la retraite
 
-    contribution rate](/documentation/manager/self-employed/
+    contributions](/documentation/modele-ti/indépendant/
 
-    cotisations-et-contributions/retraite-de-base/rates)
+    cotisations-et-contributions/cotisations/retraite-de-base/rates)
 
 
-    In the case of contribution exemptions, a floor amount is used for the calculation.
+    In the case of contribution exemptions, a minimum amount is used for the calculation.
 
     calculation.
 
 
     In all cases, the result is limited to the social security ceiling.
-  description.fr: |
+  description.fr: >
     Le revenu cotisé pour la retraite de base est égal à :
 
-    [Cotisations à la retraite de base](/documentation/dirigeant/indépendant/
-    cotisations-et-contributions/retraite-de-base) / [taux de cotisation à la
-    retraite de base](/documentation/dirigeant/indépendant/
-    cotisations-et-contributions/retraite-de-base/taux)
+
+    [Cotisations à la retraite de base](/documentation/modele-ti/indépendant/
+
+    cotisations-et-contributions/cotisations/retraite-de-base) / [taux de cotisation à la
+
+    retraite de base](/documentation/modele-ti/indépendant/
+
+    cotisations-et-contributions/cotisations/retraite-de-base/taux)
+
 
     En cas d’exonération de cotisations, un montant plancher est utilisé pour le
+
     calcul.
+
 
     Dans tous les cas, le résultat est limité au plafond de la sécurité sociale.
   note.en: >-
