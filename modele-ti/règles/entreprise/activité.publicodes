@@ -151,9 +151,9 @@ entreprise . activité . revenus mixtes:
     Il existe trois catégories avec des taux d’abattement forfaitaire pour frais
     professionnels différents :
 
-    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
-    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
-    - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
 
     Si votre entreprise a des activités correspondant à plusieurs catégories de
     revenus, répondez oui à cette question.
