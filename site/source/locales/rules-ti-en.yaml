@@ -92,107 +92,7 @@ entreprise . TVA . franchise de TVA:
   titre.en: '[automatic] VAT exemption'
   titre.fr: franchise de TVA
 entreprise . activité:
-  titre.en: '[automatic] activity'
-  titre.fr: activité
-entreprise . activités:
   avec:
-    agent commercial:
-      description.en: >
-        [automatic] Commercial agents negotiate and/or conclude sales, purchase,
-        rental or service contracts
-
-        or provision of services on behalf of a third party (producer,
-
-        industrial, retailer, etc.). He or she is therefore a commercial intermediary
-
-        who, unlike the VRP (vendeur, représentant et placier), is an independent
-
-        independent professional.
-      description.fr: >
-        L’agent commercial négocie et/ou conclut des contrats de vente, d’achat,
-        de
-
-        location ou de prestation de services pour le compte d’un tiers (producteur,
-
-        industriel, commerçant, etc.). Il s’agit donc d’un intermédiaire de commerce
-
-        qui, contrairement au VRP (vendeur, représentant et placier), est un
-
-        professionnel indépendant.
-      question.en: '[automatic] Do you operate as a sales agent?'
-      question.fr: Exercez-vous votre activité en tant qu’agent commercial ?
-      titre.en: '[automatic] sales agent'
-      titre.fr: agent commercial
-    agricole:
-      description.en: >
-        [automatic] An activity is agricultural if it depends on the plant or
-        animal biological cycle
-
-        in the context of an operation or production.
-
-
-        This criterion is decisive and applies regardless of the legal form
-
-        legal form (sole proprietorship, company, agricultural
-
-        group).
-
-
-        It can also be an activity that extends your farming activity.
-
-        agricultural production. For example, the following activities are considered
-
-        agricultural :
-
-
-        - Farm tourism" activities (gîtes, chambres d'hôtes, table d'hôtes
-
-        tables d'hôtes, farm inns, etc.) based on the farm.
-
-        - Activities for the preparation and training of domestic horses and ponies
-
-        with a view to their exploitation: races, competitions, courses, etc.
-
-        - Production and marketing of biogas, electricity and heat through
-
-        methanization, when the majority (more than 50%) is derived from materials from agricultural operations
-
-        - Processing and direct sale of products
-      description.fr: >
-        Une activité est agricole si elle dépend du cycle biologique végétal ou
-
-        animal dans le cadre d’une exploitation ou d’une production.
-
-
-        Ce critère est déterminant et s’applique quelle que soit la forme juridique
-
-        de votre exploitation (entreprise individuelle, société, groupement
-
-        agricole).
-
-
-        Il peut s’agir également d’une activité qui prolonge l’activité de
-
-        production agricole. Ainsi les activités suivantes sont considérées comme
-
-        agricoles :
-
-
-        - Activités de "tourisme à la ferme" (gîtes, chambres d’hôtes, tables
-
-        d’hôtes, fermes auberges, etc.) ayant pour support l’exploitation agricole
-
-        - Activités de préparation et d’entraînement des chevaux et poneys
-
-        domestiques en vue de leur exploitation : courses, concours, cours, etc.
-
-        - Production et commercialisation de biogaz, d’électricité et de chaleur par
-
-        la méthanisation, lorsqu’elle est issue en majorité (plus de 50 %) de matières provenant d’exploitations agricoles
-
-        - Transformation et vente directe des produits issus
-      titre.en: '[automatic] agricultural'
-      titre.fr: agricole
     artisanale:
       description.en: >
         [automatic] To become a craftsman, you must meet the following 3
@@ -207,15 +107,20 @@ entreprise . activités:
 
         - You must have specific know-how and prove it with a diploma
 
-        diploma (CAP, BEP, etc.) or professional qualification
-      description.fr: |
-        Pour être artisan, vous devez répondre aux 3 critères suivants :
+        (CAP, BEP, etc.) or a professional qualification
+      description.fr: >
+        Pour être artisan, vous devez répondre aux 3 critères suivants :
+
 
         - Votre activité doit faire partie de la liste officielle des métiers de
+
         l’artisanat ou de la liste officielle des métiers d’artisanat d’art
+
         - Votre entreprise doit compter moins de 11 salariés à sa création
-        - Vous devez détenir un savoir-faire spécifique et le prouver par un
-        diplôme (CAP, BEP, etc.) ou une qualification professionnelle
+
+        - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme
+
+        (CAP, BEP, etc.) ou une qualification professionnelle
       titre.en: '[automatic] artisan'
       titre.fr: artisanale
     commerciale:
@@ -224,9 +129,9 @@ entreprise . activités:
         following situations:
 
 
-        - You buy goods or merchandise for resale with a view to making a profit.
+        - You buy goods or merchandise for resale with the aim of making a profit
 
-        You buy goods or merchandise for resale with a view to making a profit.
+        (making money, profit, earnings)
 
         - You sell services in the hotel, restaurant, transport, entertainment
 
@@ -238,12 +143,12 @@ entreprise . activités:
 
         services
       description.fr: >
-        Votre activité est commerciale si vous êtes dans l’un des cas suivants :
+        Votre activité est commerciale si vous êtes dans l’un des cas suivants :
 
 
         - Vous achetez des biens ou des marchandises pour les revendre dans un but
 
-        lucratif : Qui rapporte de l’argent, du profit, des bénéfices
+        lucratif (qui rapporte de l’argent, du profit, des bénéfices)
 
         - Vous vendez des services dans les domaines de l’hôtellerie, la
 
@@ -256,92 +161,172 @@ entreprise . activités:
         services
       titre.en: '[automatic] commercial'
       titre.fr: commerciale
+    commerciale . débit de tabac:
+      question.en: '[automatic] Do you sell tobacco?'
+      question.fr: Exercez-vous une activité de vente de tabac ?
+      titre.en: '[automatic] tobacco shop'
+      titre.fr: débit de tabac
     libérale:
       description.en: >
-        [automatic] A self-employed activity consists in providing services of a
-        mainly intellectual nature.
+        [automatic] A liberal profession consists of the provision of services
+        of a mainly intellectual nature.
+
+        intellectual nature.
 
 
         You provide a paid service.
 
 
         You must have a diploma or professional qualification in the field.
-      description.fr: >
+
+        field.
+      description.fr: |
         Une activité libérale consiste en des prestations de services de nature
         principalement intellectuelles.
 
-
         Vous rendez un service payant.
 
-
-        Vous devez avoir un diplôme ou une qualification professionnelle dans le domaine.
+        Vous devez avoir un diplôme ou une qualification professionnelle dans le
+        domaine.
       titre.en: '[automatic] liberal'
       titre.fr: libérale
     libérale . réglementée:
       description.en: >
-        [automatic] Certain professions have been classified as liberal by law,
-        and their titles are protected. Their members must respect strict
-        ethical rules and are subject to the control of their professional
-        bodies (order, chamber or union).
+        [automatic] Certain liberal professions have been classified as liberal
+        by law
+
+        by law, and their titles are protected. Their members must comply with strict
+
+        rules of professional conduct and are subject to the control of their professional
+
+        professional bodies (order, chamber or union).
 
 
-        &gt; Examples of regulated professions: architect, lawyer, nurse, doctor...
+        > Examples of regulated professions: architect, lawyer, nurse,
+
+        > doctors...
 
 
-        These are other people who practice a science or art, and whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any subordinate relationship, while engaging their technical and moral responsibility.
+        These are other people who practice a science or art, and whose intellectual
+
+        whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any subordinate relationship, while engaging their technical and moral responsibility.
 
 
-        &gt; Examples of non-regulated professions: developer, historian, urban planner...
+        > Examples of non-regulated professions: developer, historian,
+
+        > urban planner...
       description.fr: >
         Certaines professions libérales ont été classées dans le domaine libéral
-        par la loi et leur titre est protégé. Leurs membres doivent respecter
-        des règles déontologiques strictes et sont soumis au contrôle de leurs
+
+        par la loi et leur titre est protégé. Leurs membres doivent respecter des
+
+        règles déontologiques strictes et sont soumis au contrôle de leurs
+
         instances professionnelles (ordre, chambre, ou syndicat).
 
 
-        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+        > Exemples de professions règlementées : architecte, avocat, infirmier,
+
+        > médecin...
 
 
-        Il s’agit des autres personnes qui pratiquent, une science ou un art et dont l’activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d’un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+        Il s’agit des autres personnes qui pratiquent, une science ou un art et
+
+        dont l’activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d’un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
 
-        > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+        > Exemples de professions non-règlementées : développeur, historien,
+
+        > urbaniste...
       question.en: '[automatic] Is it a regulated liberal profession?'
-      question.fr: Est-ce une activité libérale réglementée ?
+      question.fr: Est-ce une activité libérale réglementée ?
       titre.en: '[automatic] regulated'
       titre.fr: réglementée
   description.en: >
     [automatic] Your type of activity will determine a large part of the
-    calculation of contributions and taxes.
+    calculations for
+
+    contributions and taxes.
 
 
-    ### Pluri-activity
+    ### Multi-activity
 
-    It's possible to have several different activities within the same company. 
+    In the case of multiple activities, the main activity is deemed to be the activity
+
+    activity.
 
 
-    For example, a bakery (artisanal activity) may have a grocery department (commercial activity).
+    However, from the third calendar year following the year in which the
+
+    in which the multi-activity situation began, the persons concerned
+
+    may request that the activity that generated the highest amount of sales or revenue
+
+    or revenue excluding tax over the last three years be considered as their
+
+    their main activity.
   description.fr: >
     Votre type d’activité va déterminer une grande partie des calculs de
+
     cotisations, contributions et impôt.
 
 
     ### Pluri-activité
 
-    Il est possible d’avoir plusieurs activités différente pour une même entreprise. 
+    En cas d’activité multiples, l’activité principale est réputée être l’activité
+
+    la plus ancienne.
 
 
-    Par exemple, une boulangerie (activité artisanale) peut avoir un rayon épicerie (activité commerciale).
-  question.en: "[automatic] What are your company's activities?"
-  question.fr: Quelle(s) sont les activité(s) de votre entreprise ?
+    Toutefois, à partir de la troisième année civile suivant celle au cours de
+
+    laquelle la situation de pluriactivité a débuté, les personnes intéressées
+
+    peuvent demander que l’activité qui a procuré le montant de chiffre d’affaires
+
+    ou de recettes hors taxes le plus élevé sur les trois dernières années soit
+
+    considérée comme leur activité principale.
+  question.en: '[automatic] What is the nature of your main business?'
+  question.fr: Quelle est la nature de votre activité principale ?
   titre.en: '[automatic] type of activity'
   titre.fr: nature de l’activité
-entreprise . activités . commerciale . débit de tabac:
-  question.en: '[automatic] Do you sell tobacco?'
-  question.fr: Exercez-vous une activité de vente de tabac ?
-  titre.en: '[automatic] tobacco shop'
-  titre.fr: débit de tabac
-entreprise . activités . revenus mixtes:
+entreprise . activité . principale:
+  avec:
+    service:
+      description.en: >
+        [automatic] This refers to any transaction that does not involve the
+        transfer of ownership of tangible
+
+        tangible assets (i.e. having a material existence).
+      description.fr: >
+        Il s’agit de toute opération ne comportant pas de transfert de propriété
+        de
+
+        biens corporels (c’est-à-dire ayant une existence matérielle).
+      titre.en: '[automatic] service provision'
+      titre.fr: prestation de service
+    vente:
+      description.en: >
+        [automatic] This refers to any transaction involving the transfer of
+        ownership of a tangible asset
+
+        (i.e. an asset with a material existence), as well as all catering and
+
+        all catering and accommodation activities.
+      description.fr: >
+        Il s’agit de toute opération comportant transfert de propriété d’un bien
+
+        corporel (c’est-à-dire un bien ayant une existence matérielle), ainsi que
+
+        toutes les activités de restauration et d’hébergement.
+      titre.en: '[automatic] sale of goods, catering or accommodation'
+      titre.fr: vente de biens, restauration ou hébergement
+  question.en: "[automatic] What is the company's main activity?"
+  question.fr: Quel est le type d’activité principale de l’entreprise ?
+  titre.en: '[automatic] main'
+  titre.fr: principale
+entreprise . activité . revenus mixtes:
   avec:
     proportions:
       description.en: '[automatic] Share of different activities in sales'
@@ -364,8 +349,10 @@ entreprise . activités . revenus mixtes:
       titre.en: '[automatic] sales catering accommodation'
       titre.fr: vente restauration hébergement
   description.en: >
-    [automatic] It is possible to have different types of income from the same
+    [automatic] It is possible to have different types of income for the same
     business.
+
+    same company.
 
 
     For example, a plumbing company that invoices for the purchase and installation of a faucet
@@ -375,7 +362,9 @@ entreprise . activités . revenus mixtes:
     and part in the provision of services (installation).
 
 
-    There are three categories with different lump-sum expense allowance rates:
+    There are three categories with different rates of lump-sum allowance for professional
+
+    rates:
 
 
     - Sales of goods, catering and accommodation (BIC)](/documentation/company/turnover/sales-restauration-accommodation) (71% allowance)
@@ -390,6 +379,7 @@ entreprise . activités . revenus mixtes:
     answer yes to this question.
   description.fr: >
     Il est possible des activités avec des types de revenus différents pour une
+
     même entreprise.
 
 
@@ -400,7 +390,9 @@ entreprise . activités . revenus mixtes:
     et une partie en prestation de service (la pose).
 
 
-    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais
+
+    professionnels différents :
 
 
     - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
@@ -410,32 +402,30 @@ entreprise . activités . revenus mixtes:
     - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
 
 
-    Si votre entreprise a des activités correspondants à plusieurs catégories de
+    Si votre entreprise a des activités correspondant à plusieurs catégories de
 
     revenus, répondez oui à cette question.
   question.en: '[automatic] Does your company have different revenue streams?'
   question.fr: Votre entreprise a-t-elle des activités avec des types de revenus
-    différents ?
+    différents ?
   titre.en: '[automatic] Mixed activities'
   titre.fr: Activités mixtes
-entreprise . activités . saisonnière:
-  description.en: >
+entreprise . activité . saisonnière:
+  description.en: |
     [automatic] Seasonal workers can benefit from
-
     an exemption from minimum daily allowance contributions,
-
     and invalidity-death contributions. 
 
-
-    So, if your income is less than the minimum contribution base,
-
+    If your income is below the minimum contribution base,
     you contribute on your actual income.
 
+    You can apply for this exemption from your space in
+    Urssaf : Messaging > New message > Another subject (information, documents
+    or supporting documents) > Request information about my account or a
+    summary > Make a request or complete a request
 
-    You can request the application of this exemption from your urssaf space: Messaging > New message > Another subject (information, documents or supporting documents) > Request information on my account or a summary > Make a request or an additional request "
-
-
-    &gt; Please note: the minimum base for the basic pension guarantees the validation of 3 quarters of old-age insurance.
+    > Please note: the minimum base for basic retirement benefits guarantees
+    the validation of 3 quarters of old-age insurance.
   description.fr: >
     Les professionnels exerçant une activité saisonnière peuvent bénéficier
 
@@ -449,49 +439,22 @@ entreprise . activités . saisonnière:
     vous cotisez sur votre revenu réel.
 
 
-    Vous pouvez demander l’application de cette dispense depuis votre espace en urssaf: Messagerie > Nouveau message > Un autre sujet (informations, documents ou justificatifs) > Demander des informations sur mon compte ou un récapitulatif > Faire une demande ou un complément de demande »
+    Vous pouvez demander l’application de cette dispense depuis votre espace en
+
+    Urssaf : Messagerie > Nouveau message > Un autre sujet (informations, documents
+
+    ou justificatifs) > Demander des informations sur mon compte ou un
+
+    récapitulatif > Faire une demande ou un complément de demande
 
 
-    > À noter : l’assiette minimale pour la retraite de base permet de garantir la validation de 3 trimestres d’assurance vieillesse.
+    > À noter : l’assiette minimale pour la retraite de base permet de garantir
+
+    la validation de 3 trimestres d’assurance vieillesse.
   question.en: '[automatic] Do you have a seasonal business?'
-  question.fr: Exercez-vous une activité saisonnière ?
+  question.fr: Exercez-vous une activité saisonnière ?
   titre.en: '[automatic] seasonal'
   titre.fr: saisonnière
-entreprise . activités . service ou vente:
-  avec:
-    service:
-      description.en: >
-        [automatic] This refers to any transaction that does not involve the
-        transfer of ownership of tangible
-
-        tangible assets (i.e. having a material existence).
-      description.fr: >
-        Il s’agit de toute opération ne comportant pas de transfert de propriété
-        de
-
-        biens corporels (c’est-à-dire ayant une existence matérielle).
-      titre.en: '[automatic] service provision'
-      titre.fr: prestation de service
-    vente:
-      description.en: >
-        [automatic] This refers to any transaction involving the transfer of
-        ownership of a tangible asset
-
-        (i.e. an asset that has a material existence), as well as all
-
-        all catering and accommodation activities.
-      description.fr: >
-        Il s’agit de toute opération comportant transfert de propriété d’un bien
-
-        corporel (c’est-à-dire un bien ayant une existence matérielle), ainsi que
-
-        toutes les activités de restauration et d’hébergement.
-      titre.en: '[automatic] sale of goods, catering or accommodation'
-      titre.fr: vente de biens, restauration ou hébergement
-  question.en: "[automatic] What is the company's main activity?"
-  question.fr: Quel est le type d’activité principale de l’entreprise ?
-  titre.en: '[automatic] service or sales'
-  titre.fr: service ou vente
 entreprise . capital social:
   titre.en: '[automatic] share capital'
   titre.fr: capital social

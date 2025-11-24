@@ -43,11 +43,11 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     ou hébergement ?
   unité: €/an
   variations:
-    - si: activités . revenus mixtes
+    - si: activité . revenus mixtes
       alors:
         produit:
           - chiffre d'affaires
-          - activités . revenus mixtes . proportions . vente restauration
+          - activité . revenus mixtes . proportions . vente restauration
             hébergement
     - sinon:
         applicable si: activités . service ou vente = 'vente'
@@ -91,11 +91,11 @@ entreprise . chiffre d'affaires . service BIC:
     **Exemples** : transports, service à la personne, réparation etc.
   par défaut: 0€/an
   variations:
-    - si: activités . revenus mixtes
+    - si: activité . revenus mixtes
       alors:
         produit:
           - chiffre d'affaires
-          - activités . revenus mixtes . proportions . service BIC
+          - activité . revenus mixtes . proportions . service BIC
     - sinon:
         applicable si: activités . service ou vente = 'service'
         valeur: chiffre d'affaires
@@ -118,11 +118,11 @@ entreprise . chiffre d'affaires . service BNC:
 
     Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
   variations:
-    - si: activités . revenus mixtes
+    - si: activité . revenus mixtes
       alors:
         produit:
           - chiffre d'affaires
-          - activités . revenus mixtes . proportions . service BNC
+          - activité . revenus mixtes . proportions . service BNC
     - sinon:
         applicable si: activité . nature . libérale
         valeur: chiffre d'affaires

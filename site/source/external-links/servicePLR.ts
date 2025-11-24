@@ -5,7 +5,7 @@ export const servicePLR = {
 	associatedRule: {
 		'toutes ces conditions': [
 			'indépendant . PL',
-			'entreprise . activités . libérale . réglementée',
+			'entreprise . activité . libérale . réglementée',
 			"indépendant . PL . métier != 'expert-comptable'",
 			'indépendant . PL . PAMC = non',
 		],

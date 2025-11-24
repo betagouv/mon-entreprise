@@ -1,7 +1,7 @@
 indépendant . PL . option régime général:
   applicable si:
     toutes ces conditions:
-      - entreprise . activités . libérale . réglementée = non
+      - entreprise . activité . libérale . réglementée = non
       - entreprise . date de création < 01/2019
   question: Avez-vous opté pour le rattachement au régime général des indépendants ?
   description: |
@@ -29,7 +29,7 @@ indépendant . PL . CIPAV:
     - toutes ces conditions:
         - entreprise . date de création < 01/2019
         - option régime général = non
-        - entreprise . activités . libérale . réglementée = non
+        - entreprise . activité . libérale . réglementée = non
 
   description: |
     La Cipav est la caisse de retraite autonomes des professions libérales réglementées.
