@@ -13,7 +13,7 @@ export const configIndépendant: SimulationConfig = {
 		raccourcis: [
 			{
 				label: "Type d'activité",
-				dottedName: 'entreprise . activité . nature',
+				dottedName: 'entreprise . activité',
 			},
 			{
 				label: 'Micro-fiscal',
@@ -48,12 +48,10 @@ export const configIndépendant: SimulationConfig = {
 			'entreprise . exercice . fin',
 			'entreprise . imposition . régime',
 			'entreprise . imposition',
-			'entreprise . activités',
-			'entreprise . activités . revenus mixtes',
 		],
 		'non prioritaires': [
 			'indépendant . cotisations facultatives',
-			'entreprise . activités . saisonnière',
+			'entreprise . activité . saisonnière',
 			'situation personnelle . RSA',
 			'indépendant . PL . CNAVPL . exonération incapacité',
 			'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité',
@@ -61,7 +59,7 @@ export const configIndépendant: SimulationConfig = {
 			"situation personnelle . domiciliation fiscale à l'étranger",
 			'indépendant . revenus étrangers',
 			'indépendant . IJSS',
-			'entreprise . activités . commerciale . débit de tabac',
+			'entreprise . activité . commerciale . débit de tabac',
 			'indépendant . PL . PAMC . IJSS',
 			'entreprise . salariés . effectif',
 		],

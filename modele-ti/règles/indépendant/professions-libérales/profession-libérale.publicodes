@@ -1,11 +1,11 @@
 indépendant . PL:
   titre: Profession libérale
-  applicable si: entreprise . activités . libérale
-  rend non applicable: entreprise . activités . revenus mixtes
+  applicable si: entreprise . activité . libérale
+  rend non applicable: entreprise . activité . revenus mixtes
   formule: oui
 
 indépendant . PL . métier:
-  applicable si: entreprise . activités . libérale . réglementée
+  applicable si: entreprise . activité . libérale . réglementée
   par défaut: "'rattaché CIPAV'"
   question: A quelle catégorie appartient votre profession ?
   une possibilité:
@@ -152,7 +152,7 @@ indépendant . PL . régime général:
     d'option](/documentation/dirigeant/indépendant/PL/option-régime-général)
   toutes ces conditions:
     - CIPAV = non
-    - entreprise . activités . libérale . réglementée = non
+    - entreprise . activité . libérale . réglementée = non
 
 indépendant . PL . régime général . taux spécifique retraite complémentaire:
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite
