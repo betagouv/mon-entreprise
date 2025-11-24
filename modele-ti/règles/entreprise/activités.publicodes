@@ -1,150 +1,117 @@
-entreprise . activités:
-  experimental: oui
+entreprise . activité:
   titre: nature de l’activité
-  question: Quelle(s) sont les activité(s) de votre entreprise ?
+  question: Quelle est la nature de votre activité principale ?
   description: |
-    Votre type d’activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.
+    Votre type d’activité va déterminer une grande partie des calculs de
+    cotisations, contributions et impôt.
 
     ### Pluri-activité
-    Il est possible d’avoir plusieurs activités différente pour une même entreprise. 
+    En cas d’activité multiples, l’activité principale est réputée être l’activité
+    la plus ancienne.
 
-    Par exemple, une boulangerie (activité artisanale) peut avoir un rayon épicerie (activité commerciale).
-  texte: |
-    Commerciale : {{ commerciale }} ;
-    Artisanale : {{ artisanale }} ;
-    Libérale : {{ libérale }} ;
-    Agricole : {{ agricole }}
-  plusieurs possibilités:
+    Toutefois, à partir de la troisième année civile suivant celle au cours de
+    laquelle la situation de pluriactivité a débuté, les personnes intéressées
+    peuvent demander que l’activité qui a procuré le montant de chiffre d’affaires
+    ou de recettes hors taxes le plus élevé sur les trois dernières années soit
+    considérée comme leur activité principale.
+
+  par défaut: "'commerciale'"
+  une possibilité:
     - artisanale
     - commerciale
-    - agricole
     - libérale
-    - agent commercial
   références:
     Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
-    Comment déterminer la nature de l’activité d’une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
+    Comment déterminer la nature de l’activité d’une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
+    Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
 
   avec:
-    agent commercial:
-      description: |
-        L’agent commercial négocie et/ou conclut des contrats de vente, d’achat, de
-        location ou de prestation de services pour le compte d’un tiers (producteur,
-        industriel, commerçant, etc.). Il s’agit donc d’un intermédiaire de commerce
-        qui, contrairement au VRP (vendeur, représentant et placier), est un
-        professionnel indépendant.
-      question: Exercez-vous votre activité en tant qu’agent commercial ?
-      par défaut:
-        valeur: non
-        variable manquante: entreprise . activités
-      références:
-        'Devenir agent commercial : pourquoi et comment obtenir ce statut ?': https://www.economie.gouv.fr/entreprises/agent-commercial-immatriculation
-        Agent commercial - Réglementation: https://bpifrance-creation.fr/activites-reglementees/agent-commercial
-
-    agricole:
-      par défaut:
-        valeur: non
-        variable manquante: entreprise . activités
-      # question: Exercez-vous une activité agricole ?
-      description: |
-        Une activité est agricole si elle dépend du cycle biologique végétal ou
-        animal dans le cadre d’une exploitation ou d’une production.
-
-        Ce critère est déterminant et s’applique quelle que soit la forme juridique
-        de votre exploitation (entreprise individuelle, société, groupement
-        agricole).
-
-        Il peut s’agir également d’une activité qui prolonge l’activité de
-        production agricole. Ainsi les activités suivantes sont considérées comme
-        agricoles :
-
-        - Activités de "tourisme à la ferme" (gîtes, chambres d’hôtes, tables
-        d’hôtes, fermes auberges, etc.) ayant pour support l’exploitation agricole
-        - Activités de préparation et d’entraînement des chevaux et poneys
-        domestiques en vue de leur exploitation : courses, concours, cours, etc.
-        - Production et commercialisation de biogaz, d’électricité et de chaleur par
-        la méthanisation, lorsqu’elle est issue en majorité (plus de 50 %) de matières provenant d’exploitations agricoles
-        - Transformation et vente directe des produits issus
-      références:
-        Comment savoir si votre activité est agricole ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-4situation1
-
     artisanale:
-      par défaut:
-        valeur: non
-        variable manquante: entreprise . activités
-      # question: Exercez-vous une activité artisanale ?
+      valeur: activité = 'artisanale'
       description: |
-        Pour être artisan, vous devez répondre aux 3 critères suivants :
+        Pour être artisan, vous devez répondre aux 3 critères suivants :
 
         - Votre activité doit faire partie de la liste officielle des métiers de
         l’artisanat ou de la liste officielle des métiers d’artisanat d’art
         - Votre entreprise doit compter moins de 11 salariés à sa création
-        - Vous devez détenir un savoir-faire spécifique et le prouver par un
-        diplôme (CAP, BEP, etc.) ou une qualification professionnelle
+        - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme
+        (CAP, BEP, etc.) ou une qualification professionnelle
       références:
         Comment savoir si votre activité est artisanale ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-2situation1
-        Liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
+        liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
 
     commerciale:
-      par défaut:
-        valeur: non
-        variable manquante: entreprise . activités
-      # question: Exercez-vous une activité commerciale ?
+      valeur: activité = 'commerciale'
       description: |
-        Votre activité est commerciale si vous êtes dans l’un des cas suivants :
+        Votre activité est commerciale si vous êtes dans l’un des cas suivants :
 
         - Vous achetez des biens ou des marchandises pour les revendre dans un but
-        lucratif : Qui rapporte de l’argent, du profit, des bénéfices
+        lucratif (qui rapporte de l’argent, du profit, des bénéfices)
         - Vous vendez des services dans les domaines de l’hôtellerie, la
         restauration, les transports, les spectacles, la sécurité, l’informatique,
         le design, etc.
         - Vous avez une activité de location de biens, de marchandises ou de
         services
+
       références:
-        Comment savoir si votre activité est commerciale ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-1situation1
+        Comment savoir si votre activité est commerciale: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-1situation1
+
+    commerciale . débit de tabac:
+      applicable si: activité . commerciale
+      experimental: oui
+      question: Exercez-vous une activité de vente de tabac ?
+      par défaut: non
 
     libérale:
-      par défaut:
-        valeur: non
-        variable manquante: entreprise . activités
-      # question: Exercez-vous une activité libérale ?
+      valeur: activité = 'libérale'
       description: |
-        Une activité libérale consiste en des prestations de services de nature principalement intellectuelles.
+        Une activité libérale consiste en des prestations de services de nature
+        principalement intellectuelles.
 
         Vous rendez un service payant.
 
-        Vous devez avoir un diplôme ou une qualification professionnelle dans le domaine.
+        Vous devez avoir un diplôme ou une qualification professionnelle dans le
+        domaine.
+
       références:
-        Comment savoir si votre activité est libérale ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-3situation1
-        Liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+        Comment savoir si votre entreprise est libérale ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-3situation1
+        fiche Wikipedia: https://fr.wikipedia.org/wiki/Profession_lib%C3%A9rale
+        liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
     libérale . réglementée:
-      question: Est-ce une activité libérale réglementée ?
+      question: Est-ce une activité libérale réglementée ?
       par défaut: non
       description: |
-        Certaines professions libérales ont été classées dans le domaine libéral par la loi et leur titre est protégé. Leurs membres doivent respecter des règles déontologiques strictes et sont soumis au contrôle de leurs instances professionnelles (ordre, chambre, ou syndicat).
+        Certaines professions libérales ont été classées dans le domaine libéral
+        par la loi et leur titre est protégé. Leurs membres doivent respecter des
+        règles déontologiques strictes et sont soumis au contrôle de leurs
+        instances professionnelles (ordre, chambre, ou syndicat).
 
-        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+        > Exemples de professions règlementées : architecte, avocat, infirmier,
+        > médecin...
 
-        Il s’agit des autres personnes qui pratiquent, une science ou un art et dont l’activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d’un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+        Il s’agit des autres personnes qui pratiquent, une science ou un art et
+        dont l’activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d’un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
-        > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+        > Exemples de professions non-règlementées : développeur, historien,
+        > urbaniste...
       références:
-        Liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+        Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
-entreprise . activités . service ou vente:
+entreprise . activité . principale:
   experimental: oui
   non applicable si: revenus mixtes
   applicable si:
     une de ces conditions:
-      - activités . artisanale
-      - activités . commerciale
-  question: Quel est le type d’activité principale de l’entreprise ?
+      - activité . artisanale
+      - activité . commerciale
+  question: Quel est le type d’activité principale de l’entreprise ?
   une possibilité:
     - vente
     - service
   par défaut:
     variations:
-      - si: activités . artisanale
+      - si: activité . artisanale
         alors: "'service'"
       - sinon: "'vente'"
 
@@ -166,36 +133,29 @@ entreprise . activités . service ou vente:
       références:
         page impots.gouv.fr: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
 
-entreprise . activités . commerciale . débit de tabac:
-  experimental: oui
-  question: Exercez-vous une activité de vente de tabac ?
-  applicable si: entreprise . EI
-  par défaut: non
-  références:
-    Débitant de tabac - Réglementation: https://bpifrance-creation.fr/activites-reglementees/debitant-tabac
-    Exploitation d'un bureau de tabac: https://entreprendre.service-public.gouv.fr/vosdroits/F23604
-
-entreprise . activités . revenus mixtes:
+entreprise . activité . revenus mixtes:
   experimental: oui
   titre: Activités mixtes
   applicable si: imposition . régime . micro-entreprise
   question: Votre entreprise a-t-elle des activités avec des types de revenus
-    différents ?
+    différents ?
   par défaut: non
   description: |
-    Il est possible des activités avec des types de revenus différents pour une même entreprise.
+    Il est possible des activités avec des types de revenus différents pour une
+    même entreprise.
 
     Par exemple, une entreprise de plomberie qui facture l’achat et la pose d’un
     robinet a une partie de son chiffre d’affaires en vente de materiel (le robinet)
     et une partie en prestation de service (la pose).
 
-    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais différents :
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais
+    professionnels différents :
 
     - [Ventes de biens, restauration et hébergement (BIC)](/documentation/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
     - [Prestation de service commerciale ou artisanale (BIC)](/documentation/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
     - [Autres prestation de service et activité libérale (BNC)](/documentation/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
 
-    Si votre entreprise a des activités correspondants à plusieurs catégories de
+    Si votre entreprise a des activités correspondant à plusieurs catégories de
     revenus, répondez oui à cette question.
 
   avec:
@@ -213,24 +173,24 @@ entreprise . activités . revenus mixtes:
 
     proportions . service BIC:
       variations:
-        - si: activités . libérale
+        - si: activité . libérale
           alors: 0%
         - sinon: 50%
 
     proportions . service BNC:
       variations:
-        - si: activités . libérale
+        - si: activité . libérale
           alors: 2 / 3
         - sinon: 0%
 
     proportions . vente restauration hébergement:
       variations:
-        - si: activités . libérale
+        - si: activité . libérale
           alors: 1 / 3
         - sinon: 50%
 
-entreprise . activités . saisonnière:
-  question: Exercez-vous une activité saisonnière ?
+entreprise . activité . saisonnière:
+  question: Exercez-vous une activité saisonnière ?
   par défaut: non
   description: |
     Les professionnels exerçant une activité saisonnière peuvent bénéficier
@@ -240,6 +200,10 @@ entreprise . activités . saisonnière:
     Ainsi, si votre revenu est inférieur à l’assiette minimale de cotisations,
     vous cotisez sur votre revenu réel.
 
-    Vous pouvez demander l’application de cette dispense depuis votre espace en urssaf: Messagerie > Nouveau message > Un autre sujet (informations, documents ou justificatifs) > Demander des informations sur mon compte ou un récapitulatif > Faire une demande ou un complément de demande »
+    Vous pouvez demander l’application de cette dispense depuis votre espace en
+    Urssaf : Messagerie > Nouveau message > Un autre sujet (informations, documents
+    ou justificatifs) > Demander des informations sur mon compte ou un
+    récapitulatif > Faire une demande ou un complément de demande
 
-    > À noter : l’assiette minimale pour la retraite de base permet de garantir la validation de 3 trimestres d’assurance vieillesse.
+    > À noter : l’assiette minimale pour la retraite de base permet de garantir
+    la validation de 3 trimestres d’assurance vieillesse.
