@@ -1,4 +1,9 @@
 assimilé salarié:
+  description: |
+    Certains dirigeants d’entreprise (c’est notamment le cas pour les SASU) sont
+    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors
+    au régime général de la sécurité sociale, avec quelques contraintes cependant.
+    Par exemple, ils ne cotisent pas au chômage, et n’y ont donc pas droit.
 
 assimilé salarié . régimes spécifiques:
 
