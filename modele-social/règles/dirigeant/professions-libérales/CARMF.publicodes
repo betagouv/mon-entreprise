@@ -46,17 +46,26 @@ dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
+dirigeant . indépendant . PL . CARMF . plus de 40 ans à l'installation:
+  titre: Plus de 40 ans à l'installation
+  question: Aviez-vous plus de 40 ans au début de votre activité libérale ?
+  description: L'exonération de début d'activité pour la retraite complémentaire ne s'applique pas aux médecins âgés de plus de 40 ans lors de leur installation.
+  applicable si: entreprise . durée d'activité . en fin d'année < 2 ans
+  par défaut: non
+  
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
   description: >-
     La CARMF gère le régime de retraite complémentaire.
-
     Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
-
-    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous aviez plus de 40 ans au début de votre activité libérale.
+    Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
   arrondi: oui
   variations:
-    - si: entreprise . durée d'activité . en fin d'année < 2 ans
+    - si:
+        toutes ces conditions:
+          - entreprise . durée d'activité . en fin d'année < 2 ans
+          - plus de 40 ans à l'installation = non
       alors: 0€/an
     - sinon:
         produit:
