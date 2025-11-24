@@ -26,6 +26,23 @@ SMIC . horaire:
   titre.en: '[automatic] schedule'
   titre.fr: horaire
 assimilé salarié:
+  description.en: >
+    [automatic] Some company directors (notably SASU) are considered by the
+    social security system to be
+
+    considered by the social security system to be on the same footing as employees. They are therefore
+
+    under the general social security system, albeit with a few constraints.
+
+    For example, they are not entitled to unemployment benefits.
+  description.fr: >
+    Certains dirigeants d’entreprise (c’est notamment le cas pour les SASU) sont
+
+    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors
+
+    au régime général de la sécurité sociale, avec quelques contraintes cependant.
+
+    Par exemple, ils ne cotisent pas au chômage, et n’y ont donc pas droit.
   titre.en: '[automatic] assimilated employee'
   titre.fr: assimilé salarié
 assimilé salarié . cotisations:
