@@ -3,11 +3,12 @@
 ## next
 
 ### Breaking changes
-- Suppression de la règle dépréciée `dirigeant . indépendant . PL . métier . avocat`
-- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . par défaut`
-- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . officier . par défaut`
-- Suppression de la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
-- Suppression de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
+- Renomme la règle `entreprise . activités . revenus mixtes` en `entreprise . activité . revenus mixtes`
+- Supprime de la règle dépréciée `dirigeant . indépendant . PL . métier . avocat`
+- Supprime de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . par défaut`
+- Supprime de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . officier . par défaut`
+- Supprime de la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
+- Supprime de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
 
 ### Nouveautés
 - Les possibilités de métier juridique `notaire` et `officier` sont désormais applicables
