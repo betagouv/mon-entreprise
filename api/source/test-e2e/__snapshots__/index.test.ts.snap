@@ -492,7 +492,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
   "evaluate": [
     {
       "missingVariables": [
-        "entreprise . activités . revenus mixtes",
+        "entreprise . activité . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
@@ -512,7 +512,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     },
     {
       "missingVariables": [
-        "entreprise . activités . revenus mixtes",
+        "entreprise . activité . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],

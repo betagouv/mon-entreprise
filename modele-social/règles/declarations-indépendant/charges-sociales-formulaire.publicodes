@@ -10,7 +10,7 @@ déclaration charge sociales:
       valeur: ACRE
 
     entreprise activités revenus mixtes:
-      remplace: entreprise . activités . revenus mixtes
+      remplace: entreprise . activité . revenus mixtes
       valeur: oui
 
 déclaration charge sociales . comptabilité:

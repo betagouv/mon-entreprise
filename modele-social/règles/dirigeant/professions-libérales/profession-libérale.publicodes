@@ -1,7 +1,7 @@
 dirigeant . indépendant . PL:
   titre: Profession libérale
   applicable si: entreprise . activité . nature = 'libérale'
-  rend non applicable: entreprise . activités . revenus mixtes
+  rend non applicable: entreprise . activité . revenus mixtes
   formule: oui
 
 dirigeant . indépendant . PL . métier:
