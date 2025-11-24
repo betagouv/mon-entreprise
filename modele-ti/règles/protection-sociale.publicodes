@@ -125,10 +125,10 @@ protection sociale . retraite . base . cotisée:
   description: |
     Le revenu cotisé pour la retraite de base est égal à :
 
-    [Cotisations à la retraite de base](/documentation/dirigeant/indépendant/
-    cotisations-et-contributions/retraite-de-base) / [taux de cotisation à la
-    retraite de base](/documentation/dirigeant/indépendant/
-    cotisations-et-contributions/retraite-de-base/taux)
+    [Cotisations à la retraite de base](/documentation/modele-ti/indépendant/
+    cotisations-et-contributions/cotisations/retraite-de-base) / [taux de cotisation à la
+    retraite de base](/documentation/modele-ti/indépendant/
+    cotisations-et-contributions/cotisations/retraite-de-base/taux)
 
     En cas d’exonération de cotisations, un montant plancher est utilisé pour le
     calcul.
