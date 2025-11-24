@@ -1,2 +1,53 @@
 indépendant . cotisations et contributions . cotisations . exonérations:
-  valeur: ZFU
+
+indépendant . cotisations et contributions . cotisations . exonérations . ZFU:
+  applicable si: établissement . ZFU
+  produit:
+    - valeur: maladie
+      plafond:
+        valeur: exonérations . ZFU
+        contexte:
+          revenu professionnel: 3042 heure/an * SMIC . horaire
+    - taux
+  arrondi: oui
+  unité: €/an
+
+indépendant . cotisations et contributions . cotisations . exonérations . ZFU . taux:
+  variations:
+    - si: entreprise . salariés . effectif < 5
+      alors:
+        taux progressif:
+          assiette: entreprise . durée d'activité . en fin d'année
+          retourne seulement le taux: oui
+          tranches:
+            - plafond: 5 ans
+              taux: 100%
+            - plafond: 6 ans
+              taux: 60%
+            - plafond: 10 ans
+              taux: 60%
+            - plafond: 11 ans
+              taux: 40%
+            - plafond: 12 ans
+              taux: 40%
+            - plafond: 13 ans
+              taux: 20%
+            - plafond: 14 ans
+              taux: 20%
+            - plafond: 15 ans
+              taux: 0%
+    - sinon:
+        taux progressif:
+          assiette: entreprise . durée d'activité . en fin d'année
+          retourne seulement le taux: oui
+          tranches:
+            - plafond: 5 ans
+              taux: 100%
+            - plafond: 6 ans
+              taux: 60%
+            - plafond: 7 ans
+              taux: 40%
+            - plafond: 8 ans
+              taux: 20%
+            - plafond: 9 ans
+              taux: 0%
