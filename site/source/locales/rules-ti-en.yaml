@@ -3303,19 +3303,6 @@ indépendant . PL . métier:
   question.fr: A quelle catégorie appartient votre profession ?
   titre.en: '[automatic] business'
   titre.fr: métier
-indépendant . PL . métier . agents généraux d'assurances:
-  avec:
-    par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
-  description.en: >
-    [automatic] General insurance agents contribute to CAVAMAC for retirement
-    and provident insurance.
-  description.fr: >
-    Les agents généraux d'assurances cotisent auprès de la CAVAMAC pour la
-    retraite et la prévoyance.
-  titre.en: '[automatic] general insurance agents'
-  titre.fr: agents généraux d'assurances
 indépendant . PL . métier . expert-comptable:
   description.en: >
     [automatic] Chartered accountants and statutory auditors contribute to
@@ -3339,23 +3326,31 @@ indépendant . PL . métier . juridique:
     notaire:
       description.en: >
         [automatic] Liberal profession notaries contribute to the CPRN for
-        retirement and provident insurance.
-      description.fr: >
+        retirement and provident
+
+        benefits.
+
+
+        > CPRN's contribution and social protection rules are not implemented.
+
+        > implemented.
+      description.fr: |
         Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la
         prévoyance.
+
+        > Les règles de cotisation et de protection sociale de la CPRN ne sont
+        > pas implémentées.
       titre.en: '[automatic] notary'
       titre.fr: notaire
-    notaire . par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
     officier:
       description.en: >
         [automatic] Ministerial officers, public officials and judicial
-        companies are affiliated to Cavom for their pension and provident
-        schemes.
+        companies
+
+        are affiliated to Cavom for their pension and provident schemes.
 
 
-        List of professions concerned: 
+        List of professions concerned:
 
 
         - Bailiffs ;
@@ -3369,31 +3364,38 @@ indépendant . PL . métier . juridique:
         - Administrateurs judiciaires ;
 
         - Court-appointed agents.
+
+
+        > Cavom's contribution and social protection rules are not implemented.
+
+        > implemented.
       description.fr: >
         Les officiers ministériels, les officiers publics et les compagnies
-        judiciaires sont affiliées à la Cavom pour leur retraite et de
-        prévoyance.
+
+        judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
 
 
-        Liste des métiers concernés : 
+        Liste des métiers concernés :
 
 
-        - Huissiers de justice ;
+        - Huissiers de justice ;
 
-        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
+        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
 
-        - Commissaires de justice ;
+        - Commissaires de justice ;
 
-        - Greffiers près les tribunaux de commerce ;
+        - Greffiers près les tribunaux de commerce ;
 
-        - Administrateurs judiciaires ;
+        - Administrateurs judiciaires ;
 
         - Mandataires judiciaires.
+
+
+        > Les règles de cotisation et de protection sociale de la Cavom ne sont
+
+        > pas implémentées.
       titre.en: '[automatic] Ministerial officer, public officer, judicial company'
       titre.fr: Officier ministériel, officier public, compagnie judicaire
-    officier . par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
   titre.en: '[automatic] Legal and judicial professions'
   titre.fr: Professions juridiques et judicaires
 indépendant . PL . métier . rattaché CIPAV:
@@ -3519,12 +3521,6 @@ indépendant . PL . métier . santé:
     sage-femme:
       titre.en: '[automatic] midwife'
       titre.fr: sage-femme
-    vétérinaire:
-      titre.en: '[automatic] veterinarian'
-      titre.fr: vétérinaire
-    vétérinaire . par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
   description.en: >
     [automatic] **Exceptions** : Osteopaths, psychologists, psychotherapists,
     occupational therapists,
