@@ -65,7 +65,6 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     - si:
         toutes ces conditions:
           - entreprise . durée d'activité . en fin d'année < 2 ans
-          # CORRECTION ICI : Utilisation de l'égalité au lieu du mécanisme inexistant 'non:'
           - plus de 40 ans à l'installation = non
       alors: 0€/an
     - sinon:
