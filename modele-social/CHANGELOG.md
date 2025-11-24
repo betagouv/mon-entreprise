@@ -2,18 +2,30 @@
 
 ## next
 
+
+## 9.0.0
+
 ### Breaking changes
 - Renomme la règle `entreprise . imposition . IS . capital détenu au moins à 75 pourcents par des personnes physiques` en `entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques`
 
 ### Nouveautés
 - Ajoute la règle `entreprise . imposition . IS . total` qui inclue la contribution
-sociale sur l'IS.
+sociale sur l'IS
+- Ajoute les règles `salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur les salaires` et `salarié . contrat . apprentissage . exonération taxe sur les salaires`
+- Ajoute la règle `dirigeant . indépendant . PL . CARMF . avait plus de 40 ans au début` pour demander à l’usager si il/elle avait plus de 40 ans au début de son activité libérale.
+- Modification de la règle `dirigeant . indépendant . PL . CARMF . retraite complémentaire` pour intégrer la condition liée à l’âge au début de l’activité pour les deux premières années d’affiliation.
 
 ### Mises à jour
-- Change `entreprise . exercice . date trop ancienne` de 2018 à 2022.
+- Change `entreprise . exercice . date trop ancienne` de 2018 à 2022
+- Reformulation de la question de `entreprise . date de cessation`
+- Reformulation du texte de la cotisation CARMF pour utiliser un langage épicène et préciser « vous aviez plus de 40 ans » au lieu de « vous êtes âgé de plus de 40 ans ».
 
 ### Corrections
 - Corrige le calcul de `entreprise . exercice . durée`
+- Corrige le taux de cotisation maladie sur les revenus non conventionnés pour les médecins conventionnés secteur 2
+- Corrige la règle `salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS` qui ne s'appliquait pas correctement
+
+
 
 ## 8.0.0
 
