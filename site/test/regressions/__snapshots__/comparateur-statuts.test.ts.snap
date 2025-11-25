@@ -27,25 +27,25 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 `;
 
 exports[`calculate comparateur-statuts > ACRE 2`] = `
-"dirigeant . rémunération . net: 37731
-dirigeant . rémunération . net . après impôt: 32856
+"dirigeant . rémunération . net: 37775
+dirigeant . rémunération . net . après impôt: 32887
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . capital décès: 9420
 protection sociale . invalidité et décès . capital décès . orphelin: 196
-protection sociale . invalidité et décès . pension de reversion: 878
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 976
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1626
+protection sociale . invalidité et décès . pension de reversion: 879
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 977
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1628
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: null
-protection sociale . maladie . arrêt maladie: 53
+protection sociale . maladie . arrêt maladie: 54
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 65
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
-protection sociale . retraite . base: 1626
+protection sociale . retraite . base: 1628
 protection sociale . retraite . complémentaire: 141
 protection sociale . retraite . trimestres: 4"
 `;
@@ -75,8 +75,8 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > EI à l'IS 1`] = `
-"dirigeant . rémunération . net: 27619
-dirigeant . rémunération . net . après impôt: 26218
+"dirigeant . rémunération . net: 27621
+dirigeant . rémunération . net . après impôt: 26219
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -195,8 +195,8 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > base 2`] = `
-"dirigeant . rémunération . net: 32989
-dirigeant . rémunération . net . après impôt: 29537
+"dirigeant . rémunération . net: 32992
+dirigeant . rémunération . net . après impôt: 29539
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -267,8 +267,8 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 2`] = `
-"dirigeant . rémunération . net: 30981
-dirigeant . rémunération . net . après impôt: 28156
+"dirigeant . rémunération . net: 30983
+dirigeant . rémunération . net . après impôt: 28157
 entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null

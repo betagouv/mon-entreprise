@@ -87,14 +87,14 @@ Notifications affichées : dirigeant . indépendant . cotisations et contributio
 `;
 
 exports[`calculate simulations-indépendant > acre 1`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: 1609
+"dirigeant . indépendant . cotisations et contributions . début activité: 1613
 dirigeant . indépendant . revenu professionnel: 51978
-dirigeant . rémunération . cotisations: 22950
+dirigeant . rémunération . cotisations: 22957
 dirigeant . rémunération . net: 50000
 dirigeant . rémunération . net . après impôt: 41241
-dirigeant . rémunération . totale: 72950
+dirigeant . rémunération . totale: 72957
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 72950
+entreprise . chiffre d'affaires: 72957
 impôt . montant: 8759"
 `;
 
@@ -303,15 +303,15 @@ impôt . montant: 77178"
 `;
 
 exports[`calculate simulations-indépendant > cotisations forfaitaires début d'activité 1`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: 3403
-dirigeant . indépendant . revenu professionnel: 35678
-dirigeant . rémunération . cotisations: 15676
-dirigeant . rémunération . net: 34324
-dirigeant . rémunération . net . après impôt: 30455
+"dirigeant . indépendant . cotisations et contributions . début activité: 3411
+dirigeant . indépendant . revenu professionnel: 35681
+dirigeant . rémunération . cotisations: 15674
+dirigeant . rémunération . net: 34326
+dirigeant . rémunération . net . après impôt: 30456
 dirigeant . rémunération . totale: 50000
 entreprise . charges: 0
 entreprise . chiffre d'affaires: 50000
-impôt . montant: 3869"
+impôt . montant: 3870"
 `;
 
 exports[`calculate simulations-indépendant > cotisations minimales 1`] = `
@@ -375,7 +375,7 @@ impôt . montant: 0"
 `;
 
 exports[`calculate simulations-indépendant > exonération pension invalidité 3`] = `
-"dirigeant . indépendant . cotisations et contributions . début activité: 984
+"dirigeant . indépendant . cotisations et contributions . début activité: 987
 dirigeant . indépendant . revenu professionnel: 9253
 dirigeant . rémunération . cotisations: 1015
 dirigeant . rémunération . net: 8985

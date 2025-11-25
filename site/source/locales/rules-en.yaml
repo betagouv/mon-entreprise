@@ -9970,6 +9970,12 @@ salarié . activité partielle . total employeur habituel:
   titre.en: '[automatic] total usual employer'
   titre.fr: total employeur habituel
 salarié . ancienneté:
+  description.en: >
+    [automatic] Seniority is the number of years an employee has been with the
+    company. It is calculated from the date of hire.
+  description.fr: >
+    L'ancienneté est le nombre d'années de présence dans l'entreprise. Elle est
+    calculée à partir de la date d'embauche.
   titre.en: '[automatic] seniority'
   titre.fr: ancienneté
 salarié . contrat:
@@ -10371,15 +10377,6 @@ salarié . contrat . CDD . reconduction en CDI:
   question.fr: Le CDD sera-t-il reconduit en CDI ?
   titre.en: '[automatic] renewal on permanent contract'
   titre.fr: reconduction en CDI
-salarié . contrat . ancienneté:
-  description.en: >
-    [automatic] Seniority is the number of years an employee has been with the
-    company. It is calculated from the date of hire.
-  description.fr: >
-    L'ancienneté est le nombre d'années de présence dans l'entreprise. Elle est
-    calculée à partir de la date d'embauche.
-  titre.en: '[automatic] seniority'
-  titre.fr: ancienneté
 salarié . contrat . apprentissage . ancienneté:
   question.en: '[automatic] How long has the apprentice been employed?'
   question.fr: Depuis combien de temps l'apprenti est-il employé ?

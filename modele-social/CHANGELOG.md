@@ -8,12 +8,18 @@
 - Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . officier . par défaut`
 - Suppression de la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
 - Suppression de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
+- Supprime la règle `salarié . contrat . ancienneté`, utiliser `salarié . ancienneté` à la place
 
 ### Nouveautés
 - Les possibilités de métier juridique `notaire` et `officier` sont désormais applicables
 
 ### Mises à jour
 - Renomme chômage partiel en activité partielle
+
+### Corrections
+- Corrige le calcul des durées d'activité de l'entreprise
+- Corrige le calcul de la durée depuis le début d'année
+- Corrige le calcul de l'ancienneté
 
 ## 9.0.0
 

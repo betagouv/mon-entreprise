@@ -38,9 +38,11 @@ entreprise . créée cette année:
   description: Indique si l’entreprise a été créée l’année de la simulation.
 
 entreprise . durée d'activité:
-  durée:
-    depuis: date de création
-    jusqu'à: date
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: date
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité cette année:
   variations:
@@ -49,19 +51,20 @@ entreprise . durée d'activité cette année:
           - créée cette année
           - radiée cette année
       alors:
-        durée:
-          depuis: date de création
-          jusqu'à: date de cessation
+        somme:
+          - durée:
+              depuis: date de création
+              jusqu'à: date de cessation
+          - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
     - si: radiée cette année
       alors:
-        durée:
-          depuis: période . début d'année
-          jusqu'à: date de cessation
+        somme:
+          - durée:
+              depuis: période . début d'année
+              jusqu'à: date de cessation
+          - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
     - si: créée cette année
-      alors:
-        durée:
-          depuis: date de création
-          jusqu'à: période . fin d'année
+      alors: durée d'activité . en fin d'année
     - sinon: 1 an
   unité: jour
 
@@ -79,9 +82,11 @@ entreprise . durée d'activité . en fin d'année:
     - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité . en début d'année:
-  durée:
-    depuis: date de création
-    jusqu'à: période . début d'année
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: période . début d'année
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité . trimestres civils:
   titre: Nombre de trimestres civils couverts
