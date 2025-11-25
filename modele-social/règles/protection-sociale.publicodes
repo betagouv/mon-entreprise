@@ -380,6 +380,8 @@ protection sociale . retraite . complémentaire . RCI:
         dans: points acquis
       unité: €/an
       valeur: dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire
+      contexte:
+        dirigeant . exonérations . ACRE: non
       références:
         Décret n° 2024-484 du 30 mai 2024 modifiant les taux globaux de cotisations et contributions de certains travailleurs indépendants exerçant dans le cadre de la microentreprise: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049620955
         Cotisations sociales, quels changements au 1er juillet 2024 ?: https://entreprendre.service-public.fr/actualites/A17464
