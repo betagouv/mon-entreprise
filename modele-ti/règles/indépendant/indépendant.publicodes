@@ -36,12 +36,46 @@ indépendant . revenu professionnel:
   unité: €/an
   résoudre la référence circulaire: oui
   variations:
-    - si: entreprise . imposition = 'IS'
+    - si: entreprise . imposition . IS
       alors:
         somme:
           - rémunération . nette
           - cotisations et contributions . non déductibles
     - sinon: entreprise . résultat fiscal
+
+indépendant . revenu brut:
+  description: |
+    Le revenu brut ou super-brut correspond au coût du travail ou encore au chiffre
+    d’affaires après déduction des charges professionnelles d’exploitations (hors
+    cotisations et contributions sociales).
+
+    ### À l’impôt sur le revenu
+
+    Le revenu brut correspond au
+    **chiffre d’affaires moins les charges** de l’entreprise liées à
+    l’exploitation, c’est-à-dire aux charges autres que les cotisations sociales,
+    la CSG et la CRDS.
+
+    Pour les gérantes et gérants associés, le chiffre d’affaires est proratisé.
+
+    ### À l’impôt sur les sociétés
+
+    Le revenu brut correspond à la **rémunération brute** et à une part des
+    dividendes. La rémunération prise en compte n’inclue pas la déduction des frais
+    professionnels, ni les cotisations sociales, la CSG et la CRDS.
+
+  note: |
+    Le moteur de calcul n’intègre pas encore les dividendes dans le revenu brut.
+
+  variations:
+    - si: entreprise . imposition . IR
+      alors: entreprise . chiffre d'affaires - entreprise . charges
+    - sinon:
+        somme:
+          - rémunération . totale
+          # - bénéficiaire . dividendes . bruts
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
 
 indépendant . PSS proratisé:
   titre: plafond de la sécurité sociale proratisé
