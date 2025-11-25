@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Markdown } from './markdown'
 import { HelpButtonWithPopover } from './molecules/HelpButtonWithPopover'
@@ -24,6 +25,8 @@ export function InfoButton({
 	onClick,
 	'aria-label': ariaLabel,
 }: InfoButtonProps) {
+	const { t } = useTranslation()
+
 	if (!description && !children) {
 		return null
 	}
@@ -36,7 +39,12 @@ export function InfoButton({
 			bigPopover={bigPopover}
 			className={className || 'print-hidden'}
 			aria-haspopup="dialog"
-			aria-label={ariaLabel ?? `Plus d'informations sur ${title}`}
+			aria-label={
+				ariaLabel ??
+				t("Plus d'infos sur {{ title }}", {
+					title,
+				})
+			}
 			onClick={onClick}
 		>
 			{description && typeof description === 'string' ? (
