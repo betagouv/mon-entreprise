@@ -4,7 +4,6 @@ import {
 	RadioGroup as RARadioGroup,
 	type RadioGroupProps as RARadioGroupProps,
 } from 'react-aria-components'
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { InfoButton } from '@/design-system/InfoButton'
@@ -13,7 +12,6 @@ import { fieldContainerStyles } from '../fieldsStyles'
 
 type Option = {
 	description?: string
-	key: string
 	label: string
 	value: string
 }
@@ -31,8 +29,6 @@ export function RadioGroup({
 	value = null,
 	onChange,
 }: RadioGroupProps) {
-	const { t } = useTranslation()
-
 	return (
 		<StyledRARadioGroup
 			defaultValue={defaultValue}
@@ -42,7 +38,7 @@ export function RadioGroup({
 			<StyledRALabel>{legend}</StyledRALabel>
 
 			{options.map((option) => (
-				<StyledRadioAndInfoButton key={option.key}>
+				<StyledRadioAndInfoButton key={`key-${option.value}`}>
 					<StyledRARadio value={option.value}>{option.label}</StyledRARadio>
 
 					{option.description && (
@@ -50,9 +46,6 @@ export function RadioGroup({
 							description={option.description}
 							title={option.label.toString()}
 							light
-							aria-label={t("Plus d'infos sur {{ title }}", {
-								title: option.label,
-							})}
 						/>
 					)}
 				</StyledRadioAndInfoButton>

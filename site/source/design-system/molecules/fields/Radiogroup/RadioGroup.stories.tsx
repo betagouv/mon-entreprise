@@ -17,18 +17,15 @@ export default {
 
 const OPTIONS = [
 	{
-		key: 'option1',
 		value: 'option1',
 		label: 'Option 1 (avec description)',
 		description: "Description de l'option 1",
 	},
 	{
-		key: 'option2',
 		value: 'option2',
 		label: 'Option 2 (sans)',
 	},
 	{
-		key: 'option3',
 		value: 'option3',
 		label: 'Option 3 (avec)',
 		description: "Description de l'option 3",
