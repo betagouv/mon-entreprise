@@ -90,16 +90,3 @@ indépendant . PSS proratisé:
     - plafond sécurité sociale
     - entreprise . prorata temporis
   arrondi: oui
-
-indépendant . assiette des cotisations:
-  unité: €/an
-  description: |
-    Il s’agit de l’assiette des cotisations sociales, nombre forcément positif
-  valeur: sans plancher
-  plancher: 0
-
-  avec:
-    sans plancher:
-      somme:
-        - revenu professionnel
-        - cotisations facultatives . déductibles
