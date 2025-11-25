@@ -22,6 +22,8 @@ type RadioGroupProps = RARadioGroupProps & {
 	options: Option[]
 }
 
+// Ce composant ne gère plus le cas des sous-groupes de boutons radio.
+// Si cela s'avère toujours nécessaire, on pourra s'inspirer du précédent composant <RadioChoiceGroup />.
 export function RadioGroup({
 	defaultValue = null,
 	legend,
