@@ -3,9 +3,13 @@ salarié:
   valeur: oui
 
 salarié . ancienneté:
-  durée:
-    depuis: contrat . date d'embauche
-    jusqu'à: date
+  description: |
+    L'ancienneté est le nombre d'années de présence dans l'entreprise. Elle est calculée à partir de la date d'embauche.
+  somme:
+    - durée:
+        depuis: contrat . date d'embauche
+        jusqu'à: date
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 salarié . convention collective:
   experimental: oui

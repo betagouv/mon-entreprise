@@ -55,6 +55,8 @@ période . fin d'année . N-1:
       alors: 31/12/2022
 
 période . durée depuis le début d'année:
-  durée:
-    depuis: période . début d'année
-    jusqu'à: date
+  somme:
+    - durée:
+        depuis: période . début d'année
+        jusqu'à: date
+    - 1 jour
