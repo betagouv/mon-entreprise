@@ -162,7 +162,7 @@ indépendant . PL . régime général . taux spécifique retraite complémentair
   remplace: cotisations et contributions . cotisations . retraite complémentaire
   formule:
     barème:
-      assiette: assiette des cotisations
+      assiette: cotisations et contributions . assiette sociale
       multiplicateur: plafond sécurité sociale
       tranches:
         - taux: 0%
@@ -176,7 +176,7 @@ indépendant . PL . maladie:
   remplace: cotisations et contributions . cotisations . maladie
   unité: €/an
   produit:
-    - valeur: assiette des cotisations
+    - valeur: cotisations et contributions . assiette sociale
       plancher: assiette minimale . maladie
     - taux
   arrondi: oui
@@ -186,7 +186,7 @@ indépendant . PL . maladie:
   avec:
     taux:
       taux progressif:
-        assiette: assiette des cotisations
+        assiette: cotisations et contributions . assiette sociale
         multiplicateur: plafond sécurité sociale
         tranches:
           - plafond: 40%
