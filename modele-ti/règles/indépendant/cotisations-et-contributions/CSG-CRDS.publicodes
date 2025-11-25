@@ -43,17 +43,48 @@ indépendant . cotisations et contributions . CSG-CRDS:
     non déductible . taux: 2.9%
 
 indépendant . cotisations et contributions . CSG-CRDS . assiette:
+  titre: assiette de la CSG-CRDS
+  description: |
+    Avec la réforme du calcul de l’assiette de cotisations et contributions
+    sociales des travailleurs indépendants portée par la Loi de Financement de la
+    Sécurité Sociale 2024, **l’assiette de la CSG-CRDS est égale** :
+    - au revenu « brut » (chiffre d’affaires moins les charges autres que les
+    cotisations sociales)
+    - abattu d’un taux forfaitaire de 26 %.
+
+    Le montant de l’abattement de 26 % est encadré par un plancher et
+    un plafond.
+
+  variations:
+    - si: après réforme
+      alors:
+        valeur: revenu brut
+        abattement: abattement
+        arrondi: oui
+    - sinon:
+        somme:
+          - assiette sociale . sans plancher
+          - cotisations
+          - conjoint collaborateur . cotisations
+      abattement:
+        somme:
+          - revenus étrangers . montant
+          - IJSS . imposable
+        plancher: 0 €/an
+
+  avec:
+    abattement:
+      valeur: 26% * revenu brut
+      plancher: 1.76% * plafond sécurité sociale . annuel
+      plafond: 130% * plafond sécurité sociale . annuel
+      arrondi: oui
+
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
+    Article L136-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051284498
+    Article D136-5 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049899286
+
   note: >-
-    Seule la partie imposable des IJSS est retranchée de l’assiette de la CSG,
-    puisque la partie non imposable a déjà été retranchée du revenu net fiscal
-    fourni
-  valeur:
-    somme:
-      - assiette des cotisations . sans plancher
-      - cotisations
-      - conjoint collaborateur . cotisations
-  abattement:
-    somme:
-      - revenus étrangers . montant
-      - IJSS . imposable
-  plancher: 0 €/mois
+    Avant la réforme, seule la partie imposable des IJSS est retranchée de
+    l’assiette de la CSG, puisque la partie non imposable a déjà été retranchée du
+    revenu net fiscal fourni.
