@@ -11,7 +11,7 @@ entreprise . chiffre d'affaires:
   somme:
     - indépendant . rémunération . nette . après impôt
     - indépendant . rémunération . impôt
-    - indépendant . rémunération . cotisations
+    - indépendant . cotisations et contributions
     - charges
     - applicable si: imposition . IS
       somme:
