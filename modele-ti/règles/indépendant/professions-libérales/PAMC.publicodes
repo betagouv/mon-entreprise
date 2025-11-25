@@ -95,7 +95,7 @@ indépendant . PL . PAMC . CURPS:
       - remplaçant
   formule:
     produit:
-      - assiette des cotisations
+      - cotisations et contributions . assiette sociale
       - variations:
           - si: métier = 'santé . médecin'
             alors: 0.5%
@@ -125,7 +125,7 @@ indépendant . PL . PAMC . revenus activité conventionnée:
     provenant des actes conventionnés.
   formule:
     produit:
-      - assiette des cotisations
+      - cotisations et contributions . assiette sociale
       - valeur: 100% - proportion recette activité non conventionnée
         plancher: 0%
 
@@ -186,7 +186,7 @@ indépendant . PL . PAMC . maladie . participation CPAM:
 
 indépendant . PL . PAMC . maladie . contribution additionnelle:
   produit:
-    - (assiette des cotisations - revenus activité conventionnée)
+    - (cotisations et contributions . assiette sociale - revenus activité conventionnée)
     - taux
   arrondi: oui
   avec:
@@ -196,7 +196,7 @@ indépendant . PL . PAMC . maladie . contribution additionnelle:
           alors: 3.25%
         - sinon:
             taux progressif:
-              assiette: assiette des cotisations
+              assiette: cotisations et contributions . assiette sociale
               multiplicateur: plafond sécurité sociale
               tranches:
                 - plafond: 40%
