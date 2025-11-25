@@ -37,7 +37,6 @@ indépendant . IJSS . montant:
     - indemnité journalière forfaitaire d’interruption d’activité (maternité)
     - indemnité de remplacement pour maternité, paternité ou adoption
   par défaut: 0 €/an
-  unité: €/an
 
 indépendant . IJSS . imposable:
   titre: part imposable
@@ -60,3 +59,7 @@ indépendant . IJSS . imposable:
     - allocation journalière du proche aidant (AJPA, versée par la CAF)
   par défaut: 0 €/an
   unité: €/an
+
+indépendant . IJSS . après abattement:
+  valeur: IJSS . montant
+  abattement: 26%

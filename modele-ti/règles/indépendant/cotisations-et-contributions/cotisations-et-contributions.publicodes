@@ -53,3 +53,43 @@ indépendant . cotisations et contributions . formation professionnelle:
   références:
     Contribution à la formation professionnelle (CFP): https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-formation-professionnelle
     Contribution à la formation professionnelle (CFP) des entrepreneurs individuels: https://entreprendre.service-public.fr/vosdroits/F23459
+
+indépendant . cotisations et contributions . après réforme:
+  valeur: date > 01/2025
+
+indépendant . cotisations et contributions . assiette sociale:
+  description: |
+    Avec la réforme du calcul de l’assiette de cotisations et contributions
+    sociales des travailleurs indépendants portée par la Loi de Financement de la
+    Sécurité Sociale 2024,
+    **l’assiette des cotisations sociales est alignée sur l’assiette de la CSG-CRDS**.
+
+    Pour obtenir l’assiette des cotisations sociales à partir de celle de la
+    CSG-CRDS il faut :
+    - y ajouter les revenus de remplacement (hors affection de longue durée)
+    - et en soustraire la participation, l’intéressement et l’abondement au PER.
+
+  variations:
+    - si: après réforme
+      alors:
+        somme:
+          - CSG-CRDS . assiette
+          - IJSS . après abattement
+          - revenus étrangers . montant
+          # - (- cotisations facultatives . déductibles)
+    - sinon:
+        valeur: sans plancher
+        plancher: 0 €/an
+
+  avec:
+    sans plancher:
+      somme:
+        - revenu professionnel
+        - cotisations facultatives . déductibles
+
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
+    Article L131-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048683707
+    Article L3312-4 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075048
+    Article L3324-5 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038589722
+    Article L3332-27 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075039
