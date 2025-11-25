@@ -287,13 +287,13 @@ protection sociale . retraite . base . CNAVPL:
           privé: oui
           valeur: indépendant . PL . CNAVPL . retraite . tranche T1
           contexte:
-            indépendant . assiette des cotisations: plafond sécurité sociale
+            indépendant . cotisations et contributions . assiette sociale: plafond sécurité sociale
 
         cotisation maximum T2:
           privé: oui
           valeur: indépendant . PL . CNAVPL . retraite . tranche T2
           contexte:
-            indépendant . assiette des cotisations: 5 * plafond sécurité sociale
+            indépendant . cotisations et contributions . assiette sociale: 5 * plafond sécurité sociale
 
     points acquis . points incapacité:
       applicable si: indépendant . PL . CNAVPL . exonération incapacité
