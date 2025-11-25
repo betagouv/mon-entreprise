@@ -11,11 +11,11 @@ indépendant . rémunération . totale:
   variations:
     - si: entreprise . imposition . IS
       alors:
-        somme:
+        inversion numérique:
+          - rémunération . nette
           - cotisations et contributions
           - rémunération . nette . après impôt
-          - impôt
-        par défaut: entreprise . chiffre d'affaires - entreprise . charges
+          - rémunération . impôt
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
   arrondi: oui
 
