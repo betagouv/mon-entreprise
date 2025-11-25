@@ -53,7 +53,7 @@ indépendant . PL . CIPAV . retraite complémentaire:
     - sinon:
         barème:
           multiplicateur: plafond sécurité sociale
-          assiette: assiette des cotisations
+          assiette: cotisations et contributions . assiette sociale
           tranches:
             - plafond: 1
               taux: 9%
@@ -100,7 +100,7 @@ indépendant . PL . CIPAV . retraite complémentaire:
       applicable si: date < 01/2023
       titre: Classe de cotisation (avant 2023)
       grille:
-        assiette: assiette des cotisations
+        assiette: cotisations et contributions . assiette sociale
         tranches:
           - montant: "'Classe A'"
             plafond: 26581 €/an
@@ -130,7 +130,7 @@ indépendant . PL . CIPAV . invalidité et décès:
       alors: avant 2023
     - sinon:
         produit:
-          - valeur: assiette des cotisations
+          - valeur: cotisations et contributions . assiette sociale
             unité: €/an
             plancher: 37% * indépendant . PSS proratisé
             plafond: 1.85 * indépendant . PSS proratisé

@@ -13,9 +13,9 @@ indépendant . PL . CAVP . directeur non médecin:
 indépendant . PL . CAVP . demande reduction:
   type: notification
   applicable si:
-    est défini: assiette des cotisations
+    est défini: cotisations et contributions . assiette sociale
   une de ces conditions:
-    - assiette des cotisations < 1.8125 * plafond sécurité sociale
+    - cotisations et contributions . assiette sociale < 1.8125 * plafond sécurité sociale
     - entreprise . durée d'activité <= 2 an
   résumé: |
     Une réduction de cotisations peut être demandée les 2 premières années, ou
@@ -67,7 +67,7 @@ indépendant . PL . CAVP . retraite complémentaire:
     part géré par capitalisation:
       formule:
         grille:
-          assiette: assiette des cotisations
+          assiette: cotisations et contributions . assiette sociale
           multiplicateur: plafond sécurité sociale . N-1
           tranches:
             - montant: 2 * cotisation de référence
@@ -136,7 +136,7 @@ indépendant . PL . CAVP . PCV:
 
     cotisations proportionnelle:
       produit:
-        - valeur: assiette des cotisations
+        - valeur: cotisations et contributions . assiette sociale
           plafond: 5 * plafond sécurité sociale
         - variations:
             - si: date >= 01/2024
