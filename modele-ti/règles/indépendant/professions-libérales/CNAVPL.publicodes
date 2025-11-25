@@ -41,7 +41,7 @@ indépendant . PL . CNAVPL . retraite:
       unité: €/an
 
     tranche T1 . revenu cotisé:
-      valeur: assiette des cotisations
+      valeur: cotisations et contributions . assiette sociale
       plancher: assiette minimale . retraite
       unité: €/an
 
@@ -56,7 +56,7 @@ indépendant . PL . CNAVPL . retraite:
       unité: €/an
 
     tranche T2 . revenu cotisé:
-      valeur: assiette des cotisations
+      valeur: cotisations et contributions . assiette sociale
       plancher: assiette minimale . retraite
       unité: €/an
 
@@ -94,7 +94,7 @@ indépendant . PL . CNAVPL . indemnités journalières maladie:
 
   avec:
     assiette:
-      valeur: assiette des cotisations
+      valeur: cotisations et contributions . assiette sociale
       plafond: plafond
       plancher:
         applicable si: assiette minimale
@@ -166,11 +166,11 @@ indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
     - si: proportion . quart
       alors:
         produit:
-          - assiette des cotisations
+          - cotisations et contributions . assiette sociale
           - 25%
     - sinon:
         produit:
-          - assiette des cotisations
+          - cotisations et contributions . assiette sociale
           - 50 %
 
 indépendant . PL . CNAVPL . conjoint collaborateur . retraite:

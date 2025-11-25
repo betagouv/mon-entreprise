@@ -102,7 +102,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
 
 indépendant . cotisations et contributions . cotisations . exonérations . ACRE . taux:
   taux progressif:
-    assiette: assiette des cotisations
+    assiette: assiette sociale
     multiplicateur: PSS proratisé
     tranches:
       - taux: 100%
