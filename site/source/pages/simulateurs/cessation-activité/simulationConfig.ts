@@ -18,6 +18,7 @@ export const configCessationActivité: SimulationConfig = {
 		'liste noire': [
 			...(configIndépendant.questions?.['liste noire'] || []),
 			'entreprise . date de cessation',
+			'impôt', // Ce simulateur ignore le calcul de l’impôt
 		],
 	},
 	'règles à ignorer pour déclencher les questions': [
