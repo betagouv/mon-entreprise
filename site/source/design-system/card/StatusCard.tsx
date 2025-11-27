@@ -14,10 +14,15 @@ import { CardContainer } from './Card'
 
 type StatusCardProps = {
 	isBestOption?: boolean
+	nonApplicable?: boolean
 	children: ReactNode
 }
 
-export const StatusCard = ({ children, isBestOption }: StatusCardProps) => {
+export const StatusCard = ({
+	children,
+	isBestOption,
+	nonApplicable,
+}: StatusCardProps) => {
 	const { t } = useTranslation()
 
 	const étiquettes = findChildrenByType(children, StatusCard.Étiquette)
@@ -32,7 +37,7 @@ export const StatusCard = ({ children, isBestOption }: StatusCardProps) => {
 	const hasContent = titre || valeurSecondaire
 
 	return (
-		<StyledCardContainer $inert>
+		<StyledCardContainer $inert $nonApplicable={nonApplicable}>
 			<CardBody>
 				{étiquettes.length > 0 && (
 					<Grid container spacing={1}>
@@ -47,14 +52,24 @@ export const StatusCard = ({ children, isBestOption }: StatusCardProps) => {
 				)}
 			</CardBody>
 			{isBestOption && (
-				<AbsoluteSpan
+				<AbsoluteSpanTop
 					title={t(
 						'pages.simulateurs.comparaison-statuts.meilleure-option',
 						'Option la plus avantageuse.'
 					)}
 				>
 					<StyledEmoji emoji="🥇" />
-				</AbsoluteSpan>
+				</AbsoluteSpanTop>
+			)}
+			{nonApplicable && (
+				<AbsoluteSpanWithMargin
+					title={t(
+						'pages.simulateurs.comparaison-statuts.option-non-applicable',
+						'Option non applicable.'
+					)}
+				>
+					<StyledDisabledEmoji emoji="🚫" />
+				</AbsoluteSpanWithMargin>
 			)}
 			{(complément || actions.length > 0) && (
 				<CardFooter>
@@ -99,18 +114,55 @@ StatusCard.ValeurSecondaire = StatusCardValeurSecondaire
 StatusCard.Complément = StatusCardComplément
 StatusCard.Action = StatusCardAction
 
-const StyledCardContainer = styled(CardContainer)`
+const StyledCardContainer = styled(CardContainer)<{
+	$nonApplicable?: boolean
+}>`
 	position: relative;
 	align-items: flex-start;
 	padding: 0;
+
+	${({ $nonApplicable, theme }) =>
+		$nonApplicable &&
+		`
+		opacity: 0.6;
+		background-color: ${
+			theme.darkMode
+				? theme.colors.extended.dark[700]
+				: theme.colors.extended.grey[200]
+		} !important;
+		border-color: ${theme.colors.extended.grey[400]};
+		filter: grayscale(30%);
+
+		&:hover {
+			background-color: ${
+				theme.darkMode
+					? theme.colors.extended.dark[700]
+					: theme.colors.extended.grey[200]
+			} !important;
+			box-shadow: ${
+				theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]
+			};
+		}
+	`}
 `
 
-const AbsoluteSpan = styled.span`
+const AbsoluteSpanTop = styled.span`
 	position: absolute;
 	top: 0;
 	right: 1.5rem;
 `
+
+const AbsoluteSpanWithMargin = styled.span`
+	position: absolute;
+	top: 0.5rem;
+	right: 1.5rem;
+`
+
 const StyledEmoji = styled(Emoji)`
+	font-size: 1.5rem;
+`
+
+const StyledDisabledEmoji = styled(Emoji)`
 	font-size: 1.5rem;
 `
 
