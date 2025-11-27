@@ -77,9 +77,6 @@ export default function RadioChoiceGroup({
 								light
 								title={option.label.toString()}
 								description={option.description}
-								aria-label={t("Plus d'informations sur {{ title }}", {
-									title: option.label,
-								})}
 							/>
 						)}
 					</div>
@@ -113,7 +110,6 @@ function RadioGroup(props: RadioGroupProps) {
 	const { children, label, description, isSubRadioGroup } = props
 	const state = useRadioGroupState(props)
 	const { radioGroupProps, labelProps } = useRadioGroup(props, state)
-	const { t } = useTranslation()
 
 	useEffect(() => {
 		if (!props.value) {
@@ -133,14 +129,7 @@ function RadioGroup(props: RadioGroupProps) {
 				<StyledH5 as="p" {...labelProps}>
 					{label}
 					{description && (
-						<InfoButton
-							light
-							title={label}
-							description={description}
-							aria-label={t("Plus d'informations sur {{ title }}", {
-								title: label,
-							})}
-						/>
+						<InfoButton light title={label} description={description} />
 					)}
 				</StyledH5>
 			)}
