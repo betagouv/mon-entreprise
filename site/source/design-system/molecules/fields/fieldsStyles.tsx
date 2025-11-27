@@ -1,7 +1,10 @@
 import { css } from 'styled-components'
 
 const LABEL_AND_HELPERS_HEIGHT = '0.9rem'
-const TRANSITION = 'transition: all 200ms;'
+
+export const fieldTransition = css`
+	transition: all 200ms;
+`
 
 export const fieldContainerStyles = css`
 	display: flex;
@@ -30,7 +33,7 @@ export const labelAndInputContainerStyles = css`
 			? 'rgba(255, 255, 255, 10%)'
 			: theme.colors.extended.grey[100]};
 
-	${TRANSITION}
+	${fieldTransition}
 
 	&:focus-within {
 		outline-color: ${({ theme }) =>
@@ -51,7 +54,7 @@ export const fieldLabelStyles = css`
 
 	font-size: ${LABEL_AND_HELPERS_HEIGHT};
 
-	${TRANSITION}
+	${fieldTransition}
 
 	@media not print {
 		color: ${({ theme }) =>

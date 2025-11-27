@@ -8,9 +8,9 @@ import { styled } from 'styled-components'
 
 import { InfoButton } from '@/design-system/InfoButton'
 
-import { fieldContainerStyles } from '../fieldsStyles'
+import { fieldContainerStyles, fieldTransition } from '../fieldsStyles'
 
-type Option = {
+type RadioOption = {
 	description?: string
 	label: string
 	value: string
@@ -19,7 +19,7 @@ type Option = {
 type RadioGroupProps = RARadioGroupProps & {
 	description?: string
 	legend: string
-	options: Option[]
+	options: RadioOption[]
 }
 
 // Ce composant ne gère plus le cas des sous-groupes de boutons radio.
@@ -85,7 +85,7 @@ const StyledRARadio = styled(RARadio)`
 
 		cursor: pointer;
 
-		transition: all 200ms;
+		${fieldTransition}
 	}
 
 	&::before {
