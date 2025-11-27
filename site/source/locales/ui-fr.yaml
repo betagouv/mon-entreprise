@@ -1810,6 +1810,7 @@ pages:
           titre: Votre activité est considérée comme professionnelle
       comparateur:
         applicable: Applicable
+        aria-label: Comparaison des régimes d'affiliation
         non-applicable: Non applicable
         non-applicable-raison: avec vos recettes actuelles
         non-applicable-raison-type-location: pour ce type de location
