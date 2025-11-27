@@ -42,7 +42,6 @@ describe('Location de meublé', () => {
 					).toBeInTheDocument()
 				})
 
-				// Vérifie qu'aucun régime n'est affiché
 				expect(screen.queryByText(/Régime général/i)).not.toBeInTheDocument()
 				expect(screen.queryByText(/Auto-entrepreneur/i)).not.toBeInTheDocument()
 				expect(
@@ -55,16 +54,16 @@ describe('Location de meublé', () => {
 				render()
 				await saisirRecettes(15000)
 
-				await waitFor(() => {
-					const lienUrssaf = screen.getByRole('link', {
+				const lienUrssaf = await waitFor(() => {
+					return screen.getByRole('link', {
 						name: /en savoir plus sur les régimes d'économie collaborative/i,
 					})
-					expect(lienUrssaf).toBeInTheDocument()
-					expect(lienUrssaf).toHaveAttribute(
-						'href',
-						expect.stringContaining('urssaf.fr')
-					)
 				})
+				expect(lienUrssaf).toBeInTheDocument()
+				expect(lienUrssaf).toHaveAttribute(
+					'href',
+					expect.stringContaining('urssaf.fr')
+				)
 			})
 		})
 
@@ -86,27 +85,25 @@ describe('Location de meublé', () => {
 				render()
 				await saisirRecettes(25000)
 
-				await waitFor(() => {
-					const comparateur = screen.getByRole('list', {
+				const comparateur = await waitFor(() => {
+					return screen.getByRole('list', {
 						name: /comparaison des régimes/i,
 					})
-
-					// Cherche dans le comparateur spécifiquement
-					expect(
-						within(comparateur).getByText(/Régime général/i)
-					).toBeInTheDocument()
-					expect(
-						within(comparateur).getByText(/Auto-entrepreneur/i)
-					).toBeInTheDocument()
-					expect(
-						within(comparateur).getByText(/Travailleur indépendant/i)
-					).toBeInTheDocument()
-
-					// Vérifie que "Pas d'affiliation" n'est PAS affiché
-					expect(
-						within(comparateur).queryByText(/Pas d'affiliation/i)
-					).not.toBeInTheDocument()
 				})
+
+				expect(
+					within(comparateur).getByText(/Régime général/i)
+				).toBeInTheDocument()
+				expect(
+					within(comparateur).getByText(/Auto-entrepreneur/i)
+				).toBeInTheDocument()
+				expect(
+					within(comparateur).getByText(/Travailleur indépendant/i)
+				).toBeInTheDocument()
+
+				expect(
+					within(comparateur).queryByText(/Pas d'affiliation/i)
+				).not.toBeInTheDocument()
 			})
 
 			it("doit afficher le message d'affiliation obligatoire même juste au seuil (23 000€)", async () => {
@@ -119,15 +116,14 @@ describe('Location de meublé', () => {
 							/votre activité est considérée comme professionnelle/i
 						)
 					).toBeInTheDocument()
-
-					// Le comparateur doit être affiché avec 3 régimes
-					const comparateur = screen.getByRole('list', {
-						name: /comparaison des régimes/i,
-					})
-					expect(
-						within(comparateur).getByText(/Régime général/i)
-					).toBeInTheDocument()
 				})
+
+				const comparateur = screen.getByRole('list', {
+					name: /comparaison des régimes/i,
+				})
+				expect(
+					within(comparateur).getByText(/Régime général/i)
+				).toBeInTheDocument()
 			})
 		})
 	})
