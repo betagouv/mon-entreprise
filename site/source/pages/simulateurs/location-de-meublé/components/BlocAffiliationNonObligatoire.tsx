@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { Body, H3, Link, Message, Spacing } from '@/design-system'
 
@@ -10,23 +10,23 @@ export const BlocAffiliationNonObligatoire = () => {
 			<Spacing lg />
 			<Message type="info">
 				<H3>
-					<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.titre">
-						Votre activité est considérée comme non-professionnelle
-					</Trans>
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.titre',
+						'Votre activité est considérée comme non-professionnelle'
+					)}
 				</H3>
 				<Body>
-					<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.texte">
-						Vous n'êtes pas obligé de vous affilier à un régime de sécurité
-						sociale et ne payez pas de cotisations sociales.
-					</Trans>
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.texte',
+						"Vous n'êtes pas obligé de vous affilier à un régime de sécurité sociale et ne payez pas de cotisations sociales."
+					)}
 				</Body>
 				<Spacing sm />
 				<Body>
-					<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.affiliation-volontaire">
-						Vous pouvez toutefois choisir de vous affilier volontairement pour
-						bénéficier d'une protection sociale (assurance maladie, retraite,
-						etc.).
-					</Trans>
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.affiliation-volontaire',
+						"Vous pouvez toutefois choisir de vous affilier volontairement pour bénéficier d'une protection sociale (assurance maladie, retraite, etc.)."
+					)}
 				</Body>
 				<Spacing sm />
 				<Link
@@ -36,9 +36,10 @@ export const BlocAffiliationNonObligatoire = () => {
 						"En savoir plus sur les régimes d'économie collaborative"
 					)}
 				>
-					<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.lien-urssaf">
-						En savoir plus sur les régimes d'économie collaborative
-					</Trans>
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.lien-urssaf',
+						"En savoir plus sur les régimes d'économie collaborative"
+					)}
 				</Link>
 			</Message>
 		</>
