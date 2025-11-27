@@ -113,7 +113,10 @@ const RégimeCard = ({
 	}
 
 	return (
-		<StatusCard isBestOption={estMeilleurRégime}>
+		<StatusCard
+			isBestOption={estMeilleurRégime}
+			nonApplicable={!résultat.applicable}
+		>
 			<StatusCard.Étiquette>
 				<RégimeTag régime={résultat.régime} />
 			</StatusCard.Étiquette>
