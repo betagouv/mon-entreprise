@@ -24,6 +24,7 @@ import { Emoji } from '@/design-system/emoji'
 import {
 	fieldInputStyles,
 	fieldLabelStyles,
+	fieldTransition,
 	labelAndInputContainerStyles,
 } from '../fieldsStyles'
 
@@ -174,6 +175,8 @@ const StyledRACalendar = styled(RACalendar)`
 		font-size: 1.25rem;
 		background: transparent;
 
+		${fieldTransition}
+
 		&:hover,
 		&:focus {
 			background: ${({ theme }) => theme.colors.bases.primary[200]};
@@ -186,6 +189,8 @@ const StyledRACalendar = styled(RACalendar)`
 		border-radius: 50%;
 
 		text-align: center;
+
+		${fieldTransition}
 
 		&:hover,
 		&:focus {

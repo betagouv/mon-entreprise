@@ -15,7 +15,7 @@ export default {
 	],
 } as Meta<typeof RadioGroup>
 
-const OPTIONS = [
+const RADIO_OPTIONS = [
 	{
 		value: 'option1',
 		label: 'Option 1 (avec description)',
@@ -32,7 +32,7 @@ const OPTIONS = [
 	},
 ]
 const DefaultRadioGroup = () => {
-	const defaultValue = OPTIONS[0].value
+	const defaultValue = RADIO_OPTIONS[0].value
 
 	const [value, setValue] = useState(defaultValue)
 
@@ -44,7 +44,7 @@ const DefaultRadioGroup = () => {
 		<RadioGroup
 			defaultValue={defaultValue}
 			legend="Légende du groupe de boutons radio"
-			options={OPTIONS}
+			options={RADIO_OPTIONS}
 			value={value}
 			onChange={handleChange}
 		/>
@@ -61,7 +61,7 @@ const RadioGroupWithoutDefaultValue = () => {
 	return (
 		<RadioGroup
 			legend="Légende du groupe de boutons radio"
-			options={OPTIONS}
+			options={RADIO_OPTIONS}
 			value={value}
 			onChange={handleChange}
 		/>
@@ -73,7 +73,7 @@ type Story = StoryObj<typeof RadioGroup>
 export const Default: Story = {
 	args: {
 		legend: 'Légende du radiogroup',
-		options: OPTIONS,
+		options: RADIO_OPTIONS,
 	},
 	render: () => <DefaultRadioGroup />,
 }
@@ -81,7 +81,7 @@ export const Default: Story = {
 export const WithoutDefaultValue: Story = {
 	args: {
 		legend: 'Légende du radiogroup',
-		options: OPTIONS,
+		options: RADIO_OPTIONS,
 	},
 	render: () => <RadioGroupWithoutDefaultValue />,
 }
