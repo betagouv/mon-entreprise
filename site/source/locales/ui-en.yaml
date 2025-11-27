@@ -1845,6 +1845,7 @@ pages:
           titre: Your activity is considered professional
       comparateur:
         applicable: Applicable
+        aria-label: Comparison of affiliation plans
         non-applicable: Not applicable
         non-applicable-raison: with your current recipes
         non-applicable-raison-type-location: for this type of rental

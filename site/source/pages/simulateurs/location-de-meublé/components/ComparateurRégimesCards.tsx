@@ -1,6 +1,6 @@
 import { Array, Order, pipe } from 'effect'
 import * as O from 'effect/Option'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import {
 	compareRégimes,
@@ -26,6 +26,7 @@ import { toString as formatMontant } from '@/domaine/Montant'
 import { getGridSizes } from '../../comparaison-statuts/components/DetailsRowCards'
 
 export const ComparateurRégimesCards = () => {
+	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
 
 	const comparaisonRégimes = pipe(
@@ -64,7 +65,10 @@ export const ComparateurRégimesCards = () => {
 				container
 				spacing={4}
 				as={Ul}
-				aria-label="Comparaison des régimes d'affiliation"
+				aria-label={t(
+					'pages.simulateurs.location-de-logement-meublé.comparateur.aria-label',
+					"Comparaison des régimes d'affiliation"
+				)}
 			>
 				{résultats.map((résultat) => (
 					<Grid key={résultat.régime} item {...gridSizes} as="li">
@@ -126,9 +130,10 @@ const RégimeCard = ({
 					<StatusCard.ValeurSecondaire>
 						<SmallBody>
 							<Strong>
-								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.applicable">
-									Applicable
-								</Trans>
+								{t(
+									'pages.simulateurs.location-de-logement-meublé.comparateur.applicable',
+									'Applicable'
+								)}
 							</Strong>
 						</SmallBody>
 					</StatusCard.ValeurSecondaire>
@@ -137,21 +142,22 @@ const RégimeCard = ({
 				<StatusCard.ValeurSecondaire>
 					<SmallBody>
 						<Strong>
-							<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable">
-								Non applicable
-							</Trans>
+							{t(
+								'pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable',
+								'Non applicable'
+							)}
 						</Strong>{' '}
 						{RaisonInapplicabilité.estTypeDeLocationIncompatible(
 							résultat.raisonDeNonApplicabilité
-						) ? (
-							<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison-type-location">
-								pour ce type de location
-							</Trans>
-						) : (
-							<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison">
-								avec vos recettes actuelles
-							</Trans>
-						)}
+						)
+							? t(
+									'pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison-type-location',
+									'pour ce type de location'
+							  )
+							: t(
+									'pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison',
+									'avec vos recettes actuelles'
+							  )}
 					</SmallBody>
 				</StatusCard.ValeurSecondaire>
 			)}
@@ -167,21 +173,21 @@ const RégimeCard = ({
 						}}
 					>
 						<Li>
-							{résultat.régime === RegimeCotisation.regimeGeneral && (
-								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description">
-									Comme pour un salarié.
-								</Trans>
-							)}
-							{résultat.régime === RegimeCotisation.microEntreprise && (
-								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description">
-									Vous payez un pourcentage de votre chiffre d'affaires.
-								</Trans>
-							)}
-							{résultat.régime === RegimeCotisation.travailleurIndependant && (
-								<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description">
-									Vous payez des cotisations sociales sur votre bénéfice.
-								</Trans>
-							)}
+							{résultat.régime === RegimeCotisation.regimeGeneral &&
+								t(
+									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description',
+									'Comme pour un salarié.'
+								)}
+							{résultat.régime === RegimeCotisation.microEntreprise &&
+								t(
+									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
+									"Vous payez un pourcentage de votre chiffre d'affaires."
+								)}
+							{résultat.régime === RegimeCotisation.travailleurIndependant &&
+								t(
+									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description',
+									'Vous payez des cotisations sociales sur votre bénéfice.'
+								)}
 						</Li>
 					</Ul>
 				</StatusCard.Complément>
