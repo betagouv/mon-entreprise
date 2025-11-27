@@ -141,4 +141,26 @@ describe('StatusCard', () => {
 		expect(valeurSecondaireIndex).toBeLessThan(complementIndex)
 		expect(complementIndex).toBeLessThan(actionIndex)
 	})
+
+	it('affiche une icône pour les options non applicables', () => {
+		renderWithTheme(
+			<StatusCard nonApplicable>
+				<StatusCard.Titre>Option non applicable</StatusCard.Titre>
+			</StatusCard>
+		)
+
+		expect(screen.getByTitle('Option non applicable.')).toBeInTheDocument()
+	})
+
+	it("n'affiche pas l'icône si l'option est applicable", () => {
+		renderWithTheme(
+			<StatusCard nonApplicable={false}>
+				<StatusCard.Titre>Option applicable</StatusCard.Titre>
+			</StatusCard>
+		)
+
+		expect(
+			screen.queryByTitle('Option non applicable.')
+		).not.toBeInTheDocument()
+	})
 })
