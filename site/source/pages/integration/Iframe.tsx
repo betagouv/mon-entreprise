@@ -224,6 +224,8 @@ const Logo = styled.img`
 `
 
 export default function Integration() {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<TrackPage name="module_web" />
@@ -250,45 +252,72 @@ export default function Integration() {
 			</Trans>
 			<section className="blocks" id="integrations">
 				<H2>
-					<Trans>Liste des intégrations</Trans>
+					{t(
+						'pages.développeur.iframe.intégrations.titre',
+						'Liste des intégrations'
+					)}
 				</H2>
 				<Grid as={Ul} container id="integrationList" spacing={2}>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="Urssaf"
 							href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
-							ctaLabel="Voir l'intégration"
-							aria-label="Urssaf.fr, Voir l'intégration"
+							ctaLabel={t(
+								'pages.développeur.iframe.intégrations.urssaf.cta-label',
+								'Voir l’intégration'
+							)}
+							aria-label={t(
+								'pages.développeur.iframe.intégrations.urssaf.aria-label',
+								'Urssaf, voir l’intégration, nouvelle fenêtre'
+							)}
 						>
-							<Logo src={urssafLogo} alt="Logo urssaf.fr" />
+							<Logo src={urssafLogo} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="CCI de France"
 							href="http://les-aides.fr/embauche"
-							ctaLabel="Voir l'intégration"
-							aria-label="les-aides.fr, Voir l'intégration"
+							ctaLabel={t(
+								'pages.développeur.iframe.intégrations.CCI.cta-label',
+								'Voir l’intégration'
+							)}
+							aria-label={t(
+								'pages.développeur.iframe.intégrations.CCI.aria-label',
+								'CCI de France, voir l’intégration, nouvelle fenêtre'
+							)}
 						>
-							<Logo src={cciLogo} alt="Logo Les-aides.fr" />
+							<Logo src={cciLogo} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="Code du travail numérique"
 							href="https://code.travail.gouv.fr/outils/simulateur-embauche"
-							aria-label="code.travail.gouv.fr, Voir le simulateur"
-							ctaLabel="Voir le simulateur"
+							ctaLabel={t(
+								'pages.développeur.iframe.intégrations.code-du-travail-numérique.cta-label',
+								'Voir le simulateur'
+							)}
+							aria-label={t(
+								'pages.développeur.iframe.intégrations.code-du-travail-numérique.aria-label',
+								'Code du travail numérique", voir le simulateur, nouvelle fenêtre'
+							)}
 						>
-							<Logo src={minTraLogo} alt="Logo Ministère du travail" />
+							<Logo src={minTraLogo} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="France Travail"
 							href="https://entreprise.francetravail.fr/cout-salarie/"
-							aria-label="francetravail.fr, voir le simulateur"
-							ctaLabel="Voir le simulateur"
+							ctaLabel={t(
+								'pages.développeur.iframe.intégrations.france-travail.cta-label',
+								'Voir le simulateur'
+							)}
+							aria-label={t(
+								'pages.développeur.iframe.intégrations.france-travail.aria-label',
+								'France Travail, voir le simulateur, nouvelle fenêtre'
+							)}
 						>
 							<Logo src={poleEmploiLogo} alt="" />
 						</Article>
@@ -297,9 +326,12 @@ export default function Integration() {
 						<Article
 							title="Une idée&nbsp;?"
 							href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
-							ctaLabel="Contactez-nous"
+							ctaLabel={t('Contactez-nous')}
 						>
-							Vous avez un projet ou une idée à nous partager?
+							{t(
+								'pages.développeur.iframe.intégrations.suggestion',
+								'Vous avez un projet ou une idée à nous partager ?'
+							)}
 						</Article>
 					</Grid>
 				</Grid>

@@ -42,9 +42,12 @@ export default function InstitutionsPartenairesIndépendant() {
 						href="https://www.ameli.fr/assure/droits-demarches/salaries-travailleurs-independants-et-personnes-sans-emploi/emploi-independant-non-salarie/praticien-auxiliaire-medical"
 						target="_blank"
 						rel="noreferrer"
-						aria-label="Logo CPAM, accéder à ameli.fr, nouvelle fenêtre"
+						aria-label={t(
+							'aria-label.cpam',
+							'CPAM, accéder à ameli.fr, nouvelle fenêtre'
+						)}
 					>
-						<img src={assuranceMaladieSrc} alt="Logo CPAM" />
+						<img src={assuranceMaladieSrc} alt="CPAM" />
 					</InstitutionLogo>
 					<Body>
 						{t(
