@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/ÀQuoiServentMesCotisationsSection'
 import { FromTop } from '@/components/ui/animate'
@@ -34,6 +34,7 @@ export default function SalaryExplanation({
 	avecFicheDePaie = false,
 }: Props) {
 	const payslipRef = useRef<HTMLDivElement>(null)
+	const { t } = useTranslation()
 
 	if (useInversionFail()) {
 		return null
@@ -92,7 +93,10 @@ export default function SalaryExplanation({
 										d'informations, rendez-vous sur{' '}
 										<Link
 											href="https://www.service-public.fr/particuliers/vosdroits/F559"
-											aria-label="service-public.fr, nouvelle fenêtre"
+											aria-label={t(
+												'aria-label.service-public',
+												'service-public.fr, nouvelle fenêtre'
+											)}
 										>
 											service-public.fr
 										</Link>
