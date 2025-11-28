@@ -61,3 +61,14 @@ export const WithDescriptions: Story = {
 		options: CHECKBOX_OPTIONS_WITH_DESCRIPTIONS,
 	},
 }
+
+export const WithDefaultValues: Story = {
+	args: {
+		legend: 'Légende du groupe de checkbox',
+		defaultValue: [
+			CHECKBOX_OPTIONS_WITH_DESCRIPTIONS[1].value,
+			CHECKBOX_OPTIONS_WITH_DESCRIPTIONS[2].value,
+		],
+		options: CHECKBOX_OPTIONS_WITH_DESCRIPTIONS,
+	},
+}
