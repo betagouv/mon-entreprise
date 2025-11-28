@@ -13,21 +13,21 @@ export default function Explications() {
 				revenu: {
 					dottedName: 'assimilé salarié . rémunération . nette . après impôt',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.exlications.répartition.revenu',
+						'pages.simulateurs.assimilé-salarié.explications.répartition.revenu',
 						'Revenu disponible'
 					),
 				},
 				cotisations: {
 					dottedName: 'assimilé salarié . cotisations',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.exlications.répartition.cotisations',
+						'pages.simulateurs.assimilé-salarié.explications.répartition.cotisations',
 						'Cotisations'
 					),
 				},
 				impôt: {
 					dottedName: 'impôt . montant',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.exlications.répartition.impôt',
+						'pages.simulateurs.assimilé-salarié.explications.répartition.impôt',
 						'Impôt'
 					),
 				},
