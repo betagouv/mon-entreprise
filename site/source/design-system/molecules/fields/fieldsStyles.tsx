@@ -6,6 +6,15 @@ export const fieldTransition = css`
 	transition: all 200ms;
 `
 
+export const fieldOutlineOnFocus = css`
+	outline-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.bases.primary[100]
+			: theme.colors.bases.primary[700]};
+	outline-offset: ${({ theme }) => theme.spacings.xxs};
+	outline-width: ${({ theme }) => theme.spacings.xxs};
+`
+
 export const fieldContainerStyles = css`
 	display: flex;
 	flex-direction: column;
@@ -36,12 +45,7 @@ export const labelAndInputContainerStyles = css`
 	${fieldTransition}
 
 	&:focus-within {
-		outline-color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[700]};
-		outline-offset: ${({ theme }) => theme.spacings.xxs};
-		outline-width: ${({ theme }) => theme.spacings.xxs};
+		${fieldOutlineOnFocus}
 	}
 
 	&:focus-within label {

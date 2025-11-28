@@ -8,9 +8,13 @@ import { styled } from 'styled-components'
 
 import { InfoButton } from '@/design-system/InfoButton'
 
-import { fieldContainerStyles, fieldTransition } from '../fieldsStyles'
+import {
+	fieldContainerStyles,
+	fieldOutlineOnFocus,
+	fieldTransition,
+} from '../fieldsStyles'
 
-type RadioOption = {
+export type RadioOption = {
 	description?: string
 	label: string
 	value: string
@@ -69,13 +73,21 @@ const StyledRALabel = styled(RALabel)`
 const StyledRadioAndInfoButton = styled.div`
 	display: flex;
 	align-items: center;
+
+	button.print-hidden {
+		margin-left: ${({ theme }) => theme.spacings.xxxs};
+	}
 `
 
 const StyledRARadio = styled(RARadio)`
 	position: relative;
 	display: flex;
 	align-items: center;
-	gap: ${({ theme }) => theme.spacings.xxs};
+
+	margin: ${({ theme }) => theme.spacings.xxs};
+	padding-right: ${({ theme }) => theme.spacings.xs};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	outline: transparent solid 1px;
 
 	&::before,
 	&::after {
@@ -90,7 +102,7 @@ const StyledRARadio = styled(RARadio)`
 
 	&::before {
 		padding: ${({ theme }) => theme.spacings.xxs};
-		border: ${({ theme }) => theme.spacings.md} solid white;
+		border: ${({ theme }) => theme.spacings.sm} solid white;
 
 		background: transparent;
 	}
@@ -98,7 +110,7 @@ const StyledRARadio = styled(RARadio)`
 	&::after {
 		position: absolute;
 
-		left: ${({ theme }) => theme.spacings.sm};
+		left: ${({ theme }) => theme.spacings.xs};
 
 		width: ${({ theme }) => theme.spacings.md};
 		height: ${({ theme }) => theme.spacings.md};
@@ -110,6 +122,12 @@ const StyledRARadio = styled(RARadio)`
 		border-color: ${({ theme }) => theme.colors.bases.primary[200]};
 
 		background: ${({ theme }) => theme.colors.bases.primary[200]};
+	}
+
+	&[data-focused='true'] {
+		&:focus-within {
+			${fieldOutlineOnFocus}
+		}
 	}
 
 	&[data-selected='true']::before {
