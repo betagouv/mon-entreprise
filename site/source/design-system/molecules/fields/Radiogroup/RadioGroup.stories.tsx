@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 
-import { RadioGroup } from './RadioGroup'
+import { RadioGroup, type RadioOption } from './RadioGroup'
 
 export default {
 	title: 'Design System/molecules/fields/RadioGroup',
@@ -15,7 +15,22 @@ export default {
 	],
 } as Meta<typeof RadioGroup>
 
-const RADIO_OPTIONS = [
+const RADIO_OPTIONS_WITHOUT_DESCRIPTION = [
+	{
+		value: 'option1',
+		label: 'Option 1',
+	},
+	{
+		value: 'option2',
+		label: 'Option 2',
+	},
+	{
+		value: 'option3',
+		label: 'Option 3',
+	},
+]
+
+const RADIO_OPTIONS_WITH_DESCRIPTIONS = [
 	{
 		value: 'option1',
 		label: 'Option 1 (avec description)',
@@ -31,9 +46,8 @@ const RADIO_OPTIONS = [
 		description: "Description de l'option 3",
 	},
 ]
-const DefaultRadioGroup = () => {
-	const defaultValue = RADIO_OPTIONS[0].value
 
+const RadioGroupToRender = (options: RadioOption[], defaultValue: string) => {
 	const [value, setValue] = useState(defaultValue)
 
 	const handleChange = (newValue: React.Key) => {
@@ -42,26 +56,8 @@ const DefaultRadioGroup = () => {
 
 	return (
 		<RadioGroup
-			defaultValue={defaultValue}
 			legend="Légende du groupe de boutons radio"
-			options={RADIO_OPTIONS}
-			value={value}
-			onChange={handleChange}
-		/>
-	)
-}
-
-const RadioGroupWithoutDefaultValue = () => {
-	const [value, setValue] = useState('')
-
-	const handleChange = (newValue: React.Key) => {
-		setValue(newValue.toString())
-	}
-
-	return (
-		<RadioGroup
-			legend="Légende du groupe de boutons radio"
-			options={RADIO_OPTIONS}
+			options={options}
 			value={value}
 			onChange={handleChange}
 		/>
@@ -71,17 +67,21 @@ const RadioGroupWithoutDefaultValue = () => {
 type Story = StoryObj<typeof RadioGroup>
 
 export const Default: Story = {
-	args: {
-		legend: 'Légende du radiogroup',
-		options: RADIO_OPTIONS,
-	},
-	render: () => <DefaultRadioGroup />,
+	render: () =>
+		RadioGroupToRender(
+			RADIO_OPTIONS_WITHOUT_DESCRIPTION,
+			RADIO_OPTIONS_WITHOUT_DESCRIPTION[0].value
+		),
+}
+
+export const WithDescriptions: Story = {
+	render: () =>
+		RadioGroupToRender(
+			RADIO_OPTIONS_WITH_DESCRIPTIONS,
+			RADIO_OPTIONS_WITH_DESCRIPTIONS[0].value
+		),
 }
 
 export const WithoutDefaultValue: Story = {
-	args: {
-		legend: 'Légende du radiogroup',
-		options: RADIO_OPTIONS,
-	},
-	render: () => <RadioGroupWithoutDefaultValue />,
+	render: () => RadioGroupToRender(RADIO_OPTIONS_WITH_DESCRIPTIONS, ''),
 }
