@@ -74,7 +74,10 @@ export default function DéclarationRevenusPAMC() {
 							déclaration de revenus à réaliser sur{' '}
 							<Link
 								href="https://www.impots.gouv.fr"
-								aria-label="impots.gouv.fr, nouvelle fenêtre"
+								aria-label={t(
+									'aria-label.impots-gouv',
+									'impots.gouv.fr, nouvelle fenêtre'
+								)}
 							>
 								impots.gouv.fr
 							</Link>
