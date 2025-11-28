@@ -48,6 +48,7 @@ export function LigneImpôts({
 
 	return (
 		<StyledGridContainer
+			as="li"
 			container
 			spacing={2}
 			className="print-no-break-inside"
@@ -78,6 +79,7 @@ const StyledGridContainer = styled(Grid)`
 	padding: ${({ theme }) => theme.spacings.xxs} 0;
 	justify-content: space-between;
 	align-items: baseline;
+	list-style-type: '';
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		align-items: center;
 	}

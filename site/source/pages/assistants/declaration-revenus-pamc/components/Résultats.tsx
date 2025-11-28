@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { Body, Container, Emoji, H2, H4, Spacing } from '@/design-system'
+import { Body, Container, Emoji, H2, H4, theme } from '@/design-system'
 import { codesImpôt } from '@/domaine/CodesImpôt'
 
 import DéclarantSelection from './DéclarantSelection'
@@ -37,40 +37,41 @@ export default function Résultats({ id }: Props) {
 			</H2>
 
 			<DéclarantSelection déclarant={déclarant} setDéclarant={setDéclarant} />
-
 			<StyledBody>
 				{t(
 					'pages.assistants.declaration-revenus-pamc.resultats.label.1',
 					'Situation au 1er janvier ou à la date du début d’activité'
 				)}
 			</StyledBody>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . statut"
-				code={codesImpôt.DSAP[déclarant]}
-				expression="déclaration revenus PAMC . statut = 'titulaire'"
-				label={t(
-					'pages.assistants.declaration-revenus-pamc.resultats.label.2',
-					'Vous êtes titulaire'
-				)}
-			/>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . statut"
-				code={codesImpôt.DSAQ[déclarant]}
-				expression="déclaration revenus PAMC . statut = 'remplaçant'"
-				label={t(
-					'pages.assistants.declaration-revenus-pamc.resultats.label.3',
-					'Vous êtes remplaçant'
-				)}
-			/>
+			<ListeLignes>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . statut"
+					code={codesImpôt.DSAP[déclarant]}
+					expression="déclaration revenus PAMC . statut = 'titulaire'"
+					label={t(
+						'pages.assistants.declaration-revenus-pamc.resultats.label.2',
+						'Vous êtes titulaire'
+					)}
+				/>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . statut"
+					code={codesImpôt.DSAQ[déclarant]}
+					expression="déclaration revenus PAMC . statut = 'remplaçant'"
+					label={t(
+						'pages.assistants.declaration-revenus-pamc.resultats.label.3',
+						'Vous êtes remplaçant'
+					)}
+				/>
 
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . recettes brutes totales"
-				code={codesImpôt.DSCS[déclarant]}
-				label={t(
-					'pages.assistants.declaration-revenus-pamc.resultats.label.4',
-					'Recettes brutes totales tirées des activités non salariées'
-				)}
-			/>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . recettes brutes totales"
+					code={codesImpôt.DSCS[déclarant]}
+					label={t(
+						'pages.assistants.declaration-revenus-pamc.resultats.label.4',
+						'Recettes brutes totales tirées des activités non salariées'
+					)}
+				/>
+			</ListeLignes>
 
 			<Condition expression="déclaration revenus PAMC . revenus de remplacement . total">
 				<H4 as="h3">
@@ -80,18 +81,21 @@ export default function Résultats({ id }: Props) {
 					)}
 				</H4>
 			</Condition>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . revenus de remplacement . IJ"
-				code={codesImpôt.DSAS[déclarant]}
-			/>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . revenus de remplacement . AJPA"
-				code={codesImpôt.DSAG[déclarant]}
-			/>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . revenus de remplacement . indemnités incapacité temporaire"
-				code={codesImpôt.DSCP[déclarant]}
-			/>
+
+			<ListeLignes>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . revenus de remplacement . IJ"
+					code={codesImpôt.DSAS[déclarant]}
+				/>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . revenus de remplacement . AJPA"
+					code={codesImpôt.DSAG[déclarant]}
+				/>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . revenus de remplacement . indemnités incapacité temporaire"
+					code={codesImpôt.DSCP[déclarant]}
+				/>
+			</ListeLignes>
 
 			<Condition expression="déclaration revenus PAMC . déductions et exonérations . total déductible">
 				<H4 as="h3">
@@ -101,6 +105,7 @@ export default function Résultats({ id }: Props) {
 					)}
 				</H4>
 			</Condition>
+
 			<LigneImpôts
 				dottedName="déclaration revenus PAMC . déductions et exonérations . zone déficitaire en offre de soins"
 				code={codesImpôt.DSFA[déclarant]}
@@ -128,14 +133,17 @@ export default function Résultats({ id }: Props) {
 					'Cotisations sociales obligatoires'
 				)}
 			</H4>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . cotisations sociales obligatoires"
-				code={codesImpôt.DSCA[déclarant]}
-				label={t(
-					'pages.assistants.declaration-revenus-pamc.resultats.label.7',
-					'Cotisations sociales obligatoires déduites du résultat imposable'
-				)}
-			/>
+
+			<ListeLignes>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . cotisations sociales obligatoires"
+					code={codesImpôt.DSCA[déclarant]}
+					label={t(
+						'pages.assistants.declaration-revenus-pamc.resultats.label.7',
+						'Cotisations sociales obligatoires déduites du résultat imposable'
+					)}
+				/>
+			</ListeLignes>
 
 			<H4 as="h3">
 				{t(
@@ -149,20 +157,23 @@ export default function Résultats({ id }: Props) {
 					'Revenus nets de l’activité conventionnée :'
 				)}
 			</StyledBody>
-			<Condition expression="déclaration revenus PAMC . revenus nets . revenus conventionnés >= 0">
-				<LigneImpôts
-					dottedName="déclaration revenus PAMC . revenus nets . revenus conventionnés"
-					code={codesImpôt.DSGA[déclarant]}
-					label={t('Bénéfice', 'Bénéfice')}
-				/>
-			</Condition>
-			<Condition expression="déclaration revenus PAMC . revenus nets . revenus conventionnés < 0">
-				<LigneImpôts
-					dottedName="déclaration revenus PAMC . revenus nets . revenus conventionnés"
-					code={codesImpôt.DSHA[déclarant]}
-					label={t('Déficit', 'Déficit')}
-				/>
-			</Condition>
+
+			<ListeLignes>
+				<Condition expression="déclaration revenus PAMC . revenus nets . revenus conventionnés >= 0">
+					<LigneImpôts
+						dottedName="déclaration revenus PAMC . revenus nets . revenus conventionnés"
+						code={codesImpôt.DSGA[déclarant]}
+						label={t('Bénéfice', 'Bénéfice')}
+					/>
+				</Condition>
+				<Condition expression="déclaration revenus PAMC . revenus nets . revenus conventionnés < 0">
+					<LigneImpôts
+						dottedName="déclaration revenus PAMC . revenus nets . revenus conventionnés"
+						code={codesImpôt.DSHA[déclarant]}
+						label={t('Déficit', 'Déficit')}
+					/>
+				</Condition>
+			</ListeLignes>
 
 			<StyledBody>
 				{t(
@@ -229,35 +240,48 @@ export default function Résultats({ id }: Props) {
 					'Données transmises par l’Assurance Maladie'
 				)}
 			</H4>
-			<Condition expression="déclaration revenus PAMC . profession != 'dentiste'">
-				<LigneImpôts
-					dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables"
-					code={codesImpôt.DSAV[déclarant]}
-				/>
-				<LigneImpôts
-					dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires"
-					code={codesImpôt.DSAW[déclarant]}
-				/>
-			</Condition>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . SNIR . honoraires tarifs opposables"
-				code={codesImpôt.DSAX[déclarant]}
-			/>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . SNIR . honoraires hors forfaits"
-				code={codesImpôt.DSAY[déclarant]}
-			/>
-			<LigneImpôts
-				dottedName="déclaration revenus PAMC . SNIR . taux urssaf"
-				code={codesImpôt.DSAZ[déclarant]}
-				arrondi={false}
-			/>
 
-			<Spacing xxl />
+			<ListeLignes>
+				<Condition expression="déclaration revenus PAMC . profession != 'dentiste'">
+					<LigneImpôts
+						dottedName="déclaration revenus PAMC . SNIR . honoraires remboursables"
+						code={codesImpôt.DSAV[déclarant]}
+					/>
+					<LigneImpôts
+						dottedName="déclaration revenus PAMC . SNIR . dépassements honoraires"
+						code={codesImpôt.DSAW[déclarant]}
+					/>
+				</Condition>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . SNIR . honoraires tarifs opposables"
+					code={codesImpôt.DSAX[déclarant]}
+				/>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . SNIR . honoraires hors forfaits"
+					code={codesImpôt.DSAY[déclarant]}
+				/>
+				<LigneImpôts
+					dottedName="déclaration revenus PAMC . SNIR . taux urssaf"
+					code={codesImpôt.DSAZ[déclarant]}
+					arrondi={false}
+				/>
+			</ListeLignes>
 		</Container>
 	)
 }
 
 const StyledBody = styled(Body)`
 	margin-bottom: 0;
+`
+const ListeLignes = styled.ul`
+	margin: 0;
+	padding-left: 0;
+
+	&:empty {
+		display: none;
+	}
+
+	&:last-child {
+		margin-bottom: ${theme.spacings.xxl};
+	}
 `
