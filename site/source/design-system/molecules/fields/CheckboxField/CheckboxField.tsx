@@ -4,7 +4,9 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { fieldTransition } from '../fieldsStyles'
+import { InfoButton } from '@/design-system/InfoButton'
+
+import { fieldOutlineOnFocus, fieldTransition } from '../fieldsStyles'
 
 export type CheckboxOption = {
 	description?: string
@@ -18,15 +20,34 @@ type CheckboxFieldProps = RACheckboxProps & {
 
 export function CheckboxField({ option }: CheckboxFieldProps) {
 	return (
-		<StyledRACheckbox value={option.value}>
-			<div className="checkbox" aria-hidden>
-				<div className="checkmark"></div>
-			</div>
+		<StyledCheckoxAndInfoButtonContainer>
+			<StyledRACheckbox value={option.value}>
+				<div className="checkbox" aria-hidden>
+					<div className="checkmark"></div>
+				</div>
 
-			{option.label}
-		</StyledRACheckbox>
+				{option.label}
+			</StyledRACheckbox>
+
+			{option.description && (
+				<InfoButton
+					description={option.description}
+					title={option.label.toString()}
+					light
+				/>
+			)}
+		</StyledCheckoxAndInfoButtonContainer>
 	)
 }
+
+const StyledCheckoxAndInfoButtonContainer = styled.div`
+	display: flex;
+	align-items: center;
+
+	button.print-hidden {
+		margin-left: ${({ theme }) => theme.spacings.xxxs};
+	}
+`
 
 const StyledRACheckbox = styled(RACheckbox)`
 	--size: ${({ theme }) => theme.spacings.md};
@@ -34,7 +55,13 @@ const StyledRACheckbox = styled(RACheckbox)`
 
 	display: flex;
 	align-items: center;
-	gap: ${({ theme }) => theme.spacings.xxs};
+	gap: ${({ theme }) => theme.spacings.xs};
+
+	width: fit-content;
+	margin: ${({ theme }) => theme.spacings.xxs};
+	padding-right: ${({ theme }) => theme.spacings.xs};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	outline: transparent solid 1px;
 
 	font-family: ${({ theme }) => theme.fonts.main};
 
@@ -52,8 +79,8 @@ const StyledRACheckbox = styled(RACheckbox)`
 	}
 
 	.checkbox::before {
-		width: calc(2.5 * var(--size));
-		height: calc(2.5 * var(--size));
+		width: calc(2 * var(--size));
+		height: calc(2 * var(--size));
 
 		border-radius: 50%;
 
@@ -68,8 +95,8 @@ const StyledRACheckbox = styled(RACheckbox)`
 
 	.checkbox::after {
 		position: absolute;
-		top: calc(0.75 * var(--size));
-		left: calc(0.75 * var(--size));
+		top: calc(0.5 * var(--size));
+		left: calc(0.5 * var(--size));
 
 		width: var(--size);
 		height: var(--size);
@@ -80,8 +107,8 @@ const StyledRACheckbox = styled(RACheckbox)`
 
 	.checkmark {
 		position: absolute;
-		top: calc(0.75 * var(--size));
-		left: calc(0.75 * var(--size));
+		top: calc(0.5 * var(--size));
+		left: calc(0.5 * var(--size));
 		z-index: 10;
 
 		width: calc(0.4 * var(--size));
@@ -92,6 +119,10 @@ const StyledRACheckbox = styled(RACheckbox)`
 		border-radius: var(--borderWidth);
 
 		transform: rotate(40deg) translate(70%, -20%);
+	}
+
+	&[data-focused='true'] {
+		${fieldOutlineOnFocus}
 	}
 
 	&[data-selected='true'] {
