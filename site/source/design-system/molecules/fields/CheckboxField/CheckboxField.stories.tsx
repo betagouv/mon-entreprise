@@ -7,6 +7,11 @@ const CHECKBOX_OPTION = {
 	label: 'Label de la checkbox',
 }
 
+const CHECKBOX_OPTION_WITH_DESCRIPTION = {
+	...CHECKBOX_OPTION,
+	description: 'Description de la checkbox',
+}
+
 export default {
 	title: 'Design System/molecules/fields/CheckboxField',
 	component: CheckboxField,
@@ -24,5 +29,11 @@ type Story = StoryObj<typeof CheckboxField>
 export const Default: Story = {
 	args: {
 		option: CHECKBOX_OPTION,
+	},
+}
+
+export const WithDescription: Story = {
+	args: {
+		option: CHECKBOX_OPTION_WITH_DESCRIPTION,
 	},
 }
