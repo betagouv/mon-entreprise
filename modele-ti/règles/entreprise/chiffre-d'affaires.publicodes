@@ -12,9 +12,8 @@ entreprise . chiffre d'affaires:
     - indépendant . rémunération . nette
     - indépendant . rémunération . nette . après impôt
     - indépendant . cotisations et contributions
+    - indépendant . rémunération . impôt
     - charges
-    - applicable si: imposition . IS
-      valeur: imposition . IS . résultat net
   plancher: 0€/an
   arrondi: oui
 
