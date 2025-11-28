@@ -46,14 +46,16 @@ const HitContainer = styled.li`
 const Hit = (hit: THit) => {
 	return (
 		<HitContainer>
-			<StyledRuleLink dottedName={hit.objectID}>
-				{hit.namespace && (
-					<SmallBody as="span" className="hit-namespace">
-						<Highlight hit={hit} attribute="namespace" separator=" > " />
-					</SmallBody>
-				)}
+			{hit.namespace && (
+				<SmallBody as="span" className="hit-namespace">
+					{hit.namespace}
+					{/* <Highlight hit={hit} attribute="namespace" separator=" > " /> */}
+				</SmallBody>
+			)}
+
+			<StyledRuleLink dottedName={hit.objectID} aria-label={undefined}>
 				<Body as="span" className="hit-ruleName">
-					<Highlight hit={hit} attribute="ruleName" />
+					{hit.ruleName}
 				</Body>
 			</StyledRuleLink>
 		</HitContainer>
