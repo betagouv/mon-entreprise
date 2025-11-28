@@ -44,7 +44,7 @@ import { ImmutableType } from '@/types/utils'
  * des données pour Algolia.
  */
 const getMetadataSrc = (params: SimulatorsDataParams) => {
-	const data = {
+	return {
 		// simulateurs:
 		...salariéConfig(params),
 		...entrepriseIndividuelleConfig(params),
@@ -82,9 +82,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...demandeMobilitéConfig(params),
 		...pourMonEntrepriseConfig(params),
 		...rechercheCodeApeConfig(params),
-	} as const
-
-	return data satisfies ImmutableType<Record<string, PageConfig>>
+	} as const satisfies ImmutableType<Record<string, PageConfig>>
 }
 
 export type SimulatorData = ReturnType<typeof getMetadataSrc>

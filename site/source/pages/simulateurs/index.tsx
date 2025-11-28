@@ -1,15 +1,15 @@
-import { useEffect, useMemo } from 'react'
+import { Suspense, useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
+import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
+import Loader from '@/components/utils/Loader'
 import { usePersistingState } from '@/components/utils/persistState'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Link } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
-
-import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPage'
 
 type State = {
 	fromGérer?: boolean
@@ -42,7 +42,11 @@ export default function Simulateurs() {
 						path={
 							s.path.replace(absoluteSitePaths.simulateurs.index, '') + '/*'
 						}
-						element={<SimulateurOrAssistantPage />}
+						element={
+							<Suspense fallback={<Loader />}>
+								<SimulateurOrAssistantPage />
+							</Suspense>
+						}
 					/>
 				)),
 		[simulatorsData, absoluteSitePaths]

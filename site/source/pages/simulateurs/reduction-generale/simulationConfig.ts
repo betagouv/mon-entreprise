@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configRéductionGénérale: SimulationConfig = {
+	nomModèle: 'modele-social',
 	objectifs: ['salarié . cotisations . exonérations . réduction générale'],
 	questions: {
 		raccourcis: [

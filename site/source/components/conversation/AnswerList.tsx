@@ -8,7 +8,6 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue/Value'
 import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
-import { EvaluatedRule } from '@/components/utils/EngineContext'
 import {
 	Button,
 	Emoji,
@@ -21,6 +20,7 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { EvaluatedRule } from '@/domaine/publicodes/EvaluatedRule'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'

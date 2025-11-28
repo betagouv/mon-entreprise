@@ -26,27 +26,17 @@ import {
 	Ul,
 } from '@/design-system'
 import { useEngine } from '@/hooks/useEngine'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { useSitePaths } from '@/sitePaths'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 import Formulaire from './components/Formulaire'
 import Résultats from './components/Résultats'
-import { configDéclarationRevenusPAMC } from './simulationConfig'
 
 export default function DéclarationRevenusPAMC() {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
-	const { absoluteSitePaths } = useSitePaths()
-
-	useSimulationConfig({
-		key: absoluteSitePaths.assistants['déclaration-revenus-pamc'],
-		config: configDéclarationRevenusPAMC,
-		autoloadLastSimulation: true,
-	})
 
 	const isFormValid = engine.evaluate({
 		'!=': ['déclaration revenus PAMC . résultats', 'non'],
