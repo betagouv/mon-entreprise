@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import urssafSrc from '@/assets/images/Urssaf.svg'
@@ -21,6 +21,7 @@ export default function CotisationsUrssaf({
 	extraNotice,
 	...props
 }: Props) {
+	const { t } = useTranslation()
 	const unit = useSelector(targetUnitSelector)
 
 	return (
@@ -29,9 +30,12 @@ export default function CotisationsUrssaf({
 				href="https://www.urssaf.fr/portail/home.html"
 				target="_blank"
 				rel="noreferrer"
-				aria-label="Logo URSSAF, accéder à urssaf.fr, nouvelle fenêtre"
+				aria-label={t(
+					'aria-label.urssaf',
+					'Urssaf, accéder à urssaf.fr, nouvelle fenêtre'
+				)}
 			>
-				<img src={urssafSrc} alt="Logo Urssaf" />
+				<img src={urssafSrc} alt="Urssaf" />
 			</InstitutionLogo>
 			<div>
 				<Body>
