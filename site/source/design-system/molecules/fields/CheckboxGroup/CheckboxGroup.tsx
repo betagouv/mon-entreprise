@@ -13,10 +13,20 @@ type CheckboxGroupProps = RACheckboxGroupProps & {
 	options: CheckboxOption[]
 }
 
-export function CheckboxGroup({ legend, options, value }: CheckboxGroupProps) {
+export function CheckboxGroup({
+	defaultValue = [],
+	legend,
+	options,
+	value,
+	onChange,
+}: CheckboxGroupProps) {
 	return (
-		<StyledRACheckboxGroup value={value}>
-			<RALabel>{legend}</RALabel>
+		<StyledRACheckboxGroup
+			defaultValue={defaultValue}
+			value={value}
+			onChange={onChange}
+		>
+			<StyledRALabel>{legend}</StyledRALabel>
 
 			{options.map((option) => (
 				<CheckboxField key={`key-${option.value}`} option={option} />
@@ -27,4 +37,8 @@ export function CheckboxGroup({ legend, options, value }: CheckboxGroupProps) {
 
 const StyledRACheckboxGroup = styled(RACheckboxGroup)`
 	${fieldContainerStyles}
+`
+
+const StyledRALabel = styled(RALabel)`
+	margin-bottom: ${({ theme }) => theme.spacings.xs};
 `
