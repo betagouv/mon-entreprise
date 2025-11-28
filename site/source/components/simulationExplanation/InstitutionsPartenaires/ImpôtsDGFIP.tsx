@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import dgfipSrc from '@/assets/images/logo-dgfip.svg'
@@ -16,6 +16,7 @@ type Props = {
 
 export default function ImpôtsDGFIP({ role }: Props) {
 	const unit = useSelector(targetUnitSelector)
+	const { t } = useTranslation()
 
 	return (
 		<Condition expression="impôt . montant > 0">
@@ -24,9 +25,12 @@ export default function ImpôtsDGFIP({ role }: Props) {
 					href="https://www.impots.gouv.fr"
 					target="_blank"
 					rel="noreferrer"
-					aria-label="Logo DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre"
+					aria-label={t(
+						'aria-label.dgfip',
+						'DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre'
+					)}
 				>
-					<img src={dgfipSrc} alt="Logo DGFiP" />
+					<img src={dgfipSrc} alt="DGFiP" />
 				</InstitutionLogo>
 				<Body>
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">

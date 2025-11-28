@@ -49,9 +49,12 @@ export default function InstitutionsPartenaires() {
 									href="http://www.ircec.fr/"
 									target="_blank"
 									rel="noreferrer"
-									aria-label="Logo IRCEC, accéder à ircec.fr, nouvelle fenêtre"
+									aria-label={t(
+										'aria-label.ircec',
+										'Ircec, accéder à ircec.fr, nouvelle fenêtre'
+									)}
 								>
-									<img src={logosSrc.IRCEC} alt="Logo IRCEC" />
+									<img src={logosSrc.IRCEC} alt="IRCEC" />
 								</InstitutionLogo>
 								<Body>{descriptionIRCEC}</Body>
 								<Value
