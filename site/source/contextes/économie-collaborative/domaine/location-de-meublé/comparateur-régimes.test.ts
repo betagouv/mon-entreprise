@@ -1,212 +1,464 @@
-import { Equal, Option, pipe } from 'effect'
+import { Equal, pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { estPlusGrandQue, eurosParAn, Montant } from '@/domaine/Montant'
+import { estPlusGrandQue } from '@/domaine/Montant'
 
-import { compareRégimes } from './comparateur-régimes'
 import {
-	RegimeCotisation,
-	SituationÉconomieCollaborativeValide,
-} from './situation'
+	compareRégimes,
+	type RésultatRégimeApplicable,
+	type RésultatRégimeNonApplicable,
+} from './comparateur-régimes'
+import { RegimeCotisation } from './situation'
+import {
+	situationChambreDHôteBuilder,
+	situationMeubléDeTourismeBuilder,
+} from './test/situationBuilder'
 
 describe('compareRégimes', () => {
-	describe('avec des recettes inférieures au seuil de professionnalisation', () => {
-		it('marque tous les régimes comme applicables (affiliation volontaire)', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				_tag: 'Situation',
-				typeLocation: Option.none(),
-				_type: 'économie-collaborative',
-				recettes: Option.some(eurosParAn(10_000)) as Option.Some<
-					Montant<'€/an'>
-				>,
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				estAlsaceMoselle: Option.none(),
-				premièreAnnée: Option.none(),
-			}
+	describe("Location de meublé (hors chambres d'hôtes)", () => {
+		const situationLocationMeublé =
+			situationMeubléDeTourismeBuilder().avecClassement('non-classé')
 
-			const résultats = compareRégimes(situation)
+		describe('Sous le seuil de professionnalisation (< 23 000€)', () => {
+			const situation = situationLocationMeublé.avecRecettes(10_000).build()
 
-			expect(résultats.length).toBe(3)
-			résultats.forEach((régime) => {
-				expect(régime.applicable).toBe(true)
+			it('Pas’affiliation obligatoire)', () => {
+				const résultats = compareRégimes(situation)
+
+				expect(résultats).toAvoirRégimesApplicables([])
+			})
+		})
+
+		describe('Au-dessus du seuil de professionnalisation (>= 23 000€)', () => {
+			const situationAuDessusDuSeuil =
+				situationLocationMeublé.avecRecettes(30_000)
+
+			describe('Recettes supérieures aux autres revenus (activité principale)', () => {
+				const situationActivitéPrincipale =
+					situationAuDessusDuSeuil.avecAutresRevenus(20_000)
+
+				describe('Location longue durée uniquement', () => {
+					const situation = situationActivitéPrincipale
+						.avecTypeDurée('longue')
+						.build()
+
+					it("TI et ME sont possibles, RG n'est pas applicable", () => {
+						const résultats = compareRégimes(situation)
+
+						expect(résultats).toAvoirRégimesApplicables([
+							RegimeCotisation.microEntreprise,
+							RegimeCotisation.travailleurIndependant,
+						])
+					})
+				})
+
+				describe('Location courte durée uniquement', () => {
+					const situationCourteDurée =
+						situationActivitéPrincipale.avecTypeDurée('courte')
+
+					describe('Tourisme non classé uniquement', () => {
+						const situationNonClassé =
+							situationCourteDurée.avecClassement('non-classé')
+
+						it("TI et RG sont possibles, ME n'est pas applicable", () => {
+							const situation = situationNonClassé.build()
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.regimeGeneral,
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+
+						it('Au-dessus du plafond RG (80 000€), seul TI est applicable', () => {
+							const situation = situationNonClassé.avecRecettes(80_000).build()
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+
+					describe('Tourisme classé uniquement', () => {
+						const situation = situationCourteDurée
+							.avecClassement('classé')
+							.build()
+
+						it('TI, RG et ME sont tous possibles', () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.regimeGeneral,
+								RegimeCotisation.microEntreprise,
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+
+					describe('Tourisme mixte (classé et non classé)', () => {
+						const situation = situationCourteDurée
+							.avecClassement('mixte')
+							.build()
+
+						it("TI et RG sont possibles, ME n'est pas applicable (comme non classé)", () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.regimeGeneral,
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+				})
+
+				describe('Location mixte (courte et longue durée)', () => {
+					const situationMixte =
+						situationActivitéPrincipale.avecTypeDurée('mixte')
+
+					describe('Tourisme classé uniquement pour la partie courte durée', () => {
+						const situation = situationMixte.avecClassement('classé').build()
+
+						it("TI et ME sont possibles, RG n'est pas applicable", () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.microEntreprise,
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+
+					describe('Tourisme non classé uniquement pour la partie courte durée', () => {
+						const situation = situationMixte
+							.avecClassement('non-classé')
+							.build()
+
+						it('TI uniquement est possible, ni ME ni RG', () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+
+					describe('Mix de tourisme classé et non classé pour la partie courte durée', () => {
+						const situation = situationMixte.avecClassement('mixte').build()
+
+						it('TI uniquement est possible, ni ME ni RG (comme non classé)', () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+				})
+			})
+
+			describe('Recettes inférieures aux autres revenus (activité secondaire)', () => {
+				const situationActivitéSecondaire =
+					situationAuDessusDuSeuil.avecAutresRevenus(40_000)
+
+				describe('Location longue durée uniquement', () => {
+					const situation = situationActivitéSecondaire
+						.avecTypeDurée('longue')
+						.build()
+
+					it('devrait marquer uniquement PA comme applicable', () => {
+						const résultats = compareRégimes(situation)
+
+						expect(résultats).toAvoirRégimesApplicables([])
+					})
+				})
+
+				describe('Location courte durée uniquement', () => {
+					const situationCourteDurée =
+						situationActivitéSecondaire.avecTypeDurée('courte')
+
+					describe('Tourisme non classé uniquement', () => {
+						const situation = situationCourteDurée
+							.avecClassement('non-classé')
+							.build()
+
+						it('TI et RG sont possibles, ME non applicable', () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.regimeGeneral,
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+
+					describe('Tourisme classé uniquement', () => {
+						const situation = situationCourteDurée
+							.avecClassement('classé')
+							.build()
+
+						it('TI, RG et ME sont tous possibles', () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.regimeGeneral,
+								RegimeCotisation.microEntreprise,
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+
+					describe('Tourisme mixte (classé et non classé)', () => {
+						const situation = situationCourteDurée
+							.avecClassement('mixte')
+							.build()
+
+						it('TI et RG sont possibles, ME non applicable (comme non classé)', () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([
+								RegimeCotisation.regimeGeneral,
+								RegimeCotisation.travailleurIndependant,
+							])
+						})
+					})
+				})
+
+				describe('Location mixte (courte et longue durée)', () => {
+					const situationMixte =
+						situationActivitéSecondaire.avecTypeDurée('mixte')
+
+					describe('Recettes courte durée >= 23 000€', () => {
+						const situationAvecRecettesCD =
+							situationMixte.avecRecettesCourteDurée(23_000)
+
+						describe('Tourisme classé uniquement', () => {
+							const situation = situationAvecRecettesCD
+								.avecClassement('classé')
+								.build()
+
+							it('TI, RG et ME sont tous possibles', () => {
+								const résultats = compareRégimes(situation)
+
+								expect(résultats).toAvoirRégimesApplicables([
+									RegimeCotisation.regimeGeneral,
+									RegimeCotisation.microEntreprise,
+									RegimeCotisation.travailleurIndependant,
+								])
+							})
+						})
+
+						describe('Tourisme non classé uniquement', () => {
+							const situation = situationAvecRecettesCD
+								.avecClassement('non-classé')
+								.build()
+
+							it('TI et RG sont possibles, ME non applicable', () => {
+								const résultats = compareRégimes(situation)
+
+								expect(résultats).toAvoirRégimesApplicables([
+									RegimeCotisation.regimeGeneral,
+									RegimeCotisation.travailleurIndependant,
+								])
+							})
+						})
+
+						describe('Tourisme mixte (classé et non classé)', () => {
+							const situation = situationAvecRecettesCD
+								.avecClassement('mixte')
+								.build()
+
+							it('TI et RG sont possibles, ME non applicable (comme non classé)', () => {
+								const résultats = compareRégimes(situation)
+
+								expect(résultats).toAvoirRégimesApplicables([
+									RegimeCotisation.regimeGeneral,
+									RegimeCotisation.travailleurIndependant,
+								])
+							})
+						})
+					})
+
+					describe('Recettes courte durée < 23 000€', () => {
+						const situation = situationMixte
+							.avecRecettesCourteDurée(15_000)
+							.build()
+
+						it("Pas d'affiliation uniquement", () => {
+							const résultats = compareRégimes(situation)
+
+							expect(résultats).toAvoirRégimesApplicables([])
+						})
+					})
+				})
+			})
+		})
+
+		describe('Cohérence des calculs', () => {
+			it('calcule des valeurs de cotisations différentes pour chaque régime', () => {
+				const situation = situationMeubléDeTourismeBuilder()
+					.avecRecettes(40_000)
+					.avecAutresRevenus(10_000)
+					.avecTypeDurée('courte')
+					.avecClassement('non-classé')
+					.build()
+
+				const résultats = compareRégimes(situation)
+
+				const régimeGénéral = résultats.find(
+					(r) => r.régime === RegimeCotisation.regimeGeneral
+				)
+				const microEntreprise = résultats.find(
+					(r) => r.régime === RegimeCotisation.microEntreprise
+				)
+				const travailleurIndépendant = résultats.find(
+					(r) => r.régime === RegimeCotisation.travailleurIndependant
+				)
+
+				if (
+					régimeGénéral?.applicable &&
+					microEntreprise?.applicable &&
+					travailleurIndépendant?.applicable
+				) {
+					expect(
+						Equal.equals(régimeGénéral.cotisations, microEntreprise.cotisations)
+					).toBe(false)
+					expect(
+						Equal.equals(
+							régimeGénéral.cotisations,
+							travailleurIndépendant.cotisations
+						)
+					).toBe(false)
+					expect(
+						Equal.equals(
+							microEntreprise.cotisations,
+							travailleurIndépendant.cotisations
+						)
+					).toBe(false)
+				}
+			})
+
+			it('devrait prendre en compte le paramètre estAlsaceMoselle', () => {
+				const situationBase = situationMeubléDeTourismeBuilder()
+					.avecRecettes(40_000)
+					.avecAutresRevenus(10_000)
+					.avecTypeDurée('courte')
+					.avecClassement('non-classé')
+
+				const situationNormale = situationBase.avecAlsaceMoselle(false).build()
+				const situationAlsaceMoselle = situationBase
+					.avecAlsaceMoselle(true)
+					.build()
+
+				const résultatsNormal = compareRégimes(situationNormale)
+				const résultatsAlsaceMoselle = compareRégimes(situationAlsaceMoselle)
+
+				const régimeGénéralNormal = résultatsNormal.find(
+					(r) => r.régime === RegimeCotisation.regimeGeneral
+				)
+				const régimeGénéralAlsaceMoselle = résultatsAlsaceMoselle.find(
+					(r) => r.régime === RegimeCotisation.regimeGeneral
+				)
+
+				if (
+					régimeGénéralNormal?.applicable &&
+					régimeGénéralAlsaceMoselle?.applicable
+				) {
+					expect(
+						pipe(
+							régimeGénéralAlsaceMoselle.cotisations,
+							estPlusGrandQue(régimeGénéralNormal.cotisations)
+						)
+					).toBe(true)
+				}
 			})
 		})
 	})
 
-	describe('avec des recettes au-dessus du seuil mais en-dessous du plafond', () => {
-		it('marque RG, AE et TI comme applicables', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				_tag: 'Situation',
-				typeLocation: Option.none(),
-				_type: 'économie-collaborative',
-				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					Montant<'€/an'>
-				>,
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				estAlsaceMoselle: Option.none(),
-				premièreAnnée: Option.none(),
-			}
+	describe("Chambres d'hôtes", () => {
+		describe('Au-dessus du seuil de professionnalisation (>= 6 028€)', () => {
+			const situation = situationChambreDHôteBuilder()
+				.avecRevenuNet(10_000)
+				.build()
 
-			const résultats = compareRégimes(situation)
+			it('TI et ME sont possibles, RG non applicable', () => {
+				const résultats = compareRégimes(situation)
 
-			expect(résultats.length).toBe(3)
-
-			const régimeGénéral = résultats.find(
-				(r) => r.régime === RegimeCotisation.regimeGeneral
-			)
-			const microEntreprise = résultats.find(
-				(r) => r.régime === RegimeCotisation.microEntreprise
-			)
-			const travailleurIndépendant = résultats.find(
-				(r) => r.régime === RegimeCotisation.travailleurIndependant
-			)
-
-			expect(régimeGénéral?.applicable).toBe(true)
-			expect(microEntreprise?.applicable).toBe(true)
-			expect(travailleurIndépendant?.applicable).toBe(true)
+				expect(résultats).toAvoirRégimesApplicables([
+					RegimeCotisation.microEntreprise,
+					RegimeCotisation.travailleurIndependant,
+				])
+			})
 		})
 
-		it('calcule des valeurs de cotisations différentes pour chaque régime', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: Option.none(),
-				_type: 'économie-collaborative',
-				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					Montant<'€/an'>
-				>,
-				estAlsaceMoselle: Option.none(),
-				premièreAnnée: Option.none(),
-			}
+		describe('Sous le seuil de professionnalisation (< 6 028€)', () => {
+			const situation = situationChambreDHôteBuilder()
+				.avecRevenuNet(5_000)
+				.build()
 
-			const résultats = compareRégimes(situation)
+			it("Pas d'affiliation obligatoire", () => {
+				const résultats = compareRégimes(situation)
 
-			const régimeGénéral = résultats.find(
-				(r) => r.régime === RegimeCotisation.regimeGeneral
-			)
-			const microEntreprise = résultats.find(
-				(r) => r.régime === RegimeCotisation.microEntreprise
-			)
-			const travailleurIndépendant = résultats.find(
-				(r) => r.régime === RegimeCotisation.travailleurIndependant
-			)
-
-			expect(régimeGénéral?.applicable).toBe(true)
-			expect(microEntreprise?.applicable).toBe(true)
-			expect(travailleurIndépendant?.applicable).toBe(true)
-
-			if (
-				régimeGénéral?.applicable &&
-				microEntreprise?.applicable &&
-				travailleurIndépendant?.applicable
-			) {
-				expect(
-					Equal.equals(régimeGénéral.cotisations, microEntreprise.cotisations)
-				).toBe(false)
-				expect(
-					Equal.equals(
-						régimeGénéral.cotisations,
-						travailleurIndépendant.cotisations
-					)
-				).toBe(false)
-				expect(
-					Equal.equals(
-						microEntreprise.cotisations,
-						travailleurIndépendant.cotisations
-					)
-				).toBe(false)
-			}
-		})
-	})
-
-	describe('avec des recettes supérieures au plafond du régime général', () => {
-		it('devrait marquer RG et AE comme non applicables, TI applicable', () => {
-			const situation: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: Option.none(),
-				_type: 'économie-collaborative',
-				recettes: Option.some(eurosParAn(80_000)) as Option.Some<
-					Montant<'€/an'>
-				>,
-				estAlsaceMoselle: Option.none(),
-				premièreAnnée: Option.none(),
-			}
-
-			const résultats = compareRégimes(situation)
-
-			const régimeGénéral = résultats.find(
-				(r) => r.régime === RegimeCotisation.regimeGeneral
-			)
-			const microEntreprise = résultats.find(
-				(r) => r.régime === RegimeCotisation.microEntreprise
-			)
-			const travailleurIndépendant = résultats.find(
-				(r) => r.régime === RegimeCotisation.travailleurIndependant
-			)
-
-			expect(régimeGénéral?.applicable).toBe(false)
-			expect(microEntreprise?.applicable).toBe(false)
-			expect(travailleurIndépendant?.applicable).toBe(true)
-		})
-	})
-
-	describe('avec des paramètres supplémentaires', () => {
-		it('devrait prendre en compte le paramètre estAlsaceMoselle', () => {
-			const situationNormale: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: Option.none(),
-				_type: 'économie-collaborative',
-				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					Montant<'€/an'>
-				>,
-				estAlsaceMoselle: Option.some(false),
-				premièreAnnée: Option.none(),
-			}
-
-			const situationAlsaceMoselle: SituationÉconomieCollaborativeValide = {
-				autresRevenus: Option.none(),
-				typeDurée: Option.none(),
-				_tag: 'Situation',
-				typeLocation: Option.none(),
-				_type: 'économie-collaborative',
-				recettes: Option.some(eurosParAn(40_000)) as Option.Some<
-					Montant<'€/an'>
-				>,
-				estAlsaceMoselle: Option.some(true),
-				premièreAnnée: Option.none(),
-			}
-
-			const résultatsNormal = compareRégimes(situationNormale)
-			const résultatsAlsaceMoselle = compareRégimes(situationAlsaceMoselle)
-
-			const régimeGénéralNormal = résultatsNormal.find(
-				(r) => r.régime === RegimeCotisation.regimeGeneral
-			)
-			const régimeGénéralAlsaceMoselle = résultatsAlsaceMoselle.find(
-				(r) => r.régime === RegimeCotisation.regimeGeneral
-			)
-
-			expect(régimeGénéralNormal?.applicable).toBe(true)
-			expect(régimeGénéralAlsaceMoselle?.applicable).toBe(true)
-
-			if (
-				régimeGénéralNormal?.applicable &&
-				régimeGénéralAlsaceMoselle?.applicable
-			) {
-				expect(
-					pipe(
-						régimeGénéralAlsaceMoselle.cotisations,
-						estPlusGrandQue(régimeGénéralNormal.cotisations)
-					)
-				).toBe(true)
-			}
+				expect(résultats).toAvoirRégimesApplicables([])
+			})
 		})
 	})
 })
+
+expect.extend({
+	toAvoirRégimesApplicables(
+		résultats: Array<RésultatRégimeApplicable | RésultatRégimeNonApplicable>,
+		régimesAttendus: RegimeCotisation[]
+	) {
+		const régimesApplicables = résultats
+			.filter((r) => r.applicable)
+			.map((r) => r.régime)
+
+		const régimesManquants = régimesAttendus.filter(
+			(r) => !régimesApplicables.includes(r)
+		)
+		const régimesEnTrop = régimesApplicables.filter(
+			(r) => !régimesAttendus.includes(r)
+		)
+
+		const pass = régimesManquants.length === 0 && régimesEnTrop.length === 0
+
+		return {
+			pass,
+			message: () => {
+				if (pass) {
+					return `Les régimes applicables correspondent : ${régimesApplicables.join(
+						', '
+					)}`
+				}
+
+				const errors: string[] = []
+				if (régimesManquants.length > 0) {
+					errors.push(
+						`❌ Régimes qui devraient être applicables, mais reçus comme non applicables : ${régimesManquants.join(
+							', '
+						)}`
+					)
+				}
+				if (régimesEnTrop.length > 0) {
+					errors.push(
+						`❌ Régimes qui ne devraient pas être applicables : ${régimesEnTrop.join(
+							', '
+						)}`
+					)
+				}
+
+				return errors.join('\n')
+			},
+		}
+	},
+})
+
+interface CustomMatchers<R = unknown> {
+	toAvoirRégimesApplicables(régimesAttendus: RegimeCotisation[]): R
+}
+
+declare module 'vitest' {
+	interface Assertion extends CustomMatchers {}
+	interface AsymmetricMatchersContaining extends CustomMatchers {}
+}

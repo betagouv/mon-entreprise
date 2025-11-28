@@ -3,10 +3,13 @@ import { Option } from 'effect'
 import { Montant } from '@/domaine/Montant'
 
 import {
-	initialSituationÉconomieCollaborative,
+	Classement,
+	initialSituationChambreDHôte,
+	initialSituationMeubléDeTourisme,
+	setTypeDurée,
 	SituationÉconomieCollaborative,
 	TypeDurée,
-	TypeLocation,
+	TypeHébergement,
 } from '../domaine/location-de-meublé/situation'
 import { useSituationContext } from './ÉconomieCollaborativeContext'
 
@@ -14,20 +17,79 @@ export const useEconomieCollaborative = () => {
 	const { situation, updateSituation } = useSituationContext()
 
 	const set = {
-		typeLocation: (typeLocation: Option.Option<TypeLocation>) => {
-			updateSituation((prev) => ({ ...prev, typeLocation }))
+		typeHébergement: (typeHébergement: TypeHébergement) => {
+			const nouvelleSituation: SituationÉconomieCollaborative =
+				typeHébergement === 'meublé-tourisme'
+					? initialSituationMeubléDeTourisme
+					: initialSituationChambreDHôte
+
+			updateSituation(() => nouvelleSituation)
 		},
 
 		recettes: (recettes: Option.Option<Montant<'€/an'>>) => {
-			updateSituation((prev) => ({ ...prev, recettes }))
+			updateSituation((prev) => {
+				if (prev.typeHébergement === 'meublé-tourisme') {
+					return { ...prev, recettes }
+				}
+
+				return prev
+			})
+		},
+
+		revenuNet: (revenuNet: Option.Option<Montant<'€/an'>>) => {
+			updateSituation((prev) => {
+				if (prev.typeHébergement === 'chambre-hôte') {
+					return { ...prev, revenuNet }
+				}
+
+				return prev
+			})
+		},
+
+		recettesCourteDurée: (
+			recettesCourteDurée: Option.Option<Montant<'€/an'>>
+		) => {
+			updateSituation((prev) => {
+				if (
+					prev.typeHébergement === 'meublé-tourisme' &&
+					Option.isSome(prev.typeDurée) &&
+					prev.typeDurée.value !== 'longue'
+				) {
+					return { ...prev, recettesCourteDurée }
+				}
+
+				return prev
+			})
 		},
 
 		autresRevenus: (autresRevenus: Option.Option<Montant<'€/an'>>) => {
-			updateSituation((prev) => ({ ...prev, autresRevenus }))
+			updateSituation((prev) => {
+				if (prev.typeHébergement === 'meublé-tourisme') {
+					return { ...prev, autresRevenus }
+				}
+
+				return prev
+			})
 		},
 
 		typeDurée: (typeDurée: Option.Option<TypeDurée>) => {
-			updateSituation((prev) => ({ ...prev, typeDurée }))
+			updateSituation((prev) => {
+				if (prev.typeHébergement === 'meublé-tourisme') {
+					return setTypeDurée(typeDurée)(prev)
+				}
+
+				return prev
+			})
+		},
+
+		classement: (classement: Option.Option<Classement>) => {
+			updateSituation((prev) => {
+				if (prev.typeHébergement === 'meublé-tourisme') {
+					return { ...prev, classement }
+				}
+
+				return prev
+			})
 		},
 
 		estAlsaceMoselle: (estAlsaceMoselle: Option.Option<boolean>) => {
@@ -43,7 +105,7 @@ export const useEconomieCollaborative = () => {
 		},
 
 		reset: () => {
-			updateSituation(() => initialSituationÉconomieCollaborative)
+			updateSituation(() => initialSituationMeubléDeTourisme)
 		},
 	}
 
