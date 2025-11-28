@@ -6,10 +6,7 @@ import CotisationsUrssaf from './CotisationsUrssaf'
 export default function InstitutionsPartenairesAutoEntrepreneur() {
 	return (
 		<InstitutionsPartenaires role="list">
-			<CotisationsUrssaf
-				rule="dirigeant . auto-entrepreneur . cotisations et contributions"
-				role="listitem"
-			/>
+			<CotisationsUrssaf role="listitem" />
 			<ImpôtsDGFIP role="listitem" />
 		</InstitutionsPartenaires>
 	)
