@@ -60,6 +60,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
 Commune ou code postal: Town or zip code
 Communes et code postaux correspondants: Corresponding towns and postcodes
 Confirmer: Confirm
+Contactez-nous: Contact us
 Cotisations: Contributions
 Cotisations sociales: Social security contributions
 "Crée le :": "Created on:"
@@ -123,7 +124,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
 "Lire la documentation au sujet de :": "Read the documentation about :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Read the page on {{ site }}, new window.
 Lire les précisions, ouvrir le message condensé.: Read the details, open the condensed message.
-Liste des intégrations: List of integrations
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
@@ -161,9 +161,6 @@ Plan du site: Site map
 Plus d'informations sur {{ title }}: More information on {{ title }}
 Plus d'infos sur {{ title }}: More info on {{ title }}
 Plus de 50 salariés: More than 50 employees
-Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
-  urssaf:
-    fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
@@ -255,6 +252,21 @@ août: August
 api:
   description: Tools for developers
   title: Use our REST API
+aquoiserventmescotisations:
+  en-savoir-plus: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
+  h2: What are my contributions used for?
+aria-label:
+  aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, new window
+  beta-gouv: beta.gouv.fr, go to beta.gouv.fr, new window
+  cpam: CPAM, access to ameli.fr, new window
+  dgfip: DGFiP, access to impots.gouv.fr, new window
+  economie-gouv: economie.gouv.fr, new window
+  entreprendre-service-public: entreprendre.service-public.fr, new window
+  impots-gouv: impots.gouv.fr, new window
+  ircec: Ircec, access to ircec.fr, new window
+  service-public: service-public.fr, new window
+  urssaf: Urssaf, access to urssaf.fr, new window
+  équipe: team, access our team presentation page, new window
 assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
@@ -566,10 +578,10 @@ juillet: July
 juin: June
 l'annuaire des entreprises, nouvelle fenêtre: business directory, new window
 landing:
-  aboutUs: "<0>Who are we?</0><1>We're a small, independent, multi-disciplinary
-    <2>team</2> within <6>Urssaf</6>. We are committed to being close to your
-    needs, in order to constantly improve this site in line with the
-    <9>beta.gouv.fr</9> approach.</1><2>We have developed this site to support
+  aboutUs: "<0>Who are we?</0><1>We are a small <2>team&lt;/2> autonomous and
+    multidisciplinary within<5>Urssaf</5>. We are committed to listening to your
+    needs, and to constantly improving this site in line with the
+    <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to support
     entrepreneurs in the development of their business.</2><3>Our aim is to
     remove any uncertainties with regard to the administration, so that you can
     concentrate on what matters: your business.</3>"
@@ -1255,6 +1267,21 @@ pages:
         theme.</2></0><1></1><2></2><3>Please note that if your site uses a
         content security policy via the HTTP <1>Content-Security-Policy</1>
         response header, a benign error may appear in the console. <3></3></3>
+      intégrations:
+        CCI:
+          aria-label: CCI de France, see integration, new window
+          cta-label: See integration
+        code-du-travail-numérique:
+          aria-label: Code du travail numérique", view simulator, new window
+          cta-label: See the simulator
+        france-travail:
+          aria-label: France Travail, see the simulator, new window
+          cta-label: See the simulator
+        suggestion: Do you have a project or an idea to share?
+        titre: List of integrations
+        urssaf:
+          aria-label: Urssaf, see integration, new window
+          cta-label: See integration
     module: Which module?
     spreadsheet: <0>Using a spreadsheet</0><1>Would you like to use a simulator in a
       Google Sheets or Excel spreadsheet? Our <2>REST API</2> makes it

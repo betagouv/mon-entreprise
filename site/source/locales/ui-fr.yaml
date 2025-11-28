@@ -64,6 +64,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
 Commune ou code postal: Commune ou code postal
 Communes et code postaux correspondants: Communes et code postaux correspondants
 Confirmer: Confirmer
+Contactez-nous: Contactez-nous
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 "Crée le :": "Crée le :"
@@ -130,7 +131,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
 "Lire la documentation au sujet de :": "Lire la documentation au sujet de :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
-Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
@@ -169,10 +169,6 @@ Plan du site: Plan du site
 Plus d'informations sur {{ title }}: Plus d'informations sur {{ title }}
 Plus d'infos sur {{ title }}: Plus d'infos sur {{ title }}
 Plus de 50 salariés: Plus de 50 salariés
-Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
-  urssaf:
-    fr</2>: Pour en savoir plus, rendez-vous sur le site
-      <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Précédent: Précédent
@@ -272,6 +268,22 @@ août: août
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
+aquoiserventmescotisations:
+  en-savoir-plus: Pour en savoir plus, rendez-vous sur le site
+    <2>aquoiserventlescotisations.urssaf.fr</2>
+  h2: À quoi servent mes cotisations ?
+aria-label:
+  aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, nouvelle fenêtre
+  beta-gouv: beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre
+  cpam: CPAM, accéder à ameli.fr, nouvelle fenêtre
+  dgfip: DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre
+  economie-gouv: economie.gouv.fr, nouvelle fenêtre
+  entreprendre-service-public: entreprendre.service-public.fr, nouvelle fenêtre
+  impots-gouv: impots.gouv.fr, nouvelle fenêtre
+  ircec: Ircec, accéder à ircec.fr, nouvelle fenêtre
+  service-public: service-public.fr, nouvelle fenêtre
+  urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
+  équipe: équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre
 assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
@@ -595,9 +607,9 @@ juin: juin
 l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
-    autonome et pluridisciplinaire au sein de <6>l’Urssaf</6>. Nous avons à cœur
+    autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à cœur
     d’être au près de vos besoins afin d’améliorer en permanence ce site
-    conformément à l'approche <9>beta.gouv.fr</9>.</1><2>Nous avons développé ce
+    conformément à l'approche <8>beta.gouv.fr</8>.</1><2>Nous avons développé ce
     site pour accompagner les créateurs d’entreprise dans le développement de
     leur activité.</2><3>Notre objectif est de lever toutes les incertitudes vis
     à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
@@ -1332,6 +1344,21 @@ pages:
         votre site utilise une politique de sécurité de contenu via l'en-tête de
         réponse HTTP <1>Content-Security-Policy</1>, une erreur bénigne peut
         apparaître dans la console. <3></3></3>
+      intégrations:
+        CCI:
+          aria-label: CCI de France, voir l’intégration, nouvelle fenêtre
+          cta-label: Voir l’intégration
+        code-du-travail-numérique:
+          aria-label: Code du travail numérique", voir le simulateur, nouvelle fenêtre
+          cta-label: Voir le simulateur
+        france-travail:
+          aria-label: France Travail, voir le simulateur, nouvelle fenêtre
+          cta-label: Voir le simulateur
+        suggestion: Vous avez un projet ou une idée à nous partager ?
+        titre: Liste des intégrations
+        urssaf:
+          aria-label: Urssaf, voir l’intégration, nouvelle fenêtre
+          cta-label: Voir l’intégration
     module: Quel module ?
     spreadsheet: <0>Utiliser avec un tableur</0><1>Vous souhaitez utiliser un
       simulateur dans une feuille Google Sheets ou Excel ? C'est possible grâce
