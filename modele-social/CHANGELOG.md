@@ -20,6 +20,7 @@
 - Corrige le calcul des durées d'activité de l'entreprise
 - Corrige le calcul de la durée depuis le début d'année
 - Corrige le calcul de l'ancienneté
+- Corrige le calcul des points de retraite complémentaire acquis par les auto-entrepreneurs/auto-entrepreneuses bénéficiant de l'Acre
 
 ## 9.0.0
 
