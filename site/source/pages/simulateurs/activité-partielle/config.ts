@@ -1,5 +1,6 @@
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
+import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -50,7 +51,7 @@ export function activitéPartielleConfig({
 			"Simulateur du calcul de l'indemnité activité partielle"
 		),
 		nextSteps: ['salarié'],
-		externalLinks: [embaucherGérerSalariés, nouvelEmployeur],
+		externalLinks: [serviceEmployeur, embaucherGérerSalariés, nouvelEmployeur],
 		simulation: configActivitéPartielle,
 		component: ActivitéPartielleComponent,
 		seoExplanations: SeoExplanations,
