@@ -261,7 +261,6 @@ aria-label:
   dgfip: DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre
   economie-gouv: economie.gouv.fr, nouvelle fenêtre
   entreprendre-service-public: entreprendre.service-public.fr, nouvelle fenêtre
-  impots-gouv: impots.gouv.fr, nouvelle fenêtre
   ircec: Ircec, accéder à ircec.fr, nouvelle fenêtre
   service-public: service-public.fr, nouvelle fenêtre
   urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
@@ -1292,26 +1291,27 @@ pages:
           revenu: Revenu disponible
     auto-entrepreneur:
       explications:
-        droits-retraite: "<0><0><0>Retraite : droits acquis sur l’année</0><1><0>Les
-          exonérations DROM n’ont aucune incidence sur la détermination des
-          droits à la retraite de base et complémentaire des
-          auto-entrepreneurs</0></1><2><0>L’exonération ACRE n’a aucune
-          incidence sur la détermination des droits à la retraite de base et
-          complémentaire des auto-entrepreneurs</0></2><3><0>Le calcul des
-          droits ouverts à la retraite n’est pas encore implémenté pour les cas
-          incluants des d’exonérations de cotisations (pension invalidité,
-          etc).</0></3><4><0><0>Retraite de base : <2></2></0><1><0>Points de
-          retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
-          pour la retraite de base : <2></2></0></2><3><0>Points de retraite
-          complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points de
-          retraite complémentaire acquis : <2><0></0></2><3><0>non
-          connue</0><1><0>Ce simulateur ne gère pas les droits acquis de
-          retraite complémentaire pour les professions
-          libérales</0></1></3></0></4></0></4></0></0>"
         institutions:
           urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
             sociale (assurance maladie, allocations familiales, dépendance<1> et
             retraite</1>).
+        retraite:
+          droits: "<0>Droits acquis sur l'année</0><1><0>Les exonérations DROM n’ont
+            aucune incidence sur la détermination des droits à la retraite de
+            base et complémentaire des
+            auto-entrepreneurs.</0></1><2><0>L’exonération Acre n’a aucune
+            incidence sur la détermination des droits à la retraite de base et
+            complémentaire des auto-entrepreneurs.</0></2><3><0>Le calcul des
+            droits ouverts à la retraite n’est pas encore implémenté pour les
+            cas incluants des exonérations de cotisations (pension invalidité,
+            etc).</0></3><4><0><0>Retraite de base : <2></2></0><1>Revenu cotisé
+            pour la retraite de base : <2></2></1><2><0>Points de retraite
+            complémentaire acquis (Cipav) : <2></2></0></2><3><0>Points de
+            retraite complémentaire acquis :
+            <2><0></0></2></0></3></0></4><5><0>Pour estimer le montant de votre
+            future pension de retraite, utilisez le <2>simulateur de l'Assurance
+            retraite</2>.</0></5>"
+          titre: Votre retraite
         répartition:
           cotisations: Cotisations
           h2: Répartition du chiffre d’affaires
@@ -1815,18 +1815,6 @@ pages:
               calcul</2>(attention cependant, vous serez tenus de faire une
               estimation précise).</2>
             titre: Comment fonctionne la régularisation des cotisations provisionnelles ?
-        droits-retraite: "<0><0>Retraite : droits acquis sur
-          l’année</0><1><0>L’exonération ACRE n’a aucune incidence sur la
-          détermination des droits à la retraite de base et complémentaire des
-          auto-entrepreneurs</0></1><2><0>Le calcul des droits ouverts à la
-          retraite n’est pas encore implémenté pour les cas incluants des
-          exonérations de cotisations (pension invalidité,
-          etc).</0></2><3><0><0>Retraite de base : <2></2></0><1><0>Points de
-          retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
-          pour la retraite de base : <2></2></0></2><3>Points de retraite
-          complémentaire acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce
-          simulateur ne gère pas les droits acquis de retraite complémentaire
-          pour les professions libérales</0></1></3></3></0></3></0>"
         institutions:
           cpam: En tant que professionnel de santé conventionné, vous bénéficiez d’une
             prise en charge d’une partie de vos cotisations par l’Assurance
@@ -1834,6 +1822,23 @@ pages:
           urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
             sociale (assurance maladie, allocations familiales, dépendance<1> et
             retraite</1>).
+        retraite:
+          droits: "<0>Droits acquis sur l'année</0><1><0>L’exonération ACRE n’a aucune
+            incidence sur la détermination des droits à la retraite de base et
+            complémentaire.</0></1><2><0>Le calcul des droits ouverts à la
+            retraite n’est pas encore implémenté pour les cas incluants des
+            exonérations de cotisations (pension invalidité,
+            etc).</0></2><3><0><0>Retraite de base : <2></2></0><1><0>Points de
+            retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu
+            cotisé pour la retraite de base : <2></2></0></2><3><0>Points de
+            retraite complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points
+            de retraite complémentaire acquis : <2><0></0></2><3><0>non
+            connue</0><1><0>Ce simulateur ne gère pas les droits acquis de
+            retraite complémentaire pour les professions libérales réglementées
+            hors Cipav.</0></1></3></0></4></0></3><4><0>Pour estimer le montant
+            de votre future pension de retraite, utilisez le <2>simulateur de
+            l'Assurance retraite</2>.</0></4>"
+          titre: Votre retraite
         répartition:
           cotisations: Cotisations
           impôt: Impôt
@@ -1843,6 +1848,9 @@ pages:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
+      retraite:
+        simulateur-cnav:
+          aria-label: Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning:
