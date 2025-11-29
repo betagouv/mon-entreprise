@@ -1234,24 +1234,17 @@ pages:
           revenu: Disposable income
     auto-entrepreneur:
       explications:
-        droits-retraite: "<0><0><0>Retirement: rights acquired over the
-          year</0><1><0>DROM exemptions have no impact on determining basic and
-          supplementary pension rights for auto-entrepreneurs</0></1><2><0>The
-          ACRE exemption has no impact on the calculation of basic and
-          supplementary pension rights for auto-entrepreneurs.</0></2><3><0>The
-          calculation of open pension rights has not yet been implemented for
-          cases involving contribution exemptions (ACRE, disability pension,
-          etc.).</0></3><4><0><0>Basic pension : <2></2></0><1><0>Basic pension
-          points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
-          basic pension : <2></2></0></2><3><0>Supplementary pension points
-          acquired (Cipav) : <2></2></0></3><4><0>Supplementary pension points
-          acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
-          not manage acquired supplementary pension rights for the liberal
-          professions.</0></1></3></0></4></0></4></0><1><0><0>Projecting your
-          retirement amount</0><1><0></0><1></1></1></0></1></0>"
         institutions:
           urssaf: Urssaf collects social security contributions (health insurance, family
             allowances, dependence&lt;1> and retirement</1>).
+        retraite:
+          droits: "<0>Pension rights acquired over the year</0><1><0>Basic pension :
+            <2></2></0><1><0>Basic pension points acquired (CNAVPL) :
+            <2></2></0></1><2><0>Income contributed to basic pension :
+            <2></2></0></2><3><0>Supplementary pension points acquired (Cipav) :
+            <2></2></0></3><4><0>Supplementary pension points acquired :
+            <2></2></0></4></1>"
+          titre: Your retirement
         répartition:
           cotisations: Contributions
           h2: Sales breakdown
@@ -1715,23 +1708,21 @@ pages:
               the basis for calculation</2>(although you will be required to
               make a precise estimate).</2>
             titre: How does the adjustment of provisional contributions work?
-        droits-retraite: "<0><0>Retirement: rights acquired over the year</0><1><0>The
-          ACRE exemption has no impact on the calculation of basic and
-          supplementary pension rights for auto-entrepreneurs.</0></1><2><0>The
-          calculation of pension rights has not yet been implemented for cases
-          involving contribution exemptions (ACRE, disability pension,
-          etc.).</0></2><3><0><0>Basic pension : <2></2></0><1><0>Basic pension
-          points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
-          basic pension : <2></2></0></2><3>Supplementary pension points
-          acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
-          not manage acquired supplementary pension rights for the liberal
-          professions.</0></1></3></3></0></3></0><1><0><0>Projecting your
-          retirement amount</0><1><0></0><1></1></1></0></1>"
         institutions:
           cpam: As an approved healthcare professional, part of your contributions are
             reimbursed by the Assurance Maladie.
           urssaf: Urssaf collects social security contributions (health insurance, family
             allowances, dependence&lt;1> and retirement</1>).
+        retraite:
+          droits: "<0>Pension rights acquired over the year</0><1><0>Basic pension :
+            <2></2></0><1><0>Basic pension points acquired (CNAVPL) :
+            <2></2></0></1><2><0>Income contributed to basic pension :
+            <2></2></0></2><3>Supplementary pension points acquired :
+            <2><0></0></2><3><0>not known</0><1><0>This simulator does not
+            manage acquired supplementary pension rights for the liberal
+            professions.</0></1></3></3></1>"
+          montant: <0>Projecting your retirement income</0><1><0></0><1></1></1>
+          titre: Your retirement
         répartition:
           cotisations: Contributions
           impôt: Tax
