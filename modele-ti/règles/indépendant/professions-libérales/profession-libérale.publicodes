@@ -198,17 +198,17 @@ indépendant . PL . maladie:
 
 indépendant . PL . cotisations caisse de retraite:
   non applicable si:
-    # Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
     toutes ces conditions:
       - CIPAV
       - date >= 01/2023
 
   description: |
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
-  formule:
-    somme:
-      - cotisations et contributions . cotisations . retraite de base
-      - cotisations et contributions . cotisations . retraite complémentaire
-      - cotisations et contributions . cotisations . invalidité et décès
-      - cotisations et contributions . cotisations . PCV
-    arrondi: oui
+  note: Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
+
+  somme:
+    - cotisations et contributions . cotisations . retraite de base
+    - cotisations et contributions . cotisations . retraite complémentaire
+    - cotisations et contributions . cotisations . invalidité et décès
+    - cotisations et contributions . cotisations . PCV
+  arrondi: oui
