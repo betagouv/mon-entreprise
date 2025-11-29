@@ -36,7 +36,15 @@ export default function CaisseRetraite({ role }: Props) {
 				const { description, références } = engine.getRule(dottedName).rawNode
 
 				return (
-					<Condition expression={dottedName} key={caisse}>
+					<Condition
+						expression={{
+							'toutes ces conditions': [
+								dottedName,
+								'indépendant . PL . cotisations caisse de retraite',
+							],
+						}}
+						key={caisse}
+					>
 						<InstitutionLine role={role}>
 							<InstitutionLogo
 								href={références && Object.values(références)[0]}
