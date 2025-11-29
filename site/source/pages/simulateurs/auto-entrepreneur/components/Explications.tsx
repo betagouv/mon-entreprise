@@ -1,3 +1,4 @@
+import { Condition } from '@/components/EngineValue/Condition'
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/ÀQuoiServentMesCotisationsSection'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import DroitsRetraite from '@/pages/simulateurs/auto-entrepreneur/components/DroitsRetraite'
@@ -8,10 +9,12 @@ import RépartitionRevenu from './RépartitionRevenu'
 export default function Explications() {
 	return (
 		<>
-			<RépartitionRevenu />
-			<InstitutionsPartenaires />
-			<DroitsRetraite />
-			<ÀQuoiServentMesCotisationsSection regroupement={CotisationsSection} />
+			<Condition expression="dirigeant . rémunération . net . après impôt > 0 €/an">
+				<RépartitionRevenu />
+				<InstitutionsPartenaires />
+				<DroitsRetraite />
+				<ÀQuoiServentMesCotisationsSection regroupement={CotisationsSection} />
+			</Condition>
 		</>
 	)
 }

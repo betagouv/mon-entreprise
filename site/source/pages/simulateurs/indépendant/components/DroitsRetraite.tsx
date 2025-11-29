@@ -10,6 +10,7 @@ import {
 	Emoji,
 	FlexCenter,
 	Grid,
+	H2,
 	H3,
 	Li,
 	Message,
@@ -32,32 +33,31 @@ export default function DroitsRetraite() {
 
 	return (
 		<section>
-			<Grid
-				container
-				columnSpacing={8}
-				style={{ justifyContent: 'space-between' }}
-			>
-				<Trans i18nKey="pages.simulateurs.indépendant.explications.droits-retraite">
+			<H2>
+				{t(
+					'pages.simulateurs.indépendant.explications.retraite.titre',
+					'Votre retraite'
+				)}
+			</H2>
+
+			<Condition expression={exonérationRetraiteActive}>
+				<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
+					Le calcul des droits ouverts à la retraite n’est pas encore implémenté
+					pour les cas incluants des d’exonérations de cotisations (ACRE,
+					pension invalidité, etc).
+				</Message>
+			</Condition>
+
+			<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
+				<Grid
+					container
+					columnSpacing={8}
+					style={{ justifyContent: 'space-between' }}
+				>
 					<Grid item>
-						<H3 as="h2">Retraite&nbsp;: droits acquis sur l’année</H3>
+						<Trans i18nKey="pages.simulateurs.indépendant.explications.retraite.droits">
+							<H3>Droits retraite acquis sur l’année</H3>
 
-						<WhenApplicable dottedName="indépendant . cotisations et contributions . cotisations . exonérations . ACRE">
-							<Message type="info" border>
-								L’exonération ACRE n’a aucune incidence sur la détermination des
-								droits à la retraite de base et complémentaire des
-								auto-entrepreneurs
-							</Message>
-						</WhenApplicable>
-
-						<Condition expression={exonérationRetraiteActive}>
-							<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
-								Le calcul des droits ouverts à la retraite n’est pas encore
-								implémenté pour les cas incluants des d’exonérations de
-								cotisations (ACRE, pension invalidité, etc).
-							</Message>
-						</Condition>
-
-						<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
 							<Ul>
 								<Li>
 									Retraite de base&nbsp;:{' '}
@@ -77,7 +77,6 @@ export default function DroitsRetraite() {
 										/>
 									</Li>
 								</WhenApplicable>
-
 								<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
 									<Li>
 										Revenu cotisé pour la retraite de base&nbsp;:{' '}
@@ -91,7 +90,7 @@ export default function DroitsRetraite() {
 
 								<Li>
 									Points de retraite complémentaire acquis&nbsp;:{' '}
-									<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
+									<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
 										<Value
 											expression="protection sociale . retraite . complémentaire . RCI . points acquis"
 											displayedUnit={t('points')}
@@ -108,23 +107,25 @@ export default function DroitsRetraite() {
 									</WhenNotApplicable>
 								</Li>
 							</Ul>
-						</Condition>
+						</Trans>
 					</Grid>
-					<Grid item>
-						<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
-							<H3 as="h2">Projection du montant de votre retraite</H3>
-							<CenteredDiv>
-								<Value
-									linkToRule
-									unit="€/mois"
-									expression="protection sociale . retraite . base"
-								/>
-								<ExplicableRule dottedName="protection sociale . retraite . base" />
-							</CenteredDiv>
-						</WhenNotApplicable>
-					</Grid>
-				</Trans>
-			</Grid>
+					<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
+						<Grid item>
+							<Trans i18nKey="pages.simulateurs.indépendant.explications.retraite.montant">
+								<H3>Projection du montant de votre retraite</H3>
+								<CenteredDiv>
+									<Value
+										linkToRule
+										unit="€/mois"
+										expression="protection sociale . retraite . base"
+									/>
+									<ExplicableRule dottedName="protection sociale . retraite . base" />
+								</CenteredDiv>
+							</Trans>
+						</Grid>
+					</WhenNotApplicable>
+				</Grid>
+			</Condition>
 		</section>
 	)
 }
