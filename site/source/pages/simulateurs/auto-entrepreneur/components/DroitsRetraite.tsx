@@ -4,16 +4,7 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
-import {
-	Emoji,
-	Grid,
-	H3,
-	Li,
-	Message,
-	SmallBody,
-	Strong,
-	Ul,
-} from '@/design-system'
+import { Body, Emoji, H2, H3, Li, Link, Message, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export default function DroitsRetraite() {
@@ -29,123 +20,100 @@ export default function DroitsRetraite() {
 
 	return (
 		<section>
-			<Trans i18nKey="pages.simulateurs.auto-entrepreneur.explications.droits-retraite">
-				<Grid
-					container
-					columnSpacing={8}
-					style={{ justifyContent: 'space-between' }}
-				>
-					<Grid item>
-						<H3 as="h2">Retraite&nbsp;: droits acquis sur l’année</H3>
+			<H2>
+				{t(
+					'pages.simulateurs.auto-entrepreneur.explications.retraite.titre',
+					'Votre retraite'
+				)}
+			</H2>
 
-						<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
-							<Message type="info" border>
-								Les exonérations DROM n’ont aucune incidence sur la
-								détermination des droits à la retraite de base et complémentaire
-								des auto-entrepreneurs
-							</Message>
+			<Trans i18nKey="pages.simulateurs.auto-entrepreneur.explications.retraite.droits">
+				<H3>Droits acquis sur l'année</H3>
+
+				<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
+					<Message type="info" border>
+						Les exonérations DROM n’ont aucune incidence sur la détermination
+						des droits à la retraite de base et complémentaire des
+						auto-entrepreneurs.
+					</Message>
+				</WhenApplicable>
+
+				<Condition expression="dirigeant . exonérations . ACRE">
+					<Message type="info" border>
+						L’exonération Acre n’a aucune incidence sur la détermination des
+						droits à la retraite de base et complémentaire des
+						auto-entrepreneurs.
+					</Message>
+				</Condition>
+
+				<Condition expression={exonérationRetraiteActive}>
+					<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
+						Le calcul des droits ouverts à la retraite n’est pas encore
+						implémenté pour les cas incluants des exonérations de cotisations
+						(pension invalidité, etc).
+					</Message>
+				</Condition>
+
+				<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
+					<Ul>
+						<Li>
+							Retraite de base&nbsp;:{' '}
+							<Value
+								expression="protection sociale . retraite . trimestres"
+								displayedUnit={t('trimestres acquis')}
+							/>
+						</Li>
+
+						<Li>
+							Revenu cotisé pour la retraite de base&nbsp;:{' '}
+							<Value
+								linkToRule
+								unit="€/an"
+								expression="protection sociale . retraite . base . cotisée"
+							/>
+						</Li>
+
+						<WhenApplicable dottedName="protection sociale . retraite . complémentaire . CIPAV">
+							<Li>
+								Points de retraite complémentaire acquis (Cipav)&nbsp;:{' '}
+								<Value
+									linkToRule
+									expression="protection sociale . retraite . complémentaire . CIPAV . points acquis"
+									displayedUnit={t('points')}
+								/>
+							</Li>
 						</WhenApplicable>
-						<WhenApplicable dottedName="dirigeant . exonérations . ACRE">
-							<Message type="info" border>
-								L’exonération ACRE n’a aucune incidence sur la détermination des
-								droits à la retraite de base et complémentaire des
-								auto-entrepreneurs
-							</Message>
-						</WhenApplicable>
 
-						<Condition expression={exonérationRetraiteActive}>
-							<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
-								Le calcul des droits ouverts à la retraite n’est pas encore
-								implémenté pour les cas incluants des d’exonérations de
-								cotisations (pension invalidité, etc).
-							</Message>
-						</Condition>
-
-						<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
-							<Ul>
-								<Li>
-									Retraite de base&nbsp;:{' '}
+						<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . CIPAV">
+							<Li>
+								Points de retraite complémentaire acquis&nbsp;:{' '}
+								<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
 									<Value
-										expression="protection sociale . retraite . trimestres"
-										displayedUnit={t('trimestres acquis')}
+										expression="protection sociale . retraite . complémentaire . RCI . points acquis"
+										displayedUnit={t('points')}
 									/>
-								</Li>
-
-								<WhenApplicable dottedName="protection sociale . retraite . base . CNAVPL">
-									<Li>
-										Points de retraite de base acquis (CNAVPL)&nbsp;:{' '}
-										<Value
-											linkToRule
-											expression="protection sociale . retraite . base . CNAVPL"
-											displayedUnit={t('points')}
-										/>
-									</Li>
 								</WhenApplicable>
+							</Li>
+						</WhenNotApplicable>
+					</Ul>
+				</Condition>
 
-								<WhenNotApplicable dottedName="protection sociale . retraite . base . CNAVPL">
-									<Li>
-										Revenu cotisé pour la retraite de base&nbsp;:{' '}
-										<Value
-											linkToRule
-											unit="€/an"
-											expression="protection sociale . retraite . base . cotisée"
-										/>
-									</Li>
-								</WhenNotApplicable>
-
-								{/* Pour le moment on ne gère la retraite complémentaire des PLR que pour les AE,
-										car toutes les PLR AE sont affiliées à la Cipav. Pour les PLR non-AE, il y a
-										des caisses spécifiques par métier et elles ne sont pas encore implémentées. */}
-								<Condition
-									expression={{
-										'toutes ces conditions': [
-											'dirigeant . auto-entrepreneur',
-											{
-												'est applicable':
-													'protection sociale . retraite . complémentaire . CIPAV . points acquis',
-											},
-										],
-									}}
-								>
-									<Li>
-										Points de retraite complémentaire acquis (Cipav)&nbsp;:{' '}
-										<Value
-											linkToRule
-											expression="protection sociale . retraite . complémentaire . CIPAV . points acquis"
-											displayedUnit={t('points')}
-										/>
-									</Li>
-								</Condition>
-
-								<Condition
-									expression={{
-										'est non applicable':
-											'protection sociale . retraite . complémentaire . CIPAV . points acquis',
-									}}
-								>
-									<Li>
-										Points de retraite complémentaire acquis&nbsp;:{' '}
-										<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI . points acquis">
-											<Value
-												expression="protection sociale . retraite . complémentaire . RCI . points acquis"
-												displayedUnit={t('points')}
-											/>
-										</WhenApplicable>
-										<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
-											<Strong>non connue</Strong>
-											<WhenApplicable dottedName="dirigeant . indépendant . PL">
-												<SmallBody>
-													Ce simulateur ne gère pas les droits acquis de
-													retraite complémentaire pour les professions libérales
-												</SmallBody>
-											</WhenApplicable>
-										</WhenNotApplicable>
-									</Li>
-								</Condition>
-							</Ul>
-						</Condition>
-					</Grid>
-				</Grid>
+				<Message type="info" border={false}>
+					<Body>
+						Pour estimer le montant de votre future pension de retraite,
+						utilisez le{' '}
+						<Link
+							href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
+							aria-label={t(
+								'pages.simulateurs.indépendant.retraite.simulateur-cnav.aria-label',
+								"Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre"
+							)}
+						>
+							simulateur de l'Assurance retraite
+						</Link>
+						.
+					</Body>
+				</Message>
 			</Trans>
 		</section>
 	)
