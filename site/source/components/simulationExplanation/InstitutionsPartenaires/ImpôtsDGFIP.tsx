@@ -5,21 +5,23 @@ import dgfipSrc from '@/assets/images/logo-dgfip.svg'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { Body } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 import { InstitutionLine } from './InstitutionLine'
 import { InstitutionLogo } from './InstitutionLogo'
 
 type Props = {
+	rule: DottedName
 	role?: string
 }
 
-export default function ImpôtsDGFIP({ role }: Props) {
+export default function ImpôtsDGFIP({ rule, role }: Props) {
 	const unit = useSelector(targetUnitSelector)
 	const { t } = useTranslation()
 
 	return (
-		<Condition expression="impôt . montant > 0">
+		<Condition expression={`${rule} > 0`}>
 			<InstitutionLine role={role}>
 				<InstitutionLogo
 					href="https://www.impots.gouv.fr"
@@ -45,7 +47,7 @@ export default function ImpôtsDGFIP({ role }: Props) {
 						</Condition>
 					</Trans>
 				</Body>
-				<Value unit={unit} displayedUnit="€" expression="impôt . montant" />
+				<Value unit={unit} displayedUnit="€" expression={rule} />
 			</InstitutionLine>
 		</Condition>
 	)
