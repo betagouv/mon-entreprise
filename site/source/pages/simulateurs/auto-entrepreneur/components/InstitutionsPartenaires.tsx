@@ -7,7 +7,7 @@ export default function InstitutionsPartenairesAutoEntrepreneur() {
 	return (
 		<InstitutionsPartenaires role="list">
 			<CotisationsUrssaf role="listitem" />
-			<ImpôtsDGFIP role="listitem" />
+			<ImpôtsDGFIP role="listitem" rule="impôt . montant" />
 		</InstitutionsPartenaires>
 	)
 }

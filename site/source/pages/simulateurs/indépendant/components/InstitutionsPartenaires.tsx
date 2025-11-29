@@ -18,7 +18,7 @@ export default function InstitutionsPartenairesIndépendant() {
 			<WhenNotApplicable dottedName="indépendant . PL . CNAVPL">
 				<CotisationsUrssaf role="listitem" />
 			</WhenNotApplicable>
-			<ImpôtsDGFIP role="listitem" />
+			<ImpôtsDGFIP role="listitem" rule="indépendant . rémunération . impôt" />
 			<Condition expression="indépendant . PL . PAMC . participation CPAM > 0">
 				<ParticipationCPAM role="listitem" />
 			</Condition>
