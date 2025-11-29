@@ -2844,6 +2844,11 @@ dirigeant . indépendant . PL . cotisations caisse de retraite:
   description.fr: >
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
     profession libérale effectuée.
+  note.en: '[automatic] Since 2023, contributions from PLs affiliated to Cipav
+    have been collected by Urssaf.'
+  note.fr:
+    Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées
+    par l'Urssaf
   titre.en: '[automatic] pension fund contributions'
   titre.fr: cotisations caisse de retraite
 dirigeant . indépendant . PL . maladie:
