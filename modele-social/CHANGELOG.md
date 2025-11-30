@@ -2,6 +2,8 @@
 
 ## next
 
+## 10.0.0
+
 ### Breaking changes
 - Suppression de la règle dépréciée `dirigeant . indépendant . PL . métier . avocat`
 - Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . par défaut`
