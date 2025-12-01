@@ -49,15 +49,15 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
       plancher: 1 mois
       unité: mois
 
-    indemnités journalières maladie:
+    indemnités journalières:
       arrondi: oui
       non applicable si: prorata < ACRE . prorata sur l'année
-      valeur: indemnités journalières maladie
+      valeur: maladie . indemnités journalières
       remplace:
-        références à: indemnités journalières maladie
+        références à: maladie . indemnités journalières
         sauf dans:
           - cotisations et contributions . cotisations . maladie
-          - cotisations et contributions . cotisations . indemnités journalières maladie .
+          - cotisations et contributions . cotisations . maladie . indemnités journalières .
             assiette
       abattement: prorata
 
@@ -67,8 +67,8 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
       remplace:
         références à: maladie
         sauf dans:
-          - cotisations et contributions . cotisations . maladie . total
-          - cotisations et contributions . cotisations . maladie . taux progressif
+          - cotisations et contributions . cotisations . maladie
+          - cotisations et contributions . cotisations . maladie . taux 1
       valeur: maladie
       abattement: prorata
 

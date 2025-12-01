@@ -31,7 +31,7 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	],
 	'protection sociale . maladie': [
 		'indépendant . cotisations et contributions . cotisations . maladie',
-		'indépendant . cotisations et contributions . cotisations . indemnités journalières maladie',
+		'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
 		'indépendant . cotisations et contributions . CSG-CRDS * 5.95 / 9.2',
 	],
 	'protection sociale . invalidité et décès': [

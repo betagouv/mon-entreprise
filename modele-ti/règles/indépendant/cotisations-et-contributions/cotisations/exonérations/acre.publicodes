@@ -36,16 +36,16 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
       abattement: taux * prorata sur l'année
       arrondi: oui
 
-    indemnités journalières maladie:
+    indemnités journalières:
       # On préfère l'exonération pension invalidité si elle est plus avantageuse
       non applicable si: exonérations . pension invalidité . prorata >= prorata sur l'année
       remplace:
-        références à: cotisations . indemnités journalières maladie
+        références à: cotisations . maladie . indemnités journalières
         priorité: 10
         sauf dans:
           - cotisations . maladie
-          - cotisations . indemnités journalières maladie . assiette
-      valeur: cotisations . indemnités journalières maladie
+          - cotisations . maladie . indemnités journalières . assiette
+      valeur: cotisations . maladie . indemnités journalières
       abattement: taux * prorata sur l'année
       arrondi: oui
 
@@ -66,8 +66,8 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
         références à: cotisations . maladie
         priorité: 10
         sauf dans:
-          - cotisations . maladie . total
-          - cotisations . maladie . taux progressif
+          - cotisations . maladie
+          - cotisations . maladie . taux 1
       valeur: cotisations . maladie
       abattement: taux * prorata sur l'année
       arrondi: oui
