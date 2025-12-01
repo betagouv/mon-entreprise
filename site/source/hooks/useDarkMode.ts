@@ -6,7 +6,12 @@ import {
 } from '@/components/utils/DarkModeContext'
 
 export const useDarkMode = () => {
-	return React.useContext(DarkModeContext)
+	const context = React.useContext(DarkModeContext)
+	if (context === undefined) {
+		throw new Error('useDarkMode must be used within a DarkModeProvider')
+	}
+
+	return context
 }
 
 export const useTheme = () => {
@@ -14,5 +19,6 @@ export const useTheme = () => {
 	if (context === undefined) {
 		throw new Error('useTheme must be used within a ThemeProvider')
 	}
+
 	return context
 }
