@@ -3983,7 +3983,10 @@ indépendant . cotisations et contributions . CSG-CRDS:
       titre.fr: taux
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
-indépendant . cotisations et contributions . CSG-CRDS . assiette:
+indépendant . cotisations et contributions . après réforme:
+  titre.en: '[automatic] after reform'
+  titre.fr: après réforme
+indépendant . cotisations et contributions . assiette CSG-CRDS:
   avec:
     abattement:
       titre.en: '[automatic] allowance'
@@ -4032,9 +4035,6 @@ indépendant . cotisations et contributions . CSG-CRDS . assiette:
     du revenu net fiscal fourni.
   titre.en: '[automatic] CSG-CRDS tax base'
   titre.fr: assiette de la CSG-CRDS
-indépendant . cotisations et contributions . après réforme:
-  titre.en: '[automatic] after reform'
-  titre.fr: après réforme
 indépendant . cotisations et contributions . assiette sociale:
   avec:
     sans plancher:
