@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 import { ThemeProvider, useTheme } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
@@ -7,18 +7,33 @@ import { getItem, setItem } from '@/storage/safeLocalStorage'
 
 // TODO: Theme and dark mode should be in design-system (https://github.com/betagouv/mon-entreprise/issues/2563)
 
+export type ThemeType = 'light' | 'dark' | 'system'
+
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 
-const persistDarkMode = (darkMode: boolean) => {
-	setItem('darkMode', darkMode.toString())
+type ThemeContextType = {
+	theme: ThemeType
+	setTheme: (theme: ThemeType) => void
 }
 
-const getDefaultDarkMode = () => {
-	if (import.meta.env.SSR) {
-		return false
-	}
+export const ThemeContext = createContext<ThemeContextType>({
+	theme: 'system',
+	setTheme: () => {
+		// eslint-disable-next-line no-console
+		console.error('No theme provider found')
+	},
+})
 
-	return getItem('darkMode') ? getItem('darkMode') === 'true' : false
+const persistTheme = (theme: ThemeType) => {
+	setItem('theme', theme)
+}
+
+const getDefaultTheme = (): ThemeType => {
+	if (import.meta.env.SSR) {
+		return 'system'
+	}
+	const savedTheme = getItem('theme') as ThemeType
+	return savedTheme || 'system'
 }
 
 export const DarkModeContext = createContext<DarkModeContextType>([
@@ -30,25 +45,51 @@ export const DarkModeContext = createContext<DarkModeContextType>([
 ])
 
 export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
-	const [darkMode, _setDarkMode] = useState<boolean>(getDefaultDarkMode())
+	const [theme, _setTheme] = useState<ThemeType>(getDefaultTheme())
+	const [systemDarkMode, setSystemDarkMode] = useState<boolean>(() => {
+		if (typeof window !== 'undefined' && window.matchMedia) {
+			return window.matchMedia('(prefers-color-scheme: dark)').matches
+		}
+		return false
+	})
 
-	const setDarkMode = (darkMode: boolean) => {
-		_setDarkMode(darkMode)
-		persistDarkMode(darkMode)
+	useEffect(() => {
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+		// Ensure state is synced in case it changed between init and effect
+		setSystemDarkMode(mediaQuery.matches)
 
-		document.body.style.backgroundColor = darkMode ? '#0f172a' : ''
+		const handler = (e: MediaQueryListEvent) => setSystemDarkMode(e.matches)
+		mediaQuery.addEventListener('change', handler)
+		return () => mediaQuery.removeEventListener('change', handler)
+	}, [])
 
-		// https://www.youtube.com/watch?v=Pr8ETbGz35Q
-		// eslint-disable-next-line no-console
-		console.log(darkMode ? 'Nuit' : 'Jour')
+	const setTheme = (newTheme: ThemeType) => {
+		_setTheme(newTheme)
+		persistTheme(newTheme)
 	}
 
-	const finalDarkMode = !useIsEmbedded() && darkMode
+	const isDarkMode =
+		theme === 'system' ? systemDarkMode : theme === 'dark'
+
+	useEffect(() => {
+		document.body.style.backgroundColor = isDarkMode ? '#0f172a' : ''
+		// eslint-disable-next-line no-console
+		console.log(isDarkMode ? 'Nuit' : 'Jour')
+	}, [isDarkMode])
+
+	const finalDarkMode = !useIsEmbedded() && isDarkMode
+
+	// Legacy setter for backward compatibility
+	const setDarkModeLegacy = (value: boolean) => {
+		setTheme(value ? 'dark' : 'light')
+	}
 
 	return (
-		<DarkModeContext.Provider value={[finalDarkMode, setDarkMode]}>
-			{children}
-		</DarkModeContext.Provider>
+		<ThemeContext.Provider value={{ theme, setTheme }}>
+			<DarkModeContext.Provider value={[finalDarkMode, setDarkModeLegacy]}>
+				{children}
+			</DarkModeContext.Provider>
+		</ThemeContext.Provider>
 	)
 }
 

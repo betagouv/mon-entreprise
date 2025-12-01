@@ -3,8 +3,7 @@ import { styled } from 'styled-components'
 
 import { Logo } from '@/components/Logo'
 import SearchButton from '@/components/SearchButton'
-import { Container, Emoji, Link, Switch } from '@/design-system'
-import { useDarkMode } from '@/hooks/useDarkMode'
+import { Container, Link } from '@/design-system'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'
 
@@ -12,6 +11,7 @@ import { Appear } from '../ui/animate'
 import BrowserOnly from '../utils/BrowserOnly'
 import { Menu } from './Menu'
 import NewsBannerWrapper from './NewsBanner'
+import ThemeSwitcher from './ThemeSwitcher'
 
 export default function Header() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -20,7 +20,7 @@ export default function Header() {
 
 	const { i18n, t } = useTranslation()
 
-	const [darkMode, setDarkMode] = useDarkMode()
+
 
 	return (
 		<>
@@ -74,20 +74,7 @@ export default function Header() {
 							}}
 							className="print-hidden"
 						>
-							<Emoji emoji="☀️" aria-hidden />
-							<Switch
-								isSelected={darkMode}
-								onChange={setDarkMode}
-								srOnlyLabel
-								/* Need this useless aria-label to silence a React-Aria warning */
-								aria-label=""
-							>
-								{t(
-									'header.dark-mode-switch.activate-dark-mode',
-									'Activer le mode sombre'
-								)}
-							</Switch>
-							<Emoji emoji="🌙" aria-hidden />
+							<ThemeSwitcher />
 						</div>
 
 						{i18n.language === 'fr' && <SearchButton />}
