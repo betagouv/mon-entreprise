@@ -2723,9 +2723,9 @@ indépendant . PL . CNAVPL . conjoint collaborateur:
 indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
   titre.en: '[automatic] plate'
   titre.fr: assiette
-indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
-  titre.en: '[automatic] sick pay'
-  titre.fr: indemnités journalières maladie
+indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières:
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
 indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
   avec:
     moitié:
@@ -2770,7 +2770,7 @@ indépendant . PL . CNAVPL . exonération incapacité:
     profession pendant au moins six mois consécutifs cette année ?
   titre.en: '[automatic] disability waiver'
   titre.fr: exonération incapacité
-indépendant . PL . CNAVPL . indemnités journalières maladie:
+indépendant . PL . CNAVPL . indemnités journalières:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -2793,8 +2793,8 @@ indépendant . PL . CNAVPL . indemnités journalières maladie:
     maladie.
 
     En conséquence une nouvelle cotisation est créée.
-  titre.en: '[automatic] sick pay'
-  titre.fr: indemnités journalières maladie
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
 indépendant . PL . CNAVPL . remplacement retraite:
   avec:
     cotisations et contributions retraite de base:
@@ -3706,6 +3706,11 @@ indépendant . assiette minimale:
     prime d’activité.
   titre.en: '[automatic] minimum base'
   titre.fr: assiette minimale
+indépendant . assiette minimale . indemnités journalières:
+  description.en: '[automatic] Daily allowance contributions are not prorated.'
+  description.fr: La cotisation indemnités journalières n’est pas proratisée.
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
 indépendant . assiette minimale . invalidité et décès:
   description.en: >
     [automatic] If the entrepreneur's income is in deficit or below the
@@ -3736,33 +3741,6 @@ indépendant . assiette minimale . retraite:
     trimestres de retraite, quel que soit le revenu.
   titre.en: '[automatic] retirement'
   titre.fr: retraite
-indépendant . assiette minimale . retraite . en 2022:
-  description.en: >
-    [automatic] The minimum base of 11.50% was not sufficient to validate 3
-    quarters.
-
-    Consequently, this minimum base was revised during the year and will be applied retroactively as from
-
-    applied retroactively from January 1, 2022.
-
-
-    The minimum base is €4,758 for 2022 only. Since 2023, the minimum
-
-    11.5% of PASS.
-  description.fr: >
-    L’assiette minimale de 11,50 % n’était pas suffisante pour valider 3
-    trimestres.
-
-    Par conséquent cette assiette minimale a été révisée en cours d’année et sera
-
-    appliquée de manière rétroactive à compter du 1er janvier 2022.
-
-
-    L’assiette minimale est de 4 758 € pour 2022 uniquement. Depuis 2023, l’assiette
-
-    minimale est repassée à 11,5 % du PASS.
-  titre.en: '[automatic] in 2022'
-  titre.fr: en 2022
 indépendant . conjoint collaborateur:
   description.en: >
     [automatic] As an employee, the spouse of a self-employed person pays
@@ -3907,9 +3885,9 @@ indépendant . conjoint collaborateur . cotisations:
     assiette:
       titre.en: '[automatic] employee-spouse tax base'
       titre.fr: assiette conjoint collaborateur
-    indemnités journalières maladie:
-      titre.en: '[automatic] sick pay'
-      titre.fr: indemnités journalières maladie
+    indemnités journalières:
+      titre.en: '[automatic] daily allowances'
+      titre.fr: indemnités journalières
     invalidité et décès:
       titre.en: '[automatic] disability and death'
       titre.fr: invalidité et décès
@@ -4174,9 +4152,9 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
     allocations familiales:
       titre.en: '[automatic] family allowances'
       titre.fr: allocations familiales
-    indemnités journalières maladie:
-      titre.en: '[automatic] sick pay'
-      titre.fr: indemnités journalières maladie
+    indemnités journalières:
+      titre.en: '[automatic] daily allowances'
+      titre.fr: indemnités journalières
     invalidité et décès:
       titre.en: '[automatic] disability and death'
       titre.fr: invalidité et décès
@@ -4278,9 +4256,9 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
       question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
       titre.en: '[automatic] duration'
       titre.fr: durée
-    indemnités journalières maladie:
-      titre.en: '[automatic] sick pay'
-      titre.fr: indemnités journalières maladie
+    indemnités journalières:
+      titre.en: '[automatic] daily allowances'
+      titre.fr: indemnités journalières
     maladie:
       titre.en: '[automatic] disease'
       titre.fr: maladie
@@ -4385,36 +4363,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
     » de la cotisation invalidité-décès ?
   titre.en: '[automatic] age'
   titre.fr: âge
-indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-  description.en: >
-    [automatic] This contribution enables the company to receive daily benefits
-    in the event of
-
-    work stoppage due to illness or accident.
-
-
-    Benefits are calculated on the basis of the average income subject to contributions
-
-    of the last three years.
-  description.fr: >
-    Cette cotisation permet d’obtenir le versement d’indemnités journalières en
-    cas
-
-    d’arrêt de travail pour cause de maladie ou d’accident.
-
-
-    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations
-
-    des trois dernières années.
-  titre.en: '[automatic] sick pay'
-  titre.fr: indemnités journalières maladie
 indépendant . cotisations et contributions . cotisations . invalidité et décès:
   avec:
     assiette:
@@ -4444,41 +4392,44 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   titre.fr: invalidité et décès
 indépendant . cotisations et contributions . cotisations . maladie:
   avec:
-    taux progressif:
-      titre.en: '[automatic] progressive rate'
-      titre.fr: taux progressif
-    taux progressif . assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    total:
-      description.en: |
-        [automatic] The amount of the contribution for sickness and maternity
-        and maternity insurance. Contains two components:
-        - sickness contribution 1 (sickness and maternity insurance)
-        - sickness contribution 2 (daily sickness benefits)
-      description.fr: |
-        Le montant de la cotisation pour la couverture des risques d’assurance
-        maladie et maternité. Contient deux composantes :
-        - la cotisation maladie 1 (assurance maladie et maternité)
-        - la cotisation maladie 2 (indemnités journalières maladie)
-      note.en: '[automatic] To calculate the amount of health contribution 1, we
-        subtract the amount of health contribution 2 from the total amount of
-        health contribution.'
-      note.fr:
-        Pour calculer le montant de la cotisation maladie 1, on soustrait le
-        montant de la cotisation maladie 2 du montant total de la cotisation
-        maladie.
-      titre.en: '[automatic] total'
-      titre.fr: total
+    plafond taux 1:
+      titre.en: '[automatic] ceiling rate 1'
+      titre.fr: plafond taux 1
+    plancher assiette:
+      titre.en: '[automatic] floor plate'
+      titre.fr: plancher assiette
+    taux 1:
+      titre.en: '[automatic] rate 1'
+      titre.fr: taux 1
+    taux 2:
+      titre.en: '[automatic] rate 2'
+      titre.fr: taux 2
   description.en: >
-    [automatic] This contribution entitles you to all benefits*, including
+    [automatic] The amount of the contribution for health and maternity
+    insurance cover
 
-    sickness and maternity benefits managed by the health insurance scheme and the Cpam :
+    and maternity insurance contains two components:
+
+    - sickness contribution 1 (sickness and maternity insurance)
+
+    - sickness contribution 2 (daily sickness benefits)
+  description.fr: |
+    Le montant de la cotisation pour la couverture des risques d’assurance
+    maladie et maternité contient deux composantes :
+    - la cotisation maladie 1 (assurance maladie et maternité)
+    - la cotisation maladie 2 (indemnités journalières maladie)
+  titre.en: '[automatic] disease'
+  titre.fr: maladie
+indépendant . cotisations et contributions . cotisations . maladie . assurance maladie maternité:
+  description.en: >
+    [automatic] This contribution entitles the member to all benefits
+
+    health and maternity benefits managed by the health insurance scheme and the Cpam :
 
 
-    - health cover for the insured person and family members, identical to that of salaried
+    - health cover for the insured and his/her family members, identical to that of salaried employees
 
-    same rates and conditions of reimbursement) ;
+    same rates and conditions of reimbursement);
 
     - comprehensive maternity insurance in the event of pregnancy or adoption;
 
@@ -4486,12 +4437,12 @@ indépendant . cotisations et contributions . cotisations . maladie:
 
     supplementary health insurance.
   description.fr: >
-    Cette cotisation permet de bénéficier de l’ensemble des prestations*
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
 
-    maladie-maternité géré par l’assurance maladie et les Cpam :
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
 
 
-    - une couverture maladie pour l’assuré et les membres de sa famille, identique
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
 
     à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
 
@@ -4500,28 +4451,75 @@ indépendant . cotisations et contributions . cotisations . maladie:
     - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
 
     souscrire une assurance maladie complémentaire.
-  titre.en: '[automatic] disease'
-  titre.fr: maladie
-indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger:
-  description.en:
-    '[automatic] In return for CSG exemption, these contributors pay
-    a higher health contribution rate. Unlike other insured tradesmen/artisans,
-    they do not benefit from the reduction in the health contribution rate based
-    on declared income.'
-  description.fr: En contrepartie de l’exonération de CSG, les cotisants ont un
-    taux maladie plus elevé. Contrairement aux autres assurés
-    commerçants/artisans ils ne bénéficient pas de la réduction du taux de la
-    cotisation maladie en fonction du revenu déclaré.
-  titre.en: '[automatic] Sickness (tax domicile abroad)'
-  titre.fr: Maladie (domiciliation fiscale à l’étranger)
+  note.en: >
+    [automatic] To calculate the amount of health contribution 1, the amount of
+    health contribution 2 is subtracted from the total health contribution.
+
+    health contribution 2 from the total health contribution.
+  note.fr: >
+    Pour calculer le montant de la cotisation maladie 1, on soustrait le
+
+    montant de la cotisation maladie 2 du montant total de la cotisation maladie.
+  titre.en: '[automatic] health and maternity insurance'
+  titre.fr: assurance maladie maternité
+indépendant . cotisations et contributions . cotisations . maladie . domiciliation fiscale étranger:
+  description.en: >
+    [automatic] In return for CSG exemption, contributors pay a higher sickness
+    rate.
+
+    rate. Unlike other insured tradesmen/artisans
+
+    they do not benefit from the reduction in the rate of health insurance contributions
+
+    according to declared income.
+  description.fr: |
+    En contrepartie de l’exonération de CSG, les cotisants ont un taux
+    maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
+    ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
+    fonction du revenu déclaré.
+  titre.en: '[automatic] tax domicile abroad'
+  titre.fr: domiciliation fiscale étranger
+indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  description.en: >
+    [automatic] This contribution enables the company to receive daily benefits
+    in the event of
+
+    work stoppage due to illness or accident.
+
+
+    Benefits are calculated on the basis of the average income subject to contributions
+
+    of the last three years.
+  description.fr: >
+    Cette cotisation permet d’obtenir le versement d’indemnités journalières en
+    cas
+
+    d’arrêt de travail pour cause de maladie ou d’accident.
+
+
+    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations
+
+    des trois dernières années.
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
 indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   avec:
-    plafond:
-      titre.en: '[automatic] ceiling'
-      titre.fr: plafond
-    références:
-      titre.en: '[automatic] references'
-      titre.fr: références
+    PRCI:
+      titre.en: '[automatic] supplementary pension ceiling for self-employed workers'
+      titre.fr: plafond retraite complémentaire des indépendants
+    taux tranche 1:
+      titre.en: '[automatic] rate tranche 1'
+      titre.fr: taux tranche 1
+    taux tranche 2:
+      titre.en: '[automatic] rate tranche 2'
+      titre.fr: taux tranche 2
   description.en: >
     [automatic] Since January 1, 2013, artisans and shopkeepers have benefited
     from identical
@@ -4557,9 +4555,12 @@ indépendant . cotisations et contributions . cotisations . retraite complément
   titre.fr: retraite complémentaire
 indépendant . cotisations et contributions . cotisations . retraite de base:
   avec:
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
+    taux tranche 1:
+      titre.en: '[automatic] rate tranche 1'
+      titre.fr: taux tranche 1
+    taux tranche 2:
+      titre.en: '[automatic] rate tranche 2'
+      titre.fr: taux tranche 2
   description.en: >
     [automatic] Since 1973, contributions to the basic old-age insurance scheme
 
@@ -4599,9 +4600,9 @@ indépendant . cotisations et contributions . début activité:
     assiette forfaitaire:
       titre.en: '[automatic] lump-sum basis'
       titre.fr: assiette forfaitaire
-    assiette forfaitaire maladie:
-      titre.en: '[automatic] lump-sum basis for sickness'
-      titre.fr: assiette forfaitaire maladie
+    assiette forfaitaire indemnités journalières:
+      titre.en: '[automatic] lump-sum basis for daily allowances'
+      titre.fr: assiette forfaitaire indemnités journalières
   description.en: >
     [automatic] When you start your business, as your professional income is not
     known, your
