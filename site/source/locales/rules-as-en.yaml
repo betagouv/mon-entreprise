@@ -2833,7 +2833,7 @@ protection sociale . retraite . base:
     contributed.
 
 
-    This **estimation** of your **maximum** basic retirement pension is
+    This **estimate** of your **maximum** basic retirement pension is
 
     calculated on the basis of the following assumptions:
 
@@ -2850,21 +2850,21 @@ protection sociale . retraite . base:
     benefit from the **full rate**.
 
 
-    &gt; **Detailed calculation:** 50% x average annual income x pension pro rata
+    > **Detailed calculation:** 50% x average annual income x pension prorata
 
     &gt;
 
-    &gt; With :
+    > With :
 
-    &gt; - _average annual income_ = average of salaries and income contributed by
+    > - average annual income_ = average of salaries and income contributed by
 
-    &gt; self-employed during the 25 most advantageous years of your
+    > self-employed for the best 25 years of your career
 
-    &gt; career ;
+    > career ;
 
-    &gt; - _prorata de pension_ = length of insurance with the Assurance retraite /q
+    > - pension prorata_ = length of insurance with the French pension insurance scheme (Assurance Retraite) / length of insurance to obtain a full pension.
 
-    &gt; insurance period to obtain a full pension.
+    > insurance period to obtain a full pension.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir de
     la
@@ -2903,7 +2903,7 @@ protection sociale . retraite . base:
 
     > carrière ;
 
-    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /q
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
 
     > durée d’assurance pour obtenir une pension à taux plein.
   résumé.en: '[automatic] Full basic retirement pension based on the assumption
