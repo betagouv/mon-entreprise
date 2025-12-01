@@ -8056,13 +8056,13 @@ protection sociale . retraite . base:
 
     > - average annual income_ = average of salaries and income contributed by
 
-    > self-employed for the best 25 years of your career
+    > self-employed for the 25 most advantageous years of your career
 
     > career ;
 
-    > - pension prorata_ = length of insurance with the French pension insurance scheme /q
+    > - pension prorata_ = length of insurance with the French pension insurance scheme (Assurance Retraite) / length of insurance to obtain a full pension.
 
-    > insurance period required to obtain a full pension.
+    > insurance period to obtain a full pension.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir de
     la
@@ -8101,7 +8101,7 @@ protection sociale . retraite . base:
 
     > carrière ;
 
-    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /q
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
 
     > durée d’assurance pour obtenir une pension à taux plein.
   résumé.en: '[automatic] Full basic retirement pension assuming your earnings
