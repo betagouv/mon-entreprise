@@ -62,6 +62,7 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 
 		const handler = (e: MediaQueryListEvent) => setSystemDarkMode(e.matches)
 		mediaQuery.addEventListener('change', handler)
+
 		return () => mediaQuery.removeEventListener('change', handler)
 	}, [])
 
@@ -70,11 +71,11 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 		persistTheme(newTheme)
 	}
 
-	const isDarkMode =
-		theme === 'system' ? systemDarkMode : theme === 'dark'
+	const isDarkMode = theme === 'system' ? systemDarkMode : theme === 'dark'
 
 	useEffect(() => {
 		document.body.style.backgroundColor = isDarkMode ? '#0f172a' : ''
+		// https://www.youtube.com/watch?v=Pr8ETbGz35Q
 		// eslint-disable-next-line no-console
 		console.log(isDarkMode ? 'Nuit' : 'Jour')
 	}, [isDarkMode])

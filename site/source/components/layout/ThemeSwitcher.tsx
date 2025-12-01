@@ -1,87 +1,88 @@
 import { useEffect, useRef, useState } from 'react'
-import styled, { css } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { Emoji } from '@/design-system'
 import { useTheme } from '@/hooks/useDarkMode'
 
 export default function ThemeSwitcher() {
-    const { theme, setTheme } = useTheme()
-    const [isOpen, setIsOpen] = useState(false)
-    const dropdownRef = useRef<HTMLDivElement>(null)
+	const { theme, setTheme } = useTheme()
+	const [isOpen, setIsOpen] = useState(false)
+	const dropdownRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target as Node)
-            ) {
-                setIsOpen(false)
-            }
-        }
-        document.addEventListener('mousedown', handleClickOutside)
-        return () => document.removeEventListener('mousedown', handleClickOutside)
-    }, [])
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target as Node)
+			) {
+				setIsOpen(false)
+			}
+		}
+		document.addEventListener('mousedown', handleClickOutside)
 
-    return (
-        <Container ref={dropdownRef}>
-            <ToggleButton
-                onClick={() => setIsOpen(!isOpen)}
-                title="Changer de thème"
-                aria-label="Changer de thème"
-                $isOpen={isOpen}
-            >
-                <EmojiWrapper>
-                    <Emoji emoji="🔦" />
-                </EmojiWrapper>
-            </ToggleButton>
+		return () => document.removeEventListener('mousedown', handleClickOutside)
+	}, [])
 
-            {isOpen && (
-                <Dropdown>
-                    <Option
-                        onClick={() => {
-                            setTheme('light')
-                            setIsOpen(false)
-                        }}
-                        $isSelected={theme === 'light'}
-                    >
-                        <OptionContent>
-                            <Emoji emoji="☀️" />
-                            <span>Clair</span>
-                        </OptionContent>
-                        {theme === 'light' && <Emoji emoji="☑️" />}
-                    </Option>
+	return (
+		<Container ref={dropdownRef}>
+			<ToggleButton
+				onClick={() => setIsOpen(!isOpen)}
+				title="Changer de thème"
+				aria-label="Changer de thème"
+				$isOpen={isOpen}
+			>
+				<EmojiWrapper>
+					<Emoji emoji="🔦" />
+				</EmojiWrapper>
+			</ToggleButton>
 
-                    <Option
-                        onClick={() => {
-                            setTheme('dark')
-                            setIsOpen(false)
-                        }}
-                        $isSelected={theme === 'dark'}
-                    >
-                        <OptionContent>
-                            <Emoji emoji="🌙" />
-                            <span>Sombre</span>
-                        </OptionContent>
-                        {theme === 'dark' && <Emoji emoji="☑️" />}
-                    </Option>
+			{isOpen && (
+				<Dropdown>
+					<Option
+						onClick={() => {
+							setTheme('light')
+							setIsOpen(false)
+						}}
+						$isSelected={theme === 'light'}
+					>
+						<OptionContent>
+							<Emoji emoji="☀️" />
+							<span>Clair</span>
+						</OptionContent>
+						{theme === 'light' && <Emoji emoji="☑️" />}
+					</Option>
 
-                    <Option
-                        onClick={() => {
-                            setTheme('system')
-                            setIsOpen(false)
-                        }}
-                        $isSelected={theme === 'system'}
-                    >
-                        <OptionContent>
-                            <Emoji emoji="💻" />
-                            <span>Système</span>
-                        </OptionContent>
-                        {theme === 'system' && <Emoji emoji="☑️" />}
-                    </Option>
-                </Dropdown>
-            )}
-        </Container>
-    )
+					<Option
+						onClick={() => {
+							setTheme('dark')
+							setIsOpen(false)
+						}}
+						$isSelected={theme === 'dark'}
+					>
+						<OptionContent>
+							<Emoji emoji="🌙" />
+							<span>Sombre</span>
+						</OptionContent>
+						{theme === 'dark' && <Emoji emoji="☑️" />}
+					</Option>
+
+					<Option
+						onClick={() => {
+							setTheme('system')
+							setIsOpen(false)
+						}}
+						$isSelected={theme === 'system'}
+					>
+						<OptionContent>
+							<Emoji emoji="💻" />
+							<span>Système</span>
+						</OptionContent>
+						{theme === 'system' && <Emoji emoji="☑️" />}
+					</Option>
+				</Dropdown>
+			)}
+		</Container>
+	)
 }
 
 const Container = styled.div`

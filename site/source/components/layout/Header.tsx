@@ -20,8 +20,6 @@ export default function Header() {
 
 	const { i18n, t } = useTranslation()
 
-
-
 	return (
 		<>
 			<header
