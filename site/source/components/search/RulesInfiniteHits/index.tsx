@@ -47,7 +47,7 @@ const Hit = (hit: THit) => {
 		<HitContainer>
 			{hit.namespace && (
 				<SmallBody as="span" className="hit-namespace">
-					{hit.namespace}
+					{Object.values(hit.namespace).join(' > ')}
 					{/* <Highlight hit={hit} attribute="namespace" separator=" > " /> */}
 				</SmallBody>
 			{console.log('namespace:', hit.namespace)}
