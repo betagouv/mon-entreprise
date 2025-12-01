@@ -1,13 +1,11 @@
 indépendant . cotisations et contributions . cotisations:
   somme:
     - maladie
-    - indemnités journalières maladie
-    - maladie domiciliation fiscale étranger
+    - allocations familiales
     - retraite de base
     - retraite complémentaire
     - PCV
     - invalidité et décès
-    - allocations familiales
     - (- exonérations . ZFU)
   références:
     Taux de cotisations - Artisan, commerçant et profession libérale non réglementée: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html
@@ -17,71 +15,106 @@ indépendant . cotisations et contributions . cotisations:
 
 indépendant . cotisations et contributions . cotisations . maladie:
   description: |
-    Cette cotisation permet de bénéficier de l’ensemble des prestations*
-    maladie-maternité géré par l’assurance maladie et les Cpam :
+    Le montant de la cotisation pour la couverture des risques d’assurance
+    maladie et maternité contient deux composantes :
+    - la cotisation maladie 1 (assurance maladie et maternité)
+    - la cotisation maladie 2 (indemnités journalières maladie)
+  variations:
+    - si:
+        est applicable: domiciliation fiscale étranger
+      alors: domiciliation fiscale étranger
+    - sinon:
+        barème:
+          assiette:
+            valeur: assiette sociale
+            plancher: plancher assiette
+          multiplicateur: PSS proratisé
+          tranches:
+            - taux: taux 1
+              plafond: plafond taux 1
+            - taux: taux 2
+  arrondi: oui
+  unité: €/an
+  références:
+    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
+    Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
+    Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
 
-    - une couverture maladie pour l’assuré et les membres de sa famille, identique
+  avec:
+    plancher assiette:
+      variations:
+        - si: après réforme
+          alors: 0
+        - sinon: assiette minimale . maladie
+
+    plafond taux 1:
+      variations:
+        - si: après réforme
+          alors: 3
+        - sinon: 5
+
+    taux 1:
+      arrondi: 2 décimales
+      variations:
+        - si: après réforme
+          alors:
+            taux progressif:
+              assiette: assiette sociale
+              multiplicateur: PSS proratisé
+              tranches:
+                - taux: 0%
+                  plafond: 20%
+                - taux: 1.50%
+                  plafond: 40%
+                - taux: 4.00%
+                  plafond: 60%
+                - taux: 6.50%
+                  plafond: 110%
+                - taux: 7.70%
+                  plafond: 200%
+                - taux: 8.50%
+                  plafond: 300%
+        - sinon:
+            taux progressif:
+              assiette: assiette sociale
+              multiplicateur: PSS proratisé
+              tranches:
+                - taux: 0%
+                  plafond: 40%
+                - taux: 4%
+                  plafond: 60%
+                - taux: 6.70%
+                  plafond: 110%
+                - taux: 6.70%
+                  plafond: 500%
+      références:
+        Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
+
+    taux 2:
+      valeur: 6.50%
+      références:
+        Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
+
+indépendant . cotisations et contributions . cotisations . maladie . assurance maladie maternité:
+  description: |
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
+
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
     à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
     - une assurance maternité complète en cas de grossesse ou d’adoption ;
     - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
     souscrire une assurance maladie complémentaire.
+  note: |
+    Pour calculer le montant de la cotisation maladie 1, on soustrait le
+    montant de la cotisation maladie 2 du montant total de la cotisation maladie.
   non applicable si: situation personnelle . domiciliation fiscale à l'étranger
-  valeur: total
-  abattement: indemnités journalières maladie
+  valeur: maladie
+  abattement: indemnités journalières
   arrondi: oui
   unité: €/an
-  références:
-    Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747
-    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
 
-  avec:
-    total:
-      description: |
-        Le montant de la cotisation pour la couverture des risques d’assurance
-        maladie et maternité. Contient deux composantes :
-        - la cotisation maladie 1 (assurance maladie et maternité)
-        - la cotisation maladie 2 (indemnités journalières maladie)
-      note:
-        Pour calculer le montant de la cotisation maladie 1, on soustrait le
-        montant de la cotisation maladie 2 du montant total de la cotisation maladie.
-      barème:
-        assiette:
-          valeur: assiette sociale
-          plancher: assiette minimale . maladie
-        multiplicateur:
-          produit:
-            - plafond sécurité sociale
-            - entreprise . prorata temporis
-        tranches:
-          - taux: taux progressif
-            plafond: 5
-          - taux: 6.50%
-      références:
-        Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714760
-
-    taux progressif:
-      arrondi: 2 décimales
-      taux progressif:
-        assiette: assiette
-        multiplicateur:
-          produit:
-            - plafond sécurité sociale
-            - entreprise . prorata temporis
-        tranches:
-          - taux: 0%
-            plafond: 40%
-          - taux: 4%
-            plafond: 60%
-          - taux: 6.70%
-            plafond: 110%
-          - taux: 6.70%
-            plafond: 500%
-      références:
-        Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046714747/
-
-    taux progressif . assiette: assiette sociale
-
-indépendant . cotisations et contributions . cotisations . indemnités journalières maladie:
+indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières:
   description: |
     Cette cotisation permet d’obtenir le versement d’indemnités journalières en cas
     d’arrêt de travail pour cause de maladie ou d’accident.
@@ -92,7 +125,6 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
   produit:
     - assiette
     - taux
-  arrondi: oui
   plafond:
     non applicable si: date >= 01/2024
     # Le taux indemnité est de 0.5%, dans la loi.
@@ -102,151 +134,40 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
     #
     # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
     # plafonne donc la cotis maladie 2 à ce total
-    valeur: maladie . total
+    valeur: maladie
+  arrondi: oui
   unité: €/an
   références:
+    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
     Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-    Quelles sont vos cotisations ?: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html
+    Article D621-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904537
 
   avec:
     assiette:
       valeur: assiette sociale
-      plancher: assiette minimale . maladie
+      plancher: assiette minimale . indemnités journalières
       plafond: 5 * plafond sécurité sociale
 
     taux:
       valeur:
         variations:
           - si: date >= 01/2024
-            alors: 0.5%
+            alors: 0.50%
           - sinon: 0.85%
 
-indépendant . cotisations et contributions . cotisations . maladie domiciliation fiscale étranger:
-  applicable si: situation personnelle . domiciliation fiscale à l'étranger
-  titre: Maladie (domiciliation fiscale à l’étranger)
-  description:
+indépendant . cotisations et contributions . cotisations . maladie . domiciliation fiscale étranger:
+  description: |
     En contrepartie de l’exonération de CSG, les cotisants ont un taux
     maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
     ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
     fonction du revenu déclaré.
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
+  non applicable si: PL . PAMC
   produit:
     - assiette sociale
     - 14.5%
-  unité: €/an
-  arrondi: oui
-
-indépendant . cotisations et contributions . cotisations . retraite de base:
-  description: |
-    Depuis 1973, la cotisation versée au titre de l’assurance vieillesse de base
-    permet aux artisans et commerçants de bénéficier d’une retraite de base calculée
-    de la même manière que les salariés.
-
-    Le régime est géré depuis 2020 par l’assurance retraite et les Carsat et se
-    fonde sur la solidarité nationale.
-
-    Il garantit des pensions égales à celles des salariés non cadres du secteur
-    privé pour une durée et un niveau de cotisation identique.
-  barème:
-    assiette:
-      valeur: assiette sociale
-      plancher: assiette minimale . retraite
-    tranches:
-      - taux: taux
-        plafond: plafond sécurité sociale * entreprise . prorata temporis
-      - taux: 0.6%
-  arrondi: oui
-  références:
-    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-    Retraite de base: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-de-base
-
-  avec:
-    taux: 17.75%
-
-indépendant . cotisations et contributions . cotisations . retraite complémentaire:
-  description: |
-    Depuis le 1er janvier 2013, les artisans et les commerçants bénéficient de
-    droits identiques en matière de retraite complémentaire.
-    Ce régime commun est géré, depuis 2020 par l’assurance et les Carsat, suivant le
-    principe de répartition avec la constitution d’une réserve de sécurité qui
-    garantit à long terme son équilibre.
-
-    Il fonctionne selon les mêmes principes que les régimes de retraite
-    complémentaire des salariés.
-  barème:
-    assiette: assiette sociale
-    tranches:
-      - taux: 7%
-        plafond: plafond
-      - taux: 8%
-        plafond: 4 * plafond sécurité sociale
   arrondi: oui
   unité: €/an
-  références:
-    Retraite complémentaire: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-complementaire
-
-  avec:
-    plafond:
-      acronyme: PRCI
-      titre global: plafond retraite complémentaire des indépendants
-      valeur:
-        produit:
-          - entreprise . prorata temporis
-          - variations:
-              - si: date >= 01/2025
-                alors: 43891 €/an
-              - si: date >= 01/2024
-                alors: 42946 €/an
-              - si: date >= 01/2023
-                alors: 40784 €/an
-              - sinon: 38916 €/an
-    références:
-      Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
-
-indépendant . cotisations et contributions . cotisations . PCV:
-  titre: Prestations complémentaires vieillesse
-  acronyme: PCV
-  non applicable si: oui
-  description: |
-    Certaines catégories professionnelles bénéficient de
-    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
-    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
-    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
-    directeurs de laboratoires. Ce régime résulte de la prise en charge
-    partielle par l’Assurance maladie de leurs cotisations d’assurance
-    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
-    conventionnel.
-
-indépendant . cotisations et contributions . cotisations . invalidité et décès:
-  description: |
-    Cette cotisation permet de bénéficier, sous certaines conditions, d’une pension
-    d’invalidité avant l’âge de départ à la retraite.
-
-    L’assurance décès garantit le versement aux ayants droit d’un capital décès quel
-    que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
-  produit:
-    - assiette
-    - 1.3%
-  unité: €/an
-  arrondi: oui
-  références:
-    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
-    Invalidité-décès: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-invalidite-deces
-    Article L632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037951125
-    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
-    Article D632-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036471466
-
-  avec:
-    assiette:
-      experimental: oui
-      valeur: assiette sociale
-      plancher:
-        produit:
-          - assiette minimale . invalidité et décès
-          - entreprise . prorata temporis
-      plafond:
-        produit:
-          - plafond sécurité sociale
-          - entreprise . prorata temporis
 
 indépendant . cotisations et contributions . cotisations . allocations familiales:
   description: |
@@ -268,9 +189,11 @@ indépendant . cotisations et contributions . cotisations . allocations familial
   unité: €/an
   références:
     Allocations familiales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-allocations-familiales
+    Article D613-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966324
 
   avec:
     taux:
+      arrondi: 2 décimales
       taux progressif:
         assiette: assiette sociale
         multiplicateur:
@@ -281,4 +204,145 @@ indépendant . cotisations et contributions . cotisations . allocations familial
           - plafond: 110%
             taux: 0%
           - plafond: 140%
-            taux: 3.1%
+            taux: 3.10%
+
+indépendant . cotisations et contributions . cotisations . retraite de base:
+  description: |
+    Depuis 1973, la cotisation versée au titre de l’assurance vieillesse de base
+    permet aux artisans et commerçants de bénéficier d’une retraite de base calculée
+    de la même manière que les salariés.
+
+    Le régime est géré depuis 2020 par l’assurance retraite et les Carsat et se
+    fonde sur la solidarité nationale.
+
+    Il garantit des pensions égales à celles des salariés non cadres du secteur
+    privé pour une durée et un niveau de cotisation identique.
+  barème:
+    assiette:
+      valeur: assiette sociale
+      plancher: assiette minimale . retraite
+    tranches:
+      - taux: taux tranche 1
+        plafond: PSS proratisé
+      - taux: taux tranche 2
+  arrondi: oui
+  unité: €/an
+  références:
+    Retraite de base: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-de-base
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Article D633-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838330
+    Article D633-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904636/2024-07-07
+
+  avec:
+    taux tranche 1:
+      somme:
+        - 17.15%
+        - taux tranche 2
+      références:
+        Article D633-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904636/2024-07-07
+
+    taux tranche 2:
+      variations:
+        - si: après réforme
+          alors: 0.72%
+        - sinon: 0.60%
+      références:
+        Article D633-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904636/2024-07-07
+
+indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+  description: |
+    Depuis le 1er janvier 2013, les artisans et les commerçants bénéficient de
+    droits identiques en matière de retraite complémentaire.
+    Ce régime commun est géré, depuis 2020 par l’assurance et les Carsat, suivant le
+    principe de répartition avec la constitution d’une réserve de sécurité qui
+    garantit à long terme son équilibre.
+
+    Il fonctionne selon les mêmes principes que les régimes de retraite
+    complémentaire des salariés.
+  barème:
+    assiette: assiette sociale
+    tranches:
+      - taux: taux tranche 1
+        plafond:
+          variations:
+            - si: après réforme
+              alors: PSS proratisé
+            - sinon: PRCI
+      - taux: taux tranche 2
+        plafond: 4 * PSS proratisé
+  arrondi: oui
+  unité: €/an
+  références:
+    Retraite complémentaire: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-complementaire
+    Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
+
+  avec:
+    taux tranche 1:
+      variations:
+        - si: après réforme
+          alors: 8.1%
+        - sinon: 7%
+      références:
+        Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
+
+    taux tranche 2:
+      variations:
+        - si: après réforme
+          alors: 9.1%
+        - sinon: 8%
+      références:
+        Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
+
+    PRCI:
+      titre: plafond retraite complémentaire des indépendants
+      valeur:
+        produit:
+          - entreprise . prorata temporis
+          - variations:
+              - si: date >= 01/2025
+                alors: 43891 €/an
+              - si: date >= 01/2024
+                alors: 42946 €/an
+              - si: date >= 01/2023
+                alors: 40784 €/an
+              - sinon: 38916 €/an
+      références:
+        Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
+
+indépendant . cotisations et contributions . cotisations . invalidité et décès:
+  description: |
+    Cette cotisation permet de bénéficier, sous certaines conditions, d’une pension
+    d’invalidité avant l’âge de départ à la retraite.
+
+    L’assurance décès garantit le versement aux ayants droit d’un capital décès quel
+    que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
+  produit:
+    - assiette
+    - 1.3%
+  unité: €/an
+  arrondi: oui
+  références:
+    Invalidité-décès: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-invalidite-deces
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+    Article D632-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036471466
+
+  avec:
+    assiette:
+      valeur: assiette sociale
+      plancher: assiette minimale . invalidité et décès
+      plafond: PSS proratisé
+
+indépendant . cotisations et contributions . cotisations . PCV:
+  titre: Prestations complémentaires vieillesse
+  acronyme: PCV
+  non applicable si: oui
+  description: |
+    Certaines catégories professionnelles bénéficient de
+    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
+    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
+    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
+    directeurs de laboratoires. Ce régime résulte de la prise en charge
+    partielle par l’Assurance maladie de leurs cotisations d’assurance
+    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
+    conventionnel.
