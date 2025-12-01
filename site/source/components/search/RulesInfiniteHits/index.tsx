@@ -8,7 +8,6 @@ import { FromTop } from '@/components/ui/animate'
 import { Body, Button, H3, SmallBody } from '@/design-system'
 
 import RuleLink from '../../RuleLink'
-import { Highlight } from '../Hightlight'
 
 type THit = AlgoliaHit<{ objectID: DottedName; namespace?: string }>
 
@@ -51,11 +50,14 @@ const Hit = (hit: THit) => {
 					{hit.namespace}
 					{/* <Highlight hit={hit} attribute="namespace" separator=" > " /> */}
 				</SmallBody>
+			{console.log('namespace:', hit.namespace)}
 			)}
 
 			<StyledRuleLink dottedName={hit.objectID} aria-label={undefined}>
 				<Body as="span" className="hit-ruleName">
 					{hit.ruleName}
+
+					{console.log('namespace:', hit.ruleName)}
 				</Body>
 			</StyledRuleLink>
 		</HitContainer>
