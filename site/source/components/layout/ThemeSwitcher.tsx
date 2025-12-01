@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { Emoji } from '@/design-system'
 import { useTheme } from '@/hooks/useDarkMode'
 
 export default function ThemeSwitcher() {
+	const { t } = useTranslation()
 	const { theme, setTheme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
@@ -27,8 +29,7 @@ export default function ThemeSwitcher() {
 		<Container ref={dropdownRef}>
 			<ToggleButton
 				onClick={() => setIsOpen(!isOpen)}
-				title="Changer de thème"
-				aria-label="Changer de thème"
+				title={t('theme-switch.title', 'Changer de thème')}
 				$isOpen={isOpen}
 			>
 				<EmojiWrapper>
@@ -47,7 +48,7 @@ export default function ThemeSwitcher() {
 					>
 						<OptionContent>
 							<Emoji emoji="☀️" />
-							<span>Clair</span>
+							{t('theme-switch.light', 'Clair')}
 						</OptionContent>
 						{theme === 'light' && <Emoji emoji="☑️" />}
 					</Option>
@@ -61,7 +62,7 @@ export default function ThemeSwitcher() {
 					>
 						<OptionContent>
 							<Emoji emoji="🌙" />
-							<span>Sombre</span>
+							{t('theme-switch.dark', 'Sombre')}
 						</OptionContent>
 						{theme === 'dark' && <Emoji emoji="☑️" />}
 					</Option>
@@ -75,7 +76,7 @@ export default function ThemeSwitcher() {
 					>
 						<OptionContent>
 							<Emoji emoji="💻" />
-							<span>Système</span>
+							{t('theme-switch.system', 'Système')}
 						</OptionContent>
 						{theme === 'system' && <Emoji emoji="☑️" />}
 					</Option>
