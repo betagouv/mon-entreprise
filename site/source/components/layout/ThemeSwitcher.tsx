@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
+import { ThemeMode } from '@/components/utils/DarkModeContext'
 import { Emoji } from '@/design-system'
 import { useTheme } from '@/hooks/useDarkMode'
 
@@ -10,6 +11,11 @@ export default function ThemeSwitcher() {
 	const { theme, setTheme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
 	const dropdownRef = useRef<HTMLDivElement>(null)
+
+	const handleChange = (theme: ThemeMode) => {
+		setTheme(theme)
+		setIsOpen(false)
+	}
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
@@ -41,8 +47,7 @@ export default function ThemeSwitcher() {
 				<Dropdown>
 					<Option
 						onClick={() => {
-							setTheme('light')
-							setIsOpen(false)
+							handleChange('light')
 						}}
 						$isSelected={theme === 'light'}
 					>
@@ -55,8 +60,7 @@ export default function ThemeSwitcher() {
 
 					<Option
 						onClick={() => {
-							setTheme('dark')
-							setIsOpen(false)
+							handleChange('dark')
 						}}
 						$isSelected={theme === 'dark'}
 					>
@@ -69,8 +73,7 @@ export default function ThemeSwitcher() {
 
 					<Option
 						onClick={() => {
-							setTheme('system')
-							setIsOpen(false)
+							handleChange('system')
 						}}
 						$isSelected={theme === 'system'}
 					>
