@@ -175,6 +175,20 @@ export function Select<T extends Record<string, unknown>>(
 		}
 	}, [])
 
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				wrapperRef.current &&
+				!wrapperRef.current.contains(event.target as Node)
+			) {
+				state.close()
+			}
+		}
+		document.addEventListener('mousedown', handleClickOutside)
+
+		return () => document.removeEventListener('mousedown', handleClickOutside)
+	}, [])
+
 	return (
 		<Container>
 			<Wrapper ref={wrapperRef} $isOpen={state.isOpen}>
