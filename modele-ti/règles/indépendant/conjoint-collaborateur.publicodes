@@ -90,7 +90,7 @@ indépendant . conjoint collaborateur . cotisations:
     - retraite de base
     - retraite complémentaire
     - invalidité et décès
-    - indemnités journalières maladie
+    - indemnités journalières
 
   avec:
     assiette:
@@ -112,7 +112,7 @@ indépendant . conjoint collaborateur . cotisations:
               - cotisations et contributions . assiette sociale
               - 1 / 3
 
-    indemnités journalières maladie:
+    indemnités journalières:
       produit:
         - unité: €/an
           valeur: 40% * plafond sécurité sociale
