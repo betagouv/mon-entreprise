@@ -72,17 +72,17 @@ indépendant . PL . CNAVPL . remplacement retraite:
       valeur: retraite
 
     cotisations et contributions retraite de base taux:
-      remplace: cotisations et contributions . cotisations . retraite de base . taux
+      remplace: cotisations et contributions . cotisations . retraite de base . taux tranche 1
       valeur: retraite . tranche T1 . taux
 
-indépendant . PL . CNAVPL . indemnités journalières maladie:
+indépendant . PL . CNAVPL . indemnités journalières:
   description: |
     Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
     la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
     maladie.
 
     En conséquence une nouvelle cotisation est créée.
-  remplace: cotisations et contributions . cotisations . indemnités journalières maladie
+  remplace: cotisations et contributions . cotisations . maladie . indemnités journalières
   non applicable si: PL . CNBF
   produit:
     - assiette
@@ -184,9 +184,9 @@ indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
       valeur: conjoint collaborateur . assiette
       plancher: assiette minimale . retraite
 
-indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières maladie:
+indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières:
   applicable si: date >= 01/2022
-  remplace: conjoint collaborateur . cotisations . indemnités journalières maladie
+  remplace: conjoint collaborateur . cotisations . indemnités journalières
   produit:
     - 40% * plafond sécurité sociale
     - 0.3%
