@@ -5,7 +5,7 @@ indépendant . PL . CNBF:
     La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
     sociale des avocats.
   rend non applicable:
-    - cotisations et contributions . cotisations . indemnités journalières maladie
+    - cotisations et contributions . cotisations . maladie . indemnités journalières
     # Applicable mais pas encore supporté
     - conjoint collaborateur
   références:
