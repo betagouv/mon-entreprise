@@ -7,13 +7,13 @@ import { getItem, setItem } from '@/storage/safeLocalStorage'
 
 // TODO: Theme and dark mode should be in design-system (https://github.com/betagouv/mon-entreprise/issues/2563)
 
-export type ThemeType = 'light' | 'dark' | 'system'
+export type ThemeMode = 'light' | 'dark' | 'system'
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 
 type ThemeContextType = {
-	theme: ThemeType
-	setTheme: (theme: ThemeType) => void
+	theme: ThemeMode
+	setTheme: (theme: ThemeMode) => void
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
@@ -24,15 +24,16 @@ export const ThemeContext = createContext<ThemeContextType>({
 	},
 })
 
-const persistTheme = (theme: ThemeType) => {
+const persistTheme = (theme: ThemeMode) => {
 	setItem('theme', theme)
 }
 
-const getDefaultTheme = (): ThemeType => {
+const getDefaultTheme = (): ThemeMode => {
 	if (import.meta.env.SSR) {
 		return 'system'
 	}
-	const savedTheme = getItem('theme') as ThemeType
+	const savedTheme = getItem('theme') as ThemeMode
+
 	return savedTheme || 'system'
 }
 
@@ -45,11 +46,12 @@ export const DarkModeContext = createContext<DarkModeContextType>([
 ])
 
 export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
-	const [theme, _setTheme] = useState<ThemeType>(getDefaultTheme())
+	const [theme, _setTheme] = useState<ThemeMode>(getDefaultTheme())
 	const [systemDarkMode, setSystemDarkMode] = useState<boolean>(() => {
 		if (typeof window !== 'undefined' && window.matchMedia) {
 			return window.matchMedia('(prefers-color-scheme: dark)').matches
 		}
+
 		return false
 	})
 
@@ -63,7 +65,7 @@ export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
 		return () => mediaQuery.removeEventListener('change', handler)
 	}, [])
 
-	const setTheme = (newTheme: ThemeType) => {
+	const setTheme = (newTheme: ThemeMode) => {
 		_setTheme(newTheme)
 		persistTheme(newTheme)
 	}
