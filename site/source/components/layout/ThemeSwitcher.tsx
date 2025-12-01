@@ -102,13 +102,18 @@ const ToggleButton = styled.button<{ $isOpen: boolean }>`
 	justify-content: center;
 
 	&:hover {
-		background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.dark[500]
+				: theme.colors.bases.primary[100]};
 	}
 
 	${({ $isOpen, theme }) =>
-        $isOpen &&
-        css`
-			background-color: ${theme.colors.bases.primary[100]};
+		$isOpen &&
+		css`
+			background-color: ${theme.darkMode
+				? theme.colors.extended.dark[500]
+				: theme.colors.bases.primary[100]};
 		`}
 `
 
@@ -124,14 +129,21 @@ const Dropdown = styled.div`
 	right: 0;
 	margin-top: 0.5rem;
 	width: 10rem;
-	background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[700]
+			: theme.colors.bases.primary[100]};
 	border-radius: 0.5rem;
 	box-shadow:
 		0 4px 6px -1px rgba(0, 0, 0, 0.1),
 		0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	padding: 0.25rem;
 	z-index: 50;
-	border: 1px solid ${({ theme }) => theme.colors.bases.primary[200]};
+	border: 1px solid
+		${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.dark[500]
+				: theme.colors.bases.primary[200]};
 `
 
 const Option = styled.button<{ $isSelected: boolean }>`
@@ -145,17 +157,25 @@ const Option = styled.button<{ $isSelected: boolean }>`
 	background: none;
 	cursor: pointer;
 	font-size: 0.875rem;
-	color: ${({ theme }) => theme.colors.extended.grey[800]};
+	color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.extended.grey[800]};
 	transition: background-color 0.2s;
 
 	&:hover {
-		background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.dark[600]
+				: theme.colors.bases.primary[200]};
 	}
 
 	${({ $isSelected, theme }) =>
-        $isSelected &&
-        css`
-			background-color: ${theme.colors.bases.primary[200]};
+		$isSelected &&
+		css`
+			background-color: ${theme.darkMode
+				? theme.colors.extended.dark[600]
+				: theme.colors.bases.primary[200]};
 			font-weight: bold;
 		`}
 `
