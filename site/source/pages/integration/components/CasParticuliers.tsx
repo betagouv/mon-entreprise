@@ -114,7 +114,10 @@ export function CasParticuliers() {
 				<H4>Le versement mobilité</H4>
 				<Body>
 					<Code>
-						<RuleLink dottedName="établissement . commune . taux versement mobilité">
+						<RuleLink
+							dottedName="établissement . commune . taux versement mobilité"
+							aria-label="établissement . commune . taux versement mobilité"
+						>
 							établissement . commune . taux versement mobilité
 						</RuleLink>
 					</Code>
@@ -159,7 +162,10 @@ export function CasParticuliers() {
 				<H4>Le taux collectif AT/MP</H4>
 				<Body>
 					<Code>
-						<RuleLink dottedName="établissement . taux ATMP . taux collectif">
+						<RuleLink
+							dottedName="établissement . taux ATMP . taux collectif"
+							aria-label="établissement . taux ATMP . taux collectif"
+						>
 							établissement . taux ATMP . taux collectif
 						</RuleLink>
 					</Code>
@@ -174,7 +180,7 @@ export function CasParticuliers() {
 						<Body>
 							<Link
 								href="https://github.com/betagouv/taux-collectifs-cotisation-atmp"
-								aria-label="un export CSV, accéder à l'export, nouvelle fenêtre"
+								aria-label="un export CSV, nouvelle fenêtre"
 							>
 								Un export csv
 							</Link>{' '}
@@ -186,7 +192,7 @@ export function CasParticuliers() {
 							La documentation{' '}
 							<Link
 								href="https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp"
-								aria-label="Trouver son taux de cotisation AT/MP"
+								aria-label="Cotisations AT/MP"
 							>
 								Cotisations AT/MP
 							</Link>{' '}
