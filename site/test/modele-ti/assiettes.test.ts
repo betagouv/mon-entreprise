@@ -18,7 +18,7 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate('indépendant . revenu brut', 40000)
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS . assiette',
+				'indépendant . cotisations et contributions . assiette CSG-CRDS',
 				29600
 			)
 		})
@@ -31,7 +31,7 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate('indépendant . revenu brut', 40000)
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS . assiette',
+				'indépendant . cotisations et contributions . assiette CSG-CRDS',
 				29600
 			)
 		})
@@ -43,11 +43,11 @@ describe('Indépendant', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS . assiette . abattement',
+				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
 				61230
 			)
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS . assiette',
+				'indépendant . cotisations et contributions . assiette CSG-CRDS',
 				188770
 			)
 		})
@@ -59,11 +59,11 @@ describe('Indépendant', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS . assiette . abattement',
+				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
 				829
 			)
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS . assiette',
+				'indépendant . cotisations et contributions . assiette CSG-CRDS',
 				171
 			)
 		})
@@ -79,7 +79,7 @@ describe('Indépendant', () => {
 			const e = engine.setSituation(situationParDéfaut)
 
 			const assietteCSG = e.evaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS . assiette'
+				'indépendant . cotisations et contributions . assiette CSG-CRDS'
 			).nodeValue
 			const assietteSociale = e.evaluate(
 				'indépendant . cotisations et contributions . assiette sociale'
@@ -97,7 +97,7 @@ describe('Indépendant', () => {
 
 			const assietteCSG =
 				(e.evaluate(
-					'indépendant . cotisations et contributions . CSG-CRDS . assiette'
+					'indépendant . cotisations et contributions . assiette CSG-CRDS'
 				).nodeValue as number) || 0
 			const IJSS =
 				(e.evaluate('indépendant . IJSS . après abattement')
@@ -119,7 +119,7 @@ describe('Indépendant', () => {
 
 			const assietteCSG =
 				(e.evaluate(
-					'indépendant . cotisations et contributions . CSG-CRDS . assiette'
+					'indépendant . cotisations et contributions . assiette CSG-CRDS'
 				).nodeValue as number) || 0
 			const assietteSociale = e.evaluate(
 				'indépendant . cotisations et contributions . assiette sociale'
@@ -137,13 +137,25 @@ describe('Indépendant', () => {
 
 			const assietteCSG =
 				(e.evaluate(
-					'indépendant . cotisations et contributions . CSG-CRDS . assiette'
+					'indépendant . cotisations et contributions . assiette CSG-CRDS'
 				).nodeValue as number) || 0
 			const assietteSociale = e.evaluate(
 				'indépendant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
 			expect(assietteSociale).toEqual(assietteCSG - 4000)
+		})
+
+		it('en cas de domiciliation fiscale à l’étranger', () => {
+			const e = engine.setSituation({
+				...situationParDéfaut,
+				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . assiette sociale',
+				29600
+			)
 		})
 	})
 })
