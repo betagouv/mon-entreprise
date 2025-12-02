@@ -238,6 +238,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
       somme:
         - 17.15%
         - taux tranche 2
+      arrondi: 2 décimales
       références:
         Article D633-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904636/2024-07-07
 
