@@ -5,9 +5,10 @@ import { useTranslation } from 'react-i18next'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import {
 	estActiviteProfessionnelle,
+	estSituationMeubléDeTourismeValide,
 	estSituationValide,
+	SituationÉconomieCollaborative,
 	useEconomieCollaborative,
-	type SituationÉconomieCollaborative,
 	type TypeDurée,
 } from '@/contextes/économie-collaborative'
 import { RadioCard, RadioCardGroup } from '@/design-system'
@@ -29,6 +30,10 @@ export const TypeDuréeQuestion: ComposantQuestion<
 		},
 		[set]
 	)
+
+	if (!estSituationMeubléDeTourismeValide(situation)) {
+		return null
+	}
 
 	const typeDurée = O.getOrUndefined(situation.typeDurée)
 
@@ -86,5 +91,10 @@ TypeDuréeQuestion.libellé = (t) =>
 		'Proposez-vous de la location courte ou longue durée ?'
 	)
 TypeDuréeQuestion.applicable = (situation) =>
-	estSituationValide(situation) && estActiviteProfessionnelle(situation)
-TypeDuréeQuestion.répondue = (situation) => O.isSome(situation.typeDurée)
+	situation.typeHébergement === 'meublé-tourisme' &&
+	estSituationValide(situation) &&
+	estActiviteProfessionnelle(situation)
+TypeDuréeQuestion.répondue = (situation) =>
+	situation.typeHébergement === 'meublé-tourisme'
+		? O.isSome(situation.typeDurée)
+		: false

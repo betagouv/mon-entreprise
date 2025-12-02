@@ -3,11 +3,20 @@ export { ÉconomieCollaborativeProvider } from './hooks/ÉconomieCollaborativeCo
 export { isCotisationsEnabled } from './featureToggles'
 export {
 	estSituationValide,
+	faitDeLaLocationCourteDurée,
+	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
+	estSituationMeubléDeTourismeValide,
 	type SituationÉconomieCollaborative,
 	type SituationÉconomieCollaborativeValide,
+	type SituationMeubléDeTourisme,
+	type SituationMeubléDeTourismeValide,
+	type SituationChambreDHôte,
 	type TypeDurée,
-	type TypeLocation,
+	type Classement,
+	type TypeHébergement,
+	initialSituationMeubléDeTourisme,
+	initialSituationChambreDHôte,
 } from './domaine/location-de-meublé/situation'
 export {
 	type SimulationImpossible,
