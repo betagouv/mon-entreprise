@@ -18,6 +18,7 @@ import {
 } from '../fieldsStyles'
 
 type NumberFieldProps = RANumberFieldProps & {
+	description?: string
 	displayedUnit?: string
 	errorMessage?: string
 	label: string
@@ -25,6 +26,7 @@ type NumberFieldProps = RANumberFieldProps & {
 
 export function NumberField({
 	defaultValue,
+	description,
 	displayedUnit,
 	errorMessage,
 	formatOptions = {
@@ -40,6 +42,10 @@ export function NumberField({
 			$hasError={!!errorMessage}
 		>
 			<StyledRALabel>{label}</StyledRALabel>
+
+			{description && (
+				<StyledRAText slot="description">{description}</StyledRAText>
+			)}
 
 			<StyledRAGroup className="input-and-unit-group">
 				<StyledRAInput />
@@ -96,6 +102,13 @@ const StyledRAInput = styled(RAInput)`
 	margin: 0;
 
 	text-align: right;
+`
+
+const StyledRAText = styled(RAText)`
+	${fieldLabelStyles}
+
+	padding-top: 0;
+	padding-left: 0;
 `
 
 const StyledErrorMessage = styled(RAText)`
