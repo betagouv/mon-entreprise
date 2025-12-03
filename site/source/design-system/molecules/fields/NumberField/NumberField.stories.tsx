@@ -24,7 +24,24 @@ export const Default: Story = {
 
 export const WithDisplayedUnit: Story = {
 	args: {
-		label: 'Montant annuel',
 		displayedUnit: '€/mois',
+		label: 'Montant mensuel brut',
+	},
+}
+
+export const WithInitialValue: Story = {
+	args: {
+		defaultValue: 1801.8,
+		displayedUnit: '€/mois',
+		label: 'Montant mensuel brut (SMIC par défaut)',
+	},
+}
+
+export const WithErrorMessage: Story = {
+	args: {
+		defaultValue: -2000,
+		displayedUnit: '€/mois',
+		label: 'Montant mensuel brut',
+		errorMessage: 'Le montant ne peut être négatif',
 	},
 }
