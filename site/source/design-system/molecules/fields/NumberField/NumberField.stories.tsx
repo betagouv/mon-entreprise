@@ -37,11 +37,22 @@ export const WithInitialValue: Story = {
 	},
 }
 
+export const WithDescription: Story = {
+	args: {
+		description:
+			'Brut de référence (sans les primes, indemnités ni majorations)',
+		displayedUnit: '€/mois',
+		label: 'Salaire mensuel brut',
+	},
+}
+
 export const WithErrorMessage: Story = {
 	args: {
 		defaultValue: -2000,
+		description:
+			'Brut de référence (sans les primes, indemnités ni majorations)',
 		displayedUnit: '€/mois',
-		label: 'Montant mensuel brut',
+		label: 'Salaire mensuel brut',
 		errorMessage: 'Le montant ne peut être négatif',
 	},
 }
