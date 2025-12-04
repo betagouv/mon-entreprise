@@ -6,7 +6,6 @@ indépendant . PL . CARPIMKO:
     Site CARPIMKO: https://www.carpimko.com
 
 indépendant . PL . CARPIMKO . retraite complémentaire:
-  remplace: cotisations et contributions . cotisations . retraite complémentaire
   somme:
     - variations:
         - si: date >= 01/2025
@@ -32,11 +31,9 @@ indépendant . PL . CARPIMKO . retraite complémentaire:
                   alors: 203446 €/an
                 - sinon: 193913 €/an
       arrondi: oui
-  abattement:
-    applicable si: CNAVPL . exonération incapacité
-    valeur: 100%
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=61
 
 indépendant . PL . CARPIMKO . invalidité et décès:
   titre: invalidité et décès

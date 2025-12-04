@@ -260,17 +260,21 @@ indépendant . cotisations et contributions . cotisations . retraite complément
 
     Il fonctionne selon les mêmes principes que les régimes de retraite
     complémentaire des salariés.
-  barème:
-    assiette: assiette sociale
-    tranches:
-      - taux: taux tranche 1
-        plafond:
-          variations:
-            - si: après réforme
-              alors: PSS proratisé
-            - sinon: PRCI
-      - taux: taux tranche 2
-        plafond: 4 * PSS proratisé
+  variations:
+    - si: PL . CNAVPL
+      alors: PL . CNAVPL . retraite complémentaire
+    - sinon:
+        barème:
+          assiette: assiette sociale
+          tranches:
+            - taux: taux tranche 1
+              plafond:
+                variations:
+                  - si: après réforme
+                    alors: PSS proratisé
+                  - sinon: PRCI
+            - taux: taux tranche 2
+              plafond: 4 * PSS proratisé
   arrondi: oui
   unité: €/an
   références:
