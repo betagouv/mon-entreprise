@@ -245,9 +245,7 @@ indépendant . PL . CNBF . retraite complémentaire:
           titre: classe 2+
           note: Correspond à la classe C3 pour 2024 et avant.
 
-indépendant . PL . CNBF . RID:
-  titre: invalidité et décès
-  remplace: cotisations et contributions . cotisations . invalidité et décès
+indépendant . PL . CNBF . invalidité et décès:
   formule:
     variations:
       - si: entreprise . durée d'activité . en fin d'année < 5 an
