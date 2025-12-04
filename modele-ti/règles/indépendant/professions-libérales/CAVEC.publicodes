@@ -108,8 +108,6 @@ indépendant . PL . CAVEC . retraite complémentaire:
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=74
 
 indépendant . PL . CAVEC . invalidité et décès:
-  titre: invalidité et décès
-  remplace: cotisations et contributions . cotisations . invalidité et décès
   formule:
     grille:
       assiette: cotisations et contributions . assiette sociale
