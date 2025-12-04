@@ -191,4 +191,260 @@ describe('Cotisation invalidité et décès', () => {
 			})
 		})
 	})
+
+	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+		}
+
+		describe('applique la cotisation invalidité et décès de la caisse correspondant au métier', () => {
+			it('Chirurgien-dentiste', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . PL . métier': "'santé . chirurgien-dentiste'",
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCARCDSF = e.evaluate(
+					'indépendant . PL . CARCDSF . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCARCDSF)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+
+			it('Sage-femme', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . PL . métier': "'santé . sage-femme'",
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCARCDSF = e.evaluate(
+					'indépendant . PL . CARCDSF . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCARCDSF)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+
+			it('Médecin', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . PL . métier': "'santé . médecin'",
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCARMF = e.evaluate(
+					'indépendant . PL . CARMF . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCARMF)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+
+			it('Auxiliaire médical', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . PL . métier': "'santé . auxiliaire médical'",
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCARPIMKO = e.evaluate(
+					'indépendant . PL . CARPIMKO . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCARPIMKO)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+
+			it('Expert-comptable', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . PL . métier': "'expert-comptable'",
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCAVEC = e.evaluate(
+					'indépendant . PL . CAVEC . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCAVEC)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+
+			it('Pharmacien', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . PL . métier': "'santé . pharmacien'",
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCAVP = e.evaluate(
+					'indépendant . PL . CAVP . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCAVP)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+
+			it('Avocat', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . PL . métier': "'juridique . avocat'",
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCNBF = e.evaluate(
+					'indépendant . PL . CNBF . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCNBF)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+
+			it('Cipav', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				const cotisationCIPAV = e.evaluate(
+					'indépendant . PL . CIPAV . invalidité et décès'
+				).nodeValue
+				const cotisationCNAVPL = e.evaluate(
+					'indépendant . PL . CNAVPL . invalidité et décès'
+				).nodeValue
+				const cotisationIndépendant = e.evaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+				).nodeValue
+
+				expect(cotisationCNAVPL).toEqual(cotisationCIPAV)
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+			})
+		})
+
+		describe('affiliées Cipav', () => {
+			it('applique une assiette minimale égale à 37% du PASS', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+					87
+				)
+			})
+
+			it('applique un taux de 0,5% en cas d’assiette sociale comprise entre 37% du PASS et 1,85 PASS', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+					250
+				)
+			})
+
+			it('applique une assiette maximale égale à 1,85 PASS', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'100000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+					436
+				)
+			})
+
+			describe('n’applique pas d’assiette minimale', () => {
+				it('en cas de RSA ou de prime d’activité', () => {
+					const e = engine.setSituation({
+						...defaultSituationPLR,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'1000 €/an',
+						'situation personnelle . RSA': 'oui',
+					})
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+						5
+					)
+				})
+
+				it('en cas d’activité saisonnière', () => {
+					const e = engine.setSituation({
+						...defaultSituationPLR,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'1000 €/an',
+						'entreprise . activité . saisonnière': 'oui',
+					})
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+						5
+					)
+				})
+			})
+		})
+	})
 })
