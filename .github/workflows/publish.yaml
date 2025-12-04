@@ -4,6 +4,9 @@ on:
     workflows: ['Tests']
     types: [completed]
 
+permissions:
+  contents: read
+
 jobs:
   publish:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
