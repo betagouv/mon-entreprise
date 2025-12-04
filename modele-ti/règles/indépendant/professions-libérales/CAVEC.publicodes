@@ -11,7 +11,6 @@ indépendant . PL . CAVEC:
     Site CAVEC: https://www.cavec.fr
 
 indépendant . PL . CAVEC . retraite complémentaire:
-  remplace: cotisations et contributions . cotisations . retraite complémentaire
   description: |
     Votre cotisation de l'année N est fixée selon un barème, en fonction des revenus professionnels nets non salariés de l’année N-1.
 
@@ -101,8 +100,12 @@ indépendant . PL . CAVEC . retraite complémentaire:
             - si: date >= 01/2023
               alors: 22223
             - sinon: 20925
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
   références:
     'CAVEC: Vos cotisations retraite, prévoyance et options': https://www.cavec.fr/votre-retraite/vos-cotisations/vos-cotisations-en-tant-que-liberal-tns/montant-de-vos-cotisations/vos-cotisations-retraite-prevoyance-et-options/
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=74
 
 indépendant . PL . CAVEC . invalidité et décès:
   titre: invalidité et décès

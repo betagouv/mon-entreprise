@@ -17,7 +17,9 @@ indépendant . PL . CARMF:
 indépendant . PL . CARMF . participation CPAM retraite:
   applicable si: métier . santé . médecin . secteur = 'S1'
   description: |
-    Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une participation de l'assurance maladie (avenant n°5 de la convention médicale) au financement de leurs cotisations du régime de base.
+    Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une
+    participation de l'assurance maladie (avenant n°5 de la convention médicale) au
+    financement de leurs cotisations du régime de base.
   unité: €/an
   produit:
     - cotisations et contributions . assiette sociale
@@ -38,7 +40,6 @@ indépendant . PL . CARMF . participation CPAM retraite:
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
 indépendant . PL . CARMF . retraite complémentaire:
-  remplace: cotisations et contributions . cotisations . retraite complémentaire
   description: >-
     La CARMF gère le régime de retraite complémentaire.
 
@@ -63,6 +64,7 @@ indépendant . PL . CARMF . retraite complémentaire:
   unité: €/an
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=45
     Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
     Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
