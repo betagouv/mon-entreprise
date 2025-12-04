@@ -34,11 +34,15 @@ describe('Cotisation indemnités journalières', () => {
 		})
 
 		describe('en cas d’année incomplète', () => {
-			it('applique une assiette minimale égale à 40% du PASS', () => {
+			const defaultSituationCessation = {
+				...defaultSituation,
+				"entreprise . en cessation d'activité": 'oui',
+				'entreprise . date de cessation': '01/06/2025',
+			}
+
+			it('applique une assiette minimale égale à 40% du PASS non proratisé', () => {
 				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
+					...defaultSituationCessation,
 					'indépendant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 				})
@@ -53,11 +57,9 @@ describe('Cotisation indemnités journalières', () => {
 				)
 			})
 
-			it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 5 PASS', () => {
+			it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 5 PASS non proratisé', () => {
 				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
+					...defaultSituationCessation,
 					'indépendant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
@@ -72,11 +74,9 @@ describe('Cotisation indemnités journalières', () => {
 				)
 			})
 
-			it('applique une assiette maximale égale à 5 PASS', () => {
+			it('applique une assiette maximale égale à 5 PASS non proratisé', () => {
 				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
+					...defaultSituationCessation,
 					'indépendant . cotisations et contributions . assiette sociale':
 						'300000 €/an',
 				})
@@ -184,6 +184,176 @@ describe('Cotisation indemnités journalières', () => {
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
 					5
+				)
+			})
+		})
+	})
+
+	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+			'indépendant . PL . régime général': 'non',
+		}
+
+		it('applique un taux de 0,3%', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'10000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . taux',
+				0.3
+			)
+		})
+
+		it('applique une assiette minimale égale à 40% du PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'1000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				18840
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				57
+			)
+		})
+
+		it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 3 PASS non proratisé', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				30000
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				90
+			)
+		})
+
+		it('applique une assiette maximale égale à 3 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'150000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				141300
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				424
+			)
+		})
+
+		describe('en cas d’année incomplète', () => {
+			const defaultSituationPLRCessation = {
+				...defaultSituationPLR,
+				"entreprise . en cessation d'activité": 'oui',
+				'entreprise . date de cessation': '01/06/2025',
+			}
+
+			it('applique une assiette minimale égale à 40% du PASS non proratisé', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLRCessation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					18840
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					57
+				)
+			})
+
+			it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 3 PASS non proratisé', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLRCessation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'30000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					30000
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					90
+				)
+			})
+
+			it('applique une assiette maximale égale à 3 PASS non proratisé', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLRCessation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'300000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					141300
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					424
+				)
+			})
+		})
+
+		describe('n’applique pas d’assiette minimale', () => {
+			it('en cas de RSA ou de prime d’activité', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'situation personnelle . RSA': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					1000
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					3
+				)
+			})
+
+			it('en cas d’activité saisonnière', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'entreprise . activité . saisonnière': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					1000
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					3
 				)
 			})
 		})

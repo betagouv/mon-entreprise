@@ -60,14 +60,13 @@ describe('Cotisation retraite de base', () => {
 
 					expect(e).toEvaluate('indépendant . PSS proratisé', 7742)
 					// Tranche 1 :
-					// PASS proratisé x taux tranche 1 = 7 742 €/an x 17,87% = 1 384 €/an
+					// PASS proratisé x taux tranche 1 = 7 742 €/an x 17,15% = 1 328 €/an
 
 					// Tranche 2 :
-					// assiette sociale - PASS proratisé = 40 000 €/an - 7 742 €/an = 32 258 €/an
-					// (assiette sociale - PASS proratisé) x taux tranche 2 = 32 258 €/an x 0,72% = 232 €/an
+					// assiette sociale x taux tranche 2 = 40 000 €/an x 0,72% = 288 €/an
 
 					// Total :
-					// Tranche 1 + Tranche 2 = 1 383 €/an + 232 €/an = 1 615 €/an
+					// Tranche 1 + Tranche 2 = 1 328 €/an + 288 €/an = 1 616 €/an
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base',
 						1616
@@ -100,14 +99,13 @@ describe('Cotisation retraite de base', () => {
 
 					expect(e).toEvaluate('indépendant . PSS proratisé', 15485)
 					// Tranche 1 :
-					// PASS proratisé x taux tranche 1 = 15 485 €/an x 17,87% = 2 767 €/an
+					// PASS proratisé x taux tranche 1 = 15 485 €/an x 17,15% = 2 656 €/an
 
 					// Tranche 2 :
-					// assiette sociale - PASS proratisé = 50 000 €/an - 15 485 €/an = 34 515 €/an
-					// (assiette sociale - PASS proratisé) x taux tranche 2 = 34 515 €/an x 0,72% = 249 €/an
+					// assiette sociale x taux tranche 2 = 50 000 €/an x 0,72% = 360 €/an
 
 					// Total :
-					// Tranche 1 + Tranche 2 = 2 767 €/an + 249 €/an = 3 016 €/an
+					// Tranche 1 + Tranche 2 = 2 656 €/an + 360 €/an = 3 016 €/an
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base',
 						3016
@@ -116,16 +114,16 @@ describe('Cotisation retraite de base', () => {
 			})
 		})
 
-		it('applique un taux tranche 1 de 17,87%', () => {
+		it('applique un taux tranche 1 de 17,15%', () => {
 			expect(engine).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . taux tranche 1',
-				17.87
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . taux',
+				17.15
 			)
 		})
 
 		it('applique un taux tranche 2 de 0,72%', () => {
 			expect(engine).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . taux tranche 2',
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . taux',
 				0.72
 			)
 		})
@@ -138,12 +136,16 @@ describe('Cotisation retraite de base', () => {
 			})
 
 			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				5346
+			)
+			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
 				955
 			)
 		})
 
-		it('applique le taux tranche 1 en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS', () => {
+		it('applique les taux des tranches 1 et 2 en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
 				'indépendant . cotisations et contributions . assiette sociale':
@@ -156,7 +158,7 @@ describe('Cotisation retraite de base', () => {
 			)
 		})
 
-		it('applique le taux tranche 1 au PASS et le taux tranche 2 au reste de l’assiette sociale en cas d’assiette sociale supérieure au PASS', () => {
+		it('applique le taux tranche 1 au PASS et le taux tranche 2 à toute l’assiette sociale en cas d’assiette sociale supérieure au PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
 				'indépendant . cotisations et contributions . assiette sociale':
@@ -164,14 +166,13 @@ describe('Cotisation retraite de base', () => {
 			})
 
 			// Tranche 1 :
-			// 1 PASS x taux tranche 1 = 47 100 €/an x 17,87% = 8 416,77 €/an
+			// 1 PASS x taux tranche 1 = 47 100 €/an x 17,15% = 8 078 €/an
 
 			// Tranche 2 :
-			// assiette sociale - 1 PASS = 100 000 €/an - 47 100 €/an = 52 900 €/an
-			// (assiette sociale - 1 PASS) x taux tranche 2 = 52 900 €/an x 0,72% = 380,88 €/an
+			// assiette sociale x taux tranche 2 = 100 000 €/an x 0,72% = 720 €/an
 
 			// Total :
-			// Tranche 1 + Tranche 2 = 8 416,77 €/an + 380,88 €/an = 8 798 €/an (arrondi à l'euro)
+			// Tranche 1 + Tranche 2 = 8 078 €/an + 720 €/an = 8 798 €/an
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
 				8798
@@ -204,6 +205,149 @@ describe('Cotisation retraite de base', () => {
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite de base',
 					179
+				)
+			})
+		})
+	})
+
+	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+			'indépendant . PL . régime général': 'non',
+		}
+
+		it('applique un taux tranche 1 de 8,73%', () => {
+			const e = engine.setSituation(defaultSituationPLR)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . taux',
+				8.73
+			)
+		})
+
+		it('applique un taux tranche 2 de 1,87%', () => {
+			const e = engine.setSituation(defaultSituationPLR)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . taux',
+				1.87
+			)
+		})
+
+		it('applique une assiette minimale égale à 450 heures rémunérées au SMIC (5 346 € en 2025)', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'1000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				5346
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				567
+			)
+		})
+
+		it('applique les taux des tranches 1 et 2 en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				3180
+			)
+		})
+
+		it('applique le taux tranche 1 au PASS et le taux tranche 2 à toute l’assiette sociale en cas d’assiette sociale comprise entre 1 et 5 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'100000 €/an',
+			})
+
+			// Tranche 1 :
+			// 1 PASS x taux tranche 1 = 47 100 €/an x 8,73% = 4 112 €/an
+
+			// Tranche 2 :
+			// assiette sociale x taux tranche 2 = 100 000 €/an x 1,87% = 1 870 €/an
+
+			// Total :
+			// Tranche 1 + Tranche 2 = 4 112 €/an + 1 870 €/an = 5 982 €/an
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				5982
+			)
+		})
+
+		it('applique le taux tranche 1 au PASS et le taux tranche 2 à 5 PASS en cas d’assiette sociale supérieure à 5 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'250000 €/an',
+			})
+
+			// Tranche 1 :
+			// 1 PASS x taux tranche 1 = 47 100 €/an x 8,73% = 4 112 €/an
+
+			// Tranche 2 :
+			// 5 PASS x taux tranche 2 = 235 500 €/an x 1,87% = 4 404 €/an
+
+			// Total :
+			// Tranche 1 + Tranche 2 = 4 112 €/an + 4 404 €/an = 8 516 €/an
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				8516
+			)
+		})
+
+		it('applique une exonération totale en cas d’exonération incapacité', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'100000 €/an',
+				'indépendant . PL . CNAVPL . exonération incapacité': 'oui',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				0
+			)
+		})
+
+		describe('n’applique pas d’assiette minimale', () => {
+			it('en cas de RSA ou de prime d’activité', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'situation personnelle . RSA': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base',
+					106
+				)
+			})
+
+			it('en cas d’activité saisonnière', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'entreprise . activité . saisonnière': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base',
+					106
 				)
 			})
 		})
