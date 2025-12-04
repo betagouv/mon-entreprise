@@ -106,7 +106,7 @@ indépendant . PL . PAMC . CURPS:
     arrondi: oui
     unité: €/an
   références:
-    Fiche Urssaf.fr: https://www.urssaf.fr/portail/home/independant/mes-cotisations/quelles-cotisations/la-contribution-aux-unions-regio/la-base-de-calcul-et-le-taux-de.html
+    Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
 indépendant . PL . PAMC . dépassement d'honoraire moyen:
   non applicable si: métier . santé . médecin . secteur = 'S1'
@@ -164,25 +164,37 @@ indépendant . PL . PAMC . assiette participation CPAM:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
 
 indépendant . PL . PAMC . maladie:
-  # remplace: PL . maladie doesn't work because of https://github.com/publicodes/publicodes/issues/55
-  # So we need to put this bloc before PL . maladie, in order for this replace to take precedence over the next (the first replace of the file win it all)
   remplace: cotisations et contributions . cotisations . maladie
   titre: maladie (après participation CPAM)
   somme:
-    - PL . maladie
+    - cotisation maladie
     - contribution additionnelle
     - (- participation CPAM)
+
+  avec:
+    cotisation maladie:
+      variations:
+        - si: cotisations et contributions . après réforme
+          alors: cotisations et contributions . cotisations . maladie
+        - sinon: PL . maladie
 
 indépendant . PL . PAMC . maladie . participation CPAM:
   non applicable si: métier . santé . médecin . secteur = 'S2'
   produit:
     - assiette participation CPAM
-    - PL . maladie . taux - 0.1%
+    - taux maladie - 0.1%
   arrondi: oui
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+  avec:
+    taux maladie:
+      variations:
+        - si: cotisations et contributions . après réforme
+          alors: cotisations et contributions . cotisations . maladie . taux 2
+        - sinon: PL . maladie . taux
 
 indépendant . PL . PAMC . maladie . contribution additionnelle:
   produit:

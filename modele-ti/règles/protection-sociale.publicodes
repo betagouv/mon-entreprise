@@ -120,7 +120,7 @@ protection sociale . retraite . base . cotisée:
   valeur:
     indépendant . cotisations et contributions . cotisations . retraite de
     base / indépendant . cotisations et contributions . cotisations . retraite
-    de base . taux tranche 1
+    de base . tranche 1 . taux
   plafond: plafond sécurité sociale
   description: |
     Le revenu cotisé pour la retraite de base est égal à :
@@ -284,13 +284,13 @@ protection sociale . retraite . base . CNAVPL:
       avec:
         cotisation maximum T1:
           privé: oui
-          valeur: indépendant . PL . CNAVPL . retraite . tranche T1
+          valeur: indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1
           contexte:
             indépendant . cotisations et contributions . assiette sociale: plafond sécurité sociale
 
         cotisation maximum T2:
           privé: oui
-          valeur: indépendant . PL . CNAVPL . retraite . tranche T2
+          valeur: indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2
           contexte:
             indépendant . cotisations et contributions . assiette sociale: 5 * plafond sécurité sociale
 
@@ -301,14 +301,14 @@ protection sociale . retraite . base . CNAVPL:
     points acquis . points T1:
       produit:
         - 525 point
-        - indépendant . PL . CNAVPL . retraite . tranche T1 /
+        - indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 /
           cotisation maximum T1
       arrondi: 1 décimale
 
     points acquis . points T2:
       produit:
         - 25 point
-        - indépendant . PL . CNAVPL . retraite . tranche T2 /
+        - indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 /
           cotisation maximum T2
       arrondi: 1 décimale
 
