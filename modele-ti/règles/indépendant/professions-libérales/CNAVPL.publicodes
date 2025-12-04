@@ -109,16 +109,35 @@ indépendant . PL . CNAVPL . indemnités journalières:
           alors: 0.15%
 
 indépendant . PL . CNAVPL . exonération incapacité:
-  question:
+  description: |
+    Si vous avez été atteint d’une incapacité d’exercice de votre profession
+    pendant au moins six mois, vous êtes alors exonéré du paiement des cotisations
+    du régime général et, selon votre caisse, du régime complémentaire.
+  question: |
     Avez-vous été atteint d’une incapacité d’exercice de votre profession
     pendant au moins six mois consécutifs cette année ?
   par défaut: non
-  description: |-
-    Si vous avez été atteint d’une incapacité d’exercice de votre profession pendant au moins six mois,
-    vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
-
   références:
-    Guide CNAVPL: https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=75
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=24
+    # https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=79
+
+indépendant . PL . CNAVPL . retraite complémentaire:
+  variations:
+    - si: CARCDSF
+      alors: CARCDSF . retraite complémentaire
+    - si: CARMF
+      alors: CARMF . retraite complémentaire
+    - si: CARPIMKO
+      alors: CARPIMKO . retraite complémentaire
+    - si: CAVEC
+      alors: CAVEC . retraite complémentaire
+    - si: CAVP
+      alors: CAVP . retraite complémentaire
+    - si: CNBF
+      alors: CNBF . retraite complémentaire
+    - sinon: CIPAV . retraite complémentaire
+  arrondi: oui
+  unité: €/an
 
 indépendant . PL . CNAVPL . conjoint collaborateur:
   applicable si: conjoint collaborateur
