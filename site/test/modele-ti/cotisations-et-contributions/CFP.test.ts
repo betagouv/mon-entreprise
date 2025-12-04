@@ -60,4 +60,20 @@ describe('Contribution à la formation professionnelle', () => {
 			)
 		})
 	})
+
+	describe('pour les PLR', () => {
+		it('vaut 0,25% du PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'entreprise . activité': "'libérale'",
+				'entreprise . activité . libérale . réglementée': 'oui',
+				'indépendant . PL . régime général': 'non',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle',
+				118
+			)
+		})
+	})
 })

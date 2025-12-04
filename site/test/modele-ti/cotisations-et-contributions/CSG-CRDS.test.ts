@@ -68,4 +68,22 @@ describe('CSG-CRDS', () => {
 			)
 		})
 	})
+
+	describe('pour les PLR', () => {
+		it('applique un taux de 9,7%', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'entreprise . activité': "'libérale'",
+				'entreprise . activité . libérale . réglementée': 'oui',
+				'indépendant . PL . régime général': 'non',
+				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+					'50000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . CSG-CRDS',
+				4850
+			)
+		})
+	})
 })
