@@ -19,7 +19,7 @@ jobs:
       - run: yarn workspace ${{ matrix.package }} run build
         env:
           NODE_ENV: production
-      - uses: JS-DevTools/npm-publish@v2
+      - uses: JS-DevTools/npm-publish@ac1995d18e7a4676972d0638229508a92ceaf299 # v2
         with:
           token: ${{ secrets.NPM_PUBLISH_SECRET }}
           dry-run: ${{ github.event.workflow_run.head_branch != 'master' }}
