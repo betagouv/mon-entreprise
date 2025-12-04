@@ -21,7 +21,7 @@ describe('Indépendant', () => {
 					"entreprise . chiffre d'affaires": '50000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 28072)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
@@ -31,7 +31,7 @@ describe('Indépendant', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					26176
+					25875
 				)
 			})
 		})
@@ -40,7 +40,7 @@ describe('Indépendant', () => {
 			it('calcule le chiffre d’affaires', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '28072 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				expect(e).toEvaluate("entreprise . chiffre d'affaires", 50000)
@@ -48,12 +48,12 @@ describe('Indépendant', () => {
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '28072 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					26176
+					25875
 				)
 			})
 		})
@@ -62,18 +62,18 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '26176 €/an',
+					'indépendant . rémunération . nette . après impôt': '25875 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 28072)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule le chiffre d’affaires', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '26176 €/an',
+					'indépendant . rémunération . nette . après impôt': '25875 €/an',
 				})
 
-				expect(e).toEvaluate("entreprise . chiffre d'affaires", 50000)
+				expect(e).toEvaluate("entreprise . chiffre d'affaires", 50001)
 			})
 		})
 	})
@@ -90,7 +90,7 @@ describe('Indépendant', () => {
 					'indépendant . rémunération . totale': '40000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 28072)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
@@ -100,7 +100,7 @@ describe('Indépendant', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					26638
+					26331
 				)
 			})
 		})
@@ -109,7 +109,7 @@ describe('Indépendant', () => {
 			it('calcule la rémunération totale', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '28072 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				expect(e).toEvaluate('indépendant . rémunération . totale', 40000)
@@ -117,12 +117,12 @@ describe('Indépendant', () => {
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '28072 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					26638
+					26331
 				)
 			})
 		})
@@ -131,15 +131,15 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '26638 €/an',
+					'indépendant . rémunération . nette . après impôt': '26331 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 28072)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule la rémunération totale', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '26638 €/an',
+					'indépendant . rémunération . nette . après impôt': '26331 €/an',
 				})
 
 				expect(e).toEvaluate('indépendant . rémunération . totale', 40000)
