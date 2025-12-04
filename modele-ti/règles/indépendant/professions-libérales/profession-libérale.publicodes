@@ -175,19 +175,24 @@ indépendant . PL . régime général . taux spécifique retraite complémentair
     arrondi: oui
 
 indépendant . PL . maladie:
-  non applicable si: régime général
-  remplace: cotisations et contributions . cotisations . maladie
-  unité: €/an
+  description: |
+    Cotisation maladie pour les professions libérales réglementées
+    **avant la réforme** des cotisations de 2025. Depuis la réforme, la
+    cotisation maladie est la même pour tous les publics.
+  non applicable si:
+    une de ces conditions:
+      - cotisations et contributions . après réforme
+      - régime général
   produit:
     - valeur: cotisations et contributions . assiette sociale
       plancher: assiette minimale . maladie
     - taux
   arrondi: oui
-  références:
-    Article D621-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656764
+  unité: €/an
 
   avec:
     taux:
+      arrondi: 2 décimales
       taux progressif:
         assiette: cotisations et contributions . assiette sociale
         multiplicateur: plafond sécurité sociale
