@@ -2414,13 +2414,19 @@ indépendant . PL . CARMF . invalidité décès:
   titre.fr: invalidité décès
 indépendant . PL . CARMF . participation CPAM retraite:
   description.en: >
-    [automatic] To compensate for the rise in the CSG, sector 1 doctors benefit
-    from a contribution from the health insurance scheme (amendment no. 5 to the
-    medical agreement) to finance their contributions to the basic scheme.
+    [automatic] To compensate for the rise in the CSG, sector 1 physicians
+    benefit from a
+
+    a contribution from the health insurance scheme (amendment no. 5 to the medical agreement) to
+
+    their basic health insurance contributions.
   description.fr: >
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient
-    d'une participation de l'assurance maladie (avenant n°5 de la convention
-    médicale) au financement de leurs cotisations du régime de base.
+    d'une
+
+    participation de l'assurance maladie (avenant n°5 de la convention médicale) au
+
+    financement de leurs cotisations du régime de base.
   titre.en: '[automatic] participation CPAM retraite'
   titre.fr: participation CPAM retraite
 indépendant . PL . CARMF . retraite complémentaire:
@@ -2593,10 +2599,6 @@ indépendant . PL . CAVP . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 indépendant . PL . CIPAV:
-  avec:
-    cotisations et contributions retraite complémentaire:
-      titre.en: '[automatic] supplementary pension contributions'
-      titre.fr: cotisations et contributions retraite complémentaire
   description.en: >
     [automatic] Cipav is the independent pension fund for the regulated liberal
     professions.
@@ -2754,20 +2756,24 @@ indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
   titre.en: '[automatic] retirement'
   titre.fr: retraite
 indépendant . PL . CNAVPL . exonération incapacité:
-  description.en: >-
-    [automatic] If you have been unable to practice your profession for at least
-    six months,
+  description.en: >
+    [automatic] If you have been incapacitated for work for at least six months
 
-    you are then exempt from paying contributions to the general scheme and the supplementary scheme
-  description.fr: >-
+    for at least six months, you are exempt from payment of contributions
+
+    from the general scheme and, depending on your fund, from the supplementary scheme.
+  description.fr: >
     Si vous avez été atteint d’une incapacité d’exercice de votre profession
-    pendant au moins six mois,
 
-    vous êtes alors exonéré du paiement des cotisations du régime général et du régime complémentaire
-  question.en: '[automatic] Have you been unable to practice your profession for
-    at least six consecutive months this year?'
-  question.fr: Avez-vous été atteint d’une incapacité d’exercice de votre
-    profession pendant au moins six mois consécutifs cette année ?
+    pendant au moins six mois, vous êtes alors exonéré du paiement des cotisations
+
+    du régime général et, selon votre caisse, du régime complémentaire.
+  question.en: |
+    [automatic] Have you been incapacitated from exercising your profession
+    for at least six consecutive months this year?
+  question.fr: |
+    Avez-vous été atteint d’une incapacité d’exercice de votre profession
+    pendant au moins six mois consécutifs cette année ?
   titre.en: '[automatic] disability waiver'
   titre.fr: exonération incapacité
 indépendant . PL . CNAVPL . indemnités journalières:
@@ -2830,6 +2836,9 @@ indépendant . PL . CNAVPL . retraite:
     ont les mêmes taux de cotisations pour leur retraite de base.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
+indépendant . PL . CNAVPL . retraite complémentaire:
+  titre.en: '[automatic] supplementary pension'
+  titre.fr: retraite complémentaire
 indépendant . PL . CNBF:
   description.en: >
     [automatic] The Caisse Nationale des Barreaux Français (CNBF) is the social
@@ -3287,16 +3296,21 @@ indépendant . PL . PAMC . revenus activité conventionnée:
   titre.fr: revenus activité conventionnée
 indépendant . PL . cotisations caisse de retraite:
   description.en: >
-    [automatic] Contributions collected by the independent pension fund specific
-    to the liberal profession.
-  description.fr: >
+    [automatic] The contributions collected by the independent pension fund
+    specific to the
+
+    profession.
+  description.fr: |
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
     profession libérale effectuée.
-  note.en: '[automatic] Since 2023, contributions from PLs affiliated to Cipav
-    have been collected by Urssaf.'
-  note.fr:
-    Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées
-    par l'Urssaf
+  note.en: >
+    [automatic] Since 2023, contributions from PLs affiliated to Cipav have been
+    collected by
+
+    Urssaf.
+  note.fr: |
+    Depuis 2023, les cotisations des PL affiliées à la Cipav sont recouvrées par
+    l'Urssaf.
   titre.en: '[automatic] pension fund contributions'
   titre.fr: cotisations caisse de retraite
 indépendant . PL . maladie:
@@ -3649,6 +3663,9 @@ indépendant . PL . régime général . taux spécifique retraite complémentair
 indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
   titre.en: '[automatic] amount'
   titre.fr: montant
+indépendant . PL . réglementée:
+  titre.en: '[automatic] regulated'
+  titre.fr: réglementée
 indépendant . PSS proratisé:
   description.en: >
     [automatic] The social security ceiling, prorated according to the length of
