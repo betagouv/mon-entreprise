@@ -71,6 +71,12 @@
 	"engines": {
 		"node": "^18"
 	},
+	"dependenciesMeta": {
+		"esbuild": { "built": true },
+		"@swc/core": { "built": true },
+		"cypress": { "built": true },
+		"sharp": { "built": true }
+	},
 	"dependencies": {
 		"optics-ts": "^2.4.1",
 		"plausible-tracker": "^0.3.9"
