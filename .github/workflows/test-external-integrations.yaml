@@ -3,6 +3,9 @@ on:
   schedule:
     - cron: '47 3,15 * * *'
 
+permissions:
+  contents: read
+
 jobs:
   test-external-integrations:
     env:
