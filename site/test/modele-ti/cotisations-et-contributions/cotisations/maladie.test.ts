@@ -316,4 +316,188 @@ describe('Cotisation maladie', () => {
 			)
 		})
 	})
+
+	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+			'indépendant . PL . régime général': 'non',
+		}
+
+		it('applique le même barème que pour les artisans, commerçants et PLNR', () => {
+			const e1 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'8949 €/an', // 19% du PASS
+			})
+
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . taux 1',
+				0
+			)
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				0
+			)
+
+			const e2 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'10000 €/an',
+			})
+
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . taux 1',
+				0.09
+			)
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				9
+			)
+
+			const e3 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'23000 €/an',
+			})
+
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . taux 1',
+				2.6
+			)
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				598
+			)
+
+			const e4 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'40000 €/an',
+			})
+
+			expect(e4).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . taux 1',
+				5.25
+			)
+			expect(e4).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				2100
+			)
+
+			const e5 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'60000 €/an',
+			})
+
+			expect(e5).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . taux 1',
+				6.73
+			)
+			expect(e5).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				4038
+			)
+
+			const e6 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'100000 €/an',
+			})
+
+			expect(e6).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . taux 1',
+				7.8
+			)
+			expect(e6).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				7800
+			)
+
+			const e7 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'150000 €/an',
+			})
+
+			expect(e7).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . taux 1',
+				8.5
+			)
+			// Tranche 1 :
+			// 3 PASS = 3 x 47 100 €/an = 141 300 €/an
+			// Taux 1 x 3 PASS = 8,5% x 141 300 €/an = 12 010,5 €/an
+
+			// Tranche 2 :
+			// assiette sociale - 3 PASS = 150 000 €/an - 141 300 €/an = 8 700 €/an
+			// Taux 2 x (assiette sociale - 3 PASS) = 6,5% x 8 700 €/an = 565,5 €/an
+
+			// Total :
+			// Tranche 1 + Tranche 2 = 12 010,5 €/an + 565,5 €/an = 12 576 €/an
+			expect(e7).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				12576
+			)
+		})
+
+		it('applique un barème différent avant la réforme', () => {
+			const e1 = engine.setSituation({
+				...defaultSituationPLR,
+				date: '01/01/2024',
+				'indépendant . cotisations et contributions . assiette sociale':
+					'18369 €/an', // 39% du PASS
+			})
+
+			expect(e1).toEvaluate('indépendant . PL . maladie . taux', 0)
+			expect(e1).toEvaluate('indépendant . PL . maladie', 0)
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				0
+			)
+
+			const e2 = engine.setSituation({
+				...defaultSituationPLR,
+				date: '01/01/2024',
+				'indépendant . cotisations et contributions . assiette sociale':
+					'25000 €/an',
+			})
+
+			expect(e2).toEvaluate('indépendant . PL . maladie . taux', 2.62)
+			expect(e2).toEvaluate('indépendant . PL . maladie', 655)
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				655
+			)
+
+			const e3 = engine.setSituation({
+				...defaultSituationPLR,
+				date: '01/01/2024',
+				'indépendant . cotisations et contributions . assiette sociale':
+					'50000 €/an',
+			})
+
+			expect(e3).toEvaluate('indépendant . PL . maladie . taux', 6.31)
+			expect(e3).toEvaluate('indépendant . PL . maladie', 3155)
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				3155
+			)
+
+			const e4 = engine.setSituation({
+				...defaultSituationPLR,
+				date: '01/01/2024',
+				'indépendant . cotisations et contributions . assiette sociale':
+					'100000 €/an',
+			})
+
+			expect(e4).toEvaluate('indépendant . PL . maladie . taux', 6.5)
+			expect(e4).toEvaluate('indépendant . PL . maladie', 6500)
+			expect(e4).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie',
+				6500
+			)
+		})
+	})
 })
