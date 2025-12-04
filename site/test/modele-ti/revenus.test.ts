@@ -21,7 +21,7 @@ describe('Indépendant', () => {
 					"entreprise . chiffre d'affaires": '50000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 27713)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
@@ -31,7 +31,7 @@ describe('Indépendant', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					25874
+					25875
 				)
 			})
 		})
@@ -40,7 +40,7 @@ describe('Indépendant', () => {
 			it('calcule le chiffre d’affaires', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '27713 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				const CA = e.evaluate("entreprise . chiffre d'affaires")
@@ -50,12 +50,12 @@ describe('Indépendant', () => {
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '27713 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					25874
+					25875
 				)
 			})
 		})
@@ -64,15 +64,15 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '25874 €/an',
+					'indépendant . rémunération . nette . après impôt': '25875 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 27713)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule le chiffre d’affaires', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '25874 €/an',
+					'indépendant . rémunération . nette . après impôt': '25875 €/an',
 				})
 
 				const CA = e.evaluate("entreprise . chiffre d'affaires")
@@ -94,7 +94,7 @@ describe('Indépendant', () => {
 					'indépendant . rémunération . totale': '40000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 27713)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
@@ -104,7 +104,7 @@ describe('Indépendant', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					26330
+					26331
 				)
 			})
 		})
@@ -113,7 +113,7 @@ describe('Indépendant', () => {
 			it('calcule la rémunération totale', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '27713 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				const rémunérationTotale = e.evaluate(
@@ -124,12 +124,12 @@ describe('Indépendant', () => {
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': '27713 €/an',
+					'indépendant . rémunération . nette': '27714 €/an',
 				})
 
 				expect(e).toEvaluate(
 					'indépendant . rémunération . nette . après impôt',
-					26330
+					26331
 				)
 			})
 		})
@@ -138,15 +138,15 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '26330 €/an',
+					'indépendant . rémunération . nette . après impôt': '26331 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . rémunération . nette', 27713)
+				expect(e).toEvaluate('indépendant . rémunération . nette', 27714)
 			})
 			it('calcule la rémunération totale', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': '26330 €/an',
+					'indépendant . rémunération . nette . après impôt': '26331 €/an',
 				})
 
 				const rémunérationTotale = e.evaluate(
