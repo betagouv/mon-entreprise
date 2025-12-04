@@ -10,103 +10,7 @@ indépendant . PL . CNAVPL:
     dans: cotisations et contributions
   références:
     liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
-    Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf
-
-indépendant . PL . CNAVPL . retraite:
-  titre: retraite de base
-  description: |
-    Toutes les professions libérale (à l'exception des avocats)
-    ont les mêmes taux de cotisations pour leur retraite de base.
-  valeur:
-    abattement: CARMF . participation CPAM retraite
-    somme:
-      - tranche T1
-      - tranche T2
-
-  abattement:
-    applicable si: exonération incapacité
-    valeur: 100%
-
-  références:
-    Site CNAVPL: https://www.cnavpl.fr/preparer-sa-retraite/
-    Guide CNAVPL (PDF): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=24
-
-  avec:
-    tranche T1:
-      produit:
-        - valeur: revenu cotisé
-          plafond: plafond sécurité sociale
-        - taux
-      arrondi: oui
-      unité: €/an
-
-    tranche T1 . revenu cotisé:
-      valeur: cotisations et contributions . assiette sociale
-      plancher: assiette minimale . retraite
-      unité: €/an
-
-    tranche T1 . taux: 8.23%
-
-    tranche T2:
-      produit:
-        - valeur: revenu cotisé
-          plafond: 5 * plafond sécurité sociale
-        - 1.87%
-      arrondi: oui
-      unité: €/an
-
-    tranche T2 . revenu cotisé:
-      valeur: cotisations et contributions . assiette sociale
-      plancher: assiette minimale . retraite
-      unité: €/an
-
-#TODO: On ajoute une exception car la transitivité du remplacement ne fonctionne pas encore
-indépendant . PL . CNAVPL . remplacement retraite:
-  titre: Remplacement de la retraite de base
-  non applicable si: PL . CNBF
-  valeur: oui
-
-  avec:
-    cotisations et contributions retraite de base:
-      remplace: cotisations et contributions . cotisations . retraite de base
-      valeur: retraite
-
-    cotisations et contributions retraite de base taux:
-      remplace: cotisations et contributions . cotisations . retraite de base . taux tranche 1
-      valeur: retraite . tranche T1 . taux
-
-indépendant . PL . CNAVPL . indemnités journalières:
-  description: |
-    Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
-    la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
-    maladie.
-
-    En conséquence une nouvelle cotisation est créée.
-  remplace: cotisations et contributions . cotisations . maladie . indemnités journalières
-  non applicable si: PL . CNBF
-  produit:
-    - assiette
-    - taux
-  arrondi: oui
-  unité: €/an
-  références:
-    Communiqué de la CNAVPL: https://www.cnavpl.fr/les-pl-indemnises-des-ij/
-
-  avec:
-    assiette:
-      valeur: cotisations et contributions . assiette sociale
-      plafond: plafond
-      plancher:
-        applicable si: assiette minimale
-        valeur: 40% * plafond sécurité sociale
-    assiette . plafond: 3 * plafond sécurité sociale
-
-    taux:
-      variations:
-        - si: date >= 01/2022
-          alors: 0.30%
-        - si: date >= 01/2021
-          alors: 0.15%
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf
 
 indépendant . PL . CNAVPL . exonération incapacité:
   description: |
@@ -136,7 +40,23 @@ indépendant . PL . CNAVPL . retraite complémentaire:
     - si: CNBF
       alors: CNBF . retraite complémentaire
     - sinon: CIPAV . retraite complémentaire
-  arrondi: oui
+  unité: €/an
+
+indépendant . PL . CNAVPL . invalidité et décès:
+  variations:
+    - si: CARCDSF
+      alors: CARCDSF . invalidité et décès
+    - si: CARMF
+      alors: CARMF . invalidité et décès
+    - si: CARPIMKO
+      alors: CARPIMKO . invalidité et décès
+    - si: CAVEC
+      alors: CAVEC . invalidité et décès
+    - si: CAVP
+      alors: CAVP . invalidité et décès
+    - si: CNBF
+      alors: CNBF . invalidité et décès
+    - sinon: CIPAV . invalidité et décès
   unité: €/an
 
 indépendant . PL . CNAVPL . conjoint collaborateur:
@@ -194,17 +114,16 @@ indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
 
 indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
   remplace: conjoint collaborateur . cotisations . retraite de base
-  valeur: CNAVPL . retraite
+  valeur: cotisations et contributions . cotisations . retraite de base
   contexte:
-    CNAVPL . retraite . tranche T1 . revenu cotisé:
+    cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette:
       valeur: conjoint collaborateur . assiette
       plancher: assiette minimale . retraite
-    CNAVPL . retraite . tranche T2 . revenu cotisé:
+    cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette:
       valeur: conjoint collaborateur . assiette
       plancher: assiette minimale . retraite
 
 indépendant . PL . CNAVPL . conjoint collaborateur . indemnités journalières:
-  applicable si: date >= 01/2022
   remplace: conjoint collaborateur . cotisations . indemnités journalières
   produit:
     - 40% * plafond sécurité sociale

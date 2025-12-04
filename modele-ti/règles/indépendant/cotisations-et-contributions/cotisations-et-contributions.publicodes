@@ -57,8 +57,7 @@ indépendant . cotisations et contributions . formation professionnelle:
     Article L6331-48 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044056633
 
 indépendant . cotisations et contributions . après réforme:
-  valeur: date > 01/2025
-
+  valeur: date >= 01/2025
 
 indépendant . cotisations et contributions . assiette CSG-CRDS:
   titre: assiette de la CSG-CRDS

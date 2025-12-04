@@ -92,8 +92,6 @@ indépendant . PL . CAVP . retraite complémentaire:
             - montant: 12 * cotisation de référence
 
 indépendant . PL . CAVP . invalidité et décès:
-  titre: invalidité et décès
-  remplace: cotisations et contributions . cotisations . invalidité et décès
   valeur:
     variations:
       - si: date >= 01/2025
