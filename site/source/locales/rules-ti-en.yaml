@@ -2113,6 +2113,9 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
 indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
   titre.en: '[automatic] price of a consultation'
   titre.fr: prix d'une consultation
+indépendant . PL . CARCDSF . invalidité et décès:
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 indépendant . PL . CARCDSF . retraite complémentaire:
   avec:
     cotisation forfaitaire:
@@ -2383,7 +2386,7 @@ indépendant . PL . CARMF . en retraite:
   question.fr: Êtes-vous à la retraite ?
   titre.en: '[automatic] retired'
   titre.fr: en retraite
-indépendant . PL . CARMF . invalidité décès:
+indépendant . PL . CARMF . invalidité et décès:
   avec:
     part forfaitaire:
       titre.en: '[automatic] lump-sum portion'
@@ -2401,7 +2404,7 @@ indépendant . PL . CARMF . invalidité décès:
 
     Contributions are divided into three flat-rate classes, the amount of which is determined on the basis of your net self-employed income for the year before last.
 
-    The rate of compensation cannot be determined until you have provided us with your self-employed income and tax assessment for the year before last. Pending receipt of this document, compensation will be based on the rate for class A.
+    The rate of compensation cannot be set until you have provided us with your self-employed income and tax assessment for the year before last. Pending receipt of this document, compensation will be based on the rate for class A.
   description.fr: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
     d'invalidité permanente et un capital décès ainsi qu’une rente pour les
@@ -2410,8 +2413,8 @@ indépendant . PL . CARMF . invalidité décès:
     La cotisation comporte trois classes forfaitaires dont le montant est déterminé en fonction de vos revenus nets d'activité indépendante de l’avant-dernière année.
 
     Sans communication des revenus professionnels non salariés et de l’avis d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être fixé. Dans l’attente de la réception de ce document l’indemnisation sera basée sur le taux prévu pour la classe A.
-  titre.en: '[automatic] disability death'
-  titre.fr: invalidité décès
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 indépendant . PL . CARMF . participation CPAM retraite:
   description.en: >
     [automatic] To compensate for the rise in the CSG, sector 1 physicians
@@ -2685,14 +2688,14 @@ indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et
     L’adhérent qui justifie avoir perçu, au titre de l’année précédente, un
     revenu professionnel inférieur à 15 % du plafond
 
-    de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
+    de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
 
     peut, à sa demande expresse, être dispensé de cette cotisation.
-  question.en: "[automatic] Have you applied for exemption from Cipav
-    disability-death contributions? (previous year's income under €6,170)"
+  question.en: '[automatic] Have you applied for exemption from Cipav
+    disability-death contributions? (2021 income below €6,170)'
   question.fr:
     Avez-vous demandé à être exonéré de la cotisations invalidité-décès
-    Cipav ? (revenus de l'année précédente inférieurs à 6 170€)
+    Cipav ? (revenus de 2021 inférieurs à 6 170 €)
   titre.en: '[automatic] disability and death exemption'
   titre.fr: exonération invalidité et décès
 indépendant . PL . CIPAV . retraite complémentaire:
@@ -2776,66 +2779,9 @@ indépendant . PL . CNAVPL . exonération incapacité:
     pendant au moins six mois consécutifs cette année ?
   titre.en: '[automatic] disability waiver'
   titre.fr: exonération incapacité
-indépendant . PL . CNAVPL . indemnités journalières:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    assiette . plafond:
-      titre.en: '[automatic] ceiling'
-      titre.fr: plafond
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-  description.en: |
-    [automatic] Since July 1, 2021, members of one of the pension funds of the
-    CNAVPL pension funds have been entitled to daily benefits during
-    sick leave.
-
-    As a result, a new contribution has been created.
-  description.fr: |
-    Depuis le 1er juillet 2021 les affiliés à l’une des caisses de retraite de
-    la CNAVPL peuvent bénéficier des indemnités journalières lors d’un arrêt
-    maladie.
-
-    En conséquence une nouvelle cotisation est créée.
-  titre.en: '[automatic] daily allowances'
-  titre.fr: indemnités journalières
-indépendant . PL . CNAVPL . remplacement retraite:
-  avec:
-    cotisations et contributions retraite de base:
-      titre.en: '[automatic] basic pension contributions'
-      titre.fr: cotisations et contributions retraite de base
-    cotisations et contributions retraite de base taux:
-      titre.en: '[automatic] basic pension contributions rates'
-      titre.fr: cotisations et contributions retraite de base taux
-  titre.en: '[automatic] Replacing the basic pension'
-  titre.fr: Remplacement de la retraite de base
-indépendant . PL . CNAVPL . retraite:
-  avec:
-    tranche T1:
-      titre.en: '[automatic] T1 tranche'
-      titre.fr: tranche T1
-    tranche T1 . revenu cotisé:
-      titre.en: '[automatic] contributed income'
-      titre.fr: revenu cotisé
-    tranche T1 . taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-    tranche T2:
-      titre.en: '[automatic] T2 tranche'
-      titre.fr: tranche T2
-    tranche T2 . revenu cotisé:
-      titre.en: '[automatic] contributed income'
-      titre.fr: revenu cotisé
-  description.en: |
-    [automatic] All liberal professions (with the exception of lawyers)
-    have the same contribution rates for their basic pension.
-  description.fr: |
-    Toutes les professions libérale (à l'exception des avocats)
-    ont les mêmes taux de cotisations pour leur retraite de base.
-  titre.en: '[automatic] basic retirement'
-  titre.fr: retraite de base
+indépendant . PL . CNAVPL . invalidité et décès:
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
 indépendant . PL . CNAVPL . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
@@ -2850,7 +2796,7 @@ indépendant . PL . CNBF:
     sociale des avocats.
   titre.en: '[automatic] CNBF'
   titre.fr: CNBF
-indépendant . PL . CNBF . RID:
+indépendant . PL . CNBF . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 indépendant . PL . CNBF . retraite complémentaire:
@@ -3154,6 +3100,10 @@ indépendant . PL . PAMC . dépassement d'honoraire moyen:
   titre.en: '[automatic] average excess fee'
   titre.fr: dépassement d'honoraire moyen
 indépendant . PL . PAMC . maladie:
+  avec:
+    cotisation maladie:
+      titre.en: '[automatic] health contribution'
+      titre.fr: cotisation maladie
   titre.en: '[automatic] illness (after CPAM contribution)'
   titre.fr: maladie (après participation CPAM)
 indépendant . PL . PAMC . maladie . contribution additionnelle:
@@ -3164,6 +3114,10 @@ indépendant . PL . PAMC . maladie . contribution additionnelle:
   titre.en: '[automatic] additional contribution'
   titre.fr: contribution additionnelle
 indépendant . PL . PAMC . maladie . participation CPAM:
+  avec:
+    taux maladie:
+      titre.en: '[automatic] sickness rate'
+      titre.fr: taux maladie
   titre.en: '[automatic] CPAM contribution'
   titre.fr: participation CPAM
 indépendant . PL . PAMC . participation CPAM:
@@ -3318,6 +3272,14 @@ indépendant . PL . maladie:
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
+  description.en: |
+    [automatic] Health contributions for the regulated professions
+    **before the 2025 reform** of contributions. Since the reform, the
+    health insurance contributions are the same for all.
+  description.fr: |
+    Cotisation maladie pour les professions libérales réglementées
+    **avant la réforme** des cotisations de 2025. Depuis la réforme, la
+    cotisation maladie est la même pour tous les publics.
   titre.en: '[automatic] disease'
   titre.fr: maladie
 indépendant . PL . métier:
@@ -3739,6 +3701,17 @@ indépendant . assiette minimale . invalidité et décès:
     calcul, certaines cotisations seront portées à un montant minimum.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
+indépendant . assiette minimale . invalidité et décès Cipav:
+  description.en: >
+    [automatic] If the entrepreneur's income is in deficit or below the
+    calculation bases, certain
+
+    certain contributions will be increased to a minimum amount.
+  description.fr: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  titre.en: '[automatic] disability and death Cipav'
+  titre.fr: invalidité et décès Cipav
 indépendant . assiette minimale . maladie:
   description.en: >
     [automatic] If the entrepreneur's income is in deficit or below the
@@ -4524,6 +4497,14 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
     Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations
 
     des trois dernières années.
+  note.en: >
+    [automatic] Lawyers are exempt from this contribution, as they already pay
+    into a specific fund for
+
+    specific fund for daily sickness benefits (AON or LPA).
+  note.fr: |
+    Les avocats sont exonérés de cette cotisation car ils cotisent déjà à une
+    caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
 indépendant . cotisations et contributions . cotisations . retraite complémentaire:
@@ -4571,15 +4552,11 @@ indépendant . cotisations et contributions . cotisations . retraite complément
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 indépendant . cotisations et contributions . cotisations . retraite de base:
-  avec:
-    taux tranche 1:
-      titre.en: '[automatic] rate tranche 1'
-      titre.fr: taux tranche 1
-    taux tranche 2:
-      titre.en: '[automatic] rate tranche 2'
-      titre.fr: taux tranche 2
   description.en: >
-    [automatic] Since 1973, contributions to the basic old-age insurance scheme
+    [automatic] ### Craftsmen, shopkeepers and unregulated professionals
+
+
+    Since 1973, contributions to the basic old-age insurance scheme
 
     artisans and shopkeepers to a basic pension calculated in the same way
 
@@ -4594,7 +4571,34 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     It guarantees pensions equal to those of non-managerial private-sector employees
 
     for the same duration and level of contributions.
+
+
+    ### Regulated liberal professions
+
+
+    For the regulated liberal professions, the CNAVPL (Caisse Nationale d'Assurance
+
+    (Caisse Nationale d'Assurance Vieillesse des Professions Libérales) manages the basic
+
+    pension scheme.
+
+
+    With the exception of lawyers, all regulated liberal professions have the same
+
+    the same contribution rates for their basic pension.
+
+
+    Supplementary pension, disability, death and provident schemes are managed by
+
+    are managed by funds specific to each profession (Cipav, CARPIMKO
+
+    (Cipav, CARPIMKO, CARCDSF, CAVEC...). CNAVPL is the umbrella organization for these
+
+    these various funds.
   description.fr: >
+    ### Artisans, commerçants et professions libérales non réglementées
+
+
     Depuis 1973, la cotisation versée au titre de l’assurance vieillesse de base
 
     permet aux artisans et commerçants de bénéficier d’une retraite de base calculée
@@ -4610,8 +4614,52 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     Il garantit des pensions égales à celles des salariés non cadres du secteur
 
     privé pour une durée et un niveau de cotisation identique.
+
+
+    ### Professions libérales réglementées
+
+
+    Pour les professions libérales réglementées, c'est la CNAVPL (caisse nationale
+
+    d'assurance vieillesse des professions libérales) qui gère le régime de
+
+    retraite de base.
+
+
+    À l'exception des avocats, toutes les professions libérales réglementées ont
+
+    les mêmes taux de cotisations pour leur retraite de base.
+
+
+    Les régimes de retraite complémentaire, d'invalidité décès et de prévoyance
+
+    complémentaire sont gérées par les caisses spécifiques à chaque profession
+
+    (Cipav, CARPIMKO, CARCDSF, CAVEC...). La CNAVPL est l'organisme qui fédère
+
+    ces différentes caisses.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
+indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  titre.en: '[automatic] tranche 1'
+  titre.fr: tranche 1
+indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  titre.en: '[automatic] tranche 2'
+  titre.fr: tranche 2
 indépendant . cotisations et contributions . début activité:
   avec:
     assiette forfaitaire:

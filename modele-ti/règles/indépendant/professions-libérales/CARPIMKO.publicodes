@@ -36,8 +36,6 @@ indépendant . PL . CARPIMKO . retraite complémentaire:
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=61
 
 indépendant . PL . CARPIMKO . invalidité et décès:
-  titre: invalidité et décès
-  remplace: cotisations et contributions . cotisations . invalidité et décès
   variations:
     - si: date >= 01/2024
       alors: 1022 €/an
