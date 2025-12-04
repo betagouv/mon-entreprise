@@ -11,7 +11,6 @@ indépendant . PL . CARCDSF:
     Site de la CARCDSF: http://www.carcdsf.fr
 
 indépendant . PL . CARCDSF . retraite complémentaire:
-  remplace: cotisations et contributions . cotisations . retraite complémentaire
   somme:
     - cotisation forfaitaire
     - cotisation proportionnelle
@@ -20,6 +19,7 @@ indépendant . PL . CARCDSF . retraite complémentaire:
     valeur: 100%
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=50
 
   avec:
     cotisation forfaitaire:

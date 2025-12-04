@@ -140,6 +140,9 @@ indépendant . PL . régime général:
     - CIPAV = non
     - entreprise . activité . libérale . réglementée = non
 
+indépendant . PL . réglementée:
+  valeur: PL . régime général = non
+
 indépendant . PL . régime général . taux spécifique retraite complémentaire:
   question: Avez-vous opté pour des taux spécifiques de cotisation retraite
     complémentaire ?
@@ -197,15 +200,17 @@ indépendant . PL . maladie:
             taux: 6.5%
 
 indépendant . PL . cotisations caisse de retraite:
+  description: |
+    Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
+    profession libérale effectuée.
+  note: |
+    Depuis 2023, les cotisations des PL affiliées à la Cipav sont recouvrées par
+    l'Urssaf.
+
   non applicable si:
     toutes ces conditions:
       - CIPAV
       - date >= 01/2023
-
-  description: |
-    Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
-  note: Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
-
   somme:
     - cotisations et contributions . cotisations . retraite de base
     - cotisations et contributions . cotisations . retraite complémentaire
