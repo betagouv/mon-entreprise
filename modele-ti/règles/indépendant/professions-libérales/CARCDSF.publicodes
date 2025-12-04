@@ -80,11 +80,17 @@ indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire 
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
+indépendant . PL . CARCDSF . invalidité et décès:
+  variations:
+    - si: chirurgien-dentiste
+      alors: chirurgien-dentiste . RID
+    - si: sage-femme
+      alors: sage-femme . RID
+
 indépendant . PL . CARCDSF . chirurgien-dentiste: métier = 'santé . chirurgien-dentiste'
 
 indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   titre: invalidité et décès
-  remplace: cotisations et contributions . cotisations . invalidité et décès
   variations:
     - si: date >= 01/2024
       alors: 1284.40 €/an
@@ -168,7 +174,6 @@ indépendant . PL . CARCDSF . sage-femme . RID:
     l'année suivante.
 
     Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
-  remplace: cotisations et contributions . cotisations . invalidité et décès
   variations:
     - si: date >= 01/2025
       alors: 380 €/an
