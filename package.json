@@ -23,10 +23,10 @@
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix ; yarn lint:prettier:fix",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
-		"postinstall": "yarn workspaces foreach -piv --exclude site run prepack",
-		"test": "CI=true yarn workspaces foreach run test",
-		"test:type": "yarn workspaces foreach -pi run tsc --skipLibCheck --noEmit",
-		"clean": "yarn workspaces foreach run clean && rimraf node_modules",
+		"postinstall": "yarn workspaces foreach -Apiv --exclude site run prepack",
+		"test": "CI=true yarn workspaces foreach -A run test",
+		"test:type": "yarn workspaces foreach -Api run tsc --skipLibCheck --noEmit",
+		"clean": "yarn workspaces foreach -A run clean && rimraf node_modules",
 		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
 		"build:server": "yarn workspaces focus server && yarn workspace server run build"
 	},
@@ -67,15 +67,23 @@
 		"react-dom": "^18.2.0",
 		"styled-components": "^6.0.7"
 	},
-	"packageManager": "yarn@3.5.0",
+	"packageManager": "yarn@4.12.0",
 	"engines": {
 		"node": "^18"
 	},
 	"dependenciesMeta": {
-		"esbuild": { "built": true },
-		"@swc/core": { "built": true },
-		"cypress": { "built": true },
-		"sharp": { "built": true }
+		"@swc/core": {
+			"built": true
+		},
+		"cypress": {
+			"built": true
+		},
+		"esbuild": {
+			"built": true
+		},
+		"sharp": {
+			"built": true
+		}
 	},
 	"dependencies": {
 		"optics-ts": "^2.4.1",
