@@ -33,7 +33,8 @@ export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.médecin.title',
 			'Simulateur de revenus pour médecin en libéral'
 		),
-		externalLinks: [servicePAM, premiersMoisUrssaf],
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [servicePAM],
 		path: sitePaths.simulateurs['profession-libérale'].médecin,
 		simulation: configMédecin,
 		codesCatégorieJuridique: ['1000', '5410'],
