@@ -579,8 +579,6 @@ gérer:
       body: Retrouvez toutes les informations publiques concernant votre entreprise
         sur
 header:
-  dark-mode-switch:
-    activate-dark-mode: Activer le mode sombre
   footer-shortcut:
     aria-label: Passer le contenu principal et aller directement au pied de page
     text: Aller directement au pied de page
@@ -2536,6 +2534,11 @@ termsOfUse:
     conditions d'accès et d'utilisation des services proposés aux utilisateurs
     et utilisatrices.
   title: Conditions générales d'utilisation
+theme-switch:
+  dark: Sombre
+  light: Clair
+  system: Système
+  title: Changer de thème
 trimestres acquis: trimestres acquis
 update-rule: Modifier {{title}}
 vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux statistiques d'utilisation

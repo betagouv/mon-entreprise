@@ -551,8 +551,6 @@ gérer:
       aria-label: Company directory, new window
       body: Find all public information about your company at
 header:
-  dark-mode-switch:
-    activate-dark-mode: Activate dark mode
   footer-shortcut:
     aria-label: Skip the main content and go directly to the footer
     text: Go directly to footer
@@ -2390,6 +2388,11 @@ termsOfUse:
     the “mon-entreprise” digital platform and define the conditions of access
     and use of the services offered to users.
   title: Terms and conditions of use
+theme-switch:
+  dark: Dark
+  light: Clair
+  system: System
+  title: Change theme
 trimestres acquis: quarters acquired
 update-rule: Update {{title}}
 vos retours, accéder aux statistiques d'utilisation: your feedback, access to usage statistics
