@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
+import SimulateurOrAssistantPageWithPublicodes from '@/components/SimulateurOrAssistantPageWithPublicodes'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
@@ -43,9 +44,15 @@ export default function Assistants() {
 								simu.path.replace(absoluteSitePaths.assistants.index, '') + '/*'
 							}
 							element={
-								<>
-									<SimulateurOrAssistantPage />
-								</>
+								simu.withPublicodes === false ? (
+									<>
+										<SimulateurOrAssistantPage />
+									</>
+								) : (
+									<>
+										<SimulateurOrAssistantPageWithPublicodes />
+									</>
+								)
 							}
 						/>
 					))}

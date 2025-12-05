@@ -64,8 +64,8 @@ export function déclarationRevenusPAMCConfig({
 				),
 				logo: IMPOTS_GOUV,
 			},
-			servicePAM,
 		],
+		conditionalExternalLinks: [servicePAM],
 		simulation: configDéclarationRevenusPAMC,
 		autoloadLastSimulation: true,
 	} as const)

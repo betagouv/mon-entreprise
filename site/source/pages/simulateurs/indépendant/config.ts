@@ -39,12 +39,12 @@ export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'comparaison-statuts',
 			'is',
 		],
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs.indépendant,
 		simulation: configIndépendant,

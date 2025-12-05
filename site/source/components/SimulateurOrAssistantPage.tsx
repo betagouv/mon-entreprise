@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
@@ -9,26 +8,28 @@ import {
 	useCurrentSimulatorData,
 } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import useSetSimulationFromSearchParams from '@/hooks/useSetSimulationFromSearchParams'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { Simulation } from '@/store/reducers/simulation.reducer'
-import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
+import { ExternalLink } from '@/pages/simulateurs/_configs/types'
 import { Merge } from '@/types/utils'
 
 import NextSteps from '../pages/simulateurs/NextSteps'
 import { TrackChapter, TrackingChapters } from './ATInternetTracking'
 import DateChip from './DateChip'
-import Loader from './utils/Loader'
 
-export default function SimulateurOrAssistantPage() {
-	const { key, currentSimulatorData } = useCurrentSimulatorData()
+type Props = {
+	additionalExternalLinks?: ExternalLink[]
+}
+
+export default function SimulateurOrAssistantPage({
+	additionalExternalLinks = [],
+}: Props) {
+	const { currentSimulatorData } = useCurrentSimulatorData()
 	const { pathname } = useLocation()
 	if (!currentSimulatorData) {
 		throw new Error(`No simulator found with url: ${pathname}`)
 	}
+
 	const {
 		meta,
-		simulation,
 		title,
 		tracking,
 		tooltip,
@@ -38,31 +39,20 @@ export default function SimulateurOrAssistantPage() {
 		component: Component,
 		seoExplanations: SeoExplanations,
 		nextSteps,
-		externalLinks,
-		autoloadLastSimulation,
-		path,
+		externalLinks = [],
+		hideDate,
+		withPublicodes,
 	} = currentSimulatorData
 
 	const inIframe = useIsEmbedded()
-	useSimulationConfig({
-		key,
-		url: path,
-		config: simulation as Simulation,
-		autoloadLastSimulation,
-	})
-	useSetSimulationFromSearchParams()
 
 	const { chapter1, chapter2, chapter3 } = tracking as TrackingChapters
-
-	const currentKey = useSelector(simulationKeySelector)
-
-	if (currentKey !== key) {
-		return <Loader />
-	}
 
 	const { ogTitle, ogDescription, ogImage } = meta as Merge<
 		MergedSimulatorDataValues['meta']
 	>
+
+	const allExternalLinks = additionalExternalLinks.concat(externalLinks)
 
 	return (
 		<TrackChapter chapter1={chapter1} chapter2={chapter2} chapter3={chapter3}>
@@ -81,7 +71,8 @@ export default function SimulateurOrAssistantPage() {
 			{title && !inIframe && (
 				<>
 					<H1>
-						<StyledSpan>{title}</StyledSpan> <DateChip />
+						<StyledSpan>{title}</StyledSpan>{' '}
+						{withPublicodes !== false && !hideDate && <DateChip />}
 						{beta && (
 							<Chip type="info" icon={<Emoji emoji="🚧" />}>
 								Version bêta
@@ -104,7 +95,7 @@ export default function SimulateurOrAssistantPage() {
 					<NextSteps
 						iframePath={privateIframe ? undefined : iframePath}
 						nextSteps={nextSteps}
-						externalLinks={externalLinks}
+						externalLinks={allExternalLinks}
 					/>
 				</>
 			)}
