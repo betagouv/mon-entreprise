@@ -56,16 +56,6 @@ export function TextField({
 
 const StyledRATextField = styled(RATextField)`
 	${fieldContainerStyles}
-
-	&[data-invalid] > div {
-		${({ theme }) =>
-			`border-color: ${theme.colors.extended.error[400]};
-
-            label {
-                color: ${theme.colors.extended.error[400]}
-            }
-        `}
-	}
 `
 
 const StyledLabelAndInputContainer = styled.div<{
