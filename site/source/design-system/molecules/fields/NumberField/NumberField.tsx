@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
 	FieldError as RAFieldError,
 	Group as RAGroup,
@@ -7,8 +8,12 @@ import {
 	Text as RAText,
 	type NumberFieldProps as RANumberFieldProps,
 } from 'react-aria-components'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { Body } from '@/design-system/typography'
+
+import { InputSuggestions, InputSuggestionsRecord } from '../../../suggestions'
 import {
 	errorColorStyle,
 	fieldContainerStyles,
@@ -22,6 +27,8 @@ type NumberFieldProps = RANumberFieldProps & {
 	displayedUnit?: string
 	errorMessage?: string
 	label: string
+	suggestions?: InputSuggestionsRecord<number>
+	onSubmit?: (source?: string) => void
 }
 
 export function NumberField({
@@ -34,11 +41,16 @@ export function NumberField({
 		maximumFractionDigits: 2,
 	},
 	label,
+	suggestions,
 }: NumberFieldProps) {
+	const [value, setValue] = useState(defaultValue || 0)
+	const { t } = useTranslation()
+
 	return (
 		<StyledRANumberField
 			defaultValue={defaultValue}
 			formatOptions={formatOptions}
+			value={value}
 			$hasError={!!errorMessage}
 		>
 			<StyledRALabel>{label}</StyledRALabel>
@@ -59,6 +71,19 @@ export function NumberField({
 				</StyledErrorMessage>
 			) : (
 				<StyledRAFieldError />
+			)}
+
+			{suggestions && (
+				<StyledSuggestionsContainer>
+					<Body>{t('Mettre la valeur :')}</Body>
+
+					<InputSuggestions
+						suggestions={suggestions}
+						onFirstClick={(value: number) => {
+							setValue(value)
+						}}
+					/>
+				</StyledSuggestionsContainer>
 			)}
 		</StyledRANumberField>
 	)
@@ -123,4 +148,15 @@ const StyledRAFieldError = styled(RAFieldError)`
 	${errorColorStyle}
 
 	padding-left: 0;
+`
+
+const StyledSuggestionsContainer = styled.div`
+	display: flex;
+	gap: ${({ theme }) => `${theme.spacings.xs} `};
+
+	p {
+		margin: 0 !important;
+
+		font-weight: 700;
+	}
 `
