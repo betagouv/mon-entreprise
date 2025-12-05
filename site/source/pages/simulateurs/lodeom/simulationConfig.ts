@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configLodeom: SimulationConfig = {
+	nomModèle: 'modele-social',
 	objectifs: ['salarié . cotisations . exonérations . lodeom . montant'],
 	questions: {
 		raccourcis: [

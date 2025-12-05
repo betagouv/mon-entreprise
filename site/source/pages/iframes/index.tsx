@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
 
+import SimulateurOrAssistantPageWithPublicodes from '@/components/SimulateurOrAssistantPageWithPublicodes'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import Page404 from '@/pages/404'
@@ -34,7 +35,15 @@ export default function Iframes() {
 											<Helmet>
 												<link rel="canonical" href={s.path} />
 											</Helmet>
-											<SimulateurOrAssistantPage />
+											{s.withPublicodes === false ? (
+												<>
+													<SimulateurOrAssistantPage />
+												</>
+											) : (
+												<>
+													<SimulateurOrAssistantPageWithPublicodes />
+												</>
+											)}
 										</>
 									}
 								/>

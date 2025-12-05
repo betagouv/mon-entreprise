@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { References } from '@/components/References'
+import { References } from '@/components/documentation/References/References'
 import {
 	BodyStyle,
 	H1Style,
@@ -21,26 +21,41 @@ import {
 	StyledLinkStyle,
 	UlStyle,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { NomModèle } from '@/domaine/SimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
 
+type PublicodesReferencesProps = {
+	references?: Record<string, string>
+	dottedName?: string
+}
+
 export default function DocumentationPageBody({
 	documentationPath,
 	engine,
+	nomModèle,
 }: {
 	documentationPath: string
-	engine: Engine
+	engine: Engine<DottedName>
+	nomModèle: NomModèle
 }) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { i18n } = useTranslation()
 	const params = useParams<{ '*': string }>()
 
+	const ReferencesWithEngine = ({
+		references,
+		dottedName,
+	}: PublicodesReferencesProps) =>
+		References({ engine, references, dottedName: dottedName as DottedName })
+
 	const { current: renderers } = useRef({
 		Head: Helmet,
 		Link,
 		Text: Markdown,
-		References,
+		References: ReferencesWithEngine,
 		Accordion: DocumentationAccordion,
 	} as ComponentProps<typeof RulePage>['renderers'])
 
@@ -54,7 +69,7 @@ export default function DocumentationPageBody({
 				renderers={renderers}
 				apiDocumentationUrl={absoluteSitePaths.développeur.api}
 				apiEvaluateUrl="https://mon-entreprise.urssaf.fr/api/v1/evaluate"
-				npmPackage="modele-social"
+				npmPackage={nomModèle}
 				mobileMenuPortalId="mobile-menu-portal-id"
 			/>
 		</StyledDocumentation>

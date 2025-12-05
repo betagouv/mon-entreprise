@@ -4,6 +4,7 @@ import { IMPOTS_GOUV, URSSAF } from '@/utils/logos'
 import DéclarationRevenusPAMC from '.'
 import { config } from '../../simulateurs/_configs/config'
 import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
+import { configDéclarationRevenusPAMC } from './simulationConfig'
 
 export function déclarationRevenusPAMCConfig({
 	t,
@@ -63,7 +64,9 @@ export function déclarationRevenusPAMCConfig({
 				),
 				logo: IMPOTS_GOUV,
 			},
-			servicePAM,
 		],
+		conditionalExternalLinks: [servicePAM],
+		simulation: configDéclarationRevenusPAMC,
+		autoloadLastSimulation: true,
 	} as const)
 }

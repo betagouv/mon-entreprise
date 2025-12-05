@@ -1,10 +1,14 @@
+import rules from 'modele-social'
 import { expect, it } from 'vitest'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import independentSituations from './indépendant.yaml'
-import { engine, getMissingVariables, runSimulations } from './utils'
+import { getMissingVariables, runSimulations } from './utils'
+
+const engine = engineFactory(rules)
 
 it('calculate simulations-indépendant', () => {
 	const objectifs = [
@@ -18,7 +22,12 @@ it('calculate simulations-indépendant', () => {
 		"entreprise . chiffre d'affaires",
 		'dirigeant . indépendant . cotisations et contributions . début activité',
 	] as DottedName[]
-	runSimulations(independentSituations, objectifs, configIndépendant.situation)
+	runSimulations(
+		engine,
+		independentSituations,
+		objectifs,
+		configIndépendant.situation
+	)
 
 	expect(
 		getMissingVariables(

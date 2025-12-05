@@ -29,7 +29,7 @@ export function CasParticuliers() {
 					historisées. Cela veut dire que l'on peut effectuer une simulation
 					avec la législation effective à une date antérieure. Pour cela, il
 					vous suffit de renseigner le paramètre{' '}
-					<RuleLink dottedName="date">
+					<RuleLink dottedName="date" nomModèle="modele-social">
 						<Code>date</Code>
 					</RuleLink>{' '}
 					dans la situation.
@@ -114,7 +114,10 @@ export function CasParticuliers() {
 				<H4>Le versement mobilité</H4>
 				<Body>
 					<Code>
-						<RuleLink dottedName="établissement . commune . taux versement mobilité">
+						<RuleLink
+							dottedName="établissement . commune . taux versement mobilité"
+							nomModèle="modele-social"
+						>
 							établissement . commune . taux versement mobilité
 						</RuleLink>
 					</Code>
@@ -159,7 +162,10 @@ export function CasParticuliers() {
 				<H4>Le taux collectif AT/MP</H4>
 				<Body>
 					<Code>
-						<RuleLink dottedName="établissement . taux ATMP . taux collectif">
+						<RuleLink
+							dottedName="établissement . taux ATMP . taux collectif"
+							nomModèle="modele-social"
+						>
 							établissement . taux ATMP . taux collectif
 						</RuleLink>
 					</Code>

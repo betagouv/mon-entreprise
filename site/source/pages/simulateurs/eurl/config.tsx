@@ -50,12 +50,12 @@ export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'is',
 			'comparaison-statuts',
 		],
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs.eurl,
 		simulation: configEurl,
