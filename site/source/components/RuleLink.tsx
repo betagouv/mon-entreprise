@@ -56,8 +56,8 @@ export default function RuleLink({
 			linkComponent={Link}
 			engine={engineUsed}
 			documentationPath={documentationPath ?? documentationIndex}
-			// eslint-disable-next-line react/no-children-prop
-			children={children}
-		/>
+		>
+			{children}
+		</EngineRuleLink>
 	)
 }
