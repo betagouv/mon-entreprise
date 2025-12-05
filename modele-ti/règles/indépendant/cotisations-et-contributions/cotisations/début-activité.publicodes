@@ -25,8 +25,8 @@ indépendant . cotisations et contributions . début activité:
   unité: €/an
   valeur: cotisations et contributions
   contexte:
-    assiette des cotisations: assiette forfaitaire
-    CSG-CRDS . assiette: assiette forfaitaire
+    assiette sociale: assiette forfaitaire
+    assiette CSG-CRDS: assiette forfaitaire
     cotisations facultatives: non
     cotisations . maladie . taux progressif . assiette: assiette forfaitaire maladie
 

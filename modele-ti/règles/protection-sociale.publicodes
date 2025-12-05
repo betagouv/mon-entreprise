@@ -98,7 +98,7 @@ protection sociale . retraite . base:
     > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
     > travailleur indépendant pendant les 25 années les plus avantageuses de votre
     > carrière ;
-    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /q
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
     > durée d’assurance pour obtenir une pension à taux plein.
 
   arrondi: oui
@@ -287,13 +287,13 @@ protection sociale . retraite . base . CNAVPL:
           privé: oui
           valeur: indépendant . PL . CNAVPL . retraite . tranche T1
           contexte:
-            indépendant . assiette des cotisations: plafond sécurité sociale
+            indépendant . cotisations et contributions . assiette sociale: plafond sécurité sociale
 
         cotisation maximum T2:
           privé: oui
           valeur: indépendant . PL . CNAVPL . retraite . tranche T2
           contexte:
-            indépendant . assiette des cotisations: 5 * plafond sécurité sociale
+            indépendant . cotisations et contributions . assiette sociale: 5 * plafond sécurité sociale
 
     points acquis . points incapacité:
       applicable si: indépendant . PL . CNAVPL . exonération incapacité

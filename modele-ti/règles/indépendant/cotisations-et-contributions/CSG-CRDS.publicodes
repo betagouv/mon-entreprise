@@ -17,7 +17,7 @@ indépendant . cotisations et contributions . CSG-CRDS:
       unité: €/an
       somme:
         - produit:
-            - assiette
+            - assiette CSG-CRDS
             - taux
         - revenus de remplacement
 
@@ -32,7 +32,7 @@ indépendant . cotisations et contributions . CSG-CRDS:
       unité: €/an
       somme:
         - produit:
-            - assiette
+            - assiette CSG-CRDS
             - taux
         - revenus de remplacement
 
@@ -41,19 +41,3 @@ indépendant . cotisations et contributions . CSG-CRDS:
         - IJSS . montant
         - non déductible . taux
     non déductible . taux: 2.9%
-
-indépendant . cotisations et contributions . CSG-CRDS . assiette:
-  note: >-
-    Seule la partie imposable des IJSS est retranchée de l’assiette de la CSG,
-    puisque la partie non imposable a déjà été retranchée du revenu net fiscal
-    fourni
-  valeur:
-    somme:
-      - assiette des cotisations . sans plancher
-      - cotisations
-      - conjoint collaborateur . cotisations
-  abattement:
-    somme:
-      - revenus étrangers . montant
-      - IJSS . imposable
-  plancher: 0 €/mois
