@@ -28,7 +28,7 @@ indépendant . cotisations et contributions . début activité:
     assiette sociale: assiette forfaitaire
     assiette CSG-CRDS: assiette forfaitaire
     cotisations facultatives: non
-    cotisations . maladie . taux progressif . assiette: assiette forfaitaire maladie
+    cotisations . maladie . indemnités journalières . assiette: assiette forfaitaire indemnités journalières
 
   références:
     'Indépendant : Comment sont calculées vos cotisations ?': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#ancre-le-calcul-vos-cotisations
@@ -43,7 +43,9 @@ indépendant . cotisations et contributions . début activité:
       références:
         'Indépendant : Vos cotisations en début d’activité': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#titre-bonasavoir-dc7c46c0-20f6-4d0c-bb9d-d963a1afff95
 
-    assiette forfaitaire maladie:
-      valeur: 40% * plafond sécurité sociale
-      unité: €/an
+    assiette forfaitaire indemnités journalières:
+      produit:
+        - plafond sécurité sociale
+        - 40%
       arrondi: oui
+      unité: €/an
