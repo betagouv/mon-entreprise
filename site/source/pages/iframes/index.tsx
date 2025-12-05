@@ -1,16 +1,19 @@
 import { Helmet } from 'react-helmet-async'
 import { Route, Routes } from 'react-router-dom'
 
+import SimulateurOrAssistantPageWithPublicodes from '@/components/SimulateurOrAssistantPageWithPublicodes'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import Page404 from '@/pages/404'
 
 import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPage'
+import { PageConfig } from '../simulateurs/_configs/types'
 import IframeFooter from './IframeFooter'
 
 export default function Iframes() {
-	const simulators = useSimulatorsData()
 	usePlausibleTracking()
+	const simulatorsData = useSimulatorsData()
+	const simulateursEtAssistants = Object.values(simulatorsData) as PageConfig[]
 
 	return (
 		<>
@@ -20,26 +23,28 @@ export default function Iframes() {
 			*/}
 			<base target="_parent" />
 			<Routes>
-				{Object.values(simulators)
-					.filter((el) => !!('iframePath' in el && el.iframePath))
-					.map(
-						(s) =>
-							'iframePath' in s &&
-							s.iframePath && (
-								<Route
-									key={s.iframePath}
-									path={s.iframePath + '/*'}
-									element={
-										<>
-											<Helmet>
-												<link rel="canonical" href={s.path} />
-											</Helmet>
-											<SimulateurOrAssistantPage />
-										</>
-									}
-								/>
-							)
-					)}
+				{simulateursEtAssistants.map((s) => (
+					<Route
+						key={s.iframePath}
+						path={s.iframePath + '/*'}
+						element={
+							<>
+								<Helmet>
+									<link rel="canonical" href={s.path} />
+								</Helmet>
+								{s.withPublicodes === false ? (
+									<>
+										<SimulateurOrAssistantPage />
+									</>
+								) : (
+									<>
+										<SimulateurOrAssistantPageWithPublicodes />
+									</>
+								)}
+							</>
+						}
+					/>
+				))}
 				<Route path="*" element={<Page404 />} />
 			</Routes>
 			<IframeFooter />

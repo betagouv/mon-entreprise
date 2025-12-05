@@ -34,7 +34,8 @@ export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.cipav.title',
 			'Simulateur de revenus pour professions libérales Cipav'
 		),
-		externalLinks: [servicePLR, premiersMoisUrssaf],
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [servicePLR],
 		path: sitePaths.simulateurs['profession-libérale'].cipav,
 		simulation: cipavSimulationConfig,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
