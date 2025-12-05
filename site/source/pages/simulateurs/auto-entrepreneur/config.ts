@@ -87,9 +87,9 @@ export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 					'Voir les guides sur auto-entrepreneur.urssaf.fr, nouvelle fenêtre.'
 				),
 			},
-			serviceAutoEntrepreneur,
 			premiersMoisUrssaf,
 		],
+		conditionalExternalLinks: [serviceAutoEntrepreneur],
 		path: sitePaths.simulateurs['auto-entrepreneur'],
 		simulation: configAutoEntrepreneur,
 		codesCatégorieJuridique: ['1000'],
