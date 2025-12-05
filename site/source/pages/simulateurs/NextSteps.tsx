@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 
 import { Grid, H2, Spacing, Ul } from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
-import { useEngine } from '@/hooks/useEngine'
 import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
@@ -17,7 +16,7 @@ import ExternalLinkCard from './cards/ExternalLinkCard'
 interface NextStepsProps {
 	iframePath?: MergedSimulatorDataValues['iframePath']
 	nextSteps: MergedSimulatorDataValues['nextSteps']
-	externalLinks: MergedSimulatorDataValues['externalLinks']
+	externalLinks: ExternalLink[]
 }
 
 export default function NextSteps({
@@ -26,12 +25,6 @@ export default function NextSteps({
 	externalLinks,
 }: NextStepsProps) {
 	const { absoluteSitePaths } = useSitePaths()
-	const engine = useEngine()
-
-	const relevantExternalLinks = externalLinks?.filter(
-		({ associatedRule }: ExternalLink) =>
-			!associatedRule || engine.evaluate(associatedRule).nodeValue
-	)
 
 	const existingCompany = !!useSelector(companySirenSelector)
 
@@ -58,8 +51,8 @@ export default function NextSteps({
 						</GridItem>
 					))}
 
-				{relevantExternalLinks &&
-					relevantExternalLinks.map((externalLink, index) => (
+				{externalLinks &&
+					externalLinks.map((externalLink, index) => (
 						<GridItem key={index}>
 							<ExternalLinkCard externalLink={externalLink} />
 						</GridItem>

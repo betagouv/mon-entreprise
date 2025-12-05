@@ -1,8 +1,12 @@
-import { Suspense, useEffect, useMemo } from 'react'
+import { pipe } from 'effect'
+import * as A from 'effect/Array'
+import * as R from 'effect/Record'
+import { Suspense, useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
+import SimulateurOrAssistantPageWithPublicodes from '@/components/SimulateurOrAssistantPageWithPublicodes'
 import Loader from '@/components/utils/Loader'
 import { usePersistingState } from '@/components/utils/persistState'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
@@ -10,6 +14,8 @@ import { Link } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
+
+import { PageConfig } from './_configs/types'
 
 type State = {
 	fromGérer?: boolean
@@ -29,29 +35,15 @@ export default function Simulateurs() {
 			setLastState(state as State)
 		}
 	}, [setLastState, state])
-	const simulatorsData = useSimulatorsData()
-	const simulatorRoutes = useMemo(
-		() =>
-			Object.values(simulatorsData)
-				.filter(
-					({ path }) => path?.startsWith(absoluteSitePaths.simulateurs.index)
-				)
-				.map((s) => (
-					<Route
-						key={s.path}
-						path={
-							s.path.replace(absoluteSitePaths.simulateurs.index, '') + '/*'
-						}
-						element={
-							<Suspense fallback={<Loader />}>
-								<SimulateurOrAssistantPage />
-							</Suspense>
-						}
-					/>
-				)),
-		[simulatorsData, absoluteSitePaths]
-	)
 	const isEmbedded = useIsEmbedded()
+	const simulateursEtAssistants = useSimulatorsData()
+	const simulateurs = pipe(
+		simulateursEtAssistants,
+		R.values,
+		A.filter((s) =>
+			(s as PageConfig).path.startsWith(absoluteSitePaths.simulateurs.index)
+		)
+	) as PageConfig[]
 
 	return (
 		<>
@@ -91,7 +83,27 @@ export default function Simulateurs() {
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
-				{simulatorRoutes}
+				{simulateurs.map((s) => (
+					<Route
+						key={s.path}
+						path={
+							s.path?.replace(absoluteSitePaths.simulateurs.index, '') + '/*'
+						}
+						element={
+							<Suspense fallback={<Loader />}>
+								{s.withPublicodes === false ? (
+									<>
+										<SimulateurOrAssistantPage />
+									</>
+								) : (
+									<>
+										<SimulateurOrAssistantPageWithPublicodes />
+									</>
+								)}
+							</Suspense>
+						}
+					/>
+				))}
 				<Route path="*" element={<Navigate to="/404" replace />} />
 			</Routes>
 		</>
