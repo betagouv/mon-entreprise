@@ -152,7 +152,7 @@ const StyledRAFieldError = styled(RAFieldError)`
 
 const StyledSuggestionsContainer = styled.div`
 	display: flex;
-	gap: ${({ theme }) => `${theme.spacings.xs} `};
+	gap: ${({ theme }) => `${theme.spacings.xs}`};
 
 	p {
 		margin: 0 !important;
