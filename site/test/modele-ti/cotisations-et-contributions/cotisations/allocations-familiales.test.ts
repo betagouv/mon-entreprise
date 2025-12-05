@@ -136,4 +136,60 @@ describe('Cotisation allocations familiales', () => {
 			)
 		})
 	})
+
+	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+			'indépendant . PL . régime général': 'non',
+		}
+
+		it('applique le même barème que pour les artisans, commerçants et PLNR', () => {
+			const e1 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'50000 €/an',
+			})
+
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				0
+			)
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				0
+			)
+
+			const e2 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'60000 €/an',
+			})
+
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				1.8
+			)
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				1080
+			)
+
+			const e3 = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'70000 €/an',
+			})
+
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				2170
+			)
+		})
+	})
 })
