@@ -1,15 +1,15 @@
-import { Trans } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
+import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { FromBottom } from '@/components/ui/animate'
 import { Button, H3, Intro, Markdown, Message, Spacing } from '@/design-system'
 import { useEngine } from '@/hooks/useEngine'
 
-import { Condition } from '../EngineValue/Condition'
-
 export default function CotisationsForfaitaires() {
+	const { t } = useTranslation()
 	const rule = useEngine().getRule(
-		'dirigeant . indépendant . cotisations et contributions . début activité'
+		'indépendant . cotisations et contributions . début activité'
 	)
 
 	return (
@@ -23,16 +23,17 @@ export default function CotisationsForfaitaires() {
 					non
 					expression={{
 						'toutes ces conditions': [
-							'dirigeant . indépendant . PL . PAMC',
+							'indépendant . PL . PAMC',
 							"situation personnelle . domiciliation fiscale à l'étranger",
 						],
 					}}
 				>
 					<Intro>
-						<Trans i18nKey="pages.simulateurs.indépendant.cotisations-forfaitaires">
-							Cotisations forfaitaires :{' '}
-						</Trans>
-						<Value expression="dirigeant . indépendant . cotisations et contributions . début activité" />
+						{t(
+							'pages.simulateurs.indépendant.explications.cotisations.forfaitaires',
+							'Cotisations forfaitaires :'
+						)}{' '}
+						<Value expression="indépendant . cotisations et contributions . début activité" />
 					</Intro>
 				</Condition>
 
@@ -45,7 +46,10 @@ export default function CotisationsForfaitaires() {
 							size="XS"
 							light
 						>
-							<Trans>Voir la fiche Urssaf</Trans>
+							{t(
+								'pages.simulateurs.indépendant.explications.cotisations.fiche',
+								'Voir la fiche Urssaf'
+							)}
 						</Button>
 						<Spacing lg />
 					</>

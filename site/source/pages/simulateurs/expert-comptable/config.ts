@@ -1,6 +1,6 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
+import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -35,11 +35,10 @@ export function expertComptableConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Calcul du revenu net après cotisations à partir du total des recettes.'
 			),
 		},
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [serviceExpertComptable],
+		externalLinks: [serviceExpertComptable, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
 		simulation: configExpertComptable,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
-		component: IndépendantPLSimulation,
+		component: ProfessionLibérale,
 	} as const)
 }

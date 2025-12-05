@@ -64,6 +64,7 @@ Comment ça marche ? Voir la page explicative sur la page du dépôt github, nou
 Commune ou code postal: Commune ou code postal
 Communes et code postaux correspondants: Communes et code postaux correspondants
 Confirmer: Confirmer
+Contactez-nous: Contactez-nous
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 "Crée le :": "Crée le :"
@@ -130,7 +131,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
 "Lire la documentation au sujet de :": "Lire la documentation au sujet de :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
-Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
@@ -169,10 +169,6 @@ Plan du site: Plan du site
 Plus d'informations sur {{ title }}: Plus d'informations sur {{ title }}
 Plus d'infos sur {{ title }}: Plus d'infos sur {{ title }}
 Plus de 50 salariés: Plus de 50 salariés
-Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
-  urssaf:
-    fr</2>: Pour en savoir plus, rendez-vous sur le site
-      <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Précédent: Précédent
@@ -239,7 +235,6 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-Voir la fiche Urssaf: Voir la fiche Urssaf
 Voir les autres simulateurs: Voir les autres simulateurs
 Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
 Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
@@ -273,6 +268,22 @@ août: août
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
+aquoiserventmescotisations:
+  en-savoir-plus: Pour en savoir plus, rendez-vous sur le site
+    <2>aquoiserventlescotisations.urssaf.fr</2>
+  h2: À quoi servent mes cotisations ?
+aria-label:
+  aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, nouvelle fenêtre
+  beta-gouv: beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre
+  cpam: CPAM, accéder à ameli.fr, nouvelle fenêtre
+  dgfip: DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre
+  economie-gouv: economie.gouv.fr, nouvelle fenêtre
+  entreprendre-service-public: entreprendre.service-public.fr, nouvelle fenêtre
+  impots-gouv: impots.gouv.fr, nouvelle fenêtre
+  ircec: Ircec, accéder à ircec.fr, nouvelle fenêtre
+  service-public: service-public.fr, nouvelle fenêtre
+  urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
+  équipe: équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre
 assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
@@ -492,7 +503,6 @@ créer:
       aide-cci-cma: Si vous hésitez entre une activité artisanale ou commerciale, vous
         pouvez consulter les sites de la <2>CCI</2> ou de la <5>CMA</5>.
       title: Précisions sur votre activité
-d'aides: d'aides
 design-system:
   date-picker:
     close: Fermer
@@ -507,8 +517,6 @@ design-system:
     prev-month: Mois précédent
     year: Année
 décembre: décembre
-en incluant: en incluant
-en titres-restaurant: en titres-restaurant
 entreprise:
   détails: Entreprise créée le {{ date }} et domiciliée à {{ commune }}.
 error:
@@ -600,9 +608,9 @@ juin: juin
 l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
-    autonome et pluridisciplinaire au sein de <6>l’Urssaf</6>. Nous avons à cœur
+    autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à cœur
     d’être au près de vos besoins afin d’améliorer en permanence ce site
-    conformément à l'approche <9>beta.gouv.fr</9>.</1><2>Nous avons développé ce
+    conformément à l'approche <8>beta.gouv.fr</8>.</1><2>Nous avons développé ce
     site pour accompagner les créateurs d’entreprise dans le développement de
     leur activité.</2><3>Notre objectif est de lever toutes les incertitudes vis
     à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
@@ -1021,6 +1029,11 @@ pages:
           description: Modalités déclaratives et paiement des cotisations sociales pour
             les Praticiens et Auxiliaires Médicaux Conventionnés (PAM-C).
           title: Je relève du régime des PAM-C dans le cadre de mon activité libérale
+        "3":
+          description: L’Urssaf met à votre disposition un service en ligne. Il vous
+            permet de gérer votre activité, contacter un conseiller et retrouver
+            tous vos documents.
+          title: Le service en ligne Praticien ou auxiliaire médical
       formulaire:
         "0": Les champs obligatoires sont signalés par une astérisque.
         "1": Profession
@@ -1332,6 +1345,21 @@ pages:
         votre site utilise une politique de sécurité de contenu via l'en-tête de
         réponse HTTP <1>Content-Security-Policy</1>, une erreur bénigne peut
         apparaître dans la console. <3></3></3>
+      intégrations:
+        CCI:
+          aria-label: CCI de France, voir l’intégration, nouvelle fenêtre
+          cta-label: Voir l’intégration
+        code-du-travail-numérique:
+          aria-label: Code du travail numérique", voir le simulateur, nouvelle fenêtre
+          cta-label: Voir le simulateur
+        france-travail:
+          aria-label: France Travail, voir le simulateur, nouvelle fenêtre
+          cta-label: Voir le simulateur
+        suggestion: Vous avez un projet ou une idée à nous partager ?
+        titre: Liste des intégrations
+        urssaf:
+          aria-label: Urssaf, voir l’intégration, nouvelle fenêtre
+          cta-label: Voir l’intégration
     module: Quel module ?
     spreadsheet: <0>Utiliser avec un tableur</0><1>Vous souhaitez utiliser un
       simulateur dans une feuille Google Sheets ou Excel ? C'est possible grâce
@@ -1428,6 +1456,15 @@ pages:
           partielle prévue par une convention/accord collectif ou une décision
           unilatérale de l’employeur.
     artiste-auteur:
+      explications:
+        cotisations:
+          précompte: Pour vos revenus en traitement et salaires, ces cotisations sont «
+            précomptées », c’est-à-dire payées à la source par le diffuseur.
+          titre: Vos cotisations
+        institutions:
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance et
+            retraite <2> de base</2>).
       externalLinks:
         "1":
           title: Le service en ligne Artiste-auteur
@@ -1444,11 +1481,30 @@ pages:
       warning: Ce simulateur permet d’estimer le montant de vos cotisations à partir
         de votre revenu projeté.
     assimilé-salarié:
-      répartition:
-        cotisations: Cotisations
-        impôt: Impôt
-        revenu: Revenu disponible
+      explications:
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
     auto-entrepreneur:
+      explications:
+        institutions:
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance<1> et
+            retraite</1>).
+        retraite:
+          droits: "<0>Droits retraite acquis sur l’année</0><1><0>Retraite de base :
+            <2></2></0><1><0>Points de retraite de base acquis (CNAVPL) :
+            <2></2></0></1><2><0>Revenu cotisé pour la retraite de base :
+            <2></2></0></2><3><0>Points de retraite complémentaire acquis
+            (Cipav) : <2></2></0></3><4><0>Points de retraite complémentaire
+            acquis : <2></2></0></4></1>"
+          titre: Votre retraite
+        répartition:
+          cotisations: Cotisations
+          h2: Répartition du chiffre d’affaires
+          impôt: Impôt
+          revenu: Revenu (incluant les dépenses liées à l’activité)
       externalLinks:
         "1":
           ariaLabel: Visiter le site auto-entrepreneur.urssaf.fr, nouvelle fenêtre.
@@ -1476,11 +1532,6 @@ pages:
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
         titre: "Auto-entrepreneurs : simulateur de revenus"
-      répartition:
-        cotisations: Cotisations
-        h2: Répartition du chiffre d’affaires
-        impôt: Impôt
-        revenu: Revenu (incluant les dépenses liées à l’activité)
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
@@ -1912,46 +1963,51 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d’impôt sur les sociétés
     indépendant:
-      cotisations-forfaitaires: "Cotisations forfaitaires : "
+      explications:
+        cotisations:
+          fiche: Voir la fiche Urssaf
+          forfaitaires: "Cotisations forfaitaires :"
+          régularisation:
+            description: <0>Les cotisations et contributions sont calculées à titre
+              provisionnel sur la base du dernier revenu déclaré (ou du montat
+              forfaitaire, si aucun revenu n’est encore déclaré). Une fois
+              l’année écoulée et le revenu professionnel connu, les cotisations
+              et contributions sont régularisées.</0><1>Ce simulateur calcule
+              les cotisations <2>après régularisation</2>. Il vous permet donc
+              d’anticiper le montant de cette régularisation et de planifier
+              votre trésorerie en conséquence.</1><2>Si vos revenus d’activité
+              changent beaucoup par rapport à l’année précédente, vous avez la
+              possibilité de communiquer à l’Urssaf un <2>montant prévisionnel
+              pour l’année en cours, qui sera pris comme base de
+              calcul</2>(attention cependant, vous serez tenus de faire une
+              estimation précise).</2>
+            titre: Comment fonctionne la régularisation des cotisations provisionnelles ?
+        institutions:
+          cpam: En tant que professionnel de santé conventionné, vous bénéficiez d’une
+            prise en charge d’une partie de vos cotisations par l’Assurance
+            Maladie.
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance<1> et
+            retraite</1>).
+        retraite:
+          droits: "<0>Droits retraite acquis sur l’année</0><1><0>Retraite de base :
+            <2></2></0><1><0>Points de retraite de base acquis (CNAVPL) :
+            <2></2></0></1><2><0>Revenu cotisé pour la retraite de base :
+            <2></2></0></2><3>Points de retraite complémentaire acquis :
+            <2><0></0></2><3><0>non connue</0><1><0>Ce simulateur ne gère pas
+            les droits acquis de retraite complémentaire pour les professions
+            libérales</0></1></3></3></1>"
+          montant: <0>Projection du montant de votre retraite</0><1><0></0><1></1></1>
+          titre: Votre retraite
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
+          titre: Répartition du revenu
       meta:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
-      retraite-droits-acquis: "<0><0><0>Retraite : droits acquis sur
-        l’année</0><1><0>Les exonérations DROM n’ont aucune incidence sur la
-        détermination des droits à la retraite de base et complémentaire des
-        auto-entrepreneurs</0></1><2><0>L’exonération ACRE n’a aucune incidence
-        sur la détermination des droits à la retraite de base et complémentaire
-        des auto-entrepreneurs</0></2><3><0>Le calcul des droits ouverts à la
-        retraite n’est pas encore implémenté pour les cas incluants des
-        d’exonérations de cotisations (ACRE, pension invalidité,
-        etc).</0></3><4><0><0>Retraite de base : <2></2></0><1><0>Points de
-        retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
-        pour la retraite de base : <2></2></0></2><3><0>Points de retraite
-        complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points de retraite
-        complémentaire acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce
-        simulateur ne gère pas les droits acquis de retraite complémentaire pour
-        les professions
-        libérales</0></1></3></0></4></0></4></0><1><0><0>Projection du montant
-        de votre retraite</0><1><0></0><1></1></1></0></1></0>"
-      régularisation:
-        description: <0>Les cotisations et contributions sont calculées à titre
-          provisionnel sur la base du dernier revenu déclaré (ou du montat
-          forfaitaire, si aucun revenu n’est encore déclaré). Une fois l’année
-          écoulée et le revenu professionnel connu, les cotisations et
-          contributions sont régularisées.</0><1>Ce simulateur calcule les
-          cotisations <2>après régularisation</2>. Il vous permet donc
-          d’anticiper le montant de cette régularisation et de planifier votre
-          trésorerie en conséquence.</1><2>Si vos revenus d’activité changent
-          beaucoup par rapport à l’année précédente, vous avez la possibilité de
-          communiquer à l’Urssaf un <2>montant prévisionnel pour l’année en
-          cours, qui sera pris comme base de calcul</2>(attention cependant,
-          vous serez tenus de faire une estimation précise).</2>
-        title: Comment fonctionne la régularisation des cotisations provisionnelles ?
-      répartition:
-        cotisations: Cotisations
-        impôt: Impôt
-        revenu: Revenu disponible
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning: Le montant calculé correspond aux cotisations de l’année {{year}} (pour
@@ -2152,9 +2208,15 @@ pages:
     salarié:
       SASU: Vous êtes dirigeant d'une SAS(U) ? <2>Accédez au simulateur de revenu
         dédié</2>
+      aides: en incluant <2></2> d'aides
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
+      explications:
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
       externalLinks:
         "1":
           ariaLabel: Visiter le site Code du travail numérique, nouvelle fenêtre.
@@ -2174,10 +2236,6 @@ pages:
         ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur
           tout-en-un pour salariés et employeurs"
         titre: "Salaire brut / net : le convertisseur Urssaf"
-      répartition:
-        cotisations: Cotisations
-        impôt: Impôt
-        revenu: Revenu disponible
       seo: "<0><0>Comment calculer le salaire net ?</0><1>Lors de l'entretien
         d'embauche l'employeur propose en général une rémunération exprimée en «
         brut ». Le montant annoncé inclut ainsi les cotisations salariales, qui
@@ -2216,6 +2274,7 @@ pages:
         locales...</4><5></5></2>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
+      titres-restaurant: en titres-restaurant
       warning: Le simulateur ne prend pour l’instant pas en compte les accords et
         conventions collectives, ni la myriade d’aides aux entreprises. Trouvez
         votre convention collective <2>ici</2>, et explorez les aides sur
@@ -2423,18 +2482,10 @@ simulateurs:
         gestion du dossier de retraite ou de prévoyance.
       CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
         d'invalidité-décès.
-      cpam: En tant que professionnel de santé conventionné, vous bénéficiez d'une
-        prise en charge d'une partie de vos cotisations par l'Assurance Maladie.
       dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
         collecte l'impôt sur le revenu. <2>Le montant calculé <2>prend en compte
         l'abattement du régime micro-fiscal</2>.</2>
-      précompte-artiste-auteur: Pour vos revenus en traitement et salaires, ces
-        cotisations sont « précomptées », c'est à dire payées à la source par le
-        diffuseur.
       titre: Vos institutions partenaires
-      urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
-        sociale (assurance maladie, allocations familiales, dépendance<1> et
-        retraite <3> de base</3></1>).
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
@@ -2447,7 +2498,7 @@ simulateurs:
     titre: Avant de commencer...
 simulation-end:
   hiring:
-    text: Vous pouvez maintenant concrétiser votre projet d'embauche.
+    text: Vous pouvez maintenant concrétiser votre projet d’embauche.
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
   title: Vous avez complété cette simulation
 simulationPréremplieBanner:

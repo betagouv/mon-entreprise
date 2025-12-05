@@ -34,9 +34,10 @@ export function Message({
 	role = undefined,
 }: MessageProps) {
 	if (
-		Array.isArray(children) &&
-		children.length === 1 &&
-		typeof children[0] === 'string'
+		typeof children === 'string' ||
+		(Array.isArray(children) &&
+			children.length === 1 &&
+			typeof children[0] === 'string')
 	) {
 		children = mini ? (
 			<SmallBody>{children}</SmallBody>

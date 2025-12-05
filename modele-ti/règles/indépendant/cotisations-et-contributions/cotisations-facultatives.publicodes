@@ -76,15 +76,15 @@ indépendant . cotisations facultatives . contrats madelin . prévoyance:
 indépendant . cotisations facultatives . plafond prévoyance:
   unité: €/an
   formule:
-    somme:
+    le maximum de:
+      - somme:
+        - produit:
+            - revenu professionnel
+            - 3.75%
+        - produit:
+            - plafond sécurité sociale
+            - 7%
       - produit:
-          - revenu professionnel
-          - 3.75%
-      - produit:
-          - plafond sécurité sociale
-          - 7%
-    plafond:
-      produit:
         - 8 * plafond sécurité sociale
         - 3%
   références:

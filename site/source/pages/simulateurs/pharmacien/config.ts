@@ -1,6 +1,6 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { servicePAM } from '@/external-links/servicePAM'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
+import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -32,11 +32,10 @@ export function pharmacienConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.pharmacien.title',
 			'Simulateur de revenus pour pharmacien en libéral'
 		),
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [servicePAM],
+		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale'].pharmacien,
 		simulation: configPharmacien,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
-		component: IndépendantPLSimulation,
+		component: ProfessionLibérale,
 	} as const)
 }
