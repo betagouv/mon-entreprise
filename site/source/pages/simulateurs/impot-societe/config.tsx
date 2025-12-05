@@ -22,7 +22,6 @@ export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'pages.simulateurs.impot-société.meta.description',
 				'Calculez votre impôt sur les sociétés'
 			),
-			color: '#E71D66',
 		},
 		shortName: t(
 			'pages.simulateurs.impot-société.meta.title',
@@ -32,7 +31,6 @@ export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.impot-société.title',
 			'Simulateur d’impôt sur les sociétés'
 		),
-		date: false,
 		nextSteps: ['salarié', 'comparaison-statuts'],
 		path: sitePaths.simulateurs.is,
 		hideDate: true,
