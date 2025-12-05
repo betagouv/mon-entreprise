@@ -56,3 +56,13 @@ export const WithErrorMessage: Story = {
 		errorMessage: 'Le montant ne peut être négatif',
 	},
 }
+
+export const WithSuggestionns = {
+	args: {
+		description:
+			'Brut de référence (sans les primes, indemnités ni majorations)',
+		displayedUnit: '€/mois',
+		label: 'Salaire mensuel brut',
+		suggestions: { 'salaire médian': 2700, SMIC: 1801.8 },
+	},
+}
