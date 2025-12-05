@@ -38,7 +38,8 @@ export function déclarationChargesSocialesIndépendantConfig({
 			'pages.assistants.declaration-charges-sociales-independant.title',
 			'Assistant à la détermination des charges sociales déductibles'
 		),
-		externalLinks: [serviceIndépendant, premiersMoisUrssaf],
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [serviceIndépendant],
 		component: DéclarationChargeSocialeIndépendant,
 		simulation: configDéclarationChargesSocialesIndépendant,
 		autoloadLastSimulation: true,

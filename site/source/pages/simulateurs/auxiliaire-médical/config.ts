@@ -43,7 +43,8 @@ export function auxiliaireMédicalConfig({
 				'Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des revenus non conventionnés.'
 			),
 		},
-		externalLinks: [servicePAM, premiersMoisUrssaf],
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [servicePAM],
 		path: sitePaths.simulateurs['profession-libérale'].auxiliaire,
 		simulation: configAuxiliaire,
 		codesCatégorieJuridique: ['1000', '5410'],
