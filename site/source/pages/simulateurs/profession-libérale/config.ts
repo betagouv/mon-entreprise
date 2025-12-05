@@ -40,12 +40,12 @@ export function professionLibéraleConfig({
 			'pages.simulateurs.profession-libérale.title',
 			'Simulateur de revenus pour profession libérale'
 		),
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs['profession-libérale'].index,
 		simulation: configProfessionLibérale,

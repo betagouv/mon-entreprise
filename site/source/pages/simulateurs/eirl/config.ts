@@ -45,12 +45,12 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 		title: t('pages.simulateurs.eirl.title', 'Simulateur de revenus pour EIRL'),
 		warning: Avertissement,
 		nextSteps: ['comparaison-statuts'],
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs.eirl,
 		simulation: configEirl,

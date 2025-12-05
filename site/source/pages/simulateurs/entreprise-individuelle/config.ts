@@ -50,12 +50,12 @@ export function entrepriseIndividuelleConfig({
 			'Simulateur pour entreprise individuelle (EI)'
 		),
 		nextSteps: ['comparaison-statuts'],
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs['entreprise-individuelle'],
 		simulation: configEntrepriseIndividuelle,
