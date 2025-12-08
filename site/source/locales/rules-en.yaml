@@ -2655,6 +2655,10 @@ dirigeant . indépendant . PL . PAMC . maladie:
   titre.en: '[automatic] disease (after CPAM participation)'
   titre.fr: maladie (après participation CPAM)
 dirigeant . indépendant . PL . PAMC . maladie . contribution additionnelle:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   titre.en: '[automatic] supplementary contribution'
   titre.fr: contribution additionnelle
 dirigeant . indépendant . PL . PAMC . maladie . participation CPAM:
@@ -3625,18 +3629,18 @@ dirigeant . indépendant . cotisations et contributions . début activité:
       titre.en: '[automatic] sickness lump sum'
       titre.fr: assiette forfaitaire maladie
   description.en: >
-    [automatic] When you start your business, your **professional income** is
-    not known.
+    [automatic] When you start your business, as your professional income is not
+    known, your
 
-    contributions for the first two years are calculated on a **lump-sum basis**.
+    contributions** for the first two years are calculated on a **lump-sum basis**.
 
-    are calculated on a **lump-sum basis**.
+    calculated on a **lump-sum basis**.
 
 
 
     These contributions will be adjusted and regularized on the basis of your actual income
 
-    for the year in question. If your income is higher than the fixed base used to calculate
+    for the year in question. If your income exceeds the flat-rate base used to calculate
 
     taken into account for calculating provisional contributions, you will be
 
@@ -3650,11 +3654,12 @@ dirigeant . indépendant . cotisations et contributions . début activité:
 
     and **plan your cash flow** accordingly.
   description.fr: >
-    Lorsque vous commencez votre activité, vos **revenus professionnels**
+    Lorsque vous commencez votre activité, vos revenus professionnels n’étant
+    pas
 
-    n’étant pas connus, **les cotisations et contributions des deux premières
+    connus, les **cotisations et contributions** des deux premières années sont
 
-    années sont calculées sur une **base forfaitaire**.
+    calculées sur une **base forfaitaire**.
 
 
 
@@ -7196,8 +7201,10 @@ entreprise . date de cessation:
   description.fr:
     La date de cessation est la date à laquelle l’entreprise cessera
     son activité.
-  question.en: '[automatic] When do you plan to declare your cessation of activity?'
-  question.fr: À quelle date comptez-vous déclarer la cessation d’activité ?
+  question.en:
+    '[automatic] On what date have you or do you intend to declare the
+    cessation of activity?'
+  question.fr: À quelle date avez-vous ou comptez-vous déclarer la cessation d’activité ?
   titre.en: '[automatic] termination date'
   titre.fr: date de cessation
 entreprise . date de création:
@@ -10416,17 +10423,34 @@ salarié . contrat . apprentissage . assiette réduite apprentissage:
   titre.fr: assiette réduite apprentissage
 salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
   description.en: >-
-    [automatic] For contracts signed on or after March 1, 2025, apprentices are
-    exempt from CSG and CRDS up to 50% of the minimum wage.
+    [automatic] For contracts signed **since March 1, 2025**, apprentices are
+    exempt from CSG and CRDS up to **50% of Smic**.
 
-    For contracts signed before, this exemption is total.
+    If the apprentice's gross remuneration is less than 50% of the minimum wage, the employer's share of the health insurance fund (which forms part of the CSG-CRDS base) is also exempt from CSG and CRDS.
+
+    For contracts signed **before March 1, 2025**, this exemption is total.
   description.fr: >-
-    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
-    d’une exonération de CSG et de CRDS jusqu’à 50% du Smic.
+    Pour les contrats conclus **depuis le 1er mars 2025**, les apprentis
+    bénéficient d’une exonération de CSG et de CRDS jusqu’à **50 % du Smic**.
 
-    Pour les contrats conclus avant, cette exonération est totale.
+    Si la rémunération brute de l’apprenti est inférieure à 50 % du Smic, alors la part employeur de la mutuelle (qui fait partie de l’assiette de la CSG-CRDS) est également exonérée de CSG et de CRDS.
+
+    Pour les contrats conclus **avant le 1er mars 2025**, cette exonération est totale.
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
+salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur les salaires:
+  description.en: >
+    [automatic] The portion of an apprentice's salary corresponding to 11% of
+    the minimum wage is not subject to payroll tax.
+
+    payroll tax.
+  description.fr: >
+    La part du salaire des apprentis correspondant à 11 % du Smic n’est pas
+    soumise
+
+    à la taxe sur les salaires.
+  titre.en: '[automatic] payroll tax'
+  titre.fr: taxe sur les salaires
 salarié . contrat . apprentissage . diplôme:
   titre.en: '[automatic] Diploma prepared'
   titre.fr: Diplôme préparé
@@ -10470,6 +10494,17 @@ salarié . contrat . apprentissage . diplôme préparé:
   question.fr: Quel type de diplôme l'apprenti prépare-t-il ?
   titre.en: '[automatic] prepared diploma'
   titre.fr: diplôme préparé
+salarié . contrat . apprentissage . exonération taxe sur les salaires:
+  description.en: >
+    [automatic] Companies with 10 or fewer employees are exempt from payroll tax
+    on
+
+    apprentices.
+  description.fr: |
+    Les entreprises de 10 salariés ou moins sont exonérées de la taxe sur les
+    salaires de ses apprentis.
+  titre.en: '[automatic] payroll tax exemption'
+  titre.fr: exonération taxe sur les salaires
 salarié . contrat . date d'embauche:
   question.en: "[automatic] What is the employee's date of hire?"
   question.fr: Quelle est la date d'embauche du salarié ?
@@ -11287,6 +11322,9 @@ salarié . cotisations . CSG-CRDS . assiette de base:
     assiette abattue:
       titre.en: '[automatic] '
       titre.fr: assiette abattue
+    assiette avant abattement:
+      titre.en: '[automatic] base before allowance'
+      titre.fr: assiette avant abattement
   titre.en: '[automatic] base plate'
   titre.fr: assiette de base
 salarié . cotisations . CSG-CRDS . assiette heures supplémentaires et complémentaires défiscalisées:
@@ -13763,6 +13801,10 @@ salarié . régimes spécifiques . taux réduits . réduction de taux:
   titre.en: '[automatic] rate reduction'
   titre.fr: réduction de taux
 salarié . régimes spécifiques . taxe sur les salaires:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
   description.en: '[automatic] The payroll tax in France is a progressive tax
     created in 1948 that some employers must pay on the salaries they
     distribute.'
