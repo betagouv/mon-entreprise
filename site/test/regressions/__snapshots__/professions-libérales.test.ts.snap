@@ -1,35 +1,35 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 1`] = `
-"entreprise . chiffre d'affaires: 5940
+"entreprise . chiffre d'affaires: 6044
 impôt . montant: undefined
-indépendant . cotisations et contributions: 940
+indépendant . cotisations et contributions: 1044
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
-protection sociale . retraite . base: 32
-protection sociale . retraite . complémentaire: 19
+protection sociale . retraite . base: 235
+protection sociale . retraite . complémentaire: 24
 protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `
-"entreprise . chiffre d'affaires: 26499
+"entreprise . chiffre d'affaires: 27757
 impôt . montant: undefined
-indépendant . cotisations et contributions: 6499
+indépendant . cotisations et contributions: 7757
 indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19440
-protection sociale . retraite . base: 144
-protection sociale . retraite . complémentaire: 89
+indépendant . rémunération . nette . après impôt: 19435
+protection sociale . retraite . base: 354
+protection sociale . retraite . complémentaire: 116
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 3`] = `
-"entreprise . chiffre d'affaires: 70434
+"entreprise . chiffre d'affaires: 67049
 impôt . montant: undefined
-indépendant . cotisations et contributions: 20434
+indépendant . cotisations et contributions: 17049
 indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 41381
-protection sociale . retraite . base: 347
-protection sociale . retraite . complémentaire: 272
+indépendant . rémunération . nette . après impôt: 41403
+protection sociale . retraite . base: 360
+protection sociale . retraite . complémentaire: 289
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -45,69 +45,69 @@ protection sociale . retraite . trimestres: undefined"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 2`] = `
-"entreprise . chiffre d'affaires: 3150
+"entreprise . chiffre d'affaires: 3240
 impôt . montant: undefined
-indépendant . cotisations et contributions: 1150
+indépendant . cotisations et contributions: 1240
 indépendant . rémunération . nette: 2000
 indépendant . rémunération . nette . après impôt: 2000
-protection sociale . retraite . base: 39
-protection sociale . retraite . complémentaire: 10
+protection sociale . retraite . base: 59
+protection sociale . retraite . complémentaire: 14
 protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 3`] = `
-"entreprise . chiffre d'affaires: 6634
+"entreprise . chiffre d'affaires: 6782
 impôt . montant: undefined
-indépendant . cotisations et contributions: 1634
+indépendant . cotisations et contributions: 1782
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
-protection sociale . retraite . base: 39
-protection sociale . retraite . complémentaire: 22
+protection sociale . retraite . base: 59
+protection sociale . retraite . complémentaire: 29
 protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 4`] = `
-"entreprise . chiffre d'affaires: 12933
+"entreprise . chiffre d'affaires: 13353
 impôt . montant: undefined
-indépendant . cotisations et contributions: 2933
+indépendant . cotisations et contributions: 3353
 indépendant . rémunération . nette: 10000
 indépendant . rémunération . nette . après impôt: 10000
-protection sociale . retraite . base: 70
-protection sociale . retraite . complémentaire: 43
+protection sociale . retraite . base: 108
+protection sociale . retraite . complémentaire: 55
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 5`] = `
-"entreprise . chiffre d'affaires: 144241
+"entreprise . chiffre d'affaires: 145882
 impôt . montant: undefined
-indépendant . cotisations et contributions: 44241
+indépendant . cotisations et contributions: 45882
 indépendant . rémunération . nette: 100000
-indépendant . rémunération . nette . après impôt: 73786
-protection sociale . retraite . base: 351
-protection sociale . retraite . complémentaire: 881
+indépendant . rémunération . nette . après impôt: 73771
+protection sociale . retraite . base: 355
+protection sociale . retraite . complémentaire: 913
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 6`] = `
-"entreprise . chiffre d'affaires: 1272636
+"entreprise . chiffre d'affaires: 1277645
 impôt . montant: undefined
-indépendant . cotisations et contributions: 272636
+indépendant . cotisations et contributions: 277645
 indépendant . rémunération . nette: 1000000
-indépendant . rémunération . nette . après impôt: 528553
+indépendant . rémunération . nette . après impôt: 528482
 protection sociale . retraite . base: 360
-protection sociale . retraite . complémentaire: 1532
+protection sociale . retraite . complémentaire: 1770
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 1`] = `
-"entreprise . chiffre d'affaires: 86393
+"entreprise . chiffre d'affaires: 87006
 impôt . montant: undefined
-indépendant . cotisations et contributions: undefined
+indépendant . cotisations et contributions: 27006
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . complémentaire: undefined
-protection sociale . retraite . trimestres: undefined"
+indépendant . rémunération . nette . après impôt: 48274
+protection sociale . retraite . base: 348
+protection sociale . retraite . complémentaire: 448
+protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 2`] = `
@@ -122,7 +122,7 @@ protection sociale . retraite . trimestres: undefined"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 3`] = `
-"entreprise . chiffre d'affaires: 55665
+"entreprise . chiffre d'affaires: 55666
 impôt . montant: undefined
 indépendant . cotisations et contributions: undefined
 indépendant . rémunération . nette: 40000
@@ -133,86 +133,86 @@ protection sociale . retraite . trimestres: undefined"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
-"entreprise . chiffre d'affaires: 92594
+"entreprise . chiffre d'affaires: 95134
 impôt . montant: undefined
-indépendant . cotisations et contributions: 32594
+indépendant . cotisations et contributions: 35134
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48238
+indépendant . rémunération . nette . après impôt: 48222
 protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 455
+protection sociale . retraite . complémentaire: 513
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
-"entreprise . chiffre d'affaires: 91545
+"entreprise . chiffre d'affaires: 94085
 impôt . montant: undefined
-indépendant . cotisations et contributions: 31545
+indépendant . cotisations et contributions: 34085
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48245
+indépendant . rémunération . nette . après impôt: 48229
 protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 446
+protection sociale . retraite . complémentaire: 503
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
-"entreprise . chiffre d'affaires: 91033
+"entreprise . chiffre d'affaires: 93554
 impôt . montant: undefined
-indépendant . cotisations et contributions: 31033
+indépendant . cotisations et contributions: 33554
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48248
+indépendant . rémunération . nette . après impôt: 48232
 protection sociale . retraite . base: 463
-protection sociale . retraite . complémentaire: 441
+protection sociale . retraite . complémentaire: 499
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
-"entreprise . chiffre d'affaires: 98716
+"entreprise . chiffre d'affaires: 102164
 impôt . montant: undefined
-indépendant . cotisations et contributions: 38716
+indépendant . cotisations et contributions: 42164
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48199
-protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 506
+indépendant . rémunération . nette . après impôt: 48177
+protection sociale . retraite . base: 349
+protection sociale . retraite . complémentaire: 568
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
-"entreprise . chiffre d'affaires: 95801
+"entreprise . chiffre d'affaires: 99247
 impôt . montant: undefined
-indépendant . cotisations et contributions: 35801
+indépendant . cotisations et contributions: 39247
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48218
-protection sociale . retraite . base: 522
-protection sociale . retraite . complémentaire: 482
+indépendant . rémunération . nette . après impôt: 48196
+protection sociale . retraite . base: 541
+protection sociale . retraite . complémentaire: 544
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `
-"entreprise . chiffre d'affaires: 2911
+"entreprise . chiffre d'affaires: 3068
 impôt . montant: undefined
-indépendant . cotisations et contributions: 1911
+indépendant . cotisations et contributions: 2068
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
 protection sociale . retraite . base: 79
-protection sociale . retraite . complémentaire: 10
+protection sociale . retraite . complémentaire: 12
 protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 7`] = `
-"entreprise . chiffre d'affaires: 92594
+"entreprise . chiffre d'affaires: 95134
 impôt . montant: undefined
-indépendant . cotisations et contributions: 32594
+indépendant . cotisations et contributions: 35134
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48238
+indépendant . rémunération . nette . après impôt: 48222
 protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 455
+protection sociale . retraite . complémentaire: 513
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV exonération incapacité 1`] = `
-"entreprise . chiffre d'affaires: 45029
+"entreprise . chiffre d'affaires: 45030
 impôt . montant: undefined
-indépendant . cotisations et contributions: 5029
+indépendant . cotisations et contributions: 5030
 indépendant . rémunération . nette: 40000
 indépendant . rémunération . nette . après impôt: 34545
 protection sociale . retraite . base: 507
@@ -221,9 +221,9 @@ protection sociale . retraite . trimestres: 0"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 1`] = `
-"entreprise . chiffre d'affaires: 1341
+"entreprise . chiffre d'affaires: 1387
 impôt . montant: undefined
-indépendant . cotisations et contributions: 841
+indépendant . cotisations et contributions: 887
 indépendant . rémunération . nette: 500
 indépendant . rémunération . nette . après impôt: 500
 protection sociale . retraite . base: 39
@@ -232,79 +232,79 @@ protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 2`] = `
-"entreprise . chiffre d'affaires: 1956
+"entreprise . chiffre d'affaires: 2018
 impôt . montant: undefined
-indépendant . cotisations et contributions: 956
+indépendant . cotisations et contributions: 1018
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
-protection sociale . retraite . base: 39
-protection sociale . retraite . complémentaire: 5
-protection sociale . retraite . trimestres: 3"
-`;
-
-exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 3`] = `
-"entreprise . chiffre d'affaires: 2571
-impôt . montant: undefined
-indépendant . cotisations et contributions: 1071
-indépendant . rémunération . nette: 1500
-indépendant . rémunération . nette . après impôt: 1500
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 7
 protection sociale . retraite . trimestres: 3"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 4`] = `
-"entreprise . chiffre d'affaires: 3185
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 3`] = `
+"entreprise . chiffre d'affaires: 2649
 impôt . montant: undefined
-indépendant . cotisations et contributions: 1185
-indépendant . rémunération . nette: 2000
-indépendant . rémunération . nette . après impôt: 2000
+indépendant . cotisations et contributions: 1149
+indépendant . rémunération . nette: 1500
+indépendant . rémunération . nette . après impôt: 1500
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 10
 protection sociale . retraite . trimestres: 3"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 5`] = `
-"entreprise . chiffre d'affaires: 6668
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 4`] = `
+"entreprise . chiffre d'affaires: 3274
 impôt . montant: undefined
-indépendant . cotisations et contributions: 1668
+indépendant . cotisations et contributions: 1274
+indépendant . rémunération . nette: 2000
+indépendant . rémunération . nette . après impôt: 2000
+protection sociale . retraite . base: 39
+protection sociale . retraite . complémentaire: 14
+protection sociale . retraite . trimestres: 3"
+`;
+
+exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 5`] = `
+"entreprise . chiffre d'affaires: 6816
+impôt . montant: undefined
+indépendant . cotisations et contributions: 1816
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 protection sociale . retraite . base: 39
-protection sociale . retraite . complémentaire: 22
+protection sociale . retraite . complémentaire: 29
 protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 6`] = `
-"entreprise . chiffre d'affaires: 12969
+"entreprise . chiffre d'affaires: 13291
 impôt . montant: undefined
-indépendant . cotisations et contributions: 2969
+indépendant . cotisations et contributions: 3291
 indépendant . rémunération . nette: 10000
 indépendant . rémunération . nette . après impôt: 10000
-protection sociale . retraite . base: 71
-protection sociale . retraite . complémentaire: 43
+protection sociale . retraite . base: 72
+protection sociale . retraite . complémentaire: 55
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 7`] = `
-"entreprise . chiffre d'affaires: 144454
+"entreprise . chiffre d'affaires: 147615
 impôt . montant: undefined
-indépendant . cotisations et contributions: 44454
+indépendant . cotisations et contributions: 47615
 indépendant . rémunération . nette: 100000
-indépendant . rémunération . nette . après impôt: 73784
+indépendant . rémunération . nette . après impôt: 73756
 protection sociale . retraite . base: 351
-protection sociale . retraite . complémentaire: 884
+protection sociale . retraite . complémentaire: 927
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 8`] = `
-"entreprise . chiffre d'affaires: 1272814
+"entreprise . chiffre d'affaires: 1282445
 impôt . montant: undefined
-indépendant . cotisations et contributions: 272814
+indépendant . cotisations et contributions: 282445
 indépendant . rémunération . nette: 1000000
-indépendant . rémunération . nette . après impôt: 528550
+indépendant . rémunération . nette . après impôt: 528413
 protection sociale . retraite . base: 360
-protection sociale . retraite . complémentaire: 1532
+protection sociale . retraite . complémentaire: 1770
 protection sociale . retraite . trimestres: 4"
 `;
 
