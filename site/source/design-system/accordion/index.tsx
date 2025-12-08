@@ -8,8 +8,6 @@ import { animated, useSpring } from 'react-spring'
 import useMeasure from 'react-use-measure'
 import { css, styled } from 'styled-components'
 
-import { omit } from '@/utils'
-
 import { Button } from '../buttons'
 import { FocusStyle } from '../global-style'
 import { ChevronIcon } from '../icons'
@@ -20,7 +18,7 @@ const SAVE_STATE_LOCALSTORAGE_KEY = 'accordion-state'
 
 export const Accordion = <T extends object>(
 	props: AriaAccordionProps<T> & {
-		$variant?: 'light'
+		variant?: 'light'
 		shouldToggleAll?: boolean
 		title?: ReactNode
 		isFoldable?: boolean
@@ -106,7 +104,7 @@ export const Accordion = <T extends object>(
 						<Grid item>
 							<StyledFoldButton
 								underline
-								onClick={() => (allItemsOpen ? closeAll() : openAll())}
+								onPress={() => (allItemsOpen ? closeAll() : openAll())}
 							>
 								<StyledChevronIcon $isOpen={allItemsOpen} />
 								{allItemsOpen ? (
@@ -120,8 +118,8 @@ export const Accordion = <T extends object>(
 				</StyledGrid>
 			)}
 			<StyledAccordionGroup
-				{...omit(props, 'title', 'defaultExpandedKeys')}
 				{...accordionProps}
+				$variant={props.variant}
 				ref={ref}
 			>
 				{[...state.collection].map((item) => {
@@ -130,7 +128,7 @@ export const Accordion = <T extends object>(
 							key={item.key}
 							item={item}
 							state={state}
-							$variant={props?.$variant}
+							variant={props?.variant}
 						/>
 					)
 				})}
@@ -157,12 +155,12 @@ const StyledAccordionGroup = styled.div<{ $variant?: 'light' }>`
 interface AccordionItemProps<T> {
 	item: Node<T>
 	state: TreeState<T>
-	$variant?: 'light'
+	variant?: 'light'
 }
 
 function AccordionItem<T>(props: AccordionItemProps<T>) {
 	const ref = useRef<HTMLButtonElement>(null)
-	const { state, item, $variant } = props
+	const { state, item, variant } = props
 	const { buttonProps, regionProps } = useAccordionItem<T>(props, state, ref)
 
 	const isOpen = state.expandedKeys.has(item.key)
@@ -178,7 +176,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 	return (
 		<StyledAccordionItem onMouseDown={(x) => x.stopPropagation()}>
 			<StyledTitle>
-				<StyledButton {...buttonProps} ref={ref} $variant={$variant}>
+				<StyledButton {...buttonProps} ref={ref} $variant={variant}>
 					<span>{item.props.title}</span>
 					<ChevronRightMedium $isOpen={isOpen} alt="" />
 				</StyledButton>
@@ -189,7 +187,7 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 				{...regionProps}
 				style={animatedStyle}
 				hidden={!isOpen}
-				$variant={$variant}
+				$variant={variant}
 			>
 				<div ref={regionRef}>{item.props.children}</div>
 			</StyledContent>
@@ -244,11 +242,9 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 		`}
 `
 
-interface Chevron {
-	$isOpen: boolean
-}
-
-const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<Chevron>`
+const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<{
+	$isOpen?: boolean
+}>`
 	transition: transform 0.3s;
 	${({ $isOpen }) =>
 		!$isOpen &&
@@ -258,7 +254,6 @@ const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<Chevron>`
 `
 
 const StyledContent = styled(animated.div)<{
-	$isOpen: boolean
 	$variant?: 'light'
 }>`
 	overflow: hidden;

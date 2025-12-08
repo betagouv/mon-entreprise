@@ -10,6 +10,7 @@ export function pharmacienConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'pharmacien',
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'profession_liberale',
 			chapter3: 'pharmacien',
 		},

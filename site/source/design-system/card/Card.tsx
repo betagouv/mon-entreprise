@@ -58,7 +58,7 @@ export function Card(props: CardProps) {
 
 	return (
 		<CardContainer
-			$compact={compact}
+			compact={compact}
 			{...(!ctaLabel ? buttonOrLinkProps : {})}
 			tabIndex={tabIndex}
 			className={className}
@@ -150,9 +150,11 @@ const IconContainer = styled.div`
 	margin-bottom: 0;
 `
 
-export const CardContainer = styled.div<{
-	$compact?: boolean
-	$inert?: boolean
+export const CardContainer = styled.div.withConfig({
+	shouldForwardProp: (prop) => !['compact', 'inert'].includes(prop),
+})<{
+	compact?: boolean
+	inert?: boolean
 }>`
 	/* Hack to get state from link/button */
 	width: 100%;
@@ -164,25 +166,25 @@ export const CardContainer = styled.div<{
 	flex-direction: column;
 	align-items: center;
 	border: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
-	background-color: ${({ theme, $inert }) =>
+	background-color: ${({ theme, inert }) =>
 		theme.darkMode
-			? theme.colors.extended.dark[$inert ? 700 : 600]
-			: theme.colors.extended.grey[$inert ? 200 : 100]};
+			? theme.colors.extended.dark[inert ? 700 : 600]
+			: theme.colors.extended.grey[inert ? 200 : 100]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 	&:hover {
-		box-shadow: ${({ theme, $inert }) =>
-			!$inert &&
+		box-shadow: ${({ theme, inert }) =>
+			!inert &&
 			(theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3])};
-		background-color: ${({ theme, $inert }) =>
-			!$inert &&
+		background-color: ${({ theme, inert }) =>
+			!inert &&
 			(theme.darkMode
 				? theme.colors.extended.dark[500]
 				: theme.colors.bases.primary[100])};
 	}
-	padding: ${({ theme: { spacings }, $compact = false }) =>
-		$compact
+	padding: ${({ theme: { spacings }, compact = false }) =>
+		compact
 			? css`
 					${spacings.sm} ${spacings.md}
 			  `

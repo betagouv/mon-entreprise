@@ -7,7 +7,10 @@ export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'is',
 		icône: '🗓',
-		tracking: 'impot-societe',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'impot-societe',
+		},
 		pathId: 'simulateurs.is',
 		iframePath: 'impot-societe',
 		meta: {

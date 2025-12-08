@@ -500,13 +500,6 @@ salarié . contrat . date d'embauche:
     Fin d'année: période . fin d'année
   type: date
 
-salarié . contrat . ancienneté:
-  description: |
-    L'ancienneté est le nombre d'années de présence dans l'entreprise. Elle est calculée à partir de la date d'embauche.
-  durée:
-    depuis: date d'embauche
-    jusqu'à: date
-
 salarié . contrat . salaire brut:
   identifiant court: salaire-brut
   résumé: Brut de référence (sans les primes, indemnités ni majorations)

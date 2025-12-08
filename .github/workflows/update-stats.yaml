@@ -4,6 +4,11 @@ on:
     - cron: '5 0 7 6,12 *'
 
 name: Updates the base-stats.json file every six months
+
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   createPullRequest:
     runs-on: ubuntu-22.04
@@ -30,7 +35,7 @@ jobs:
       - run: cp site/source/public/data/stats.json site/source/public/data/base-stats.json
       - run: git status
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@4e1beaa7521e8b457b572c090b25bd3db56bf1c5 # v5
         with:
           add-paths: site/source/public/data/base-stats.json
           commit-message: Updates the base-stats.json file every six months

@@ -10,10 +10,10 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		$large: {
+		large: {
 			control: { type: 'boolean' },
 		},
-		$couleur: {
+		couleur: {
 			control: { type: 'select' },
 			options: ['primary', 'secondary', 'success', 'error'],
 		},
@@ -31,7 +31,7 @@ export const Default: Story = {
 
 export const Large: Story = {
 	args: {
-		$large: true,
+		large: true,
 		children: '188 700 €',
 	},
 }
@@ -52,7 +52,7 @@ export const ResultatCalcul: Story = {
 		<div>
 			<p>Base imposable après abattement :</p>
 			<p style={{ textAlign: 'center', marginTop: '1rem' }}>
-				<Valeur $large>15 000 €</Valeur>
+				<Valeur large>15 000 €</Valeur>
 			</p>
 		</div>
 	),
@@ -60,21 +60,21 @@ export const ResultatCalcul: Story = {
 
 export const MontantSecondary: Story = {
 	args: {
-		$couleur: 'secondary',
+		couleur: 'secondary',
 		children: '188 700 €',
 	},
 }
 
 export const MontantSuccess: Story = {
 	args: {
-		$couleur: 'success',
+		couleur: 'success',
 		children: '+ 12 500 €',
 	},
 }
 
 export const MontantError: Story = {
 	args: {
-		$couleur: 'error',
+		couleur: 'error',
 		children: '- 5 000 €',
 	},
 }
@@ -85,8 +85,8 @@ export const ComparaisonMontants: Story = {
 		<div>
 			<p>
 				Le plafond du régime micro-BIC est de{' '}
-				<Valeur $couleur="primary">77 700 €</Valeur> pour une location meublée
-				classique et de <Valeur $couleur="secondary">188 700 €</Valeur> pour une
+				<Valeur couleur="primary">77 700 €</Valeur> pour une location meublée
+				classique et de <Valeur couleur="secondary">188 700 €</Valeur> pour une
 				location meublée de tourisme classée.
 			</p>
 			<p style={{ marginTop: '1rem' }}>

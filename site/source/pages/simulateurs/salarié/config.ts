@@ -14,7 +14,10 @@ export function salariéConfig(params: SimulatorsDataParams) {
 
 	return config({
 		id: 'salarié',
-		tracking: 'salarie',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'salarie',
+		},
 		icône: '🤝',
 		title: t(
 			'pages.simulateurs.salarié.title',
@@ -43,7 +46,7 @@ export function salariéConfig(params: SimulatorsDataParams) {
 		},
 		pathId: 'simulateurs.salarié',
 		shortName: t('pages.simulateurs.salarié.shortname', 'Salarié'),
-		nextSteps: ['chômage-partiel'],
+		nextSteps: ['activité-partielle'],
 		externalLinks: [
 			{
 				url: 'https://code.travail.gouv.fr/',

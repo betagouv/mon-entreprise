@@ -14,7 +14,7 @@ import {
 } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import { References } from '@/components/References'
 import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'
@@ -179,7 +179,7 @@ function DocumentationLanding() {
 
 	return (
 		<>
-			<TrackPage chapter1="documentation" name="accueil" />
+			<TrackPage chapter1="documentation" name={ACCUEIL} />
 			<Meta
 				title={t('pages.documentation.meta.title', 'Documentation')}
 				description={t(

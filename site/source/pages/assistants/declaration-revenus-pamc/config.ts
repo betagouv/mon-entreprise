@@ -15,7 +15,7 @@ export function déclarationRevenusPAMCConfig({
 		path: sitePaths.assistants['déclaration-revenus-pamc'],
 		iframePath: 'déclaration-revenus-pamc',
 		tracking: {
-			chapter1: 'assistant',
+			chapter1: 'assistants',
 			chapter2: 'declaration_revenus_pamc',
 		},
 		component: DéclarationRevenusPAMC,

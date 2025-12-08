@@ -39,20 +39,20 @@ const FocusedOption = css`
 	border-color: ${({ theme }) => theme.colors.bases.primary[500]} !important;
 `
 
-const ListItem = styled.li<{ isFocused?: boolean; isSelected?: boolean }>`
-	font-weight: ${(props) => (props.isSelected ? '600' : 'normal')};
+const ListItem = styled.li<{ $isFocused?: boolean; $isSelected?: boolean }>`
+	font-weight: ${({ $isSelected }) => ($isSelected ? '600' : 'normal')};
 	cursor: default;
 	outline: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 
 	text-align: left;
 	display: block;
-	color: ${({ theme, isSelected }) =>
+	color: ${({ theme, $isSelected }) =>
 		theme.darkMode
-			? isSelected
+			? $isSelected
 				? theme.colors.bases.primary[200]
 				: theme.colors.extended.dark[100]
-			: isSelected
+			: $isSelected
 			? theme.colors.bases.primary[600]
 			: theme.colors.extended.grey[700]};
 	background-color: ${({ theme }) =>
@@ -71,7 +71,7 @@ const ListItem = styled.li<{ isFocused?: boolean; isSelected?: boolean }>`
 	margin-bottom: 0.3rem;
 	font-size: 100%;
 	padding: 0.6rem;
-	${(props) => props.isFocused && FocusedOption}
+	${({ $isFocused }) => $isFocused && FocusedOption}
 `
 
 const ItemContent = styled.div`
@@ -118,8 +118,8 @@ function Option({ item, state }: OptionProps) {
 		<ListItem
 			{...optionProps}
 			ref={ref}
-			isFocused={isFocused}
-			isSelected={isSelected}
+			$isFocused={isFocused}
+			$isSelected={isSelected}
 		>
 			<ItemContent>
 				<OptionContext.Provider value={{ labelProps, descriptionProps }}>

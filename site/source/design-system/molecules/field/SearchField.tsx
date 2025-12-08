@@ -65,8 +65,8 @@ export function SearchField(
 	return (
 		<StyledContainer>
 			<SearchInputContainer
-				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				$hasLabel={!!props.label}
+				hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				hasLabel={!!props.label}
 			>
 				<IconContainer $hasLabel={!!props.label}>
 					{props.isSearchStalled ? <Loader /> : <SearchIcon aria-hidden />}

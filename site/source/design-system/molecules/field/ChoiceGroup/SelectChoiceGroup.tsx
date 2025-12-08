@@ -2,7 +2,7 @@ import { Key } from 'react'
 import { Item } from 'react-stately'
 
 import { Select } from '../Select'
-import { ChoiceOption } from './ChoiceOption'
+import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
 
 export interface SelectChoiceGroupProps {
 	id?: string
@@ -18,6 +18,8 @@ export interface SelectChoiceGroupProps {
 	title?: string
 }
 
+// TODO: gérer les sous-options correctement (avec des sections)
+// lorqu'on utilisera react-aria-components plutôt que des composants maisons
 export default function SelectChoiceGroup({
 	value,
 	onChange,
@@ -27,22 +29,38 @@ export default function SelectChoiceGroup({
 	title,
 	aria = {},
 }: SelectChoiceGroupProps) {
+	const handleSelectionChange = (selectedKey: Key | null) => {
+		if (selectedKey !== null) {
+			onChange(selectedKey.toString())
+		}
+	}
+
 	return (
 		<Select
 			aria-labelledby={aria.labelledby}
 			aria-label={aria.label}
 			label={title}
-			onSelectionChange={onChange}
+			onSelectionChange={handleSelectionChange}
 			defaultSelectedKey={defaultValue}
 			selectedKey={value}
 			// eslint-disable-next-line jsx-a11y/no-autofocus
 			autoFocus={autoFocus}
 		>
-			{options.map((option) => (
-				<Item key={option.key} textValue={option.label}>
-					{option.label}
-				</Item>
-			))}
+			{options
+				.map((option) =>
+					isChoiceOptionWithValue(option) ? (
+						<Item key={option.key} textValue={option.label}>
+							{option.label}
+						</Item>
+					) : (
+						option.children.map((subOption) => (
+							<Item key={subOption.key} textValue={subOption.label}>
+								{subOption.label}
+							</Item>
+						))
+					)
+				)
+				.flat()}
 		</Select>
 	)
 }

@@ -199,7 +199,11 @@ export const fetchTranslation = async (text) => {
 		},
 		body: new URLSearchParams({
 			text: text
+<<<<<<< HEAD
 				.replace(/ > /g, '<quote> > </quote>')
+=======
+				.replace(/> /g, '<quote>> </quote>')
+>>>>>>> d68237b98fb8dc422df592e3243e582f0776c9a1
 				.replace(/{{/g, '<var>')
 				.replace(/}}/g, '</var>'),
 			tag_handling: 'xml',
@@ -218,7 +222,11 @@ export const fetchTranslation = async (text) => {
 		const translation = translations[0].text
 			.replace(/<var>/g, '{{')
 			.replace(/<\/var>/g, '}}')
+<<<<<<< HEAD
 			.replace(/<quote> > <\/quote>/g, ' > ')
+=======
+			.replace(/<quote>> <\/quote>/g, '> ')
+>>>>>>> d68237b98fb8dc422df592e3243e582f0776c9a1
 		console.log(
 			`✅ Deepl translation succeeded for:\n\t${text}\n\t${translation}\n`
 		)

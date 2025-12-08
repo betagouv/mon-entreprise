@@ -7,8 +7,9 @@ import { ExtraSmallBody } from '../../typography/paragraphs'
 const LABEL_HEIGHT = '1rem'
 
 type TextAreaFieldProps = AriaTextFieldOptions<'textarea'> & {
+	errorMessage?: string
 	inputRef?: RefObject<HTMLTextAreaElement>
-	$small?: boolean
+	small?: boolean
 	rows?: number | undefined
 }
 
@@ -24,8 +25,8 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 	return (
 		<StyledContainer>
 			<StyledTextAreaContainer
-				$hasError={!!props.errorMessage || props.validationState === 'invalid'}
-				$hasLabel={!!props.label && !props.$small}
+				hasError={!!props.errorMessage || props.validationState === 'invalid'}
+				hasLabel={!!props.label && !props.small}
 			>
 				<StyledTextArea
 					{...(props as HTMLAttributes<HTMLTextAreaElement>)}
@@ -38,10 +39,7 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 					ref={props.inputRef || ref}
 				/>
 				{props.label && (
-					<StyledLabel
-						className={props.$small ? 'sr-only' : ''}
-						{...labelProps}
-					>
+					<StyledLabel className={props.small ? 'sr-only' : ''} {...labelProps}>
 						{props.label}
 					</StyledLabel>
 				)}
@@ -134,10 +132,13 @@ export const StyledSuffix = styled.span`
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
-export const StyledTextAreaContainer = styled.div<{
-	$hasError: boolean
-	$hasLabel: boolean
-	$small?: boolean
+export const StyledTextAreaContainer = styled.div.withConfig({
+	shouldForwardProp: (prop) =>
+		!['hasError', 'hasLabel', 'small'].includes(prop),
+})<{
+	hasError: boolean
+	hasLabel: boolean
+	small?: boolean
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
@@ -157,8 +158,8 @@ export const StyledTextAreaContainer = styled.div<{
 	transition: all 0.2s;
 
 	&:focus-within {
-		outline-color: ${({ theme, $hasError }) =>
-			$hasError
+		outline-color: ${({ theme, hasError }) =>
+			hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
 				? theme.colors.bases.primary[100]
@@ -180,8 +181,8 @@ export const StyledTextAreaContainer = styled.div<{
 			`}
 	}
 
-	${({ $hasLabel }) =>
-		$hasLabel &&
+	${({ hasLabel }) =>
+		hasLabel &&
 		css`
 			${StyledTextArea}:not(:focus):placeholder-shown {
 				color: transparent;
@@ -200,8 +201,8 @@ export const StyledTextAreaContainer = styled.div<{
 		transform: translateY(-50%);
 	}
 
-	${({ theme, $hasError }) =>
-		$hasError &&
+	${({ theme, hasError }) =>
+		hasError &&
 		css`
 			&& {
 				border-color: ${theme.colors.extended.error[400]};
@@ -213,18 +214,18 @@ export const StyledTextAreaContainer = styled.div<{
 		`}
 
 	${StyledTextArea}, ${StyledSuffix} {
-		padding: ${({ $hasLabel, theme, $small }) =>
-			$small
+		padding: ${({ hasLabel, theme, small }) =>
+			small
 				? css`
 						${theme.spacings.xxs} ${theme.spacings.xs}
 				  `
-				: css`calc(${$hasLabel ? LABEL_HEIGHT : '0rem'} + ${
+				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
 	}
 
-	${({ $small }) =>
-		$small &&
+	${({ small }) =>
+		small &&
 		css`
 			${StyledSuffix}, ${StyledTextArea} {
 				font-size: 1rem;

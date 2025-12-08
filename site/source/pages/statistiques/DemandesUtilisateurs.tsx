@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
-import { Button, Chip, Emoji, typography } from '@/design-system'
+import { Button, Chip, Emoji, theme, typography } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 
 import { StatsStruct } from './types'
@@ -155,50 +155,32 @@ type PagerButtonProps = {
 }
 
 const PagerButton = styled(Button)<PagerButtonProps>`
-	border: ${({ theme, currentPage }) =>
-		currentPage
-			? `2px solid ${theme.colors.bases.primary[600]}`
-			: `2px solid ${theme.colors.extended.grey[400]}`};
+	border: none;
+	text-decoration: underline;
+	text-underline-offset: ${theme.spacings.xxs};
 
 	${({ theme, currentPage }) =>
 		currentPage &&
 		css`
 			color: ${theme.colors.extended.grey[100]};
 			background: ${theme.colors.bases.primary[600]};
+			pointer-events: none;
+			text-decoration: none;
 
 			&:hover {
 				background: ${theme.colors.bases.primary[600]};
 			}
-		`}
+		`};
 `
 
 const Pager = styled.ol`
+	display: flex;
+	gap: ${theme.spacings.xs};
+	justify-content: center;
 	font-family: ${({ theme }) => theme.fonts.main};
-	text-align: center;
-	margin: auto;
 
 	& li {
 		list-style: none;
 		display: inline-block;
-		margin-right: 0.25rem;
-	}
-
-	& li:first-child {
-		button {
-			border-top-left-radius: 0.25rem;
-			border-top-right-radius: 0;
-			border-bottom-left-radius: 0.25rem;
-			border-bottom-right-radius: 0;
-		}
-	}
-
-	& li:last-child {
-		button {
-			border-top-right-radius: 0.25rem;
-			border-bottom-right-radius: 0.25rem;
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
-			margin-right: 0;
-		}
 	}
 `

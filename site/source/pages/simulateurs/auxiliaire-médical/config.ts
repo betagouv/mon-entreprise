@@ -14,6 +14,7 @@ export function auxiliaireMédicalConfig({
 		id: 'auxiliaire-médical',
 		hidden: true,
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'profession_liberale',
 			chapter3: 'auxiliaire_medical',
 		},

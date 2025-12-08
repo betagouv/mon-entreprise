@@ -25,6 +25,7 @@ export function chirurgienDentisteConfig({
 			),
 		},
 		tracking: {
+			chapter1: 'simulateurs',
 			chapter2: 'profession_liberale',
 			chapter3: 'chirurgien_dentiste',
 		},

@@ -45,7 +45,7 @@ const Détails = ({
 			}
 		>
 			<Accordion
-				$variant="light"
+				variant="light"
 				defaultExpandedKeys={expandRevenuSection ? ['revenus'] : []}
 				title={
 					<H2>
@@ -703,7 +703,6 @@ const Détails = ({
 					<DetailsRowCards
 						dottedName="entreprise . coût formalités . création"
 						namedEngines={namedEngines}
-						leastIsBest
 						displayedUnit="€ HT"
 					/>
 

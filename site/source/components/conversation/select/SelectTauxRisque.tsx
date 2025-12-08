@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Card, Spacing, TextField } from '@/design-system'
@@ -71,8 +71,7 @@ function SelectComponent({
 				// eslint-disable-next-line jsx-a11y/no-autofocus
 				autoFocus={autoFocus}
 				errorMessage={
-					searchResults &&
-					searchResults.length === 0 && <Trans>Aucun résultat</Trans>
+					searchResults && searchResults.length === 0 ? t('Aucun résultat') : ''
 				}
 				onChange={(input) => {
 					if (input.length < 2) {

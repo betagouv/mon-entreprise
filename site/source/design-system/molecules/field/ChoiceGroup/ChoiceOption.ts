@@ -1,6 +1,6 @@
 export type ChoiceDisplayType = 'radio' | 'card' | 'toggle' | 'select'
 
-export interface ChoiceOption {
+export type ChoiceOptionWithValue = {
 	key: string
 	value: string
 	label: string
@@ -10,3 +10,15 @@ export interface ChoiceOption {
 	isDisabled?: boolean
 	precision?: number
 }
+type ChoiceOptionWithChildren = {
+	children: ChoiceOptionWithValue[]
+	label: string
+	description?: string
+	emoji?: string
+}
+
+export type ChoiceOption = ChoiceOptionWithValue | ChoiceOptionWithChildren
+
+export const isChoiceOptionWithValue = (
+	choice: ChoiceOption
+): choice is ChoiceOptionWithValue => Object.hasOwn(choice, 'value')

@@ -17,7 +17,7 @@ export function choixStatutJuridiqueConfig({
 		iframePath: 'choix-statut-juridique',
 		icône: '💡',
 		tracking: {
-			chapter1: 'assistant',
+			chapter1: 'assistants',
 			chapter2: 'choix_du_statut',
 		},
 		meta: {

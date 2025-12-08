@@ -18,7 +18,7 @@ import { wrapperDebounceEvents } from '@/utils'
 import { FocusStyle } from '../global-style'
 import { useIFrameOffset } from '../hooks'
 import { Container, Grid } from '../layout'
-import { H2 } from '../typography/heading'
+import { H1 } from '../typography/heading'
 
 export function Popover(
 	props: OverlayProps &
@@ -134,7 +134,7 @@ export function Popover(
 											ref={contentRef}
 											$disableOverflowAuto={props.disableOverflowAuto ?? false}
 										>
-											{title && <H2 {...titleProps}>{title}</H2>}
+											{title && <H1 {...titleProps}>{title}</H1>}
 											{children}
 										</PopoverContent>
 									</PopoverContainer>

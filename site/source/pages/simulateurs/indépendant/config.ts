@@ -12,7 +12,10 @@ import { configIndépendant } from './simulationConfig'
 export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
 		id: 'indépendant',
-		tracking: 'independant',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'independant',
+		},
 		icône: '🏃',
 		iframePath: 'simulateur-independant',
 		pathId: 'simulateurs.indépendant',

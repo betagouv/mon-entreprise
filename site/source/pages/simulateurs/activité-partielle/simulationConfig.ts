@@ -1,6 +1,6 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configChômagePartiel: SimulationConfig = {
+export const configActivitéPartielle: SimulationConfig = {
 	objectifs: [
 		'salarié . contrat . salaire brut',
 		'salarié . rémunération . net . à payer avant impôt',

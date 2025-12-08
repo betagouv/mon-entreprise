@@ -42,11 +42,7 @@ export const Label = styled.label`
 		`}
 `
 
-interface ButtonProps {
-	isFocusVisible?: boolean
-}
-
-const Button = styled.button<ButtonProps>`
+const Button = styled.button`
 	display: inline-flex;
 	align-items: center;
 	justify-content: space-between;
@@ -85,11 +81,7 @@ const StyledIcon = styled(CarretDownIcon)`
 	margin: 0 4px;
 `
 
-interface WrapperProps {
-	isOpen: boolean
-}
-
-const Wrapper = styled.div<WrapperProps>`
+const Wrapper = styled.div<{ $isOpen: boolean }>`
 	overflow: hidden;
 	display: flex;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
@@ -101,12 +93,12 @@ const Wrapper = styled.div<WrapperProps>`
 		}`};
 	outline: transparent solid 1px;
 	position: relative;
-	background-color: ${({ theme, isOpen }) =>
+	background-color: ${({ theme, $isOpen }) =>
 		theme.darkMode
-			? isOpen
+			? $isOpen
 				? theme.colors.extended.dark[700]
 				: theme.colors.extended.dark[600]
-			: isOpen
+			: $isOpen
 			? theme.colors.extended.grey[200]
 			: theme.colors.extended.grey[100]};
 	align-items: center;
@@ -157,7 +149,7 @@ export function Select<T extends Record<string, unknown>>(
 	// Get props for the button based on the trigger props from useSelect
 	const { buttonProps } = useButton(triggerProps, ref)
 
-	const { focusProps, isFocusVisible } = useFocusRing()
+	const { focusProps } = useFocusRing()
 
 	const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -185,7 +177,7 @@ export function Select<T extends Record<string, unknown>>(
 
 	return (
 		<Container>
-			<Wrapper ref={wrapperRef} isOpen={state.isOpen}>
+			<Wrapper ref={wrapperRef} $isOpen={state.isOpen}>
 				{/*
 				// React aria throws an arror if we let this here
 					<HiddenSelect
@@ -200,11 +192,7 @@ export function Select<T extends Record<string, unknown>>(
 						{props.label}
 					</Label>
 				)}
-				<Button
-					{...mergeProps(omit(buttonProps, 'id'), focusProps)}
-					ref={ref}
-					isFocusVisible={isFocusVisible}
-				>
+				<Button {...mergeProps(omit(buttonProps, 'id'), focusProps)} ref={ref}>
 					<Value {...valueProps}>
 						{state.selectedItem != null
 							? state.selectedItem.rendered

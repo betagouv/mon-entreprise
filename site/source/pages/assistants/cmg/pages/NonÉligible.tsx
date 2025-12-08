@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 import { Body, Button, FlexCenter, Li, Ul } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'
@@ -24,8 +24,7 @@ export default function NonÉligible() {
 
 	return (
 		<>
-			<TrackPage name="simulation terminée" />
-			<TrackPage chapter3="pas_a_pas" name="résultat" />
+			<TrackPage chapter3="pas_a_pas" name={SIMULATION_TERMINEE} />
 
 			<Body>
 				{raisonsInéligibilité.length > 1
@@ -50,7 +49,7 @@ export default function NonÉligible() {
 				<Button
 					size="XS"
 					light
-					onClick={set.reset}
+					onPress={set.reset}
 					to={getPath('assistants.cmg')}
 				>
 					{t(

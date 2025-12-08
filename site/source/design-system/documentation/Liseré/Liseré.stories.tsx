@@ -10,10 +10,10 @@ const meta = {
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		$couleur: {
+		couleur: {
 			control: { type: 'color' },
 		},
-		$label: {
+		label: {
 			control: { type: 'text' },
 		},
 	},
@@ -35,8 +35,8 @@ export const Default: Story = {
 
 export const AvecLabel: Story = {
 	args: {
-		$label: 'Important',
-		$couleur: '#e53e3e',
+		label: 'Important',
+		couleur: '#e53e3e',
 		children: (
 			<p>
 				Les cotisations sociales sont calculées sur la base de vos revenus nets
@@ -48,8 +48,8 @@ export const AvecLabel: Story = {
 
 export const Exemple: Story = {
 	args: {
-		$label: 'Exemple',
-		$couleur: '#3182ce',
+		label: 'Exemple',
+		couleur: '#3182ce',
 		children: (
 			<div>
 				<p>Pour des recettes de 30 000 € :</p>
@@ -65,8 +65,8 @@ export const Exemple: Story = {
 
 export const Astuce: Story = {
 	args: {
-		$label: 'Astuce',
-		$couleur: '#38a169',
+		label: 'Astuce',
+		couleur: '#38a169',
 		children: (
 			<p>
 				Conservez tous vos justificatifs même en régime micro-BIC, ils pourront

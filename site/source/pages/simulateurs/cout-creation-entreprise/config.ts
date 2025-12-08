@@ -11,7 +11,10 @@ export function coûtCréationEntrepriseConfig({
 		path: sitePaths.simulateurs['coût-création-entreprise'],
 		iframePath: 'cout-creation-entreprise',
 		icône: '✨',
-		tracking: 'cout_creation_entreprise',
+		tracking: {
+			chapter1: 'simulateurs',
+			chapter2: 'cout_creation_entreprise',
+		},
 		pathId: 'simulateurs.coût-création-entreprise',
 		meta: {
 			title: t(
@@ -39,12 +42,6 @@ export function coûtCréationEntrepriseConfig({
 				'non prioritaires': ['établissement . commune'],
 			},
 			situation: {
-				'dirigeant . indépendant . PL . métier . juridique . notaire . par défaut':
-					'oui',
-				'dirigeant . indépendant . PL . métier . juridique . officier . par défaut':
-					'oui',
-				'dirigeant . indépendant . PL . métier . santé . vétérinaire . par défaut':
-					'oui',
 				'entreprise . catégorie juridique . association': {
 					'applicable si': 'non',
 				},

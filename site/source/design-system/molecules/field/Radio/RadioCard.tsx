@@ -11,7 +11,7 @@ export const RadioCardSkeleton = ({
 	children,
 	...rest
 }: ComponentProps<typeof RadioSkeleton>) => (
-	<StyledCardContainer $inert={rest.isDisabled} as={RadioSkeleton} {...rest}>
+	<StyledCardContainer inert={rest.isDisabled} as={RadioSkeleton} {...rest}>
 		{children}
 	</StyledCardContainer>
 )

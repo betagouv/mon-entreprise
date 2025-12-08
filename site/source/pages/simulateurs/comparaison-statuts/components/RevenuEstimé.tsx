@@ -15,7 +15,7 @@ const RevenuEstimé = () => {
 			style={{
 				padding: '1.5rem !important',
 			}}
-			$inert
+			inert
 		>
 			<Grid container>
 				<WhenAlreadyDefined dottedName="entreprise . chiffre d'affaires">

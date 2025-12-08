@@ -16,6 +16,11 @@ import {
 } from 'recharts'
 import { styled, useTheme } from 'styled-components'
 
+import {
+	ACCUEIL,
+	SIMULATION_COMMENCEE,
+	SIMULATION_TERMINEE,
+} from '@/components/ATInternetTracking'
 import { Body, Li, Strong, Ul } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
@@ -274,11 +279,11 @@ const CustomTooltip = ({
 }
 
 export const formatLegend = (key: string) =>
-	key === 'accueil'
+	key === ACCUEIL
 		? 'visites'
-		: key === 'simulation_commencee'
+		: key === SIMULATION_COMMENCEE
 		? 'simulation commencée'
-		: key === 'simulation_terminee'
+		: key === SIMULATION_TERMINEE
 		? 'simulation terminée'
 		: key === 'declaration_resultat'
 		? 'déclaration résultat'
