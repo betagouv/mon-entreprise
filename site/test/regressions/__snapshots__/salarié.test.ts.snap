@@ -140,8 +140,8 @@ exports[`calculate simulations-salarié > apprentissage 1`] = `
 "salarié . contrat . salaire brut: 1500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 1132
-salarié . rémunération . net . payé après impôt: 1267
-salarié . rémunération . net . à payer avant impôt: 1267
+salarié . rémunération . net . payé après impôt: 1353
+salarié . rémunération . net . à payer avant impôt: 1353
 
 Notifications affichées : salarié . rémunération . assiette de vérification du SMIC . contrôle"
 `;
@@ -150,8 +150,8 @@ exports[`calculate simulations-salarié > apprentissage 2`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3162
-salarié . rémunération . net . payé après impôt: 2059
-salarié . rémunération . net . à payer avant impôt: 2059"
+salarié . rémunération . net . payé après impôt: 2145
+salarié . rémunération . net . à payer avant impôt: 2145"
 `;
 
 exports[`calculate simulations-salarié > atmp 1`] = `
