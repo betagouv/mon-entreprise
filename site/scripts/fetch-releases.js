@@ -8,10 +8,16 @@
 // If you want to fetch unpublished "draft" release, you should check the
 // "public repo" authorization when generating the access token.
 import dotenv from 'dotenv'
+import { existsSync, mkdirSync, writeFileSync } from 'fs'
+import { join } from 'path'
+import { fileURLToPath } from 'url'
 
-import { createDataDir, writeInDataDir } from './utils.js'
+import { createDataDir, writeInDataDir, dataDir } from './utils.js'
 
 dotenv.config()
+
+// Directory for storing release images
+const imagesDir = join(dataDir, 'releases-images')
 
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
 // explorer can be found here : https://developer.github.com/v4/explorer/
@@ -64,6 +70,59 @@ const releases = await fetchReleases()
 writeInDataDir('releases.json', releases)
 writeInDataDir('last-release.json', { name: releases[0].name })
 
+/**
+ * Create releases-images directory and process images in release descriptions
+ */
+function createImagesDir() {
+	if (!existsSync(imagesDir)) {
+		mkdirSync(imagesDir, { recursive: true })
+	}
+}
+
+/**
+ * Extract image URLs from markdown and download them
+ * Replaces GitHub image URLs with local paths in the description
+ */
+async function downloadAndReplaceImages(releaseDescription, releaseName) {
+	if (!releaseDescription) return releaseDescription
+
+	// Regex to match markdown images: ![alt](url)
+	const imageRegex = /!\[(.*?)\]\((https:\/\/github\.com\/.*?\/assets\/\d+\/[a-f0-9-]+\.\w+)\)/g
+
+	let modifiedDescription = releaseDescription
+	let match
+
+	while ((match = imageRegex.exec(releaseDescription)) !== null) {
+		const [fullMatch, altText, imageUrl] = match
+		const filename = imageUrl.split('/').pop()
+		const localImagePath = `/data/releases-images/${filename}`
+
+		// Download image from GitHub
+		try {
+			const response = await fetch(imageUrl)
+			if (!response.ok) throw new Error(`HTTP ${response.status}`)
+
+			const buffer = await response.arrayBuffer()
+			const filepath = join(imagesDir, filename)
+			writeFileSync(filepath, Buffer.from(buffer))
+
+			// Replace the URL with local path in markdown
+			// Keep the alt text for accessibility
+			modifiedDescription = modifiedDescription.replace(
+				fullMatch,
+				`![${altText}](${localImagePath})`
+			)
+
+			console.log(`✓ Downloaded image: ${filename}`)
+		} catch (error) {
+			console.warn(`✗ Failed to download image ${imageUrl}: ${error.message}`)
+			// Keep original URL if download fails
+		}
+	}
+
+	return modifiedDescription
+}
+
 async function fetchReleases(after = 'null') {
 	if (!githubAuthToken) {
 		return fakeData
@@ -93,8 +152,23 @@ async function fetchReleases(after = 'null') {
 			concat = await fetchReleases(`"${pageInfo.endCursor}"`)
 		}
 
-		return [...releases.filter(({ isDraft }) => !isDraft), ...concat]
+		// Process and download images from release descriptions
+		createImagesDir()
+		const processedReleases = await Promise.all(
+			[...releases.filter(({ isDraft }) => !isDraft), ...concat].map(
+				async (release) => ({
+					...release,
+					description: await downloadAndReplaceImages(
+						release.description,
+						release.name
+					),
+				})
+			)
+		)
+
+		return processedReleases
 	} catch (e) {
+		console.error('Error fetching releases:', e)
 		return fakeData
 	}
 }
