@@ -21,6 +21,14 @@ describe('CSG-CRDS', () => {
 					'50000 €/an',
 			})
 
+			const tauxDéductible = e.evaluate(
+				'indépendant . cotisations et contributions . CSG-CRDS . déductible . taux'
+			).nodeValue as number
+			const tauxNonDéductible = e.evaluate(
+				'indépendant . cotisations et contributions . CSG-CRDS . non déductible . taux'
+			).nodeValue as number
+			expect(tauxDéductible + tauxNonDéductible).toEqual(9.7)
+
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . CSG-CRDS',
 				4850
@@ -69,6 +77,14 @@ describe('CSG-CRDS', () => {
 				'indépendant . cotisations et contributions . assiette CSG-CRDS':
 					'50000 €/an',
 			})
+
+			const tauxDéductible = e.evaluate(
+				'indépendant . cotisations et contributions . CSG-CRDS . déductible . taux'
+			).nodeValue as number
+			const tauxNonDéductible = e.evaluate(
+				'indépendant . cotisations et contributions . CSG-CRDS . non déductible . taux'
+			).nodeValue as number
+			expect(tauxDéductible + tauxNonDéductible).toEqual(9.7)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . CSG-CRDS',
