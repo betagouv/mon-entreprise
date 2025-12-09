@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
@@ -52,6 +52,7 @@ export function Questions<S extends Situation>({
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useEngine()
+	const focusAnchorForA11yRef = useRef<HTMLDivElement>(null)
 
 	const {
 		nombreDeQuestions,
@@ -75,6 +76,33 @@ export function Questions<S extends Situation>({
 			dispatch(enregistreLaRéponse(dottedName, value))
 		},
 		[dispatch]
+	)
+
+	const handleGoToPrevious = useCallback(() => {
+		goToPrevious()
+
+		if (focusAnchorForA11yRef.current) {
+			focusAnchorForA11yRef.current.focus()
+		}
+	}, [goToPrevious, focusAnchorForA11yRef])
+
+	const handleGoToNext = useCallback(() => {
+		goToNext()
+
+		if (focusAnchorForA11yRef.current) {
+			focusAnchorForA11yRef.current.focus()
+		}
+	}, [goToNext, focusAnchorForA11yRef])
+
+	const handleGoTo = useCallback(
+		(index: string) => {
+			goTo(index)
+
+			if (focusAnchorForA11yRef.current) {
+				focusAnchorForA11yRef.current.focus()
+			}
+		},
+		[goTo, focusAnchorForA11yRef]
 	)
 
 	let shouldBeWrappedByFieldset = false
@@ -139,10 +167,13 @@ export function Questions<S extends Situation>({
 							</Body>
 						)}
 					</div>
+
+					<div ref={focusAnchorForA11yRef} tabIndex={-1}></div>
+
 					{finished && (
 						<VousAvezComplétéCetteSimulation
 							customEndMessages={customEndMessages}
-							onPrevious={goToPrevious}
+							onPrevious={handleGoToPrevious}
 						/>
 					)}
 
@@ -152,8 +183,10 @@ export function Questions<S extends Situation>({
 							<QuestionCourante />
 
 							<Conversation
-								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
-								onNext={goToNext}
+								onPrevious={
+									activeQuestionIndex > 0 ? handleGoToPrevious : undefined
+								}
+								onNext={handleGoToNext}
 								questionIsAnswered={questionCouranteRépondue}
 								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
@@ -186,7 +219,7 @@ export function Questions<S extends Situation>({
 											handlePublicodesQuestionResponse(name, value)
 										}
 										key={QuestionCourante.id}
-										onSubmit={goToNext}
+										onSubmit={handleGoToNext}
 									/>
 								</fieldset>
 							) : (
@@ -206,13 +239,15 @@ export function Questions<S extends Situation>({
 											handlePublicodesQuestionResponse(name, value)
 										}
 										key={QuestionCourante.id}
-										onSubmit={goToNext}
+										onSubmit={handleGoToNext}
 									/>
 								</>
 							)}
 							<Conversation
-								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
-								onNext={goToNext}
+								onPrevious={
+									activeQuestionIndex > 0 ? handleGoToPrevious : undefined
+								}
+								onNext={handleGoToNext}
 								questionIsAnswered={questionCouranteRépondue}
 								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
@@ -228,7 +263,7 @@ export function Questions<S extends Situation>({
 					{QuestionCourante && (
 						<Raccourcis
 							raccourcis={raccourcis}
-							goTo={goTo}
+							goTo={handleGoTo}
 							idQuestionCourante={QuestionCourante?.id}
 						/>
 					)}
