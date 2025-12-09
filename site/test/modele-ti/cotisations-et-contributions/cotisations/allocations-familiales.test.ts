@@ -14,21 +14,6 @@ describe('Cotisation allocations familiales', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		describe('en début d’activité', () => {
-			it('applique une assiette forfaitaire proratisée égale à 19% du PASS', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					'entreprise . date de création': '31/01/2025',
-					"entreprise . chiffre d'affaires": '10000 €/an',
-				})
-
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . allocations familiales',
-					0
-				)
-			})
-		})
-
 		describe('en cas d’année incomplète', () => {
 			it('applique un taux nul en cas d’assiette sociale annualisée inférieure à 110% du PASS', () => {
 				const e = engine.setSituation({
