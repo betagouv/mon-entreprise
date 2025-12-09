@@ -2640,6 +2640,9 @@ indépendant . PL . CIPAV . conjoint collaborateur:
   titre.fr: conjoint collaborateur
 indépendant . PL . CIPAV . invalidité et décès:
   avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
     avant 2023:
       titre.en: '[automatic] before 2023'
       titre.fr: avant 2023
@@ -4406,6 +4409,14 @@ indépendant . cotisations et contributions . cotisations . maladie . domiciliat
     maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
     ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
     fonction du revenu déclaré.
+  note.en: >
+    [automatic] This specific rate does not apply to practitioners and medical
+    auxiliaries
+
+    whose tax residence is abroad.
+  note.fr: |
+    Ce taux spécifique ne s’applique pas aux praticiens et auxiliaires médicaux
+    conventionnés dont la résidence fiscale est à l’étranger.
   titre.en: '[automatic] tax domicile abroad'
   titre.fr: domiciliation fiscale étranger
 indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières:
@@ -4653,6 +4664,9 @@ indépendant . cotisations et contributions . début activité:
     assiette forfaitaire indemnités journalières:
       titre.en: '[automatic] lump-sum basis for daily allowances'
       titre.fr: assiette forfaitaire indemnités journalières
+    assiette forfaitaire invalidité décès Cipav:
+      titre.en: '[automatic] Cipav lump-sum basis for disability and death'
+      titre.fr: assiette forfaitaire invalidité décès Cipav
   description.en: >
     [automatic] When you start your business, as your professional income is not
     known, your
@@ -4706,13 +4720,13 @@ indépendant . cotisations et contributions . début activité:
   note.en:
     '[automatic] The flat-rate base is **19% of the annual Social Security
     ceiling** for the first and second years of activity (with the exception of
-    health contributions and daily allowances, for which the flat-rate base is
-    equal to 40% of the annual Social Security ceiling).'
+    daily allowance contributions, for which the flat-rate base is 40% of the
+    annual Social Security ceiling).'
   note.fr: La base forfaitaire s’élève à **19 % du plafond annuel de la Sécurité
     sociale** au titre de la première et de la deuxième année d’activité (à
-    l’exception de la cotisation Maladie et indemnités journalières pour
-    lesquelles l’assiette forfaitaire est égale à 40 % du plafond annuel de la
-    Sécurité sociale).
+    l’exception de la cotisation indemnités journalières pour lesquelles
+    l’assiette forfaitaire est égale à 40 % du plafond annuel de la Sécurité
+    sociale).
   titre.en: '[automatic] Flat-rate start-up contributions'
   titre.fr: Cotisations forfaitaires de début d’activité
 indépendant . cotisations et contributions . déduction tabac:
