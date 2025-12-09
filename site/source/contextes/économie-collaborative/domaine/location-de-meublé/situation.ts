@@ -62,7 +62,6 @@ export type TypeHébergement = 'meublé-tourisme' | 'chambre-hôte'
 
 export const situationParDéfaut = {
 	autresRevenus: eurosParAn(0),
-	typeDurée: 'courte' as TypeDurée,
 	classement: 'non-classé' as Classement,
 	estAlsaceMoselle: false,
 	premièreAnnée: false,
@@ -125,6 +124,17 @@ export type SituationMeubléDeTourismeValide =
 	| SituationMeubléCourteDuréeValide
 	| SituationMeubléDuréeMixteValide
 	| SituationMeubléDeTourismeIncomplèteValide
+
+export type SituationMeubléAvecAutresRevenus =
+	SituationMeubléDeTourismeValide & {
+		autresRevenus: O.Some<Montant<'€/an'>>
+	}
+
+export function aRenseignéSesAutresRevenus(
+	situation: SituationMeubléDeTourismeValide
+): situation is SituationMeubléAvecAutresRevenus {
+	return O.isSome(situation.autresRevenus)
+}
 
 export interface SituationChambreDHôteValide extends SituationChambreDHôte {
 	revenuNet: O.Some<Montant<'€/an'>>

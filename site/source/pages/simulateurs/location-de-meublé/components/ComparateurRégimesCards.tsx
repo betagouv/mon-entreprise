@@ -1,15 +1,13 @@
-import { Array, Order, pipe } from 'effect'
+import { Either, pipe } from 'effect'
 import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
 import {
-	compareRégimes,
+	compareApplicabilitéDesRégimes,
 	estSituationValide,
-	isCotisationsEnabled,
-	RaisonInapplicabilité,
 	RegimeCotisation,
 	RégimeTag,
-	RésultatRégimeApplicable,
+	RésultatApplicabilité,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 import {
@@ -21,7 +19,6 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
-import { toString as formatMontant } from '@/domaine/Montant'
 
 import { getGridSizes } from '../../comparaison-statuts/components/DetailsRowCards'
 
@@ -29,32 +26,12 @@ export const ComparateurRégimesCards = () => {
 	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
 
-	const comparaisonRégimes = pipe(
+	const résultats = pipe(
 		situation,
 		O.liftPredicate(estSituationValide),
-		O.map(compareRégimes)
+		O.map(compareApplicabilitéDesRégimes),
+		O.getOrElse((): RésultatApplicabilité[] => [])
 	)
-
-	const résultats = pipe(
-		comparaisonRégimes,
-		O.getOrElse((): ReturnType<typeof compareRégimes> => [])
-	)
-
-	const orderByCotisations = pipe(
-		Order.number,
-		Order.mapInput((r: RésultatRégimeApplicable) => r.cotisations.valeur)
-	)
-
-	const meilleurRégime = isCotisationsEnabled
-		? pipe(
-				résultats,
-				Array.filter((r): r is RésultatRégimeApplicable => r.applicable),
-				Array.sort(orderByCotisations),
-				Array.head,
-				O.map((r) => r.régime),
-				O.getOrNull
-		  )
-		: null
 
 	const gridSizes = getGridSizes(1, 3)
 
@@ -72,10 +49,7 @@ export const ComparateurRégimesCards = () => {
 			>
 				{résultats.map((résultat) => (
 					<Grid key={résultat.régime} item {...gridSizes} as="li">
-						<RégimeCard
-							résultat={résultat}
-							estMeilleurRégime={meilleurRégime === résultat.régime}
-						/>
+						<RégimeCard résultat={résultat} />
 					</Grid>
 				))}
 			</Grid>
@@ -83,13 +57,7 @@ export const ComparateurRégimesCards = () => {
 	)
 }
 
-const RégimeCard = ({
-	résultat,
-	estMeilleurRégime,
-}: {
-	résultat: ReturnType<typeof compareRégimes>[0]
-	estMeilleurRégime: boolean
-}) => {
+const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 	const { t } = useTranslation()
 
 	const getRégimeLibellé = (régime: RegimeCotisation): string => {
@@ -112,63 +80,50 @@ const RégimeCard = ({
 		}
 	}
 
+	const estApplicable =
+		Either.isRight(résultat.résultat) && résultat.résultat.right
+	const estNonApplicable =
+		Either.isRight(résultat.résultat) && !résultat.résultat.right
+	const estSousConditions = Either.isLeft(résultat.résultat)
+
 	return (
-		<StatusCard
-			isBestOption={estMeilleurRégime}
-			nonApplicable={!résultat.applicable}
-		>
+		<StatusCard nonApplicable={estNonApplicable}>
 			<StatusCard.Étiquette>
 				<RégimeTag régime={résultat.régime} />
 			</StatusCard.Étiquette>
 
 			<StatusCard.Titre>{getRégimeLibellé(résultat.régime)}</StatusCard.Titre>
 
-			{résultat.applicable ? (
-				isCotisationsEnabled ? (
-					<StatusCard.ValeurSecondaire>
-						<span>{formatMontant(résultat.cotisations)}</span>
-						<span> de cotisations</span>
-					</StatusCard.ValeurSecondaire>
-				) : (
-					<StatusCard.ValeurSecondaire>
-						<SmallBody>
-							<Strong>
-								{t(
-									'pages.simulateurs.location-de-logement-meublé.comparateur.applicable',
-									'Applicable'
-								)}
-							</Strong>
-						</SmallBody>
-					</StatusCard.ValeurSecondaire>
-				)
-			) : (
-				<StatusCard.ValeurSecondaire>
-					<SmallBody>
+			<StatusCard.ValeurSecondaire>
+				<SmallBody>
+					{estApplicable && (
+						<Strong>
+							{t(
+								'pages.simulateurs.location-de-logement-meublé.comparateur.applicable',
+								'Applicable'
+							)}
+						</Strong>
+					)}
+					{estNonApplicable && (
 						<Strong>
 							{t(
 								'pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable',
 								'Non applicable'
 							)}
-						</Strong>{' '}
-						{RaisonInapplicabilité.estTypeDeDuréeIncompatible(
-							résultat.raisonDeNonApplicabilité
-						) ||
-						RaisonInapplicabilité.estChambreDHôte(
-							résultat.raisonDeNonApplicabilité
-						)
-							? t(
-									'pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison-type-location',
-									'pour ce type de location'
-							  )
-							: t(
-									'pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable-raison',
-									'avec vos recettes actuelles'
-							  )}
-					</SmallBody>
-				</StatusCard.ValeurSecondaire>
-			)}
+						</Strong>
+					)}
+					{estSousConditions && (
+						<Strong>
+							{t(
+								'pages.simulateurs.location-de-logement-meublé.comparateur.sous-conditions',
+								'Applicable sous conditions'
+							)}
+						</Strong>
+					)}
+				</SmallBody>
+			</StatusCard.ValeurSecondaire>
 
-			{résultat.applicable && (
+			{estApplicable && (
 				<StatusCard.Complément>
 					<Ul
 						style={{
