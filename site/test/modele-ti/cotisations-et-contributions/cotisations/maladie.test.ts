@@ -14,21 +14,6 @@ describe('Cotisation maladie', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		describe.skip('en début d’activité', () => {
-			it('applique une assiette forfaitaire proratisée égale à 19% du PASS', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					'entreprise . date de création': '31/01/2025',
-					"entreprise . chiffre d'affaires": '10000 €/an',
-				})
-
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie',
-					0
-				)
-			})
-		})
-
 		describe('en cas de domiciliation fiscale à l’étranger', () => {
 			it('applique un taux de 14,5%', () => {
 				const e = engine.setSituation({
