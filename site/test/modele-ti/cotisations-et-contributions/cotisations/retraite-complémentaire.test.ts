@@ -14,71 +14,6 @@ describe('Cotisation retraite complémentaire', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		describe('en cas d’année incomplète', () => {
-			it('applique le taux tranche 1 en cas d’assiette sociale inférieure au PASS proratisé', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . durée d'activité cette année": '150 jour',
-					'indépendant . cotisations et contributions . assiette sociale':
-						'10000 €/an',
-				})
-
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					810
-				)
-			})
-
-			it('applique le taux tranche 1 au PASS proratisé et le taux tranche 2 au reste de l’assiette sociale en cas d’assiette sociale comprise entre 1 et 4 PASS proratisé', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . durée d'activité cette année": '150 jour',
-					'indépendant . cotisations et contributions . assiette sociale':
-						'50000 €/an',
-				})
-
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
-				// Tranche 1 :
-				// 1 PASS proratisé x taux tranche 1 = 19 356 €/an x 8,1% = 1 567,84 €/an
-
-				// Tranche 2 :
-				// assiette sociale - 1 PASS proratisé = 50 000 €/an - 19 356 €/an = 30 644 €/an
-				// (assiette sociale - 1 PASS proratisé) x taux tranche 2 = 30 644 €/an x 9,1% = 2 788,60 €/an
-
-				// Total :
-				// Tranche 1 + Tranche 2 = 1 567,84 €/an + 2 788,60 €/an = 4 356,44 €/an
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					4356
-				)
-			})
-
-			it('applique le taux tranche 1 au PASS proratisé et le taux tranche 2 à 3 PASS proratisés en cas d’assiette sociale supérieure à 4 PASS proratisés', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . durée d'activité cette année": '150 jour',
-					'indépendant . cotisations et contributions . assiette sociale':
-						'200000 €/an',
-				})
-
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
-				// Tranche 1 :
-				// 1 PASS proratisé x taux tranche 1 = 19 356 €/an x 8,1% = 1 567,84 €/an
-
-				// Tranche 2 :
-				// 3 PASS proratisé = 3 x 19 356 €/an = 58 068 €/an
-				// 3 PASS proratisé x taux tranche 2 = 58 068 €/an x 9,1% = 5 284,19 €/an
-
-				// Total :
-				// Tranche 1 + Tranche 2 = 1 567,84 €/an + 5 284,19 €/an = 6 852,03 €/an
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					6852
-				)
-			})
-		})
-
 		it('applique un taux tranche 1 de 8,1%', () => {
 			expect(engine).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux tranche 1',
@@ -148,6 +83,71 @@ describe('Cotisation retraite complémentaire', () => {
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
 				16673
 			)
+		})
+
+		describe('en cas d’année incomplète', () => {
+			it('applique le taux tranche 1 en cas d’assiette sociale inférieure au PASS proratisé', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					"entreprise . durée d'activité cette année": '150 jour',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'10000 €/an',
+				})
+
+				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
+					810
+				)
+			})
+
+			it('applique le taux tranche 1 au PASS proratisé et le taux tranche 2 au reste de l’assiette sociale en cas d’assiette sociale comprise entre 1 et 4 PASS proratisé', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					"entreprise . durée d'activité cette année": '150 jour',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
+				// Tranche 1 :
+				// 1 PASS proratisé x taux tranche 1 = 19 356 €/an x 8,1% = 1 567,84 €/an
+
+				// Tranche 2 :
+				// assiette sociale - 1 PASS proratisé = 50 000 €/an - 19 356 €/an = 30 644 €/an
+				// (assiette sociale - 1 PASS proratisé) x taux tranche 2 = 30 644 €/an x 9,1% = 2 788,60 €/an
+
+				// Total :
+				// Tranche 1 + Tranche 2 = 1 567,84 €/an + 2 788,60 €/an = 4 356,44 €/an
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
+					4356
+				)
+			})
+
+			it('applique le taux tranche 1 au PASS proratisé et le taux tranche 2 à 3 PASS proratisés en cas d’assiette sociale supérieure à 4 PASS proratisés', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					"entreprise . durée d'activité cette année": '150 jour',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'200000 €/an',
+				})
+
+				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
+				// Tranche 1 :
+				// 1 PASS proratisé x taux tranche 1 = 19 356 €/an x 8,1% = 1 567,84 €/an
+
+				// Tranche 2 :
+				// 3 PASS proratisé = 3 x 19 356 €/an = 58 068 €/an
+				// 3 PASS proratisé x taux tranche 2 = 58 068 €/an x 9,1% = 5 284,19 €/an
+
+				// Total :
+				// Tranche 1 + Tranche 2 = 1 567,84 €/an + 5 284,19 €/an = 6 852,03 €/an
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
+					6852
+				)
+			})
 		})
 	})
 
