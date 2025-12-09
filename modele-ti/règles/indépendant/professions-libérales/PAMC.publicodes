@@ -193,7 +193,7 @@ indépendant . PL . PAMC . maladie . participation CPAM:
     taux maladie:
       variations:
         - si: cotisations et contributions . après réforme
-          alors: cotisations et contributions . cotisations . maladie . taux 2
+          alors: cotisations et contributions . cotisations . maladie . maladie-maternité . taux 2
         - sinon: PL . maladie . taux
 
 indépendant . PL . PAMC . maladie . contribution additionnelle:
