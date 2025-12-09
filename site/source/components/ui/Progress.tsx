@@ -35,7 +35,8 @@ export default function Progress({
 					style={{ width: `${(progress * 100) / (maxValue || 1)}%` }}
 				/>
 			</ProgressContainer>
-			<StyledBody {...labelProps}>
+
+			<StyledBody {...labelProps} role="alert">
 				{t('Étape {{ total }} sur {{ maxValue }}', { total, maxValue })}
 			</StyledBody>
 		</div>
