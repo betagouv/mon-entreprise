@@ -14,6 +14,57 @@ describe('Cotisation allocations familiales', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
+		it('applique un taux nul en cas d’assiette sociale inférieure à 110% du PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'50000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				0
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				0
+			)
+		})
+
+		it('applique un taux progressif compris entre 0% et 3,10% en cas d’assiette sociale comprise entre 110% et 140% du PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'60000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				1.8
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				1080
+			)
+		})
+
+		it('applique un taux de 3,10% en cas d’assiette sociale supérieure à 140% du PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'70000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				2170
+			)
+		})
+
 		describe('en cas d’année incomplète', () => {
 			it('applique un taux nul en cas d’assiette sociale annualisée inférieure à 110% du PASS', () => {
 				const e = engine.setSituation({
@@ -68,57 +119,6 @@ describe('Cotisation allocations familiales', () => {
 					1550
 				)
 			})
-		})
-
-		it('applique un taux nul en cas d’assiette sociale inférieure à 110% du PASS', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
-					'50000 €/an',
-			})
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
-				0
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales',
-				0
-			)
-		})
-
-		it('applique un taux progressif compris entre 0% et 3,10% en cas d’assiette sociale comprise entre 110% et 140% du PASS', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
-					'60000 €/an',
-			})
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
-				1.8
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales',
-				1080
-			)
-		})
-
-		it('applique un taux de 3,10% en cas d’assiette sociale supérieure à 140% du PASS', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
-					'70000 €/an',
-			})
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
-				3.1
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales',
-				2170
-			)
 		})
 	})
 

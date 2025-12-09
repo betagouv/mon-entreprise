@@ -19,6 +19,10 @@ describe('Contribution à la formation professionnelle', () => {
 			const e = engine.setSituation(defaultSituation)
 
 			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle . taux',
+				0.25
+			)
+			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . formation professionnelle',
 				118
 			)
@@ -31,21 +35,30 @@ describe('Contribution à la formation professionnelle', () => {
 			})
 
 			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle . taux',
+				0.29
+			)
+			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . formation professionnelle',
 				137
 			)
 		})
 
 		it('n’est pas proratisée en cas d’année incomplète', () => {
-			const e = engine.setSituation({
+			const e1 = engine.setSituation(defaultSituation)
+			const annéeComplète = e1.evaluate(
+				'indépendant . cotisations et contributions . formation professionnelle'
+			).nodeValue
+
+			const e2 = engine.setSituation({
 				...defaultSituation,
 				"entreprise . durée d'activité cette année": '250 jour',
 			})
+			const annéeIncomplète = e2.evaluate(
+				'indépendant . cotisations et contributions . formation professionnelle'
+			).nodeValue
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle',
-				118
-			)
+			expect(annéeIncomplète).toEqual(annéeComplète)
 		})
 	})
 
@@ -58,6 +71,10 @@ describe('Contribution à la formation professionnelle', () => {
 				'indépendant . PL . régime général': 'non',
 			})
 
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle . taux',
+				0.25
+			)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . formation professionnelle',
 				118
