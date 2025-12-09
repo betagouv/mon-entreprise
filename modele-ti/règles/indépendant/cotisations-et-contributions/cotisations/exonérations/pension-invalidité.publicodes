@@ -68,7 +68,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
         références à: maladie
         sauf dans:
           - cotisations et contributions . cotisations . maladie
-          - cotisations et contributions . cotisations . maladie . taux 1
+          - cotisations et contributions . cotisations . maladie . maladie-maternité . taux 1
       valeur: maladie
       abattement: prorata
 
