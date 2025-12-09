@@ -1,13 +1,14 @@
 import { Either, Option, pipe } from 'effect'
 
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
-import { estPlusPetitQue, eurosParAn, Montant } from '@/domaine/Montant'
+import { estPlusGrandOuÉgalÀ, eurosParAn, Montant } from '@/domaine/Montant'
 import {
 	TravailleurIndependantChiffreAffaireDansPublicodes,
 	TravailleurIndependantContexteDansPublicodes,
 	TravailleurIndependantCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/TravailleurIndependantContexteDansPublicodes'
 
+import { EstApplicable } from './applicabilité'
 import { AffiliationNonObligatoire } from './erreurs'
 import { estActivitéPrincipale } from './estActivitéPrincipale'
 import {
@@ -15,10 +16,51 @@ import {
 	SEUIL_PROFESSIONNALISATION,
 } from './estActiviteProfessionnelle'
 import {
+	aRenseignéSesAutresRevenus,
 	faitDeLaLocationCourteEtLongueDurée,
 	SituationÉconomieCollaborativeValide,
-	situationParDéfaut,
 } from './situation'
+
+export const estApplicableTravailleurIndépendant: EstApplicable = (
+	situation
+) => {
+	if (!estActiviteProfessionnelle(situation)) {
+		return Either.right(false)
+	}
+
+	if (situation.typeHébergement === 'chambre-hôte') {
+		return Either.right(true)
+	}
+
+	if (!aRenseignéSesAutresRevenus(situation)) {
+		return Either.left(['autresRevenus'])
+	}
+
+	if (!estActivitéPrincipale(situation)) {
+		if (Option.isNone(situation.typeDurée)) {
+			return Either.left(['typeDurée'])
+		}
+
+		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
+			const recettesCourteDurée = pipe(
+				situation.recettesCourteDurée,
+				Option.getOrElse(() => eurosParAn(0))
+			)
+			if (
+				!pipe(
+					recettesCourteDurée,
+					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+				)
+			) {
+				return Either.right(false)
+			}
+		} else if (situation.typeDurée.value !== 'courte') {
+			return Either.right(false)
+		}
+	}
+
+	return Either.right(true)
+}
 
 /**
  * Calcule les cotisations sociales pour le régime travailleur indépendant
@@ -31,7 +73,8 @@ import {
 export function calculeCotisationsTravailleurIndépendant(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<Montant<'€/an'>, AffiliationNonObligatoire> {
-	if (!estActiviteProfessionnelle(situation)) {
+	const applicabilité = estApplicableTravailleurIndépendant(situation)
+	if (Either.isRight(applicabilité) && !applicabilité.right) {
 		return Either.left(new AffiliationNonObligatoire())
 	}
 
@@ -49,31 +92,6 @@ export function calculeCotisationsTravailleurIndépendant(
 		)
 
 		return Either.right(eurosParAn(cotisations))
-	}
-
-	if (!estActivitéPrincipale(situation)) {
-		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			const recettesCourteDurée = pipe(
-				situation.recettesCourteDurée,
-				Option.getOrElse(() => eurosParAn(0))
-			)
-			if (
-				pipe(
-					recettesCourteDurée,
-					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
-				)
-			) {
-				return Either.left(new AffiliationNonObligatoire())
-			}
-		} else {
-			const typeDurée = Option.getOrElse(
-				situation.typeDurée,
-				() => situationParDéfaut.typeDurée
-			)
-			if (typeDurée !== 'courte') {
-				return Either.left(new AffiliationNonObligatoire())
-			}
-		}
 	}
 
 	const cotisations = evalueAvecPublicodes<number>(

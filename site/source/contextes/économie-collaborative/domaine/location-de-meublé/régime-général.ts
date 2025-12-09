@@ -4,13 +4,13 @@ import {
 	abattement,
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
-	estPlusPetitQue,
 	eurosParAn,
 	fois,
 	moins,
 	Montant,
 } from '@/domaine/Montant'
 
+import { EstApplicable } from './applicabilité'
 import {
 	AffiliationNonObligatoire,
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
@@ -23,6 +23,7 @@ import {
 	SEUIL_PROFESSIONNALISATION,
 } from './estActiviteProfessionnelle'
 import {
+	aRenseignéSesAutresRevenus,
 	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -56,53 +57,21 @@ export function calculeCotisationsRégimeGénéral(
 		)
 	}
 
-	if (!estActiviteProfessionnelle(situation)) {
-		return Either.left(new AffiliationNonObligatoire())
-	}
-
-	if (!estActivitéPrincipale(situation)) {
-		const typeDurée = Option.getOrElse(
-			situation.typeDurée,
-			() => situationParDéfaut.typeDurée
-		)
-
-		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			const recettesCourteDurée = pipe(
-				situation.recettesCourteDurée,
-				Option.getOrElse(() => eurosParAn(0))
-			)
-			if (
-				pipe(
-					recettesCourteDurée,
-					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
-				)
-			) {
-				return Either.left(new AffiliationNonObligatoire())
-			}
-		} else if (typeDurée !== 'courte') {
-			return Either.left(new AffiliationNonObligatoire())
-		}
-	}
-
 	const recettes = situation.recettes.value
 
-	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
-		const typeDurée = Option.getOrElse(
-			situation.typeDurée,
-			() => situationParDéfaut.typeDurée
+	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
+		return Either.left(
+			new RecettesSupérieuresAuPlafondAutoriséPourCeRégime({
+				recettes,
+				plafond: PLAFOND_REGIME_GENERAL,
+				régime: RegimeCotisation.regimeGeneral,
+			})
 		)
+	}
 
-		const estPrincipale = estActivitéPrincipale(situation)
-
-		if (estPrincipale && typeDurée !== 'courte') {
-			return Either.left(
-				new RégimeNonApplicablePourCeTypeDeDurée({
-					typeDurée,
-					régime: RegimeCotisation.regimeGeneral,
-					estActivitéPrincipale: estPrincipale,
-				})
-			)
-		}
+	const applicabilité = estApplicableRégimeGénéral(situation)
+	if (Either.isRight(applicabilité) && !applicabilité.right) {
+		return Either.left(new AffiliationNonObligatoire())
 	}
 
 	const estAlsaceMoselle = Option.getOrElse(
@@ -114,16 +83,6 @@ export function calculeCotisationsRégimeGénéral(
 		situation.premièreAnnée,
 		() => situationParDéfaut.premièreAnnée
 	)
-
-	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
-		return Either.left(
-			new RecettesSupérieuresAuPlafondAutoriséPourCeRégime({
-				recettes,
-				plafond: PLAFOND_REGIME_GENERAL,
-				régime: RegimeCotisation.regimeGeneral,
-			})
-		)
-	}
 
 	const assiette = premièreAnnée
 		? pipe(recettes, estPlusGrandQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ))
@@ -142,4 +101,61 @@ export function calculeCotisationsRégimeGénéral(
 	)
 
 	return Either.right(cotisations)
+}
+
+export const estApplicableRégimeGénéral: EstApplicable = (situation) => {
+	if (situation.typeHébergement === 'chambre-hôte') {
+		return Either.right(false)
+	}
+
+	const recettes = situation.recettes.value
+
+	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
+		return Either.right(false)
+	}
+
+	if (!estActiviteProfessionnelle(situation)) {
+		return Either.right(false)
+	}
+
+	if (!aRenseignéSesAutresRevenus(situation)) {
+		return Either.left(['autresRevenus'])
+	}
+
+	if (!estActivitéPrincipale(situation)) {
+		if (Option.isNone(situation.typeDurée)) {
+			return Either.left(['typeDurée'])
+		}
+		const typeDurée = situation.typeDurée.value
+
+		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
+			const recettesCourteDurée = pipe(
+				situation.recettesCourteDurée,
+				Option.getOrElse(() => eurosParAn(0))
+			)
+			if (
+				!pipe(
+					recettesCourteDurée,
+					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+				)
+			) {
+				return Either.right(false)
+			}
+		} else if (typeDurée !== 'courte') {
+			return Either.right(false)
+		}
+	}
+
+	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
+		if (Option.isNone(situation.typeDurée)) {
+			return Either.left(['typeDurée'])
+		}
+		const typeDurée = situation.typeDurée.value
+
+		if (estActivitéPrincipale(situation) && typeDurée !== 'courte') {
+			return Either.right(false)
+		}
+	}
+
+	return Either.right(true)
 }
