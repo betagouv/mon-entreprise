@@ -15,35 +15,53 @@ indépendant . cotisations et contributions . cotisations:
 
 indépendant . cotisations et contributions . cotisations . maladie:
   description: |
-    Le montant de la cotisation pour la couverture des risques d’assurance
-    maladie et maternité contient deux composantes :
-    - la cotisation maladie 1 (assurance maladie et maternité)
-    - la cotisation maladie 2 (indemnités journalières maladie)
+    Le montant de la cotisation maladie contient deux composantes :
+    - la cotisation maladie-maternité (maladie 1)
+    - la cotisation indemnités journalières (maladie 2)
   variations:
     - si:
         est applicable: domiciliation fiscale étranger
       alors: domiciliation fiscale étranger
     - sinon:
-        variations:
-          # Cotisation spécifique PLR avant réforme :
-          - si:
-              est applicable: PL . maladie
-            alors: PL . maladie
-          # Cotisation commune après réforme :
-          - sinon:
-              barème:
-                assiette:
-                  valeur: assiette sociale
-                  plancher: plancher assiette
-                multiplicateur: PSS proratisé
-                tranches:
-                  - taux: taux 1
-                    plafond: plafond taux 1
-                  - taux: taux 2
+        somme:
+          - maladie-maternité
+          - indemnités journalières
   arrondi: oui
   unité: €/an
   références:
     Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
+
+indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité:
+  description: |
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
+
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
+    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
+    souscrire une assurance maladie complémentaire.
+  non applicable si:
+    est applicable: domiciliation fiscale étranger
+  variations:
+    # Cotisation spécifique PLR avant réforme :
+    - si:
+        est applicable: PL . maladie
+      alors: PL . maladie
+    # Cotisation commune après réforme :
+    - sinon:
+        barème:
+          assiette:
+            valeur: assiette sociale
+            plancher: plancher assiette
+          multiplicateur: PSS proratisé
+          tranches:
+            - taux: taux 1
+              plafond: plafond taux 1
+            - taux: taux 2
+  arrondi: oui
+  unité: €/an
+  références:
     Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
     Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
 
@@ -101,25 +119,6 @@ indépendant . cotisations et contributions . cotisations . maladie:
       valeur: 6.50%
       références:
         Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
-
-indépendant . cotisations et contributions . cotisations . maladie . assurance maladie maternité:
-  description: |
-    Cette cotisation permet de bénéficier de l’ensemble des prestations
-    maladie-maternité gérées par l’assurance maladie et les Cpam :
-
-    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
-    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
-    - une assurance maternité complète en cas de grossesse ou d’adoption ;
-    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
-    souscrire une assurance maladie complémentaire.
-  note: |
-    Pour calculer le montant de la cotisation maladie 1, on soustrait le
-    montant de la cotisation maladie 2 du montant total de la cotisation maladie.
-  non applicable si: situation personnelle . domiciliation fiscale à l'étranger
-  valeur: maladie
-  abattement: indemnités journalières
-  arrondi: oui
-  unité: €/an
 
 indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières:
   description: |
