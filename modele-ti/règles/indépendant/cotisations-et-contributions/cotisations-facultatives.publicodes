@@ -10,6 +10,7 @@ indépendant . cotisations facultatives:
     Ils sont déductible d’impôts (dans la limite d’un plafond), mais non déductible
     pour l’assiette des cotisations et contributions sociales.
   par défaut: non
+  non applicable si: entreprise . imposition . régime . micro-entreprise
   références:
     Je cotise à un contrat Madelin. Quel est mon avantage fiscal ?: https://www.impots.gouv.fr/particulier/questions/je-cotise-un-contrat-madelin-quel-est-mon-avantage-fiscal
     Comment fonctionne le plan d’épargne retraite (PER) individuel ?: https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne
