@@ -4508,6 +4508,9 @@ indépendant . cotisations et contributions . cotisations . retraite complément
     PRCI:
       titre.en: '[automatic] supplementary pension ceiling for self-employed workers'
       titre.fr: plafond retraite complémentaire des indépendants
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
     taux tranche 1:
       titre.en: '[automatic] rate tranche 1'
       titre.fr: taux tranche 1
@@ -4734,45 +4737,44 @@ indépendant . cotisations et contributions . déduction tabac:
     [automatic] If you operate a tobacconist's simultaneously with a commercial
     activity, you have the option of
 
-    you have the option of calculating your old-age insurance contribution
+    you have the option of calculating your basic and supplementary pension contributions
 
-    contributions on the income from your commercial activity alone (in fact, tobacco shop
+    basic pension, supplementary pension and invalidity-death contributions solely on the income
 
-    discounts are subject to a special old-age pension levy).
+    from your business activity. In fact, discounts for tobacconists
 
-    special old-age pension levy). However, please note that
+    are subject to a special pension levy.
 
-    the fact that by contributing on a smaller basis, excluding tobacconist's income, your
 
-    will reduce your pension entitlement under the old-age insurance scheme for
+    Please note, however, that if you exclude tobacconist's revenues
+
+    you contribute on a smaller basis, and your pension entitlements for old-age
 
     will be reduced.
   description.fr: >
     Si vous exercez une activité de débit de tabac simultanément à une activité
 
-    commerciale, vous avez la possibilité d’opter pour le calcul de votre cotisation
+    commerciale, vous avez la possibilité d’opter pour le calcul de vos cotisations
 
-    d’assurance vieillesse sur le seul revenu tiré de votre activité commerciale (en
+    retraite de base, retraite complémentaire et invalidité-décès sur le seul revenu
 
-    effet, les remises pour débit de tabac sont soumises par ailleurs à un
+    tiré de votre activité commerciale. En effet, les remises pour débit de tabac
 
-    prélèvement vieillesse particulier). Nous attirons cependant votre attention sur
+    sont soumises par ailleurs à un prélèvement vieillesse particulier.
 
-    le fait qu’en cotisant sur une base moins importante, excluant les revenus de
 
-    débit de tabac, vos droits à retraite pour l’assurance vieillesse des
+    Nous attirons cependant votre attention sur le fait qu’en excluant les revenus
 
-    commerçants en seront diminués.
-  question.en: '[automatic] How much income from tobacco sales would you like to
-    exempt from old-age pension contributions?'
+    de débit de tabac, vous cotisez sur une base moins importante et vos droits à
+
+    retraite pour l’assurance vieillesse en seront diminués.
+  question.en: '[automatic] How much income from tobacco sales do you want to
+    exempt from old-age and disability contributions?'
   question.fr:
     Quel est le montant des revenus issus de la vente de tabac que vous
-    souhaitez exonérer de cotisation vieillesse ?
+    souhaitez exonérer de cotisations vieillesse et invalidité-décès ?
   titre.en: '[automatic] tobacco deduction'
   titre.fr: déduction tabac
-indépendant . cotisations et contributions . déduction tabac . revenus déduits:
-  titre.en: '[automatic] social base (with tobacco deduction)'
-  titre.fr: assiette sociale (avec déduction tabac)
 indépendant . cotisations et contributions . formation professionnelle:
   avec:
     taux:
