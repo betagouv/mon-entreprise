@@ -33,7 +33,8 @@ indépendant . cotisations et contributions . contributions spéciales:
   description: |
     Certains régimes spéciaux peuvent ajouter des contributions additionnelles
     (par exemple, la CURPS pour les CPAM)
-  formule: non
+  applicable si: PL . PAMC
+  valeur: PL . PAMC . CURPS
 
 indépendant . cotisations et contributions . formation professionnelle:
   acronyme: CFP

@@ -136,7 +136,7 @@ indépendant . PL . CIPAV . invalidité et décès:
       alors: avant 2023
     - sinon:
         produit:
-          - valeur: cotisations et contributions . assiette sociale
+          - valeur: assiette
             unité: €/an
             plancher: assiette minimale . invalidité et décès Cipav
             plafond: 1.85 * PSS proratisé
@@ -145,6 +145,8 @@ indépendant . PL . CIPAV . invalidité et décès:
     L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
 
   avec:
+    assiette: cotisations et contributions . assiette sociale
+
     avant 2023:
       privé: oui
       applicable si: date < 01/2023

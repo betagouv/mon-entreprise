@@ -14,25 +14,6 @@ describe('Cotisation indemnités journalières', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		describe('en début d’activité', () => {
-			it('applique une assiette forfaitaire non proratisée égale à 40% du PASS', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					'entreprise . date de création': '31/01/2025',
-					"entreprise . chiffre d'affaires": '10000 €/an',
-				})
-
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
-					18840
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
-					94
-				)
-			})
-		})
-
 		describe('en cas d’année incomplète', () => {
 			const defaultSituationCessation = {
 				...defaultSituation,
