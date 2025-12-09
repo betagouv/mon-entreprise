@@ -32,7 +32,9 @@ export {
 export { RégimeTag } from './ui/RégimeTag'
 export {
 	compareRégimes,
+	compareApplicabilitéDesRégimes,
 	type RésultatRégimeApplicable,
 	type RésultatRégimeNonApplicable,
+	type RésultatApplicabilité,
 } from './domaine/location-de-meublé/comparateur-régimes'
 export { estActiviteProfessionnelle } from './domaine/location-de-meublé/estActiviteProfessionnelle'
