@@ -14,70 +14,6 @@ describe('Cotisation invalidité et décès', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		describe('en cas d’année incomplète', () => {
-			it('applique une assiette minimale proratisée', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
-					'indépendant . cotisations et contributions . assiette sociale':
-						'1000 €/an',
-				})
-
-				expect(e).toEvaluate(
-					'indépendant . assiette minimale . invalidité et décès',
-					2256
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-					2256
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					29
-				)
-			})
-
-			it('applique le taux de 1,3% à l’assiette sociale lorsqu’elle est comprise entre les assiettes minimale et maximale proratisées', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
-					'indépendant . cotisations et contributions . assiette sociale':
-						'10000 €/an',
-				})
-
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-					10000
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					130
-				)
-			})
-
-			it('applique une assiette maximale proratisée', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
-					'indépendant . cotisations et contributions . assiette sociale':
-						'40000 €/an',
-				})
-
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19614)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-					19614
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					255
-				)
-			})
-		})
-
 		it('applique une assiette minimale égale à 11,5% du PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
@@ -85,14 +21,16 @@ describe('Cotisation invalidité et décès', () => {
 					'1000 €/an',
 			})
 
-			expect(e).toEvaluate(
-				'indépendant . assiette minimale . invalidité et décès',
-				5417
-			)
+			const assietteMinimale = e.evaluate(
+				'indépendant . assiette minimale . invalidité et décès'
+			).nodeValue
+			expect(assietteMinimale).toEqual(5417)
+
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-				5417
+				assietteMinimale
 			)
+
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès',
 				70
@@ -110,6 +48,7 @@ describe('Cotisation invalidité et décès', () => {
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
 				30000
 			)
+
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès',
 				390
@@ -123,10 +62,13 @@ describe('Cotisation invalidité et décès', () => {
 					'50000 €/an',
 			})
 
+			const PASS = e.evaluate('plafond sécurité sociale').nodeValue
+
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-				47100
+				PASS
 			)
+
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès',
 				612
@@ -146,10 +88,6 @@ describe('Cotisation invalidité et décès', () => {
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
 					1000
 				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					13
-				)
 			})
 
 			it('en cas d’activité saisonnière', () => {
@@ -164,9 +102,67 @@ describe('Cotisation invalidité et décès', () => {
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
 					1000
 				)
+			})
+		})
+
+		describe('en cas d’année incomplète', () => {
+			it('applique une assiette minimale proratisée', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					"entreprise . en cessation d'activité": 'oui',
+					'entreprise . date de cessation': '01/06/2025',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+				})
+
+				const assietteMinimale = e.evaluate(
+					'indépendant . assiette minimale . invalidité et décès'
+				).nodeValue
+				expect(assietteMinimale).toEqual(2256)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
+					assietteMinimale
+				)
+			})
+
+			it('applique le taux de 1,3% à l’assiette sociale lorsqu’elle est comprise entre les assiettes minimale et maximale proratisées', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					"entreprise . en cessation d'activité": 'oui',
+					'entreprise . date de cessation': '01/06/2025',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'10000 €/an',
+				})
+
+				expect(e).toEvaluate('indépendant . PSS proratisé', 19614)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
+					10000
+				)
+
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					13
+					130
+				)
+			})
+
+			it('applique une assiette maximale proratisée', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					"entreprise . en cessation d'activité": 'oui',
+					'entreprise . date de cessation': '01/06/2025',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'40000 €/an',
+				})
+
+				const PSSProratisé = e.evaluate('indépendant . PSS proratisé').nodeValue
+				expect(PSSProratisé).toEqual(19614)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
+					PSSProratisé
 				)
 			})
 		})
@@ -364,6 +360,16 @@ describe('Cotisation invalidité et décès', () => {
 						'1000 €/an',
 				})
 
+				const assietteMinimale = e.evaluate(
+					'indépendant . assiette minimale . invalidité et décès Cipav'
+				).nodeValue
+				expect(assietteMinimale).toEqual(17427)
+
+				expect(e).toEvaluate(
+					'indépendant . PL . CIPAV . invalidité et décès . assiette',
+					assietteMinimale
+				)
+
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
 					87
@@ -378,6 +384,11 @@ describe('Cotisation invalidité et décès', () => {
 				})
 
 				expect(e).toEvaluate(
+					'indépendant . PL . CIPAV . invalidité et décès . assiette',
+					50000
+				)
+
+				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
 					250
 				)
@@ -389,6 +400,12 @@ describe('Cotisation invalidité et décès', () => {
 					'indépendant . cotisations et contributions . assiette sociale':
 						'100000 €/an',
 				})
+
+				const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
+				expect(e).toEvaluate(
+					'indépendant . PL . CIPAV . invalidité et décès . assiette',
+					1.85 * PASS
+				)
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
@@ -406,8 +423,8 @@ describe('Cotisation invalidité et décès', () => {
 					})
 
 					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-						5
+						'indépendant . PL . CIPAV . invalidité et décès . assiette',
+						1000
 					)
 				})
 
@@ -420,8 +437,8 @@ describe('Cotisation invalidité et décès', () => {
 					})
 
 					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-						5
+						'indépendant . PL . CIPAV . invalidité et décès . assiette',
+						1000
 					)
 				})
 			})
