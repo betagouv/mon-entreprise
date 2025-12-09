@@ -4774,6 +4774,10 @@ indépendant . cotisations et contributions . déduction tabac . revenus déduit
   titre.en: '[automatic] social base (with tobacco deduction)'
   titre.fr: assiette sociale (avec déduction tabac)
 indépendant . cotisations et contributions . formation professionnelle:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   note.en: '[automatic] The rate is not increased for artisans with a
     collaborating spouse'
   note.fr: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
