@@ -192,7 +192,7 @@ export function CasParticuliers() {
 							La documentation{' '}
 							<Link
 								href="https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp"
-								aria-label="Cotisations AT/MP"
+								aria-label="Cotisations AT/MP, nouvelle fenêtre"
 							>
 								Cotisations AT/MP
 							</Link>{' '}
