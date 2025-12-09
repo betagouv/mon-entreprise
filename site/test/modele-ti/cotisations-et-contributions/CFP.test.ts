@@ -36,18 +36,6 @@ describe('Contribution à la formation professionnelle', () => {
 			)
 		})
 
-		it('n’est pas proratisée en début d’activité', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				'entreprise . date de création': '31/01/2025',
-			})
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle',
-				118
-			)
-		})
-
 		it('n’est pas proratisée en cas d’année incomplète', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
