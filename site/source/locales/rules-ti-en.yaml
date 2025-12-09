@@ -4381,77 +4381,16 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 indépendant . cotisations et contributions . cotisations . maladie:
-  avec:
-    plafond taux 1:
-      titre.en: '[automatic] ceiling rate 1'
-      titre.fr: plafond taux 1
-    plancher assiette:
-      titre.en: '[automatic] floor plate'
-      titre.fr: plancher assiette
-    taux 1:
-      titre.en: '[automatic] rate 1'
-      titre.fr: taux 1
-    taux 2:
-      titre.en: '[automatic] rate 2'
-      titre.fr: taux 2
-  description.en: >
-    [automatic] The amount of the contribution for health and maternity
-    insurance cover
-
-    and maternity insurance contains two components:
-
-    - sickness contribution 1 (sickness and maternity insurance)
-
-    - sickness contribution 2 (daily sickness benefits)
+  description.en: |
+    [automatic] The health contribution comprises two components:
+    - the sickness-maternity contribution (sickness 1)
+    - the daily allowance contribution (sickness 2).
   description.fr: |
-    Le montant de la cotisation pour la couverture des risques d’assurance
-    maladie et maternité contient deux composantes :
-    - la cotisation maladie 1 (assurance maladie et maternité)
-    - la cotisation maladie 2 (indemnités journalières maladie)
+    Le montant de la cotisation maladie contient deux composantes :
+    - la cotisation maladie-maternité (maladie 1)
+    - la cotisation indemnités journalières (maladie 2)
   titre.en: '[automatic] disease'
   titre.fr: maladie
-indépendant . cotisations et contributions . cotisations . maladie . assurance maladie maternité:
-  description.en: >
-    [automatic] This contribution entitles the member to all benefits
-
-    health and maternity benefits managed by the health insurance scheme and the Cpam :
-
-
-    - health cover for the insured and his/her family members, identical to that of salaried employees
-
-    same rates and conditions of reimbursement);
-
-    - comprehensive maternity insurance in the event of pregnancy or adoption;
-
-    - supplementary health insurance for those on low incomes, or assistance in obtaining
-
-    supplementary health insurance.
-  description.fr: >
-    Cette cotisation permet de bénéficier de l’ensemble des prestations
-
-    maladie-maternité gérées par l’assurance maladie et les Cpam :
-
-
-    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
-
-    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
-
-    - une assurance maternité complète en cas de grossesse ou d’adoption ;
-
-    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
-
-    souscrire une assurance maladie complémentaire.
-  note.en: >
-    [automatic] To calculate the amount of health contribution 1, the amount of
-    health contribution 2 is subtracted from the total health contribution.
-
-    health contribution 2 from the total health contribution.
-  note.fr: >
-    Pour calculer le montant de la cotisation maladie 1, on soustrait le
-
-    montant de la cotisation maladie 2 du montant total de la cotisation maladie.
-  titre.en: '[automatic] health and maternity insurance'
-  titre.fr: assurance maladie maternité
 indépendant . cotisations et contributions . cotisations . maladie . domiciliation fiscale étranger:
   description.en: >
     [automatic] In return for CSG exemption, contributors pay a higher sickness
@@ -4507,6 +4446,52 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
     caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
+indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité:
+  avec:
+    plafond taux 1:
+      titre.en: '[automatic] ceiling rate 1'
+      titre.fr: plafond taux 1
+    plancher assiette:
+      titre.en: '[automatic] floor plate'
+      titre.fr: plancher assiette
+    taux 1:
+      titre.en: '[automatic] rate 1'
+      titre.fr: taux 1
+    taux 2:
+      titre.en: '[automatic] rate 2'
+      titre.fr: taux 2
+  description.en: >
+    [automatic] This contribution entitles the member to all benefits
+
+    health and maternity benefits managed by the health insurance scheme and the Cpam :
+
+
+    - health cover for the insured and his/her family members, identical to that of salaried employees
+
+    same rates and conditions of reimbursement);
+
+    - comprehensive maternity insurance in the event of pregnancy or adoption;
+
+    - supplementary health insurance for those on low incomes, or assistance in obtaining
+
+    supplementary health insurance.
+  description.fr: >
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
+
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
+
+
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
+
+    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
+
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
+
+    souscrire une assurance maladie complémentaire.
+  titre.en: '[automatic] illness-maternity'
+  titre.fr: maladie-maternité
 indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   avec:
     PRCI:
