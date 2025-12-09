@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { Emoji } from '../../../emoji'
 import { InfoButton } from '../../../InfoButton'
@@ -62,8 +61,6 @@ type CheckBoxOptionProps = {
 }
 
 function CheckBoxOption({ option, onChange }: CheckBoxOptionProps) {
-	const { t } = useTranslation()
-
 	return (
 		<>
 			<Checkbox
@@ -78,9 +75,6 @@ function CheckBoxOption({ option, onChange }: CheckBoxOptionProps) {
 					light
 					title={option.label}
 					description={option.description}
-					aria-label={t("Plus d'informations sur {{ title }}", {
-						title: option.label,
-					})}
 				/>
 			)}
 			<br />
