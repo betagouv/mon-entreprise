@@ -1,22 +1,14 @@
 import { pipe } from 'effect'
-import * as Option from 'effect/Option'
 
 import { estPlusGrandOuÉgalÀ } from '@/domaine/Montant'
 
-import {
-	SituationMeubléDeTourismeValide,
-	situationParDéfaut,
-} from './situation'
+import { SituationMeubléAvecAutresRevenus } from './situation'
 
 export function estActivitéPrincipale(
-	situation: SituationMeubléDeTourismeValide
+	situation: SituationMeubléAvecAutresRevenus
 ): boolean {
 	const recettes = situation.recettes.value
-
-	const autresRevenus = Option.getOrElse(
-		situation.autresRevenus,
-		() => situationParDéfaut.autresRevenus
-	)
+	const autresRevenus = situation.autresRevenus.value
 
 	return pipe(recettes, estPlusGrandOuÉgalÀ(autresRevenus))
 }
