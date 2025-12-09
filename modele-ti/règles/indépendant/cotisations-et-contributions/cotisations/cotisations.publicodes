@@ -294,6 +294,9 @@ indépendant . cotisations et contributions . cotisations . retraite de base . t
       valeur: assiette sociale
       plancher: assiette minimale . retraite
       plafond: PSS proratisé
+      abattement:
+        applicable si: déduction tabac
+        valeur: déduction tabac
       références:
         Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
         Article D633-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838330
@@ -326,6 +329,9 @@ indépendant . cotisations et contributions . cotisations . retraite de base . t
       plafond:
         applicable si: PL . réglementée
         valeur: 5 * PSS proratisé
+      abattement:
+        applicable si: déduction tabac
+        valeur: déduction tabac
       références:
         Article D633-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838330
         Article D642-4 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838321
@@ -358,7 +364,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
       alors: PL . CNAVPL . retraite complémentaire
     - sinon:
         barème:
-          assiette: assiette sociale
+          assiette: assiette
           tranches:
             - taux: taux tranche 1
               plafond:
@@ -375,6 +381,12 @@ indépendant . cotisations et contributions . cotisations . retraite complément
     Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
 
   avec:
+    assiette:
+      valeur: assiette sociale
+      abattement:
+        applicable si: déduction tabac
+        valeur: déduction tabac
+
     taux tranche 1:
       variations:
         - si: après réforme
@@ -434,6 +446,9 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
       valeur: assiette sociale
       plancher: assiette minimale . invalidité et décès
       plafond: PSS proratisé
+      abattement:
+        applicable si: déduction tabac
+        valeur: déduction tabac
 
 indépendant . cotisations et contributions . cotisations . PCV:
   titre: Prestations complémentaires vieillesse
