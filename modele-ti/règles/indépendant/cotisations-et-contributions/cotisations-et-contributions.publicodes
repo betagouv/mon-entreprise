@@ -41,21 +41,24 @@ indépendant . cotisations et contributions . formation professionnelle:
   titre: contribution à la formation professionnelle
   produit:
     - plafond sécurité sociale
-    - variations:
-        - si: entreprise . activité . artisanale
-          alors: 0.29%
-        - si: conjoint collaborateur
-          alors: 0.34%
-        - sinon: 0.25%
+    - taux
   unité: €/an
   arrondi: oui
   note: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
-
   références:
     Contribution à la formation professionnelle (CFP): https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-formation-professionnelle
     Contribution à la formation professionnelle (CFP) des entrepreneurs individuels: https://entreprendre.service-public.fr/vosdroits/F23459
     Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
     Article L6331-48 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044056633
+
+  avec:
+    taux:
+      variations:
+        - si: entreprise . activité . artisanale
+          alors: 0.29%
+        - si: conjoint collaborateur
+          alors: 0.34%
+        - sinon: 0.25%
 
 indépendant . cotisations et contributions . après réforme:
   valeur: date >= 01/2025
