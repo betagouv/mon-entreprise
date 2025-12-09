@@ -12,7 +12,6 @@ export interface InfoButtonProps {
 	children?: ReactNode
 	className?: string
 	onClick?: () => void
-	'aria-label'?: string
 }
 
 export function InfoButton({
@@ -23,7 +22,6 @@ export function InfoButton({
 	children,
 	className,
 	onClick,
-	'aria-label': ariaLabel,
 }: InfoButtonProps) {
 	const { t } = useTranslation()
 
@@ -39,12 +37,9 @@ export function InfoButton({
 			bigPopover={bigPopover}
 			className={className || 'print-hidden'}
 			aria-haspopup="dialog"
-			aria-label={
-				ariaLabel ??
-				t("Plus d'infos sur {{ title }}", {
-					title,
-				})
-			}
+			aria-label={t('Info sur {{ title }}', {
+				title,
+			})}
 			onClick={onClick}
 		>
 			{description && typeof description === 'string' ? (
