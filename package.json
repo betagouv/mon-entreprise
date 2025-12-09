@@ -72,6 +72,9 @@
 		"node": "^18"
 	},
 	"dependenciesMeta": {
+		"@sentry/cli": {
+			"built": true
+		},
 		"@swc/core": {
 			"built": true
 		},
