@@ -14,26 +14,6 @@ describe('Cotisation retraite de base', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		describe.skip('en début d’activité', () => {
-			it('applique une assiette forfaitaire proratisée égale à 19% du PASS', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					'entreprise . date de création': '31/01/2025',
-					"entreprise . chiffre d'affaires": '10000 €/an',
-				})
-
-				expect(e).toEvaluate('indépendant . PSS proratisé', 43100)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
-					8189
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base',
-					1463
-				)
-			})
-		})
-
 		describe('en cas d’année incomplète', () => {
 			describe('avec une durée d’activité inférieure à 90 jours', () => {
 				it('n’applique pas d’assiette minimale', () => {
