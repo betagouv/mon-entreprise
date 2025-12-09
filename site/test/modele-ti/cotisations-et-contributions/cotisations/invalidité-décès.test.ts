@@ -166,6 +166,22 @@ describe('Cotisation invalidité et décès', () => {
 				)
 			})
 		})
+
+		it('applique la déduction tabac à l’assiette sociale', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+				'entreprise . activité . commerciale . débit de tabac': 'oui',
+				'indépendant . cotisations et contributions . déduction tabac':
+					'10000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
+				20000
+			)
+		})
 	})
 
 	describe('pour les PLR', () => {
