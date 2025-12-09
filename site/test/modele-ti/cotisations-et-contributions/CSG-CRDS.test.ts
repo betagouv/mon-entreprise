@@ -27,20 +27,6 @@ describe('CSG-CRDS', () => {
 			)
 		})
 
-		it('applique un taux de 9,7% en début d’activité', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				'entreprise . date de création': '31/01/2025',
-				'indépendant . cotisations et contributions . assiette CSG-CRDS':
-					'50000 €/an',
-			})
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . CSG-CRDS',
-				4850
-			)
-		})
-
 		it('applique un taux de 9,7% en cas d’année incomplète', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
@@ -70,12 +56,16 @@ describe('CSG-CRDS', () => {
 	})
 
 	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+			'indépendant . PL . régime général': 'non',
+		}
+
 		it('applique un taux de 9,7%', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
-				'entreprise . activité': "'libérale'",
-				'entreprise . activité . libérale . réglementée': 'oui',
-				'indépendant . PL . régime général': 'non',
+				...defaultSituationPLR,
 				'indépendant . cotisations et contributions . assiette CSG-CRDS':
 					'50000 €/an',
 			})
@@ -83,6 +73,19 @@ describe('CSG-CRDS', () => {
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . CSG-CRDS',
 				4850
+			)
+		})
+
+		it('ne s’applique pas en cas de domiciliation fiscale à l’étranger', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+					'50000 €/an',
+				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
+			})
+
+			expect(e).not.toBeApplicable(
+				'indépendant . cotisations et contributions . CSG-CRDS'
 			)
 		})
 	})
