@@ -132,7 +132,7 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
     caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
   non applicable si:
     une de ces conditions:
-      - situation personnelle . domiciliation fiscale à l'étranger
+      - est applicable: domiciliation fiscale étranger
       - PL . CNBF
   produit:
     - assiette
@@ -183,8 +183,13 @@ indépendant . cotisations et contributions . cotisations . maladie . domiciliat
     maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
     ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
     fonction du revenu déclaré.
-  applicable si: situation personnelle . domiciliation fiscale à l'étranger
-  non applicable si: PL . PAMC
+  note: |
+    Ce taux spécifique ne s’applique pas aux praticiens et auxiliaires médicaux
+    conventionnés dont la résidence fiscale est à l’étranger.
+  applicable si:
+    toutes ces conditions:
+      - situation personnelle . domiciliation fiscale à l'étranger
+      - PL . PAMC = non
   produit:
     - assiette sociale
     - 14.5%

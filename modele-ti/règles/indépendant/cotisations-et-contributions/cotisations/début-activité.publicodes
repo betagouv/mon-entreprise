@@ -18,7 +18,7 @@ indépendant . cotisations et contributions . début activité:
 
   note: La base forfaitaire s’élève à **19 % du plafond annuel de la Sécurité sociale**
     au titre de la première et de la deuxième année d’activité (à l’exception de la
-    cotisation Maladie et indemnités journalières pour lesquelles l’assiette
+    cotisation indemnités journalières pour lesquelles l’assiette
     forfaitaire est égale à 40 % du plafond annuel de la Sécurité sociale).
 
   applicable si: entreprise . date de création >= période . début d'année
@@ -27,8 +27,9 @@ indépendant . cotisations et contributions . début activité:
   contexte:
     assiette sociale: assiette forfaitaire
     assiette CSG-CRDS: assiette forfaitaire
-    cotisations facultatives: non
     cotisations . maladie . indemnités journalières . assiette: assiette forfaitaire indemnités journalières
+    PL . CIPAV . invalidité et décès . assiette: assiette forfaitaire invalidité décès Cipav
+    cotisations facultatives: non
 
   références:
     'Indépendant : Comment sont calculées vos cotisations ?': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#ancre-le-calcul-vos-cotisations
@@ -47,5 +48,12 @@ indépendant . cotisations et contributions . début activité:
       produit:
         - plafond sécurité sociale
         - 40%
+      arrondi: oui
+      unité: €/an
+
+    assiette forfaitaire invalidité décès Cipav:
+      produit:
+        - PSS proratisé
+        - 37%
       arrondi: oui
       unité: €/an
