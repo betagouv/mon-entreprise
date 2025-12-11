@@ -105,6 +105,7 @@ describe('Cotisation invalidité et décès', () => {
 			})
 		})
 
+		// Exemples issus de la doc Urssaf
 		describe('en cas d’année incomplète', () => {
 			it('applique une assiette minimale proratisée', () => {
 				const e = engine.setSituation({
@@ -123,6 +124,34 @@ describe('Cotisation invalidité et décès', () => {
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
 					assietteMinimale
+				)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+					29
+				)
+			})
+
+			it('applique une assiette maximale proratisée', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					"entreprise . en cessation d'activité": 'oui',
+					'entreprise . date de cessation': '01/06/2025',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'40000 €/an',
+				})
+
+				const PSSProratisé = e.evaluate('indépendant . PSS proratisé').nodeValue
+				expect(PSSProratisé).toEqual(19614)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
+					PSSProratisé
+				)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+					255
 				)
 			})
 
@@ -145,24 +174,6 @@ describe('Cotisation invalidité et décès', () => {
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
 					130
-				)
-			})
-
-			it('applique une assiette maximale proratisée', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
-					'indépendant . cotisations et contributions . assiette sociale':
-						'40000 €/an',
-				})
-
-				const PSSProratisé = e.evaluate('indépendant . PSS proratisé').nodeValue
-				expect(PSSProratisé).toEqual(19614)
-
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-					PSSProratisé
 				)
 			})
 		})
