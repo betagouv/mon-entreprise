@@ -158,22 +158,6 @@ indépendant . PL . régime général . taux spécifique retraite complémentair
     réglementées. En revanche, ce taux spécifique continuera de s'appliquer si
     vous en avez fait la demande avant cette date.
 
-  références:
-    Guide PL urssaf: https://www.urssaf.fr/portail/files/live/sites/urssaf/files/documents/Diaporama_TI_statuts_hors_AE.pdf
-
-indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
-  remplace: cotisations et contributions . cotisations . retraite complémentaire
-  formule:
-    barème:
-      assiette: cotisations et contributions . assiette sociale
-      multiplicateur: plafond sécurité sociale
-      tranches:
-        - taux: 0%
-          plafond: 1
-        - taux: 14%
-          plafond: 4
-    arrondi: oui
-
 indépendant . PL . maladie:
   description: |
     Cotisation maladie pour les professions libérales réglementées
