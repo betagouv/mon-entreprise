@@ -367,6 +367,17 @@ indépendant . cotisations et contributions . cotisations . retraite complément
   variations:
     - si: PL . CNAVPL
       alors: PL . CNAVPL . retraite complémentaire
+    - si: PL . régime général . taux spécifique retraite complémentaire
+      alors:
+        barème:
+          assiette: assiette
+          multiplicateur: PSS proratisé
+          tranches:
+            - taux: 0%
+              plafond: 1
+            - taux: 14%
+              plafond: 4
+        arrondi: oui
     - sinon:
         barème:
           assiette: assiette
