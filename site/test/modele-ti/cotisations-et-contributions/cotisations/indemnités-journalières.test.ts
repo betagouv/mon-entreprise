@@ -111,6 +111,7 @@ describe('Cotisation indemnités journalières', () => {
 			})
 		})
 
+		// Exemples issus de la doc Urssaf
 		describe('en cas d’année incomplète', () => {
 			const defaultSituationCessation = {
 				...defaultSituation,
@@ -134,6 +135,11 @@ describe('Cotisation indemnités journalières', () => {
 					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
 					assietteMinimale
 				)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					94
+				)
 			})
 
 			it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 5 PASS non proratisé', () => {
@@ -146,6 +152,11 @@ describe('Cotisation indemnités journalières', () => {
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
 					30000
+				)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					150
 				)
 			})
 
@@ -160,6 +171,11 @@ describe('Cotisation indemnités journalières', () => {
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
 					5 * PASS
+				)
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					1178
 				)
 			})
 		})
