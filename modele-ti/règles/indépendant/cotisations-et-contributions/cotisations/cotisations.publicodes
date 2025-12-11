@@ -225,17 +225,18 @@ indépendant . cotisations et contributions . cotisations . allocations familial
   avec:
     taux:
       arrondi: 2 décimales
-      taux progressif:
-        assiette: assiette sociale
-        multiplicateur:
-          produit:
-            - plafond sécurité sociale
-            - entreprise . prorata temporis
-        tranches:
-          - plafond: 110%
-            taux: 0%
-          - plafond: 140%
-            taux: 3.10%
+      variations:
+        - si: établissement . commune . département . outre-mer
+          alors: 3.10%
+        - sinon:
+            taux progressif:
+              assiette: assiette sociale
+              multiplicateur: PSS proratisé
+              tranches:
+                - plafond: 110%
+                  taux: 0%
+                - plafond: 140%
+                  taux: 3.10%
 
 indépendant . cotisations et contributions . cotisations . retraite de base:
   description: |
