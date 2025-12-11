@@ -3625,9 +3625,6 @@ indépendant . PL . régime général . taux spécifique retraite complémentair
     complémentaire ?
   titre.en: '[automatic] specific supplementary pension rate'
   titre.fr: taux spécifique retraite complémentaire
-indépendant . PL . régime général . taux spécifique retraite complémentaire . montant:
-  titre.en: '[automatic] amount'
-  titre.fr: montant
 indépendant . PL . réglementée:
   titre.en: '[automatic] regulated'
   titre.fr: réglementée
