@@ -294,6 +294,26 @@ describe('Cotisation maladie', () => {
 			})
 		})
 
+		describe('pour les DROM', () => {
+			it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					'établissement . commune . département . outre-mer': 'oui',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'60000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . taux 1',
+					8.5
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
+					5100
+				)
+			})
+		})
+
 		describe('en cas de domiciliation fiscale à l’étranger', () => {
 			it('applique un taux de 14,5%', () => {
 				const e = engine.setSituation({
@@ -436,6 +456,24 @@ describe('Cotisation maladie', () => {
 			expect(e7).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
 				12576
+			)
+		})
+
+		it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS pour les DROM', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'établissement . commune . département . outre-mer': 'oui',
+				'indépendant . cotisations et contributions . assiette sociale':
+					'60000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . taux 1',
+				8.5
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
+				5100
 			)
 		})
 
