@@ -165,6 +165,70 @@ describe('Cotisation retraite complémentaire', () => {
 				20000
 			)
 		})
+
+		describe('en cas de taux spécifiques PLNR', () => {
+			it('applique un taux tranche 1 nul en cas d’assiette sociale inférieure au PASS', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					'entreprise . activité': "'libérale'",
+					'entreprise . date de création': '19/07/2018',
+					'indépendant . PL . option régime général': 'oui',
+					'indépendant . PL . régime général . taux spécifique retraite complémentaire':
+						'oui',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'10000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
+					0
+				)
+			})
+
+			it('applique le taux tranche 2 à la partie de l’assiette sociale supérieure au PASS en cas d’assiette sociale comprise entre 1 et 4 PASS', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					'entreprise . activité': "'libérale'",
+					'entreprise . date de création': '19/07/2018',
+					'indépendant . PL . option régime général': 'oui',
+					'indépendant . PL . régime général . taux spécifique retraite complémentaire':
+						'oui',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'100000 €/an',
+				})
+
+				// Tranche 1 : 0 €
+				// Tranche 2 :
+				// assiette sociale - 1 PASS = 100 000 €/an - 47 100 €/an = 52 900 €/an
+				// (assiette sociale - 1 PASS) x taux tranche 2 = 52 900 €/an x 14% = 7 406 €/an
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
+					7406
+				)
+			})
+
+			it('applique le taux tranche 2 à 3 PASS en cas d’assiette sociale supérieure à 4 PASS', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					'entreprise . activité': "'libérale'",
+					'entreprise . date de création': '19/07/2018',
+					'indépendant . PL . option régime général': 'oui',
+					'indépendant . PL . régime général . taux spécifique retraite complémentaire':
+						'oui',
+					'indépendant . cotisations et contributions . assiette sociale':
+						'200000 €/an',
+				})
+
+				// Tranche 1 : 0 €
+				// Tranche 2 :
+				// 3 PASS = 3 x 47 100 €/an = 141 300 €/an
+				// 3 PASS x taux tranche 2 = 141 300 €/an x 14% = 19 782 €/an
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
+					19782
+				)
+			})
+		})
 	})
 
 	describe('pour les PLR', () => {
