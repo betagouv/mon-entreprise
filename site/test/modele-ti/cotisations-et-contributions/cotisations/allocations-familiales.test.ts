@@ -120,6 +120,58 @@ describe('Cotisation allocations familiales', () => {
 				)
 			})
 		})
+
+		it('applique un taux fixe de 3,1% pour les DROM', () => {
+			const defaultSituationDOM = {
+				...defaultSituation,
+				'établissement . commune . département . outre-mer': 'oui',
+			}
+
+			const e1 = engine.setSituation({
+				...defaultSituationDOM,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'50000 €/an',
+			})
+
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				1550
+			)
+
+			const e2 = engine.setSituation({
+				...defaultSituationDOM,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'60000 €/an',
+			})
+
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				1860
+			)
+
+			const e3 = engine.setSituation({
+				...defaultSituationDOM,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'70000 €/an',
+			})
+
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				2170
+			)
+		})
 	})
 
 	describe('pour les PLR', () => {
@@ -163,6 +215,58 @@ describe('Cotisation allocations familiales', () => {
 
 			const e3 = engine.setSituation({
 				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'70000 €/an',
+			})
+
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e3).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				2170
+			)
+		})
+
+		it('applique un taux fixe de 3,1% dans les DROM', () => {
+			const defaultSituationDOM = {
+				...defaultSituation,
+				'établissement . commune . département . outre-mer': 'oui',
+			}
+
+			const e1 = engine.setSituation({
+				...defaultSituationDOM,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'50000 €/an',
+			})
+
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e1).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				1550
+			)
+
+			const e2 = engine.setSituation({
+				...defaultSituationDOM,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'60000 €/an',
+			})
+
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				3.1
+			)
+			expect(e2).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . allocations familiales',
+				1860
+			)
+
+			const e3 = engine.setSituation({
+				...defaultSituationDOM,
 				'indépendant . cotisations et contributions . assiette sociale':
 					'70000 €/an',
 			})
