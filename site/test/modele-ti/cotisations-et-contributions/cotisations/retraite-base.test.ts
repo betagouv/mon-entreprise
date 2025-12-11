@@ -128,6 +128,7 @@ describe('Cotisation retraite de base', () => {
 			)
 		})
 
+		// Exemples issus de la doc Urssaf
 		describe('en cas d’année incomplète', () => {
 			describe('avec une durée d’activité inférieure à 90 jours', () => {
 				it('n’applique pas d’assiette minimale', () => {
@@ -146,6 +147,11 @@ describe('Cotisation retraite de base', () => {
 						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
 						1000
 					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						179
+					)
 				})
 
 				it('applique un plafond tranche 1 proratisé', () => {
@@ -159,6 +165,7 @@ describe('Cotisation retraite de base', () => {
 					const PASSProratisé = e.evaluate(
 						'indépendant . PSS proratisé'
 					).nodeValue
+					expect(PASSProratisé).toEqual(7742)
 
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
@@ -169,6 +176,11 @@ describe('Cotisation retraite de base', () => {
 						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
 						40000
 					)
+
+					const retraiteDeBase = e.evaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base'
+					).nodeValue as number
+					expect(Math.abs(retraiteDeBase - (1383 + 232))).toBeLessThanOrEqual(1)
 				})
 			})
 
@@ -195,6 +207,11 @@ describe('Cotisation retraite de base', () => {
 						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
 						assietteMinimale
 					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						955
+					)
 				})
 
 				it('applique un plafond tranche 1 proratisé', () => {
@@ -217,6 +234,11 @@ describe('Cotisation retraite de base', () => {
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
 						50000
+					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						2767 + 249
 					)
 				})
 			})
