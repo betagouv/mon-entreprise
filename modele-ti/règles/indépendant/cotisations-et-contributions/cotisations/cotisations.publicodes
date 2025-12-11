@@ -83,22 +83,26 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
       variations:
         - si: après réforme
           alors:
-            taux progressif:
-              assiette: assiette sociale
-              multiplicateur: PSS proratisé
-              tranches:
-                - taux: 0%
-                  plafond: 20%
-                - taux: 1.50%
-                  plafond: 40%
-                - taux: 4.00%
-                  plafond: 60%
-                - taux: 6.50%
-                  plafond: 110%
-                - taux: 7.70%
-                  plafond: 200%
-                - taux: 8.50%
-                  plafond: 300%
+            variations:
+              - si: établissement . commune . département . outre-mer
+                alors: 8.50%
+              - sinon:
+                  taux progressif:
+                    assiette: assiette sociale
+                    multiplicateur: PSS proratisé
+                    tranches:
+                      - taux: 0%
+                        plafond: 20%
+                      - taux: 1.50%
+                        plafond: 40%
+                      - taux: 4.00%
+                        plafond: 60%
+                      - taux: 6.50%
+                        plafond: 110%
+                      - taux: 7.70%
+                        plafond: 200%
+                      - taux: 8.50%
+                        plafond: 300%
         - sinon:
             taux progressif:
               assiette: assiette sociale
