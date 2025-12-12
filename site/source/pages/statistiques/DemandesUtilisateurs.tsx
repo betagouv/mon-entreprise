@@ -73,7 +73,7 @@ function Pagination({ title, items }: PaginationProps) {
 					<Issue key={`issue-${item.number}`} {...item} />
 				))}
 			</Ul>
-			<nav aria-label={`Navigation pour ${title}`} role='navigation'>
+			<nav aria-label={`Navigation pour ${title}`} role="navigation">
 				<Pager>
 					{[...Array(Math.ceil(items.length / 10)).keys()].map((i) => (
 						<li key={i}>
