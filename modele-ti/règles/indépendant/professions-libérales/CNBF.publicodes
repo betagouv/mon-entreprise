@@ -34,9 +34,7 @@ indépendant . PL . CNBF . retraite de base:
                   alors: 351 €/an
                 - si: date >= 01/2024
                   alors: 337 €/an
-                - si: date >= 01/2023
-                  alors: 324 €/an
-                - sinon: 303 €/an
+                - sinon: 324 €/an
             plafond: 1 an
           - montant:
               variations:
@@ -44,9 +42,7 @@ indépendant . PL . CNBF . retraite de base:
                   alors: 705 €/an
                 - si: date >= 01/2024
                   alors: 677 €/an
-                - si: date >= 01/2023
-                  alors: 651 €/an
-                - sinon: 608 €/an
+                - sinon: 651 €/an
             plafond: 2 an
           - montant:
               variations:
@@ -54,9 +50,7 @@ indépendant . PL . CNBF . retraite de base:
                   alors: 1106 €/an
                 - si: date >= 01/2024
                   alors: 1062 €/an
-                - si: date >= 01/2023
-                  alors: 1021 €/an
-                - sinon: 954 €/an
+                - sinon: 1021 €/an
             plafond: 3 an
           - montant:
               variations:
@@ -64,9 +58,7 @@ indépendant . PL . CNBF . retraite de base:
                   alors: 1505 €/an
                 - si: date >= 01/2024
                   alors: 1446 €/an
-                - si: date >= 01/2023
-                  alors: 1390 €/an
-                - sinon: 1299 €/an
+                - sinon: 1390 €/an
             plafond: 5 an
           - montant:
               variations:
@@ -74,9 +66,7 @@ indépendant . PL . CNBF . retraite de base:
                   alors: 1921 €/an
                 - si: date >= 01/2024
                   alors: 1845 €/an
-                - si: date >= 01/2023
-                  alors: 1774 €/an
-                - sinon: 1658 €/an
+                - sinon: 1774 €/an
 
     cotisation proportionnelle:
       produit:
@@ -98,9 +88,7 @@ indépendant . PL . CNBF . retraite complémentaire:
                     alors: 5.2%
                   - si: date >= 01/2024
                     alors: 5%
-                  - si: date >= 01/2023
-                    alors: 4.8%
-                  - sinon: 4.6%
+                  - sinon: 4.8%
             - si: classe = 'C2'
               alors:
                 variations:
@@ -108,8 +96,7 @@ indépendant . PL . CNBF . retraite complémentaire:
                     alors: 6%
                   - si: date >= 01/2024
                     alors: 5.5%
-                  - si: date >= 01/2023
-                    alors: 5.4%
+                  - sinon: 5.4%
             - si: classe = 'C2P'
               alors: 6%
         plafond: 1
@@ -122,9 +109,7 @@ indépendant . PL . CNBF . retraite complémentaire:
                     alors: 10%
                   - si: date >= 01/2024
                     alors: 9.6%
-                  - si: date >= 01/2023
-                    alors: 9.2%
-                  - sinon: 8.8%
+                  - sinon: 9.2%
             - si: classe = 'C2'
               alors:
                 variations:
@@ -145,9 +130,7 @@ indépendant . PL . CNBF . retraite complémentaire:
                     alors: 11.7%
                   - si: date >= 01/2024
                     alors: 11.2%
-                  - si: date >= 01/2023
-                    alors: 10.7%
-                  - sinon: 10.2%
+                  - sinon: 10.7%
             - si: classe = 'C2'
               alors:
                 variations:
@@ -168,9 +151,7 @@ indépendant . PL . CNBF . retraite complémentaire:
                     alors: 13.4%
                   - si: date >= 01/2024
                     alors: 12.8%
-                  - si: date >= 01/2023
-                    alors: 12.2%
-                  - sinon: 11.6%
+                  - sinon: 12.2%
             - si: classe = 'C2'
               alors:
                 variations:
@@ -191,9 +172,7 @@ indépendant . PL . CNBF . retraite complémentaire:
                     alors: 15.1%
                   - si: date >= 01/2024
                     alors: 14.4%
-                  - si: date >= 01/2023
-                    alors: 13.7%
-                  - sinon: 13%
+                  - sinon: 13.7%
             - si: classe = 'C2'
               alors:
                 variations:
@@ -201,15 +180,13 @@ indépendant . PL . CNBF . retraite complémentaire:
                     alors: 17.9%
                   - si: date >= 01/2024
                     alors: 16.15%
-                  - si: date >= 01/2023
-                    alors: 15.8%
+                  - sinon: 15.8%
             - si: classe = 'C2P'
               alors:
                 variations:
                   - si: date >= 01/2025
                     alors: 20.4%
-                  - si: date >= 01/2023
-                    alors: 17.9%
+                  - sinon: 17.9%
         plafond: 5
   arrondi: oui
   note: |
@@ -255,18 +232,14 @@ indépendant . PL . CNBF . invalidité et décès:
               alors: 68 €/an
             - si: date >= 01/2024
               alors: 65 €/an
-            - si: date >= 01/2023
-              alors: 62 €/an
-            - sinon: 58 €/an
+            - sinon: 62 €/an
       - sinon:
           variations:
             - si: date >= 01/2025
               alors: 170 €/an
             - si: date >= 01/2024
               alors: 162 €/an
-            - si: date >= 01/2023
-              alors: 153 €/an
-            - sinon: 145 €/an
+            - sinon: 153 €/an
   références:
     Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
     Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
