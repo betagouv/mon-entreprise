@@ -18,64 +18,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     # BPI ONLY
     'Acre : aide aux créateurs et repreneurs d’entreprise': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
 
-  avec:
-    allocations familiales:
-      remplace: cotisations . allocations familiales
-      valeur: cotisations . allocations familiales
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    indemnités journalières:
-      # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      non applicable si: pension invalidité . exonération >= prorata sur l'année
-      remplace:
-        références à: cotisations . maladie . indemnités journalières
-        priorité: 10
-        sauf dans:
-          - cotisations . maladie
-          - cotisations . maladie . indemnités journalières . assiette
-      valeur: cotisations . maladie . indemnités journalières
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    invalidité et décès:
-      # On préfère l'exonération âge car elle est plus avantageuse
-      non applicable si: exonérations . âge
-      remplace:
-        références à: cotisations . invalidité et décès
-        priorité: 10
-      valeur: cotisations . invalidité et décès
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    maladie:
-      # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      non applicable si: pension invalidité . exonération >= prorata sur l'année
-      remplace:
-        références à: cotisations . maladie
-        priorité: 10
-        sauf dans:
-          - cotisations . maladie
-          - cotisations . maladie . maladie-maternité . taux 1
-      valeur: cotisations . maladie
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
-    retraite de base:
-      non applicable si:
-        une de ces conditions:
-          # On préfère l'exonération incapacité car cette dernière est plus avantageuse
-          - PL . CNAVPL . exonération incapacité
-          # On préfère l'exonération pension invalidité si elle est plus avantageuse
-          - pension invalidité . exonération >= prorata sur l'année
-      remplace:
-        références à: retraite de base
-        priorité: 10
-        sauf dans: protection sociale . retraite . base . cotisée
-      valeur: cotisations . retraite de base
-      abattement: taux * prorata sur l'année
-      arrondi: oui
-
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description: |
     Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
@@ -87,7 +29,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     `31 jour d'Acre restant en 2025 / 365 jour = 8,5%`
   unité: '%'
-  arrondi: oui
   valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
 
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux:
@@ -99,3 +40,10 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
         plafond: 75%
       - taux: 0%
         plafond: 100%
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
+  produit:
+    - taux
+    - prorata sur l'année
+  arrondi: oui
+  unité: '%'
