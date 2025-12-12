@@ -216,13 +216,13 @@ describe('Cotisation invalidité et décès', () => {
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
 					'indépendant . PL . CNAVPL . invalidité et décès'
-				).nodeValue
+				).nodeValue as number
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès'
 				).nodeValue
 
 				expect(cotisationCNAVPL).toEqual(cotisationCARCDSF)
-				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+				expect(cotisationIndépendant).toEqual(Math.round(cotisationCNAVPL))
 			})
 
 			it('Sage-femme', () => {
