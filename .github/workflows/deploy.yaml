@@ -240,6 +240,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-22.04
+    timeout-minutes: 60
     container: cypress/browsers:latest
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-preview.result == 'success'
@@ -247,6 +248,7 @@ jobs:
 
     strategy:
       fail-fast: false
+      max-parallel: 3
       matrix:
         site: ['fr', 'en']
         browser: [chrome] # Firefox is very slow…
@@ -311,6 +313,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     runs-on: ubuntu-22.04
+    timeout-minutes: 60
     container: cypress/browsers:latest
     # We need to specify always() https://github.com/actions/runner/issues/491
     if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-prod.result == 'success'
@@ -318,6 +321,7 @@ jobs:
 
     strategy:
       fail-fast: false
+      max-parallel: 3
       matrix:
         site: ['fr', 'en']
         browser: [chrome] # Firefox is very slow…
