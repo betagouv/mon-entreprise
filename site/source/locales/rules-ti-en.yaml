@@ -2217,69 +2217,6 @@ indépendant . PL . CARCDSF . sage-femme . PCV:
   titre.en: '[automatic] PCV'
   titre.fr: PCV
 indépendant . PL . CARCDSF . sage-femme . RID:
-  avec:
-    classe:
-      avec:
-        A:
-          titre.en: '[automatic] Class A'
-          titre.fr: classe A
-        B:
-          titre.en: '[automatic] class B'
-          titre.fr: classe B
-        C:
-          titre.en: '[automatic] class C'
-          titre.fr: classe C
-      description.en: >
-        [automatic] A choice of contribution classes, corresponding to different
-        contributions
-
-        and compensation levels.
-      description.fr: >
-        Il existe classes de cotisations aux choix, correspondant à des
-        cotisations
-
-        et des degrés d'indemnisations différents.
-      question.en: '[automatic] In which class do you contribute to the CARCDSF
-        disability-death plan?'
-      question.fr:
-        Dans quelle classe cotisez-vous pour le régime invalidité-décès de
-        la CARCDSF ?
-      titre.en: '[automatic] Contribution class'
-      titre.fr: Classe de cotisation
-  description.en: >
-    [automatic] A choice of contribution classes, corresponding to different
-    contributions
-
-    and compensation levels.
-
-
-    A change to a higher class must be requested before the
-
-    July 1 of the current year, to take effect on January 1 of the following year.
-
-    the following year.
-
-
-    No change of class is permitted after July 1 of the 56th birthday.
-  description.fr: >
-    Il existe classes de cotisations aux choix, correspondant à des cotisations
-
-    et des degrés d'indemnisations différents.
-
-
-    Le changement d'option pour une classe supérieure doit être demandé avant le
-
-    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
-
-    l'année suivante.
-
-
-    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
-  note.en:
-    '[automatic] From 2023, there will no longer be the option of choosing
-    a specific contribution class.'
-  note.fr: À partir de 2023, il n'y a plus de possibilité de choisir pour une
-    classe de cotisation spécifique.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 indépendant . PL . CARCDSF . sage-femme . exonération PCV:
@@ -2605,21 +2542,6 @@ indépendant . PL . CIPAV . conjoint collaborateur:
     pourcentage:
       titre.en: '[automatic] percentage'
       titre.fr: pourcentage
-    proportion:
-      avec:
-        moitié:
-          titre.en: '[automatic] 50 %'
-          titre.fr: 50 %
-        quart:
-          titre.en: '[automatic] 25 %'
-          titre.fr: 25 %
-      question.en:
-        '[automatic] In what proportion does the spouse contribute to the
-        Cipav complementary and disability-death plans?'
-      question.fr: A quelle proportion le conjoint cotise-t’il pour le régime
-        complémentaire et le régime d’invalidité-décès Cipav ?
-      titre.en: '[automatic] proportion'
-      titre.fr: proportion
     retraite complémentaire:
       titre.en: '[automatic] supplementary pension'
       titre.fr: retraite complémentaire
@@ -2630,72 +2552,9 @@ indépendant . PL . CIPAV . invalidité et décès:
     assiette:
       titre.en: '[automatic] plate'
       titre.fr: assiette
-    avant 2023:
-      titre.en: '[automatic] before 2023'
-      titre.fr: avant 2023
-    classe de cotisation:
-      avec:
-        A:
-          titre.en: '[automatic] Class A'
-          titre.fr: classe A
-        B:
-          titre.en: '[automatic] class B'
-          titre.fr: classe B
-        C:
-          titre.en: '[automatic] class C'
-          titre.fr: classe C
-      description.en: '[automatic] Cipav manages a provident scheme that pays a
-        pension in the event of permanent disability and a lump-sum death
-        benefit, as well as an annuity for surviving spouses and children in the
-        event of the insured''s death. By default, members pay "class A"
-        contributions, but it is possible to pay "class B" or "class C"
-        contributions to benefit from better disability-death coverage.'
-      description.fr:
-        La Cipav gère un régime de prévoyance versant une pension en cas
-        d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-        conjoints et enfants survivants en cas de décès de l'assuré. Par défaut
-        les affiliés cotisent en « classe A » mais il est possible de cotiser en
-        classe B ou C afin de bénéficier d'une meilleure couverture
-        invalidité-décès.
-      question.en: "[automatic] In which class do you contribute to Cipav's
-        disability-death scheme?"
-      question.fr:
-        Dans quelle classe cotisez-vous pour le régime invalidité-décès de
-        la Cipav ?
-      titre.en: '[automatic] contribution class'
-      titre.fr: classe de cotisation
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
-  description.en: >-
-    [automatic] Members who can prove that their professional income for the
-    previous year was less than 15% of the social security ceiling
-
-    social security ceiling in force on January 1 of the current year (i.e. €6,170 for a ceiling of €41,136 in 2022),
-
-    may, at their express request, be exempted from this contribution.
-  description.fr: >-
-    L’adhérent qui justifie avoir perçu, au titre de l’année précédente, un
-    revenu professionnel inférieur à 15 % du plafond
-
-    de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
-
-    peut, à sa demande expresse, être dispensé de cette cotisation.
-  question.en: '[automatic] Have you applied for exemption from Cipav
-    disability-death contributions? (2021 income below €6,170)'
-  question.fr:
-    Avez-vous demandé à être exonéré de la cotisations invalidité-décès
-    Cipav ? (revenus de 2021 inférieurs à 6 170 €)
-  titre.en: '[automatic] disability and death exemption'
-  titre.fr: exonération invalidité et décès
 indépendant . PL . CIPAV . retraite complémentaire:
-  avec:
-    avant 2023:
-      titre.en: '[automatic] before 2023'
-      titre.fr: avant 2023
-    classe:
-      titre.en: '[automatic] Contribution class (before 2023)'
-      titre.fr: Classe de cotisation (avant 2023)
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 indépendant . PL . CNAVPL:
@@ -2735,10 +2594,7 @@ indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
           texte:
             À quelle proportion le conjoint cotise-t-il pour la retraite de base, la
             retraite complémentaire et l'invalidité-décès ?
-        si:
-          toutes ces conditions:
-            - date >= 01/2023
-            - PL . CIPAV
+        si: PL . CIPAV
       - sinon:
           texte:
             À quelle proportion du revenu le conjoint cotise-t-il pour le régime de
