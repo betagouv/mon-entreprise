@@ -11,7 +11,6 @@ indépendant . PL . PAMC:
   rend non applicable:
     - conjoint collaborateur
     - revenus étrangers
-    - assiette minimale . maladie
 
   formule: oui
 
@@ -163,19 +162,12 @@ indépendant . PL . PAMC . assiette participation CPAM:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
 
 indépendant . PL . PAMC . maladie:
-  remplace: cotisations et contributions . cotisations . maladie
+  remplace: cotisations et contributions . cotisations . maladie . maladie-maternité
   titre: maladie (après participation CPAM)
   somme:
-    - cotisation maladie
+    - cotisations et contributions . cotisations . maladie . maladie-maternité
     - contribution additionnelle
     - (- participation CPAM)
-
-  avec:
-    cotisation maladie:
-      variations:
-        - si: cotisations et contributions . après réforme
-          alors: cotisations et contributions . cotisations . maladie
-        - sinon: PL . maladie
 
 indépendant . PL . PAMC . maladie . participation CPAM:
   non applicable si: métier . santé . médecin . secteur = 'S2'
@@ -186,14 +178,17 @@ indépendant . PL . PAMC . maladie . participation CPAM:
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Les exonérations d'un praticien ou auxiliaire médical - L’exonération domiciliation fiscale à l’étranger: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/exonerations.html#ancre-domiciliation-fiscale-a-l-etrang
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
   avec:
     taux maladie:
       variations:
-        - si: cotisations et contributions . après réforme
-          alors: cotisations et contributions . cotisations . maladie . maladie-maternité . taux 2
-        - sinon: PL . maladie . taux
+        - si: situation personnelle . domiciliation fiscale à l'étranger
+          alors: cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger . taux
+        - si: cotisations et contributions . après réforme = non
+          alors: PL . maladie . taux
+        - sinon: cotisations et contributions . cotisations . maladie . maladie-maternité . taux 2
 
 indépendant . PL . PAMC . maladie . contribution additionnelle:
   produit:
