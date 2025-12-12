@@ -2,13 +2,16 @@ import { Either, pipe } from 'effect'
 
 import { PLAFOND_ANNUEL_SECURITE_SOCIALE } from '@/domaine/ConstantesSociales'
 import { estPlusGrandOuÉgalÀ, eurosParAn } from '@/domaine/Montant'
+import { valeurCourante } from '@/domaine/ValeurAnnuelle'
 
 import { AffiliationObligatoire } from './erreurs'
 import { SituationÉconomieCollaborativeValide } from './situation'
 
 export const SEUIL_PROFESSIONNALISATION = {
 	MEUBLÉ: eurosParAn(23_000),
-	CHAMBRE_HÔTE: eurosParAn(PLAFOND_ANNUEL_SECURITE_SOCIALE * 0.13),
+	CHAMBRE_HÔTE: eurosParAn(
+		valeurCourante(PLAFOND_ANNUEL_SECURITE_SOCIALE) * 0.13
+	),
 } as const
 
 /**
@@ -35,7 +38,7 @@ export function estActiviteProfessionnelle(
 /**
  * Vérifie que l'activité n'est pas professionnelle
  * @param situation La situation avec des recettes ou du revenu net
- * @returns Right(situation) si l'activité n'est pas professionnelle, Left(AffiliationObligatoire) sinon
+ * @returns `Right(situation)` si l'activité n'est pas professionnelle, `Left(AffiliationObligatoire)` sinon
  */
 export function vérifieActivitéNonProfessionnelle(
 	situation: SituationÉconomieCollaborativeValide
