@@ -9,7 +9,11 @@ import { Body, Button, H3, SmallBody } from '@/design-system'
 
 import RuleLink from '../../RuleLink'
 
-type THit = AlgoliaHit<{ objectID: DottedName; namespace?: string; ruleName?: string }>
+type THit = AlgoliaHit<{
+	objectID: DottedName
+	namespace?: string
+	ruleName?: string
+}>
 
 const StyledRuleLink = styled(RuleLink)`
 	display: block; // Fix focus outline on chrome
@@ -43,8 +47,8 @@ const HitContainer = styled.li`
 `
 
 const Hit = (hit: THit) => {
-	console.log('hit:', hit);
-  console.log('keys:', Object.keys(hit));
+	console.log('hit:', hit)
+	console.log('keys:', Object.keys(hit))
 
 	return (
 		<HitContainer>
