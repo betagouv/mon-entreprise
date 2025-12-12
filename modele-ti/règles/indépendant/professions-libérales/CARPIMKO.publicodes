@@ -12,9 +12,7 @@ indépendant . PL . CARPIMKO . retraite complémentaire:
           alors: 2312 €/an
         - si: date >= 01/2024
           alors: 2176 €/an
-        - si: date >= 01/2023
-          alors: 1944 €/an
-        - sinon: 1840 €/an
+        - sinon: 1944 €/an
     - barème:
         assiette: cotisations et contributions . assiette sociale
         tranches:
@@ -27,9 +25,7 @@ indépendant . PL . CARPIMKO . retraite complémentaire:
                   alors: 237179 €/an
                 - si: date >= 01/2024
                   alors: 224713 €/an
-                - si: date >= 01/2023
-                  alors: 203446 €/an
-                - sinon: 193913 €/an
+                - sinon: 203446 €/an
       arrondi: oui
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
@@ -39,9 +35,7 @@ indépendant . PL . CARPIMKO . invalidité et décès:
   variations:
     - si: date >= 01/2024
       alors: 1022 €/an
-    - si: date >= 01/2023
-      alors: 862 €/an
-    - sinon: 776 €/an
+    - sinon: 862 €/an
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
@@ -64,9 +58,7 @@ indépendant . PL . CARPIMKO . ASV:
           alors: 665 €/an
         - si: date >= 01/2024
           alors: 657 €/an
-        - si: date >= 01/2023
-          alors: 634 €/an
-        - sinon: 601 €/an
+        - sinon: 634 €/an
 
     proportionnelle:
       produit:

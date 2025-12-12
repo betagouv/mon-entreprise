@@ -39,32 +39,28 @@ indépendant . PL . CIPAV:
     "LOI n° 2017-1836 du 30 décembre 2017 de financement de la sécurité sociale pour 2018 (chercher 'travailleurs indépendants créant leur activité')": https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
 
 indépendant . PL . CIPAV . retraite complémentaire:
-  variations:
-    - si: date < 01/2023
-      alors: avant 2023
-    - sinon:
-        barème:
-          multiplicateur: plafond sécurité sociale
-          assiette: cotisations et contributions . assiette sociale
-          tranches:
-            - plafond: 1
-              taux:
-                variations:
-                  - si: cotisations et contributions . après réforme
-                    alors: 11%
-                  - sinon: 9%
-            - plafond:
-                variations:
-                  - si: date >= 01/2025
-                    alors: 4
-                  - si: date >= 01/2024
-                    alors: 3.5
-                  - sinon: 3
-              taux:
-                variations:
-                  - si: cotisations et contributions . après réforme
-                    alors: 21%
-                  - sinon: 22%
+  barème:
+    multiplicateur: plafond sécurité sociale
+    assiette: cotisations et contributions . assiette sociale
+    tranches:
+      - plafond: 1
+        taux:
+          variations:
+            - si: cotisations et contributions . après réforme
+              alors: 11%
+            - sinon: 9%
+      - plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 4
+            - si: date >= 01/2024
+              alors: 3.5
+            - sinon: 3
+        taux:
+          variations:
+            - si: cotisations et contributions . après réforme
+              alors: 21%
+            - sinon: 22%
   abattement:
     applicable si: CNAVPL . exonération incapacité
     valeur: 100%
@@ -77,67 +73,12 @@ indépendant . PL . CIPAV . retraite complémentaire:
     Bases de calcul et taux des cotisations obligatoires des professions libérales réglementées relevant de la Cipav: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/PL-relevant-Cipav/bases-calcul-PLR-relevant-Cipav.html#FilAriane
     Article 2 du Décret n°79-262 du 21 mars 1979 relatif au régime d'assurance vieillesse complémentaire des architectes, agréés en architecture, ingénieurs, techniciens, experts et conseils: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046875038
 
-  avec:
-    avant 2023:
-      privé: oui
-      applicable si: date < 01/2023
-      non applicable si: CNAVPL . exonération incapacité
-      unité: €/an
-      variations:
-        - si: classe = 'Classe A'
-          alors: 1527
-        - si: classe = 'Classe B'
-          alors: 3055
-        - si: classe = 'Classe C'
-          alors: 4582
-        - si: classe = 'Classe D'
-          alors: 7637
-        - si: classe = 'Classe E'
-          alors: 10692
-        - si: classe = 'Classe F'
-          alors: 16802
-        - si: classe = 'Classe G'
-          alors: 18329
-        - si: classe = 'Classe H'
-          alors: 19857
-      références:
-        Guide Cipav 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
-
-    classe:
-      applicable si: date < 01/2023
-      titre: Classe de cotisation (avant 2023)
-      grille:
-        assiette: cotisations et contributions . assiette sociale
-        tranches:
-          - montant: "'Classe A'"
-            plafond: 26581 €/an
-          - montant: "'Classe B'"
-            plafond: 49281 €/an
-          - montant: "'Classe C'"
-            plafond: 57851 €/an
-          - montant: "'Classe D'"
-            plafond: 66401 €/an
-          - montant: "'Classe E'"
-            plafond: 83061 €/an
-          - montant: "'Classe F'"
-            plafond: 103181 €/an
-          - montant: "'Classe G'"
-            plafond: 123301 €/an
-          - montant: "'Classe H'"
-      références:
-        Guide Cipav 2022: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Professionnels%20lib%C3%A9raux%20-%20La%20Cipav_0.pdf#page=14
-
 indépendant . PL . CIPAV . invalidité et décès:
   unité: €/an
   arrondi: oui
-  # TODO : while https://github.com/publicodes/publicodes/issues/55 is not implemented
-  variations:
-    - si: date < 01/2023
-      alors: avant 2023
-    - sinon:
-        produit:
-          - assiette
-          - 0.5%
+  produit:
+    - assiette
+    - 0.5%
   références:
     L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
 
@@ -147,58 +88,6 @@ indépendant . PL . CIPAV . invalidité et décès:
       unité: €/an
       plancher: assiette minimale . invalidité et décès Cipav
       plafond: 1.85 * PSS proratisé
-
-    avant 2023:
-      privé: oui
-      applicable si: date < 01/2023
-      variations:
-        - si: classe de cotisation = 'A'
-          alors: 76 €/an
-        - si: classe de cotisation = 'B'
-          alors: 228 €/an
-        - si: classe de cotisation = 'C'
-          alors: 380 €/an
-
-    classe de cotisation:
-      applicable si: date < 01/2023
-      question:
-        Dans quelle classe cotisez-vous pour le régime invalidité-décès de la
-        Cipav ?
-      description: >-
-        La Cipav gère un régime de prévoyance versant une pension en cas
-        d'invalidité permanente et un capital décès ainsi qu’une rente pour les
-        conjoints et enfants survivants en cas de décès de l'assuré. Par défaut
-        les affiliés cotisent en « classe A » mais il est possible de cotiser en
-        classe B ou C afin de bénéficier d'une meilleure couverture
-        invalidité-décès.
-      une possibilité:
-        - A
-        - B
-        - C
-      par défaut: "'A'"
-
-      avec:
-        A:
-          titre: classe A
-
-        B:
-          titre: classe B
-
-        C:
-          titre: classe C
-
-indépendant . PL . CIPAV . invalidité et décès . exonération invalidité et décès:
-  applicable si: date < 01/2023
-  question: Avez-vous demandé à être exonéré de la cotisations invalidité-décès
-    Cipav ? (revenus de 2021 inférieurs à 6 170 €)
-  par défaut: non
-  description: |-
-    L’adhérent qui justifie avoir perçu, au titre de l’année précédente, un revenu professionnel inférieur à 15 % du plafond
-    de la sécurité sociale en vigueur au 1er janvier de l’année en cours (soit 6 170 € pour un plafond 41 136 € en 2022),
-    peut, à sa demande expresse, être dispensé de cette cotisation.
-  rend non applicable: CIPAV . invalidité et décès
-  références:
-    Guide de l’assurance vieillesse des professions libérales (2022): https://www.cnavpl.fr/wp-content/uploads/2022/03/guideweb-2022.pdf#page=121
 
 indépendant . PL . CIPAV . conjoint collaborateur:
   applicable si: conjoint collaborateur
@@ -214,39 +103,12 @@ indépendant . PL . CIPAV . conjoint collaborateur:
 
     pourcentage:
       variations:
-        # A partir de 2023, le pourcentage dépend de l'option choisie pour la retraite de base CNAVPL
-        - si: date >= 01/2023
-          alors:
-            variations:
-              - si:
-                  une de ces conditions:
-                    - conjoint collaborateur . assiette . forfaitaire
-                    - CNAVPL . conjoint collaborateur . proportion . quart
-                alors: 25%
-              - sinon: 50%
-
-        - sinon:
-            variations:
-              - si: proportion . quart
-                alors: 25 %
-              - sinon: 50%
-
-    proportion:
-      question: A quelle proportion le conjoint cotise-t’il pour le régime
-        complémentaire et le régime d’invalidité-décès Cipav ?
-      par défaut: "'quart'"
-      une possibilité:
-        - quart
-        - moitié
-
-      avec:
-        moitié:
-          valeur: proportion = 'moitié'
-          titre: '50 %'
-
-        quart:
-          valeur: proportion = 'quart'
-          titre: '25 %'
+        - si:
+            une de ces conditions:
+              - conjoint collaborateur . assiette . forfaitaire
+              - CNAVPL . conjoint collaborateur . proportion . quart
+          alors: 25%
+        - sinon: 50%
 
     retraite complémentaire:
       remplace: conjoint collaborateur . cotisations . retraite complémentaire

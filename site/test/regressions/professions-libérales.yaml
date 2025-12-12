@@ -35,18 +35,6 @@ sage-femme:
   - # Exonération RID
     indépendant . PL . métier: "'santé . sage-femme'"
     indépendant . rémunération . totale: 4000 €/an
-  - # Classe A
-    indépendant . PL . métier: "'santé . sage-femme'"
-    indépendant . rémunération . totale: 20000 €/an
-    indépendant . PL . CARCDSF . sage-femme . RID . classe: "'A'"
-  - # Classe B
-    indépendant . PL . métier: "'santé . sage-femme'"
-    indépendant . rémunération . totale: 20000 €/an
-    indépendant . PL . CARCDSF . sage-femme . RID . classe: "'B'"
-  - # Classe C
-    indépendant . PL . métier: "'santé . sage-femme'"
-    indépendant . rémunération . totale: 20000 €/an
-    indépendant . PL . CARCDSF . sage-femme . RID . classe: "'C'"
 
 auxiliaire médical:
   - indépendant . PL . métier: "'santé . auxiliaire médical'"
@@ -97,16 +85,11 @@ CIPAV conjoint collaborateur:
     indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
   - <<: *CNAVPL-conjoint-collaborateur
     indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
-    indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
   - <<: *CNAVPL-conjoint-collaborateur
     indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
-    indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
   - <<: *CNAVPL-conjoint-collaborateur
     indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
     indépendant . rémunération . nette: 1000 €/an
-    indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
-  - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . PL . CIPAV . conjoint collaborateur . proportion: "'moitié'"
 
 CIPAV ACRE:
   - &CNAVPL-ACRE
