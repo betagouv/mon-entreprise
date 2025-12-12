@@ -1,38 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`calculate simulations-professions-libérales > CIPAV ACRE 1`] = `
-"entreprise . chiffre d'affaires: 6883
-impôt . montant: undefined
-indépendant . cotisations et contributions: 1883
-indépendant . rémunération . nette: 5000
-indépendant . rémunération . nette . après impôt: 5000
-protection sociale . retraite . base: 39
-protection sociale . retraite . complémentaire: 29
-protection sociale . retraite . trimestres: 3"
-`;
-
-exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `
-"entreprise . chiffre d'affaires: 26847
-impôt . montant: undefined
-indépendant . cotisations et contributions: 6847
-indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19438
-protection sociale . retraite . base: 146
-protection sociale . retraite . complémentaire: 111
-protection sociale . retraite . trimestres: 4"
-`;
-
-exports[`calculate simulations-professions-libérales > CIPAV ACRE 3`] = `
-"entreprise . chiffre d'affaires: 70283
-impôt . montant: undefined
-indépendant . cotisations et contributions: 20283
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 41382
-protection sociale . retraite . base: 347
-protection sociale . retraite . complémentaire: 315
-protection sociale . retraite . trimestres: 4"
-`;
-
 exports[`calculate simulations-professions-libérales > CIPAV Acre 1`] = `
 "entreprise . chiffre d'affaires: 6883
 impôt . montant: undefined
