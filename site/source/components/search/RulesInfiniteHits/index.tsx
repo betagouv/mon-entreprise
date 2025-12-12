@@ -8,9 +8,12 @@ import { FromTop } from '@/components/ui/animate'
 import { Body, Button, H3, SmallBody } from '@/design-system'
 
 import RuleLink from '../../RuleLink'
-import { Highlight } from '../Hightlight'
 
-type THit = AlgoliaHit<{ objectID: DottedName; namespace?: string }>
+type THit = AlgoliaHit<{
+	objectID: DottedName
+	namespace?: string
+	ruleName?: string
+}>
 
 const StyledRuleLink = styled(RuleLink)`
 	display: block; // Fix focus outline on chrome
@@ -46,14 +49,15 @@ const HitContainer = styled.li`
 const Hit = (hit: THit) => {
 	return (
 		<HitContainer>
-			<StyledRuleLink dottedName={hit.objectID}>
-				{hit.namespace && (
-					<SmallBody as="span" className="hit-namespace">
-						<Highlight hit={hit} attribute="namespace" separator=" > " />
-					</SmallBody>
-				)}
+			{hit.namespace && (
+				<SmallBody as="span" className="hit-namespace">
+					{Object.values(hit.namespace).join(' > ')}
+				</SmallBody>
+			)}
+
+			<StyledRuleLink dottedName={hit.objectID} aria-label={undefined}>
 				<Body as="span" className="hit-ruleName">
-					<Highlight hit={hit} attribute="ruleName" />
+					{hit.ruleName}
 				</Body>
 			</StyledRuleLink>
 		</HitContainer>
