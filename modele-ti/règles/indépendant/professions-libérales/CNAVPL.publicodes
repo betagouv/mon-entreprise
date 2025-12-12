@@ -25,7 +25,7 @@ indépendant . PL . CNAVPL . exonération incapacité:
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=24
     # https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=79
   avec:
-    taux: 100%
+    exonération: 100%
 
 indépendant . PL . CNAVPL . retraite complémentaire:
   variations:
