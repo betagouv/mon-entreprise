@@ -3090,10 +3090,6 @@ indépendant . PL . PAMC . dépassement d'honoraire moyen:
   titre.en: '[automatic] average excess fee'
   titre.fr: dépassement d'honoraire moyen
 indépendant . PL . PAMC . maladie:
-  avec:
-    cotisation maladie:
-      titre.en: '[automatic] health contribution'
-      titre.fr: cotisation maladie
   titre.en: '[automatic] illness (after CPAM contribution)'
   titre.fr: maladie (après participation CPAM)
 indépendant . PL . PAMC . maladie . contribution additionnelle:
@@ -4378,31 +4374,6 @@ indépendant . cotisations et contributions . cotisations . maladie:
     - la cotisation indemnités journalières (maladie 2)
   titre.en: '[automatic] disease'
   titre.fr: maladie
-indépendant . cotisations et contributions . cotisations . maladie . domiciliation fiscale étranger:
-  description.en: >
-    [automatic] In return for CSG exemption, contributors pay a higher sickness
-    rate.
-
-    rate. Unlike other insured tradesmen/artisans
-
-    they do not benefit from the reduction in the rate of health insurance contributions
-
-    according to declared income.
-  description.fr: |
-    En contrepartie de l’exonération de CSG, les cotisants ont un taux
-    maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
-    ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
-    fonction du revenu déclaré.
-  note.en: >
-    [automatic] This specific rate does not apply to practitioners and medical
-    auxiliaries
-
-    whose tax residence is abroad.
-  note.fr: |
-    Ce taux spécifique ne s’applique pas aux praticiens et auxiliaires médicaux
-    conventionnés dont la résidence fiscale est à l’étranger.
-  titre.en: '[automatic] tax domicile abroad'
-  titre.fr: domiciliation fiscale étranger
 indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières:
   avec:
     assiette:
@@ -4432,13 +4403,15 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
 
     des trois dernières années.
   note.en: >
-    [automatic] Lawyers are exempt from this contribution, as they already pay
-    into a specific fund for
+    [automatic] Lawyers do not have to pay this contribution, as they already
+    contribute to a specific fund for daily sickness benefits (AON or LPA).
 
-    specific fund for daily sickness benefits (AON or LPA).
-  note.fr: |
-    Les avocats sont exonérés de cette cotisation car ils cotisent déjà à une
-    caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
+    a specific fund for daily sickness benefits (AON or LPA).
+  note.fr: >
+    Les avocats ne sont pas redevables de cette cotisation car ils cotisent déjà
+    à
+
+    une caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
 indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité:
@@ -4487,6 +4460,27 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
     souscrire une assurance maladie complémentaire.
   titre.en: '[automatic] illness-maternity'
   titre.fr: maladie-maternité
+indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  description.en: >
+    [automatic] In return for CSG exemption, contributors pay a higher sickness
+    rate.
+
+    rate. Unlike other insured tradesmen/artisans
+
+    they do not benefit from the reduction in the rate of health insurance contributions
+
+    according to declared income.
+  description.fr: |
+    En contrepartie de l’exonération de CSG, les cotisants ont un taux
+    maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
+    ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
+    fonction du revenu déclaré.
+  titre.en: '[automatic] tax domicile abroad'
+  titre.fr: domiciliation fiscale étranger
 indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   avec:
     PRCI:
