@@ -1,5 +1,5 @@
 
-indépendant . cotisations et contributions . cotisations . exonérations . ACRE:
+indépendant . cotisations et contributions . cotisations . exonérations . Acre:
   applicable si: entreprise . durée d'activité . en début d'année < 1 an
   question: Bénéficiez-vous de l’Acre ?
   par défaut: non
@@ -12,22 +12,11 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
     Elle est **automatique** pour les **sociétés et les entreprises individuelles**
     (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois
     dernières années).
-  notes: |
-    #### Historique
-
-    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019,
-    la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu
-    l’ACCRE dans les trois années précédentes
-    - Pour les entreprises créées avant le 1er janvier 2019, la l’exonération de
-    cotisation s’appelait ACCRE était soumise à conditions et n’était pas
-    automatique : il fallait en faire la demande.
-
   références:
     'L’Acre : une aide pour favoriser les créations et reprises d’entreprises': https://www.urssaf.fr/accueil/exoneration-acre-createur.html
     Aide à la création ou à la reprise d’une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
     # BPI ONLY
     'Acre : aide aux créateurs et repreneurs d’entreprise': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
-    'L’Acre pour les indépendants: quel avantages ?': https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/quels-avantages/travailleurs-independants-ne-rel.html
 
   avec:
     allocations familiales:
@@ -87,20 +76,21 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
       abattement: taux * prorata sur l'année
       arrondi: oui
 
-indépendant . cotisations et contributions . cotisations . exonérations . ACRE . prorata sur l'année:
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description: |
     Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
-    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
+    l'exonération est proratisée en fonction de la durée effective de l'Acre sur
+    l'année courante.
 
-    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
-    cotisations 2019 sera le suivant :
+    Par exemple, pour une entreprise crée le 1er février 2024, le calcul du prorata
+    pour les cotisations 2025 sera le suivant :
 
-    `31 jour d'acre restant en 2019 / 365 jour = 8,5%`
+    `31 jour d'Acre restant en 2025 / 365 jour = 8,5%`
   unité: '%'
   arrondi: oui
   valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
 
-indépendant . cotisations et contributions . cotisations . exonérations . ACRE . taux:
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux:
   taux progressif:
     assiette: assiette sociale
     multiplicateur: PSS proratisé

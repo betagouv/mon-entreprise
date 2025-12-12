@@ -96,8 +96,8 @@ export const SeoExplanations = () => {
 			</Body>
 			<Body>
 				Il peut en revanche prétendre à la{' '}
-				<RuleLink dottedName="assimilé salarié . exonérations . ACRE">
-					réduction ACRE
+				<RuleLink dottedName="assimilé salarié . exonérations . Acre">
+					réduction Acre
 				</RuleLink>{' '}
 				en debut d'activité, sous certaines conditions.
 			</Body>
