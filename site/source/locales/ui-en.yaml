@@ -1600,31 +1600,30 @@ pages:
         ogTitle: "Sole proprietorship: quickly calculate your net income from sales and
           vice versa"
         titre: "Sole proprietorship: income simulator"
-      seo explanation: <0>How do you calculate the net income of a sole
-        trader?</0><1>The manager of a sole proprietorship is required to pay
-        social security contributions to the tax authorities. These
+      seo explanation: <0>How to calculate a sole trader's net income</0><1>A sole
+        trader must pay social security contributions to the authorities. These
         contributions are used to finance the social security system, and give
         entitlement to pension and health insurance benefits. They are also used
-        to finance professional training.</1><2><0></0> <2>See how contributions
-        are calculated</2></2><3>Don't forget to deduct all expenses incurred in
-        the course of your business (equipment, raw materials, premises,
-        transport). These are deductible from the company's income, which means
-        you won't pay tax or contributions on their amount (unless you've opted
-        for the micro-tax option).</3><4>The complete calculation formula is as
-        follows</4><5>Net income = Sales - Professional expenses - Social
-        security contributions</5><6>How do you calculate social security
-        contributions for a sole proprietorship?</6><7>The manager of a sole
-        proprietorship pays social security contributions, which are
-        proportional to the company's <2>taxable income</2>. Their amount also
-        varies according to the type of activity (liberal profession, craftsman,
-        shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
-        etc.).</7><8> As a company's income is only known at the end of the
-        accounting year, the manager pays provisional contributions, which will
-        be adjusted once the actual income has been declared, the following
-        year.</8><9>This simulator enables you to calculate the exact amount of
-        social security contributions, based on your desired sales or net
-        income. You can specify your situation by answering the questions
-        displayed below the simulation.</9>
+        to finance vocational training.</1><2><0></2> &lt;/0<2>> <2>See details
+        of how contributions are calculatedDon</2></2><3>'t forget to deduct all
+        expenses incurred in the course of your business (equipment, raw
+        materials, premises, transport). These are deductible from the company's
+        income, which means you won't pay tax or social security contributions
+        on their amount (unless you've opted for the micro-tax
+        option).</3><4>The complete calculation formula is therefore:</4><5>Net
+        income = Sales - Professional expenses - Social security
+        contributionsHow to</5><6>calculate social security contributions for a
+        sole proprietorship?</6><7>The manager of a sole proprietorship pays
+        social security contributions, proportional to the company's
+        <2>income&lt;/2> taxable income. The amount also varies according to the
+        type of activity (liberal professions, craftsmen, shopkeepers, etc.), or
+        any exemptions granted (Acre, ZFU, RSA, etc.).</7>&lt;8> As a company's
+        income is only known at the end of the accounting year, the manager pays
+        provisional contributions which will then be regularized once the actual
+        income has been declared, the following year.</8><9>This simulator
+        calculates the exact amount of social security contributions based on a
+        desired net income or sales figure. You can specify your situation by
+        answering the questions displayed below the simulation.</9>
       shortname: Sole proprietorship
       title: Simulator for sole proprietorships
     eirl:
@@ -2071,22 +2070,22 @@ pages:
           income after tax from the total allocated to your remuneration.
         ogTitle: "SASU manager's remuneration: a simulator to find out your net salary"
         titre: "SASU: income simulator for managers"
-      seo-explanation: "<0>How do you calculate the salary of a SAS or SASU director?
-        </0><1>As with a conventional employee, the <1>director of an SAS(U)</1>
-        pays social security contributions on the remuneration he or she
-        receives. Contributions are calculated in the same way as for an
+      seo-explanation: "<0>How do you calculate the salary of an SAS or SASU
+        executive? </0><1>As with a conventional employee, the <1>director of an
+        SAS(U)&lt;/1> pays social security contributions on the remuneration he
+        or she receives. Contributions are calculated in the same way as for an
         employee: they are broken down into employer and employee portions, and
-        are expressed as a percentage of gross salary.</1><2>Managers treated as
-        employees do not pay <2>unemployment contributions</2>. In addition,
-        they do not benefit from the <5>general reduction in contributions</5>,
-        nor from schemes governed by the French Labor Code, such as
-        <9>overtime</9> or bonuses.</2><3>They may, however, qualify for the
-        <2>ACRE reduction</2> at the start of their activity, subject to certain
-        conditions.</3><4>You can use our simulator to calculate <2>net
-        remuneration</2> based on a super-gross amount allocated to the
-        manager's remuneration. Simply enter the total amount allocated in the
-        \"total charged\" box. The simulation can then be refined by answering
-        the various questions.</4>"
+        are expressed as a percentage of gross salary</1><2>.</2><2>In addition,
+        they do not benefit from the <5>réduction générale de cotisations&lt;/5>
+        (general reduction in social security contributions&lt;/5 ), nor from
+        schemes governed by the French Labor Code, such as <9>heures
+        supplémentaires&lt;/9> (overtime&lt;/9 ) or bonuses.</2><3>However, they
+        may be eligible for the <2>réduction Acre&lt;/2> at the start of their
+        activity, under certain conditions.</3><4>You can use our simulator to
+        calculate <2>rémunération nette&lt;/2> (net remuneration&lt;/2 ) from a
+        superbrut amount allocated to the executive's remuneration. Simply enter
+        the total amount allocated in the \"total loaded\" box. The simulation
+        can then be refined by answering the various questions.</4>"
       shortname: SAS(U)
       title: Income simulator for SAS(U) managers
       warning: This simulator does not handle the case of SAS(U) taxable on income

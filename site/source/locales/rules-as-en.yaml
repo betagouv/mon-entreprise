@@ -776,7 +776,7 @@ assimilé salarié . cotisations . vieillesse:
 assimilé salarié . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
-assimilé salarié . exonérations . ACRE:
+assimilé salarié . exonérations . Acre:
   description.en: >-
     [automatic] Assistance for setting up or taking over a business (Acre)
     consists of a partial exemption from social security contributions, known as
@@ -793,8 +793,8 @@ assimilé salarié . exonérations . ACRE:
     Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
   question.en: '[automatic] Did you benefit from Acre?'
   question.fr: Bénéficiez-vous de l’Acre ?
-  titre.en: '[automatic] ACRE'
-  titre.fr: ACRE
+  titre.en: '[automatic] Acre'
+  titre.fr: Acre
 assimilé salarié . exonérations . JEI:
   description.en: >-
     [automatic] The Young Innovative Company (JEI) status was created by the
@@ -807,7 +807,7 @@ assimilé salarié . exonérations . JEI:
 
     - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - corporate officers who are principally involved in the company's research and development project
+    - corporate officers who are primarily involved in the company's research and development project
 
 
     By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
