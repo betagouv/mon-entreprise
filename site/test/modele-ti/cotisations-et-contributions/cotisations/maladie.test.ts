@@ -327,7 +327,7 @@ describe('Cotisation maladie', () => {
 					10000
 				)
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie',
+					'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
 					1450
 				)
 			})
@@ -459,21 +459,20 @@ describe('Cotisation maladie', () => {
 			)
 		})
 
-		it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS pour les DROM', () => {
+		it('applique un taux de 14,5% en cas de domiciliation fiscale à l’étranger', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
-				'établissement . commune . département . outre-mer': 'oui',
-				'indépendant . cotisations et contributions . assiette sociale':
-					'60000 €/an',
+				...defaultSituationPLR,
+				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
+				"entreprise . chiffre d'affaires": '13514 €/an',
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . taux 1',
-				8.5
+				'indépendant . cotisations et contributions . assiette sociale',
+				10000
 			)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
-				5100
+				1450
 			)
 		})
 
@@ -532,6 +531,24 @@ describe('Cotisation maladie', () => {
 			expect(e4).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
 				6500
+			)
+		})
+
+		it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS pour les DROM', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'établissement . commune . département . outre-mer': 'oui',
+				'indépendant . cotisations et contributions . assiette sociale':
+					'60000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . taux 1',
+				8.5
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
+				5100
 			)
 		})
 	})

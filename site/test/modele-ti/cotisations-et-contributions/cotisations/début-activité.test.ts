@@ -204,18 +204,20 @@ describe('Cotisations de début d’activité', () => {
 	})
 
 	describe('Pour les domiciliations fiscales à l’étranger', () => {
+		const defaultSituationDFE = {
+			...defaultSituation,
+			"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
+		}
+
 		it('applique les assiettes forfaitaires, la dispense de CSG-CRDS et le taux maladie spécifique', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
-			})
+			const e = engine.setSituation(defaultSituationDFE)
 
 			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
 			expect(e).toBeApplicable(
-				'indépendant . cotisations et contributions . cotisations . maladie . domiciliation fiscale étranger'
+				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger'
 			)
 
-			/** Cotisation maladie (remplace maladie-maternité et indemnités journalières):
+			/** Cotisation maladie:
 			 * assiette forfaitaire = 19% du PASS = 7 772 €
 			 * assiette forfaitaire x taux spécifique = 7 772 € x 14,5%
 			 * => 1 127 €
@@ -228,10 +230,16 @@ describe('Cotisations de début d’activité', () => {
 
 			// Le reste est identique à "Pour les A/C/PLNR > applique les assiettes forfaitaires au calcul des cotisations et contributions"
 
+			/** Cotisation indemnités journalières :
+			 * assiette forfaitaire = 40% du PASS (non proratisé) = 18 840 €
+			 * assiette forfaitaire x taux = 18 840 € x 0,5%
+			 * => 94 €
+			 */
+
 			/** Cotisation allocations familiales :
 			 * assiette forfaitaire = 19% du PASS
 			 * assiette forfaitaire < 1er plafond (110% du PASS)
-			 * => taux nul
+			 * => 0 €
 			 */
 
 			/** Cotisation retraite de base :
@@ -266,15 +274,13 @@ describe('Cotisations de début d’activité', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité',
-				3365
+				1127 + 94 + 1389 + 630 + 101 + 118
 			)
 		})
 
-		// Ne passe pas à cause de https://github.com/betagouv/mon-entreprise/issues/4035
-		it.skip('applique les assiettes forfaitaires, la dispense de CSG-CRDS mais les taux maladie normaux pour les PAMC', () => {
+		it('applique les assiettes forfaitaires, la dispense de CSG-CRDS et le taux maladie spécifique pour les PAMC', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
-				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
+				...defaultSituationDFE,
 				'entreprise . activité': "'libérale'",
 				'entreprise . activité . libérale . réglementée': 'oui',
 				'indépendant . PL . métier': "'santé . sage-femme'",
@@ -282,38 +288,31 @@ describe('Cotisations de début d’activité', () => {
 
 			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
 
+			/** Cotisation maladie:
+			 * assiette forfaitaire = 19% du PASS = 7 772 €
+			 * assiette forfaitaire x taux spécifique - participation CPAM = assiette forfaitaire x 0,10% = 7 772 € x 0,10%
+			 * => 8 €
+			 */
+			const maladieMaternité = 8
+
 			/** CSG-CRDS :
 			 * exonération totale
 			 * => 0 €
 			 */
 
-			expect(e).toEvaluate(
-				'indépendant . PL . CNAVPL . retraite complémentaire',
-				588
-			)
-			expect(e).toEvaluate(
-				'indépendant . PL . CNAVPL . invalidité et décès',
-				380
-			)
-
 			// Le reste est identique à "Pour les PLR > applique les assiettes forfaitaires au calcul des cotisations et contributions"
-
-			/** Cotisation maladie-maternité :
-			 * assiette forfaitaire = 19% du PASS
-			 * assiette forfaitaire < 1er plafond (20% du PASS)
-			 * => taux nul
-			 */
 
 			/** Cotisation indemnités journalières :
 			 * assiette forfaitaire = 40% du PASS (non proratisé) = 18 840 €
 			 * assiette forfaitaire x taux = 18 840 € x 0,3%
 			 * => 57 €
 			 */
+			const IJ = 57
 
 			/** Cotisation allocations familiales :
 			 * assiette forfaitaire = 19% du PASS
 			 * assiette forfaitaire < 1er plafond (110% du PASS)
-			 * => taux nul
+			 * => 0 €
 			 */
 
 			/** Cotisation retraite de base :
@@ -323,39 +322,42 @@ describe('Cotisations de début d’activité', () => {
 			 * tranche 2 = assiette forfaitaire x taux tranche 2 = 7 772 € x 1,87% = 145 €
 			 * => 823 €
 			 */
+			const retraiteDeBase = 823
+
+			const retraiteComplémentaire = e.evaluate({
+				valeur: 'indépendant . PL . CARCDSF . retraite complémentaire',
+				contexte: {
+					'indépendant . cotisations et contributions . assiette sociale':
+						'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
+				},
+			}).nodeValue as number
+			const invaliditéDécès = e.evaluate(
+				'indépendant . PL . CARCDSF . sage-femme . RID'
+			).nodeValue as number
+			const PCV = e.evaluate({
+				valeur: 'indépendant . PL . CARCDSF . sage-femme . PCV',
+				contexte: {
+					'indépendant . cotisations et contributions . assiette sociale':
+						'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
+				},
+			}).nodeValue as number
 
 			/** CFP :
 			 * pas d'assiette forfaitaire, pas de proratisation
 			 * 0,25% x PASS = 0,25% x 47 100 €
 			 * => 118 €
 			 */
+			const CFP = 118
 
-			expect(e).toEvaluate('indépendant . PL . PAMC', true)
-			expect(e).not.toBeApplicable(
-				'indépendant . cotisations et contributions . cotisations . maladie . domiciliation fiscale étranger'
-			)
-			expect(e).toBeApplicable(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
-			)
-			expect(e).toBeApplicable(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
-			)
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . maladie-maternité',
-				1
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . IJ',
-				2
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . maladie',
-				3
-			)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité',
-				1966
+				maladieMaternité +
+					IJ +
+					retraiteDeBase +
+					retraiteComplémentaire +
+					invaliditéDécès +
+					PCV +
+					CFP
 			)
 		})
 	})

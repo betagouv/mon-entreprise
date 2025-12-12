@@ -28,7 +28,7 @@ export const configProfessionLibérale: SimulationConfig = {
 	},
 	'unité par défaut': '€/an',
 	situation: {
-		'entreprise . activité . libérale': 'oui',
+		'entreprise . activité': "'libérale'",
 		'entreprise . EI': 'oui',
 		'entreprise . imposition': "'IR'",
 	},
