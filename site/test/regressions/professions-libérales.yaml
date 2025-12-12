@@ -91,14 +91,14 @@ CIPAV conjoint collaborateur:
     indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
     indépendant . rémunération . nette: 1000 €/an
 
-CIPAV ACRE:
-  - &CNAVPL-ACRE
+CIPAV Acre:
+  - &CNAVPL-Acre
     indépendant . rémunération . nette: 5000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . ACRE: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
     entreprise . date de création: 11/11/2025
-  - <<: *CNAVPL-ACRE
+  - <<: *CNAVPL-Acre
     indépendant . rémunération . nette: 20000 €/an
-  - <<: *CNAVPL-ACRE
+  - <<: *CNAVPL-Acre
     indépendant . rémunération . nette: 50000 €/an
 
 CIPAV années précédentes:

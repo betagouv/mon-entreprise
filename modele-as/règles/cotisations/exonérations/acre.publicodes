@@ -1,6 +1,6 @@
 assimilé salarié . cotisations . exonérations . Acre:
   experimental: oui
-  applicable si: exonérations . ACRE
+  applicable si: exonérations . Acre
   unité: €/an
   arrondi: oui
   somme:
@@ -63,11 +63,11 @@ assimilé salarié . cotisations . exonérations . Acre . cotisations patronales
   valeur: cotisations patronales exonérées Acre
   contexte:
     cotisations . assiette: 75% * plafond sécurité sociale
-    exonérations . ACRE: non
+    exonérations . Acre: non
 
 assimilé salarié . cotisations . exonérations . Acre . cotisations salariales exonérées pour 75% du PSS:
   unité: €/an
   valeur: cotisations salariales exonérées Acre
   contexte:
     cotisations . assiette: 75% * plafond sécurité sociale
-    exonérations . ACRE: non
+    exonérations . Acre: non

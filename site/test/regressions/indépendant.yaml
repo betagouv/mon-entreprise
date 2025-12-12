@@ -45,7 +45,7 @@ activité:
 acre:
   - indépendant . rémunération . nette: 50000 €/an
     entreprise . date de création: période . début d'année
-    indépendant . cotisations et contributions . cotisations . exonérations . ACRE: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
 
 impôt sur le revenu:
   - indépendant . rémunération . nette: 20000 €/an
@@ -116,11 +116,11 @@ exonération pension invalidité:
   - indépendant . rémunération . totale: 9000 €/an
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée: 4 mois
-  # Cumul ACRE
+  # Cumul Acre
   - indépendant . rémunération . totale: 10000 €/an
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
     entreprise . date de création: période . début d'année
-    indépendant . cotisations et contributions . cotisations . exonérations . ACRE: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
   # Cumul âge
   - indépendant . rémunération . totale: 15000 €/an
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
@@ -140,7 +140,7 @@ DROM:
 cotisations forfaitaires début d'activité:
   - indépendant . rémunération . totale: 50000 €/an
     entreprise . date de création: période . début d'année
-    indépendant . cotisations et contributions . cotisations . exonérations . ACRE: non
+    indépendant . cotisations et contributions . cotisations . exonérations . Acre: non
 
 Année incomplète:
   - &AnnéeIncomplete
