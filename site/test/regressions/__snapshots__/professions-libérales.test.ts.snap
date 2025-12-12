@@ -155,47 +155,36 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
-"entreprise . chiffre d'affaires: 102587
+"entreprise . chiffre d'affaires: 94434
 impôt . montant: undefined
-indépendant . cotisations et contributions: 42587
+indépendant . cotisations et contributions: 34434
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48174
-protection sociale . retraite . base: 349
-protection sociale . retraite . complémentaire: 571
+indépendant . rémunération . nette . après impôt: 48226
+protection sociale . retraite . base: 348
+protection sociale . retraite . complémentaire: 506
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
-"entreprise . chiffre d'affaires: 99675
+"entreprise . chiffre d'affaires: 93898
 impôt . montant: undefined
-indépendant . cotisations et contributions: 39675
+indépendant . cotisations et contributions: 33898
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48193
-protection sociale . retraite . base: 543
-protection sociale . retraite . complémentaire: 547
+indépendant . rémunération . nette . après impôt: 48230
+protection sociale . retraite . base: 463
+protection sociale . retraite . complémentaire: 501
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `
-"entreprise . chiffre d'affaires: 3147
+"entreprise . chiffre d'affaires: 3035
 impôt . montant: undefined
-indépendant . cotisations et contributions: 2147
+indépendant . cotisations et contributions: 2035
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
-protection sociale . retraite . base: 79
+protection sociale . retraite . base: 53
 protection sociale . retraite . complémentaire: 12
 protection sociale . retraite . trimestres: 3"
-`;
-
-exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 7`] = `
-"entreprise . chiffre d'affaires: 95464
-impôt . montant: undefined
-indépendant . cotisations et contributions: 35464
-indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48220
-protection sociale . retraite . base: 348
-protection sociale . retraite . complémentaire: 515
-protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV exonération incapacité 1`] = `
@@ -463,39 +452,6 @@ protection sociale . retraite . trimestres: undefined"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
-"entreprise . chiffre d'affaires: undefined
-impôt . montant: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: undefined"
-`;
-
-exports[`calculate simulations-professions-libérales > sage-femme 4`] = `
-"entreprise . chiffre d'affaires: undefined
-impôt . montant: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: undefined"
-`;
-
-exports[`calculate simulations-professions-libérales > sage-femme 5`] = `
-"entreprise . chiffre d'affaires: undefined
-impôt . montant: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . complémentaire: 0
-protection sociale . retraite . trimestres: undefined"
-`;
-
-exports[`calculate simulations-professions-libérales > sage-femme 6`] = `
 "entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
 indépendant . cotisations et contributions: undefined
