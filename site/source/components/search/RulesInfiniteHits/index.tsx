@@ -47,15 +47,11 @@ const HitContainer = styled.li`
 `
 
 const Hit = (hit: THit) => {
-	console.log('hit:', hit)
-	console.log('keys:', Object.keys(hit))
-
 	return (
 		<HitContainer>
 			{hit.namespace && (
 				<SmallBody as="span" className="hit-namespace">
 					{Object.values(hit.namespace).join(' > ')}
-					{/* <Highlight hit={hit} attribute="namespace" separator=" > " /> */}
 				</SmallBody>
 			)}
 
