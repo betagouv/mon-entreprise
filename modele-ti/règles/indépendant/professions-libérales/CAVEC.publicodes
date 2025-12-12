@@ -27,9 +27,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 782
             - si: date >= 01/2024
               alors: 760
-            - si: date >= 01/2023
-              alors: 711
-            - sinon: 670
+            - sinon: 711
         plafond: 16190 €/an
       - montant:
           variations:
@@ -37,9 +35,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 2934
             - si: date >= 01/2024
               alors: 2851
-            - si: date >= 01/2023
-              alors: 2667
-            - sinon: 2511
+            - sinon: 2667
         plafond: 32350 €/an
       - montant:
           variations:
@@ -47,9 +43,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 4629
             - si: date >= 01/2024
               alors: 4499
-            - si: date >= 01/2023
-              alors: 4207
-            - sinon: 3962
+            - sinon: 4207
         plafond: 44790 €/an
       - montant:
           variations:
@@ -57,9 +51,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 7237
             - si: date >= 01/2024
               alors: 7033
-            - si: date >= 01/2023
-              alors: 6578
-            - sinon: 6194
+            - sinon: 6578
         plafond: 64560 €/an
       - montant:
           variations:
@@ -67,9 +59,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 11540
             - si: date >= 01/2024
               alors: 11215
-            - si: date >= 01/2023
-              alors: 10489
-            - sinon: 9877
+            - sinon: 10489
         plafond: 79040 €/an
       - montant:
           variations:
@@ -77,9 +67,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 17604
             - si: date >= 01/2024
               alors: 17108
-            - si: date >= 01/2023
-              alors: 16000
-            - sinon: 15066
+            - sinon: 16000
         plafond: 94850 €/an
       - montant:
           variations:
@@ -87,9 +75,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 19560
             - si: date >= 01/2024
               alors: 19009
-            - si: date >= 01/2023
-              alors: 17778
-            - sinon: 16740
+            - sinon: 17778
         plafond: 132780 €/an
       - montant:
           variations:
@@ -97,9 +83,7 @@ indépendant . PL . CAVEC . retraite complémentaire:
               alors: 24450
             - si: date >= 01/2024
               alors: 23762
-            - si: date >= 01/2023
-              alors: 22223
-            - sinon: 20925
+            - sinon: 22223
   abattement:
     applicable si: CNAVPL . exonération incapacité
     valeur: 100%
