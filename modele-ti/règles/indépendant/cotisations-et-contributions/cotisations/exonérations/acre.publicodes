@@ -38,7 +38,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
 
     indemnités journalières:
       # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      non applicable si: exonérations . pension invalidité . prorata >= prorata sur l'année
+      non applicable si: pension invalidité . exonération >= prorata sur l'année
       remplace:
         références à: cotisations . maladie . indemnités journalières
         priorité: 10
@@ -61,7 +61,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
 
     maladie:
       # On préfère l'exonération pension invalidité si elle est plus avantageuse
-      non applicable si: exonérations . pension invalidité . prorata >= prorata sur l'année
+      non applicable si: pension invalidité . exonération >= prorata sur l'année
       remplace:
         références à: cotisations . maladie
         priorité: 10
@@ -78,7 +78,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
           # On préfère l'exonération incapacité car cette dernière est plus avantageuse
           - PL . CNAVPL . exonération incapacité
           # On préfère l'exonération pension invalidité si elle est plus avantageuse
-          - exonérations . pension invalidité . prorata >= prorata sur l'année
+          - pension invalidité . exonération >= prorata sur l'année
       remplace:
         références à: retraite de base
         priorité: 10
