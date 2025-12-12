@@ -1,7 +1,7 @@
 import { Either, Option, pipe } from 'effect'
 
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
-import { estPlusGrandOuÉgalÀ, eurosParAn, Montant } from '@/domaine/Montant'
+import { estPlusPetitQue, eurosParAn, Montant } from '@/domaine/Montant'
 import {
 	TravailleurIndependantChiffreAffaireDansPublicodes,
 	TravailleurIndependantContexteDansPublicodes,
@@ -58,9 +58,9 @@ export function calculeCotisationsTravailleurIndépendant(
 				Option.getOrElse(() => eurosParAn(0))
 			)
 			if (
-				!pipe(
+				pipe(
 					recettesCourteDurée,
-					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
 				)
 			) {
 				return Either.left(new AffiliationNonObligatoire())

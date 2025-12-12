@@ -2,8 +2,8 @@ import { Either, Option, pipe } from 'effect'
 
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
 import {
-	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
+	estPlusPetitQue,
 	eurosParAn,
 	Montant,
 } from '@/domaine/Montant'
@@ -101,9 +101,9 @@ export function calculeCotisationsMicroEntreprise(
 				Option.getOrElse(() => eurosParAn(0))
 			)
 			if (
-				!pipe(
+				pipe(
 					recettesCourteDurée,
-					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
 				) ||
 				classement !== 'classé'
 			) {

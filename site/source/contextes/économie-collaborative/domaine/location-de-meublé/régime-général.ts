@@ -4,6 +4,7 @@ import {
 	abattement,
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
+	estPlusPetitQue,
 	eurosParAn,
 	fois,
 	moins,
@@ -71,9 +72,9 @@ export function calculeCotisationsRégimeGénéral(
 				Option.getOrElse(() => eurosParAn(0))
 			)
 			if (
-				!pipe(
+				pipe(
 					recettesCourteDurée,
-					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
 				)
 			) {
 				return Either.left(new AffiliationNonObligatoire())
