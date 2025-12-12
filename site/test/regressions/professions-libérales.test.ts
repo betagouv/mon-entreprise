@@ -34,8 +34,6 @@ it('calculate simulations-professions-libérales', () => {
 		)
 	).toMatchInlineSnapshot(`
 		[
-		  "entreprise . activité",
-		  "entreprise . activité . commerciale . débit de tabac",
 		  "entreprise . activité . saisonnière",
 		  "entreprise . charges",
 		  "entreprise . chiffre d'affaires",
