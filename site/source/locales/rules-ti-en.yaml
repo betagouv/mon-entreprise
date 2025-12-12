@@ -4193,14 +4193,14 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
   titre.fr: exonération
 indépendant . cotisations et contributions . cotisations . exonérations . âge:
   avec:
-    invalidité et décès:
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
+    exonération:
+      titre.en: '[automatic] exemption'
+      titre.fr: exonération
   description.en: >
     [automatic] ### Craftsmen, shopkeepers and self-employed professionals
     outside Cipav
 
-    This scheme was discontinued in 2015, but is still active for those who benefited from it
+    This scheme was discontinued in 2015, but is still active for those who
 
     before it was abolished.
 
@@ -4209,7 +4209,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
 
     The exemption applies automatically from the year in which you turn 68.
 
-    You may, however, contribute voluntarily between the ages of 68 and 80, if :
+    However, you may contribute voluntarily between the ages of 68 and 80, if :
 
     - you continue to work ;
 
@@ -4219,28 +4219,27 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
   description.fr: >
     ### Artisans, commerçants, et professions libérales hors Cipav
 
-    Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
+    Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes
 
-    avant son abrogation.
+    qui en bénéficiaient avant son abrogation.
 
 
     #### Professions libérales relevants de la Cipav
 
     L'exonération s'applique automatique à partir de l'année de vos 68 ans.
 
-    Vous pouvez cependant cotiser volontairement entre 68 et 80 ans, si :
+    Vous pouvez cependant cotiser volontairement entre 68 et 80 ans, si :
 
-    - vous poursuivez votre activité ;
+    - vous poursuivez votre activité ;
 
-    - vous avez un conjoint de moins de 67 ans ou des enfants à charge de moins de 21 ans ;
+    - vous avez un conjoint de moins de 67 ans ou des enfants à charge de moins de 21 ans ;
 
     - vous avez une personne à charge ayant un handicap majeur.
   question.en:
     '[automatic] Do you benefit from the "age for retirement" exemption
     from disability-death contributions?'
-  question.fr:
-    Bénéficiez-vous du dispositif d’exonération « âge pour la retraite
-    » de la cotisation invalidité-décès ?
+  question.fr: Bénéficiez-vous du dispositif d’exonération « âge pour la
+    retraite » de la cotisation invalidité-décès ?
   titre.en: '[automatic] age'
   titre.fr: âge
 indépendant . cotisations et contributions . cotisations . invalidité et décès:
