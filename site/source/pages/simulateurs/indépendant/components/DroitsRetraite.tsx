@@ -40,7 +40,7 @@ export default function DroitsRetraite() {
 			<Trans i18nKey="pages.simulateurs.indépendant.explications.retraite.droits">
 				<H3>Droits acquis sur l'année</H3>
 
-				<WhenApplicable dottedName="indépendant . cotisations et contributions . cotisations . exonérations . ACRE">
+				<WhenApplicable dottedName="indépendant . cotisations et contributions . cotisations . exonérations . Acre">
 					<Message type="info" border>
 						L’exonération ACRE n’a aucune incidence sur la détermination des
 						droits à la retraite de base et complémentaire.

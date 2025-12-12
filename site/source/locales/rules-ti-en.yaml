@@ -3746,14 +3746,14 @@ indépendant . conjoint collaborateur . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
 indépendant . conjoint collaborateur . notification exonérations non pris en compte:
-  description.en: >
+  description.en: |
     [automatic] This simulator does not yet take into account the various
-    **exemptions from contributions** for **employee spouses** (ACRE, age,
-    disability, incapacity, etc.).
-  description.fr: >
-    Ce simulateur ne prend pas encore en compte les différentes **exonérations
-    de cotisations** pour les **conjoints collaborateurs** (ACRE, âge,
-    invalidité, incapacité, etc.)
+    **contribution exemptions** for **employee spouses** (Acre,
+    age, disability, incapacity, etc.).
+  description.fr: |
+    Ce simulateur ne prend pas encore en compte les différentes
+    **exonérations de cotisations** pour les **conjoints collaborateurs** (Acre,
+    âge, invalidité, incapacité, etc.)
   titre.en: '[automatic] notification exemptions not taken into account'
   titre.fr: notification exonérations non pris en compte
 indépendant . cotisations et contributions:
@@ -3993,7 +3993,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
 indépendant . cotisations et contributions . cotisations . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
-indépendant . cotisations et contributions . cotisations . exonérations . ACRE:
+indépendant . cotisations et contributions . cotisations . exonérations . Acre:
   avec:
     allocations familiales:
       titre.en: '[automatic] family allowances'
@@ -4026,37 +4026,41 @@ indépendant . cotisations et contributions . cotisations . exonérations . ACRE
     Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
   question.en: '[automatic] Did you benefit from Acre?'
   question.fr: Bénéficiez-vous de l’Acre ?
-  titre.en: '[automatic] ACRE'
-  titre.fr: ACRE
-indépendant . cotisations et contributions . cotisations . exonérations . ACRE . prorata sur l'année:
+  titre.en: '[automatic] Acre'
+  titre.fr: Acre
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description.en: >
     [automatic] As self-employed contributions are calculated on a full-year
     basis,
 
-    the exemption is prorated according to the actual duration of the ACRE in the current year.
+    the exemption is prorated according to the actual duration of Acre over the
+
+    current year.
 
 
-    For example, for a company created on February 1, 2018, the pro rata calculation for
+    For example, for a company created on February 1, 2024, the prorata calculation for
 
-    2019 contributions will be as follows:
+    for 2025 contributions will be as follows :
 
 
-    31 days of ACRE remaining in 2019 / 365 days = 8.5%`.
+    31 days of Acre remaining in 2025 / 365 days = 8.5%`.
   description.fr: >
     Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
 
-    l'exonération est proratisée en fonction de la durée effective de l'ACRE sur l'année courante.
+    l'exonération est proratisée en fonction de la durée effective de l'Acre sur
+
+    l'année courante.
 
 
-    Par exemple, pour une entreprise crée le 1 fevrier 2018, le calcul du prorata pour les
+    Par exemple, pour une entreprise crée le 1er février 2024, le calcul du prorata
 
-    cotisations 2019 sera le suivant :
+    pour les cotisations 2025 sera le suivant :
 
 
-    `31 jour d'acre restant en 2019 / 365 jour = 8,5%`
+    `31 jour d'Acre restant en 2025 / 365 jour = 8,5%`
   titre.en: '[automatic] pro rata over the year'
   titre.fr: prorata sur l'année
-indépendant . cotisations et contributions . cotisations . exonérations . ACRE . taux:
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux:
   titre.en: '[automatic] rate'
   titre.fr: taux
 indépendant . cotisations et contributions . cotisations . exonérations . DROM:

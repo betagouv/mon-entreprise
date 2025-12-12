@@ -1,6 +1,6 @@
 assimilé salarié . exonérations:
 
-assimilé salarié . exonérations . ACRE:
+assimilé salarié . exonérations . Acre:
   applicable si: entreprise . durée d'activité en début d'année < 1 an
   question: Bénéficiez-vous de l’Acre ?
   par défaut: non
