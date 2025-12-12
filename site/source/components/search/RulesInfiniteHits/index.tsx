@@ -43,6 +43,9 @@ const HitContainer = styled.li`
 `
 
 const Hit = (hit: THit) => {
+	console.log('hit:', hit);
+  console.log('keys:', Object.keys(hit));
+
 	return (
 		<HitContainer>
 			{hit.namespace && (
@@ -50,14 +53,12 @@ const Hit = (hit: THit) => {
 					{Object.values(hit.namespace).join(' > ')}
 					{/* <Highlight hit={hit} attribute="namespace" separator=" > " /> */}
 				</SmallBody>
-			{console.log('namespace:', hit.namespace)}
 			)}
 
 			<StyledRuleLink dottedName={hit.objectID} aria-label={undefined}>
 				<Body as="span" className="hit-ruleName">
-					{hit.ruleName}
+					{/* {hit.ruleName} */}
 
-					{console.log('namespace:', hit.ruleName)}
 				</Body>
 			</StyledRuleLink>
 		</HitContainer>
