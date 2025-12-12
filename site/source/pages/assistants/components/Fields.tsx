@@ -9,6 +9,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
 import { useEngine } from '@/components/utils/EngineContext'
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { H3, Intro, Markdown, SmallBody, Spacing } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
@@ -116,7 +117,13 @@ export function SimpleField(props: SimpleFieldProps) {
 	return (
 		<FadeIn>
 			<StyledQuestion id={labelId}>
-				<Markdown components={markdownComponents}>{displayedLabel}</Markdown>
+				<Markdown
+					as="label"
+					htmlFor={normalizeRuleName.Input(dottedName)}
+					components={markdownComponents}
+				>
+					{displayedLabel}
+				</Markdown>
 				{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
 				<ExplicableRule dottedName={dottedName} />
 			</StyledQuestion>
