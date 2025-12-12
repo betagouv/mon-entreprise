@@ -256,4 +256,40 @@ describe('L’exonération appliquée', () => {
 			)
 		})
 	})
+
+	describe('à la cotisation invalidité-décès', () => {
+		it('est l’Acre lorsqu’il n’y a pas d’exonération incapacité', () => {
+			const e1 = engine.setSituation(defaultSituation)
+			const cotisation = e1.evaluate(
+				'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+			).nodeValue as number
+
+			const e2 = engine.setSituation(defaultSituationAvecExonérations)
+			const acre = e2.evaluate(
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération'
+			).nodeValue as number
+			const cotisationExonérée = e2.evaluate(
+				'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+			).nodeValue
+
+			expect(cotisationExonérée).toEqual(
+				Math.round(cotisation * (1 - acre / 100))
+			)
+		})
+
+		it('est l’exonération âge lorsqu’elle est présente', () => {
+			const e = engine.setSituation({
+				...defaultSituationAvecExonérations,
+				'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée':
+					'11 mois',
+				'indépendant . cotisations et contributions . cotisations . exonérations . âge':
+					'oui',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . invalidité et décès',
+				0
+			)
+		})
+	})
 })
