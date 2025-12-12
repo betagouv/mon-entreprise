@@ -4,6 +4,7 @@ import {
 	abattement,
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
+	estPlusPetitQue,
 	eurosParAn,
 	fois,
 	moins,
@@ -11,13 +12,18 @@ import {
 } from '@/domaine/Montant'
 
 import {
+	AffiliationNonObligatoire,
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
 	RégimeNonApplicablePourCeTypeDeDurée,
-	RégimeNonApplicablePourCeTypeDeLocation,
+	RégimeNonApplicablePourChambreDHôte,
 } from './erreurs'
 import { estActivitéPrincipale } from './estActivitéPrincipale'
-import { SEUIL_PROFESSIONNALISATION } from './estActiviteProfessionnelle'
 import {
+	estActiviteProfessionnelle,
+	SEUIL_PROFESSIONNALISATION,
+} from './estActiviteProfessionnelle'
+import {
+	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
 	situationParDéfaut,
@@ -37,25 +43,48 @@ export function calculeCotisationsRégimeGénéral(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
 	Montant<'€/an'>,
+	| AffiliationNonObligatoire
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
-	| RégimeNonApplicablePourCeTypeDeLocation
+	| RégimeNonApplicablePourChambreDHôte
 	| RégimeNonApplicablePourCeTypeDeDurée
 > {
-	const recettes = situation.recettes.value
-
-	const typeLocation = Option.getOrElse(
-		situation.typeLocation,
-		() => situationParDéfaut.typeLocation
-	)
-
-	if (typeLocation === 'chambre-hôte') {
+	if (situation.typeHébergement === 'chambre-hôte') {
 		return Either.left(
-			new RégimeNonApplicablePourCeTypeDeLocation({
-				typeLocation,
+			new RégimeNonApplicablePourChambreDHôte({
 				régime: RegimeCotisation.regimeGeneral,
 			})
 		)
 	}
+
+	if (!estActiviteProfessionnelle(situation)) {
+		return Either.left(new AffiliationNonObligatoire())
+	}
+
+	if (!estActivitéPrincipale(situation)) {
+		const typeDurée = Option.getOrElse(
+			situation.typeDurée,
+			() => situationParDéfaut.typeDurée
+		)
+
+		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
+			const recettesCourteDurée = pipe(
+				situation.recettesCourteDurée,
+				Option.getOrElse(() => eurosParAn(0))
+			)
+			if (
+				pipe(
+					recettesCourteDurée,
+					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+				)
+			) {
+				return Either.left(new AffiliationNonObligatoire())
+			}
+		} else if (typeDurée !== 'courte') {
+			return Either.left(new AffiliationNonObligatoire())
+		}
+	}
+
+	const recettes = situation.recettes.value
 
 	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
 		const typeDurée = Option.getOrElse(
@@ -86,7 +115,6 @@ export function calculeCotisationsRégimeGénéral(
 		() => situationParDéfaut.premièreAnnée
 	)
 
-	// Vérification du plafond pour ce régime
 	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
 		return Either.left(
 			new RecettesSupérieuresAuPlafondAutoriséPourCeRégime({

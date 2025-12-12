@@ -1,4 +1,5 @@
-export { TypeLocationQuestion } from './TypeLocationQuestion'
 export { TypeDuréeQuestion } from './TypeDuréeQuestion'
+export { ClassementQuestion } from './ClassementQuestion'
+export { RecettesCourteDuréeQuestion } from './RecettesCourteDuréeQuestion'
 export { AlsaceMoselleQuestion } from './AlsaceMoselleQuestion'
 export { PremiereAnneeQuestion } from './PremiereAnneeQuestion'
