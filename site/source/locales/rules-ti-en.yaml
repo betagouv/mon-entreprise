@@ -2606,9 +2606,9 @@ indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
   titre.fr: retraite
 indépendant . PL . CNAVPL . exonération incapacité:
   avec:
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
+    exonération:
+      titre.en: '[automatic] exemption'
+      titre.fr: exonération
   description.en: >
     [automatic] If you have been incapacitated for work for at least six months
 
@@ -3994,22 +3994,6 @@ indépendant . cotisations et contributions . cotisations . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 indépendant . cotisations et contributions . cotisations . exonérations . Acre:
-  avec:
-    allocations familiales:
-      titre.en: '[automatic] family allowances'
-      titre.fr: allocations familiales
-    indemnités journalières:
-      titre.en: '[automatic] daily allowances'
-      titre.fr: indemnités journalières
-    invalidité et décès:
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
-    maladie:
-      titre.en: '[automatic] disease'
-      titre.fr: maladie
-    retraite de base:
-      titre.en: '[automatic] basic retirement'
-      titre.fr: retraite de base
   description.en: >-
     [automatic] Assistance for setting up or taking over a business (Acre)
     consists of a partial exemption from social security contributions, known as
@@ -4028,6 +4012,9 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
   titre.fr: Acre
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
+  titre.en: '[automatic] exemption'
+  titre.fr: exonération
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description.en: >
     [automatic] As self-employed contributions are calculated on a full-year
@@ -4098,17 +4085,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . ZFU 
   titre.en: '[automatic] rate'
   titre.fr: taux
 indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité:
-  avec:
-    durée:
-      question.en:
-        '[automatic] For how many months of the year do you receive this
-        pension?'
-      question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
-      titre.en: '[automatic] duration'
-      titre.fr: durée
-    exonération:
-      titre.en: '[automatic] exemption'
-      titre.fr: exonération
   description.en: >-
     [automatic] If you are receiving a disability pension from a pension scheme
     for the self-employed
@@ -4207,6 +4183,14 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
             indépendant ?
   titre.en: '[automatic] disability exemption'
   titre.fr: exonération invalidité
+indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée:
+  question.en: '[automatic] For how many months of the year do you receive this pension?'
+  question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+  titre.en: '[automatic] duration'
+  titre.fr: durée
+indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . exonération:
+  titre.en: '[automatic] exemption'
+  titre.fr: exonération
 indépendant . cotisations et contributions . cotisations . exonérations . âge:
   avec:
     invalidité et décès:

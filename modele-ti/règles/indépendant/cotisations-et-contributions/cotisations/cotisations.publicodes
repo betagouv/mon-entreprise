@@ -55,7 +55,10 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
             - taux: taux 1
               plafond: plafond taux 1
             - taux: taux 2
-  abattement: exonérations . pension invalidité . exonération
+  abattement:
+    le maximum de:
+      - exonérations . Acre . exonération
+      - exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -161,7 +164,10 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
     # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
     # plafonne donc la cotis maladie 2 à ce total
     valeur: maladie
-  abattement: exonérations . pension invalidité . exonération
+  abattement:
+    le maximum de:
+      - exonérations . Acre . exonération
+      - exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -208,6 +214,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
   produit:
     - assiette sociale
     - taux
+  abattement: exonérations . Acre . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -265,15 +272,16 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
         somme:
           - tranche 1
           - tranche 2
+        abattement: PL . CARMF . participation CPAM retraite
   abattement:
     le maximum de:
-      - PL . CNAVPL . exonération incapacité . taux
+      - exonérations . Acre . exonération
+      - PL . CNAVPL . exonération incapacité . exonération
       # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraite de base.
       # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de cette exonération.
       # Les A/C/PLNR ne bénéficient pas de cette exonération.
       - applicable si: PL . CIPAV
         valeur: exonérations . pension invalidité . exonération
-      - PL . CARMF . participation CPAM retraite
   arrondi: oui
   unité: €/an
   références:
@@ -389,7 +397,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
         arrondi: oui
   abattement:
     le maximum de:
-      - PL . CNAVPL . exonération incapacité . taux
+      - PL . CNAVPL . exonération incapacité . exonération
       # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de l'exonération invalidité.
       - non applicable si: PL . PLR hors Urssaf
         valeur: exonérations . pension invalidité . exonération
@@ -451,6 +459,8 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
           - assiette
           - 1.3%
         arrondi: oui
+  abattement: exonérations . Acre . exonération
+  arrondi: oui
   unité: €/an
   références:
     Invalidité-décès: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-invalidite-deces
