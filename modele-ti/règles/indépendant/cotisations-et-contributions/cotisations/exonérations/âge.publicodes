@@ -1,16 +1,16 @@
 indépendant . cotisations et contributions . cotisations . exonérations . âge:
-  question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite »
+  question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite »
     de la cotisation invalidité-décès ?
   description: |
     ### Artisans, commerçants, et professions libérales hors Cipav
-    Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes qui en bénéficiaient
-    avant son abrogation.
+    Ce dispositif a été arrêté en 2015, mais est toujours actif pour les personnes
+    qui en bénéficiaient avant son abrogation.
 
     #### Professions libérales relevants de la Cipav
     L'exonération s'applique automatique à partir de l'année de vos 68 ans.
-    Vous pouvez cependant cotiser volontairement entre 68 et 80 ans, si :
-    - vous poursuivez votre activité ;
-    - vous avez un conjoint de moins de 67 ans ou des enfants à charge de moins de 21 ans ;
+    Vous pouvez cependant cotiser volontairement entre 68 et 80 ans, si :
+    - vous poursuivez votre activité ;
+    - vous avez un conjoint de moins de 67 ans ou des enfants à charge de moins de 21 ans ;
     - vous avez une personne à charge ayant un handicap majeur.
 
   par défaut: non
@@ -20,9 +20,8 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
       - PL . CIPAV
   # L'exonération s'est arreté en 2015 pour les AC / PLNR, soit après la possibilité d'opter pour le régime général pour les PLNR CIPAV
   non applicable si: PL . option régime général
+  références:
+    Article 4.6 des statuts de la Cipav: https://www.lacipav.fr/sites/default/files/2025-09/Statuts%20CIPAV_doc%20VF%20Septembre%2020250923.pdf#page=19
 
   avec:
-    invalidité et décès:
-      valeur: invalidité et décès
-      remplace: invalidité et décès
-      abattement: 100%
+    exonération: 100%
