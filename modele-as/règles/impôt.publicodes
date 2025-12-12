@@ -1,0 +1,7 @@
+impôt . domiciliation étranger non implémentée:
+  valeur: situation personnelle . domiciliation fiscale à l'étranger
+  type: notification
+  sévérité: avertissement
+  description: |
+    La retenue à la source pour les non-résident n’est pas encore implémentée. Pour
+    en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
