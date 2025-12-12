@@ -29,9 +29,7 @@ indépendant . PL . CARCDSF . retraite complémentaire:
               alors: 3178.80 €/an
             - si: date >= 01/2024
               alors: 3108.00 €/an
-            - si: date >= 01/2023
-              alors: 2959.80 €/an
-            - sinon: 2960.40 €/an
+            - sinon: 2959.80 €/an
         - variations:
             - si: taux réduction
               alors: taux réduction
@@ -46,11 +44,7 @@ indépendant . PL . CARCDSF . retraite complémentaire:
         tranches:
           - taux: 0%
             plafond: 0.85
-          - taux:
-              variations:
-                - si: date >= 01/2023
-                  alors: 10.80%
-                - sinon: 10.65%
+          - taux: 10.80%
             plafond: 5
         arrondi: oui
 
@@ -94,9 +88,7 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   variations:
     - si: date >= 01/2024
       alors: 1284.40 €/an
-    - si: date >= 01/2023
-      alors: 1235 €/an
-    - sinon: 1078 €/an
+    - sinon: 1235 €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
@@ -130,9 +122,7 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
           alors: 1648.76 €/an
         - si: date >= 01/2024
           alors: 1618.84 €/an
-        - si: date >= 01/2023
-          alors: 1544.36 €/an
-        - sinon: 1440.60 €/an
+        - sinon: 1544.36 €/an
 
     proportionnelle:
       produit:
@@ -165,56 +155,14 @@ indépendant . PL . CARCDSF . sage-femme: métier = 'santé . sage-femme'
 
 indépendant . PL . CARCDSF . sage-femme . RID:
   titre: invalidité et décès
-  description: |
-    Il existe classes de cotisations aux choix, correspondant à des cotisations
-    et des degrés d'indemnisations différents.
-
-    Le changement d'option pour une classe supérieure doit être demandé avant le
-    1er juillet de l'année en cours, pour prendre effet au 1er janvier de
-    l'année suivante.
-
-    Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
   variations:
     - si: date >= 01/2025
       alors: 380 €/an
     - si: date >= 01/2024
       alors: 351 €/an
-    - si: date >= 01/2023
-      alors: 280.80 €/an
-    - si: classe = 'A'
-      alors: 91 €/an
-    - si: classe = 'B'
-      alors: 182 €/an
-    - si: classe = 'C'
-      alors: 273 €/an
-  note:
-    À partir de 2023, il n'y a plus de possibilité de choisir pour une classe
-    de cotisation spécifique.
+    - sinon: 280.80 €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
-
-  avec:
-    classe:
-      titre: Classe de cotisation
-      question:
-        Dans quelle classe cotisez-vous pour le régime invalidité-décès de la
-        CARCDSF ?
-      description: |
-        Il existe classes de cotisations aux choix, correspondant à des cotisations
-        et des degrés d'indemnisations différents.
-      par défaut: "'A'"
-      une possibilité:
-        - A
-        - B
-        - C
-      
-      avec:
-        A:
-          titre: classe A
-        B:
-          titre: classe B
-        C:
-          titre: classe C
 
 indépendant . PL . CARCDSF . sage-femme . PCV:
   remplace: cotisations et contributions . cotisations . PCV
