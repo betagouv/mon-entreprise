@@ -98,17 +98,13 @@ indépendant . PL . CARMF . invalidité et décès:
                     - part forfaitaire
                     - part variable maladie
                     - part variable invalidité
-              - si: date >= 01/2023
-                alors: 712 €/an
-              - sinon: 738 €/an
+              - sinon: 712 €/an
           plafond: 3
         - montant:
             variations:
               - si: date >= 01/2025
                 alors: 999 €/an
-              - si: date >= 01/2023
-                alors: 828 €/an
-              - sinon: 863 €/an
+              - sinon: 828 €/an
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
@@ -170,9 +166,7 @@ indépendant . PL . CARMF . ASV:
           alors: 5556 €/an
         - si: date >= 01/2024
           alors: 5421 €/an
-        - si: date >= 01/2023
-          alors: 5622 €/an
-        - sinon: 5136 €/an
+        - sinon: 5622 €/an
 
     ajustement:
       produit:

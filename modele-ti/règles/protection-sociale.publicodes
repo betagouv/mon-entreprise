@@ -218,9 +218,7 @@ protection sociale . retraite . complémentaire . RCI:
           alors: 21.532 €/point
         - si: date >= 01/2024
           alors: 20.734 €/point
-        - si: date >= 01/2023
-          alors: 19.394 €/point
-        - sinon: 17.956 €/point
+        - sinon: 19.394 €/point
       références:
         Valeur d’achat du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_achat_point_bar.aspx
 
@@ -230,9 +228,7 @@ protection sociale . retraite . complémentaire . RCI:
           alors: 1.335 €/an/point
         - si: date >= 01/2024
           alors: 1.327 €/an/point
-        - si: date >= 01/2023
-          alors: 1.280 €/an/point
-        - sinon: 1.221 €/an/point
+        - sinon: 1.280 €/an/point
       références:
         Valeur de service du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
 
@@ -318,9 +314,7 @@ protection sociale . retraite . base . CNAVPL:
           alors: 0.6540 €/an/point
         - si: date >= 01/2024
           alors: 0.6399 €/an/point
-        - si: date >= 01/2023
-          alors: 0.6076 €/an/point
-        - sinon: 0.5795 €/an/point
+        - sinon: 0.6076 €/an/point
     références:
       'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
@@ -351,17 +345,14 @@ protection sociale . retraite . complémentaire . CIPAV:
       variations:
         - si: date >= 01/2024
           alors: 47.40 €/point
-        - si: date >= 01/2023
-          alors: 45.30 €/point
+        - sinon: 45.30 €/point
 
     valeur de service du point:
       unité: €/an/point
       variations:
         - si: date >= 01/2024
           alors: 2.89 €/an/point
-        - si: date >= 01/2023
-          alors: 2.77 €/an/point
-        - sinon: 2.63 €/an/point
+        - sinon: 2.77 €/an/point
 
 protection sociale . maladie:
   icônes: 🏥
@@ -579,11 +570,7 @@ protection sociale . invalidité et décès:
         Pension de réversion: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/veuvage/pension-reversion-veuvage.html
         Montants minimums de la pension de reversion: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=retraite_reversion_montant_minimum_bar.aspx
         Pension de réversion - Défunt ayant travaillé dans le privé: https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
-      plancher:
-        variations:
-          - si: date >= 07/2022
-            alors: 3672.01 €/an
-          - sinon: 3530.78 €/an
+      plancher: 3672.01 €/an
       valeur: 54% * retraite . base
 
     pension invalidité:
