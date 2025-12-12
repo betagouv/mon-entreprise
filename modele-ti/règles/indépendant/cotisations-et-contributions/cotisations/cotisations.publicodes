@@ -419,9 +419,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
                 alors: 43891 €/an
               - si: date >= 01/2024
                 alors: 42946 €/an
-              - si: date >= 01/2023
-                alors: 40784 €/an
-              - sinon: 38916 €/an
+              - sinon: 40784 €/an
       références:
         Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
 
