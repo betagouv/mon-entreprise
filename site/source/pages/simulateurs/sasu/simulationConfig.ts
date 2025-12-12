@@ -15,8 +15,8 @@ export const configSASU: SimulationConfig = {
 	questions: {
 		raccourcis: [
 			{
-				label: 'ACRE',
-				dottedName: 'assimilé salarié . exonérations . ACRE',
+				label: 'Acre',
+				dottedName: 'assimilé salarié . exonérations . Acre',
 			},
 			{
 				label: 'Commune',

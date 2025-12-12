@@ -25,7 +25,7 @@ export default function DroitsRetraite() {
 
 	const exonérationRetraiteActive = {
 		'une de ces conditions': [
-			'indépendant . cotisations et contributions . cotisations . exonérations . ACRE',
+			'indépendant . cotisations et contributions . cotisations . exonérations . Acre',
 			'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité',
 			'indépendant . PL . CNAVPL . exonération incapacité',
 		] as Array<DottedName>,
@@ -43,7 +43,7 @@ export default function DroitsRetraite() {
 			<Condition expression={exonérationRetraiteActive}>
 				<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
 					Le calcul des droits ouverts à la retraite n’est pas encore implémenté
-					pour les cas incluants des d’exonérations de cotisations (ACRE,
+					pour les cas incluants des d’exonérations de cotisations (Acre,
 					pension invalidité, etc).
 				</Message>
 			</Condition>
