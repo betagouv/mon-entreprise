@@ -2605,6 +2605,10 @@ indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
   titre.en: '[automatic] retirement'
   titre.fr: retraite
 indépendant . PL . CNAVPL . exonération incapacité:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
   description.en: >
     [automatic] If you have been incapacitated for work for at least six months
 
@@ -3090,6 +3094,17 @@ indépendant . PL . PAMC . revenus activité conventionnée:
     provenant des actes conventionnés.
   titre.en: '[automatic] income from conventional activities'
   titre.fr: revenus activité conventionnée
+indépendant . PL . PLR hors Urssaf:
+  description.en: >
+    [automatic] These are all the regulated liberal professions, excluding those
+    attached to the
+
+    Cipav.
+  description.fr: |
+    Ce sont toutes les professions libérales réglementées hors les rattachées
+    Cipav.
+  titre.en: '[automatic] PLR excluding Urssaf'
+  titre.fr: PLR hors Urssaf
 indépendant . PL . cotisations caisse de retraite:
   description.en: >
     [automatic] The contributions collected by the independent pension fund
@@ -3100,13 +3115,15 @@ indépendant . PL . cotisations caisse de retraite:
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
     profession libérale effectuée.
   note.en: >
-    [automatic] Since 2023, contributions from PLs affiliated to Cipav have been
-    collected by
+    [automatic] Since 2023, contributions from the liberal professions
+    affiliated to Cipav have been
 
-    Urssaf.
-  note.fr: |
-    Depuis 2023, les cotisations des PL affiliées à la Cipav sont recouvrées par
-    l'Urssaf.
+    collected by Urssaf.
+  note.fr: >
+    Depuis 2023, les cotisations des professions libérales affiliées à la Cipav
+    sont
+
+    recouvrées par l'Urssaf.
   titre.en: '[automatic] pension fund contributions'
   titre.fr: cotisations caisse de retraite
 indépendant . PL . maladie:
@@ -4085,48 +4102,94 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
       question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
       titre.en: '[automatic] duration'
       titre.fr: durée
-    indemnités journalières:
-      titre.en: '[automatic] daily allowances'
-      titre.fr: indemnités journalières
-    maladie:
-      titre.en: '[automatic] disease'
-      titre.fr: maladie
-    profession libérale réglementées hors Urssaf:
-      titre.en: '[automatic] regulated liberal professions outside Urssaf'
-      titre.fr: profession libérale réglementées hors Urssaf
-    prorata:
-      titre.en: '[automatic] prorata'
-      titre.fr: prorata
-    retraite complémentaire:
-      titre.en: '[automatic] supplementary pension'
-      titre.fr: retraite complémentaire
-    retraite de base:
-      titre.en: '[automatic] basic retirement'
-      titre.fr: retraite de base
+    exonération:
+      titre.en: '[automatic] exemption'
+      titre.fr: exonération
   description.en: >-
-    [automatic] If you receive a disability pension from a non-agricultural
-    non-salaried worker's scheme
+    [automatic] If you are receiving a disability pension from a pension scheme
+    for the self-employed
 
-    non-agricultural non-salaried workers, you benefit from an exemption from basic, supplementary and
+    self-employed workers, craftsmen, shopkeepers and self-employed professionals
 
-    and sickness contributions.
+    liberal professions are exempt from :
+
+    - Sickness
+
+    - Daily benefits
+
+    - Supplementary pension
+
+    Regulated liberal professions are also exempt from contributions to :
+
+    - Basic pension
 
 
-    This exemption is proportional to the number of months your disability has been recognized.
+    Recognition of a disability pension paid by another scheme (salaried,
 
-    If you have received a disability pension for the whole year, then the exemption is total.
+    agricultural...) does not entitle them to exemption for their self-employed activity.
+
+    self-employed activity.
+
+
+    This exemption applies to overseas territories. It does not apply to
+
+    self-employed entrepreneurs.
+
+
+    This exemption is prorated to the number of months your disability has been
+
+    recognized. If you have received a disability pension for the whole year, then
+
+    the exemption is total.
+
+
+    Each quarter in which your disability pension is paid is treated as a quarter of insurance
+
+    and will be taken into account when calculating your pension.
+
+    Free points in the supplementary pension scheme are awarded.
   description.fr: >-
-    Si vous êtes titulaire d’une pension d’invalidité versée par un régime des
-    travailleurs non-salariés
+    En cas de versement d’une pension d’invalidité par un régime de retraite des
 
-    non agricoles, vous bénéficiez d’une exonération des cotisations de retraite de base, de
+    travailleurs indépendants les artisans, commerçants et professions
 
-    retraite complémentaire et maladie.
+    libérales sont exonérés des cotisations :
+
+    - Maladie
+
+    - Indemnités journalières
+
+    - Retraite complémentaire
+
+    Les professions libérales réglementées sont en plus exonérées des cotisations :
+
+    - Retraite de base
 
 
-    Cette exonération est au prorata du nombre de mois où votre invalidité a été reconnue.
+    La reconnaissance d’une pension d’invalidité versée par un autre régime (salarié,
 
-    Si vous avez reçu une pension d'invalidité sur l'année complète, alors l'exonération est totale.
+    agricole…) n’ouvre pas droit à exonération au titre de leur activité de
+
+    travailleur indépendant.
+
+
+    Cette exonération est applicable en outre-mer. Elle ne concerne pas les
+
+    auto-entrepreneurs et auto-entrepreneuses.
+
+
+    Cette exonération est au prorata du nombre de mois où votre invalidité a été
+
+    reconnue. Si vous avez reçu une pension d’invalidité sur l’année complète, alors
+
+    l’exonération est totale.
+
+
+    Chaque trimestre de versement de la pension d’invalidité est assimilé à un
+
+    trimestre d’assurance et sera pris en compte pour le calcul de votre retraite.
+
+    Des points gratuits dans le régime de retraite complémentaire sont attribués.
   question.fr:
     variations:
       - alors:

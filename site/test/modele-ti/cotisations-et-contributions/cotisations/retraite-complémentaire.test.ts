@@ -252,13 +252,13 @@ describe('Cotisation retraite complémentaire', () => {
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
 					'indépendant . PL . CNAVPL . retraite complémentaire'
-				).nodeValue
+				).nodeValue as number
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
 				).nodeValue
 
 				expect(cotisationCNAVPL).toEqual(cotisationCARCDSF)
-				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+				expect(cotisationIndépendant).toEqual(Math.round(cotisationCNAVPL))
 			})
 
 			it('Sage-femme', () => {
@@ -274,13 +274,13 @@ describe('Cotisation retraite complémentaire', () => {
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
 					'indépendant . PL . CNAVPL . retraite complémentaire'
-				).nodeValue
+				).nodeValue as number
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
 				).nodeValue
 
 				expect(cotisationCNAVPL).toEqual(cotisationCARCDSF)
-				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
+				expect(cotisationIndépendant).toEqual(Math.round(cotisationCNAVPL))
 			})
 
 			it('Médecin', () => {

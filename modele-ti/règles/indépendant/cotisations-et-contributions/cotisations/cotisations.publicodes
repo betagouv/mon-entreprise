@@ -55,6 +55,7 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
             - taux: taux 1
               plafond: plafond taux 1
             - taux: taux 2
+  abattement: exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -160,6 +161,7 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
     # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
     # plafonne donc la cotis maladie 2 à ce total
     valeur: maladie
+  abattement: exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -263,11 +265,15 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
         somme:
           - tranche 1
           - tranche 2
-        abattement:
-          variations:
-            - si: PL . CNAVPL . exonération incapacité
-              alors: 100%
-            - sinon: PL . CARMF . participation CPAM retraite
+  abattement:
+    le maximum de:
+      - PL . CNAVPL . exonération incapacité . taux
+      # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraite de base.
+      # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de cette exonération.
+      # Les A/C/PLNR ne bénéficient pas de cette exonération.
+      - applicable si: PL . CIPAV
+        valeur: exonérations . pension invalidité . exonération
+      - PL . CARMF . participation CPAM retraite
   arrondi: oui
   unité: €/an
   références:
@@ -381,6 +387,13 @@ indépendant . cotisations et contributions . cotisations . retraite complément
             - taux: taux tranche 2
               plafond: 4 * PSS proratisé
         arrondi: oui
+  abattement:
+    le maximum de:
+      - PL . CNAVPL . exonération incapacité . taux
+      # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de l'exonération invalidité.
+      - non applicable si: PL . PLR hors Urssaf
+        valeur: exonérations . pension invalidité . exonération
+  arrondi: oui
   unité: €/an
   références:
     Retraite complémentaire: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-complementaire

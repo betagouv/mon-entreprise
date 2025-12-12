@@ -188,18 +188,22 @@ indépendant . PL . maladie:
           - plafond: 110%
             taux: 6.5%
 
+indépendant . PL . PLR hors Urssaf:
+  description: |
+    Ce sont toutes les professions libérales réglementées hors les rattachées
+    Cipav.
+  toutes ces conditions:
+    - CNAVPL
+    - CIPAV = non
+
 indépendant . PL . cotisations caisse de retraite:
   description: |
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
     profession libérale effectuée.
   note: |
-    Depuis 2023, les cotisations des PL affiliées à la Cipav sont recouvrées par
-    l'Urssaf.
-
-  non applicable si:
-    toutes ces conditions:
-      - CIPAV
-      - date >= 01/2023
+    Depuis 2023, les cotisations des professions libérales affiliées à la Cipav sont
+    recouvrées par l'Urssaf.
+  applicable si: PLR hors Urssaf
   somme:
     - cotisations et contributions . cotisations . retraite de base
     - cotisations et contributions . cotisations . retraite complémentaire
