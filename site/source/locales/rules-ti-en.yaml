@@ -1663,19 +1663,6 @@ impôt . barème standard . revenu net imposable:
 impôt . barème standard . taux effectif:
   titre.en: '[automatic] effective rate'
   titre.fr: taux effectif
-impôt . domiciliation étranger non implémentée:
-  description.en: >
-    [automatic] Withholding tax for non-residents has not yet been implemented.
-    For
-
-    find out more, please refer to the [tax documentation](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
-  description.fr: >
-    La retenue à la source pour les non-résident n’est pas encore implémentée.
-    Pour
-
-    en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
-  titre.en: '[automatic] foreign domiciliation not implemented'
-  titre.fr: domiciliation étranger non implémentée
 impôt . foyer fiscal:
   titre.en: '[automatic] taxable household'
   titre.fr: foyer fiscal
