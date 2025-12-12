@@ -44,15 +44,14 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
     Article D635-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966510
     Article L642-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033745702
 
-  avec:
-    durée:
-      question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
-      unité: mois
-      par défaut: 12 mois
-      plancher: 1 mois
-      plafond: 12 mois
+indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée:
+  question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+  unité: mois
+  par défaut: 12 mois
+  plancher: 1 mois
+  plafond: 12 mois
 
-    exonération:
-      valeur: durée / 1 an
-      unité: '%'
-      arrondi: oui
+indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . exonération:
+  valeur: durée / 1 an
+  unité: '%'
+  arrondi: oui
