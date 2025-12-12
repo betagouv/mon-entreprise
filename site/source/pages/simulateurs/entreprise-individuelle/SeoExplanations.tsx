@@ -53,7 +53,7 @@ export const SeoExplanations = () => (
 			</RuleLink>{' '}
 			de l'entreprise. Leur montant varie également en fonction du type
 			d'activité (profession libérale, artisan, commerçants, etc), où des
-			éventuelles exonérations accordées (ACRE, ZFU, RSA, etc.).
+			éventuelles exonérations accordées (Acre, ZFU, RSA, etc.).
 		</Body>
 		<Body>
 			{' '}

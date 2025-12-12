@@ -1,7 +1,7 @@
 indépendant . cotisations et contributions . cotisations . exonérations . DROM:
   applicable si: établissement . commune . département . outre-mer
   valeur: oui
-  rend non applicable: exonérations . ACRE
+  rend non applicable: exonérations . Acre
   type: notification
   sévérité: avertissement
   titre: exonération DROM

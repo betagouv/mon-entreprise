@@ -24,9 +24,9 @@ export const configIndépendant: SimulationConfig = {
 				dottedName: 'entreprise . date de création',
 			},
 			{
-				label: 'ACRE',
+				label: 'Acre',
 				dottedName:
-					'indépendant . cotisations et contributions . cotisations . exonérations . ACRE',
+					'indépendant . cotisations et contributions . cotisations . exonérations . Acre',
 			},
 			{
 				label: 'Contrats Madelins',
