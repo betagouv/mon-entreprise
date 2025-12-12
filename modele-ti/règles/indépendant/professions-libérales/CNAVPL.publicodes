@@ -66,10 +66,7 @@ indépendant . PL . CNAVPL . conjoint collaborateur:
 indépendant . PL . CNAVPL . conjoint collaborateur . proportion:
   question:
     variations:
-      - si:
-          toutes ces conditions:
-            - date >= 01/2023
-            - PL . CIPAV
+      - si: PL . CIPAV
         alors:
           texte:
             À quelle proportion le conjoint cotise-t-il pour la retraite de base, la

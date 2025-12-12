@@ -37,9 +37,7 @@ indépendant . PL . CAVP . cotisation de référence:
         alors: 1423 €
       - si: date >= 01/2024
         alors: 1376 €
-      - si: date >= 01/2023
-        alors: 1306 €
-      - sinon: 1232 €
+      - sinon: 1306 €
   reference:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
@@ -124,9 +122,7 @@ indépendant . PL . CAVP . PCV:
           alors: 2138 €/an
         - si: date >= 01/2024
           alors: 2051 €/an
-        - si: date >= 01/2023
-          alors: 1911 €/an
-        - sinon: 1788 €/an
+        - sinon: 1911 €/an
 
     cotisations proportionnelle:
       produit:
@@ -135,9 +131,7 @@ indépendant . PL . CAVP . PCV:
         - variations:
             - si: date >= 01/2024
               alors: 1.20%
-            - si: date >= 01/2023
-              alors: 0.60%
-            - sinon: 0.30%
+            - sinon: 0.60%
 
 indépendant . PL . CAVP . PCV . aide CPAM:
   somme:
