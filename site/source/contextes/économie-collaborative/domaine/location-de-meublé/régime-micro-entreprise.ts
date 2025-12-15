@@ -28,6 +28,8 @@ import {
 } from './estActiviteProfessionnelle'
 import {
 	aRenseignéSesAutresRevenus,
+	aRenseignéSonClassement,
+	aRenseignéSonTypeDeDurée,
 	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -130,7 +132,7 @@ export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 		return Either.left(['autresRevenus'])
 	}
 
-	if (Option.isNone(situation.typeDurée)) {
+	if (!aRenseignéSonTypeDeDurée(situation)) {
 		return Either.left(['typeDurée'])
 	}
 	const typeDurée = situation.typeDurée.value
@@ -143,7 +145,7 @@ export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 		return Either.right(true)
 	}
 
-	if (Option.isNone(situation.classement)) {
+	if (!aRenseignéSonClassement(situation)) {
 		return Either.left(['classement'])
 	}
 	const classement = situation.classement.value
