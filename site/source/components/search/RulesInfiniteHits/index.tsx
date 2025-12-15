@@ -16,8 +16,6 @@ type THit = AlgoliaHit<{
 }>
 
 const StyledRuleLink = styled(RuleLink)`
-	display: block; // Fix focus outline on chrome
-
 	${SmallBody}, ${Body} {
 		margin: 0;
 		color: inherit;
@@ -33,7 +31,9 @@ const StyledRuleLink = styled(RuleLink)`
 `
 
 const HitContainer = styled.li`
-	display: block;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start
 
 	border-top: 1px solid #eee;
 	padding-top: 0.5rem;
@@ -55,7 +55,7 @@ const Hit = (hit: THit) => {
 				</SmallBody>
 			)}
 
-			<StyledRuleLink dottedName={hit.objectID} aria-label={undefined}>
+			<StyledRuleLink dottedName={hit.objectID} aria-label={hit.ruleName}>
 				<Body as="span" className="hit-ruleName">
 					{hit.ruleName}
 				</Body>
