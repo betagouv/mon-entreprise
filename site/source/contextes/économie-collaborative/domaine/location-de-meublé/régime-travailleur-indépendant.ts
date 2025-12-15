@@ -17,6 +17,7 @@ import {
 } from './estActiviteProfessionnelle'
 import {
 	aRenseignéSesAutresRevenus,
+	aRenseignéSonTypeDeDurée,
 	faitDeLaLocationCourteEtLongueDurée,
 	SituationÉconomieCollaborativeValide,
 } from './situation'
@@ -37,7 +38,7 @@ export const estApplicableTravailleurIndépendant: EstApplicable = (
 	}
 
 	if (!estActivitéPrincipale(situation)) {
-		if (Option.isNone(situation.typeDurée)) {
+		if (!aRenseignéSonTypeDeDurée(situation)) {
 			return Either.left(['typeDurée'])
 		}
 

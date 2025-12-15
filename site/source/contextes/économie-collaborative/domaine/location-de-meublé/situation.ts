@@ -136,6 +136,26 @@ export function aRenseignéSesAutresRevenus(
 	return O.isSome(situation.autresRevenus)
 }
 
+export type SituationMeubléAvecTypeDurée = SituationMeubléDeTourismeValide & {
+	typeDurée: O.Some<TypeDurée>
+}
+
+export function aRenseignéSonTypeDeDurée(
+	situation: SituationMeubléDeTourismeValide
+): situation is SituationMeubléAvecTypeDurée {
+	return O.isSome(situation.typeDurée)
+}
+
+export type SituationMeubléAvecClassement = SituationMeubléDeTourismeValide & {
+	classement: O.Some<Classement>
+}
+
+export function aRenseignéSonClassement(
+	situation: SituationMeubléDeTourismeValide
+): situation is SituationMeubléAvecClassement {
+	return O.isSome(situation.classement)
+}
+
 export interface SituationChambreDHôteValide extends SituationChambreDHôte {
 	revenuNet: O.Some<Montant<'€/an'>>
 }
