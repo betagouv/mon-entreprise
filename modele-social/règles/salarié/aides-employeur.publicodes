@@ -16,7 +16,7 @@ salarié . coût total employeur . aides . embauche:
   le maximum de:
     - apprentis
     - senior professionnalisation
-    - emploi franc
+    - emploi franc . montant
 
 salarié . coût total employeur . aides . embauche . apprentis:
   titre: Aides à l'embauche pour un contrat d'apprentissage
@@ -54,28 +54,6 @@ salarié . coût total employeur . aides . embauche . senior professionnalisatio
     Aide à l’embauche d'un demandeur d’emploi de 45 ans et plus en contrat de professionnalisation: https://www.francetravail.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
 
 salarié . coût total employeur . aides . emploi franc:
-  description: |
-    Aide différée versée par France Travail pour l'embauche d'un demandeur d'emploi
-    inscrit à France Travail et résidant dans un quartier prioritaire de la ville
-    (QPV).
-
-    - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
-    - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
-
-    [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
-  applicable si: éligible
-  formule:
-    produit:
-      - variations:
-          - si: contrat . CDD
-            alors: 2500 €/an
-          - sinon: 5000 €/an
-      - temps de travail . effectif . quotité
-    arrondi: oui
-  références:
-    Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
-
-salarié . coût total employeur . aides . emploi franc . éligible:
   applicable si:
     une de ces conditions:
       - contrat . CDI
@@ -89,3 +67,24 @@ salarié . coût total employeur . aides . emploi franc . éligible:
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
     - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
   par défaut: non
+
+salarié . coût total employeur . aides . emploi franc . montant:
+  description: |
+    Aide différée versée par France Travail pour l'embauche d'un demandeur d'emploi
+    inscrit à France Travail et résidant dans un quartier prioritaire de la ville
+    (QPV).
+
+    - *embauche en CDI* : 5000€/an pendant 3 ans, soit un total de 15 000€
+    - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
+
+    [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+  formule:
+    produit:
+      - variations:
+          - si: contrat . CDD
+            alors: 2500 €/an
+          - sinon: 5000 €/an
+      - temps de travail . effectif . quotité
+    arrondi: oui
+  références:
+    Fiche emploi franc: https://travail-emploi.gouv.fr/emploi/emplois-francs/article/embaucher-une-personne-en-emploi-franc
