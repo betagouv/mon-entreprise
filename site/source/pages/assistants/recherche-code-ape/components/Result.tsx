@@ -65,7 +65,7 @@ export const Result = ({ item, disabled, hideGuichetUnique }: ResultProps) => {
 							onPress={() => setOpen((x) => !x)}
 							aria-expanded={open}
 							aria-controls={`info-${codeApe}`}
-							aria-label={!open ? t('En savoir plus') : t('Replier')}
+							aria-label={!open ? `${t('En savoir plus sur ')} ${title}` : t('Replier')}
 						>
 							{!open ? t('En savoir plus') : t('Replier')}&nbsp;
 							<StyledChevron aria-hidden isOpen={open} />

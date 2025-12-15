@@ -42,7 +42,7 @@ export default function RechercheActivité() {
 			<Layout
 				title={
 					<Trans i18nKey={'choix-statut.activité.title'}>
-						Mon activité principale est...
+						Mon activité principale est…
 						<HelpButtonWithPopover
 							title={t(
 								'choix-statut.activité.help.title',
