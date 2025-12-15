@@ -30,7 +30,6 @@ export const SearchBox = connectSearchBox<Props>(
 					id="input-recherche-globale"
 					isSearchStalled={isSearchStalled}
 					label={props.label}
-					aria-label={props['aria-label']}
 				/>
 			</form>
 		)

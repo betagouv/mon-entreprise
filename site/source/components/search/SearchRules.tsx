@@ -17,7 +17,6 @@ export default function SearchRules() {
 		>
 			<SearchBox
 				label={t('Rechercher une règle dans la documentation')}
-				aria-label={t('Rechercher une règle dans la documentation')}
 			/>
 			<H2>
 				<Trans>Règles de calculs</Trans>
