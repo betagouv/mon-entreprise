@@ -112,11 +112,9 @@ indépendant . conjoint collaborateur . cotisations:
               - 1 / 3
 
     indemnités journalières:
-      produit:
-        - unité: €/an
-          valeur: 40% * plafond sécurité sociale
-        - 0.50%
-      arrondi: oui
+      valeur: cotisations et contributions . cotisations . maladie . indemnités journalières
+      contexte:
+        cotisations et contributions . cotisations . maladie . indemnités journalières . assiette: assiette minimale . indemnités journalières
 
     invalidité et décès:
       valeur: cotisations et contributions . cotisations . invalidité et décès
