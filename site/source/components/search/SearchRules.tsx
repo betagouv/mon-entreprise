@@ -15,9 +15,7 @@ export default function SearchRules() {
 			indexName={`${algoliaIndexPrefix}rules`}
 			searchClient={searchClient}
 		>
-			<SearchBox
-				label={t('Rechercher une règle dans la documentation')}
-			/>
+			<SearchBox label={t('Rechercher une règle dans la documentation')} />
 			<H2>
 				<Trans>Règles de calculs</Trans>
 			</H2>
