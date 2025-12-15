@@ -28,6 +28,22 @@ describe('Contribution à la formation professionnelle', () => {
 			)
 		})
 
+		it('vaut 0,34% du PASS avec conjoint collaborateur', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . conjoint collaborateur': 'oui',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle . taux',
+				0.34
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle',
+				160
+			)
+		})
+
 		it('vaut 0,29% du PASS pour les activités artisanales', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
@@ -63,12 +79,14 @@ describe('Contribution à la formation professionnelle', () => {
 	})
 
 	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+		}
+
 		it('vaut 0,25% du PASS', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				'entreprise . activité': "'libérale'",
-				'entreprise . activité . libérale . réglementée': 'oui',
-			})
+			const e = engine.setSituation(defaultSituationPLR)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . formation professionnelle . taux',
@@ -77,6 +95,22 @@ describe('Contribution à la formation professionnelle', () => {
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . formation professionnelle',
 				118
+			)
+		})
+
+		it('vaut 0,34% du PASS avec conjoint collaborateur', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . conjoint collaborateur': 'oui',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle . taux',
+				0.34
+			)
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . formation professionnelle',
+				160
 			)
 		})
 	})
