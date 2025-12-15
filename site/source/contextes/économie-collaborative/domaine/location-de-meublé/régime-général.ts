@@ -24,6 +24,7 @@ import {
 } from './estActiviteProfessionnelle'
 import {
 	aRenseignéSesAutresRevenus,
+	aRenseignéSonTypeDeDurée,
 	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -123,7 +124,7 @@ export const estApplicableRégimeGénéral: EstApplicable = (situation) => {
 	}
 
 	if (!estActivitéPrincipale(situation)) {
-		if (Option.isNone(situation.typeDurée)) {
+		if (!aRenseignéSonTypeDeDurée(situation)) {
 			return Either.left(['typeDurée'])
 		}
 		const typeDurée = situation.typeDurée.value
@@ -147,7 +148,7 @@ export const estApplicableRégimeGénéral: EstApplicable = (situation) => {
 	}
 
 	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
-		if (Option.isNone(situation.typeDurée)) {
+		if (!aRenseignéSonTypeDeDurée(situation)) {
 			return Either.left(['typeDurée'])
 		}
 		const typeDurée = situation.typeDurée.value
