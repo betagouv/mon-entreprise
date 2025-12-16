@@ -41,7 +41,6 @@ export interface ChoixUniqueProps {
 	variant?: ChoiceDisplayType
 	defaultValue?: string
 	aria?: {
-		label?: string
 		labelledby?: string
 	}
 }
