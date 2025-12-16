@@ -179,7 +179,6 @@ describe('Cotisation allocations familiales', () => {
 			...defaultSituation,
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . PL . régime général': 'non',
 		}
 
 		it('applique le même barème que pour les artisans, commerçants et PLNR', () => {

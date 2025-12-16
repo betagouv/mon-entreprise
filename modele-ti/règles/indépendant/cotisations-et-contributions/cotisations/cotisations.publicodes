@@ -42,8 +42,8 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
       alors: domiciliation fiscale étranger
     # Cotisation spécifique PLR avant réforme :
     - si:
-        est applicable: PL . maladie
-      alors: PL . maladie
+        est applicable: profession libérale . CNAVPL . maladie
+      alors: profession libérale . CNAVPL . maladie
     # Cotisation commune après réforme :
     - sinon:
         barème:
@@ -150,7 +150,7 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
   note: |
     Les avocats ne sont pas redevables de cette cotisation car ils cotisent déjà à
     une caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
-  non applicable si: PL . CNBF
+  non applicable si: profession libérale . réglementée . CNBF
   produit:
     - assiette
     - taux
@@ -183,14 +183,14 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
         produit:
           - plafond sécurité sociale
           - variations:
-              - si: PL . réglementée
+              - si: profession libérale . CNAVPL
                 alors: 3
               - sinon: 5
 
     taux:
       valeur:
         variations:
-          - si: PL . réglementée
+          - si: profession libérale . CNAVPL
             alors: 0.30%
           - sinon:
               variations:
@@ -265,22 +265,21 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     (Cipav, CARPIMKO, CARCDSF, CAVEC...). La CNAVPL est l'organisme qui fédère
     ces différentes caisses.
   variations:
-    - si:
-        est applicable: PL . CNBF . retraite de base
-      alors: PL . CNBF . retraite de base
+    - si: profession libérale . réglementée . CNBF
+      alors: profession libérale . réglementée . CNBF . retraite de base
     - sinon:
         somme:
           - tranche 1
           - tranche 2
-        abattement: PL . CARMF . participation CPAM retraite
+        abattement: profession libérale . réglementée . CARMF . participation CPAM retraite
   abattement:
     le maximum de:
       - exonérations . Acre . exonération
-      - PL . CNAVPL . exonération incapacité . exonération
+      - profession libérale . CNAVPL . exonération incapacité . exonération
       # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraite de base.
       # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de cette exonération.
       # Les A/C/PLNR ne bénéficient pas de cette exonération.
-      - applicable si: PL . CIPAV
+      - applicable si: profession libérale . Cipav
         valeur: exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
@@ -313,7 +312,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base . t
 
     taux:
       variations:
-        - si: PL . réglementée
+        - si: profession libérale . CNAVPL
           alors:
             variations:
               - si: après réforme
@@ -336,7 +335,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base . t
       valeur: assiette sociale
       plancher: assiette minimale . retraite
       plafond:
-        applicable si: PL . réglementée
+        applicable si: profession libérale . CNAVPL
         valeur: 5 * PSS proratisé
       abattement:
         applicable si: déduction tabac
@@ -347,7 +346,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base . t
 
     taux:
       variations:
-        - si: PL . réglementée
+        - si: profession libérale . CNAVPL
           alors: 1.87%
         - sinon:
             variations:
@@ -369,38 +368,35 @@ indépendant . cotisations et contributions . cotisations . retraite complément
     Il fonctionne selon les mêmes principes que les régimes de retraite
     complémentaire des salariés.
   variations:
-    - si: PL . CNAVPL
-      alors: PL . CNAVPL . retraite complémentaire
-    - si: PL . régime général . taux spécifique retraite complémentaire
-      alors:
-        barème:
-          assiette: assiette
-          multiplicateur: PSS proratisé
-          tranches:
-            - taux: 0%
-              plafond: 1
-            - taux: 14%
-              plafond: 4
-        arrondi: oui
+    - si: profession libérale . CNAVPL
+      alors: profession libérale . CNAVPL . retraite complémentaire
     - sinon:
-        barème:
-          assiette: assiette
-          tranches:
-            - taux: taux tranche 1
-              plafond:
-                variations:
-                  - si: après réforme
-                    alors: PSS proratisé
-                  - sinon: PRCI
-            - taux: taux tranche 2
-              plafond: 4 * PSS proratisé
-        arrondi: oui
-  abattement:
-    le maximum de:
-      - PL . CNAVPL . exonération incapacité . exonération
-      # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de l'exonération invalidité.
-      - non applicable si: PL . PLR hors Urssaf
-        valeur: exonérations . pension invalidité . exonération
+        variations:
+          - si: profession libérale . non réglementée . taux spécifique retraite complémentaire
+            alors:
+              barème:
+                assiette: assiette
+                multiplicateur: PSS proratisé
+                tranches:
+                  - taux: 0%
+                    plafond: 1
+                  - taux: 14%
+                    plafond: 4
+              arrondi: oui
+          - sinon:
+              barème:
+                assiette: assiette
+                tranches:
+                  - taux: taux tranche 1
+                    plafond:
+                      variations:
+                        - si: après réforme
+                          alors: PSS proratisé
+                        - sinon: PRCI
+                  - taux: taux tranche 2
+                    plafond: 4 * PSS proratisé
+              arrondi: oui
+        abattement: exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -452,8 +448,8 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     L’assurance décès garantit le versement aux ayants droit d’un capital décès quel
     que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
   variations:
-    - si: PL . CNAVPL
-      alors: PL . CNAVPL . invalidité et décès
+    - si: profession libérale . CNAVPL
+      alors: profession libérale . CNAVPL . invalidité et décès
     - sinon:
         produit:
           - assiette

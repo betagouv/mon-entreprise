@@ -38,11 +38,11 @@ export default function ParticipationCPAM({ role }: Props) {
 			</Body>
 			<Body>
 				<Emoji emoji="🎁" />{' '}
-				<RuleLink dottedName="indépendant . PL . PAMC . participation CPAM">
+				<RuleLink dottedName="indépendant . profession libérale . réglementée . PAMC . participation CPAM">
 					<Value
 						unit={unit}
 						displayedUnit="€"
-						expression="- indépendant . PL . PAMC . participation CPAM"
+						expression="- indépendant . profession libérale . réglementée . PAMC . participation CPAM"
 					/>
 				</RuleLink>
 			</Body>

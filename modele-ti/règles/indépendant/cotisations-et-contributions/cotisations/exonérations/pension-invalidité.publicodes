@@ -3,7 +3,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
   acronyme: PI
   question:
     variations:
-      - si: indépendant . PL . PAMC #TODO demande Urssaf implémentée sans reflechir : il faudra regarder de plus près le pourquoi du comment de cette variations
+      - si: indépendant . profession libérale . réglementée . PAMC #TODO demande Urssaf implémentée sans reflechir : il faudra regarder de plus près le pourquoi du comment de cette variations
         alors:
           texte:
             Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse

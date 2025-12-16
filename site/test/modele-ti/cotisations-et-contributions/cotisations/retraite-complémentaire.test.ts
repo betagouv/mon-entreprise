@@ -171,9 +171,8 @@ describe('Cotisation retraite complémentaire', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
 					'entreprise . activité': "'libérale'",
-					'entreprise . date de création': '19/07/2018',
-					'indépendant . PL . option régime général': 'oui',
-					'indépendant . PL . régime général . taux spécifique retraite complémentaire':
+					'entreprise . date de création': '19/07/2023',
+					'indépendant . profession libérale . non réglementée . taux spécifique retraite complémentaire':
 						'oui',
 					'indépendant . cotisations et contributions . assiette sociale':
 						'10000 €/an',
@@ -189,9 +188,8 @@ describe('Cotisation retraite complémentaire', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
 					'entreprise . activité': "'libérale'",
-					'entreprise . date de création': '19/07/2018',
-					'indépendant . PL . option régime général': 'oui',
-					'indépendant . PL . régime général . taux spécifique retraite complémentaire':
+					'entreprise . date de création': '19/07/2023',
+					'indépendant . profession libérale . non réglementée . taux spécifique retraite complémentaire':
 						'oui',
 					'indépendant . cotisations et contributions . assiette sociale':
 						'100000 €/an',
@@ -211,9 +209,8 @@ describe('Cotisation retraite complémentaire', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
 					'entreprise . activité': "'libérale'",
-					'entreprise . date de création': '19/07/2018',
-					'indépendant . PL . option régime général': 'oui',
-					'indépendant . PL . régime général . taux spécifique retraite complémentaire':
+					'entreprise . date de création': '19/07/2023',
+					'indépendant . profession libérale . non réglementée . taux spécifique retraite complémentaire':
 						'oui',
 					'indépendant . cotisations et contributions . assiette sociale':
 						'200000 €/an',
@@ -242,16 +239,17 @@ describe('Cotisation retraite complémentaire', () => {
 			it('Chirurgien-dentiste', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . PL . métier': "'santé . chirurgien-dentiste'",
+					'indépendant . profession libérale . réglementée . métier':
+						"'santé . chirurgien-dentiste'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARCDSF = e.evaluate(
-					'indépendant . PL . CARCDSF . retraite complémentaire'
+					'indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue as number
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -264,16 +262,17 @@ describe('Cotisation retraite complémentaire', () => {
 			it('Sage-femme', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . PL . métier': "'santé . sage-femme'",
+					'indépendant . profession libérale . réglementée . métier':
+						"'santé . sage-femme'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARCDSF = e.evaluate(
-					'indépendant . PL . CARCDSF . retraite complémentaire'
+					'indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue as number
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -286,16 +285,17 @@ describe('Cotisation retraite complémentaire', () => {
 			it('Médecin', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . PL . métier': "'santé . médecin'",
+					'indépendant . profession libérale . réglementée . métier':
+						"'santé . médecin'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARMF = e.evaluate(
-					'indépendant . PL . CARMF . retraite complémentaire'
+					'indépendant . profession libérale . réglementée . CARMF . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -308,16 +308,17 @@ describe('Cotisation retraite complémentaire', () => {
 			it('Auxiliaire médical', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . PL . métier': "'santé . auxiliaire médical'",
+					'indépendant . profession libérale . réglementée . métier':
+						"'santé . auxiliaire médical'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARPIMKO = e.evaluate(
-					'indépendant . PL . CARPIMKO . retraite complémentaire'
+					'indépendant . profession libérale . réglementée . CARPIMKO . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -330,16 +331,17 @@ describe('Cotisation retraite complémentaire', () => {
 			it('Expert-comptable', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . PL . métier': "'expert-comptable'",
+					'indépendant . profession libérale . réglementée . métier':
+						"'expert-comptable'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCAVEC = e.evaluate(
-					'indépendant . PL . CAVEC . retraite complémentaire'
+					'indépendant . profession libérale . réglementée . CAVEC . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -352,16 +354,17 @@ describe('Cotisation retraite complémentaire', () => {
 			it('Pharmacien', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . PL . métier': "'santé . pharmacien'",
+					'indépendant . profession libérale . réglementée . métier':
+						"'santé . pharmacien'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCAVP = e.evaluate(
-					'indépendant . PL . CAVP . retraite complémentaire'
+					'indépendant . profession libérale . réglementée . CAVP . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -374,16 +377,17 @@ describe('Cotisation retraite complémentaire', () => {
 			it('Avocat', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . PL . métier': "'juridique . avocat'",
+					'indépendant . profession libérale . réglementée . métier':
+						"'juridique . avocat'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCNBF = e.evaluate(
-					'indépendant . PL . CNBF . retraite complémentaire'
+					'indépendant . profession libérale . réglementée . CNBF . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -401,10 +405,10 @@ describe('Cotisation retraite complémentaire', () => {
 				})
 
 				const cotisationCIPAV = e.evaluate(
-					'indépendant . PL . CIPAV . retraite complémentaire'
+					'indépendant . profession libérale . Cipav . retraite complémentaire'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . PL . CNAVPL . retraite complémentaire'
+					'indépendant . profession libérale . CNAVPL . retraite complémentaire'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire'

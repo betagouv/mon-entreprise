@@ -1,16 +1,16 @@
-indépendant . PL . CAVP:
+indépendant . profession libérale . réglementée . CAVP:
   description: La CAVP est la caisse de retraite des pharmaciens.
-  formule: oui
   applicable si: métier = 'santé . pharmacien'
+  valeur: oui
   références:
     Site CAVP: https://www.cavp.fr/
 
-indépendant . PL . CAVP . directeur non médecin:
+indépendant . profession libérale . réglementée . CAVP . directeur non médecin:
   applicable si: métier = 'santé . pharmacien'
   par défaut: non
   question: Êtes-vous biologiste médical conventionné ?
 
-indépendant . PL . CAVP . demande reduction:
+indépendant . profession libérale . réglementée . CAVP . demande reduction:
   type: notification
   applicable si:
     est défini: cotisations et contributions . assiette sociale
@@ -30,7 +30,7 @@ indépendant . PL . CAVP . demande reduction:
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
-indépendant . PL . CAVP . cotisation de référence:
+indépendant . profession libérale . réglementée . CAVP . cotisation de référence:
   valeur:
     variations:
       - si: date >= 01/2025
@@ -41,7 +41,7 @@ indépendant . PL . CAVP . cotisation de référence:
   reference:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
-indépendant . PL . CAVP . retraite complémentaire:
+indépendant . profession libérale . réglementée . CAVP . retraite complémentaire:
   description: |
     La cotisation au régime complémentaire comporte :
     - une part gérée par répartition égale à 5 fois la cotisation de référence,
@@ -89,7 +89,7 @@ indépendant . PL . CAVP . retraite complémentaire:
               plafond: 5.1875
             - montant: 12 * cotisation de référence
 
-indépendant . PL . CAVP . invalidité et décès:
+indépendant . profession libérale . réglementée . CAVP . invalidité et décès:
   valeur:
     variations:
       - si: date >= 01/2025
@@ -100,7 +100,7 @@ indépendant . PL . CAVP . invalidité et décès:
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations
 
-indépendant . PL . CAVP . PCV:
+indépendant . profession libérale . réglementée . CAVP . PCV:
   titre: Prestation complémentaire de vieillesse (CAVP)
   remplace: cotisations et contributions . cotisations . PCV
   applicable si: CAVP . directeur non médecin
@@ -133,7 +133,7 @@ indépendant . PL . CAVP . PCV:
               alors: 1.20%
             - sinon: 0.60%
 
-indépendant . PL . CAVP . PCV . aide CPAM:
+indépendant . profession libérale . réglementée . CAVP . PCV . aide CPAM:
   somme:
     - aide CPAM forfaitaire
     - aide CPAM proportionnelle

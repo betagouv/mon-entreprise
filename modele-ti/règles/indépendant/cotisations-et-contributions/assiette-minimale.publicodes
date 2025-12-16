@@ -21,7 +21,7 @@ indépendant . assiette minimale . maladie:
   description: |
     Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
     calcul, certaines cotisations seront portées à un montant minimum.
-  non applicable si: PL . PAMC
+  non applicable si: profession libérale . réglementée . PAMC
   produit:
     - PSS proratisé
     - 40%
@@ -69,6 +69,7 @@ indépendant . assiette minimale . invalidité et décès Cipav:
   description: |
     Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
     calcul, certaines cotisations seront portées à un montant minimum.
+  applicable si: profession libérale . Cipav
   produit:
     - PSS proratisé
     - 37%

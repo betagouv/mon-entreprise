@@ -68,7 +68,6 @@ describe('Contribution à la formation professionnelle', () => {
 				...defaultSituation,
 				'entreprise . activité': "'libérale'",
 				'entreprise . activité . libérale . réglementée': 'oui',
-				'indépendant . PL . régime général': 'non',
 			})
 
 			expect(e).toEvaluate(
