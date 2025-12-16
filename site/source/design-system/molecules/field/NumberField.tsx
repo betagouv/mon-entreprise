@@ -16,7 +16,6 @@ interface NumberFieldProps {
 
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 }
 
@@ -56,7 +55,6 @@ export const NumberField = ({
 			validationState={validationState}
 			suggestions={suggestions}
 			aria-labelledby={aria?.labelledby}
-			aria-label={aria?.label}
 		/>
 	)
 }
