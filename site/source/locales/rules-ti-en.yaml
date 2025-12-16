@@ -2638,6 +2638,9 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     des revenus de la famille.
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
+indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
+  titre.en: '[automatic] pension and disability-death base'
+  titre.fr: assiette retraite et invalidité-décès
 indépendant . cotisations et contributions . cotisations . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
