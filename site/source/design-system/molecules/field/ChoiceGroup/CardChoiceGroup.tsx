@@ -12,7 +12,6 @@ interface CardChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 	options: ChoiceOption[]
 	title?: string
@@ -33,10 +32,7 @@ export default function CardChoiceGroup({
 
 	return (
 		<RadioCardGroup
-			aria-label={
-				aria.label ||
-				t('conversation.multiple-answer.aria-label', 'Choix multiples')
-			}
+			aria-label=""
 			aria-labelledby={aria.labelledby}
 			onChange={onChange}
 			value={value}

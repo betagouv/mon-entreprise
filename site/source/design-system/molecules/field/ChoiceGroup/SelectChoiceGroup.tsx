@@ -12,7 +12,6 @@ export interface SelectChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 	options: ChoiceOption[]
 	title?: string
@@ -38,7 +37,6 @@ export default function SelectChoiceGroup({
 	return (
 		<Select
 			aria-labelledby={aria.labelledby}
-			aria-label={aria.label}
 			label={title}
 			onSelectionChange={handleSelectionChange}
 			defaultSelectedKey={defaultValue}

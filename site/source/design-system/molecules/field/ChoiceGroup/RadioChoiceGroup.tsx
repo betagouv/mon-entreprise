@@ -24,7 +24,6 @@ export interface RadioChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 	options: Array<ChoiceOption>
 	isSubRadioGroup?: boolean
@@ -45,10 +44,6 @@ export default function RadioChoiceGroup({
 
 	return (
 		<RadioGroup
-			aria-label={
-				aria.label ||
-				t('conversation.multiple-answer.aria-label', 'Choix multiples')
-			}
 			aria-labelledby={aria.labelledby}
 			onChange={onChange}
 			value={value}
@@ -122,7 +117,6 @@ function RadioGroup(props: RadioGroupProps) {
 			/* eslint-disable-next-line react/jsx-props-no-spreading */
 			{...radioGroupProps}
 			onKeyDown={undefined}
-			aria-label={props['aria-label']}
 		>
 			{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 			{label && (
