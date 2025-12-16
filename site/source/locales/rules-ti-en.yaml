@@ -2143,16 +2143,31 @@ indépendant . assiette minimale . retraite:
   titre.fr: retraite
 indépendant . conjoint collaborateur:
   description.en: >
-    [automatic] As an employee, the spouse of a self-employed person pays
-    pension and invalidity-death contributions, and in return benefits from his
-    or her own rights. They also pay a daily allowance contribution, and may be
-    entitled to compensation in the event of work stoppage.
+    [automatic] As an employee, the spouse of a self-employed person
+
+    pays pension and invalidity-death contributions, and is entitled
+
+    and benefits in return. He or she
+
+    also pays a daily allowance contribution and may be entitled to
+
+    compensated in the event of work stoppage.
 
 
     ### For whom?
 
 
-    In order for a spouse to opt for the status of collaborating spouse, the business owner must run a sole proprietorship, or be the majority manager, or belong to a majority management group, of a SARL or EURL company with no limit on the number of employees.
+    In order for the spouse to opt for the status of collaborating spouse
+
+    status, the business owner must :
+
+    - be running a sole proprietorship ;
+
+    - be the majority manager (or belong to a college of majority managers) of a company.
+
+    of a SARL or EURL company, with no limit on the number of employees.
+
+    number of employees.
 
 
     The spouse must :
@@ -2161,155 +2176,234 @@ indépendant . conjoint collaborateur:
 
     - not be remunerated for this activity;
 
-    - be married or in a civil solidarity pact (Pacs) with the company director, or be the cohabiting partner.
+    - must be married or in a civil solidarity pact (Pacs) with the company's
+
+    the business owner, or be his or her partner.
 
 
-    &gt; #### Advantages of collaborating spouse status
+    > #### Advantages of the status of collaborating spouse
 
-    &gt; The status of collaborating spouse is flexible, simple (with few administrative formalities) and low-cost for the company, with full social protection. It can be chosen even if the spouse works outside the company.
+    > This status is flexible, simple (with few administrative formalities) and low-cost.
+
+    > administrative formalities) and low cost for the company, with full
+
+    > protection. This status can be chosen even if the spouse
+
+    > works outside the company.
   description.fr: >
-    En tant que collaborateur, le conjoint d'un indépendant verse des
-    cotisations en matière de retraite et d'invalidité-décès et bénéficie en
-    contrepartie de droits propres. Il s'acquitte aussi d'une cotisation
-    indemnités journalières et peut être indemnisé en cas d'arrêt de travail.
+    En tant que collaborateur ou collaboratrice, le conjoint ou la conjointe
+    d’un
+
+    indépendante ou d’une indépendante verse des cotisations de retraite et
+
+    d’invalidité-décès et bénéficie en contrepartie de droits propres. Elle ou Il
+
+    s’acquitte aussi d’une cotisation indemnités journalières et peut être
+
+    indemnisée/indemnisé en cas d’arrêt de travail.
 
 
-    ### Conjoint collaborateur : pour qui ?
+    ### Conjoint collaborateur : pour qui ?
 
 
-    Pour que le conjoint puisse choisir le statut de conjoint collaborateur, le chef d'entreprise doit exercer en entreprise individuelle, être le gérant majoritaire ou appartenir à un collège de gérance majoritaire, d'une entreprise en SARL ou EURL sans limitation de l'effectif salarié.
+    Pour que la conjointe ou le conjoint puisse choisir le statut de conjoint
+
+    collaborateur, la cheffe ou le chef d’entreprise doit :
+
+    - soit exercer en entreprise individuelle ;
+
+    - soit être la gérante ou le gérant majoritaire (ou appartenir à un collège de
+
+    gérance majoritaire) d’une entreprise en SARL ou EURL sans limitation de
+
+    l’effectif salarié.
 
 
-    Le conjoint doit :
+    La conjointe ou le conjoint doit :
 
-    - participer de manière régulière à l'activité de l'entreprise ;
+    - participer de manière régulière à l’activité de l’entreprise ;
 
-    - ne pas être rémunéré pour cette activité ;
+    - ne pas être rémunéré/rémunérée pour cette activité ;
 
-    - doit être marié ou lié par un pacte civil de solidarité (Pacs) au chef d'entreprise, ou être le concubin.
+    - doit être marié/mariée ou lié/liée par un pacte civil de solidarité (Pacs) à
+
+    la cheffe ou au chef d'entreprise, ou en être la concubine ou le concubin.
 
 
     > #### Avantages du statut conjoint collaborateur
 
-    > Ce statut du conjoint collaborateur est souple, simple (peu de formalités administratives) et d’un faible coût pour l’entreprise pour une protection sociale complète. Il peut être choisi même si le conjoint exerce une activité hors de l’entreprise.
+    > Ce statut du conjoint collaborateur est souple, simple (peu de formalités
+
+    > administratives) et d’un faible coût pour l’entreprise pour une protection
+
+    > sociale complète. Il peut être choisi même si la conjointe ou le conjoint
+
+    > exerce une activité hors de l’entreprise.
   question.en: '[automatic] Do you have a collaborating spouse?'
   question.fr: Avez-vous un conjoint collaborateur ?
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
-indépendant . conjoint collaborateur . assiette:
+indépendant . conjoint collaborateur . assiette de cotisations:
+  titre.en: '[automatic] contribution base'
+  titre.fr: assiette de cotisations
+indépendant . conjoint collaborateur . choix assiette:
   avec:
-    forfaitaire:
-      description.en: >
-        [automatic] The collaborating spouse will pay contributions equivalent
-        to a flat-rate
-
-        fixed as a percentage of the social security ceiling,
-
-        except for the daily allowance contribution, which is calculated on a basis
-
-        a base equivalent to 40% of the PASS.
-      description.fr: >
-        Le conjoint collaborateur paiera des cotisations équivalentes à un
-        revenu
-
-        professionnel forfaitaire, fixé à un pourcentage du plafond de la sécurité sociale,
-
-        à l’exception de la cotisation indemnités journalières qui est calculée sur
-
-        une assiette équivalente à 40% du PASS.
-      titre.en: '[automatic] lump sum'
-      titre.fr: forfaitaire
-    pourcentage:
-      avec:
-        moitié:
-          titre.en: '[automatic] 1/2'
-          titre.fr: 1/2
-        tiers:
-          titre.en: '[automatic] 1/3'
-          titre.fr: 1/3
+    proportion:
       question.en: '[automatic] What proportion of income does the spouse contribute?'
-      question.fr: À quelle proportion du revenu le conjoint cotise-t-il ?
+      question.fr: À quelle proportion du revenu la conjointe ou le conjoint
+        cotise-t-elle/il ?
       titre.en: '[automatic] Proportion of income'
       titre.fr: Proportion revenu
-    revenu avec partage:
-      avec:
-        assiette gérant:
-          titre.en: '[automatic] management base'
-          titre.fr: assiette gérant
-      description.en: >
-        [automatic] The collaborating spouse and the manager will each pay
-        social security contributions on a share of the professional income.
-
-        **This option reduces the amount of contributions to be paid by the manager, but also reduces his or her social benefits (retirement pension, death benefit, etc.)**.
-      description.fr: >
-        Le conjoint collaborateur et le gérant paieront des cotisations sociales
-        chacun sur une part du revenu professionnel.
-
-        **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
-      titre.en: '[automatic] split income'
-      titre.fr: revenu avec partage
-    revenu sans partage:
-      description.en:
-        "[automatic] The collaborating spouse will pay social security
-        contributions calculated on a share of the business manager's
-        professional income."
-      description.fr: Le conjoint collaborateur paiera des cotisations sociales
-        calculées sur une part du revenu professionnel du gérant de
-        l’entreprise.
-      titre.en: '[automatic] undivided income'
-      titre.fr: revenu sans partage
   description.en: >
-    [automatic] The collaborating spouse has three options for calculating these
-    contributions:
+    [automatic] The collaborating spouse has three choices
 
-    - The spouse contributes on a flat-rate income
+    for calculating contributions:
 
-    - The spouse contributes on a percentage of the professional's income, without sharing this income.
+    - contribute on a flat-rate income ;
 
-    - The spouse contributes on a fraction of the professional's income. Income is shared between the two spouses.
+    - to contribute on a percentage of professional income, without sharing this income
+
+    of this income;
+
+    - to contribute on a fraction of professional income, sharing this income
+
+    between the two spouses.
   description.fr: >
-    Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul
-    de ces cotisations :
+    La conjointe collaboratrice ou le conjoint collaborateur dispose de trois
+    choix
 
-    - Le conjoint cotise sur un revenu forfaitaire
+    d’assiette pour le calcul de ses cotisations :
 
-    - Le conjoint cotise sur un pourcentage du revenu du professionnel sans qu’il y ait partage de ce revenu.
+    - cotiser sur un revenu forfaitaire ;
 
-    - Le conjoint cotise sur une fraction du revenu du professionnel. Le revenu est partagé entre les deux conjoints.
+    - cotiser sur un pourcentage du revenu professionnel, sans qu’il y ait partage
+
+    de ce revenu ;
+
+    - cotiser sur une fraction du revenu professionnel, en partageant ce revenu
+
+    entre les deux conjointes ou conjoints.
   question.en: '[automatic] On what basis does the spouse contribute?'
   question.fr: Sur quelle base le conjoint cotise-t-il ?
-  titre.en: '[automatic] Choice of plate'
-  titre.fr: Choix assiette
+  titre.en: '[automatic] plate selection'
+  titre.fr: choix assiette
 indépendant . conjoint collaborateur . cotisations:
-  avec:
-    assiette:
-      titre.en: '[automatic] employee-spouse tax base'
-      titre.fr: assiette conjoint collaborateur
-    indemnités journalières:
-      titre.en: '[automatic] daily allowances'
-      titre.fr: indemnités journalières
-    invalidité et décès:
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
-    retraite complémentaire:
-      titre.en: '[automatic] supplementary pension'
-      titre.fr: retraite complémentaire
-    retraite de base:
-      titre.en: '[automatic] basic retirement'
-      titre.fr: retraite de base
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-indépendant . conjoint collaborateur . notification exonérations non pris en compte:
-  description.en: |
-    [automatic] This simulator does not yet take into account the various
-    **contribution exemptions** for **employee spouses** (Acre,
-    age, disability, incapacity, etc.).
-  description.fr: |
-    Ce simulateur ne prend pas encore en compte les différentes
-    **exonérations de cotisations** pour les **conjoints collaborateurs** (Acre,
-    âge, invalidité, incapacité, etc.)
-  titre.en: '[automatic] notification exemptions not taken into account'
-  titre.fr: notification exonérations non pris en compte
+indépendant . conjoint collaborateur . cotisations . indemnités journalières:
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
+indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  description.en: >
+    [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
+    professionals
+
+
+    The disability-death contribution for the collaborating spouse is calculated on the same
+
+    is calculated according to the same scale as for the head of the company
+
+    but using the contribution base calculated according to the option
+
+    option chosen (flat-rate or proportion of professional income).
+
+
+    ### For regulated liberal professions
+
+
+    The invalidity-death contribution of the collaborating spouse is
+
+    collaborating spouse is equal to a proportion of the professional
+
+    or the self-employed professional. This proportion is 50% in the case of a choice
+
+    half of professional income, and 25% in other cases (quarter of professional income or
+
+    (quarter of professional income or flat rate).
+  description.fr: >
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+
+    ### Pour les professions libérales réglementées
+
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est égale à une proportion de la professionnelle libérale
+
+    ou du professionnel libéral. Cette proportion est de 50 % dans le cas d’un choix
+
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+
+    (quart du revenu professionnel ou assiette forfaitaire).
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
+indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
+  description.en: >
+    [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
+    professionals
+
+
+    The supplementary pension contribution for the collaborating spouse is calculated on the same
+
+    contributions are calculated according to the same scale as for the company
+
+    but using the contribution base calculated according to the option
+
+    depending on the option chosen (flat-rate or proportion of professional income).
+
+
+    ### For regulated liberal professions
+
+
+    The supplementary pension contribution for the collaborating spouse is equal to a proportion of the professional income.
+
+    spouse is equal to a proportion of the contribution made by the head
+
+    contribution. This proportion is 50% in the case of a choice
+
+    half of professional income, and 25% in other cases (quarter of professional income or
+
+    (quarter of professional income or flat rate).
+  description.fr: >
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+
+    ### Pour les professions libérales réglementées
+
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est égale à une proportion de la cotisation de la cheffe
+
+    ou du chef d’entreprise. Cette proportion est de 50 % dans le cas d’un choix
+
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+
+    (quart du revenu professionnel ou assiette forfaitaire).
+  titre.en: '[automatic] supplementary pension'
+  titre.fr: retraite complémentaire
+indépendant . conjoint collaborateur . cotisations . retraite de base:
+  titre.en: '[automatic] basic retirement'
+  titre.fr: retraite de base
 indépendant . cotisations et contributions:
   avec:
     Urssaf:
@@ -3376,39 +3470,6 @@ indépendant . profession libérale . CNAVPL:
     CARCDSF, CAVEC etc..)
   titre.en: '[automatic] CNAVPL'
   titre.fr: CNAVPL
-indépendant . profession libérale . CNAVPL . conjoint collaborateur:
-  titre.en: '[automatic] collaborating spouse'
-  titre.fr: conjoint collaborateur
-indépendant . profession libérale . CNAVPL . conjoint collaborateur . assiette:
-  titre.en: '[automatic] plate'
-  titre.fr: assiette
-indépendant . profession libérale . CNAVPL . conjoint collaborateur . indemnités journalières:
-  titre.en: '[automatic] daily allowances'
-  titre.fr: indemnités journalières
-indépendant . profession libérale . CNAVPL . conjoint collaborateur . proportion:
-  avec:
-    moitié:
-      titre.en: '[automatic] 50 %'
-      titre.fr: 50 %
-    quart:
-      titre.en: '[automatic] 25 %'
-      titre.fr: 25 %
-  question.fr:
-    variations:
-      - alors:
-          texte:
-            À quelle proportion le conjoint cotise-t-il pour la retraite de base, la
-            retraite complémentaire et l'invalidité-décès ?
-        si: profession libérale . Cipav
-      - sinon:
-          texte:
-            À quelle proportion du revenu le conjoint cotise-t-il pour le régime de
-            base ?
-  titre.en: '[automatic] proportion'
-  titre.fr: proportion
-indépendant . profession libérale . CNAVPL . conjoint collaborateur . retraite:
-  titre.en: '[automatic] retirement'
-  titre.fr: retraite
 indépendant . profession libérale . CNAVPL . exonération incapacité:
   avec:
     exonération:
@@ -3469,19 +3530,6 @@ indépendant . profession libérale . Cipav:
     réglementées.
   titre.en: '[automatic] Cipav'
   titre.fr: Cipav
-indépendant . profession libérale . Cipav . conjoint collaborateur:
-  avec:
-    invalidité et décès:
-      titre.en: '[automatic] disability and death'
-      titre.fr: invalidité et décès
-    pourcentage:
-      titre.en: '[automatic] percentage'
-      titre.fr: pourcentage
-    retraite complémentaire:
-      titre.en: '[automatic] supplementary pension'
-      titre.fr: retraite complémentaire
-  titre.en: '[automatic] collaborating spouse'
-  titre.fr: conjoint collaborateur
 indépendant . profession libérale . Cipav . invalidité et décès:
   avec:
     assiette:
