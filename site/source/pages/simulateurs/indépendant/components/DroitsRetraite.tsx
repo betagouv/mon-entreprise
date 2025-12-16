@@ -27,7 +27,7 @@ export default function DroitsRetraite() {
 		'une de ces conditions': [
 			'indépendant . cotisations et contributions . cotisations . exonérations . Acre',
 			'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité',
-			'indépendant . PL . CNAVPL . exonération incapacité',
+			'indépendant . profession libérale . CNAVPL . exonération incapacité',
 		] as Array<DottedName>,
 	}
 
@@ -98,7 +98,7 @@ export default function DroitsRetraite() {
 									</WhenApplicable>
 									<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
 										<Strong>non connue</Strong>
-										<WhenApplicable dottedName="indépendant . PL">
+										<WhenApplicable dottedName="indépendant . profession libérale">
 											<SmallBody>
 												Ce simulateur ne gère pas les droits acquis de retraite
 												complémentaire pour les professions libérales

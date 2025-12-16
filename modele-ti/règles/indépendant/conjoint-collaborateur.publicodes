@@ -143,7 +143,7 @@ indépendant . conjoint collaborateur . notification exonérations non pris en c
     - cotisations et contributions . cotisations . exonérations . ZFU
     - cotisations et contributions . cotisations . exonérations . Acre
     - cotisations et contributions . cotisations . exonérations . pension invalidité
-    - PL . CNAVPL . exonération incapacité
+    - profession libérale . CNAVPL . exonération incapacité
   description: |
     Ce simulateur ne prend pas encore en compte les différentes
     **exonérations de cotisations** pour les **conjoints collaborateurs** (Acre,
