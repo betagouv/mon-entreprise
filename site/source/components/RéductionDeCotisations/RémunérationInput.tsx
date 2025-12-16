@@ -23,8 +23,6 @@ export default function RémunérationInput({
 		<MontantField
 			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
 			aria={{
-				label: `${engine.getRule(rémunérationBruteDottedName)
-					?.title} (${monthName})`,
 				labelledby: 'simu-update-explaining',
 			}}
 			onChange={(montant) => onRémunérationChange(index, montant?.valeur ?? 0)}

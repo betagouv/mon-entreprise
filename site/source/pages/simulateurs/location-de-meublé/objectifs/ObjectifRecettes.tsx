@@ -34,6 +34,9 @@ const RecettesInput = ({
 		onChange={(montant: Montant<'€/an'> | undefined) =>
 			onChange(O.fromNullable(montant))
 		}
-		aria={{ label: 'Montant' }}
+		// TODO: remplacer l'aria-label ci-dessous par un aria-labelledby ou, mieux, par un label visible
+		// (la prop aria.label a été retirée de <MontantField /> pour clarifier son nom accessible).
+
+		// aria={{ label: 'Montant' }}
 	/>
 )
