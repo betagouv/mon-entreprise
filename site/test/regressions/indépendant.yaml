@@ -57,18 +57,18 @@ conjoint collaborateur:
     indépendant . rémunération . nette: 50000 €/an
     indépendant . conjoint collaborateur: oui
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
-    indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    indépendant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
-    indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    indépendant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
   - <<: *conjoint-collab
     indépendant . rémunération . nette: 500000 €/an
-    indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
 
 cotisations facultatives:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
