@@ -37,7 +37,6 @@ interface DateInputProps {
 
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 }
 
@@ -95,7 +94,6 @@ export const DateInput = ({
 				)}
 				<DateField
 					id={id}
-					aria-label={aria.label ?? title}
 					aria-labelledby={aria.labelledby}
 					defaultSelected={
 						(missing && hideDefaultValue) || value === undefined
