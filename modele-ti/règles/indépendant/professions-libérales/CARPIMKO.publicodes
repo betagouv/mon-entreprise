@@ -68,7 +68,6 @@ indépendant . profession libérale . réglementée . CARPIMKO . ASV:
         - 0.40%
 
 indépendant . profession libérale . réglementée . CARPIMKO . ASV . participation CPAM:
-  applicable si: PAMC
   formule:
     somme:
       - produit:
