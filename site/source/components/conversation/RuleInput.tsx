@@ -156,7 +156,6 @@ interface RuleInputProps {
 
 	id?: string
 	'aria-labelledby'?: string
-	'aria-label'?: string
 }
 
 export default function RuleInput({
@@ -251,7 +250,6 @@ export default function RuleInput({
 					id={inputId}
 					aria={{
 						labelledby: accessibilityProps['aria-labelledby'],
-						label: accessibilityProps['aria-label'],
 					}}
 				/>
 				<Spacing md />
@@ -284,7 +282,6 @@ export default function RuleInput({
 					variant={type}
 					aria={{
 						labelledby: accessibilityProps['aria-labelledby'],
-						label: accessibilityProps['aria-label'],
 					}}
 				/>
 				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
@@ -350,7 +347,6 @@ export default function RuleInput({
 				suggestions={showSuggestions ? rule.suggestions : {}}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					label: accessibilityProps['aria-label'],
 				}}
 				type={rule.rawNode.type as DateFieldProps['type']}
 			/>
@@ -369,7 +365,6 @@ export default function RuleInput({
 					autoFocus={accessibilityProps.autoFocus}
 					aria={{
 						labelledby: accessibilityProps['aria-labelledby'],
-						label: accessibilityProps['aria-label'],
 					}}
 				/>
 				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
@@ -391,7 +386,6 @@ export default function RuleInput({
 				onSubmit={onSubmit}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					label: accessibilityProps['aria-label'],
 				}}
 			/>
 		)
@@ -429,7 +423,6 @@ export default function RuleInput({
 				id={inputId}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
 				avecCentimes={!!accessibilityProps.formatOptions?.maximumFractionDigits}
 			/>
@@ -460,7 +453,6 @@ export default function RuleInput({
 				id={inputId}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
 				small={small}
 			/>
@@ -484,7 +476,6 @@ export default function RuleInput({
 			formatOptions={accessibilityProps.formatOptions}
 			aria={{
 				labelledby: accessibilityProps['aria-labelledby'],
-				label: accessibilityProps['aria-label'] ?? rule.title,
 			}}
 		/>
 	)
