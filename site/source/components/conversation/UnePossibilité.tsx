@@ -29,7 +29,6 @@ interface UnePossibilitéProps {
 	autoFocus?: boolean
 	variant?: ChoiceDisplayType
 	aria?: {
-		label?: string
 		labelledby?: string
 	}
 }
