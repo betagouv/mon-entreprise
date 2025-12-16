@@ -100,12 +100,12 @@ aides:
     salarié . régimes spécifiques . impatriés: oui
   # emploi franc
   - salarié . contrat . salaire brut: 2000 €/mois
-    salarié . coût total employeur . aides . emploi franc . éligible: oui
+    salarié . coût total employeur . aides . emploi franc: oui
     salarié . contrat . date d'embauche: 01/09/2020
   - salarié . contrat: "'CDD'"
     salarié . contrat . salaire brut: 2000 €/mois
     salarié . contrat . CDD . durée: 6 mois
-    salarié . coût total employeur . aides . emploi franc . éligible: oui
+    salarié . coût total employeur . aides . emploi franc: oui
     salarié . contrat . date d'embauche: 01/09/2020
 
 temps partiel:
