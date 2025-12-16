@@ -64,11 +64,11 @@ conjoint collaborateur:
     dirigeant . rémunération . totale: 50000 €/an
   - <<: *base
     dirigeant . indépendant . conjoint collaborateur: oui
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    dirigeant . indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
     dirigeant . rémunération . totale: 50000 €/an
   - <<: *base
     dirigeant . indépendant . conjoint collaborateur: oui
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    dirigeant . indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
     dirigeant . rémunération . totale: 50000 €/an
   - <<: *base
     dirigeant . indépendant . conjoint collaborateur: oui
@@ -76,9 +76,9 @@ conjoint collaborateur:
     dirigeant . rémunération . totale: 50000 €/an
   - <<: *base
     dirigeant . indépendant . conjoint collaborateur: oui
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    dirigeant . indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
     dirigeant . rémunération . totale: 50000 €/an
-    dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+    dirigeant . indépendant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
 
 IJSS (indemnité sécurité sociale):
   - <<: *base
