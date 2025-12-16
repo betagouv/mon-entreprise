@@ -80,15 +80,15 @@ CIPAV conjoint collaborateur:
     indépendant . rémunération . nette: 60000 €/an
     indépendant . conjoint collaborateur: oui
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
     indépendant . rémunération . nette: 1000 €/an
 
 CIPAV Acre:
