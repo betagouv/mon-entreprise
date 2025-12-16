@@ -15,7 +15,6 @@ interface TextInputProps {
 
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 }
 
@@ -49,7 +48,6 @@ export default function TextInput({
 				[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
 			}}
 			autoComplete="off"
-			aria-label={aria.label ?? title}
 			aria-labelledby={aria.labelledby}
 		/>
 	)
