@@ -252,8 +252,6 @@ function SalariéSimulationGoals() {
 				small
 				dottedName="salarié . contrat . salaire brut . équivalent temps plein"
 			/>
-			<SimulationGoal dottedName="salarié . cotisations . retraite supplémentaire . montant" />
-			<SimulationGoal dottedName="salarié . cotisations . prévoyance complémentaire . montant" />
 			<SimulationGoal dottedName="salarié . rémunération . net . à payer avant impôt" />
 			<TitreRestaurant />
 			<SimulationGoal dottedName="salarié . rémunération . net . payé après impôt" />
