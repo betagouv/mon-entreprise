@@ -1,16 +1,16 @@
-indépendant . PL . CARCDSF:
-  formule: oui
+indépendant . profession libérale . réglementée . CARCDSF:
   description: |
-    La CARCDSF est la caisse de retraite des chirurgiens dentiste et des sages femmes.
-
+    La CARCDSF est la caisse de retraite des chirurgiennes et chirurgiens dentistes
+    et des sages-femmes.
   applicable si:
     une de ces conditions:
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . sage-femme'
+  valeur: oui
   références:
     Site de la CARCDSF: http://www.carcdsf.fr
 
-indépendant . PL . CARCDSF . retraite complémentaire:
+indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire:
   somme:
     - cotisation forfaitaire
     - cotisation proportionnelle
@@ -48,7 +48,7 @@ indépendant . PL . CARCDSF . retraite complémentaire:
             plafond: 5
         arrondi: oui
 
-indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
+indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
   formule: cotisations et contributions . assiette sociale < 85% * plafond sécurité sociale
   description: |
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
@@ -56,7 +56,7 @@ indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire 
     plus](/documentation/modele-ti/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   type: notification
 
-indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
+indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
   applicable si: réduction applicable
   description: |
     Les affiliés dont les revenus professionnels nets sur l'année N-1 sont inférieurs à 85
@@ -74,16 +74,16 @@ indépendant . PL . CARCDSF . retraite complémentaire . cotisation forfaitaire 
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
-indépendant . PL . CARCDSF . invalidité et décès:
+indépendant . profession libérale . réglementée . CARCDSF . invalidité et décès:
   variations:
     - si: chirurgien-dentiste
       alors: chirurgien-dentiste . RID
     - si: sage-femme
       alors: sage-femme . RID
 
-indépendant . PL . CARCDSF . chirurgien-dentiste: métier = 'santé . chirurgien-dentiste'
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste: métier = 'santé . chirurgien-dentiste'
 
-indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . RID:
   titre: invalidité et décès
   variations:
     - si: date >= 01/2024
@@ -92,7 +92,7 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
-indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . PCV:
   titre: Prestation complémentaire vieillesse
   remplace: cotisations et contributions . cotisations . PCV
   non applicable si: exonération PCV
@@ -139,7 +139,7 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
       références:
         Mémento des chirurgiens dentistes: https://www.carcdsf.fr/images/pdf/2025/Memento_CD_WEB.pdf#page=8
 
-indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . exonération PCV:
   type: notification
   formule: (cotisations et contributions . assiette sociale / prix d'une consultation) <=  500 consultation/an
   description: >-
@@ -148,12 +148,12 @@ indépendant . PL . CARCDSF . chirurgien-dentiste . exonération PCV:
     faites la demande. [En savoir
     plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
 
-indépendant . PL . CARCDSF . chirurgien-dentiste . prix d'une consultation:
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . prix d'une consultation:
   formule: 23 €/consultation
 
-indépendant . PL . CARCDSF . sage-femme: métier = 'santé . sage-femme'
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme: métier = 'santé . sage-femme'
 
-indépendant . PL . CARCDSF . sage-femme . RID:
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID:
   titre: invalidité et décès
   variations:
     - si: date >= 01/2025
@@ -164,7 +164,7 @@ indépendant . PL . CARCDSF . sage-femme . RID:
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
-indépendant . PL . CARCDSF . sage-femme . PCV:
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV:
   remplace: cotisations et contributions . cotisations . PCV
   non applicable si: exonération PCV
   description: |
@@ -191,7 +191,7 @@ indépendant . PL . CARCDSF . sage-femme . PCV:
   avec:
     participation CPAM: 520 €/an
 
-indépendant . PL . CARCDSF . sage-femme . exonération PCV:
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme . exonération PCV:
   type: notification
   formule: cotisations et contributions . assiette sociale <= 3120 €/an
   description: >-

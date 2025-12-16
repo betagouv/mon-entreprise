@@ -1,4 +1,4 @@
-indépendant . PL . PAMC:
+indépendant . profession libérale . réglementée . PAMC:
   applicable si:
     une de ces conditions:
       - toutes ces conditions:
@@ -7,14 +7,12 @@ indépendant . PL . PAMC:
       - métier = 'santé . sage-femme'
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . auxiliaire médical'
-
+  valeur: oui
   rend non applicable:
     - conjoint collaborateur
     - revenus étrangers
 
-  formule: oui
-
-indépendant . PL . PAMC . proportion recette activité non conventionnée:
+indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée:
   question: |
     Quel est la part de votre chiffre d’affaires liée à une activité non
     conventionnée (estimation) ?
@@ -37,14 +35,14 @@ indépendant . PL . PAMC . proportion recette activité non conventionnée:
     (aide à la télétransmission, indemnisation, indemnisation de la formation
     continue, prime à l’installation, ...)
 
-indépendant . PL . PAMC . proportion recette activité non conventionnée . notification:
+indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée . notification:
   type: notification
   sévérité: avertissement
   formule: proportion recette activité non conventionnée > 100%
   description: |
     La proportion ne peut pas être supérieure à 100%
 
-indépendant . PL . PAMC . remplaçant:
+indépendant . profession libérale . réglementée . PAMC . remplaçant:
   question:
     texte: Au {{ période . début d'année }}, exerciez-vous votre activité
       exclusivement en tant que remplaçant ?
@@ -66,7 +64,7 @@ indépendant . PL . PAMC . remplaçant:
       références:
         Site de l’offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
 
-indépendant . PL . PAMC . CURPS:
+indépendant . profession libérale . réglementée . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
   remplace: cotisations et contributions . contributions spéciales
   description: |
@@ -106,12 +104,12 @@ indépendant . PL . PAMC . CURPS:
   références:
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
-indépendant . PL . PAMC . dépassement d'honoraire moyen:
+indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen:
   non applicable si: métier . santé . médecin . secteur = 'S1'
   question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
-indépendant . PL . PAMC . revenus activité conventionnée:
+indépendant . profession libérale . réglementée . PAMC . revenus activité conventionnée:
   description: |
     Les revenus conventionnés sont ceux correspondant aux recettes tirées des
     honoraires et des rémunérations forfaitaires versées par la CPAM.
@@ -127,7 +125,7 @@ indépendant . PL . PAMC . revenus activité conventionnée:
       - valeur: 100% - proportion recette activité non conventionnée
         plancher: 0%
 
-indépendant . PL . PAMC . assiette participation CPAM:
+indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
   description: |
     Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
     l’activité conventionnée nets de dépassements d’honoraires.
@@ -161,7 +159,7 @@ indépendant . PL . PAMC . assiette participation CPAM:
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
 
-indépendant . PL . PAMC . maladie:
+indépendant . profession libérale . réglementée . PAMC . maladie:
   remplace: cotisations et contributions . cotisations . maladie . maladie-maternité
   titre: maladie (après participation CPAM)
   somme:
@@ -169,7 +167,7 @@ indépendant . PL . PAMC . maladie:
     - contribution additionnelle
     - (- participation CPAM)
 
-indépendant . PL . PAMC . maladie . participation CPAM:
+indépendant . profession libérale . réglementée . PAMC . maladie . participation CPAM:
   non applicable si: métier . santé . médecin . secteur = 'S2'
   produit:
     - assiette participation CPAM
@@ -187,10 +185,10 @@ indépendant . PL . PAMC . maladie . participation CPAM:
         - si: situation personnelle . domiciliation fiscale à l'étranger
           alors: cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger . taux
         - si: cotisations et contributions . après réforme = non
-          alors: PL . maladie . taux
+          alors: profession libérale . CNAVPL . maladie . taux
         - sinon: cotisations et contributions . cotisations . maladie . maladie-maternité . taux 2
 
-indépendant . PL . PAMC . maladie . contribution additionnelle:
+indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
   produit:
     - (cotisations et contributions . assiette sociale - revenus activité conventionnée)
     - taux
@@ -212,7 +210,7 @@ indépendant . PL . PAMC . maladie . contribution additionnelle:
   références:
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
-indépendant . PL . PAMC . allocations familiales:
+indépendant . profession libérale . réglementée . PAMC . allocations familiales:
   applicable si: métier . santé . médecin . secteur = 'S1'
   titre: allocations familiales (après participation CPAM)
   remplace:
@@ -224,7 +222,7 @@ indépendant . PL . PAMC . allocations familiales:
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html
 
-indépendant . PL . PAMC . allocations familiales . participation CPAM:
+indépendant . profession libérale . réglementée . PAMC . allocations familiales . participation CPAM:
   formule:
     produit:
       - cotisations et contributions . cotisations . allocations familiales
@@ -242,7 +240,7 @@ indépendant . PL . PAMC . allocations familiales . participation CPAM:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
 
-indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
+indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste:
   applicable si: métier = 'santé . chirurgien-dentiste'
   titre: assiette participation CPAM (chirurgien dentiste)
   remplace: assiette participation CPAM
@@ -254,7 +252,7 @@ indépendant . PL . PAMC . assiette participation chirurgien-dentiste:
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
-indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
+indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
   description: |
     Le « taux Urssaf » permet de calculer la part de votre cotisation d’assurance
     maladie-maternité prise en charge par la CPAM.
@@ -278,13 +276,13 @@ indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urs
   références:
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
-indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
+indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
   formule: taux Urssaf >= 100
   type: notification
   sévérité: avertissement
   description: Le taux Urssaf doit être inférieur à 100
 
-indépendant . PL . PAMC . participation CPAM:
+indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   titre: Participation assurance maladie
   description: |
     Les professionnels de santé conventionnés bénéficient d’une prise en charge
@@ -303,7 +301,7 @@ indépendant . PL . PAMC . participation CPAM:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
 
-indépendant . PL . PAMC . IJSS:
+indépendant . profession libérale . réglementée . PAMC . IJSS:
   remplace: indépendant . IJSS . imposable
   rend non applicable: indépendant . IJSS
   titre: indemnités journalières de sécurité sociale

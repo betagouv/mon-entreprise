@@ -171,7 +171,8 @@ describe('L’exonération Acre', () => {
 			...defaultSituation,
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . PL . métier': "'expert-comptable'",
+			'indépendant . profession libérale . réglementée . métier':
+				"'expert-comptable'",
 		}
 
 		it('s’applique à la cotisation maladie-maternité', () => {
@@ -230,7 +231,8 @@ describe('L’exonération Acre', () => {
 					'40000 €/an',
 				'entreprise . activité': "'libérale'",
 				'entreprise . activité . libérale . réglementée': 'oui',
-				'indépendant . PL . métier': "'santé . médecin'",
+				'indépendant . profession libérale . réglementée . métier':
+					"'santé . médecin'",
 			})
 			const retraiteMédecin = e2.evaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base'
@@ -245,7 +247,8 @@ describe('L’exonération Acre', () => {
 					'40000 €/an',
 				'entreprise . activité': "'libérale'",
 				'entreprise . activité . libérale . réglementée': 'oui',
-				'indépendant . PL . métier': "'santé . médecin'",
+				'indépendant . profession libérale . réglementée . métier':
+					"'santé . médecin'",
 				'entreprise . date de création': '18/02/2025',
 				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
 					'oui',

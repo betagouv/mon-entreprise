@@ -1,9 +1,9 @@
-indépendant . PL . CNBF:
-  valeur: oui
-  applicable si: métier = 'juridique . avocat'
+indépendant . profession libérale . réglementée . CNBF:
   description: |
     La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
     sociale des avocats.
+  applicable si: métier = 'juridique . avocat'
+  valeur: oui
   rend non applicable:
     - cotisations et contributions . cotisations . maladie . indemnités journalières
     # Applicable mais pas encore supporté
@@ -11,7 +11,7 @@ indépendant . PL . CNBF:
   références:
     Site CNBF: https://www.cnbf.fr
 
-indépendant . PL . CNBF . retraite de base:
+indépendant . profession libérale . réglementée . CNBF . retraite de base:
   remplace: cotisations et contributions . cotisations . retraite de base
   formule:
     somme:
@@ -74,7 +74,7 @@ indépendant . PL . CNBF . retraite de base:
           plafond: 297549 €/an
         - 3.1%
 
-indépendant . PL . CNBF . retraite complémentaire:
+indépendant . profession libérale . réglementée . CNBF . retraite complémentaire:
   barème:
     assiette: cotisations et contributions . assiette sociale
     multiplicateur: 42507 €/an
@@ -222,7 +222,7 @@ indépendant . PL . CNBF . retraite complémentaire:
           titre: classe 2+
           note: Correspond à la classe C3 pour 2024 et avant.
 
-indépendant . PL . CNBF . invalidité et décès:
+indépendant . profession libérale . réglementée . CNBF . invalidité et décès:
   formule:
     variations:
       - si: entreprise . durée d'activité . en fin d'année < 5 an
