@@ -20,7 +20,6 @@ interface PlusieursPossibilitésProps {
 
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 }
 
