@@ -21,7 +21,6 @@ interface QuantitéFieldProps<U extends UnitéQuantité> {
 	label?: React.ReactNode
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 }
 
@@ -108,7 +107,6 @@ export const QuantitéField = <U extends UnitéQuantité>({
 			<NumericInput
 				id={id}
 				label={label}
-				aria-label={label ? '' : aria?.label}
 				aria-labelledby={label ? '' : aria?.labelledby}
 				onChange={handleValueChange}
 				onSubmit={onSubmit}
