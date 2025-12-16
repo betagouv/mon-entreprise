@@ -1,10 +1,6 @@
-indépendant . PL . CARMF:
-  formule: oui
+indépendant . profession libérale . réglementée . CARMF:
   description: |
     La CARMF est la caisse de retraite autonome des médecins de France.
-  applicable si: métier = 'santé . médecin'
-  références:
-    Site CARMF: http://www.carmf.fr
   note: |
     L’affiliation est obligatoire pour les médecins titulaires du diplôme de
     docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
@@ -13,8 +9,12 @@ indépendant . PL . CARMF:
     société d’exercice libéral ou toute autre activité rémunérée sous forme
     d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
     métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
+  applicable si: métier = 'santé . médecin'
+  valeur: oui
+  références:
+    Site CARMF: http://www.carmf.fr
 
-indépendant . PL . CARMF . participation CPAM retraite:
+indépendant . profession libérale . réglementée . CARMF . participation CPAM retraite:
   applicable si: métier . santé . médecin . secteur = 'S1'
   description: |
     Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient d'une
@@ -39,7 +39,7 @@ indépendant . PL . CARMF . participation CPAM retraite:
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
-indépendant . PL . CARMF . retraite complémentaire:
+indépendant . profession libérale . réglementée . CARMF . retraite complémentaire:
   description: >-
     La CARMF gère le régime de retraite complémentaire.
 
@@ -69,7 +69,7 @@ indépendant . PL . CARMF . retraite complémentaire:
     Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
 
-indépendant . PL . CARMF . invalidité et décès:
+indépendant . profession libérale . réglementée . CARMF . invalidité et décès:
   non applicable si: CARMF . en retraite
   description: >-
     La CARMF gère un régime de prévoyance versant une pension en cas
@@ -122,7 +122,7 @@ indépendant . PL . CARMF . invalidité et décès:
         - cotisations et contributions . assiette sociale
         - 0.08%
 
-indépendant . PL . CARMF . en retraite:
+indépendant . profession libérale . réglementée . CARMF . en retraite:
   description: |
     Si vous cumulez retraite et activité libérale, vous ne cotisez plus au régime invalidité-décès.
     Votre famille et vous-même ne bénéficiez plus de certaines prestations du régime invalidité-décès :
@@ -132,7 +132,7 @@ indépendant . PL . CARMF . en retraite:
   références:
     Régime invalidité-décès en cas de cumul retraite et activité libérale: https://www.carmf.fr/page.php?page=cdrom/retr/retr-continuer.htm#:~:text=Si%20vous%20cumulez%20retraite%20et,%2C%20rente%20invalidit%C3%A9%2C%20capital%20d%C3%A9c%C3%A8s.
 
-indépendant . PL . CARMF . ASV:
+indépendant . profession libérale . réglementée . CARMF . ASV:
   titre: Allocations supplémentaires de vieillesse
   remplace: cotisations et contributions . cotisations . PCV
   description: >-
@@ -175,7 +175,7 @@ indépendant . PL . CARMF . ASV:
         - 3.80%
       unité: €/an
 
-indépendant . PL . CARMF . ASV . participation CPAM:
+indépendant . profession libérale . réglementée . CARMF . ASV . participation CPAM:
   applicable si: métier . santé . médecin . secteur = 'S1'
   produit:
     - assiette

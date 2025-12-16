@@ -283,7 +283,8 @@ describe('Cotisations de début d’activité', () => {
 				...defaultSituationDFE,
 				'entreprise . activité': "'libérale'",
 				'entreprise . activité . libérale . réglementée': 'oui',
-				'indépendant . PL . métier': "'santé . sage-femme'",
+				'indépendant . profession libérale . réglementée . métier':
+					"'santé . sage-femme'",
 			})
 
 			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
@@ -325,17 +326,19 @@ describe('Cotisations de début d’activité', () => {
 			const retraiteDeBase = 823
 
 			const retraiteComplémentaire = e.evaluate({
-				valeur: 'indépendant . PL . CARCDSF . retraite complémentaire',
+				valeur:
+					'indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire',
 				contexte: {
 					'indépendant . cotisations et contributions . assiette sociale':
 						'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
 				},
 			}).nodeValue as number
 			const invaliditéDécès = e.evaluate(
-				'indépendant . PL . CARCDSF . sage-femme . RID'
+				'indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID'
 			).nodeValue as number
 			const PCV = e.evaluate({
-				valeur: 'indépendant . PL . CARCDSF . sage-femme . PCV',
+				valeur:
+					'indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV',
 				contexte: {
 					'indépendant . cotisations et contributions . assiette sociale':
 						'indépendant . cotisations et contributions . début activité . assiette forfaitaire',

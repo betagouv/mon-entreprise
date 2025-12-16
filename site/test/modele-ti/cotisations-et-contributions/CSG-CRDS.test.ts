@@ -68,7 +68,6 @@ describe('CSG-CRDS', () => {
 			...defaultSituation,
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . PL . régime général': 'non',
 		}
 
 		it('applique un taux de 9,7%', () => {

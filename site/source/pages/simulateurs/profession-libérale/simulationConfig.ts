@@ -21,7 +21,11 @@ export const configProfessionLibérale: SimulationConfig = {
 			'entreprise . activité . revenus mixtes',
 			'entreprise . date de cessation',
 		],
-		liste: ['entreprise . activité', 'indépendant . PL . métier', ''],
+		liste: [
+			'entreprise . activité',
+			'indépendant . profession libérale . réglementée . métier',
+			'',
+		],
 		'non prioritaires': configIndépendant.questions?.['non prioritaires'],
 	},
 	'unité par défaut': '€/an',
@@ -37,7 +41,7 @@ const configFromPLMetier = (metier: string): SimulationConfig => ({
 	situation: {
 		...configProfessionLibérale.situation,
 		'entreprise . activité . libérale . réglementée': 'oui',
-		'indépendant . PL . métier': `'${metier}'`,
+		'indépendant . profession libérale . réglementée . métier': `'${metier}'`,
 	},
 })
 

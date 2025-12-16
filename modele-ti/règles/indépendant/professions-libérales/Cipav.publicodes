@@ -1,44 +1,15 @@
-indépendant . PL . option régime général:
-  applicable si:
-    toutes ces conditions:
-      - entreprise . activité . libérale . réglementée = non
-      - entreprise . date de création < 01/2019
-  question: Avez-vous opté pour le rattachement au régime général des indépendants ?
-  description: |
-    Les personnes exerçant déjà une profession libérale non réglementée avant
-    2019 peuvent opter entre 2019 et 2023 pour la Sécurité sociale pour les
-    indépendants, à condition d’être à jour dans le paiement de toutes leurs
-    cotisations à la Cipav.
-
-    Cette option leur permettra de bénéficier des mêmes droits que les artisans
-    et commerçants (indemnités journalières, retraite, invalidité, etc.).
-
-    Ils auront nottament accès à des indemnités journalières en cas d'arrêt de
-    travail ou de maternité, ce qui n'est pas le cas à la Cipav.
-
-    La demande est à effectuer auprès de la Cipav. Elle prendra effet au 1er
-    janvier de l’année suivante et sera définitive.
-  références:
-    fiche information droit d'option (PDF Cipav): https://www.lacipav.fr/sites/default/files/2019-03/Fiche%20pratique%20droit%20d%27option.pdf
-    bpi-france: https://bpifrance-creation.fr/entrepreneur/actualites/nouvelle-liste-activites-liberales-non-reglementees-relevant-cipav
-  par défaut: non
-
-indépendant . PL . CIPAV:
+indépendant . profession libérale . Cipav:
   une de ces conditions:
-    - métier = 'rattaché CIPAV'
-    - toutes ces conditions:
-        - entreprise . date de création < 01/2019
-        - option régime général = non
-        - entreprise . activité . libérale . réglementée = non
-
+    - profession libérale . réglementée . métier = 'rattaché Cipav'
+    - profession libérale . non réglementée . Cipav
   description: |
-    La Cipav est la caisse de retraite autonomes des professions libérales réglementées.
+    La Cipav est la caisse de retraite autonomes des professions libérales
+    réglementées.
   références:
     Site de la Cipav: https://www.lacipav.fr/
-    Comment fonctionne le droit d'option (PDF): https://www.lacipav.fr/sites/default/files/2019-07/CIPAV%20-%20Guide%20Pratique%20-%20EXE_BAT-BD_3.pdf#page=7
     "LOI n° 2017-1836 du 30 décembre 2017 de financement de la sécurité sociale pour 2018 (chercher 'travailleurs indépendants créant leur activité')": https://www.legifrance.gouv.fr/eli/loi/2017/12/30/CPAX1725580L/jo/texte#JORFARTI000036339157
 
-indépendant . PL . CIPAV . retraite complémentaire:
+indépendant . profession libérale . Cipav . retraite complémentaire:
   barème:
     multiplicateur: plafond sécurité sociale
     assiette: cotisations et contributions . assiette sociale
@@ -66,14 +37,13 @@ indépendant . PL . CIPAV . retraite complémentaire:
     valeur: 100%
   arrondi: oui
   unité: €/an
-
   références:
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=78
     L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
     Bases de calcul et taux des cotisations obligatoires des professions libérales réglementées relevant de la Cipav: https://www.urssaf.fr/portail/home/taux-et-baremes/taux-de-cotisations/PL-relevant-Cipav/bases-calcul-PLR-relevant-Cipav.html#FilAriane
     Article 2 du Décret n°79-262 du 21 mars 1979 relatif au régime d'assurance vieillesse complémentaire des architectes, agréés en architecture, ingénieurs, techniciens, experts et conseils: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000046875038
 
-indépendant . PL . CIPAV . invalidité et décès:
+indépendant . profession libérale . Cipav . invalidité et décès:
   unité: €/an
   arrondi: oui
   produit:
@@ -81,7 +51,6 @@ indépendant . PL . CIPAV . invalidité et décès:
     - 0.5%
   références:
     L’Urssaf prend en charge la collecte des cotisations Cipav à compter du 1er janvier 2023: https://www.urssaf.fr/portail/home/independant/cipav/transfert-des-cotisations-cipav.html
-
   avec:
     assiette:
       valeur: cotisations et contributions . assiette sociale
@@ -89,7 +58,7 @@ indépendant . PL . CIPAV . invalidité et décès:
       plancher: assiette minimale . invalidité et décès Cipav
       plafond: 1.85 * PSS proratisé
 
-indépendant . PL . CIPAV . conjoint collaborateur:
+indépendant . profession libérale . Cipav . conjoint collaborateur:
   applicable si: conjoint collaborateur
   valeur: oui
 

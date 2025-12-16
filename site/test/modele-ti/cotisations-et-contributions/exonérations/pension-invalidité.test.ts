@@ -160,7 +160,8 @@ describe('L’exonération invalidité', () => {
 			const e = engine.setSituation({
 				...defaultSituationInvalidité,
 				...situationCipav,
-				'indépendant . PL . CNAVPL . exonération incapacité': 'oui',
+				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'oui',
 			})
 			const retraiteDeBaseExonérée = e.evaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base'
@@ -195,7 +196,8 @@ describe('L’exonération invalidité', () => {
 			const e = engine.setSituation({
 				...defaultSituationInvalidité,
 				...situationCipav,
-				'indépendant . PL . CNAVPL . exonération incapacité': 'oui',
+				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'oui',
 			})
 			const retraiteComplémentaireExonérée = e.evaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
@@ -209,7 +211,8 @@ describe('L’exonération invalidité', () => {
 		const situationPLRNonCipav = {
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . PL . métier': "'expert-comptable'",
+			'indépendant . profession libérale . réglementée . métier':
+				"'expert-comptable'",
 		}
 
 		it('s’applique à la cotisation maladie-maternité', () => {
