@@ -23,7 +23,6 @@ export interface DateFieldProps {
 	defaultSelected?: Date
 	onChange?: (value?: Date) => void
 	label?: string
-	'aria-label'?: string
 	'aria-labelledby'?: string
 	type?: 'date passé' | 'date' | 'date futur'
 }
