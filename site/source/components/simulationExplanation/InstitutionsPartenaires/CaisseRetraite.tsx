@@ -32,7 +32,8 @@ export default function CaisseRetraite({ role }: Props) {
 	return (
 		<>
 			{caisses.map((caisse) => {
-				const dottedName = `indépendant . PL . ${caisse}` as DottedName
+				const dottedName =
+					`indépendant . profession libérale . réglementée . ${caisse}` as DottedName
 				const { description, références } = engine.getRule(dottedName).rawNode
 
 				return (
@@ -40,7 +41,7 @@ export default function CaisseRetraite({ role }: Props) {
 						expression={{
 							'toutes ces conditions': [
 								dottedName,
-								'indépendant . PL . cotisations caisse de retraite',
+								'indépendant . profession libérale . cotisations caisse de retraite',
 							],
 						}}
 						key={caisse}
@@ -59,7 +60,7 @@ export default function CaisseRetraite({ role }: Props) {
 							</InstitutionLogo>
 
 							<Body>
-								<Condition expression="indépendant . PL . CIPAV">
+								<Condition expression="indépendant . profession libérale . Cipav">
 									{description}{' '}
 									<SmallBody>
 										<Trans i18nKey="simulateurs.explanation.institutions.CIPAV">
@@ -71,7 +72,7 @@ export default function CaisseRetraite({ role }: Props) {
 										</Trans>
 									</SmallBody>
 								</Condition>
-								<Condition expression="indépendant . PL . CIPAV = non">
+								<Condition expression="indépendant . profession libérale . Cipav = non">
 									{description}{' '}
 									<Trans i18nKey="simulateurs.explanation.institutions.CNAPL">
 										Elle recouvre les cotisations liées à votre retraite et au
@@ -83,7 +84,7 @@ export default function CaisseRetraite({ role }: Props) {
 							<Value
 								unit={unit}
 								displayedUnit="€"
-								expression="indépendant . PL . cotisations caisse de retraite"
+								expression="indépendant . profession libérale . cotisations caisse de retraite"
 							/>
 						</InstitutionLine>
 					</Condition>

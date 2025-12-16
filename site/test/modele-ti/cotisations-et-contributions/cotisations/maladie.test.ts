@@ -339,7 +339,6 @@ describe('Cotisation maladie', () => {
 			...defaultSituation,
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . PL . régime général': 'non',
 		}
 
 		it('applique le même barème que pour les artisans, commerçants et PLNR', () => {
@@ -484,8 +483,14 @@ describe('Cotisation maladie', () => {
 					'18369 €/an', // 39% du PASS
 			})
 
-			expect(e1).toEvaluate('indépendant . PL . maladie . taux', 0)
-			expect(e1).toEvaluate('indépendant . PL . maladie', 0)
+			expect(e1).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				0
+			)
+			expect(e1).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie',
+				0
+			)
 			expect(e1).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
 				0
@@ -498,8 +503,14 @@ describe('Cotisation maladie', () => {
 					'25000 €/an',
 			})
 
-			expect(e2).toEvaluate('indépendant . PL . maladie . taux', 2.62)
-			expect(e2).toEvaluate('indépendant . PL . maladie', 655)
+			expect(e2).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				2.62
+			)
+			expect(e2).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie',
+				655
+			)
 			expect(e2).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
 				655
@@ -512,8 +523,14 @@ describe('Cotisation maladie', () => {
 					'50000 €/an',
 			})
 
-			expect(e3).toEvaluate('indépendant . PL . maladie . taux', 6.31)
-			expect(e3).toEvaluate('indépendant . PL . maladie', 3155)
+			expect(e3).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				6.31
+			)
+			expect(e3).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie',
+				3155
+			)
 			expect(e3).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
 				3155
@@ -526,8 +543,14 @@ describe('Cotisation maladie', () => {
 					'100000 €/an',
 			})
 
-			expect(e4).toEvaluate('indépendant . PL . maladie . taux', 6.5)
-			expect(e4).toEvaluate('indépendant . PL . maladie', 6500)
+			expect(e4).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				6.5
+			)
+			expect(e4).toEvaluate(
+				'indépendant . profession libérale . CNAVPL . maladie',
+				6500
+			)
 			expect(e4).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
 				6500

@@ -309,7 +309,6 @@ describe('Cotisation retraite de base', () => {
 			...defaultSituation,
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . PL . régime général': 'non',
 		}
 
 		it('applique un taux tranche 1 de 8,73%', () => {
@@ -468,7 +467,8 @@ describe('Cotisation retraite de base', () => {
 				...defaultSituationPLR,
 				'indépendant . cotisations et contributions . assiette sociale':
 					'100000 €/an',
-				'indépendant . PL . CNAVPL . exonération incapacité': 'oui',
+				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'oui',
 			})
 
 			expect(e).toEvaluate(

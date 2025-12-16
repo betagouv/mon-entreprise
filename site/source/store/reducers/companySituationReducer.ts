@@ -12,7 +12,7 @@ import { buildSituationFromObject } from '@/utils/publicodes/publicodes'
 import { SituationPublicodes } from './rootReducer'
 
 const SAVED_NAMESPACES = [
-	'indépendant . PL . métier',
+	'indépendant . profession libérale . réglementée . métier',
 
 	'dirigeant . gérant minoritaire',
 	'dirigeant . indépendant . PL . métier',
