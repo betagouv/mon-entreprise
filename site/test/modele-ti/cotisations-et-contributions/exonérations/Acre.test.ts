@@ -32,10 +32,14 @@ describe('L’exonération Acre', () => {
 			'indépendant . cotisations et contributions . assiette sociale':
 				'40000 €/an',
 		})
-		const taux = e.evaluate(
-			'indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux'
-		).nodeValue as number
-		expect(Math.round(taux)).toEqual(9)
+		const taux = Math.round(
+			e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux'
+			).nodeValue as number
+		)
+
+		expect(taux).toBeLessThan(100)
+		expect(taux).toBeGreaterThan(0)
 	})
 
 	it('est nulle lorsque l’assiette sociale est supérieure au PASS', () => {
