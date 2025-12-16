@@ -1,20 +1,63 @@
-indépendant . PL:
+indépendant . profession libérale:
   titre: Profession libérale
-  applicable si: entreprise . activité . libérale
-  rend non applicable: entreprise . activité . revenus mixtes
-  formule: oui
+  valeur: entreprise . activité . libérale
 
-indépendant . PL . métier:
+indépendant . profession libérale . non réglementée:
+  valeur: entreprise . activité . libérale . réglementée = non
+
+indépendant . profession libérale . non réglementée . option régime général:
+  description: |
+    Les personnes exerçant déjà une profession libérale non réglementée avant
+    2019, pouvaient opter entre 2019 et 2023 pour la Sécurité sociale des
+    indépendants, elle-même intégrée au régime général de la Sécurité sociale.
+
+    Depuis le 1er janvier 2024, les professions libérales non réglementées qui n’ont
+    pas demandé leur rattachement au régime général restent affiliés à la Cipav pour
+    la gestion de leur retraite et de leur invalidité-décès.
+  applicable si: entreprise . date de création < 01/2019
+  question: Avez-vous opté pour le rattachement au régime général des indépendants ?
+  par défaut: non
+
+indépendant . profession libérale . non réglementée . Cipav:
+  variations:
+    - si:
+        est applicable: option régime général
+      alors: option régime général = non
+    - sinon: non
+
+indépendant . profession libérale . non réglementée . taux spécifique retraite complémentaire:
+  description: |
+    Les professions libérales non règlementées dépendant du régime général des
+    travailleurs indépendants (ou Sécurité Sociale des Indépendants) avaient la
+    possibilité d’opter pour des taux spécifiques de cotisation retraite
+    complémentaire avant 2024.
+
+    Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
+    spécifique de retraite complémentaire pour les professions libérales non
+    réglementées. En revanche, ce taux spécifique continue de s'appliquer si
+    vous en avez fait la demande avant cette date.
+  applicable si:
+    toutes ces conditions:
+      - entreprise . date de création < 01/2024
+      - profession libérale . non réglementée . Cipav = non
+  question: Avez-vous opté pour des taux spécifiques de cotisation retraite
+    complémentaire ?
+  par défaut: non
+
+indépendant . profession libérale . réglementée:
+  valeur: entreprise . activité . libérale . réglementée
+
+indépendant . profession libérale . réglementée . métier:
   applicable si: entreprise . activité . libérale . réglementée
-  par défaut: "'rattaché CIPAV'"
+  par défaut: "'rattaché Cipav'"
   question: A quelle catégorie appartient votre profession ?
   une possibilité:
     - santé
     - juridique
     - expert-comptable
-    - rattaché CIPAV
+    - rattaché Cipav
 
-indépendant . PL . métier . rattaché CIPAV:
+indépendant . profession libérale . réglementée . métier . rattaché Cipav:
   titre: Autre métier rattaché à la Cipav
   description: |
     Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces métiers est :
@@ -35,7 +78,7 @@ indépendant . PL . métier . rattaché CIPAV:
     - Experts automobiles
     - Mandataires judiciaires à la protection des majeurs
 
-indépendant . PL . métier . santé:
+indépendant . profession libérale . réglementée . métier . santé:
   titre: Professions de santé
   question: Quel métier exercez-vous en tant que professionnel de santé ?
   description: |
@@ -82,7 +125,7 @@ indépendant . PL . métier . santé:
       description: Pharmaciens libéraux, officinaux et biologistes affiliés à la CAVP.
     sage-femme:
 
-indépendant . PL . métier . juridique:
+indépendant . profession libérale . réglementée . métier . juridique:
   titre: Professions juridiques et judicaires
   une possibilité:
     - avocat
@@ -123,87 +166,19 @@ indépendant . PL . métier . juridique:
         > Les règles de cotisation et de protection sociale de la Cavom ne sont
         > pas implémentées.
 
-indépendant . PL . métier . expert-comptable:
+indépendant . profession libérale . réglementée . métier . expert-comptable:
   métier: expert-comptable, commissaire aux comptes
   description: |
     Les experts comptables et les commissaires aux comptes cotisent auprès de la CAVEC pour la retraite et la prévoyance.
 
-indépendant . PL . régime général:
-  description: |
-    Les professions libérales non règlementées affiliées au régime général
-    bénéficient de la même protection sociale que les artisans et commerçants.
-
-    C'est le cas des professions libérales non règlementées crées avant le
-    01/2019, ou celles ayant exercé leur [droit
-    d'option](/documentation/modele-ti/indépendant/PL/option-régime-général)
-  toutes ces conditions:
-    - CIPAV = non
-    - entreprise . activité . libérale . réglementée = non
-
-indépendant . PL . réglementée:
-  valeur: PL . régime général = non
-
-indépendant . PL . régime général . taux spécifique retraite complémentaire:
-  question: Avez-vous opté pour des taux spécifiques de cotisation retraite
-    complémentaire ?
-  par défaut: non
-  description: |
-    Les professions libérales non règlementées dépendant du régime général des
-    travailleurs indépendants (ou Sécurité Sociale des Indépendants) ont la
-    possibilité d’opter pour des taux spécifiques de cotisation retraite
-    complémentaire.
-
-    Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
-    spécifique de retraite complémentaire pour les professions libérales non
-    réglementées. En revanche, ce taux spécifique continuera de s'appliquer si
-    vous en avez fait la demande avant cette date.
-
-indépendant . PL . maladie:
-  description: |
-    Cotisation maladie pour les professions libérales réglementées
-    **avant la réforme** des cotisations de 2025. Depuis la réforme, la
-    cotisation maladie est la même pour tous les publics.
-  non applicable si:
-    une de ces conditions:
-      - cotisations et contributions . après réforme
-      - régime général
-  produit:
-    - valeur: cotisations et contributions . assiette sociale
-      plancher: assiette minimale . maladie
-    - taux
-  arrondi: oui
-  unité: €/an
-
-  avec:
-    taux:
-      arrondi: 2 décimales
-      taux progressif:
-        assiette: cotisations et contributions . assiette sociale
-        multiplicateur: plafond sécurité sociale
-        tranches:
-          - plafond: 40%
-            taux: 0%
-          - plafond: 60%
-            taux: 4%
-          - plafond: 110%
-            taux: 6.5%
-
-indépendant . PL . PLR hors Urssaf:
-  description: |
-    Ce sont toutes les professions libérales réglementées hors les rattachées
-    Cipav.
-  toutes ces conditions:
-    - CNAVPL
-    - CIPAV = non
-
-indépendant . PL . cotisations caisse de retraite:
+indépendant . profession libérale . cotisations caisse de retraite:
   description: |
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
     profession libérale effectuée.
   note: |
     Depuis 2023, les cotisations des professions libérales affiliées à la Cipav sont
     recouvrées par l'Urssaf.
-  applicable si: PLR hors Urssaf
+  applicable si: CNAVPL . hors Urssaf
   somme:
     - cotisations et contributions . cotisations . retraite de base
     - cotisations et contributions . cotisations . retraite complémentaire

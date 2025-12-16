@@ -6,8 +6,8 @@ export const servicePLR = {
 		'toutes ces conditions': [
 			'indépendant . PL',
 			'entreprise . activité . libérale . réglementée',
-			"indépendant . PL . métier != 'expert-comptable'",
-			'indépendant . PL . PAMC = non',
+			"indépendant . profession libérale . réglementée . métier != 'expert-comptable'",
+			'indépendant . profession libérale . réglementée . PAMC = non',
 		],
 	},
 	url: 'https://www.urssaf.fr/accueil/services/services-independants/service-plr.html',

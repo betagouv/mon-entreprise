@@ -1,11 +1,13 @@
-indépendant . PL . CARPIMKO:
-  description: La CARPIMKO est la caisse de retraite autonome des auxiliaires médicaux.
-  formule: oui
+indépendant . profession libérale . réglementée . CARPIMKO:
+  description: |
+    La CARPIMKO est la caisse de retraite autonome des auxiliaires
+    médicales/médicaux.
   applicable si: métier = 'santé . auxiliaire médical'
+  valeur: oui
   références:
     Site CARPIMKO: https://www.carpimko.com
 
-indépendant . PL . CARPIMKO . retraite complémentaire:
+indépendant . profession libérale . réglementée . CARPIMKO . retraite complémentaire:
   somme:
     - variations:
         - si: date >= 01/2025
@@ -31,7 +33,7 @@ indépendant . PL . CARPIMKO . retraite complémentaire:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=61
 
-indépendant . PL . CARPIMKO . invalidité et décès:
+indépendant . profession libérale . réglementée . CARPIMKO . invalidité et décès:
   variations:
     - si: date >= 01/2024
       alors: 1022 €/an
@@ -39,7 +41,7 @@ indépendant . PL . CARPIMKO . invalidité et décès:
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
-indépendant . PL . CARPIMKO . ASV:
+indépendant . profession libérale . réglementée . CARPIMKO . ASV:
   titre: Avantage social vieillesse
   remplace: cotisations et contributions . cotisations . PCV
   formule:
@@ -65,7 +67,7 @@ indépendant . PL . CARPIMKO . ASV:
         - PAMC . assiette participation CPAM
         - 0.40%
 
-indépendant . PL . CARPIMKO . ASV . participation CPAM:
+indépendant . profession libérale . réglementée . CARPIMKO . ASV . participation CPAM:
   applicable si: PAMC
   formule:
     somme:

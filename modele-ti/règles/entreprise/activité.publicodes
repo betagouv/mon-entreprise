@@ -137,6 +137,7 @@ entreprise . activité . revenus mixtes:
   experimental: oui
   titre: Activités mixtes
   applicable si: imposition . régime . micro-entreprise
+  non applicable si: entreprise . activité . libérale
   question: Votre entreprise a-t-elle des activités avec des types de revenus
     différents ?
   par défaut: non

@@ -1,64 +1,64 @@
 médecin:
-  - indépendant . PL . métier: "'santé . médecin'"
+  - indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . totale: 50000 €/an
   - # Secteur 2 dépassement honoraire
-    indépendant . PL . métier: "'santé . médecin'"
+    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . totale: 50000 €/an
-    indépendant . PL . métier . santé . médecin . secteur: "'S2'"
-    indépendant . PL . PAMC . dépassement d'honoraire moyen: 20%
+    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
+    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 20%
   - # Secteur 2 avec dépassement honoraire et grosse rémunération
-    indépendant . PL . métier: "'santé . médecin'"
+    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . totale: 300000 €/an
-    indépendant . PL . métier . santé . médecin . secteur: "'S2'"
-    indépendant . PL . PAMC . dépassement d'honoraire moyen: 50%
+    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
+    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 50%
   - # Secteur 2 avec grosse rémunération et activité non conventionnée
-    indépendant . PL . métier: "'santé . médecin'"
+    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . totale: 400000 €/an
-    indépendant . PL . métier . santé . médecin . secteur: "'S2'"
-    indépendant . PL . PAMC . dépassement d'honoraire moyen: 50%
-    indépendant . PL . PAMC . proportion recette activité non conventionnée: 40%
+    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
+    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 50%
+    indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée: 40%
   - # Non conventionné
-    indépendant . PL . métier: "'santé . médecin'"
+    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . totale: 120000 €/an
-    indépendant . PL . métier . santé . médecin . secteur: "'non conventionné'"
+    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'non conventionné'"
   - # < 2 ans exercice
     entreprise . date de création: 01/01/2023
-    indépendant . PL . métier: "'santé . médecin'"
+    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . totale: 50000 €/an
 
 sage-femme:
-  - indépendant . PL . métier: "'santé . sage-femme'"
+  - indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
     indépendant . rémunération . totale: 50000 €/an
   - # Réduction retraite complémentaire
-    indépendant . PL . métier: "'santé . sage-femme'"
+    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
     indépendant . rémunération . totale: 20000 €/an
   - # Exonération RID
-    indépendant . PL . métier: "'santé . sage-femme'"
+    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
     indépendant . rémunération . totale: 4000 €/an
 
 auxiliaire médical:
-  - indépendant . PL . métier: "'santé . auxiliaire médical'"
+  - indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . totale: 30000 €/an
   - # Dépassement honoraire
-    indépendant . PL . métier: "'santé . auxiliaire médical'"
+    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . totale: 30000 €/an
-    indépendant . PL . PAMC . dépassement d'honoraire moyen: 20%
+    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 20%
   - # Grosse rémunération
-    indépendant . PL . métier: "'santé . auxiliaire médical'"
+    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . totale: 300000 €/an
-    indépendant . PL . PAMC . dépassement d'honoraire moyen: 100%
+    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 100%
 
 avocat:
-  - indépendant . PL . métier: "'juridique . avocat'"
+  - indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
     indépendant . rémunération . totale: 50000 €/an
-  - indépendant . PL . métier: "'juridique . avocat'"
+  - indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
     indépendant . rémunération . totale: 50000 €/an
     entreprise . durée d'activité . en fin d'année: 6 ans
 
 expert-comptable:
-  - indépendant . PL . métier: "'expert-comptable'"
+  - indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
     indépendant . rémunération . totale: 20000 €/an
-  - indépendant . PL . métier: "'expert-comptable'"
+  - indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
     indépendant . rémunération . totale: 50000 €/an
 
 CIPAV échelle de revenu:
@@ -73,7 +73,7 @@ CIPAV échelle de revenu:
 
 CIPAV exonération incapacité:
   - indépendant . rémunération . nette: 40000 €/an
-    indépendant . PL . CNAVPL . exonération incapacité: oui
+    indépendant . profession libérale . CNAVPL . exonération incapacité: oui
 
 CIPAV conjoint collaborateur:
   - &CNAVPL-conjoint-collaborateur
