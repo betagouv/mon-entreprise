@@ -115,9 +115,6 @@ export function SimulationGoal({
 					  }
 					: undefined
 			}
-			aria-describedby={
-				description ? normalizeRuleName.Description(dottedName) : undefined
-			}
 			hideDefaultValue
 			displayedUnit={displayedUnit}
 			dottedName={dottedName}
