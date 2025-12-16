@@ -2,7 +2,6 @@ import { useRadioGroup } from '@react-aria/radio'
 import { useRadioGroupState } from '@react-stately/radio'
 import { AriaRadioGroupProps } from '@react-types/radio'
 import React, { Key, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { FlexCenter } from '@/design-system/global-style'
@@ -40,8 +39,6 @@ export default function RadioChoiceGroup({
 	aria = {},
 	isSubRadioGroup = false,
 }: RadioChoiceGroupProps) {
-	const { t } = useTranslation()
-
 	return (
 		<RadioGroup
 			aria-labelledby={aria.labelledby}

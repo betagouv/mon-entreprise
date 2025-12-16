@@ -1,5 +1,4 @@
 import { Key } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { RadioCard, RadioCardGroup } from '../Radio'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
@@ -28,8 +27,6 @@ export default function CardChoiceGroup({
 	aria = {},
 	isSubGroup = false,
 }: CardChoiceGroupProps) {
-	const { t } = useTranslation()
-
 	return (
 		<RadioCardGroup
 			aria-label=""
