@@ -1,150 +1,224 @@
 indépendant . conjoint collaborateur:
-  question: Avez-vous un conjoint collaborateur ?
   description: |
-    En tant que collaborateur, le conjoint d'un indépendant verse des cotisations en matière de retraite et d'invalidité-décès et bénéficie en contrepartie de droits propres. Il s'acquitte aussi d'une cotisation indemnités journalières et peut être indemnisé en cas d'arrêt de travail.
+    En tant que collaborateur ou collaboratrice, le conjoint ou la conjointe d’un
+    indépendante ou d’une indépendante verse des cotisations de retraite et
+    d’invalidité-décès et bénéficie en contrepartie de droits propres. Elle ou Il
+    s’acquitte aussi d’une cotisation indemnités journalières et peut être
+    indemnisée/indemnisé en cas d’arrêt de travail.
 
-    ### Conjoint collaborateur : pour qui ?
+    ### Conjoint collaborateur : pour qui ?
 
-    Pour que le conjoint puisse choisir le statut de conjoint collaborateur, le chef d'entreprise doit exercer en entreprise individuelle, être le gérant majoritaire ou appartenir à un collège de gérance majoritaire, d'une entreprise en SARL ou EURL sans limitation de l'effectif salarié.
+    Pour que la conjointe ou le conjoint puisse choisir le statut de conjoint
+    collaborateur, la cheffe ou le chef d’entreprise doit :
+    - soit exercer en entreprise individuelle ;
+    - soit être la gérante ou le gérant majoritaire (ou appartenir à un collège de
+    gérance majoritaire) d’une entreprise en SARL ou EURL sans limitation de
+    l’effectif salarié.
 
-    Le conjoint doit :
-    - participer de manière régulière à l'activité de l'entreprise ;
-    - ne pas être rémunéré pour cette activité ;
-    - doit être marié ou lié par un pacte civil de solidarité (Pacs) au chef d'entreprise, ou être le concubin.
+    La conjointe ou le conjoint doit :
+    - participer de manière régulière à l’activité de l’entreprise ;
+    - ne pas être rémunéré/rémunérée pour cette activité ;
+    - doit être marié/mariée ou lié/liée par un pacte civil de solidarité (Pacs) à
+    la cheffe ou au chef d'entreprise, ou en être la concubine ou le concubin.
 
     > #### Avantages du statut conjoint collaborateur
-    > Ce statut du conjoint collaborateur est souple, simple (peu de formalités administratives) et d’un faible coût pour l’entreprise pour une protection sociale complète. Il peut être choisi même si le conjoint exerce une activité hors de l’entreprise.
-
+    > Ce statut du conjoint collaborateur est souple, simple (peu de formalités
+    > administratives) et d’un faible coût pour l’entreprise pour une protection
+    > sociale complète. Il peut être choisi même si la conjointe ou le conjoint
+    > exerce une activité hors de l’entreprise.
+  question: Avez-vous un conjoint collaborateur ?
   par défaut: non
   références:
-    urssaf.fr: https://www.urssaf.fr/portail/home/artisan-commercant/conjoint-du-chef-dentreprise/conjoint-collaborateur.html
-    secu-independants.fr: https://www.secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/?reg=lorraine&pro=artisan&act=retraite&ae=non#c46535
-    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F33429
+    Travailler avec votre conjoint - Conjoint collaborateur: https://www.urssaf.fr/accueil/independant/gerer-developper-activite/travailler-avec-conjoint.html#ancre-conjoint-collaborateur
+    Conjoint collaborateur: https://secu-independants.fr/cotisations/conjoint/conjoint-collaborateur/
+    Situations particulières: https://www.cnavpl.fr/situations-particulieres/
 
-indépendant . conjoint collaborateur . assiette:
-  titre: Choix assiette
-  question: Sur quelle base le conjoint cotise-t-il ?
+indépendant . conjoint collaborateur . choix assiette:
   description: |
-    Le conjoint collaborateur dispose de trois choix d’assiette pour le calcul de ces cotisations :
-    - Le conjoint cotise sur un revenu forfaitaire
-    - Le conjoint cotise sur un pourcentage du revenu du professionnel sans qu’il y ait partage de ce revenu.
-    - Le conjoint cotise sur une fraction du revenu du professionnel. Le revenu est partagé entre les deux conjoints.
+    La conjointe collaboratrice ou le conjoint collaborateur dispose de trois choix
+    d’assiette pour le calcul de ses cotisations :
+    - cotiser sur un revenu forfaitaire ;
+    - cotiser sur un pourcentage du revenu professionnel, sans qu’il y ait partage
+    de ce revenu ;
+    - cotiser sur une fraction du revenu professionnel, en partageant ce revenu
+    entre les deux conjointes ou conjoints.
+  références:
+    Article L662-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048683471
+    Article D633-19-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966711
+    Article D642-5-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966458
+    Article R662-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038785217
 
+  question: Sur quelle base le conjoint cotise-t-il ?
+  une possibilité:
+    - forfaitaire:
+        valeur: choix assiette = 'forfaitaire'
+        description: |
+          La conjointe collaboratrice ou le conjoint collaborateur paiera des
+          cotisations équivalentes à un revenu professionnel forfaitaire, fixé à un
+          pourcentage du plafond de la sécurité sociale, à l’exception de la
+          cotisation indemnités journalières qui est calculée sur une assiette
+          équivalente à 40% du PASS.
+    - revenu sans partage:
+        valeur: choix assiette = 'revenu sans partage'
+        description:
+          La conjointe collaboratrice ou le conjoint collaborateur paiera des
+          cotisations sociales calculées sur une part du revenu professionnel de la
+          gérante ou du gérant de l’entreprise.
+    - revenu avec partage:
+        valeur: choix assiette = 'revenu avec partage'
+        description: |
+          La conjointe collaboratrice ou le conjoint collaborateur et la gérante ou
+          le gérant paieront des cotisations sociales chacun/chacune sur une part du
+          revenu professionnel.
+
+          Cette option **baisse le montant des cotisations** à payer pour la gérante
+          ou le gérant, mais elle **diminue également ses contreparties sociales**
+          (pension de retraite, indemnité décès, etc).
+        avec:
+          assiette gérant:
+            valeur: cotisations et contributions . assiette sociale - assiette de cotisations
+            remplace:
+              références à: cotisations et contributions . assiette sociale
+              dans:
+                - cotisations et contributions . cotisations . retraite de base
+                - cotisations et contributions . cotisations . retraite complémentaire
+                - cotisations et contributions . cotisations . invalidité et décès
   par défaut: "'forfaitaire'"
 
-  une possibilité:
-    - forfaitaire
-    - revenu sans partage
-    - revenu avec partage
-
   avec:
-    forfaitaire:
-      description: |
-        Le conjoint collaborateur paiera des cotisations équivalentes à un revenu
-        professionnel forfaitaire, fixé à un pourcentage du plafond de la sécurité sociale,
-        à l’exception de la cotisation indemnités journalières qui est calculée sur
-        une assiette équivalente à 40% du PASS.
-      valeur: assiette = 'forfaitaire'
-
-    pourcentage:
+    proportion:
       titre: Proportion revenu
-      question: À quelle proportion du revenu le conjoint cotise-t-il ?
+      non applicable si: choix assiette . forfaitaire
+      question: À quelle proportion du revenu la conjointe ou le conjoint cotise-t-elle/il ?
       par défaut: "'tiers'"
       une possibilité:
-        - tiers
-        - moitié
+        - quart:
+            applicable si: profession libérale . CNAVPL
+            valeur: proportion = 'quart'
+            titre: '1/4'
+        - tiers:
+            non applicable si: profession libérale . CNAVPL
+            valeur: proportion = 'tiers'
+            titre: '1/3'
+        - moitié:
+            valeur: proportion = 'moitié'
+            titre: '1/2'
 
-      avec:
-        moitié:
-          formule: pourcentage = 'moitié'
-          titre: '1/2'
-
-        tiers:
-          valeur: pourcentage = 'tiers'
-          titre: '1/3'
-
-    revenu avec partage:
-      description: |
-        Le conjoint collaborateur et le gérant paieront des cotisations sociales chacun sur une part du revenu professionnel.
-        **Cette option baisse le montant des cotisations à payer pour le gérant, mais elle diminue également ses contreparties sociales (pension de retraite, indemnité décès, etc)**
-      formule: assiette = 'revenu avec partage'
-      avec:
-        assiette gérant:
-          valeur: cotisations et contributions . assiette sociale - cotisations . assiette
-          remplace:
-            références à: cotisations et contributions . assiette sociale
-            dans:
-              - cotisations et contributions . cotisations . retraite de base
-              - cotisations et contributions . cotisations . retraite complémentaire
-              - cotisations et contributions . cotisations . invalidité et décès
-
-    revenu sans partage:
-      description:
-        Le conjoint collaborateur paiera des cotisations sociales calculées
-        sur une part du revenu professionnel du gérant de l’entreprise.
-      formule: assiette = 'revenu sans partage'
+indépendant . conjoint collaborateur . assiette de cotisations:
+  unité: €/an
+  variations:
+    - si: choix assiette . forfaitaire
+      alors:
+        produit:
+          - plafond sécurité sociale
+          - variations:
+              - si: profession libérale . CNAVPL
+                alors: 50%
+              - sinon: 1 / 3
+    - si: choix assiette . proportion . quart
+      alors:
+        produit:
+          - cotisations et contributions . assiette sociale
+          - 25%
+    - si: choix assiette . proportion . tiers
+      alors:
+        produit:
+          - cotisations et contributions . assiette sociale
+          - 1 / 3
+    - sinon:
+        produit:
+          - cotisations et contributions . assiette sociale
+          - 50%
 
 indépendant . conjoint collaborateur . cotisations:
   somme:
+    - indemnités journalières
     - retraite de base
     - retraite complémentaire
     - invalidité et décès
-    - indemnités journalières
 
-  avec:
-    assiette:
-      titre: assiette conjoint collaborateur
-      unité: €/an
-      variations:
-        - si: assiette . forfaitaire
-          alors:
-            produit:
-              - plafond sécurité sociale
-              - 1 / 3
-        - si: assiette . pourcentage . moitié
-          alors:
-            produit:
-              - cotisations et contributions . assiette sociale
-              - 50%
-        - sinon:
-            produit:
-              - cotisations et contributions . assiette sociale
-              - 1 / 3
+indépendant . conjoint collaborateur . cotisations . indemnités journalières:
+  valeur: cotisations et contributions . cotisations . maladie . indemnités journalières
+  contexte:
+    cotisations et contributions . cotisations . maladie . indemnités journalières . assiette: assiette minimale . indemnités journalières
+    cotisations et contributions . cotisations . exonérations . Acre: choix assiette . revenu avec partage
+    cotisations et contributions . cotisations . exonérations . pension invalidité: non
 
-    indemnités journalières:
-      valeur: cotisations et contributions . cotisations . maladie . indemnités journalières
-      contexte:
-        cotisations et contributions . cotisations . maladie . indemnités journalières . assiette: assiette minimale . indemnités journalières
+indépendant . conjoint collaborateur . cotisations . retraite de base:
+  valeur: cotisations et contributions . cotisations . retraite de base
+  contexte:
+    cotisations et contributions . assiette sociale: assiette de cotisations
+    choix assiette . revenu avec partage: non
+    cotisations et contributions . cotisations . exonérations . Acre: choix assiette . revenu avec partage
+    profession libérale . CNAVPL . exonération incapacité: non
+    cotisations et contributions . cotisations . exonérations . pension invalidité: non
 
-    invalidité et décès:
-      valeur: cotisations et contributions . cotisations . invalidité et décès
-      contexte:
-        cotisations et contributions . assiette sociale: assiette
-        assiette . revenu avec partage: non
-
-    retraite complémentaire:
-      valeur: cotisations et contributions . cotisations . retraite complémentaire
-      contexte:
-        cotisations et contributions . assiette sociale: assiette
-        assiette . revenu avec partage: non
-
-    retraite de base:
-      valeur: cotisations et contributions . cotisations . retraite de base
-      contexte:
-        cotisations et contributions . assiette sociale: assiette
-        assiette . revenu avec partage: non
-
-indépendant . conjoint collaborateur . notification exonérations non pris en compte:
-  experimental: oui
-  une de ces conditions:
-    - cotisations et contributions . cotisations . exonérations . âge
-    - cotisations et contributions . cotisations . exonérations . ZFU
-    - cotisations et contributions . cotisations . exonérations . Acre
-    - cotisations et contributions . cotisations . exonérations . pension invalidité
-    - profession libérale . CNAVPL . exonération incapacité
+indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
   description: |
-    Ce simulateur ne prend pas encore en compte les différentes
-    **exonérations de cotisations** pour les **conjoints collaborateurs** (Acre,
-    âge, invalidité, incapacité, etc.)
-  type: notification
-  sévérité: avertissement
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+    ### Pour les professions libérales réglementées
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+    conjoint collaborateur est égale à une proportion de la cotisation de la cheffe
+    ou du chef d’entreprise. Cette proportion est de 50 % dans le cas d’un choix
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+    (quart du revenu professionnel ou assiette forfaitaire).
+  variations:
+    - si: profession libérale . CNAVPL
+      alors:
+        produit:
+          - valeur: cotisations et contributions . cotisations . retraite complémentaire
+            contexte:
+              choix assiette . revenu avec partage: non
+          - variations:
+              - si: choix assiette . proportion . moitié
+                alors: 50%
+              - sinon: 25%
+    - sinon:
+        valeur: cotisations et contributions . cotisations . retraite complémentaire
+        contexte:
+          cotisations et contributions . assiette sociale: assiette de cotisations
+          choix assiette . revenu avec partage: non
+          profession libérale . CNAVPL . exonération incapacité: non
+          cotisations et contributions . cotisations . exonérations . pension invalidité: non
+
+indépendant . conjoint collaborateur . cotisations . invalidité et décès:
+  description: |
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+    ### Pour les professions libérales réglementées
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+    conjoint collaborateur est égale à une proportion de la professionnelle libérale
+    ou du professionnel libéral. Cette proportion est de 50 % dans le cas d’un choix
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+    (quart du revenu professionnel ou assiette forfaitaire).
+  variations:
+    - si: profession libérale . CNAVPL
+      alors:
+        produit:
+          - valeur: cotisations et contributions . cotisations . invalidité et décès
+            contexte:
+              choix assiette . revenu avec partage: non
+          - variations:
+              - si: choix assiette . proportion . moitié
+                alors: 50%
+              - sinon: 25%
+    - sinon:
+        valeur: cotisations et contributions . cotisations . invalidité et décès
+        contexte:
+          cotisations et contributions . assiette sociale: assiette de cotisations
+          choix assiette . revenu avec partage: non
+          cotisations et contributions . cotisations . exonérations . âge: non
+          cotisations et contributions . cotisations . exonérations . Acre: choix assiette . revenu avec partage

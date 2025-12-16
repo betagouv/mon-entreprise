@@ -57,31 +57,3 @@ indépendant . profession libérale . Cipav . invalidité et décès:
       unité: €/an
       plancher: assiette minimale . invalidité et décès Cipav
       plafond: 1.85 * PSS proratisé
-
-indépendant . profession libérale . Cipav . conjoint collaborateur:
-  applicable si: conjoint collaborateur
-  valeur: oui
-
-  avec:
-    invalidité et décès:
-      remplace: conjoint collaborateur . cotisations . invalidité et décès
-      produit:
-        - invalidité et décès
-        - pourcentage
-      arrondi: oui
-
-    pourcentage:
-      variations:
-        - si:
-            une de ces conditions:
-              - conjoint collaborateur . assiette . forfaitaire
-              - CNAVPL . conjoint collaborateur . proportion . quart
-          alors: 25%
-        - sinon: 50%
-
-    retraite complémentaire:
-      remplace: conjoint collaborateur . cotisations . retraite complémentaire
-      produit:
-        - retraite complémentaire
-        - pourcentage
-      arrondi: oui
