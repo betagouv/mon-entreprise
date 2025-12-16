@@ -186,7 +186,6 @@ describe('Cotisation indemnités journalières', () => {
 			...defaultSituation,
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . PL . régime général': 'non',
 		}
 
 		it('applique un taux de 0,3%', () => {

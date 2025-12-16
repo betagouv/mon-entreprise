@@ -11,15 +11,15 @@ import ParticipationCPAM from './ParticipationCPAM'
 export default function InstitutionsPartenairesIndépendant() {
 	return (
 		<InstitutionsPartenaires role="list">
-			<WhenApplicable dottedName="indépendant . PL . CNAVPL">
+			<WhenApplicable dottedName="indépendant . profession libérale . CNAVPL">
 				<CotisationsUrssaf role="listitem" />
 				<CaisseRetraite role="listitem" />
 			</WhenApplicable>
-			<WhenNotApplicable dottedName="indépendant . PL . CNAVPL">
+			<WhenNotApplicable dottedName="indépendant . profession libérale . CNAVPL">
 				<CotisationsUrssaf role="listitem" />
 			</WhenNotApplicable>
 			<ImpôtsDGFIP role="listitem" rule="indépendant . rémunération . impôt" />
-			<Condition expression="indépendant . PL . PAMC . participation CPAM > 0">
+			<Condition expression="indépendant . profession libérale . réglementée . PAMC . participation CPAM > 0">
 				<ParticipationCPAM role="listitem" />
 			</Condition>
 		</InstitutionsPartenaires>
