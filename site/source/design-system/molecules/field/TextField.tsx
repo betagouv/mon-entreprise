@@ -13,7 +13,7 @@ type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
 	id?: string
-	role?: string
+	role?: 'combobox'
 }
 
 export default function TextField(props: TextFieldProps) {
