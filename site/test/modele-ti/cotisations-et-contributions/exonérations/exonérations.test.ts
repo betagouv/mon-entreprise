@@ -208,7 +208,8 @@ describe('L’exonération appliquée', () => {
 				...defaultSituationAvecExonérations,
 				'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée':
 					'11 mois',
-				'indépendant . PL . CNAVPL . exonération incapacité': 'oui',
+				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'oui',
 			})
 
 			expect(e).toEvaluate(
@@ -247,7 +248,8 @@ describe('L’exonération appliquée', () => {
 				...defaultSituationAvecExonérations,
 				'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée':
 					'1 mois',
-				'indépendant . PL . CNAVPL . exonération incapacité': 'oui',
+				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'oui',
 			})
 
 			expect(e).toEvaluate(
