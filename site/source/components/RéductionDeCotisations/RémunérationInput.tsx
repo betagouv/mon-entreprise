@@ -2,8 +2,6 @@ import { MontantField } from '@/design-system'
 import { euros } from '@/domaine/Montant'
 import { rémunérationBruteDottedName } from '@/utils/réductionDeCotisations'
 
-import { useEngine } from '../utils/EngineContext'
-
 type Props = {
 	index: number
 	monthName: string
@@ -17,8 +15,6 @@ export default function RémunérationInput({
 	rémunérationBrute,
 	onRémunérationChange,
 }: Props) {
-	const engine = useEngine()
-
 	return (
 		<MontantField
 			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}

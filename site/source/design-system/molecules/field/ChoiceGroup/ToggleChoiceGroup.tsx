@@ -1,5 +1,4 @@
 import { Key } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { Radio, ToggleGroup } from '../Radio'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
@@ -25,8 +24,6 @@ export default function ToggleChoiceGroup({
 	options,
 	aria = {},
 }: ToggleChoiceGroupProps) {
-	const { t } = useTranslation()
-
 	return (
 		<ToggleGroup
 			aria-label=""
