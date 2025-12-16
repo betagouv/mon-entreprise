@@ -68,6 +68,10 @@ module.exports = {
 				'react/no-unescaped-entities': 'off',
 				'react/jsx-no-target-blank': 'off',
 				'@typescript-eslint/ban-ts-comment': 'off',
+				'@typescript-eslint/no-unused-vars': [
+					'error',
+					{ ignoreRestSiblings: true },
+				],
 
 				'react-hooks/rules-of-hooks': 'error',
 				'react-hooks/exhaustive-deps': [

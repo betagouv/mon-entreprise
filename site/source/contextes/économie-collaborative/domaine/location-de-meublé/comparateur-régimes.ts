@@ -1,8 +1,8 @@
 import { Array, Either, pipe } from 'effect'
 
-import { RégimeInapplicable } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import { Montant } from '@/domaine/Montant'
 
+import { RégimeInapplicable } from './erreurs'
 import { calculeCotisationsRégimeGénéral } from './régime-général'
 import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
 import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
@@ -11,17 +11,23 @@ import {
 	SituationÉconomieCollaborativeValide,
 } from './situation'
 
-type RésultatRégime =
-	| {
-			régime: RegimeCotisation
-			applicable: true
-			cotisations: Montant<'€/an'>
-	  }
-	| {
-			régime: RegimeCotisation
-			applicable: false
-			raisonDeNonApplicabilité: RégimeInapplicable
-	  }
+export type RésultatRégimeApplicable = {
+	régime: RegimeCotisation
+	applicable: true
+	cotisations: Montant<'€/an'>
+}
+
+export type RésultatRégimeNonApplicable = {
+	régime: RegimeCotisation
+	applicable: false
+	raisonDeNonApplicabilité: RégimeInapplicable
+}
+
+type RésultatRégime = RésultatRégimeApplicable | RésultatRégimeNonApplicable
+
+type CalculCotisations = (
+	situation: SituationÉconomieCollaborativeValide
+) => Either.Either<Montant<'€/an'>, RégimeInapplicable>
 
 export const compareRégimes = (
 	situation: SituationÉconomieCollaborativeValide
@@ -30,15 +36,15 @@ export const compareRégimes = (
 		[
 			{
 				régime: RegimeCotisation.regimeGeneral,
-				calcul: calculeCotisationsRégimeGénéral,
+				calcul: calculeCotisationsRégimeGénéral as CalculCotisations,
 			},
 			{
 				régime: RegimeCotisation.microEntreprise,
-				calcul: calculeCotisationsMicroEntreprise,
+				calcul: calculeCotisationsMicroEntreprise as CalculCotisations,
 			},
 			{
 				régime: RegimeCotisation.travailleurIndependant,
-				calcul: calculeCotisationsTravailleurIndépendant,
+				calcul: calculeCotisationsTravailleurIndépendant as CalculCotisations,
 			},
 		],
 		Array.map(({ régime, calcul }) =>

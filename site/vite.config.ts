@@ -104,22 +104,26 @@ export default defineConfig(({ command, mode }) => ({
 
 		splitVendorChunkPlugin(),
 
-		sentryVitePlugin({
-			org: 'betagouv',
-			project: 'mon-entreprise',
-			url: 'https://sentry.incubateur.net/',
-			authToken: process.env.SENTRY_AUTH_TOKEN,
-			telemetry: false,
-			release: {
-				// Use same release name as the one used in the app.
-				name: sentryReleaseName(mode),
-				inject: false, // Avoid adding imports with a hash in chunks, as this causes long term caching issues.
-				uploadLegacySourcemaps: {
-					paths: ['./dist'],
-					ignore: ['./node_modules'],
-				},
-			},
-		}),
+		...(command === 'build' && mode !== 'test'
+			? [
+					sentryVitePlugin({
+						org: 'betagouv',
+						project: 'mon-entreprise',
+						url: 'https://sentry.incubateur.net/',
+						authToken: process.env.SENTRY_AUTH_TOKEN,
+						telemetry: false,
+						release: {
+							// Use same release name as the one used in the app.
+							name: sentryReleaseName(mode),
+							inject: false, // Avoid adding imports with a hash in chunks, as this causes long term caching issues.
+							uploadLegacySourcemaps: {
+								paths: ['./dist'],
+								ignore: ['./node_modules'],
+							},
+						},
+					}),
+			  ]
+			: []),
 	],
 
 	server: {

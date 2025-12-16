@@ -129,3 +129,17 @@ export const PlusieursÉtiquettes: Story = {
 		</StatusCard>
 	),
 }
+
+export const OptionNonApplicable: Story = {
+	render: () => (
+		<StatusCard nonApplicable>
+			<StatusCard.Étiquette>
+				<Tag color="tertiary">AE</Tag>
+			</StatusCard.Étiquette>
+			<StatusCard.Titre>Auto-entrepreneur</StatusCard.Titre>
+			<StatusCard.ValeurSecondaire>
+				Non applicable avec vos recettes actuelles
+			</StatusCard.ValeurSecondaire>
+		</StatusCard>
+	),
+}
