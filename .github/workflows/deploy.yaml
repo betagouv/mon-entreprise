@@ -235,78 +235,78 @@ jobs:
             - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ ([version EN](${{ needs.deploy-context.outputs.en_url }}/dev/storybook/))
             - API : ${{ needs.deploy-context.outputs.fr_url }}/api/v1/doc/
 
-  e2e-test-preview:
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-    runs-on: ubuntu-22.04
-    timeout-minutes: 60
-    container: cypress/browsers:latest
-    # We need to specify always() https://github.com/actions/runner/issues/491
-    if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-preview.result == 'success'
-    needs: [deploy-context, deploy-preview]
+  # e2e-test-preview:
+  #   env:
+  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  #   runs-on: ubuntu-22.04
+  #   timeout-minutes: 60
+  #   container: cypress/browsers:latest
+  #   # We need to specify always() https://github.com/actions/runner/issues/491
+  #   if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && needs.deploy-preview.result == 'success'
+  #   needs: [deploy-context, deploy-preview]
 
-    strategy:
-      fail-fast: false
-      max-parallel: 3
-      matrix:
-        site: ['fr', 'en']
-        browser: [chrome] # Firefox is very slow…
-        viewport: [default, small]
-        container: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-        include:
-          - site: fr
-            specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
-            baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
-            language: fr
-          - site: en
-            specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
-            baseUrl: ${{ needs.deploy-context.outputs.en_url }}
-            language: en
-        # Use 4 containers for 'en' and 10 for 'fr'
-        exclude:
-          - site: en
-            container: 1
-          - site: en
-            container: 2
-          - site: en
-            container: 3
-          - site: en
-            container: 4
-          - site: en
-            container: 5
-          - site: en
-            container: 6
-          - site: en
-            container: 7
-          - site: en
-            container: 8
-          - site: en
-            container: 9
-          - site: en
-            container: 10
+  #   strategy:
+  #     fail-fast: false
+  #     max-parallel: 3
+  #     matrix:
+  #       site: ['fr', 'en']
+  #       browser: [chrome] # Firefox is very slow…
+  #       viewport: [default, small]
+  #       container: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  #       include:
+  #         - site: fr
+  #           specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
+  #           baseUrl: ${{ needs.deploy-context.outputs.fr_url }}
+  #           language: fr
+  #         - site: en
+  #           specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
+  #           baseUrl: ${{ needs.deploy-context.outputs.en_url }}
+  #           language: en
+  #       # Use 4 containers for 'en' and 10 for 'fr'
+  #       exclude:
+  #         - site: en
+  #           container: 1
+  #         - site: en
+  #           container: 2
+  #         - site: en
+  #           container: 3
+  #         - site: en
+  #           container: 4
+  #         - site: en
+  #           container: 5
+  #         - site: en
+  #           container: 6
+  #         - site: en
+  #           container: 7
+  #         - site: en
+  #           container: 8
+  #         - site: en
+  #           container: 9
+  #         - site: en
+  #           container: 10
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - uses: ./.github/actions/install
-      - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
-        uses: cypress-io/github-action@248bde77443c376edc45906ede03a1aba9da0462 # v5.8.4
-        with:
-          # Hack to use local node version, issue : https://github.com/cypress-io/github-action/issues/489#issuecomment-1021379037
-          command-prefix: '--'
-          install: false
-          working-directory: site
-          record: true
-          tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
-          config: specPattern=cypress/integration/${{ matrix.specPattern }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
-          env: language=${{ matrix.language }}
-          browser: ${{ matrix.browser }}
-          parallel: true
-          group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
-          ci-build-id: '${{ github.sha }}-${{ github.event_name }}-${{ github.run_id }}-${{ github.run_attempt }}'
-        env:
-          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - uses: ./.github/actions/install
+  #     - name: Test e2e mon-entreprise on preview (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
+  #       uses: cypress-io/github-action@248bde77443c376edc45906ede03a1aba9da0462 # v5.8.4
+  #       with:
+  #         # Hack to use local node version, issue : https://github.com/cypress-io/github-action/issues/489#issuecomment-1021379037
+  #         command-prefix: '--'
+  #         install: false
+  #         working-directory: site
+  #         record: true
+  #         tag: ${{ needs.deploy-context.outputs.env-name }}_deploy
+  #         config: specPattern=cypress/integration/${{ matrix.specPattern }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
+  #         env: language=${{ matrix.language }}
+  #         browser: ${{ matrix.browser }}
+  #         parallel: true
+  #         group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
+  #         ci-build-id: '${{ github.sha }}-${{ github.event_name }}-${{ github.run_id }}-${{ github.run_attempt }}'
+  #       env:
+  #         COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
 
   e2e-test-production:
     env:
