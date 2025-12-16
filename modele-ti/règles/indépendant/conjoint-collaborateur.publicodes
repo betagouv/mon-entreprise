@@ -74,15 +74,6 @@ indépendant . conjoint collaborateur . choix assiette:
           Cette option **baisse le montant des cotisations** à payer pour la gérante
           ou le gérant, mais elle **diminue également ses contreparties sociales**
           (pension de retraite, indemnité décès, etc).
-        avec:
-          assiette gérant:
-            valeur: cotisations et contributions . assiette sociale - assiette de cotisations
-            remplace:
-              références à: cotisations et contributions . assiette sociale
-              dans:
-                - cotisations et contributions . cotisations . retraite de base
-                - cotisations et contributions . cotisations . retraite complémentaire
-                - cotisations et contributions . cotisations . invalidité et décès
   par défaut: "'forfaitaire'"
 
   avec:
@@ -105,7 +96,6 @@ indépendant . conjoint collaborateur . choix assiette:
             titre: '1/2'
 
 indépendant . conjoint collaborateur . assiette de cotisations:
-  unité: €/an
   variations:
     - si: choix assiette . forfaitaire
       alors:
@@ -129,6 +119,8 @@ indépendant . conjoint collaborateur . assiette de cotisations:
         produit:
           - cotisations et contributions . assiette sociale
           - 50%
+  arrondi: oui
+  unité: €/an
 
 indépendant . conjoint collaborateur . cotisations:
   somme:
@@ -147,8 +139,7 @@ indépendant . conjoint collaborateur . cotisations . indemnités journalières:
 indépendant . conjoint collaborateur . cotisations . retraite de base:
   valeur: cotisations et contributions . cotisations . retraite de base
   contexte:
-    cotisations et contributions . assiette sociale: assiette de cotisations
-    choix assiette . revenu avec partage: non
+    cotisations et contributions . cotisations . assiette retraite et invalidité-décès: assiette de cotisations
     cotisations et contributions . cotisations . exonérations . Acre: choix assiette . revenu avec partage
     profession libérale . CNAVPL . exonération incapacité: non
     cotisations et contributions . cotisations . exonérations . pension invalidité: non
@@ -173,9 +164,7 @@ indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
     - si: profession libérale . CNAVPL
       alors:
         produit:
-          - valeur: cotisations et contributions . cotisations . retraite complémentaire
-            contexte:
-              choix assiette . revenu avec partage: non
+          - cotisations et contributions . cotisations . retraite complémentaire
           - variations:
               - si: choix assiette . proportion . moitié
                 alors: 50%
@@ -183,8 +172,7 @@ indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
     - sinon:
         valeur: cotisations et contributions . cotisations . retraite complémentaire
         contexte:
-          cotisations et contributions . assiette sociale: assiette de cotisations
-          choix assiette . revenu avec partage: non
+          cotisations et contributions . cotisations . assiette retraite et invalidité-décès: assiette de cotisations
           profession libérale . CNAVPL . exonération incapacité: non
           cotisations et contributions . cotisations . exonérations . pension invalidité: non
 
@@ -208,9 +196,7 @@ indépendant . conjoint collaborateur . cotisations . invalidité et décès:
     - si: profession libérale . CNAVPL
       alors:
         produit:
-          - valeur: cotisations et contributions . cotisations . invalidité et décès
-            contexte:
-              choix assiette . revenu avec partage: non
+          - cotisations et contributions . cotisations . invalidité et décès
           - variations:
               - si: choix assiette . proportion . moitié
                 alors: 50%
@@ -218,7 +204,6 @@ indépendant . conjoint collaborateur . cotisations . invalidité et décès:
     - sinon:
         valeur: cotisations et contributions . cotisations . invalidité et décès
         contexte:
-          cotisations et contributions . assiette sociale: assiette de cotisations
-          choix assiette . revenu avec partage: non
+          cotisations et contributions . cotisations . assiette retraite et invalidité-décès: assiette de cotisations
           cotisations et contributions . cotisations . exonérations . âge: non
           cotisations et contributions . cotisations . exonérations . Acre: choix assiette . revenu avec partage

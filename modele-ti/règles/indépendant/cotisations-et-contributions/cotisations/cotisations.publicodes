@@ -237,6 +237,12 @@ indépendant . cotisations et contributions . cotisations . allocations familial
                 - plafond: 140%
                   taux: 3.10%
 
+indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
+  valeur: assiette sociale
+  abattement:
+    applicable si: conjoint collaborateur . choix assiette . revenu avec partage
+    valeur: conjoint collaborateur . assiette de cotisations
+
 indépendant . cotisations et contributions . cotisations . retraite de base:
   description: |
     ### Artisans, commerçants et professions libérales non réglementées
@@ -299,7 +305,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base . t
 
   avec:
     assiette:
-      valeur: assiette sociale
+      valeur: assiette retraite et invalidité-décès
       plancher: assiette minimale . retraite
       plafond: PSS proratisé
       abattement:
@@ -332,7 +338,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base . t
 
   avec:
     assiette:
-      valeur: assiette sociale
+      valeur: assiette retraite et invalidité-décès
       plancher: assiette minimale . retraite
       plafond:
         applicable si: profession libérale . CNAVPL
@@ -405,7 +411,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
 
   avec:
     assiette:
-      valeur: assiette sociale
+      valeur: assiette retraite et invalidité-décès
       abattement:
         applicable si: déduction tabac
         valeur: déduction tabac
@@ -469,7 +475,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
 
   avec:
     assiette:
-      valeur: assiette sociale
+      valeur: assiette retraite et invalidité-décès
       plancher: assiette minimale . invalidité et décès
       plafond: PSS proratisé
       abattement:
