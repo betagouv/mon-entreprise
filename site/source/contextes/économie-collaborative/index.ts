@@ -2,6 +2,7 @@ export { useEconomieCollaborative } from './hooks/useEconomieCollaborative'
 export { ÉconomieCollaborativeProvider } from './hooks/ÉconomieCollaborativeContext'
 export { isCotisationsEnabled } from './featureToggles'
 export {
+	aRenseignéSesAutresRevenus,
 	estSituationValide,
 	faitDeLaLocationCourteDurée,
 	faitDeLaLocationCourteEtLongueDurée,
@@ -11,6 +12,8 @@ export {
 	type SituationÉconomieCollaborativeValide,
 	type SituationMeubléDeTourisme,
 	type SituationMeubléDeTourismeValide,
+	type SituationMeubléDeTourismeIncomplète,
+	type SituationMeubléDuréeMixte,
 	type SituationChambreDHôte,
 	type TypeDurée,
 	type Classement,
@@ -38,3 +41,4 @@ export {
 	type RésultatApplicabilité,
 } from './domaine/location-de-meublé/comparateur-régimes'
 export { estActiviteProfessionnelle } from './domaine/location-de-meublé/estActiviteProfessionnelle'
+export { estActivitéPrincipale } from './domaine/location-de-meublé/estActivitéPrincipale'

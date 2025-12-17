@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import {
+	aRenseignéSesAutresRevenus,
+	estActivitéPrincipale,
 	estSituationMeubléDeTourismeValide,
 	faitDeLaLocationCourteEtLongueDurée,
 	useEconomieCollaborative,
@@ -61,7 +63,9 @@ RecettesCourteDuréeQuestion.libellé = (t) =>
 	)
 RecettesCourteDuréeQuestion.applicable = (situation) =>
 	estSituationMeubléDeTourismeValide(situation) &&
-	faitDeLaLocationCourteEtLongueDurée(situation)
+	faitDeLaLocationCourteEtLongueDurée(situation) &&
+	aRenseignéSesAutresRevenus(situation) &&
+	!estActivitéPrincipale(situation)
 
 RecettesCourteDuréeQuestion.répondue = (situation) =>
 	estSituationMeubléDeTourismeValide(situation) &&
