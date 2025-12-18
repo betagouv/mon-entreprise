@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
@@ -9,12 +10,11 @@ import {
 	SituationÉconomieCollaborative,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
-import { Button, ConteneurBleu } from '@/design-system'
+import { Body, Button, ConteneurBleu, Emoji, Message } from '@/design-system'
 import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
 import { TypeHébergementSwitch } from '@/pages/simulateurs/location-de-meublé/components/TypeHébergementSwitch'
 import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
-import { ObjectifRecettesNettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettesNettes'
 import {
 	AlsaceMoselleQuestion,
 	ClassementQuestion,
@@ -27,6 +27,7 @@ import { useSitePaths } from '@/sitePaths'
 import { DocumentationHub } from './documentation'
 
 const LocationDeMeublé = () => {
+	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
 	const { absoluteSitePaths } = useSitePaths()
 
@@ -51,12 +52,25 @@ const LocationDeMeublé = () => {
 			>
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
 				<SimulationGoals toggles={<TypeHébergementSwitch />}>
-					{isMeubléDeTourisme && <ObjectifRecettes />}
-					{isChambreDHôte && <ObjectifRecettesNettes />}
-					{isMeubléDeTourisme && <ObjectifAutresRevenus />}
+					{isMeubléDeTourisme && (
+						<>
+							<ObjectifRecettes />
+							<ObjectifAutresRevenus />
+						</>
+					)}
+					{isChambreDHôte && (
+						<Message type="info" icon={<Emoji emoji="🚧" />}>
+							<Body>
+								{t(
+									'pages.simulateurs.location-de-logement-meublé.chambre-hôtes.non-pris-en-charge',
+									"Le cas des chambres d'hôtes n'est pas encore pris en charge par ce simulateur."
+								)}
+							</Body>
+						</Message>
+					)}
 				</SimulationGoals>
 			</Simulation>
-			{estSituationValide(situation) && (
+			{isMeubléDeTourisme && estSituationValide(situation) && (
 				<ConteneurBleu>
 					<AffichageSelonAffiliation />
 				</ConteneurBleu>
