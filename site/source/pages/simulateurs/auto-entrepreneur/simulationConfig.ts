@@ -56,4 +56,7 @@ export const configAutoEntrepreneur: SimulationConfig = {
 		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
 		'dirigeant . auto-entrepreneur': 'oui',
 	},
+	'règles à ignorer pour déclencher les questions': [
+		'entreprise . activités . revenus mixtes',
+	],
 }
