@@ -1847,8 +1847,13 @@ pages:
       comparateur:
         applicable: Applicable
         aria-label: Comparison of affiliation plans
+        et: " and "
         non-applicable: Not applicable
         sous-conditions: Conditionally applicable
+      conditions:
+        autresRevenus: other income
+        classement: housing classification
+        typeDurée: type of duration
       externalLinks:
         "1":
           description: Do you rent out furnished accommodation or goods? The Collaborative
