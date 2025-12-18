@@ -2,10 +2,20 @@ import { Array, Either, pipe } from 'effect'
 
 import { Montant } from '@/domaine/Montant'
 
+import { RéponseManquante } from './applicabilité'
 import { RégimeInapplicable } from './erreurs'
-import { calculeCotisationsRégimeGénéral } from './régime-général'
-import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
-import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
+import {
+	calculeCotisationsRégimeGénéral,
+	estApplicableRégimeGénéral,
+} from './régime-général'
+import {
+	calculeCotisationsMicroEntreprise,
+	estApplicableMicroEntreprise,
+} from './régime-micro-entreprise'
+import {
+	calculeCotisationsTravailleurIndépendant,
+	estApplicableTravailleurIndépendant,
+} from './régime-travailleur-indépendant'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -63,4 +73,33 @@ export const compareRégimes = (
 					}) as const,
 			})
 		)
+	)
+
+export type RésultatApplicabilité = {
+	régime: RegimeCotisation
+	résultat: Either.Either<boolean, RéponseManquante[]>
+}
+
+export const compareApplicabilitéDesRégimes = (
+	situation: SituationÉconomieCollaborativeValide
+): RésultatApplicabilité[] =>
+	pipe(
+		[
+			{
+				régime: RegimeCotisation.regimeGeneral,
+				estApplicable: estApplicableRégimeGénéral,
+			},
+			{
+				régime: RegimeCotisation.microEntreprise,
+				estApplicable: estApplicableMicroEntreprise,
+			},
+			{
+				régime: RegimeCotisation.travailleurIndependant,
+				estApplicable: estApplicableTravailleurIndépendant,
+			},
+		],
+		Array.map(({ régime, estApplicable }) => ({
+			régime,
+			résultat: estApplicable(situation),
+		}))
 	)

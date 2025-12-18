@@ -1,7 +1,12 @@
-import { fireEvent, screen, waitFor, within } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { render, saisirRecettes } from './test/helpers/locationDeMeubléHelpers'
+import {
+	render,
+	saisirAutresRevenus,
+	saisirRecettes,
+	sélectionnerChambreDHôtes,
+} from './test/helpers/locationDeMeubléHelpers'
 
 describe('Location de meublé', () => {
 	describe('Sélection du type de location', () => {
@@ -13,13 +18,25 @@ describe('Location de meublé', () => {
 			})
 			expect(screen.getByText(/Chambre d'hôtes/i)).toBeInTheDocument()
 		})
+
+		it("doit afficher un message indiquant que le cas chambre d'hôtes n'est pas encore pris en charge", async () => {
+			const { user } = render()
+
+			await sélectionnerChambreDHôtes(user)
+
+			await waitFor(() => {
+				expect(
+					screen.getByText(/pas encore pris en charge/i)
+				).toBeInTheDocument()
+			})
+		})
 	})
 
 	describe('Logement meublé de courte durée', () => {
 		describe('Recettes < 23 000€ (affiliation non obligatoire)', () => {
 			it("doit afficher un message indiquant qu'il n'y a pas d'affiliation obligatoire", async () => {
-				render()
-				await saisirRecettes(15000)
+				const { user } = render()
+				await saisirRecettes(user, 15000)
 
 				await waitFor(() => {
 					expect(
@@ -31,8 +48,8 @@ describe('Location de meublé', () => {
 			})
 
 			it('ne doit PAS afficher le comparateur de régimes', async () => {
-				render()
-				await saisirRecettes(15000)
+				const { user } = render()
+				await saisirRecettes(user, 15000)
 
 				await waitFor(() => {
 					expect(
@@ -51,8 +68,8 @@ describe('Location de meublé', () => {
 			})
 
 			it('doit afficher un lien vers la page URSSAF', async () => {
-				render()
-				await saisirRecettes(15000)
+				const { user } = render()
+				await saisirRecettes(user, 15000)
 
 				const lienUrssaf = await waitFor(() => {
 					return screen.getByRole('link', {
@@ -69,8 +86,8 @@ describe('Location de meublé', () => {
 
 		describe('Recettes ≥ 23 000€ (affiliation obligatoire)', () => {
 			it("doit afficher un message indiquant que l'affiliation est obligatoire", async () => {
-				render()
-				await saisirRecettes(25000)
+				const { user } = render()
+				await saisirRecettes(user, 25000)
 
 				await waitFor(() => {
 					expect(
@@ -82,8 +99,8 @@ describe('Location de meublé', () => {
 			})
 
 			it('doit afficher le comparateur avec seulement 3 régimes (sans "Pas d\'affiliation")', async () => {
-				render()
-				await saisirRecettes(25000)
+				const { user } = render()
+				await saisirRecettes(user, 25000)
 
 				const comparateur = await waitFor(() => {
 					return screen.getByRole('list', {
@@ -107,8 +124,8 @@ describe('Location de meublé', () => {
 			})
 
 			it("doit afficher le message d'affiliation obligatoire même juste au seuil (23 000€)", async () => {
-				render()
-				await saisirRecettes(23000)
+				const { user } = render()
+				await saisirRecettes(user, 23000)
 
 				await waitFor(() => {
 					expect(
@@ -125,35 +142,179 @@ describe('Location de meublé', () => {
 					within(comparateur).getByText(/Régime général/i)
 				).toBeInTheDocument()
 			})
+
+			it('doit afficher les conditions manquantes pour les régimes "Applicable sous conditions"', async () => {
+				const { user } = render()
+				await saisirRecettes(user, 25000)
+
+				const comparateur = await waitFor(() => {
+					return screen.getByRole('list', {
+						name: /comparaison des régimes/i,
+					})
+				})
+
+				expect(
+					within(comparateur).getAllByText(/Applicable sous conditions/i).length
+				).toBeGreaterThan(0)
+
+				expect(
+					within(comparateur).getAllByText(/montant des autres revenus/i).length
+				).toBeGreaterThan(0)
+			})
+		})
+	})
+
+	describe('Location longue durée exclusivement', () => {
+		describe('Recettes >= 23000€ mais < autres revenus (activité secondaire)', () => {
+			it("doit afficher 'pas d'affiliation' car aucun régime n'est applicable", async () => {
+				const { user } = render()
+
+				await saisirRecettes(user, 25000)
+				await saisirAutresRevenus(user, 50000)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Proposez-vous de la location courte ou longue durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+
+				const boutonLongueDurée = screen.getByText(
+					/Location longue durée uniquement/i
+				)
+				await user.click(boutonLongueDurée)
+
+				const boutonSuivant = await screen.findByText(/Suivant/i)
+				await user.click(boutonSuivant)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/votre activité est considérée comme non-professionnelle/i
+						)
+					).toBeInTheDocument()
+				})
+			})
 		})
 	})
 
 	describe('Location mixte (courte et longue durée)', () => {
-		it('doit demander la part des recettes de courte durée', async () => {
-			render()
+		describe('Activité secondaire (recettes < autres revenus)', () => {
+			it('doit afficher "sous conditions : recettes de courte durée" pour RG et TI quand cette info manque', async () => {
+				const { user } = render()
 
-			await saisirRecettes(50000)
+				await saisirRecettes(user, 25000)
+				await saisirAutresRevenus(user, 50000)
 
-			await waitFor(() => {
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Proposez-vous de la location courte ou longue durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+
+				const boutonMixte = screen.getByText(
+					/Mixte \(courte et longue durée\)/i
+				)
+				await user.click(boutonMixte)
+
+				const boutonSuivant = await screen.findByText(/Suivant/i)
+				await user.click(boutonSuivant)
+
+				const comparateur = await waitFor(() => {
+					return screen.getByRole('list', {
+						name: /comparaison des régimes/i,
+					})
+				})
+
 				expect(
-					screen.getByText(
-						/Proposez-vous de la location courte ou longue durée ?/i
-					)
-				).toBeInTheDocument()
+					within(comparateur).getAllByText(/recettes de courte durée/i).length
+				).toBeGreaterThan(0)
 			})
 
-			const boutonMixte = screen.getByText(/Mixte \(courte et longue durée\)/i)
-			fireEvent.click(boutonMixte)
+			it('doit demander la part des recettes de courte durée', async () => {
+				const { user } = render()
 
-			const boutonSuivant = await screen.findByText(/Suivant/i)
-			fireEvent.click(boutonSuivant)
+				await saisirRecettes(user, 50000)
+				await saisirAutresRevenus(user, 100000)
 
-			await waitFor(() => {
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Proposez-vous de la location courte ou longue durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+
+				const boutonMixte = screen.getByText(
+					/Mixte \(courte et longue durée\)/i
+				)
+				await user.click(boutonMixte)
+
+				const boutonSuivant = await screen.findByText(/Suivant/i)
+				await user.click(boutonSuivant)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Quelle part des recettes provient de la location courte durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+			})
+		})
+
+		describe('Activité principale (recettes >= autres revenus)', () => {
+			it('ne doit PAS demander la part des recettes de courte durée', async () => {
+				const { user } = render()
+
+				await saisirRecettes(user, 50000)
+				await saisirAutresRevenus(user, 30000)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Proposez-vous de la location courte ou longue durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+
+				const boutonMixte = screen.getByText(
+					/Mixte \(courte et longue durée\)/i
+				)
+				await user.click(boutonMixte)
+
+				let boutonSuivant: HTMLElement | null =
+					await screen.findByText(/Suivant/i)
+
+				while (boutonSuivant) {
+					expect(
+						screen.queryByText(
+							/Quelle part des recettes provient de la location courte durée ?/i
+						)
+					).not.toBeInTheDocument()
+
+					await user.click(boutonSuivant)
+
+					const boutonClassé = screen.queryByText(/^Classé$/i)
+					if (boutonClassé) {
+						await user.click(boutonClassé)
+					}
+
+					try {
+						boutonSuivant = await screen.findByText(/Suivant/i)
+					} catch {
+						boutonSuivant = null
+					}
+				}
+
 				expect(
-					screen.getByText(
+					screen.queryByText(
 						/Quelle part des recettes provient de la location courte durée ?/i
 					)
-				).toBeInTheDocument()
+				).not.toBeInTheDocument()
 			})
 		})
 	})

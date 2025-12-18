@@ -2,8 +2,8 @@ import { Either, Option, pipe } from 'effect'
 
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
 import {
+	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
-	estPlusPetitQue,
 	eurosParAn,
 	Montant,
 } from '@/domaine/Montant'
@@ -13,6 +13,7 @@ import {
 	AutoEntrepreneurCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 
+import { EstApplicable } from './applicabilité'
 import {
 	AffiliationNonObligatoire,
 	AffiliationObligatoire,
@@ -26,7 +27,9 @@ import {
 	SEUIL_PROFESSIONNALISATION,
 } from './estActiviteProfessionnelle'
 import {
-	faitDeLaLocationCourteDurée,
+	aRenseignéSesAutresRevenus,
+	aRenseignéSonClassement,
+	aRenseignéSonTypeDeDurée,
 	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -52,7 +55,8 @@ export function calculeCotisationsMicroEntreprise(
 	| RégimeNonApplicablePourCeTypeDeDurée
 	| RégimeNonApplicablePourChambreDHôte
 > {
-	if (!estActiviteProfessionnelle(situation)) {
+	const applicabilité = estApplicableMicroEntreprise(situation)
+	if (Either.isRight(applicabilité) && !applicabilité.right) {
 		return Either.left(new AffiliationNonObligatoire())
 	}
 
@@ -89,45 +93,6 @@ export function calculeCotisationsMicroEntreprise(
 		() => situationParDéfaut.classement
 	)
 
-	const typeDurée = Option.getOrElse(
-		situation.typeDurée,
-		() => situationParDéfaut.typeDurée
-	)
-
-	if (!estActivitéPrincipale(situation)) {
-		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			const recettesCourteDurée = pipe(
-				situation.recettesCourteDurée,
-				Option.getOrElse(() => eurosParAn(0))
-			)
-			if (
-				pipe(
-					recettesCourteDurée,
-					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
-				) ||
-				classement !== 'classé'
-			) {
-				return Either.left(new AffiliationNonObligatoire())
-			}
-		} else if (typeDurée !== 'courte' || classement !== 'classé') {
-			return Either.left(new AffiliationNonObligatoire())
-		}
-	}
-
-	if (
-		estActivitéPrincipale(situation) &&
-		faitDeLaLocationCourteDurée(situation) &&
-		classement !== 'classé'
-	) {
-		return Either.left(
-			new RégimeNonApplicablePourCeTypeDeDurée({
-				typeDurée,
-				régime: RegimeCotisation.microEntreprise,
-				estActivitéPrincipale: true,
-			})
-		)
-	}
-
 	const plafond =
 		classement === 'non-classé'
 			? PLAFOND_MICRO_ENTREPRISE_NON_CLASSE
@@ -152,4 +117,70 @@ export function calculeCotisationsMicroEntreprise(
 	)
 
 	return Either.right(eurosParAn(cotisations))
+}
+
+export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
+	if (!estActiviteProfessionnelle(situation)) {
+		return Either.right(false)
+	}
+
+	if (situation.typeHébergement === 'chambre-hôte') {
+		return Either.right(true)
+	}
+
+	if (!aRenseignéSesAutresRevenus(situation)) {
+		return Either.left(['autresRevenus'])
+	}
+
+	if (!aRenseignéSonTypeDeDurée(situation)) {
+		return Either.left(['typeDurée'])
+	}
+	const typeDurée = situation.typeDurée.value
+
+	if (typeDurée === 'longue') {
+		if (!estActivitéPrincipale(situation)) {
+			return Either.right(false)
+		}
+
+		return Either.right(true)
+	}
+
+	if (
+		!estActivitéPrincipale(situation) &&
+		faitDeLaLocationCourteEtLongueDurée(situation)
+	) {
+		if (Option.isNone(situation.recettesCourteDurée)) {
+			return Either.left(['recettesCourteDurée'])
+		}
+		const recettesCourteDurée = situation.recettesCourteDurée.value
+		if (
+			!pipe(
+				recettesCourteDurée,
+				estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+			)
+		) {
+			return Either.right(false)
+		}
+	}
+
+	if (!aRenseignéSonClassement(situation)) {
+		return Either.left(['classement'])
+	}
+	const classement = situation.classement.value
+
+	if (!estActivitéPrincipale(situation)) {
+		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
+			if (classement !== 'classé') {
+				return Either.right(false)
+			}
+		} else if (classement !== 'classé') {
+			return Either.right(false)
+		}
+	}
+
+	if (classement !== 'classé') {
+		return Either.right(false)
+	}
+
+	return Either.right(true)
 }
