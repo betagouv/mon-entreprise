@@ -10,6 +10,8 @@ import { expect } from 'vitest'
 import LocationDeMeubléWithProvider from '../../LocationDeMeublé'
 import { TestProvider } from './TestProvider'
 
+type RTLUser = ReturnType<typeof userEvent.setup>
+
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const attendreLaPropagationDeLaSaisie = () => sleep(350)
@@ -27,10 +29,7 @@ export const render = () => {
 	}
 }
 
-export const saisirRecettes = async (
-	user: ReturnType<typeof userEvent.setup>,
-	montant: number
-) => {
+export const saisirRecettes = async (user: RTLUser, montant: number) => {
 	const allInputs = screen.getAllByRole('textbox')
 	const champRecettes = allInputs[0] as HTMLInputElement
 
@@ -98,10 +97,7 @@ export const getMontantRevenuNet = () => {
 	return screen.queryByTestId('montant-revenu-net')
 }
 
-export const saisirAutresRevenus = async (
-	user: ReturnType<typeof userEvent.setup>,
-	montant: number
-) => {
+export const saisirAutresRevenus = async (user: RTLUser, montant: number) => {
 	const champAutresRevenus = await waitFor(() =>
 		screen.getByLabelText(/Montant des autres revenus annuels/i)
 	)
@@ -120,7 +116,7 @@ export const saisirAutresRevenus = async (
 }
 
 export const saisirRecettesCourteDurée = async (
-	user: ReturnType<typeof userEvent.setup>,
+	user: RTLUser,
 	montant: number
 ) => {
 	const champRecettesCourteDurée = await waitFor(() =>
@@ -138,4 +134,9 @@ export const saisirRecettesCourteDurée = async (
 	})
 
 	await attendreLaPropagationDeLaSaisie()
+}
+
+export const sélectionnerChambreDHôtes = async (user: RTLUser) => {
+	const bouton = screen.getByText(/Chambre d'hôtes/i)
+	await user.click(bouton)
 }

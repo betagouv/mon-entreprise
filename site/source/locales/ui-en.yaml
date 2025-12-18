@@ -1697,6 +1697,8 @@ pages:
             contributions. You can choose between several affiliation schemes:
             auto-entrepreneur, self-employed or general scheme."
           titre: Your activity is considered professional
+      chambre-hôtes:
+        non-pris-en-charge: This simulator does not yet cover the case of bed and breakfasts.
       comparateur:
         applicable: Applicable
         aria-label: Comparison of affiliation plans
@@ -1706,6 +1708,7 @@ pages:
       conditions:
         autresRevenus: other income
         classement: housing classification
+        recettesCourteDurée: short-term income
         typeDurée: type of duration
       externalLinks:
         "1":
