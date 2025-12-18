@@ -8,6 +8,7 @@ entreprise . activité:
 
 entreprise . activité . nature:
   titre: nature de l’activité
+  non applicable si: activités . revenus mixtes
   question: Quelle est la nature de votre activité principale ?
   description: |
     Votre type d’activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.

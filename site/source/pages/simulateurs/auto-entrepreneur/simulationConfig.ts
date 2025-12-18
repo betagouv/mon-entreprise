@@ -40,8 +40,13 @@ export const configAutoEntrepreneur: SimulationConfig = {
 		'non prioritaires': ['établissement . commune'],
 		'liste noire': [
 			'entreprise . activités . revenus mixtes',
+			'entreprise . activités . revenus mixtes . proportions',
+			'entreprise . activités . revenus mixtes . proportions . service BIC',
+			'entreprise . activités . revenus mixtes . proportions . service BNC',
+			'entreprise . activités . revenus mixtes . proportions . vente restauration hébergement',
 			'entreprise . charges',
 			"entreprise . chiffre d'affaires",
+			"dirigeant . auto-entrepreneur . chiffre d'affaires",
 		],
 	},
 	'unité par défaut': '€/an',
