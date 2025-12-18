@@ -10,10 +10,9 @@ import { expect } from 'vitest'
 import LocationDeMeubléWithProvider from '../../LocationDeMeublé'
 import { TestProvider } from './TestProvider'
 
-// Délai pour attendre que le debounce de useSelection (300ms) se déclenche
-const DEBOUNCE_DELAY = 350
-
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+const attendreLaPropagationDeLaSaisie = () => sleep(350)
 
 export const render = () => {
 	const user = userEvent.setup()
@@ -117,6 +116,26 @@ export const saisirAutresRevenus = async (
 		expect(montantSaisi).toBe(montant)
 	})
 
-	// Attendre que le debounce de useSelection se déclenche
-	await sleep(DEBOUNCE_DELAY)
+	await attendreLaPropagationDeLaSaisie()
+}
+
+export const saisirRecettesCourteDurée = async (
+	user: ReturnType<typeof userEvent.setup>,
+	montant: number
+) => {
+	const champRecettesCourteDurée = await waitFor(() =>
+		screen.getByLabelText(/recettes.*courte durée/i)
+	)
+
+	await user.clear(champRecettesCourteDurée)
+	await user.type(champRecettesCourteDurée, montant.toString())
+
+	await waitFor(() => {
+		const montantSaisi = parseMontant(
+			(champRecettesCourteDurée as HTMLInputElement).value
+		)
+		expect(montantSaisi).toBe(montant)
+	})
+
+	await attendreLaPropagationDeLaSaisie()
 }
