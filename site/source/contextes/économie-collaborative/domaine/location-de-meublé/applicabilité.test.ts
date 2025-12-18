@@ -24,7 +24,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 			it("Pas d'affiliation obligatoire", () => {
 				const résultats = compareApplicabilitéDesRégimes(situation)
 
-				expect(résultats).toAvoirRégimesApplicables([])
+				expect(résultats).toNAvoirAucunRégimeApplicable()
 			})
 		})
 
@@ -234,7 +234,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 					it('devrait marquer uniquement PA comme applicable', () => {
 						const résultats = compareApplicabilitéDesRégimes(situation)
 
-						expect(résultats).toAvoirRégimesApplicables([])
+						expect(résultats).toNAvoirAucunRégimeApplicable()
 					})
 				})
 
@@ -345,14 +345,49 @@ describe('compareApplicabilitéDesRégimes', () => {
 					})
 
 					describe('Recettes courte durée < 23 000€', () => {
-						const situation = situationMixte
+						const situationSansClassement = situationMixte
 							.avecRecettesCourteDurée(15_000)
 							.build()
 
 						it("Pas d'affiliation uniquement", () => {
-							const résultats = compareApplicabilitéDesRégimes(situation)
+							const résultats = compareApplicabilitéDesRégimes(
+								situationSansClassement
+							)
 
-							expect(résultats).toAvoirRégimesApplicables([])
+							expect(résultats).toNAvoirAucunRégimeApplicable()
+						})
+
+						it('ME non applicable avec classement classé', () => {
+							const situation = situationMixte
+								.avecRecettesCourteDurée(15_000)
+								.avecClassement('classé')
+								.build()
+
+							expect(estApplicableMicroEntreprise(situation)).toEqual(
+								Either.right(false)
+							)
+						})
+
+						it('ME non applicable avec classement non-classé', () => {
+							const situation = situationMixte
+								.avecRecettesCourteDurée(15_000)
+								.avecClassement('non-classé')
+								.build()
+
+							expect(estApplicableMicroEntreprise(situation)).toEqual(
+								Either.right(false)
+							)
+						})
+
+						it('ME non applicable avec classement mixte', () => {
+							const situation = situationMixte
+								.avecRecettesCourteDurée(15_000)
+								.avecClassement('mixte')
+								.build()
+
+							expect(estApplicableMicroEntreprise(situation)).toEqual(
+								Either.right(false)
+							)
 						})
 					})
 				})
@@ -384,7 +419,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 			it("Pas d'affiliation obligatoire", () => {
 				const résultats = compareApplicabilitéDesRégimes(situation)
 
-				expect(résultats).toAvoirRégimesApplicables([])
+				expect(résultats).toNAvoirAucunRégimeApplicable()
 			})
 		})
 	})
@@ -437,10 +472,55 @@ expect.extend({
 			},
 		}
 	},
+
+	toNAvoirAucunRégimeApplicable(résultats: RésultatApplicabilité[]) {
+		const régimesSousConditions = résultats.filter((r) =>
+			Either.isLeft(r.résultat)
+		)
+		const régimesApplicables = résultats.filter(
+			(r) => Either.isRight(r.résultat) && r.résultat.right === true
+		)
+
+		const pass =
+			régimesSousConditions.length === 0 && régimesApplicables.length === 0
+
+		return {
+			pass,
+			message: () => {
+				if (pass) {
+					return 'Aucun régime applicable, comme attendu'
+				}
+
+				const errors: string[] = []
+				if (régimesApplicables.length > 0) {
+					errors.push(
+						`❌ Régimes applicables alors qu'ils ne devraient pas l'être : ${régimesApplicables
+							.map((r) => r.régime)
+							.join(', ')}`
+					)
+				}
+				if (régimesSousConditions.length > 0) {
+					errors.push(
+						`❌ Régimes sous conditions alors qu'ils devraient être non applicables : ${régimesSousConditions
+							.map(
+								(r) =>
+									`${r.régime} (manque: ${
+										Either.isLeft(r.résultat) ? r.résultat.left.join(', ') : ''
+									})`
+							)
+							.join('; ')}`
+					)
+				}
+
+				return errors.join('\n')
+			},
+		}
+	},
 })
 
 interface CustomMatchers<R = unknown> {
 	toAvoirRégimesApplicables(régimesAttendus: RegimeCotisation[]): R
+	toNAvoirAucunRégimeApplicable(): R
 }
 
 declare module 'vitest' {

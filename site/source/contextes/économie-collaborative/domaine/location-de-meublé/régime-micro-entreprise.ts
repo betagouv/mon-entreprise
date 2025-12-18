@@ -145,6 +145,24 @@ export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 		return Either.right(true)
 	}
 
+	if (
+		!estActivitéPrincipale(situation) &&
+		faitDeLaLocationCourteEtLongueDurée(situation)
+	) {
+		if (Option.isNone(situation.recettesCourteDurée)) {
+			return Either.left(['recettesCourteDurée'])
+		}
+		const recettesCourteDurée = situation.recettesCourteDurée.value
+		if (
+			!pipe(
+				recettesCourteDurée,
+				estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+			)
+		) {
+			return Either.right(false)
+		}
+	}
+
 	if (!aRenseignéSonClassement(situation)) {
 		return Either.left(['classement'])
 	}
@@ -152,17 +170,7 @@ export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 
 	if (!estActivitéPrincipale(situation)) {
 		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			const recettesCourteDurée = pipe(
-				situation.recettesCourteDurée,
-				Option.getOrElse(() => eurosParAn(0))
-			)
-			if (
-				!pipe(
-					recettesCourteDurée,
-					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
-				) ||
-				classement !== 'classé'
-			) {
+			if (classement !== 'classé') {
 				return Either.right(false)
 			}
 		} else if (classement !== 'classé') {
