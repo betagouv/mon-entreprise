@@ -188,6 +188,39 @@ describe('Location de meublé', () => {
 
 	describe('Location mixte (courte et longue durée)', () => {
 		describe('Activité secondaire (recettes < autres revenus)', () => {
+			it('doit afficher "sous conditions : recettes de courte durée" pour RG et TI quand cette info manque', async () => {
+				const { user } = render()
+
+				await saisirRecettes(user, 25000)
+				await saisirAutresRevenus(user, 50000)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Proposez-vous de la location courte ou longue durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+
+				const boutonMixte = screen.getByText(
+					/Mixte \(courte et longue durée\)/i
+				)
+				await user.click(boutonMixte)
+
+				const boutonSuivant = await screen.findByText(/Suivant/i)
+				await user.click(boutonSuivant)
+
+				const comparateur = await waitFor(() => {
+					return screen.getByRole('list', {
+						name: /comparaison des régimes/i,
+					})
+				})
+
+				expect(
+					within(comparateur).getAllByText(/recettes de courte durée/i).length
+				).toBeGreaterThan(0)
+			})
+
 			it('doit demander la part des recettes de courte durée', async () => {
 				const { user } = render()
 

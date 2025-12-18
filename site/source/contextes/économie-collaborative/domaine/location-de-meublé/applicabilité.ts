@@ -2,7 +2,11 @@ import { Either } from 'effect'
 
 import { SituationÉconomieCollaborativeValide } from './situation'
 
-export type RéponseManquante = 'typeDurée' | 'autresRevenus' | 'classement'
+export type RéponseManquante =
+	| 'typeDurée'
+	| 'autresRevenus'
+	| 'classement'
+	| 'recettesCourteDurée'
 
 export type EstApplicable = (
 	situation: SituationÉconomieCollaborativeValide

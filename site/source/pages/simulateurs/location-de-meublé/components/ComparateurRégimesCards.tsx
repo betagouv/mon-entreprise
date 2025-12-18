@@ -98,6 +98,11 @@ const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 					'pages.simulateurs.location-de-logement-meublé.conditions.classement',
 					'classement du logement'
 				)
+			case 'recettesCourteDurée':
+				return t(
+					'pages.simulateurs.location-de-logement-meublé.conditions.recettesCourteDurée',
+					'recettes de courte durée'
+				)
 		}
 	}
 
