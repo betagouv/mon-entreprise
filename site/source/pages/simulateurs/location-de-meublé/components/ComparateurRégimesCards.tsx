@@ -7,6 +7,7 @@ import {
 	estSituationValide,
 	RegimeCotisation,
 	RégimeTag,
+	RéponseManquante,
 	RésultatApplicabilité,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
@@ -80,11 +81,36 @@ const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 		}
 	}
 
+	const getConditionLibellé = (condition: RéponseManquante): string => {
+		switch (condition) {
+			case 'typeDurée':
+				return t(
+					'pages.simulateurs.location-de-logement-meublé.conditions.typeDurée',
+					'type de durée'
+				)
+			case 'autresRevenus':
+				return t(
+					'pages.simulateurs.location-de-logement-meublé.conditions.autresRevenus',
+					'montant des autres revenus'
+				)
+			case 'classement':
+				return t(
+					'pages.simulateurs.location-de-logement-meublé.conditions.classement',
+					'classement du logement'
+				)
+		}
+	}
+
 	const estApplicable =
 		Either.isRight(résultat.résultat) && résultat.résultat.right
 	const estNonApplicable =
 		Either.isRight(résultat.résultat) && !résultat.résultat.right
 	const estSousConditions = Either.isLeft(résultat.résultat)
+	const conditionsManquantes = pipe(
+		résultat.résultat,
+		Either.getLeft,
+		O.getOrElse((): RéponseManquante[] => [])
+	)
 
 	return (
 		<StatusCard nonApplicable={estNonApplicable}>
@@ -113,12 +139,31 @@ const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 						</Strong>
 					)}
 					{estSousConditions && (
-						<Strong>
-							{t(
-								'pages.simulateurs.location-de-logement-meublé.comparateur.sous-conditions',
-								'Applicable sous conditions'
+						<>
+							<Strong>
+								{t(
+									'pages.simulateurs.location-de-logement-meublé.comparateur.sous-conditions',
+									'Applicable sous conditions'
+								)}
+							</Strong>
+							{conditionsManquantes.length > 0 && (
+								<>
+									{' : '}
+									{conditionsManquantes.map((condition, index) => (
+										<span key={condition}>
+											{index > 0 &&
+												(index === conditionsManquantes.length - 1
+													? t(
+															'pages.simulateurs.location-de-logement-meublé.comparateur.et',
+															' et '
+													  )
+													: ', ')}
+											{getConditionLibellé(condition)}
+										</span>
+									))}
+								</>
 							)}
-						</Strong>
+						</>
 					)}
 				</SmallBody>
 			</StatusCard.ValeurSecondaire>

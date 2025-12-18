@@ -1813,8 +1813,13 @@ pages:
       comparateur:
         applicable: Applicable
         aria-label: Comparaison des régimes d'affiliation
+        et: " et "
         non-applicable: Non applicable
         sous-conditions: Applicable sous conditions
+      conditions:
+        autresRevenus: montant des autres revenus
+        classement: classement du logement
+        typeDurée: type de durée
       externalLinks:
         "1":
           description: Vous louez des logements meublés ou des biens ? Le service Économie
