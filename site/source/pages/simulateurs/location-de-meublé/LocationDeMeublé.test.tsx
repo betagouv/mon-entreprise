@@ -132,6 +132,41 @@ describe('Location de meublé', () => {
 		})
 	})
 
+	describe('Location longue durée exclusivement', () => {
+		describe('Recettes >= 23000€ mais < autres revenus (activité secondaire)', () => {
+			it("doit afficher 'pas d'affiliation' car aucun régime n'est applicable", async () => {
+				const { user } = render()
+
+				await saisirRecettes(user, 25000)
+				await saisirAutresRevenus(user, 50000)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Proposez-vous de la location courte ou longue durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+
+				const boutonLongueDurée = screen.getByText(
+					/Location longue durée uniquement/i
+				)
+				await user.click(boutonLongueDurée)
+
+				const boutonSuivant = await screen.findByText(/Suivant/i)
+				await user.click(boutonSuivant)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/votre activité est considérée comme non-professionnelle/i
+						)
+					).toBeInTheDocument()
+				})
+			})
+		})
+	})
+
 	describe('Location mixte (courte et longue durée)', () => {
 		describe('Activité secondaire (recettes < autres revenus)', () => {
 			it('doit demander la part des recettes de courte durée', async () => {
