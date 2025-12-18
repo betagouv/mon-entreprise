@@ -1433,6 +1433,7 @@ pages:
             out a <2>supplementary insurance policy (mutuelle)</2> to improve
             reimbursement of healthcare costs.</1>
           title: Your health benefits
+      meilleure-option: Most advantageous option.
       meta:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
@@ -1465,6 +1466,7 @@ pages:
         versement-libératoire:
           label: Activate final payment in simulation
         éligible-acre: I'm eligible for Acre for my self-employed business
+      option-non-applicable: Option not applicable.
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
@@ -1699,8 +1701,7 @@ pages:
         applicable: Applicable
         aria-label: Comparison of affiliation plans
         non-applicable: Not applicable
-        non-applicable-raison: with your current recipes
-        non-applicable-raison-type-location: for this type of rental
+        sous-conditions: Conditionally applicable
       externalLinks:
         "1":
           description: Do you rent out furnished accommodation or goods? The Collaborative

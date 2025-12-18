@@ -1523,6 +1523,7 @@ pages:
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
             améliorer le remboursement des frais de santé.</1>
           title: Vos prestations santé
+      meilleure-option: Option la plus avantageuse.
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
@@ -1555,6 +1556,7 @@ pages:
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
         éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
+      option-non-applicable: Option non applicable.
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
@@ -1812,8 +1814,7 @@ pages:
         applicable: Applicable
         aria-label: Comparaison des régimes d'affiliation
         non-applicable: Non applicable
-        non-applicable-raison: avec vos recettes actuelles
-        non-applicable-raison-type-location: pour ce type de location
+        sous-conditions: Applicable sous conditions
       externalLinks:
         "1":
           description: Vous louez des logements meublés ou des biens ? Le service Économie
