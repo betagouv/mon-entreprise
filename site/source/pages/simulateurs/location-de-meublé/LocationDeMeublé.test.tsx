@@ -129,6 +129,25 @@ describe('Location de meublé', () => {
 					within(comparateur).getByText(/Régime général/i)
 				).toBeInTheDocument()
 			})
+
+			it('doit afficher les conditions manquantes pour les régimes "Applicable sous conditions"', async () => {
+				const { user } = render()
+				await saisirRecettes(user, 25000)
+
+				const comparateur = await waitFor(() => {
+					return screen.getByRole('list', {
+						name: /comparaison des régimes/i,
+					})
+				})
+
+				expect(
+					within(comparateur).getAllByText(/Applicable sous conditions/i).length
+				).toBeGreaterThan(0)
+
+				expect(
+					within(comparateur).getAllByText(/montant des autres revenus/i).length
+				).toBeGreaterThan(0)
+			})
 		})
 	})
 

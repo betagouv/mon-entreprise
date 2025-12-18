@@ -43,3 +43,4 @@ export {
 export { estActiviteProfessionnelle } from './domaine/location-de-meublé/estActiviteProfessionnelle'
 export { estActivitéPrincipale } from './domaine/location-de-meublé/estActivitéPrincipale'
 export { auMoinsUnRégimePotentiellementApplicable } from './domaine/location-de-meublé/auMoinsUnRégimePotentiellementApplicable'
+export type { RéponseManquante } from './domaine/location-de-meublé/applicabilité'
