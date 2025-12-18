@@ -1810,6 +1810,9 @@ pages:
             d'affiliation : régime auto-entrepreneur, indépendant ou régime
             général."
           titre: Votre activité est considérée comme professionnelle
+      chambre-hôtes:
+        non-pris-en-charge: Le cas des chambres d'hôtes n'est pas encore pris en charge
+          par ce simulateur.
       comparateur:
         applicable: Applicable
         aria-label: Comparaison des régimes d'affiliation
@@ -1819,6 +1822,7 @@ pages:
       conditions:
         autresRevenus: montant des autres revenus
         classement: classement du logement
+        recettesCourteDurée: recettes de courte durée
         typeDurée: type de durée
       externalLinks:
         "1":

@@ -5,6 +5,7 @@ import {
 	render,
 	saisirAutresRevenus,
 	saisirRecettes,
+	sélectionnerChambreDHôtes,
 } from './test/helpers/locationDeMeubléHelpers'
 
 describe('Location de meublé', () => {
@@ -16,6 +17,18 @@ describe('Location de meublé', () => {
 				expect(screen.getByText(/Meublé de tourisme/i)).toBeInTheDocument()
 			})
 			expect(screen.getByText(/Chambre d'hôtes/i)).toBeInTheDocument()
+		})
+
+		it("doit afficher un message indiquant que le cas chambre d'hôtes n'est pas encore pris en charge", async () => {
+			const { user } = render()
+
+			await sélectionnerChambreDHôtes(user)
+
+			await waitFor(() => {
+				expect(
+					screen.getByText(/pas encore pris en charge/i)
+				).toBeInTheDocument()
+			})
 		})
 	})
 
