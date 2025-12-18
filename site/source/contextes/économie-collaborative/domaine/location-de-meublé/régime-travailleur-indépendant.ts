@@ -43,10 +43,10 @@ export const estApplicableTravailleurIndépendant: EstApplicable = (
 		}
 
 		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			const recettesCourteDurée = pipe(
-				situation.recettesCourteDurée,
-				Option.getOrElse(() => eurosParAn(0))
-			)
+			if (Option.isNone(situation.recettesCourteDurée)) {
+				return Either.left(['recettesCourteDurée'])
+			}
+			const recettesCourteDurée = situation.recettesCourteDurée.value
 			if (
 				!pipe(
 					recettesCourteDurée,
