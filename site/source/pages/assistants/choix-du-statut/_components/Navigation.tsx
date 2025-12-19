@@ -72,7 +72,7 @@ export default function Navigation({
 								to={choixDuStatutPath[nextStep]}
 								isDisabled={!currentStepIsComplete}
 								aria-label={t(
-									"Suivant, enregistrer et passer à l'étape suivante"
+									"Suivant, enregistrer et continuer à l'étape suivante"
 								)}
 							>
 								{nextStepLabel || <Trans>Enregistrer et continuer</Trans>}{' '}
@@ -84,7 +84,7 @@ export default function Navigation({
 						<Grid item xs={12} sm="auto">
 							<Button
 								to={choixDuStatutPath['résultat'][assistantIsCompleted]}
-								aria-label={t('Suivant, voir le résultat')}
+								aria-label={t('Suivant, enregister et voir le résultat')}
 							>
 								{nextStepLabel || (
 									<Trans>Enregistrer et voir le résultat</Trans>
