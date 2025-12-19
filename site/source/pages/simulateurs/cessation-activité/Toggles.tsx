@@ -11,46 +11,20 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
-const Wrapper = styled.div`
-	flex-shrink: 0;
-	flex-basis: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-`
-
-const CessationBlock = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	margin-bottom: -1rem;
-	margin-top: -3rem;
-`
-
-const ImpositionBlock = styled.div`
-	margin-bottom: 0.5rem;
-`
-
-const CessationDateWrapper = styled.div`
-	margin-top: -1.5rem;
-	margin-bottom: -1.5rem;
-`
-
 export const CessationActivitéToggles = () => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 
 	return (
-		<Wrapper>
+		<>
 			<CessationBlock>
-				{/* FIXME: utiliser ou supprimer l'id */}
-				<H3 id="questionHeader" as="h2">
+				<CessationQuestion as="h2">
 					{evaluateQuestion(
 						engine,
 						engine.getRule('entreprise . date de cessation')
 					)}
 					<ExplicableRule light dottedName={'entreprise . date de cessation'} />
-				</H3>
+				</CessationQuestion>
 				<CessationDateWrapper>
 					<RuleInput
 						dottedName="entreprise . date de cessation"
@@ -82,6 +56,28 @@ export const CessationActivitéToggles = () => {
 					}}
 				/>
 			</ImpositionBlock>
-		</Wrapper>
+		</>
 	)
 }
+
+const CessationBlock = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	flex-wrap: wrap;
+	margin-bottom: -1rem;
+	margin-top: -3rem;
+	width: 100%;
+`
+const CessationQuestion = styled(H3)`
+	overflow-wrap: break-word;
+	text-align: left;
+`
+const CessationDateWrapper = styled.div`
+	margin-top: -1.5rem;
+	margin-bottom: -1.5rem;
+`
+
+const ImpositionBlock = styled.div`
+	margin-bottom: 0.5rem;
+`
