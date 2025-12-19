@@ -43,10 +43,12 @@ entreprise . coût formalités . RCS:
         - si: catégorie juridique . EI
           alors:
             applicable si: activités . commerciale
-            valeur: 20.07 €HT
+            valeur: 22.88 €HT
         - si: sociétés commerciales
-          alors: 24.52 €HT
+          alors: 35.59 €HT
         - sinon: 49.04 €HT
+      références:
+        Tarifs Formalités: https://www.infogreffe.fr/tarifs-formalites
 
     sociétés commerciales:
       # TODO : déplacer dans entreprise . catégorie juridique ?
