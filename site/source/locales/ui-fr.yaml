@@ -82,6 +82,7 @@ Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
 En savoir plus: En savoir plus
+"En savoir plus sur ": "En savoir plus sur "
 En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
@@ -222,8 +223,6 @@ Simulation en cours: Simulation en cours
 "Siège :": "Siège :"
 Statistiques: Statistiques
 Suivant: Suivant
-Suivant, enregistrer et passer à l'étape suivante: Suivant, enregistrer et passer à l'étape suivante
-Suivant, voir le résultat: Suivant, voir le résultat
 Supprimer: Supprimer
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur
@@ -313,7 +312,7 @@ choix-statut:
   activité:
     help:
       title: Le choix du statut, un choix adapté à votre situation
-    title: Mon activité principale est...<1><0>Le choix du statut et les cotisations
+    title: Mon activité principale est…<1><0>Le choix du statut et les cotisations
       diffèrent en fonction de l'activité professionnelle que vous exercez.
       Renseigner votre métier vous donnera de la visibilité sur les statuts
       possibles et permettra de simuler vos revenus de manière plus

@@ -77,6 +77,7 @@ Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
 En savoir plus: Read more
+"En savoir plus sur ": "Find out more about "
 En savoir plus sur impots:
   gouv:
     fr, nouvelle fenêtre: More information on impots.gouv.fr, new window
@@ -210,8 +211,6 @@ Simulation en cours: Simulation in progress
 "Siège :": "Headquarters:"
 Statistiques: Statistics
 Suivant: Next
-Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
-Suivant, voir le résultat: Next, see the result
 Supprimer: Delete
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
@@ -299,8 +298,7 @@ choix-statut:
       you a clearer idea of the possible statuses and enable you to simulate
       your income more accurately.</0><1><0>Do you combine several
       activities?</0><1>Your company must still declare one main activity to the
-      authorities. To find out how to do this, <2>see this
-      guide</2>.</1></1></1>
+      authorities. To find out how, <2>see this guide</2>.</1></1></1>
   association:
     help:
       title: What is an association, or non-profit organization?
