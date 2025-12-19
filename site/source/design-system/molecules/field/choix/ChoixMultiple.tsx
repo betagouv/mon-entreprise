@@ -39,7 +39,7 @@ export function ChoixMultiple({
 }: ChoixMultipleProps) {
 	return (
 		<div
-			aria-labelledby={aria.labelledby || 'questionHeader'} // FIXME: supprimer ce aria-labelledby en dur
+			aria-labelledby={aria.labelledby}
 			aria-label={aria.label}
 			role="group"
 			id={id}

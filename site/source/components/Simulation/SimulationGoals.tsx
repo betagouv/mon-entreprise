@@ -152,7 +152,6 @@ export const ToggleSection = styled.div`
 
 	flex-wrap: wrap;
 	align-items: flex-start;
-	white-space: nowrap;
 	gap: ${({ theme }) => theme.spacings.sm};
 
 	> * {
