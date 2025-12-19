@@ -2240,12 +2240,32 @@ shareSimulation:
 simulateurs:
   explanation:
     institutions:
-      CIPAV: From January 1, 2023, Urssaf will collect basic and supplementary pension
-        and disability-death contributions from self-employed professionals
-        covered by Cipav. Cipav will continue to manage the pension and
-        provident fund file.
-      CNAPL: It collects contributions related to your pension and to the
-        disability-death scheme.
+      CARCDSF:
+        description: CARCDSF is the pension fund for dental surgeons and midwives.
+      CARMF:
+        description: CARMF is the independent pension fund for French doctors.
+      CARPIMKO:
+        description: CARPIMKO is the autonomous pension fund for medical auxiliaries.
+      CAVEC:
+        description: CAVEC is the social security organization for chartered accountants
+          and statutory auditors.
+      CAVP:
+        description: CAVP is the pension fund for pharmacists.
+      CIPAV:
+        description: Cipav is the independent pension fund for the regulated liberal
+          professions.
+        img: Cipav website, new window
+        note: From January 1, 2023, Urssaf will collect basic and supplementary pension
+          and disability-death contributions from self-employed professionals
+          covered by Cipav. Cipav will continue to manage pension and
+          contingency files.
+      CNAVPL:
+        img: "{{ caisse }} website, new window"
+        note: It collects contributions related to your pension and to the
+          disability-death scheme.
+      CNBF:
+        description: Caisse Nationale des Barreaux Français (CNBF) is the social
+          security organization for lawyers.
       dgfip: The Direction Générale des Finances Publiques (DGFiP) is the organization
         that collects income tax. <2>The amount calculated takes into <2>account
         the micro-tax allowance</2>.</2>

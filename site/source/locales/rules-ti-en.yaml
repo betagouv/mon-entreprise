@@ -4040,7 +4040,7 @@ indépendant . profession libérale . réglementée . CAVEC . retraite compléme
   titre.fr: retraite complémentaire
 indépendant . profession libérale . réglementée . CAVP:
   description.en: '[automatic] CAVP is the pension fund for pharmacists.'
-  description.fr: La CAVP est la caisse de retraite des pharmaciens.
+  description.fr: La CAVP est la caisse de retraite des pharmaciennes et pharmaciens.
   titre.en: '[automatic] CAVP'
   titre.fr: CAVP
 indépendant . profession libérale . réglementée . CAVP . PCV:
@@ -4138,7 +4138,7 @@ indépendant . profession libérale . réglementée . CNBF:
     for lawyers.
   description.fr: |
     La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de sécurité
-    sociale des avocats.
+    sociale des avocates et avocats.
   titre.en: '[automatic] CNBF'
   titre.fr: CNBF
 indépendant . profession libérale . réglementée . CNBF . invalidité et décès:
