@@ -16,6 +16,7 @@
 - Les possibilités de métier juridique `notaire` et `officier` sont désormais applicables
 
 ### Mises à jour
+- Mise à jour des coûts de création
 - Renomme chômage partiel en activité partielle
 
 ### Corrections
