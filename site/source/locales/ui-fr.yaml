@@ -2385,12 +2385,34 @@ shareSimulation:
 simulateurs:
   explanation:
     institutions:
-      CIPAV: Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
-        de base, de retraite complémentaire et d’invalidité-décès des
-        professionnels libéraux relevant de la Cipav. La Cipav conserve la
-        gestion du dossier de retraite ou de prévoyance.
-      CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
-        d'invalidité-décès.
+      CARCDSF:
+        description: La CARCDSF est la caisse de retraite des chirurgiennes et
+          chirurgiens dentistes et des sages-femmes.
+      CARMF:
+        description: La CARMF est la caisse de retraite autonome des médecins de France.
+      CARPIMKO:
+        description: La CARPIMKO est la caisse de retraite autonome des auxiliaires
+          médicales/médicaux.
+      CAVEC:
+        description: La CAVEC est l’organisme de sécurité sociale des experts-comptables
+          et des commissaires aux comptes.
+      CAVP:
+        description: La CAVP est la caisse de retraite des pharmaciennes et pharmaciens.
+      CIPAV:
+        description: La Cipav est la caisse de retraite autonomes des professions
+          libérales réglementées.
+        img: Site de la Cipav, nouvelle fenêtre
+        note: Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
+          de base, de retraite complémentaire et d’invalidité-décès des
+          professionnels libéraux relevant de la Cipav. La Cipav conserve la
+          gestion du dossier de retraite ou de prévoyance.
+      CNAVPL:
+        img: Site de la {{ caisse }}, nouvelle fenêtre
+        note: Elle recouvre les cotisations liées à votre retraite et au régime
+          d'invalidité-décès.
+      CNBF:
+        description: La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de
+          sécurité sociale des avocates et avocats.
       dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
         collecte l'impôt sur le revenu. <2>Le montant calculé <2>prend en compte
         l'abattement du régime micro-fiscal</2>.</2>
