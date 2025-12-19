@@ -430,7 +430,6 @@ components:
 composants:
   engine-value:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
-    voir-les-details-du-calcul: See details of the calculation of {{title}}
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:
@@ -1466,10 +1465,10 @@ pages:
           self-employed activity.
         ogDescription: Estimate your contributions for the year in which you cease
           self-employed activity.
-        ogTitle: "Self-employed : Estimated contributions for the year of cessation"
-        titre: "Self-employed : Estimated contributions for the year of cessation"
+        ogTitle: Retirement simulator
+        titre: Retirement simulator
       shortname: Cessation of activity
-      title: "Self-employed : Estimated contributions for the year of cessation"
+      title: Retirement simulator
     chirurgien-dentiste:
       meta:
         description: Calculation of net income after contributions based on total income.

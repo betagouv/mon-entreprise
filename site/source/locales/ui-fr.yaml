@@ -453,7 +453,6 @@ components:
 composants:
   engine-value:
     voir-la-documentation: Voir la documentation du calcul de {{valeur}}
-    voir-les-details-du-calcul: Voir les détails du calcul de {{title}}
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
@@ -1551,14 +1550,14 @@ pages:
             de cessation d’activité.
           title: Le service Cessation d’activité
       meta:
-        description: Estimez vos cotisations de l'année de cessation de votre activité
+        description: Estimez vos cotisations de l’année de cessation de votre activité
           en tant qu’indépendant.
-        ogDescription: Estimez vos cotisations de l'année de cessation de votre activité
+        ogDescription: Estimez vos cotisations de l’année de cessation de votre activité
           en tant qu’indépendant.
-        ogTitle: "Indépendants : Estimation des cotisations pour l'année de cessation"
-        titre: "Indépendants : Estimation des cotisations pour l'année de cessation"
+        ogTitle: Simulateur de cessation d’activité
+        titre: Simulateur de cessation d’activité
       shortname: Cessation d’activité
-      title: "Indépendants : Estimation des cotisations pour l'année de cessation"
+      title: Simulateur de cessation d’activité
     chirurgien-dentiste:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
