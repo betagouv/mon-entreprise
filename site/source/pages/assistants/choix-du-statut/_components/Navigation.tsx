@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
@@ -29,7 +29,6 @@ export default function Navigation({
 	children?: React.ReactNode
 	small?: boolean
 }) {
-	const { t } = useTranslation()
 	const nextStep = useNextStep()
 	const currentStep = useCurrentStep()
 	const previousStep = usePreviousStep()
@@ -71,9 +70,6 @@ export default function Navigation({
 								onPress={onNextStep}
 								to={choixDuStatutPath[nextStep]}
 								isDisabled={!currentStepIsComplete}
-								aria-label={t(
-									"Suivant, enregistrer et continuer à l'étape suivante"
-								)}
 							>
 								{nextStepLabel || <Trans>Enregistrer et continuer</Trans>}{' '}
 								<span aria-hidden>→</span>
@@ -84,7 +80,6 @@ export default function Navigation({
 						<Grid item xs={12} sm="auto">
 							<Button
 								to={choixDuStatutPath['résultat'][assistantIsCompleted]}
-								aria-label={t('Suivant, enregister et voir le résultat')}
 							>
 								{nextStepLabel || (
 									<Trans>Enregistrer et voir le résultat</Trans>
