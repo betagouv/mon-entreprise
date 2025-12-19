@@ -24,24 +24,24 @@ export function cessationActivitéConfig({
 		),
 		title: t(
 			'pages.simulateurs.cessation-activité.title',
-			"Indépendants : Estimation des cotisations pour l'année de cessation"
+			'Simulateur de cessation d’activité'
 		),
 		meta: {
 			description: t(
 				'pages.simulateurs.cessation-activité.meta.description',
-				"Estimez vos cotisations de l'année de cessation de votre activité en tant qu’indépendant."
+				'Estimez vos cotisations de l’année de cessation de votre activité en tant qu’indépendant.'
 			),
 			ogDescription: t(
 				'pages.simulateurs.cessation-activité.meta.ogDescription',
-				"Estimez vos cotisations de l'année de cessation de votre activité en tant qu’indépendant."
+				'Estimez vos cotisations de l’année de cessation de votre activité en tant qu’indépendant.'
 			),
 			ogTitle: t(
 				'pages.simulateurs.cessation-activité.meta.ogTitle',
-				"Indépendants : Estimation des cotisations pour l'année de cessation"
+				'Simulateur de cessation d’activité'
 			),
 			title: t(
 				'pages.simulateurs.cessation-activité.meta.titre',
-				"Indépendants : Estimation des cotisations pour l'année de cessation"
+				'Simulateur de cessation d’activité'
 			),
 		},
 		nextSteps: ['indépendant'],
