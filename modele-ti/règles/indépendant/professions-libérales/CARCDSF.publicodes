@@ -8,7 +8,7 @@ indépendant . profession libérale . réglementée . CARCDSF:
       - métier = 'santé . sage-femme'
   valeur: oui
   références:
-    Site de la CARCDSF: http://www.carcdsf.fr
+    Site de la CARCDSF: https://www.carcdsf.fr
 
 indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire:
   somme:

@@ -12,7 +12,7 @@ indépendant . profession libérale . réglementée . CARMF:
   applicable si: métier = 'santé . médecin'
   valeur: oui
   références:
-    Site CARMF: http://www.carmf.fr
+    Site CARMF: https://www.carmf.fr
 
 indépendant . profession libérale . réglementée . CARMF . participation CPAM retraite:
   applicable si: métier . santé . médecin . secteur = 'S1'
