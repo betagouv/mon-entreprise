@@ -78,9 +78,7 @@ export default function Navigation({
 					)}
 					{assistantIsCompleted && (
 						<Grid item xs={12} sm="auto">
-							<Button
-								to={choixDuStatutPath['résultat'][assistantIsCompleted]}
-							>
+							<Button to={choixDuStatutPath['résultat'][assistantIsCompleted]}>
 								{nextStepLabel || (
 									<Trans>Enregistrer et voir le résultat</Trans>
 								)}{' '}
