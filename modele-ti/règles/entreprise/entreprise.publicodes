@@ -12,8 +12,6 @@ entreprise . EI:
     'Entrepreneur individuel (EI) : ce qu’il faut savoir': https://entreprendre.service-public.gouv.fr/vosdroits/F37396
     Entrepreneur individuel: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/entrepreneur-individuel
 
-entreprise . TVA . franchise de TVA: oui
-
 entreprise . résultat fiscal:
   unité: €/an
   somme:
@@ -32,43 +30,6 @@ entreprise . résultat fiscal . rémunération dirigeant déductible:
         # TNS dans entreprise à l'IR
         valeur: indépendant . cotisations et contributions
         abattement: indépendant . cotisations et contributions . non déductibles
-
-entreprise . exercice:
-  avec:
-    date trop ancienne:
-      type: notification
-      sévérité: avertissement
-      formule: début < 01/01/2022
-      description:
-        La date saisie est trop ancienne. Le simulateur n’intègre pas les
-        barèmes avant 2022.
-
-    début:
-      type: date
-      par défaut: période . début d'année
-
-    début après la fin:
-      type: notification
-      sévérité: avertissement
-      formule: début >= fin
-      description: La fin de l’exercice doit être postérieure à son début.
-
-    durée:
-      titre: durée de l’exercice
-      formule:
-        durée:
-          depuis: début
-          jusqu'à: fin
-
-    durée maximale:
-      type: notification
-      sévérité: avertissement
-      formule: durée >= 24 mois
-      description: La durée maximale d’un exercice comptable est de 24 mois.
-
-    fin:
-      type: date
-      par défaut: période . fin d'année
 
 entreprise . charges:
   synonymes:
@@ -115,22 +76,3 @@ entreprise . charges:
   références:
     Charges déductibles ou non du résultat fiscal d’une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
-
-entreprise . capital social:
-entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques: oui
-
-entreprise . TVA:
-  question: L’entreprise est-elle assujettie à la TVA ?
-  par défaut: oui
-  description: |
-    Certains types d’entreprises ne sont pas assujetties à la TVA.
-    Ces dernières payent la taxe sur les salaires en contrepartie.
-
-    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
-
-    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
-
-  références:
-    Les régimes d’imposition à la TVA: https://www.impots.gouv.fr/professionnel/les-regimes-dimposition-la-tva
-    Tout savoir sur la TVA: https://entreprendre.service-public.fr/vosdroits/N13445
-    Liste des activités exonérées (Article 61 du Code général des impôts): https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179649/

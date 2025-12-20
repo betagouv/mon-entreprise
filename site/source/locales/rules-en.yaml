@@ -315,14 +315,14 @@ bénéficiaire:
   titre.fr: bénéficiaire
 bénéficiaire . compte courant d'associé:
   description.en: >
-    [automatic] This value is necessary to calculate the maximum amount taxable
+    [automatic] This value is needed to calculate the maximum amount taxable
     under the PFU for a beneficiary under the self-employed workers' scheme.
 
-    The amount taken into account is the average annual balance of the current account. It is determined by the sum of the average monthly balances of the account, divided by the number of months included in the financial year.
+    The amount taken into account is the average annual current account balance. It is determined by the sum of the average monthly account balances, divided by the number of months in the financial year.
 
     The average monthly balance is equal to the sum of the daily balances, divided by the number of days in the month. The average monthly balance therefore differs from the monthly balance shown in the company's accounts.
 
-    If the account is opened or closed during the fiscal year, the number of months in the fiscal year will be reduced to the number of months the account is in operation. An account is considered to be "operating" even if it is not moved during the fiscal year.  The date on which the sums paid into the current account must be assessed is the last day of the financial year preceding the payment of interest.
+    If an account is opened or closed during the year, the number of months in the year is reduced to the number of months the account was in operation. An account is considered to be "in operation" even if there are no transactions during the year.  The date on which the sums paid into the current account must be assessed is the last day of the financial year preceding the interest payment.
   description.fr: >
     Cette valeur est nécessaire à calculer le montant maximal imposable au PFU
     pour un bénéficiaire au régime des travailleurs indépendants.
@@ -5253,7 +5253,7 @@ entreprise . capital social:
     [automatic] This value must include the value of share premiums.
   description.fr: |
     Cette valeur doit inclure la valeur des primes d’émission.
-  question.en: '[automatic] What is the share capital of the company?'
+  question.en: "[automatic] What is the company's share capital?"
   question.fr: Quele est le capital social de la société ?
   titre.en: '[automatic] Share capital'
   titre.fr: Capital social
