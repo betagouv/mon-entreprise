@@ -1,5 +1,5 @@
 import * as O from 'effect/Option'
-import { useCallback } from 'react'
+import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
@@ -8,7 +8,7 @@ import {
 	type Classement,
 	type SituationÉconomieCollaborative,
 } from '@/contextes/économie-collaborative'
-import { RadioCard, RadioCardGroup } from '@/design-system'
+import { RadioChoiceGroup } from '@/design-system'
 
 interface Props {}
 
@@ -20,7 +20,7 @@ export const ClassementQuestion: ComposantQuestion<
 	const { situation, set } = useEconomieCollaborative()
 
 	const handleChange = useCallback(
-		(newValue: string) => {
+		(newValue: Key) => {
 			if (newValue) {
 				set.classement(O.some(newValue as Classement))
 			}
@@ -33,49 +33,51 @@ export const ClassementQuestion: ComposantQuestion<
 			? O.getOrUndefined(situation.classement)
 			: undefined
 
+	const options = [
+		{
+			key: 'classé',
+			value: 'classé',
+			label: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.classement.classé.label',
+				'Classé'
+			),
+			description: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.classement.classé.description',
+				'Votre hébergement est classé meublé de tourisme (de 1 à 5 étoiles).'
+			),
+		},
+		{
+			key: 'non-classé',
+			value: 'non-classé',
+			label: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.classement.non-classé.label',
+				'Non classé'
+			),
+			description: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.classement.non-classé.description',
+				"Votre hébergement n'a pas de classement officiel."
+			),
+		},
+		{
+			key: 'mixte',
+			value: 'mixte',
+			label: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.classement.mixte.label',
+				'Mixte'
+			),
+			description: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.classement.mixte.description',
+				'Vous proposez à la fois des hébergements classés et non classés.'
+			),
+		},
+	]
+
 	return (
-		<RadioCardGroup
-			aria-label={t(
-				'conversation.multiple-answer.aria-label',
-				'Choix multiples'
-			)}
+		<RadioChoiceGroup
 			value={classement}
 			onChange={handleChange}
-		>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.classement.classé.label',
-					'Classé'
-				)}
-				value="classé"
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.classement.classé.description',
-					'Votre hébergement est classé meublé de tourisme (de 1 à 5 étoiles).'
-				)}
-			/>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.classement.non-classé.label',
-					'Non classé'
-				)}
-				value="non-classé"
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.classement.non-classé.description',
-					"Votre hébergement n'a pas de classement officiel."
-				)}
-			/>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.classement.mixte.label',
-					'Mixte'
-				)}
-				value="mixte"
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.classement.mixte.description',
-					'Vous proposez à la fois des hébergements classés et non classés.'
-				)}
-			/>
-		</RadioCardGroup>
+			options={options}
+		/>
 	)
 }
 

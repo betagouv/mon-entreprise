@@ -1,5 +1,5 @@
 import * as O from 'effect/Option'
-import { useCallback } from 'react'
+import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
@@ -11,7 +11,7 @@ import {
 	useEconomieCollaborative,
 	type TypeDurée,
 } from '@/contextes/économie-collaborative'
-import { RadioCard, RadioCardGroup } from '@/design-system'
+import { RadioChoiceGroup } from '@/design-system'
 
 interface Props {}
 
@@ -23,7 +23,7 @@ export const TypeDuréeQuestion: ComposantQuestion<
 	const { situation, set } = useEconomieCollaborative()
 
 	const handleChange = useCallback(
-		(newValue: string) => {
+		(newValue: Key) => {
 			if (newValue) {
 				set.typeDurée(O.some(newValue as TypeDurée))
 			}
@@ -37,49 +37,51 @@ export const TypeDuréeQuestion: ComposantQuestion<
 
 	const typeDurée = O.getOrUndefined(situation.typeDurée)
 
+	const options = [
+		{
+			key: 'courte',
+			value: 'courte',
+			label: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.type-durée.courte.label',
+				'Location courte durée uniquement'
+			),
+			description: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.type-durée.courte.description',
+				'Vous proposez uniquement de la location de courte durée (type Airbnb, moins de 3 mois).'
+			),
+		},
+		{
+			key: 'longue',
+			value: 'longue',
+			label: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.type-durée.longue.label',
+				'Location longue durée uniquement'
+			),
+			description: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.type-durée.longue.description',
+				'Vous proposez uniquement de la location de longue durée (bail de résidence principale, plus de 3 mois).'
+			),
+		},
+		{
+			key: 'mixte',
+			value: 'mixte',
+			label: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.type-durée.mixte.label',
+				'Mixte (courte et longue durée)'
+			),
+			description: t(
+				'pages.simulateurs.location-de-logement-meublé.questions.type-durée.mixte.description',
+				'Vous proposez à la fois de la location courte durée et longue durée.'
+			),
+		},
+	]
+
 	return (
-		<RadioCardGroup
-			aria-label={t(
-				'conversation.multiple-answer.aria-label',
-				'Choix multiples'
-			)}
+		<RadioChoiceGroup
 			value={typeDurée}
 			onChange={handleChange}
-		>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.courte.label',
-					'Location courte durée uniquement'
-				)}
-				value="courte"
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.courte.description',
-					'Vous proposez uniquement de la location de courte durée (type Airbnb, moins de 3 mois).'
-				)}
-			/>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.longue.label',
-					'Location longue durée uniquement'
-				)}
-				value="longue"
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.longue.description',
-					'Vous proposez uniquement de la location de longue durée (bail de résidence principale, plus de 3 mois).'
-				)}
-			/>
-			<RadioCard
-				label={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.mixte.label',
-					'Mixte (courte et longue durée)'
-				)}
-				value="mixte"
-				description={t(
-					'pages.simulateurs.location-de-logement-meublé.questions.type-durée.mixte.description',
-					'Vous proposez à la fois de la location courte durée et longue durée.'
-				)}
-			/>
-		</RadioCardGroup>
+			options={options}
+		/>
 	)
 }
 

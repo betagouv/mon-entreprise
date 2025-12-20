@@ -19,7 +19,7 @@ import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
-import { Body, Conversation, H3 } from '@/design-system'
+import { Body, Conversation, H3, Spacing } from '@/design-system'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
@@ -179,12 +179,15 @@ export function Questions<S extends Situation>({
 
 					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
 						<FromTop key={`custom-question-${QuestionCourante.id}`}>
-							<QuestionTitle>
-								{typeof QuestionCourante.libellé === 'function'
-									? QuestionCourante.libellé(t)
-									: QuestionCourante.libellé}
-							</QuestionTitle>
-							<QuestionCourante />
+							<fieldset>
+								<QuestionTitle as="legend">
+									{typeof QuestionCourante.libellé === 'function'
+										? QuestionCourante.libellé(t)
+										: QuestionCourante.libellé}
+								</QuestionTitle>
+								<QuestionCourante />
+								<Spacing md />
+							</fieldset>
 
 							<Conversation
 								onPrevious={
@@ -194,9 +197,11 @@ export function Questions<S extends Situation>({
 								questionIsAnswered={questionCouranteRépondue}
 								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
-									<SeeAnswersButton>
-										{customSituationVisualisation}
-									</SeeAnswersButton>
+									avecQuestionsPublicodes ? (
+										<SeeAnswersButton>
+											{customSituationVisualisation}
+										</SeeAnswersButton>
+									) : undefined
 								}
 							>
 								{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
@@ -255,9 +260,11 @@ export function Questions<S extends Situation>({
 								questionIsAnswered={questionCouranteRépondue}
 								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
-									<SeeAnswersButton>
-										{customSituationVisualisation}
-									</SeeAnswersButton>
+									avecQuestionsPublicodes ? (
+										<SeeAnswersButton>
+											{customSituationVisualisation}
+										</SeeAnswersButton>
+									) : undefined
 								}
 							/>
 							<Notifications />
@@ -288,8 +295,6 @@ const QuestionsContainer = styled.div`
 	box-shadow: ${({ theme }) => theme.elevations[2]};
 `
 
-const QuestionTitle = styled.h3`
+const QuestionTitle = styled(H3)`
 	margin-top: 0;
-	margin-bottom: 1rem;
-	font-weight: 500;
 `
