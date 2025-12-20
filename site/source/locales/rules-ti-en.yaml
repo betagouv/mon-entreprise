@@ -63,34 +63,6 @@ entreprise . SIREN:
     Exemple : 401237780
   titre.en: '[automatic] SIREN'
   titre.fr: SIREN
-entreprise . TVA:
-  description.en: >
-    [automatic] Certain types of company are not subject to VAT.
-
-    These companies pay payroll tax in return.
-
-
-    Examples include banking, financial and insurance establishments. This is also the case for teaching activities.
-
-
-    **Note**: don't confuse VAT exemption (which depends on your activity) with the basic tax-free regime (which depends on your sales).
-  description.fr: >
-    Certains types d’entreprises ne sont pas assujetties à la TVA.
-
-    Ces dernières payent la taxe sur les salaires en contrepartie.
-
-
-    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
-
-
-    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
-  question.en: '[automatic] Is the company subject to VAT?'
-  question.fr: L’entreprise est-elle assujettie à la TVA ?
-  titre.en: '[automatic] VAT'
-  titre.fr: TVA
-entreprise . TVA . franchise de TVA:
-  titre.en: '[automatic] VAT exemption'
-  titre.fr: franchise de TVA
 entreprise . activité:
   avec:
     artisanale:
@@ -455,12 +427,6 @@ entreprise . activité . saisonnière:
   question.fr: Exercez-vous une activité saisonnière ?
   titre.en: '[automatic] seasonal'
   titre.fr: saisonnière
-entreprise . capital social:
-  titre.en: '[automatic] share capital'
-  titre.fr: capital social
-entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques:
-  titre.en: '[automatic] at least 75 percent owned by individuals'
-  titre.fr: détenu au moins à 75 pourcents par des personnes physiques
 entreprise . catégorie juridique:
   note.en: '[automatic] Here we use the legal categories defined by INSEE.'
   note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
@@ -969,58 +935,18 @@ entreprise . date de création . contrôle date passée:
 entreprise . durée d'activité:
   titre.en: '[automatic] duration of activity'
   titre.fr: durée d'activité
-entreprise . durée d'activité . années civiles:
-  titre.en: '[automatic] Number of calendar years covered'
-  titre.fr: Nombre d’années civiles couvertes
 entreprise . durée d'activité . en début d'année:
   titre.en: '[automatic] at the beginning of the year'
   titre.fr: en début d'année
 entreprise . durée d'activité . en fin d'année:
   titre.en: '[automatic] at the end of the year'
   titre.fr: en fin d'année
-entreprise . durée d'activité . trimestres civils:
-  titre.en: '[automatic] Number of calendar quarters covered'
-  titre.fr: Nombre de trimestres civils couverts
 entreprise . durée d'activité cette année:
   titre.en: '[automatic] duration of activity this year'
   titre.fr: durée d'activité cette année
 entreprise . en cessation d'activité:
   titre.en: '[automatic] ceasing operations'
   titre.fr: en cessation d'activité
-entreprise . exercice:
-  avec:
-    date trop ancienne:
-      description.en:
-        '[automatic] The date entered is too old. The simulator does not
-        include scales before 2022.'
-      description.fr:
-        La date saisie est trop ancienne. Le simulateur n’intègre pas
-        les barèmes avant 2022.
-      titre.en: '[automatic] date too old'
-      titre.fr: date trop ancienne
-    durée:
-      titre.en: '[automatic] duration of financial year'
-      titre.fr: durée de l’exercice
-    durée maximale:
-      description.en: '[automatic] The maximum duration of an accounting period is 24 months.'
-      description.fr: La durée maximale d’un exercice comptable est de 24 mois.
-      titre.en: '[automatic] maximum duration'
-      titre.fr: durée maximale
-    début:
-      titre.en: '[automatic] start'
-      titre.fr: début
-    début après la fin:
-      description.en:
-        '[automatic] The end of the fiscal year must be later than the
-        beginning.'
-      description.fr: La fin de l’exercice doit être postérieure à son début.
-      titre.en: '[automatic] beginning after end'
-      titre.fr: début après la fin
-    fin:
-      titre.en: '[automatic] end'
-      titre.fr: fin
-  titre.en: '[automatic] financial year'
-  titre.fr: exercice
 entreprise . imposition:
   question.en: '[automatic] How is your company taxed?'
   question.fr: Quel est le type d’imposition de votre entreprise ?
@@ -1204,124 +1130,6 @@ entreprise . imposition . IS:
       revenus que vous touchez.
   titre.en: '[automatic] Corporate income tax'
   titre.fr: Impôt sur les sociétés
-entreprise . imposition . IS . contribution sociale:
-  description.en: >
-    [automatic] The social contribution on profits is a separate tax from the
-    corporate income tax.
-
-    tax. It is not deductible from income.
-
-
-    The tax base benefits from a substantial allowance, and only companies
-
-    over 2.3 million euros in profits are concerned.
-
-    contribution.
-  description.fr: >
-    La contribution sociale sur les bénéfices est un impôt distinct de l’impôt
-    sur
-
-    les sociétés. Son montant n’est pas déductible des résultats.
-
-
-    L’assiette bénéficie d’un abattement important, et seules les entreprises
-
-    réalisant plus de 2,3 millions d’euros de bénéfices sont concernées par cette
-
-    contribution.
-  titre.en: '[automatic] social contribution'
-  titre.fr: contribution sociale
-entreprise . imposition . IS . information sur le report de déficit:
-  description.en: >
-    [automatic] Losses incurred in a given year can be carried forward to
-    subsequent years
-
-    (carry forward), or to the previous year only (carry back).
-
-    back).
-
-
-    [See the fact sheet "Impôt sur les sociétés (IS) : report de déficit" on
-
-    Entreprendre.Service-Public.fr](https://entreprendre.service-public.fr/vosdroits/F23628)
-  description.fr: >
-    Les déficits subits au cours d’un exercice peuvent être reportés sur les
-
-    exercices suivants (report en avant), ou sur le seul exercice précédent (report
-
-    en arrière).
-
-
-    [Voir la fiche « Impôt sur les sociétés (IS) : report de déficit » sur
-
-    Entreprendre.Service-Public.fr](https://entreprendre.service-public.fr/vosdroits/F23628)
-  titre.en: '[automatic] information on deficit carryforwards'
-  titre.fr: information sur le report de déficit
-entreprise . imposition . IS . montant:
-  avec:
-    taux normal:
-      titre.en: '[automatic] standard rate'
-      titre.fr: taux normal
-    taux réduit:
-      titre.en: '[automatic] reduced rate'
-      titre.fr: taux réduit
-  titre.en: '[automatic] amount'
-  titre.fr: montant
-entreprise . imposition . IS . prorata temporis:
-  description.en: >
-    [automatic] When the financial year is less than one year, the ceilings used
-    in the
-
-    the ceilings used in the corporate income tax scale.
-  description.fr: |
-    Lorsque la durée de l’exercice n’est pas égale à un an, on proratise les
-    plafonds utilisés dans le barème de l’impôt sur les sociétés.
-  note.en: >
-    [automatic] Here, the number of days in the financial year is divided by 1
-    year. In reality, we should
-
-    the number of months in the year to 12 months, and for incomplete months to
-
-    the number of days to 30 days.
-
-
-    &gt; **Example for a financial year running from January 1 to October 15:**
-
-    &gt; - theoretical prorata temporis = (9 full months + (15 days / 30)) / 12 = 79.17%.
-
-    &gt; - calculated prorata temporis = 288 days / 365 = 78.90
-  note.fr: >
-    Ici on rapporte le nombre de jours de l’exercice à 1 an. En réalité on
-    devrait
-
-    rapporter le nombre de mois de l’exercice à 12 mois, et pour les mois
-
-    incomplets, rapporter le nombre de jours à 30 jours.
-
-
-    > **Exemple pour un exercice du 1er janvier au 15 octobre :**
-
-    > - prorata temporis théorique = (9 mois complets + (15 jours / 30)) / 12 = 79,17 %
-
-    > - prorata temporis calculé = 288 jours / 365 = 78,90 %
-  titre.en: '[automatic] prorata temporis'
-  titre.fr: prorata temporis
-entreprise . imposition . IS . résultat imposable:
-  résumé.en: '[automatic] Subject to corporate income tax'
-  résumé.fr: Imposable à l’impôt sur les sociétés
-  titre.en: '[automatic] Net income for the year'
-  titre.fr: Résultat de l’exercice
-entreprise . imposition . IS . résultat net:
-  résumé.en: '[automatic] After deduction of expenses and corporate income tax'
-  résumé.fr: Après déduction des charges et de l’impôt sur les société
-  titre.en: '[automatic] net income'
-  titre.fr: résultat net
-entreprise . imposition . IS . total:
-  titre.en: '[automatic] total'
-  titre.fr: total
-entreprise . imposition . IS . éligible taux réduit:
-  titre.en: '[automatic] eligible for reduced rate'
-  titre.fr: éligible taux réduit
 entreprise . imposition . régime:
   question.en: '[automatic] How is your company taxed?'
   question.fr: Quel est le régime d’imposition de votre entreprise ?
@@ -1437,62 +1245,6 @@ entreprise . résultat fiscal . rémunération dirigeant déductible:
     déductibles d’impôt.
   titre.en: '[automatic] deductible expenses manager'
   titre.fr: charges déductibles dirigeant
-entreprise . salariés:
-  titre.en: '[automatic] employees'
-  titre.fr: salariés
-entreprise . salariés . effectif:
-  avec:
-    seuil:
-      avec:
-        moins de 2000:
-          titre.en: '[automatic] between 250 and 1 999'
-          titre.fr: entre 250 et 1 999
-        moins de 250:
-          titre.en: '[automatic] between 150 and 249'
-          titre.fr: entre 150 et 249
-        moins de 5:
-          titre.en: '[automatic] less than 5'
-          titre.fr: moins de 5
-        moins de 50:
-          titre.en: '[automatic] between 20 and 49'
-          titre.fr: entre 20 et 49
-        plus de 2000:
-          titre.en: '[automatic] 2,000 and more'
-          titre.fr: 2 000 et plus
-      description.en: >
-        [automatic] Many employer contributions vary according to the size of
-        the company's workforce.
-
-        If a threshold is exceeded, it is only taken into account if it has been reached or exceeded for 5 consecutive calendar years.
-      description.fr: >
-        De nombreuses cotisations patronales varient selon l’effectif de
-        l’entreprise.
-
-        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
-      question.en: '[automatic] How many employees does the company have?'
-      question.fr: Quel est l’effectif de l’entreprise ?
-      titre.en: '[automatic] headcount threshold'
-      titre.fr: seuil d’effectif
-  titre.en: '[automatic] workforce'
-  titre.fr: effectif
-entreprise . salariés . ratio alternants:
-  description.en: >
-    [automatic] This fraction determines the additional apprenticeship
-    contribution for the companies concerned.
-  description.fr: >
-    Cette fraction détermine la contribution supplémentaire pour l’apprentissage
-    pour les entreprises concernées.
-  question.en:
-    "[automatic] What percentage of the company's average workforce is
-    made up of work-study contracts?"
-  question.fr: Quelle est la fraction de contrats d’alternance dans l’effectif
-    moyen de l’entreprise ?
-  suggestions.1%.en: '[automatic] 1%'
-  suggestions.1%.fr: 1%
-  suggestions.5%.en: '[automatic] 5%'
-  suggestions.5%.fr: 5%
-  titre.en: '[automatic] Fraction of alternating workers'
-  titre.fr: Fraction d’alternants
 impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
@@ -2729,12 +2481,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
     Ce simulateur ne prend pas en compte les exonérations DROM.
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
-indépendant . cotisations et contributions . cotisations . exonérations . ZFU:
-  titre.en: '[automatic] ZFU'
-  titre.fr: ZFU
-indépendant . cotisations et contributions . cotisations . exonérations . ZFU . taux:
-  titre.en: '[automatic] rate'
-  titre.fr: taux
 indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité:
   description.en: >-
     [automatic] If you are receiving a disability pension from a pension scheme
