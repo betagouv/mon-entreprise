@@ -4,7 +4,7 @@
 # - entreprise . imposition . IS
 
 entreprise . imposition . IR . information sur le report de déficit:
-  non applicable si: régime . micro-entreprise
+  non applicable si: régime micro-fiscal
   type: notification
   formule: résultat fiscal < 0 €/an
   description: |
@@ -16,94 +16,58 @@ entreprise . imposition . IR . information sur le report de déficit:
   références:
     bofip: https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301
 
-entreprise . imposition . régime:
-  question: Quel est le régime d’imposition de votre entreprise ?
-  une possibilité:
-    - micro-entreprise
-    - déclaration contrôlée
-    - réel simplifié
-    - réel normal
-  références:
-    Les différents régimes d’imposition: https://www.economie.gouv.fr/entreprises/les-differents-regimes-dimposition
-
-entreprise . imposition . régime . micro-entreprise:
-  titre: micro-fiscal
+entreprise . imposition . IR . régime micro-fiscal:
   description: |
-    Avec le régime micro-fiscal, les charges déductibles sont estimées forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-    pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme
-    classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+    pourcentage dépend du type d’activité :
+    - 71 % pour les activités de vente, restauration et hébergement (location de
+    meublé de tourisme classé et chambre d’hôte),
+    - 50 % pour les prestations de service commerciales ou artisanales,
+    - 34 % pour les activités libérales.
 
-    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
-    fonctionnement sont faibles.
-  non applicable si: entreprise . imposition . IS
-  valeur: régime = 'micro-entreprise'
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse
+    pour votre revenu imposable dans le cas où vos charges de fonctionnement sont
+    faibles.
   question: Avez-vous opté pour le régime micro-fiscal ?
   par défaut: non
   références:
-    Régime micro-fiscal: https://entreprendre.service-public.fr/vosdroits/F23267
-    "Changement de régime d’imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
+    Régime fiscal de la micro-entreprise: https://entreprendre.service-public.fr/vosdroits/F23267
+    'Micro-entreprise, régime réel et régime de la déclaration contrôlée : les 3 régimes d’imposition des entreprises': https://www.economie.gouv.fr/entreprises/changement-regime-imposition
+    Tout ce qu’il faut savoir sur le régime micro: https://www.indy.fr/guide/creation-entreprise/etapes/regime-fiscal/micro/
 
-entreprise . imposition . régime . micro-entreprise . revenu abattu:
-  remplace: résultat fiscal
-  résoudre la référence circulaire: oui
+entreprise . imposition . IR . régime micro-fiscal . revenu abattu:
   titre: abattement forfaitaire micro-fiscal
+  résoudre la référence circulaire: oui
   description: |
-    Le micro-entrepreneur est dispensé d’établir une déclaration professionnelle de
-    bénéfices au titre des BNC ou BIC.
-
-    Il lui suffit de porter dans la déclaration complémentaire de revenu
-    (n°2042-C-PRO) le montant annuel du chiffre d’affaires brut (BIC) ou des recettes
-    (BNC).
-  somme:
-    - entreprise . chiffre d'affaires . vente restauration hébergement
-    - entreprise . chiffre d'affaires . service BIC
-    - entreprise . chiffre d'affaires . service BNC
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+    pourcentage dépend du type d’activité :
+    - 71 % pour les activités de vente, restauration et hébergement (location de
+    meublé de tourisme classé et chambre d’hôte),
+    - 50 % pour les prestations de service commerciales ou artisanales,
+    - 34 % pour les activités libérales.
+  valeur: chiffre d'affaires
+  # somme:
+  #   - chiffre d'affaires . vente restauration hébergement
+  #   - chiffre d'affaires . service BIC
+  #   - chiffre d'affaires . service BNC
   abattement:
-    plancher: plancher abattement
     somme:
       - produit:
-          - entreprise . chiffre d'affaires . vente restauration hébergement
+          - chiffre d'affaires . vente restauration hébergement
           - 71%
       - produit:
-          - entreprise . chiffre d'affaires . service BIC
+          - chiffre d'affaires . service BIC
           - 50%
+        plancher:
+          applicable si: chiffre d'affaires . service BIC > 0 €/an
+          valeur: 305 €/an
       - produit:
-          - entreprise . chiffre d'affaires . service BNC
+          - chiffre d'affaires . service BNC
           - 34%
-
-  avec:
-    plancher abattement:
-      variations:
-        - si: entreprise . activité . revenus mixtes
-          alors: 610 €/an
-        - sinon: 305 €/an
-
-entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
-  type: notification
-  sévérité: avertissement
-  formule: chiffre d'affaires . seuil micro . dépassé
-  description: Le seuil annuel de chiffre d’affaires pour le régime micro-fiscal
-    est dépassé. [En savoir
-    plus](/documentation/modele-ti/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
-
-entreprise . imposition . régime . déclaration contrôlée:
-  applicable si: IR . type de bénéfices . BNC
-  valeur: régime = 'déclaration contrôlée'
+        plancher:
+          applicable si: chiffre d'affaires . service BNC > 0 €/an
+          valeur: 305 €/an
   références:
-    Qu’est-ce que le régime de la déclaration contrôlée ?: https://www.economie.gouv.fr/entreprises/regime-declaration-controlee
-
-entreprise . imposition . régime . réel normal:
-  titre: réel normal d’imposition
-  acronyme: RN
-  non applicable si: IR . type de bénéfices . BNC
-  valeur: régime = 'réel normal'
-  références:
-    Qu’est-ce que le régime réel normal ?: https://www.economie.gouv.fr/entreprises/regime-reel-normal-imposition
-
-entreprise . imposition . régime . réel simplifié:
-  titre: réel simplifié d’imposition
-  acronyme: RSI
-  non applicable si: IR . type de bénéfices . BNC
-  valeur: régime = 'réel simplifié'
-  références:
-    Qu’est-ce que le régime réel simplifié ?: https://www.economie.gouv.fr/entreprises/regime-reel-simplifie
+    'Impôt sur le revenu : BIC, BNC, comment ça marche ? - Comment déterminer le bénéfice imposable ?': https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/limpot-sur-les-benefices-ir-et/impot-sur-le-revenu-bic#comment-d-terminer-le-b-n-fice-i_3

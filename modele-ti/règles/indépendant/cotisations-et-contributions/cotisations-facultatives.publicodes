@@ -7,7 +7,7 @@ indépendant . cotisations facultatives:
 
     Ils sont déductible d’impôts (dans la limite d’un plafond), mais non déductible
     pour l’assiette des cotisations et contributions sociales.
-  non applicable si: entreprise . imposition . régime . micro-entreprise
+  non applicable si: entreprise . imposition . IR . régime micro-fiscal
   question: Avez-vous souscrit à des contrats de prévoyance et / ou de retraite
     complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
   par défaut: non
