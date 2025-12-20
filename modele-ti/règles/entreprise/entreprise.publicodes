@@ -12,25 +12,6 @@ entreprise . EI:
     'Entrepreneur individuel (EI) : ce qu’il faut savoir': https://entreprendre.service-public.gouv.fr/vosdroits/F37396
     Entrepreneur individuel: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/entrepreneur-individuel
 
-entreprise . résultat fiscal:
-  unité: €/an
-  somme:
-    - chiffre d'affaires
-    - (- charges)
-    - (- rémunération dirigeant déductible)
-
-entreprise . résultat fiscal . rémunération dirigeant déductible:
-  titre: charges déductibles dirigeant
-  description: Les montants liés à la rémunération du dirigeant qui sont
-    déductibles d’impôt.
-  variations:
-    - si: imposition . IS
-      alors: indépendant . rémunération . totale
-    - sinon:
-        # TNS dans entreprise à l'IR
-        valeur: indépendant . cotisations et contributions
-        abattement: indépendant . cotisations et contributions . non déductibles
-
 entreprise . charges:
   synonymes:
     - charges d'exploitation
@@ -76,3 +57,26 @@ entreprise . charges:
   références:
     Charges déductibles ou non du résultat fiscal d’une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
+
+entreprise . résultat fiscal:
+  unité: €/an
+  variations:
+    - si: imposition . IR . régime micro-fiscal
+      alors: imposition . IR . régime micro-fiscal . revenu abattu
+    - sinon:
+        somme:
+          - chiffre d'affaires
+          - (- charges)
+          - (- rémunération dirigeant déductible)
+
+  avec:
+    rémunération dirigeant déductible:
+      titre: charges déductibles dirigeant
+      description: |
+        Les montants liés à la rémunération du dirigeant qui sont déductibles d’impôt.
+      variations:
+        - si: imposition . IS
+          alors: indépendant . rémunération . totale
+        - sinon:
+            valeur: indépendant . cotisations et contributions
+            abattement: indépendant . cotisations et contributions . non déductibles
