@@ -430,7 +430,6 @@ components:
 composants:
   engine-value:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
-    voir-les-details-du-calcul: See details of the calculation of {{title}}
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:
@@ -1593,6 +1592,7 @@ pages:
             out a <2>supplementary insurance policy (mutuelle)</2> to improve
             reimbursement of healthcare costs.</1>
           title: Your health benefits
+      meilleure-option: Most advantageous option.
       meta:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
@@ -1625,6 +1625,7 @@ pages:
         versement-libératoire:
           label: Activate final payment in simulation
         éligible-acre: I'm eligible for Acre for my self-employed business
+      option-non-applicable: Option not applicable.
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for

@@ -453,7 +453,6 @@ components:
 composants:
   engine-value:
     voir-la-documentation: Voir la documentation du calcul de {{valeur}}
-    voir-les-details-du-calcul: Voir les détails du calcul de {{title}}
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
@@ -1688,6 +1687,7 @@ pages:
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
             améliorer le remboursement des frais de santé.</1>
           title: Vos prestations santé
+      meilleure-option: Option la plus avantageuse.
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
@@ -1720,6 +1720,7 @@ pages:
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
         éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
+      option-non-applicable: Option non applicable.
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
