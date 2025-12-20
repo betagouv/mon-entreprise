@@ -17,7 +17,7 @@ export const configIndépendant: SimulationConfig = {
 			},
 			{
 				label: 'Micro-fiscal',
-				dottedName: 'entreprise . imposition . régime . micro-entreprise',
+				dottedName: 'entreprise . imposition . IR . régime micro-fiscal',
 			},
 			{
 				label: 'Date de création',
@@ -45,7 +45,6 @@ export const configIndépendant: SimulationConfig = {
 			"entreprise . chiffre d'affaires",
 			'entreprise . charges',
 			'entreprise . imposition',
-			'entreprise . imposition . régime',
 		],
 		'non prioritaires': [
 			'indépendant . cotisations facultatives',

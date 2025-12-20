@@ -299,27 +299,6 @@ entreprise . activité . principale:
   titre.en: '[automatic] main'
   titre.fr: principale
 entreprise . activité . revenus mixtes:
-  avec:
-    proportions:
-      description.en: '[automatic] Share of different activities in sales'
-      description.fr: Part des différentes activités dans le chiffre d’affaires
-      note.en:
-        "[automatic] It is the user's responsibility to check that the sum of
-        the three percentages is 100%."
-      note.fr:
-        Il appartient à l’utilisateur de bien vérifier que la somme des trois
-        pourcentages renseignés vaut 100%.
-      titre.en: '[automatic] proportion activity'
-      titre.fr: proportion activité
-    proportions . service BIC:
-      titre.en: '[automatic] BIC service'
-      titre.fr: service BIC
-    proportions . service BNC:
-      titre.en: '[automatic] BNC service'
-      titre.fr: service BNC
-    proportions . vente restauration hébergement:
-      titre.en: '[automatic] sales catering accommodation'
-      titre.fr: vente restauration hébergement
   description.en: >
     [automatic] It is possible to have different types of income for the same
     business.
@@ -339,16 +318,11 @@ entreprise . activité . revenus mixtes:
     rates:
 
 
-    - Sales of goods, catering and accommodation (BIC)](/documentation/modele-ti/business/turnover/sales-restauration-accommodation) (71% allowance)
+    - Sales of goods, catering and accommodation (BIC)](/documentation/modele-ti/company/turnover/sales-restaurant-accommodation) (71% allowance)
 
     - Commercial or craft services (BIC)](/documentation/modele-ti/business/turnover/service-BIC) (50% allowance)
 
     - Other services and liberal professions (BNC)](/documentation/modele-ti/entreprise/turnover/service-BNC) (34% allowance)
-
-
-    If your company has activities corresponding to several income categories
-
-    answer yes to this question.
   description.fr: >
     Il est possible des activités avec des types de revenus différents pour une
 
@@ -372,16 +346,8 @@ entreprise . activité . revenus mixtes:
     - [Prestation de service commerciale ou artisanale (BIC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
 
     - [Autres prestation de service et activité libérale (BNC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
-
-
-    Si votre entreprise a des activités correspondant à plusieurs catégories de
-
-    revenus, répondez oui à cette question.
-  question.en: '[automatic] Does your company have different revenue streams?'
-  question.fr: Votre entreprise a-t-elle des activités avec des types de revenus
-    différents ?
-  titre.en: '[automatic] Mixed activities'
-  titre.fr: Activités mixtes
+  titre.en: '[automatic] mixed activities'
+  titre.fr: activités mixtes
 entreprise . activité . saisonnière:
   description.en: |
     [automatic] Seasonal workers can benefit from
@@ -595,21 +561,31 @@ entreprise . chiffre d'affaires:
     Le chiffre d’affaires est la
     **somme des montants des ventes réalisées pendant votre exercice comptable**
     (un an) : CA = prix de vente x quantités vendues.
-  question.en: '[automatic] What are your sales forecasts?'
-  question.fr: Quel est votre chiffre d’affaires envisagé ?
   résumé.en: '[automatic] Total gross revenue (excluding tax)'
   résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] sales'
   titre.fr: chiffre d'affaires
-entreprise . chiffre d'affaires . BIC:
-  description.en: >
-    [automatic] Sales corresponding to income taxable as industrial and
-    commercial profits (BIC or micro-BIC).
-  description.fr: >
-    Le chiffre d’affaires correspondant au revenus imposable au titre des
-    bénéfice industriels et commerciaux (BIC ou micro-BIC).
-  titre.en: '[automatic] BIC'
-  titre.fr: BIC
+entreprise . chiffre d'affaires . proportions:
+  avec:
+    service BIC:
+      titre.en: '[automatic] BIC service'
+      titre.fr: service BIC
+    service BNC:
+      titre.en: '[automatic] BNC service'
+      titre.fr: service BNC
+    vente restauration hébergement:
+      titre.en: '[automatic] sales catering accommodation'
+      titre.fr: vente restauration hébergement
+  description.en: '[automatic] Share of different activities in sales'
+  description.fr: Part des différentes activités dans le chiffre d’affaires
+  note.en: |
+    [automatic] It's up to you to check that the sum of the three percentages
+    is 100%.
+  note.fr: |
+    Il vous appartient de bien vérifier que la somme des trois pourcentages
+    renseignés vaut 100 %.
+  titre.en: '[automatic] mixed activity proportions'
+  titre.fr: proportions activités mixtes
 entreprise . chiffre d'affaires . service:
   description.en: >
     [automatic] This refers to any transaction that does not involve the
@@ -646,11 +622,6 @@ entreprise . chiffre d'affaires . service BIC:
     services qui nécessite plus qu’un ordinateur pour être effectuées.
 
     **Exemples** : transports, service à la personne, réparation etc.
-  question.en: '[automatic] What is the sales figure for commercial or craft services?'
-  question.fr: Quel est le chiffre d’affaires issu de prestations de service
-    commerciales ou artisanales ?
-  résumé.en: '[automatic] Sales excluding tax'
-  résumé.fr: Chiffre d’affaires hors taxe
   titre.en: '[automatic] Commercial or craft services (BIC)'
   titre.fr: Prestations de service commerciales ou artisanales (BIC)
 entreprise . chiffre d'affaires . service BNC:
@@ -679,133 +650,52 @@ entreprise . chiffre d'affaires . service BNC:
 
 
     Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
-  question.en: '[automatic] What income do I earn from my self-employed activity?'
-  question.fr: Quelles sont les recettes issues de l’activité libérale ?
-  résumé.en: '[automatic] Revenue excluding tax'
-  résumé.fr: Recettes hors taxes
   titre.en: '[automatic] Other services and liberal professions (BNC)'
   titre.fr: Autres prestations de service et activités libérales (BNC)
-entreprise . chiffre d'affaires . seuil micro:
-  titre.en: '[automatic] micro threshold'
-  titre.fr: seuil micro
-entreprise . chiffre d'affaires . seuil micro . dépassé:
+entreprise . chiffre d'affaires . seuil micro-fiscal:
+  avec:
+    service:
+      titre.en: '[automatic] service'
+      titre.fr: service
+    vente:
+      titre.en: '[automatic] sale'
+      titre.fr: vente
+  titre.en: '[automatic] micro-tax threshold'
+  titre.fr: seuil micro-fiscal
+entreprise . chiffre d'affaires . seuil micro-fiscal . dépassé:
   description.en: >
-    [automatic] Micro-enterprise status applies for as long as annual sales
+    [automatic] The micro-tax system applies for as long as annual sales
 
-    (actually received during the calendar year) does not exceed the thresholds of the
+    (actually received during the calendar year) does not exceed certain thresholds.
 
-    micro-enterprise tax regime.
-
-
-    If these thresholds are exceeded **over two consecutive years**, the company is automatically
-
-    automatically switches to the [sole proprietorship
-
-    sole proprietorship] regime.
-
-
-    At the end of the first year of activity, sales are prorated according to the length of
-
-    duration of activity.
-
-
-    &gt; ##### Example:
-
-    &gt; A taxpayer sets up a business on August 1 and receives revenues of
-
-    &gt; 50,000 over the five months of the first calendar year.
-
-    &gt; of operations.
-
-    &gt; Revenues for this first calendar year are adjusted *prorata temporis* to &gt; compare them with the ceiling
-
-    &gt; to compare with the ceiling:
-
-    &gt;
-
-    &gt; `50 000€ x (365/153) = 119 280 €`
-
-
-
-    Expenses are not deductible when calculating the ceiling (as they are when calculating
-
-    calculation of contributions)
-
+    thresholds.
 
 
     ### Multi-activity
 
+    If you carry out several activities within your company, the sales threshold
 
-    When an entrepreneur carries out 2 activities within his micro-enterprise, the sales
-
-    sales threshold is not doubled. This is because
-
-    carrying out several activities with the same micro-enterprise does not increase
-
-    thresholds.
-  description.fr: >
-    Le statut de micro-entreprise s’applique tant que le chiffre d’affaires
-    annuel
-
-    (effectivement encaissé au cours de l’année civile) ne dépasse pas les seuils du
-
-    régime fiscal de la micro-entreprise.
-
-
-    En cas de dépassement **sur deux années consécutives**, l’entreprise bascule
-
-    automatiquement dans le régime de [l’entreprise
-
-    individuelle](/simulateurs/indépendant).
-
-
-    À la fin de la première année d’activité, le CA est proratisé par rapport à la
-
-    durée d’activité.
-
-
-    > ##### Exemple :
-
-    > Un contribuable crée une entreprise le 1er août et encaisse des recettes HT de
-
-    > `50 000 €` au cours des cinq mois d’activité de sa première année civile
-
-    > d’exploitation.
-
-    > Les recettes de cette première année civile sont ajustées *prorata temporis*
-
-    > pour les comparer au plafond :
-
-    >
-
-    > `50 000€ x (365/153) = 119 280 €`
-
-
-
-    Les charges ne sont pas déductibles pour le calcul du plafond (comme pour le
-
-    calcul des cotisations)
-
-
+    threshold is that of the main activity.
+  description.fr: |
+    Le régime micro-fiscal s’applique tant que le chiffre d’affaires annuel
+    (effectivement encaissé au cours de l’année civile) ne dépasse pas certains
+    seuils.
 
     ### Multi-activité
-
-
-    Lorsqu’un entrepreneur exerce 2 activités au sein de sa micro-entreprise, le
-
-    seuil de chiffre d’affaires à respecter n’est pas pour autant doublé. En effet
-
-    l’exercice de plusieurs activités avec la même micro-entreprise n’augmente pas
-
-    les seuils.
+    Si vous exercez plusieurs activités au sein de votre entreprise, le seuil de
+    chiffre d’affaires à respecter est celui de l’activité principale.
   titre.en: '[automatic] exceeded'
   titre.fr: dépassé
-entreprise . chiffre d'affaires . seuil micro . libérale:
-  titre.en: '[automatic] liberal'
-  titre.fr: libérale
-entreprise . chiffre d'affaires . seuil micro . total:
-  titre.en: '[automatic] total'
-  titre.fr: total
+entreprise . chiffre d'affaires . seuil micro-fiscal . dépassé . alerte:
+  description.en:
+    '[automatic] The annual sales threshold for the micro-tax system
+    is exceeded. [Find out
+    more](/documentation/modele-ti/business/sales/threshold-exceeded)'
+  description.fr: Le seuil annuel de chiffre d’affaires pour le régime
+    micro-fiscal est dépassé. [En savoir
+    plus](/documentation/modele-ti/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
+  titre.en: '[automatic] alert'
+  titre.fr: alerte
 entreprise . chiffre d'affaires . vente restauration hébergement:
   description.en: >
     [automatic] ### Sales of goods
@@ -824,7 +714,13 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     or accommodation
 
 
-    &gt; Note: for furnished rentals, only classified furnished tourist accommodation and bed and breakfast are included in this category; other furnished rentals are included in the "BIC services" category.
+    > Note: for furnished rentals, only classified furnished tourist accommodation
+
+    > and chambre d'hôte rentals are included in this category. The
+
+    > other furnished rentals are classified as "BIC services".
+
+    > BIC" CATEGORY.
 
 
     This income is taxable in the BIC category.
@@ -845,17 +741,16 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     ou hébergement
 
 
-    > Note : pour les locations meublées, seules les locations de meublé de tourisme classé et de chambre d’hôte entrent dans cette catégorie hébergement ; les autres locations meublées relèvent de la catégorie « Prestations de service BIC »
+    > Note : pour les locations meublées, seules les locations de meublé de tourisme
+
+    > classé et de chambre d’hôte entrent dans cette catégorie hébergement. Les
+
+    > autres locations meublées relèvent de la catégorie « Prestations de service
+
+    > BIC »
 
 
-    Ces revenus sont imposables dans la catégorie des BIC
-  question.en:
-    '[automatic] What is the turnover from sales of goods, catering or
-    accommodation?'
-  question.fr: Quel est le chiffre d’affaires issu de la vente de biens,
-    restauration ou hébergement ?
-  résumé.en: '[automatic] Sales excluding tax'
-  résumé.fr: Chiffre d’affaires hors taxe
+    Ces revenus sont imposables dans la catégorie des BIC.
   titre.en: '[automatic] Sale of goods, catering, accommodation (BIC)'
   titre.fr: Vente de biens, restauration, hébergement (BIC)
 entreprise . code catégorie juridique:
@@ -1036,6 +931,80 @@ entreprise . imposition . IR . information sur le report de déficit:
     [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
   titre.en: '[automatic] information on deficit carryforwards'
   titre.fr: information sur le report de déficit
+entreprise . imposition . IR . régime micro-fiscal:
+  description.en: >
+    [automatic] Under the micro-tax system, deductible expenses are estimated on
+    a
+
+    based on a percentage of sales. This
+
+    percentage depends on the type of activity:
+
+    - 71% for sales, catering and accommodation activities (rental of classified
+
+    meublé de tourisme et chambre d'hôte),
+
+    - 50% for commercial and craft services,
+
+    - 34% for liberal professions.
+
+
+    This option simplifies your accounting and can be advantageous in terms of
+
+    your taxable income if your operating expenses are low.
+
+    low.
+  description.fr: >
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+
+    pourcentage dépend du type d’activité :
+
+    - 71 % pour les activités de vente, restauration et hébergement (location de
+
+    meublé de tourisme classé et chambre d’hôte),
+
+    - 50 % pour les prestations de service commerciales ou artisanales,
+
+    - 34 % pour les activités libérales.
+
+
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse
+
+    pour votre revenu imposable dans le cas où vos charges de fonctionnement sont
+
+    faibles.
+  question.en: '[automatic] Have you opted for the micro-tax system?'
+  question.fr: Avez-vous opté pour le régime micro-fiscal ?
+  titre.en: '[automatic] micro-tax system'
+  titre.fr: régime micro-fiscal
+entreprise . imposition . IR . régime micro-fiscal . revenu abattu:
+  description.en: >
+    [automatic] Under the micro-tax system, deductible expenses are estimated on
+    a
+
+    based on a percentage of sales. This
+
+    percentage depends on the type of activity:
+
+    - 71% for sales, catering and accommodation activities (rental of classified
+
+    meublé de tourisme et chambre d'hôte),
+
+    - 50% for commercial and craft services,
+
+    - 34% for liberal professions.
+  description.fr: |
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+    pourcentage dépend du type d’activité :
+    - 71 % pour les activités de vente, restauration et hébergement (location de
+    meublé de tourisme classé et chambre d’hôte),
+    - 50 % pour les prestations de service commerciales ou artisanales,
+    - 34 % pour les activités libérales.
+  titre.en: '[automatic] flat-rate micro-tax allowance'
+  titre.fr: abattement forfaitaire micro-fiscal
 entreprise . imposition . IR . type de bénéfices:
   question.en: '[automatic] What kind of profits does your company make?'
   question.fr: Quel est le type de bénéfices de votre entreprise ?
@@ -1130,90 +1099,6 @@ entreprise . imposition . IS:
       revenus que vous touchez.
   titre.en: '[automatic] Corporate income tax'
   titre.fr: Impôt sur les sociétés
-entreprise . imposition . régime:
-  question.en: '[automatic] How is your company taxed?'
-  question.fr: Quel est le régime d’imposition de votre entreprise ?
-  titre.en: '[automatic] diet'
-  titre.fr: régime
-entreprise . imposition . régime . déclaration contrôlée:
-  titre.en: '[automatic] controlled declaration'
-  titre.fr: déclaration contrôlée
-entreprise . imposition . régime . micro-entreprise:
-  description.en: >
-    [automatic] Under the micro-tax system, deductible expenses are estimated on
-    a flat-rate basis, based on a percentage of sales. This
-
-    percentage depends on the type of activity: 71% for sales, catering and accommodation (rental of classified
-
-    and bed and breakfast), 50% for commercial and craft services, and 34% for liberal professions.
-
-
-    This option simplifies your accounting and can be advantageous in terms of taxable income if your operating costs are low.
-
-    are low.
-  description.fr: >
-    Avec le régime micro-fiscal, les charges déductibles sont estimées
-    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-
-    pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme
-
-    classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
-
-
-    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
-
-    fonctionnement sont faibles.
-  question.en: '[automatic] Have you opted for the micro-tax system?'
-  question.fr: Avez-vous opté pour le régime micro-fiscal ?
-  titre.en: '[automatic] micro-fiscal'
-  titre.fr: micro-fiscal
-entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés:
-  description.en:
-    '[automatic] The annual sales threshold for the micro-tax system
-    is exceeded. [Learn
-    more](/documentation/modele-ti/business/sales/threshold-exceeded)'
-  description.fr: Le seuil annuel de chiffre d’affaires pour le régime
-    micro-fiscal est dépassé. [En savoir
-    plus](/documentation/modele-ti/entreprise/chiffre-d'affaires/seuil-micro/dépassé)
-  titre.en: '[automatic] alert threshold exceeded'
-  titre.fr: alerte seuil dépassés
-entreprise . imposition . régime . micro-entreprise . revenu abattu:
-  avec:
-    plancher abattement:
-      titre.en: '[automatic] floor allowance'
-      titre.fr: plancher abattement
-  description.en: >
-    [automatic] Micro-entrepreneurs are exempt from having to file a
-    professional declaration of
-
-    for BNC or BIC.
-
-
-    All they have to do is enter the annual amount of gross sales (BIC) or revenue (BIC) on the supplementary income tax return
-
-    (n°2042-C-PRO) the annual amount of gross sales (BIC) or revenues
-
-    (BNC).
-  description.fr: >
-    Le micro-entrepreneur est dispensé d’établir une déclaration professionnelle
-    de
-
-    bénéfices au titre des BNC ou BIC.
-
-
-    Il lui suffit de porter dans la déclaration complémentaire de revenu
-
-    (n°2042-C-PRO) le montant annuel du chiffre d’affaires brut (BIC) ou des recettes
-
-    (BNC).
-  titre.en: '[automatic] flat-rate micro-tax allowance'
-  titre.fr: abattement forfaitaire micro-fiscal
-entreprise . imposition . régime . réel normal:
-  titre.en: '[automatic] real normal taxation'
-  titre.fr: réel normal d’imposition
-entreprise . imposition . régime . réel simplifié:
-  titre.en: '[automatic] real simplified taxation'
-  titre.fr: réel simplifié d’imposition
 entreprise . nom:
   titre.en: '[automatic] name'
   titre.fr: nom
@@ -1237,14 +1122,17 @@ entreprise . radiée cette année:
   titre.en: '[automatic] Company written off this year'
   titre.fr: Entreprise radiée cette année
 entreprise . résultat fiscal:
+  avec:
+    rémunération dirigeant déductible:
+      description.en: |
+        [automatic] Tax-deductible executive compensation.
+      description.fr: >
+        Les montants liés à la rémunération du dirigeant qui sont déductibles
+        d’impôt.
+      titre.en: '[automatic] deductible expenses manager'
+      titre.fr: charges déductibles dirigeant
   titre.en: '[automatic] tax result'
   titre.fr: résultat fiscal
-entreprise . résultat fiscal . rémunération dirigeant déductible:
-  description.en: '[automatic] Tax-deductible executive compensation.'
-  description.fr: Les montants liés à la rémunération du dirigeant qui sont
-    déductibles d’impôt.
-  titre.en: '[automatic] deductible expenses manager'
-  titre.fr: charges déductibles dirigeant
 impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
