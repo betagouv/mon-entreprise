@@ -6255,6 +6255,35 @@ entreprise . imposition . IR . information sur le report de déficit:
     [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
   titre.en: '[automatic] information on deficit carryover'
   titre.fr: information sur le report de déficit
+entreprise . imposition . IR . régime micro-fiscal:
+  description.en: >
+    [automatic] Under the micro-tax system, deductible expenses are estimated on
+    a flat-rate basis, based on a percentage of sales. This
+
+    percentage depends on the type of activity: 71% for sales, catering and accommodation (rental of classified
+
+    and bed and breakfast), 50% for commercial and craft services, and 34% for liberal professions.
+
+
+    This option simplifies your accounting and can be advantageous in terms of taxable income if your operating costs are low.
+
+    are low.
+  description.fr: >
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+
+    pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme
+
+    classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
+
+
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
+
+    fonctionnement sont faibles.
+  question.en: '[automatic] Have you opted for the micro-tax system?'
+  question.fr: Avez-vous opté pour le régime micro-fiscal ?
+  titre.en: '[automatic] micro-fiscal'
+  titre.fr: micro-fiscal
 entreprise . imposition . IR . type de bénéfices:
   question.en: '[automatic] What type of benefits does your company provide?'
   question.fr: Quel est le type de bénéfices de votre entreprise ?

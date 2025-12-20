@@ -11,17 +11,17 @@ export const CessationActivitéGoals = () => {
 	return (
 		<SimulationGoals toggles={<CessationActivitéToggles />}>
 			<Condition expression="entreprise . imposition = 'IR'">
-				<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
+				<Condition expression="entreprise . imposition . IR . régime micro-fiscal = non">
 					<SimulationGoal
 						appear={false}
 						dottedName="entreprise . chiffre d'affaires"
 						label={t("Chiffre d'affaires pour l'année de cessation")}
 					/>
 				</Condition>
-				<Condition expression="entreprise . imposition . régime . micro-entreprise">
+				<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
 					<ChiffreAffairesActivitéMixte dottedName="entreprise . chiffre d'affaires" />
 				</Condition>
-				<Condition expression="entreprise . imposition . régime . micro-entreprise != oui">
+				<Condition expression="entreprise . imposition . IR . régime micro-fiscal != oui">
 					<SimulationGoal appear={false} dottedName="entreprise . charges" />
 				</Condition>
 			</Condition>
@@ -41,7 +41,7 @@ export const CessationActivitéGoals = () => {
 					"Total des cotisations à devoir pour l'année de cessation d'activité"
 				)}
 			/>
-			<Condition expression="entreprise . imposition . régime . micro-entreprise">
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
 				<SimulationGoal appear={false} dottedName="entreprise . charges" />
 			</Condition>
 		</SimulationGoals>
