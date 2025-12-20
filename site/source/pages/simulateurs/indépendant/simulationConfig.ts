@@ -42,12 +42,10 @@ export const configIndépendant: SimulationConfig = {
 			},
 		],
 		'liste noire': [
-			'entreprise . charges',
 			"entreprise . chiffre d'affaires",
-			'entreprise . exercice . début',
-			'entreprise . exercice . fin',
-			'entreprise . imposition . régime',
+			'entreprise . charges',
 			'entreprise . imposition',
+			'entreprise . imposition . régime',
 		],
 		'non prioritaires': [
 			'indépendant . cotisations facultatives',
