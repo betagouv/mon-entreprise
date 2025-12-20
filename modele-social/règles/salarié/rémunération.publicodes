@@ -767,6 +767,8 @@ salarié . rémunération . avantages en nature:
           - nourriture . montant
           - ntic . montant
           - autres . montant
+          - cotisations . retraite supplémentaire . employeur . non exonéré
+          - cotisations . prévoyance complémentaire . employeur . non exonéré
 
     nourriture:
       icônes: 🍝
