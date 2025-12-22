@@ -3360,67 +3360,6 @@ indépendant . cotisations facultatives:
     complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
   titre.en: '[automatic] optional contributions'
   titre.fr: cotisations facultatives
-indépendant . cotisations facultatives . PER:
-  description.en: '[automatic] The individual PER is open to everyone. It can be
-    taken out with a financial institution or an insurance company. This new
-    plan is the successor to the PERP and Madelin contracts, which will no
-    longer be offered from October 1, 2020. Your savings accumulated on the PERP
-    and Madelin can be transferred to the individual PER at your request. This
-    contract entitles you to tax benefits, and your rights are transferable to
-    other PERs. There are cases of early release.'
-  description.fr: Le PER individuel est ouvert à tous. Vous pouvez le souscrire
-    auprès d’un établissement financier ou d’un organisme d’assurance. Ce
-    nouveau plan succède au PERP et au contrat Madelin, qui ne seront plus
-    proposés à partir du 1er octobre 2020. Votre épargne accumulée sur le Perp
-    et le Madelin peut être à votre demande transférée sur le PER individuel. Ce
-    contrat donne droit à des avantages fiscaux et vos droits sont transférables
-    vers les autres PER. Il y a des cas de déblocage anticipé.
-  question.en: '[automatic] How much can you contribute to a PER (new retirement
-    savings plan, as of October 1, 2019)?'
-  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
-    d’un PER (nouveau plan épargne retraite, depuis le 1er octobre 2019) ?
-  titre.en: '[automatic] Retirement savings plan'
-  titre.fr: Plan d’épargne retraite
-indépendant . cotisations facultatives . contrats madelin:
-  titre.en: '[automatic] Madelin contracts'
-  titre.fr: contrats Madelin
-indépendant . cotisations facultatives . contrats madelin . prévoyance:
-  description.en: >
-    [automatic] If you contribute to a supplementary provident scheme (health,
-    sudden loss of employment, etc.) under the Madelin law, you can deduct these
-    contributions from your taxable income.
-
-    under the Madelin law, you can deduct these contributions from the taxable profits
-
-    taxable profits you declare for your self-employed activity.
-  description.fr: >
-    Si vous cotisez au titre d’un contrat de prévoyance complémentaire (santé,
-    perte
-
-    d’emploi subie) de type loi Madelin, vous pouvez déduire ces cotisations des
-
-    bénéfices imposables que vous déclarez pour votre activité non salariée.
-  question.en: '[automatic] How much do you pay into your Madelin supplementary
-    provident schemes (health, sudden loss of employment)?'
-  question.fr: Quel est le montant que vous versez pour vos contrats Madelin de
-    prévoyance complémentaire (santé, perte d’emploi subie) ?
-  titre.en: '[automatic] Supplementary pension'
-  titre.fr: Prévoyance complémentaire
-indépendant . cotisations facultatives . contrats madelin . retraite:
-  description.en: |
-    [automatic] If you contribute to a Madelin-type retirement contract,
-    you can deduct part of these contributions from the taxable profits
-    you declare for your self-employed activity.
-  description.fr: |
-    Si vous cotisez au titre d’un contrat retraite de type loi Madelin,
-    vous pouvez déduire une partie de ces cotisations des bénéfices
-    imposables que vous déclarez pour votre activité non salariée.
-  question.en: '[automatic] How much do you pay for your Madelin supplementary
-    pension contract?'
-  question.fr: Quel est le montant que vous versez pour votre contrat Madelin
-    retraite complémentaire ?
-  titre.en: '[automatic] retirement'
-  titre.fr: retraite
 indépendant . cotisations facultatives . déductibles:
   titre.en: '[automatic] Tax-deductible portion'
   titre.fr: Part déductible fiscalement
@@ -3430,32 +3369,136 @@ indépendant . cotisations facultatives . montant:
 indépendant . cotisations facultatives . non déductibles:
   titre.en: '[automatic] Non-deductible portion'
   titre.fr: Part non déductible fiscalement
-indépendant . cotisations facultatives . plafond prévoyance:
-  note.en: >
-    [automatic] Normally, taxable income should be used as the basis for the
-    ceiling.
+indépendant . cotisations facultatives . prévoyance:
+  description.en: >
+    [automatic] You can take out a Madelin provident contract to supplement your
+    social protection
 
-    but we use professional income to avoid a cycle.
-  note.fr: >
-    Normalement c’est le résultat fiscal qui devrait être utilisé pour
-    l’assiette du
+    and your family, particularly in the event of disability or death.
 
-    plafond, mais on utilise le revenu professionnel pour éviter un cycle.
-  titre.en: '[automatic] pension ceiling'
-  titre.fr: plafond prévoyance
-indépendant . cotisations facultatives . plafond retraite complémentaire:
-  note.en: >
-    [automatic] Normally, taxable income should be used as the basis for the
-    ceiling.
+    death.
 
-    but we use professional income to avoid a cycle.
-  note.fr: >
-    Normalement c’est le résultat fiscal qui devrait être utilisé pour
-    l’assiette du
 
-    plafond, mais on utilise le revenu professionnel pour éviter un cycle.
-  titre.en: '[automatic] supplementary pension ceiling'
-  titre.fr: plafond retraite complémentaire
+    Contributions paid to a Madelin provident savings plan are tax-deductible
+
+    from your taxable profit or income.
+  description.fr: >
+    Vous pouvez souscrire à un contrat Madelin de prévoyance pour compléter
+    votre
+
+    protection sociale et celle de votre famille, notamment en cas d’invalidité ou
+
+    de décès.
+
+
+    Les cotisations versées sur un contrat Madelin de prévoyance sont déductibles
+
+    de votre bénéfice ou revenu imposable.
+  question.en: '[automatic] How much do you pay in contributions under a Madelin
+    supplementary provident contract (health, sudden loss of employment)?'
+  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
+    d’un contrat Madelin de prévoyance complémentaire (santé, perte d’emploi
+    subie) ?
+  titre.en: '[automatic] Madelin provident contract'
+  titre.fr: Contrat Madelin prévoyance
+indépendant . cotisations facultatives . prévoyance . plafond déductible:
+  description.en: >
+    [automatic] Contributions paid into a Madelin provident savings contract are
+    deductible
+
+    from your taxable profit or income, up to a maximum limit.
+
+
+    This deduction ceiling is limited to 3% of 8 of the annual social security ceiling
+
+    (PASS) and is equal to the sum of :
+
+    - 3.75% of professional income ;
+
+    - 7% of the PASS.
+  description.fr: >
+    Les cotisations versées sur un contrat Madelin de prévoyance sont
+    déductibles
+
+    de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
+
+
+    Ce plafond de déductions est limité à 3 % de 8 plafond annuel de la sécurité
+
+    sociale (PASS) et est égal à la somme entre :
+
+    - 3,75 % du revenu professionnel ;
+
+    - 7 % du PASS.
+  titre.en: '[automatic] deductible ceiling'
+  titre.fr: plafond déductible
+indépendant . cotisations facultatives . retraite:
+  description.en: >
+    [automatic] The Plan d'Epargne Retraite (PER) is a retirement savings
+    product for individuals.
+
+    individuals. It enables you to accumulate savings to supplement your income
+
+    when you retire. You can subscribe to it with a
+
+    insurance company.
+
+
+    Contributions to a PER or a Madelin retirement contract are
+
+    deductible from your taxable profit or income.
+
+
+    > The PER replaces the PERP (Plan d'Epargne Retraite Populaire) and the Madelin
+
+    > Madelin retraite contracts, which will no longer be available from October 1, 2020.
+  description.fr: |
+    Le plan d’épargne retraite (PER) est un produit d’épargne retraite pour les
+    particuliers. Il vous permet d’accumuler une épargne afin de compléter vos
+    revenus au moment de la retraite. Vous pouvez le souscrire auprès d’un
+    établissement de crédit ou d’une compagnie d’assurance.
+
+    Les cotisations versées sur un PER ou un contrat Madelin retraite sont
+    déductibles de votre bénéfice ou revenu imposable.
+
+    > Le PER remplace le PERP (plan d’épargne retraite populaire) et le contrat
+    > Madelin retraite, qui ne sont plus proposés depuis le 1er octobre 2020.
+  question.en: '[automatic] How much do you contribute to a PER or a Madelin
+    retirement contract?'
+  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
+    d’un PER ou d’un contrat Madelin retraite ?
+  titre.en: '[automatic] PER / Madelin retirement contract'
+  titre.fr: PER / contrat Madelin retraite
+indépendant . cotisations facultatives . retraite . plafond déductible:
+  description.en: >
+    [automatic] Contributions paid into a PER or a Madelin retirement contract
+    are
+
+    deductible from your taxable profit or income, subject to a ceiling.
+
+
+    This deduction ceiling is equal to a maximum of :
+
+    - 10% of professional income, limited to 8 times the annual social security ceiling
+
+    (PASS) + 15% of professional income between 1 and 8 PASS ;
+
+    - 10% of the annual social security ceiling.
+  description.fr: >
+    Les cotisations versées sur un PER ou sur un contrat Madelin retraite sont
+
+    déductibles de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
+
+
+    Ce plafond de déductions est égal au maximum entre :
+
+    - 10 % du revenu professionnel limité à 8 plafond annuel de la sécurité
+
+    sociale (PASS) + 15 % du revenu professionnel compris entre 1 et 8 PASS ;
+
+    - 10 % du plafond annuel de la sécurité sociale.
+  titre.en: '[automatic] deductible ceiling'
+  titre.fr: plafond déductible
 indépendant . profession libérale:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
