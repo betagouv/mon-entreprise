@@ -76,34 +76,33 @@ cotisations facultatives:
   # cotisations ne change pas:
   - indépendant . rémunération . totale: 30000 €/an
     indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . contrats madelin . prévoyance: 0 €/an
-    indépendant . cotisations facultatives . contrats madelin . retraite: 3800 €/an # plafond: 10% PSS donc environ 4100
-  # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
+    indépendant . cotisations facultatives . prévoyance: 0 €/an
+    indépendant . cotisations facultatives . retraite: 3800 €/an # plafond: 10% PSS donc environ 4100
+  # Cas retraite: la cotisation retraite est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
   - indépendant . rémunération . totale: 30000 €/an
     indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . contrats madelin . prévoyance: 0 €/an
-    indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an # plafond: 10% PSS donc environ 4100
-  # Cas mutuelle
+    indépendant . cotisations facultatives . prévoyance: 0 €/an
+    indépendant . cotisations facultatives . retraite: 5000 €/an # plafond: 10% PSS donc environ 4100
+  # Cas prévoyance
   - indépendant . rémunération . totale: 30000 €/an
     indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . contrats madelin . prévoyance: 1000 €/an
-  # Cas global madelin faible
+    indépendant . cotisations facultatives . prévoyance: 1000 €/an
+  # Cas global faible
   - indépendant . rémunération . totale: 20000 €/an
     indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . contrats madelin . prévoyance: 200 €/an
-    indépendant . cotisations facultatives . contrats madelin . retraite: 300 €/an
-  # Cas global madelin grand (plafonds calculés différemment)
+    indépendant . cotisations facultatives . prévoyance: 200 €/an
+    indépendant . cotisations facultatives . retraite: 300 €/an
+  # Cas global grand (plafonds calculés différemment)
   - indépendant . rémunération . totale: 300000 €/an
     indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . contrats madelin . prévoyance: 1500 €/an
-    indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
-  # Cas madelin + PER grand
+    indépendant . cotisations facultatives . prévoyance: 1500 €/an
+    indépendant . cotisations facultatives . retraite: 5000 €/an
+  # Cas retraite grand
   - indépendant . rémunération . totale: 300000 €/an
     indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . PER: 3500 €/an
-    indépendant . cotisations facultatives . contrats madelin . prévoyance: 1500 €/an
-    indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
+    indépendant . cotisations facultatives . prévoyance: 1500 €/an
+    indépendant . cotisations facultatives . retraite: 8500 €/an
 
 imposition à l'IR:
   - entreprise . chiffre d'affaires: 100000 €/an
