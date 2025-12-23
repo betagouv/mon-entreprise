@@ -2,11 +2,11 @@ indépendant . rémunération: oui
 
 indépendant . rémunération . totale:
   titre: Rémunération totale
-  question: Quel montant total pensez-vous dégager pour votre rémunération ?
   description: |
-    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant. Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer. On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
   titre global: Rémunération totale dirigeant
-  unité: €/an
   résumé: Total payé par l’entreprise pour la rémunération du dirigeant
   variations:
     - si: entreprise . imposition . IS
@@ -18,20 +18,34 @@ indépendant . rémunération . totale:
           - rémunération . impôt
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
   arrondi: oui
+  unité: €/an
 
 indépendant . rémunération . nette:
-  unité: €/an
   titre: Rémunération nette
-  question: Quelle est votre rémunération nette ?
   résumé: Après déduction des cotisations, contributions et charges
   somme:
     - rémunération . totale
     - (- cotisations et contributions)
   arrondi: oui
+  unité: €/an
+
+indépendant . rémunération . nette . avec dividendes:
+  titre: Rémunération nette (dividendes inclus)
+  résumé: Après déduction des prélèvements sociaux, cotisations, contributions et charges
+  somme:
+    - rémunération . nette
+    - dividendes
+    - (- dividendes . prélèvements sociaux)
+  arrondi: oui
+  unité: €/an
 
 indépendant . rémunération . nette . imposable:
   titre: revenu imposable
-  valeur: indépendant . revenu professionnel
+  somme:
+    - revenu professionnel
+    - dividendes . imposables
+  arrondi: oui
+  unité: €/an
 
 indépendant . rémunération . impôt:
   titre: impôt sur le revenu
@@ -46,14 +60,21 @@ indépendant . rémunération . impôt:
       applicable si: entreprise . imposition . IS
       valeur: rémunération . nette . imposable
     paramètres . impôt . abattement revenu net global: cotisations facultatives . déductibles
+  arrondi: oui
+  unité: €/an
+
+indépendant . rémunération . impôt . avec dividendes:
+  somme:
+    - rémunération . impôt
+    - dividendes . PFU
+  unité: €/an
 
 indépendant . rémunération . nette . après impôt:
   titre: Revenu après impôt
   résumé: Ce que vous rapporte cette activité
-  question: Quel est le revenu net après impôt souhaité ?
   description: >-
     Le revenu net après déduction de l’impôt sur le revenu et des cotisations
     sociales.
-  valeur: rémunération . nette - impôt
+  valeur: rémunération . nette . avec dividendes - impôt . avec dividendes
   arrondi: oui
   unité: €/an
