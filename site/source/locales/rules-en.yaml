@@ -322,7 +322,7 @@ bénéficiaire . compte courant d'associé:
 
     The average monthly balance is equal to the sum of the daily balances, divided by the number of days in the month. The average monthly balance therefore differs from the monthly balance shown in the company's accounts.
 
-    If an account is opened or closed during the year, the number of months in the year is reduced to the number of months the account was in operation. An account is considered to be "in operation" even if there are no transactions during the year.  The date on which the sums paid into the current account must be assessed is the last day of the financial year preceding the interest payment.
+    If an account is opened or closed during the year, the number of months in the year is reduced to the number of months the account was in operation. An account is considered to be "in operation" even if there are no transactions during the year. The date on which the sums paid into the current account must be assessed is the last day of the financial year preceding the interest payment.
   description.fr: >
     Cette valeur est nécessaire à calculer le montant maximal imposable au PFU
     pour un bénéficiaire au régime des travailleurs indépendants.
@@ -331,7 +331,7 @@ bénéficiaire . compte courant d'associé:
 
     Le solde moyen mensuel est égal à l’addition des soldes journaliers, divisée par le nombre de jours dans le mois. Le solde moyen mensuel diffère donc du solde mensuel figurant dans les comptes de la société.
 
-    En cas d’ouverture ou de clôture du compte en cours d’exercice, le nombre de mois au cours de l’exercice sera réduit au nombre de mois de fonctionnement du compte. Un compte est considéré comme « fonctionnant », même s’il n’est pas mouvementé au cours de l’exercice.  La date à laquelle les sommes versées en compte courant doivent être appréciées est le dernier jour de l’exercice précédant le versement des intérêts.
+    En cas d’ouverture ou de clôture du compte en cours d’exercice, le nombre de mois au cours de l’exercice sera réduit au nombre de mois de fonctionnement du compte. Un compte est considéré comme « fonctionnant », même s’il n’est pas mouvementé au cours de l’exercice. La date à laquelle les sommes versées en compte courant doivent être appréciées est le dernier jour de l’exercice précédant le versement des intérêts.
   question.en: '[automatic] What are the amounts paid in current account by the partner?'
   question.fr: Quelles sont les sommes versées en compte courant par l'associé ?
   titre.en: "[automatic] Amounts paid into a partner's current account"
@@ -5252,9 +5252,9 @@ entreprise . capital social:
   description.fr: |
     Cette valeur doit inclure la valeur des primes d’émission.
   question.en: "[automatic] What is the company's share capital?"
-  question.fr: Quele est le capital social de la société ?
-  titre.en: '[automatic] Share capital'
-  titre.fr: Capital social
+  question.fr: Quel est le capital social de la société ?
+  titre.en: '[automatic] share capital'
+  titre.fr: capital social
 entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques:
   titre.en: '[automatic] at least 75 percent owned by individuals'
   titre.fr: détenu au moins à 75 pourcents par des personnes physiques
