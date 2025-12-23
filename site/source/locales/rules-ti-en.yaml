@@ -393,6 +393,42 @@ entreprise . activité . saisonnière:
   question.fr: Exercez-vous une activité saisonnière ?
   titre.en: '[automatic] seasonal'
   titre.fr: saisonnière
+entreprise . bénéfice net de l'exercice précédent:
+  description.en: >
+    [automatic] This amount is used to determine the portion of dividends
+    subject to social security contributions
+
+    social security contributions for sole proprietorships.
+  description.fr: |
+    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
+    sociales du régime indépendant pour les entreprises individuelles.
+  titre.en: '[automatic] net income for the previous year'
+  titre.fr: bénéfice net de l'exercice précédent
+entreprise . capital social:
+  description.en: >
+    [automatic] This amount is used to determine the portion of dividends
+    subject to social security contributions
+
+    social security contributions (except for sole proprietorships).
+
+
+    This value must include :
+
+    - financial and in-kind contributions ;
+
+    - the value of share premiums;
+
+    - sums paid into partners' current accounts by you and your family.
+  description.fr: |
+    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
+    sociales du régime indépendant (sauf pour les entreprises individuelles).
+
+    Cette valeur doit inclure :
+    - les apports financiers et en nature ;
+    - la valeur des primes d’émission ;
+    - les sommes versées en compte courant d’associé par vous et votre famille.
+  titre.en: '[automatic] share capital'
+  titre.fr: capital social
 entreprise . catégorie juridique:
   note.en: '[automatic] Here we use the legal categories defined by INSEE.'
   note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
@@ -1404,10 +1440,10 @@ impôt . foyer fiscal . situation de famille:
   titre.fr: situation de famille
 impôt . montant:
   description.en: |
-    [automatic] Calculates income tax based on taxable income and any
+    [automatic] Calculation of income tax based on taxable income and
     taxable income and any earned income.
   description.fr: |
-    Calcule le montant de l’impôt sur le revenu à partir d’un
+    Calcul du montant de l’impôt sur le revenu à partir d’un
     revenu imposable et d’un éventuel revenu d’activité.
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
@@ -2056,21 +2092,15 @@ indépendant . cotisations et contributions:
     contributions and optional contributions, such as Madelin contracts.
 
     such as Madelin contracts.
+
+
+    We include here the amount of social security contributions on dividends.
   description.fr: |
     C’est le montant total dû par l’indépendant au titre des cotisations et
     contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
     telles que les contrats Madelin.
-  note.en: >
-    [automatic] Unlike contributions, contributions are not reintroduced when
-    calculating
 
-    for the calculation of CSG/CRDS. Nor are they eligible for the
-
-    Acre reduction.
-  note.fr: |
-    À la différence des cotisations, les contributions ne sont pas réintroduites
-    pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
-    réduction Acre.
+    Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
   titre.en: '[automatic] contributions and dues'
   titre.fr: cotisations et contributions
 indépendant . cotisations et contributions . CSG-CRDS:
@@ -2189,6 +2219,25 @@ indépendant . cotisations et contributions . assiette sociale:
     - et en soustraire la participation, l’intéressement et l’abondement au PER.
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
+indépendant . cotisations et contributions . avec dividendes:
+  description.en: >
+    [automatic] This is the total amount owed by the self-employed person for
+    compulsory contributions and
+
+    contributions and optional contributions, such as Madelin contracts.
+
+    such as Madelin contracts.
+
+
+    We include here the amount of social security contributions on dividends.
+  description.fr: |
+    C’est le montant total dû par l’indépendant au titre des cotisations et
+    contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
+
+    Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
+  titre.en: '[automatic] with dividends'
+  titre.fr: avec dividendes
 indépendant . cotisations et contributions . contributions spéciales:
   description.en: |
     [automatic] Some special schemes may add additional contributions
@@ -2957,6 +3006,9 @@ indépendant . cotisations et contributions . formation professionnelle:
 indépendant . cotisations et contributions . non déductibles:
   titre.en: '[automatic] Non-tax-deductible portion'
   titre.fr: Part non déductibles fiscalement
+indépendant . cotisations et contributions . non déductibles . avec dividendes:
+  titre.en: '[automatic] Non-tax-deductible portion'
+  titre.fr: Part non déductibles fiscalement
 indépendant . cotisations facultatives:
   description.en: >
     [automatic] It is possible for the self-employed to take out private
@@ -3133,6 +3185,126 @@ indépendant . cotisations facultatives . retraite . plafond déductible:
     - 10 % du plafond annuel de la sécurité sociale.
   titre.en: '[automatic] deductible ceiling'
   titre.fr: plafond déductible
+indépendant . dividendes:
+  description.en: >
+    [automatic] Gross amount of dividends paid by the company. This is the
+    amount
+
+    **before the 12.8% withholding tax** (prélèvement forfaitaire non libératoire).
+  description.fr: |
+    Montant brut des dividendes versés par l’entreprise. Il s’agit du montant
+    **avant le PFNL** (prélèvement forfaitaire non libératoire) de 12,8 %.
+  titre.en: '[automatic] gross dividends'
+  titre.fr: dividendes bruts
+indépendant . dividendes . PFU:
+  description.en: >
+    [automatic] The income tax portion of the PFU (prélèvement forfaitaire
+    unique) is
+
+    is equal to 12.8%**.
+  description.fr: >
+    La part du PFU (prélèvement forfaitaire unique) correspondant à l’impôt sur
+    le
+
+    revenu est égale à **12,8 %**.
+  titre.en: '[automatic] single-rate withholding tax (PFU)'
+  titre.fr: prélèvement forfaitaire unique (PFU)
+indépendant . dividendes . imposables:
+  description.en: >
+    [automatic] When dividends are subject to the progressive income tax scale,
+    a
+
+    income tax, a **abatement of 40%** is first applied.
+  description.fr: |
+    Lors que les dividendes sont soumis au barème progressif de l’impôt sur le
+    revenu, un **abattement de 40%** leur est d’abord appliqué.
+  titre.en: '[automatic] taxable'
+  titre.fr: imposables
+indépendant . dividendes . imposition:
+  question.en: '[automatic] How are your dividends taxed?'
+  question.fr: Quel est le mode d’imposition de vos dividendes ?
+  titre.en: '[automatic] taxation'
+  titre.fr: imposition
+indépendant . dividendes . plafond exonéré de cotisations sociales:
+  titre.en: '[automatic] ceiling exempt from social security contributions'
+  titre.fr: plafond exonéré de cotisations sociales
+indépendant . dividendes . prélèvements sociaux:
+  avec:
+    CRDS:
+      titre.en: '[automatic] CRDS'
+      titre.fr: CRDS
+    CSG déductible:
+      titre.en: '[automatic] Deductible CSG'
+      titre.fr: CSG déductible
+    CSG non déductible:
+      titre.en: '[automatic] Non-deductible CSG'
+      titre.fr: CSG non déductible
+    prélèvement de solidarité:
+      titre.en: '[automatic] solidarity levy'
+      titre.fr: prélèvement de solidarité
+  description.en: >
+    [automatic] As income from assets, dividends are subject to social security
+    deductions.
+
+    social security contributions. These deductions are
+
+    - contribution sociale généralisée (CSG),
+
+    - contribution au remboursement de la dette sociale (CRDS),
+
+    - solidarity levy.
+  description.fr: |
+    En tant que revenus du patrimoine, les dividendes sont soumis à prélèvements
+    sociaux. Ces prélèvements sont :
+    - contribution sociale généralisée (CSG),
+    - contribution au remboursement de la dette sociale (CRDS),
+    - prélèvement de solidarité.
+  note.en: >
+    [automatic] The CSG on dividends subject to the PFU (prélèvement forfaitaire
+    unique) is not deductible.
+
+    deductible.
+  note.fr: >
+    La CSG sur les dividendes soumis au PFU (prélèvement forfaitaire unique)
+    n’est
+
+    pas déductible.
+  titre.en: '[automatic] social security contributions'
+  titre.fr: prélèvements sociaux
+indépendant . dividendes . soumis à cotisations sociales:
+  description.en: >
+    [automatic] Dividends ** exceeding 10% of share capital** (or net income for
+    the previous year
+
+    for sole proprietorships) is subject to social security contributions
+
+    **social security contributions** and self-employed status contributions.
+  description.fr: >
+    La part des dividendes **supérieure à 10 % du capital social** (ou du
+    bénéfice
+
+    net de l’exercice précédent pour les entreprises individuelles) est soumise aux
+
+    **cotisations sociales** et contributions du régime indépendant.
+  titre.en: '[automatic] subject to social security contributions'
+  titre.fr: soumis à cotisations sociales
+indépendant . dividendes . soumis à prélèvements sociaux:
+  description.en: >
+    [automatic] The portion of dividends **in excess of 10% of share capital**
+    (or of the previous year's net profit
+
+    for sole proprietorships) is subject to social security contributions
+
+    **social security contributions** as income from assets.
+  description.fr: >
+    La part des dividendes **inférieure à 10 % du capital social** (ou du
+    bénéfice
+
+    net de l’exercice précédent pour les entreprises individuelles) est soumise aux
+
+    **prélèvements sociaux** en tant que revenus du patrimoine.
+  titre.en: '[automatic] subject to social security contributions'
+  titre.fr: soumis à prélèvements sociaux
 indépendant . profession libérale:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
@@ -4510,12 +4682,12 @@ indépendant . profession libérale . réglementée . métier . santé:
   titre.fr: Professions de santé
 indépendant . revenu brut:
   description.en: >
-    [automatic] Gross or super-gross income corresponds to labor costs or sales
-    after deduction of
+    [automatic] Gross or "super-gross" income corresponds to the cost of labor
+    or sales
 
-    after deduction of professional operating expenses (excluding social security
+    sales after deduction of professional operating expenses
 
-    social contributions).
+    (excluding social security contributions).
 
 
     ### For income tax purposes
@@ -4523,31 +4695,34 @@ indépendant . revenu brut:
 
     Gross income corresponds to
 
-    **sales less expenses** incurred by the company in connection with its operations
+    **sales less expenses** incurred by the company in connection with its
 
-    expenses other than social security contributions,
+    expenses**, i.e. expenses other than social security contributions and
 
-    CSG and CRDS.
+    social security contributions.
 
 
-    For managing partners, sales are prorated.
+    For managing partners, sales are prorated according to their shares.
+
+    prorated according to their shares.
 
 
     ### Corporate income tax
 
 
-    Gross income corresponds to **gross remuneration** and a share of dividends.
+    Gross income corresponds to **gross remuneration** and the portion of dividends
 
-    dividends. The remuneration taken into account does not include the deduction of professional expenses
+    exceeding 10% of share capital. The gross remuneration taken into account
 
-    social security contributions, CSG and CRDS.
+    does not include the deduction of professional expenses, nor of social security
+
+    social security contributions.
   description.fr: >
-    Le revenu brut ou super-brut correspond au coût du travail ou encore au
-    chiffre
+    Le revenu brut ou « super-brut » correspond au coût du travail ou encore au
 
-    d’affaires après déduction des charges professionnelles d’exploitations (hors
+    chiffre d’affaires après déduction des charges professionnelles d’exploitations
 
-    cotisations et contributions sociales).
+    (hors contributions et cotisations sociales).
 
 
     ### À l’impôt sur le revenu
@@ -4557,27 +4732,26 @@ indépendant . revenu brut:
 
     **chiffre d’affaires moins les charges** de l’entreprise liées à
 
-    l’exploitation, c’est-à-dire aux charges autres que les cotisations sociales,
+    l’exploitation, c’est-à-dire aux charges autres que les contributions et
 
-    la CSG et la CRDS.
+    cotisations sociales.
 
 
-    Pour les gérantes et gérants associés, le chiffre d’affaires est proratisé.
+    Pour les gérantes et gérants associées/associés, le chiffre d’affaires est
+
+    proratisé selon leurs parts.
 
 
     ### À l’impôt sur les sociétés
 
 
-    Le revenu brut correspond à la **rémunération brute** et à une part des
+    Le revenu brut correspond à la **rémunération brute** et la part des dividendes
 
-    dividendes. La rémunération prise en compte n’inclue pas la déduction des frais
+    supérieure à 10 % du capital social. La rémunération brute prise en compte
 
-    professionnels, ni les cotisations sociales, la CSG et la CRDS.
-  note.en: >
-    [automatic] The calculation engine does not yet include dividends in gross
-    income.
-  note.fr: |
-    Le moteur de calcul n’intègre pas encore les dividendes dans le revenu brut.
+    n’inclue pas la déduction des frais professionnels, ni des contributions et
+
+    cotisations sociales.
   titre.en: '[automatic] gross income'
   titre.fr: revenu brut
 indépendant . revenu professionnel:
@@ -4754,9 +4928,10 @@ indépendant . rémunération . impôt:
     - les bénéfices des entreprises individuelles à l’impôt sur le revenu,
   titre.en: '[automatic] income tax'
   titre.fr: impôt sur le revenu
+indépendant . rémunération . impôt . avec dividendes:
+  titre.en: '[automatic] with dividends'
+  titre.fr: avec dividendes
 indépendant . rémunération . nette:
-  question.en: '[automatic] What is your net salary?'
-  question.fr: Quelle est votre rémunération nette ?
   résumé.en: '[automatic] After deduction of contributions and expenses'
   résumé.fr: Après déduction des cotisations, contributions et charges
   titre.en: '[automatic] Net remuneration'
@@ -4767,28 +4942,35 @@ indépendant . rémunération . nette . après impôt:
     security contributions.'
   description.fr: Le revenu net après déduction de l’impôt sur le revenu et des
     cotisations sociales.
-  question.en: '[automatic] What is the desired net income after tax?'
-  question.fr: Quel est le revenu net après impôt souhaité ?
   résumé.en: "[automatic] What's in it for you?"
   résumé.fr: Ce que vous rapporte cette activité
   titre.en: '[automatic] After-tax income'
   titre.fr: Revenu après impôt
+indépendant . rémunération . nette . avec dividendes:
+  résumé.en:
+    '[automatic] After deduction of social security levies, contributions
+    and charges'
+  résumé.fr:
+    Après déduction des prélèvements sociaux, cotisations, contributions
+    et charges
+  titre.en: '[automatic] Net compensation (including dividends)'
+  titre.fr: Rémunération nette (dividendes inclus)
 indépendant . rémunération . nette . imposable:
   titre.en: '[automatic] taxable income'
   titre.fr: revenu imposable
 indépendant . rémunération . totale:
   description.en: >
     [automatic] This is how much the company spends on executive remuneration.
-    This "super-gross" remuneration includes all social security contributions
-    payable. It can also be considered as the monetary value of the executive's
-    work.
+
+    This "super-gross" remuneration includes all social security contributions payable.
+
+    It can also be considered as the monetary value of the executive's work.
   description.fr: >
     C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
-    Cette rémunération "super-brute" inclut toutes les cotisations sociales à
-    payer. On peut aussi considérer que c’est la valeur monétaire du travail du
-    dirigeant.
-  question.en: '[automatic] How much do you expect to earn in total?'
-  question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
+
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+
+    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
   résumé.en: '[automatic] Total paid by the company for executive compensation'
   résumé.fr: Total payé par l’entreprise pour la rémunération du dirigeant
   titre.en: '[automatic] Total compensation'
