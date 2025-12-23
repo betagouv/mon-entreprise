@@ -14,7 +14,6 @@ interface OuiNonInputProps {
 
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 }
 
@@ -45,9 +44,7 @@ export function OuiNonInput({
 
 	return (
 		<ToggleGroup
-			aria-label={
-				aria.label || t('conversation.yes-no.aria-label', 'Oui ou non')
-			}
+			aria-label=""
 			aria-labelledby={aria.labelledby}
 			onChange={handleToggleGroupChange}
 			value={currentValueAsString}

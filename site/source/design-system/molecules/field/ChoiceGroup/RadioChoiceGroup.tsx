@@ -2,7 +2,6 @@ import { useRadioGroup } from '@react-aria/radio'
 import { useRadioGroupState } from '@react-stately/radio'
 import { AriaRadioGroupProps } from '@react-types/radio'
 import React, { Key, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { FlexCenter } from '@/design-system/global-style'
@@ -24,7 +23,6 @@ export interface RadioChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
-		label?: string
 	}
 	options: Array<ChoiceOption>
 	isSubRadioGroup?: boolean
@@ -41,14 +39,8 @@ export default function RadioChoiceGroup({
 	aria = {},
 	isSubRadioGroup = false,
 }: RadioChoiceGroupProps) {
-	const { t } = useTranslation()
-
 	return (
 		<RadioGroup
-			aria-label={
-				aria.label ||
-				t('conversation.multiple-answer.aria-label', 'Choix multiples')
-			}
 			aria-labelledby={aria.labelledby}
 			onChange={onChange}
 			value={value}
@@ -122,7 +114,6 @@ function RadioGroup(props: RadioGroupProps) {
 			/* eslint-disable-next-line react/jsx-props-no-spreading */
 			{...radioGroupProps}
 			onKeyDown={undefined}
-			aria-label={props['aria-label']}
 		>
 			{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 			{label && (

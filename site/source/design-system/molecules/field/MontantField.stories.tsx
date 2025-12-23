@@ -115,9 +115,6 @@ export const AvecAttributsAccessibilité: Story = {
 		unité: '€',
 		value: montant(1500, '€'),
 		id: 'montant-salaire',
-		aria: {
-			label: 'Montant du salaire brut',
-		},
 	},
 	parameters: {
 		docs: {
@@ -132,31 +129,14 @@ export const AvecAttributsAccessibilité: Story = {
 export const DifférentesUnités: Story = {
 	render: () => (
 		<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-			<MontantFieldWrapper
-				unité="€"
-				value={montant(1500, '€')}
-				aria={{ label: 'Montant en euros' }}
-			/>
-			<MontantFieldWrapper
-				unité="€/mois"
-				value={montant(1500, '€/mois')}
-				aria={{ label: 'Montant en euros par mois' }}
-			/>
-			<MontantFieldWrapper
-				unité="€/an"
-				value={montant(30000, '€/an')}
-				aria={{ label: 'Montant en euros par an' }}
-			/>
-			<MontantFieldWrapper
-				unité="€/jour"
-				value={montant(75, '€/jour')}
-				aria={{ label: 'Montant en euros par jour' }}
-			/>
+			<MontantFieldWrapper unité="€" value={montant(1500, '€')} />
+			<MontantFieldWrapper unité="€/mois" value={montant(1500, '€/mois')} />
+			<MontantFieldWrapper unité="€/an" value={montant(30000, '€/an')} />
+			<MontantFieldWrapper unité="€/jour" value={montant(75, '€/jour')} />
 			<MontantFieldWrapper
 				unité="€/heure"
 				value={montant(10.57, '€/heure')}
 				avecCentimes={true}
-				aria={{ label: 'Montant en euros par heure' }}
 			/>
 		</div>
 	),

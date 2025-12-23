@@ -92,10 +92,6 @@ export function AssistantGoal({
 							onChange={onChange}
 							showSuggestions={false}
 							aria-labelledby={`${dottedName.replace(/\s|\./g, '_')}-title`}
-							aria-describedby={`${dottedName.replace(
-								/\s|\./g,
-								'_'
-							)}-description`}
 							required={required}
 						/>
 					</Grid>
