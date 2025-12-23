@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configSalarié: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		'salarié . coût total employeur',
 		'salarié . contrat . salaire brut',

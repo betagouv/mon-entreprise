@@ -1,8 +1,6 @@
-import { DottedName } from 'modele-social'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useTheme } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Notifications from '@/components/Notifications'
@@ -12,10 +10,11 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import StackedBarChart from '@/components/StackedBarChart'
-import { useEngine } from '@/components/utils/EngineContext'
+import StackedRulesChart from '@/components/simulationExplanation/StackedRulesChart/StackedRulesChart'
 import { Body, DarkLi, H2, Radio, ToggleGroup, Ul } from '@/design-system'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 
 export default function DividendesSimulation() {
 	return (
@@ -70,7 +69,7 @@ function OptionBarèmeSwitch() {
 			value={currentOptionPFU}
 			onChange={(value) => {
 				setCurrentOptionPFU(value)
-				dispatch(enregistreLaRéponse(dottedName, value))
+				dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 			}}
 			aria-label={t("Régime d'imposition")}
 		>
@@ -111,7 +110,6 @@ const DividendesSimulationGoals = () => (
 
 const DividendesExplanation = () => {
 	const { t } = useTranslation()
-	const { colors } = useTheme()
 
 	return (
 		<Condition expression="bénéficiaire . dividendes . bruts > 0">
@@ -128,26 +126,32 @@ const DividendesExplanation = () => {
 						</Trans>
 					</H2>
 				</div>
-				<StackedBarChart
-					data={[
-						{
+				<StackedRulesChart
+					data={{
+						revenu: {
 							dottedName: "bénéficiaire . dividendes . nets d'impôt",
-							title: t('Dividendes nets'),
-							color: colors.bases.primary[600],
+							title: t(
+								'pages.simulateurs.dividendes.répartition.revenu',
+								'Dividendes nets'
+							),
 						},
-						{
-							dottedName:
-								'impôt . dividendes . montant en sus des autres revenus imposables',
-							title: t('Impôt'),
-							color: colors.bases.secondary[500],
-						},
-						{
+						cotisations: {
 							dottedName:
 								'bénéficiaire . dividendes . cotisations et contributions',
-							title: t('Cotisations'),
-							color: colors.extended.grey[700],
+							title: t(
+								'pages.simulateurs.dividendes.répartition.cotisations',
+								'Cotisations'
+							),
 						},
-					]}
+						impôt: {
+							dottedName:
+								'impôt . dividendes . montant en sus des autres revenus imposables',
+							title: t(
+								'pages.simulateurs.dividendes.répartition.impôt',
+								'Impôt'
+							),
+						},
+					}}
 				/>
 			</section>
 		</Condition>

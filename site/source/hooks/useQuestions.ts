@@ -2,7 +2,6 @@ import { pipe } from 'effect'
 import { dedupe, filter } from 'effect/Array'
 import { isNotUndefined, isUndefined, Predicate } from 'effect/Predicate'
 import { fromEntries } from 'effect/Record'
-import { DottedName } from 'modele-social'
 import {
 	FunctionComponent,
 	useCallback,
@@ -13,16 +12,17 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
 import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
+import { useEngine } from '@/hooks/useEngine'
 import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
-import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
-import { raccourcisSelector } from '@/store/selectors/raccourcis.selector'
+import { listeNoireSelector } from '@/store/selectors/simulation/config/listeNoire.selector'
+import { raccourcisSelector } from '@/store/selectors/simulation/config/raccourcis.selector'
+import { questionsRéponduesSelector } from '@/store/selectors/simulation/questions/questionsRépondues.selector'
+import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
 
 interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'

@@ -1,9 +1,9 @@
-import { servicePAM } from '@/external-links/servicePAM'
 import { IMPOTS_GOUV, URSSAF } from '@/utils/logos'
 
 import DéclarationRevenusPAMC from '.'
 import { config } from '../../simulateurs/_configs/config'
 import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
+import { configDéclarationRevenusPAMC } from './simulationConfig'
 
 export function déclarationRevenusPAMCConfig({
 	t,
@@ -63,7 +63,20 @@ export function déclarationRevenusPAMCConfig({
 				),
 				logo: IMPOTS_GOUV,
 			},
-			servicePAM,
+			{
+				url: 'https://www.urssaf.fr/accueil/services/services-independants/service-pam.html',
+				title: t(
+					'pages.assistants.declaration-revenus-pamc.externalLinks.3.title',
+					'Le service en ligne Praticien ou auxiliaire médical'
+				),
+				description: t(
+					'pages.assistants.declaration-revenus-pamc.externalLinks.3.description',
+					'L’Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.'
+				),
+				logo: URSSAF,
+			},
 		],
+		simulation: configDéclarationRevenusPAMC,
+		autoloadLastSimulation: true,
 	} as const)
 }

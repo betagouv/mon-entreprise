@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -10,8 +9,9 @@ import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { FromTop } from '@/components/ui/animate'
 import { H2, SmallBody } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import useYear from '@/hooks/useYear'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 
 import { SimpleField } from '../../components/Fields'
 import { ExplicationsResultatFiscal } from './ExplicationResultatFiscal'
@@ -22,7 +22,7 @@ export default function ImpositionSection() {
 
 	const setSituation = useCallback(
 		(value: ValeurPublicodes | undefined, dottedName: DottedName) => {
-			dispatch(enregistreLaRéponse(dottedName, value))
+			dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 		},
 		[dispatch]
 	)

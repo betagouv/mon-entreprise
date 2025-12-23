@@ -1,5 +1,4 @@
 import { useOverlayTriggerState } from '@react-stately/overlays'
-import { DottedName } from 'modele-social'
 import { Evaluation } from 'publicodes'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -19,12 +18,11 @@ import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprise
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
-import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
+import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -40,16 +38,15 @@ import {
 	Strong,
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
+import { useEngine } from '@/hooks/useEngine'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
-import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { companySituationSelector } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import forms from './forms.svg'
 import growth from './growth.svg'
@@ -249,20 +246,6 @@ function PourMonEntreprise() {
 	)
 }
 
-const configEntrepriseDetails: SimulationConfig = {
-	questions: {
-		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
-	},
-	objectifs: [
-		'dirigeant . régime social',
-		'entreprise . imposition',
-	] as DottedName[],
-	situation: {
-		'entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut':
-			'oui',
-	},
-}
-
 const UlInColumns = styled.ul`
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
 		columns: 2;
@@ -273,18 +256,12 @@ const UlInColumns = styled.ul`
 `
 
 const AskCompanyMissingDetails = () => {
-	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig({
-		key: absoluteSitePaths.assistants.index,
-		config: configEntrepriseDetails,
-	})
-
 	const [questions, onQuestionAnswered] = useQuestionList()
 	const engine = useEngine()
 
 	return (
 		<>
-			<EntrepriseDetails showSituation headingTag="h2" />
+			<EntrepriseDetailsCard showSituation headingTag="h2" />
 			{!!questions.length && (
 				<>
 					<Body

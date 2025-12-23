@@ -1,0 +1,52 @@
+assimilé salarié . cotisations . exonérations:
+  cotisation:
+    branche: exonérations
+  titre: exonérations et allègements de cotisations
+  formule:
+    somme:
+      - employeur
+      - salarié
+
+  avec:
+    employeur:
+      titre: part employeur
+      description: >-
+        À l'exception de la déduction heure supplémentaire, les dispositifs de
+        réduction de cotisations patronales sont mutuellement exclusif.
+      le maximum de:
+        - JEI
+        - Acre . employeur
+      références:
+        urssaf.fr (cumul réduction générale): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/les-regles-relatives-au-cumul.html
+        urssaf.fr (cumul JEI): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/regles-de-cumul.html
+
+    salarié:
+      titre: part salarié
+      valeur: Acre . salarié
+
+assimilé salarié . cotisations . exonérations . T:
+  titre: Coefficient T
+  unité: ''
+  arrondi: 4 décimales
+  somme:
+    - sécurité sociale et chômage
+    - retraite complémentaire
+
+  avec:
+    sécurité sociale et chômage:
+      somme:
+        - valeur: maladie . employeur . taux
+          plafond: maladie . employeur . taux réduit
+        - valeur: allocations familiales . taux
+          plafond: allocations familiales . taux réduit
+        - vieillesse . employeur . déplafonnée . taux
+        - vieillesse . employeur . plafonnée . taux
+        - CSA . taux
+        - ATMP . taux minimum
+        - FNAL . taux
+    retraite complémentaire:
+      somme:
+        - valeur: retraite complémentaire . employeur . taux T1
+          plafond: 4.72%
+        - valeur: CEG . employeur . taux T1
+          plafond: 1.29%

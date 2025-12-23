@@ -1,5 +1,4 @@
 import { Trans } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -9,24 +8,18 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { DistributionBranch } from '@/components/simulationExplanation/DistributionDesCotisations'
-import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExplanation/InstitutionsPartenaires'
-import { useEngine } from '@/components/utils/EngineContext'
+import { DistributionBranch } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/DistributionDesCotisations'
 import { typography } from '@/design-system'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
-
-import { configArtisteAuteur } from './simulationConfig'
+import { useEngine } from '@/hooks/useEngine'
+import InstitutionsPartenaires from '@/pages/simulateurs/artiste-auteur/components/InstitutionsPartenaires'
 
 const { Body, H2 } = typography
 
 export default function ArtisteAuteur() {
-	const { pathname } = useLocation()
-	useSimulationConfig({ key: pathname, config: configArtisteAuteur })
-
 	return (
 		<>
 			<Simulation
-				results={<InstitutionsPartenairesArtisteAuteur />}
+				results={<InstitutionsPartenaires />}
 				explanations={<CotisationsResult />}
 				afterQuestionsSlot={<YearSelectionBanner />}
 			>

@@ -1,0 +1,3250 @@
+SMIC:
+  titre.en: '[automatic] SMIC'
+  titre.fr: SMIC
+SMIC . horaire:
+  avec:
+    début d'année:
+      titre.en: '[automatic] at the beginning of the year'
+      titre.fr: en début d'année
+    début d'année N-1:
+      titre.en: '[automatic] at the beginning of the previous year'
+      titre.fr: en début d'année précédente
+  note.en: >
+    [automatic] In principle, the SMIC (minimum wage) is revalued on January 1st
+    of each year.
+
+    of each year. However, an adjustment must be made during the year
+
+    if the reference price index has risen by 2% or more since the last
+
+    last SMIC revaluation.
+  note.fr: |
+    En principe et sauf « coup de pouce », le SMIC est revalorisé au 1er janvier
+    de chaque année. Toutefois une revalorisation doit intervenir en cours
+    d’année si l'indice des prix de référence a augmenté de 2% ou plus depuis la
+    dernière revalorisation du SMIC.
+  titre.en: '[automatic] schedule'
+  titre.fr: horaire
+assimilé salarié:
+  description.en: >
+    [automatic] Some company directors (notably SASU) are considered by the
+    social security system to be
+
+    considered by the social security system to be on the same footing as employees. They are therefore
+
+    under the general social security system, albeit with a few constraints.
+
+    For example, they are not entitled to unemployment benefits.
+  description.fr: >
+    Certains dirigeants d’entreprise (c’est notamment le cas pour les SASU) sont
+
+    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors
+
+    au régime général de la sécurité sociale, avec quelques contraintes cependant.
+
+    Par exemple, ils ne cotisent pas au chômage, et n’y ont donc pas droit.
+  titre.en: '[automatic] assimilated employee'
+  titre.fr: assimilé salarié
+assimilé salarié . cotisations:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+  description.en: '[automatic] Total social security contributions paid for this
+    employee. This includes both employer and employee contributions.'
+  description.fr: Total des cotisations et contributions à la sécurité sociales
+    versées pour ce salarié. Il comprends une part employeur et une part
+    employé.
+  titre.en: '[automatic] contributions'
+  titre.fr: cotisations
+assimilé salarié . cotisations . ATMP:
+  avec:
+    seuil taux mixte ou individuel:
+      titre.en: '[automatic] threshold mixed or individual rate'
+      titre.fr: seuil taux mixte ou individuel
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    taux fonctions support:
+      avec:
+        montant:
+          titre.en: '[automatic] amount'
+          titre.fr: montant
+      description.en: >
+        [automatic] The "support functions" rate enables employers who request
+        it to benefit from a reduced AT/MP contribution rate for employees not
+        exposed to the establishment's main risk. This rate is reserved for
+        employees whose main function is administrative support.
+
+
+        The following are considered administrative support functions:
+
+
+        - secretarial work
+
+        - reception ;
+
+        - accounting ;
+
+        - legal affairs
+
+        - financial management
+
+        - human resources.
+      description.fr: >
+        Le taux « fonctions support » permet à l’employeur qui le demande de
+        bénéficier d’un taux de cotisation AT/MP réduit pour les salariés non
+        exposés au risque principal de l’établissement. Il est réservé aux
+        salariés occupant à titre principal une fonction support de nature
+        administrative.
+
+
+        Sont considérées comme fonctions supports de nature administrative :
+
+
+        - le secrétariat ;
+
+        - l’accueil ;
+
+        - la comptabilité ;
+
+        - les affaires juridiques ;
+
+        - la gestion financière ;
+
+        - les ressources humaines.
+      question.en:
+        '[automatic] Does the employee perform an administrative support
+        function?'
+      question.fr: Le salarié occupe-t-il une fonction support de nature administrative ?
+      titre.en: '[automatic] support function rate'
+      titre.fr: taux fonctions support
+    taux minimum:
+      description.en:
+        '[automatic] The existing minimum rate for ATMP contributions.
+        Used in particular to calculate the general reduction in contributions.'
+      description.fr: Le taux minimum existant pour la cotisation ATMP. Utilisé
+        notamment pour le calcul de la réduction générale de cotisations
+      titre.en: '[automatic] minimum rate'
+      titre.fr: taux minimum
+    taux moyen:
+      titre.en: '[automatic] average rate'
+      titre.fr: taux moyen
+  description.en: '[automatic] Occupational injury and disease contributions.'
+  description.fr: Cotisation due au titre des Accidents du Travail et Maladies
+    Professionnelles.
+  titre.en: '[automatic] accidents at work &amp; occupational diseases'
+  titre.fr: accidents du travail & maladies professionnelles
+assimilé salarié . cotisations . CEG:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux T1:
+      titre.en: '[automatic] T1 rate'
+      titre.fr: taux T1
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+  description.en: '[automatic] This contribution, created in 2019, offsets the
+    cost of employees retiring before the age of 67, and honors the pension
+    commitments of people who have contributed to the GMP, a former compensation
+    contribution for executives.'
+  description.fr:
+    Cette cotisation créée en 2019 permet à la fois de compenser les
+    charges résultant des départs à la retraite avant 67 ans et d’honorer les
+    engagements retraite des personnes qui ont cotisé à la GMP, une ancienne
+    cotisation de compensation pour les cadres.
+  titre.en: '[automatic] general equilibrium contribution'
+  titre.fr: contribution d'équilibre général
+assimilé salarié . cotisations . CET:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+  titre.en: '[automatic] technical balance contribution'
+  titre.fr: contribution d'équilibre technique
+assimilé salarié . cotisations . CSA:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  titre.en: '[automatic] Autonomy solidarity contribution'
+  titre.fr: Contribution solidarité autonomie
+assimilé salarié . cotisations . CSG-CRDS:
+  description.en: >-
+    [automatic] CSG and CRDS are payable by all employees meeting the following
+    two conditions:
+
+    - they are domiciled in France for tax purposes, - they are covered by a compulsory French health insurance scheme.
+
+    If one of the two criteria is not met, CSG and CRDS are not due, provided proof is provided (tax receipt or social security card).
+  description.fr: >-
+    La CSG et la CRDS sont dues par tous les salariés remplissant les deux
+    conditions suivantes :
+
+    - ils sont domiciliés fiscalement en France, - ils sont à la charge d’un régime français d’assurance maladie obligatoire.
+
+    Si l’un des deux critères n’est pas rempli, la CSG et la CRDS ne sont pas dues, à la condition d’en apporter la preuve (justificatif fiscal ou carte d’assuré social).
+  titre.en: '[automatic] CSG-CRDS'
+  titre.fr: CSG-CRDS
+assimilé salarié . cotisations . CSG-CRDS . CRDS:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  description.en: '[automatic] Contribution for the repayment of the social debt'
+  description.fr: Contribution pour le remboursement de la dette sociale
+  titre.en: '[automatic] CRDS'
+  titre.fr: CRDS
+assimilé salarié . cotisations . CSG-CRDS . CSG:
+  avec:
+    déductible:
+      titre.en: '[automatic] CSG deductible from income tax'
+      titre.fr: CSG déductible de l'impôt sur le revenu
+    déductible . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    non déductible:
+      titre.en: '[automatic] non-deductible'
+      titre.fr: non déductible
+    non déductible . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  description.en: >-
+    [automatic] The Contribution Sociale Généralisée (CSG) is a tax designed to
+    help finance social protection.
+
+    Unlike social security contributions, which apply only to earned income, the CSG applies not only to earned income and replacement income (unemployment benefits, daily allowances, etc.), but also to income from assets, investment income and sums invested in or redistributed by games.
+
+    It is deducted at source from most incomes. It is collected by Urssaf on earned income and by the tax authorities on income from assets.
+
+    CSG revenues are paid to CNAM and CNAF, and also finance the old-age solidarity fund.
+  description.fr: >-
+    La contribution sociale généralisée (CSG) est un impôt destiné à participer
+    au financement de la protection sociale.
+
+    A la différence des cotisations sociales qui ne portent que sur les revenus d’activité, la CSG concerne, outre les revenus d’activité et de remplacement (allocations chômage, indemnités journalières…), les revenus du patrimoine, les produits de placement ou les sommes engagées ou redistribuées par les jeux.
+
+    Elle est prélevée à la source sur la plupart des revenus. Elle est recouvrée par les Urssaf sur les revenus d’activité et par l’administration fiscale sur les revenus du patrimoine.
+
+    Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance également le fonds de solidarité vieillesse
+  titre.en: '[automatic] CSG'
+  titre.fr: CSG
+assimilé salarié . cotisations . CSG-CRDS . assiette de base:
+  avec:
+    assiette abattue:
+      titre.en: '[automatic] knocked-down plate'
+      titre.fr: assiette abattue
+  titre.en: '[automatic] BASIS'
+  titre.fr: assiette de base
+assimilé salarié . cotisations . CSG-CRDS . non déductible:
+  titre.en: '[automatic] Non-deductible CSG and CRDS'
+  titre.fr: CSG non déductible et CRDS
+assimilé salarié . cotisations . CSG-CRDS . sur revenus imposables non déductible:
+  titre.en: '[automatic] CSG / CRDS not deductible from income tax'
+  titre.fr: CSG / CRDS non déductible de l'impôt sur le revenu
+assimilé salarié . cotisations . FNAL:
+  avec:
+    privé:
+      titre.en: '[automatic] private'
+      titre.fr: privé
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    éligible taux réduit:
+      titre.en: '[automatic] eligible for reduced rate'
+      titre.fr: éligible taux réduit
+  description.en: >
+    [automatic] The Fonds National d'Aide au Logement (Fnal) is a contribution
+    that finances the housing allowance.
+  description.fr: >
+    Le fonds national d’aide au logement (Fnal) est une contribution qui assure
+    le financement de l’allocation logement.
+  titre.en: "[automatic] Contribution to the Fonds National d'Aide au Logement
+    (National Housing Aid Fund)"
+  titre.fr: Contribution au Fonds National d’Aide au Logement
+assimilé salarié . cotisations . PEEC:
+  description.en: "[automatic] Participation des employeurs à l'effort de construction"
+  description.fr: Participation des employeurs à l'effort de construction
+  note.en: >
+    [automatic] Employers have the choice of paying this tax to an approved "1%
+    employers' organization", investing the sum in housing for their employees,
+    or granting them and their families reduced-rate construction loans.
+  note.fr: >
+    L'employeur a le choix entre verser cet impôt à un "organisme du 1%
+    patronal" agréé, investir la somme dans le logement de ses salariés, ou
+    accorder à eux et leur famille des prêts de construction à taux réduit.
+  titre.en: '[automatic] Participation in the construction effort'
+  titre.fr: Participation à l'effort de construction
+assimilé salarié . cotisations . allocations familiales:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+    taux réduit:
+      titre.en: '[automatic] reduced rate'
+      titre.fr: taux réduit
+  titre.en: '[automatic] family'
+  titre.fr: famille
+assimilé salarié . cotisations . assiette:
+  avec:
+    sans prévoyance:
+      description.en:
+        "[automatic] The contribution base before reintegration of the
+        non-deductible portion of the employer's provident fund. This is the
+        basis for calculating income-related benefits."
+      description.fr:
+        L'assiette des cotisations avant la réintégration de la part non
+        déductible de la prévoyance employeur. C'est elle qui sert de base au
+        calcul des prévoyances proportionnelles au revenu.
+      titre.en: '[automatic] without foresight'
+      titre.fr: sans prévoyance
+  description.en: >
+    [automatic] The social security contribution base is the basis for
+    calculating a large number of employee contributions. It includes cash
+    remuneration (basic salary, allowances, bonuses, etc.) and benefits in kind
+    (housing, vehicle, etc.).
+  description.fr: >
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre
+    de cotisations sur le travail salarié. Elle comprend notamment les
+    rémunérations en espèces (salaire de base, indemnité, primes...) et les
+    avantages en nature (logement, véhicule...).
+  titre.en: '[automatic] plate'
+  titre.fr: assiette
+assimilé salarié . cotisations . assiette forfaitaire:
+  avec:
+    montant:
+      note.en: >
+        [automatic] There is a general rule governing lump-sum bases. When
+        remuneration is equal to or greater than
+
+        1.5 times the social security ceiling, the lump-sum base cannot be less than 70% of the remuneration.
+      note.fr: >
+        Il existe une règle générale d'encadrement des assiettes forfaitaires.
+        Lorsque la rémunération est supérieure ou égale à
+
+        1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+      titre.en: '[automatic] flat-rate contribution base'
+      titre.fr: assiette forfaitaire de cotisations
+    rémunération réelle:
+      question.en: '[automatic] Do you want to calculate contributions on actual
+        earnings (instead of the flat-rate basis)?'
+      question.fr:
+        Voulez-vous calculer les cotisations sur la rémunération réelle (au
+        lieu de la base forfaitaire) ?
+      titre.en: '[automatic] actual compensation'
+      titre.fr: rémunération réelle
+  titre.en: '[automatic] lump-sum basis'
+  titre.fr: assiette forfaitaire
+assimilé salarié . cotisations . autres employeur:
+  titre.en: '[automatic] Other employer charges'
+  titre.fr: Autres charges dues par l'employeur
+assimilé salarié . cotisations . catégories:
+  avec:
+    CSG-CRDS:
+      titre.en: '[automatic] CSG / CRDS'
+      titre.fr: CSG / CRDS
+    atmp:
+      titre.en: '[automatic] accidents at work &amp; occupational diseases'
+      titre.fr: accidents du travail & maladies professionnelles
+    convention collective:
+      titre.en: '[automatic] statutory or collective agreement contributions'
+      titre.fr: cotisations statutaires ou prévues par la convention collective
+    divers:
+      titre.en: '[automatic] employer contributions'
+      titre.fr: cotisations employeur
+    exonérations:
+      titre.en: '[automatic] contribution exemptions and reductions'
+      titre.fr: exonérations et allègements de cotisations
+    facultatives:
+      titre.en: '[automatic] optional social security contributions'
+      titre.fr: cotisations et contributions sociales facultatives
+    maladie:
+      titre.en: '[automatic] health'
+      titre.fr: santé
+    retraite:
+      titre.en: '[automatic] retirement'
+      titre.fr: retraite
+  titre.en: '[automatic] categories'
+  titre.fr: catégories
+assimilé salarié . cotisations . exonérations:
+  avec:
+    employeur:
+      description.en: '[automatic] With the exception of the overtime deduction,
+        employer contribution reduction schemes are mutually exclusive.'
+      description.fr: À l'exception de la déduction heure supplémentaire, les
+        dispositifs de réduction de cotisations patronales sont mutuellement
+        exclusif.
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+  titre.en: '[automatic] contribution exemptions and reductions'
+  titre.fr: exonérations et allègements de cotisations
+assimilé salarié . cotisations . exonérations . Acre:
+  titre.en: '[automatic] Acre'
+  titre.fr: Acre
+assimilé salarié . cotisations . exonérations . Acre . coefficient dégressif:
+  titre.en: '[automatic] degressive coefficient'
+  titre.fr: coefficient dégressif
+assimilé salarié . cotisations . exonérations . Acre . cotisations patronales exonérées pour 75% du PSS:
+  titre.en: "[automatic] employer's contributions exempt for 75% of PSS"
+  titre.fr: cotisations patronales exonérées pour 75% du PSS
+assimilé salarié . cotisations . exonérations . Acre . cotisations salariales exonérées pour 75% du PSS:
+  titre.en: '[automatic] employee contributions exempt for 75% of the PSS'
+  titre.fr: cotisations salariales exonérées pour 75% du PSS
+assimilé salarié . cotisations . exonérations . Acre . employeur:
+  titre.en: '[automatic] employer'
+  titre.fr: employeur
+assimilé salarié . cotisations . exonérations . Acre . salarié:
+  titre.en: '[automatic] employee'
+  titre.fr: salarié
+assimilé salarié . cotisations . exonérations . JEI:
+  description.en: |
+    [automatic] Exemption for young innovative companies (JEI).
+  description.fr: |
+    Exonération pour les jeunes entreprises innovantes (JEI).
+  titre.en: '[automatic] JEI exemption'
+  titre.fr: Exonération JEI
+assimilé salarié . cotisations . exonérations . T:
+  avec:
+    retraite complémentaire:
+      titre.en: '[automatic] supplementary pension'
+      titre.fr: retraite complémentaire
+    sécurité sociale et chômage:
+      titre.en: '[automatic] social security and unemployment'
+      titre.fr: sécurité sociale et chômage
+  titre.en: '[automatic] Coefficient T'
+  titre.fr: Coefficient T
+assimilé salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
+  titre.en: '[automatic] Exempt employer contributions Acre'
+  titre.fr: cotisations patronales exonérées Acre
+assimilé salarié . cotisations . exonérations . cotisations salariales exonérées Acre:
+  titre.en: '[automatic] Exempt employee contributions Acre'
+  titre.fr: cotisations salariales exonérées Acre
+assimilé salarié . cotisations . forfait social:
+  description.en: >
+    [automatic] The forfait social is a contribution paid by the employer. It is
+    deducted from remuneration or earnings not subject to social security
+    contributions, but subject to CSG.
+  description.fr: >
+    Le forfait social est une contribution versée par l'employeur. Elle est
+    prélevée sur les rémunérations ou gains non soumis aux cotisations et
+    contributions sociales, mais assujettis à la CSG.
+  titre.en: '[automatic] Social security contributions'
+  titre.fr: Forfait social
+assimilé salarié . cotisations . formation professionnelle:
+  description.en: "[automatic] This compulsory contribution is collected by the
+    OPCO (skills operators) designated by the company's contractual branch, or
+    by an interprofessional OPCO."
+  description.fr: Cette contribution obligatoire est collectée par l'OPCO
+    (opérateurs de compétences) désigné par la branche conventionnelle de
+    l'entreprise, ou à défaut à un OPCO interprofessionnel.
+  note.en: >
+    [automatic] An additional portion may be mandatory, depending on a company's
+    collective agreements.
+
+
+    &gt; For example, for the Syntec collective agreement, a supplement of 0.025% is mandatory.
+
+
+    The rate is raised to 1.3% for temporary employment agencies. In addition, specific rates apply when the 10-employee threshold is crossed, in order to limit the increase in the professional training contribution:
+
+
+    - rate of **0.55%** for employees crossing the threshold in years **N, N+1 and N+2**.
+
+    - a rate of **0.70%** if the contribution is exceeded in year **N+3** (1.3% for temporary employment agencies)
+
+    - rate of **0.90%** for crossing the threshold in year **N+4** (1.3% for temporary employment agencies)
+
+    - rate of **1%** for the crossing in year **N+5** (1.3% for temporary employment agencies)
+  note.fr: >
+    Une part supplémentaire peut-être obligatoire en fonction des accords
+    collectifs d'une entreprise.
+
+
+    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire.
+
+
+    Le taux est porté à 1,3 % pour les entreprises de travail temporaire. Par ailleurs en cas de franchissement du seuil d'effectifs de 10 salariés, des taux spécifiques s'appliquent afin de limiter la hausse de la contribution à la formation professionnelle :
+
+
+    - taux de **0,55 %** pour le franchissement en année **N, N+1 et N+2**
+
+    - taux de **0,70 %** pour le franchissement en année **N+3**  (1,3 % pour les entreprises de travail temporaire)
+
+    - taux de **0,90 %** pour le franchissement en année **N+4** (1,3 % pour les entreprises de travail temporaire)
+
+    - taux de **1 %** pour le franchissement en année **N+5** (1,3 % pour les entreprises de travail temporaire)
+  titre.en: '[automatic] professional training'
+  titre.fr: formation professionnelle
+assimilé salarié . cotisations . maladie:
+  avec:
+    employeur:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+        taux réduit:
+          titre.en: '[automatic] reduced rate'
+          titre.fr: taux réduit
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    salarié . taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  description.en: '[automatic] The sickness-maternity-disability insurance
+    contribution finances the benefits paid by the general Social Security
+    scheme in the event of incapacity for work. It is used to pay benefits in
+    kind and in cash.'
+  description.fr: La cotisation d’assurance maladie-maternité-invalidité finance
+    les prestations versées par le régime général de Sécurité sociale en cas
+    d’incapacité de travail. Elle permet le versement des prestations en nature
+    et en espèces.
+  titre.en: '[automatic] Social Security Sickness Maternity Disability Death'
+  titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
+assimilé salarié . cotisations . prévoyances:
+  avec:
+    conventionnelle:
+      titre.en: '[automatic] conventional'
+      titre.fr: conventionnelle
+    conventionnelle . employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    conventionnelle . salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    employeur:
+      avec:
+        non déductible socialement:
+          description.en:
+            "[automatic] Amount of employer's share of social security
+            contributions to be added back when calculating the contribution
+            base"
+          description.fr:
+            Montant de la part employeur des prévoyances à réintégrer pour
+            le calcul de l'assiette des cotisations
+          titre.en: '[automatic] Non-deductible employer-sponsored benefits'
+          titre.fr: Prévoyance employeur non déductible
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . cadres:
+      description.en: '[automatic] compulsory provident scheme for executives'
+      description.fr: prévoyance obligatoire pour les cadres
+      titre.en: '[automatic] frames'
+      titre.fr: cadres
+    incapacité invalidité décès:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
+      titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
+    salarié:
+      avec:
+        non déductible:
+          titre.en: '[automatic] Non-deductible employee benefits'
+          titre.fr: Prévoyance salarié non déductible
+        références:
+          titre.en: '[automatic] references'
+          titre.fr: références
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+  titre.en: '[automatic] supplementary pension plans'
+  titre.fr: prévoyances complémentaires
+assimilé salarié . cotisations . prévoyances . santé:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    montant:
+      description.en: >
+        [automatic] In addition to basic Social Security coverage, employees can
+        benefit from complementary health insurance provided by their company
+        (or the association that employs them). It is the employer who
+        negotiates the contract and monitors its progress with the insurer.
+        Complementary health insurance must cover a minimum range of benefits.
+      description.fr: >
+        En complément des garanties de base de la Sécurité sociale, un salarié
+        peut bénéficier de prestations de la complémentaire santé de son
+        entreprise (ou de l'association qui l'emploie). C'est l'employeur qui
+        négocie le contrat et assure son suivi auprès de l'organisme assureur.
+        La complémentaire santé d'entreprise doit prendre en charge un minimum
+        de garanties.
+      question.en: "[automatic] What is the total monthly amount (employee and
+        employer) of the company's complementary health insurance (mutuelle)?"
+      question.fr:
+        Quel est le montant mensuel total (salarié et employeur) de la
+        complémentaire santé de l'entreprise (mutuelle) ?
+      suggestions.alsace moselle basique.en: '[automatic] alsace moselle basique'
+      suggestions.alsace moselle basique.fr: alsace moselle basique
+      suggestions.basique.en: '[automatic] basic'
+      suggestions.basique.fr: basique
+      suggestions.élevé.en: '[automatic] high'
+      suggestions.élevé.fr: élevé
+      titre.en: '[automatic] supplementary health insurance (mutuelle)'
+      titre.fr: prévoyance complémentaire santé (mutuelle)
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
+    taux employeur:
+      avec:
+        contrôle min:
+          description.en:
+            "[automatic] The employer's share of the complementary health
+            insurance must be at least 50%."
+          description.fr:
+            La part employeur de la complémentaire santé doit être de 50% au
+            minimum
+          titre.en: '[automatic] min. control'
+          titre.fr: contrôle min
+      description.en: '[automatic] Employer-paid portion of complementary health
+        insurance. Must be at least 50%.'
+      description.fr:
+        Part de la complémentaire santé payée par l'employeur. Doit être
+        de 50% minimum
+      question.en:
+        '[automatic] How much of the supplementary health insurance is paid
+        for by the employer?'
+      question.fr: Quelle est la part de la complémentaire santé payée par l'employeur ?
+      suggestions.100%.en: '[automatic] 100%'
+      suggestions.100%.fr: 100%
+      suggestions.50%.en: '[automatic] 50%'
+      suggestions.50%.fr: 50%
+      titre.en: '[automatic] employer rate'
+      titre.fr: taux employeur
+  titre.en: '[automatic] complementary compulsory health insurance'
+  titre.fr: complémentaire garanties frais de santé obligatoire
+assimilé salarié . cotisations . retraite complémentaire:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . taux T1:
+      titre.en: '[automatic] T1 rate'
+      titre.fr: taux T1
+    employeur . taux T2:
+      titre.en: '[automatic] T2 rates'
+      titre.fr: taux T2
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    salarié . taux T1:
+      titre.en: '[automatic] T1 rate'
+      titre.fr: taux T1
+    salarié . taux T2:
+      titre.en: '[automatic] T2 rates'
+      titre.fr: taux T2
+  description.en: |
+    [automatic] Supplementary pension contributions.
+  description.fr: |
+    Cotisations de retraite complémentaire.
+  titre.en: '[automatic] supplementary pension'
+  titre.fr: retraite complémentaire
+assimilé salarié . cotisations . retraite complémentaire-CEG-CET:
+  avec:
+    employeur:
+      titre.en: '[automatic] employer'
+      titre.fr: employeur
+    salarié:
+      titre.en: '[automatic] employee'
+      titre.fr: salarié
+  titre.en: '[automatic] supplementary pension, CEG and CET'
+  titre.fr: retraite complémentaire, CEG et CET
+assimilé salarié . cotisations . taxe d'apprentissage:
+  avec:
+    assiette:
+      description.en:
+        "[automatic] Apprentices' salaries are partially exempt from the
+        apprenticeship tax."
+      description.fr:
+        Le salaire des apprentis est partiellement exonéré dans la base
+        de calcul de la taxe d'apprentissage.
+      titre.en: '[automatic] apprenticeship tax base'
+      titre.fr: assiette de la taxe d'apprentissage
+    base:
+      titre.en: '[automatic] base'
+      titre.fr: base
+    contribution supplémentaire:
+      avec:
+        CSA au taux majoré:
+          titre.en: '[automatic] CSA increased rate'
+          titre.fr: CSA au taux majoré
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] additional contribution to apprenticeship'
+      titre.fr: contribution supplémentaire à l'apprentissage
+    solde:
+      titre.en: '[automatic] balance'
+      titre.fr: solde
+  description.en:
+    '[automatic] The apprenticeship tax enables companies to finance
+    the costs of apprenticeships and technological and vocational training.'
+  description.fr: La taxe d'apprentissage permet de financer par les entreprises
+    les dépenses de l'apprentissage et des formations technologiques et
+    professionnelles
+  note.en: '[automatic] A complex tax, with exemptions not taken into account here.'
+  note.fr: Taxe complexe, comportant notamment des exonérations non prises en
+    compte ici.
+  titre.en: '[automatic] apprenticeship tax'
+  titre.fr: taxe d'apprentissage
+assimilé salarié . cotisations . versement mobilité:
+  description.en: '[automatic] Contribution on salaries to finance public transport.'
+  description.fr: Contribution sur les salaires destinée au financement des transports publics.
+  titre.en: '[automatic] mobility payment'
+  titre.fr: versement mobilité
+assimilé salarié . cotisations . vieillesse:
+  avec:
+    déplafonnée:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Social Security Unfunded old-age pension'
+      titre.fr: Sécurité Sociale Vieillesse déplafonnée
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    employeur . déplafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] uncapped'
+      titre.fr: déplafonnée
+    employeur . plafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] capped'
+      titre.fr: plafonnée
+    plafonnée:
+      avec:
+        employeur:
+          titre.en: '[automatic] employer'
+          titre.fr: employeur
+        salarié:
+          titre.en: '[automatic] employee'
+          titre.fr: salarié
+      titre.en: '[automatic] Social Security Old-age ceiling'
+      titre.fr: Sécurité Sociale Vieillesse plafonnée
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+    salarié . déplafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] uncapped'
+      titre.fr: déplafonnée
+    salarié . plafonnée:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] capped'
+      titre.fr: plafonnée
+  description.en:
+    '[automatic] Old-age pension contribution for the basic employee
+    pension scheme.'
+  description.fr: Cotisation vieillesse pour le régime de retraite de base des salariés.
+  titre.en: '[automatic] old age'
+  titre.fr: vieillesse
+assimilé salarié . exonérations:
+  titre.en: '[automatic] exemptions'
+  titre.fr: exonérations
+assimilé salarié . exonérations . Acre:
+  description.en: >-
+    [automatic] Assistance for setting up or taking over a business (Acre)
+    consists of a partial exemption from social security contributions, known as
+    the "start-up exemption", for a period of 12 months.
+
+
+    It is **automatic** for **companies and sole proprietorships** (subject to certain conditions, such as not having benefited from it in the last three years).
+  description.fr: >-
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d’activité pendant 12 mois.
+
+
+    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+  question.en: '[automatic] Did you benefit from Acre?'
+  question.fr: Bénéficiez-vous de l’Acre ?
+  titre.en: '[automatic] Acre'
+  titre.fr: Acre
+assimilé salarié . exonérations . JEI:
+  description.en: >-
+    [automatic] The Young Innovative Company (JEI) status was created by the
+    French Finance Act for 2004, and enables SMEs under 8 years of age devoting
+    at least 20% of their costs to R&amp;D to benefit from an exemption from
+    social security contributions.
+
+
+    The exemption can be applied to remuneration paid to :
+
+    - employees for whom the employer is liable to pay unemployment insurance contributions
+
+    - corporate officers who are primarily involved in the company's research and development project
+
+
+    By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
+  description.fr: >-
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 20% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier
+    d'une exonération de cotisations sociales.
+
+
+    L’exonération peut s’appliquer sur les rémunérations versées :
+
+    - aux salariés pour lesquels l’employeur est soumis à l’obligation d’assurance chômage
+
+    - aux mandataires sociaux qui participent, à titre principal, au projet de recherche et de développement de l’entreprise
+
+
+    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
+  question.en:
+    '[automatic] Do you qualify for the Young Innovative Company (JEI)
+    tax exemption?'
+  question.fr: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
+  titre.en: '[automatic] JEI'
+  titre.fr: JEI
+assimilé salarié . régimes spécifiques:
+  titre.en: '[automatic] specific regimes'
+  titre.fr: régimes spécifiques
+assimilé salarié . régimes spécifiques . alsace moselle:
+  description.en: >
+    [automatic] We consider that an employee is affiliated to the Alsace-Moselle
+    scheme when the establishment in which he or she works is located in these
+    départements.
+
+
+    Please note: this is a **simplification**: affiliation is more complicated than that, see the exact conditions [on the scheme's website](https://regime-local.fr/affiliation/).
+  description.fr: >
+    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand
+    l'établissement dans lequel il travaille est situé dans ces départements.
+
+
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](https://regime-local.fr/affiliation/).
+  titre.en: '[automatic] Alsace-Moselle regime'
+  titre.fr: Régime Alsace-Moselle
+assimilé salarié . régimes spécifiques . alsace moselle . ATMP:
+  avec:
+    seuil taux mixte ou individuel:
+      titre.en: '[automatic] threshold mixed or individual rate'
+      titre.fr: seuil taux mixte ou individuel
+    taux fonctions support:
+      titre.en: '[automatic] support function rate'
+      titre.fr: taux fonctions support
+  titre.en: '[automatic] ATMP'
+  titre.fr: ATMP
+assimilé salarié . régimes spécifiques . taux réduits:
+  description.en: >
+    [automatic] Employment in certain professions gives rise to the payment of
+    social security contributions at reduced rates.
+
+    Social Security contributions at reduced rates. These include
+
+    - performing artists,
+
+    - models,
+
+    - professional journalists and freelancers,
+
+    - salaried medical professionals.
+  description.fr: |
+    L’emploi de certaines professions donne lieu au paiement des cotisations de
+    Sécurité sociale à taux réduits. Sont notamment concernés :
+    - les artistes du spectacle,
+    - les mannequins,
+    - les journalistes professionnels et les pigistes,
+    - les professions médicales salariées.
+  question.en: '[automatic] Does the employee benefit from reduced contribution rates?'
+  question.fr: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  titre.en: '[automatic] reduced rates special cases'
+  titre.fr: taux réduits cas particuliers
+assimilé salarié . régimes spécifiques . taux réduits . profession:
+  avec:
+    VRP multicarte:
+      description.en: >
+        [automatic] Concerns travelers, sales representatives and salesmen (VRP)
+        with multiple cards.
+      description.fr: >
+        Concerne les voyageurs, représentants et placiers (VRP) à cartes
+        multiples.
+      titre.en: '[automatic] Multi-brand sales representative'
+      titre.fr: VRP multicarte
+    artiste du spectacle:
+      description.en: >
+        [automatic] Applies only to artists working for performing arts
+        employers.
+
+        Technicians are not concerned.
+      description.fr: |
+        Concerne uniquement les artistes des employeurs du spectacle vivant.
+        Les techniciens ne sont pas concernés.
+      titre.en: '[automatic] performance artist'
+      titre.fr: artiste du spectacle
+    journaliste:
+      description.en: >
+        [automatic] Concerns freelance employees and journalists and assimilated
+        for the following employers:
+
+        - newspapers
+
+        - press agencies
+
+        - radio and television broadcasting companies
+      description.fr: >
+        Concerne les salariés pigistes et journalistes et assimilés pour les
+        employeurs suivants :
+
+        - journaux d’information
+
+        - agences de presse
+
+        - entreprises de radiodiffusion et de télévision
+      titre.en: '[automatic] journalist'
+      titre.fr: journaliste
+    mannequin:
+      description.en: |
+        [automatic] Applies to all models receiving remuneration.
+        mon-entreprise does not manage contributions on royalties.
+      description.fr: |
+        Concerne tout mannequin percevant une rémunération.
+        mon-entreprise ne gère pas les cotisations sur les royalties.
+      titre.en: '[automatic] model'
+      titre.fr: mannequin
+    profession médicale:
+      description.en: >
+        [automatic] Concerns members of the medical professions and salaried
+        physicians who work
+
+        regularly and simultaneously** for several employers under the
+
+        several employers under the general scheme.
+      description.fr: >
+        Concerne les membres des professions médicales et les médecins salariés
+        qui exercent
+
+        leur activité à **temps partiel régulièrement et simultanément** pour
+
+        plusieurs employeurs relevant du régime général.
+      titre.en: '[automatic] medical profession'
+      titre.fr: profession médicale
+  question.en:
+    "[automatic] What is the employee's occupation for the application
+    of reduced contribution rates?"
+  question.fr: Quelle est la profession du salarié pour l'application de taux de
+    cotisations réduits ?
+  titre.en: '[automatic] profession'
+  titre.fr: profession
+assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
+  avec:
+    cotisations ATMP taux:
+      titre.en: '[automatic] ATMP contributions rates'
+      titre.fr: cotisations ATMP taux
+    cotisations ATMP taux minimum:
+      titre.en: '[automatic] ATMP contributions minimum rate'
+      titre.fr: cotisations ATMP taux minimum
+    cotisations FNAL taux:
+      titre.en: '[automatic] FNAL contributions rate'
+      titre.fr: cotisations FNAL taux
+    cotisations allocations familiales taux:
+      titre.en: '[automatic] family allowance contributions rates'
+      titre.fr: cotisations allocations familiales taux
+    cotisations maladie employeur taux:
+      titre.en: '[automatic] employer health contribution rates'
+      titre.fr: cotisations maladie employeur taux
+    cotisations maladie salarié taux:
+      titre.en: '[automatic] employee health contribution rate'
+      titre.fr: cotisations maladie salarié taux
+    cotisations versement mobilité:
+      titre.en: '[automatic] contributions mobility payment'
+      titre.fr: cotisations versement mobilité
+    cotisations vieillesse employeur déplafonnée taux:
+      titre.en: '[automatic] unfunded old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur déplafonnée taux
+    cotisations vieillesse employeur plafonnée taux:
+      titre.en: '[automatic] capped old-age employer contributions rate'
+      titre.fr: cotisations vieillesse employeur plafonnée taux
+    cotisations vieillesse salarié déplafonnée taux:
+      titre.en: '[automatic] unfunded employee old-age contributions rate'
+      titre.fr: cotisations vieillesse salarié déplafonnée taux
+    cotisations vieillesse salarié plafonnée taux:
+      titre.en: '[automatic] capped employee pension contributions rate'
+      titre.fr: cotisations vieillesse salarié plafonnée taux
+  titre.en: '[automatic] rate reduction'
+  titre.fr: réduction de taux
+assimilé salarié . régimes spécifiques . taxe sur les salaires:
+  description.en:
+    '[automatic] The French payroll tax (taxe sur les salaires) is a
+    progressive tax created in 1948 that certain employers must pay on the wages
+    they distribute.'
+  description.fr:
+    La taxe sur les salaires en France est un impôt progressif créé
+    en 1948 que certains employeurs doivent acquitter sur les salaires qu'ils
+    distribuent.
+  note.en: '[automatic] We do not implement the specific rates for overseas
+    territories, nor the discount.'
+  note.fr: Nous n'implémentons pas les taux spécifiques pour l'Outre-mer, ni la décôte
+  titre.en: '[automatic] payroll tax'
+  titre.fr: taxe sur les salaires
+assimilé salarié . rémunération:
+  titre.en: '[automatic] compensation'
+  titre.fr: rémunération
+assimilé salarié . rémunération . avantages en nature:
+  avec:
+    autres:
+      avec:
+        montant:
+          question.en: |
+            [automatic] How much are these other benefits?
+          question.fr: |
+            Quel est le montant de ces autres avantages ?
+          suggestions.🚗 véhicule.en: '[automatic] 🚗 vehicle'
+          suggestions.🚗 véhicule.fr: 🚗 véhicule
+          titre.en: '[automatic] other'
+          titre.fr: autres
+      question.en: >
+        [automatic] Are there any other benefits in kind (housing, vehicle,
+        discount, etc.)?
+      question.fr: >
+        Y a-t-il d'autres avantages en natures (logement, véhicule,
+        réduction...) ?
+      titre.en: '[automatic] other'
+      titre.fr: autres
+    montant:
+      description.en: >
+        [automatic] Benefits in kind are subject to contributions and income
+        tax. They are taken into account to verify that the minimum wage has
+        been reached.
+      description.fr: >
+        Les avantages en nature sont soumis aux cotisations et à l'impôt sur le
+        revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
+        atteint.
+      titre.en: '[automatic] Benefits in kind'
+      titre.fr: Avantages en nature
+    nourriture:
+      avec:
+        montant:
+          titre.en: '[automatic] food'
+          titre.fr: nourriture
+        montant . repas forfaitaire:
+          titre.en: '[automatic] lump sum'
+          titre.fr: montant forfaitaire
+        repas par mois:
+          question.en: |
+            [automatic] How many meals per month are paid for by the company?
+          question.fr: |
+            Combien de repas par mois sont payés par l'entreprise ?
+          suggestions.1 par jour.en: '[automatic] 1 per day'
+          suggestions.1 par jour.fr: 1 par jour
+          suggestions.2 par jour.en: '[automatic] 2 per day'
+          suggestions.2 par jour.fr: 2 par jour
+          titre.en: '[automatic] meals per month'
+          titre.fr: repas par mois
+      description.en: >
+        [automatic] Luncheon vouchers are not considered as a benefit in kind
+
+        but a reimbursement of expenses.
+
+
+        A meal at a company restaurant or canteen, which you manage or subsidize
+
+        subsidized by you, in return for a contribution from the employee, constitutes a
+
+        a benefit in kind.
+
+
+        When the company gives an allowance for meals during business trips
+
+        is not a benefit in kind, but a business expense.
+
+        expenses.
+      description.fr: >
+        Les titres-restaurant ne sont pas considérés comme un avantage en nature
+
+        mais comme un remboursement de frais.
+
+
+        Le repas d’un restaurant d’entreprise ou une cantine, que vous gérez ou
+
+        subventionnez moyennant une participation du salarié, constitue selon les
+
+        cas un avantage en nature.
+
+
+        Lorsque l'entreprise donne une allocation pour les repas pendant les
+
+        déplacements professionnels ce n'est pas un avantage en nature, mais un
+
+        frais professionnels.
+      question.en: |
+        [automatic] Does the company provide free meals?
+      question.fr: |
+        L'entreprise fournit-elle gratuitement des repas ?
+      titre.en: '[automatic] food'
+      titre.fr: nourriture
+    ntic:
+      avec:
+        abonnements:
+          question.en:
+            '[automatic] What is the cost of the subscription (mobile package,
+            etc.) covered by the employer?'
+          question.fr:
+            Quel est le coût de l'abonnement (forfait mobile, etc.) pris en
+            charge par l'employeur ?
+          suggestions.aucun.en: '[automatic] no'
+          suggestions.aucun.fr: aucun
+          suggestions.international.en: '[automatic] international'
+          suggestions.international.fr: international
+          suggestions.standard.en: '[automatic] standard'
+          suggestions.standard.fr: standard
+          titre.en: '[automatic] subscriptions'
+          titre.fr: abonnements
+        coût appareils:
+          question.en: |
+            [automatic] What is the total new cost of the equipment provided?
+          question.fr: |
+            Quel est le coût total neuf des appareils mis à disposition ?
+          suggestions.💻 + 📱✨.en: '[automatic] 💻 + 📱✨'
+          suggestions.💻 + 📱✨.fr: 💻 + 📱✨
+          suggestions.💻.en: '[automatic] 💻'
+          suggestions.💻.fr: 💻
+          suggestions.📱.en: '[automatic] 📱'
+          suggestions.📱.fr: 📱
+          suggestions.📱✨ (haut de gamme).en: '[automatic] 📱✨ (high-end)'
+          suggestions.📱✨ (haut de gamme).fr: 📱✨ (haut de gamme)
+          titre.en: '[automatic] equipment costs'
+          titre.fr: coût appareils
+        montant:
+          description.en: >
+            [automatic] For NICT-type benefits in kind (computers, smartphones,
+
+            tablets, etc.), there is an annual lump-sum assessment corresponding to
+
+            10% of the purchase price. For example, for a telephone purchased at €850 inc.
+
+            with a €30/month subscription, the benefit in kind to be reported on the
+
+            the pay slip will be :
+
+
+            ```
+
+            [10% x (€850 + (€30 x 12 months)) ] / 12 months
+
+            ```
+
+            or €10.08
+          description.fr: >
+            Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
+
+            tablettes...), il y a une évaluation forfaitaire annuelle correspondant
+
+            à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC
+
+            avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur
+
+            le bulletin de paie sera de :
+
+
+            ```
+
+            [10 % x (850 € + (30 € x 12 mois)) ] / 12 mois
+
+            ```
+
+            soit 10,08 €
+          titre.en: '[automatic] NTIC tools'
+          titre.fr: outils NTIC
+      description.en: >
+        [automatic] The private use of NICT tools provided as part of a
+        permanent professional
+
+        constitutes a benefit in kind.
+
+
+        This benefit is included in the basis for calculating Social Security contributions.
+
+        contributions.
+
+
+        The reality of private use may be demonstrated either by a written document (employment contract
+
+        agreement, internal regulations, letter from the company's management
+
+        authorizing the employee to make private use of the tools), or from the existence
+
+        tools), or the existence of detailed invoices making it possible to establish
+
+        private use.
+      description.fr: >
+        L’usage privé des outils NTIC mis à disposition dans le cadre de
+        l’activité
+
+        professionnelle à titre permanent est constitutif d’un avantage en nature.
+
+
+        Cet avantage est inclus dans la base de calcul des cotisations de Sécurité
+
+        sociale.
+
+
+        La réalité de l’usage privé peut résulter soit d’un document écrit (contrat
+
+        de travail, accord d’entreprise, règlement intérieur, courrier de la
+
+        direction de l’entreprise autorisant le salarié à faire un usage privé des
+
+        outils), soit de l’existence de factures détaillées permettant d’établir
+
+        une utilisation privée.
+      question.en: >
+        [automatic] Does the company provide a free NICT tool (computer,
+        telephone, tablet, etc.)?
+      question.fr: >
+        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        (ordinateur, téléphone, tablette, etc.) ?
+      titre.en: '[automatic] ntic'
+      titre.fr: ntic
+  description.en: >
+    [automatic] Benefits in kind consist of the provision by the company of a
+    good or service to its employees.
+
+    of a good or service. They may be provided free of charge or
+
+    in return for a contribution from the beneficiary that is less than the actual value.
+
+
+    Benefits in kind must appear on the pay slip. It must be indicated
+
+    gross salary in order to be subject to contributions. Once the net taxable
+
+    taxable net salary, it will be deducted from the net salary to be paid.
+  description.fr: >
+    Les avantages en nature sont constitués par la fourniture par l’entreprise à
+    ses
+
+    travailleurs d’un bien ou service. La mise à disposition peut être gratuite ou
+
+    moyennant une participation du bénéficiant inférieure à leur valeur réelle.
+
+
+    L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au
+
+    niveau du salaire brut pour être soumis à cotisations. Après détermination du
+
+    salaire net imposable, il sera déduit du salaire net à verser.
+  question.en: '[automatic] Does the company provide benefits in kind (meals,
+    vehicle, telephone, discounts, accommodation, etc.)?'
+  question.fr:
+    L'entreprise fournit-elle des avantages en nature (repas, véhicule,
+    téléphone, réductions, logement...) ?
+  titre.en: '[automatic] Benefits in kind'
+  titre.fr: Avantages en nature
+assimilé salarié . rémunération . brute:
+  description.en: >
+    [automatic] Gross remuneration corresponds to the total amount received by
+    the
+
+    before deduction of social security contributions, the CSG (general social contribution)
+
+    social security contributions, the contribution sociale généralisée (CSG) and the contribution
+
+    contribution au remboursement de la dette sociale (CRDS).
+  description.fr: >
+    La rémunération brute correspond à l'intégralité des sommes perçues par le
+
+    dirigeant assimilé salarié avant déduction des cotisations de sécurité sociale
+
+    à sa charge, de la contribution sociale généralisée (CSG) et de la contribution
+
+    au remboursement de la dette sociale (CRDS).
+  titre.en: '[automatic] Gross remuneration'
+  titre.fr: Rémunération brute
+assimilé salarié . rémunération . impôt:
+  description.en: >
+    [automatic] Amount of income tax on the remuneration of an assimilated
+    employee
+
+    of a company subject to corporation tax (IS) and, in the case of calculation using the
+
+    and, in the case of calculation using the standard scale, the other taxable income of the
+
+    taxable income.
+
+
+    This simulator does not include the calculation of income tax for companies
+
+    companies subject to income tax (IR).
+  description.fr: |
+    Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
+    salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
+    cas du calcul avec le barème standard, des autres revenus imposables du
+    foyer fiscal.
+
+    Ce simulateur n'inclue pas le calcul de l’impôt sur les revenus pour les
+    entreprises soumises à l’impôt sur les revenus (IR).
+  titre.en: '[automatic] income tax'
+  titre.fr: impôt sur le revenu
+assimilé salarié . rémunération . montant net social:
+  description.en: >
+    [automatic] The net social amount, or NSA, corresponds to the reference
+    amount to be declared by
+
+    beneficiaries from February 1, 2024 to receive the Prime d'activité
+
+    and the revenu de solidarité active (RSA).
+
+
+    The result displayed is an estimate that does not take into account all the
+
+    your situation.
+  description.fr: >
+    Le montant net social, ou MNS, correspond au montant de référence à déclarer
+    par
+
+    les allocataires depuis le 1er février 2024 pour bénéficier de la Prime
+
+    d’activité et du revenu de solidarité active (RSA).
+
+
+    Le résultat affiché est une estimation qui ne tient pas compte de tous les
+
+    éléments de votre situation.
+  résumé.en: "[automatic] Amount to declare for Prime d'activité and RSA applications"
+  résumé.fr: Montant à déclarer pour les demandes de Prime d'activité et de RSA
+  titre.en: '[automatic] Net corporate amount'
+  titre.fr: Montant net social
+assimilé salarié . rémunération . nette:
+  question.en: '[automatic] What is your net salary?'
+  question.fr: Quelle est votre rémunération nette ?
+  résumé.en: '[automatic] After deduction of contributions and expenses'
+  résumé.fr: Après déduction des cotisations, contributions et charges
+  titre.en: '[automatic] Net remuneration'
+  titre.fr: Rémunération nette
+assimilé salarié . rémunération . nette . après impôt:
+  description.en: >
+    [automatic] This is the salary paid into the employee's bank account, once
+    contributions and taxes have been deducted.
+  description.fr: >
+    C'est le salaire versé sur le compte bancaire du salarié, une fois les
+    cotisations et l'impôt prélevés.
+  question.en: "[automatic] What is the employee's net income after tax?"
+  question.fr: Quel est le revenu net du salarié après impôt ?
+  résumé.en: '[automatic] Net salary paid'
+  résumé.fr: Le salaire net payé
+  titre.en: '[automatic] Net salary after tax'
+  titre.fr: Salaire net après impôt
+assimilé salarié . rémunération . nette . imposable:
+  avec:
+    sans déductions:
+      description.en: '[automatic] Net taxable income before exemptions and deductions'
+      description.fr: Le net imposable avant les exonérations et déductions
+      titre.en: '[automatic] without deductions'
+      titre.fr: sans déductions
+  description.en: |
+    [automatic] This is the base used to calculate income tax.
+  description.fr: |
+    C'est la base utilisée pour calculer l'impôt sur le revenu.
+  titre.en: '[automatic] Net taxable salary'
+  titre.fr: Salaire net imposable
+assimilé salarié . rémunération . nette . à payer avant impôt:
+  description.en: >-
+    [automatic] This is the amount that a salaried executive receives at the end
+    of the month before paying income tax.
+
+    Also known as net salary before tax.
+  description.fr: >-
+    C'est le montant que le dirigeant assimilé salarié touche à la fin du mois
+    avant de payer l'impôt sur le revenu.
+
+    Aussi appelé salaire net à payer avant impôt.
+  résumé.en: '[automatic] Net salary before tax'
+  résumé.fr: Salaire net avant impôt
+  titre.en: '[automatic] Net salary'
+  titre.fr: Salaire net
+assimilé salarié . rémunération . salaire brut:
+  titre.en: '[automatic] gross salary'
+  titre.fr: salaire brut
+assimilé salarié . rémunération . totale:
+  description.en: >
+    [automatic] This is how much the company spends on executive remuneration.
+
+    This "super-gross" remuneration includes all social security contributions payable.
+
+    It can also be considered as the monetary value of the executive's work.
+  description.fr: >
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+
+    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+  question.en: '[automatic] How much do you expect to earn in total?'
+  question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
+  résumé.en: '[automatic] Total paid by the company for executive compensation'
+  résumé.fr: Total payé par l’entreprise pour la rémunération du dirigeant
+  titre.en: '[automatic] Total compensation'
+  titre.fr: Rémunération totale
+date:
+  titre.en: '[automatic] date'
+  titre.fr: date
+durée légale du travail:
+  avec:
+    mensuelle:
+      titre.en: '[automatic] monthly'
+      titre.fr: mensuelle
+  titre.en: '[automatic] legal working hours'
+  titre.fr: durée légale du travail
+entreprise:
+  titre.en: '[automatic] company'
+  titre.fr: entreprise
+entreprise . SIREN:
+  description.en: >
+    [automatic] The Siren number is a 9-digit number unique to each company.
+    Example: 401237780
+  description.fr: >
+    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise.
+    Exemple : 401237780
+  titre.en: '[automatic] SIREN'
+  titre.fr: SIREN
+entreprise . TVA:
+  description.en: >
+    [automatic] Certain types of company are not subject to VAT.
+
+    These companies pay payroll tax in return.
+
+
+    Examples include banking, financial and insurance establishments. This is also the case for teaching activities.
+
+
+    **Note**: don't confuse VAT exemption (which depends on your activity) with the basic tax-free regime (which depends on your sales).
+  description.fr: >
+    Certains types d’entreprises ne sont pas assujetties à la TVA.
+
+    Ces dernières payent la taxe sur les salaires en contrepartie.
+
+
+    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
+
+
+    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
+  question.en: '[automatic] Is the company subject to VAT?'
+  question.fr: L’entreprise est-elle assujettie à la TVA ?
+  titre.en: '[automatic] VAT'
+  titre.fr: TVA
+entreprise . catégorie juridique:
+  note.en: '[automatic] Here we use the legal categories defined by INSEE.'
+  note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
+  titre.en: '[automatic] legal category'
+  titre.fr: catégorie juridique
+entreprise . catégorie juridique . EI:
+  titre.en: '[automatic] Sole proprietorships (including auto-entrepreneurs)'
+  titre.fr: Entreprise individuelle (y compris auto-entrepreneurs)
+entreprise . catégorie juridique . SARL:
+  titre.en: '[automatic] SARL or EURL'
+  titre.fr: SARL ou EURL
+entreprise . catégorie juridique . SAS:
+  titre.en: '[automatic] SAS or SASU'
+  titre.fr: SAS ou SASU
+entreprise . catégorie juridique . SELARL:
+  titre.en: '[automatic] SELARL or SELARLU'
+  titre.fr: SELARL ou SELARLU
+entreprise . catégorie juridique . SELAS:
+  titre.en: '[automatic] SELAS or SELASU'
+  titre.fr: SELAS ou SELASU
+entreprise . catégorie juridique . association:
+  titre.en: '[automatic] association'
+  titre.fr: association
+entreprise . catégorie juridique . autre:
+  titre.en: '[automatic] other'
+  titre.fr: autre
+entreprise . code catégorie juridique:
+  description.en:
+    "[automatic] Code representing the company's legal category, as
+    defined by INSEE."
+  description.fr: Code représentant la catégorie juridique de l'entreprise, tel
+    que défini par l'INSEE.
+  titre.en: '[automatic] legal category code'
+  titre.fr: code catégorie juridique
+entreprise . date de création:
+  description.en: >
+    [automatic] The start date (or date of creation) is set when you register
+    your business.
+
+    you register your company.
+
+
+    You can [fill in your company](/), to pre-fill this information
+
+    this information automatically.
+
+
+    If you don't have the exact day, the month is usually enough for a good
+
+    approximation.
+  description.fr: |
+    La date de début d’activité (ou date de création) est fixée lors de la
+    déclaration de votre entreprise.
+
+    Vous pouvez [renseigner votre entreprise](/), pour préremplir
+    automatiquement cette information.
+
+    Si vous n’avez pas le jour exact, le mois suffit en général pour une bonne
+    approximation.
+  question.en: '[automatic] When did you start?'
+  question.fr: Quelle est votre date de début d’activité ?
+  suggestions.Début 2024.en: '[automatic] Early 2024'
+  suggestions.Début 2024.fr: Début 2024
+  suggestions.Début d’année.en: '[automatic] Beginning of the year'
+  suggestions.Début d’année.fr: Début d’année
+  suggestions.Il y a plus de 10 ans.en: '[automatic] Over 10 years ago'
+  suggestions.Il y a plus de 10 ans.fr: Il y a plus de 10 ans
+  titre.en: '[automatic] creation date'
+  titre.fr: date de création
+entreprise . date de création . contrôle date future:
+  description.en: "[automatic] We can't see that far into the future"
+  description.fr: Nous ne pouvons voir aussi loin dans le futur
+  titre.en: '[automatic] control future date'
+  titre.fr: contrôle date future
+entreprise . date de création . contrôle date passée:
+  description.en: "[automatic] It's a very old company! Are you sure you didn't
+    make a mistake when entering it?"
+  description.fr: Il s’agit d’une très vieille entreprise ! Êtes-vous sûr de ne
+    pas vous être trompé dans la saisie ?
+  titre.en: '[automatic] control past date'
+  titre.fr: contrôle date passée
+entreprise . durée d'activité en début d'année:
+  titre.en: '[automatic] duration of activity at start of year'
+  titre.fr: durée d'activité en début d'année
+entreprise . imposition:
+  question.en: '[automatic] How is your company taxed?'
+  question.fr: Quel est le type d’imposition de votre entreprise ?
+  titre.en: '[automatic] taxation'
+  titre.fr: imposition
+entreprise . imposition . IR:
+  description.en: >
+    [automatic] Your company's income is subject to income tax, like your
+    household's other income.
+
+    other household income.
+
+
+    The result is determined when you fill in the **liasse fiscale** (also known as the
+
+    tax return). This is done by your chartered accountant.
+
+
+    If your company makes money, the result is called **profit**. It
+
+    is added to other taxable income (if any):
+
+    **your income tax is higher**.
+
+
+    If your company loses money, the result is called a **deficit**. It
+
+    reduces your household's taxable income:
+
+    **your income tax is lower**.
+
+
+    Please note: with income tax, there is no tax difference between your household income and that of your partner.
+
+    between your household income and that of your company.
+  description.fr: >
+    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme
+    les
+
+    autres revenus de votre foyer.
+
+
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
+
+    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
+
+    est ajouté aux autres revenus imposables (s’ils existent) :
+
+    **votre impôt sur le revenu est plus élevé**.
+
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
+
+    vient réduire le montant du revenu imposable de votre ménage :
+
+    **votre impôt sur le revenu est moins élevé**.
+
+
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
+
+    entre les revenus de votre foyer et ceux de votre entreprise.
+  titre.en: '[automatic] Income tax'
+  titre.fr: Impôt sur le revenu
+entreprise . imposition . IR . type de bénéfices:
+  question.en: '[automatic] What kind of profits does your company make?'
+  question.fr: Quel est le type de bénéfices de votre entreprise ?
+  titre.en: '[automatic] type of benefits'
+  titre.fr: type de bénéfices
+entreprise . imposition . IR . type de bénéfices . BA:
+  titre.en: '[automatic] BA'
+  titre.fr: BA
+entreprise . imposition . IR . type de bénéfices . BA possible:
+  titre.en: '[automatic] BA possible'
+  titre.fr: BA possible
+entreprise . imposition . IR . type de bénéfices . BIC:
+  titre.en: '[automatic] BIC'
+  titre.fr: BIC
+entreprise . imposition . IR . type de bénéfices . BIC et BNC possibles:
+  titre.en: '[automatic] BIC and BNC possible'
+  titre.fr: BIC et BNC possibles
+entreprise . imposition . IR . type de bénéfices . BNC:
+  titre.en: '[automatic] BNC'
+  titre.fr: BNC
+entreprise . imposition . IS:
+  description.en: >-
+    [automatic] 
+
+    Your company's **results** are subject to corporate income tax.
+
+
+    If your company loses money, the result is called a **deficit**. It
+
+    will not have to pay corporate income tax.
+
+
+    If your company makes money, the result is called **profit**.
+
+    It will be taxed at a **fixed rate**.
+
+
+    Taxable income is determined when you fill in your **liasse fiscale** (tax return).
+
+    (also known as an income tax return). This is done by the chartered accountant.
+
+
+
+    Please note: there are **two ways to earn remuneration** with a company that pays income tax
+
+    company:
+      - You can pay yourself a salary as a director during the year.
+      the year. This remuneration is deducted (subtracted) from your income to calculate
+      your company's taxable profit. On the other hand, this remuneration is
+      added to your household's taxable income for income tax purposes.
+      income tax.
+      - You can also pay yourself dividends from previous years' profits.
+      previous years. You will have to pay a fixed tax on these: this is known as the "flat tax".
+      known as "flat tax".
+
+      In all cases, you will have to pay **social contributions** on the income you
+      income you receive.
+  description.fr: >-
+
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
+
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
+
+    n’aura pas à payer d’impôt sur les sociétés.
+
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+
+    Il sera imposé à un **taux fixe**.
+
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
+
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+
+
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
+
+    sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
+      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
+      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
+      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
+      revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
+      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
+      ce que l’on appelle la "flat tax".
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
+      revenus que vous touchez.
+  titre.en: '[automatic] Corporate income tax'
+  titre.fr: Impôt sur les sociétés
+entreprise . nom:
+  titre.en: '[automatic] name'
+  titre.fr: nom
+entreprise . salariés:
+  titre.en: '[automatic] employees'
+  titre.fr: salariés
+entreprise . salariés . effectif:
+  avec:
+    seuil:
+      avec:
+        moins de 2000:
+          titre.en: '[automatic] between 250 and 1 999'
+          titre.fr: entre 250 et 1 999
+        moins de 250:
+          titre.en: '[automatic] between 150 and 249'
+          titre.fr: entre 150 et 249
+        moins de 5:
+          titre.en: '[automatic] less than 5'
+          titre.fr: moins de 5
+        moins de 50:
+          titre.en: '[automatic] between 20 and 49'
+          titre.fr: entre 20 et 49
+        plus de 2000:
+          titre.en: '[automatic] 2,000 and over'
+          titre.fr: 2 000 et plus
+      description.en: >
+        [automatic] Many employer contributions vary according to the size of
+        the company's workforce.
+
+        If a threshold is exceeded, it is only taken into account if it has been reached or exceeded for 5 consecutive calendar years.
+      description.fr: >
+        De nombreuses cotisations patronales varient selon l’effectif de
+        l’entreprise.
+
+        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
+      question.en: '[automatic] How many employees does the company have?'
+      question.fr: Quel est l’effectif de l’entreprise ?
+      titre.en: '[automatic] headcount threshold'
+      titre.fr: seuil d’effectif
+  titre.en: '[automatic] workforce'
+  titre.fr: effectif
+entreprise . salariés . ratio alternants:
+  description.en: >
+    [automatic] This fraction determines the additional apprenticeship
+    contribution for the companies concerned.
+  description.fr: >
+    Cette fraction détermine la contribution supplémentaire pour l’apprentissage
+    pour les entreprises concernées.
+  question.en:
+    "[automatic] What percentage of the company's average workforce is
+    made up of work-study contracts?"
+  question.fr: Quelle est la fraction de contrats d’alternance dans l’effectif
+    moyen de l’entreprise ?
+  suggestions.1%.en: '[automatic] 1%'
+  suggestions.1%.fr: 1%
+  suggestions.5%.en: '[automatic] 5%'
+  suggestions.5%.fr: 5%
+  titre.en: '[automatic] Fraction of alternating workers'
+  titre.fr: Fraction d’alternants
+impôt:
+  titre.en: '[automatic] tax'
+  titre.fr: impôt
+impôt . barème standard:
+  titre.en: '[automatic] standard scale'
+  titre.fr: barème standard
+impôt . barème standard . CEHR:
+  titre.en: '[automatic] CEHR'
+  titre.fr: CEHR
+impôt . barème standard . décote:
+  description.en: '[automatic] A discount is applied after the income tax scale,
+    to reduce tax on low incomes.'
+  description.fr: Une décote est appliquée après le barème de l’impôt sur le
+    revenu, pour réduire l’impôt des bas revenus.
+  titre.en: '[automatic] discount'
+  titre.fr: décote
+impôt . barème standard . impôt brut:
+  titre.en: '[automatic] gross tax'
+  titre.fr: impôt brut
+impôt . barème standard . impôt brut . par part:
+  description.en: >
+    [automatic] This is the famous income tax scale. It's a marginal scale with
+    5
+
+    brackets.
+
+    A contribution on high incomes adds two further brackets.
+
+
+    Note: for an annual income of €100,000, the taxpayer will not pay
+
+    41,000€ in tax (the 4th bracket rate is 41%)! This 41% is applied
+
+    only to the portion of income in excess of €72,617.
+  description.fr: >
+    Voici le fameux barème de l’impôt sur le revenu. C’est un barème marginal à
+    5
+
+    tranches.
+
+    Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
+
+
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas
+
+    41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
+
+    uniquement à la part de ses revenus supérieure à 72 617 €.
+  titre.en: '[automatic] per share'
+  titre.fr: par part
+impôt . barème standard . impôt brut . sans parts rattachées:
+  titre.en: '[automatic] without attached shares'
+  titre.fr: sans parts rattachées
+impôt . barème standard . impôt net:
+  titre.en: '[automatic] net tax'
+  titre.fr: impôt net
+impôt . barème standard . impôt net . après décote:
+  titre.en: '[automatic] after discount'
+  titre.fr: après décote
+impôt . barème standard . impôt net . après plafonnement effets quotient familial:
+  titre.en: '[automatic] after capping family allowance effects'
+  titre.fr: après plafonnement effets quotient familial
+impôt . barème standard . quotient familial:
+  titre.en: '[automatic] family quotient'
+  titre.fr: quotient familial
+impôt . barème standard . quotient familial . plafond avantage:
+  avec:
+    plafonnement général:
+      titre.en: '[automatic] general ceiling'
+      titre.fr: plafonnement général
+    plafonnement parent isolé:
+      description.en: >
+        [automatic] Family quotient benefit for the first dependent child of
+        single or divorced taxpayers living alone.
+
+        single or divorced taxpayers living alone.
+      description.fr: |
+        Avantage de quotient familial procuré par le premier enfant à charge des
+        contribuables célibataires ou divorcés vivant seuls.
+      titre.en: '[automatic] single parent ceiling'
+      titre.fr: plafonnement parent isolé
+  titre.en: '[automatic] advantage ceiling'
+  titre.fr: plafond avantage
+impôt . barème standard . revenu brut global:
+  description.en: |
+    [automatic] Overall gross income is the sum of all income after deductions:
+    - net taxable salary
+    - profits (BIC and BNC)
+    - dividends
+
+    Our simulators do not yet include all the income to be included:
+    - pensions and retirement,
+    - agricultural profits (BA),
+    - property income,
+    - other income from movable property and capital gains on securities,
+    - real estate capital gains.
+  description.fr: >
+    Le revenu brut global est la somme de tous les revenus, après leur
+    abattement :
+
+    - salaire net imposable
+
+    - bénéfices (BIC et BNC)
+
+    - dividendes
+
+
+    Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
+
+    - pensions et retraites,
+
+    - bénéfices agricoles (BA),
+
+    - revenus fonciers,
+
+    - autres revenus mobiliers et plus-values sur valeurs mobilières,
+
+    - plus-values immobilières.
+  titre.en: '[automatic] gross aggregate income'
+  titre.fr: revenu brut global
+impôt . barème standard . revenu d'activité abattu:
+  description.en: >
+    [automatic] In the general case, tax is calculated after application of a
+    fixed lump-sum allowance.
+
+    fixed allowance. However, everyone can opt to declare their *actual* expenses, which will replace the default flat rate.
+
+    *actual expenses*, which will replace the default flat rate.
+  description.fr: |
+    Dans le cas général, l’impôt est calculé après l’application d’un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
+  titre.en: '[automatic] reduced business income'
+  titre.fr: revenu d'activité abattu
+impôt . barème standard . revenu net global:
+  titre.en: '[automatic] overall net income'
+  titre.fr: revenu net global
+impôt . barème standard . revenu net imposable:
+  description.en: >
+    [automatic] Net taxable income is overall net income after special
+    allowances.
+
+
+    You can benefit from a special allowance if you are in one of the following conditions 
+
+    following conditions:
+
+    - you are 65 or over,
+
+    - you are disabled,
+
+    - you are attaching a married or civil union child to your property.
+
+
+    These allowances are not yet implemented in our simulators.
+  description.fr: |
+    Le revenu net imposable est le revenu net global après abattements spéciaux.
+
+    Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
+    conditions suivantes :
+    - vous avez 65 ans ou plus,
+    - vous êtes invalide,
+    - vous rattachez votre enfant marié, pacsé ou chargé de famille.
+
+    Ces abattements ne sont pas encore implémentés dans nos simulateurs.
+  titre.en: '[automatic] net taxable income'
+  titre.fr: revenu net imposable
+impôt . barème standard . taux effectif:
+  titre.en: '[automatic] effective rate'
+  titre.fr: taux effectif
+impôt . domiciliation étranger non implémentée:
+  description.en: >
+    [automatic] Withholding tax for non-residents has not yet been implemented.
+    For
+
+    find out more, please refer to the [tax documentation](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
+  description.fr: >
+    La retenue à la source pour les non-résident n’est pas encore implémentée.
+    Pour
+
+    en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
+  titre.en: '[automatic] foreign domiciliation not implemented'
+  titre.fr: domiciliation étranger non implémentée
+impôt . foyer fiscal:
+  titre.en: '[automatic] taxable household'
+  titre.fr: foyer fiscal
+impôt . foyer fiscal . autres revenus imposables:
+  description.en: >
+    [automatic] Enter the amount of your household's other taxable income,
+    applying the necessary
+
+    applying the necessary deductions :
+
+    - flat-rate deduction of 10% or actual expenses for wages and salaries
+
+    remuneration paid to directors of companies subject to corporation tax;
+
+    - flat-rate 40% allowance on dividends subject to the standard income tax
+
+    income tax (not including dividends subject to the prélèvement forfaitaire 
+
+    prélèvement forfaitaire unique) ;
+
+    - flat-rate micro-tax allowance for income from self-employment and profits
+
+    profits subject to the micro-tax system.
+  description.fr: >
+    Renseignez ici le montant des autres revenus imposables de votre foyer, en y
+
+    appliquant les abattements nécessaires :
+
+    - abattement forfaitaire de 10 % ou frais réels pour les salaires et
+
+    rémunérations de dirigeants d’entreprises soumises à l’impôt sur les sociétés ;
+
+    - abattement forfaitaire de 40 % sur les dividendes soumis au barème standard de
+
+    l’impôt sur le revenu (ne pas inclure les dividendes soumis au prélèvement 
+
+    forfaitaire unique) ;
+
+    - abattement forfaitaire micro-fiscal pour les revenus d’auto-entreprise et les
+
+    bénéfices soumis au régime micro-fiscal.
+  question.en: '[automatic] What is the total amount of other taxable household income?'
+  question.fr: Quel est le montant total des autres revenus imposables du foyer fiscal ?
+  titre.en: '[automatic] other taxable income'
+  titre.fr: autres revenus imposables
+impôt . foyer fiscal . enfants à charge:
+  question.en: '[automatic] How many children are dependent on the tax household?'
+  question.fr: Combien d’enfants sont à charge du foyer fiscal ?
+  titre.en: '[automatic] dependent children'
+  titre.fr: enfants à charge
+impôt . foyer fiscal . nombre de parts:
+  titre.en: '[automatic] number of shares'
+  titre.fr: nombre de parts
+impôt . foyer fiscal . nombre de parts . majoration personne seule avec enfant:
+  description.en: '[automatic] Taxpayers who are single, divorced or separated,
+    who live alone and effectively support one or more children are entitled to
+    an additional half-share of family allowance.'
+  description.fr:
+    Les contribuables célibataires, divorcés ou séparés, qui vivent
+    seuls et supportent effectivement la charge d’un ou plusieurs enfants
+    bénéficient d’une demie-part supplémentaire de quotient familial.
+  titre.en: '[automatic] single person with child'
+  titre.fr: majoration personne seule avec enfant
+impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
+  description.en: >-
+    [automatic] A widow with dependent children benefits from an additional
+    share for the calculation of the family quotient, which corresponds to
+    maintaining the share of the deceased.
+
+    A widow with no dependent children, on the other hand, does not benefit from any increase.
+  description.fr: >-
+    Une personne veuve avec des enfants à charge bénéficie d’une part
+    supplémentaire pour le calcul du quotient familial, ce qui correspond au
+    maintient de la part de la personne décédée.
+
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d’aucune majoration.
+  titre.en: '[automatic] increase for widow with child'
+  titre.fr: majoration personne veuve avec enfant
+impôt . foyer fiscal . nombre de parts . principales:
+  titre.en: '[automatic] main'
+  titre.fr: principales
+impôt . foyer fiscal . nombre de parts . rattachées:
+  titre.en: '[automatic] related'
+  titre.fr: rattachées
+impôt . foyer fiscal . parent isolé:
+  question.fr:
+    variations:
+      - alors:
+          texte: Vivez-vous seul avec vos enfants ?
+        si: impôt . foyer fiscal . enfants à charge > 1
+      - sinon:
+          texte: Vivez-vous seul avec votre enfant ?
+  titre.en: '[automatic] single parent'
+  titre.fr: parent isolé
+impôt . foyer fiscal . situation de famille:
+  question.en: '[automatic] What is your family situation?'
+  question.fr: Quelle est votre situation familiale ?
+  titre.en: '[automatic] marital status'
+  titre.fr: situation de famille
+impôt . montant:
+  description.en: |
+    [automatic] Calculates income tax based on taxable income and any
+    taxable income and any earned income.
+  description.fr: |
+    Calcule le montant de l’impôt sur le revenu à partir d’un
+    revenu imposable et d’un éventuel revenu d’activité.
+  titre.en: '[automatic] Income tax'
+  titre.fr: Impôt sur le revenu
+impôt . méthode de calcul:
+  avec:
+    par défaut:
+      titre.en: '[automatic] by default'
+      titre.fr: par défaut
+  description.en: >
+    [automatic] We've implemented three ways of calculating income tax:
+
+    - the personalized rate*: indicated on your tax notice
+
+    - the neutral rate*: for a single person with no children
+
+    - *The standard rate scale*: the "official" formula used by the tax
+
+    tax authorities to obtain the tax rate
+
+
+    By filling in your personalized rate, you'll be as close as possible to your
+
+    situation. The neutral rate can be useful if you haven't
+
+    you have not sent your personalized rate to your employer, and you wish to
+
+    compare the simulator results with your pay slip. The standard scale
+
+    gives you a more accurate result than the neutral rate for a single person with no
+
+    child.
+  description.fr: >
+    Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
+
+    - *Le taux personnalisé* : indiqué sur votre avis d’imposition
+
+    - *Le taux neutre* : pour un célibataire sans enfant
+
+    - *Le barème standard * : la formule "officielle" utilisée par l’administration
+
+    fiscale pour obtenir le taux d’imposition
+
+
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre
+
+    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
+
+    n’avez pas transmis votre taux personnalisé à l’employeur et que vous souhaitez
+
+    comparer les résultats du simulateur à votre fiche de paie. Le barème standard
+
+    vous donne un résultat plus précis que le taux neutre pour un célibataire sans
+
+    enfant.
+  question.en: '[automatic] How would you like to calculate your income tax?'
+  question.fr: Comment souhaitez-vous calculer l’impôt sur le revenu ?
+  titre.en: '[automatic] calculation method'
+  titre.fr: méthode de calcul
+impôt . taux d'imposition:
+  titre.en: '[automatic] tax rates'
+  titre.fr: taux d'imposition
+impôt . taux neutre:
+  description.en: >
+    [automatic] This is the scale to be applied to the monthly taxable salary to
+    obtain the tax to be paid monthly for employees who do not wish to reveal
+    their tax rate to their company (this rate may reveal, for example,
+    substantial income from assets).
+  description.fr: >
+    C’est le barème à appliquer sur le salaire mensuel imposable pour obtenir
+    l’impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    leur entreprise leur taux d’imposition (ce taux peut révéler par exemple des
+    revenus du patrimoine importants).
+  note.en:
+    '[automatic] Please note that the 10% allowance is implicitly included
+    in this scale. The tax base is therefore the taxable salary, not the taxable
+    salary with allowance.'
+  note.fr:
+    Attention, l’abattement de 10% est inclus implicitement dans ce barème.
+    L’assiette est donc bien le salaire imposable, et non le salaire imposable
+    abattu.
+  titre.en: '[automatic] neutral rate'
+  titre.fr: taux neutre
+impôt . taux neutre . barème Guadeloupe Réunion Martinique:
+  titre.en: '[automatic] scale Guadeloupe Reunion Martinique'
+  titre.fr: barème Guadeloupe Réunion Martinique
+impôt . taux neutre . barème Guyane Mayotte:
+  titre.en: '[automatic] scale Guiana Mayotte'
+  titre.fr: barème Guyane Mayotte
+impôt . taux personnalisé:
+  description.en: |
+    [automatic] Your personalized average tax rate, which you can find on :
+      - pay slip
+      - a tax notice
+      - your personal space [impots.gouv.fr](https://impots.gouv.fr)
+  description.fr: |
+    Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
+      - une fiche de paie
+      - un avis d’imposition
+      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+  question.en: '[automatic] What is your tax rate?'
+  question.fr: Quel est votre taux d’imposition ?
+  titre.en: '[automatic] personalized rate'
+  titre.fr: taux personnalisé
+paramètres:
+  titre.en: '[automatic] settings'
+  titre.fr: paramètres
+paramètres . impôt:
+  titre.en: '[automatic] tax'
+  titre.fr: impôt
+paramètres . impôt . abattement revenu net global:
+  titre.en: '[automatic] overall net income allowance'
+  titre.fr: abattement revenu net global
+paramètres . impôt . revenu d'activité:
+  description.en: >
+    [automatic] This is the income to be used in calculating income tax using
+    the standard
+
+    standard tax scale, and to which a flat-rate deduction of 10% for professional
+
+    business expenses.
+
+
+    It must be entered for salaried employees, assimilated employees and directors subject to corporation tax.
+  description.fr: >
+    C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
+
+    barème standard et auquel appliquer un abattement forfaitaire de 10 % pour les
+
+    frais professionnels.
+
+
+    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l'IS.
+  titre.en: '[automatic] business income'
+  titre.fr: revenu d'activité
+paramètres . impôt . revenu imposable:
+  description.en: >
+    [automatic] This is the income to be taken into account for income tax
+    purposes, without
+
+    to calculate income tax.
+
+
+    It must be filled in for directors liable to income tax.
+  description.fr: |
+    C’est le revenu à prendre en compte, sans y appliquer d'abattement
+    supplémentaire, pour calculer l’impôt sur le revenu.
+
+    Il est à renseigner pour les dirigeants à l'IR.
+  titre.en: '[automatic] taxable income'
+  titre.fr: revenu imposable
+paramètres . impôt . taux neutre applicable:
+  titre.en: '[automatic] applicable neutral rate'
+  titre.fr: taux neutre applicable
+plafond sécurité sociale:
+  avec:
+    N-1:
+      titre.en: '[automatic] N-1'
+      titre.fr: N-1
+    annuel:
+      titre.en: '[automatic] annual'
+      titre.fr: annuel
+    horaire:
+      titre.en: '[automatic] schedule'
+      titre.fr: horaire
+    journalier:
+      titre.en: '[automatic] daily'
+      titre.fr: journalier
+  description.en: '[automatic] The Social Security ceiling is the maximum amount
+    of remuneration to be taken into account when calculating certain
+    contributions.'
+  description.fr: Le plafond de Sécurité sociale est le montant maximum des
+    rémunérations à prendre en compte pour le calcul de certaines cotisations.
+  titre.en: '[automatic] social security ceiling'
+  titre.fr: plafond sécurité sociale
+protection sociale:
+  description.en: >
+    [automatic] Social protection is made up of 5 main branches: sickness,
+    family, workplace accidents and occupational illnesses, retirement and
+    unemployment. There are also contributions for vocational training and
+    transport.
+  description.fr: >
+    La protection sociale est composée de 5 branches principales : maladie,
+    famille, accidents du travail et maladies professionnelles, retraite et
+    chômage. A cela s’ajoutent aussi les cotisations pour la formation
+    professionnelle et le transport.
+  titre.en: '[automatic] social protection'
+  titre.fr: protection sociale
+protection sociale . autres:
+  description.en: >
+    [automatic] All transversal contributions to the social system.
+
+
+    These include, for example, the CRDS (contribution pour le remboursement de la dette sociale)
+
+    social debt), which is a tax designed to pay down the Social Security debt
+
+    to ensure the viability of social protection for your children and grandchildren.
+
+    and grandchildren.
+  description.fr: >
+    Toutes les contributions transverses au système social.
+
+
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la
+
+    dette sociale) qui est un impôt destiné à résorber l’endettement de la Sécurité
+
+    sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants
+
+    et petits-enfants.
+  résumé.en: '[automatic] Other contributions to the social system.'
+  résumé.fr: Autres contributions au système social.
+  titre.en: '[automatic] other'
+  titre.fr: autres
+protection sociale . famille:
+  description.en: >
+    [automatic] Created in 1945, the Family branch is one of the key players in
+    French family
+
+    family policy. It currently has two priority missions:
+      - To help families in their day-to-day lives, and in particular to facilitate
+      reconciling family and professional life;
+      - Develop solidarity with the most vulnerable, including the disabled.
+      the disabled.
+
+    To fulfill these missions, it relies on two levers:
+      - The payment of financial benefits to families (family and social benefits
+      and social benefits, housing assistance and minimum social benefits such as the
+      and the revenu de solidarité active);
+      - Supporting families and setting up or co-financing various services and
+      services and facilities for families (such as day-care centres).
+      crèches)
+  description.fr: >
+    Créée en 1945, la branche Famille est l’un des principaux acteurs de la
+
+    politique familiale française. Actuellement, elle a deux missions prioritaires :
+      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la
+      conciliation entre vie familiale et vie professionnelle ;
+      - Développer la solidarité envers les plus vulnérables, dont les personnes
+      handicapées.
+
+    Pour remplir ces missions, elle s’appuie sur deux leviers :
+      - Le versement de prestations financières aux familles (prestations familiales
+      et sociales, aides au logement et minima sociaux comme l’aide aux adultes
+      handicapés et le revenu de solidarité active) ;
+      - L’accompagnement des familles et la mise en place ou le cofinancement de
+      différents services et équipements collectifs qui leur sont destinés (comme
+      les crèches)
+  résumé.en: |
+    [automatic] Provides family support services: childcare, housing assistance
+    assistance...
+  résumé.fr: |
+    Assure des prestations en soutien aux familles : garde d’enfants, aide au
+    logement...
+  titre.en: '[automatic] family'
+  titre.fr: famille
+protection sociale . formation:
+  description.en: >
+    [automatic] Vocational training enables everyone, regardless of their
+    status, to acquire and
+
+    acquire and update their knowledge and skills,
+
+    increase their level of qualification and promote their professional
+
+    career development.
+
+
+    For a personalized account of your training entitlements,
+
+    go to [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+  description.fr: >
+    La formation professionnelle permet à chaque personne, indépendamment de son
+
+    statut, d’acquérir et d’actualiser ses connaissances et ses compétences,
+
+    d’accroître son niveau de qualification et de favoriser son évolution
+
+    professionnelle.
+
+
+    Pour avoir un compte-rendu personnalisé de vos droits à la formation,
+
+    rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+  résumé.en: '[automatic] Finance the possibility of professional training.'
+  résumé.fr: Finance la possibilité de suivre des formations professionnelles.
+  titre.en: '[automatic] training'
+  titre.fr: formation
+protection sociale . invalidité et décès:
+  avec:
+    accidents du travail et maladies professionnelles:
+      avec:
+        rente décès:
+          description.en: >
+            [automatic] If the workplace accident results in the insured's
+            death, the insured's next-of-kin
+
+            (spouse, cohabitee, partner in a civil solidarity pact
+
+            (Pacs) - not divorced or separated - children, etc.) may be entitled to an annuity.
+
+            annuity.
+          description.fr: >
+            Si l’accident du travail entraîne le décès de l’assuré, les proches
+
+            (conjoint, concubin, partenaire lié par un pacte civil de solidarité
+
+            (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d’une
+
+            rente.
+          titre.en: '[automatic] AT/MP death pension'
+          titre.fr: Rente décès AT/MP
+        rente incapacité:
+          description.en: >
+            [automatic] If you are permanently disabled as a result of a
+            work-related accident or illness
+
+            occupational disease is greater than 10%, you will receive a permanent
+
+            permanent disability pension.
+          description.fr: >
+            Si votre taux d’incapacité permanente suite à un accident du travail
+            ou
+
+            une maladie professionnelle est supérieur à 10 %, vous percevrez une
+
+            rente d’incapacité permanente.
+          titre.en: '[automatic] Disability pension'
+          titre.fr: Rente incapacité AT/MP
+      titre.en: '[automatic] work-related accidents and illnesses'
+      titre.fr: accidents du travail et maladies professionnelles
+    accidents du travail et maladies professionnelles . rente incapacité . taux incapacité:
+      question.en:
+        '[automatic] What degree of disability would you like to simulate
+        for an occupational injury and disease pension?'
+      question.fr:
+        Quel taux d’incapacité voulez-vous simuler pour la rente accidents
+        du travail et maladie professionnelle ?
+      titre.en: '[automatic] disability rate'
+      titre.fr: taux incapacité
+    capital décès:
+      titre.en: '[automatic] death benefit'
+      titre.fr: capital décès
+    pension de reversion:
+      description.en: >
+        [automatic] When your husband/wife or ex-husband/wife dies, you may be
+        entitled to a survivor's pension.
+
+        reversionary pension.
+
+        Payment of the pension is possible, under certain conditions, when
+
+        the deceased was gainfully employed or self-employed (self-employed, liberal
+
+        self-employed, self-employed professionals, farmers).
+
+
+        The pension is equal to 54% of the pension your husband/wife or ex-husband/wife
+
+        ex-spouse was receiving or could have received (excluding increases).
+      description.fr: >
+        Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir
+        une
+
+        pension de réversion.
+
+        Le versement de la pension est possible, sous certaines conditions, lorsque
+
+        le défunt exerçait une activité salariée ou non salariée (travailleur
+
+        indépendant, professionnel libéral, agriculteur).
+
+
+        La pension est égale à 54 % de la retraite que votre époux/épouse ou
+
+        ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
+      titre.en: '[automatic] maximum reversionary pension'
+      titre.fr: pension de reversion maximum
+    pension invalidité:
+      avec:
+        condition revenu:
+          titre.en: '[automatic] income condition'
+          titre.fr: condition revenu
+        invalidité partielle:
+          description.en:
+            '[automatic] If you are capable of gainful employment, you are
+            classified in category 1.'
+          description.fr:
+            Si vous êtes capable d’exercer une activité professionnelle
+            rémunérée, vous êtes classé en 1re catégorie.
+          titre.en: '[automatic] partial disability'
+          titre.fr: invalidité partielle
+        invalidité totale:
+          description.en:
+            '[automatic] If you can no longer work, you are classified in
+            category 2.'
+          description.fr:
+            Si vous ne pouvez plus exercer d’activité professionnelle, vous
+            êtes classé en 2e catégorie.
+          titre.en: '[automatic] total disability'
+          titre.fr: invalidité totale
+        minimum:
+          titre.en: '[automatic] minimum'
+          titre.fr: minimum
+        minimum salarié:
+          titre.en: '[automatic] minimum wage'
+          titre.fr: minimum salarié
+        revenu annuel moyen des 10 meilleures années:
+          description.en: >
+            [automatic] Since July 1, 2016, you can only receive one disability
+            pension
+
+            disability pension: either for your salaried activity, or for your activity as a
+
+            for your activity as a craftsman/trader. However, the amount of
+
+            However, the amount of your pension takes into account all your income, whether from
+
+            your salaried activity or your self-employed activity.
+          description.fr: >
+            Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
+
+            pension d’invalidité : soit au titre de votre activité salariée, soit au
+
+            titre de votre activité d’artisan/commerçant. Toutefois, le montant de
+
+            la pension tient compte de tous vos revenus perçus qu’ils proviennent de
+
+            votre activité salariée ou de votre activité comme indépendant.
+          titre.en: '[automatic] average annual income for the 10 best years'
+          titre.fr: revenu annuel moyen des 10 meilleures années
+      titre.en: '[automatic] disability pension'
+      titre.fr: pension invalidité
+    revenu annuel moyen:
+      titre.en: '[automatic] average annual income'
+      titre.fr: revenu annuel moyen
+  description.en: >
+    [automatic] You may be recognized as disabled if your ability to work and
+    earn a living is
+
+    reduced by at least 2/3 as a result of a non-work-related accident or illness.
+
+    occupational origin. You may be entitled to a disability pension
+
+    to compensate for loss of income.
+
+
+    Lump-sum death benefit guarantees payment of a lump sum to the beneficiaries of a deceased worker.
+
+    of a deceased worker, under certain conditions. The amount is
+
+    lump sum.
+  description.fr: >
+    Vous pouvez être reconnu invalide si votre capacité de travail et de gain
+    est
+
+    réduite d’au moins 2/3 à la suite d’un accident ou d’une maladie d’origine non
+
+    professionnelle. Vous pouvez obtenir le versement d’une pension d’invalidité
+
+    afin de compenser la perte de revenus.
+
+
+    Le capital décès est une indemnité qui garantit le versement d’un capital aux
+
+    ayants droit d’un travailleur décédé, sous certaines conditions. Son montant est
+
+    forfaitaire.
+  résumé.en: '[automatic] Guarantees the payment of a pension in the event of
+    disability and a lump sum to your loved ones in the event of death.'
+  résumé.fr:
+    Garantit le versement d’une pension en cas d’invalidité et un capital
+    à vos proches en cas de décès.
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
+protection sociale . maladie:
+  avec:
+    abattement forfaitaire salarié:
+      titre.en: '[automatic] flat-rate employee allowance'
+      titre.fr: abattement forfaitaire salarié
+    plancher indemnités salarié:
+      titre.en: '[automatic] employee indemnity floor'
+      titre.fr: plancher indemnités salarié
+  description.en: >
+    [automatic] Assurance Maladie provides lasting protection for the health of
+    every individual
+
+    and professional life.
+
+
+    In concrete terms, it supports 60 million policyholders throughout their lives, by
+
+    care, whatever their resources, situation or state of health.
+
+    or state of health. In this way, it guarantees universal access to rights and
+
+    access to care.
+
+
+    It means you're covered for most healthcare services. In the event of
+
+    serious or long-term illness, 100% of care is reimbursed.
+
+
+    ## Health insurance in France in figures
+      - 92%** of healthcare expenses reimbursed on average by health insurance
+      and supplementary health insurance
+      - 30,000 / year / patient**: example of full coverage for a person with
+      cystic fibrosis patient
+      - 82.4 years** average life expectancy in France (in the top 10 worldwide 🏅)
+  description.fr: >
+    L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+
+    personnelle ou professionnelle.
+
+
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en
+
+    prenant en charge leurs soins quels que soient leurs ressources, leur situation
+
+    ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle
+
+    permet l’accès aux soins.
+
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de
+
+    maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+
+    ## L’assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
+      maladie et la complémentaire
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une
+      personne atteinte de mucoviscidose
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+  résumé.en: '[automatic] Covers most day-to-day healthcare and 100% of critical
+    illnesses such as hospital stays.'
+  résumé.fr: Couvre la plupart des soins de santé de la vie quotidienne et 100 %
+    des maladies graves comme les séjours à l’hôpital.
+  titre.en: '[automatic] health insurance'
+  titre.fr: assurance maladie
+protection sociale . maladie . accidents du travail et maladies professionnelles:
+  avec:
+    indemmnités:
+      avec:
+        à partir du 29ème jour:
+          titre.en: '[automatic] from day 29'
+          titre.fr: à partir du 29ème jour
+      titre.en: '[automatic] benefits'
+      titre.fr: indemmnités
+    indemmnités . salaire journalier de référence:
+      titre.en: '[automatic] daily reference salary'
+      titre.fr: salaire journalier de référence
+  description.en: >
+    [automatic] Have you suffered a work-related accident or illness?
+
+    illness?
+
+    Your medical expenses are covered at 100%.
+
+
+    To compensate for your loss of earnings, you can receive daily
+
+    benefits.
+
+    If you are declared unfit for work as a result of your accident or illness, you may be entitled to
+
+    receive a temporary incapacity allowance.
+  description.fr: |
+    Vous avez subi un accident du travail ou êtes atteint d’une maladie
+    professionnelle ?
+    Vos frais médicaux sont pris en charge à 100 %.
+
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités
+    journalières.
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez
+    recevoir une indemnité temporaire d’inaptitude.
+  résumé.en: '[automatic] Provides comprehensive coverage for work-related
+    accidents and illnesses.'
+  résumé.fr: Offre une couverture complète des maladies ou accidents du travail.
+  titre.en: '[automatic] work-related accidents and illnesses'
+  titre.fr: accidents du travail et maladies professionnelles
+protection sociale . maladie . arrêt maladie:
+  avec:
+    conditions:
+      avec:
+        délai d'attente:
+          description.en: >
+            [automatic] In order to claim compensation for illness related to
+            your professional activity
+
+            your professional activity, you must provide proof of continuous
+
+            period of continuous affiliation to this activity. This period depends on your
+
+            previous months' earnings.
+          description.fr: >
+            Pour pouvoir prétendre à une indemnisation pour maladie au titre de
+
+            votre activité professionnelle, vous devez justifier d’un délai
+
+            d’affiliation continus dans cette activité. Ce dernier dépend de votre
+
+            rémunération des mois précédents.
+          titre.en: '[automatic] waiting period'
+          titre.fr: délai d'attente
+        revenu:
+          titre.en: '[automatic] income'
+          titre.fr: revenu
+      titre.en: '[automatic] conditions'
+      titre.fr: conditions
+    délai d'attente:
+      titre.en: '[automatic] waiting period'
+      titre.fr: délai d'attente
+    délai de carence:
+      description.en: >
+        [automatic] During the first 3 days of your absence from work, no daily
+        allowance is paid.
+
+        paid; this is known as the "waiting period".
+
+        waiting period. It applies at the start of each work stoppage.
+      description.fr: |
+        Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité
+        journalière ne vous est versée ; c’est ce que l’on appelle le délai de
+        carence. Il s’applique au début de chaque arrêt de travail.
+      titre.en: '[automatic] waiting time'
+      titre.fr: délai de carence
+  description.en: |
+    [automatic] The daily allowance you receive while you are off work is
+    50% of your basic daily wage. This is calculated on
+    the average gross salary for the 3 months prior to your work stoppage
+    (12 months in the case of seasonal work).
+  description.fr: |
+    L’indemnité journalière que vous recevrez pendant votre arrêt de travail est
+    égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur
+    la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de
+    travail (12 mois en cas d’activité saisonnière).
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
+protection sociale . maladie . maternité paternité adoption:
+  avec:
+    allocation forfaitaire de repos adoption:
+      titre.en: '[automatic] lump-sum adoption rest allowance'
+      titre.fr: allocation forfaitaire de repos adoption
+    allocation forfaitaire de repos maternel:
+      titre.en: '[automatic] lump-sum maternal rest allowance'
+      titre.fr: allocation forfaitaire de repos maternel
+    délai d'attente:
+      description.en: >
+        [automatic] ## Maternity
+
+        You must have been insured for at least 10 months prior to the expected date of childbirth.
+
+        and cease all professional activity during the collection period
+
+        and for at least 8 weeks, including 6 weeks after the birth.
+
+        ## Paternity / Adoption
+
+        To benefit from this benefit, you must have 10 months' affiliation at the time of the birth/adoption.
+
+        birth/adoption.
+      description.fr: >
+        ## Maternité
+
+        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
+
+        accouchement, et cesser toute activité professionnelle pendant la période de
+
+        perception et au moins pendant 8 semaines dont 6 après l’accouchement.
+
+        ## Paternité / Adoption
+
+        Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
+
+        naissance / à l’adoption.
+      titre.en: '[automatic] waiting period'
+      titre.fr: délai d'attente
+  description.en: |
+    [automatic] The daily allowance you receive while you are off work
+    is equal to 50% of your basic daily wage. This is calculated
+    calculated on the average gross salary for the 3 months preceding
+    (12 months in the case of seasonal work).
+  description.fr: |
+    L’indemnité journalière que vous recevrez pendant votre arrêt de travail
+    est égale à 50 % de votre salaire journalier de base. Celui-ci est
+    calculé sur la moyenne des salaires bruts des 3 derniers mois précédant
+    votre arrêt de travail (12 mois en cas d’activité saisonnière).
+  titre.en: '[automatic] daily allowances for maternity, paternity and adoption leave'
+  titre.fr: indemnités journalières de congé maternité paternité adoption
+protection sociale . retraite:
+  description.en: >
+    [automatic] ### A compulsory system ...
+
+    As soon as you start working, you and your employer contribute to the pension scheme. This contribution is based on your salary.
+
+
+    ###Pay-as-you-go
+
+    The total amount of contributions you make each year is used to pay the pensions
+
+    pensions for that same year. The system thus organizes a
+
+    direct transfer from working generations to retired generations.
+
+
+    ###Mainly contributory
+
+    When you retire, your pension (i.e. your retirement "income") is calculated
+
+    is calculated on the basis of your income, your retirement age and the number of years
+
+    and the number of years you've worked.
+
+
+    **Our pension system is also based on solidarity**: the unemployed, people on sick leave
+
+    people on sick leave, people with disabilities, low-income workers
+
+    low-income earners, women on maternity leave, etc. also acquire
+
+    also acquire rights. No retired person is left destitute.
+
+    without resources.
+
+
+
+    Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+  description.fr: >
+    ### Un système obligatoire …
+
+    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+
+
+    ###… par répartition
+
+    Le montant total des cotisations que vous versez chaque année sert à payer les
+
+    pensions des retraités pour cette même année. Le système organise ainsi un
+
+    transfert direct des générations en activité vers les générations à la retraite.
+
+
+    ###… principalement contributif
+
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu »
+
+    à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à
+
+    la retraite et du nombre d’années passées à travailler.
+
+
+    **Notre système de retraite est également solidaire** : les chômeurs, les
+
+    personnes en arrêt maladie, les personnes en situation de handicap, les
+
+    travailleurs touchant de faibles revenus, les femmes en congé maternité
+
+    acquièrent également des droits. Aucune personne à la retraite n’est laissée
+
+    sans ressources.
+
+
+
+    Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+  résumé.en: '[automatic] Guarantees an average of 60-70% of your last working
+    income for your retirement pension.'
+  résumé.fr:
+    Garantit en moyenne 60 à 70 % du dernier revenu d’activité pour votre
+    pension de retraite.
+  titre.en: '[automatic] retirement'
+  titre.fr: retraite
+protection sociale . retraite . base:
+  description.en: >
+    [automatic] The amount of your basic retirement pension is calculated on the
+    basis of your
+
+    average of your earnings over the best 25 years and the number of quarters
+
+    contributed.
+
+
+    This **estimate** of your **maximum** basic retirement pension is
+
+    calculated on the basis of the following assumptions:
+
+    - The income you have entered corresponds to that of your
+
+    **25 best years**;
+
+    - You have had no change in income during your career;
+
+    - You have no other sources of income;
+
+    - You have contributed a sufficient number of quarters and are retiring at the age
+
+    benefit from the **full rate**.
+
+
+    > **Detailed calculation:** 50% x average annual income x pension prorata
+
+    &gt;
+
+    > With :
+
+    > - average annual income_ = average of salaries and income contributed by
+
+    > self-employed for the best 25 years of your career
+
+    > career ;
+
+    > - pension prorata_ = length of insurance with the French pension insurance scheme (Assurance Retraite) / length of insurance to obtain a full pension.
+
+    > insurance period to obtain a full pension.
+  description.fr: >
+    Le montant de votre pension pour la retraite de base est calculé à partir de
+    la
+
+    moyenne de vos revenus des 25 meilleures années et du nombre de trimestres
+
+    cotisés.
+
+
+    Cette **estimation** de votre pension de retraite de base **maximum** est
+
+    calculée avec les hypothèses suivantes :
+
+    - La rémunération que vous avez saisie correspond à celle de vos
+
+    **25 meilleures années** ;
+
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+
+    - Vous n’avez pas d’autres sources de revenus ;
+
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+
+    bénéficier du **taux plein**.
+
+
+    > **Calcul détaillé :** 50% x revenu annuel moyen x prorata de pension
+
+    >
+
+    > Avec :
+
+    > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
+
+    > travailleur indépendant pendant les 25 années les plus avantageuses de votre
+
+    > carrière ;
+
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
+
+    > durée d’assurance pour obtenir une pension à taux plein.
+  résumé.en: '[automatic] Full basic retirement pension based on the assumption
+    that your salary has remained the same throughout your working life.'
+  résumé.fr: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  titre.en: '[automatic] Maximum basic pension'
+  titre.fr: Retraite de base maximum
+protection sociale . retraite . base . cotisée:
+  titre.en: '[automatic] income contributed for basic pension'
+  titre.fr: revenu cotisé pour la retraite de base
+protection sociale . retraite . complémentaire:
+  description.en: >
+    [automatic] Retirement pension supplement acquired through 10 full years of
+    supplementary
+
+    supplementary pension contributions.
+
+
+    &gt; This amount may vary between now and your retirement, depending on
+
+    point value. Nevertheless, it provides an order of magnitude
+
+    allows you to compare supplementary pension schemes.
+  description.fr: >
+    Supplément de pension de retraite acquis grâce à 10 années complètes de
+
+    cotisation retraite complémentaire.
+
+
+    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
+
+    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
+
+    permet de comparer les régimes de retraite complémentaire entre eux
+  titre.en: '[automatic] Supplementary pension'
+  titre.fr: Retraite complémentaire
+protection sociale . retraite . complémentaire . AGIRC ARRCO:
+  avec:
+    points acquis:
+      description.en: >
+        [automatic] Throughout your career, you earn pension points by paying
+        compulsory
+
+        compulsory pension contributions. The total number of
+
+        points that will determine the annual amount of your future supplementary
+
+        pension.
+
+
+        So it's important to understand how these pension points are allocated.
+
+        allocated.
+
+
+        #### Formula for calculating the number of points
+
+
+        **Number of points** = **Contribution base** × **Points calculation rate** / **Purchase value of a point**.
+
+
+        #### What is the points calculation rate?
+
+
+        It's the percentage applied to the contribution base to calculate points.
+
+        points.
+
+
+        Note: it also serves as the basis for calculating the contributions paid by
+
+        the employer and the employee: it is then multiplied by 1.27 to determine the
+
+        contributions to be paid.
+
+
+        The rate that appears on the pay slip and is shared between the
+
+        the employee and the employer is therefore higher than the points acquisition rate.
+
+        The additional contribution thus determined is not used to acquire points.
+
+        points.
+      description.fr: >
+        Tout au long de votre carrière, vous obtenez des points de retraite via
+        le
+
+        versement de cotisations de retraite obligatoires. C’est le nombre total des
+
+        points acquis qui déterminera le montant annuel de votre future retraite
+
+        complémentaire.
+
+
+        Il est donc important de bien comprendre comment ces points de retraite sont
+
+        attribués.
+
+
+        #### Formule de calcul du nombre de points
+
+
+        **Nombre de points** = **Assiette des cotisations** × **Taux de calcul des points** / **Valeur d’achat d’un point**
+
+
+        #### Le taux de calcul des points, c’est quoi ?
+
+
+        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer
+
+        les points.
+
+
+        A noter : il sert aussi de base au calcul des cotisations payées par
+
+        l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer
+
+        les cotisations à payer.
+
+
+        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le
+
+        salarié et l’employeur est donc supérieur au taux d’acquisition des points.
+
+        Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des
+
+        points.
+      note.en:
+        '[automatic] As the supplementary pension contribution rate is 127% of
+        the points calculation rate, the amount of contributions paid by the
+        employee must be divided by 1.27 to obtain the amount to be used to
+        calculate points.'
+      note.fr:
+        Le taux de cotisation de retraite complémentaire étant 127% du taux de
+        calcul des points, il faut diviser par 1.27 le montant des cotisations
+        versées par le salarié pour obtenir le montant à utiliser pour le calcul
+        des points.
+      titre.en: '[automatic] points acquired'
+      titre.fr: points acquis
+    valeur d'acquisition:
+      titre.en: '[automatic] purchase price'
+      titre.fr: valeur d'acquisition
+    valeur du point:
+      titre.en: '[automatic] point value'
+      titre.fr: valeur du point
+  note.en: '[automatic] The point value is revalued on November 1, not January 1.'
+  note.fr:
+    La revalorisation de la valeur du point a lieu au 1er novembre, et non
+    au 1er janvier.
+  titre.en: '[automatic] Agirc-Arrco'
+  titre.fr: Agirc-Arrco
+protection sociale . retraite . trimestres:
+  titre.en: '[automatic] validated quarters'
+  titre.fr: trimestres validés
+protection sociale . transport:
+  description.en: >
+    [automatic] This contribution is paid in full to the [mobility organizing
+    authority
+
+    mobility](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
+
+    in the area where the company is located. It can then be used to
+
+    ubsidize existing public transport or develop new transport infrastructure
+
+    infrastructure (tramway, metro, bus, etc.).
+
+
+    ## Mobility payment in figures
+
+    - 45% reduction** on the cost of public transport in France's 12 biggest conurbations.
+
+    France's largest conurbations.
+
+    - 263 / year / inhabitant** in purchasing power gains for the inhabitants of
+
+    Île-de-France
+  description.fr: >
+    Cette contribution est reversée intégralement à l’[autorité organisatrice de
+    la
+
+    mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
+
+    de la zone ou est implantée l’entreprise. Celle-ci peut ensuite l’utiliser pour
+
+    ubventionner les transports en commun existants ou pour développer de nouvelles
+
+    infrastructures de transport (tramway, métro, bus...).
+
+
+    ## Le versement mobilité en quelques chiffres
+
+    - **45% de réduction** sur le coût des transports en communs dans les 12 plus
+
+    grandes agglomérations de France.
+
+    - **263 € / an / habitant** de gain de pouvoir d’achat pour les habitants
+
+    d’Île-de-France
+  résumé.en: '[automatic] Keeps transit fares low'
+  résumé.fr: Permet de maintenir le prix d’un billet de transport en commun à un bas prix
+  titre.en: '[automatic] transport'
+  titre.fr: transport
+période:
+  titre.en: '[automatic] period'
+  titre.fr: période
+période . durée depuis le début d'année:
+  titre.en: '[automatic] year-to-date'
+  titre.fr: durée depuis le début d'année
+période . début d'année:
+  titre.en: '[automatic] beginning of the year'
+  titre.fr: début d'année
+période . début d'année . N-1:
+  titre.en: '[automatic] N-1'
+  titre.fr: N-1
+période . fin d'année:
+  titre.en: '[automatic] year-end'
+  titre.fr: fin d'année
+période . fin d'année . N-1:
+  titre.en: '[automatic] N-1'
+  titre.fr: N-1
+période . jours ouvrés moyen par mois:
+  note.en: '[automatic] The average number of working days per month is 21.'
+  note.fr: On retient 21 comme nombre de jours ouvrés moyen par mois
+  titre.en: '[automatic] average working days per month'
+  titre.fr: jours ouvrés moyen par mois
+période . semaines par mois:
+  titre.en: '[automatic] weeks per month'
+  titre.fr: semaines par mois
+situation personnelle:
+  titre.en: '[automatic] personal situation'
+  titre.fr: situation personnelle
+situation personnelle . RSA:
+  question.en: "[automatic] Are you receiving RSA or prime d'activité benefits?"
+  question.fr: Etes-vous bénéficiaire du RSA ou de la prime d’activité ?
+  titre.en: '[automatic] RSA or activity bonus beneficiary'
+  titre.fr: bénéficiaire RSA ou prime d'activité
+situation personnelle . domiciliation fiscale à l'étranger:
+  description.en: >
+    [automatic] If your tax residence is outside France, your income is not
+    subject to CSG-CRDS.
+
+
+    However, a higher health contribution will apply.
+  description.fr: >
+    Si la résidence fiscale est située hors de France, les revenus d’activité ne
+    sont pas soumis à la CSG-CRDS.
+
+
+    Une cotisation maladie majorée sera en revanche applicable.
+  question.en: '[automatic] Is your tax residence outside France?'
+  question.fr: Votre résidence fiscale est-elle située hors de France ?
+  titre.en: '[automatic] Tax residence outside France'
+  titre.fr: Résidence fiscale hors de France
+établissement:
+  titre.en: '[automatic] establishment'
+  titre.fr: établissement
+établissement . SIRET:
+  titre.en: '[automatic] SIRET'
+  titre.fr: SIRET
+établissement . commune:
+  avec:
+    code postal:
+      titre.en: '[automatic] postal code'
+      titre.fr: code postal
+    département:
+      avec:
+        outre-mer:
+          avec:
+            Guadeloupe Réunion Martinique:
+              titre.en: '[automatic] Guadeloupe Reunion Martinique'
+              titre.fr: Guadeloupe Réunion Martinique
+            Mayotte:
+              titre.en: '[automatic] Mayotte'
+              titre.fr: Mayotte
+          titre.en: '[automatic] overseas'
+          titre.fr: outre-mer
+      titre.en: '[automatic] department'
+      titre.fr: département
+    nom:
+      titre.en: '[automatic] Municipality'
+      titre.fr: Commune
+    taux versement mobilité:
+      titre.en: '[automatic] mobility payment rate'
+      titre.fr: taux versement mobilité
+  question.en: '[automatic] In which commune is the plant located?'
+  question.fr: Dans quelle commune l'établissement est-il implanté ?
+  titre.en: '[automatic] commune'
+  titre.fr: commune
+établissement . taux ATMP:
+  avec:
+    taux collectif:
+      note.en:
+        '[automatic] Collective rates specific to the Alsace-Moselle scheme are
+        not implemented'
+      note.fr:
+        Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
+        implémentés
+      question.en: '[automatic] What business is your company in?'
+      question.fr: De quel domaine d'activité dépend votre entreprise ?
+      titre.en: '[automatic] collective rate'
+      titre.fr: taux collectif
+  description.en: >
+    [automatic] The AT/MP contribution rate is determined for each establishment
+    on the basis of the following factors
+
+    based on the following factors :
+
+
+    - Main activity
+
+    - Size of establishment
+
+    - Sector of activity
+
+    - Frequency and severity of claims (work-related accidents, occupational
+
+    - illnesses)
+
+
+    If you don't know the company's rate, click on "Skip".
+  description.fr: >
+    Le taux de la cotisation AT/MP est déterminé pour chaque établissement en
+
+    fonction des éléments suivants :
+
+
+    - Activité principale
+
+    - Taille de l'établissement
+
+    - Secteur d'activité
+
+    - Fréquence et la gravité des sinistres survenus (accidents du travail, maladies
+
+    - professionnelles)
+
+
+    Si vous ne connaissez pas le taux de l'établissement, cliquez sur « Passer ».
+  question.en: "[automatic] What is the employer's contribution rate?"
+  question.fr: Quel est le taux de la cotisation AT/MP pour l'établissement ?
+  titre.en: '[automatic] ATMP rate'
+  titre.fr: taux ATMP

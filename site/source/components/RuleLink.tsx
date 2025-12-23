@@ -1,31 +1,45 @@
 import { RuleLink as EngineRuleLink } from '@publicodes/react-ui'
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
+import { useSelector } from 'react-redux'
 
 import { Link } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { NomModèle } from '@/domaine/SimulationConfig'
+import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
+import { useEngine } from '@/hooks/useEngine'
+import { nomModèleSelector } from '@/store/selectors/simulation/config/nomModèle.selector'
 
-import { useEngine } from './utils/EngineContext'
+type Props = {
+	documentationPath?: string
+	dottedName: DottedName
+	engine?: Engine<DottedName>
+	'aria-label'?: string
+	id?: string
+	children?: ReactNode
+	nomModèle?: NomModèle
+}
 
 // TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
-export default function RuleLink(
-	props: {
-		dottedName: DottedName
-		displayIcon?: boolean
-		children?: React.ReactNode
-		documentationPath?: string
-		linkComponent?: ReactNode
-		engine?: Engine<DottedName>
-	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
-) {
-	const { absoluteSitePaths } = useSitePaths()
-	const defaultEngine = useEngine()
+export default function RuleLink({
+	dottedName,
+	children,
+	documentationPath,
+	engine,
+	'aria-label': ariaLabel,
+	id,
+	nomModèle,
+}: Props) {
+	const defaultNomModèle = useSelector(nomModèleSelector)
+	const nomModèleUsed = nomModèle ?? defaultNomModèle
 
-	const engineUsed = props?.engine ?? defaultEngine
+	const documentationIndex = useDocumentationPath(nomModèleUsed)
+	const defaultEngine = useEngine(nomModèleUsed)
+
+	const engineUsed = engine ?? defaultEngine
 
 	try {
-		engineUsed.getRule(props.dottedName)
+		engineUsed.getRule(dottedName)
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.error(error)
@@ -35,13 +49,15 @@ export default function RuleLink(
 
 	return (
 		<EngineRuleLink
-			{...props}
+			id={id}
+			dottedName={dottedName}
+			aria-label={ariaLabel}
 			// @ts-ignore
-			linkComponent={props?.linkComponent || Link}
+			linkComponent={Link}
 			engine={engineUsed}
-			documentationPath={
-				props.documentationPath ?? absoluteSitePaths.documentation.index
-			}
-		/>
+			documentationPath={documentationPath ?? documentationIndex}
+		>
+			{children}
+		</EngineRuleLink>
 	)
 }

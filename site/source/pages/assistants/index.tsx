@@ -1,17 +1,27 @@
+import { pipe } from 'effect'
+import * as A from 'effect/Array'
+import * as R from 'effect/Record'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
+import SimulateurOrAssistantPageWithPublicodes from '@/components/SimulateurOrAssistantPageWithPublicodes'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
+import { PageConfig } from '../simulateurs/_configs/types'
 import AideDéclarationIndépendant from './declaration-revenu-independants'
 import ÉconomieCollaborative from './économie-collaborative'
 
 export default function Assistants() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
 	const location = useLocation()
-	const simulateurs = useSimulatorsData()
+	const simulateursEtAssistants = useSimulatorsData()
+	const assistants = pipe(
+		simulateursEtAssistants,
+		R.values,
+		A.filter((s) => (s as PageConfig).pathId.startsWith('assistants.'))
+	) as PageConfig[]
 
 	return (
 		<>
@@ -24,7 +34,7 @@ export default function Assistants() {
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
-				{/* Simulateurs et assistants décomissionnés */}
+				{/* Assistants décomissionnés */}
 				<Route
 					path={relativeSitePaths.assistants.déclarationIndépendant.index}
 					element={<AideDéclarationIndépendant />}
@@ -33,22 +43,26 @@ export default function Assistants() {
 					path={relativeSitePaths.assistants.économieCollaborative.index}
 					element={<ÉconomieCollaborative />}
 				/>
-				{/* Tous les simulateur et assistants */}
-				{Object.entries(simulateurs)
-					.filter(([, simu]) => simu.pathId.startsWith('assistants.'))
-					.map(([, simu]) => (
-						<Route
-							key={simu.path}
-							path={
-								simu.path.replace(absoluteSitePaths.assistants.index, '') + '/*'
-							}
-							element={
+				{assistants.map((assistant) => (
+					<Route
+						key={assistant.path}
+						path={
+							assistant.path?.replace(absoluteSitePaths.assistants.index, '') +
+							'/*'
+						}
+						element={
+							assistant.withPublicodes === false ? (
 								<>
 									<SimulateurOrAssistantPage />
 								</>
-							}
-						/>
-					))}
+							) : (
+								<>
+									<SimulateurOrAssistantPageWithPublicodes />
+								</>
+							)
+						}
+					/>
+				))}
 			</Routes>
 		</>
 	)

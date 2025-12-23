@@ -1,4 +1,3 @@
-import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,14 +9,15 @@ import RuleInput from '@/components/conversation/RuleInput'
 import RuleLink from '@/components/RuleLink'
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
-import { useEngine } from '@/components/utils/EngineContext'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaire } from '@/domaine/Unités'
+import { useEngine } from '@/hooks/useEngine'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -70,7 +70,7 @@ export function SimulationGoal({
 			dispatch(
 				ajusteLaSituation({ [dottedName]: montantDansLaBonneUnité } as Record<
 					DottedName,
-					ValeurPublicodes
+					ValeurPublicodes | undefined
 				>)
 			)
 			onUpdateSituation?.(dottedName, montantDansLaBonneUnité)
@@ -130,7 +130,7 @@ export function SimulationGoal({
 		/>
 	) : undefined
 
-	const rendreEditeur = editable ? () => editeur : undefined
+	const rendreEditeur = () => editeur
 
 	// Pour les cas où la valeur n'est pas un nombre, on utilise le format texte
 	const valeur = isTypeBoolean ? valeurFormatee : valeurMontant
@@ -142,7 +142,7 @@ export function SimulationGoal({
 				titre={titre}
 				description={description}
 				valeur={valeurMontant}
-				rendreChampSaisie={rendreEditeur as () => React.ReactNode}
+				rendreChampSaisie={rendreEditeur}
 				isInfoMode={isInfoMode}
 				small={small}
 				appear={appear}

@@ -1,6 +1,6 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
-import { serviceIndépendant } from '@/external-links/serviceIndépendant'
+import { serviceIndépendantConditionnel as serviceIndépendant } from '@/external-links/serviceIndépendantConditionnel'
 import { servicePAM } from '@/external-links/servicePAM'
 import { servicePLR } from '@/external-links/servicePLR'
 
@@ -39,12 +39,12 @@ export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'comparaison-statuts',
 			'is',
 		],
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs.indépendant,
 		simulation: configIndépendant,

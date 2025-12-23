@@ -1242,7 +1242,9 @@ impôt . foyer fiscal . CEHR:
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 impôt . domiciliation étranger non implémentée:
-  formule: situation personnelle . domiciliation fiscale à l'étranger
+  toutes ces conditions:
+    - situation personnelle . domiciliation fiscale à l'étranger
+    - salarié
   type: notification
   sévérité: avertissement
   description: |

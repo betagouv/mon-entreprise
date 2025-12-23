@@ -13,7 +13,6 @@ import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDe
 import PageHeader from '@/components/PageHeader'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import Warning from '@/components/ui/WarningBlock'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -26,27 +25,18 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { useSitePaths } from '@/sitePaths'
-import { resetSimulation } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { useEngine } from '@/hooks/useEngine'
+import { réinitialiseLaSimulation } from '@/store/actions/actions'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 import Formulaire from './components/Formulaire'
 import Résultats from './components/Résultats'
-import { configDéclarationRevenusPAMC } from './simulationConfig'
 
 export default function DéclarationRevenusPAMC() {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
-	const { absoluteSitePaths } = useSitePaths()
-
-	useSimulationConfig({
-		key: absoluteSitePaths.assistants['déclaration-revenus-pamc'],
-		config: configDéclarationRevenusPAMC,
-		autoloadLastSimulation: true,
-	})
 
 	const isFormValid = engine.evaluate({
 		'!=': ['déclaration revenus PAMC . résultats', 'non'],
@@ -84,7 +74,10 @@ export default function DéclarationRevenusPAMC() {
 							déclaration de revenus à réaliser sur{' '}
 							<Link
 								href="https://www.impots.gouv.fr"
-								aria-label="impots.gouv.fr, nouvelle fenêtre"
+								aria-label={t(
+									'aria-label.impots-gouv',
+									'impots.gouv.fr, nouvelle fenêtre'
+								)}
 							>
 								impots.gouv.fr
 							</Link>
@@ -154,7 +147,7 @@ export default function DéclarationRevenusPAMC() {
 						<StyledButton
 							light
 							onPress={() => {
-								dispatch(resetSimulation())
+								dispatch(réinitialiseLaSimulation())
 							}}
 						>
 							{t(

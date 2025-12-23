@@ -1,0 +1,59 @@
+indépendant . rémunération: oui
+
+indépendant . rémunération . totale:
+  titre: Rémunération totale
+  question: Quel montant total pensez-vous dégager pour votre rémunération ?
+  description: |
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant. Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer. On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+  titre global: Rémunération totale dirigeant
+  unité: €/an
+  résumé: Total payé par l’entreprise pour la rémunération du dirigeant
+  variations:
+    - si: entreprise . imposition . IS
+      alors:
+        inversion numérique:
+          - rémunération . nette
+          - cotisations et contributions
+          - rémunération . nette . après impôt
+          - rémunération . impôt
+    - sinon: entreprise . chiffre d'affaires - entreprise . charges
+  arrondi: oui
+
+indépendant . rémunération . nette:
+  unité: €/an
+  titre: Rémunération nette
+  question: Quelle est votre rémunération nette ?
+  résumé: Après déduction des cotisations, contributions et charges
+  somme:
+    - rémunération . totale
+    - (- cotisations et contributions)
+  arrondi: oui
+
+indépendant . rémunération . nette . imposable:
+  titre: revenu imposable
+  valeur: indépendant . revenu professionnel
+
+indépendant . rémunération . impôt:
+  titre: impôt sur le revenu
+  description: |
+    Montant de l’impôt sur le revenu concernant :
+    - les rémunérations de dirigeant des entreprises à l’impôt sur les sociétés,
+    - les bénéfices des entreprises individuelles à l’impôt sur le revenu,
+  valeur: impôt . montant
+  contexte:
+    paramètres . impôt . revenu imposable: rémunération . nette . imposable
+    paramètres . impôt . revenu d'activité:
+      applicable si: entreprise . imposition . IS
+      valeur: rémunération . nette . imposable
+    paramètres . impôt . abattement revenu net global: cotisations facultatives . déductibles
+
+indépendant . rémunération . nette . après impôt:
+  titre: Revenu après impôt
+  résumé: Ce que vous rapporte cette activité
+  question: Quel est le revenu net après impôt souhaité ?
+  description: >-
+    Le revenu net après déduction de l’impôt sur le revenu et des cotisations
+    sociales.
+  valeur: rémunération . nette - impôt
+  arrondi: oui
+  unité: €/an

@@ -1,12 +1,12 @@
-import { DottedName } from 'modele-social'
 import { useSelector } from 'react-redux'
 
 import { SmallBody, Spacing, Strong } from '@/design-system'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/hooks/useEngine'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 import Value from '../EngineValue/Value'
 import { Appear } from '../ui/animate'
-import { useEngine } from '../utils/EngineContext'
 
 export function DefaultValue({
 	dottedName,

@@ -1,0 +1,78 @@
+impôt:
+  icônes: 🏛️
+
+impôt . montant:
+  titre: Impôt sur le revenu
+  description: |
+    Calcule le montant de l’impôt sur le revenu à partir d’un
+    revenu imposable et d’un éventuel revenu d’activité.
+  variations:
+    - si: méthode de calcul . barème standard
+      alors: barème standard . impôt net
+    - sinon:
+        produit:
+          - paramètres . impôt . revenu imposable
+          - taux d'imposition
+
+impôt . taux d'imposition:
+  formule:
+    variations:
+      - si: méthode de calcul . taux neutre
+        alors: taux neutre
+      - si: méthode de calcul . taux personnalisé
+        alors: taux personnalisé
+
+impôt . méthode de calcul:
+  description: |
+    Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
+    - *Le taux personnalisé* : indiqué sur votre avis d’imposition
+    - *Le taux neutre* : pour un célibataire sans enfant
+    - *Le barème standard * : la formule "officielle" utilisée par l’administration
+    fiscale pour obtenir le taux d’imposition
+
+    En remplissant votre taux personnalisé, vous serez au plus proche de votre
+    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
+    n’avez pas transmis votre taux personnalisé à l’employeur et que vous souhaitez
+    comparer les résultats du simulateur à votre fiche de paie. Le barème standard
+    vous donne un résultat plus précis que le taux neutre pour un célibataire sans
+    enfant.
+  question: Comment souhaitez-vous calculer l’impôt sur le revenu ?
+  par défaut: par défaut
+  une possibilité:
+    - taux neutre:
+        titre: avec le taux neutre
+        description: Si vous ne connaissez pas votre taux personnalisé, ou si vous
+          voulez connaître votre impôt à la source dans le cas où vous avez choisi de
+          ne pas communiquer à votre taux à l’employeur, le calcul au taux neutre
+          correspond à une imposition pour un célibataire sans enfant et sans autres
+          revenus / charges.
+        applicable si: paramètres . impôt . taux neutre applicable
+        valeur: impôt . méthode de calcul = 'taux neutre'
+    - taux personnalisé:
+        titre: avec un taux personnalisé
+        description: Vous pouvez utiliser directement le taux personnalisé communiqué
+          par l’administration fiscale pour calculer votre impôt. Pour le connaître,
+          vous pouvez-vous rendre sur votre [espace fiscal
+          personnel](https://impots.gouv.fr).
+        valeur: impôt . méthode de calcul = 'taux personnalisé'
+    - barème standard:
+        titre: avec le barème standard
+        description:
+          Le calcul "officiel" de l’impôt, celui sur lequel l’administration
+          fiscale se base pour calculer votre taux d’imposition.
+        valeur: impôt . méthode de calcul = 'barème standard'
+  références:
+    Différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
+    Calcul du taux d’imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
+
+  avec:
+    par défaut: "'barème standard'"
+
+impôt . taux personnalisé:
+  question: Quel est votre taux d’imposition ?
+  description: |
+    Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
+      - une fiche de paie
+      - un avis d’imposition
+      - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
+  unité: '%'

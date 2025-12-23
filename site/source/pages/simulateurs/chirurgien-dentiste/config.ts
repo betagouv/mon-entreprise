@@ -1,6 +1,6 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { servicePAM } from '@/external-links/servicePAM'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
+import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -43,6 +43,6 @@ export function chirurgienDentisteConfig({
 		path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 		simulation: configDentiste,
 		codesCatégorieJuridique: ['1000', '5410'],
-		component: IndépendantPLSimulation,
+		component: ProfessionLibérale,
 	} as const)
 }

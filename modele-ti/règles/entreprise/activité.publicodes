@@ -1,0 +1,172 @@
+entreprise . activité:
+  titre: nature de l’activité
+  question: Quelle est la nature de votre activité principale ?
+  description: |
+    Votre type d’activité va déterminer une grande partie des calculs de
+    cotisations, contributions et impôt.
+
+    ### Pluri-activité
+    En cas d’activité multiples, l’activité principale est réputée être l’activité
+    la plus ancienne.
+
+    Toutefois, à partir de la troisième année civile suivant celle au cours de
+    laquelle la situation de pluriactivité a débuté, les personnes intéressées
+    peuvent demander que l’activité qui a procuré le montant de chiffre d’affaires
+    ou de recettes hors taxes le plus élevé sur les trois dernières années soit
+    considérée comme leur activité principale.
+  par défaut: "'commerciale'"
+  une possibilité:
+    - artisanale
+    - commerciale
+    - libérale
+  références:
+    Vérifier la nature de son activité: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/verifier-nature-son-activite
+    Comment déterminer la nature de l’activité d’une entreprise ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat
+    Spécifiquement pour les auto-entrepreneurs: https://www.shine.fr/blog/categorie-activite-auto-entrepreneur
+
+  avec:
+    artisanale:
+      valeur: activité = 'artisanale'
+      description: |
+        Pour être artisan, vous devez répondre aux 3 critères suivants :
+
+        - Votre activité doit faire partie de la liste officielle des métiers de
+        l’artisanat ou de la liste officielle des métiers d’artisanat d’art
+        - Votre entreprise doit compter moins de 11 salariés à sa création
+        - Vous devez détenir un savoir-faire spécifique et le prouver par un diplôme
+        (CAP, BEP, etc.) ou une qualification professionnelle
+      références:
+        Comment savoir si votre activité est artisanale ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-2situation1
+        liste des activités artisanales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/activites-artisanales-0
+
+    commerciale:
+      valeur: activité = 'commerciale'
+      description: |
+        Votre activité est commerciale si vous êtes dans l’un des cas suivants :
+
+        - Vous achetez des biens ou des marchandises pour les revendre dans un but
+        lucratif (qui rapporte de l’argent, du profit, des bénéfices)
+        - Vous vendez des services dans les domaines de l’hôtellerie, la
+        restauration, les transports, les spectacles, la sécurité, l’informatique,
+        le design, etc.
+        - Vous avez une activité de location de biens, de marchandises ou de
+        services
+
+      références:
+        Comment savoir si votre activité est commerciale: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-1situation1
+
+    commerciale . débit de tabac:
+      applicable si: activité . commerciale
+      experimental: oui
+      question: Exercez-vous une activité de vente de tabac ?
+      par défaut: non
+
+    libérale:
+      valeur: activité = 'libérale'
+      description: |
+        Une activité libérale consiste en des prestations de services de nature
+        principalement intellectuelles.
+
+        Vous rendez un service payant.
+
+        Vous devez avoir un diplôme ou une qualification professionnelle dans le
+        domaine.
+
+      références:
+        Comment savoir si votre entreprise est libérale ?: https://entreprendre.service-public.fr/vosdroits/F32887/personnalisation/resultat?lang=&quest0=1&quest=#fiche-item-aria-3situation1
+        fiche Wikipedia: https://fr.wikipedia.org/wiki/Profession_lib%C3%A9rale
+        liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+    libérale . réglementée:
+      question: Est-ce une activité libérale réglementée ?
+      par défaut: non
+      description: |
+        Certaines professions libérales ont été classées dans le domaine libéral
+        par la loi et leur titre est protégé. Leurs membres doivent respecter des
+        règles déontologiques strictes et sont soumis au contrôle de leurs
+        instances professionnelles (ordre, chambre, ou syndicat).
+
+        > Exemples de professions règlementées : architecte, avocat, infirmier,
+        > médecin...
+
+        Il s’agit des autres personnes qui pratiquent, une science ou un art et
+        dont l’activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d’un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
+
+        > Exemples de professions non-règlementées : développeur, historien,
+        > urbaniste...
+      références:
+        Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . activité . principale:
+  non applicable si: revenus mixtes
+  applicable si:
+    toutes ces conditions:
+      - imposition . IR . régime micro-fiscal
+      - une de ces conditions:
+          - activité . artisanale
+          - activité . commerciale
+  question: Quel est le type d’activité principale de l’entreprise ?
+  une possibilité:
+    - vente
+    - service
+  par défaut:
+    variations:
+      - si: activité . artisanale
+        alors: "'service'"
+      - sinon: "'vente'"
+
+  avec:
+    service:
+      titre: prestation de service
+      description: |
+        Il s’agit de toute opération ne comportant pas de transfert de propriété de
+        biens corporels (c’est-à-dire ayant une existence matérielle).
+      références:
+        Prestations entre assujettis: https://www.impots.gouv.fr/portail/professionnel/prestations-entre-assujettis
+
+    vente:
+      titre: vente de biens, restauration ou hébergement
+      description: |
+        Il s’agit de toute opération comportant transfert de propriété d’un bien
+        corporel (c’est-à-dire un bien ayant une existence matérielle), ainsi que
+        toutes les activités de restauration et d’hébergement.
+      références:
+        Achat/vente de biens: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . activité . revenus mixtes:
+  titre: activités mixtes
+  description: |
+    Il est possible des activités avec des types de revenus différents pour une
+    même entreprise.
+
+    Par exemple, une entreprise de plomberie qui facture l’achat et la pose d’un
+    robinet a une partie de son chiffre d’affaires en vente de materiel (le robinet)
+    et une partie en prestation de service (la pose).
+
+    Il existe trois catégories avec des taux d’abattement forfaitaire pour frais
+    professionnels différents :
+
+    - [Ventes de biens, restauration et hébergement (BIC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/vente-restauration-hébergement) (abattement de 71%)
+    - [Prestation de service commerciale ou artisanale (BIC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BIC) (abattement de 50%)
+    - [Autres prestation de service et activité libérale (BNC)](/documentation/modele-ti/entreprise/chiffre-d'affaires/service-BNC) (abattement de 34%)
+  applicable si: imposition . IR . régime micro-fiscal
+  par défaut: non
+
+entreprise . activité . saisonnière:
+  question: Exercez-vous une activité saisonnière ?
+  par défaut: non
+  description: |
+    Les professionnels exerçant une activité saisonnière peuvent bénéficier
+    d’une dispense de minimale pour les cotisations d’indeminités journalières,
+    de retraite de base et d’invalidité-décès. 
+
+    Ainsi, si votre revenu est inférieur à l’assiette minimale de cotisations,
+    vous cotisez sur votre revenu réel.
+
+    Vous pouvez demander l’application de cette dispense depuis votre espace en
+    Urssaf : Messagerie > Nouveau message > Un autre sujet (informations, documents
+    ou justificatifs) > Demander des informations sur mon compte ou un
+    récapitulatif > Faire une demande ou un complément de demande
+
+    > À noter : l’assiette minimale pour la retraite de base permet de garantir
+    la validation de 3 trimestres d’assurance vieillesse.

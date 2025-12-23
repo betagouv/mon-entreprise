@@ -1,8 +1,7 @@
 import { MontantField } from '@/design-system'
 import { euros } from '@/domaine/Montant'
+import { useEngine } from '@/hooks/useEngine'
 import { rémunérationBruteDottedName } from '@/utils/réductionDeCotisations'
-
-import { useEngine } from '../utils/EngineContext'
 
 type Props = {
 	index: number

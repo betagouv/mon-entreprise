@@ -7,22 +7,26 @@
 
 import { renderHook } from '@testing-library/react'
 import * as O from 'effect/Option'
-import rules, { DottedName } from 'modele-social'
+import rules from 'modele-social'
 import Engine from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParMois, eurosParTitreRestaurant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	heuresParMois,
 	joursOuvrés,
 	pourcentage,
 	titresRestaurantParMois,
 } from '@/domaine/Quantité'
-import { batchUpdateSituation, updateUnit } from '@/store/actions/actions'
+import { useEngine } from '@/hooks/useEngine'
+import {
+	enregistreLesRéponsesAuxQuestions,
+	updateUnit,
+} from '@/store/actions/actions'
 
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 
@@ -37,7 +41,7 @@ vi.mock('react-redux', () => ({
 }))
 const dispatchMock = vi.fn()
 
-vi.mock('@/components/utils/EngineContext', () => ({
+vi.mock('@/hooks/useEngine', () => ({
 	useEngine: vi.fn(),
 }))
 
@@ -80,7 +84,7 @@ describe('useSetSimulationFromSearchParams hook', () => {
 			return []
 		})
 
-		const engine = new Engine(rules)
+		const engine = new Engine(rules) as Engine<DottedName>
 		vi.mocked(useEngine).mockReturnValue(engine)
 
 		renderHook(() => useSetSimulationFromSearchParams())
@@ -88,7 +92,7 @@ describe('useSetSimulationFromSearchParams hook', () => {
 		expect(dispatchMock).toHaveBeenCalledWith(updateUnit('€/mois'))
 
 		expect(dispatchMock).toHaveBeenCalledWith(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				'salarié . contrat': O.some('CDD'),
 				'salarié . contrat . CDD . congés pris': O.some(joursOuvrés(2.08)),
 				'salarié . contrat . salaire brut': O.some(eurosParMois(2700)),
@@ -128,7 +132,7 @@ describe('useSetSimulationFromSearchParams hook', () => {
 			return []
 		})
 
-		const engine = new Engine(rules)
+		const engine = new Engine(rules) as Engine<DottedName>
 		vi.mocked(useEngine).mockReturnValue(engine)
 
 		renderHook(() => useSetSimulationFromSearchParams())

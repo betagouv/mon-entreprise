@@ -1,0 +1,21 @@
+paramètres:
+paramètres . impôt:
+paramètres . impôt . revenu imposable:
+  description: |
+    C’est le revenu à prendre en compte, sans y appliquer d'abattement
+    supplémentaire, pour calculer l’impôt sur le revenu.
+
+    Il est à renseigner pour les dirigeants à l'IR.
+  unité: €/an
+paramètres . impôt . revenu d'activité:
+  description: |
+    C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
+    barème standard et auquel appliquer un abattement forfaitaire de 10 % pour les
+    frais professionnels.
+
+    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l'IS.
+  par défaut: 0 €/an
+paramètres . impôt . taux neutre applicable:
+  par défaut: non
+paramètres . impôt . abattement revenu net global:
+  par défaut: 0 €/an

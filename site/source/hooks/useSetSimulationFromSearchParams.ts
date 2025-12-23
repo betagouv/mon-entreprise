@@ -2,24 +2,24 @@ import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
-import { useEngine } from '@/components/utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
+import { useEngine } from '@/hooks/useEngine'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
-	batchUpdateSituation,
+	enregistreLesRéponsesAuxQuestions,
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
-import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
+import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
 
 export default function useSetSimulationFromSearchParams() {
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -42,7 +42,7 @@ export default function useSetSimulationFromSearchParams() {
 		(newSituation: Record<DottedName, ValeurDomaine>) => {
 			if (!R.isEmptyReadonlyRecord(newSituation)) {
 				dispatch(
-					batchUpdateSituation(
+					enregistreLesRéponsesAuxQuestions(
 						pipe(
 							newSituation,
 							R.map((valeur) => O.fromNullable(valeur))

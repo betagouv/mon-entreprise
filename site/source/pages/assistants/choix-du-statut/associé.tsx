@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -17,7 +16,8 @@ import {
 	typography,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -233,7 +233,7 @@ function useAssociésSelection(): [
 		const newState = { ...state, ...value }
 		setState(newState)
 		dispatch(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				'entreprise . associés':
 					newState.question1 === 'seul'
 						? O.some('unique')
