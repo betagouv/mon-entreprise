@@ -84,7 +84,7 @@ indépendant . profession libérale . réglementée . PAMC . CURPS:
   applicable si:
     toutes ces conditions:
       - entreprise . date de création <= période . début d'année
-      - revenu professionnel > 0
+      - revenu professionnel > 0 €/an
   non applicable si:
     une de ces conditions:
       - métier . santé . médecin . secteur = 'non conventionné'

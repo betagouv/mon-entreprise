@@ -4,7 +4,7 @@ impôt:
 impôt . montant:
   titre: Impôt sur le revenu
   description: |
-    Calcule le montant de l’impôt sur le revenu à partir d’un
+    Calcul du montant de l’impôt sur le revenu à partir d’un
     revenu imposable et d’un éventuel revenu d’activité.
   variations:
     - si: méthode de calcul . barème standard
