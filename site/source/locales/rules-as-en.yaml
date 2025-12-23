@@ -807,7 +807,7 @@ assimilé salarié . exonérations . JEI:
 
     - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - corporate officers who are primarily involved in the company's research and development project
+    - corporate officers who are principally involved in the company's research and development project
 
 
     By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
@@ -2045,10 +2045,10 @@ impôt . foyer fiscal . situation de famille:
   titre.fr: situation de famille
 impôt . montant:
   description.en: |
-    [automatic] Calculates income tax based on taxable income and any
+    [automatic] Calculation of income tax based on taxable income and
     taxable income and any earned income.
   description.fr: |
-    Calcule le montant de l’impôt sur le revenu à partir d’un
+    Calcul du montant de l’impôt sur le revenu à partir d’un
     revenu imposable et d’un éventuel revenu d’activité.
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu

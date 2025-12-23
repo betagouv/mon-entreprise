@@ -329,8 +329,7 @@ entreprise . capital social:
   experimental: oui
   description: |
     Cette valeur doit inclure la valeur des primes d’émission.
-  titre: Capital social
-  question: Quele est le capital social de la société ?
+  question: Quel est le capital social de la société ?
   unité: €
 
 entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques: oui
