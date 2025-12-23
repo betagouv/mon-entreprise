@@ -4,6 +4,7 @@ indépendant . cotisations et contributions:
     contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
     telles que les contrats Madelin.
 
+    Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
   somme:
     - cotisations et contributions . cotisations
     - CSG-CRDS
@@ -11,10 +12,6 @@ indépendant . cotisations et contributions:
     - cotisations facultatives . montant
     - conjoint collaborateur . cotisations
     - contributions spéciales
-  note: |
-    À la différence des cotisations, les contributions ne sont pas réintroduites
-    pour le calcul de la CSG/CRDS. Elles ne bénéficient pas non plus de la
-    réduction Acre.
 
   avec:
     Urssaf:
@@ -23,11 +20,28 @@ indépendant . cotisations et contributions:
       valeur: cotisations et contributions
       abattement: cotisations facultatives . montant
 
+indépendant . cotisations et contributions . avec dividendes:
+  description: |
+    C’est le montant total dû par l’indépendant au titre des cotisations et
+    contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
+
+    Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
+  somme:
+    - cotisations et contributions
+    - dividendes . prélèvements sociaux
+
 indépendant . cotisations et contributions . non déductibles:
   titre: Part non déductibles fiscalement
   somme:
     - CSG-CRDS . non déductible
     - cotisations facultatives . non déductibles
+
+indépendant . cotisations et contributions . non déductibles . avec dividendes:
+  titre: Part non déductibles fiscalement
+  somme:
+    - non déductibles
+    - dividendes . prélèvements sociaux . CSG non déductible
 
 indépendant . cotisations et contributions . contributions spéciales:
   description: |
