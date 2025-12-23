@@ -2,11 +2,12 @@
 
 entreprise . EI:
   titre: entreprise individuelle (EI)
-  question: Votre entreprise est-elle une entreprise individuelle (EI) ?
   description: |
     L’entreprise individuelle (EI) est la forme juridique la plus fréquente pour
     les petites entreprises. Elle peut être choisie pour exercer tout type
     d’activité commerciale, artisanale, industrielle ou libérale.
+  question: Votre entreprise est-elle une entreprise individuelle (EI) ?
+  par défaut: non
   références:
     Tout ce que vous devez savoir sur l’entreprise individuelle: https://www.urssaf.fr/accueil/choisir-forme-juridique/creer-entreprise-individuelle.html
     'Entrepreneur individuel (EI) : ce qu’il faut savoir': https://entreprendre.service-public.gouv.fr/vosdroits/F37396
@@ -80,3 +81,22 @@ entreprise . résultat fiscal:
         - sinon:
             valeur: indépendant . cotisations et contributions
             abattement: indépendant . cotisations et contributions . non déductibles
+
+entreprise . capital social:
+  description: |
+    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
+    sociales du régime indépendant (sauf pour les entreprises individuelles).
+
+    Cette valeur doit inclure :
+    - les apports financiers et en nature ;
+    - la valeur des primes d’émission ;
+    - les sommes versées en compte courant d’associé par vous et votre famille.
+  non applicable si: EI
+  unité: €
+
+entreprise . bénéfice net de l'exercice précédent:
+  description: |
+    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
+    sociales du régime indépendant pour les entreprises individuelles.
+  applicable si: EI
+  unité: €
