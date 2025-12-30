@@ -1827,16 +1827,25 @@ pages:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
     location-de-logement-meublé:
-      avertissement:
-        dépassement-du-plafond: You exceed the authorized ceiling (<1></1>) for
-          declaring your income from the collaborative economy with a social
-          status under the general regime. You should consider the status of
-          auto-entrepreneur or self-employed worker.
-        pas-de-cotisation: Your revenue is less than <2></2> and your activity is not
-          considered professional. You are not obliged to join the social
-          security system. However, you may do so if you wish to benefit from
-          social protection (health insurance, retirement, etc.) in return for
-          paying social security contributions.
+      affiliation:
+        non-obligatoire:
+          affiliation-volontaire: You can, however, choose to join voluntarily to benefit
+            from social protection (health insurance, pensions, etc.).
+          lien-urssaf: Find out more about collaborative economy schemes
+          texte: You are not obliged to join a social security scheme and pay no social
+            security contributions.
+          titre: Your activity is considered non-professional
+        obligatoire:
+          texte: "You are required to declare your income and pay social security
+            contributions. You can choose between several affiliation schemes:
+            auto-entrepreneur, self-employed or general scheme."
+          titre: Your activity is considered professional
+      comparateur:
+        applicable: Applicable
+        aria-label: Comparison of affiliation plans
+        non-applicable: Not applicable
+        non-applicable-raison: with your current recipes
+        non-applicable-raison-type-location: for this type of rental
       externalLinks:
         "1":
           description: Do you rent out furnished accommodation or goods? The Collaborative
@@ -1853,24 +1862,71 @@ pages:
         ogTitle: Income simulator for renting furnished accommodation
         titre: Income simulator for renting furnished accommodation
       objectifs:
+        autres-revenus:
+          aria-label: Other annual income
+          titre: Other annual income
         cotisations: Social security contributions
+        recettes:
+          aria-label: Total revenue
+          titre: Recipes
+        recettes-nettes:
+          aria-label: Net revenue
+          titre: Net income
         revenu-net: Net income
       questions:
+        alsace-moselle:
+          libellé: Is your accommodation located in Alsace-Moselle?
+        classement:
+          classé:
+            description: Your accommodation is classified as furnished tourist accommodation
+              (1 to 5 stars).
+            label: Classified
+          libellé: Is your accommodation classified as furnished tourist accommodation?
+          mixte:
+            description: You offer both classified and unclassified accommodation.
+            label: Mixed
+          non-classé:
+            description: Your accommodation has no official classification.
+            label: Uncategorized
+        premiere-annee:
+          libellé: Is this your first year in business?
+        recettes-courte-durée:
+          aria-label: Short-term rental revenue
+          libellé: How much of your revenue comes from short-term rentals?
         regime:
           options:
-            estimation: Estimated contributions
             micro-entrepreneur:
-              description: You pay a fixed percentage of your sales.
-              label: Micro-business
+              description: You pay a percentage of your sales.
             régime-général:
-              description: As with an employee, social security contributions will be deducted
-                at source.
-              label: General scheme (URSSAF contributions)
+              description: Just like an employee.
             travailleur-indépendant:
               description: You pay social security contributions on your profits.
-              label: Self-employed
+        type-durée:
+          courte:
+            description: You only offer short-term rentals (Airbnb type, less than 3
+              months).
+            label: Short-term rental only
+          libellé: Do you offer short- or long-term rentals?
+          longue:
+            description: You only offer long-term rentals (principal residence lease, more
+              than 3 months).
+            label: Long-term rental only
+          mixte:
+            description: You offer both short-term and long-term rentals.
+            label: Mixed (short- and long-term)
+      régimes:
+        micro-entreprise:
+          libellé: Self-employed contractor
+        régime-général:
+          libellé: General scheme
+        travailleur-indépendant:
+          libellé: Self-employed
       shortname: Furnished apartment rental
       title: Income simulator for renting furnished accommodation
+      type-hébergement:
+        aria-label: Type of accommodation
+        chambre-hôte: Bed &amp; Breakfast
+        meublé-tourisme: Furnished tourist accommodation
     lodeom:
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under

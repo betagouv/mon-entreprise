@@ -1,33 +1,30 @@
-import { Either, Equal, Option, pipe } from 'effect'
+import { Either, Equal, pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { SEUIL_PROFESSIONNALISATION } from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
-import { calculeCotisations } from '@/contextes/économie-collaborative/domaine/location-de-meublé/cotisations'
-import { eurosParAn, moins, Montant } from '@/domaine/Montant'
+import { eurosParAn, moins } from '@/domaine/Montant'
 
+import { calculeCotisations } from './cotisations'
 import { calculeRevenuNet } from './revenu-net'
-import {
-	RegimeCotisation,
-	SituationÉconomieCollaborativeValide,
-} from './situation'
+import { RegimeCotisation } from './situation'
+import { situationMeubléDeTourismeBuilder } from './test/situationBuilder'
 
 describe('calculeRevenuNet', () => {
 	it('devrait correctement calculer le revenu net avec Either', () => {
 		const recettes = eurosParAn(30_000)
-		const situation: SituationÉconomieCollaborativeValide = {
-			_tag: 'Situation',
-			_type: 'économie-collaborative',
-			recettes: Option.some(recettes) as Option.Some<Montant<'€/an'>>,
-			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
-			estAlsaceMoselle: Option.some(false),
-			premièreAnnée: Option.some(false),
-		}
+		const situation = situationMeubléDeTourismeBuilder()
+			.avecRecettes(recettes.valeur)
+			.avecAlsaceMoselle(false)
+			.avecPremièreAnnée(false)
+			.build()
 
-		const resultat = calculeRevenuNet(situation)
+		const resultat = calculeRevenuNet(situation, RegimeCotisation.regimeGeneral)
 		expect(Either.isRight(resultat)).toBe(true)
 
 		if (Either.isRight(resultat)) {
-			const cotisationsResultat = calculeCotisations(situation)
+			const cotisationsResultat = calculeCotisations(
+				situation,
+				RegimeCotisation.regimeGeneral
+			)
 			if (Either.isRight(cotisationsResultat)) {
 				const revenuNetAttendu = pipe(
 					recettes,
@@ -36,25 +33,5 @@ describe('calculeRevenuNet', () => {
 				expect(Equal.equals(resultat.right, revenuNetAttendu)).toBe(true)
 			}
 		}
-	})
-
-	it("devrait propager l'erreur si les cotisations ne peuvent pas être calculées", () => {
-		const recettesInferieures = pipe(
-			SEUIL_PROFESSIONNALISATION,
-			moins(eurosParAn(1))
-		)
-		const situation: SituationÉconomieCollaborativeValide = {
-			_tag: 'Situation',
-			_type: 'économie-collaborative',
-			recettes: Option.some(recettesInferieures) as Option.Some<
-				Montant<'€/an'>
-			>,
-			regimeCotisation: Option.some(RegimeCotisation.regimeGeneral),
-			estAlsaceMoselle: Option.none(),
-			premièreAnnée: Option.none(),
-		}
-
-		const resultat = calculeRevenuNet(situation)
-		expect(Either.isLeft(resultat)).toBe(true)
 	})
 })

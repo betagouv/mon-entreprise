@@ -1,12 +1,8 @@
 import { Either, Option, pipe } from 'effect'
 
-import { SEUIL_PROFESSIONNALISATION } from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
-import {
-	RecettesInférieuresAuSeuilRequisPourCeRégime,
-	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
 	abattement,
+	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
 	estPlusPetitQue,
 	eurosParAn,
@@ -15,10 +11,22 @@ import {
 	Montant,
 } from '@/domaine/Montant'
 
-import { DEFAULTS } from './cotisations'
 import {
+	AffiliationNonObligatoire,
+	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
+	RégimeNonApplicablePourCeTypeDeDurée,
+	RégimeNonApplicablePourChambreDHôte,
+} from './erreurs'
+import { estActivitéPrincipale } from './estActivitéPrincipale'
+import {
+	estActiviteProfessionnelle,
+	SEUIL_PROFESSIONNALISATION,
+} from './estActiviteProfessionnelle'
+import {
+	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
+	situationParDéfaut,
 } from './situation'
 
 export const PLAFOND_REGIME_GENERAL = eurosParAn(77_700)
@@ -28,37 +36,84 @@ export const ABATTEMENT_REGIME_GENERAL = 0.6
 
 /**
  * Calcule les cotisations sociales pour le régime général
- * @param situation La situation avec des recettes obligatoirement définies
- * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
+ * @param situation La situation avec des recettes
+ * @returns Un Either contenant soit les cotisations calculées, soit une erreur
  */
 export function calculeCotisationsRégimeGénéral(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
 	Montant<'€/an'>,
-	| RecettesInférieuresAuSeuilRequisPourCeRégime
+	| AffiliationNonObligatoire
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
+	| RégimeNonApplicablePourChambreDHôte
+	| RégimeNonApplicablePourCeTypeDeDurée
 > {
-	const recettes = situation.recettes.value
-
-	const estAlsaceMoselle = Option.getOrElse(
-		situation.estAlsaceMoselle,
-		() => DEFAULTS.EST_ALSACE_MOSELLE
-	)
-
-	const premièreAnnée = Option.getOrElse(
-		situation.premièreAnnée,
-		() => DEFAULTS.PREMIERE_ANNEE
-	)
-
-	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {
+	if (situation.typeHébergement === 'chambre-hôte') {
 		return Either.left(
-			new RecettesInférieuresAuSeuilRequisPourCeRégime({
-				recettes,
-				seuil: SEUIL_PROFESSIONNALISATION,
+			new RégimeNonApplicablePourChambreDHôte({
 				régime: RegimeCotisation.regimeGeneral,
 			})
 		)
 	}
+
+	if (!estActiviteProfessionnelle(situation)) {
+		return Either.left(new AffiliationNonObligatoire())
+	}
+
+	if (!estActivitéPrincipale(situation)) {
+		const typeDurée = Option.getOrElse(
+			situation.typeDurée,
+			() => situationParDéfaut.typeDurée
+		)
+
+		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
+			const recettesCourteDurée = pipe(
+				situation.recettesCourteDurée,
+				Option.getOrElse(() => eurosParAn(0))
+			)
+			if (
+				pipe(
+					recettesCourteDurée,
+					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+				)
+			) {
+				return Either.left(new AffiliationNonObligatoire())
+			}
+		} else if (typeDurée !== 'courte') {
+			return Either.left(new AffiliationNonObligatoire())
+		}
+	}
+
+	const recettes = situation.recettes.value
+
+	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
+		const typeDurée = Option.getOrElse(
+			situation.typeDurée,
+			() => situationParDéfaut.typeDurée
+		)
+
+		const estPrincipale = estActivitéPrincipale(situation)
+
+		if (estPrincipale && typeDurée !== 'courte') {
+			return Either.left(
+				new RégimeNonApplicablePourCeTypeDeDurée({
+					typeDurée,
+					régime: RegimeCotisation.regimeGeneral,
+					estActivitéPrincipale: estPrincipale,
+				})
+			)
+		}
+	}
+
+	const estAlsaceMoselle = Option.getOrElse(
+		situation.estAlsaceMoselle,
+		() => situationParDéfaut.estAlsaceMoselle
+	)
+
+	const premièreAnnée = Option.getOrElse(
+		situation.premièreAnnée,
+		() => situationParDéfaut.premièreAnnée
+	)
 
 	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
 		return Either.left(
@@ -71,8 +126,8 @@ export function calculeCotisationsRégimeGénéral(
 	}
 
 	const assiette = premièreAnnée
-		? pipe(recettes, estPlusGrandQue(SEUIL_PROFESSIONNALISATION))
-			? pipe(recettes, moins(SEUIL_PROFESSIONNALISATION))
+		? pipe(recettes, estPlusGrandQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ))
+			? pipe(recettes, moins(SEUIL_PROFESSIONNALISATION.MEUBLÉ))
 			: eurosParAn(0)
 		: recettes
 
