@@ -1,4 +1,4 @@
-import { Option } from 'effect'
+import * as O from 'effect/Option'
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
@@ -10,13 +10,21 @@ import { useInitialRender } from '@/hooks/useInitialRender'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
+export interface ChampSaisieProps {
+	id: string
+	aria: { labelledby: string }
+	valeur: O.Option<Montant>
+	onChange: (valeur: O.Option<Montant>) => void
+}
+
 export type ObjectifSaisissableDeSimulationProps = {
 	id: string
 	titre: React.ReactNode
 	description?: React.ReactNode
 	explication?: React.ReactNode
-	valeur: Option.Option<Montant>
-	rendreChampSaisie: () => React.ReactNode
+	valeur: O.Option<Montant>
+	onChange: (valeur: O.Option<Montant>) => void
+	ChampSaisie: React.ComponentType<ChampSaisieProps>
 	small?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
@@ -30,7 +38,8 @@ export function ObjectifSaisissableDeSimulation({
 	description,
 	explication,
 	valeur,
-	rendreChampSaisie,
+	onChange,
+	ChampSaisie,
 	small = false,
 	appear = true,
 	onFocus,
@@ -49,7 +58,7 @@ export function ObjectifSaisissableDeSimulation({
 		onBlur?.()
 	}
 
-	const montantAnimation = Option.isSome(valeur) ? valeur.value : undefined
+	const montantAnimation = O.isSome(valeur) ? valeur.value : undefined
 
 	return (
 		<Appear unless={!appear || initialRender}>
@@ -85,7 +94,12 @@ export function ObjectifSaisissableDeSimulation({
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
 						<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
-							{rendreChampSaisie()}
+							<ChampSaisie
+								id={`${id}-input`}
+								aria={{ labelledby: `${id}-label` }}
+								valeur={valeur}
+								onChange={onChange}
+							/>
 						</LargeInputContainer>
 					</Grid>
 				</GridCentered>

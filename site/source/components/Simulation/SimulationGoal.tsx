@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React, { useCallback } from 'react'
@@ -9,7 +10,10 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import RuleLink from '@/components/RuleLink'
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
-import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
+import {
+	ChampSaisieProps,
+	ObjectifSaisissableDeSimulation,
+} from '@/components/Simulation/ObjectifSaisissableDeSimulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
@@ -56,13 +60,14 @@ export function SimulationGoal({
 
 	const rule = engine.getRule(dottedName)
 
-	const onChange = useCallback(
-		(x?: ValeurPublicodes) => {
+	const handleChange = useCallback(
+		(optionMontant: O.Option<Montant>) => {
+			const montant = O.getOrUndefined(optionMontant)
 			const montantDansLaBonneUnité: Montant | undefined =
-				x === undefined
+				montant === undefined
 					? undefined
 					: {
-							...(x as Montant),
+							...montant,
 							unité: currentUnit as UnitéMonétaire,
 					  }
 
@@ -75,6 +80,43 @@ export function SimulationGoal({
 			onUpdateSituation?.(dottedName, montantDansLaBonneUnité)
 		},
 		[dispatch, onUpdateSituation, dottedName, currentUnit]
+	)
+
+	const RuleInputWrapper = useCallback(
+		({ id, aria }: ChampSaisieProps) => (
+			<RuleInput
+				id={id}
+				aria-labelledby={aria.labelledby}
+				modifiers={
+					!isTypeBoolean
+						? {
+								unité: currentUnit,
+						  }
+						: undefined
+				}
+				hideDefaultValue
+				displayedUnit={displayedUnit}
+				dottedName={dottedName}
+				onChange={(x?: ValeurPublicodes) => {
+					handleChange(O.fromNullable(x as Montant | undefined))
+				}}
+				missing={dottedName in evaluation.missingVariables}
+				small={small}
+				formatOptions={{
+					maximumFractionDigits: round ? 0 : 2,
+				}}
+			/>
+		),
+		[
+			isTypeBoolean,
+			currentUnit,
+			displayedUnit,
+			dottedName,
+			handleChange,
+			evaluation.missingVariables,
+			small,
+			round,
+		]
 	)
 
 	if (evaluation.nodeValue === null) {
@@ -105,29 +147,6 @@ export function SimulationGoal({
 
 	const valeurMontant = MontantAdapter.decode(evaluation)
 
-	const editeur = editable ? (
-		<RuleInput
-			modifiers={
-				!isTypeBoolean
-					? {
-							unité: currentUnit,
-					  }
-					: undefined
-			}
-			hideDefaultValue
-			displayedUnit={displayedUnit}
-			dottedName={dottedName}
-			onChange={onChange}
-			missing={dottedName in evaluation.missingVariables}
-			small={small}
-			formatOptions={{
-				maximumFractionDigits: round ? 0 : 2,
-			}}
-		/>
-	) : undefined
-
-	const rendreEditeur = editable ? () => editeur : undefined
-
 	// Pour les cas où la valeur n'est pas un nombre, on utilise le format texte
 	const valeur = isTypeBoolean ? valeurFormatee : valeurMontant
 
@@ -138,7 +157,8 @@ export function SimulationGoal({
 				titre={titre}
 				description={description}
 				valeur={valeurMontant}
-				rendreChampSaisie={rendreEditeur as () => React.ReactNode}
+				onChange={handleChange}
+				ChampSaisie={RuleInputWrapper}
 				isInfoMode={isInfoMode}
 				small={small}
 				appear={appear}

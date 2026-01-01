@@ -1,10 +1,12 @@
 import * as O from 'effect/Option'
 
-import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
+import {
+	ChampSaisieProps,
+	ObjectifSaisissableDeSimulation,
+} from '@/components/Simulation/ObjectifSaisissableDeSimulation'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
 import { MontantField } from '@/design-system'
-import { eurosParAn, Montant } from '@/domaine/Montant'
-import { ChangeHandler } from '@/utils/ChangeHandler'
+import { Montant } from '@/domaine/Montant'
 
 export const ObjectifRecettes = () => {
 	const { situation, set } = useEconomieCollaborative()
@@ -13,30 +15,21 @@ export const ObjectifRecettes = () => {
 		<ObjectifSaisissableDeSimulation
 			id="économie-collaborative-recettes"
 			titre="Titre"
-			valeur={O.some(eurosParAn(0))}
-			rendreChampSaisie={() => (
-				<RecettesInput montant={situation.recettes} onChange={set.recettes} />
-			)}
+			valeur={situation.recettes as O.Option<Montant>}
+			onChange={set.recettes as (valeur: O.Option<Montant>) => void}
+			ChampSaisie={RecettesInput}
 		/>
 	)
 }
 
-const RecettesInput = ({
-	montant,
-	onChange,
-}: {
-	montant: O.Option<Montant<'€/an'>>
-	onChange: ChangeHandler<O.Option<Montant<'€/an'>>>
-}) => (
+const RecettesInput = ({ id, aria, valeur, onChange }: ChampSaisieProps) => (
 	<MontantField
-		value={O.getOrUndefined(montant)}
+		id={id}
+		aria={aria}
+		value={O.getOrUndefined(valeur) as Montant<'€/an'> | undefined}
 		unité="€/an"
 		onChange={(montant: Montant<'€/an'> | undefined) =>
-			onChange(O.fromNullable(montant))
+			onChange(O.fromNullable(montant) as O.Option<Montant>)
 		}
-		// TODO: remplacer l'aria-label ci-dessous par un aria-labelledby ou, mieux, par un label visible
-		// (la prop aria.label a été retirée de <MontantField /> pour clarifier son nom accessible).
-
-		// aria={{ label: 'Montant' }}
 	/>
 )
