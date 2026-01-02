@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 import TextField from './TextField'
 
 export default {
-	title: 'Design System/Field/TextField',
 	component: TextField,
 	decorators: [
 		(Story) => (

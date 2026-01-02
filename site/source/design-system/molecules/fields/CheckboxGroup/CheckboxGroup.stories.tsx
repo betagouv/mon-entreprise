@@ -35,7 +35,6 @@ const CHECKBOX_OPTIONS_WITH_DESCRIPTIONS = [
 ]
 
 export default {
-	title: 'Design System/molecules/fields/CheckboxGroup',
 	component: CheckboxGroup,
 	decorators: [
 		(Story) => (

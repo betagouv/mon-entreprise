@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AccordeonDocumentation } from './index'
 
 const meta = {
-	title: 'Design System/Documentation/AccordeonDocumentation',
 	component: AccordeonDocumentation,
 	parameters: {
 		layout: 'padded',

@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 import { Checkbox } from './Checkbox'
 
 export default {
-	title: 'Design System/Field/Checkbox',
 	component: Checkbox,
 	decorators: [
 		(Story) => (
