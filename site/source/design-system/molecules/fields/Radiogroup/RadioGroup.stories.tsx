@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { RadioGroup, type RadioOption } from './RadioGroup'
 
 export default {
-	title: 'Design System/molecules/fields/RadioGroup',
 	component: RadioGroup,
 	decorators: [
 		(Story) => (

@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { ExemplePratique } from './index'
 
 const meta = {
-	title: 'Design System/Documentation/ExemplePratique',
 	component: ExemplePratique,
 	parameters: {
 		layout: 'padded',

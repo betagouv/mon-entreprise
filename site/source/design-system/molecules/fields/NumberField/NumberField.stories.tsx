@@ -3,7 +3,6 @@ import { Meta, StoryObj } from '@storybook/react'
 import { NumberField } from './NumberField'
 
 export default {
-	title: 'Design System/molecules/fields/NumberField',
 	component: NumberField,
 	decorators: [
 		(Story) => (

@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Callout } from './Callout'
 
 const meta = {
-	title: 'Design System/Documentation/Callout',
 	component: Callout,
 	parameters: {
 		layout: 'padded',

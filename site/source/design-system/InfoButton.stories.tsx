@@ -10,7 +10,6 @@ const RouterDecorator = (Story: StoryFn) => (
 )
 
 const meta = {
-	title: 'Design System/Buttons/InfoButton',
 	component: InfoButton,
 	parameters: {
 		layout: 'centered',

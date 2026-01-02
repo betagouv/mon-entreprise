@@ -13,7 +13,6 @@ const CHECKBOX_OPTION_WITH_DESCRIPTION = {
 }
 
 export default {
-	title: 'Design System/molecules/fields/CheckboxField',
 	component: CheckboxField,
 	decorators: [
 		(Story) => (

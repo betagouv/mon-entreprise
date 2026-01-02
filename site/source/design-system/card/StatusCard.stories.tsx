@@ -8,7 +8,6 @@ import { DesignSystemThemeProvider } from '../root'
 import { StatusCard } from './StatusCard'
 
 const meta: Meta<typeof StatusCard> = {
-	title: 'Design System/Card/StatusCard',
 	component: StatusCard,
 	decorators: [
 		(Story) => (

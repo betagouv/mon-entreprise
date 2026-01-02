@@ -8,7 +8,6 @@ import { UnitéMonétaire } from '@/domaine/Unités'
 import { MontantField } from './MontantField'
 
 export default {
-	title: 'Design System/Field/MontantField',
 	component: MontantField,
 	parameters: {
 		docs: {

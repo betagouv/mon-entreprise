@@ -8,7 +8,6 @@ import { UnitéQuantité } from '@/domaine/Unités'
 import { QuantitéField } from './QuantitéField'
 
 export default {
-	title: 'Design System/Field/QuantitéField',
 	component: QuantitéField,
 	parameters: {
 		docs: {

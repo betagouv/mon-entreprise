@@ -10,7 +10,6 @@ const RouterDecorator = (Story: StoryFn) => (
 )
 
 const meta = {
-	title: 'Design System/Field/Choix/ChoixMultiple',
 	component: ChoixMultiple,
 	parameters: {
 		layout: 'centered',

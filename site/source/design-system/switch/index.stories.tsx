@@ -5,7 +5,6 @@ import React, { useState } from 'react'
 import { Switch } from './'
 
 const meta: Meta<typeof Switch> = {
-	title: 'Design System/Switch',
 	component: Switch,
 	parameters: {
 		layout: 'centered',
