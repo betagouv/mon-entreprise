@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { BoutonMinimaliste } from './index'
 
 const meta = {
-	title: 'Design System/Documentation/BoutonMinimaliste',
 	component: BoutonMinimaliste,
 	parameters: {
 		layout: 'padded',

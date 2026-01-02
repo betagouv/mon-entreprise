@@ -7,7 +7,6 @@ import { Montant, montant } from '@/domaine/Montant'
 import { InputSuggestions } from './InputSuggestions'
 
 export default {
-	title: 'Design System/Suggestions/InputSuggestions',
 	component: InputSuggestions,
 	decorators: [
 		(Story) => (

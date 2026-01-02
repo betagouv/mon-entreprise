@@ -5,7 +5,6 @@ import { RadioCard } from './RadioCard'
 import { RadioCardGroup } from './RadioCardGroup'
 
 export default {
-	title: 'Design System/Field/Radio/RadioCard',
 	component: RadioCard,
 	decorators: [
 		(Story) => (

@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Valeur } from './index'
 
 const meta = {
-	title: 'Design System/Documentation/Valeur',
 	component: Valeur,
 	parameters: {
 		layout: 'padded',

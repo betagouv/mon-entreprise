@@ -3,7 +3,6 @@ import { Meta, StoryObj } from '@storybook/react'
 import { TextField } from './TextField'
 
 export default {
-	title: 'Design System/molecules/fields/TextField',
 	component: TextField,
 	decorators: [
 		(Story) => (
