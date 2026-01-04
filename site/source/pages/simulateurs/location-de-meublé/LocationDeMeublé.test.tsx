@@ -84,10 +84,40 @@ describe('Location de meublé', () => {
 			})
 		})
 
-		describe('Recettes ≥ 23 000€ (affiliation obligatoire)', () => {
-			it("doit afficher un message indiquant que l'affiliation est obligatoire", async () => {
+		describe('Recettes ≥ 23 000€ (affiliation potentiellement obligatoire)', () => {
+			it("doit afficher que l'affiliation dépend d'autres questions quand seules les recettes sont renseignées", async () => {
 				const { user } = render()
 				await saisirRecettes(user, 25000)
+
+				const listeInfosManquantes = await screen.findByRole('list', {
+					name: /informations manquantes/i,
+				})
+
+				expect(
+					within(listeInfosManquantes).getByText(/montant des autres revenus/i)
+				).toBeInTheDocument()
+			})
+
+			it("doit afficher 'professionnelle' quand toutes les conditions sont remplies (activité principale, courte durée)", async () => {
+				const { user } = render()
+				await saisirRecettes(user, 50000)
+				await saisirAutresRevenus(user, 30000)
+
+				await waitFor(() => {
+					expect(
+						screen.getByText(
+							/Proposez-vous de la location courte ou longue durée ?/i
+						)
+					).toBeInTheDocument()
+				})
+
+				const boutonCourteDurée = screen.getByText(
+					/Location courte durée uniquement/i
+				)
+				await user.click(boutonCourteDurée)
+
+				const boutonSuivant = await screen.findByText(/Suivant/i)
+				await user.click(boutonSuivant)
 
 				await waitFor(() => {
 					expect(
@@ -96,70 +126,6 @@ describe('Location de meublé', () => {
 						)
 					).toBeInTheDocument()
 				})
-			})
-
-			it('doit afficher le comparateur avec seulement 3 régimes (sans "Pas d\'affiliation")', async () => {
-				const { user } = render()
-				await saisirRecettes(user, 25000)
-
-				const comparateur = await waitFor(() => {
-					return screen.getByRole('list', {
-						name: /comparaison des régimes/i,
-					})
-				})
-
-				expect(
-					within(comparateur).getByText(/Régime général/i)
-				).toBeInTheDocument()
-				expect(
-					within(comparateur).getByText(/Auto-entrepreneur/i)
-				).toBeInTheDocument()
-				expect(
-					within(comparateur).getByText(/Travailleur indépendant/i)
-				).toBeInTheDocument()
-
-				expect(
-					within(comparateur).queryByText(/Pas d'affiliation/i)
-				).not.toBeInTheDocument()
-			})
-
-			it("doit afficher le message d'affiliation obligatoire même juste au seuil (23 000€)", async () => {
-				const { user } = render()
-				await saisirRecettes(user, 23000)
-
-				await waitFor(() => {
-					expect(
-						screen.getByText(
-							/votre activité est considérée comme professionnelle/i
-						)
-					).toBeInTheDocument()
-				})
-
-				const comparateur = screen.getByRole('list', {
-					name: /comparaison des régimes/i,
-				})
-				expect(
-					within(comparateur).getByText(/Régime général/i)
-				).toBeInTheDocument()
-			})
-
-			it('doit afficher les conditions manquantes pour les régimes "Applicable sous conditions"', async () => {
-				const { user } = render()
-				await saisirRecettes(user, 25000)
-
-				const comparateur = await waitFor(() => {
-					return screen.getByRole('list', {
-						name: /comparaison des régimes/i,
-					})
-				})
-
-				expect(
-					within(comparateur).getAllByText(/Applicable sous conditions/i).length
-				).toBeGreaterThan(0)
-
-				expect(
-					within(comparateur).getAllByText(/montant des autres revenus/i).length
-				).toBeGreaterThan(0)
 			})
 		})
 	})
