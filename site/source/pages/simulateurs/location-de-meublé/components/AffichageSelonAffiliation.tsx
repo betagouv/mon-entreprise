@@ -1,28 +1,38 @@
-import { pipe } from 'effect'
+import { Either, pipe } from 'effect'
 import * as O from 'effect/Option'
 
 import {
-	auMoinsUnRégimePotentiellementApplicable,
+	estAffiliationObligatoire,
 	estSituationValide,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 
+import { BlocAffiliationIndéterminée } from './BlocAffiliationIndéterminée'
 import { BlocAffiliationNonObligatoire } from './BlocAffiliationNonObligatoire'
 import { BlocAffiliationObligatoire } from './BlocAffiliationObligatoire'
 
 export const AffichageSelonAffiliation = () => {
 	const { situation } = useEconomieCollaborative()
 
-	const affiliationObligatoire = pipe(
+	const résultat = pipe(
 		situation,
 		O.liftPredicate(estSituationValide),
-		O.map(auMoinsUnRégimePotentiellementApplicable),
-		O.getOrElse(() => false)
+		O.map(estAffiliationObligatoire)
 	)
 
-	if (affiliationObligatoire) {
-		return <BlocAffiliationObligatoire />
+	if (O.isNone(résultat)) {
+		return null
 	}
 
-	return <BlocAffiliationNonObligatoire />
+	return Either.match(résultat.value, {
+		onLeft: (réponsesManquantes) => (
+			<BlocAffiliationIndéterminée réponsesManquantes={réponsesManquantes} />
+		),
+		onRight: (obligatoire) =>
+			obligatoire ? (
+				<BlocAffiliationObligatoire />
+			) : (
+				<BlocAffiliationNonObligatoire />
+			),
+	})
 }

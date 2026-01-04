@@ -7,9 +7,9 @@ import {
 	estSituationValide,
 	RegimeCotisation,
 	RégimeTag,
-	RéponseManquante,
 	RésultatApplicabilité,
 	useEconomieCollaborative,
+	type RéponseManquante,
 } from '@/contextes/économie-collaborative'
 import {
 	Grid,
@@ -22,6 +22,7 @@ import {
 } from '@/design-system'
 
 import { getGridSizes } from '../../comparaison-statuts/components/DetailsRowCards'
+import { getLibelléInfoManquante } from '../getLibelléInfoManquante'
 
 export const ComparateurRégimesCards = () => {
 	const { t } = useTranslation()
@@ -77,31 +78,6 @@ const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 				return t(
 					'pages.simulateurs.location-de-logement-meublé.régimes.travailleur-indépendant.libellé',
 					'Travailleur indépendant'
-				)
-		}
-	}
-
-	const getConditionLibellé = (condition: RéponseManquante): string => {
-		switch (condition) {
-			case 'typeDurée':
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.conditions.typeDurée',
-					'type de durée'
-				)
-			case 'autresRevenus':
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.conditions.autresRevenus',
-					'montant des autres revenus'
-				)
-			case 'classement':
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.conditions.classement',
-					'classement du logement'
-				)
-			case 'recettesCourteDurée':
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.conditions.recettesCourteDurée',
-					'recettes de courte durée'
 				)
 		}
 	}
@@ -163,7 +139,7 @@ const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 															' et '
 													  )
 													: ', ')}
-											{getConditionLibellé(condition)}
+											{getLibelléInfoManquante(t, condition)}
 										</span>
 									))}
 								</>
