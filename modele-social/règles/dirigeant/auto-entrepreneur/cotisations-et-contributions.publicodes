@@ -146,8 +146,10 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
 
   références:
     Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
-    'Cotisations et contributions sociales : montant et déclaration': https://entreprendre.service-public.fr/vosdroits/F36232#fiche-item-aria-2
+    'Cotisations sociales d’un micro-entrepreneur : ce qu’il faut savoir': https://entreprendre.service-public.gouv.fr/vosdroits/F36232
     Droit à la retraite des travailleurs indépendants relevant du dispositif micro-social: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_23_16072024.pdf
+    Article D613-4 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052218738
+    Article D613-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052218747
 
   avec:
     répartition:
@@ -263,6 +265,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       produit:
         - entreprise . chiffre d'affaires . service BIC
         - taux
+      arrondi: oui
       unité: €/mois
 
       avec:
@@ -277,23 +280,43 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             maladie-maternité:
               valeur: service BIC * taux de répartition
               avec:
-                taux de répartition: 8.90%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 10.05%
+                    - sinon: 8.90%
             invalidité-décès:
               valeur: service BIC * taux de répartition
               avec:
-                taux de répartition: 3.10%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 3.15%
+                    - sinon: 3.10%
             retraite de base:
               valeur: service BIC * taux de répartition
               avec:
-                taux de répartition: 41.80%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 43.45%
+                    - sinon: 41.80%
             retraite complémentaire:
               valeur: service BIC * taux de répartition
               avec:
-                taux de répartition: 16.50%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 19.75%
+                    - sinon: 16.50%
             autres contributions:
               valeur: service BIC * taux de répartition
               avec:
-                taux de répartition: 29.70%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 23.60%
+                    - sinon: 29.70%
 
     service BNC:
       description: Cotisations pour la part du chiffre d’affaires en prestation de
@@ -302,13 +325,14 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       produit:
         - entreprise . chiffre d'affaires . service BNC
         - taux
+      arrondi: oui
       unité: €/mois
 
       avec:
         taux:
           variations:
             - si: date >= 01/2026
-              alors: 26.1%
+              alors: 25.6%
             - si: date >= 01/2025
               alors: 24.6%
             - si: date >= 07/2024
@@ -325,7 +349,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                 taux de répartition:
                   variations:
                     - si: date >= 01/2026
-                      alors: 3%
+                      alors: 4.10%
                     - si: date >= 01/2025
                       alors: 3.40%
                     - si: date >= 07/2024
@@ -337,7 +361,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                 taux de répartition:
                   variations:
                     - si: date >= 01/2026
-                      alors: 3.25%
+                      alors: 3.30%
                     - si: date >= 01/2025
                       alors: 3.50%
                     - si: date >= 07/2024
@@ -349,7 +373,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                 taux de répartition:
                   variations:
                     - si: date >= 01/2026
-                      alors: 44.85%
+                      alors: 46.40%
                     - si: date >= 01/2025
                       alors: 47.60%
                     - si: date >= 07/2024
@@ -361,9 +385,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                 taux de répartition:
                   variations:
                     - si: date >= 01/2026
-                      alors: 17.7%
+                      alors: 21.00%
                     - si: date >= 01/2025
-                      alors: 13%
+                      alors: 13.00%
                     - si: date >= 07/2024
                       alors: 7.85%
                     - sinon: 0%
@@ -373,7 +397,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
                 taux de répartition:
                   variations:
                     - si: date >= 01/2026
-                      alors: 31.20%
+                      alors: 25.20%
                     - si: date >= 01/2025
                       alors: 32.50%
                     - si: date >= 07/2024
@@ -386,6 +410,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       produit:
         - entreprise . chiffre d'affaires . vente restauration hébergement
         - taux
+      arrondi: oui
       unité: €/mois
 
       avec:
@@ -400,23 +425,43 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             maladie-maternité:
               valeur: vente restauration hébergement * taux de répartition
               avec:
-                taux de répartition: 8.90%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 10.05%
+                    - sinon: 8.90%
             invalidité-décès:
               valeur: vente restauration hébergement * taux de répartition
               avec:
-                taux de répartition: 3.10%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 3.15%
+                    - sinon: 3.10%
             retraite de base:
               valeur: vente restauration hébergement * taux de répartition
               avec:
-                taux de répartition: 41.80%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 43.45%
+                    - sinon: 41.80%
             retraite complémentaire:
               valeur: vente restauration hébergement * taux de répartition
               avec:
-                taux de répartition: 16.50%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 19.75%
+                    - sinon: 16.50%
             autres contributions:
               valeur: vente restauration hébergement * taux de répartition
               avec:
-                taux de répartition: 29.70%
+                taux de répartition:
+                  variations:
+                    - si: date >= 01/2026
+                      alors: 23.60%
+                    - sinon: 29.70%
 
     service BNC Cipav:
       description: Cotisations pour la part du chiffre d’affaires en prestation de
@@ -425,6 +470,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
       produit:
         - entreprise . chiffre d'affaires . service BNC
         - taux
+      arrondi: oui
       unité: €/mois
 
       avec:
@@ -443,6 +489,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
               avec:
                 taux de répartition:
                   variations:
+                    - si: date >= 01/2026
+                      alors: 11.40%
                     - si: date >= 07/2024
                       alors: 10.20%
                     - sinon: 9.05%
@@ -459,6 +507,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
               avec:
                 taux de répartition:
                   variations:
+                    - si: date >= 01/2026
+                      alors: 29.50%
                     - si: date >= 07/2024
                       alors: 28.8%
                     - sinon: 31.3%
@@ -467,6 +517,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
               avec:
                 taux de répartition:
                   variations:
+                    - si: date >= 01/2026
+                      alors: 30.70%
                     - si: date >= 07/2024
                       alors: 25.60%
                     - sinon: 20.75%
@@ -475,6 +527,8 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
               avec:
                 taux de répartition:
                   variations:
+                    - si: date >= 01/2026
+                      alors: 27%
                     - si: date >= 07/2024
-                      alors: 34.00%
+                      alors: 34%
                     - sinon: 36.30%

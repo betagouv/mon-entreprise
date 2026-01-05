@@ -23,7 +23,7 @@ impôt sur le revenu:
 
 ACRE:
   - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
-    entreprise . date de création: 01/06/2024
+    entreprise . date de création: 01/06/2025
     dirigeant . auto-entrepreneur . éligible à l'ACRE: oui
     dirigeant . exonérations . ACRE: oui
   - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
@@ -56,7 +56,7 @@ ACRE:
     entreprise . activité . nature: "'commerciale'"
     entreprise . activités . service ou vente: "'service'"
   - dirigeant . auto-entrepreneur . revenu net: 30000 €/an
-    entreprise . date de création: 01/06/2024
+    entreprise . date de création: 01/06/2025
     dirigeant . auto-entrepreneur . éligible à l'ACRE: oui
     dirigeant . exonérations . ACRE: oui
 
