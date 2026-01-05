@@ -52,12 +52,6 @@ export const sélectionnerRégime = (régime: 'RG' | 'AE' | 'TI') => {
 	fireEvent.click(boutonRégime)
 }
 
-export const getMessageAffiliation = () => {
-	return screen.queryByText(
-		/votre activité n'est pas considérée comme professionnelle/i
-	)
-}
-
 export const getTexteRégime = (régime: 'RG' | 'AE' | 'TI') => {
 	const labels = {
 		RG: /Régime général \(cotisations URSSAF\)/i,
