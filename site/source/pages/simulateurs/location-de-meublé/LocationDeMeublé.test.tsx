@@ -40,9 +40,7 @@ describe('Location de meublé', () => {
 
 				await waitFor(() => {
 					expect(
-						screen.getByText(
-							/votre activité est considérée comme non-professionnelle/i
-						)
+						screen.getByText(/pas d'affiliation obligatoire/i)
 					).toBeInTheDocument()
 				})
 			})
@@ -53,9 +51,7 @@ describe('Location de meublé', () => {
 
 				await waitFor(() => {
 					expect(
-						screen.getByText(
-							/votre activité est considérée comme non-professionnelle/i
-						)
+						screen.getByText(/pas d'affiliation obligatoire/i)
 					).toBeInTheDocument()
 				})
 
@@ -64,7 +60,6 @@ describe('Location de meublé', () => {
 				expect(
 					screen.queryByText(/Travailleur indépendant/i)
 				).not.toBeInTheDocument()
-				expect(screen.queryByText(/Pas d'affiliation/i)).not.toBeInTheDocument()
 			})
 
 			it('doit afficher un lien vers la page URSSAF', async () => {
@@ -98,7 +93,7 @@ describe('Location de meublé', () => {
 				).toBeInTheDocument()
 			})
 
-			it("doit afficher 'professionnelle' quand toutes les conditions sont remplies (activité principale, courte durée)", async () => {
+			it("doit afficher 'affiliation obligatoire' quand toutes les conditions sont remplies (activité principale, courte durée)", async () => {
 				const { user } = render()
 				await saisirRecettes(user, 50000)
 				await saisirAutresRevenus(user, 30000)
@@ -121,9 +116,7 @@ describe('Location de meublé', () => {
 
 				await waitFor(() => {
 					expect(
-						screen.getByText(
-							/votre activité est considérée comme professionnelle/i
-						)
+						screen.getByText(/affiliation obligatoire/i)
 					).toBeInTheDocument()
 				})
 			})
@@ -156,9 +149,7 @@ describe('Location de meublé', () => {
 
 				await waitFor(() => {
 					expect(
-						screen.getByText(
-							/votre activité est considérée comme non-professionnelle/i
-						)
+						screen.getByText(/pas d'affiliation obligatoire/i)
 					).toBeInTheDocument()
 				})
 			})
