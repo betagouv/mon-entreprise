@@ -8208,10 +8208,6 @@ plafond sécurité sociale:
     contributions.'
   description.fr: Le plafond de Sécurité sociale est le montant maximum des
     rémunérations à prendre en compte pour le calcul de certaines cotisations.
-  note.en: '[automatic] The Social Security ceiling has not been raised in 2021
-    compared to 2020.'
-  note.fr: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par
-    rapport à 2020.
   titre.en: '[automatic] social security ceiling'
   titre.fr: plafond sécurité sociale
 protection sociale:
@@ -14427,10 +14423,10 @@ salarié . rémunération . frais professionnels:
               suggestions.RTM.fr: RTM
               suggestions.TBM.en: '[automatic] TBM'
               suggestions.TBM.fr: TBM
+              suggestions.TCL.en: '[automatic] TCL'
+              suggestions.TCL.fr: TCL
               suggestions.Tisséo.en: '[automatic] Tisséo'
               suggestions.Tisséo.fr: Tisséo
-              suggestions.Técély.en: '[automatic] Técély'
-              suggestions.Técély.fr: Técély
               titre.en: '[automatic] Subscription amount'
               titre.fr: Montant abonnement
             taux employeur:
@@ -14440,8 +14436,8 @@ salarié . rémunération . frais professionnels:
               question.fr:
                 Quel est le taux de prise en charge par l’employeur aux frais de
                 transports du salarié ?
-              suggestions.Maximum déductible (50%).en: '[automatic] Maximum deductible (50%)'
-              suggestions.Maximum déductible (50%).fr: Maximum déductible (50%)
+              suggestions.Maximum déductible (75%).en: '[automatic] Maximum deductible (75%)'
+              suggestions.Maximum déductible (75%).fr: Maximum déductible (75%)
               suggestions.Minimum (50%).en: '[automatic] Minimum (50%)'
               suggestions.Minimum (50%).fr: Minimum (50%)
               suggestions.Totale (100%).en: '[automatic] Total (100%)'
