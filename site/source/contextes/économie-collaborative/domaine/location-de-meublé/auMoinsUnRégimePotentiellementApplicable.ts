@@ -2,7 +2,7 @@ import { Either } from 'effect'
 
 import {
 	compareApplicabilitéDesRégimes,
-	RésultatApplicabilité,
+	RésultatApplicabilitéParRégime,
 } from './comparateur-régimes'
 import { SituationÉconomieCollaborativeValide } from './situation'
 
@@ -11,9 +11,9 @@ export const auMoinsUnRégimePotentiellementApplicable = (
 ): boolean => {
 	const résultats = compareApplicabilitéDesRégimes(situation)
 
-	return résultats.some((résultat: RésultatApplicabilité) => {
+	return résultats.some((résultat: RésultatApplicabilitéParRégime) => {
 		const estApplicable =
-			Either.isRight(résultat.résultat) && résultat.résultat.right
+			Either.isRight(résultat.résultat) && résultat.résultat.right.applicable
 		const estSousConditions = Either.isLeft(résultat.résultat)
 
 		return estApplicable || estSousConditions
