@@ -14,7 +14,7 @@ export const BlocAffiliationObligatoire = () => {
 				<H3>
 					{t(
 						'pages.simulateurs.location-de-logement-meublé.affiliation.obligatoire.titre',
-						'Votre activité est considérée comme professionnelle'
+						'Affiliation obligatoire'
 					)}
 				</H3>
 				<Body>
