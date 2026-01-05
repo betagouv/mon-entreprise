@@ -1685,6 +1685,11 @@ pages:
         into account reduced corporate tax rates."
     location-de-logement-meublé:
       affiliation:
+        indéterminée:
+          liste:
+            aria-label: Missing information
+          texte: "To determine whether you should join, we need to know :"
+          titre: The obligation to affiliate depends on your situation
         non-obligatoire:
           affiliation-volontaire: You can, however, choose to join voluntarily to benefit
             from social protection (health insurance, pensions, etc.).
@@ -1705,6 +1710,7 @@ pages:
         et: " and "
         non-applicable: Not applicable
         sous-conditions: Conditionally applicable
+        sur-recettes-courte-durée: On short-term revenues only
       conditions:
         autresRevenus: other income
         classement: housing classification
@@ -1761,10 +1767,6 @@ pages:
           options:
             micro-entrepreneur:
               description: You pay a percentage of your sales.
-            régime-général:
-              description: Just like an employee.
-            travailleur-indépendant:
-              description: You pay social security contributions on your profits.
         type-durée:
           courte:
             description: You only offer short-term rentals (Airbnb type, less than 3

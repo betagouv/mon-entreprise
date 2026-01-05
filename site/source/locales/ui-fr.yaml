@@ -1796,6 +1796,12 @@ pages:
         réduits de l’impôt sur les sociétés."
     location-de-logement-meublé:
       affiliation:
+        indéterminée:
+          liste:
+            aria-label: Informations manquantes
+          texte: "Pour déterminer si vous devez vous affilier, nous avons besoin de
+            connaître :"
+          titre: L'obligation d'affiliation dépend de votre situation
         non-obligatoire:
           affiliation-volontaire: Vous pouvez toutefois choisir de vous affilier
             volontairement pour bénéficier d'une protection sociale (assurance
@@ -1819,6 +1825,7 @@ pages:
         et: " et "
         non-applicable: Non applicable
         sous-conditions: Applicable sous conditions
+        sur-recettes-courte-durée: Sur les recettes de courte durée uniquement
       conditions:
         autresRevenus: montant des autres revenus
         classement: classement du logement
@@ -1874,10 +1881,6 @@ pages:
           options:
             micro-entrepreneur:
               description: Vous payez un pourcentage de votre chiffre d'affaires.
-            régime-général:
-              description: Comme pour un salarié.
-            travailleur-indépendant:
-              description: Vous payez des cotisations sociales sur votre bénéfice.
         type-durée:
           courte:
             description: Vous proposez uniquement de la location de courte durée (type
