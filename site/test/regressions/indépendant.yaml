@@ -10,11 +10,11 @@
 
 années précédentes:
   - dirigeant . rémunération . net: 60000 €/an
-    date: 01/2024
+    date: 01/2025
   - dirigeant . rémunération . net: 50000 €/an
-    date: 01/2023
+    date: 01/2024
   - dirigeant . rémunération . net: 40000 €/an
-    date: 01/2022
+    date: 01/2023
 
 inversions:
   - dirigeant . rémunération . totale: 2000 €/an
@@ -146,8 +146,8 @@ cotisations forfaitaires début d'activité:
 
 Année incomplète:
   - &AnnéeIncomplete
-    entreprise . date de création: 01/05/2024
-    entreprise . date de cessation: 31/08/2024
+    entreprise . date de création: 01/05/2025
+    entreprise . date de cessation: 31/08/2025
   - <<: *AnnéeIncomplete
     dirigeant . rémunération . net: 2000 €/an
   - <<: *AnnéeIncomplete

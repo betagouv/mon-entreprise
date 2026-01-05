@@ -20,7 +20,7 @@ protection sociale . maladie . maternité paternité adoption: 65
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
 protection sociale . retraite . base: 725
-protection sociale . retraite . complémentaire: 63
+protection sociale . retraite . complémentaire: 76
 protection sociale . retraite . trimestres: 4
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
@@ -99,8 +99,8 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 1`] = `
-"dirigeant . rémunération . net: 1752
-dirigeant . rémunération . net . après impôt: 1752
+"dirigeant . rémunération . net: 1746
+dirigeant . rémunération . net . après impôt: 1746
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -190,7 +190,7 @@ protection sociale . maladie . maternité paternité adoption: 65
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
 protection sociale . retraite . base: 725
-protection sociale . retraite . complémentaire: 63
+protection sociale . retraite . complémentaire: 76
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -243,8 +243,8 @@ protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 1`] = `
-"dirigeant . rémunération . net: 30120
-dirigeant . rémunération . net . après impôt: 25075
+"dirigeant . rémunération . net: 29520
+dirigeant . rémunération . net . après impôt: 24475
 entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
@@ -262,7 +262,7 @@ protection sociale . maladie . maternité paternité adoption: 65
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
 protection sociale . retraite . base: 1650
-protection sociale . retraite . complémentaire: 99
+protection sociale . retraite . complémentaire: 167
 protection sociale . retraite . trimestres: 4"
 `;
 

@@ -91,17 +91,17 @@ ACRE:
   - &acre
     <<: *base
     déclaration charge sociales . ACRE: oui
-    entreprise . date de création: 01/01/2022
+    entreprise . date de création: 01/01/2026
     dirigeant . rémunération . totale: 50000 €/an
   - <<: *acre
     dirigeant . rémunération . totale: 15000 €/an
   - <<: *acre
     dirigeant . rémunération . totale: 5000 €/an
   - <<: *acre
-    entreprise . date de création: 01/07/2021
+    entreprise . date de création: 01/07/2025
     dirigeant . rémunération . totale: 10000 €/an
   - <<: *acre
-    entreprise . date de création: 01/07/2022
+    entreprise . date de création: 01/07/2025
     dirigeant . rémunération . totale: 10000 €/an
 
 international:

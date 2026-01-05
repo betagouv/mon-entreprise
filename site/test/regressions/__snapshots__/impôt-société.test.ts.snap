@@ -44,10 +44,10 @@ entreprise . imposition . IS . montant: 245750"
 
 exports[`calculate simulations-impot-société > prorata temporis 2`] = `
 "entreprise . imposition . IS . contribution sociale: null
-entreprise . imposition . IS . montant: 248218"
+entreprise . imposition . IS . montant: 248230"
 `;
 
 exports[`calculate simulations-impot-société > prorata temporis 3`] = `
 "entreprise . imposition . IS . contribution sociale: null
-entreprise . imposition . IS . montant: 243968"
+entreprise . imposition . IS . montant: 243980"
 `;

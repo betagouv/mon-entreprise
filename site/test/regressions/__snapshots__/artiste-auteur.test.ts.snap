@@ -51,7 +51,7 @@ artiste-auteur . cotisations . IRCEC: 0"
 
 exports[`calculate simulations-artiste-auteur > salarié 3`] = `
 "artiste-auteur . cotisations: 1683
-artiste-auteur . cotisations . IRCEC: 840"
+artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 4`] = `

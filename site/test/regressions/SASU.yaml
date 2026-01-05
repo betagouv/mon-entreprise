@@ -29,11 +29,11 @@ ACRE:
     dirigeant . exonérations . ACRE: oui
   # Acre non applicable car date de création > 1 an
   - dirigeant . rémunération . totale: 30000 €/an
-    entreprise . date de création: 01/06/2023
+    entreprise . date de création: 01/06/2024
     dirigeant . exonérations . ACRE: oui
   # Acre applicable avec date de création < 1 an mais l'année dernière
   - dirigeant . rémunération . totale: 25000 €/an
-    entreprise . date de création: 01/12/2024
+    entreprise . date de création: 01/12/2025
     dirigeant . exonérations . ACRE: oui
 
 JEI:
