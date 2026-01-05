@@ -18,7 +18,7 @@ dirigeant . auto-entrepreneur . DROM:
   valeur: oui
   rend non applicable: exonérations . ACRE
   références:
-    Vous êtes auto-entrepreneur dans les Drom ?: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#vous-etes-auto-entrepreneur-dans
+    Vous êtes auto-entrepreneur dans les Drom ?: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#vous-etes-auto-entrepreneur-dans
     Taux auto-entrepreneur dans les Drom (PDF): https://www.autoentrepreneur.urssaf.fr/portail/files/Guides/Urssaf-AutoEntrepreneur-Drom.pdf#page=13
   avec:
     première période:
@@ -86,10 +86,22 @@ dirigeant . auto-entrepreneur . DROM:
       remplace: cotisations et contributions . cotisations . service BNC Cipav . taux
       variations:
         - si: première période
-          alors: 7.10%
+          alors:
+            variations:
+              - si: date >= 07/2024
+                alors: 7.8%
+              - sinon: 7.10%
         - si: seconde période
-          alors: 10.60%
-        - sinon: 14.20%
+          alors:
+            variations:
+              - si: date >= 07/2024
+                alors: 11.6%
+              - sinon: 10.60%
+        - sinon:
+            variations:
+              - si: date >= 07/2024
+                alors: 15.5%
+              - sinon: 14.20%
 
 dirigeant . auto-entrepreneur . Acre:
   applicable si: dirigeant . exonérations . ACRE
