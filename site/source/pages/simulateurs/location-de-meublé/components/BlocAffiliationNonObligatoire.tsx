@@ -29,13 +29,7 @@ export const BlocAffiliationNonObligatoire = () => {
 					)}
 				</Body>
 				<Spacing sm />
-				<Link
-					href="https://www.urssaf.fr/accueil/services/economie-collaborative.html"
-					aria-label={t(
-						'pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.lien-urssaf',
-						"En savoir plus sur les régimes d'économie collaborative"
-					)}
-				>
+				<Link href="https://www.urssaf.fr/accueil/services/economie-collaborative.html">
 					{t(
 						'pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.lien-urssaf',
 						"En savoir plus sur les régimes d'économie collaborative"

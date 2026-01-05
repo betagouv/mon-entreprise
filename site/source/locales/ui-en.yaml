@@ -1703,7 +1703,6 @@ pages:
         non-pris-en-charge: This simulator does not yet cover the case of bed and breakfasts.
       comparateur:
         applicable: Applicable
-        aria-label: Comparison of affiliation plans
         et: " and "
         non-applicable: Not applicable
         sous-conditions: Conditionally applicable
