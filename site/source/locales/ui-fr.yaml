@@ -1843,8 +1843,8 @@ pages:
         ogDescription: Ce simulateur permet de calculer les revenus générés par la
           location de logements meublés. Il aide les propriétaires à anticiper
           leurs gains et optimiser leur fiscalité dans ce cadre spécifique.
-        ogTitle: Simulateur de revenu pour location de logement meublé
-        titre: Simulateur de revenu pour location de logement meublé
+        ogTitle: Statuts possibles pour la location de meublé
+        titre: Statuts possibles pour la location de meublé
       objectifs:
         autres-revenus:
           aria-label: Montant des autres revenus annuels
@@ -1902,7 +1902,7 @@ pages:
         travailleur-indépendant:
           libellé: Travailleur indépendant
       shortname: Location de logement meublé
-      title: Simulateur de revenu pour location de logement meublé
+      title: Statuts possibles pour la location de meublé
       type-hébergement:
         aria-label: Type d'hébergement
         chambre-hôte: Chambre d'hôtes
