@@ -1686,8 +1686,6 @@ pages:
     location-de-logement-meublé:
       affiliation:
         indéterminée:
-          liste:
-            aria-label: Missing information
           texte: "To determine whether you should join, we need to know :"
           titre: The obligation to affiliate depends on your situation
         non-obligatoire:
