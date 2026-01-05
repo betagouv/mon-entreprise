@@ -1809,13 +1809,12 @@ pages:
           lien-urssaf: En savoir plus sur les régimes d'économie collaborative
           texte: Vous n'êtes pas obligé de vous affilier à un régime de sécurité sociale
             et ne payez pas de cotisations sociales.
-          titre: Votre activité est considérée comme non-professionnelle
+          titre: Pas d'affiliation obligatoire
         obligatoire:
           texte: "Vous devez obligatoirement déclarer vos revenus et des cotisations
-            sociales sont dues. Vous pouvez opter entre plusieurs régimes
-            d'affiliation : régime auto-entrepreneur, indépendant ou régime
-            général."
-          titre: Votre activité est considérée comme professionnelle
+            sociales sont dues. Voici les différents régimes d'affiliation
+            possibles :"
+          titre: Affiliation obligatoire
       chambre-hôtes:
         non-pris-en-charge: Le cas des chambres d'hôtes n'est pas encore pris en charge
           par ce simulateur.

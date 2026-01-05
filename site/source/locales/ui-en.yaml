@@ -1696,12 +1696,11 @@ pages:
           lien-urssaf: Find out more about collaborative economy schemes
           texte: You are not obliged to join a social security scheme and pay no social
             security contributions.
-          titre: Your activity is considered non-professional
+          titre: No compulsory membership
         obligatoire:
-          texte: "You are required to declare your income and pay social security
-            contributions. You can choose between several affiliation schemes:
-            auto-entrepreneur, self-employed or general scheme."
-          titre: Your activity is considered professional
+          texte: "You must declare your income and social security contributions are due.
+            Here are the various possible affiliation schemes:"
+          titre: Mandatory membership
       chambre-hôtes:
         non-pris-en-charge: This simulator does not yet cover the case of bed and breakfasts.
       comparateur:
