@@ -10,7 +10,12 @@ import {
 	Montant,
 } from '@/domaine/Montant'
 
-import { EstApplicable } from './applicabilité'
+import {
+	applicableSurRecettesCourteDurée,
+	applicableSurToutesRecettes,
+	EstApplicable,
+	NON_APPLICABLE,
+} from './applicabilité'
 import {
 	AffiliationNonObligatoire,
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
@@ -71,7 +76,7 @@ export function calculeCotisationsRégimeGénéral(
 	}
 
 	const applicabilité = estApplicableRégimeGénéral(situation)
-	if (Either.isRight(applicabilité) && !applicabilité.right) {
+	if (Either.isRight(applicabilité) && !applicabilité.right.applicable) {
 		return Either.left(new AffiliationNonObligatoire())
 	}
 
@@ -106,17 +111,17 @@ export function calculeCotisationsRégimeGénéral(
 
 export const estApplicableRégimeGénéral: EstApplicable = (situation) => {
 	if (situation.typeHébergement === 'chambre-hôte') {
-		return Either.right(false)
+		return NON_APPLICABLE
 	}
 
 	const recettes = situation.recettes.value
 
 	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
-		return Either.right(false)
+		return NON_APPLICABLE
 	}
 
 	if (!estActiviteProfessionnelle(situation)) {
-		return Either.right(false)
+		return NON_APPLICABLE
 	}
 
 	if (!aRenseignéSesAutresRevenus(situation)) {
@@ -140,10 +145,12 @@ export const estApplicableRégimeGénéral: EstApplicable = (situation) => {
 					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
 				)
 			) {
-				return Either.right(false)
+				return NON_APPLICABLE
 			}
+
+			return applicableSurRecettesCourteDurée(recettesCourteDurée)
 		} else if (typeDurée !== 'courte') {
-			return Either.right(false)
+			return NON_APPLICABLE
 		}
 	}
 
@@ -154,9 +161,9 @@ export const estApplicableRégimeGénéral: EstApplicable = (situation) => {
 		const typeDurée = situation.typeDurée.value
 
 		if (estActivitéPrincipale(situation) && typeDurée !== 'courte') {
-			return Either.right(false)
+			return NON_APPLICABLE
 		}
 	}
 
-	return Either.right(true)
+	return applicableSurToutesRecettes(recettes)
 }

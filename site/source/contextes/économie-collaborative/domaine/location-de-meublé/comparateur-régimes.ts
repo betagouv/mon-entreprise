@@ -2,7 +2,7 @@ import { Array, Either, pipe } from 'effect'
 
 import { Montant } from '@/domaine/Montant'
 
-import { RéponseManquante } from './applicabilité'
+import { RéponseManquante, RésultatApplicabilité } from './applicabilité'
 import { RégimeInapplicable } from './erreurs'
 import {
 	calculeCotisationsRégimeGénéral,
@@ -75,14 +75,14 @@ export const compareRégimes = (
 		)
 	)
 
-export type RésultatApplicabilité = {
+export type RésultatApplicabilitéParRégime = {
 	régime: RegimeCotisation
-	résultat: Either.Either<boolean, RéponseManquante[]>
+	résultat: Either.Either<RésultatApplicabilité, RéponseManquante[]>
 }
 
 export const compareApplicabilitéDesRégimes = (
 	situation: SituationÉconomieCollaborativeValide
-): RésultatApplicabilité[] =>
+): RésultatApplicabilitéParRégime[] =>
 	pipe(
 		[
 			{

@@ -1,9 +1,10 @@
 import { Either } from 'effect'
 import { describe, expect, it } from 'vitest'
 
+import { NON_APPLICABLE } from './applicabilité'
 import {
 	compareApplicabilitéDesRégimes,
-	type RésultatApplicabilité,
+	type RésultatApplicabilitéParRégime,
 } from './comparateur-régimes'
 import { estApplicableRégimeGénéral } from './régime-général'
 import { estApplicableMicroEntreprise } from './régime-micro-entreprise'
@@ -57,7 +58,10 @@ describe('compareApplicabilitéDesRégimes', () => {
 
 					const résultat = estApplicableTravailleurIndépendant(situation)
 
-					expect(résultat).toEqual(Either.right(true))
+					expect(Either.isRight(résultat)).toBe(true)
+					if (Either.isRight(résultat)) {
+						expect(résultat.right.applicable).toBe(true)
+					}
 				})
 
 				it('RG dépend de la question sur le type de durée', () => {
@@ -364,7 +368,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 								.build()
 
 							expect(estApplicableMicroEntreprise(situation)).toEqual(
-								Either.right(false)
+								NON_APPLICABLE
 							)
 						})
 
@@ -375,7 +379,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 								.build()
 
 							expect(estApplicableMicroEntreprise(situation)).toEqual(
-								Either.right(false)
+								NON_APPLICABLE
 							)
 						})
 
@@ -386,7 +390,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 								.build()
 
 							expect(estApplicableMicroEntreprise(situation)).toEqual(
-								Either.right(false)
+								NON_APPLICABLE
 							)
 						})
 					})
@@ -427,11 +431,11 @@ describe('compareApplicabilitéDesRégimes', () => {
 
 expect.extend({
 	toAvoirRégimesApplicables(
-		résultats: RésultatApplicabilité[],
+		résultats: RésultatApplicabilitéParRégime[],
 		régimesAttendus: RegimeCotisation[]
 	) {
 		const régimesApplicables = résultats
-			.filter((r) => Either.isRight(r.résultat) && r.résultat.right === true)
+			.filter((r) => Either.isRight(r.résultat) && r.résultat.right.applicable)
 			.map((r) => r.régime)
 
 		const régimesManquants = régimesAttendus.filter(
@@ -473,12 +477,12 @@ expect.extend({
 		}
 	},
 
-	toNAvoirAucunRégimeApplicable(résultats: RésultatApplicabilité[]) {
+	toNAvoirAucunRégimeApplicable(résultats: RésultatApplicabilitéParRégime[]) {
 		const régimesSousConditions = résultats.filter((r) =>
 			Either.isLeft(r.résultat)
 		)
 		const régimesApplicables = résultats.filter(
-			(r) => Either.isRight(r.résultat) && r.résultat.right === true
+			(r) => Either.isRight(r.résultat) && r.résultat.right.applicable
 		)
 
 		const pass =
