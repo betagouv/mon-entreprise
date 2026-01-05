@@ -1,4 +1,4 @@
-date: 01/05/2025
+date: 01/01/2026
 période: oui
 période . jours ouvrés moyen par mois:
   formule: 21 jour ouvré/mois
@@ -12,6 +12,8 @@ période . semaines par mois:
 # calculating the beginning and the end of the year of a given date.
 période . début d'année:
   variations:
+    - si: date >= 01/2026
+      alors: 01/01/2026
     - si: date >= 01/2025
       alors: 01/01/2025
     - si: date >= 01/2024
@@ -25,6 +27,8 @@ période . début d'année:
 
 période . début d'année . N-1:
   variations:
+    - si: date >= 01/2026
+      alors: 01/01/2025
     - si: date >= 01/2025
       alors: 01/01/2024
     - si: date >= 01/2024
@@ -34,6 +38,8 @@ période . début d'année . N-1:
 
 période . fin d'année:
   variations:
+    - si: date >= 01/2026
+      alors: 31/12/2026
     - si: date >= 01/2025
       alors: 31/12/2025
     - si: date >= 01/2024
@@ -47,6 +53,8 @@ période . fin d'année:
 
 période . fin d'année . N-1:
   variations:
+    - si: date >= 01/2026
+      alors: 31/12/2025
     - si: date >= 01/2025
       alors: 31/12/2024
     - si: date >= 01/2024
