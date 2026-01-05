@@ -1797,8 +1797,6 @@ pages:
     location-de-logement-meublé:
       affiliation:
         indéterminée:
-          liste:
-            aria-label: Informations manquantes
           texte: "Pour déterminer si vous devez vous affilier, nous avons besoin de
             connaître :"
           titre: L'obligation d'affiliation dépend de votre situation
