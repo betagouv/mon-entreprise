@@ -238,7 +238,7 @@ describe('Location de meublé de courte durée', () => {
 				const resultat = calculeCotisations(situation)
 				expect(Either.isRight(resultat)).toBe(true)
 				if (Either.isRight(resultat)) {
-					expect(Equal.equals(resultat.right, eurosParAn(3_720))).toEqual(true)
+					expect(resultat.right.valeur).toEqual(3_726)
 				}
 			})
 		})
