@@ -13,7 +13,12 @@ import {
 	AutoEntrepreneurCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 
-import { EstApplicable } from './applicabilité'
+import {
+	applicableSurRecettesCourteDurée,
+	applicableSurToutesRecettes,
+	EstApplicable,
+	NON_APPLICABLE,
+} from './applicabilité'
 import {
 	AffiliationNonObligatoire,
 	AffiliationObligatoire,
@@ -56,7 +61,7 @@ export function calculeCotisationsMicroEntreprise(
 	| RégimeNonApplicablePourChambreDHôte
 > {
 	const applicabilité = estApplicableMicroEntreprise(situation)
-	if (Either.isRight(applicabilité) && !applicabilité.right) {
+	if (Either.isRight(applicabilité) && !applicabilité.right.applicable) {
 		return Either.left(new AffiliationNonObligatoire())
 	}
 
@@ -121,12 +126,14 @@ export function calculeCotisationsMicroEntreprise(
 
 export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 	if (!estActiviteProfessionnelle(situation)) {
-		return Either.right(false)
+		return NON_APPLICABLE
 	}
 
 	if (situation.typeHébergement === 'chambre-hôte') {
-		return Either.right(true)
+		return applicableSurToutesRecettes(situation.revenuNet.value)
 	}
+
+	const recettes = situation.recettes.value
 
 	if (!aRenseignéSesAutresRevenus(situation)) {
 		return Either.left(['autresRevenus'])
@@ -139,10 +146,10 @@ export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 
 	if (typeDurée === 'longue') {
 		if (!estActivitéPrincipale(situation)) {
-			return Either.right(false)
+			return NON_APPLICABLE
 		}
 
-		return Either.right(true)
+		return applicableSurToutesRecettes(recettes)
 	}
 
 	if (
@@ -159,8 +166,17 @@ export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 				estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
 			)
 		) {
-			return Either.right(false)
+			return NON_APPLICABLE
 		}
+
+		if (!aRenseignéSonClassement(situation)) {
+			return Either.left(['classement'])
+		}
+		if (situation.classement.value !== 'classé') {
+			return NON_APPLICABLE
+		}
+
+		return applicableSurRecettesCourteDurée(recettesCourteDurée)
 	}
 
 	if (!aRenseignéSonClassement(situation)) {
@@ -168,19 +184,13 @@ export const estApplicableMicroEntreprise: EstApplicable = (situation) => {
 	}
 	const classement = situation.classement.value
 
-	if (!estActivitéPrincipale(situation)) {
-		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			if (classement !== 'classé') {
-				return Either.right(false)
-			}
-		} else if (classement !== 'classé') {
-			return Either.right(false)
-		}
+	if (!estActivitéPrincipale(situation) && classement !== 'classé') {
+		return NON_APPLICABLE
 	}
 
 	if (classement !== 'classé') {
-		return Either.right(false)
+		return NON_APPLICABLE
 	}
 
-	return Either.right(true)
+	return applicableSurToutesRecettes(recettes)
 }

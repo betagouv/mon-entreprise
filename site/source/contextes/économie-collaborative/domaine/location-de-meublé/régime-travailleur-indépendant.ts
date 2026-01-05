@@ -8,7 +8,12 @@ import {
 	TravailleurIndependantCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/TravailleurIndependantContexteDansPublicodes'
 
-import { EstApplicable } from './applicabilité'
+import {
+	applicableSurRecettesCourteDurée,
+	applicableSurToutesRecettes,
+	EstApplicable,
+	NON_APPLICABLE,
+} from './applicabilité'
 import { AffiliationNonObligatoire } from './erreurs'
 import { estActivitéPrincipale } from './estActivitéPrincipale'
 import {
@@ -26,12 +31,14 @@ export const estApplicableTravailleurIndépendant: EstApplicable = (
 	situation
 ) => {
 	if (!estActiviteProfessionnelle(situation)) {
-		return Either.right(false)
+		return NON_APPLICABLE
 	}
 
 	if (situation.typeHébergement === 'chambre-hôte') {
-		return Either.right(true)
+		return applicableSurToutesRecettes(situation.revenuNet.value)
 	}
+
+	const recettes = situation.recettes.value
 
 	if (!aRenseignéSesAutresRevenus(situation)) {
 		return Either.left(['autresRevenus'])
@@ -53,14 +60,16 @@ export const estApplicableTravailleurIndépendant: EstApplicable = (
 					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
 				)
 			) {
-				return Either.right(false)
+				return NON_APPLICABLE
 			}
+
+			return applicableSurRecettesCourteDurée(recettesCourteDurée)
 		} else if (situation.typeDurée.value !== 'courte') {
-			return Either.right(false)
+			return NON_APPLICABLE
 		}
 	}
 
-	return Either.right(true)
+	return applicableSurToutesRecettes(recettes)
 }
 
 /**
@@ -75,7 +84,7 @@ export function calculeCotisationsTravailleurIndépendant(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<Montant<'€/an'>, AffiliationNonObligatoire> {
 	const applicabilité = estApplicableTravailleurIndépendant(situation)
-	if (Either.isRight(applicabilité) && !applicabilité.right) {
+	if (Either.isRight(applicabilité) && !applicabilité.right.applicable) {
 		return Either.left(new AffiliationNonObligatoire())
 	}
 

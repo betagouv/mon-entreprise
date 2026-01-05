@@ -7,7 +7,7 @@ import {
 	estSituationValide,
 	RegimeCotisation,
 	RégimeTag,
-	RésultatApplicabilité,
+	RésultatApplicabilitéParRégime,
 	useEconomieCollaborative,
 	type RéponseManquante,
 } from '@/contextes/économie-collaborative'
@@ -32,7 +32,7 @@ export const ComparateurRégimesCards = () => {
 		situation,
 		O.liftPredicate(estSituationValide),
 		O.map(compareApplicabilitéDesRégimes),
-		O.getOrElse((): RésultatApplicabilité[] => [])
+		O.getOrElse((): RésultatApplicabilitéParRégime[] => [])
 	)
 
 	const gridSizes = getGridSizes(1, 3)
@@ -59,7 +59,11 @@ export const ComparateurRégimesCards = () => {
 	)
 }
 
-const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
+const RégimeCard = ({
+	résultat,
+}: {
+	résultat: RésultatApplicabilitéParRégime
+}) => {
 	const { t } = useTranslation()
 
 	const getRégimeLibellé = (régime: RegimeCotisation): string => {
@@ -83,15 +87,19 @@ const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 	}
 
 	const estApplicable =
-		Either.isRight(résultat.résultat) && résultat.résultat.right
+		Either.isRight(résultat.résultat) && résultat.résultat.right.applicable
 	const estNonApplicable =
-		Either.isRight(résultat.résultat) && !résultat.résultat.right
+		Either.isRight(résultat.résultat) && !résultat.résultat.right.applicable
 	const estSousConditions = Either.isLeft(résultat.résultat)
 	const conditionsManquantes = pipe(
 		résultat.résultat,
 		Either.getLeft,
 		O.getOrElse((): RéponseManquante[] => [])
 	)
+	const estApplicableSurRecettesCourteDuréeUniquement =
+		Either.isRight(résultat.résultat) &&
+		résultat.résultat.right.applicable &&
+		résultat.résultat.right.assiette.type === 'recettes-courte-durée'
 
 	return (
 		<StatusCard nonApplicable={estNonApplicable}>
@@ -159,6 +167,16 @@ const RégimeCard = ({ résultat }: { résultat: RésultatApplicabilité }) => {
 							flexDirection: 'column',
 						}}
 					>
+						{estApplicableSurRecettesCourteDuréeUniquement && (
+							<Li>
+								<Strong>
+									{t(
+										'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
+										'Sur les recettes de courte durée uniquement'
+									)}
+								</Strong>
+							</Li>
+						)}
 						<Li>
 							{résultat.régime === RegimeCotisation.regimeGeneral &&
 								t(

@@ -1,10 +1,10 @@
 import { Array, Either, pipe } from 'effect'
 
+import { RéponseManquante } from './applicabilité'
 import {
 	compareApplicabilitéDesRégimes,
-	RésultatApplicabilité,
+	RésultatApplicabilitéParRégime,
 } from './comparateur-régimes'
-import { RéponseManquante } from './erreurs'
 import { SituationÉconomieCollaborativeValide } from './situation'
 
 export const estAffiliationObligatoire = (
@@ -13,7 +13,8 @@ export const estAffiliationObligatoire = (
 	const résultats = compareApplicabilitéDesRégimes(situation)
 
 	const auMoinsUnApplicable = résultats.some(
-		(r: RésultatApplicabilité) => Either.isRight(r.résultat) && r.résultat.right
+		(r: RésultatApplicabilitéParRégime) =>
+			Either.isRight(r.résultat) && r.résultat.right.applicable
 	)
 
 	if (auMoinsUnApplicable) {
@@ -21,8 +22,8 @@ export const estAffiliationObligatoire = (
 	}
 
 	const aucunApplicable = résultats.every(
-		(r: RésultatApplicabilité) =>
-			Either.isRight(r.résultat) && !r.résultat.right
+		(r: RésultatApplicabilitéParRégime) =>
+			Either.isRight(r.résultat) && !r.résultat.right.applicable
 	)
 
 	if (aucunApplicable) {
@@ -31,7 +32,7 @@ export const estAffiliationObligatoire = (
 
 	return pipe(
 		résultats,
-		Array.flatMap((r: RésultatApplicabilité) =>
+		Array.flatMap((r: RésultatApplicabilitéParRégime) =>
 			Either.isLeft(r.résultat) ? r.résultat.left : []
 		),
 		Array.dedupe,
