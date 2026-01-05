@@ -1,4 +1,4 @@
-import { Either, pipe } from 'effect'
+import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
@@ -6,23 +6,15 @@ import {
 	compareApplicabilitéDesRégimes,
 	estSituationValide,
 	RegimeCotisation,
-	RégimeTag,
-	RésultatApplicabilitéParRégime,
 	useEconomieCollaborative,
-	type RéponseManquante,
+	type RésultatApplicabilitéParRégime,
 } from '@/contextes/économie-collaborative'
-import {
-	Grid,
-	Li,
-	SmallBody,
-	Spacing,
-	StatusCard,
-	Strong,
-	Ul,
-} from '@/design-system'
+import { Grid, Spacing, Ul } from '@/design-system'
 
 import { getGridSizes } from '../../comparaison-statuts/components/DetailsRowCards'
-import { getLibelléInfoManquante } from '../getLibelléInfoManquante'
+import { MicroEntrepriseCard } from './MicroEntrepriseCard'
+import { RégimeGénéralCard } from './RégimeGénéralCard'
+import { TravailleurIndépendantCard } from './TravailleurIndépendantCard'
 
 export const ComparateurRégimesCards = () => {
 	const { t } = useTranslation()
@@ -64,141 +56,12 @@ const RégimeCard = ({
 }: {
 	résultat: RésultatApplicabilitéParRégime
 }) => {
-	const { t } = useTranslation()
-
-	const getRégimeLibellé = (régime: RegimeCotisation): string => {
-		switch (régime) {
-			case RegimeCotisation.regimeGeneral:
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.libellé',
-					'Régime général'
-				)
-			case RegimeCotisation.microEntreprise:
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.régimes.micro-entreprise.libellé',
-					'Auto-entrepreneur'
-				)
-			case RegimeCotisation.travailleurIndependant:
-				return t(
-					'pages.simulateurs.location-de-logement-meublé.régimes.travailleur-indépendant.libellé',
-					'Travailleur indépendant'
-				)
-		}
+	switch (résultat.régime) {
+		case RegimeCotisation.regimeGeneral:
+			return <RégimeGénéralCard résultat={résultat} />
+		case RegimeCotisation.microEntreprise:
+			return <MicroEntrepriseCard résultat={résultat} />
+		case RegimeCotisation.travailleurIndependant:
+			return <TravailleurIndépendantCard résultat={résultat} />
 	}
-
-	const estApplicable =
-		Either.isRight(résultat.résultat) && résultat.résultat.right.applicable
-	const estNonApplicable =
-		Either.isRight(résultat.résultat) && !résultat.résultat.right.applicable
-	const estSousConditions = Either.isLeft(résultat.résultat)
-	const conditionsManquantes = pipe(
-		résultat.résultat,
-		Either.getLeft,
-		O.getOrElse((): RéponseManquante[] => [])
-	)
-	const estApplicableSurRecettesCourteDuréeUniquement =
-		Either.isRight(résultat.résultat) &&
-		résultat.résultat.right.applicable &&
-		résultat.résultat.right.assiette.type === 'recettes-courte-durée'
-
-	return (
-		<StatusCard nonApplicable={estNonApplicable}>
-			<StatusCard.Étiquette>
-				<RégimeTag régime={résultat.régime} />
-			</StatusCard.Étiquette>
-
-			<StatusCard.Titre>{getRégimeLibellé(résultat.régime)}</StatusCard.Titre>
-
-			<StatusCard.ValeurSecondaire>
-				<SmallBody>
-					{estApplicable && (
-						<Strong>
-							{t(
-								'pages.simulateurs.location-de-logement-meublé.comparateur.applicable',
-								'Applicable'
-							)}
-						</Strong>
-					)}
-					{estNonApplicable && (
-						<Strong>
-							{t(
-								'pages.simulateurs.location-de-logement-meublé.comparateur.non-applicable',
-								'Non applicable'
-							)}
-						</Strong>
-					)}
-					{estSousConditions && (
-						<>
-							<Strong>
-								{t(
-									'pages.simulateurs.location-de-logement-meublé.comparateur.sous-conditions',
-									'Applicable sous conditions'
-								)}
-							</Strong>
-							{conditionsManquantes.length > 0 && (
-								<>
-									{' : '}
-									{conditionsManquantes.map((condition, index) => (
-										<span key={condition}>
-											{index > 0 &&
-												(index === conditionsManquantes.length - 1
-													? t(
-															'pages.simulateurs.location-de-logement-meublé.comparateur.et',
-															' et '
-													  )
-													: ', ')}
-											{getLibelléInfoManquante(t, condition)}
-										</span>
-									))}
-								</>
-							)}
-						</>
-					)}
-				</SmallBody>
-			</StatusCard.ValeurSecondaire>
-
-			{(résultat.régime === RegimeCotisation.regimeGeneral ||
-				(estApplicable &&
-					(estApplicableSurRecettesCourteDuréeUniquement ||
-						résultat.régime === RegimeCotisation.microEntreprise))) && (
-				<StatusCard.Complément>
-					<Ul
-						style={{
-							display: 'flex',
-							flex: '1',
-							marginBottom: '0',
-							flexDirection: 'column',
-						}}
-					>
-						{estApplicableSurRecettesCourteDuréeUniquement && (
-							<Li>
-								<Strong>
-									{t(
-										'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
-										'Sur les recettes de courte durée uniquement'
-									)}
-								</Strong>
-							</Li>
-						)}
-						{résultat.régime === RegimeCotisation.microEntreprise && (
-							<Li>
-								{t(
-									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
-									"Vous payez un pourcentage de votre chiffre d'affaires."
-								)}
-							</Li>
-						)}
-						{résultat.régime === RegimeCotisation.regimeGeneral && (
-							<Li>
-								{t(
-									'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.description',
-									'Offre simplifiée du régime général'
-								)}
-							</Li>
-						)}
-					</Ul>
-				</StatusCard.Complément>
-			)}
-		</StatusCard>
-	)
 }
