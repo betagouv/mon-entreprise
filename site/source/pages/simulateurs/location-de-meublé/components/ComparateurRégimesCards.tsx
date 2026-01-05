@@ -157,46 +157,39 @@ const RégimeCard = ({
 				</SmallBody>
 			</StatusCard.ValeurSecondaire>
 
-			{estApplicable && (
-				<StatusCard.Complément>
-					<Ul
-						style={{
-							display: 'flex',
-							flex: '1',
-							marginBottom: '0',
-							flexDirection: 'column',
-						}}
-					>
-						{estApplicableSurRecettesCourteDuréeUniquement && (
-							<Li>
-								<Strong>
+			{estApplicable &&
+				(estApplicableSurRecettesCourteDuréeUniquement ||
+					résultat.régime === RegimeCotisation.microEntreprise) && (
+					<StatusCard.Complément>
+						<Ul
+							style={{
+								display: 'flex',
+								flex: '1',
+								marginBottom: '0',
+								flexDirection: 'column',
+							}}
+						>
+							{estApplicableSurRecettesCourteDuréeUniquement && (
+								<Li>
+									<Strong>
+										{t(
+											'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
+											'Sur les recettes de courte durée uniquement'
+										)}
+									</Strong>
+								</Li>
+							)}
+							{résultat.régime === RegimeCotisation.microEntreprise && (
+								<Li>
 									{t(
-										'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
-										'Sur les recettes de courte durée uniquement'
+										'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
+										"Vous payez un pourcentage de votre chiffre d'affaires."
 									)}
-								</Strong>
-							</Li>
-						)}
-						<Li>
-							{résultat.régime === RegimeCotisation.regimeGeneral &&
-								t(
-									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.régime-général.description',
-									'Comme pour un salarié.'
-								)}
-							{résultat.régime === RegimeCotisation.microEntreprise &&
-								t(
-									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
-									"Vous payez un pourcentage de votre chiffre d'affaires."
-								)}
-							{résultat.régime === RegimeCotisation.travailleurIndependant &&
-								t(
-									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.travailleur-indépendant.description',
-									'Vous payez des cotisations sociales sur votre bénéfice.'
-								)}
-						</Li>
-					</Ul>
-				</StatusCard.Complément>
-			)}
+								</Li>
+							)}
+						</Ul>
+					</StatusCard.Complément>
+				)}
 		</StatusCard>
 	)
 }
