@@ -8,6 +8,10 @@
 - Mise à jour du plafond de la Sécurité sociale
 - Mise à jour des taux de cotisation et de la répartition des cotisations pour les auto-entrepreneur BNC et BNC Cipav
 - Mise à jour des taux de cotisation pour les auto-entrepreneur BNC Cipav dans les Drom
+- Mise à jour des suggestions de montant de l'abonnement de transports publics
+
+### Corrections
+- Correction de l'exonération de cotisations sociales sur la prise en charge par l'employeur des frais de transport
 
 ## 10.0.0
 

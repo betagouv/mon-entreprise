@@ -576,14 +576,7 @@ salarié . rémunération . frais professionnels:
               produit:
                 - montant
                 - valeur: taux employeur
-                  plafond:
-                    variations:
-                      - si:
-                          toutes ces conditions:
-                            - date >= 01/2022
-                            - date < 01/2025
-                        alors: 75%
-                      - sinon: 50%
+                  plafond: 75%
 
             employeur:
               applicable si: montant > 0
@@ -619,12 +612,12 @@ salarié . rémunération . frais professionnels:
                 Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
                 "Transports en commun : prise en charge obligatoire des abonnements": https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html#ancre-frais-de-transport
               suggestions:
-                Navigo: 88.80 €/mois
-                Técély: 74.10 €/mois
+                Navigo: 90.80 €/mois
+                TCL: 74.10 €/mois
                 RTM: 40 €/mois
-                Tisséo: 48.90 €/mois
-                Ilévia: 55 €/mois
-                TBM: 44.40 €/mois
+                Tisséo: 50.50 €/mois
+                Ilévia: 56.50 €/mois
+                TBM: 45.80 €/mois
 
             taux employeur:
               question: Quel est le taux de prise en charge par l’employeur aux frais de
@@ -633,7 +626,7 @@ salarié . rémunération . frais professionnels:
               plancher: 50%
               suggestions:
                 Minimum (50%): 50%
-                Maximum déductible (50%): 50%
+                Maximum déductible (75%): 75%
                 Totale (100%): 100%
 
         prime de transport:
