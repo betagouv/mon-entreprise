@@ -29,12 +29,7 @@ export const BlocAffiliationIndéterminée = ({
 						'Pour déterminer si vous devez vous affilier, nous avons besoin de connaître :'
 					)}
 				</Body>
-				<Ul
-					aria-label={t(
-						'pages.simulateurs.location-de-logement-meublé.affiliation.indéterminée.liste.aria-label',
-						'Informations manquantes'
-					)}
-				>
+				<Ul data-testid="liste-informations-manquantes">
 					{réponsesManquantes.map((réponse) => (
 						<Li key={réponse}>{getLibelléInfoManquante(t, réponse)}</Li>
 					))}

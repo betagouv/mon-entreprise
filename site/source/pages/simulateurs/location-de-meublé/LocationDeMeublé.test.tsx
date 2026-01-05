@@ -84,9 +84,9 @@ describe('Location de meublé', () => {
 				const { user } = render()
 				await saisirRecettes(user, 25000)
 
-				const listeInfosManquantes = await screen.findByRole('list', {
-					name: /informations manquantes/i,
-				})
+				const listeInfosManquantes = await screen.findByTestId(
+					'liste-informations-manquantes'
+				)
 
 				expect(
 					within(listeInfosManquantes).getByText(/montant des autres revenus/i)
