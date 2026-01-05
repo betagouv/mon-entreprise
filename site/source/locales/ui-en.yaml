@@ -1783,6 +1783,7 @@ pages:
         micro-entreprise:
           libellé: Self-employed contractor
         régime-général:
+          description: Simplified offer from the general scheme
           libellé: General scheme
         travailleur-indépendant:
           libellé: Self-employed
