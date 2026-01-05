@@ -125,37 +125,37 @@ impôt . montant: 592"
 exports[`calculate simulations-indépendant > années précédentes 1`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
 dirigeant . indépendant . revenu professionnel: 62367
-dirigeant . rémunération . cotisations: 27280
+dirigeant . rémunération . cotisations: 27271
 dirigeant . rémunération . net: 60000
-dirigeant . rémunération . net . après impôt: 48004
-dirigeant . rémunération . totale: 87280
+dirigeant . rémunération . net . après impôt: 48124
+dirigeant . rémunération . totale: 87271
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 87280
-impôt . montant: 11996"
+entreprise . chiffre d'affaires: 87271
+impôt . montant: 11876"
 `;
 
 exports[`calculate simulations-indépendant > années précédentes 2`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 51974
-dirigeant . rémunération . cotisations: 22810
+dirigeant . indépendant . revenu professionnel: 51977
+dirigeant . rémunération . cotisations: 22919
 dirigeant . rémunération . net: 50000
-dirigeant . rémunération . net . après impôt: 40814
-dirigeant . rémunération . totale: 72810
+dirigeant . rémunération . net . après impôt: 41121
+dirigeant . rémunération . totale: 72919
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 72810
-impôt . montant: 9186"
+entreprise . chiffre d'affaires: 72919
+impôt . montant: 8879"
 `;
 
 exports[`calculate simulations-indépendant > années précédentes 3`] = `
 "dirigeant . indépendant . cotisations et contributions . début activité: null
-dirigeant . indépendant . revenu professionnel: 41594
-dirigeant . rémunération . cotisations: 18798
+dirigeant . indépendant . revenu professionnel: 41591
+dirigeant . rémunération . cotisations: 18715
 dirigeant . rémunération . net: 40000
-dirigeant . rémunération . net . après impôt: 33600
-dirigeant . rémunération . totale: 58798
+dirigeant . rémunération . net . après impôt: 33929
+dirigeant . rémunération . totale: 58715
 entreprise . charges: 0
-entreprise . chiffre d'affaires: 58798
-impôt . montant: 6400"
+entreprise . chiffre d'affaires: 58715
+impôt . montant: 6071"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `
