@@ -1,6 +1,5 @@
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
-import { useTranslation } from 'react-i18next'
 
 import {
 	compareApplicabilitéDesRégimes,
@@ -17,7 +16,6 @@ import { RégimeGénéralCard } from './RégimeGénéralCard'
 import { TravailleurIndépendantCard } from './TravailleurIndépendantCard'
 
 export const ComparateurRégimesCards = () => {
-	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
 
 	const résultats = pipe(
@@ -32,15 +30,7 @@ export const ComparateurRégimesCards = () => {
 	return (
 		<div>
 			<Spacing lg />
-			<Grid
-				container
-				spacing={4}
-				as={Ul}
-				aria-label={t(
-					'pages.simulateurs.location-de-logement-meublé.comparateur.aria-label',
-					"Comparaison des régimes d'affiliation"
-				)}
-			>
+			<Grid container spacing={4} as={Ul} data-testid="comparateur-régimes">
 				{résultats.map((résultat) => (
 					<Grid key={résultat.régime} item {...gridSizes} as="li">
 						<RégimeCard résultat={résultat} />
