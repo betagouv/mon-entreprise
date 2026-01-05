@@ -2,6 +2,13 @@
 
 ## next
 
+### Mises à jour
+- Mise à jour de la date (01/01/2026)
+- Mise à jour du Smic
+- Mise à jour du plafond de la Sécurité sociale
+- Mise à jour des taux de cotisation et de la répartition des cotisations pour les auto-entrepreneur BNC et BNC Cipav
+- Mise à jour des taux de cotisation pour les auto-entrepreneur BNC Cipav dans les Drom
+
 ## 10.0.0
 
 ### Breaking changes

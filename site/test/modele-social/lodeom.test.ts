@@ -37,7 +37,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					213.85
+					235.55
 				)
 				expect(e).toEvaluate(
 					{
@@ -45,7 +45,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
 						arrondi: '2 décimales',
 					},
-					40.25
+					44.34
 				)
 				expect(e).toEvaluate(
 					{
@@ -53,7 +53,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					173.6
+					191.21
 				)
 				expect(e).toEvaluate(
 					{
@@ -61,7 +61,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
 						arrondi: '2 décimales',
 					},
-					26.79
+					29.51
 				)
 			})
 
@@ -117,7 +117,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					977.9
+					989.45
 				)
 				expect(e).toEvaluate(
 					{
@@ -125,7 +125,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
 						arrondi: '2 décimales',
 					},
-					184.06
+					186.24
 				)
 				expect(e).toEvaluate(
 					{
@@ -133,7 +133,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					793.84
+					803.21
 				)
 				expect(e).toEvaluate(
 					{
@@ -141,7 +141,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
 						arrondi: '2 décimales',
 					},
-					122.51
+					123.95
 				)
 			})
 		})
@@ -156,7 +156,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					530.25
+					536.55
 				)
 			})
 
@@ -172,7 +172,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					350.35
+					362.25
 				)
 			})
 
@@ -188,7 +188,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					644.0
+					651.35
 				)
 			})
 		})
@@ -201,7 +201,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'compétitivité'",
-					'salarié . cotisations . assiette': '3964 €/mois',
+					'salarié . cotisations . assiette': '4011 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -215,7 +215,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'compétitivité renforcée'",
-					'salarié . cotisations . assiette': '4865 €/mois',
+					'salarié . cotisations . assiette': '4922 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -228,8 +228,8 @@ describe('Lodeom', () => {
 				const e = engine.setSituation({
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'compétitivité'",
-					'salarié . cotisations . assiette': '6307 €/mois',
+						"'innovation et croissance'",
+					'salarié . cotisations . assiette': '6381 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -245,7 +245,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'moins de 11 salariés'",
-					'salarié . cotisations . assiette': '5406 €/mois',
+					'salarié . cotisations . assiette': '5469 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -259,7 +259,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'sectoriel'",
-					'salarié . cotisations . assiette': '5406 €/mois',
+					'salarié . cotisations . assiette': '5469 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -273,7 +273,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'renforcé'",
-					'salarié . cotisations . assiette': '8109 €/mois',
+					'salarié . cotisations . assiette': '8202 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -303,7 +303,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					216.65
+					238.35
 				)
 			})
 
@@ -329,7 +329,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					990.15
+					1002.05
 				)
 			})
 		})

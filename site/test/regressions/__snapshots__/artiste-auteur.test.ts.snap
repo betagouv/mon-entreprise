@@ -18,22 +18,22 @@ Notifications affichées : artiste-auteur . cotisations . avertissement trimestr
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 1`] = `
-"artiste-auteur . cotisations: 495
+"artiste-auteur . cotisations: 501
 artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 2`] = `
-"artiste-auteur . cotisations: 488
+"artiste-auteur . cotisations: 493
 artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 3`] = `
-"artiste-auteur . cotisations: 446
+"artiste-auteur . cotisations: 451
 artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > option surcotisation 4`] = `
-"artiste-auteur . cotisations: 438
+"artiste-auteur . cotisations: 444
 artiste-auteur . cotisations . IRCEC: 0"
 `;
 
@@ -55,11 +55,11 @@ artiste-auteur . cotisations . IRCEC: 0"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 4`] = `
-"artiste-auteur . cotisations: 1065
+"artiste-auteur . cotisations: 1070
 artiste-auteur . cotisations . IRCEC: 8000"
 `;
 
 exports[`calculate simulations-artiste-auteur > salarié 5`] = `
-"artiste-auteur . cotisations: 1394
+"artiste-auteur . cotisations: 1399
 artiste-auteur . cotisations . IRCEC: 11200"
 `;

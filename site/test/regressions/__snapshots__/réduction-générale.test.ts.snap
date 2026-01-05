@@ -1,38 +1,38 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate réduction générale > DFS 1`] = `
-"salarié . cotisations . exonérations . réduction générale: 575
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 72
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+"salarié . cotisations . exonérations . réduction générale: 582
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 110
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 473"
 `;
 
 exports[`calculate réduction générale > DFS 2`] = `
-"salarié . cotisations . exonérations . réduction générale: 575
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 72
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+"salarié . cotisations . exonérations . réduction générale: 582
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 110
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 473"
 `;
 
 exports[`calculate réduction générale > DFS 3`] = `
-"salarié . cotisations . exonérations . réduction générale: 575
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 72
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+"salarié . cotisations . exonérations . réduction générale: 582
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 110
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 473"
 `;
 
 exports[`calculate réduction générale > DFS 4`] = `
-"salarié . cotisations . exonérations . réduction générale: 575
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 72
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+"salarié . cotisations . exonérations . réduction générale: 582
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 110
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 473"
 `;
 
 exports[`calculate réduction générale > DFS 5`] = `
-"salarié . cotisations . exonérations . réduction générale: 575
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 72
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 108
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 467"
+"salarié . cotisations . exonérations . réduction générale: 582
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 73
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 110
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 473"
 `;
 
 exports[`calculate réduction générale > JEI 1`] = `
@@ -43,24 +43,24 @@ salarié . cotisations . exonérations . réduction générale . imputation séc
 `;
 
 exports[`calculate réduction générale > effectif 1`] = `
-"salarié . cotisations . exonérations . réduction générale: 523
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 66
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 98
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 425"
+"salarié . cotisations . exonérations . réduction générale: 541
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 68
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 102
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 439"
 `;
 
 exports[`calculate réduction générale > effectif 2`] = `
-"salarié . cotisations . exonérations . réduction générale: 530
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 66
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 98
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 431"
+"salarié . cotisations . exonérations . réduction générale: 548
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 68
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 102
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 446"
 `;
 
 exports[`calculate réduction générale > heures complémentaires 1`] = `
-"salarié . cotisations . exonérations . réduction générale: 483
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 60
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 91
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 392"
+"salarié . cotisations . exonérations . réduction générale: 500
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 63
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 94
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 406"
 `;
 
 exports[`calculate réduction générale > heures supplémentaires 1`] = `
@@ -120,17 +120,17 @@ salarié . cotisations . exonérations . réduction générale . imputation séc
 `;
 
 exports[`calculate réduction générale > salaire 8`] = `
-"salarié . cotisations . exonérations . réduction générale: 470
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 59
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 88
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 381"
+"salarié . cotisations . exonérations . réduction générale: 488
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 61
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 92
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 396"
 `;
 
 exports[`calculate réduction générale > salaire 9`] = `
-"salarié . cotisations . exonérations . réduction générale: 204
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 26
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 38
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 165"
+"salarié . cotisations . exonérations . réduction générale: 222
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 28
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 42
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 180"
 `;
 
 exports[`calculate réduction générale > salaire 10`] = `
@@ -141,15 +141,15 @@ salarié . cotisations . exonérations . réduction générale . imputation séc
 `;
 
 exports[`calculate réduction générale > stage 1`] = `
-"salarié . cotisations . exonérations . réduction générale: 523
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 66
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 98
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 425"
+"salarié . cotisations . exonérations . réduction générale: 541
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 68
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 102
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 439"
 `;
 
 exports[`calculate réduction générale > temps partiel 1`] = `
-"salarié . cotisations . exonérations . réduction générale: 392
-salarié . cotisations . exonérations . réduction générale . imputation chômage: 49
-salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 74
-salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 318"
+"salarié . cotisations . exonérations . réduction générale: 408
+salarié . cotisations . exonérations . réduction générale . imputation chômage: 51
+salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire: 77
+salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale: 331"
 `;
