@@ -25,7 +25,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 2616.122383079991,
+      "nodeValue": 2614.1747150715755,
       "unit": {
         "denominators": [
           "an",
@@ -453,7 +453,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "établissement . taux ATMP",
         "établissement . taux ATMP . taux collectif",
       ],
-      "nodeValue": 4746.610000000001,
+      "nodeValue": 4745.21,
       "unit": {
         "denominators": [
           "mois",
@@ -496,7 +496,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 10416.000000000002,
+      "nodeValue": 10836,
       "unit": {
         "denominators": [
           "an",
@@ -516,7 +516,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
-      "nodeValue": 31584,
+      "nodeValue": 31164,
       "unit": {
         "denominators": [
           "an",
