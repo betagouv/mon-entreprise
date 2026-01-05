@@ -1818,7 +1818,6 @@ pages:
           par ce simulateur.
       comparateur:
         applicable: Applicable
-        aria-label: Comparaison des régimes d'affiliation
         et: " et "
         non-applicable: Non applicable
         sous-conditions: Applicable sous conditions

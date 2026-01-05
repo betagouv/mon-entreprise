@@ -180,11 +180,7 @@ describe('Location de meublé', () => {
 				const boutonSuivant = await screen.findByText(/Suivant/i)
 				await user.click(boutonSuivant)
 
-				const comparateur = await waitFor(() => {
-					return screen.getByRole('list', {
-						name: /comparaison des régimes/i,
-					})
-				})
+				const comparateur = await screen.findByTestId('comparateur-régimes')
 
 				expect(
 					within(comparateur).getAllByText(/recettes de courte durée/i).length
