@@ -7,8 +7,8 @@ entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
 protection sociale . invalidité et décès . pension de reversion: 392
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 487
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 725
@@ -16,9 +16,9 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie: 24
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 725
 protection sociale . retraite . complémentaire: 76
 protection sociale . retraite . trimestres: 4
@@ -27,73 +27,73 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 `;
 
 exports[`calculate comparateur-statuts > ACRE 2`] = `
-"dirigeant . rémunération . net: 37775
-dirigeant . rémunération . net . après impôt: 32887
+"dirigeant . rémunération . net: 38103
+dirigeant . rémunération . net . après impôt: 33117
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
-protection sociale . invalidité et décès . pension de reversion: 879
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 977
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1628
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
+protection sociale . invalidité et décès . pension de reversion: 887
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 985
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1642
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: null
 protection sociale . maladie . arrêt maladie: 54
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
-protection sociale . retraite . base: 1628
-protection sociale . retraite . complémentaire: 141
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
+protection sociale . retraite . base: 1642
+protection sociale . retraite . complémentaire: 142
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > ACRE 3`] = `
-"dirigeant . rémunération . net: 32497
-dirigeant . rémunération . net . après impôt: 30025
+"dirigeant . rémunération . net: 32918
+dirigeant . rémunération . net . après impôt: 30328
 entreprise . activité . nature . libérale . réglementée: null
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1310
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 819
-protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 819
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1322
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 826
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 826
 protection sociale . invalidité et décès . capital décès: 3681
 protection sociale . invalidité et décès . capital décès . orphelin: null
-protection sociale . invalidité et décès . pension de reversion: 885
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 982
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1637
-protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 51
-protection sociale . maladie . arrêt maladie: 41
+protection sociale . invalidité et décès . pension de reversion: 893
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 992
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1653
+protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 52
+protection sociale . maladie . arrêt maladie: 42
 protection sociale . maladie . arrêt maladie . délai d'attente: 4
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 85
+protection sociale . maladie . maternité paternité adoption: 86
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 1638
-protection sociale . retraite . complémentaire: 145
+protection sociale . retraite . base: 1653
+protection sociale . retraite . complémentaire: 146
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > EI à l'IS 1`] = `
-"dirigeant . rémunération . net: 27621
-dirigeant . rémunération . net . après impôt: 26219
+"dirigeant . rémunération . net: 27641
+dirigeant . rémunération . net . après impôt: 26237
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
 protection sociale . invalidité et décès . pension de reversion: 646
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 718
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1196
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1197
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: null
 protection sociale . maladie . arrêt maladie: 39
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
-protection sociale . retraite . base: 1196
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
+protection sociale . retraite . base: 1197
 protection sociale . retraite . complémentaire: 103
 protection sociale . retraite . trimestres: 4"
 `;
@@ -114,23 +114,23 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie: 0
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: null
-protection sociale . maladie . maternité paternité adoption: 6
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 196
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 393
+protection sociale . maladie . maternité paternité adoption: 7
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 200
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 401
 protection sociale . retraite . base: 24
 protection sociale . retraite . complémentaire: 2
 protection sociale . retraite . trimestres: 0"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 2`] = `
-"dirigeant . rémunération . net: 556
-dirigeant . rémunération . net . après impôt: 556
+"dirigeant . rémunération . net: 540
+dirigeant . rémunération . net . après impôt: 540
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
 protection sociale . invalidité et décès . pension de reversion: 306
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 487
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 686
@@ -138,12 +138,12 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie: 26
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
-protection sociale . retraite . base: 223
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
+protection sociale . retraite . base: 225
 protection sociale . retraite . complémentaire: 2
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate comparateur-statuts > bas revenus 3`] = `
@@ -177,8 +177,8 @@ entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
 protection sociale . invalidité et décès . pension de reversion: 392
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 487
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 725
@@ -186,41 +186,41 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie: 24
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 725
 protection sociale . retraite . complémentaire: 76
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > base 2`] = `
-"dirigeant . rémunération . net: 32992
-dirigeant . rémunération . net . après impôt: 29539
+"dirigeant . rémunération . net: 33008
+dirigeant . rémunération . net . après impôt: 29550
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
 protection sociale . invalidité et décès . pension de reversion: 772
-protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 857
-protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1429
+protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 858
+protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1430
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: null
 protection sociale . maladie . arrêt maladie: 47
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
-protection sociale . retraite . base: 1429
-protection sociale . retraite . complémentaire: 123
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
+protection sociale . retraite . base: 1430
+protection sociale . retraite . complémentaire: 125
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > base 3`] = `
-"dirigeant . rémunération . net: 26945
-dirigeant . rémunération . net . après impôt: 25543
+"dirigeant . rémunération . net: 26946
+dirigeant . rémunération . net . après impôt: 25544
 entreprise . activité . nature . libérale . réglementée: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: 1148
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: 717
@@ -231,7 +231,7 @@ protection sociale . invalidité et décès . pension de reversion: 775
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 861
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1435
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 45
-protection sociale . maladie . arrêt maladie: 41
+protection sociale . maladie . arrêt maladie: 42
 protection sociale . maladie . arrêt maladie . délai d'attente: 5
 protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 75
@@ -249,8 +249,8 @@ entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
 protection sociale . invalidité et décès . pension de reversion: 891
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 990
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1650
@@ -258,23 +258,23 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie: 54
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 1650
 protection sociale . retraite . complémentaire: 167
 protection sociale . retraite . trimestres: 4"
 `;
 
 exports[`calculate comparateur-statuts > profession libérale non reglementée 2`] = `
-"dirigeant . rémunération . net: 30983
-dirigeant . rémunération . net . après impôt: 28157
+"dirigeant . rémunération . net: 30999
+dirigeant . rémunération . net . après impôt: 28168
 entreprise . activité . nature . libérale . réglementée: false
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
 protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité: null
-protection sociale . invalidité et décès . capital décès: 9420
-protection sociale . invalidité et décès . capital décès . orphelin: 196
+protection sociale . invalidité et décès . capital décès: 9612
+protection sociale . invalidité et décès . capital décès . orphelin: 200
 protection sociale . invalidité et décès . pension de reversion: 725
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 805
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1342
@@ -282,10 +282,10 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 protection sociale . maladie . arrêt maladie: 44
 protection sociale . maladie . arrêt maladie . délai d'attente: 12
 protection sociale . maladie . arrêt maladie . délai de carence: 3
-protection sociale . maladie . maternité paternité adoption: 65
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 1963
-protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 3925
-protection sociale . retraite . base: 1342
+protection sociale . maladie . maternité paternité adoption: 66
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
+protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
+protection sociale . retraite . base: 1343
 protection sociale . retraite . complémentaire: 117
 protection sociale . retraite . trimestres: 4"
 `;
@@ -303,7 +303,7 @@ protection sociale . invalidité et décès . pension de reversion: 726
 protection sociale . invalidité et décès . pension invalidité . invalidité partielle: 807
 protection sociale . invalidité et décès . pension invalidité . invalidité totale: 1345
 protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités: 42
-protection sociale . maladie . arrêt maladie: 41
+protection sociale . maladie . arrêt maladie: 42
 protection sociale . maladie . arrêt maladie . délai d'attente: 5
 protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 70

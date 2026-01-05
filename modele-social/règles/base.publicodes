@@ -3,6 +3,8 @@ plafond sécurité sociale:
     rémunérations à prendre en compte pour le calcul de certaines cotisations.
   acronyme: PSS
   variations:
+    - si: date >= 01/2026
+      alors: 4005 €/mois
     - si: date >= 01/2025
       alors: 3925 €/mois
     - si: date >= 01/2024
@@ -11,9 +13,7 @@ plafond sécurité sociale:
       alors: 3666 €/mois
     - sinon: 3428 €/mois
   références:
-    Montants du plafond de Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
-  note: Le plafond de la Sécurité sociale n'a pas été revalorisé en 2021 par
-    rapport à 2020.
+    Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
 
   avec:
     horaire:
@@ -22,8 +22,8 @@ plafond sécurité sociale:
       arrondi: oui
       unité: €/heure
       références:
-        Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
-        Article D242-19 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033516173&cidTexte=LEGITEXT000006073189
+        Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
+        Article D242-19 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033516173
 
     journalier:
       acronyme: PJSS
@@ -31,8 +31,8 @@ plafond sécurité sociale:
       arrondi: oui
       unité: €/jour
       références:
-        Montants du plafond de Sécurité sociale: https://www.urssaf.fr/portail/home/taux-et-baremes/plafonds.html
-        Article D242-17 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006736124
+        Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
+        Article D242-17 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904
 
     N-1:
       valeur: plafond sécurité sociale
@@ -45,7 +45,9 @@ SMIC:
     - durée légale du travail . mensuelle
     - SMIC . horaire
   références:
-    décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042677359?r=s75zUOEVpR
+    Article 1 du Décret n° 2025-1228 du 17 décembre 2025 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000053044705
+    Article 1 du Décret n° 2024-951 du 23 octobre 2024 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050393533
+    Article 1 du Décret n° 2023-1216 du 20 décembre 2023 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000048632880
 
 SMIC . net imposable:
   titre global: SMIC net imposable
@@ -63,6 +65,8 @@ SMIC . horaire:
     - si: établissement . commune . département . outre-mer . Mayotte
       alors:
         variations:
+          - si: date >= 01/2026
+            alors: 9.33 €/heure
           - si: date >= 11/2024
             alors: 8.98 €/heure
           - si: date >= 01/2024
@@ -83,6 +87,8 @@ SMIC . horaire:
             alors: 7.74 €/heure
     - sinon:
         variations:
+          - si: date >= 01/2026
+            alors: 12.02 €/heure
           - si: date >= 11/2024
             alors: 11.88 €/heure
           - si: date >= 01/2024
