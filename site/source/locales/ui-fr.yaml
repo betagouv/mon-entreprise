@@ -1898,6 +1898,7 @@ pages:
         micro-entreprise:
           libellé: Auto-entrepreneur
         régime-général:
+          description: Offre simplifiée du régime général
           libellé: Régime général
         travailleur-indépendant:
           libellé: Travailleur indépendant
