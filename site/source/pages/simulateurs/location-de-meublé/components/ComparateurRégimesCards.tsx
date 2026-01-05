@@ -157,39 +157,48 @@ const RégimeCard = ({
 				</SmallBody>
 			</StatusCard.ValeurSecondaire>
 
-			{estApplicable &&
-				(estApplicableSurRecettesCourteDuréeUniquement ||
-					résultat.régime === RegimeCotisation.microEntreprise) && (
-					<StatusCard.Complément>
-						<Ul
-							style={{
-								display: 'flex',
-								flex: '1',
-								marginBottom: '0',
-								flexDirection: 'column',
-							}}
-						>
-							{estApplicableSurRecettesCourteDuréeUniquement && (
-								<Li>
-									<Strong>
-										{t(
-											'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
-											'Sur les recettes de courte durée uniquement'
-										)}
-									</Strong>
-								</Li>
-							)}
-							{résultat.régime === RegimeCotisation.microEntreprise && (
-								<Li>
+			{(résultat.régime === RegimeCotisation.regimeGeneral ||
+				(estApplicable &&
+					(estApplicableSurRecettesCourteDuréeUniquement ||
+						résultat.régime === RegimeCotisation.microEntreprise))) && (
+				<StatusCard.Complément>
+					<Ul
+						style={{
+							display: 'flex',
+							flex: '1',
+							marginBottom: '0',
+							flexDirection: 'column',
+						}}
+					>
+						{estApplicableSurRecettesCourteDuréeUniquement && (
+							<Li>
+								<Strong>
 									{t(
-										'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
-										"Vous payez un pourcentage de votre chiffre d'affaires."
+										'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
+										'Sur les recettes de courte durée uniquement'
 									)}
-								</Li>
-							)}
-						</Ul>
-					</StatusCard.Complément>
-				)}
+								</Strong>
+							</Li>
+						)}
+						{résultat.régime === RegimeCotisation.microEntreprise && (
+							<Li>
+								{t(
+									'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
+									"Vous payez un pourcentage de votre chiffre d'affaires."
+								)}
+							</Li>
+						)}
+						{résultat.régime === RegimeCotisation.regimeGeneral && (
+							<Li>
+								{t(
+									'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.description',
+									'Offre simplifiée du régime général'
+								)}
+							</Li>
+						)}
+					</Ul>
+				</StatusCard.Complément>
+			)}
 		</StatusCard>
 	)
 }
