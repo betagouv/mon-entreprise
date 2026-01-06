@@ -807,7 +807,7 @@ assimilé salarié . exonérations . JEI:
 
     - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - corporate officers who are principally involved in the company's research and development project
+    - corporate officers who are primarily involved in the company's research and development project
 
 
     By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
@@ -1073,18 +1073,11 @@ assimilé salarié . rémunération . avantages en nature:
         but a reimbursement of expenses.
 
 
-        A meal at a company restaurant or canteen, which you manage or subsidize
+        Meals at a company restaurant or canteen, which you manage or subsidize
 
         subsidized by you, in return for a contribution from the employee, constitutes a
 
         a benefit in kind.
-
-
-        When the company gives an allowance for meals during business trips
-
-        is not a benefit in kind, but a business expense.
-
-        expenses.
       description.fr: >
         Les titres-restaurant ne sont pas considérés comme un avantage en nature
 
@@ -1096,13 +1089,6 @@ assimilé salarié . rémunération . avantages en nature:
         subventionnez moyennant une participation du salarié, constitue selon les
 
         cas un avantage en nature.
-
-
-        Lorsque l'entreprise donne une allocation pour les repas pendant les
-
-        déplacements professionnels ce n'est pas un avantage en nature, mais un
-
-        frais professionnels.
       question.en: |
         [automatic] Does the company provide free meals?
       question.fr: |
@@ -1519,8 +1505,8 @@ entreprise . date de création:
     approximation.
   question.en: '[automatic] When did you start?'
   question.fr: Quelle est votre date de début d’activité ?
-  suggestions.Début 2024.en: '[automatic] Early 2024'
-  suggestions.Début 2024.fr: Début 2024
+  suggestions.Début 2025.en: '[automatic] Early 2025'
+  suggestions.Début 2025.fr: Début 2025
   suggestions.Début d’année.en: '[automatic] Beginning of the year'
   suggestions.Début d’année.fr: Début d’année
   suggestions.Il y a plus de 10 ans.en: '[automatic] Over 10 years ago'
