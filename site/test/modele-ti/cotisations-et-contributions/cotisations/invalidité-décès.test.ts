@@ -111,7 +111,7 @@ describe('Cotisation invalidité et décès', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
 					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
+					'entreprise . date de cessation': '01/06/2026',
 					'indépendant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 				})
@@ -136,7 +136,7 @@ describe('Cotisation invalidité et décès', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
 					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
+					'entreprise . date de cessation': '01/06/2026',
 					'indépendant . cotisations et contributions . assiette sociale':
 						'40000 €/an',
 				})
@@ -159,7 +159,7 @@ describe('Cotisation invalidité et décès', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
 					"entreprise . en cessation d'activité": 'oui',
-					'entreprise . date de cessation': '01/06/2025',
+					'entreprise . date de cessation': '01/06/2026',
 					'indépendant . cotisations et contributions . assiette sociale':
 						'10000 €/an',
 				})
