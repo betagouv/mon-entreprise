@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 const defaultSituation = {
 	'plafond sécurité sociale': '47100 €/an',
 	'entreprise . imposition': "'IR'",
-	'entreprise . date de création': '18/02/2025',
+	'entreprise . date de création': '18/02/2026',
 	'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
 		'oui',
 	'indépendant . cotisations et contributions . assiette sociale': '30000 €/an',
@@ -58,7 +58,7 @@ describe('L’exonération Acre', () => {
 	it('est proratisée en fonction de la durée d’application sur l’année en cours', () => {
 		const e = engine.setSituation({
 			...defaultSituation,
-			'entreprise . date de création': '18/02/2024',
+			'entreprise . date de création': '18/02/2025',
 		})
 
 		const prorata = e.evaluate(
