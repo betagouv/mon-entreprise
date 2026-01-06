@@ -4,8 +4,11 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('Indépendant', () => {
 	let engine: Engine
+	let Pass: number
 	beforeEach(() => {
 		engine = new Engine(rules)
+
+		Pass = engine.evaluate('plafond sécurité sociale . annuel').nodeValue as number
 	})
 
 	describe('calcule l’assiette CSG-CRDS', () => {
@@ -36,7 +39,7 @@ describe('Indépendant', () => {
 			)
 		})
 
-		it('avec un abattement plafonné', () => {
+		it('avec un abattement plafonné à 1,3 Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . totale': '250000 €/an',
@@ -44,15 +47,11 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
-				61230
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . assiette CSG-CRDS',
-				188770
+				Math.round(1.3 * Pass)
 			)
 		})
 
-		it('avec un abattement plancher', () => {
+		it('avec un abattement plancher de 1,76% du Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . totale': '1000 €/an',
@@ -60,11 +59,7 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
-				829
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . assiette CSG-CRDS',
-				171
+				Math.round(1.76/100 * Pass)
 			)
 		})
 	})

@@ -7,7 +7,7 @@ const defaultSituation = {
 	'indépendant . conjoint collaborateur': 'oui',
 }
 const situationAcre = {
-	'entreprise . date de création': '18/02/2025',
+	'entreprise . date de création': '18/02/2026',
 	'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
 		'oui',
 }
@@ -39,7 +39,7 @@ describe('Conjoint collaborateur', () => {
 						"'forfaitaire'",
 				})
 
-				const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
+				const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue as number
 
 				expect(e).toEvaluate(
 					'indépendant . conjoint collaborateur . assiette de cotisations',
@@ -120,10 +120,11 @@ describe('Conjoint collaborateur', () => {
 			it('indemnité journalières = 40% du PASS x taux de 0,5%', () => {
 				const e = engine.setSituation(defaultSituation)
 
+				const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue as number
 				const assietteMinimale = e.evaluate(
 					'indépendant . assiette minimale . indemnités journalières'
 				).nodeValue as number
-				expect(assietteMinimale).toEqual(18840)
+				expect(assietteMinimale).toEqual(Math.round(40/100 * PASS))
 
 				expect(e).toEvaluate(
 					'indépendant . conjoint collaborateur . cotisations . indemnités journalières',
@@ -334,7 +335,7 @@ describe('Conjoint collaborateur', () => {
 						"'forfaitaire'",
 				})
 
-				const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
+				const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue as number
 
 				expect(e).toEvaluate(
 					'indépendant . conjoint collaborateur . assiette de cotisations',
@@ -415,10 +416,11 @@ describe('Conjoint collaborateur', () => {
 			it('indemnité journalières = 40% du PASS x taux de 0,3%', () => {
 				const e = engine.setSituation(defaultSituationPLR)
 
+				const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue as number
 				const assietteMinimale = e.evaluate(
 					'indépendant . assiette minimale . indemnités journalières'
 				).nodeValue as number
-				expect(assietteMinimale).toEqual(18840)
+				expect(assietteMinimale).toEqual(Math.round(40/100 * PASS))
 
 				expect(e).toEvaluate(
 					'indépendant . conjoint collaborateur . cotisations . indemnités journalières',
