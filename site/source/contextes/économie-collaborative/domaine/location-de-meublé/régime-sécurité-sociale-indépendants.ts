@@ -27,7 +27,7 @@ import {
 	SituationÉconomieCollaborativeValide,
 } from './situation'
 
-export const estApplicableTravailleurIndépendant: EstApplicable = (
+export const estApplicableSécuritéSocialeDesIndépendants: EstApplicable = (
 	situation
 ) => {
 	if (!estActiviteProfessionnelle(situation)) {
@@ -73,17 +73,17 @@ export const estApplicableTravailleurIndépendant: EstApplicable = (
 }
 
 /**
- * Calcule les cotisations sociales pour le régime travailleur indépendant
+ * Calcule les cotisations sociales pour le régime Sécurité Sociale des Indépendants
  * Ce régime est toujours applicable, quel que soit le montant des recettes/revenu net,
  * sauf en cas d'activité secondaire où l'affiliation n'est pas obligatoire
  * C'est le régime "par défaut" quand les autres plafonds sont dépassés
  * @param situation La situation avec des recettes ou revenu net obligatoirement définis
  * @returns Un Either contenant soit les cotisations calculées, soit une erreur
  */
-export function calculeCotisationsTravailleurIndépendant(
+export function calculeCotisationsSécuritéSocialeDesIndépendants(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<Montant<'€/an'>, AffiliationNonObligatoire> {
-	const applicabilité = estApplicableTravailleurIndépendant(situation)
+	const applicabilité = estApplicableSécuritéSocialeDesIndépendants(situation)
 	if (Either.isRight(applicabilité) && !applicabilité.right.applicable) {
 		return Either.left(new AffiliationNonObligatoire())
 	}

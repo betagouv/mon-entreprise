@@ -30,7 +30,11 @@ describe('RégimeTag', () => {
 			<RégimeTag régime={RegimeCotisation.travailleurIndependant} />
 		)
 
-		expect(screen.getByTitle('Travailleur indépendant')).toBeInTheDocument()
-		expect(screen.getByTitle('Travailleur indépendant')).toHaveTextContent('TI')
+		expect(
+			screen.getByTitle('Sécurité Sociale des Indépendants')
+		).toBeInTheDocument()
+		expect(
+			screen.getByTitle('Sécurité Sociale des Indépendants')
+		).toHaveTextContent('SSI')
 	})
 })

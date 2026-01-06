@@ -24,10 +24,10 @@ export const RÉGIME_DATA = {
 		abréviation: 'AE',
 		icône: CircleIcon,
 	},
-	TI: {
+	SSI: {
 		color: 'independant',
-		libellé: 'Travailleur indépendant',
-		abréviation: 'TI',
+		libellé: 'Sécurité Sociale des Indépendants',
+		abréviation: 'SSI',
 		icône: TriangleIcon,
 	},
 } satisfies {
@@ -48,7 +48,7 @@ const mapRégimeCotisationToTag = (régime: RegimeCotisation): RégimeType => {
 		case RegimeCotisation.microEntreprise:
 			return 'AE'
 		case RegimeCotisation.travailleurIndependant:
-			return 'TI'
+			return 'SSI'
 	}
 }
 

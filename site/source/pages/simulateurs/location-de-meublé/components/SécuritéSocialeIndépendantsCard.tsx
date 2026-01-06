@@ -14,13 +14,13 @@ import {
 	StatutApplicabilité,
 } from './StatutApplicabilité'
 
-interface TravailleurIndépendantCardProps {
+interface SécuritéSocialeIndépendantsCardProps {
 	résultat: RésultatApplicabilitéParRégime
 }
 
-export const TravailleurIndépendantCard = ({
+export const SécuritéSocialeIndépendantsCard = ({
 	résultat,
-}: TravailleurIndépendantCardProps) => {
+}: SécuritéSocialeIndépendantsCardProps) => {
 	const { t } = useTranslation()
 
 	const applicable = estApplicable(résultat.résultat)
@@ -40,7 +40,7 @@ export const TravailleurIndépendantCard = ({
 			<StatusCard.Titre>
 				{t(
 					'pages.simulateurs.location-de-logement-meublé.régimes.travailleur-indépendant.libellé',
-					'Travailleur indépendant'
+					'Sécurité Sociale des Indépendants'
 				)}
 			</StatusCard.Titre>
 

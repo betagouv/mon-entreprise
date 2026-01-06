@@ -13,9 +13,9 @@ import {
 	estApplicableMicroEntreprise,
 } from './régime-micro-entreprise'
 import {
-	calculeCotisationsTravailleurIndépendant,
-	estApplicableTravailleurIndépendant,
-} from './régime-travailleur-indépendant'
+	calculeCotisationsSécuritéSocialeDesIndépendants,
+	estApplicableSécuritéSocialeDesIndépendants,
+} from './régime-sécurité-sociale-indépendants'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -54,7 +54,8 @@ export const compareRégimes = (
 			},
 			{
 				régime: RegimeCotisation.travailleurIndependant,
-				calcul: calculeCotisationsTravailleurIndépendant as CalculCotisations,
+				calcul:
+					calculeCotisationsSécuritéSocialeDesIndépendants as CalculCotisations,
 			},
 		],
 		Array.map(({ régime, calcul }) =>
@@ -95,7 +96,7 @@ export const compareApplicabilitéDesRégimes = (
 			},
 			{
 				régime: RegimeCotisation.travailleurIndependant,
-				estApplicable: estApplicableTravailleurIndépendant,
+				estApplicable: estApplicableSécuritéSocialeDesIndépendants,
 			},
 		],
 		Array.map(({ régime, estApplicable }) => ({
