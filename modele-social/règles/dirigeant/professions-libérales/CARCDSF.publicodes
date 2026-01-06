@@ -20,6 +20,7 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     valeur: 100%
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
   avec:
     cotisation forfaitaire:
@@ -77,8 +78,6 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire . cotisation 
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   unité: '%'
   formule: assiette des cotisations / (85% * plafond sécurité sociale)
-  références:
-    Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste: métier = 'santé . chirurgien-dentiste'
 
@@ -93,6 +92,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
     - sinon: 1078 €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
 dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
   titre: Prestation complémentaire vieillesse
@@ -116,6 +116,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
   arrondi: oui
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
   avec:
     forfaitaire:
@@ -187,6 +188,7 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
     de cotisation spécifique.
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
   avec:
     classe:
@@ -230,13 +232,17 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . PCV:
     non cotisés ne sont pas rachetables.
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
   formule:
     valeur: 780 €/an
     abattement: participation CPAM
   
   avec:
-    participation CPAM: 520 €/an
+    participation CPAM:
+      valeur: 520 €/an
+      références:
+        Mémento des sages-femmes: https://www.carcdsf.fr/images/pdf/2025/Memento_SF_WEB.pdf#page=8
 
 dirigeant . indépendant . PL . CARCDSF . sage-femme . exonération PCV:
   type: notification

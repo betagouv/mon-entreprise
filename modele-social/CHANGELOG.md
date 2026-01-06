@@ -6,11 +6,14 @@
 - Mise à jour de la date (01/01/2026)
 - Mise à jour du Smic
 - Mise à jour du plafond de la Sécurité sociale
-- Mise à jour des taux de cotisation et de la répartition des cotisations pour les auto-entrepreneur BNC et BNC Cipav
-- Mise à jour des taux de cotisation pour les auto-entrepreneur BNC Cipav dans les Drom
+- Mise à jour des taux de cotisation et de la répartition des cotisations pour les auto-entrepreneurs et auto-entrepreneurs BNC et BNC Cipav
+- Mise à jour des taux de cotisation pour les auto-entrepreneurs et auto-entrepreneurs BNC Cipav dans les Drom
 - Mise à jour des suggestions de montant de l'abonnement de transports publics
 - Mise à jour des taux de cotisation ATMP
 - Mise à jour du plafond du versement libératoire pour les auto-entrepreneurs et auto-entrepreneuses
+- Mise à jour de la valeur d'acquisition du point Agirc-Arrco
+- Mise à jour de la valeur d'acquisition et de la valeur du point RCI
+- Mise à jour de la valeur du point de retraite de base CNAVPL
 
 ### Corrections
 - Correction de l'exonération de cotisations sociales sur la prise en charge par l'employeur des frais de transport

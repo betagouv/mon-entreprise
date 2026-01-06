@@ -20,7 +20,7 @@ protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 725
-protection sociale . retraite . complémentaire: 76
+protection sociale . retraite . complémentaire: 75
 protection sociale . retraite . trimestres: 4
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
@@ -46,7 +46,7 @@ protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 1642
-protection sociale . retraite . complémentaire: 142
+protection sociale . retraite . complémentaire: 143
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -94,7 +94,7 @@ protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 1197
-protection sociale . retraite . complémentaire: 103
+protection sociale . retraite . complémentaire: 104
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -190,7 +190,7 @@ protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 725
-protection sociale . retraite . complémentaire: 76
+protection sociale . retraite . complémentaire: 75
 protection sociale . retraite . trimestres: 4"
 `;
 
@@ -262,7 +262,7 @@ protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
 protection sociale . retraite . base: 1650
-protection sociale . retraite . complémentaire: 167
+protection sociale . retraite . complémentaire: 166
 protection sociale . retraite . trimestres: 4"
 `;
 
