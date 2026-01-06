@@ -9,8 +9,8 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité.
 
-    Pour en bénéficier en 2025, votre revenu fiscal de référence pour l’année
-    2023 ne doit pas excéder 28 797 € pour une part de quotient familial.
+    Pour en bénéficier en 2026, votre revenu fiscal de référence pour l’année
+    2024 ne doit pas excéder 29 315 € par part.
 
     Pour bénéficier ou sortir du dispositif l’année suivante, il faut en faire
     la demande à l’Urssaf au plus tard le 30 septembre.
@@ -24,15 +24,42 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     En tant que micro-entrepreneur, sous quelles conditions puis-je opter pour le versement libératoire de l’impôt ?: https://www.impots.gouv.fr/professionnel/questions/en-tant-que-micro-entrepreneur-sous-quelles-conditions-puis-je-opter-pour-l
     'Micro-entreprise : comment fonctionne le versement libératoire de l’impôt sur le revenu ?': https://www.economie.gouv.fr/entreprises/micro-entreprise-auto-entreprise-versement-liberatoire-impot-revenu
     Devenir auto-entrepreneur, combien ça coûte ? Durant la vie de votre auto-entreprise: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
-  question: Bénéficiez-vous du versement libératoire de l’impôt sur le revenu ?
+  question: Bénéficiez-vous du versement libératoire de l’impôt sur le revenu ?
   par défaut: non
+
+dirigeant . auto-entrepreneur . impôt . versement libératoire . plafond:
+  description: |
+    Le versement libératoire n’est disponible pour une année N que si votre
+    revenu fiscal de référence N-2 est inférieur au plafond de la deuxième
+    tranche du barème de l’impôt sur le revenu de N-1.
+
+    Par exemple, pour en bénéficier en **2026**, votre
+    **revenu fiscal de référence 2024** doit être inférieur à **29 315 €**
+    par part.
+  valeur: impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part . plafond tranche 2
+  contexte:
+    date: période . début d'année . N-1
+    versement libératoire: non
+  unité: €/an
+  références:
+    Quelles sont les conditions pour obtenir le versement libératoire ?: https://www.economie.gouv.fr/entreprises/gerer-sa-micro-entreprise/micro-entreprise-comment-fonctionne-le-versement-liberatoire#quelles-sont-les-conditions-pour_1
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire . seuil dépassé:
   type: notification
-  valeur: impôt . foyer fiscal . revenu fiscal de référence > 27519 €/an
+  # NB : le plafond doit normalement être comparé au revenu fiscal de référence par part.
+  # Or, actuellement, le revenu fiscal de référence est non applicable en cas de
+  # versement libératoire. On considère donc que le RFR n'est composé que des revenus
+  # AE et vaut donc directement le revenu imposable AE.
+  # Voir https://github.com/betagouv/mon-entreprise/issues/4208
+  # Étrangement, utiliser 'dirigeant . auto-entrepreneur . impôt . revenu imposable'
+  # ne fonctionne pas ¯\_(ツ)_/¯
+  valeur: entreprise . imposition . régime . micro-entreprise . revenu abattu > versement libératoire . plafond
   description: |
-    Le versement libératoire n’est pas disponible si le revenu fiscal de
-    référence de votre ménage est supérieur à 27 519 € par part en 2018
+    Le versement libératoire n’est pas disponible si votre revenu fiscal de
+    référence de 2024 est supérieur à 29 315 € par part.
+
+    Pour sortir du dispositif l’année prochaine, vous devez en faire la demande
+    à l’Urssaf au plus tard le 30 septembre.
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
   titre: versement libératoire auto-entrepreneur
