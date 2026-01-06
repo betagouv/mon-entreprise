@@ -8,7 +8,7 @@ import {
 } from './comparateur-régimes'
 import { estApplicableRégimeGénéral } from './régime-général'
 import { estApplicableMicroEntreprise } from './régime-micro-entreprise'
-import { estApplicableTravailleurIndépendant } from './régime-travailleur-indépendant'
+import { estApplicableSécuritéSocialeDesIndépendants } from './régime-sécurité-sociale-indépendants'
 import { RegimeCotisation } from './situation'
 import {
 	situationChambreDHôteBuilder,
@@ -39,7 +39,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 					.avecClassement('classé')
 					.build()
 
-				expect(estApplicableTravailleurIndépendant(situation)).toEqual(
+				expect(estApplicableSécuritéSocialeDesIndépendants(situation)).toEqual(
 					Either.left(['autresRevenus'])
 				)
 				expect(estApplicableRégimeGénéral(situation)).toEqual(
@@ -53,10 +53,11 @@ describe('compareApplicabilitéDesRégimes', () => {
 				const situationActivitéPrincipale =
 					situationAuDessusDuSeuil.avecAutresRevenus(20_000)
 
-				it('TI est toujours applicable', () => {
+				it('SSI est toujours applicable', () => {
 					const situation = situationActivitéPrincipale.build()
 
-					const résultat = estApplicableTravailleurIndépendant(situation)
+					const résultat =
+						estApplicableSécuritéSocialeDesIndépendants(situation)
 
 					expect(Either.isRight(résultat)).toBe(true)
 					if (Either.isRight(résultat)) {
@@ -88,7 +89,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 						.avecTypeDurée('longue')
 						.build()
 
-					it("TI et ME sont possibles, RG n'est pas applicable", () => {
+					it("SSI et ME sont possibles, RG n'est pas applicable", () => {
 						const résultats = compareApplicabilitéDesRégimes(situation)
 
 						expect(résultats).toAvoirRégimesApplicables([
@@ -106,7 +107,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 						const situationNonClassé =
 							situationCourteDurée.avecClassement('non-classé')
 
-						it("TI et RG sont possibles, ME n'est pas applicable", () => {
+						it("SSI et RG sont possibles, ME n'est pas applicable", () => {
 							const situation = situationNonClassé.build()
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
@@ -116,7 +117,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 							])
 						})
 
-						it('Au-dessus du plafond RG (80 000€), seul TI est applicable', () => {
+						it('Au-dessus du plafond RG (80 000€), seul SSI est applicable', () => {
 							const situation = situationNonClassé.avecRecettes(80_000).build()
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
@@ -131,7 +132,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 							.avecClassement('classé')
 							.build()
 
-						it('TI, RG et ME sont tous possibles', () => {
+						it('SSI, RG et ME sont tous possibles', () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -147,7 +148,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 							.avecClassement('mixte')
 							.build()
 
-						it("TI et RG sont possibles, ME n'est pas applicable (comme non classé)", () => {
+						it("SSI et RG sont possibles, ME n'est pas applicable (comme non classé)", () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -165,7 +166,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 					describe('Tourisme classé uniquement pour la partie courte durée', () => {
 						const situation = situationMixte.avecClassement('classé').build()
 
-						it("TI et ME sont possibles, RG n'est pas applicable", () => {
+						it("SSI et ME sont possibles, RG n'est pas applicable", () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -180,7 +181,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 							.avecClassement('non-classé')
 							.build()
 
-						it('TI uniquement est possible, ni ME ni RG', () => {
+						it('SSI uniquement est possible, ni ME ni RG', () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -192,7 +193,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 					describe('Mix de tourisme classé et non classé pour la partie courte durée', () => {
 						const situation = situationMixte.avecClassement('mixte').build()
 
-						it('TI uniquement est possible, ni ME ni RG (comme non classé)', () => {
+						it('SSI uniquement est possible, ni ME ni RG (comme non classé)', () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -207,10 +208,11 @@ describe('compareApplicabilitéDesRégimes', () => {
 				const situationActivitéSecondaire =
 					situationAuDessusDuSeuil.avecAutresRevenus(40_000)
 
-				it('TI dépend du type de durée', () => {
+				it('SSI dépend du type de durée', () => {
 					const situation = situationActivitéSecondaire.build()
 
-					const résultat = estApplicableTravailleurIndépendant(situation)
+					const résultat =
+						estApplicableSécuritéSocialeDesIndépendants(situation)
 
 					expect(résultat).toEqual(Either.left(['typeDurée']))
 				})
@@ -251,7 +253,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 							.avecClassement('non-classé')
 							.build()
 
-						it('TI et RG sont possibles, ME non applicable', () => {
+						it('SSI et RG sont possibles, ME non applicable', () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -266,7 +268,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 							.avecClassement('classé')
 							.build()
 
-						it('TI, RG et ME sont tous possibles', () => {
+						it('SSI, RG et ME sont tous possibles', () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -282,7 +284,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 							.avecClassement('mixte')
 							.build()
 
-						it('TI et RG sont possibles, ME non applicable (comme non classé)', () => {
+						it('SSI et RG sont possibles, ME non applicable (comme non classé)', () => {
 							const résultats = compareApplicabilitéDesRégimes(situation)
 
 							expect(résultats).toAvoirRégimesApplicables([
@@ -306,7 +308,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 								.avecClassement('classé')
 								.build()
 
-							it('TI, RG et ME sont tous possibles', () => {
+							it('SSI, RG et ME sont tous possibles', () => {
 								const résultats = compareApplicabilitéDesRégimes(situation)
 
 								expect(résultats).toAvoirRégimesApplicables([
@@ -322,7 +324,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 								.avecClassement('non-classé')
 								.build()
 
-							it('TI et RG sont possibles, ME non applicable', () => {
+							it('SSI et RG sont possibles, ME non applicable', () => {
 								const résultats = compareApplicabilitéDesRégimes(situation)
 
 								expect(résultats).toAvoirRégimesApplicables([
@@ -337,7 +339,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 								.avecClassement('mixte')
 								.build()
 
-							it('TI et RG sont possibles, ME non applicable (comme non classé)', () => {
+							it('SSI et RG sont possibles, ME non applicable (comme non classé)', () => {
 								const résultats = compareApplicabilitéDesRégimes(situation)
 
 								expect(résultats).toAvoirRégimesApplicables([
@@ -405,7 +407,7 @@ describe('compareApplicabilitéDesRégimes', () => {
 				.avecRevenuNet(10_000)
 				.build()
 
-			it('TI et ME sont possibles, RG non applicable', () => {
+			it('SSI et ME sont possibles, RG non applicable', () => {
 				const résultats = compareApplicabilitéDesRégimes(situation)
 
 				expect(résultats).toAvoirRégimesApplicables([

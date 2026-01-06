@@ -5,7 +5,7 @@ import { Montant } from '@/domaine/Montant'
 import { SimulationImpossible } from './erreurs'
 import { calculeCotisationsRégimeGénéral } from './régime-général'
 import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
-import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
+import { calculeCotisationsSécuritéSocialeDesIndépendants } from './régime-sécurité-sociale-indépendants'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -32,6 +32,6 @@ export function calculeCotisations(
 		case RegimeCotisation.microEntreprise:
 			return calculeCotisationsMicroEntreprise(situation)
 		case RegimeCotisation.travailleurIndependant:
-			return calculeCotisationsTravailleurIndépendant(situation)
+			return calculeCotisationsSécuritéSocialeDesIndépendants(situation)
 	}
 }
