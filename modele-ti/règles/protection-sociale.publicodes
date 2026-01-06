@@ -253,13 +253,15 @@ protection sociale . retraite . base . CNAVPL:
 
     valeur du point:
       variations:
+        - si: date >= 01/2026
+          alors: 0.6599 €/an/point
         - si: date >= 01/2025
           alors: 0.6540 €/an/point
         - si: date >= 01/2024
           alors: 0.6399 €/an/point
         - sinon: 0.6076 €/an/point
     références:
-      'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
+      Comprendre sa retraite - Pension du professionnel libéral - Montant de la pension: https://www.cnavpl.fr/comprendre-sa-retraite/
 
 protection sociale . retraite . complémentaire:
   titre: Retraite complémentaire
@@ -295,11 +297,11 @@ protection sociale . retraite . complémentaire . RCI:
         cotisations . exonérations . pension invalidité # Non implémenté (cf règle)
       arrondi: oui
       valeur: indépendant . cotisations et contributions . cotisations . retraite complémentaire / valeur d'acquisition
-      références:
-        cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
 
     valeur d'acquisition:
       variations:
+        - si: date >= 01/2026
+          alors: 21.726 €/point
         - si: date >= 01/2025
           alors: 21.532 €/point
         - si: date >= 01/2024
@@ -310,6 +312,8 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur du point:
       variations:
+        - si: date >= 01/2026
+          alors: 1.347 €/an/point
         - si: date >= 01/2025
           alors: 1.335 €/an/point
         - si: date >= 01/2024
@@ -324,8 +328,7 @@ protection sociale . retraite . complémentaire . Cipav:
     - points acquis
     - valeur de service du point
   références:
-    'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
-    Évolutions relatives aux droits et aux prestations de la Cipav: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
+    Comment est calculée la retraite ?: https://www.lacipav.fr/sites/default/files/2025-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital%202025.pdf
 
   avec:
     points acquis:
