@@ -425,9 +425,10 @@ salarié . rémunération . frais professionnels:
           - de fruits et légumes.
 
         Ce titre peut être émis sur support papier ou sous forme dématérialisée.
-
       question: Le salarié reçoit-il des titres-restaurant ?
       par défaut: non
+      références:
+        Le titre-restaurant: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-titre-restaurant
 
       avec:
         déductible:
@@ -437,29 +438,19 @@ salarié . rémunération . frais professionnels:
             produit:
               - nombre
               - plafond unitaire
-          références:
-            Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
 
         déductible . plafond unitaire:
           variations:
+            - si: date >= 01/2026
+              alors: 7.32 €/titres-restaurant
             - si: date >= 01/2025
               alors: 7.26 €/titres-restaurant
             - si: date >= 01/2024
               alors: 7.18 €/titres-restaurant
             - si: date >= 01/2023
               alors: 6.91 €/titres-restaurant
-            # En 2022, la participation de l’employeur au financement
-            # d'un titre restaurant exonérée de cotisations sociales est
-            # fixée de façon rétroactive à 6,50 €
-            # (article 4 de la loi de Finances pour 2023)
             - si: date >= 01/2022
               alors: 6.50€/titres-restaurant
-            # - si: date >= 09/2022
-            #   alors: 5.92 €/titres-restaurant
-            # - si: date >= 01/2022
-            #   alors: 5.69 €/titres-restaurant
-            - si: date >= 01/2021
-              alors: 5.55 €/titres-restaurant
         employeur: montant * taux employeur
 
         montant:
