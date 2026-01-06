@@ -264,10 +264,10 @@ dirigeant . indépendant . PL . CNBF . retraite complémentaire:
     La classe 2+ correspond à la classe 3 pour 2024 et les années précédentes.
     La classe 3+ n'est pas implémentée.
   références:
-    Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
-    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
-    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
-    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf
+    Barèmes: https://www.cnbf.fr/medias/documents/?_sft_thematique-media=baremes
+    Barème 2025: https://www.cnbf.fr/wp-content/uploads/2025/02/Bareme-CNBF-2025-01.01_vDf-1.pdf
+    Barème 2024: https://www.cnbf.fr/wp-content/uploads/2024/11/Bareme-CNBF-2024-01.20.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2024/11/Bareme-CNBF-2023-01.10.pdf
   avec:
     classe:
       titre: Classe de cotisation
