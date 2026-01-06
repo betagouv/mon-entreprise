@@ -13,7 +13,7 @@ import { Grid, Spacing, Ul } from '@/design-system'
 import { getGridSizes } from '../../comparaison-statuts/components/DetailsRowCards'
 import { MicroEntrepriseCard } from './MicroEntrepriseCard'
 import { RégimeGénéralCard } from './RégimeGénéralCard'
-import { TravailleurIndépendantCard } from './TravailleurIndépendantCard'
+import { SécuritéSocialeIndépendantsCard } from './SécuritéSocialeIndépendantsCard'
 
 export const ComparateurRégimesCards = () => {
 	const { situation } = useEconomieCollaborative()
@@ -52,6 +52,6 @@ const RégimeCard = ({
 		case RegimeCotisation.microEntreprise:
 			return <MicroEntrepriseCard résultat={résultat} />
 		case RegimeCotisation.travailleurIndependant:
-			return <TravailleurIndépendantCard résultat={résultat} />
+			return <SécuritéSocialeIndépendantsCard résultat={résultat} />
 	}
 }
