@@ -1,61 +1,40 @@
-import {
-	fireEvent,
-	render as rtlRender,
-	screen,
-	waitFor,
-} from '@testing-library/react'
+import { render as rtlRender, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { expect } from 'vitest'
 
 import LocationDeMeubléWithProvider from '../../LocationDeMeublé'
 import { TestProvider } from './TestProvider'
 
+type RTLUser = ReturnType<typeof userEvent.setup>
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+const attendreLaPropagationDeLaSaisie = () => sleep(350)
+
 export const render = () => {
-	return rtlRender(
-		<TestProvider>
-			<LocationDeMeubléWithProvider />
-		</TestProvider>
-	)
+	const user = userEvent.setup()
+
+	return {
+		user,
+		...rtlRender(
+			<TestProvider>
+				<LocationDeMeubléWithProvider />
+			</TestProvider>
+		),
+	}
 }
 
-export const saisirRecettes = async (montant: number) => {
-	// TODO: Utiliser l'ID 'économie-collaborative-recettes-input' (il manque dans le DOM pour le moment)
-	// const champRecettes = document.getElementById('économie-collaborative-recettes-input')
-
+export const saisirRecettes = async (user: RTLUser, montant: number) => {
 	const allInputs = screen.getAllByRole('textbox')
 	const champRecettes = allInputs[0] as HTMLInputElement
 
-	fireEvent.change(champRecettes, { target: { value: montant.toString() } })
+	await user.clear(champRecettes)
+	await user.type(champRecettes, montant.toString())
 
 	await waitFor(() => {
 		const montantSaisi = parseMontant(champRecettes.value)
 		expect(montantSaisi).toBe(montant)
 	})
-}
-
-export const sélectionnerRégime = (régime: 'RG' | 'AE' | 'TI') => {
-	const labels = {
-		RG: /Régime général \(cotisations URSSAF\)/i,
-		AE: /Micro-entreprise/i,
-		TI: /Travailleur indépendant/i,
-	}
-	const boutonRégime = screen.getByText(labels[régime])
-	fireEvent.click(boutonRégime)
-}
-
-export const getMessageAffiliation = () => {
-	return screen.queryByText(
-		/votre activité n'est pas considérée comme professionnelle/i
-	)
-}
-
-export const getTexteRégime = (régime: 'RG' | 'AE' | 'TI') => {
-	const labels = {
-		RG: /Régime général \(cotisations URSSAF\)/i,
-		AE: /Micro-entreprise/i,
-		TI: /Travailleur indépendant/i,
-	}
-
-	return screen.queryByText(labels[régime])
 }
 
 export const getAvertissementDépassementPlafond = () => {
@@ -85,4 +64,48 @@ export const getTexteRevenuNet = () => {
 
 export const getMontantRevenuNet = () => {
 	return screen.queryByTestId('montant-revenu-net')
+}
+
+export const saisirAutresRevenus = async (user: RTLUser, montant: number) => {
+	const champAutresRevenus = await waitFor(() =>
+		screen.getByLabelText(/Montant des autres revenus annuels/i)
+	)
+
+	await user.clear(champAutresRevenus)
+	await user.type(champAutresRevenus, montant.toString())
+
+	await waitFor(() => {
+		const montantSaisi = parseMontant(
+			(champAutresRevenus as HTMLInputElement).value
+		)
+		expect(montantSaisi).toBe(montant)
+	})
+
+	await attendreLaPropagationDeLaSaisie()
+}
+
+export const saisirRecettesCourteDurée = async (
+	user: RTLUser,
+	montant: number
+) => {
+	const champRecettesCourteDurée = await waitFor(() =>
+		screen.getByLabelText(/recettes.*courte durée/i)
+	)
+
+	await user.clear(champRecettesCourteDurée)
+	await user.type(champRecettesCourteDurée, montant.toString())
+
+	await waitFor(() => {
+		const montantSaisi = parseMontant(
+			(champRecettesCourteDurée as HTMLInputElement).value
+		)
+		expect(montantSaisi).toBe(montant)
+	})
+
+	await attendreLaPropagationDeLaSaisie()
+}
+
+export const sélectionnerChambreDHôtes = async (user: RTLUser) => {
+	const bouton = screen.getByText(/Chambre d'hôtes/i)
+	await user.click(bouton)
 }

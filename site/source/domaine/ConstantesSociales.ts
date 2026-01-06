@@ -8,6 +8,7 @@ import { ValeurAnnuelle } from './ValeurAnnuelle'
 export const PLAFOND_ANNUEL_SECURITE_SOCIALE: ValeurAnnuelle<number> = {
 	2024: 46_368,
 	2025: 47_100,
+	2026: 48_060,
 } as const
 
 export const PASS = PLAFOND_ANNUEL_SECURITE_SOCIALE

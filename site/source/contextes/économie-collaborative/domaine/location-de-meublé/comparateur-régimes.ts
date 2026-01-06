@@ -2,10 +2,20 @@ import { Array, Either, pipe } from 'effect'
 
 import { Montant } from '@/domaine/Montant'
 
+import { RéponseManquante, RésultatApplicabilité } from './applicabilité'
 import { RégimeInapplicable } from './erreurs'
-import { calculeCotisationsRégimeGénéral } from './régime-général'
-import { calculeCotisationsMicroEntreprise } from './régime-micro-entreprise'
-import { calculeCotisationsTravailleurIndépendant } from './régime-travailleur-indépendant'
+import {
+	calculeCotisationsRégimeGénéral,
+	estApplicableRégimeGénéral,
+} from './régime-général'
+import {
+	calculeCotisationsMicroEntreprise,
+	estApplicableMicroEntreprise,
+} from './régime-micro-entreprise'
+import {
+	calculeCotisationsSécuritéSocialeDesIndépendants,
+	estApplicableSécuritéSocialeDesIndépendants,
+} from './régime-sécurité-sociale-indépendants'
 import {
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
@@ -44,7 +54,8 @@ export const compareRégimes = (
 			},
 			{
 				régime: RegimeCotisation.travailleurIndependant,
-				calcul: calculeCotisationsTravailleurIndépendant as CalculCotisations,
+				calcul:
+					calculeCotisationsSécuritéSocialeDesIndépendants as CalculCotisations,
 			},
 		],
 		Array.map(({ régime, calcul }) =>
@@ -63,4 +74,33 @@ export const compareRégimes = (
 					}) as const,
 			})
 		)
+	)
+
+export type RésultatApplicabilitéParRégime = {
+	régime: RegimeCotisation
+	résultat: Either.Either<RésultatApplicabilité, RéponseManquante[]>
+}
+
+export const compareApplicabilitéDesRégimes = (
+	situation: SituationÉconomieCollaborativeValide
+): RésultatApplicabilitéParRégime[] =>
+	pipe(
+		[
+			{
+				régime: RegimeCotisation.regimeGeneral,
+				estApplicable: estApplicableRégimeGénéral,
+			},
+			{
+				régime: RegimeCotisation.microEntreprise,
+				estApplicable: estApplicableMicroEntreprise,
+			},
+			{
+				régime: RegimeCotisation.travailleurIndependant,
+				estApplicable: estApplicableSécuritéSocialeDesIndépendants,
+			},
+		],
+		Array.map(({ régime, estApplicable }) => ({
+			régime,
+			résultat: estApplicable(situation),
+		}))
 	)

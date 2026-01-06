@@ -1,13 +1,19 @@
 import { Either, Option, pipe } from 'effect'
 
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
-import { estPlusPetitQue, eurosParAn, Montant } from '@/domaine/Montant'
+import { estPlusGrandOuÉgalÀ, eurosParAn, Montant } from '@/domaine/Montant'
 import {
 	TravailleurIndependantChiffreAffaireDansPublicodes,
 	TravailleurIndependantContexteDansPublicodes,
 	TravailleurIndependantCotisationsEtContributionsDansPublicodes,
 } from '@/domaine/publicodes/TravailleurIndependantContexteDansPublicodes'
 
+import {
+	applicableSurRecettesCourteDurée,
+	applicableSurToutesRecettes,
+	EstApplicable,
+	NON_APPLICABLE,
+} from './applicabilité'
 import { AffiliationNonObligatoire } from './erreurs'
 import { estActivitéPrincipale } from './estActivitéPrincipale'
 import {
@@ -15,23 +21,70 @@ import {
 	SEUIL_PROFESSIONNALISATION,
 } from './estActiviteProfessionnelle'
 import {
+	aRenseignéSesAutresRevenus,
+	aRenseignéSonTypeDeDurée,
 	faitDeLaLocationCourteEtLongueDurée,
 	SituationÉconomieCollaborativeValide,
-	situationParDéfaut,
 } from './situation'
 
+export const estApplicableSécuritéSocialeDesIndépendants: EstApplicable = (
+	situation
+) => {
+	if (!estActiviteProfessionnelle(situation)) {
+		return NON_APPLICABLE
+	}
+
+	if (situation.typeHébergement === 'chambre-hôte') {
+		return applicableSurToutesRecettes(situation.revenuNet.value)
+	}
+
+	const recettes = situation.recettes.value
+
+	if (!aRenseignéSesAutresRevenus(situation)) {
+		return Either.left(['autresRevenus'])
+	}
+
+	if (!estActivitéPrincipale(situation)) {
+		if (!aRenseignéSonTypeDeDurée(situation)) {
+			return Either.left(['typeDurée'])
+		}
+
+		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
+			if (Option.isNone(situation.recettesCourteDurée)) {
+				return Either.left(['recettesCourteDurée'])
+			}
+			const recettesCourteDurée = situation.recettesCourteDurée.value
+			if (
+				!pipe(
+					recettesCourteDurée,
+					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
+				)
+			) {
+				return NON_APPLICABLE
+			}
+
+			return applicableSurRecettesCourteDurée(recettesCourteDurée)
+		} else if (situation.typeDurée.value !== 'courte') {
+			return NON_APPLICABLE
+		}
+	}
+
+	return applicableSurToutesRecettes(recettes)
+}
+
 /**
- * Calcule les cotisations sociales pour le régime travailleur indépendant
+ * Calcule les cotisations sociales pour le régime Sécurité Sociale des Indépendants
  * Ce régime est toujours applicable, quel que soit le montant des recettes/revenu net,
  * sauf en cas d'activité secondaire où l'affiliation n'est pas obligatoire
  * C'est le régime "par défaut" quand les autres plafonds sont dépassés
  * @param situation La situation avec des recettes ou revenu net obligatoirement définis
  * @returns Un Either contenant soit les cotisations calculées, soit une erreur
  */
-export function calculeCotisationsTravailleurIndépendant(
+export function calculeCotisationsSécuritéSocialeDesIndépendants(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<Montant<'€/an'>, AffiliationNonObligatoire> {
-	if (!estActiviteProfessionnelle(situation)) {
+	const applicabilité = estApplicableSécuritéSocialeDesIndépendants(situation)
+	if (Either.isRight(applicabilité) && !applicabilité.right.applicable) {
 		return Either.left(new AffiliationNonObligatoire())
 	}
 
@@ -49,31 +102,6 @@ export function calculeCotisationsTravailleurIndépendant(
 		)
 
 		return Either.right(eurosParAn(cotisations))
-	}
-
-	if (!estActivitéPrincipale(situation)) {
-		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			const recettesCourteDurée = pipe(
-				situation.recettesCourteDurée,
-				Option.getOrElse(() => eurosParAn(0))
-			)
-			if (
-				pipe(
-					recettesCourteDurée,
-					estPlusPetitQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
-				)
-			) {
-				return Either.left(new AffiliationNonObligatoire())
-			}
-		} else {
-			const typeDurée = Option.getOrElse(
-				situation.typeDurée,
-				() => situationParDéfaut.typeDurée
-			)
-			if (typeDurée !== 'courte') {
-				return Either.left(new AffiliationNonObligatoire())
-			}
-		}
 	}
 
 	const cotisations = evalueAvecPublicodes<number>(

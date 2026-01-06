@@ -1,8 +1,16 @@
 import { Either, Equal, pipe } from 'effect'
 import { describe, expect, expectTypeOf, it } from 'vitest'
 
-import { abattement, eurosParAn, fois, moins, plus } from '@/domaine/Montant'
+import {
+	abattement,
+	estPlusGrandQue,
+	eurosParAn,
+	fois,
+	moins,
+	plus,
+} from '@/domaine/Montant'
 
+import { compareRégimes } from './comparateur-régimes'
 import { calculeCotisations } from './cotisations'
 import {
 	estActiviteProfessionnelle,
@@ -55,6 +63,8 @@ describe('Location de meublé de courte durée', () => {
 					.avecRecettes(
 						pipe(PLAFOND_REGIME_GENERAL, plus(eurosParAn(1))).valeur
 					)
+					.avecTypeDurée('courte')
+					.avecAutresRevenus(0)
 					.build()
 
 				const resultat = calculeCotisations(
@@ -234,6 +244,86 @@ describe('Location de meublé de courte durée', () => {
 
 		it('rejette les valeurs invalides', () => {
 			expectTypeOf<RegimeCotisation>().not.toEqualTypeOf<'autre-regime'>()
+		})
+	})
+
+	describe('Cohérence des calculs', () => {
+		it('calcule des valeurs de cotisations différentes pour chaque régime', () => {
+			const situation = situationMeubléDeTourismeBuilder()
+				.avecRecettes(40_000)
+				.avecAutresRevenus(10_000)
+				.avecTypeDurée('courte')
+				.avecClassement('non-classé')
+				.build()
+
+			const résultats = compareRégimes(situation)
+
+			const régimeGénéral = résultats.find(
+				(r) => r.régime === RegimeCotisation.regimeGeneral
+			)
+			const microEntreprise = résultats.find(
+				(r) => r.régime === RegimeCotisation.microEntreprise
+			)
+			const travailleurIndépendant = résultats.find(
+				(r) => r.régime === RegimeCotisation.travailleurIndependant
+			)
+
+			if (
+				régimeGénéral?.applicable &&
+				microEntreprise?.applicable &&
+				travailleurIndépendant?.applicable
+			) {
+				expect(
+					Equal.equals(régimeGénéral.cotisations, microEntreprise.cotisations)
+				).toBe(false)
+				expect(
+					Equal.equals(
+						régimeGénéral.cotisations,
+						travailleurIndépendant.cotisations
+					)
+				).toBe(false)
+				expect(
+					Equal.equals(
+						microEntreprise.cotisations,
+						travailleurIndépendant.cotisations
+					)
+				).toBe(false)
+			}
+		})
+
+		it('devrait prendre en compte le paramètre estAlsaceMoselle', () => {
+			const situationBase = situationMeubléDeTourismeBuilder()
+				.avecRecettes(40_000)
+				.avecAutresRevenus(10_000)
+				.avecTypeDurée('courte')
+				.avecClassement('non-classé')
+
+			const situationNormale = situationBase.avecAlsaceMoselle(false).build()
+			const situationAlsaceMoselle = situationBase
+				.avecAlsaceMoselle(true)
+				.build()
+
+			const résultatsNormal = compareRégimes(situationNormale)
+			const résultatsAlsaceMoselle = compareRégimes(situationAlsaceMoselle)
+
+			const régimeGénéralNormal = résultatsNormal.find(
+				(r) => r.régime === RegimeCotisation.regimeGeneral
+			)
+			const régimeGénéralAlsaceMoselle = résultatsAlsaceMoselle.find(
+				(r) => r.régime === RegimeCotisation.regimeGeneral
+			)
+
+			if (
+				régimeGénéralNormal?.applicable &&
+				régimeGénéralAlsaceMoselle?.applicable
+			) {
+				expect(
+					pipe(
+						régimeGénéralAlsaceMoselle.cotisations,
+						estPlusGrandQue(régimeGénéralNormal.cotisations)
+					)
+				).toBe(true)
+			}
 		})
 	})
 })

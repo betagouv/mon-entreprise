@@ -453,7 +453,6 @@ components:
 composants:
   engine-value:
     voir-la-documentation: Voir la documentation du calcul de {{valeur}}
-    voir-les-details-du-calcul: Voir les détails du calcul de {{title}}
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
@@ -1688,6 +1687,7 @@ pages:
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
             améliorer le remboursement des frais de santé.</1>
           title: Vos prestations santé
+      meilleure-option: Option la plus avantageuse.
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
@@ -1720,6 +1720,7 @@ pages:
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
         éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
+      option-non-applicable: Option non applicable.
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
@@ -1947,6 +1948,10 @@ pages:
         réduits de l’impôt sur les sociétés."
     location-de-logement-meublé:
       affiliation:
+        indéterminée:
+          texte: "Pour déterminer si vous devez vous affilier, nous avons besoin de
+            connaître :"
+          titre: L'obligation d'affiliation dépend de votre situation
         non-obligatoire:
           affiliation-volontaire: Vous pouvez toutefois choisir de vous affilier
             volontairement pour bénéficier d'une protection sociale (assurance
@@ -1954,19 +1959,26 @@ pages:
           lien-urssaf: En savoir plus sur les régimes d'économie collaborative
           texte: Vous n'êtes pas obligé de vous affilier à un régime de sécurité sociale
             et ne payez pas de cotisations sociales.
-          titre: Votre activité est considérée comme non-professionnelle
+          titre: Pas d'affiliation obligatoire
         obligatoire:
           texte: "Vous devez obligatoirement déclarer vos revenus et des cotisations
-            sociales sont dues. Vous pouvez opter entre plusieurs régimes
-            d'affiliation : régime auto-entrepreneur, indépendant ou régime
-            général."
-          titre: Votre activité est considérée comme professionnelle
+            sociales sont dues. Voici les différents régimes d'affiliation
+            possibles :"
+          titre: Affiliation obligatoire
+      chambre-hôtes:
+        non-pris-en-charge: Le cas des chambres d'hôtes n'est pas encore pris en charge
+          par ce simulateur.
       comparateur:
         applicable: Applicable
-        aria-label: Comparaison des régimes d'affiliation
+        et: " et "
         non-applicable: Non applicable
-        non-applicable-raison: avec vos recettes actuelles
-        non-applicable-raison-type-location: pour ce type de location
+        sous-conditions: Applicable sous conditions
+        sur-recettes-courte-durée: Sur les recettes de courte durée uniquement
+      conditions:
+        autresRevenus: montant des autres revenus
+        classement: classement du logement
+        recettesCourteDurée: recettes de courte durée
+        typeDurée: type de durée
       externalLinks:
         "1":
           description: Vous louez des logements meublés ou des biens ? Le service Économie
@@ -1980,8 +1992,8 @@ pages:
         ogDescription: Ce simulateur permet de calculer les revenus générés par la
           location de logements meublés. Il aide les propriétaires à anticiper
           leurs gains et optimiser leur fiscalité dans ce cadre spécifique.
-        ogTitle: Simulateur de revenu pour location de logement meublé
-        titre: Simulateur de revenu pour location de logement meublé
+        ogTitle: Statuts possibles pour la location de meublé
+        titre: Statuts possibles pour la location de meublé
       objectifs:
         autres-revenus:
           aria-label: Montant des autres revenus annuels
@@ -2017,10 +2029,6 @@ pages:
           options:
             micro-entrepreneur:
               description: Vous payez un pourcentage de votre chiffre d'affaires.
-            régime-général:
-              description: Comme pour un salarié.
-            travailleur-indépendant:
-              description: Vous payez des cotisations sociales sur votre bénéfice.
         type-durée:
           courte:
             description: Vous proposez uniquement de la location de courte durée (type
@@ -2039,11 +2047,12 @@ pages:
         micro-entreprise:
           libellé: Auto-entrepreneur
         régime-général:
+          description: Offre simplifiée du régime général
           libellé: Régime général
         travailleur-indépendant:
-          libellé: Travailleur indépendant
+          libellé: Sécurité Sociale des Indépendants
       shortname: Location de logement meublé
-      title: Simulateur de revenu pour location de logement meublé
+      title: Statuts possibles pour la location de meublé
       type-hébergement:
         aria-label: Type d'hébergement
         chambre-hôte: Chambre d'hôtes
