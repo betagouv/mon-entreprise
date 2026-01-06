@@ -6,7 +6,7 @@ const defaultSituation = {
 	'plafond sécurité sociale': '47100 €/an',
 	'entreprise . imposition': "'IR'",
 	"entreprise . chiffre d'affaires": '10000 €/an',
-	'entreprise . date de création': '18/02/2025',
+	'entreprise . date de création': '18/02/2026',
 }
 
 describe('Cotisations de début d’activité', () => {
