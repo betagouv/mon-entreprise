@@ -843,8 +843,8 @@ entreprise . date de création:
     approximation.
   question.en: '[automatic] When did you start?'
   question.fr: Quelle est votre date de début d’activité ?
-  suggestions.Début 2024.en: '[automatic] Early 2024'
-  suggestions.Début 2024.fr: Début 2024
+  suggestions.Début 2025.en: '[automatic] Early 2025'
+  suggestions.Début 2025.fr: Début 2025
   suggestions.Début d’année.en: '[automatic] Beginning of the year'
   suggestions.Début d’année.fr: Début d’année
   suggestions.Il y a plus de 10 ans.en: '[automatic] Over 10 years ago'
@@ -3920,14 +3920,14 @@ indépendant . profession libérale . réglementée . CAVP . demande reduction:
     [automatic] A reduction in contributions may be requested for the first 2
     years, or
 
-    in the case of low income. Thus, if your income for the year before last,
+    in the case of low income. Thus, if your income for the penultimate year,
 
-    or the previous year if known (i.e. 2023 or 2024 for contributions
+    or the previous year if known (i.e. 2024 or 2025 for contributions
 
-    2025 contributions), were :
-      - less than 1/3 of the PASS (€15,700 in 2025), you can apply for a 75% reduction;
-      - between 1/3 and 2/3 of the PASS (between €15,700 and €31,400 in 2025), you can claim a 50% reduction;
-      - between 2/3 of the PASS and the PASS (between €31,400 and €47,100 in 2025), you can apply for a 25% reduction.
+    2026 contributions), were :
+      - less than 1/3 of PASS (€16,020 in 2026), you can claim a 75% reduction;
+      - between 1/3 and 2/3 of PASS (between €16,020 and €32,040 in 2026), you can claim a 50% reduction;
+      - between 2/3 of the PASS and the PASS (between €32,040 and €48,060 in 2026), you can apply for a 25% reduction.
 
     This option is reserved for pharmacists paying class 3 contributions (the lowest).
   résumé.fr: >
@@ -3935,12 +3935,12 @@ indépendant . profession libérale . réglementée . CAVP . demande reduction:
 
     en cas de revenus faibles. Ainsi, si vos revenus de l'avant-dernière année,
 
-    ou de l'année précédente s'ils sont connus (soit 2023 ou 2024 pour les cotisations
+    ou de l'année précédente s'ils sont connus (soit 2024 ou 2025 pour les cotisations
 
-    2025), étaient :
-      - inférieurs à 1/3 du PASS (15 700 € en 2025), vous pouvez demander une réduction de 75 % ;
-      - entre 1/3 et 2/3 du PASS (entre 15 700  et 31 400 € en 2025), vous pouvez demander une réduction de 50 % ;
-      - entre 2/3 du PASS et le PASS (entre 31 400 € et 47 100 € en 2025), vous pouvez demander une réduction de 25 %.
+    2026), étaient :
+      - inférieurs à 1/3 du PASS (16 020 € en 2026), vous pouvez demander une réduction de 75 % ;
+      - entre 1/3 et 2/3 du PASS (entre 16 020  et 32 040 € en 2026), vous pouvez demander une réduction de 50 % ;
+      - entre 2/3 du PASS et le PASS (entre 32 040 € et 48 060 € en 2026), vous pouvez demander une réduction de 25 %.
 
     Cette possibilité est réservée aux pharmaciens qui cotisent en classe 3 (la plus basse).
   titre.en: '[automatic] request reduction'
