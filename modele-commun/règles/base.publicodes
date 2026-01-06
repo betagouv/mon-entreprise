@@ -3,6 +3,8 @@ plafond sécurité sociale:
     rémunérations à prendre en compte pour le calcul de certaines cotisations.
   acronyme: PSS
   variations:
+    - si: date >= 01/2026
+      alors: 4005 €/mois
     - si: date >= 01/2025
       alors: 3925 €/mois
     - si: date >= 01/2024
@@ -26,7 +28,8 @@ plafond sécurité sociale:
       unité: €/heure
       références:
         Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
-        Article D242-19 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033516173&cidTexte=LEGITEXT000006073189
+        Article D242-19 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033516173
+
 
     journalier:
       acronyme: PJSS
@@ -35,7 +38,7 @@ plafond sécurité sociale:
       unité: €/jour
       références:
         Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
-        Article D242-17 du code de la sécurité sociale: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006073189&idArticle=LEGIARTI000006736124
+        Article D242-17 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904
 
     N-1:
       valeur: plafond sécurité sociale
@@ -48,7 +51,9 @@ SMIC:
     - durée légale du travail . mensuelle
     - SMIC . horaire
   références:
-    décret: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042677359?r=s75zUOEVpR
+    Article 1 du Décret n° 2025-1228 du 17 décembre 2025 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000053044705
+    Article 1 du Décret n° 2024-951 du 23 octobre 2024 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050393533
+    Article 1 du Décret n° 2023-1216 du 20 décembre 2023 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000048632880
 
 SMIC . horaire:
   titre global: SMIC horaire
@@ -56,6 +61,8 @@ SMIC . horaire:
     - si: établissement . commune . département . outre-mer . Mayotte
       alors:
         variations:
+          - si: date >= 01/2026
+            alors: 9.33 €/heure
           - si: date >= 11/2024
             alors: 8.98 €/heure
           - si: date >= 01/2024
@@ -67,6 +74,8 @@ SMIC . horaire:
           - sinon: 8.35 €/heure
     - sinon:
         variations:
+          - si: date >= 01/2026
+            alors: 12.02 €/heure
           - si: date >= 11/2024
             alors: 11.88 €/heure
           - si: date >= 01/2024

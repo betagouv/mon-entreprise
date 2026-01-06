@@ -19,6 +19,7 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
     valeur: 100%
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=50
 
   avec:
@@ -71,8 +72,6 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   unité: '%'
   formule: cotisations et contributions . assiette sociale / (85% * plafond sécurité sociale)
-  références:
-    Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
 
 indépendant . profession libérale . réglementée . CARCDSF . invalidité et décès:
   variations:
@@ -91,6 +90,7 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     - sinon: 1235 €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . PCV:
   titre: Prestation complémentaire vieillesse
@@ -114,6 +114,7 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
   arrondi: oui
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
   avec:
     forfaitaire:
@@ -163,6 +164,7 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID
     - sinon: 280.80 €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
 indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV:
   remplace: cotisations et contributions . cotisations . PCV
@@ -183,13 +185,17 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV
     non cotisés ne sont pas rachetables.
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
   formule:
     valeur: 780 €/an
     abattement: participation CPAM
   
   avec:
-    participation CPAM: 520 €/an
+    participation CPAM:
+      valeur: 520 €/an
+      références:
+        Mémento des sages-femmes: https://www.carcdsf.fr/images/pdf/2025/Memento_SF_WEB.pdf#page=8
 
 indépendant . profession libérale . réglementée . CARCDSF . sage-femme . exonération PCV:
   type: notification
