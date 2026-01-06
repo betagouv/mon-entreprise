@@ -58,7 +58,7 @@ describe('Location de meublé', () => {
 				expect(screen.queryByText(/Régime général/i)).not.toBeInTheDocument()
 				expect(screen.queryByText(/Auto-entrepreneur/i)).not.toBeInTheDocument()
 				expect(
-					screen.queryByText(/Travailleur indépendant/i)
+					screen.queryByText(/Sécurité Sociale des Indépendants/i)
 				).not.toBeInTheDocument()
 			})
 
@@ -158,7 +158,7 @@ describe('Location de meublé', () => {
 
 	describe('Location mixte (courte et longue durée)', () => {
 		describe('Activité secondaire (recettes < autres revenus)', () => {
-			it('doit afficher "sous conditions : recettes de courte durée" pour RG et TI quand cette info manque', async () => {
+			it('doit afficher "sous conditions : recettes de courte durée" pour RG et SSI quand cette info manque', async () => {
 				const { user } = render()
 
 				await saisirRecettes(user, 25000)

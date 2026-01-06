@@ -1898,7 +1898,7 @@ pages:
           description: Offre simplifiée du régime général
           libellé: Régime général
         travailleur-indépendant:
-          libellé: Travailleur indépendant
+          libellé: Sécurité Sociale des Indépendants
       shortname: Location de logement meublé
       title: Statuts possibles pour la location de meublé
       type-hébergement:

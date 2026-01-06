@@ -1,9 +1,4 @@
-import {
-	fireEvent,
-	render as rtlRender,
-	screen,
-	waitFor,
-} from '@testing-library/react'
+import { render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect } from 'vitest'
 
@@ -40,26 +35,6 @@ export const saisirRecettes = async (user: RTLUser, montant: number) => {
 		const montantSaisi = parseMontant(champRecettes.value)
 		expect(montantSaisi).toBe(montant)
 	})
-}
-
-export const sélectionnerRégime = (régime: 'RG' | 'AE' | 'TI') => {
-	const labels = {
-		RG: /Régime général \(cotisations URSSAF\)/i,
-		AE: /Micro-entreprise/i,
-		TI: /Travailleur indépendant/i,
-	}
-	const boutonRégime = screen.getByText(labels[régime])
-	fireEvent.click(boutonRégime)
-}
-
-export const getTexteRégime = (régime: 'RG' | 'AE' | 'TI') => {
-	const labels = {
-		RG: /Régime général \(cotisations URSSAF\)/i,
-		AE: /Micro-entreprise/i,
-		TI: /Travailleur indépendant/i,
-	}
-
-	return screen.queryByText(labels[régime])
 }
 
 export const getAvertissementDépassementPlafond = () => {

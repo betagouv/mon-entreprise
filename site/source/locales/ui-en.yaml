@@ -1783,7 +1783,7 @@ pages:
           description: Simplified offer from the general scheme
           libellé: General scheme
         travailleur-indépendant:
-          libellé: Self-employed
+          libellé: Social Security for the Self-Employed
       shortname: Furnished apartment rental
       title: Possible statutes for furnished rentals
       type-hébergement:
