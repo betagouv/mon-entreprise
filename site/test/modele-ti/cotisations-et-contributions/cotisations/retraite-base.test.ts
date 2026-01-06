@@ -28,7 +28,7 @@ describe('Cotisation retraite de base', () => {
 			)
 		})
 
-		it('applique une assiette minimale égale à 450 heures rémunérées au SMIC (5 346 € en 2025)', () => {
+		it('applique une assiette minimale égale à 450 heures rémunérées au SMIC (5 409 € en 2026)', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
 				'indépendant . cotisations et contributions . assiette sociale':
@@ -38,7 +38,7 @@ describe('Cotisation retraite de base', () => {
 			const assietteMinimale = e.evaluate(
 				'indépendant . assiette minimale . retraite'
 			).nodeValue
-			expect(assietteMinimale).toEqual(5346)
+			expect(assietteMinimale).toEqual(5409)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
@@ -47,7 +47,7 @@ describe('Cotisation retraite de base', () => {
 			const tranche1 = e.evaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
 			).nodeValue as number
-			expect(tranche1).toEqual(917)
+			expect(tranche1).toEqual(928)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
@@ -56,7 +56,7 @@ describe('Cotisation retraite de base', () => {
 			const tranche2 = e.evaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
 			).nodeValue as number
-			expect(tranche2).toEqual(38)
+			expect(tranche2).toEqual(39)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
@@ -196,7 +196,7 @@ describe('Cotisation retraite de base', () => {
 					const assietteMinimale = e.evaluate(
 						'indépendant . assiette minimale . retraite'
 					).nodeValue
-					expect(assietteMinimale).toEqual(5346)
+					expect(assietteMinimale).toEqual(5409)
 
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
@@ -210,7 +210,7 @@ describe('Cotisation retraite de base', () => {
 
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base',
-						955
+						967
 					)
 				})
 
@@ -225,6 +225,7 @@ describe('Cotisation retraite de base', () => {
 					const PASSProratisé = e.evaluate(
 						'indépendant . PSS proratisé'
 					).nodeValue
+					expect(PASSProratisé).toEqual(15485)
 
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
@@ -329,7 +330,7 @@ describe('Cotisation retraite de base', () => {
 			)
 		})
 
-		it('applique une assiette minimale égale à 450 heures rémunérées au SMIC (5 346 € en 2025)', () => {
+		it('applique une assiette minimale égale à 450 heures rémunérées au SMIC (5 409 € en 2025)', () => {
 			const e = engine.setSituation({
 				...defaultSituationPLR,
 				'indépendant . cotisations et contributions . assiette sociale':
@@ -339,7 +340,7 @@ describe('Cotisation retraite de base', () => {
 			const assietteMinimale = e.evaluate(
 				'indépendant . assiette minimale . retraite'
 			).nodeValue
-			expect(assietteMinimale).toEqual(5346)
+			expect(assietteMinimale).toEqual(5409)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
@@ -348,7 +349,7 @@ describe('Cotisation retraite de base', () => {
 			const tranche1 = e.evaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
 			).nodeValue as number
-			expect(tranche1).toEqual(467)
+			expect(tranche1).toEqual(472)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
@@ -357,7 +358,7 @@ describe('Cotisation retraite de base', () => {
 			const tranche2 = e.evaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
 			).nodeValue as number
-			expect(tranche2).toEqual(100)
+			expect(tranche2).toEqual(101)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
@@ -403,7 +404,7 @@ describe('Cotisation retraite de base', () => {
 					'100000 €/an',
 			})
 
-			const PASS = e.evaluate('plafond sécurité sociale').nodeValue
+			const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
@@ -436,7 +437,7 @@ describe('Cotisation retraite de base', () => {
 					'250000 €/an',
 			})
 
-			const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
+			const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue as number
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',

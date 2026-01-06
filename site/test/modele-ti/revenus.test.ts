@@ -10,14 +10,14 @@ describe('Indépendant', () => {
 	const CA = 50000
 	const CHARGES = 10000
 	const RÉMUNÉRATION_TOTALE = CA - CHARGES
-	const RÉMUNÉRATION_NETTE = 27566
+	const RÉMUNÉRATION_NETTE = 27581
 
 	describe('à l’IR', () => {
 		const situationParDéfaut = {
 			'entreprise . imposition': "'IR'",
 			'entreprise . charges': `${CHARGES} €/an`,
 		}
-		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 25750
+		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 25763
 
 		describe('à partir du chiffre d’affaires', () => {
 			it('calcule la rémunération nette', () => {
@@ -97,7 +97,7 @@ describe('Indépendant', () => {
 		const situationParDéfaut = {
 			'entreprise . imposition': "'IS'",
 		}
-		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 26205
+		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 26217
 
 		describe('à partir de la rémunération totale', () => {
 			it('calcule la rémunération nette', () => {
