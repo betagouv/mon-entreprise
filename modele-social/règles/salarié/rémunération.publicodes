@@ -733,22 +733,10 @@ salarié . rémunération . avantages en nature:
   question: L'entreprise fournit-elle des avantages en nature (repas, véhicule,
     téléphone, réductions, logement...) ?
   par défaut: non
+  références:
+    Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
 
   avec:
-    autres:
-      question: >
-        Y a-t-il d'autres avantages en natures (logement, véhicule,
-        réduction...) ?
-      par défaut: non
-      avec:
-        montant:
-          titre: autres
-          question: >
-            Quel est le montant de ces autres avantages ?
-          par défaut: 0 €/mois
-          suggestions:
-            🚗 véhicule: 260 €/mois
-
     montant:
       titre: Avantages en nature
       description: >
@@ -777,6 +765,9 @@ salarié . rémunération . avantages en nature:
         Lorsque l'entreprise donne une allocation pour les repas pendant les
         déplacements professionnels ce n'est pas un avantage en nature, mais un
         frais professionnels.
+      références:
+        Avantages en nature repas: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-repas
+
       avec:
         montant:
           titre: nourriture
@@ -784,8 +775,6 @@ salarié . rémunération . avantages en nature:
           produit:
             - repas par mois
             - repas forfaitaire
-          références:
-            Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
 
         repas par mois:
           question: >
@@ -798,6 +787,8 @@ salarié . rémunération . avantages en nature:
         montant . repas forfaitaire:
           titre: montant forfaitaire
           variations:
+            - si: date >= 01/2026
+              alors: 5.50 €/repas
             - si: date >= 01/2025
               alors: 5.45 €/repas
             - si: date >= 01/2024
@@ -818,6 +809,9 @@ salarié . rémunération . avantages en nature:
         L'entreprise fournit-elle gratuitement un outil issus des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       par défaut: oui
+      références:
+        'Avantages en nature : ordinateurs, téléphones': https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-ordinateurs-telephones
+
       avec:
         abonnements:
           question:
@@ -856,6 +850,20 @@ salarié . rémunération . avantages en nature:
             - 10% /an
           références:
             urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
+
+    autres:
+      question: >
+        Y a-t-il d'autres avantages en natures (logement, véhicule,
+        réduction...) ?
+      par défaut: non
+      avec:
+        montant:
+          titre: autres
+          question: >
+            Quel est le montant de ces autres avantages ?
+          par défaut: 0 €/mois
+          suggestions:
+            🚗 véhicule: 260 €/mois
 
 salarié . rémunération . montant net social:
   experimental: oui

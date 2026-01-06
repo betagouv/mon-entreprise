@@ -15,6 +15,7 @@
 - Mise à jour de la valeur d'acquisition et de la valeur du point RCI
 - Mise à jour de la valeur du point de retraite de base CNAVPL
 - Mise à jour du montant de chiffre d'affaires d'auto-entreprise pour l'acquisition de trimestres de retraite Cipav
+- Mise à jour du montant forfaitaire de l'avantage en nature repas
 
 ### Corrections
 - Correction de l'exonération de cotisations sociales sur la prise en charge par l'employeur des frais de transport
