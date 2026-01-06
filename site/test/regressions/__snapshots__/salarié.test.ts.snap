@@ -181,7 +181,7 @@ salarié . rémunération . net . à payer avant impôt: 1539"
 exports[`calculate simulations-salarié > avantages 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2351
+salarié . coût total employeur: 2352
 salarié . rémunération . net . payé après impôt: 1526
 salarié . rémunération . net . à payer avant impôt: 1548"
 `;

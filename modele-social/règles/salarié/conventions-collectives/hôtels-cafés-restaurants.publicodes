@@ -10,11 +10,15 @@ salarié . convention collective . HCR . montant forfaitaire d'un repas:
       rémunération . avantages en nature . nourriture . montant . repas
       forfaitaire
   variations:
+    - si: date >= 01/2026
+      alors: 4.25 €/repas
     - si: date >= 11/2024
       alors: 4.22 €/repas
     - si: date >= 01/2024
       alors: 4.15 €/repas
     - sinon: 3.94 €/repas
+  références:
+    Avantages en nature repas: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-repas
 
 salarié . convention collective . HCR . majoration heures supplémentaires:
   remplace: temps de travail . heures supplémentaires . majoration
