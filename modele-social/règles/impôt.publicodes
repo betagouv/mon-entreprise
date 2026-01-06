@@ -1133,10 +1133,8 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
     41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
     uniquement à la part de ses revenus supérieure à 72 617 €.
   barème:
-    assiette: quotient familial
+    assiette: assiette
     tranches:
-      # HACK waiting for https://github.com/betagouv/publicodes/discussions/92#discussioncomment-1904882 to be resolved
-      &tranches
       - taux: 0%
         plafond:
           variations:
@@ -1151,18 +1149,7 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
             - si: date >= 01/2021
               alors: 10084 €/part/an
       - taux: 11%
-        plafond:
-          variations:
-            - si: date >= 01/2025
-              alors: 29315 €/part/an
-            - si: date >= 01/2024
-              alors: 28797 €/part/an
-            - si: date >= 01/2023
-              alors: 27478 €/part/an
-            - si: date >= 01/2022
-              alors: 26070 €/part/an
-            - si: date >= 01/2021
-              alors: 25710 €/part/an
+        plafond: plafond tranche 2
       - taux: 30%
         plafond:
           variations:
@@ -1194,10 +1181,26 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
     Comment calculer votre impôt d’après le barème de l’impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/tranches-imposition-impot-revenu
 
+  avec:
+    assiette: quotient familial
+
+    plafond tranche 2:
+      variations:
+        - si: date >= 01/2025
+          alors: 29315 €/part/an
+        - si: date >= 01/2024
+          alors: 28797 €/part/an
+        - si: date >= 01/2023
+          alors: 27478 €/part/an
+        - si: date >= 01/2022
+          alors: 26070 €/part/an
+        - si: date >= 01/2021
+          alors: 25710 €/part/an
+
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées:
-  barème:
-    assiette: revenu imposable / nombre de parts . principales
-    tranches: *tranches
+  valeur: par part
+  contexte:
+    par part . assiette: revenu imposable / nombre de parts . principales
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   valeur:

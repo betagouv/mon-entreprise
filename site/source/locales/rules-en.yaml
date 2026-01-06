@@ -1175,7 +1175,7 @@ dirigeant . auto-entrepreneur . impôt . revenu imposable:
   titre.fr: revenu imposable
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
   description.en: >
-    [automatic] If you opt for the "versement libératoire" system, income tax is
+    [automatic] If you opt for payment in full discharge, your income tax is
     paid
 
     at the same time as your contributions (monthly or quarterly), with a specific
@@ -1183,17 +1183,17 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     application of a specific rate according to your activity.
 
 
-    To qualify in 2025, your reference tax income for the year
+    To qualify in 2026, your reference tax income for the year
 
-    2023 must not exceed €28,797 for one family share.
+    2024 must not exceed €29,315 per unit.
 
 
-    To benefit from the scheme the following year, you need to
+    To take advantage of or opt out of the scheme the following year, you need to
 
     Urssaf by September 30 at the latest.
 
 
-    To check whether this option is suitable for your personal situation,
+    To check whether this option is suited to your personal situation,
 
     you can run simulations on the French tax site.
   description.fr: |
@@ -1201,8 +1201,8 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     en même temps que vos cotisations (par mois ou par trimestre) avec
     application d’un taux spécifique en fonction de votre activité.
 
-    Pour en bénéficier en 2025, votre revenu fiscal de référence pour l’année
-    2023 ne doit pas excéder 28 797 € pour une part de quotient familial.
+    Pour en bénéficier en 2026, votre revenu fiscal de référence pour l’année
+    2024 ne doit pas excéder 29 315 € par part.
 
     Pour bénéficier ou sortir du dispositif l’année suivante, il faut en faire
     la demande à l’Urssaf au plus tard le 30 septembre.
@@ -1211,7 +1211,7 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire:
     vous devez effectuer des simulations sur le site des impôts.
   question.en: '[automatic] Do you benefit from the "versement libératoire de
     l''impôt sur le revenu" system?'
-  question.fr: Bénéficiez-vous du versement libératoire de l’impôt sur le revenu ?
+  question.fr: Bénéficiez-vous du versement libératoire de l’impôt sur le revenu ?
   titre.en: '[automatic] payment in full discharge'
   titre.fr: versement libératoire
 dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
@@ -1228,15 +1228,48 @@ dirigeant . auto-entrepreneur . impôt . versement libératoire . montant:
     application d’un taux spécifique en fonction de votre activité
   titre.en: '[automatic] payment in full discharge auto-entrepreneur'
   titre.fr: versement libératoire auto-entrepreneur
+dirigeant . auto-entrepreneur . impôt . versement libératoire . plafond:
+  description.en: >
+    [automatic] The payment in full discharge is only available for year N if
+    your
+
+    N-2 reference tax income is less than the ceiling for the second
+
+    bracket of the N-1 income tax scale.
+
+
+    For example, to benefit in **2026**, your
+
+    **reference tax income in 2024** must be less than €29,315**.
+
+    per unit.
+  description.fr: |
+    Le versement libératoire n’est disponible pour une année N que si votre
+    revenu fiscal de référence N-2 est inférieur au plafond de la deuxième
+    tranche du barème de l’impôt sur le revenu de N-1.
+
+    Par exemple, pour en bénéficier en **2026**, votre
+    **revenu fiscal de référence 2024** doit être inférieur à **29 315 €**
+    par part.
+  titre.en: '[automatic] ceiling'
+  titre.fr: plafond
 dirigeant . auto-entrepreneur . impôt . versement libératoire . seuil dépassé:
   description.en: >
-    [automatic] The payment in full discharge is not available if your household
-    tax
+    [automatic] The payment in full discharge is not available if your taxable
+    income
 
-    exceeds €27,519 per unit in 2018
+    in 2024 exceeds €29,315 per unit.
+
+
+    To opt out of the scheme next year, you must submit a request
+
+    to Urssaf by September 30 at the latest.
   description.fr: |
-    Le versement libératoire n’est pas disponible si le revenu fiscal de
-    référence de votre ménage est supérieur à 27 519 € par part en 2018
+    Le versement libératoire n’est pas disponible si votre revenu fiscal de
+    référence de 2024 est supérieur à 29 315 € par part.
+
+    Pour sortir du dispositif l’année prochaine, vous devez en faire la demande
+    à l’Urssaf au plus tard le 30 septembre.
   titre.en: '[automatic] threshold exceeded'
   titre.fr: seuil dépassé
 dirigeant . auto-entrepreneur . revenu net:
@@ -7870,6 +7903,13 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   titre.en: '[automatic] gross tax'
   titre.fr: impôt brut
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    plafond tranche 2:
+      titre.en: '[automatic] tranche 2 ceiling'
+      titre.fr: plafond tranche 2
   description.en: >
     [automatic] This is the famous income tax scale. It's a marginal scale with
     5

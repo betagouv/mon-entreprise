@@ -10,6 +10,7 @@
 - Mise à jour des taux de cotisation pour les auto-entrepreneur BNC Cipav dans les Drom
 - Mise à jour des suggestions de montant de l'abonnement de transports publics
 - Mise à jour des taux de cotisation ATMP
+- Mise à jour du plafond du versement libératoire pour les auto-entrepreneurs et auto-entrepreneuses
 
 ### Corrections
 - Correction de l'exonération de cotisations sociales sur la prise en charge par l'employeur des frais de transport
