@@ -265,12 +265,15 @@ assimilé salarié . cotisations . ATMP:
       références:
         Taux fonctions support: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp/calcul-taux-atmp-tpe-moins-20-salaries#text_66210
         'Comprendre et expliquer : le taux fonctions support (PDF)': https://cramif.fr/sites/default/files/inline-files/comprendre-expliquer-le-taux-fonctions-supports-VDEF.pdf
+        Annexe 1 de l'Arrêté du 30 décembre 2025 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2026: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053229010
         Annexe 1 de l'Arrêté du 29 avril 2025 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2025: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051533208
         Annexe 1 de l'Arrêté du 27 décembre 2023 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2024: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048708762
 
       avec:
         montant:
           variations:
+            - si: date >= 01/2026
+              alors: 0.64%
             - si: date >= 05/2025
               alors: 0.7%
             - si: date >= 01/2024
@@ -296,12 +299,15 @@ assimilé salarié . cotisations . ATMP:
 
     taux moyen:
       variations:
+        - si: date >= 01/2026
+          alors: 2.08%
         - si: date >= 01/2024
           alors: 2.12%
         - si: date >= 01/2023
           alors: 2.24%
         - sinon: 2.23%
       références:
+        Article 2 de l'Arrêté du 30 décembre 2025 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2026: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053228995
         Article 2 de l'Arrêté du 29 avril 2025 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2025: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000051533193
         Article 2 de l'Arrêté du 27 décembre 2023 relatif à la tarification des risques d'accidents du travail et de maladies professionnelles pour l'année 2024: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000048708748
 
