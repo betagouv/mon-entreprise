@@ -85,6 +85,8 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
     assiette: entreprise . chiffre d'affaires
     multiplicateur:
       variations:
+        - si: date >= 01/2026
+          alors: 2860 €/an
         - si: date >= 01/2025
           alors: 2694 €/an
         - si: date >= 01/2024
