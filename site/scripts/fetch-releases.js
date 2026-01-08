@@ -14,7 +14,8 @@ import { createDataDir, writeInDataDir } from './utils.js'
 dotenv.config()
 
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
-// explorer can be found here : https://developer.github.com/v4/explorer/
+// To learn how to use a GraphQL client see Github documentation :
+// https://docs.github.com/en/graphql/guides/using-graphql-clients
 const githubAuthToken = process.env.GITHUB_API_SECRET
 const queryLastRelease = (after) => `query {
 	repository(owner:"betagouv", name:"mon-entreprise") {

@@ -115,7 +115,7 @@ const getCatégorieFromCode = (
 	(voir https://www.insee.fr/fr/information/2028129)
 
 	En revanche, impossible de différencier EI et auto-entreprise
-	https://www.sirene.fr/sirene/public/question.action?idQuestion=2933
+	https://www.insee.fr/fr/information/1730869
 	*/
 
 	if (code === '1000') {
