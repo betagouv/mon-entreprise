@@ -14,6 +14,7 @@
 - Mise à jour de la valeur d'acquisition du point Agirc-Arrco
 - Mise à jour de la valeur d'acquisition et de la valeur du point RCI
 - Mise à jour de la valeur du point de retraite de base CNAVPL
+- Mise à jour du montant de chiffre d'affaires d'auto-entreprise pour l'acquisition de trimestres de retraite Cipav
 
 ### Corrections
 - Correction de l'exonération de cotisations sociales sur la prise en charge par l'employeur des frais de transport
