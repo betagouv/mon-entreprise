@@ -92,6 +92,18 @@ export const fieldInputStyles = css`
 	}
 `
 
-export const errorColorStyle = css`
+export const errorMessageStyle = css`
+	display: flex;
+	gap: ${({ theme }) => `${theme.spacings.xs}`};
+
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
+
+	svg {
+		position: relative;
+		top: calc(-1 * ${({ theme }) => theme.spacings.xxxs});
+
+		width: ${LABEL_AND_HELPERS_HEIGHT};
+
+		fill: ${({ theme }) => theme.colors.extended.error[400]};
+	}
 `

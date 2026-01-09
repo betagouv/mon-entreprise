@@ -8,8 +8,10 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
+import { ErrorIcon } from '@/design-system/icons'
+
 import {
-	errorColorStyle,
+	errorMessageStyle,
 	fieldContainerStyles,
 	fieldInputStyles,
 	fieldLabelStyles,
@@ -45,6 +47,7 @@ export function TextField({
 
 			{errorMessage ? (
 				<StyledErrorMessage slot="errorMessage">
+					<ErrorIcon />
 					{errorMessage}
 				</StyledErrorMessage>
 			) : (
@@ -87,10 +90,10 @@ const StyledRAText = styled(RAText)`
 
 const StyledErrorMessage = styled(RAText)`
 	${fieldLabelStyles}
-	${errorColorStyle}
+	${errorMessageStyle}
 `
 
 const StyledRAFieldError = styled(RAFieldError)`
 	${fieldLabelStyles}
-	${errorColorStyle}
+	${errorMessageStyle}
 `

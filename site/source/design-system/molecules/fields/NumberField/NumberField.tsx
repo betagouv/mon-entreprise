@@ -11,11 +11,12 @@ import {
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { ErrorIcon } from '@/design-system/icons'
 import { Body } from '@/design-system/typography'
 
 import { InputSuggestions, InputSuggestionsRecord } from '../../../suggestions'
 import {
-	errorColorStyle,
+	errorMessageStyle,
 	fieldContainerStyles,
 	fieldInputStyles,
 	fieldLabelStyles,
@@ -67,6 +68,7 @@ export function NumberField({
 
 			{errorMessage ? (
 				<StyledErrorMessage slot="errorMessage">
+					<ErrorIcon />
 					{errorMessage}
 				</StyledErrorMessage>
 			) : (
@@ -138,14 +140,14 @@ const StyledRAText = styled(RAText)`
 
 const StyledErrorMessage = styled(RAText)`
 	${fieldLabelStyles}
-	${errorColorStyle}
+	${errorMessageStyle}
 
 	padding-left: 0;
 `
 
 const StyledRAFieldError = styled(RAFieldError)`
 	${fieldLabelStyles}
-	${errorColorStyle}
+	${errorMessageStyle}
 
 	padding-left: 0;
 `
