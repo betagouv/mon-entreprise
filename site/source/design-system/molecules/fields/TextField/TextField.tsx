@@ -13,6 +13,7 @@ import { ErrorIcon } from '@/design-system/icons'
 import {
 	errorMessageStyle,
 	fieldContainerStyles,
+	fieldDescriptionStyles,
 	fieldInputStyles,
 	fieldLabelStyles,
 	labelAndInputContainerStyles,
@@ -42,7 +43,7 @@ export function TextField({
 			</StyledLabelAndInputContainer>
 
 			{description && (
-				<StyledRAText slot="description">{description}</StyledRAText>
+				<StyledDescription slot="description">{description}</StyledDescription>
 			)}
 
 			{errorMessage ? (
@@ -84,8 +85,8 @@ const StyledRAInput = styled(RAInput)`
 	${fieldInputStyles}
 `
 
-const StyledRAText = styled(RAText)`
-	${fieldLabelStyles}
+const StyledDescription = styled(RAText)`
+	${fieldDescriptionStyles}
 `
 
 const StyledErrorMessage = styled(RAText)`

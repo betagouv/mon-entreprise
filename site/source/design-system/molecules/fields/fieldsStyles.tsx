@@ -1,6 +1,7 @@
 import { css } from 'styled-components'
 
-const LABEL_AND_HELPERS_HEIGHT = '0.9rem'
+const LABELS_HEIGHT = '1rem'
+const HELPERS_HEIGHT = '0.9rem'
 
 export const fieldTransition = css`
 	transition: all 200ms;
@@ -56,7 +57,7 @@ export const labelAndInputContainerStyles = css`
 export const fieldLabelStyles = css`
 	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.sm} 0`};
 
-	font-size: ${LABEL_AND_HELPERS_HEIGHT};
+	font-size: ${LABELS_HEIGHT};
 
 	${fieldTransition}
 
@@ -66,6 +67,12 @@ export const fieldLabelStyles = css`
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[800]};
 	}
+`
+
+export const fieldDescriptionStyles = css`
+	${fieldLabelStyles}
+
+	font-size: ${HELPERS_HEIGHT};
 `
 
 export const fieldInputStyles = css`
@@ -97,12 +104,13 @@ export const errorMessageStyle = css`
 	gap: ${({ theme }) => `${theme.spacings.xs}`};
 
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
+	font-size: ${HELPERS_HEIGHT};
 
 	svg {
 		position: relative;
 		top: calc(-1 * ${({ theme }) => theme.spacings.xxxs});
 
-		width: ${LABEL_AND_HELPERS_HEIGHT};
+		width: ${HELPERS_HEIGHT};
 
 		fill: ${({ theme }) => theme.colors.extended.error[400]};
 	}
