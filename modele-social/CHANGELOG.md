@@ -2,6 +2,8 @@
 
 ## next
 
+## 10.0.1
+
 ### Mises à jour
 - Mise à jour de la date (01/01/2026)
 - Mise à jour du Smic
