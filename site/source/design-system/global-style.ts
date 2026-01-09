@@ -31,7 +31,6 @@ export const GlobalStyle = createGlobalStyle`
 html {
 	transition: none !important;
 	box-sizing: border-box;
-	font-size: 16px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }

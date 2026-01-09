@@ -156,7 +156,7 @@ export const baseTheme = {
 		heading: '',
 	},
 
-	baseFontSize: '16px',
+	baseFontSize: '1rem',
 
 	fontSizes: {
 		lg: '1.125rem',
