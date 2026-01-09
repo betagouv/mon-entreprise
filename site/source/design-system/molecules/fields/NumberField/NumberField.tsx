@@ -18,6 +18,7 @@ import { InputSuggestions, InputSuggestionsRecord } from '../../../suggestions'
 import {
 	errorMessageStyle,
 	fieldContainerStyles,
+	fieldDescriptionStyles,
 	fieldInputStyles,
 	fieldLabelStyles,
 	labelAndInputContainerStyles,
@@ -57,7 +58,7 @@ export function NumberField({
 			<StyledRALabel>{label}</StyledRALabel>
 
 			{description && (
-				<StyledRAText slot="description">{description}</StyledRAText>
+				<StyledDescription slot="description">{description}</StyledDescription>
 			)}
 
 			<StyledRAGroup className="input-and-unit-group">
@@ -131,8 +132,8 @@ const StyledRAInput = styled(RAInput)`
 	text-align: right;
 `
 
-const StyledRAText = styled(RAText)`
-	${fieldLabelStyles}
+const StyledDescription = styled(RAText)`
+	${fieldDescriptionStyles}
 
 	padding-top: 0;
 	padding-left: 0;
