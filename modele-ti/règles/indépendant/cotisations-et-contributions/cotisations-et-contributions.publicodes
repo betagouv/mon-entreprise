@@ -3,8 +3,6 @@ indépendant . cotisations et contributions:
     C’est le montant total dû par l’indépendant au titre des cotisations et
     contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
     telles que les contrats Madelin.
-
-    Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
   somme:
     - cotisations et contributions . cotisations
     - CSG-CRDS
