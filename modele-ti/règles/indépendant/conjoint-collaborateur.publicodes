@@ -26,6 +26,7 @@ indépendant . conjoint collaborateur:
     > administratives) et d’un faible coût pour l’entreprise pour une protection
     > sociale complète. Il peut être choisi même si la conjointe ou le conjoint
     > exerce une activité hors de l’entreprise.
+  non applicable si: profession libérale . réglementée . CNBF   # Applicable mais pas encore supporté
   question: Avez-vous un conjoint collaborateur ?
   par défaut: non
   références:
