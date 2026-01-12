@@ -2571,6 +2571,47 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
     retraite » de la cotisation invalidité-décès ?
   titre.en: '[automatic] age'
   titre.fr: âge
+indépendant . cotisations et contributions . cotisations . indemnités journalières:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  description.en: >
+    [automatic] This contribution is used to obtain the payment of daily
+    benefits in the event of
+
+    work stoppage due to illness or accident.
+
+
+    Benefits are calculated on the basis of the average income subject to contributions
+
+    of the last three years.
+  description.fr: >
+    Cette cotisation permet d’obtenir le versement d’indemnités journalières en
+    cas
+
+    d’arrêt de travail pour cause de maladie ou d’accident.
+
+
+    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations
+
+    des trois dernières années.
+  note.en: >
+    [automatic] Lawyers are not required to pay this contribution, as they
+    already contribute to a specific fund for daily sickness benefits (AON or
+    LPA).
+
+    a specific fund for daily sickness benefits (AON or LPA).
+  note.fr: >
+    Les avocats ne sont pas redevables de cette cotisation car ils cotisent déjà
+    à
+
+    une caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
 indépendant . cotisations et contributions . cotisations . invalidité et décès:
   avec:
     assiette:
@@ -2598,58 +2639,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . cotisations et contributions . cotisations . maladie:
-  description.en: |
-    [automatic] The health contribution comprises two components:
-    - the sickness-maternity contribution (sickness 1)
-    - the daily allowance contribution (sickness 2).
-  description.fr: |
-    Le montant de la cotisation maladie contient deux composantes :
-    - la cotisation maladie-maternité (maladie 1)
-    - la cotisation indemnités journalières (maladie 2)
-  titre.en: '[automatic] disease'
-  titre.fr: maladie
-indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-  description.en: >
-    [automatic] This contribution enables the company to receive daily benefits
-    in the event of
-
-    work stoppage due to illness or accident.
-
-
-    Benefits are calculated on the basis of the average income subject to contributions
-
-    of the last three years.
-  description.fr: >
-    Cette cotisation permet d’obtenir le versement d’indemnités journalières en
-    cas
-
-    d’arrêt de travail pour cause de maladie ou d’accident.
-
-
-    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations
-
-    des trois dernières années.
-  note.en: >
-    [automatic] Lawyers do not have to pay this contribution, as they already
-    contribute to a specific fund for daily sickness benefits (AON or LPA).
-
-    a specific fund for daily sickness benefits (AON or LPA).
-  note.fr: >
-    Les avocats ne sont pas redevables de cette cotisation car ils cotisent déjà
-    à
-
-    une caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
-  titre.en: '[automatic] daily allowances'
-  titre.fr: indemnités journalières
-indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité:
+indépendant . cotisations et contributions . cotisations . maladie-maternité:
   avec:
     plafond taux 1:
       titre.en: '[automatic] ceiling rate 1'
@@ -2695,7 +2685,7 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
     souscrire une assurance maladie complémentaire.
   titre.en: '[automatic] illness-maternity'
   titre.fr: maladie-maternité
-indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger:
+indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
   avec:
     taux:
       titre.en: '[automatic] rate'
