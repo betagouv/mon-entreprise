@@ -186,7 +186,7 @@ indépendant . profession libérale . réglementée . PAMC . maladie . participa
           alors: cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger . taux
         - si: cotisations et contributions . après réforme = non
           alors: profession libérale . CNAVPL . maladie . taux
-        - sinon: cotisations et contributions . cotisations . maladie . maladie-maternité . taux 2
+        - sinon: cotisations et contributions . cotisations . maladie . maladie-maternité . taux 1
 
 indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
   produit:
