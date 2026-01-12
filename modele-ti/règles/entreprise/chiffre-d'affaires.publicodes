@@ -13,6 +13,7 @@ entreprise . chiffre d'affaires:
     - charges
   plancher: 0 €/an
   arrondi: oui
+  unité: €/an
 
 entreprise . chiffre d'affaires . proportions:
   titre: proportions activités mixtes

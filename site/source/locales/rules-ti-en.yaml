@@ -2092,15 +2092,10 @@ indépendant . cotisations et contributions:
     contributions and optional contributions, such as Madelin contracts.
 
     such as Madelin contracts.
-
-
-    We include here the amount of social security contributions on dividends.
   description.fr: |
     C’est le montant total dû par l’indépendant au titre des cotisations et
     contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
     telles que les contrats Madelin.
-
-    Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
   titre.en: '[automatic] contributions and dues'
   titre.fr: cotisations et contributions
 indépendant . cotisations et contributions . CSG-CRDS:
