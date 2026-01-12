@@ -214,7 +214,7 @@ describe('Cotisations de début d’activité', () => {
 
 			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
 			expect(e).toBeApplicable(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger'
 			)
 
 			/** Cotisation maladie:

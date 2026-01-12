@@ -34,12 +34,12 @@ describe('L’exonération invalidité', () => {
 		it('s’applique à la cotisation maladie-maternité', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const maladie = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			const e2 = engine.setSituation(defaultSituationInvalidité)
 			const maladieExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			expect(maladieExonérée).toEqual(Math.round(0.25 * maladie))
@@ -48,12 +48,12 @@ describe('L’exonération invalidité', () => {
 		it('s’applique à la cotisation indemnités journalières', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const IJ = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			const e2 = engine.setSituation(defaultSituationInvalidité)
 			const IJExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			expect(IJExonérée).toEqual(Math.round(0.25 * IJ))
@@ -102,7 +102,7 @@ describe('L’exonération invalidité', () => {
 				...situationCipav,
 			})
 			const maladie = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -110,7 +110,7 @@ describe('L’exonération invalidité', () => {
 				...situationCipav,
 			})
 			const maladieExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			expect(maladieExonérée).toEqual(Math.round(0.25 * maladie))
@@ -122,7 +122,7 @@ describe('L’exonération invalidité', () => {
 				...situationCipav,
 			})
 			const IJ = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -130,7 +130,7 @@ describe('L’exonération invalidité', () => {
 				...situationCipav,
 			})
 			const IJExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			expect(IJExonérée).toEqual(Math.round(0.25 * IJ))
@@ -221,7 +221,7 @@ describe('L’exonération invalidité', () => {
 				...situationPLRNonCipav,
 			})
 			const maladie = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -229,7 +229,7 @@ describe('L’exonération invalidité', () => {
 				...situationPLRNonCipav,
 			})
 			const maladieExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			expect(maladieExonérée).toEqual(Math.round(0.25 * maladie))
@@ -241,7 +241,7 @@ describe('L’exonération invalidité', () => {
 				...situationPLRNonCipav,
 			})
 			const IJ = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -249,7 +249,7 @@ describe('L’exonération invalidité', () => {
 				...situationPLRNonCipav,
 			})
 			const IJExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			expect(IJExonérée).toEqual(Math.round(0.25 * IJ))

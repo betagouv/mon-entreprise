@@ -76,7 +76,7 @@ describe('L’exonération Acre', () => {
 			const e = engine.setSituation(defaultSituation)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité',
 				0
 			)
 		})
@@ -85,7 +85,7 @@ describe('L’exonération Acre', () => {
 			const e = engine.setSituation(defaultSituation)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				0
 			)
 		})
@@ -128,7 +128,7 @@ describe('L’exonération Acre', () => {
 			const e = engine.setSituation(defaultSituationCipav)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité',
 				0
 			)
 		})
@@ -137,7 +137,7 @@ describe('L’exonération Acre', () => {
 			const e = engine.setSituation(defaultSituationCipav)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				0
 			)
 		})
@@ -183,7 +183,7 @@ describe('L’exonération Acre', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité',
 				0
 			)
 		})
@@ -192,7 +192,7 @@ describe('L’exonération Acre', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				0
 			)
 		})
