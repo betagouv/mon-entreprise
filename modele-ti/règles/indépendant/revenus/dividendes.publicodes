@@ -87,6 +87,7 @@ indépendant . dividendes . prélèvements sociaux:
         - 7.5%
 
 indépendant . dividendes . imposition:
+  applicable si: dividendes > 0 €/an
   question: Quel est le mode d’imposition de vos dividendes ?
   une possibilité:
     - PFU:
