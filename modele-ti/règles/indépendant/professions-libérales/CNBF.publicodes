@@ -4,10 +4,6 @@ indépendant . profession libérale . réglementée . CNBF:
     sociale des avocates et avocats.
   applicable si: métier = 'juridique . avocat'
   valeur: oui
-  rend non applicable:
-    - cotisations et contributions . cotisations . maladie . indemnités journalières
-    # Applicable mais pas encore supporté
-    - conjoint collaborateur
   références:
     Site CNBF: https://www.cnbf.fr
 
