@@ -28,7 +28,7 @@ describe('L’exonération appliquée', () => {
 		it('est l’Acre lorsqu’elle est plus avantageuse que l’exonération invalidité', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -37,7 +37,7 @@ describe('L’exonération appliquée', () => {
 					'1 mois',
 			})
 			const cotisationExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue
 
 			const acre = e2.evaluate(
@@ -57,7 +57,7 @@ describe('L’exonération appliquée', () => {
 		it('est l’exonération invalidité lorsqu’elle est plus avantageuse que l’Acre', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -66,7 +66,7 @@ describe('L’exonération appliquée', () => {
 					'11 mois',
 			})
 			const cotisationExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité'
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
 			).nodeValue
 
 			const acre = e2.evaluate(
@@ -88,7 +88,7 @@ describe('L’exonération appliquée', () => {
 		it('est l’Acre lorsqu’elle est plus avantageuse que l’exonération invalidité', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -97,7 +97,7 @@ describe('L’exonération appliquée', () => {
 					'1 mois',
 			})
 			const cotisationExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue
 
 			const acre = e2.evaluate(
@@ -117,7 +117,7 @@ describe('L’exonération appliquée', () => {
 		it('est l’exonération invalidité lorsqu’elle est plus avantageuse que l’Acre', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue as number
 
 			const e2 = engine.setSituation({
@@ -126,7 +126,7 @@ describe('L’exonération appliquée', () => {
 					'11 mois',
 			})
 			const cotisationExonérée = e2.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières'
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
 			).nodeValue
 
 			const acre = e2.evaluate(
