@@ -437,7 +437,8 @@ describe('Cotisation retraite de base', () => {
 					'250000 €/an',
 			})
 
-			const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue as number
+			const PASS = e.evaluate('plafond sécurité sociale . annuel')
+				.nodeValue as number
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',

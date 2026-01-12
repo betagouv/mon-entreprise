@@ -8,7 +8,8 @@ describe('Indépendant', () => {
 	beforeEach(() => {
 		engine = new Engine(rules)
 
-		Pass = engine.evaluate('plafond sécurité sociale . annuel').nodeValue as number
+		Pass = engine.evaluate('plafond sécurité sociale . annuel')
+			.nodeValue as number
 	})
 
 	describe('calcule l’assiette CSG-CRDS', () => {
@@ -59,7 +60,7 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
-				Math.round(1.76/100 * Pass)
+				Math.round((1.76 / 100) * Pass)
 			)
 		})
 	})
