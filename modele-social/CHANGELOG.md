@@ -2,6 +2,9 @@
 
 ## next
 
+### Corrections
+- Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
+
 ## 10.0.1
 
 ### Mises à jour
