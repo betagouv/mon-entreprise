@@ -160,10 +160,10 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
 
 indépendant . profession libérale . réglementée . PAMC . maladie:
-  remplace: cotisations et contributions . cotisations . maladie . maladie-maternité
+  remplace: cotisations et contributions . cotisations . maladie-maternité
   titre: maladie (après participation CPAM)
   somme:
-    - cotisations et contributions . cotisations . maladie . maladie-maternité
+    - cotisations et contributions . cotisations . maladie-maternité
     - contribution additionnelle
     - (- participation CPAM)
 
@@ -183,10 +183,10 @@ indépendant . profession libérale . réglementée . PAMC . maladie . participa
     taux maladie:
       variations:
         - si: situation personnelle . domiciliation fiscale à l'étranger
-          alors: cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger . taux
+          alors: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger . taux
         - si: cotisations et contributions . après réforme = non
           alors: profession libérale . CNAVPL . maladie . taux
-        - sinon: cotisations et contributions . cotisations . maladie . maladie-maternité . taux 1
+        - sinon: cotisations et contributions . cotisations . maladie-maternité . taux 1
 
 indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
   produit:
