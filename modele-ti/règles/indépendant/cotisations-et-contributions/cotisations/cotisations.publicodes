@@ -1,6 +1,7 @@
 indépendant . cotisations et contributions . cotisations:
   somme:
-    - maladie
+    - maladie-maternité
+    - indemnités journalières
     - allocations familiales
     - retraite de base
     - retraite complémentaire
@@ -12,20 +13,7 @@ indépendant . cotisations et contributions . cotisations:
     Taux de cotisations - Profession libérale réglementée relevant de la Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
-indépendant . cotisations et contributions . cotisations . maladie:
-  description: |
-    Le montant de la cotisation maladie contient deux composantes :
-    - la cotisation maladie-maternité (maladie 1)
-    - la cotisation indemnités journalières (maladie 2)
-  somme:
-    - maladie-maternité
-    - indemnités journalières
-  arrondi: oui
-  unité: €/an
-  références:
-    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
-
-indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité:
+indépendant . cotisations et contributions . cotisations . maladie-maternité:
   description: |
     Cette cotisation permet de bénéficier de l’ensemble des prestations
     maladie-maternité gérées par l’assurance maladie et les Cpam :
@@ -61,6 +49,7 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
   arrondi: oui
   unité: €/an
   références:
+    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
     Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
     Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
 
@@ -123,7 +112,7 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
       références:
         Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
 
-indépendant . cotisations et contributions . cotisations . maladie . maladie-maternité . domiciliation fiscale étranger:
+indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
   description: |
     En contrepartie de l’exonération de CSG, les cotisants ont un taux
     maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
@@ -139,7 +128,7 @@ indépendant . cotisations et contributions . cotisations . maladie . maladie-ma
   avec:
     taux: 14.5%
 
-indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières:
+indépendant . cotisations et contributions . cotisations . indemnités journalières:
   description: |
     Cette cotisation permet d’obtenir le versement d’indemnités journalières en cas
     d’arrêt de travail pour cause de maladie ou d’accident.
@@ -153,16 +142,6 @@ indépendant . cotisations et contributions . cotisations . maladie . indemnité
   produit:
     - assiette
     - taux
-  plafond:
-    non applicable si: date >= 01/2024
-    # Le taux indemnité est de 0.5%, dans la loi.
-    # Mais parce que l'Urssaf regorge d'inventivité et qu'ils n'ont pas envie de se baser
-    # sur la loi - non, non, ça sera trop simple - ils ont choisi de continuer d'appliquer
-    # le taux de 0.85% tout en abaissant la cotisation maladie 1 en 2022 et 2023
-    #
-    # Pour les revenu ou le taux de la cotisation total (maladie 1 + 2) est inférieur à 0.85, on
-    # plafonne donc la cotis maladie 2 à ce total
-    valeur: maladie
   abattement:
     le maximum de:
       - exonérations . Acre . exonération
