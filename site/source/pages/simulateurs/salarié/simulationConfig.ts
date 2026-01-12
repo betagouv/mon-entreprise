@@ -20,7 +20,8 @@ export const configSalarié: SimulationConfig = {
 			},
 			{
 				label: 'Emploi franc',
-				dottedName: 'salarié . coût total employeur . aides . emploi franc',
+				dottedName:
+					'salarié . coût total employeur . aides . emploi franc . éligible',
 			},
 			{
 				label: 'Cadre',

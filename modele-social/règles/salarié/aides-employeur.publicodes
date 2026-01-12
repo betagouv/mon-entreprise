@@ -60,6 +60,8 @@ salarié . coût total employeur . aides . emploi franc:
       - toutes ces conditions:
           - contrat . CDD
           - contrat . CDD . durée >= 6
+
+salarié . coût total employeur . aides . emploi franc . éligible:
   question: Cette embauche est-elle éligible à l'aide emploi-franc ?
   description: |
     Conditions :
@@ -78,6 +80,7 @@ salarié . coût total employeur . aides . emploi franc . montant:
     - *embauche en CDD d'au moins 6 mois* : 2 500€/an pendant 2 ans, soit 5 000€ au maximum
 
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+  applicable si: éligible
   formule:
     produit:
       - variations:

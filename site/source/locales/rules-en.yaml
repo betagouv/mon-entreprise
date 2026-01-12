@@ -13156,24 +13156,6 @@ salarié . coût total employeur . aides . embauche . senior professionnalisatio
   titre.en: '[automatic] senior professionalization'
   titre.fr: senior professionnalisation
 salarié . coût total employeur . aides . emploi franc:
-  description.en: >
-    [automatic] Conditions :
-
-    - The employee recruited is a jobseeker registered with France Travail and resides in a priority urban district (QPV) [check district eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
-
-    - The employer is up to date with its contributions and has not made any redundancies for the position filled in the 6 months prior to recruitment.
-
-    - The employee recruited must not have been part of the company's workforce in the 6 months prior to recruitment.
-  description.fr: >
-    Conditions :
-
-    - Le salarié recruté est un demandeur d'emploi inscrit à France Travail et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
-
-    - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
-
-    - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
-  question.en: '[automatic] Is this recruitment eligible for the "emploi-franc" scheme?'
-  question.fr: Cette embauche est-elle éligible à l'aide emploi-franc ?
   titre.en: '[automatic] free employment'
   titre.fr: emploi franc
 salarié . coût total employeur . aides . emploi franc . montant:
@@ -13209,6 +13191,27 @@ salarié . coût total employeur . aides . emploi franc . montant:
     [🗺 Vérifier l'éligibilité d'une adresse](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
   titre.en: '[automatic] amount'
   titre.fr: montant
+salarié . coût total employeur . aides . emploi franc . éligible:
+  description.en: >
+    [automatic] Conditions :
+
+    - The employee recruited is a jobseeker registered with France Travail and resides in a priority urban district (QPV) [check district eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+
+    - The employer is up to date with its contributions and has not made any redundancies for the position filled in the 6 months prior to recruitment.
+
+    - The employee recruited must not have been part of the company's workforce in the 6 months prior to recruitment.
+  description.fr: >
+    Conditions :
+
+    - Le salarié recruté est un demandeur d'emploi inscrit à France Travail et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+
+    - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
+
+    - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
+  question.en: '[automatic] Is this recruitment eligible for the "emploi-franc" scheme?'
+  question.fr: Cette embauche est-elle éligible à l'aide emploi-franc ?
+  titre.en: '[automatic] eligible'
+  titre.fr: éligible
 salarié . mois incomplet:
   description.en: >
     [automatic] Management of incomplete months (absence, hiring, departure,
