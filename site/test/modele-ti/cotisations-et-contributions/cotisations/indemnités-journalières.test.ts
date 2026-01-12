@@ -16,7 +16,7 @@ describe('Cotisation indemnités journalières', () => {
 	describe('pour les artisans, commerçants et PLNR', () => {
 		it('applique un taux de 0,5%', () => {
 			expect(engine).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . taux',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . taux',
 				0.5
 			)
 		})
@@ -34,12 +34,12 @@ describe('Cotisation indemnités journalières', () => {
 			expect(assietteMinimale).toEqual(18840)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 				assietteMinimale
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				94
 			)
 		})
@@ -52,12 +52,12 @@ describe('Cotisation indemnités journalières', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 				30000
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				150
 			)
 		})
@@ -71,12 +71,12 @@ describe('Cotisation indemnités journalières', () => {
 
 			const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 				5 * PASS
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				1178
 			)
 		})
@@ -91,7 +91,7 @@ describe('Cotisation indemnités journalières', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					1000
 				)
 			})
@@ -105,7 +105,7 @@ describe('Cotisation indemnités journalières', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					1000
 				)
 			})
@@ -132,12 +132,12 @@ describe('Cotisation indemnités journalières', () => {
 				expect(assietteMinimale).toEqual(18840)
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					assietteMinimale
 				)
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 					94
 				)
 			})
@@ -150,12 +150,12 @@ describe('Cotisation indemnités journalières', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					30000
 				)
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 					150
 				)
 			})
@@ -169,12 +169,12 @@ describe('Cotisation indemnités journalières', () => {
 
 				const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					5 * PASS
 				)
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 					1178
 				)
 			})
@@ -196,7 +196,7 @@ describe('Cotisation indemnités journalières', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . taux',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . taux',
 				0.3
 			)
 		})
@@ -214,12 +214,12 @@ describe('Cotisation indemnités journalières', () => {
 			expect(assietteMinimale).toEqual(18840)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 				assietteMinimale
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				57
 			)
 		})
@@ -232,12 +232,12 @@ describe('Cotisation indemnités journalières', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 				30000
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				90
 			)
 		})
@@ -251,12 +251,12 @@ describe('Cotisation indemnités journalières', () => {
 
 			const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 				3 * PASS
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières',
+				'indépendant . cotisations et contributions . cotisations . indemnités journalières',
 				424
 			)
 		})
@@ -281,7 +281,7 @@ describe('Cotisation indemnités journalières', () => {
 				expect(assietteMinimale).toEqual(18840)
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					assietteMinimale
 				)
 			})
@@ -294,7 +294,7 @@ describe('Cotisation indemnités journalières', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					30000
 				)
 			})
@@ -308,7 +308,7 @@ describe('Cotisation indemnités journalières', () => {
 
 				const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					3 * PASS
 				)
 			})
@@ -324,7 +324,7 @@ describe('Cotisation indemnités journalières', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					1000
 				)
 			})
@@ -338,7 +338,7 @@ describe('Cotisation indemnités journalières', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie . indemnités journalières . assiette',
+					'indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette',
 					1000
 				)
 			})
