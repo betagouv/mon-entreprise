@@ -171,7 +171,6 @@ Page d'accueil: Page d'accueil
 Passer: Passer
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
-Plus d'informations sur {{ title }}: Plus d'informations sur {{ title }}
 Plus de 50 salariés: Plus de 50 salariés
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
@@ -1724,6 +1723,12 @@ pages:
           pour chaque statut
       shortname: Comparaison des statuts
       title: Comparateur de statut juridique
+      warning:
+        réforme:
+          aria-label: Lire la page dédiée à la réforme de l’assiette et du barème des
+            cotisations sur le site de l’Urssaf, nouvelle fenêtre
+          texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
+            encore implémentée sur ce comparateur.
     coût-création-entreprise:
       meta:
         description: Estimez les coûts des formalités administratives obligatoires à la
@@ -1938,8 +1943,102 @@ pages:
         title: Comment fonctionne la régularisation des cotisations provisionnelles ?
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
-      warning: Le montant calculé correspond aux cotisations de l’année {{year}} (pour
-        un revenu {{year}}).
+      warning:
+        "0": L
+        "1": e
+        "10": " "
+        "11": c
+        "12": a
+        "13": l
+        "14": c
+        "15": u
+        "16": l
+        "17": é
+        "18": " "
+        "19": c
+        "2": " "
+        "20": o
+        "21": r
+        "22": r
+        "23": e
+        "24": s
+        "25": p
+        "26": o
+        "27": n
+        "28": d
+        "29": " "
+        "3": m
+        "30": a
+        "31": u
+        "32": x
+        "33": " "
+        "34": c
+        "35": o
+        "36": t
+        "37": i
+        "38": s
+        "39": a
+        "4": o
+        "40": t
+        "41": i
+        "42": o
+        "43": n
+        "44": s
+        "45": " "
+        "46": d
+        "47": e
+        "48": " "
+        "49": l
+        "5": n
+        "50": ’
+        "51": a
+        "52": n
+        "53": n
+        "54": é
+        "55": e
+        "56": " "
+        "57": "{"
+        "58": "{"
+        "59": y
+        "6": t
+        "60": e
+        "61": a
+        "62": r
+        "63": "}"
+        "64": "}"
+        "65": " "
+        "66": (
+        "67": p
+        "68": o
+        "69": u
+        "7": a
+        "70": r
+        "71": " "
+        "72": u
+        "73": n
+        "74": " "
+        "75": r
+        "76": e
+        "77": v
+        "78": e
+        "79": n
+        "8": n
+        "80": u
+        "81": " "
+        "82": "{"
+        "83": "{"
+        "84": y
+        "85": e
+        "86": a
+        "87": r
+        "88": "}"
+        "89": "}"
+        "9": t
+        "90": )
+        "91": .
+        réforme:
+          texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
+            encore implémentée sur ce simulateur.
     is:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."

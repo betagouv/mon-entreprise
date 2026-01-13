@@ -163,7 +163,6 @@ Page d'accueil: Home page
 Passer: Pass
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
-Plus d'informations sur {{ title }}: More information on {{ title }}
 Plus de 50 salariés: More than 50 employees
 Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
   urssaf:
@@ -1628,6 +1627,12 @@ pages:
           each status
       shortname: Status comparison
       title: Legal status comparator
+      warning:
+        réforme:
+          aria-label: Read the page dedicated to the reform of the contribution base and
+            scale on the Urssaf website, new window
+          texte: The <2>reform of the contribution base and scale&lt;/2> has not yet been
+            implemented on this comparator.
     coût-création-entreprise:
       meta:
         description: Estimate the cost of the administrative formalities involved in
@@ -1821,8 +1826,112 @@ pages:
         title: How does the adjustment of provisional contributions work?
       shortname: Independent
       title: Income simulator for the self-employed
-      warning: The amount calculated corresponds to the contributions for the year
-        {{year}} (for an income {{year}}).
+      warning:
+        "0": T
+        "1": h
+        "10": " "
+        "100": )
+        "101": .
+        "11": c
+        "12": a
+        "13": l
+        "14": c
+        "15": u
+        "16": l
+        "17": a
+        "18": t
+        "19": e
+        "2": e
+        "20": d
+        "21": " "
+        "22": c
+        "23": o
+        "24": r
+        "25": r
+        "26": e
+        "27": s
+        "28": p
+        "29": o
+        "3": " "
+        "30": n
+        "31": d
+        "32": s
+        "33": " "
+        "34": t
+        "35": o
+        "36": " "
+        "37": t
+        "38": h
+        "39": e
+        "4": a
+        "40": " "
+        "41": c
+        "42": o
+        "43": n
+        "44": t
+        "45": r
+        "46": i
+        "47": b
+        "48": u
+        "49": t
+        "5": m
+        "50": i
+        "51": o
+        "52": n
+        "53": s
+        "54": " "
+        "55": f
+        "56": o
+        "57": r
+        "58": " "
+        "59": t
+        "6": o
+        "60": h
+        "61": e
+        "62": " "
+        "63": y
+        "64": e
+        "65": a
+        "66": r
+        "67": " "
+        "68": "{"
+        "69": "{"
+        "7": u
+        "70": y
+        "71": e
+        "72": a
+        "73": r
+        "74": "}"
+        "75": "}"
+        "76": " "
+        "77": (
+        "78": f
+        "79": o
+        "8": n
+        "80": r
+        "81": " "
+        "82": a
+        "83": n
+        "84": " "
+        "85": i
+        "86": n
+        "87": c
+        "88": o
+        "89": m
+        "9": t
+        "90": e
+        "91": " "
+        "92": "{"
+        "93": "{"
+        "94": y
+        "95": e
+        "96": a
+        "97": r
+        "98": "}"
+        "99": "}"
+        réforme:
+          texte: The <2>reform of the contribution base and scale&lt;/2> has not yet been
+            implemented on this simulator.
     is:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
