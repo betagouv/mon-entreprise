@@ -45,7 +45,6 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Hello, I'm a baker and I couldn't find "bread" or "viennoiserie" when I
   searched.
 Budget: Budget
-Bénéfice: Profit
 Cacher le message: Hide message
 Cette commune n’existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
@@ -72,7 +71,6 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Our partner Conseillers-Entreprises.Service-Public.fr will identify, from among all our public and semi-public partners,
     the right advisor for your request.
     He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
-Déficit: Deficit
 Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
@@ -943,87 +941,8 @@ pages:
       shortname: Determining deductible social security charges
       title: Assistance in determining deductible social charges
     declaration-revenus-pamc:
-      buttons:
-        reset: Reset
-        results: See results
-      description: <0>This tool is designed to help you complete the social section of
-        your tax return for <2>practitioners and medical auxiliaries under
-        contract (PAMC)</2>. Its purpose is to help you complete the social
-        section of your tax return on <5>impots.gouv.fr</5>.</0><1>You remain
-        entirely responsible for any omissions or inaccuracies in your
-        declaration.</1>
-      externalLinks:
-        "1":
-          description: Who has to declare self-employed income and how to do it.
-          title: Everything you need to know about the social security and tax returns for
-            self-employed workers
-        "2":
-          description: Declaration and payment of social security contributions for
-            practitioners and auxiliaries under agreement (PAM-C).
-          title: I am covered by the PAM-C scheme for my self-employed activity
-      formulaire:
-        "0": Required fields are marked with an asterisk.
-        "1": Profession
-        "10": Amount of your optional contributions
-        "11": Replacement income
-        "2": Tax system
-        "3": Recipes
-        "4":
-          remplacant: Fee retrocessions received
-          titulaire: SNIR survey data
-        "5": Care facilities
-        "6": Deductions and exemptions
-        "7": Other self-employed income
-        "8": Covered procedures
-        "9": Optional contributions
-        conseil:
-          IR: To make filling in the form easier, bring along appendices A and B of your
-            2035 tax form.
-          IS: To make filling in the form easier, please have your 2065 tax form ready.
-          MF: <0>To facilitate filling, prepare :</0><1><0>all revenues
-            received,</0><1>details of contributions paid to
-            Urssaf,</1><2>details of contributions paid to your pension
-            fund.</2></1>
-      meta:
-        description: Calculate the amounts of your income to report on your tax return.
-        title: PAMC tax return
-      resultats:
-        déclarant:
-          "1": Declarant 1
-          "2": Declarant 2
-          label: Which registrant are you?
-        label:
-          "1": Situation on January 1 or on the date of commencement of activity
-          "10": Of which net income from activities carried out in care facilities
-          "11": Of which optional contributions linked to the activity covered by the
-            agreement
-          "12": Of which voluntary contributions related to other self-employed activities
-          "2": You are a holder
-          "3": You are a replacement
-          "4": Total gross revenue from self-employed activities
-          "5": Sector 1 doctor - 3% additional deduction
-          "6": Tax-deductible vacation vouchers
-          "7": Compulsory social security contributions deducted from taxable income
-          "8": "Net income from contract activity :"
-          "9": "Net income from other self-employed activities :"
-        title:
-          "1": Amounts to report on your tax return
-          "2": Replacement income
-          "3": Deductions and exemptions
-          "4": Compulsory social security contributions
-          "5": Breakdown of net income
-          "6": Optional contributions
-          "7": Data provided by Assurance Maladie
-      shortname: PAMC tax return assistant
-      title: PAMC tax return assistant
-      warning: <0>This wizard does <1>not allow</1> you to submit your tax
-        return.</0><1><0>In the event of a deficit</0>, enter a "-" in front of
-        the amount.</1><2><0>The wizard does not take the following situations
-        into account:</0><1><0>foreign income,</0><1>non-professional
-        income,</1><2>change of tax regime during the year,</2><3>commitment
-        accounting,</3><4>doctors enrolled in the RSPM scheme.</4></1>If you
-        find yourself in one of these situations, we invite you to contact your
-        Urssaf office for assistance.</2>
+      aria-label: Read the dedicated page on the Urssaf website, new window
+      header: No more PAMC tax return wizard
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop
