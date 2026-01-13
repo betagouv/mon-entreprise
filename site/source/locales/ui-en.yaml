@@ -1837,6 +1837,8 @@ pages:
         année-courante: The amount calculated corresponds to the contributions for the
           year {{ year }} (for an income {{ year }}).
         réforme:
+          aria-label: Read the page dedicated to the reform of the contribution base and
+            scale on the Urssaf website, new window
           texte: The <2>reform of the contribution base and scale&lt;/2> has not yet been
             implemented on this simulator.
     is:
@@ -2005,15 +2007,21 @@ pages:
         urssaf: URSSAF
       shortname: General reduction
       title: General contribution reduction simulator
-      warning: "<0>This simulator does not take into account <2>all</2> specific
-        <2>calculation rules</2> (temporary employment agencies, road haulage
-        employees subject to equivalent working hours, etc.). Nor does it take
-        into account the specific rates and/or distribution of supplementary
-        pension contributions applied in certain companies.</0><1>In overseas
-        France, it is possible to choose between the general reduction in
-        contributions and another exemption: access the <2>Lodeom exemption
-        simulator</2>.</1>"
-      warning-link: go to the Lodeom exemption simulator page
+      warning:
+        aria-label:
+          lodeom: go to the Lodeom exemption simulator page
+          rgdu: Find out more about the general degressive reduction (RGDU) on the Urssaf
+            website, new window
+        texte: "<0><0><0>&lt;/0> <2> The <2>general degressive reduction (RGDU)&lt;/2>
+          is not yet implemented on this simulator.</2></0></0><1>This simulator
+          does not incorporate <2>all the specific&lt;/2> calculation rules
+          (Temporary Work Companies, road transport employees subject to
+          equivalent working hours, etc.). Nor does it take into account the
+          specific rates and/or distribution of supplementary pension
+          contributions applied in certain companies.</1><2>In overseas France,
+          it is possible to choose between the general reduction in
+          contributions and another exemption: access the <2>Lodeom exemption
+          simulator</2>.</2>"
       warnings:
         JEI: The general reduction cannot be combined with the Young Innovative Company
           (JEI) exemption.
@@ -2084,10 +2092,16 @@ pages:
         missions...</4><5></5></2>"
       shortname: Employee
       title: Income simulator for employees
-      warning: The simulator does not currently take into account collective
-        agreements, nor the myriad of company subsidies. Find your collective
-        bargaining agreement <2>here</2>, and explore the range of assistance
-        available on <4>aides-entreprises.fr</4>.
+      warning:
+        général: The simulator does not currently take into account collective
+          agreements, nor the myriad of company subsidies. Find your collective
+          bargaining agreement <2>here</2>, and explore the range of assistance
+          available on <4>aides-entreprises.fr</4>.
+        réforme:
+          aria-label: Find out more about the general degressive reduction (RGDU) on the
+            Urssaf website, new window
+          texte: The <2>degressive general reduction (RGDU)&lt;/2> is not yet implemented
+            on this simulator.
     sasu:
       meta:
         description: Calculation of net salary from the total allocated to remuneration

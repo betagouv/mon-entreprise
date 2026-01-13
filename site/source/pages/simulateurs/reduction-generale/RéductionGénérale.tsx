@@ -6,7 +6,7 @@ import RégularisationSwitch from '@/components/RéductionDeCotisations/Régular
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Body, Link, Strong } from '@/design-system'
+import { Body, Emoji, Link, Message, Strong } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
@@ -25,7 +25,25 @@ export default function RéductionGénéraleSimulation() {
 				<SimulateurWarning
 					simulateur="réduction-générale"
 					informationsComplémentaires={
-						<Trans i18nKey="pages.simulateurs.réduction-générale.warning">
+						<Trans i18nKey="pages.simulateurs.réduction-générale.warning.texte">
+							<Message type="error">
+								<Body>
+									<Emoji emoji="⚠️" />{' '}
+									<Strong>
+										La{' '}
+										<Link
+											href="https://www.urssaf.fr/accueil/actualites/informations-nouvelle-annee.html"
+											aria-label={t(
+												'pages.simulateurs.réduction-générale.warning.aria-label.rgdu',
+												'En savoir plus sur la réduction générale dégressive (RGDU) sur le site de l’Urssaf, nouvelle fenêtre'
+											)}
+										>
+											réduction générale dégressive (RGDU)
+										</Link>{' '}
+										n'est pas encore implémentée sur ce simulateur.
+									</Strong>
+								</Body>
+							</Message>
 							<Body>
 								Ce simulateur n’intègre{' '}
 								<Strong>pas toutes les règles de calcul</Strong> spécifiques
@@ -42,7 +60,7 @@ export default function RéductionGénéraleSimulation() {
 								<Link
 									to={absoluteSitePaths.simulateurs.lodeom}
 									aria-label={t(
-										'pages.simulateurs.réduction-générale.warning-link',
+										'pages.simulateurs.réduction-générale.warning.aria-label.lodeom',
 										'aller sur la page du simulateur d’exonération Lodeom'
 									)}
 								>
