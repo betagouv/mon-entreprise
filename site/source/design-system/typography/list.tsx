@@ -18,7 +18,7 @@ type ListProps = {
 
 export const Li = styled.li``
 
-export const DarkLi = styled.li`
+export const DarkLi = styled(Li)`
 	&::before {
 		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
 	}
