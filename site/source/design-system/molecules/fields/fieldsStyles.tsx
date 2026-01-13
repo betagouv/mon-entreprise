@@ -19,15 +19,17 @@ export const outlineOnFocus = css`
 export const fieldContainerStyles = css`
 	display: flex;
 	flex-direction: column;
-	gap: ${({ theme }) => theme.spacings.xs};
 
 	font-family: ${({ theme }) => theme.fonts.main};
+
+	[slot='description'] {
+		margin-top: ${({ theme }) => theme.spacings.xxxs};
+	}
 `
 
 export const labelAndInputContainerStyles = css`
 	display: flex;
 	flex-direction: column;
-	gap: ${({ theme }) => theme.spacings.xs};
 
 	${fieldTransition}
 
@@ -56,6 +58,7 @@ export const fieldDescriptionStyles = css`
 `
 
 export const fieldInputStyles = css`
+	margin-top: ${({ theme }) => theme.spacings.xs};
 	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
 	border: 1px solid ${({ theme }) => theme.colors.extended.grey[700]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
@@ -91,6 +94,8 @@ export const fieldInputStyles = css`
 export const errorMessageStyle = css`
 	display: flex;
 	gap: ${({ theme }) => `${theme.spacings.xs}`};
+
+	margin-top: ${({ theme }) => theme.spacings.xs};
 
 	color: ${({ theme }) => theme.colors.extended.error[400]} !important;
 	font-size: ${HELPERS_HEIGHT};

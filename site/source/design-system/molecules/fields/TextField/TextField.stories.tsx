@@ -31,16 +31,16 @@ export const WithInitialValue: Story = {
 export const WithPlaceholder: Story = {
 	args: {
 		type: 'email',
-		label: 'Adresse email (au format "mon-adresse@example.com")',
+		label: 'Adresse e-mail (au format "mon-adresse@example.com")',
 		placeholder: 'Votre adresse email',
 	},
 }
 
 export const WithDescription: Story = {
 	args: {
-		type: 'password',
-		label: 'Mot de passe',
-		description: '8 caractères minimum',
+		type: 'email',
+		label: 'Adresse e-mail',
+		description: 'Au format "mon-adresse@exemple.com"',
 	},
 }
 
