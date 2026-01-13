@@ -69,11 +69,14 @@ const StyledLabelAndInputContainer = styled.div<{
 
 	${({ theme, $hasError }) =>
 		$hasError &&
-		`border-color: ${theme.colors.extended.error[400]};
-
+		`
         label {
             color: ${theme.colors.extended.error[400]}
         }
+
+		input {
+			border-color: ${theme.colors.extended.error[400]};
+		}
         `}
 `
 

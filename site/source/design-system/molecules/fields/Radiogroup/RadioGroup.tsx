@@ -10,8 +10,8 @@ import { InfoButton } from '@/design-system/InfoButton'
 
 import {
 	fieldContainerStyles,
-	fieldOutlineOnFocus,
 	fieldTransition,
+	outlineOnFocus,
 } from '../fieldsStyles'
 
 export type RadioOption = {
@@ -126,7 +126,7 @@ const StyledRARadio = styled(RARadio)`
 
 	&[data-focused='true'] {
 		&:focus-within {
-			${fieldOutlineOnFocus}
+			${outlineOnFocus}
 		}
 	}
 

@@ -7,7 +7,7 @@ export const fieldTransition = css`
 	transition: all 200ms;
 `
 
-export const fieldOutlineOnFocus = css`
+export const outlineOnFocus = css`
 	outline-color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.bases.primary[100]
@@ -19,7 +19,7 @@ export const fieldOutlineOnFocus = css`
 export const fieldContainerStyles = css`
 	display: flex;
 	flex-direction: column;
-	gap: ${({ theme }) => theme.spacings.xxs};
+	gap: ${({ theme }) => theme.spacings.xs};
 
 	font-family: ${({ theme }) => theme.fonts.main};
 `
@@ -27,27 +27,9 @@ export const fieldContainerStyles = css`
 export const labelAndInputContainerStyles = css`
 	display: flex;
 	flex-direction: column;
-	gap: ${({ theme }) => theme.spacings.xxs};
-
-	border: ${({ theme }) =>
-		`${theme.box.borderWidth} solid ${
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[700]
-		}`};
-	border-radius: ${({ theme }) => theme.box.borderRadius};
-	outline: transparent solid 1px;
-
-	background: ${({ theme }) =>
-		theme.darkMode
-			? 'rgba(255, 255, 255, 10%)'
-			: theme.colors.extended.grey[100]};
+	gap: ${({ theme }) => theme.spacings.xs};
 
 	${fieldTransition}
-
-	&:focus-within {
-		${fieldOutlineOnFocus}
-	}
 
 	&:focus-within label {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
@@ -55,8 +37,6 @@ export const labelAndInputContainerStyles = css`
 `
 
 export const fieldLabelStyles = css`
-	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.sm} 0`};
-
 	font-size: ${LABELS_HEIGHT};
 
 	${fieldTransition}
@@ -76,15 +56,24 @@ export const fieldDescriptionStyles = css`
 `
 
 export const fieldInputStyles = css`
-	margin: ${({ theme }) =>
-		`${theme.spacings.xxs} ${theme.spacings.sm} ${theme.spacings.xs}`};
-	padding: 0;
-	border: none;
-	outline: none;
+	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
+	border: 1px solid ${({ theme }) => theme.colors.extended.grey[700]};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	outline: transparent solid 1px;
 
 	font-size: 1rem;
 
-	&::placeholder {
+	input {
+		font-size: 1rem;
+	}
+
+	&:focus,
+	&:focus-within {
+		${outlineOnFocus}
+	}
+
+	&::placeholder,
+	&input::placeholder {
 		color: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[200]

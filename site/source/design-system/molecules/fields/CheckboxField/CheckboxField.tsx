@@ -6,7 +6,7 @@ import { styled } from 'styled-components'
 
 import { InfoButton } from '@/design-system/InfoButton'
 
-import { fieldOutlineOnFocus, fieldTransition } from '../fieldsStyles'
+import { fieldTransition, outlineOnFocus } from '../fieldsStyles'
 
 export type CheckboxOption = {
 	description?: string
@@ -122,7 +122,7 @@ const StyledRACheckbox = styled(RACheckbox)`
 	}
 
 	&[data-focused='true'] {
-		${fieldOutlineOnFocus}
+		${outlineOnFocus}
 	}
 
 	&[data-selected='true'] {
