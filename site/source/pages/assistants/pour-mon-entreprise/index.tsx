@@ -166,12 +166,6 @@ function PourMonEntreprise() {
 					>
 						<CurrentSimulatorCard fromGérer />
 
-						<Condition expression="dirigeant . indépendant">
-							<SimulateurCard
-								fromGérer
-								{...simulateurs['déclaration-charges-sociales-indépendant']}
-							/>
-						</Condition>
 						<Condition expression="entreprise . imposition . IS">
 							<Grid
 								item

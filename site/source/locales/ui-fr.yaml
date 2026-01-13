@@ -2,13 +2,6 @@
 "404":
   action: Revenir en lieu sûr
   message: Cette page n'existe pas ou n'existe plus
-<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>:
-  <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé
-  de le retirer du site. En effet, il était trop difficile de maintenir à jour
-  les informations et les calculs.</0><1>Pour les indépendants, vous pouvez
-  calculer le montant de vos charges sociales déductibles grâce à notre
-  assistant dédié :</1><2>Assistant déclaration charges sociales
-  indépendant</2></0>
 <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour retrouver les informations à jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2></0>:
   <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé
   de le retirer du site. En effet, il était trop difficile de maintenir à jour
@@ -81,9 +74,6 @@ Déplier: Déplier
 Effacer mes réponses: Effacer mes réponses
 En savoir plus: En savoir plus
 "En savoir plus sur ": "En savoir plus sur "
-En savoir plus sur impots:
-  gouv:
-    fr, nouvelle fenêtre: En savoir plus sur impots.gouv.fr, nouvelle fenêtre
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
@@ -202,7 +192,6 @@ Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Rémunération totale pour l'année de cessation: Rémunération totale pour l'année de cessation
-Résultat fiscal: Résultat fiscal
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
 Salaire net: Salaire net
@@ -266,9 +255,6 @@ accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
 aide: aide
-aide-déclaration-indépendant:
-  results:
-    title: Montants à reporter dans votre déclaration de revenus
 aides différées, voir le détail du calcul pour aides différées: aides différées, voir le détail du calcul pour aides différées
 août: août
 api:
@@ -558,11 +544,6 @@ gérer:
         activez le dispositif pour un employé.
       cta: Voir le simulateur
       title: Activité partielle
-    déclaration:
-      body: Calculez facilement les montants des charges sociales à reporter dans
-        votre déclaration de revenus
-      cta: Remplir ma déclaration
-      title: Déclaration de revenus (indépendants)
     is:
       body: Calculez le montant de l'impôt sur les sociétés à partir de votre
         bénéfice.
@@ -930,76 +911,9 @@ pages:
       shortname: Complément transitoire au CMG
       title: Simulateur de complément transitoire au CMG
     declaration-charges-sociales-independant:
-      description: <0><0>Cet outil est une aide à la déclaration de revenus à
-        destination des <2>travailleurs indépendants</2>. Il vous permet de
-        connaître le montant des charges sociales déductibles.</0><1>Vous restez
-        entièrement responsable d’éventuelles omissions ou inexactitudes dans
-        votre déclaration.</1></0><1><0><0>Cet outil vous concerne si vous êtes
-        dans le cas suivant :</0></0><1>Vous cotisez au régime général des
-        travailleurs indépendants</1><2><0>Il ne vous concerne pas si vous êtes
-        dans un des cas suivants :</0></2><3><0>Vous exercez une activité
-        libérale relevant d’un régime de retraite des professions libérales en
-        comptabilité d’engagement</0><1>Votre entreprise est domiciliée dans les
-        DOM</1></3></1><2>Imposition</2><3>Ces quelques questions permettent de
-        déterminer le type de déclaration à remplir, ainsi que les modalités de
-        calcul des cotisations sociales.</3>
-      entreprise:
-        formulaire:
-          "1": Entreprise et activité
-          "2": Cette aide à la déclaration concerne uniquement les entreprises déjà en
-            activité en {{year}}
-          "3": Situation personnelle
-          "4": Exonérations
-          "5": International
-          "6": Cotisations et contributions sociales en {{year}}
-        imposition:
-          "1": Quel est votre chiffre d’affaires hors taxes en {{year}} ?
-          "2": Indiquez le montant hors taxes de votre chiffre d’affaires ou de vos
-            recettes bruts (avant déduction de l’abattement forfaitaire pour
-            frais et charges) et avant déduction des exonérations fiscales dont
-            vous avez bénéficiées.
-          "3": Quel est votre résultat fiscal au titre de l’année {{year}}
-            ?<4></4><5>Charges sociales et exonérations fiscales non incluses
-            <2></2></5>
-          "4": Le résultat fiscal correspond aux produits moins les charges. Il peut être
-            positif (bénéfice) ou négatif (déficit).
-          "5": Quel est le montant net de votre rémunération en {{year}} ?<3></3><4>Sans
-            tenir compte des charges sociales</4>
-          explications:
-            intro: <0>Pour calculer le montant du résultat fiscal avant déduction des
-              exonérations et des charges sociales à indiquer dans ce
-              simulateur, vous pouvez utiliser votre liasse fiscale, en
-              reprenant les montants indiqués dans les lignes fiscales du
-              tableau ci-dessous, en fonction de votre situation (imposition au
-              réel normal ou au réel simplifié).</0><1>L’opération à effectuer
-              est la suivante :</1><2><0>Déterminez le résultat fiscal dans
-              votre liasse, sans déduire le montant de vos cotisations et
-              contributions sociales aux régimes obligatoires de sécurité
-              sociale. Prenez le résultat fiscal correspondant
-              <1>(1)</1></0><1>Ajoutez les exonérations <1>(2)</1></1></2>
-            tableCaption: Tableau affichant les lignes de votre liasse fiscale associées aux
-              exonérations fiscales en place pour chaque type d’activité. La
-              première colonne affiche les différents types d’activité (BIC,
-              BNC). La deuxième colonne indique les lignes de votre liasse
-              fiscale qui vous permettent de déterminer votre résultat fiscal,
-              et ce pour chaque type d’activité. Les autres colonnes affichent
-              les exonérations en place ainsi que les lignes de liasse fiscale
-              ou ajouter vos exonérations et ce pour chaque type d’activité.
-            th:
-              "1": Régime fiscal
-              "2": Résultat fiscal <1>(1)</1>
-              "3": Exonérations liées aux zones / activités
-              "4": Exonérations Madelin et plan d’épargne retraite
-              "5": Exonérations de plus-values à court terme
-              "6": Suramortissement productif
-              "7": BIC réel normal
-        titre: <0><0>Entreprise et activité</0></0>
-      meta:
-        description: Calculez le montant des cotisations et contributions sociales à
-          reporter dans votre déclaration de revenus
-        title: Détermination des charges sociales déductibles
-      shortname: Détermination des charges sociales déductibles
-      title: Assistant à la détermination des charges sociales déductibles
+      aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
+      header: L’assistant à la détermination des charges sociales déductibles, c’est
+        terminé
     declaration-revenus-pamc:
       aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
       header: L’assistant à la déclaration de revenus des PAMC, c’est terminé
@@ -1272,7 +1186,6 @@ pages:
         h2: Travailleurs et travailleuses Non Salariés (TNS)
         h3:
           "1": Professions libérales
-          "2": Assistants à la déclaration de revenus des indépendants
       "3":
         h2: Autres outils
       description: Tous les simulateurs et assistants sur ce site sont maintenus à

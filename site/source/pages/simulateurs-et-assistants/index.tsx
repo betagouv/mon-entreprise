@@ -153,20 +153,6 @@ export default function SimulateursEtAssistants() {
 					</Grid>
 				</>
 
-				<H3 id="assistants">
-					{t(
-						'pages.simulateurs.accueil.2.h3.2',
-						'Assistants à la déclaration de revenus des indépendants'
-					)}
-				</H3>
-				<Grid container spacing={3} role="list" aria-labelledby="assistants">
-					<SimulateurCard
-						{...simulators['déclaration-charges-sociales-indépendant']}
-						role="listitem"
-						titleLevel="h4"
-					/>
-				</Grid>
-
 				<H2 id="autres-outils">
 					{t('pages.simulateurs.accueil.3.h2', 'Autres outils')}
 				</H2>
