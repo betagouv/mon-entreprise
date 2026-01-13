@@ -1466,6 +1466,13 @@ pages:
         titre: Retirement simulator
       shortname: Cessation of activity
       title: Retirement simulator
+      warning: <0>You are self-employed and would like to estimate the contributions
+        due before you stop working. This simulator is here to help you. Please
+        note that the amount indicated by this simulator is an estimate. Only
+        the "real Urssaf statement" will tell you the exact amount.
+        </0><1><0>This simulator does not take into account&lt;/0> payments
+        already made, provisional contributions already called in, or any
+        debts.</1>
     chirurgien-dentiste:
       meta:
         description: Calculation of net income after contributions based on total income.
@@ -1827,108 +1834,8 @@ pages:
       shortname: Independent
       title: Income simulator for the self-employed
       warning:
-        "0": T
-        "1": h
-        "10": " "
-        "100": )
-        "101": .
-        "11": c
-        "12": a
-        "13": l
-        "14": c
-        "15": u
-        "16": l
-        "17": a
-        "18": t
-        "19": e
-        "2": e
-        "20": d
-        "21": " "
-        "22": c
-        "23": o
-        "24": r
-        "25": r
-        "26": e
-        "27": s
-        "28": p
-        "29": o
-        "3": " "
-        "30": n
-        "31": d
-        "32": s
-        "33": " "
-        "34": t
-        "35": o
-        "36": " "
-        "37": t
-        "38": h
-        "39": e
-        "4": a
-        "40": " "
-        "41": c
-        "42": o
-        "43": n
-        "44": t
-        "45": r
-        "46": i
-        "47": b
-        "48": u
-        "49": t
-        "5": m
-        "50": i
-        "51": o
-        "52": n
-        "53": s
-        "54": " "
-        "55": f
-        "56": o
-        "57": r
-        "58": " "
-        "59": t
-        "6": o
-        "60": h
-        "61": e
-        "62": " "
-        "63": y
-        "64": e
-        "65": a
-        "66": r
-        "67": " "
-        "68": "{"
-        "69": "{"
-        "7": u
-        "70": y
-        "71": e
-        "72": a
-        "73": r
-        "74": "}"
-        "75": "}"
-        "76": " "
-        "77": (
-        "78": f
-        "79": o
-        "8": n
-        "80": r
-        "81": " "
-        "82": a
-        "83": n
-        "84": " "
-        "85": i
-        "86": n
-        "87": c
-        "88": o
-        "89": m
-        "9": t
-        "90": e
-        "91": " "
-        "92": "{"
-        "93": "{"
-        "94": y
-        "95": e
-        "96": a
-        "97": r
-        "98": "}"
-        "99": "}"
+        année-courante: The amount calculated corresponds to the contributions for the
+          year {{ year }} (for an income {{ year }}).
         réforme:
           texte: The <2>reform of the contribution base and scale&lt;/2> has not yet been
             implemented on this simulator.
@@ -2033,8 +1940,6 @@ pages:
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
       warning:
-        année-courante: The amount calculated corresponds to the contributions for the
-          year {{year}} (for an income {{year}}).
         cotisations-ordinales: For regulated professions, the simulator does not
           calculate the amount of membership fees. They must be added manually
           in the "operating expenses" box.

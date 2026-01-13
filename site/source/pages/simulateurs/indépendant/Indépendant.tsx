@@ -1,5 +1,5 @@
 import { DottedName } from 'modele-social'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import RuleInput from '@/components/conversation/RuleInput'
@@ -16,6 +16,7 @@ import { ajusteLaSituation } from '@/store/actions/actions'
 
 export default function IndépendantSimulation() {
 	const dispatch = useDispatch()
+	const { t } = useTranslation()
 	const year = useYear()
 	const { currentSimulatorData } = useCurrentSimulatorData()
 	const WarningComponent = currentSimulatorData?.warning
@@ -52,10 +53,11 @@ export default function IndépendantSimulation() {
 							</Message>
 							{WarningComponent && <WarningComponent />}
 							<Body>
-								<Trans i18nKey="pages.simulateurs.indépendant.warning">
-									Le montant calculé correspond aux cotisations de l’année{' '}
-									{{ year }} (pour un revenu {{ year }}).
-								</Trans>
+								{t(
+									'pages.simulateurs.indépendant.warning.année-courante',
+									'Le montant calculé correspond aux cotisations de l’année {{ year }} (pour un revenu {{ year }}).',
+									{ year }
+								)}
 							</Body>
 						</>
 					}

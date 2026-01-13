@@ -58,18 +58,21 @@ export const CessationActivitéSimulation = () => {
 								</Strong>
 							</Body>
 						</Message>
-						<Body>
-							Vous êtes travailleur indépendant, vous souhaitez estimer les
-							cotisations dues avant de cesser votre activité. Ce simulateur est
-							là pour vous aider. A noter que le montant indiqué par ce
-							simulateur est une estimation. Seule le "décompte réel de
-							l'Urssaf" vous permettra de connaitre le montant exact.{' '}
-						</Body>
-						<Body>
-							<strong>Ce simulateur ne tient pas compte</strong> des versements
-							déjà effectués et des cotisations provisionnelles déjà appelées
-							ainsi que des éventuelles dettes
-						</Body>
+						<Trans i18nKey="pages.simulateurs.cessation-activité.warning">
+							<Body>
+								Vous êtes travailleur indépendant ou travailleuse indépendante
+								et vous souhaitez estimer les cotisations dues avant de cesser
+								votre activité. Ce simulateur est là pour vous aider. À noter
+								que le montant indiqué par ce simulateur est une estimation.
+								Seul le «&nbsp;décompte réel de l'Urssaf&nbsp;» vous permettra
+								de connaître le montant exact.{' '}
+							</Body>
+							<Body>
+								<strong>Ce simulateur ne tient pas compte</strong> des
+								versements déjà effectués, des cotisations provisionnelles déjà
+								appelées, ni des éventuelles dettes.
+							</Body>
+						</Trans>
 					</>
 				}
 			/>

@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
@@ -10,6 +10,7 @@ import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Go
 
 export const IndépendantPLSimulation = () => {
 	const year = useYear()
+	const { t } = useTranslation()
 
 	return (
 		<>
@@ -43,25 +44,23 @@ export const IndépendantPLSimulation = () => {
 							</Message>
 							<Ul>
 								<DarkLi>
-									<Trans i18nKey="pages.simulateurs.profession-libérale.warning.général">
-										Ce simulateur est à destination des professions libérales en
-										BNC. Il ne prend pas en compte les sociétés d’exercice
-										libéral.
-									</Trans>
+									{t(
+										'pages.simulateurs.profession-libérale.warning.général',
+										'Ce simulateur est à destination des professions libérales en BNC. Il ne prend pas en compte les sociétés d’exercice libéral.'
+									)}
 								</DarkLi>
 								<DarkLi>
-									<Trans i18nKey="pages.simulateurs.profession-libérale.warning.année-courante">
-										Le montant calculé correspond aux cotisations de l’année{' '}
-										{{ year }} (pour un revenu {{ year }}).
-									</Trans>
+									{t(
+										'pages.simulateurs.indépendant.warning.année-courante',
+										'Le montant calculé correspond aux cotisations de l’année {{ year }} (pour un revenu {{ year }}).',
+										{ year }
+									)}
 								</DarkLi>{' '}
 								<DarkLi>
-									<Trans i18nKey="pages.simulateurs.profession-libérale.warning.cotisations-ordinales">
-										Pour les professions réglementées, le simulateur ne calcule
-										pas le montant des cotisations à l’ordre. Elles doivent être
-										ajoutées manuellement dans la case « charges de
-										fonctionnement ».
-									</Trans>
+									{t(
+										'pages.simulateurs.profession-libérale.warning.cotisations-ordinales',
+										'Pour les professions réglementées, le simulateur ne calcule pas le montant des cotisations à l’ordre. Elles doivent être ajoutées manuellement dans la case « charges de fonctionnement ».'
+									)}
 								</DarkLi>
 							</Ul>
 						</>
