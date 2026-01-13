@@ -1,7 +1,6 @@
 import { choixStatutJuridiqueConfig } from '@/pages/assistants/choix-du-statut/config'
 import { CMGConfig } from '@/pages/assistants/cmg/config'
 import { déclarationChargesSocialesIndépendantConfig } from '@/pages/assistants/declaration-charges-sociales-independant/config'
-import { déclarationRevenusPAMCConfig } from '@/pages/assistants/declaration-revenus-pamc/config'
 import { demandeMobilitéConfig } from '@/pages/assistants/demande-mobilité/config'
 import { pourMonEntrepriseConfig } from '@/pages/assistants/pour-mon-entreprise/config'
 import { rechercheCodeApeConfig } from '@/pages/assistants/recherche-code-ape/config'
@@ -78,7 +77,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...choixStatutJuridiqueConfig(params),
 		...CMGConfig(params),
 		...déclarationChargesSocialesIndépendantConfig(params),
-		...déclarationRevenusPAMCConfig(params),
 		...demandeMobilitéConfig(params),
 		...pourMonEntrepriseConfig(params),
 		...rechercheCodeApeConfig(params),

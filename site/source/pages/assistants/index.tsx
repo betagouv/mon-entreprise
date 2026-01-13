@@ -6,6 +6,7 @@ import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import AideDéclarationIndépendant from './declaration-revenu-independants'
+import DéclarationRevenusPAMC from './declaration-revenus-pamc'
 import ÉconomieCollaborative from './économie-collaborative'
 
 export default function Assistants() {
@@ -25,6 +26,10 @@ export default function Assistants() {
 					}
 				/>
 				{/* Simulateurs et assistants décomissionnés */}
+				<Route
+					path={relativeSitePaths.assistants['déclaration-revenus-pamc']}
+					element={<DéclarationRevenusPAMC />}
+				/>
 				<Route
 					path={relativeSitePaths.assistants.déclarationIndépendant.index}
 					element={<AideDéclarationIndépendant />}

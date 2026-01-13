@@ -165,11 +165,6 @@ export default function SimulateursEtAssistants() {
 						role="listitem"
 						titleLevel="h4"
 					/>
-					<SimulateurCard
-						{...simulators['déclaration-revenus-pamc']}
-						role="listitem"
-						titleLevel="h4"
-					/>
 				</Grid>
 
 				<H2 id="autres-outils">

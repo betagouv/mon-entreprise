@@ -49,7 +49,6 @@ Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "vienno
   Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
   "viennoiserie".
 Budget: Budget
-Bénéfice: Bénéfice
 Cacher le message: Cacher le message
 Cette commune n’existe pas: Cette commune n’existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
@@ -77,7 +76,6 @@ Décrivez votre projet ou votre problème en donnant quelques éléments de cont
     Notre partenaire Conseillers-Entreprises.Service-Public.fr identifiera, parmi l’ensemble des partenaires publics et parapublics,
     le conseiller compétent pour votre demande.
     Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
-Déficit: Déficit
 Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
@@ -1003,89 +1001,8 @@ pages:
       shortname: Détermination des charges sociales déductibles
       title: Assistant à la détermination des charges sociales déductibles
     declaration-revenus-pamc:
-      buttons:
-        reset: Réinitialiser
-        results: Voir les résultats
-      description: <0>Cet outil est une aide à la déclaration de revenus des
-        <2>praticiens et auxiliaires médicaux conventionnés (PAMC)</2>. Il a
-        pour but de vous aider à remplir le volet social de votre déclaration de
-        revenus à réaliser sur <5>impots.gouv.fr</5>.</0><1>Vous restez
-        entièrement responsable d’éventuelles omissions ou inexactitudes dans
-        votre déclaration.</1>
-      externalLinks:
-        "1":
-          description: Qui doit déclarer ses revenus d’indépendant et comment faire sa
-            déclaration.
-          title: Tout savoir sur la déclaration sociale et fiscale des revenus des
-            indépendants
-        "2":
-          description: Modalités déclaratives et paiement des cotisations sociales pour
-            les Praticiens et Auxiliaires Médicaux Conventionnés (PAM-C).
-          title: Je relève du régime des PAM-C dans le cadre de mon activité libérale
-      formulaire:
-        "0": Les champs obligatoires sont signalés par une astérisque.
-        "1": Profession
-        "10": Montant de vos cotisations facultatives
-        "11": Revenus de remplacement
-        "2": Régime fiscal
-        "3": Recettes
-        "4":
-          remplacant: Rétrocessions d’honoraires perçues
-          titulaire: Données du relevé SNIR
-        "5": Structures de soins
-        "6": Déductions et exonérations
-        "7": Autres revenus non salariés
-        "8": Actes conventionnés
-        "9": Cotisations facultatives
-        conseil:
-          IR: Afin de faciliter le remplissage, munissez-vous des annexes A et B de votre
-            liasse fiscale 2035.
-          IS: Afin de faciliter le remplissage, munissez-vous de votre liasse fiscale
-            2065.
-          MF: <0>Afin de faciliter le remplissage, préparez :</0><1><0>l’ensemble des
-            recettes encaissées,</0><1>le détail des cotisations versées à
-            l’Urssaf,</1><2>le détail des cotisations versées à votre caisse de
-            retraite.</2></1>
-      meta:
-        description: Calculez les montants de vos revenus à reporter dans votre
-          déclaration de revenus.
-        title: Déclaration de revenus des PAMC
-      resultats:
-        déclarant:
-          "1": Déclarant 1
-          "2": Déclarant 2
-          label: Quel déclarant êtes-vous ?
-        label:
-          "1": Situation au 1er janvier ou à la date du début d’activité
-          "10": Dont revenus nets de l’activité réalisée dans des structures de soins
-          "11": Dont cotisations facultatives liées à l’activité conventionnée
-          "12": Dont cotisations facultatives liées aux autres activités non salariées
-          "2": Vous êtes titulaire
-          "3": Vous êtes remplaçant
-          "4": Recettes brutes totales tirées des activités non salariées
-          "5": Médecin secteur 1 - déduction complémentaire 3%
-          "6": Chèques vacances déduits du revenu imposable
-          "7": Cotisations sociales obligatoires déduites du résultat imposable
-          "8": "Revenus nets de l’activité conventionnée :"
-          "9": "Revenus nets tirés des autres activités non salariées :"
-        title:
-          "1": Montants à reporter dans votre déclaration de revenus
-          "2": Montant des revenus de remplacement
-          "3": Déductions et exonérations
-          "4": Cotisations sociales obligatoires
-          "5": Répartition des revenus nets
-          "6": Cotisations facultatives
-          "7": Données transmises par l’Assurance Maladie
-      shortname: Assistant à la déclaration de revenus des PAMC
-      title: Assistant à la déclaration de revenus pour les PAMC
-      warning: <0>Cet assistant <1>ne permet pas</1> de transmettre votre déclaration
-        de revenus.</0><1><0>En cas de déficit</0>, renseignez le signe « - »
-        devant le montant.</1><2><0>L’assistant ne prend pas en compte les
-        situations suivantes :</0><1><0>revenus étrangers,</0><1>revenus non
-        professionnels,</1><2>changement de régime en cours
-        d’année,</2><3>comptabilités d’engagement,</3><4>médecins adhérents au
-        dispositif RSPM.</4></1>Si vous êtes dans l’une de ces situations, nous
-        vous invitons à contacter votre Urssaf pour vous accompagner.</2>
+      aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
+      header: L’assistant à la déclaration de revenus des PAMC, c’est terminé
     pour-mon-entreprise:
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
