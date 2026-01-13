@@ -983,9 +983,10 @@ salarié . cotisations . prévoyances . santé:
 salarié . cotisations . vieillesse:
   description: Cotisation vieillesse pour le régime de retraite de base des salariés.
   références:
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-cotisation-d-assurance-vieilless
-    Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
-    Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000038510929
+    Cotisation d'assurance vieillesse: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-cotisation-d-assurance-vieilless
+    Les taux réduits cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
+    Article D242-4 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006736382
+    Article L727-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038510936
   somme:
     - salarié
     - employeur
@@ -1028,6 +1029,8 @@ salarié . cotisations . vieillesse:
       avec:
         taux:
           variations:
+            - si: date >= 01/2026
+              alors: 2.11%
             - si: date >= 01/2024
               alors: 2.02%
             - sinon: 1.9%

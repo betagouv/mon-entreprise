@@ -37,7 +37,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					235.55
+					236.25
 				)
 				expect(e).toEvaluate(
 					{
@@ -53,7 +53,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					191.21
+					191.91
 				)
 				expect(e).toEvaluate(
 					{
@@ -77,7 +77,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					1117.55
+					1120.7
 				)
 				expect(e).toEvaluate(
 					{
@@ -93,7 +93,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					907.2
+					910.35
 				)
 				expect(e).toEvaluate(
 					{
@@ -117,7 +117,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					989.45
+					992.25
 				)
 				expect(e).toEvaluate(
 					{
@@ -133,7 +133,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					803.21
+					806.01
 				)
 				expect(e).toEvaluate(
 					{
@@ -156,7 +156,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					536.55
+					538.65
 				)
 			})
 
@@ -172,7 +172,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					362.25
+					363.65
 				)
 			})
 
@@ -188,7 +188,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					651.35
+					654.15
 				)
 			})
 		})
@@ -303,7 +303,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					238.35
+					239.05
 				)
 			})
 
@@ -316,7 +316,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					1131.55
+					1134.7
 				)
 			})
 
@@ -329,7 +329,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					1002.05
+					1004.85
 				)
 			})
 		})

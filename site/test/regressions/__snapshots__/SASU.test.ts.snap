@@ -11,29 +11,29 @@ salarié . rémunération . net . à payer avant impôt: 1579"
 
 exports[`calculate assimilé salarié > ACRE 2`] = `
 "dirigeant . rémunération . totale: 50000
-impôt . montant: 2698
+impôt . montant: 2697
 salarié . cotisations: 1393
-salarié . rémunération . brut: 3360
+salarié . rémunération . brut: 3359
 salarié . rémunération . net . payé après impôt: 2549
 salarié . rémunération . net . à payer avant impôt: 2774"
 `;
 
 exports[`calculate assimilé salarié > ACRE 3`] = `
 "dirigeant . rémunération . totale: 100000
-impôt . montant: 9199
-salarié . cotisations: 3637
-salarié . rémunération . brut: 5950
-salarié . rémunération . net . payé après impôt: 3930
-salarié . rémunération . net . à payer avant impôt: 4697"
+impôt . montant: 9189
+salarié . cotisations: 3640
+salarié . rémunération . brut: 5946
+salarié . rémunération . net . payé après impôt: 3928
+salarié . rémunération . net . à payer avant impôt: 4694"
 `;
 
 exports[`calculate assimilé salarié > ACRE 4`] = `
 "dirigeant . rémunération . totale: 30000
 impôt . montant: 0
-salarié . cotisations: 1123
-salarié . rémunération . brut: 1771
-salarié . rémunération . net . payé après impôt: 1377
-salarié . rémunération . net . à payer avant impôt: 1377"
+salarié . cotisations: 1124
+salarié . rémunération . brut: 1770
+salarié . rémunération . net . payé après impôt: 1376
+salarié . rémunération . net . à payer avant impôt: 1376"
 `;
 
 exports[`calculate assimilé salarié > ACRE 5`] = `
@@ -57,8 +57,8 @@ salarié . rémunération . net . à payer avant impôt: 2806"
 exports[`calculate assimilé salarié > avec charges 1`] = `
 "dirigeant . rémunération . totale: 10000
 impôt . montant: 0
-salarié . cotisations: 396
-salarié . rémunération . brut: 581
+salarié . cotisations: 397
+salarié . rémunération . brut: 580
 salarié . rémunération . net . payé après impôt: 437
 salarié . rémunération . net . à payer avant impôt: 437"
 `;
@@ -67,7 +67,7 @@ exports[`calculate assimilé salarié > avec charges 2`] = `
 "dirigeant . rémunération . totale: 20000
 impôt . montant: 0
 salarié . cotisations: 760
-salarié . rémunération . brut: 1176
+salarié . rémunération . brut: 1175
 salarié . rémunération . net . payé après impôt: 907
 salarié . rémunération . net . à payer avant impôt: 907"
 `;
@@ -111,8 +111,8 @@ salarié . rémunération . net . à payer avant impôt: 202"
 exports[`calculate assimilé salarié > échelle de rémunération 5`] = `
 "dirigeant . rémunération . totale: 10000
 impôt . montant: 0
-salarié . cotisations: 396
-salarié . rémunération . brut: 581
+salarié . cotisations: 397
+salarié . rémunération . brut: 580
 salarié . rémunération . net . payé après impôt: 437
 salarié . rémunération . net . à payer avant impôt: 437"
 `;
@@ -121,25 +121,25 @@ exports[`calculate assimilé salarié > échelle de rémunération 6`] = `
 "dirigeant . rémunération . totale: 20000
 impôt . montant: 0
 salarié . cotisations: 760
-salarié . rémunération . brut: 1176
+salarié . rémunération . brut: 1175
 salarié . rémunération . net . payé après impôt: 907
 salarié . rémunération . net . à payer avant impôt: 907"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 7`] = `
 "dirigeant . rémunération . totale: 50000
-impôt . montant: 1533
-salarié . cotisations: 1849
-salarié . rémunération . brut: 2961
-salarié . rémunération . net . payé après impôt: 2190
-salarié . rémunération . net . à payer avant impôt: 2318"
+impôt . montant: 1531
+salarié . cotisations: 1850
+salarié . rémunération . brut: 2959
+salarié . rémunération . net . payé après impôt: 2189
+salarié . rémunération . net . à payer avant impôt: 2316"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
 "dirigeant . rémunération . totale: 100000
-impôt . montant: 9199
-salarié . cotisations: 3637
-salarié . rémunération . brut: 5950
-salarié . rémunération . net . payé après impôt: 3930
-salarié . rémunération . net . à payer avant impôt: 4697"
+impôt . montant: 9189
+salarié . cotisations: 3640
+salarié . rémunération . brut: 5946
+salarié . rémunération . net . payé après impôt: 3928
+salarié . rémunération . net . à payer avant impôt: 4694"
 `;
