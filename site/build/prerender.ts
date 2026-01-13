@@ -37,7 +37,6 @@ export const pagesToPrerender: {
 		'/iframes/medecin',
 		'/iframes/choix-statut-juridique',
 		sitePathFr.assistants['choix-du-statut'].index,
-		sitePathFr.assistants['déclaration-charges-sociales-indépendant'],
 		sitePathFr.assistants['recherche-code-ape'],
 		sitePathFr.index,
 		sitePathFr.simulateursEtAssistants,

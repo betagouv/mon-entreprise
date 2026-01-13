@@ -2,12 +2,6 @@
 "404":
   action: Back to safety
   message: This page does not exist or no longer exists
-<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>:
-  <0><0>The latter was not as successful as we'd hoped. We therefore decided to
-  remove it from the site. It was too difficult to keep the information and
-  calculations up to date.</0><1>For the self-employed, you can calculate the
-  amount of your deductible social security contributions using our dedicated
-  assistant:</1><2>Self-employed social charges declaration wizard</2></0>
 <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour retrouver les informations à jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2></0>:
   <0><0>The latter was not as successful as we had hoped. We therefore decided
   to remove it from the site. It was too difficult to keep the information and
@@ -76,9 +70,6 @@ Déplier: Unfold
 Effacer mes réponses: Delete my answers
 En savoir plus: Read more
 "En savoir plus sur ": "Find out more about "
-En savoir plus sur impots:
-  gouv:
-    fr, nouvelle fenêtre: More information on impots.gouv.fr, new window
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
 Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
@@ -191,7 +182,6 @@ Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
 Rémunération totale pour l'année de cessation: Total compensation for the year of termination
-Résultat fiscal: Taxable income
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
 Salaire net: Net salary
@@ -249,9 +239,6 @@ accessibility:
     Accessibility Improvement Reference System)
   title: Accessibility
 aide: assistance
-aide-déclaration-indépendant:
-  results:
-    title: Amounts to report on your tax return
 aides différées, voir le détail du calcul pour aides différées: deferred aid, see detailed calculation for deferred aid
 août: August
 api:
@@ -531,11 +518,6 @@ gérer:
         when you activate the scheme for an employee.
       cta: See the simulator
       title: Partial activity
-    déclaration:
-      body: Easily calculate the amount of social security contributions to include in
-        your tax return
-      cta: Fill in my declaration
-      title: Income tax return (self-employed)
     is:
       body: Calculate your corporate income tax liability based on your profit.
       cta: Launch simulator
@@ -874,72 +856,9 @@ pages:
       shortname: Transitional supplement to CMG
       title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:
-      description: <0><0>This tool is designed to help <2>self-employed workers</2>
-        file their tax returns. It enables you to find out the amount of
-        deductible social charges.</0><1>You remain entirely responsible for any
-        omissions or inaccuracies in your declaration.</1></0><1><0><0>This tool
-        is for you if you are in one of the following situations:</0></0><1>You
-        contribute to the general scheme for self-employed workers.</1><2><0>It
-        does not concern you if you are in one of the following
-        situations:</0></2><3><0>You are a self-employed worker covered by a
-        self-employed pension scheme on an accrual basis.</0><1>Your company is
-        domiciled in the French overseas
-        departments</1></3></1><2>Taxation</2><3>These few questions will help
-        you determine the type of declaration you need to complete, and how your
-        social security contributions are calculated.</3>
-      entreprise:
-        formulaire:
-          "1": Company and activity
-          "2": This declaration aid is only available to companies already in business in
-            {{year}}
-          "3": Personal situation
-          "4": Exemptions
-          "5": International
-          "6": Social security contributions in {{year}}
-        imposition:
-          "1": What are your sales before tax at {{year}}?
-          "2": Indicate the amount of your gross sales or revenue (before deduction of the
-            fixed allowance for expenses and charges) and before deduction of
-            any tax exemptions from which you have benefited.
-          "3": What is your taxable income for the year {{year}}?<4></4><5>Social security
-            charges and tax exemptions not included</5>.<5> <2></2></5>
-          "4": Taxable income corresponds to income less expenses. It can be positive
-            (profit) or negative (deficit).
-          "5": What is your net remuneration at {{year}}?<3></3><4>Excluding social
-            security contributions</4>
-          explications:
-            intro: <0>To calculate the amount of taxable income before deduction of
-              exemptions and social security charges to be entered in this
-              simulator, you can use your tax return, taking the amounts shown
-              in the tax lines of the table below, depending on whether you are
-              subject to standard or simplified taxation.</0><1>To do this,
-              proceed as follows:</1><2><0>Determine the taxable income in your
-              tax return, without deducting your social security contributions.
-              Take the corresponding taxable income <1>(1)</1></0><1>Add
-              exemptions <1>(2)</1></1></2>
-            tableCaption: Table displaying the lines of your tax return associated with the
-              tax exemptions in place for each type of activity. The first
-              column shows the different types of activity (BIC, BNC). The
-              second column shows the lines in your tax return that enable you
-              to determine your taxable income, for each type of activity. The
-              other columns show the exemptions in place, as well as the lines
-              in your tax return where you can add your exemptions, for each
-              type of activity.
-            th:
-              "1": Tax system
-              "2": Taxable income <1>(1)</1>
-              "3": Zone/activity exemptions
-              "4": Madelin exemptions and retirement savings plans
-              "5": Short-term capital gains exemptions
-              "6": Suramortissement productif
-              "7": BIC réel normal
-        titre: <0><0>Company and activity</0></0>
-      meta:
-        description: Calculate the amount of social security contributions to include in
-          your tax return
-        title: Determining deductible social security charges
-      shortname: Determining deductible social security charges
-      title: Assistance in determining deductible social charges
+      aria-label: Read the dedicated page on the Urssaf website, new window
+      header: The wizard for determining deductible social security charges is no
+        longer available
     declaration-revenus-pamc:
       aria-label: Read the dedicated page on the Urssaf website, new window
       header: No more PAMC tax return wizard
@@ -1196,7 +1115,6 @@ pages:
         h2: Self-employed workers (TNS)
         h3:
           "1": Liberal professions
-          "2": Self-employed tax return assistants
       "3":
         h2: Other tools
       description: All the simulators and wizards on this site are kept up to date

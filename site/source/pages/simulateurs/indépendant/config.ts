@@ -34,11 +34,7 @@ export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
 				"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement"
 			),
 		},
-		nextSteps: [
-			'déclaration-charges-sociales-indépendant',
-			'comparaison-statuts',
-			'is',
-		],
+		nextSteps: ['comparaison-statuts', 'is'],
 		externalLinks: [
 			serviceIndépendant,
 			servicePLR,

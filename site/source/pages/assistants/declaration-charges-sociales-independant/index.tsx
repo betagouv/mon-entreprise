@@ -1,102 +1,37 @@
-import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { styled } from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
-import {
-	ACCUEIL,
-	SIMULATION_COMMENCEE,
-	TrackPage,
-} from '@/components/ATInternetTracking'
-import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
+import illustration from '@/assets/images/illustration.svg'
 import PageHeader from '@/components/PageHeader'
-import { FromTop } from '@/components/ui/animate'
-import Warning from '@/components/ui/WarningBlock'
-import { Body, H2, Intro, Li, SmallBody, Strong, Ul } from '@/design-system'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { useSitePaths } from '@/sitePaths'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { Body, Link } from '@/design-system'
 
-import Formulaire from './components/Formulaire'
-import ImpositionSection from './components/ImpositionSection'
-import Résultats from './components/Résultats'
-import { config } from './simulationConfig'
-import illustration from './undraw_fill_in_mie5.svg'
-
-export default function AideDéclarationIndépendant() {
-	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig({
-		key: absoluteSitePaths.assistants[
-			'déclaration-charges-sociales-indépendant'
-		],
-		config,
-		autoloadLastSimulation: true,
-	})
-	const situation = useSelector(situationSelector)
+export default function ChargesSocialesIndépendant() {
+	const { t } = useTranslation()
 
 	return (
-		<>
-			<Trans i18nKey="pages.assistants.declaration-charges-sociales-independant.description">
-				<PageHeader picture={illustration}>
-					<Intro>
-						Cet outil est une aide à la déclaration de revenus à destination des{' '}
-						<Strong>travailleurs indépendants</Strong>. Il vous permet de
-						connaître le montant des charges sociales déductibles.
-					</Intro>
-					<SmallBody>
-						Vous restez entièrement responsable d’éventuelles omissions ou
-						inexactitudes dans votre déclaration.
-					</SmallBody>
-				</PageHeader>
-
-				<Warning localStorageKey="aide-déclaration-indépendant.warning">
-					<Body>
-						<Strong>
-							Cet outil vous concerne si vous êtes dans le cas suivant :
-						</Strong>
-					</Body>
-					<Body>
-						Vous cotisez au régime général des travailleurs indépendants
-					</Body>
-					<Body>
-						<Strong>
-							Il ne vous concerne pas si vous êtes dans un des cas suivants :
-						</Strong>
-					</Body>
-					<Ul>
-						<Li>
-							Vous exercez une activité libérale relevant d’un régime de
-							retraite des professions libérales en comptabilité d’engagement
-						</Li>
-						<Li>Votre entreprise est domiciliée dans les DOM</Li>
-					</Ul>
-				</Warning>
-
-				<H2>Imposition</H2>
-				<Body>
-					Ces quelques questions permettent de déterminer le type de déclaration
-					à remplir, ainsi que les modalités de calcul des cotisations sociales.
-				</Body>
-			</Trans>
-
-			{Object.keys(situation).length ? (
-				<TrackPage name={SIMULATION_COMMENCEE} />
-			) : (
-				<TrackPage name={ACCUEIL} />
+		<PageHeader
+			titre={t(
+				'pages.assistants.declaration-charges-sociales-independant.header',
+				'L’assistant à la détermination des charges sociales déductibles, c’est terminé'
 			)}
-
-			<ImpositionSection />
-
-			<FromTop>
-				<Formulaire />
-			</FromTop>
-
-			<WhenAlreadyDefined dottedName="déclaration charge sociales . résultat . total charges sociales déductible">
-				<Résultats />
-			</WhenAlreadyDefined>
-		</>
+			picture={illustration}
+		>
+			<Body>
+				Ce dernier est devenu obsolète avec la réforme de l’assiette sociale et
+				du barème des cotisations sociales.
+			</Body>
+			<Body>
+				Pour en savoir plus sur la réforme, consultez{' '}
+				<Link
+					href="https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html"
+					aria-label={t(
+						'pages.assistants.declaration-charges-sociales-independant.aria-label',
+						'Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre'
+					)}
+				>
+					la page dédiée sur le site de l’Urssaf
+				</Link>
+				.
+			</Body>
+		</PageHeader>
 	)
 }
-
-export const Question = styled.div`
-	margin-top: 1em;
-`

@@ -28,7 +28,7 @@ export default function DéclarationRevenusPAMC() {
 						'Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre'
 					)}
 				>
-					la page dédiée sur le site de l'Urssaf
+					la page dédiée sur le site de l’Urssaf
 				</Link>
 				.
 			</Body>

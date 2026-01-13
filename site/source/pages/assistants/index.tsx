@@ -5,6 +5,7 @@ import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
+import ChargesSocialesIndépendant from './declaration-charges-sociales-independant'
 import AideDéclarationIndépendant from './declaration-revenu-independants'
 import DéclarationRevenusPAMC from './declaration-revenus-pamc'
 import ÉconomieCollaborative from './économie-collaborative'
@@ -26,6 +27,14 @@ export default function Assistants() {
 					}
 				/>
 				{/* Simulateurs et assistants décomissionnés */}
+				<Route
+					path={
+						relativeSitePaths.assistants[
+							'déclaration-charges-sociales-indépendant'
+						]
+					}
+					element={<ChargesSocialesIndépendant />}
+				/>
 				<Route
 					path={relativeSitePaths.assistants['déclaration-revenus-pamc']}
 					element={<DéclarationRevenusPAMC />}
