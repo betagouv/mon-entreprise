@@ -26,6 +26,7 @@ import {
 	fieldLabelStyles,
 	fieldTransition,
 	labelAndInputContainerStyles,
+	outlineOnFocus,
 } from '../fieldsStyles'
 
 type DateFieldsWithPickerProps = RADateValue &
@@ -52,13 +53,14 @@ export function DateFieldWithPicker({
 			<StyledLabelAndInputContainer>
 				<StyledLabelContainer>
 					<RALabel>{label}</RALabel>
+
 					<RAText slot="description">{` (${dateFormatHelperText})`}</RAText>
 				</StyledLabelContainer>
 
 				<StyledRAGroup>
-					<RADateInput>
+					<StyledRADateInput>
 						{(segment) => <RADateSegment segment={segment} />}
-					</RADateInput>
+					</StyledRADateInput>
 
 					<StyledRAButton>
 						<Emoji emoji="📅" />
@@ -103,13 +105,22 @@ const StyledLabelContainer = styled.div`
 const StyledRAGroup = styled(RAGroup)`
 	${fieldInputStyles}
 
-	position: relative;
 	display: flex;
-	justify-content: space-between;
+	align-items: center;
+	gap: ${({ theme }) => theme.spacings.xs};
+
+	width: fit-content;
+	padding: 0;
+
+	&:focus-within {
+		outline: none;
+	}
 
 	[role='spinbutton'] {
 		border-radius: 2px;
 		outline: transparent solid 2px;
+
+		${fieldTransition}
 
 		&:focus {
 			outline-color: ${({ theme }) =>
@@ -120,10 +131,11 @@ const StyledRAGroup = styled(RAGroup)`
 	}
 `
 
+const StyledRADateInput = styled(RADateInput)`
+	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
+`
+
 const StyledRAButton = styled(RAButton)`
-	position: absolute;
-	right: 0;
-	bottom: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -131,18 +143,14 @@ const StyledRAButton = styled(RAButton)`
 	width: 2.25rem;
 	height: 2.25rem;
 	border: none;
-	border-radius: 50%;
+	border-radius: 0 ${({ theme }) => theme.box.borderRadius}
+		${({ theme }) => theme.box.borderRadius} 0;
 	outline: transparent solid 1px;
 
 	background: ${({ theme }) => theme.colors.bases.primary[700]};
 
 	&:focus {
-		outline-color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[700]};
-		outline-offset: ${({ theme }) => theme.spacings.xxs};
-		outline-width: ${({ theme }) => theme.spacings.xxs};
+		${outlineOnFocus}
 	}
 `
 

@@ -111,46 +111,37 @@ const StyledRANumberField = styled(RANumberField)<{
 
 const StyledRALabel = styled(RALabel)`
 	${fieldLabelStyles}
-
-	padding-left: 0;
 `
 
 const StyledRAGroup = styled(RAGroup)`
-	${labelAndInputContainerStyles}
+	${fieldInputStyles}
 
-	flex-direction: row;
+	display: flex;
+	gap: ${({ theme }) => `${theme.spacings.xs}`};
 
 	width: fit-content;
-	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 `
 
 const StyledRAInput = styled(RAInput)`
-	${fieldInputStyles}
-
-	margin: 0;
+	border: none;
+	outline: none;
 
 	text-align: right;
 `
 
 const StyledDescription = styled(RAText)`
 	${fieldDescriptionStyles}
-
-	padding-top: 0;
-	padding-left: 0;
 `
 
 const StyledErrorMessage = styled(RAText)`
 	${fieldLabelStyles}
 	${errorMessageStyle}
-
-	padding-left: 0;
 `
 
 const StyledRAFieldError = styled(RAFieldError)`
 	${fieldLabelStyles}
 	${errorMessageStyle}
-
-	padding-left: 0;
 `
 
 const StyledSuggestionsContainer = styled.div`
