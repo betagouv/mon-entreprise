@@ -37,6 +37,7 @@ import urlIllustrationNetBrutEn from './illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './illustration-net-brut.png'
 
 export default function SalariéSimulation() {
+	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 
 	return (
@@ -82,27 +83,47 @@ export default function SalariéSimulation() {
 				<SimulateurWarning
 					simulateur="salarié"
 					informationsComplémentaires={
-						<Body>
-							<Trans i18nKey="pages.simulateurs.salarié.warning">
-								Le simulateur ne prend pour l’instant pas en compte les accords
-								et conventions collectives, ni la myriade d’aides aux
-								entreprises. Trouvez votre convention collective{' '}
-								<Link
-									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
-									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
-								>
-									ici
-								</Link>
-								, et explorez les aides sur&nbsp;
-								<Link
-									href="https://www.aides-entreprises.fr"
-									aria-label="aides-entreprises.fr, nouvelle fenêtre"
-								>
-									aides-entreprises.fr
-								</Link>
-								.
-							</Trans>
-						</Body>
+						<>
+							<Body>
+								<Emoji emoji="⚠️" />{' '}
+								<Strong>
+									<Trans i18nKey="pages.simulateurs.salarié.warning.réforme.texte">
+										La{' '}
+										<Link
+											href="https://www.urssaf.fr/accueil/actualites/informations-nouvelle-annee.html"
+											aria-label={t(
+												'pages.simulateurs.salarié.warning.réforme.aria-label',
+												'En savoir plus sur la réduction générale dégressive (RGDU) sur le site de l’Urssaf, nouvelle fenêtre'
+											)}
+										>
+											réduction générale dégressive (RGDU)
+										</Link>{' '}
+										n'est pas encore implémentée sur ce simulateur.
+									</Trans>
+								</Strong>
+							</Body>
+							<Body>
+								<Trans i18nKey="pages.simulateurs.salarié.warning.général">
+									Le simulateur ne prend pour l’instant pas en compte les
+									accords et conventions collectives, ni la myriade d’aides aux
+									entreprises. Trouvez votre convention collective{' '}
+									<Link
+										href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
+										aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
+									>
+										ici
+									</Link>
+									, et explorez les aides sur&nbsp;
+									<Link
+										href="https://www.aides-entreprises.fr"
+										aria-label="aides-entreprises.fr, nouvelle fenêtre"
+									>
+										aides-entreprises.fr
+									</Link>
+									.
+								</Trans>
+							</Body>
+						</>
 					}
 				/>
 				<SalariéSimulationGoals />
