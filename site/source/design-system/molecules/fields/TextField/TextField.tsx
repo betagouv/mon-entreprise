@@ -39,12 +39,14 @@ export function TextField({
 			<StyledLabelAndInputContainer $hasError={!!errorMessage}>
 				<StyledRALabel>{label}</StyledRALabel>
 
+				{description && (
+					<StyledDescription slot="description">
+						{description}
+					</StyledDescription>
+				)}
+
 				<StyledRAInput placeholder={placeholder} />
 			</StyledLabelAndInputContainer>
-
-			{description && (
-				<StyledDescription slot="description">{description}</StyledDescription>
-			)}
 
 			{errorMessage ? (
 				<StyledErrorMessage slot="errorMessage">

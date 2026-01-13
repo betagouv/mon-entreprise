@@ -21,7 +21,6 @@ import {
 	fieldDescriptionStyles,
 	fieldInputStyles,
 	fieldLabelStyles,
-	labelAndInputContainerStyles,
 } from '../fieldsStyles'
 
 type NumberFieldProps = RANumberFieldProps & {
@@ -147,6 +146,8 @@ const StyledRAFieldError = styled(RAFieldError)`
 const StyledSuggestionsContainer = styled.div`
 	display: flex;
 	gap: ${({ theme }) => `${theme.spacings.xs}`};
+
+	margin: ${({ theme }) => `${theme.spacings.xs} 0 0 0`};
 
 	p {
 		margin: 0 !important;
