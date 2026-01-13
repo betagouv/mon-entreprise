@@ -15,6 +15,8 @@ import {
 	HelpButtonWithPopover,
 	Item,
 	Li,
+	Link,
+	Message,
 	PlusCircleIcon,
 	Strong,
 	StyledLink,
@@ -34,6 +36,9 @@ const Détails = ({
 	namedEngines: EngineComparison
 	expandRevenuSection?: boolean
 }) => {
+	const régimeTIComparé = namedEngines.some(
+		(namedEngine) => namedEngine.name === 'EI' || namedEngine.name === 'EURL'
+	)
 	const { t } = useTranslation()
 
 	return (
@@ -44,6 +49,29 @@ const Détails = ({
 					: theme.colors.bases.primary[200]
 			}
 		>
+			{régimeTIComparé && (
+				<StyledMessage type="error">
+					<Body>
+						<Emoji emoji="⚠️" />{' '}
+						<Strong>
+							<Trans i18nKey="pages.simulateurs.comparaison-statuts.warning.réforme.texte">
+								La{' '}
+								<Link
+									href="https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html"
+									aria-label={t(
+										'pages.simulateurs.comparaison-statuts.warning.réforme.aria-label',
+										'Lire la page dédiée à la réforme de l’assiette et du barème des cotisations sur le site de l’Urssaf, nouvelle fenêtre'
+									)}
+								>
+									réforme de l’assiette et du barème des cotisations
+								</Link>{' '}
+								n'est pas encore implémentée sur ce comparateur.
+							</Trans>
+						</Strong>
+					</Body>
+				</StyledMessage>
+			)}
+
 			<Accordion
 				variant="light"
 				defaultExpandedKeys={expandRevenuSection ? ['revenus'] : []}
@@ -301,6 +329,7 @@ const Détails = ({
 						)}
 					/>
 				</Item>
+
 				<Item
 					title={
 						<ItemTitle>
@@ -424,6 +453,7 @@ const Détails = ({
 						)}
 					/>
 				</Item>
+
 				<Item
 					title={
 						<ItemTitle>
@@ -508,6 +538,7 @@ const Détails = ({
 						)}
 					/>
 				</Item>
+
 				<Item
 					title={
 						<ItemTitle>
@@ -670,6 +701,7 @@ const Détails = ({
 						unit="€/enfant"
 					/>
 				</Item>
+
 				<Item
 					title={
 						<ItemTitle>
@@ -758,6 +790,10 @@ const Détails = ({
 	)
 }
 
+const StyledMessage = styled(Message)`
+	margin-top: ${({ theme }) => theme.spacings.xl};
+	margin-bottom: -${({ theme }) => theme.spacings.md};
+`
 const StyledH4 = styled(H4)`
 	color: ${({ theme }) => theme.colors.bases.primary[600]};
 `
