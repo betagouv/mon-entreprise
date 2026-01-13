@@ -2,6 +2,9 @@
 
 ## next
 
+### Mises à jour
+- Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
+
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
 
