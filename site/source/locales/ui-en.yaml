@@ -1780,8 +1780,7 @@ pages:
         micro-entreprise:
           libellé: Self-employed contractor
         régime-général:
-          description: Simplified offer from the general scheme
-          libellé: General scheme
+          libellé: Simplified general scheme
         travailleur-indépendant:
           libellé: Social Security for the Self-Employed
       shortname: Furnished apartment rental
