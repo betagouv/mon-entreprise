@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
+import AvertissementRéformeRGDUNonImplémentée from '@/components/AvertissementRéformeRGDUNonImplémentée'
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
@@ -37,7 +38,6 @@ import urlIllustrationNetBrutEn from './illustration-net-brut-en.png'
 import urlIllustrationNetBrut from './illustration-net-brut.png'
 
 export default function SalariéSimulation() {
-	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 
 	return (
@@ -84,24 +84,7 @@ export default function SalariéSimulation() {
 					simulateur="salarié"
 					informationsComplémentaires={
 						<>
-							<Body>
-								<Emoji emoji="⚠️" />{' '}
-								<Strong>
-									<Trans i18nKey="pages.simulateurs.salarié.warning.réforme.texte">
-										La{' '}
-										<Link
-											href="https://www.urssaf.fr/accueil/actualites/informations-nouvelle-annee.html"
-											aria-label={t(
-												'pages.simulateurs.salarié.warning.réforme.aria-label',
-												'En savoir plus sur la réduction générale dégressive (RGDU) sur le site de l’Urssaf, nouvelle fenêtre'
-											)}
-										>
-											réduction générale dégressive (RGDU)
-										</Link>{' '}
-										n'est pas encore implémentée sur ce simulateur.
-									</Trans>
-								</Strong>
-							</Body>
+							<AvertissementRéformeRGDUNonImplémentée />
 							<Body>
 								<Trans i18nKey="pages.simulateurs.salarié.warning.général">
 									Le simulateur ne prend pour l’instant pas en compte les

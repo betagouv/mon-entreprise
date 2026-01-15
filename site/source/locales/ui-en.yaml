@@ -2010,18 +2010,14 @@ pages:
       warning:
         aria-label:
           lodeom: go to the Lodeom exemption simulator page
-          rgdu: Find out more about the general degressive reduction (RGDU) on the Urssaf
-            website, new window
-        texte: "<0><0><0>&lt;/0> <2> The <2>general degressive reduction (RGDU)&lt;/2>
-          is not yet implemented on this simulator.</2></0></0><1>This simulator
-          does not incorporate <2>all the specific&lt;/2> calculation rules
-          (Temporary Work Companies, road transport employees subject to
-          equivalent working hours, etc.). Nor does it take into account the
-          specific rates and/or distribution of supplementary pension
-          contributions applied in certain companies.</1><2>In overseas France,
-          it is possible to choose between the general reduction in
+        texte: "<0>This simulator does not take into account <2>all the specific
+          calculation rules&lt;/2> (temporary employment agencies, road haulage
+          employees subject to equivalent working hours, etc.). Nor does it take
+          into account the specific rates and/or distribution of supplementary
+          pension contributions applied in certain companies.</0><1>In overseas
+          France, it is possible to choose between the general reduction in
           contributions and another exemption: access the <2>Lodeom exemption
-          simulator</2>.</2>"
+          simulator</2>.</1>"
       warnings:
         JEI: The general reduction cannot be combined with the Young Innovative Company
           (JEI) exemption.

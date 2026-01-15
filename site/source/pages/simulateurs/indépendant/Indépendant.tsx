@@ -1,13 +1,14 @@
 import { DottedName } from 'modele-social'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
+import AvertissementRéformeAssietteNonImplémentée from '@/components/AvertissementRéformeAssietteNonImplémentée'
 import RuleInput from '@/components/conversation/RuleInput'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import IndépendantExplanation from '@/components/simulationExplanation/IndépendantExplanation'
-import { Body, Emoji, Link, Message, Strong } from '@/design-system'
+import { Body } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import useYear from '@/hooks/useYear'
@@ -31,26 +32,7 @@ export default function IndépendantSimulation() {
 					simulateur="indépendant"
 					informationsComplémentaires={
 						<>
-							<Message type="error">
-								<Body>
-									<Emoji emoji="⚠️" />{' '}
-									<Strong>
-										<Trans i18nKey="pages.simulateurs.indépendant.warning.réforme.texte">
-											La{' '}
-											<Link
-												href="https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html"
-												aria-label={t(
-													'pages.simulateurs.indépendant.warning.réforme.aria-label',
-													'Lire la page dédiée à la réforme de l’assiette et du barème des cotisations sur le site de l’Urssaf, nouvelle fenêtre'
-												)}
-											>
-												réforme de l’assiette et du barème des cotisations
-											</Link>{' '}
-											n'est pas encore implémentée sur ce simulateur.
-										</Trans>
-									</Strong>
-								</Body>
-							</Message>
+							<AvertissementRéformeAssietteNonImplémentée />
 							{WarningComponent && <WarningComponent />}
 							<Body>
 								{t(
