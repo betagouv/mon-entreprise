@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
+import AvertissementRéformeRGDUNonImplémentée from '@/components/AvertissementRéformeRGDUNonImplémentée'
 import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
 import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Body, Emoji, Link, Message, Strong } from '@/design-system'
+import { Body, Link, Message, Strong } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 import { RégularisationMethod } from '@/utils/réductionDeCotisations'
 
@@ -25,50 +26,37 @@ export default function RéductionGénéraleSimulation() {
 				<SimulateurWarning
 					simulateur="réduction-générale"
 					informationsComplémentaires={
-						<Trans i18nKey="pages.simulateurs.réduction-générale.warning.texte">
+						<>
 							<Message type="error">
-								<Body>
-									<Emoji emoji="⚠️" />{' '}
-									<Strong>
-										La{' '}
-										<Link
-											href="https://www.urssaf.fr/accueil/actualites/informations-nouvelle-annee.html"
-											aria-label={t(
-												'pages.simulateurs.réduction-générale.warning.aria-label.rgdu',
-												'En savoir plus sur la réduction générale dégressive (RGDU) sur le site de l’Urssaf, nouvelle fenêtre'
-											)}
-										>
-											réduction générale dégressive (RGDU)
-										</Link>{' '}
-										n'est pas encore implémentée sur ce simulateur.
-									</Strong>
-								</Body>
+								<AvertissementRéformeRGDUNonImplémentée />
 							</Message>
-							<Body>
-								Ce simulateur n’intègre{' '}
-								<Strong>pas toutes les règles de calcul</Strong> spécifiques
-								(Entreprises de Travail Temporaire, salariés des transports
-								routiers soumis à un horaire d’équivalence...). Il ne tient pas
-								non plus compte des taux et/ou répartition particuliers de la
-								cotisation de retraite complémentaire appliqués dans certaines
-								entreprises.
-							</Body>
-							<Body>
-								En outre-mer, il est possible de choisir entre la réduction
-								générale des cotisations et une autre exonération&nbsp;: accéder
-								au{' '}
-								<Link
-									to={absoluteSitePaths.simulateurs.lodeom}
-									aria-label={t(
-										'pages.simulateurs.réduction-générale.warning.aria-label.lodeom',
-										'aller sur la page du simulateur d’exonération Lodeom'
-									)}
-								>
-									simulateur d’exonération Lodeom
-								</Link>
-								.
-							</Body>
-						</Trans>
+							<Trans i18nKey="pages.simulateurs.réduction-générale.warning.texte">
+								<Body>
+									Ce simulateur n’intègre{' '}
+									<Strong>pas toutes les règles de calcul</Strong> spécifiques
+									(Entreprises de Travail Temporaire, salariés des transports
+									routiers soumis à un horaire d’équivalence...). Il ne tient
+									pas non plus compte des taux et/ou répartition particuliers de
+									la cotisation de retraite complémentaire appliqués dans
+									certaines entreprises.
+								</Body>
+								<Body>
+									En outre-mer, il est possible de choisir entre la réduction
+									générale des cotisations et une autre exonération&nbsp;:
+									accéder au{' '}
+									<Link
+										to={absoluteSitePaths.simulateurs.lodeom}
+										aria-label={t(
+											'pages.simulateurs.réduction-générale.warning.aria-label.lodeom',
+											'aller sur la page du simulateur d’exonération Lodeom'
+										)}
+									>
+										simulateur d’exonération Lodeom
+									</Link>
+									.
+								</Body>
+							</Trans>
+						</>
 					}
 				/>
 				<RéductionGénéraleSimulationGoals

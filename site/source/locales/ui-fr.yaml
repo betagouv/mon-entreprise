@@ -2131,18 +2131,14 @@ pages:
       warning:
         aria-label:
           lodeom: aller sur la page du simulateur d’exonération Lodeom
-          rgdu: En savoir plus sur la réduction générale dégressive (RGDU) sur le site de
-            l’Urssaf, nouvelle fenêtre
-        texte: "<0><0><0></0> <2>La <2>réduction générale dégressive (RGDU)</2> n'est
-          pas encore implémentée sur ce simulateur.</2></0></0><1>Ce simulateur
-          n’intègre <2>pas toutes les règles de calcul</2> spécifiques
-          (Entreprises de Travail Temporaire, salariés des transports routiers
-          soumis à un horaire d’équivalence...). Il ne tient pas non plus compte
-          des taux et/ou répartition particuliers de la cotisation de retraite
-          complémentaire appliqués dans certaines entreprises.</1><2>En
-          outre-mer, il est possible de choisir entre la réduction générale des
-          cotisations et une autre exonération : accéder au <2>simulateur
-          d’exonération Lodeom</2>.</2>"
+        texte: "<0>Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
+          spécifiques (Entreprises de Travail Temporaire, salariés des
+          transports routiers soumis à un horaire d’équivalence...). Il ne tient
+          pas non plus compte des taux et/ou répartition particuliers de la
+          cotisation de retraite complémentaire appliqués dans certaines
+          entreprises.</0><1>En outre-mer, il est possible de choisir entre la
+          réduction générale des cotisations et une autre exonération : accéder
+          au <2>simulateur d’exonération Lodeom</2>.</1>"
       warnings:
         JEI: La réduction générale n'est pas cumulable avec l'exonération Jeune
           Entreprise Innovante (JEI).
