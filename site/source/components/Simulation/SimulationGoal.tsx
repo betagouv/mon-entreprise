@@ -150,15 +150,16 @@ export function SimulationGoal({
 	// Pour les cas où la valeur n'est pas un nombre, on utilise le format texte
 	const valeur = isTypeBoolean ? valeurFormatee : valeurMontant
 
+	const id = (dottedName as string).replace(/\s|\./g, '_')
+
 	if (editable) {
 		return (
 			<ObjectifSaisissableDeSimulation
-				id={dottedName.replace(/\s|\./g, '_')}
+				id={id}
 				titre={titre}
 				description={description}
 				valeur={valeurMontant}
-				onChange={handleChange}
-				ChampSaisie={RuleInputWrapper}
+				rendreChampSaisie={RuleInputWrapper}
 				isInfoMode={isInfoMode}
 				small={small}
 				appear={appear}
@@ -168,7 +169,7 @@ export function SimulationGoal({
 
 	return (
 		<ObjectifDeSimulation
-			id={dottedName.replace(/\s|\./g, '_')}
+			id={id}
 			titre={titre}
 			description={description}
 			valeur={valeur}

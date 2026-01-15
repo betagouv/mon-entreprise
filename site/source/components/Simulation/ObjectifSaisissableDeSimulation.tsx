@@ -13,8 +13,6 @@ import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 export interface ChampSaisieProps {
 	id: string
 	aria: { labelledby: string }
-	valeur: O.Option<Montant>
-	onChange: (valeur: O.Option<Montant>) => void
 }
 
 export type ObjectifSaisissableDeSimulationProps = {
@@ -23,8 +21,7 @@ export type ObjectifSaisissableDeSimulationProps = {
 	description?: React.ReactNode
 	explication?: React.ReactNode
 	valeur: O.Option<Montant>
-	onChange: (valeur: O.Option<Montant>) => void
-	ChampSaisie: React.ComponentType<ChampSaisieProps>
+	rendreChampSaisie: (props: ChampSaisieProps) => React.ReactNode
 	small?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
@@ -38,8 +35,7 @@ export function ObjectifSaisissableDeSimulation({
 	description,
 	explication,
 	valeur,
-	onChange,
-	ChampSaisie,
+	rendreChampSaisie,
 	small = false,
 	appear = true,
 	onFocus,
@@ -94,12 +90,10 @@ export function ObjectifSaisissableDeSimulation({
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
 						<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
-							<ChampSaisie
-								id={`${id}-input`}
-								aria={{ labelledby: `${id}-label` }}
-								valeur={valeur}
-								onChange={onChange}
-							/>
+							{rendreChampSaisie({
+								id: `${id}-input`,
+								aria: { labelledby: `${id}-label` },
+							})}
 						</LargeInputContainer>
 					</Grid>
 				</GridCentered>
