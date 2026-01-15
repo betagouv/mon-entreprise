@@ -21,11 +21,10 @@ export const BlocAffiliationNonObligatoire = () => {
 						"Vous n'êtes pas obligé de vous affilier à un régime de sécurité sociale et ne payez pas de cotisations sociales."
 					)}
 				</Body>
-				<Spacing sm />
 				<Body>
 					{t(
 						'pages.simulateurs.location-de-logement-meublé.affiliation.non-obligatoire.affiliation-volontaire',
-						"Vous pouvez toutefois choisir de vous affilier volontairement pour bénéficier d'une protection sociale (assurance maladie, retraite, etc.)."
+						'Vous pouvez toutefois choisir de vous affilier volontairement.'
 					)}
 				</Body>
 				<Spacing sm />
@@ -35,6 +34,7 @@ export const BlocAffiliationNonObligatoire = () => {
 						"En savoir plus sur les régimes d'économie collaborative"
 					)}
 				</Link>
+				<Spacing sm />
 			</Message>
 		</>
 	)

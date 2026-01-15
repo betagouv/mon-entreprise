@@ -1801,9 +1801,7 @@ pages:
             connaître :"
           titre: L'obligation d'affiliation dépend de votre situation
         non-obligatoire:
-          affiliation-volontaire: Vous pouvez toutefois choisir de vous affilier
-            volontairement pour bénéficier d'une protection sociale (assurance
-            maladie, retraite, etc.).
+          affiliation-volontaire: Vous pouvez toutefois choisir de vous affilier volontairement.
           lien-urssaf: En savoir plus sur les régimes d'économie collaborative
           texte: Vous n'êtes pas obligé de vous affilier à un régime de sécurité sociale
             et ne payez pas de cotisations sociales.

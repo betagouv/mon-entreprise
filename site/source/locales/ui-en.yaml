@@ -1689,8 +1689,7 @@ pages:
           texte: "To determine whether you should join, we need to know :"
           titre: The obligation to affiliate depends on your situation
         non-obligatoire:
-          affiliation-volontaire: You can, however, choose to join voluntarily to benefit
-            from social protection (health insurance, pensions, etc.).
+          affiliation-volontaire: However, you can choose to join voluntarily.
           lien-urssaf: Find out more about collaborative economy schemes
           texte: You are not obliged to join a social security scheme and pay no social
             security contributions.
