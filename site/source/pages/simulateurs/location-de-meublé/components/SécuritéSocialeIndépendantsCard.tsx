@@ -40,7 +40,7 @@ export const SécuritéSocialeIndépendantsCard = ({
 			<StatusCard.Titre>
 				{t(
 					'pages.simulateurs.location-de-logement-meublé.régimes.travailleur-indépendant.libellé',
-					'Sécurité Sociale des Indépendants'
+					'Travailleur indépendant (hors auto-entrepreneur)'
 				)}
 			</StatusCard.Titre>
 
