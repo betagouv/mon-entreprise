@@ -22,7 +22,7 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 		),
 		title: t(
 			'pages.simulateurs.location-de-logement-meublé.title',
-			'Statuts possibles pour la location de meublé'
+			'Location de meublé : Choix du régime social'
 		),
 		externalLinks: [
 			{
@@ -49,11 +49,11 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 		meta: {
 			title: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.titre',
-				'Statuts possibles pour la location de meublé'
+				'Location de meublé : Choix du régime social'
 			),
 			ogTitle: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.ogTitle',
-				'Statuts possibles pour la location de meublé'
+				'Location de meublé : Choix du régime social'
 			),
 			description: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.description',
