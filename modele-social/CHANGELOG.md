@@ -2,6 +2,9 @@
 
 ## next
 
+### Breaking changes
+- Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
+
 ### Mises à jour
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
 
