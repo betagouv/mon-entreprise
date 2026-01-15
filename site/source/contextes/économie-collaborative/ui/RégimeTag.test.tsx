@@ -31,10 +31,10 @@ describe('RégimeTag', () => {
 		)
 
 		expect(
-			screen.getByTitle('Sécurité Sociale des Indépendants')
+			screen.getByTitle('Travailleur indépendant (hors auto-entrepreneur)')
 		).toBeInTheDocument()
 		expect(
-			screen.getByTitle('Sécurité Sociale des Indépendants')
-		).toHaveTextContent('SSI')
+			screen.getByTitle('Travailleur indépendant (hors auto-entrepreneur)')
+		).toHaveTextContent('TI')
 	})
 })

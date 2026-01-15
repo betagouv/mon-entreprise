@@ -58,7 +58,7 @@ describe('Location de meublé', () => {
 				expect(screen.queryByText(/Régime général/i)).not.toBeInTheDocument()
 				expect(screen.queryByText(/Auto-entrepreneur/i)).not.toBeInTheDocument()
 				expect(
-					screen.queryByText(/Sécurité Sociale des Indépendants/i)
+					screen.queryByText(/Travailleur indépendant/i)
 				).not.toBeInTheDocument()
 			})
 
