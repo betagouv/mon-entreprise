@@ -1759,10 +1759,6 @@ pages:
         recettes-courte-durée:
           aria-label: Short-term rental revenue
           libellé: How much of your revenue comes from short-term rentals?
-        regime:
-          options:
-            micro-entrepreneur:
-              description: You pay a percentage of your sales.
         type-durée:
           courte:
             description: You only offer short-term rentals (Airbnb type, less than 3
