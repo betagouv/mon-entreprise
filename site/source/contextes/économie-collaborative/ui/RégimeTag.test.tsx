@@ -22,7 +22,7 @@ describe('RégimeTag', () => {
 			<RégimeTag régime={RegimeCotisation.regimeGeneral} affichage="libellé" />
 		)
 
-		expect(screen.getByText('Régime général')).toBeInTheDocument()
+		expect(screen.getByText('Régime général simplifié')).toBeInTheDocument()
 	})
 
 	it("affiche un titre sur l'abréviation pour le libellé complet", () => {

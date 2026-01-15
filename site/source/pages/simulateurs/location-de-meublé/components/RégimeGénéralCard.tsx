@@ -34,7 +34,7 @@ export const RégimeGénéralCard = ({ résultat }: RégimeGénéralCardProps) =
 			<StatusCard.Titre>
 				{t(
 					'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.libellé',
-					'Régime général'
+					'Régime général simplifié'
 				)}
 			</StatusCard.Titre>
 
@@ -42,22 +42,16 @@ export const RégimeGénéralCard = ({ résultat }: RégimeGénéralCardProps) =
 				<StatutApplicabilité résultat={résultat.résultat} />
 			</StatusCard.ValeurSecondaire>
 
-			<StatusCard.Complément>
-				<Ul
-					style={{
-						display: 'flex',
-						flex: '1',
-						marginBottom: '0',
-						flexDirection: 'column',
-					}}
-				>
-					<Li>
-						{t(
-							'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.description',
-							'Offre simplifiée du régime général'
-						)}
-					</Li>
-					{surRecettesCourteDuréeUniquement && (
+			{surRecettesCourteDuréeUniquement && (
+				<StatusCard.Complément>
+					<Ul
+						style={{
+							display: 'flex',
+							flex: '1',
+							marginBottom: '0',
+							flexDirection: 'column',
+						}}
+					>
 						<Li>
 							<Strong>
 								{t(
@@ -66,9 +60,9 @@ export const RégimeGénéralCard = ({ résultat }: RégimeGénéralCardProps) =
 								)}
 							</Strong>
 						</Li>
-					)}
-				</Ul>
-			</StatusCard.Complément>
+					</Ul>
+				</StatusCard.Complément>
+			)}
 		</StatusCard>
 	)
 }
