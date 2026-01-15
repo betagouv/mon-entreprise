@@ -14,7 +14,7 @@ import { RegimeCotisation } from '../domaine/location-de-meublé/situation'
 export const RÉGIME_DATA = {
 	RG: {
 		color: 'primary',
-		libellé: 'Régime général',
+		libellé: 'Régime général simplifié',
 		abréviation: 'RG',
 		icône: HexagonIcon,
 	},

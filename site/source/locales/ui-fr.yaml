@@ -1895,8 +1895,7 @@ pages:
         micro-entreprise:
           libellé: Auto-entrepreneur
         régime-général:
-          description: Offre simplifiée du régime général
-          libellé: Régime général
+          libellé: Régime général simplifié
         travailleur-indépendant:
           libellé: Sécurité Sociale des Indépendants
       shortname: Location de logement meublé
