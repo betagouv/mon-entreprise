@@ -1873,10 +1873,6 @@ pages:
         recettes-courte-durée:
           aria-label: Montant des recettes pour la location courte durée
           libellé: Quelle part des recettes provient de la location courte durée ?
-        regime:
-          options:
-            micro-entrepreneur:
-              description: Vous payez un pourcentage de votre chiffre d'affaires.
         type-durée:
           courte:
             description: Vous proposez uniquement de la location de courte durée (type

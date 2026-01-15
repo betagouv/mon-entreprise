@@ -8,7 +8,6 @@ import {
 import { Li, StatusCard, Strong, Ul } from '@/design-system'
 
 import {
-	estApplicable,
 	estApplicableSurRecettesCourteDurée,
 	estNonApplicable,
 	StatutApplicabilité,
@@ -21,13 +20,10 @@ interface MicroEntrepriseCardProps {
 export const MicroEntrepriseCard = ({ résultat }: MicroEntrepriseCardProps) => {
 	const { t } = useTranslation()
 
-	const applicable = estApplicable(résultat.résultat)
 	const nonApplicable = estNonApplicable(résultat.résultat)
 	const surRecettesCourteDuréeUniquement = estApplicableSurRecettesCourteDurée(
 		résultat.résultat
 	)
-
-	const aUnComplément = applicable
 
 	return (
 		<StatusCard nonApplicable={nonApplicable}>
@@ -46,7 +42,7 @@ export const MicroEntrepriseCard = ({ résultat }: MicroEntrepriseCardProps) => 
 				<StatutApplicabilité résultat={résultat.résultat} />
 			</StatusCard.ValeurSecondaire>
 
-			{aUnComplément && (
+			{surRecettesCourteDuréeUniquement && (
 				<StatusCard.Complément>
 					<Ul
 						style={{
@@ -56,21 +52,13 @@ export const MicroEntrepriseCard = ({ résultat }: MicroEntrepriseCardProps) => 
 							flexDirection: 'column',
 						}}
 					>
-						{surRecettesCourteDuréeUniquement && (
-							<Li>
-								<Strong>
-									{t(
-										'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
-										'Sur les recettes de courte durée uniquement'
-									)}
-								</Strong>
-							</Li>
-						)}
 						<Li>
-							{t(
-								'pages.simulateurs.location-de-logement-meublé.questions.regime.options.micro-entrepreneur.description',
-								"Vous payez un pourcentage de votre chiffre d'affaires."
-							)}
+							<Strong>
+								{t(
+									'pages.simulateurs.location-de-logement-meublé.comparateur.sur-recettes-courte-durée',
+									'Sur les recettes de courte durée uniquement'
+								)}
+							</Strong>
 						</Li>
 					</Ul>
 				</StatusCard.Complément>
