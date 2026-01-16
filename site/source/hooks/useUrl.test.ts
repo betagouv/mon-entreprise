@@ -10,10 +10,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import SalariéSimulation from '@/pages/simulateurs/salarié/Salarié'
 
-import {
-	MergedSimulatorDataValues,
-	useCurrentSimulatorData,
-} from './useCurrentSimulatorData'
+import { useCurrentSimulatorData } from './useCurrentSimulatorData'
 import { useSearchParamsForSituation } from './useSearchParamsForSituation'
 import { useSiteUrl } from './useSiteUrl'
 import { useUrl } from './useUrl'
@@ -93,7 +90,7 @@ describe('useUrl hook', () => {
 
 		const { result } = renderHook(() =>
 			useUrl({
-				path: '/simulateurs/auto-entrepreneur' as Partial<MergedSimulatorDataValues>,
+				path: '/simulateurs/auto-entrepreneur',
 			})
 		)
 
@@ -173,7 +170,7 @@ describe('useUrl hook', () => {
 
 		const { result } = renderHook(() =>
 			useUrl({
-				path: '/simulateurs/auto-entrepreneur' as Partial<MergedSimulatorDataValues>,
+				path: '/simulateurs/auto-entrepreneur',
 				situation: {
 					'salarié . contrat': 'CDD',
 				},

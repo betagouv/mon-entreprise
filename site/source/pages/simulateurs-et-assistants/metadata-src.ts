@@ -1,6 +1,5 @@
 import { choixStatutJuridiqueConfig } from '@/pages/assistants/choix-du-statut/config'
 import { CMGConfig } from '@/pages/assistants/cmg/config'
-import { demandeMobilitéConfig } from '@/pages/assistants/demande-mobilité/config'
 import { pourMonEntrepriseConfig } from '@/pages/assistants/pour-mon-entreprise/config'
 import { rechercheCodeApeConfig } from '@/pages/assistants/recherche-code-ape/config'
 import {
@@ -75,7 +74,6 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		// assistants:
 		...choixStatutJuridiqueConfig(params),
 		...CMGConfig(params),
-		...demandeMobilitéConfig(params),
 		...pourMonEntrepriseConfig(params),
 		...rechercheCodeApeConfig(params),
 	} as const satisfies ImmutableType<Record<string, PageConfig>>

@@ -1,7 +1,4 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { serviceAutoEntrepreneur } from '@/external-links/serviceAutoEntrepreneur'
 import { SeoExplanations } from '@/pages/simulateurs/auto-entrepreneur/SeoExplanations'
-import { URSSAF } from '@/utils/logos'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -46,50 +43,6 @@ export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.auto-entrepreneur.title',
 			'Simulateur de revenus auto-entrepreneur'
 		),
-		nextSteps: ['indépendant', 'comparaison-statuts'],
-		externalLinks: [
-			{
-				url: 'https://autoentrepreneur.urssaf.fr',
-				title: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.1.title',
-					'Site officiel des auto-entrepreneurs'
-				),
-				description: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.1.description',
-					'Vous pourrez effectuer votre déclaration de chiffre d’affaires, payer vos cotisations, et plus largement trouver toutes les informations relatives au statut d’auto-entrepreneur.'
-				),
-				ctaLabel: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.1.ctaLabel',
-					'Visiter le site'
-				),
-				ariaLabel: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.1.ariaLabel',
-					'Visiter le site auto-entrepreneur.urssaf.fr, nouvelle fenêtre.'
-				),
-			},
-			serviceAutoEntrepreneur,
-			{
-				url: 'https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/guide-officiel.html',
-				title: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.2.title',
-					'Guides pratiques de l’auto-entrepreneur'
-				),
-				description: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.2.description',
-					'Les guides de l’Urssaf dédiés aux auto-entrepreneurs et auto-entrepreneuses.'
-				),
-				logo: URSSAF,
-				ctaLabel: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.2.ctaLabel',
-					'Voir les guides'
-				),
-				ariaLabel: t(
-					'pages.simulateurs.auto-entrepreneur.externalLinks.2.ariaLabel',
-					'Voir les guides sur auto-entrepreneur.urssaf.fr, nouvelle fenêtre.'
-				),
-			},
-			premiersMoisUrssaf,
-		],
 		path: sitePaths.simulateurs['auto-entrepreneur'],
 		simulation: configAutoEntrepreneur,
 		codesCatégorieJuridique: ['1000'],

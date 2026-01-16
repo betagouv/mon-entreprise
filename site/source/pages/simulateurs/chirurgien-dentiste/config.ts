@@ -1,10 +1,7 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { servicePAM } from '@/external-links/servicePAM'
-import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configDentiste } from '../profession-libérale/simulationConfig'
+import ChirurgienDentiste from './ChirurgienDentiste'
 
 export function chirurgienDentisteConfig({
 	t,
@@ -39,10 +36,9 @@ export function chirurgienDentisteConfig({
 			'pages.simulateurs.chirurgien-dentiste.title',
 			'Simulateur de revenus pour chirurgien-dentiste en libéral'
 		),
-		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
 		simulation: configDentiste,
 		codesCatégorieJuridique: ['1000', '5410'],
-		component: ProfessionLibérale,
+		component: ChirurgienDentiste,
 	} as const)
 }

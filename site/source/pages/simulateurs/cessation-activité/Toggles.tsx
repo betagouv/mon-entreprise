@@ -7,8 +7,8 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { H3 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { ajusteLaSituation } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 export const CessationActivitéToggles = () => {
