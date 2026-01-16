@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 import {
 	SEUIL_PROFESSIONNALISATION
-} from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
+} from '@/contextes/économie-collaborative'
 import { Conseil, Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
 import { montantToString } from '@/domaine/Montant'
 import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
@@ -32,7 +32,7 @@ La **location meublée** est soumise à des régimes fiscaux et sociaux spécifi
 En tant que loueur en meublé, vous devez :
 - **Déclarer vos recettes** issues de la location
 - **Choisir un régime fiscal** (micro-BIC ou régime réel)
-- **Cotiser au régime social** adapté à votre situation : <Valeur>{montantToString(SEUIL_PROFESSIONNALISATION)}</Valeur>
+- **Cotiser au régime social** adapté à votre situation : <Valeur>{montantToString(SEUIL_PROFESSIONNALISATION.MEUBLÉ)}</Valeur>
 
 
 <RecettesDéclaréesS />
@@ -50,12 +50,12 @@ En tant que loueur en meublé, vous devez :
 	</thead>
 	<tbody>
 	<tr>
-		<td>Moins de <Valeur couleur="primary">{montantToString(SEUIL_PROFESSIONNALISATION)}</Valeur></td>
+		<td>Moins de <Valeur couleur="primary">{montantToString(SEUIL_PROFESSIONNALISATION.MEUBLÉ)}</Valeur></td>
 		<td>Pas de cotisations obligatoires</td>
 		<td>Revenus considérés comme patrimoniaux</td>
 	</tr>
 	<tr>
-		<td>Plus de <Valeur couleur="primary">{montantToString(SEUIL_PROFESSIONNALISATION)}</Valeur></td>
+		<td>Plus de <Valeur couleur="primary">{montantToString(SEUIL_PROFESSIONNALISATION.MEUBLÉ)}</Valeur></td>
 		<td>Régime général ou micro-social</td>
 		<td>Activité professionnelle</td>
 	</tr>

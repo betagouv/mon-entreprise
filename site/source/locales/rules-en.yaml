@@ -3651,7 +3651,7 @@ dirigeant . indépendant . cotisations et contributions . début activité:
       titre.fr: assiette forfaitaire maladie
   description.en: >
     [automatic] When you start your business, as your professional income is not
-    known, your
+    known, the
 
     contributions** for the first two years are calculated on a **lump-sum basis**.
 
@@ -3724,7 +3724,7 @@ dirigeant . indépendant . cotisations et contributions . déduction tabac:
 
     special old-age pension levy). However, please note that
 
-    the fact that by contributing on a smaller basis, excluding tobacconist's income, your
+    the fact that if you contribute on a smaller basis, excluding tobacconist's revenues
 
     will reduce your pension entitlement under the old-age insurance scheme for
 
@@ -6124,7 +6124,7 @@ entreprise . exercice:
     date trop ancienne:
       description.en:
         '[automatic] The date entered is too old. The simulator does not
-        integrate scales before 2022.'
+        include scales before 2022.'
       description.fr:
         La date saisie est trop ancienne. Le simulateur n’intègre pas
         les barèmes avant 2022.
@@ -6410,15 +6410,18 @@ entreprise . imposition . IS . prorata temporis:
     plafonds utilisés dans le barème de l’impôt sur les sociétés.
   note.en: >
     [automatic] Here, the number of days in the financial year is divided by 1
-    year. In reality, we should divide the number of months in the financial
-    year by 12, and for incomplete months, divide the number of days by 30.
+    year. In reality, we should
+
+    the number of months in the year to 12 months, and for incomplete months to
+
+    the number of days to 30 days.
 
 
-    > **Example for a financial year running from January 1 to October 15:**
+    &gt; **Example for a financial year running from January 1 to October 15:**
 
-    > - theoretical prorata temporis = (9 full months + (15 days / 30)) / 12 = 79.17
+    &gt; theoretical prorata temporis = (9 full months + (15 days / 30)) / 12 = 79.17%.
 
-    > - calculated prorata temporis = 288 days / 365 = 78.90
+    &gt; - calculated prorata temporis = 288 days / 365 = 78.90
   note.fr: >
     Ici on rapporte le nombre de jours de l’exercice à 1 an. En réalité on
     devrait

@@ -447,8 +447,6 @@ contact:
     vous invitons à <2>contacter directement un conseiller de l'Urssaf</2>qui
     pourra vous renseigner.
 conversation:
-  multiple-answer:
-    aria-label: Choix multiples
   no: Non
   yes: Oui
   yes-no:
@@ -1523,6 +1521,7 @@ pages:
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
             améliorer le remboursement des frais de santé.</1>
           title: Vos prestations santé
+      meilleure-option: Option la plus avantageuse.
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie
@@ -1555,6 +1554,9 @@ pages:
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
         éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
+      option-applicable: Option applicable.
+      option-non-applicable: Option non applicable.
+      option-sous-conditions: Option applicable sous conditions.
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
@@ -1793,17 +1795,36 @@ pages:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
     location-de-logement-meublé:
-      avertissement:
-        dépassement-du-plafond: Vous dépassez le plafond autorisé (<1></1>) pour
-          déclarer vos revenus de l'économie collaborative avec un statut social
-          au régime général. Vous devez vous orienter vers les statuts
-          d'auto-entrepreneur ou de travailleur indépendant.
-        pas-de-cotisation: Le montant de vos recettes est inférieur à <2></2> et votre
-          activité n'est pas considérée comme professionnelle. Vous n'êtes pas
-          obligé de vous affilier à la sécurité sociale. Vous pouvez toutefois
-          le faire si vous souhaitez bénéficier d'une protection sociale
-          (assurance maladie, retraite…) en contrepartie du paiement des
-          cotisations sociales.
+      affiliation:
+        indéterminée:
+          texte: "Pour déterminer si vous devez vous affilier, nous avons besoin de
+            connaître :"
+          titre: L'obligation d'affiliation dépend de votre situation
+        non-obligatoire:
+          affiliation-volontaire: Vous pouvez toutefois choisir de vous affilier volontairement.
+          lien-urssaf: En savoir plus sur les régimes d'économie collaborative
+          texte: Vous n'êtes pas obligé de vous affilier à un régime de sécurité sociale
+            et ne payez pas de cotisations sociales.
+          titre: Pas d'affiliation obligatoire
+        obligatoire:
+          texte: Vous devez obligatoirement déclarer vos revenus et des cotisations
+            sociales sont dues.
+          titre: Affiliation obligatoire
+      chambre-hôtes:
+        non-pris-en-charge: Le cas des chambres d'hôtes n'est pas encore pris en charge
+          par ce simulateur.
+      comparateur:
+        applicable: Applicable
+        et: " et "
+        indiquez: Indiquez
+        non-applicable: Non applicable
+        pour-savoir: pour savoir si ce régime est applicable dans votre situation
+        sur-recettes-courte-durée: Sur les recettes de courte durée uniquement
+      conditions:
+        autresRevenus: le montant de vos autres revenus
+        classement: le classement du logement
+        recettesCourteDurée: les recettes de courte durée
+        typeDurée: le type de durée
       externalLinks:
         "1":
           description: Vous louez des logements meublés ou des biens ? Le service Économie
@@ -1817,27 +1838,69 @@ pages:
         ogDescription: Ce simulateur permet de calculer les revenus générés par la
           location de logements meublés. Il aide les propriétaires à anticiper
           leurs gains et optimiser leur fiscalité dans ce cadre spécifique.
-        ogTitle: Simulateur de revenu pour location de logement meublé
-        titre: Simulateur de revenu pour location de logement meublé
+        ogTitle: "Location de meublé : Choix du régime social"
+        titre: "Location de meublé : Choix du régime social"
       objectifs:
+        autres-revenus:
+          aria-label: Montant des autres revenus annuels
+          titre: Autres revenus annuels
         cotisations: Cotisations sociales
+        recettes:
+          titre: Recettes
+        recettes-nettes:
+          aria-label: Montant des recettes nettes
+          titre: Recettes nettes
         revenu-net: Revenu net
       questions:
-        regime:
-          options:
-            estimation: Estimation des cotisations
-            micro-entrepreneur:
-              description: Vous payez un pourcentage fixe de votre chiffre d'affaires.
-              label: Micro-entreprise
-            régime-général:
-              description: Comme pour un salarié, des cotisations sociales seront prélevées à
-                la source.
-              label: Régime général (cotisations URSSAF)
-            travailleur-indépendant:
-              description: Vous payez des cotisations sociales sur votre bénéfice.
-              label: Travailleur indépendant
+        alsace-moselle:
+          libellé: Votre hébergement est-il situé en Alsace-Moselle ?
+        classement:
+          classé:
+            description: Votre hébergement est classé meublé de tourisme (de 1 à 5 étoiles).
+            label: Classé
+          libellé: Votre hébergement est-il classé meublé de tourisme ?
+          mixte:
+            description: Vous proposez à la fois des hébergements classés et non classés.
+            label: Mixte
+          non-classé:
+            description: Votre hébergement n'a pas de classement officiel.
+            label: Non classé
+        premiere-annee:
+          libellé: Est-ce votre première année d'activité ?
+        recettes-courte-durée:
+          aria-label: Montant des recettes pour la location courte durée
+          libellé: Quelle part des recettes provient de la location courte durée ?
+        type-durée:
+          courte:
+            description: Vous proposez uniquement de la location de courte durée (type
+              Airbnb, moins de 3 mois).
+            label: Location courte durée uniquement
+          libellé: Proposez-vous de la location courte ou longue durée ?
+          longue:
+            description: Vous proposez uniquement de la location de longue durée (bail de
+              résidence principale, plus de 3 mois).
+            label: Location longue durée uniquement
+          mixte:
+            description: Vous proposez à la fois de la location courte durée et longue
+              durée.
+            label: Mixte (courte et longue durée)
+      régimes:
+        micro-entreprise:
+          libellé: Auto-entrepreneur
+          lien: En savoir plus sur autoentrepreneur.urssaf.fr
+        régime-général:
+          libellé: Régime général simplifié
+          lien: En savoir plus sur Urssaf.fr
+        titre: Régimes de sécurité sociale
+        travailleur-indépendant:
+          libellé: Travailleur indépendant (hors auto-entrepreneur)
+          lien: En savoir plus sur urssaf.fr
       shortname: Location de logement meublé
-      title: Simulateur de revenu pour location de logement meublé
+      title: "Location de meublé : Choix du régime social"
+      type-hébergement:
+        aria-label: Type d'hébergement
+        chambre-hôte: Chambre d'hôtes
+        meublé-tourisme: Meublé de tourisme
     lodeom:
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération

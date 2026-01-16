@@ -14,7 +14,6 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		icône: '🛖',
 		beta: true,
-		hidden: true,
 		iframePath: 'simulateur-location-de-logement-meuble',
 		pathId: 'simulateurs.location-de-logement-meublé',
 		shortName: t(
@@ -23,7 +22,7 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 		),
 		title: t(
 			'pages.simulateurs.location-de-logement-meublé.title',
-			'Simulateur de revenu pour location de logement meublé'
+			'Location de meublé : Choix du régime social'
 		),
 		externalLinks: [
 			{
@@ -50,11 +49,11 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 		meta: {
 			title: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.titre',
-				'Simulateur de revenu pour location de logement meublé'
+				'Location de meublé : Choix du régime social'
 			),
 			ogTitle: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.ogTitle',
-				'Simulateur de revenu pour location de logement meublé'
+				'Location de meublé : Choix du régime social'
 			),
 			description: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.description',

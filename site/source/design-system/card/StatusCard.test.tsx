@@ -119,4 +119,52 @@ describe('StatusCard', () => {
 		expect(valeurSecondaireIndex).toBeLessThan(complementIndex)
 		expect(complementIndex).toBeLessThan(actionIndex)
 	})
+
+	it('affiche une icône pour les options non applicables', () => {
+		renderWithTheme(
+			<StatusCard status="nonApplicable">
+				<StatusCard.Titre>Option non applicable</StatusCard.Titre>
+			</StatusCard>
+		)
+
+		expect(screen.getByTitle('Option non applicable.')).toBeInTheDocument()
+	})
+
+	it('affiche une icône pour les options applicables', () => {
+		renderWithTheme(
+			<StatusCard status="applicable">
+				<StatusCard.Titre>Option applicable</StatusCard.Titre>
+			</StatusCard>
+		)
+
+		expect(screen.getByTitle('Option applicable.')).toBeInTheDocument()
+	})
+
+	it('affiche une icône pour les options sous conditions', () => {
+		renderWithTheme(
+			<StatusCard status="sousConditions">
+				<StatusCard.Titre>Option sous conditions</StatusCard.Titre>
+			</StatusCard>
+		)
+
+		expect(
+			screen.getByTitle('Option applicable sous conditions.')
+		).toBeInTheDocument()
+	})
+
+	it("n'affiche pas d'icône si pas de status", () => {
+		renderWithTheme(
+			<StatusCard>
+				<StatusCard.Titre>Option sans status</StatusCard.Titre>
+			</StatusCard>
+		)
+
+		expect(
+			screen.queryByTitle('Option non applicable.')
+		).not.toBeInTheDocument()
+		expect(screen.queryByTitle('Option applicable.')).not.toBeInTheDocument()
+		expect(
+			screen.queryByTitle('Option applicable sous conditions.')
+		).not.toBeInTheDocument()
+	})
 })
