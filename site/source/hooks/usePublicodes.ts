@@ -5,7 +5,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function usePublicodes() {
 	const engine = useEngine()

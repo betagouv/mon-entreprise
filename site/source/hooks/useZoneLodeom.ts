@@ -1,5 +1,5 @@
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export const zones = ['zone un', 'zone deux']
 

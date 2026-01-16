@@ -210,6 +210,7 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
+Version bêta: Beta version
 Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
 Voir les simulateurs personnalisés: See customized simulators
@@ -272,8 +273,11 @@ betawarning: "<0><0>This tool is in beta version</0>: we are working on
 cards:
   simulator-resource:
     cta: Access the simulator
-certains critères, en savoir plus sur service-public:
-  fr, nouvelle fenêtre: certain criteria, find out more on service-public.fr, new window
+certains critères, en savoir plus sur entreprendre:
+  service-public:
+    gouv:
+      fr, nouvelle fenêtre: certain criteria, find out more at
+        entreprendre.service-public.gouv.fr, new window
 checklist:
   showmore:
     closed: Read more
@@ -514,16 +518,6 @@ footer:
 février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
 gérer:
-  choix:
-    chomage-partiel:
-      body: Calculate the amount remaining to be paid after government reimbursement
-        when you activate the scheme for an employee.
-      cta: See the simulator
-      title: Partial activity
-    is:
-      body: Calculate your corporate income tax liability based on your profit.
-      cta: Launch simulator
-      title: Estimate corporate tax liability
   ressources:
     annuaire-entreprises:
       aria-label: Company directory, new window
@@ -1550,11 +1544,7 @@ pages:
       href: https://www.urssaf.fr/en/accueil/services/travail-etranger-mobilite.html
       intro: From now on, for all your international mobility requests, the forms
         corresponding to your situation are available on the <2>International
-        Mobility Service</2> page.
-      meta:
-        description: Interactive form to be completed when working abroad
-        title: "Self-employed workers: applying for mobility in Europe"
-      shortname: International mobility request
+        Mobility service</2> page.
       title: International mobility request
     dividendes:
       meta:
@@ -1874,6 +1864,7 @@ pages:
         title: PAMC plan simulators
       shortname: PAMC
       title: Contribution and income simulator for PAMC
+      titre: What do you do for a living?
     pharmacien:
       meta:
         description: Calculation of net income after deduction of contributions from

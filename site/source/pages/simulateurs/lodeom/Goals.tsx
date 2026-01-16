@@ -7,10 +7,10 @@ import RéductionMoisParMois from '@/components/RéductionDeCotisations/Réducti
 import { SimulationGoals } from '@/components/Simulation'
 import { Body, Message } from '@/design-system'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
-import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,

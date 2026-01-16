@@ -31,7 +31,6 @@ export function impôtSociétéConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.impot-société.title',
 			'Simulateur d’impôt sur les sociétés'
 		),
-		nextSteps: ['salarié', 'comparaison-statuts'],
 		path: sitePaths.simulateurs.is,
 		hideDate: true,
 		component: ISSimulation,

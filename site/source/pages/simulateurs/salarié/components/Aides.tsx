@@ -9,8 +9,8 @@ import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'
 import { Emoji, SmallBody } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export default function Aides() {
 	const targetUnit = useSelector(targetUnitSelector)

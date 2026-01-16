@@ -3,10 +3,10 @@ import { Trans } from 'react-i18next'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
-import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { round } from '@/utils/number'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export default function WarningSalaireTrans() {
 	const zone = useZoneLodeom()
