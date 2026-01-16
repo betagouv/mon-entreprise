@@ -8,9 +8,8 @@ import {
 import { Li, StatusCard, Strong, Ul } from '@/design-system'
 
 import {
-	estApplicable,
 	estApplicableSurRecettesCourteDurée,
-	estNonApplicable,
+	getStatus,
 	StatutApplicabilité,
 } from './StatutApplicabilité'
 
@@ -23,16 +22,16 @@ export const SécuritéSocialeIndépendantsCard = ({
 }: SécuritéSocialeIndépendantsCardProps) => {
 	const { t } = useTranslation()
 
-	const applicable = estApplicable(résultat.résultat)
-	const nonApplicable = estNonApplicable(résultat.résultat)
+	const status = getStatus(résultat.résultat)
 	const surRecettesCourteDuréeUniquement = estApplicableSurRecettesCourteDurée(
 		résultat.résultat
 	)
 
-	const aUnComplément = applicable && surRecettesCourteDuréeUniquement
+	const aUnComplément =
+		status === 'applicable' && surRecettesCourteDuréeUniquement
 
 	return (
-		<StatusCard nonApplicable={nonApplicable}>
+		<StatusCard status={status}>
 			<StatusCard.Étiquette>
 				<RégimeTag régime={RegimeCotisation.travailleurIndependant} />
 			</StatusCard.Étiquette>

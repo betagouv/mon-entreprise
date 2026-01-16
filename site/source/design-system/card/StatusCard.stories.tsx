@@ -129,9 +129,36 @@ export const PlusieursÉtiquettes: Story = {
 	),
 }
 
+export const OptionApplicable: Story = {
+	render: () => (
+		<StatusCard status="applicable">
+			<StatusCard.Étiquette>
+				<Tag color="tertiary">AE</Tag>
+			</StatusCard.Étiquette>
+			<StatusCard.Titre>Auto-entrepreneur</StatusCard.Titre>
+			<StatusCard.ValeurSecondaire>Applicable</StatusCard.ValeurSecondaire>
+		</StatusCard>
+	),
+}
+
+export const OptionSousConditions: Story = {
+	render: () => (
+		<StatusCard status="sousConditions">
+			<StatusCard.Étiquette>
+				<Tag color="tertiary">AE</Tag>
+			</StatusCard.Étiquette>
+			<StatusCard.Titre>Auto-entrepreneur</StatusCard.Titre>
+			<StatusCard.ValeurSecondaire>
+				Indiquez le classement du logement pour savoir si ce régime est
+				applicable
+			</StatusCard.ValeurSecondaire>
+		</StatusCard>
+	),
+}
+
 export const OptionNonApplicable: Story = {
 	render: () => (
-		<StatusCard nonApplicable>
+		<StatusCard status="nonApplicable">
 			<StatusCard.Étiquette>
 				<Tag color="tertiary">AE</Tag>
 			</StatusCard.Étiquette>
