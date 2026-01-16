@@ -112,6 +112,12 @@ export default defineConfig(({ command, mode }) => ({
 						url: 'https://sentry.incubateur.net/',
 						authToken: process.env.SENTRY_AUTH_TOKEN,
 						telemetry: false,
+						errorHandler: (err) => {
+							console.warn(
+								'[sentry] Upload failed (non-blocking):',
+								err.message
+							)
+						},
 						release: {
 							// Use same release name as the one used in the app.
 							name: sentryReleaseName(mode),
