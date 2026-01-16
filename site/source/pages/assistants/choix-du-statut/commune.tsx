@@ -9,11 +9,11 @@ import { usePersistingState } from '@/components/utils/persistState'
 import { Body, HelpButtonWithPopover } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import {
 	enregistreLesRéponsesÀLaQuestion,
 	enregistreLesRéponsesAuxQuestions,
 } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'

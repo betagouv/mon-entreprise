@@ -20,8 +20,8 @@ import {
 } from '@/design-system'
 import { euros } from '@/domaine/Montant'
 import { heuresParMois } from '@/domaine/Quantité'
-import { useEngine } from '@/hooks/useEngine'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { Options } from '@/utils/réductionDeCotisations'
 
 type Props = {

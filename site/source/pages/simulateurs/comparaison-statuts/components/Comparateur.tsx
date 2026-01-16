@@ -38,6 +38,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
 				</SimulationGoals>
 			</Simulation>
+
 			<Spacing lg />
 
 			<Condition expression="entreprise . activité . nature . libérale . réglementée">
@@ -60,6 +61,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					</Trans>
 				</Message>
 			</Condition>
+
 			<Condition expression="entreprise . activité . nature . libérale . réglementée = non">
 				<Container
 					backgroundColor={(theme) =>
@@ -81,7 +83,9 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 						<ModifierOptions />
 					</div>
 				</Container>
+
 				<Détails namedEngines={namedEngines} expandRevenuSection />
+
 				<EngineDocumentationRoutes
 					basePath={absoluteSitePaths.simulateurs.comparaison}
 					namedEngines={namedEngines}

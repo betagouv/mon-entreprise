@@ -7,7 +7,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import './FicheDePaie.css'
 
 import { H3 } from '@/design-system'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'

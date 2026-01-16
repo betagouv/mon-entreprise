@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
-import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,

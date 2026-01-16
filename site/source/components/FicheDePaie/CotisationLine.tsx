@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { findReferenceInNode } from '@/utils/publicodes/publicodes'
 
 export default function CotisationLine({

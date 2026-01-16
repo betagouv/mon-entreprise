@@ -1,5 +1,5 @@
 import { ComponentType, ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -15,9 +15,11 @@ export default function EntrepriseDetails({
 	small = false,
 	headingTag = 'h3',
 }: Props) {
-	const { t } = useTranslation()
 	const companyDetails = useSelector(companyDetailsSelector)
 	const BodyComponent = small ? BodyWithoutMargin : Body
+
+	const DateDeCréation = () => <Strong>{companyDetails.dateDeCréation}</Strong>
+	const Commune = () => <Strong>{companyDetails.commune}</Strong>
 
 	return (
 		<>
@@ -29,14 +31,9 @@ export default function EntrepriseDetails({
 				{`${companyDetails.nom} ${companyDetails.siren}`}
 			</TitleComponent>
 			<BodyComponent>
-				{t(
-					'entreprise.détails',
-					'Entreprise créée le {{ date }} et domiciliée à {{ commune }}.',
-					{
-						date: <Strong>{companyDetails.dateDeCréation}</Strong>,
-						commune: <Strong>{companyDetails.commune}</Strong>,
-					}
-				)}
+				<Trans i18nKey="entreprise.détails">
+					Entreprise créée le <DateDeCréation /> et domiciliée à <Commune />.
+				</Trans>
 			</BodyComponent>
 		</>
 	)

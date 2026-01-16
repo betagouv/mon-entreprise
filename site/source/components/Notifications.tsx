@@ -11,10 +11,10 @@ import {
 	typography,
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { useInversionFail } from '@/hooks/useInversionFail'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
