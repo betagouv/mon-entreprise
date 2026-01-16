@@ -89,7 +89,7 @@ describe('Location de meublé', () => {
 				)
 
 				expect(
-					within(listeInfosManquantes).getByText(/montant des autres revenus/i)
+					within(listeInfosManquantes).getByText(/montant de vos autres revenus/i)
 				).toBeInTheDocument()
 			})
 
