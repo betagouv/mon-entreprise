@@ -10,22 +10,22 @@ export const getLibelléInfoManquante = (
 		case 'typeDurée':
 			return t(
 				'pages.simulateurs.location-de-logement-meublé.conditions.typeDurée',
-				'type de durée'
+				'le type de durée'
 			)
 		case 'autresRevenus':
 			return t(
 				'pages.simulateurs.location-de-logement-meublé.conditions.autresRevenus',
-				'montant des autres revenus'
+				'le montant de vos autres revenus'
 			)
 		case 'classement':
 			return t(
 				'pages.simulateurs.location-de-logement-meublé.conditions.classement',
-				'classement du logement'
+				'le classement du logement'
 			)
 		case 'recettesCourteDurée':
 			return t(
 				'pages.simulateurs.location-de-logement-meublé.conditions.recettesCourteDurée',
-				'recettes de courte durée'
+				'les recettes de courte durée'
 			)
 	}
 }

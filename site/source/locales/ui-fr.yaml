@@ -1556,7 +1556,9 @@ pages:
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
         éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
+      option-applicable: Option applicable.
       option-non-applicable: Option non applicable.
+      option-sous-conditions: Option applicable sous conditions.
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
@@ -1817,14 +1819,15 @@ pages:
       comparateur:
         applicable: Applicable
         et: " et "
+        indiquez: Indiquez
         non-applicable: Non applicable
-        sous-conditions: Applicable sous conditions
+        pour-savoir: pour savoir si ce régime est applicable dans votre situation
         sur-recettes-courte-durée: Sur les recettes de courte durée uniquement
       conditions:
-        autresRevenus: montant des autres revenus
-        classement: classement du logement
-        recettesCourteDurée: recettes de courte durée
-        typeDurée: type de durée
+        autresRevenus: le montant de vos autres revenus
+        classement: le classement du logement
+        recettesCourteDurée: les recettes de courte durée
+        typeDurée: le type de durée
       externalLinks:
         "1":
           description: Vous louez des logements meublés ou des biens ? Le service Économie
@@ -1891,7 +1894,7 @@ pages:
         régime-général:
           libellé: Régime général simplifié
         travailleur-indépendant:
-          libellé: Sécurité Sociale des Indépendants
+          libellé: Travailleur indépendant (hors auto-entrepreneur)
       shortname: Location de logement meublé
       title: "Location de meublé : Choix du régime social"
       type-hébergement:

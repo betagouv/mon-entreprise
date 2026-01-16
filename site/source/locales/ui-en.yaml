@@ -1466,7 +1466,9 @@ pages:
         versement-libératoire:
           label: Activate final payment in simulation
         éligible-acre: I'm eligible for Acre for my self-employed business
+      option-applicable: Applicable option.
       option-non-applicable: Option not applicable.
+      option-sous-conditions: Option available subject to conditions.
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
@@ -1703,11 +1705,12 @@ pages:
       comparateur:
         applicable: Applicable
         et: " and "
+        indiquez: Enter
         non-applicable: Not applicable
-        sous-conditions: Conditionally applicable
+        pour-savoir: to find out if this plan applies to your situation
         sur-recettes-courte-durée: On short-term revenues only
       conditions:
-        autresRevenus: other income
+        autresRevenus: the amount of your other income
         classement: housing classification
         recettesCourteDurée: short-term income
         typeDurée: type of duration
@@ -1777,7 +1780,7 @@ pages:
         régime-général:
           libellé: Simplified general scheme
         travailleur-indépendant:
-          libellé: Social Security for the Self-Employed
+          libellé: Self-employed (excluding auto-entrepreneur)
       shortname: Furnished apartment rental
       title: "Furnished rentals: Choosing the social security system"
       type-hébergement:
