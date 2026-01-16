@@ -1,10 +1,7 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { servicePAM } from '@/external-links/servicePAM'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configProfessionLibérale } from '../profession-libérale/simulationConfig'
-import PAMCHome from './PAMCHome'
+import { PAMCHome } from './PAMCHome'
 
 export function pamcConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -27,7 +24,6 @@ export function pamcConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 		},
 		shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),
-		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs.pamc,
 		simulation: configProfessionLibérale,
 		component: PAMCHome,

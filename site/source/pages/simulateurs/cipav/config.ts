@@ -1,10 +1,7 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { servicePLR } from '@/external-links/servicePLR'
-import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import cipavSimulationConfig from './simulationConfig'
+import { Cipav } from './Cipav'
+import { cipavSimulationConfig } from './simulationConfig'
 
 export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -34,11 +31,10 @@ export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.cipav.title',
 			'Simulateur de revenus pour professions libérales Cipav'
 		),
-		externalLinks: [servicePLR, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale'].cipav,
 		simulation: cipavSimulationConfig,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
-		component: ProfessionLibérale,
+		component: Cipav,
 		conseillersEntreprisesVariant: 'professions_liberales',
 	} as const)
 }

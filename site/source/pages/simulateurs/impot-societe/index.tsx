@@ -23,35 +23,55 @@ import { FromTop } from '@/components/ui/animate'
 import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
+import { useSimulatorData } from '@/hooks/useSimulatorData'
+import { SimulateurId } from '@/hooks/useSimulatorsData'
 import useYear from '@/hooks/useYear'
 import {
 	enregistreLaRéponseÀLaQuestion,
 	enregistreLesRéponsesAuxQuestions,
 } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { EngineProvider } from '@/utils/publicodes/EngineContext'
+
+import SimulateurPageLayout from '../SimulateurPageLayout'
+
+const nextSteps = ['salarié', 'comparaison-statuts'] satisfies SimulateurId[]
 
 export default function ISSimulation() {
-	return (
-		<SimulationContainer>
-			<SimulateurWarning
-				simulateur="is"
-				informationsComplémentaires={
-					<Body>
-						<Trans i18nKey="pages.simulateurs.is.warning">
-							Ce simulateur s’adresse aux{' '}
-							<abbr title="Très Petites Entreprises">TPE</abbr> : il prend en
-							compte les taux réduits de l’impôt sur les sociétés.
-						</Trans>
-					</Body>
-				}
-			/>
-			<Notifications />
+	const id = 'is'
+	const simulateurConfig = useSimulatorData(id)
+	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
 
-			<SimulationGoals toggles={<ExerciceDate />}>
-				<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
-			</SimulationGoals>
-			<Explanations />
-		</SimulationContainer>
+	return (
+		<EngineProvider value={engine}>
+			<SimulateurPageLayout
+				simulateurConfig={simulateurConfig}
+				isReady={isReady}
+				nextSteps={nextSteps}
+			>
+				<SimulationContainer>
+					<SimulateurWarning
+						simulateur="is"
+						informationsComplémentaires={
+							<Body>
+								<Trans i18nKey="pages.simulateurs.is.warning">
+									Ce simulateur s’adresse aux{' '}
+									<abbr title="Très Petites Entreprises">TPE</abbr> : il prend
+									en compte les taux réduits de l’impôt sur les sociétés.
+								</Trans>
+							</Body>
+						}
+					/>
+					<Notifications />
+
+					<SimulationGoals toggles={<ExerciceDate />}>
+						<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
+					</SimulationGoals>
+					<Explanations />
+				</SimulationContainer>
+			</SimulateurPageLayout>
+		</EngineProvider>
 	)
 }
 

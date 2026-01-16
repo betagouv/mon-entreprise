@@ -2,7 +2,7 @@ import rules, { RègleModeleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import ISSimulationConfig from '@/pages/simulateurs/impot-societe/simulationConfig'
+import { ISSimulationConfig } from '@/pages/simulateurs/impot-societe/simulationConfig'
 
 const situationParDéfaut = {
 	...ISSimulationConfig.situation,

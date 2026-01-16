@@ -1,6 +1,6 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-const ISSimulationConfig: SimulationConfig = {
+export const ISSimulationConfig: SimulationConfig = {
 	nomModèle: 'modele-social',
 	'unité par défaut': '€/an',
 	situation: {
@@ -10,5 +10,3 @@ const ISSimulationConfig: SimulationConfig = {
 		'entreprise . TVA . franchise de TVA': 'non',
 	},
 }
-
-export default ISSimulationConfig

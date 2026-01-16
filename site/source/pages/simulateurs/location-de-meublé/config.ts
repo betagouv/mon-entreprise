@@ -2,7 +2,6 @@ import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
 import AutoEntrepreneurPreview from '@/pages/simulateurs/_images/AutoEntrepreneurPreview.png'
 import LocationDeMeublé from '@/pages/simulateurs/location-de-meublé/LocationDeMeublé'
-import { URSSAF } from '@/utils/logos'
 
 export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -23,25 +22,6 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.location-de-logement-meublé.title',
 			'Location de meublé : Choix du régime social'
 		),
-		externalLinks: [
-			{
-				url: 'https://www.urssaf.fr/accueil/services/economie-collaborative.html',
-				title: t(
-					'pages.simulateurs.location-de-logement-meublé.externalLinks.1.title',
-					'Le service Économie collaborative'
-				),
-				description: t(
-					'pages.simulateurs.location-de-logement-meublé.externalLinks.1.description',
-					'Vous louez des logements meublés ou des biens ? Le service Économie collaborative vous facilite la déclaration et le paiement de vos cotisations.'
-				),
-				logo: URSSAF,
-				ctaLabel: t('external-links.service.ctaLabel', 'Accéder au service'),
-				ariaLabel: t(
-					'external-links.service.ariaLabel',
-					'Accéder au service sur urssaf.fr, nouvelle fenêtre'
-				),
-			},
-		],
 		path: sitePaths.simulateurs['location-de-logement-meublé'],
 		component: LocationDeMeublé,
 		meta: {

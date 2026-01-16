@@ -148,10 +148,6 @@ export interface PageConfig {
 	seoExplanations?: () => JSX.Element
 
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
-	/**
-	 * Indique si le simulateur utilise un modèle de règles Publicodes
-	 */
-	withPublicodes?: boolean
 }
 
 export type ConditionalExternalLink = ExternalLink & {

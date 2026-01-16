@@ -17,7 +17,6 @@ import {
 	Strong,
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
-import { useEngine } from '@/hooks/useEngine'
 import { useNavigation } from '@/lib/navigation'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
@@ -26,6 +25,7 @@ import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/Sta
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { usePreviousStep, useStepPaths } from './_components/useSteps'
 

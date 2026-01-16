@@ -2,7 +2,7 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 import { configProfessionLibérale } from '../profession-libérale/simulationConfig'
 
-const cipavSimulationConfig: SimulationConfig = {
+export const cipavSimulationConfig: SimulationConfig = {
 	...configProfessionLibérale,
 	situation: {
 		...configProfessionLibérale.situation,
@@ -11,5 +11,3 @@ const cipavSimulationConfig: SimulationConfig = {
 			"'rattaché CIPAV'",
 	},
 }
-
-export default cipavSimulationConfig

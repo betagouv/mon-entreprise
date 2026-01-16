@@ -1,7 +1,7 @@
 import rules from 'modele-social'
 import { it } from 'vitest'
 
-import ISSimulationConfig from '@/pages/simulateurs/impot-societe/simulationConfig'
+import { ISSimulationConfig } from '@/pages/simulateurs/impot-societe/simulationConfig'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import impotSocieteSituations from './impôt-société.yaml'

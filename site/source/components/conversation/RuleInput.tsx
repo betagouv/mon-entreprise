@@ -37,9 +37,9 @@ import {
 	UnitéMonétaire,
 	UnitéQuantité,
 } from '@/domaine/Unités'
-import { useEngine } from '@/hooks/useEngine'
 import { enregistreLesRéponsesÀLaQuestion } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { getMeta } from '@/utils/publicodes/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
