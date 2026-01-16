@@ -261,7 +261,6 @@ aria-label:
   dgfip: DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre
   economie-gouv: economie.gouv.fr, nouvelle fenêtre
   entreprendre-service-public: entreprendre.service-public.fr, nouvelle fenêtre
-  impots-gouv: impots.gouv.fr, nouvelle fenêtre
   ircec: Ircec, accéder à ircec.fr, nouvelle fenêtre
   service-public: service-public.fr, nouvelle fenêtre
   urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
@@ -1837,11 +1836,6 @@ pages:
       warning:
         année-courante: Le montant calculé correspond aux cotisations de l’année {{ year
           }} (pour un revenu {{ year }}).
-        réforme:
-          aria-label: Lire la page dédiée à la réforme de l’assiette et du barème des
-            cotisations sur le site de l’Urssaf, nouvelle fenêtre
-          texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
-            encore implémentée sur ce simulateur.
     is:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
