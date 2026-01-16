@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
-import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
 	ChampSaisieProps,
@@ -14,7 +14,9 @@ export const ObjectifRecettes = () => {
 	const { situation, set } = useEconomieCollaborative()
 	const { t } = useTranslation()
 
-	const valeur = situation.recettes
+	const estMeubléTourisme = situation.typeHébergement === 'meublé-tourisme'
+	const valeur = estMeubléTourisme ? situation.recettes : O.none()
+
 	const handleChange = useCallback(
 		(valeur: O.Option<Montant<'€/an'>>) => set.recettes(valeur),
 		[set]
@@ -35,7 +37,7 @@ export const ObjectifRecettes = () => {
 		[handleChange, valeur]
 	)
 
-	if (situation.typeHébergement !== 'meublé-tourisme') {
+	if (!estMeubléTourisme) {
 		return null
 	}
 
@@ -51,4 +53,3 @@ export const ObjectifRecettes = () => {
 		/>
 	)
 }
-

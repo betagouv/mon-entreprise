@@ -424,8 +424,6 @@ contact:
     any action, please <2>contact an Urssaf advisor who</2>will be able to help
     you.
 conversation:
-  multiple-answer:
-    aria-label: Multiple choice
   no: No
   yes: Yes
   yes-no:
@@ -1735,7 +1733,6 @@ pages:
           titre: Other annual income
         cotisations: Social security contributions
         recettes:
-          aria-label: Total revenue
           titre: Recipes
         recettes-nettes:
           aria-label: Net revenue
