@@ -50,30 +50,27 @@ export const StatutApplicabilité = ({ résultat }: StatutApplicabilitéProps) =
 					)}
 				</Strong>
 			)}
-			{estSousConditions && (
+			{estSousConditions && conditionsManquantes.length > 0 && (
 				<>
-					<Strong>
-						{t(
-							'pages.simulateurs.location-de-logement-meublé.comparateur.sous-conditions',
-							'Applicable sous conditions'
-						)}
-					</Strong>
-					{conditionsManquantes.length > 0 && (
-						<>
-							{' : '}
-							{conditionsManquantes.map((condition, index) => (
-								<span key={condition}>
-									{index > 0 &&
-										(index === conditionsManquantes.length - 1
-											? t(
-													'pages.simulateurs.location-de-logement-meublé.comparateur.et',
-													' et '
-											  )
-											: ', ')}
-									{getLibelléInfoManquante(t, condition)}
-								</span>
-							))}
-						</>
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.comparateur.indiquez',
+						'Indiquez'
+					)}{' '}
+					{conditionsManquantes.map((condition, index) => (
+						<span key={condition}>
+							{index > 0 &&
+								(index === conditionsManquantes.length - 1
+									? t(
+											'pages.simulateurs.location-de-logement-meublé.comparateur.et',
+											' et '
+										)
+									: ', ')}
+							<Strong>{getLibelléInfoManquante(t, condition)}</Strong>
+						</span>
+					))}{' '}
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.comparateur.pour-savoir',
+						'pour savoir si ce régime est applicable dans votre situation'
 					)}
 				</>
 			)}
