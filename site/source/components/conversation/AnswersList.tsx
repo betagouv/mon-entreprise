@@ -22,7 +22,6 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EvaluatedRule } from '@/domaine/publicodes/EvaluatedRule'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import {
 	enregistreLaRéponseÀLaQuestion,
@@ -34,6 +33,7 @@ import { companySituationSelector } from '@/store/selectors/company/companySitua
 import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicablesNoms.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { NoOp } from '@/utils/NoOp'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 const { Body, H2, H3, Intro, Link, Strong, Ul } = typography

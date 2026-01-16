@@ -17,7 +17,6 @@ import {
 	Strong,
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
-import { useEngine } from '@/hooks/useEngine'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
@@ -26,6 +25,7 @@ import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/Engine
 import { useSitePaths } from '@/sitePaths'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { usePreviousStep } from './_components/useSteps'
 

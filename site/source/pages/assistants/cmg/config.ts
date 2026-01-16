@@ -35,6 +35,5 @@ export function CMGConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Ce simulateur permet d’estimer le montant du complément transitoire au CMG Rémunération.'
 			),
 		},
-		withPublicodes: false,
 	} as const)
 }

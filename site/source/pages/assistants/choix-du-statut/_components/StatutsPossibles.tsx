@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 import { StatutTag, StatutType } from '@/components/StatutTag'
 import { H5, Li, Message, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 const STATUTS = [
 	'entreprise . catégorie juridique . EI . EI',

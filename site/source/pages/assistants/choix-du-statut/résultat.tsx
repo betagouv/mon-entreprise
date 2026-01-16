@@ -23,9 +23,9 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { useSitePaths } from '@/sitePaths'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 

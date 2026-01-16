@@ -14,9 +14,9 @@ import {
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { debounce } from '@/utils'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'

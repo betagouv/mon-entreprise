@@ -9,8 +9,8 @@ import {
 	SwitchToggleGroup,
 } from '@/components/RéductionDeCotisations/réductionDeCotisations'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { réductionGénéraleDottedName } from '@/utils/réductionDeCotisations'
 
 export default function CongésPayésSwitch() {

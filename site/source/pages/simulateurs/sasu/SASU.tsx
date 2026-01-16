@@ -10,58 +10,75 @@ import Simulation, {
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Body, H2 } from '@/design-system'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
+import { useSimulatorData } from '@/hooks/useSimulatorData'
+import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
+import SimulateurPageLayout from '../SimulateurPageLayout'
 import ExplicationsSalaire from './components/Explications'
 
+const nextSteps = ['is', 'comparaison-statuts'] satisfies SimulateurId[]
+
 export function SASUSimulation() {
+	const id = 'sasu'
+	const simulateurConfig = useSimulatorData(id)
+	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+
 	return (
-		<>
-			<Simulation
-				explanations={<ExplicationsSalaire />}
-				afterQuestionsSlot={<YearSelectionBanner />}
+		<EngineProvider value={engine}>
+			<SimulateurPageLayout
+				simulateurConfig={simulateurConfig}
+				isReady={isReady}
+				nextSteps={nextSteps}
 			>
-				<SimulateurWarning
-					simulateur="sasu"
-					informationsComplémentaires={
-						<Body>
-							<Trans i18nKey="pages.simulateurs.sasu.warning">
-								Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le
-								revenu (IR). Seule l’option pour l’impôt sur les sociétés est
-								implémentée (IS).
-							</Trans>
-						</Body>
-					}
-				/>
-				<SimulationGoals>
-					<PeriodSwitch />
-					<SimulationGoal dottedName="assimilé salarié . rémunération . totale" />
-					<SimulationGoal
-						editable
-						small
-						dottedName="assimilé salarié . rémunération . brute"
+				<Simulation
+					explanations={<ExplicationsSalaire />}
+					afterQuestionsSlot={<YearSelectionBanner />}
+				>
+					<SimulateurWarning
+						simulateur="sasu"
+						informationsComplémentaires={
+							<Body>
+								<Trans i18nKey="pages.simulateurs.sasu.warning">
+									Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le
+									revenu (IR). Seule l’option pour l’impôt sur les sociétés est
+									implémentée (IS).
+								</Trans>
+							</Body>
+						}
 					/>
-					<SimulationGoal
-						editable={false}
-						small
-						dottedName="assimilé salarié . cotisations"
-					/>
-					<SimulationGoal dottedName="assimilé salarié . rémunération . nette . à payer avant impôt" />
-					<SimulationGoal
-						small
-						editable={false}
-						dottedName="assimilé salarié . rémunération . impôt"
-					/>
-					<SimulationGoal dottedName="assimilé salarié . rémunération . nette . après impôt" />
-				</SimulationGoals>
-			</Simulation>
-		</>
+					<SimulationGoals>
+						<PeriodSwitch />
+						<SimulationGoal dottedName="assimilé salarié . rémunération . totale" />
+						<SimulationGoal
+							editable
+							small
+							dottedName="assimilé salarié . rémunération . brute"
+						/>
+						<SimulationGoal
+							editable={false}
+							small
+							dottedName="assimilé salarié . cotisations"
+						/>
+						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . à payer avant impôt" />
+						<SimulationGoal
+							small
+							editable={false}
+							dottedName="assimilé salarié . rémunération . impôt"
+						/>
+						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . après impôt" />
+					</SimulationGoals>
+				</Simulation>
+			</SimulateurPageLayout>
+		</EngineProvider>
 	)
 }
 
 export const SeoExplanations = () => {
 	const documentationPathModèleSocial = useDocumentationPath('modele-social')
-	const engineModeleSocial = useEngine('modele-social')
+	const engineModeleSocial = useEngineFromModèle('modele-social')
 
 	return (
 		<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">

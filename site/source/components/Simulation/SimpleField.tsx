@@ -8,61 +8,14 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
-import { H3, Intro, Markdown, SmallBody, Spacing } from '@/design-system'
+import { Intro, Markdown, SmallBody, Spacing } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
-import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion, getMeta } from '@/utils/publicodes/publicodes'
 
-type SubSectionProp = {
-	dottedName: DottedName
-	hideTitle?: boolean
-	without?: DottedName[]
-}
-
-export function SubSection({
-	dottedName: sectionDottedName,
-	hideTitle = false,
-	without = [],
-}: SubSectionProp) {
-	const engine = useEngine()
-	const ruleTitle = engine.getRule(sectionDottedName)?.title
-	const nextSteps = useNextQuestions()
-	const situation = useSelector(situationSelector)
-
-	if (engine.evaluate(sectionDottedName).nodeValue === null) {
-		return null
-	}
-	const title = hideTitle ? null : ruleTitle
-	const subQuestions = [
-		...(Object.keys(situation) as Array<DottedName>),
-		...nextSteps,
-	].filter((nextStep) => {
-		const {
-			dottedName,
-			rawNode: { question },
-		} = engine.getRule(nextStep)
-
-		return (
-			!!question &&
-			dottedName.startsWith(sectionDottedName) &&
-			!without.some((dottedName) => nextStep.startsWith(dottedName))
-		)
-	})
-
-	return (
-		<>
-			{!!subQuestions.length && title && <H3>{title}</H3>}
-			{subQuestions.map((dottedName) => (
-				<SimpleField key={dottedName} dottedName={dottedName} />
-			))}
-		</>
-	)
-}
 type SimpleFieldProps = {
 	dottedName: DottedName
 	summary?: RuleNode['rawNode']['résumé']

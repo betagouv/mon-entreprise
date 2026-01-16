@@ -1,14 +1,8 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
-import { serviceIndépendantConditionnel as serviceIndépendant } from '@/external-links/serviceIndépendantConditionnel'
-import { servicePAM } from '@/external-links/servicePAM'
-import { servicePLR } from '@/external-links/servicePLR'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
-import IndépendantSimulation from '../indépendant/Indépendant'
 import { configEurl } from '../indépendant/simulationConfig'
+import EURL from './EURL'
 
 export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -45,14 +39,6 @@ export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.eurl.title',
 			"Simulateur de revenus pour dirigeant d'EURL"
 		),
-		nextSteps: ['is', 'comparaison-statuts'],
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [
-			serviceIndépendant,
-			servicePLR,
-			servicePAM,
-			serviceExpertComptable,
-		],
 		path: sitePaths.simulateurs.eurl,
 		simulation: configEurl,
 		codesCatégorieJuridique: [
@@ -74,6 +60,6 @@ export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'5460',
 			'5499',
 		],
-		component: IndépendantSimulation,
+		component: EURL,
 	} as const)
 }

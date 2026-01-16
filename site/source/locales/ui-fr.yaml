@@ -220,6 +220,7 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
+Version bêta: Version bêta
 Voir les autres simulateurs: Voir les autres simulateurs
 Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
 Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
@@ -290,8 +291,11 @@ betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
 cards:
   simulator-resource:
     cta: Accéder au simulateur
-certains critères, en savoir plus sur service-public:
-  fr, nouvelle fenêtre: certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre
+certains critères, en savoir plus sur entreprendre:
+  service-public:
+    gouv:
+      fr, nouvelle fenêtre: certains critères, en savoir plus sur
+        entreprendre.service-public.gouv.fr, nouvelle fenêtre
 checklist:
   showmore:
     closed: En savoir plus
@@ -540,17 +544,6 @@ footer:
 février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérer:
-  choix:
-    chomage-partiel:
-      body: Calculez le reste à payer après remboursement de l'État lorsque vous
-        activez le dispositif pour un employé.
-      cta: Voir le simulateur
-      title: Activité partielle
-    is:
-      body: Calculez le montant de l'impôt sur les sociétés à partir de votre
-        bénéfice.
-      cta: Lancer le simulateur
-      title: Estimer le montant de l’impôt sur les sociétés
   ressources:
     annuaire-entreprises:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
@@ -1630,12 +1623,7 @@ pages:
       href: https://www.urssaf.fr/accueil/services/travail-etranger-mobilite.html
       intro: Désormais, pour toutes vos demandes de mobilité internationale, les
         formulaires correspondants à votre situation sont disponibles sur la
-        page du <2>service Mobilité internationale.</2>
-      meta:
-        description: Formulaire interactif à compléter en cas d'exercice d'une activité
-          professionnelle à l'étranger
-        title: "Travailleur indépendant : demande de mobilité en Europe"
-      shortname: Demande de mobilité internationale
+        page du <2>service Mobilité internationale</2>.
       title: Demande de mobilité internationale
     dividendes:
       meta:
@@ -1979,6 +1967,7 @@ pages:
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: Simulateur de cotisations et de revenu pour les PAMC
+      titre: Quelle profession exercez-vous ?
     pharmacien:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
