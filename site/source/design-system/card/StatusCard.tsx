@@ -12,16 +12,18 @@ import { Grid } from '../layout'
 import { Body } from '../typography/paragraphs'
 import { CardContainer } from './Card'
 
+export type Status = 'applicable' | 'sousConditions' | 'nonApplicable'
+
 type StatusCardProps = {
 	isBestOption?: boolean
-	nonApplicable?: boolean
+	status?: Status
 	children: ReactNode
 }
 
 export const StatusCard = ({
 	children,
 	isBestOption,
-	nonApplicable,
+	status,
 }: StatusCardProps) => {
 	const { t } = useTranslation()
 
@@ -35,6 +37,7 @@ export const StatusCard = ({
 	const actions = findChildrenByType(children, StatusCard.Action)
 
 	const hasContent = titre || valeurSecondaire
+	const nonApplicable = status === 'nonApplicable'
 
 	return (
 		<StyledCardContainer inert $nonApplicable={nonApplicable}>
@@ -61,14 +64,34 @@ export const StatusCard = ({
 					<StyledEmoji emoji="🥇" />
 				</AbsoluteSpanTop>
 			)}
-			{nonApplicable && (
+			{status === 'applicable' && (
+				<AbsoluteSpanWithMargin
+					title={t(
+						'pages.simulateurs.comparaison-statuts.option-applicable',
+						'Option applicable.'
+					)}
+				>
+					<StyledStatusEmoji emoji="✅" />
+				</AbsoluteSpanWithMargin>
+			)}
+			{status === 'sousConditions' && (
+				<AbsoluteSpanWithMargin
+					title={t(
+						'pages.simulateurs.comparaison-statuts.option-sous-conditions',
+						'Option applicable sous conditions.'
+					)}
+				>
+					<StyledStatusEmoji emoji="⚠️" />
+				</AbsoluteSpanWithMargin>
+			)}
+			{status === 'nonApplicable' && (
 				<AbsoluteSpanWithMargin
 					title={t(
 						'pages.simulateurs.comparaison-statuts.option-non-applicable',
 						'Option non applicable.'
 					)}
 				>
-					<StyledDisabledEmoji emoji="🚫" />
+					<StyledStatusEmoji emoji="🚫" />
 				</AbsoluteSpanWithMargin>
 			)}
 			{(complément || actions.length > 0) && (
@@ -162,7 +185,7 @@ const StyledEmoji = styled(Emoji)`
 	font-size: 1.5rem;
 `
 
-const StyledDisabledEmoji = styled(Emoji)`
+const StyledStatusEmoji = styled(Emoji)`
 	font-size: 1.5rem;
 `
 
