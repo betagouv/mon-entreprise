@@ -1727,11 +1727,6 @@ pages:
       warning:
         année-courante: The amount calculated corresponds to the contributions for the
           year {{ year }} (for an income {{ year }}).
-        réforme:
-          aria-label: Read the page dedicated to the reform of the contribution base and
-            scale on the Urssaf website, new window
-          texte: The <2>reform of the contribution base and scale&lt;/2> has not yet been
-            implemented on this simulator.
     is:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
