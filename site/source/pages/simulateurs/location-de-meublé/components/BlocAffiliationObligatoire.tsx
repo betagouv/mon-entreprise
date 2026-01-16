@@ -20,7 +20,7 @@ export const BlocAffiliationObligatoire = () => {
 				<Body>
 					{t(
 						'pages.simulateurs.location-de-logement-meublé.affiliation.obligatoire.texte',
-						"Vous devez obligatoirement déclarer vos revenus et des cotisations sociales sont dues. Voici les différents régimes d'affiliation possibles :"
+						'Vous devez obligatoirement déclarer vos revenus et des cotisations sociales sont dues.'
 					)}
 				</Body>
 			</Message>

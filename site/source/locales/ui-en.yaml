@@ -1695,8 +1695,7 @@ pages:
             security contributions.
           titre: No compulsory membership
         obligatoire:
-          texte: "You must declare your income and social security contributions are due.
-            Here are the various possible affiliation schemes:"
+          texte: You must declare your income and social security contributions are due.
           titre: Mandatory membership
       chambre-hôtes:
         non-pris-en-charge: This simulator does not yet cover the case of bed and breakfasts.

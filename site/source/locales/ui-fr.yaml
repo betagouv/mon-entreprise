@@ -1807,9 +1807,8 @@ pages:
             et ne payez pas de cotisations sociales.
           titre: Pas d'affiliation obligatoire
         obligatoire:
-          texte: "Vous devez obligatoirement déclarer vos revenus et des cotisations
-            sociales sont dues. Voici les différents régimes d'affiliation
-            possibles :"
+          texte: Vous devez obligatoirement déclarer vos revenus et des cotisations
+            sociales sont dues.
           titre: Affiliation obligatoire
       chambre-hôtes:
         non-pris-en-charge: Le cas des chambres d'hôtes n'est pas encore pris en charge
