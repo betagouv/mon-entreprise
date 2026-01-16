@@ -1,9 +1,9 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
-import { serviceIndépendant } from '@/external-links/serviceIndépendant'
+import { serviceIndépendantConditionnel as serviceIndépendant } from '@/external-links/serviceIndépendantConditionnel'
 import { servicePAM } from '@/external-links/servicePAM'
 import { servicePLR } from '@/external-links/servicePLR'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
+import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -40,12 +40,12 @@ export function professionLibéraleConfig({
 			'pages.simulateurs.profession-libérale.title',
 			'Simulateur de revenus pour profession libérale'
 		),
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs['profession-libérale'].index,
 		simulation: configProfessionLibérale,
@@ -59,6 +59,6 @@ export function professionLibéraleConfig({
 			'5460',
 			'5499',
 		],
-		component: IndépendantPLSimulation,
+		component: ProfessionLibérale,
 	} as const)
 }

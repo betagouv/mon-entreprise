@@ -1,19 +1,21 @@
 import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
-import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
+import { useEngine } from '@/hooks/useEngine'
 import { useSitePaths } from '@/sitePaths'
+import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 
 import Comparateur from './components/Comparateur'
 import { EngineComparison } from './EngineComparison'
 
-function ComparateurStatutsUI() {
+export default function ComparateurStatuts() {
 	const engine = useEngine()
-	const situation = useRawSituation()
+	const situation = useSelector(completeSituationSelector)
 	const { absoluteSitePaths } = useSitePaths()
 
 	const assimiléEngine = useMemo(
@@ -77,8 +79,4 @@ function ComparateurStatutsUI() {
 			<Comparateur namedEngines={engines} />
 		</>
 	)
-}
-
-export default function ComparateurStatuts() {
-	return <ComparateurStatutsUI />
 }

@@ -11,38 +11,38 @@ export const IndépendantSimulationGoals = ({
 	<SimulationGoals toggles={toggles}>
 		<PeriodSwitch />
 		<Condition expression="entreprise . imposition = 'IR'">
-			<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal = non">
 				<SimulationGoal
 					appear={false}
 					dottedName="entreprise . chiffre d'affaires"
 				/>
 			</Condition>
-			<Condition expression="entreprise . imposition . régime . micro-entreprise">
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
 				<ChiffreAffairesActivitéMixte dottedName="entreprise . chiffre d'affaires" />
 			</Condition>
-			<Condition expression="entreprise . imposition . régime . micro-entreprise != oui">
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal != oui">
 				<SimulationGoal appear={false} dottedName="entreprise . charges" />
 			</Condition>
 		</Condition>
 		<Condition expression="entreprise . imposition = 'IS'">
 			<SimulationGoal
 				appear={false}
-				dottedName="dirigeant . rémunération . totale"
+				dottedName="indépendant . rémunération . totale"
 			/>
 		</Condition>
 
 		<SimulationGoal
 			small
 			editable={false}
-			dottedName="dirigeant . indépendant . cotisations et contributions"
+			dottedName="indépendant . cotisations et contributions"
 		/>
-		<Condition expression="entreprise . imposition . régime . micro-entreprise">
+		<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
 			<SimulationGoal appear={false} dottedName="entreprise . charges" />
 		</Condition>
-		<SimulationGoal dottedName="dirigeant . rémunération . net" />
+		<SimulationGoal dottedName="indépendant . rémunération . nette" />
 		<Condition expression="impôt . montant > 0">
 			<SimulationGoal small editable={false} dottedName="impôt . montant" />
 		</Condition>
-		<SimulationGoal dottedName="dirigeant . rémunération . net . après impôt" />
+		<SimulationGoal dottedName="indépendant . rémunération . nette . après impôt" />
 	</SimulationGoals>
 )

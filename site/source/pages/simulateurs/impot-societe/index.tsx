@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,12 +22,13 @@ import {
 import { FromTop } from '@/components/ui/animate'
 import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import useYear from '@/hooks/useYear'
 import {
-	batchUpdateSituation,
-	enregistreLaRéponse,
+	enregistreLaRéponseÀLaQuestion,
+	enregistreLesRéponsesAuxQuestions,
 } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 export default function ISSimulation() {
 	return (
@@ -84,7 +84,7 @@ function ExerciceDate() {
 								)}
 								onPress={() => {
 									dispatch(
-										batchUpdateSituation({
+										enregistreLesRéponsesAuxQuestions({
 											'entreprise . exercice . début': O.some(`01/01/${year}`),
 											'entreprise . exercice . fin': O.some(`31/12/${year}`),
 										} as Record<DottedName, O.Option<ValeurPublicodes>>)
@@ -106,13 +106,17 @@ function ExerciceDate() {
 				<RuleInput
 					dottedName={'entreprise . exercice . début'}
 					onChange={(x) =>
-						dispatch(enregistreLaRéponse('entreprise . exercice . début', x))
+						dispatch(
+							enregistreLaRéponseÀLaQuestion('entreprise . exercice . début', x)
+						)
 					}
 				/>{' '}
 				<RuleInput
 					dottedName={'entreprise . exercice . fin'}
 					onChange={(x) =>
-						dispatch(enregistreLaRéponse('entreprise . exercice . fin', x))
+						dispatch(
+							enregistreLaRéponseÀLaQuestion('entreprise . exercice . fin', x)
+						)
 					}
 				/>
 			</ExerciceDateContainer>

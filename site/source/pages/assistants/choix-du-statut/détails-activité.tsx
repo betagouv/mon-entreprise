@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -25,10 +24,11 @@ import {
 	Ul,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useIsIdle } from '@/hooks/useIsIddle'
 import { usePublicodes } from '@/hooks/usePublicodes'
 import { useSitePaths } from '@/sitePaths'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
 
 import {
@@ -242,7 +242,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 			)
 			if (!guichet) {
 				dispatch(
-					batchUpdateSituation({
+					enregistreLesRéponsesAuxQuestions({
 						'entreprise . activités . principale . code guichet': O.none(),
 						'entreprise . imposition . IR . type de bénéfices': O.none(),
 						'entreprise . activités . libérale': O.none(),
@@ -261,7 +261,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 			const PLRMétier = guichetToPLMétier(guichet)
 			const activité = getActivitéFromGuichet(guichet)
 			dispatch(
-				batchUpdateSituation({
+				enregistreLesRéponsesAuxQuestions({
 					'entreprise . activités . principale . code guichet': O.some(
 						guichet.code
 					),

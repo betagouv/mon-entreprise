@@ -1,5 +1,6 @@
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
+import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 import { URSSAF } from '@/utils/logos'
 
 import { config } from '../_configs/config'
@@ -61,6 +62,7 @@ export function réductionGénéraleConfig({
 					'Consulter le guide sur urssaf.fr, nouvelle fenêtre'
 				),
 			},
+			serviceEmployeur,
 			embaucherGérerSalariés,
 			nouvelEmployeur,
 		],

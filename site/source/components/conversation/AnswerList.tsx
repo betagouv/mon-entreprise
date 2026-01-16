@@ -1,11 +1,13 @@
-import { DottedName } from 'modele-social'
 import { RuleNode, utils } from 'publicodes'
 import React, { useCallback, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { EvaluatedRule, useEngine } from '@/components/utils/EngineContext'
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import RuleInput from '@/components/conversation/RuleInput'
+import Value from '@/components/EngineValue/Value'
+import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import {
 	Button,
 	Emoji,
@@ -17,23 +19,22 @@ import {
 	typography,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { EvaluatedRule } from '@/domaine/publicodes/EvaluatedRule'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
+import {
+	enregistreLaRéponseÀLaQuestion,
+	réinitialiseLaSimulation,
+} from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
-import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
-import {
-	companySituationSelector,
-	situationSelector,
-} from '@/store/selectors/simulationSelectors'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
+import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicablesNoms.selector'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { NoOp } from '@/utils/NoOp'
-import { evaluateQuestion } from '@/utils/publicodes'
-
-import Value from '../EngineValue/Value'
-import { JeDonneMonAvis } from '../JeDonneMonAvis'
-import { ExplicableRule } from './Explicable'
-import RuleInput from './RuleInput'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 const { Body, H2, H3, Intro, Link, Strong, Ul } = typography
 
@@ -124,7 +125,7 @@ export default function AnswerList({
 								</Button>
 							)}
 							onConfirm={() => {
-								dispatch(resetSimulation())
+								dispatch(réinitialiseLaSimulation())
 							}}
 							title={t('Êtes-vous sûr de vouloir effacer vos réponses ?')}
 						>
@@ -191,7 +192,7 @@ export default function AnswerList({
 												</Button>
 											)}
 											onConfirm={() => {
-												dispatch(resetSimulation())
+												dispatch(réinitialiseLaSimulation())
 												dispatch(resetCompany())
 											}}
 											title={t(
@@ -296,7 +297,7 @@ function AnswerElement(rule: RuleNode) {
 	const handleChange = useCallback(
 		(value: ValeurPublicodes | undefined) => {
 			questionDottedName &&
-				dispatch(enregistreLaRéponse(questionDottedName, value))
+				dispatch(enregistreLaRéponseÀLaQuestion(questionDottedName, value))
 		},
 		[dispatch, questionDottedName]
 	)

@@ -1,10 +1,10 @@
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
-import { serviceIndépendant } from '@/external-links/serviceIndépendant'
+import { serviceIndépendantConditionnel as serviceIndépendant } from '@/external-links/serviceIndépendantConditionnel'
 import { servicePAM } from '@/external-links/servicePAM'
 import { servicePLR } from '@/external-links/servicePLR'
-import { EntrepriseIndividuelle } from '@/pages/simulateurs/indépendant/EntrepriseIndividuelle'
-import { SeoExplanationsEI } from '@/pages/simulateurs/indépendant/SeoExplanationsEI'
+import { EntrepriseIndividuelle } from '@/pages/simulateurs/entreprise-individuelle/EntrepriseIndividuelle'
+import { SeoExplanations } from '@/pages/simulateurs/entreprise-individuelle/SeoExplanations'
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
@@ -50,17 +50,17 @@ export function entrepriseIndividuelleConfig({
 			'Simulateur pour entreprise individuelle (EI)'
 		),
 		nextSteps: ['comparaison-statuts'],
-		externalLinks: [
+		externalLinks: [premiersMoisUrssaf],
+		conditionalExternalLinks: [
 			serviceIndépendant,
 			servicePLR,
 			servicePAM,
 			serviceExpertComptable,
-			premiersMoisUrssaf,
 		],
 		path: sitePaths.simulateurs['entreprise-individuelle'],
 		simulation: configEntrepriseIndividuelle,
 		codesCatégorieJuridique: ['1000'],
 		component: EntrepriseIndividuelle,
-		seoExplanations: SeoExplanationsEI,
+		seoExplanations: SeoExplanations,
 	} as const)
 }
