@@ -68,7 +68,7 @@ export const RégimeGénéralCard = ({ résultat }: RégimeGénéralCardProps) =
 				<Link href="https://www.urssaf.fr/accueil/services/economie-collaborative.html">
 					{t(
 						'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.lien',
-						'En savoir plus sur Économie collaborative - Urssaf.fr'
+						'En savoir plus sur Urssaf.fr'
 					)}
 				</Link>
 			</StatusCard.Action>
