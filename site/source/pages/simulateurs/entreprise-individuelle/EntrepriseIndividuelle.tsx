@@ -1,4 +1,3 @@
-import AvertissementRéformeAssietteNonImplémentée from '@/components/AvertissementRéformeAssietteNonImplémentée'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
@@ -11,12 +10,7 @@ export const EntrepriseIndividuelle = () => (
 			explanations={<ExplicationsIndépendant />}
 			afterQuestionsSlot={<YearSelectionBanner />}
 		>
-			<SimulateurWarning
-				simulateur="entreprise-individuelle"
-				informationsComplémentaires={
-					<AvertissementRéformeAssietteNonImplémentée />
-				}
-			/>
+			<SimulateurWarning simulateur="entreprise-individuelle" />
 			<IndépendantSimulationGoals />
 		</Simulation>
 	</>
