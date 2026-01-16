@@ -8,7 +8,7 @@ import Header from '@/components/layout/Header'
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
@@ -73,11 +73,11 @@ const App = () => {
 	}
 
 	const documentationPathModèleSocial = useDocumentationPath('modele-social')
-	const engineModèleSocial = useEngine('modele-social')
+	const engineModèleSocial = useEngineFromModèle('modele-social')
 	const documentationPathModèleTI = useDocumentationPath('modele-ti')
-	const engineModèleTI = useEngine('modele-ti')
+	const engineModèleTI = useEngineFromModèle('modele-ti')
 	const documentationPathModèleAS = useDocumentationPath('modele-as')
-	const engineModèleAS = useEngine('modele-as')
+	const engineModèleAS = useEngineFromModèle('modele-as')
 
 	return (
 		<StyledLayout $isEmbedded={isEmbedded}>

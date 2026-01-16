@@ -3,10 +3,10 @@ import { Trans } from 'react-i18next'
 
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Strong } from '@/design-system'
-import { AbsoluteSitePaths } from '@/sitePaths'
+import { SimulateurId } from '@/hooks/useSimulatorsData'
 
 type SimulateurWarningProps = {
-	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>
+	simulateur: SimulateurId
 	informationsComplémentaires?: ReactNode
 }
 

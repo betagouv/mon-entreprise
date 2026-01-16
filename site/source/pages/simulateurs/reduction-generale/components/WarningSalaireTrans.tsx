@@ -1,9 +1,9 @@
 import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { useEngine } from '@/hooks/useEngine'
 import useYear from '@/hooks/useYear'
 import { round } from '@/utils/number'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export default function WarningSalaireTrans() {
 	const year = useYear()

@@ -37,8 +37,6 @@ export function coûtCréationEntrepriseConfig({
 		),
 		simulation: configCoûtCréationEntreprise,
 		component: CoutCreationEntreprise,
-		nextSteps: ['choix-statut'],
-
-		// Remove this "as const" when we upgrade to typescript v5:
+		// TODO: Remove this "as const" when we upgrade to typescript v5:
 	} as const)
 }

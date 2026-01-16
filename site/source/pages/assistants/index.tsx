@@ -4,7 +4,6 @@ import * as R from 'effect/Record'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
-import SimulateurOrAssistantPageWithPublicodes from '@/components/SimulateurOrAssistantPageWithPublicodes'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useNavigation } from '@/lib/navigation'
@@ -14,6 +13,7 @@ import { PageConfig } from '../simulateurs/_configs/types'
 import ChargesSocialesIndépendant from './declaration-charges-sociales-independant'
 import AideDéclarationIndépendant from './declaration-revenu-independants'
 import DéclarationRevenusPAMC from './declaration-revenus-pamc'
+import DemandeMobilité from './demande-mobilité'
 import ÉconomieCollaborative from './économie-collaborative'
 
 export default function Assistants() {
@@ -58,6 +58,10 @@ export default function Assistants() {
 					path={relativeSitePaths.assistants.économieCollaborative.index}
 					element={<ÉconomieCollaborative />}
 				/>
+				<Route
+					path={relativeSitePaths.assistants.formulaireMobilité}
+					element={<DemandeMobilité />}
+				/>
 				{assistants.map((assistant) => (
 					<Route
 						key={assistant.path}
@@ -65,17 +69,7 @@ export default function Assistants() {
 							assistant.path?.replace(absoluteSitePaths.assistants.index, '') +
 							'/*'
 						}
-						element={
-							assistant.withPublicodes === false ? (
-								<>
-									<SimulateurOrAssistantPage />
-								</>
-							) : (
-								<>
-									<SimulateurOrAssistantPageWithPublicodes />
-								</>
-							)
-						}
+						element={<SimulateurOrAssistantPage />}
 					/>
 				))}
 			</Routes>

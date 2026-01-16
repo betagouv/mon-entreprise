@@ -5,10 +5,9 @@ import { useSelector } from 'react-redux'
 
 import { Link } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/SimulationConfig'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { useEngine } from '@/hooks/useEngine'
 import { nomModèleSelector } from '@/store/selectors/simulation/config/nomModèle.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 type Props = {
 	documentationPath?: string
@@ -17,7 +16,6 @@ type Props = {
 	'aria-label'?: string
 	id?: string
 	children?: ReactNode
-	nomModèle?: NomModèle
 }
 
 // TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
@@ -28,13 +26,11 @@ export default function RuleLink({
 	engine,
 	'aria-label': ariaLabel,
 	id,
-	nomModèle,
 }: Props) {
-	const defaultNomModèle = useSelector(nomModèleSelector)
-	const nomModèleUsed = nomModèle ?? defaultNomModèle
+	const nomModèle = useSelector(nomModèleSelector)
 
-	const documentationIndex = useDocumentationPath(nomModèleUsed)
-	const defaultEngine = useEngine(nomModèleUsed)
+	const documentationIndex = useDocumentationPath(nomModèle)
+	const defaultEngine = useEngine()
 
 	const engineUsed = engine ?? defaultEngine
 

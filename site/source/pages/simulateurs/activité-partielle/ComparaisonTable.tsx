@@ -7,7 +7,7 @@ import RuleTitleWithRésumé from '@/components/EngineValue/RuleTitleWithRésum�
 import Value from '@/components/EngineValue/Value'
 import { FromTop } from '@/components/ui/animate'
 import { Strong } from '@/design-system'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { catchDivideByZeroError } from '@/utils/publicodes/publicodes'
 
 const net = 'salarié . rémunération . net . à payer avant impôt'

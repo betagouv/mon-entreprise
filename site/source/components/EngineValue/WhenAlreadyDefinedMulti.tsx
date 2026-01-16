@@ -2,7 +2,7 @@ import Engine from 'publicodes'
 import React from 'react'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function WhenAlreadyDefinedMulti({
 	dottedNames,

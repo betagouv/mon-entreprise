@@ -145,11 +145,6 @@ export interface PageConfig {
 
 	/** Composant React pour les explications SEO, qui apparaissent en dessous du simulateur */
 	seoExplanations?: () => JSX.Element
-
-	/**
-	 * Indique si le simulateur utilise un modèle de règles Publicodes
-	 */
-	withPublicodes?: boolean
 }
 
 export type ConditionalExternalLink = ExternalLink & {

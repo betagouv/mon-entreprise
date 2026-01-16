@@ -21,13 +21,13 @@ import {
 	pourcentage,
 	titresRestaurantParMois,
 } from '@/domaine/Quantité'
-import { useEngine } from '@/hooks/useEngine'
 import { useNavigation } from '@/lib/navigation'
 import {
 	enregistreLesRéponsesAuxQuestions,
 	updateUnit,
 } from '@/store/actions/actions'
 
+import { useEngineFromModèle } from './useEngineFromModèle'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 
 vi.mock('@/lib/navigation', () => ({
@@ -41,8 +41,8 @@ vi.mock('react-redux', () => ({
 }))
 const dispatchMock = vi.fn()
 
-vi.mock('@/hooks/useEngine', () => ({
-	useEngine: vi.fn(),
+vi.mock('@/hooks/useEngineFromModèle', () => ({
+	useEngineFromModèle: vi.fn(),
 }))
 
 describe('useSetSimulationFromSearchParams hook', () => {
@@ -94,9 +94,9 @@ describe('useSetSimulationFromSearchParams hook', () => {
 		})
 
 		const engine = new Engine(rules) as Engine<DottedName>
-		vi.mocked(useEngine).mockReturnValue(engine)
+		vi.mocked(useEngineFromModèle).mockReturnValue(engine)
 
-		renderHook(() => useSetSimulationFromSearchParams())
+		renderHook(() => useSetSimulationFromSearchParams('modele-social'))
 
 		expect(dispatchMock).toHaveBeenCalledWith(updateUnit('€/mois'))
 
@@ -151,9 +151,9 @@ describe('useSetSimulationFromSearchParams hook', () => {
 		})
 
 		const engine = new Engine(rules) as Engine<DottedName>
-		vi.mocked(useEngine).mockReturnValue(engine)
+		vi.mocked(useEngineFromModèle).mockReturnValue(engine)
 
-		renderHook(() => useSetSimulationFromSearchParams())
+		renderHook(() => useSetSimulationFromSearchParams('modele-social'))
 
 		expect(setSearchParamsMock).toHaveBeenCalledWith(
 			new URLSearchParams('utm_campaign=marketing'),

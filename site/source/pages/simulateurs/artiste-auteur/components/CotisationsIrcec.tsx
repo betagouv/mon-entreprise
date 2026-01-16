@@ -5,9 +5,9 @@ import Value from '@/components/EngineValue/Value'
 import { InstitutionLine } from '@/components/simulationExplanation/InstitutionsPartenaires/InstitutionLine'
 import { InstitutionLogo } from '@/components/simulationExplanation/InstitutionsPartenaires/InstitutionLogo'
 import { Body } from '@/design-system'
-import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { IRCEC } from '@/utils/logos'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 type Props = {
 	role?: string

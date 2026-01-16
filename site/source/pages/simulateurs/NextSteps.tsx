@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { Grid, H2, Spacing, Ul } from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
@@ -15,8 +16,8 @@ import ExternalLinkCard from './cards/ExternalLinkCard'
 
 interface NextStepsProps {
 	iframePath?: MergedSimulatorDataValues['iframePath']
-	nextSteps: MergedSimulatorDataValues['nextSteps']
-	externalLinks: ExternalLink[]
+	nextSteps?: SimulateurId[]
+	externalLinks?: ExternalLink[]
 }
 
 export default function NextSteps({

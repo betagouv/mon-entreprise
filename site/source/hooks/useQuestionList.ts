@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { questionsRéponduesNomSelector } from '@/store/selectors/simulation/questions/questionsRéponduesNom.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function useQuestionList(): [
 	questions: Array<RuleNode & { dottedName: DottedName }>,

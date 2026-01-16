@@ -6,7 +6,6 @@ import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
-import SimulateurOrAssistantPageWithPublicodes from '@/components/SimulateurOrAssistantPageWithPublicodes'
 import Loader from '@/components/utils/Loader'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Link } from '@/design-system'
@@ -71,15 +70,7 @@ export default function Simulateurs() {
 						}
 						element={
 							<Suspense fallback={<Loader />}>
-								{s.withPublicodes === false ? (
-									<>
-										<SimulateurOrAssistantPage />
-									</>
-								) : (
-									<>
-										<SimulateurOrAssistantPageWithPublicodes />
-									</>
-								)}
+								<SimulateurOrAssistantPage />
 							</Suspense>
 						}
 					/>

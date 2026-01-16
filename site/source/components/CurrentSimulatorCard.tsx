@@ -3,9 +3,9 @@ import { Trans } from 'react-i18next'
 
 import { Body, Emoji, Grid, Intro, Message } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { SimulateurCard } from './SimulateurCard'
 
