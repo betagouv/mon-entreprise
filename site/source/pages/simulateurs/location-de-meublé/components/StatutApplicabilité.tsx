@@ -63,7 +63,7 @@ export const StatutApplicabilité = ({ résultat }: StatutApplicabilitéProps) =
 									? t(
 											'pages.simulateurs.location-de-logement-meublé.comparateur.et',
 											' et '
-										)
+									  )
 									: ', ')}
 							<Strong>{getLibelléInfoManquante(t, condition)}</Strong>
 						</span>
