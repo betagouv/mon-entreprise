@@ -37,10 +37,9 @@ export const StatusCard = ({
 	const actions = findChildrenByType(children, StatusCard.Action)
 
 	const hasContent = titre || valeurSecondaire
-	const nonApplicable = status === 'nonApplicable'
 
 	return (
-		<StyledCardContainer inert $nonApplicable={nonApplicable}>
+		<StyledCardContainer $status={status}>
 			<CardBody>
 				{étiquettes.length > 0 && (
 					<Grid container spacing={1}>
@@ -48,7 +47,7 @@ export const StatusCard = ({
 					</Grid>
 				)}
 				{hasContent && (
-					<StyledContentWrapper as="div">
+					<StyledContentWrapper as="div" $status={status}>
 						{titre}
 						{valeurSecondaire}
 					</StyledContentWrapper>
@@ -137,31 +136,59 @@ StatusCard.ValeurSecondaire = StatusCardValeurSecondaire
 StatusCard.Complément = StatusCardComplément
 StatusCard.Action = StatusCardAction
 
+const getStatusBackgroundColor = (
+	status: Status | undefined,
+	darkMode: boolean
+) => {
+	if (!status) return undefined
+
+	const colors = {
+		applicable: darkMode
+			? 'rgba(34, 197, 94, 0.05)'
+			: 'rgba(34, 197, 94, 0.03)',
+		sousConditions: darkMode
+			? 'rgba(234, 179, 8, 0.05)'
+			: 'rgba(234, 179, 8, 0.03)',
+		nonApplicable: darkMode
+			? 'rgba(239, 68, 68, 0.05)'
+			: 'rgba(239, 68, 68, 0.03)',
+	}
+
+	return colors[status]
+}
+
+const getStatusTitleColor = (status: Status | undefined, darkMode: boolean) => {
+	if (!status) return undefined
+
+	const colors = {
+		applicable: darkMode ? 'rgb(134, 239, 172)' : 'rgb(20, 83, 45)',
+		sousConditions: darkMode ? 'rgb(253, 224, 71)' : 'rgb(113, 63, 18)',
+		nonApplicable: darkMode ? 'rgb(252, 165, 165)' : 'rgb(127, 29, 29)',
+	}
+
+	return colors[status]
+}
+
 const StyledCardContainer = styled(CardContainer)<{
-	$nonApplicable?: boolean
+	$status?: Status
 }>`
 	position: relative;
 	align-items: flex-start;
 	padding: 0;
 
-	${({ $nonApplicable, theme }) =>
-		$nonApplicable &&
+	${({ $status, theme }) =>
+		$status &&
 		`
-		opacity: 0.6;
-		background-color: ${
+		background-color: ${getStatusBackgroundColor(
+			$status,
 			theme.darkMode
-				? theme.colors.extended.dark[700]
-				: theme.colors.extended.grey[200]
-		} !important;
-		border-color: ${theme.colors.extended.grey[400]};
-		filter: grayscale(30%);
+		)} !important;
 
 		&:hover {
-			background-color: ${
+			background-color: ${getStatusBackgroundColor(
+				$status,
 				theme.darkMode
-					? theme.colors.extended.dark[700]
-					: theme.colors.extended.grey[200]
-			} !important;
+			)} !important;
 			box-shadow: ${
 				theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]
 			};
@@ -203,7 +230,7 @@ const CardFooter = styled.div`
 	padding: 1.5rem;
 `
 
-const StyledContentWrapper = styled(Body)`
+const StyledContentWrapper = styled(Body)<{ $status?: Status }>`
 	font-size: 1.25rem;
 	display: flex;
 	flex-wrap: wrap;
@@ -211,6 +238,12 @@ const StyledContentWrapper = styled(Body)`
 	font-weight: 700;
 	margin: 0;
 	margin-top: 0.75rem;
+
+	${({ $status, theme }) =>
+		$status &&
+		`
+		color: ${getStatusTitleColor($status, theme.darkMode)};
+	`}
 `
 
 const StyledValeurSecondaire = styled.span`
