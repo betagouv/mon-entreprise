@@ -473,7 +473,7 @@ design-system:
     year: Year
 décembre: December
 entreprise:
-  détails: Company created on {{ date }} and domiciled at {{ commune }}.
+  détails: Company created on <1> &lt;/1> and domiciled at <3></3>.
 error:
   back: Back to home page
   body0: <0>If you would like to help us correct this problem, please describe the
