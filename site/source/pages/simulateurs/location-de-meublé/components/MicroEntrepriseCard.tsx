@@ -5,7 +5,7 @@ import {
 	RégimeTag,
 	type RésultatApplicabilitéParRégime,
 } from '@/contextes/économie-collaborative'
-import { Li, StatusCard, Strong, Ul } from '@/design-system'
+import { Li, Link, StatusCard, Strong, Ul } from '@/design-system'
 
 import {
 	estApplicableSurRecettesCourteDurée,
@@ -63,6 +63,15 @@ export const MicroEntrepriseCard = ({ résultat }: MicroEntrepriseCardProps) => 
 					</Ul>
 				</StatusCard.Complément>
 			)}
+
+			<StatusCard.Action>
+				<Link href="https://www.autoentrepreneur.urssaf.fr">
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.régimes.micro-entreprise.lien',
+						'En savoir plus sur autoentrepreneur.urssaf.fr'
+					)}
+				</Link>
+			</StatusCard.Action>
 		</StatusCard>
 	)
 }

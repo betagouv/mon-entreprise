@@ -5,7 +5,7 @@ import {
 	RégimeTag,
 	type RésultatApplicabilitéParRégime,
 } from '@/contextes/économie-collaborative'
-import { Li, StatusCard, Strong, Ul } from '@/design-system'
+import { Li, Link, StatusCard, Strong, Ul } from '@/design-system'
 
 import {
 	estApplicableSurRecettesCourteDurée,
@@ -63,6 +63,15 @@ export const RégimeGénéralCard = ({ résultat }: RégimeGénéralCardProps) =
 					</Ul>
 				</StatusCard.Complément>
 			)}
+
+			<StatusCard.Action>
+				<Link href="https://www.urssaf.fr/accueil/services/economie-collaborative.html">
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.régimes.régime-général.lien',
+						'En savoir plus sur Économie collaborative - Urssaf.fr'
+					)}
+				</Link>
+			</StatusCard.Action>
 		</StatusCard>
 	)
 }
