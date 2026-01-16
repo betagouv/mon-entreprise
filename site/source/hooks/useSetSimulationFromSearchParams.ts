@@ -12,7 +12,7 @@ import {
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
-import { useEngine } from '@/hooks/useEngine'
+import { NomModèle } from '@/domaine/SimulationConfig'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
 	enregistreLesRéponsesAuxQuestions,
@@ -21,14 +21,16 @@ import {
 } from '@/store/actions/actions'
 import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
 
-export default function useSetSimulationFromSearchParams() {
+import { useEngineFromModèle } from './useEngineFromModèle'
+
+export default function useSetSimulationFromSearchParams(nomModèle: NomModèle) {
 	const [searchParams, setSearchParams] = useSearchParams()
 	// saves params for development, as strict mode is running twice
 	const [initialSearchParams] = useState(new URLSearchParams(searchParams))
 	const objectifs = useSelector(configObjectifsSelector)
 	const dispatch = useDispatch()
 
-	const engine = useEngine()
+	const engine = useEngineFromModèle(nomModèle)
 	const rules = useMemo(() => R.keys(engine.getParsedRules()), [engine])
 
 	const setNewTargetUnit = useCallback(() => {

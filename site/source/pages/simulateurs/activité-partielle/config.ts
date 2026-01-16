@@ -1,10 +1,6 @@
-import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
-import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
-import { serviceEmployeur } from '@/external-links/serviceEmployeur'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import ActivitéPartielleComponent from './ActivitéPartielle'
+import ActivitéPartielle from './ActivitéPartielle'
 import ActivitéPartiellePreview from './ActivitéPartiellePreview.png'
 import { SeoExplanations } from './SeoExplanations'
 import { configActivitéPartielle } from './simulationConfig'
@@ -50,10 +46,8 @@ export function activitéPartielleConfig({
 			'pages.simulateurs.activité-partielle.title',
 			"Simulateur du calcul de l'indemnité activité partielle"
 		),
-		nextSteps: ['salarié'],
-		externalLinks: [serviceEmployeur, embaucherGérerSalariés, nouvelEmployeur],
 		simulation: configActivitéPartielle,
-		component: ActivitéPartielleComponent,
+		component: ActivitéPartielle,
 		seoExplanations: SeoExplanations,
 	} as const)
 }

@@ -1,12 +1,6 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
-import { serviceIndépendantConditionnel as serviceIndépendant } from '@/external-links/serviceIndépendantConditionnel'
-import { servicePAM } from '@/external-links/servicePAM'
-import { servicePLR } from '@/external-links/servicePLR'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import IndépendantSimulation from './Indépendant'
+import Indépendant from './Indépendant'
 import { configIndépendant } from './simulationConfig'
 
 export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
@@ -34,16 +28,8 @@ export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
 				"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement"
 			),
 		},
-		nextSteps: ['comparaison-statuts', 'is'],
-		externalLinks: [premiersMoisUrssaf],
-		conditionalExternalLinks: [
-			serviceIndépendant,
-			servicePLR,
-			servicePAM,
-			serviceExpertComptable,
-		],
 		path: sitePaths.simulateurs.indépendant,
 		simulation: configIndépendant,
-		component: IndépendantSimulation,
+		component: Indépendant,
 	} as const)
 }

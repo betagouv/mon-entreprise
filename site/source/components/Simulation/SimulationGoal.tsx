@@ -18,9 +18,9 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaire } from '@/domaine/Unités'
-import { useEngine } from '@/hooks/useEngine'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 type SimulationGoalProps = {
 	dottedName: DottedName

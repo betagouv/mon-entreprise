@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import BarChartBranch from '@/components/BarChart'
 import RuleLink from '@/components/RuleLink'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 interface Props {
 	regroupement: Partial<Record<DottedName, Array<string>>>

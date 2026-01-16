@@ -4,10 +4,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 describe('WhenApplicable', () => {
-	vi.mock('@/hooks/useEngine', () => ({
+	vi.mock('@/utils/publicodes/EngineContext', () => ({
 		useEngine: vi.fn(),
 	}))
 

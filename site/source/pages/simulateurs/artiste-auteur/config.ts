@@ -1,5 +1,3 @@
-import { URSSAF } from '@/utils/logos'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import ArtisteAuteur from './ArtisteAuteur'
@@ -42,25 +40,6 @@ export function artisteAuteurConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.artiste-auteur.shortname',
 			'Artiste-auteur'
 		),
-		externalLinks: [
-			{
-				url: 'https://www.urssaf.fr/accueil/services/services-artisteauteur-diffuseur/service-artiste-auteur.html',
-				title: t(
-					'pages.simulateurs.artiste-auteur.externalLinks.1.title',
-					'Le service en ligne Artiste-auteur'
-				),
-				description: t(
-					'external-links.service.description',
-					'L’Urssaf met à votre disposition un service en ligne. Il vous permet de gérer votre activité, contacter un conseiller et retrouver tous vos documents.'
-				),
-				logo: URSSAF,
-				ctaLabel: t('external-links.service.ctaLabel', 'Accéder au service'),
-				ariaLabel: t(
-					'external-links.service.ariaLabel',
-					'Accéder au service sur urssaf.fr, nouvelle fenêtre'
-				),
-			},
-		],
 		codesCatégorieJuridique: ['1000'],
 		component: ArtisteAuteur,
 		simulation: configArtisteAuteur,

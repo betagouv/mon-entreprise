@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import {
 	SwitchContainer,
