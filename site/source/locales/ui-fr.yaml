@@ -447,8 +447,6 @@ contact:
     vous invitons à <2>contacter directement un conseiller de l'Urssaf</2>qui
     pourra vous renseigner.
 conversation:
-  multiple-answer:
-    aria-label: Choix multiples
   no: Non
   yes: Oui
   yes-no:
@@ -1849,7 +1847,6 @@ pages:
           titre: Autres revenus annuels
         cotisations: Cotisations sociales
         recettes:
-          aria-label: Montant des recettes
           titre: Recettes
         recettes-nettes:
           aria-label: Montant des recettes nettes

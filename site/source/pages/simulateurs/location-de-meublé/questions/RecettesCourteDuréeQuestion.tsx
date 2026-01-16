@@ -44,12 +44,10 @@ export const RecettesCourteDuréeQuestion: ComposantQuestion<
 			value={recettesCourteDurée}
 			unité="€/an"
 			onChange={handleChange}
-			aria={{
-				label: t(
-					'pages.simulateurs.location-de-logement-meublé.questions.recettes-courte-durée.aria-label',
-					'Montant des recettes pour la location courte durée'
-				),
-			}}
+			label={t(
+				'pages.simulateurs.location-de-logement-meublé.questions.recettes-courte-durée.aria-label',
+				'Montant des recettes pour la location courte durée'
+			)}
 		/>
 	)
 }
