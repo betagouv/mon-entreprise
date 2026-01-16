@@ -1,7 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import AvertissementRéformeAssietteNonImplémentée from '@/components/AvertissementRéformeAssietteNonImplémentée'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { Body } from '@/design-system'
@@ -36,24 +35,21 @@ export const CessationActivitéSimulation = () => {
 			<SimulateurWarning
 				simulateur="cessation-activité"
 				informationsComplémentaires={
-					<>
-						<AvertissementRéformeAssietteNonImplémentée />
-						<Trans i18nKey="pages.simulateurs.cessation-activité.warning">
-							<Body>
-								Vous êtes travailleur indépendant ou travailleuse indépendante
-								et vous souhaitez estimer les cotisations dues avant de cesser
-								votre activité. Ce simulateur est là pour vous aider. À noter
-								que le montant indiqué par ce simulateur est une estimation.
-								Seul le «&nbsp;décompte réel de l'Urssaf&nbsp;» vous permettra
-								de connaître le montant exact.{' '}
-							</Body>
-							<Body>
-								<strong>Ce simulateur ne tient pas compte</strong> des
-								versements déjà effectués, des cotisations provisionnelles déjà
-								appelées, ni des éventuelles dettes.
-							</Body>
-						</Trans>
-					</>
+					<Trans i18nKey="pages.simulateurs.cessation-activité.warning">
+						<Body>
+							Vous êtes travailleur indépendant ou travailleuse indépendante et
+							vous souhaitez estimer les cotisations dues avant de cesser votre
+							activité. Ce simulateur est là pour vous aider. À noter que le
+							montant indiqué par ce simulateur est une estimation. Seul le
+							«&nbsp;décompte réel de l'Urssaf&nbsp;» vous permettra de
+							connaître le montant exact.{' '}
+						</Body>
+						<Body>
+							<strong>Ce simulateur ne tient pas compte</strong> des versements
+							déjà effectués, des cotisations provisionnelles déjà appelées, ni
+							des éventuelles dettes.
+						</Body>
+					</Trans>
 				}
 			/>
 			<CessationActivitéGoals />
