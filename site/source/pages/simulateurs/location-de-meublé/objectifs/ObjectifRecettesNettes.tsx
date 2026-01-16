@@ -49,12 +49,10 @@ const RecettesNettesInput = ({
 			onChange={(montant: Montant<'€/an'> | undefined) =>
 				onChange(O.fromNullable(montant))
 			}
-			aria={{
-				label: t(
-					'pages.simulateurs.location-de-logement-meublé.objectifs.recettes-nettes.aria-label',
-					'Montant des recettes nettes'
-				),
-			}}
+			label={t(
+				'pages.simulateurs.location-de-logement-meublé.objectifs.recettes-nettes.aria-label',
+				'Montant des recettes nettes'
+			)}
 		/>
 	)
 }

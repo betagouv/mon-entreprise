@@ -44,12 +44,10 @@ export const ObjectifAutresRevenus = () => {
 					value={autresRevenus}
 					onChange={handleChange}
 					unité="€/an"
-					aria={{
-						label: t(
-							'pages.simulateurs.location-de-logement-meublé.objectifs.autres-revenus.aria-label',
-							'Montant des autres revenus annuels'
-						),
-					}}
+					label={t(
+						'pages.simulateurs.location-de-logement-meublé.objectifs.autres-revenus.aria-label',
+						'Montant des autres revenus annuels'
+					)}
 				/>
 			)}
 		/>
