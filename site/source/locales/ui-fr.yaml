@@ -496,7 +496,7 @@ design-system:
     year: Année
 décembre: décembre
 entreprise:
-  détails: Entreprise créée le {{ date }} et domiciliée à {{ commune }}.
+  détails: Entreprise créée le <1></1> et domiciliée à <3></3>.
 error:
   back: Retourner à la page d'accueil
   body0: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
