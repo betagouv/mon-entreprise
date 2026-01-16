@@ -117,6 +117,7 @@ export function useExternalLinkProps({
 		children: children && (
 			<>
 				{children}
+				{'\u00A0'}
 				<NewWindowLinkIcon />
 			</>
 		),
