@@ -1777,10 +1777,13 @@ pages:
       régimes:
         micro-entreprise:
           libellé: Self-employed contractor
+          lien: Find out more at autoentrepreneur.urssaf.fr
         régime-général:
           libellé: Simplified general scheme
+          lien: Find out more about Collaborative economy - Urssaf.fr
         travailleur-indépendant:
           libellé: Self-employed (excluding auto-entrepreneur)
+          lien: Find out more on urssaf.fr
       shortname: Furnished apartment rental
       title: "Furnished rentals: Choosing the social security system"
       type-hébergement:

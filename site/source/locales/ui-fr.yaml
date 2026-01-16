@@ -1891,10 +1891,13 @@ pages:
       régimes:
         micro-entreprise:
           libellé: Auto-entrepreneur
+          lien: En savoir plus sur autoentrepreneur.urssaf.fr
         régime-général:
           libellé: Régime général simplifié
+          lien: En savoir plus sur Économie collaborative - Urssaf.fr
         travailleur-indépendant:
           libellé: Travailleur indépendant (hors auto-entrepreneur)
+          lien: En savoir plus sur urssaf.fr
       shortname: Location de logement meublé
       title: "Location de meublé : Choix du régime social"
       type-hébergement:

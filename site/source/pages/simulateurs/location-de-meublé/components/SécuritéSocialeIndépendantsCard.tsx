@@ -5,7 +5,7 @@ import {
 	RégimeTag,
 	type RésultatApplicabilitéParRégime,
 } from '@/contextes/économie-collaborative'
-import { Li, StatusCard, Strong, Ul } from '@/design-system'
+import { Li, Link, StatusCard, Strong, Ul } from '@/design-system'
 
 import {
 	estApplicableSurRecettesCourteDurée,
@@ -68,6 +68,15 @@ export const SécuritéSocialeIndépendantsCard = ({
 					</Ul>
 				</StatusCard.Complément>
 			)}
+
+			<StatusCard.Action>
+				<Link href="https://www.urssaf.fr">
+					{t(
+						'pages.simulateurs.location-de-logement-meublé.régimes.travailleur-indépendant.lien',
+						'En savoir plus sur urssaf.fr'
+					)}
+				</Link>
+			</StatusCard.Action>
 		</StatusCard>
 	)
 }
