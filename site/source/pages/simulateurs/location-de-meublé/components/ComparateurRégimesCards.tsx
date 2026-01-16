@@ -1,5 +1,6 @@
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
+import { useTranslation } from 'react-i18next'
 
 import {
 	compareApplicabilitéDesRégimes,
@@ -8,7 +9,7 @@ import {
 	useEconomieCollaborative,
 	type RésultatApplicabilitéParRégime,
 } from '@/contextes/économie-collaborative'
-import { Grid, Spacing, Ul } from '@/design-system'
+import { Grid, H3, Spacing, Ul } from '@/design-system'
 
 import { getGridSizes } from '../../comparaison-statuts/components/DetailsRowCards'
 import { MicroEntrepriseCard } from './MicroEntrepriseCard'
@@ -16,6 +17,7 @@ import { RégimeGénéralCard } from './RégimeGénéralCard'
 import { SécuritéSocialeIndépendantsCard } from './SécuritéSocialeIndépendantsCard'
 
 export const ComparateurRégimesCards = () => {
+	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
 
 	const résultats = pipe(
@@ -30,6 +32,12 @@ export const ComparateurRégimesCards = () => {
 	return (
 		<div>
 			<Spacing lg />
+			<H3>
+				{t(
+					'pages.simulateurs.location-de-logement-meublé.régimes.titre',
+					'Régimes de sécurité sociale'
+				)}
+			</H3>
 			<Grid container spacing={4} as={Ul} data-testid="comparateur-régimes">
 				{résultats.map((résultat) => (
 					<Grid key={résultat.régime} item {...gridSizes} as="li">
