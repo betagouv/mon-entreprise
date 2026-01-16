@@ -19,8 +19,8 @@ import {
 } from '@/domaine/Date'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { NoOp } from '@/utils/NoOp'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 interface DateInputProps {
 	id?: string

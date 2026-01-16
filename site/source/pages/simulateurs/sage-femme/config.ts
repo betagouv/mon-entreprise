@@ -1,10 +1,7 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { servicePAM } from '@/external-links/servicePAM'
-import ProfessionLibérale from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configSageFemme } from '../profession-libérale/simulationConfig'
+import SageFemme from './SageFemme'
 
 export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -33,10 +30,9 @@ export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.sage-femme.title',
 			'Simulateur de revenus pour sage-femme en libéral'
 		),
-		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
 		simulation: configSageFemme,
 		codesCatégorieJuridique: ['1000', '5410'],
-		component: ProfessionLibérale,
+		component: SageFemme,
 	} as const)
 }

@@ -39,7 +39,6 @@ export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.sasu.title',
 			'Simulateur de revenus pour dirigeant de SAS(U)'
 		),
-		nextSteps: ['is', 'comparaison-statuts'],
 		path: sitePaths.simulateurs.sasu,
 		simulation: configSASU,
 		codesCatégorieJuridique: ['5710'],

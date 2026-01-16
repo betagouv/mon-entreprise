@@ -4,7 +4,7 @@ import {
 	RuleSwitchLabel,
 	SwitchContainer,
 } from '@/components/RéductionDeCotisations/réductionDeCotisations'
-import { SimpleField } from '@/pages/assistants/components/Fields'
+import { SimpleField } from '@/components/Simulation/SimpleField'
 
 export const RégimeImpositionQuestion = () => {
 	const { t } = useTranslation()

@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 
 import RuleLink from '@/components/RuleLink'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/hooks/useEngine'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { BarType } from './InnerStackedBarChart'
 import StackedBarChart from './StackedBarChart'

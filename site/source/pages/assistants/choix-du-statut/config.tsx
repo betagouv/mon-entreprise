@@ -37,7 +37,6 @@ export function choixStatutJuridiqueConfig({
 		seoExplanations: SeoExplanations,
 		simulation: configChoixDuStatut,
 		autoloadLastSimulation: true,
-		nextSteps: ['coût-création-entreprise'],
 	} as const)
 }
 

@@ -16,9 +16,9 @@ import {
 import * as M from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
-import { useEngine } from '@/hooks/useEngine'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition } from './EngineValue/Condition'
