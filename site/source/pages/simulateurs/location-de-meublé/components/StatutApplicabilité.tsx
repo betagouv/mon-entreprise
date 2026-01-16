@@ -6,7 +6,7 @@ import {
 	type RéponseManquante,
 	type RésultatApplicabilité,
 } from '@/contextes/économie-collaborative'
-import { SmallBody, Strong } from '@/design-system'
+import { SmallBody, Strong, type Status } from '@/design-system'
 
 import { getLibelléInfoManquante } from '../getLibelléInfoManquante'
 
@@ -94,3 +94,11 @@ export const estApplicableSurRecettesCourteDurée = (
 	Either.isRight(résultat) &&
 	résultat.right.applicable &&
 	résultat.right.assiette.type === 'recettes-courte-durée'
+
+export const getStatus = (résultat: RésultatApplicabilitéEither): Status => {
+	if (Either.isLeft(résultat)) {
+		return 'sousConditions'
+	}
+
+	return résultat.right.applicable ? 'applicable' : 'nonApplicable'
+}

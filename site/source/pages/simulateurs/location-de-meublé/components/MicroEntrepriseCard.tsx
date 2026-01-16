@@ -9,7 +9,7 @@ import { Li, StatusCard, Strong, Ul } from '@/design-system'
 
 import {
 	estApplicableSurRecettesCourteDurée,
-	estNonApplicable,
+	getStatus,
 	StatutApplicabilité,
 } from './StatutApplicabilité'
 
@@ -20,13 +20,13 @@ interface MicroEntrepriseCardProps {
 export const MicroEntrepriseCard = ({ résultat }: MicroEntrepriseCardProps) => {
 	const { t } = useTranslation()
 
-	const nonApplicable = estNonApplicable(résultat.résultat)
+	const status = getStatus(résultat.résultat)
 	const surRecettesCourteDuréeUniquement = estApplicableSurRecettesCourteDurée(
 		résultat.résultat
 	)
 
 	return (
-		<StatusCard nonApplicable={nonApplicable}>
+		<StatusCard status={status}>
 			<StatusCard.Étiquette>
 				<RégimeTag régime={RegimeCotisation.microEntreprise} />
 			</StatusCard.Étiquette>
