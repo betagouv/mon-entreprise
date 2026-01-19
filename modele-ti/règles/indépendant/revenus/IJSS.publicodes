@@ -41,6 +41,7 @@ indépendant . IJSS . montant:
 indépendant . IJSS . imposable:
   titre: part imposable
   résumé: Uniquement si vous ne relevez pas du régime micro-fiscal
+  non applicable si: entreprise . imposition . IR . régime micro-fiscal
   question: Quel est le montant brut imposable de vos allocations et indemnités
     journalières de sécurité sociale ?
   description: |
