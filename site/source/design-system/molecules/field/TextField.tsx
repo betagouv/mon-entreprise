@@ -143,12 +143,11 @@ export const StyledInputContainer = styled.div<{
 }>`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: ${({ theme }) =>
-		`${theme.box.borderWidth} solid
-		${
+		`${theme.box.borderWidth} solid var(--textfield-border-color, ${
 			theme.darkMode
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[700]
-		}`};
+		})`};
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
@@ -163,12 +162,15 @@ export const StyledInputContainer = styled.div<{
 		outline-color: ${({ theme, $hasError }) =>
 			$hasError
 				? theme.colors.extended.error[400]
-				: theme.darkMode
-				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[700]};
+				: `var(--textfield-focus-outline-color, ${
+						theme.darkMode
+							? theme.colors.bases.primary[100]
+							: theme.colors.bases.primary[700]
+				  })`};
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
 		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
+
 	&:focus-within ${StyledLabel} {
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
 		background-color: transparent;
@@ -225,9 +227,11 @@ export const StyledInputContainer = styled.div<{
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
 		color: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[800]};
+			`var(--textfield-text-color, ${
+				theme.darkMode
+					? theme.colors.extended.grey[100]
+					: theme.colors.extended.grey[800]
+			})`};
 	}
 
 	${({ $small }) =>

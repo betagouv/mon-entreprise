@@ -14,9 +14,6 @@ import {
 	QuantitéField,
 	SmallBody,
 	Strong,
-	StyledInput,
-	StyledInputContainer,
-	StyledSuffix,
 	Ul,
 } from '@/design-system'
 import { euros } from '@/domaine/Montant'
@@ -332,17 +329,12 @@ const StyledLabel = styled(SmallBody)`
 // - Créer un composant dédié dans le design-system
 // - Utiliser des sélecteurs CSS génériques
 const NumberFieldContainer = styled.div`
-	max-width: 120px;
-	${StyledInputContainer} {
-		border-color: ${({ theme }) => theme.colors.bases.primary[800]};
-		background-color: 'rgba(255, 255, 255, 10%)';
-		&:focus-within {
-			outline-color: ${({ theme }) => theme.colors.bases.primary[700]};
-		}
-		${StyledInput}, ${StyledSuffix} {
-			color: ${({ theme }) => theme.colors.bases.primary[800]}!important;
-		}
-	}
+  max-width: 120px;
+
+  /* ✅ Personnalisation sans dépendre des composants internes */
+  --textfield-border-color: ${({ theme }) => theme.colors.bases.primary[800]};
+  --textfield-text-color: ${({ theme }) => theme.colors.bases.primary[800]};
+  --textfield-focus-outline-color: ${({ theme }) => theme.colors.bases.primary[700]};
 `
 const StyledSmallBody = styled(SmallBody)`
 	font-weight: bold;
