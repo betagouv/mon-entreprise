@@ -40,6 +40,15 @@ export const configIndépendant: SimulationConfig = {
 				label: 'Impôt sur le revenu',
 				dottedName: 'impôt . méthode de calcul',
 			},
+			{
+				label: 'Imposition des dividendes',
+				dottedName: 'indépendant . dividendes . imposition',
+			},
+		],
+		liste: [
+			'entreprise . capital social',
+			"entreprise . bénéfice net de l'exercice précédent",
+			'',
 		],
 		'liste noire': [
 			"entreprise . chiffre d'affaires",
