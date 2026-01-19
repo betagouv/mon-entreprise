@@ -1016,6 +1016,10 @@ entreprise . imposition . IR . régime micro-fiscal:
   titre.en: '[automatic] micro-tax system'
   titre.fr: régime micro-fiscal
 entreprise . imposition . IR . régime micro-fiscal . revenu abattu:
+  avec:
+    plancher abattement:
+      titre.en: '[automatic] floor allowance'
+      titre.fr: plancher abattement
   description.en: >
     [automatic] Under the micro-tax system, deductible expenses are estimated on
     a
