@@ -19,6 +19,8 @@ indépendant . cotisations et contributions:
       abattement: cotisations facultatives . montant
 
 indépendant . cotisations et contributions . avec dividendes:
+  titre: Cotisations et contributions
+  résumé: Inclue les prélèvements sociaux sur les dividendes
   description: |
     C’est le montant total dû par l’indépendant au titre des cotisations et
     contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
@@ -30,13 +32,14 @@ indépendant . cotisations et contributions . avec dividendes:
     - dividendes . prélèvements sociaux
 
 indépendant . cotisations et contributions . non déductibles:
-  titre: Part non déductibles fiscalement
+  titre: Part non déductible fiscalement
   somme:
     - CSG-CRDS . non déductible
     - cotisations facultatives . non déductibles
 
 indépendant . cotisations et contributions . non déductibles . avec dividendes:
-  titre: Part non déductibles fiscalement
+  titre: Part non déductible fiscalement
+  résumé: Inclue la CSG non déductible des prélèvements sociaux sur les dividendes
   somme:
     - non déductibles
     - dividendes . prélèvements sociaux . CSG non déductible
