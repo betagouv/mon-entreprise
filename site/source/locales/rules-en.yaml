@@ -4647,8 +4647,10 @@ dirigeant . rémunération . totale:
     dirigeant.
   question.en: '[automatic] What is the total amount you expect to earn in compensation?'
   question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
-  résumé.en: '[automatic] Total paid by the company for executive compensation'
-  résumé.fr: Total payé par l’entreprise pour la rémunération du dirigeant
+  résumé.en: "[automatic] Total paid by the company for the executive's
+    remuneration, including contributions"
+  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,
+    cotisations et contributions incluses
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
 durée légale du travail:

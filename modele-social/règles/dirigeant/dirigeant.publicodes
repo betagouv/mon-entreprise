@@ -38,7 +38,7 @@ dirigeant . rémunération . totale:
     C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant. Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer. On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
   titre global: Rémunération totale dirigeant
   unité: €/an
-  résumé: Total payé par l’entreprise pour la rémunération du dirigeant
+  résumé: Total payé par l'entreprise pour la rémunération du dirigeant, cotisations et contributions incluses
   variations:
     - si: assimilé salarié
       alors:
