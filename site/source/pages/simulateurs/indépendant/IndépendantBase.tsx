@@ -17,7 +17,7 @@ import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import ExplicationsIndépendant from '@/pages/simulateurs/indépendant/components/Explications'
-import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
+import { ObjectifsIndépendant } from '@/pages/simulateurs/indépendant/components/Objectifs'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
@@ -75,7 +75,7 @@ export default function IndépendantBase({ id }: Props) {
 							</>
 						}
 					/>
-					<IndépendantSimulationGoals
+					<ObjectifsIndépendant
 						toggles={
 							<>
 								<RuleInput

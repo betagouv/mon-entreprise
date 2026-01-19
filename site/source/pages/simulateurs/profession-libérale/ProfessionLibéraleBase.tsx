@@ -14,7 +14,7 @@ import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import ExplicationsIndépendant from '@/pages/simulateurs/indépendant/components/Explications'
-import { IndépendantSimulationGoals } from '@/pages/simulateurs/indépendant/Goals'
+import { ObjectifsIndépendant } from '@/pages/simulateurs/indépendant/components/Objectifs'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import { ExternalLink } from '../_configs/types'
@@ -89,7 +89,7 @@ export default function ProfessionLibéraleBase({ id }: Props) {
 							</Ul>
 						}
 					/>
-					<IndépendantSimulationGoals />
+					<ObjectifsIndépendant />
 				</Simulation>
 			</SimulateurPageLayout>
 		</EngineProvider>
