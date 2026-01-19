@@ -57,17 +57,23 @@ entreprise . imposition . IR . régime micro-fiscal . revenu abattu:
       - produit:
           - chiffre d'affaires . vente restauration hébergement
           - 71%
+        plancher:
+          applicable si: chiffre d'affaires . vente restauration hébergement > 0 €/an
+          valeur: plancher abattement
       - produit:
           - chiffre d'affaires . service BIC
           - 50%
         plancher:
           applicable si: chiffre d'affaires . service BIC > 0 €/an
-          valeur: 305 €/an
+          valeur: plancher abattement
       - produit:
           - chiffre d'affaires . service BNC
           - 34%
         plancher:
           applicable si: chiffre d'affaires . service BNC > 0 €/an
-          valeur: 305 €/an
+          valeur: plancher abattement
   références:
     'Impôt sur le revenu : BIC, BNC, comment ça marche ? - Comment déterminer le bénéfice imposable ?': https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/limpot-sur-les-benefices-ir-et/impot-sur-le-revenu-bic#comment-d-terminer-le-b-n-fice-i_3
+
+  avec:
+    plancher abattement: 305 €/an
