@@ -45,10 +45,6 @@ export const compareRégimes = (
 	pipe(
 		[
 			{
-				régime: RegimeCotisation.regimeGeneral,
-				calcul: calculeCotisationsRégimeGénéral as CalculCotisations,
-			},
-			{
 				régime: RegimeCotisation.microEntreprise,
 				calcul: calculeCotisationsMicroEntreprise as CalculCotisations,
 			},
@@ -56,6 +52,10 @@ export const compareRégimes = (
 				régime: RegimeCotisation.travailleurIndependant,
 				calcul:
 					calculeCotisationsSécuritéSocialeDesIndépendants as CalculCotisations,
+			},
+			{
+				régime: RegimeCotisation.regimeGeneral,
+				calcul: calculeCotisationsRégimeGénéral as CalculCotisations,
 			},
 		],
 		Array.map(({ régime, calcul }) =>
@@ -87,16 +87,16 @@ export const compareApplicabilitéDesRégimes = (
 	pipe(
 		[
 			{
-				régime: RegimeCotisation.regimeGeneral,
-				estApplicable: estApplicableRégimeGénéral,
-			},
-			{
 				régime: RegimeCotisation.microEntreprise,
 				estApplicable: estApplicableMicroEntreprise,
 			},
 			{
 				régime: RegimeCotisation.travailleurIndependant,
 				estApplicable: estApplicableSécuritéSocialeDesIndépendants,
+			},
+			{
+				régime: RegimeCotisation.regimeGeneral,
+				estApplicable: estApplicableRégimeGénéral,
 			},
 		],
 		Array.map(({ régime, estApplicable }) => ({
