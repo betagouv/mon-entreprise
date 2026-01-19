@@ -91,8 +91,12 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
   variations:
     - si: après réforme
       alors:
-        valeur: revenu brut
-        abattement: abattement
+        variations:
+          - si: entreprise . imposition . IR . régime micro-fiscal
+            alors: entreprise . imposition . IR . régime micro-fiscal . revenu abattu
+          - sinon:
+              valeur: revenu brut
+              abattement: abattement
         arrondi: oui
     - sinon:
         somme:
