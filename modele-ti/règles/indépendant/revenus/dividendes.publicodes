@@ -1,8 +1,9 @@
 indépendant . dividendes:
-  titre: dividendes bruts
+  titre: Dividendes bruts
+  résumé: Montant brut des dividendes versés par l’entreprise
   description: |
-    Montant brut des dividendes versés par l’entreprise. Il s’agit du montant
-    **avant le PFNL** (prélèvement forfaitaire non libératoire) de 12,8 %.
+    Il s’agit du montant **avant le PFNL** (prélèvement forfaitaire non libératoire)
+    de 12,8 %.
   applicable si: entreprise . imposition . IS
   par défaut: 0 €/an
 
@@ -119,7 +120,7 @@ indépendant . dividendes . imposition:
     Les revenus mobiliers: https://www.impots.gouv.fr/particulier/les-revenus-mobiliers
 
 indépendant . dividendes . PFU:
-  titre: prélèvement forfaitaire unique (PFU)
+  titre: Prélèvement forfaitaire unique (PFU)
   description: |
     La part du PFU (prélèvement forfaitaire unique) correspondant à l’impôt sur le
     revenu est égale à **12,8 %**.

@@ -402,6 +402,8 @@ entreprise . bénéfice net de l'exercice précédent:
   description.fr: |
     Ce montant sert à déterminer la part des dividendes soumis aux cotisations
     sociales du régime indépendant pour les entreprises individuelles.
+  question.en: "[automatic] What is the company's net profit for the previous year?"
+  question.fr: Quel est le bénéfice net de l'exercice précédent de l'entreprise ?
   titre.en: '[automatic] net income for the previous year'
   titre.fr: bénéfice net de l'exercice précédent
 entreprise . capital social:
@@ -427,6 +429,8 @@ entreprise . capital social:
     - les apports financiers et en nature ;
     - la valeur des primes d’émission ;
     - les sommes versées en compte courant d’associé par vous et votre famille.
+  question.en: "[automatic] What is the company's share capital?"
+  question.fr: Quel est le capital social de l'entreprise ?
   titre.en: '[automatic] share capital'
   titre.fr: capital social
 entreprise . catégorie juridique:
@@ -2235,8 +2239,10 @@ indépendant . cotisations et contributions . avec dividendes:
     telles que les contrats Madelin.
 
     Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
-  titre.en: '[automatic] with dividends'
-  titre.fr: avec dividendes
+  résumé.en: '[automatic] Includes social security contributions on dividends'
+  résumé.fr: Inclue les prélèvements sociaux sur les dividendes
+  titre.en: '[automatic] Dues and contributions'
+  titre.fr: Cotisations et contributions
 indépendant . cotisations et contributions . contributions spéciales:
   description.en: |
     [automatic] Some special schemes may add additional contributions
@@ -2993,11 +2999,14 @@ indépendant . cotisations et contributions . formation professionnelle:
   titre.en: '[automatic] contribution to professional training'
   titre.fr: contribution à la formation professionnelle
 indépendant . cotisations et contributions . non déductibles:
-  titre.en: '[automatic] Non-tax-deductible portion'
-  titre.fr: Part non déductibles fiscalement
+  titre.en: '[automatic] Non-deductible portion'
+  titre.fr: Part non déductible fiscalement
 indépendant . cotisations et contributions . non déductibles . avec dividendes:
-  titre.en: '[automatic] Non-tax-deductible portion'
-  titre.fr: Part non déductibles fiscalement
+  résumé.en: '[automatic] Includes CSG not deductible from social security
+    contributions on dividends'
+  résumé.fr: Inclue la CSG non déductible des prélèvements sociaux sur les dividendes
+  titre.en: '[automatic] Non-deductible portion'
+  titre.fr: Part non déductible fiscalement
 indépendant . cotisations facultatives:
   description.en: >
     [automatic] It is possible for the self-employed to take out private
@@ -3176,15 +3185,19 @@ indépendant . cotisations facultatives . retraite . plafond déductible:
   titre.fr: plafond déductible
 indépendant . dividendes:
   description.en: >
-    [automatic] Gross amount of dividends paid by the company. This is the
-    amount
+    [automatic] This is the amount **before the withholding tax** (prélèvement
+    forfaitaire non libératoire)
 
-    **before the 12.8% withholding tax** (prélèvement forfaitaire non libératoire).
-  description.fr: |
-    Montant brut des dividendes versés par l’entreprise. Il s’agit du montant
-    **avant le PFNL** (prélèvement forfaitaire non libératoire) de 12,8 %.
-  titre.en: '[automatic] gross dividends'
-  titre.fr: dividendes bruts
+    of 12.8%.
+  description.fr: >
+    Il s’agit du montant **avant le PFNL** (prélèvement forfaitaire non
+    libératoire)
+
+    de 12,8 %.
+  résumé.en: '[automatic] Gross dividends paid by the company'
+  résumé.fr: Montant brut des dividendes versés par l’entreprise
+  titre.en: '[automatic] Gross dividends'
+  titre.fr: Dividendes bruts
 indépendant . dividendes . PFU:
   description.en: >
     [automatic] The income tax portion of the PFU (prélèvement forfaitaire
@@ -3196,8 +3209,8 @@ indépendant . dividendes . PFU:
     le
 
     revenu est égale à **12,8 %**.
-  titre.en: '[automatic] single-rate withholding tax (PFU)'
-  titre.fr: prélèvement forfaitaire unique (PFU)
+  titre.en: '[automatic] Single flat-rate withholding tax (PFU)'
+  titre.fr: Prélèvement forfaitaire unique (PFU)
 indépendant . dividendes . imposables:
   description.en: >
     [automatic] When dividends are subject to the progressive income tax scale,
@@ -4915,11 +4928,13 @@ indépendant . rémunération . impôt:
     Montant de l’impôt sur le revenu concernant :
     - les rémunérations de dirigeant des entreprises à l’impôt sur les sociétés,
     - les bénéfices des entreprises individuelles à l’impôt sur le revenu,
-  titre.en: '[automatic] income tax'
-  titre.fr: impôt sur le revenu
+  titre.en: '[automatic] Income tax'
+  titre.fr: Impôt sur le revenu
 indépendant . rémunération . impôt . avec dividendes:
-  titre.en: '[automatic] with dividends'
-  titre.fr: avec dividendes
+  résumé.en: '[automatic] Includes dividend tax'
+  résumé.fr: Inclue l'impôt sur les dividendes
+  titre.en: '[automatic] Income tax'
+  titre.fr: Impôt sur le revenu
 indépendant . rémunération . nette:
   résumé.en: '[automatic] After deduction of contributions and expenses'
   résumé.fr: Après déduction des cotisations, contributions et charges
@@ -4942,11 +4957,11 @@ indépendant . rémunération . nette . avec dividendes:
   résumé.fr:
     Après déduction des prélèvements sociaux, cotisations, contributions
     et charges
-  titre.en: '[automatic] Net compensation (including dividends)'
-  titre.fr: Rémunération nette (dividendes inclus)
+  titre.en: '[automatic] Net remuneration'
+  titre.fr: Rémunération nette
 indépendant . rémunération . nette . imposable:
-  titre.en: '[automatic] taxable income'
-  titre.fr: revenu imposable
+  titre.en: '[automatic] Taxable income'
+  titre.fr: Revenu imposable
 indépendant . rémunération . totale:
   description.en: >
     [automatic] This is how much the company spends on executive remuneration.
