@@ -30,7 +30,7 @@ indépendant . rémunération . nette:
   unité: €/an
 
 indépendant . rémunération . nette . avec dividendes:
-  titre: Rémunération nette (dividendes inclus)
+  titre: Rémunération nette
   résumé: Après déduction des prélèvements sociaux, cotisations, contributions et charges
   somme:
     - rémunération . nette
@@ -40,7 +40,7 @@ indépendant . rémunération . nette . avec dividendes:
   unité: €/an
 
 indépendant . rémunération . nette . imposable:
-  titre: revenu imposable
+  titre: Revenu imposable
   somme:
     - revenu professionnel
     - dividendes . imposables
@@ -48,7 +48,7 @@ indépendant . rémunération . nette . imposable:
   unité: €/an
 
 indépendant . rémunération . impôt:
-  titre: impôt sur le revenu
+  titre: Impôt sur le revenu
   description: |
     Montant de l’impôt sur le revenu concernant :
     - les rémunérations de dirigeant des entreprises à l’impôt sur les sociétés,
@@ -64,6 +64,8 @@ indépendant . rémunération . impôt:
   unité: €/an
 
 indépendant . rémunération . impôt . avec dividendes:
+  titre: Impôt sur le revenu
+  résumé: Inclue l'impôt sur les dividendes
   somme:
     - rémunération . impôt
     - dividendes . PFU
