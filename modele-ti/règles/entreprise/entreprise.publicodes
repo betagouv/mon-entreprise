@@ -92,6 +92,7 @@ entreprise . capital social:
     - la valeur des primes d’émission ;
     - les sommes versées en compte courant d’associé par vous et votre famille.
   non applicable si: EI
+  question: Quel est le capital social de l'entreprise ?
   unité: €
 
 entreprise . bénéfice net de l'exercice précédent:
@@ -99,4 +100,5 @@ entreprise . bénéfice net de l'exercice précédent:
     Ce montant sert à déterminer la part des dividendes soumis aux cotisations
     sociales du régime indépendant pour les entreprises individuelles.
   applicable si: EI
+  question: Quel est le bénéfice net de l'exercice précédent de l'entreprise ?
   unité: €
