@@ -2,6 +2,7 @@ import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivité
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export const ObjectifsIndépendant = ({
 	toggles,
@@ -18,14 +19,6 @@ export const ObjectifsIndépendant = ({
 		<Condition expression="entreprise . imposition = 'IS'">
 			<ObjectifsIS />
 		</Condition>
-
-		<SimulationGoal dottedName="indépendant . rémunération . nette" />
-
-		<SimulationGoal
-			small
-			editable={false}
-			dottedName="indépendant . rémunération . impôt"
-		/>
 
 		<SimulationGoal dottedName="indépendant . rémunération . nette . après impôt" />
 	</SimulationGoals>
@@ -57,20 +50,47 @@ const ObjectifsIR = () => (
 		<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
 			<SimulationGoal appear={false} dottedName="entreprise . charges" />
 		</Condition>
-	</>
-)
 
-const ObjectifsIS = () => (
-	<>
-		<SimulationGoal
-			appear={false}
-			dottedName="indépendant . rémunération . totale"
-		/>
+		<SimulationGoal dottedName="indépendant . rémunération . nette" />
 
 		<SimulationGoal
 			small
 			editable={false}
-			dottedName="indépendant . cotisations et contributions"
+			dottedName="indépendant . rémunération . impôt"
 		/>
 	</>
 )
+
+const ObjectifsIS = () => {
+	const engine = useEngine()
+	const dividendesValue = engine.evaluate('indépendant . dividendes')
+		.nodeValue as number
+	const dividendesVersés = dividendesValue > 0
+
+	return (
+		<>
+			<SimulationGoal
+				appear={false}
+				dottedName="indépendant . rémunération . totale"
+			/>
+
+			<SimulationGoal appear={false} dottedName="indépendant . dividendes" />
+
+			<SimulationGoal
+				small={!dividendesVersés}
+				editable={false}
+				dottedName="indépendant . cotisations et contributions . avec dividendes"
+			/>
+
+			<SimulationGoal dottedName="indépendant . rémunération . nette . avec dividendes" />
+
+			<Condition expression="indépendant . rémunération . impôt . avec dividendes">
+				<SimulationGoal
+					small={!dividendesVersés}
+					editable={false}
+					dottedName="indépendant . rémunération . impôt . avec dividendes"
+				/>
+			</Condition>
+		</>
+	)
+}
