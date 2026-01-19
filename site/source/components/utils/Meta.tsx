@@ -23,6 +23,20 @@ export default function Meta({
 	ogImage,
 }: PropType) {
 	const { t, i18n } = useTranslation()
+	const siteUrl = 'https://mon-entreprise.urssaf.fr'
+    const defaultImage = '/images/og/default.png'
+
+	const relativeOgImage =
+	ogImage ??
+	(i18n.language === 'fr'
+		? defaultImage
+		: defaultImage)
+
+    const absoluteOgImage = relativeOgImage.startsWith('http')
+	? relativeOgImage
+	: `${siteUrl}${relativeOgImage}`
+
+
 
 	return (
 		<Helmet
@@ -63,15 +77,14 @@ export default function Meta({
 					)
 				}
 			/>
-			<meta
-				property="og:image"
-				content={
-					ogImage ??
-					(i18n.language === 'fr'
-						? '/assets/images/logo-monentreprise.svg'
-						: '/assets/images/logo-mycompany-share.svg')
-				}
-			/>
+			<meta property="og:image" content={absoluteOgImage} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+			
+			<meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:image" content={absoluteOgImage} />
+
+
 		</Helmet>
 	)
 }
