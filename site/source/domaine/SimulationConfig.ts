@@ -29,7 +29,7 @@ export type SimulationConfig = Partial<{
 		'non prioritaires'?: DottedName[]
 
 		/**
-		 * Whitelist des questions qui sont affiché à l'utilisateur.
+		 * Whitelist des questions qui sont affichées à l'utilisateur.
 		 * Cela peut également servir pour prioriser des questions
 		 * en mettant une string vide comme dernier élément
 		 */
