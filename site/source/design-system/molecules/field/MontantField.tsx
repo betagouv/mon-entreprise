@@ -33,6 +33,7 @@ const unitéToDisplayedUnit: Record<UnitéMonétaire, string> = {
 	'€': '',
 	'€/an': 'par an',
 	'€/mois': 'par mois',
+	'€/trimestre': 'par trimestre',
 	'€/jour': 'par jour',
 	'€/heure': 'par heure',
 	'€/titre-restaurant': 'par titre-restaurant',

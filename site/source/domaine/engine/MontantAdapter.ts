@@ -6,6 +6,7 @@ import {
 	euros,
 	eurosParAn,
 	eurosParMois,
+	eurosParTrimestre,
 	eurosParTitreRestaurant,
 	Montant,
 } from '@/domaine/Montant'
@@ -36,6 +37,8 @@ export const MontantAdapter = {
 				return O.some(euros(numberValue))
 			case '€/an':
 				return O.some(eurosParAn(numberValue))
+			case '€/trimestre':
+				return O.some(eurosParTrimestre(numberValue))
 			case '€/mois':
 				return O.some(eurosParMois(numberValue))
 			case '€/titre-restaurant':

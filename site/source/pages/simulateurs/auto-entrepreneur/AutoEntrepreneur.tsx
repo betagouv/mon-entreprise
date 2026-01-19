@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
@@ -13,6 +13,8 @@ import { DarkLi, Link, Ul } from '@/design-system'
 import { AutoEntrepreneurDétails } from '@/pages/simulateurs/auto-entrepreneur/AutoEntrepreneurDétails'
 
 export default function AutoEntrepreneur() {
+	const { t } = useTranslation()
+	
 	return (
 		<>
 			<Simulation
@@ -54,7 +56,22 @@ export default function AutoEntrepreneur() {
 					}
 				/>
 				<SimulationGoals>
-					<PeriodSwitch />
+					<PeriodSwitch
+						periods={[
+							{
+								label: t('Montant mensuel'),
+								unit: '€/mois',
+							},
+							{
+								label: t('Montant trimestriel'),
+								unit: '€/trimestre',
+							},
+							{
+								label: t('Montant annuel'),
+								unit: '€/an',
+							},
+						]}
+					/>
 					<ChiffreAffairesActivitéMixte dottedName="dirigeant . auto-entrepreneur . chiffre d'affaires" />
 					<SimulationGoal
 						small

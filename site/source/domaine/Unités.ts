@@ -1,11 +1,12 @@
 export type UnitéMonétairePonctuelle = '€' | '€/titre-restaurant'
-export type UnitéMonétaireRécurrente = '€/mois' | '€/an' | '€/jour' | '€/heure'
+export type UnitéMonétaireRécurrente = '€/mois' | '€/trimestre' | '€/an' | '€/jour' | '€/heure'
 export type UnitéMonétaire = UnitéMonétairePonctuelle | UnitéMonétaireRécurrente
 
 const UNITÉS_MONÉTAIRES = [
 	'€',
 	'€/titre-restaurant',
 	'€/an',
+	'€/trimestre',
 	'€/mois',
 	'€/jour',
 	'€/heure',

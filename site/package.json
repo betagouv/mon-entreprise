@@ -144,7 +144,7 @@
 		"typescript": "^5.2.2",
 		"vite": "^4.4.9",
 		"vite-plugin-pwa": "^0.16.5",
-		"vitest": "^0.34.4",
+		"vitest": "^3.2.4",
 		"workbox-expiration": "^7.0.0",
 		"workbox-navigation-preload": "^7.0.0",
 		"workbox-precaching": "^7.0.0",

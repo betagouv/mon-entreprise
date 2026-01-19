@@ -45,6 +45,9 @@ export const estEuroParTitreRestaurant = (
 export const estEuroParMois = (
 	montant: Montant
 ): montant is Montant<'€/mois'> => montant.unité === '€/mois'
+export const estEuroParTrimestre = (
+	montant: Montant
+): montant is Montant<'€/trimestre'> => montant.unité === '€/trimestre'
 export const estEuroParAn = (montant: Montant): montant is Montant<'€/an'> =>
 	montant.unité === '€/an'
 export const estEuroParJour = (
@@ -63,6 +66,9 @@ export const eurosParTitreRestaurant = (
 export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
 	montant(valeur, '€/mois')
 
+export const eurosParTrimestre = (valeur: number): Montant<'€/trimestre'> =>
+	montant(valeur, '€/trimestre')
+
 export const eurosParAn = (valeur: number): Montant<'€/an'> =>
 	montant(valeur, '€/an')
 
@@ -80,6 +86,9 @@ export const toEurosParMois = (
 		case '€/an':
 			valeur = valeur / 12
 			break
+		case '€/trimestre':
+			valeur = valeur / 3
+			break
 		case '€/jour':
 			valeur = (valeur * 365) / 12
 			break
@@ -91,6 +100,28 @@ export const toEurosParMois = (
 	return montant(valeur, '€/mois')
 }
 
+export const toEurosParTrimestre = (
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+): Montant<'€/trimestre'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/an':
+			valeur = valeur / 4
+			break
+		case '€/mois':
+			valeur = valeur * 3
+			break
+		case '€/jour':
+			valeur = (valeur * 365) / 4
+			break
+		case '€/heure':
+			valeur = (valeur * 24 * 365) / 4
+			break
+	}
+
+	return montant(valeur, '€/trimestre')
+}
+
 export const toEurosParAn = (
 	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/an'> => {
@@ -98,6 +129,9 @@ export const toEurosParAn = (
 	switch (montantRécurrent.unité) {
 		case '€/mois':
 			valeur = valeur * 12
+			break
+		case '€/trimestre':
+			valeur = valeur * 4
 			break
 		case '€/jour':
 			valeur = valeur * 365
@@ -118,6 +152,9 @@ export const toEurosParJour = (
 		case '€/an':
 			valeur = valeur / 365
 			break
+		case '€/trimestre':
+			valeur = (valeur * 4) / 365
+			break
 		case '€/mois':
 			valeur = (valeur * 12) / 365
 			break
@@ -136,6 +173,9 @@ export const toEurosParHeure = (
 	switch (montantRécurrent.unité) {
 		case '€/an':
 			valeur = valeur / (365 * 24)
+			break
+		case '€/trimestre':
+			valeur = (valeur * 4) / (365 * 24)
 			break
 		case '€/mois':
 			valeur = (valeur * 12) / (365 * 24)
