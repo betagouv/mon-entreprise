@@ -101,7 +101,8 @@ type RadioGroupProps = AriaRadioGroupProps & {
 function RadioGroup(props: RadioGroupProps) {
 	const { children, label, description, isSubRadioGroup } = props
 	const state = useRadioGroupState(props)
-	const { radioGroupProps, labelProps } = useRadioGroup(props, state)
+	// Code mysteriously crashes if this hook is removed:
+	useRadioGroup(props, state)
 
 	useEffect(() => {
 		if (!props.value) {
@@ -110,14 +111,9 @@ function RadioGroup(props: RadioGroupProps) {
 	}, [props.value, state])
 
 	return (
-		<div
-			/* eslint-disable-next-line react/jsx-props-no-spreading */
-			{...radioGroupProps}
-			onKeyDown={undefined}
-		>
-			{/* eslint-disable-next-line react/jsx-props-no-spreading */}
+		<>
 			{label && (
-				<StyledH5 as="p" {...labelProps}>
+				<StyledH5 as="p">
 					{label}
 					{description && (
 						<InfoButton light title={label} description={description} />
@@ -130,7 +126,7 @@ function RadioGroup(props: RadioGroupProps) {
 			>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</RadioGroupContainer>
-		</div>
+		</>
 	)
 }
 
