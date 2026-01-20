@@ -1382,6 +1382,8 @@ pages:
           en tant qu’indépendant.
         ogTitle: Simulateur de cessation d’activité
         titre: Simulateur de cessation d’activité
+      régime-imposition:
+        question: Quel est votre régime d'imposition ?
       shortname: Cessation d’activité
       title: Simulateur de cessation d’activité
       warning: <0>Vous êtes travailleur indépendant ou travailleuse indépendante et
