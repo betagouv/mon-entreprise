@@ -1,3 +1,13 @@
+import './piano-analytics.js'
+
+type ATTrackerClass = { new (options: { site: number }): ATTracker }
+
+declare global {
+	const ATInternet: {
+		Tracker: { Tag: ATTrackerClass }
+	}
+}
+
 // Ajoute la propriété 'pa' à Window pour que Typescript accepte window.pa
 declare global {
 	interface Window {
@@ -57,8 +67,8 @@ export interface ATTracker {
 	): void
 
 	consent: {
-		setMode(type: 'essential' | 'opt-out'): void
-		getMode(): { name: 'essential' | 'opt-out' }
+		setMode(type: 'opt-out' | 'essential'): void
+		getMode(): { name: 'opt-out' | 'essential' }
 	}
 }
 

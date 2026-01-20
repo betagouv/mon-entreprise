@@ -70,23 +70,23 @@ const networkFirstJS = new Route(
 
 registerRoute(networkFirstJS)
 
-const networkFirstPiano = new Route(
-	({ url }) => url.hostname === 'tag.aticdn.net',
-	new NetworkFirst({
-		fetchOptions: {
-			mode: 'cors',
-		},
-		cacheName: 'piano-cache',
-		plugins: [
-			new ExpirationPlugin({
-				maxAgeSeconds: 1 * MONTH,
-				maxEntries: 40,
-			}),
-		],
-	})
-)
+// const networkFirstPiano = new Route(
+// 	({ url }) => url.hostname === 'tag.aticdn.net',
+// 	new NetworkFirst({
+// 		fetchOptions: {
+// 			mode: 'cors',
+// 		},
+// 		cacheName: 'piano-cache',
+// 		plugins: [
+// 			new ExpirationPlugin({
+// 				maxAgeSeconds: 1 * MONTH,
+// 				maxEntries: 40,
+// 			}),
+// 		],
+// 	})
+// )
 
-registerRoute(networkFirstPiano)
+// registerRoute(networkFirstPiano)
 
 const staleWhileRevalidate = new Route(
 	({ request, sameOrigin, url }) => {
