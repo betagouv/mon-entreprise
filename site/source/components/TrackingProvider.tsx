@@ -7,6 +7,7 @@ import {
 	createTracker,
 } from '@/components/ATInternetTracking/Tracker'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
+import { scheduleWhenIdle } from '@/utils/polyfill'
 
 export function TrackingProvider({ children }: { children: React.ReactNode }) {
 	const [tracker, setTracker] = useState<ATTracker | null>(null)
@@ -53,12 +54,13 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.ready
 					.then(() => {
-						requestIdleCallback(() => {
+						scheduleWhenIdle(() => {
 							document.body.appendChild(script)
 							setInjected(true)
 						})
 					})
 					.catch((error) => {
+						// eslint-disable-next-line no-console
 						console.error(
 							'Impossible d’initialiser le suivi car le service worker n’a pas démarré',
 							error
