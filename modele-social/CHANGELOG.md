@@ -5,6 +5,10 @@
 ### Breaking changes
 - Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
 
+### Nouveautés
+- Ajout des règles `exonération retraite complémentaire`, `avait plus de 40 ans au début` et `revenus non salariés N-1 et N-2` dans `dirigeant . indépendant . PL . CARMF`
+- Modification de la règle `dirigeant . indépendant . PL . CARMF . retraite complémentaire` pour intégrer les conditions d'exonération pour les deux premières années d'activité
+
 ### Mises à jour
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
 
