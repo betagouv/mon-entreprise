@@ -10,7 +10,7 @@ import {
 	SituationÉconomieCollaborative,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
-import { Body, Button, ConteneurBleu, Emoji, Message } from '@/design-system'
+import { Body, ConteneurBleu, Emoji, Message } from '@/design-system'
 import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
 import { TypeHébergementSwitch } from '@/pages/simulateurs/location-de-meublé/components/TypeHébergementSwitch'
 import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
@@ -22,14 +22,12 @@ import {
 	RecettesCourteDuréeQuestion,
 	TypeDuréeQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
-import { useSitePaths } from '@/sitePaths'
 
 import { DocumentationHub } from './documentation'
 
 const LocationDeMeublé = () => {
 	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
-	const { absoluteSitePaths } = useSitePaths()
 
 	const isMeubléDeTourisme = situation.typeHébergement === 'meublé-tourisme'
 	const isChambreDHôte = situation.typeHébergement === 'chambre-hôte'
@@ -75,6 +73,7 @@ const LocationDeMeublé = () => {
 					<AffichageSelonAffiliation />
 				</ConteneurBleu>
 			)}
+			{/* TODO: Réactiver quand la documentation sera à jour
 			<ConteneurBleu foncé>
 				<Button
 					size="XS"
@@ -87,6 +86,7 @@ const LocationDeMeublé = () => {
 					📚 Documentation
 				</Button>
 			</ConteneurBleu>
+			*/}
 		</>
 	)
 }
