@@ -1,4 +1,4 @@
-import { Key, useCallback, useState } from 'react'
+import { Key, useCallback } from 'react'
 
 import {
 	CardChoiceGroup,
@@ -59,18 +59,12 @@ export function ChoixUnique({
 	variant = 'radio',
 	aria,
 }: ChoixUniqueProps) {
-	const [currentSelection, setCurrentSelection] = useState<string | undefined>(
-		value
-	)
-
 	const handleChange = useCallback(
 		(val: Key) => {
 			const stringVal = val.toString()
 			if (!stringVal.length) {
 				return
 			}
-			setCurrentSelection(stringVal)
-
 			onChange(stringVal)
 		},
 		[onChange]
@@ -105,7 +99,7 @@ export function ChoixUnique({
 		case 'card':
 			return (
 				<CardChoiceGroup
-					value={currentSelection}
+					value={value}
 					onChange={handleChange}
 					options={choiceOptions}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
@@ -118,7 +112,7 @@ export function ChoixUnique({
 		case 'toggle':
 			return (
 				<ToggleChoiceGroup
-					value={currentSelection}
+					value={value}
 					onChange={handleChange}
 					options={choiceOptions}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
@@ -131,7 +125,7 @@ export function ChoixUnique({
 		case 'select':
 			return (
 				<SelectChoiceGroup
-					value={currentSelection}
+					value={value}
 					onChange={handleChange}
 					options={choiceOptions}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
@@ -145,7 +139,7 @@ export function ChoixUnique({
 		default:
 			return (
 				<RadioChoiceGroup
-					value={currentSelection}
+					value={value}
 					onChange={handleChange}
 					options={choiceOptions}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
