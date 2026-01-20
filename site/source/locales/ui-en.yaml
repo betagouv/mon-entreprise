@@ -1299,6 +1299,8 @@ pages:
           self-employed activity.
         ogTitle: Retirement simulator
         titre: Retirement simulator
+      régime-imposition:
+        question: How are you taxed?
       shortname: Cessation of activity
       title: Retirement simulator
       warning: <0>You are self-employed and would like to estimate the contributions
