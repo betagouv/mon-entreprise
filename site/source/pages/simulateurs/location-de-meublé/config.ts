@@ -18,7 +18,7 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 		pathId: 'simulateurs.location-de-logement-meublé',
 		shortName: t(
 			'pages.simulateurs.location-de-logement-meublé.shortname',
-			'Location de logement meublé'
+			'Location de meublé : Choix\u00A0du\u00A0régime\u00A0social'
 		),
 		title: t(
 			'pages.simulateurs.location-de-logement-meublé.title',
@@ -57,11 +57,11 @@ export function locationDeMeubleConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 			description: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.description',
-				'Ce simulateur permet de calculer les revenus générés par la location de logements meublés. Il aide les propriétaires à anticiper leurs gains et optimiser leur fiscalité dans ce cadre spécifique.'
+				'Déterminez si vous devez vous affilier à la sécurité sociale pour vos revenus de location meublée et découvrez les régimes applicables.'
 			),
 			ogDescription: t(
 				'pages.simulateurs.location-de-logement-meublé.meta.ogDescription',
-				'Ce simulateur permet de calculer les revenus générés par la location de logements meublés. Il aide les propriétaires à anticiper leurs gains et optimiser leur fiscalité dans ce cadre spécifique.'
+				'Déterminez si vous devez vous affilier à la sécurité sociale pour vos revenus de location meublée et découvrez les régimes applicables.'
 			),
 			ogImage: AutoEntrepreneurPreview,
 		},
