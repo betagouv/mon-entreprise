@@ -34,7 +34,7 @@ describe('Indépendant', () => {
 		)
 
 		expect(
-			await screen.findByLabelText("Chiffre d'affaires")
+			await screen.findByLabelText(/Chiffre d'affaires/)
 		).toBeInTheDocument()
 	})
 })
