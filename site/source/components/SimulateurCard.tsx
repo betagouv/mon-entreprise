@@ -62,9 +62,11 @@ export function SimulateurCard({
 						<TitleTag>
 							{shortName}
 							{beta && (
-								<Chip type="info" icon={<Emoji emoji="🚧" />}>
-									Bêta
-								</Chip>
+								<div>
+									<Chip type="info" icon={<Emoji emoji="🚧" />}>
+										Bêta
+									</Chip>
+								</div>
 							)}
 						</TitleTag>
 					}
