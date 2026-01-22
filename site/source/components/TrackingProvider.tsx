@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react'
 import i18next from 'i18next'
 import { useEffect, useState } from 'react'
 
@@ -35,9 +36,20 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 			setTracker(instance)
 		}
 
-		script.onerror = () => {
-			// eslint-disable-next-line no-console
-			console.error('Failed to load Piano Analytics script')
+		script.onerror = (event, source, lineno, colno, error) => {
+			Sentry.captureException(error, {
+				tags: {
+					component: 'TrackingProvider',
+					action: 'script_load',
+				},
+				extra: {
+					message: 'Failed to load Piano Analytics script',
+					event,
+					source,
+					lineno,
+					colno,
+				},
+			})
 		}
 
 		setScript(script)
