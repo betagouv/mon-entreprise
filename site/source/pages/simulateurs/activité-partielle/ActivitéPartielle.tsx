@@ -29,7 +29,8 @@ const externalLinks = [
 export default function ActivitéPartielle() {
 	const id = 'activité-partielle'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -42,6 +43,8 @@ export default function ActivitéPartielle() {
 				externalLinks={externalLinks}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					results={
 						<Condition expression="salarié . contrat . salaire brut >= salarié . contrat . temps de travail . SMIC">
 							<ComparaisonTable />

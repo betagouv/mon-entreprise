@@ -23,7 +23,8 @@ const nextSteps = [
 export default function DividendesSimulation() {
 	const id = 'dividendes'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -36,6 +37,8 @@ export default function DividendesSimulation() {
 			>
 				<Notifications />
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					explanations={<Explications />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>

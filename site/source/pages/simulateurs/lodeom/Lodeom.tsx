@@ -33,7 +33,8 @@ const externalLinks = [
 export default function LodeomSimulation() {
 	const id = 'auto-entrepreneur'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const currentZone = useZoneLodeom()
 
@@ -48,7 +49,11 @@ export default function LodeomSimulation() {
 				nextSteps={nextSteps}
 				externalLinks={externalLinks}
 			>
-				<Simulation afterQuestionsSlot={<YearSelectionBanner />}>
+				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
+					afterQuestionsSlot={<YearSelectionBanner />}
+				>
 					<SimulateurWarning
 						simulateur="lodeom"
 						informationsComplémentaires={
