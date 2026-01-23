@@ -45,8 +45,10 @@ const CAÀNone = pipe(
 
 export default function ChiffreAffairesActivitéMixte({
 	dottedName,
+	label,
 }: {
 	dottedName: DottedName
+	label?: string
 }) {
 	const { t } = useTranslation()
 	const adjustProportions = useAdjustProportions(dottedName)
@@ -69,6 +71,7 @@ export default function ChiffreAffairesActivitéMixte({
 				appear={false}
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
+				label={label}
 			/>
 			<WhenApplicable dottedName="entreprise . activité . revenus mixtes">
 				<FromTop>
