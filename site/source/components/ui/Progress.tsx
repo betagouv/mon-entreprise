@@ -17,7 +17,7 @@ export default function Progress({ progress, maxValue = 1 }: ProgressProps) {
 		<div style={{ position: 'relative' }}>
 			<ProgressBar style={{ width: `${(progress * 100) / maxValue}%` }} />
 
-			<StyledBody role="alert">
+			<StyledBody role="status">
 				{t('Étape {{ total }} sur {{ maxValue }}', { total, maxValue })}
 			</StyledBody>
 		</div>
