@@ -30,7 +30,8 @@ const conditionalExternalLinks = [
 export const EntrepriseIndividuelle = () => {
 	const id = 'entreprise-individuelle'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const relevantConditionalExternalLinks = conditionalExternalLinks?.filter(
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
@@ -47,6 +48,8 @@ export const EntrepriseIndividuelle = () => {
 				externalLinks={allExternalLinks}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					explanations={<ExplicationsIndépendant />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>

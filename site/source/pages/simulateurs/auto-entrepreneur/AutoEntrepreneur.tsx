@@ -29,7 +29,8 @@ const nextSteps = [
 export default function AutoEntrepreneur() {
 	const id = 'auto-entrepreneur'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -86,6 +87,8 @@ export default function AutoEntrepreneur() {
 				externalLinks={externalLinks}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					explanations={<ExplicationsAutoEntrepreneur />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
