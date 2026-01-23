@@ -33,8 +33,18 @@ describe('Indépendant', () => {
 			</HelmetProvider>
 		)
 
+		const blocObjectifs = await screen.findByTestId('bloc-objectifs')
 		expect(
-			await screen.findByLabelText(/Chiffre d'affaires/)
+			within(blocObjectifs).getByLabelText(/Chiffre d'affaires/, {selector: 'input'})
+		).toBeInTheDocument()
+		expect(
+			within(blocObjectifs).getByLabelText(/Charges \(hors rémunération dirigeant\)/, {selector: 'input'})
+		).toBeInTheDocument()
+		expect(
+			within(blocObjectifs).getByLabelText(/Rémunération nette/, {selector: 'input'})
+		).toBeInTheDocument()
+		expect(
+			within(blocObjectifs).getByLabelText(/Revenu après impôt/, {selector: 'input'})
 		).toBeInTheDocument()
 	})
 })

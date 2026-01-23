@@ -29,6 +29,7 @@ export function SimulationGoals({ toggles, children }: SimulationGoalsProps) {
 					$isEmbeded={isEmbeded}
 					$isFirstStepCompleted={isFirstStepCompleted}
 					id="simulator-legend"
+					data-testid="bloc-objectifs"
 					aria-live="polite"
 				>
 					<ForceThemeProvider forceTheme="dark">
