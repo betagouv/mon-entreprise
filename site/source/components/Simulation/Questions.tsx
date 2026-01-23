@@ -39,14 +39,12 @@ export interface QuestionsProps<S extends Situation = Situation> {
 	questions?: Array<ComposantQuestion<S>>
 	avecQuestionsPublicodes?: boolean
 	customEndMessages?: React.ReactNode
-	customSituationVisualisation?: React.ReactNode
 }
 
 export function Questions<S extends Situation>({
 	questions = [],
 	avecQuestionsPublicodes = true,
 	customEndMessages,
-	customSituationVisualisation,
 	situation,
 }: QuestionsProps<S>) {
 	const { t } = useTranslation()
@@ -195,11 +193,7 @@ export function Questions<S extends Situation>({
 								questionIsAnswered={questionCouranteRépondue}
 								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
-									avecQuestionsPublicodes ? (
-										<SeeAnswersButton>
-											{customSituationVisualisation}
-										</SeeAnswersButton>
-									) : undefined
+									avecQuestionsPublicodes ? <SeeAnswersButton /> : undefined
 								}
 							>
 								{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
@@ -261,11 +255,7 @@ export function Questions<S extends Situation>({
 								questionIsAnswered={questionCouranteRépondue}
 								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
-									avecQuestionsPublicodes ? (
-										<SeeAnswersButton>
-											{customSituationVisualisation}
-										</SeeAnswersButton>
-									) : undefined
+									avecQuestionsPublicodes ? <SeeAnswersButton /> : undefined
 								}
 							/>
 							<Notifications />
