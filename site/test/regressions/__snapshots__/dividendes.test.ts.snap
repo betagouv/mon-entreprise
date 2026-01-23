@@ -82,9 +82,9 @@ impôt . taux d'imposition: 19"
 
 exports[`calculate simulations-dividendes > pfu 1`] = `
 "bénéficiaire . dividendes . bruts: 200
-bénéficiaire . dividendes . cotisations et contributions: 34
+bénéficiaire . dividendes . cotisations et contributions: 37
 bénéficiaire . dividendes . imposables: 120
-bénéficiaire . dividendes . nets d'impôt: 140
+bénéficiaire . dividendes . nets d'impôt: 137
 impôt . montant: 26
 impôt . revenu imposable: 120
 impôt . taux d'imposition: null"
@@ -92,9 +92,9 @@ impôt . taux d'imposition: null"
 
 exports[`calculate simulations-dividendes > pfu 2`] = `
 "bénéficiaire . dividendes . bruts: 20000000
-bénéficiaire . dividendes . cotisations et contributions: 3440000
+bénéficiaire . dividendes . cotisations et contributions: 3720000
 bénéficiaire . dividendes . imposables: 12000000
-bénéficiaire . dividendes . nets d'impôt: 14000000
+bénéficiaire . dividendes . nets d'impôt: 13720000
 impôt . montant: 2560000
 impôt . revenu imposable: 12000000
 impôt . taux d'imposition: null"

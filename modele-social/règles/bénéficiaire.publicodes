@@ -82,7 +82,11 @@ bénéficiaire . dividendes . cotisations et contributions:
         - bruts
         - variations:
             - si: impôt . méthode de calcul . PFU
-              alors: 9.2%
+              alors:
+                variations:
+                  - si: date >= 01/2026
+                    alors: 10.6%
+                  - sinon: 9.2%
             - sinon: 2.4%
 
     prélèvement de solidarité:
