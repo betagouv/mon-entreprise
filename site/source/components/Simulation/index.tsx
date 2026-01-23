@@ -8,8 +8,10 @@ import ShareOrSaveSimulationBanner, {
 } from '@/components/ShareSimulationBanner'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button, Grid, H3, Spacing } from '@/design-system'
+import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { QuestionPublicodes } from '@/hooks/useQuestions'
 import { useNavigation } from '@/lib/navigation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
@@ -74,7 +76,8 @@ type SimulationProps<S extends Situation = Situation> = {
 
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
-	avecQuestionsPublicodes?: boolean
+	questionsPublicodes?: Array<QuestionPublicodes<S>>
+	raccourcisPublicodes?: Array<RaccourciPublicodes>
 }
 
 export default function Simulation<S extends Situation = Situation>({
@@ -91,7 +94,8 @@ export default function Simulation<S extends Situation = Situation>({
 	entrepriseSelection = true,
 	situation,
 	questions,
-	avecQuestionsPublicodes = true,
+	questionsPublicodes,
+	raccourcisPublicodes,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const { currentSimulatorData } = useCurrentSimulatorData()
@@ -117,7 +121,8 @@ export default function Simulation<S extends Situation = Situation>({
 
 							<Questions
 								questions={questions}
-								avecQuestionsPublicodes={avecQuestionsPublicodes}
+								questionsPublicodes={questionsPublicodes}
+								raccourcisPublicodes={raccourcisPublicodes}
 								customEndMessages={customEndMessages}
 								situation={situation}
 							/>

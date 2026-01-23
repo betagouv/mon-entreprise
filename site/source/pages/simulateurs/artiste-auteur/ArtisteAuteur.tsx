@@ -23,7 +23,8 @@ const { Body, H2 } = typography
 export function ArtisteAuteur() {
 	const id = 'artiste-auteur'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -55,6 +56,8 @@ export function ArtisteAuteur() {
 				externalLinks={externalLinks}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					results={<InstitutionsPartenaires />}
 					explanations={<CotisationsResult />}
 					afterQuestionsSlot={<YearSelectionBanner />}

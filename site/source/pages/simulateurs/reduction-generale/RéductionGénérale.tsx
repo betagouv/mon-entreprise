@@ -28,7 +28,8 @@ const nextSteps = ['salarié'] satisfies SimulateurId[]
 export default function RéductionGénéraleSimulation() {
 	const id = 'réduction-générale'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -71,7 +72,11 @@ export default function RéductionGénéraleSimulation() {
 				nextSteps={nextSteps}
 				externalLinks={externalLinks}
 			>
-				<Simulation afterQuestionsSlot={<YearSelectionBanner />}>
+				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
+					afterQuestionsSlot={<YearSelectionBanner />}
+				>
 					<SimulateurWarning
 						simulateur="réduction-générale"
 						informationsComplémentaires={
