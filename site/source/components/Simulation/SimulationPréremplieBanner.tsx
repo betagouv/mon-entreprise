@@ -10,7 +10,7 @@ import {
 	situationSelector,
 } from '@/store/selectors/simulationSelectors'
 
-import AnswerList from '../conversation/AnswerList'
+import { AnswersList } from '../conversation/AnswersList'
 import WrongSimulateurWarning from '../WrongSimulateurWarning'
 
 export default function SimulationPréremplieBanner() {
@@ -47,7 +47,7 @@ export default function SimulationPréremplieBanner() {
 					</Link>
 				)}
 			>
-				{(close) => <AnswerList onClose={close} />}
+				{(close) => <AnswersList onClose={close} />}
 			</PopoverWithTrigger>
 			<WrongSimulateurWarningContainer>
 				<WrongSimulateurWarning />
