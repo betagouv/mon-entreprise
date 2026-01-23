@@ -55,7 +55,7 @@ export function RadioCard({
 					{label} {emoji && <Emoji emoji={emoji} />}
 				</Body>
 
-				{description && <SmallBody $grey>{description}</SmallBody>}
+				{description && <SmallBody>{description}</SmallBody>}
 			</div>
 		</StyledRadioCardSkeleton>
 	)
