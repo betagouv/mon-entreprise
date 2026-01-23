@@ -1415,13 +1415,13 @@ pages:
       shortname: Cessation d’activité
       title: Simulateur de cessation d’activité
       warning: <0>Vous êtes travailleur indépendant ou travailleuse indépendante et
-        vous souhaitez estimer les cotisations dues avant de cesser votre
-        activité. Ce simulateur est là pour vous aider. À noter que le montant
-        indiqué par ce simulateur est une estimation. Seul le « décompte réel de
-        l'Urssaf » vous permettra de connaître le montant exact. </0><1><0>Ce
-        simulateur ne tient pas compte</0> des versements déjà effectués, des
-        cotisations provisionnelles déjà appelées, ni des éventuelles
-        dettes.</1>
+        vous souhaitez estimer <2>les cotisations dues avant de cesser votre
+        activité</2>. Ce simulateur est là pour vous aider. À noter que le
+        montant indiqué par ce simulateur est une estimation. Seul le « décompte
+        réel de l'Urssaf » vous permettra de connaître le montant exact.
+        </0><1><0>Ce simulateur ne tient pas compte :</0><1><0>des versements
+        déjà effectués,</0><1>des cotisations provisionnelles déjà
+        appelées,</1><2>ni des éventuelles dettes.</2></1></1>
     chirurgien-dentiste:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.

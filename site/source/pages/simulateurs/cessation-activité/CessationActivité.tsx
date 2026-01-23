@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
-import { Body } from '@/design-system'
+import { Body, Li, Strong, Ul } from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
@@ -77,16 +77,22 @@ export const CessationActivitéSimulation = () => {
 							<Trans i18nKey="pages.simulateurs.cessation-activité.warning">
 								<Body>
 									Vous êtes travailleur indépendant ou travailleuse indépendante
-									et vous souhaitez estimer les cotisations dues avant de cesser
-									votre activité. Ce simulateur est là pour vous aider. À noter
-									que le montant indiqué par ce simulateur est une estimation.
-									Seul le «&nbsp;décompte réel de l'Urssaf&nbsp;» vous permettra
-									de connaître le montant exact.{' '}
+									et vous souhaitez estimer{' '}
+									<Strong>
+										les cotisations dues avant de cesser votre activité
+									</Strong>
+									. Ce simulateur est là pour vous aider. À noter que le montant
+									indiqué par ce simulateur est une estimation. Seul le
+									«&nbsp;décompte réel de l'Urssaf&nbsp;» vous permettra de
+									connaître le montant exact.{' '}
 								</Body>
 								<Body>
-									<strong>Ce simulateur ne tient pas compte</strong> des
-									versements déjà effectués, des cotisations provisionnelles
-									déjà appelées, ni des éventuelles dettes.
+									<Strong>Ce simulateur ne tient pas compte&nbsp;:</Strong>
+									<Ul>
+										<Li>des versements déjà effectués,</Li>
+										<Li>des cotisations provisionnelles déjà appelées,</Li>
+										<Li>ni des éventuelles dettes.</Li>
+									</Ul>
 								</Body>
 							</Trans>
 						}
