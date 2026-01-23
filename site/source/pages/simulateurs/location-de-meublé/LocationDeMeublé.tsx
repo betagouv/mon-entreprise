@@ -75,7 +75,6 @@ const LocationDeMeublé = () => {
 						: []),
 				]}
 				showQuestionsFromBeginning={estSituationValide(situation)}
-				avecQuestionsPublicodes={false}
 			>
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
 				<SimulationGoals toggles={<TypeHébergementSwitch />}>

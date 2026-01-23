@@ -9,8 +9,12 @@ import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { Body, Conversation, H3, Spacing } from '@/design-system'
+import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import { useQuestions } from '@/hooks/useQuestions'
+import {
+	QuestionPublicodes as TypeQuestionPublicodes,
+	useQuestions,
+} from '@/hooks/useQuestions'
 
 import { QuestionPublicodes } from './QuestionPublicodes'
 import Raccourcis from './Raccourcis'
@@ -18,14 +22,16 @@ import Raccourcis from './Raccourcis'
 export interface QuestionsProps<S extends Situation = Situation> {
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
-	avecQuestionsPublicodes?: boolean
+	questionsPublicodes?: Array<TypeQuestionPublicodes<S>>
+	raccourcisPublicodes?: Array<RaccourciPublicodes>
 	customEndMessages?: React.ReactNode
 	customSituationVisualisation?: React.ReactNode
 }
 
 export function Questions<S extends Situation>({
-	questions = [],
-	avecQuestionsPublicodes = true,
+	questions,
+	questionsPublicodes,
+	raccourcisPublicodes,
 	customEndMessages,
 	customSituationVisualisation,
 	situation,
@@ -46,8 +52,9 @@ export function Questions<S extends Situation>({
 		goTo,
 	} = useQuestions({
 		questions,
+		questionsPublicodes,
+		raccourcisPublicodes,
 		situation,
-		avecQuestionsPublicodes,
 	})
 
 	const handleGoToPrevious = useCallback(() => {
@@ -132,7 +139,7 @@ export function Questions<S extends Situation>({
 								questionIsAnswered={questionCouranteRépondue}
 								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
-									avecQuestionsPublicodes ? (
+									questionsPublicodes?.length ? (
 										<SeeAnswersButton>
 											{customSituationVisualisation}
 										</SeeAnswersButton>
