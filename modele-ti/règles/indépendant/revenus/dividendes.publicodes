@@ -60,6 +60,7 @@ indépendant . dividendes . prélèvements sociaux:
     Prélèvements sociaux (CSG, CRDS...) sur les revenus du patrimoine: https://www.service-public.gouv.fr/particuliers/vosdroits/F2329
     Article L136-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173130/
     Article L136-7 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173129/
+    Article L136-8 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051287395
 
   avec:
     CRDS:
@@ -80,7 +81,11 @@ indépendant . dividendes . prélèvements sociaux:
         - dividendes . soumis à prélèvements sociaux
         - variations:
             - si: imposition . PFU
-              alors: 9.2%
+              alors:
+                variations:
+                  - si: date < 01/2026
+                    alors: 9.2%
+                  - sinon: 10.6%
             - sinon: 2.4%
 
     prélèvement de solidarité:
@@ -99,9 +104,9 @@ indépendant . dividendes . imposition:
           Il s’agit du mode d’imposition **par défaut**. Il s’applique tant que
           vous ne faites pas de demande pour y renoncer.
 
-          Le prélèvement forfaitaire unique (PFU) est égal à 30 % :
+          Le prélèvement forfaitaire unique (PFU) est égal à 31,4 % :
           - **12,8 %** correspondant à l’impôt sur le revenu ;
-          - 17,2 % correspondant aux prélèvements sociaux.
+          - 18,6 % correspondant aux prélèvements sociaux.
     - barème progressif:
         valeur: imposition = 'barème progressif'
         titre: barème progressif de l’impôt sur le revenu
