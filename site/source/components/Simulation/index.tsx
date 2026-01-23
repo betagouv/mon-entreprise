@@ -113,10 +113,10 @@ export default function Simulation<S extends Situation = Situation>({
 							{entrepriseSelection && <EntrepriseSelection />}
 
 							<Questions
-								situation={situation}
 								questions={questions}
 								avecQuestionsPublicodes={avecQuestionsPublicodes}
 								customEndMessages={customEndMessages}
+								situation={situation}
 							/>
 						</>
 					)}
