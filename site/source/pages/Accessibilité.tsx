@@ -104,41 +104,29 @@ export default function Accessibilité() {
 				révèle que :
 			</Body>
 			<Ul>
-				<Li>77,78% des critères RGAA sont respectés.</Li>
-				<Li>Le taux moyen de conformité du site s’élève à 94%.</Li>
+				<Li>87,30% des critères RGAA sont respectés.</Li>
+				<Li>Le taux moyen de conformité du site s’élève à 97%.</Li>
 				<Li>
 					La page "Simulateur de revenus pour salarié" a un taux de conformité
-					de 91%.
+					de 96%.
 				</Li>
 			</Ul>
 			<Body>
-				Nombre de critères applicables : 63 ; Nombre de critères conformes : 49
-				; Nombre de critères non conformes : 14
+				Nombre de critères applicables : 63 ; Nombre de critères conformes : 55
+				; Nombre de critères non conformes : 8
 			</Body>
 			<H3>Contenus non accessibles</H3>
 			<Body>
 				Liste des critères non conformes :
 				<Ul>
 					<Li>
-						Pour certaines pages web, l’information est donnée uniquement par la
-						couleur.
-					</Li>
-					<Li>
 						Pour certaines pages web, le contraste entre la couleur du texte et
 						la couleur de son arrière-plan n’est pas suffisamment élevé.
 					</Li>
 					<Li>Certains liens ne sont pas explicites.</Li>
 					<Li>
-						Certains scripts ne sont pas compatibles avec les technologies
-						d’assistance.
-					</Li>
-					<Li>
 						Pour certains scripts qui initient un changement de contexte,
 						l’utilisateur n’est pas averti ou en n’a pas le contrôle.
-					</Li>
-					<Li>
-						Pour certaines pages web, l’information n’est pas structurée par
-						l’utilisation appropriée de titres.
 					</Li>
 					<Li>
 						Pour certaines pages web, certaines listes ne sont pas correctement
@@ -154,22 +142,8 @@ export default function Accessibilité() {
 						champ associé ne sont pas accolés.
 					</Li>
 					<Li>
-						Pour certains formulaires, les champs de même nature ne sont pas
-						regroupés, si nécessaire.
-					</Li>
-					<Li>
 						Pour certains formulaires, certaines légendes associées à un
 						regroupement de champs de même nature ne sont pas pertinentes.
-					</Li>
-					<Li>
-						Pour certains formulaires, certains contrôles de saisie ne sont pas
-						utilisés de manière pertinente.
-					</Li>
-					<Li>
-						Certaines zones de regroupement de contenus présentes dans plusieurs
-						pages web (zones d’en-tête, de navigation principale, de contenu
-						principal, de pied de page et de moteur de recherche) ne pas peuvent
-						être atteintes ou évitées.
 					</Li>
 				</Ul>
 			</Body>
