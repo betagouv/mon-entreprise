@@ -25,7 +25,8 @@ const nextSteps = ['activité-partielle'] satisfies SimulateurId[]
 export default function SalariéSimulation() {
 	const id = 'salarié'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -61,6 +62,8 @@ export default function SalariéSimulation() {
 				externalLinks={externalLinks}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					explanations={<ExplicationsSalaire />}
 					customEndMessages={t(
 						'simulation-end.hiring.text',
