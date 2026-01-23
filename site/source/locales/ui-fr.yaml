@@ -49,7 +49,6 @@ Charger plus de résultats: Charger plus de résultats
 Charges: Charges
 Chiffre d'affaires: Chiffre d'affaires
 Chiffre d'affaires estimé: Chiffre d'affaires estimé
-Chiffre d'affaires pour l'année de cessation: Chiffre d'affaires pour l'année de cessation
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
@@ -183,7 +182,6 @@ Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
-Rémunération totale pour l'année de cessation: Rémunération totale pour l'année de cessation
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
 Salaire net: Salaire net
@@ -209,7 +207,6 @@ Tableau indiquant le nombre de visites par {{period}}.: Tableau indiquant le nom
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
 Titres-restaurant: Titres-restaurant
 Total des cotisations et contributions: Total des cotisations et contributions
-Total des cotisations à devoir pour l'année de cessation d'activité: Total des cotisations à devoir pour l'année de cessation d'activité
 Tout déplier: Tout déplier
 Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
@@ -1419,6 +1416,10 @@ pages:
           description: L’Urssaf vous accompagne à toutes les étapes clés de votre démarche
             de cessation d’activité.
           title: Le service Cessation d’activité
+      label:
+        chiffre-affaires: Chiffre d'affaires pour l'année de cessation
+        cotisations: Total des cotisations à devoir pour l'année de cessation d'activité
+        rémunération: Rémunération totale pour l'année de cessation
       meta:
         description: Estimez vos cotisations de l’année de cessation de votre activité
           en tant qu’indépendant.
