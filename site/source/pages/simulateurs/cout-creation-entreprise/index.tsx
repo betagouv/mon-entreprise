@@ -19,7 +19,8 @@ const nextSteps = ['choix-statut'] satisfies SimulateurId[]
 export default function CoutCreationEntreprise() {
 	const id = 'coût-création-entreprise'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -32,6 +33,8 @@ export default function CoutCreationEntreprise() {
 			>
 				<Simulation
 					showQuestionsFromBeginning
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					explanations={
 						<Condition expression="entreprise . coût formalités . création > 0">
 							<H3>Détails</H3>

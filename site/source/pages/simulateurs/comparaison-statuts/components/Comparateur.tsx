@@ -15,6 +15,8 @@ import {
 	Message,
 	Spacing,
 } from '@/design-system'
+import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
+import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
@@ -23,6 +25,8 @@ import ModifierOptions from './ModifierOptions'
 import StatutChoice from './StatutChoice'
 
 function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
+	const simulateurConfig = useSimulatorData('comparaison-statuts')
+	const { questions, raccourcis } = useSimulationPublicodes(simulateurConfig)
 	const { t } = useTranslation()
 
 	const { absoluteSitePaths } = useSitePaths()
@@ -32,6 +36,8 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 			<Simulation
 				hideDetails
 				showQuestionsFromBeginning
+				questionsPublicodes={questions}
+				raccourcisPublicodes={raccourcis}
 				fullWidth
 				id="simulation-comparateur"
 			>
