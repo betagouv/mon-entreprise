@@ -1344,13 +1344,13 @@ pages:
         titre: Retirement simulator
       shortname: Cessation of activity
       title: Retirement simulator
-      warning: <0>You are self-employed and would like to estimate the contributions
-        due before you stop working. This simulator is here to help you. Please
-        note that the amount indicated by this simulator is an estimate. Only
-        the "real Urssaf statement" will tell you the exact amount.
-        </0><1><0>This simulator does not take into account&lt;/0> payments
-        already made, provisional contributions already called in, or any
-        debts.</1>
+      warning: <0>You are self-employed and would like to estimate <2>the
+        contributions due before you stop working</2>. This simulator is here to
+        help you. Please note that the amount indicated by this simulator is an
+        estimate. Only the "real Urssaf statement" will tell you the exact
+        amount. </0><1><0>This simulator does not take into
+        account</0><1><0>payments already made,</0><1>provisional contributions
+        already called,</1><2>or any debts.</2></1></1>
     chirurgien-dentiste:
       meta:
         description: Calculation of net income after contributions based on total income.
