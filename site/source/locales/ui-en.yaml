@@ -46,7 +46,6 @@ Charger plus de résultats: Load more results
 Charges: Charges
 Chiffre d'affaires: Sales figures
 Chiffre d'affaires estimé: Estimated sales
-Chiffre d'affaires pour l'année de cessation: Sales for the year of cessation
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   How does it work? See the explanatory page on the github repository page, new
   window
@@ -174,7 +173,6 @@ Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
-Rémunération totale pour l'année de cessation: Total compensation for the year of termination
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
 Salaire net: Net salary
@@ -199,7 +197,6 @@ Tableau indiquant le nombre de visites par {{period}}.: Table showing the number
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
 Titres-restaurant: Meal vouchers
 Total des cotisations et contributions: Total contributions
-Total des cotisations à devoir pour l'année de cessation d'activité: Total contributions due for the year of cessation of activity
 Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
@@ -1335,6 +1332,10 @@ pages:
           description: Urssaf will be with you every step of the way when you decide to
             stop working.
           title: Termination of activity service
+      label:
+        chiffre-affaires: Sales for the year of cessation
+        cotisations: Total contributions due for the year of cessation of activity
+        rémunération: Total compensation for the year of termination
       meta:
         description: Estimate your contributions for the year in which you cease
           self-employed activity.
