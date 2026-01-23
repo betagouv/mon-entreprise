@@ -10,7 +10,7 @@ import {
 } from '@/design-system'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
-import Answers from './AnswerList'
+import { AnswersList } from './AnswersList'
 
 export default function SeeAnswersButton({
 	children,
@@ -43,7 +43,7 @@ export default function SeeAnswersButton({
 				)}
 				ariaLabel="Modifier mes réponses"
 			>
-				{(close) => <Answers onClose={close}>{children}</Answers>}
+				{(close) => <AnswersList onClose={close}>{children}</AnswersList>}
 			</PopoverWithTrigger>
 		</>
 	)
