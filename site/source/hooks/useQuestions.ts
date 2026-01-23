@@ -24,7 +24,7 @@ import { questionsRéponduesSelector } from '@/store/selectors/simulation/questi
 import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-interface QuestionPublicodes<S extends Situation> {
+export interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'
 	id: DottedName
 	applicable: Predicate<S | undefined>
