@@ -121,46 +121,29 @@ export function Questions<S extends Situation>({
 						/>
 					)}
 
-					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
-						<FromTop key={`custom-question-${QuestionCourante.id}`}>
-							<fieldset>
-								<QuestionTitle as="legend">
-									{typeof QuestionCourante.libellé === 'function'
-										? QuestionCourante.libellé(t)
-										: QuestionCourante.libellé}
-								</QuestionTitle>
-								<QuestionCourante />
-								<Spacing md />
-							</fieldset>
-
-							<Conversation
-								onPrevious={
-									activeQuestionIndex > 0 ? handleGoToPrevious : undefined
-								}
-								onNext={handleGoToNext}
-								questionIsAnswered={questionCouranteRépondue}
-								isPreviousDisabled={activeQuestionIndex === 0}
-								customVisualisation={
-									avecQuestionsPublicodes ? <SeeAnswersButton /> : undefined
-								}
-							>
-								{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
-								<div style={{ display: 'none' }}></div>
-							</Conversation>
-						</FromTop>
-					)}
-
-					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
-						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
+					{!finished && QuestionCourante && (
+						<FromTop key={`question-${QuestionCourante.id}`}>
 							<div ref={focusAnchorForA11yRef} tabIndex={-1} role="status">
-								<RuleField
-									dottedName={QuestionCourante.id}
-									labelOrLegend={questionCouranteLabel}
-									onChange={(value, name) =>
-										handlePublicodesQuestionResponse(name, value)
-									}
-									onSubmit={handleGoToNext}
-								/>
+								{QuestionCourante?._tag === 'QuestionFournie' && (
+									<fieldset>
+										<QuestionTitle as="legend">
+											{QuestionCourante.libellé(t)}
+										</QuestionTitle>
+										<QuestionCourante />
+										<Spacing md />
+									</fieldset>
+								)}
+
+								{QuestionCourante?._tag === 'QuestionPublicodes' && (
+									<RuleField
+										dottedName={QuestionCourante.id}
+										labelOrLegend={questionCouranteLabel}
+										onChange={(value, name) =>
+											handlePublicodesQuestionResponse(name, value)
+										}
+										onSubmit={handleGoToNext}
+									/>
+								)}
 							</div>
 
 							<Conversation
@@ -173,8 +156,14 @@ export function Questions<S extends Situation>({
 								customVisualisation={
 									avecQuestionsPublicodes ? <SeeAnswersButton /> : undefined
 								}
-							/>
-							<Notifications />
+							>
+								{QuestionCourante?._tag === 'QuestionFournie' && (
+									/* Le contenu de la question est rendu par activeCustomQuestion.renderer */
+									<div style={{ display: 'none' }}></div>
+								)}
+							</Conversation>
+
+							{QuestionCourante?._tag === 'QuestionPublicodes' && <Notifications />}
 						</FromTop>
 					)}
 
