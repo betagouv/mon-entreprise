@@ -81,7 +81,7 @@ describe('Dividendes', () => {
 			)
 			expect(e).toEvaluate(
 				'indépendant . dividendes . prélèvements sociaux',
-				172
+				186
 			)
 		})
 
@@ -250,7 +250,7 @@ describe('Dividendes', () => {
 			)
 			expect(e).toEvaluate(
 				'indépendant . dividendes . prélèvements sociaux',
-				172
+				186
 			)
 		})
 
