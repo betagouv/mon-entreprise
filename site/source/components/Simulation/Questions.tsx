@@ -177,17 +177,60 @@ export function Questions<S extends Situation>({
 						/>
 					)}
 
-					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
-						<FromTop key={`custom-question-${QuestionCourante.id}`}>
-							<fieldset>
-								<QuestionTitle as="legend">
-									{typeof QuestionCourante.libellé === 'function'
-										? QuestionCourante.libellé(t)
-										: QuestionCourante.libellé}
-								</QuestionTitle>
-								<QuestionCourante />
-								<Spacing md />
-							</fieldset>
+					{!finished && QuestionCourante && (
+						<FromTop>
+							{QuestionCourante?._tag === 'QuestionFournie' && (
+								<fieldset>
+									<QuestionTitle as="legend">
+										{QuestionCourante.libellé(t)}
+									</QuestionTitle>
+									<QuestionCourante />
+									<Spacing md />
+								</fieldset>
+							)}
+
+							{QuestionCourante?._tag === 'QuestionPublicodes' && (
+								shouldBeWrappedByFieldset ? (
+									<fieldset>
+										<H3 as="legend">
+											{questionCouranteLabel}
+											<ExplicableRule
+												light
+												dottedName={QuestionCourante.id}
+												ariaDescribedBy={questionCouranteLabel}
+											/>
+										</H3>
+										<RuleInput
+											dottedName={QuestionCourante.id}
+											onChange={(value, name) =>
+												handlePublicodesQuestionResponse(name, value)
+											}
+											key={QuestionCourante.id}
+											onSubmit={handleGoToNext}
+										/>
+									</fieldset>
+								) : (
+									<>
+										<H3 as="label" htmlFor={questionCouranteHtmlForId}>
+											{questionCouranteLabel}
+											<ExplicableRule
+												light
+												dottedName={QuestionCourante.id}
+												ariaDescribedBy={questionCouranteLabel}
+											/>
+										</H3>
+										<RuleInput
+											id={questionCouranteHtmlForId}
+											dottedName={QuestionCourante.id}
+											onChange={(value, name) =>
+												handlePublicodesQuestionResponse(name, value)
+											}
+											key={QuestionCourante.id}
+											onSubmit={handleGoToNext}
+										/>
+									</>
+								)
+							)}
 
 							<Conversation
 								onPrevious={
@@ -204,70 +247,13 @@ export function Questions<S extends Situation>({
 									) : undefined
 								}
 							>
-								{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
-								<div style={{ display: 'none' }}></div>
+								{QuestionCourante?._tag === 'QuestionFournie' && (
+									/* Le contenu de la question est rendu par activeCustomQuestion.renderer */
+									<div style={{ display: 'none' }}></div>
+								)}
 							</Conversation>
-						</FromTop>
-					)}
 
-					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
-						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
-							{shouldBeWrappedByFieldset ? (
-								<fieldset>
-									<H3 as="legend">
-										{questionCouranteLabel}
-										<ExplicableRule
-											light
-											dottedName={QuestionCourante.id}
-											ariaDescribedBy={questionCouranteLabel}
-										/>
-									</H3>
-									<RuleInput
-										dottedName={QuestionCourante.id}
-										onChange={(value, name) =>
-											handlePublicodesQuestionResponse(name, value)
-										}
-										key={QuestionCourante.id}
-										onSubmit={handleGoToNext}
-									/>
-								</fieldset>
-							) : (
-								<>
-									<H3 as="label" htmlFor={questionCouranteHtmlForId}>
-										{questionCouranteLabel}
-										<ExplicableRule
-											light
-											dottedName={QuestionCourante.id}
-											ariaDescribedBy={questionCouranteLabel}
-										/>
-									</H3>
-									<RuleInput
-										id={questionCouranteHtmlForId}
-										dottedName={QuestionCourante.id}
-										onChange={(value, name) =>
-											handlePublicodesQuestionResponse(name, value)
-										}
-										key={QuestionCourante.id}
-										onSubmit={handleGoToNext}
-									/>
-								</>
-							)}
-							<Conversation
-								onPrevious={
-									activeQuestionIndex > 0 ? handleGoToPrevious : undefined
-								}
-								onNext={handleGoToNext}
-								questionIsAnswered={questionCouranteRépondue}
-								isPreviousDisabled={activeQuestionIndex === 0}
-								customVisualisation={
-									avecQuestionsPublicodes ? (
-										<SeeAnswersButton>
-											{customSituationVisualisation}
-										</SeeAnswersButton>
-									) : undefined
-								}
-							/>
-							<Notifications />
+							{QuestionCourante?._tag === 'QuestionPublicodes' && <Notifications />}
 						</FromTop>
 					)}
 
