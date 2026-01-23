@@ -15,35 +15,131 @@ Ces notices se lisent en une heure ou deux et, même en les survolant, on appren
 
 Pour être deux développeurs à l'avoir suivie (@newick et @logic-fabric), nous pouvons recommander la formation [Développer des sites web accessibles et conformes au RGAA](https://formations.access42.net/formations/formation-developpement-accessible/) d'_Access42_.
 
-## Quelques points de vigilance
+## Points de vigilance
 
-La liste de recommandations qui suit est loin d'être exhaustive.
-
-Elle ne mentionne que quelques erreurs relevées lors des derniers audits, de nombreuses bonnes pratiques ayant déjà été appliquées préalablement. 👌
+Cette liste de recommandations est issue des audits RGAA et des corrections apportées par @newick et @logic-fabric.
 
 ### Concernant les attributs ARIA
 
 -   Toujours privilégier le HTML pur à l'utilisation d'attributs ARIA (cf. [_No ARIA is better than bad ARIA_](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)) : les sites utilisant l'API ARIA sont en moyenne moins accessibles que les autres, celle-ci étant souvent mal utilisée.
 -   Pour utiliser correctement les attributs ARIA au sein de composants complexes (et savoir quelles interactions clavier sont nécessaires), se référer aux [patterns ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/).
+-   Ne pas ajouter de `role` sur un élément qui a déjà ce rôle nativement (ex: `role="button"` sur un `<button>`, `role="radiogroup"` dans un `<fieldset>`).
 
 ### Concernant les `aria-label`
 
--   L`aria-label` d'un composant interactif doit toujours contenir l'intitulé visible, pour être déclenchable avec une commande vocale.
+-   L'`aria-label` d'un composant interactif doit toujours contenir l'intitulé visible, pour être déclenchable avec une commande vocale.
 -   Plus un `aria-label` est concis, plus les utilisateurs de lecteur d'écran vous remercieront.
 -   Plus on peut se passer d'`aria-label` (comme de tout autre attribut ARIA), mieux c'est.
+-   Ne pas ajouter d'`aria-label` si le composant a déjà un `<label>` HTML associé ou un `aria-labelledby` : c'est redondant.
+-   Préférer un vrai `<label>` avec `htmlFor` plutôt qu'un `aria-label` quand c'est possible.
 
-### Concernant les images
+### Concernant les images et emojis
 
 -   Si une image est décorative, mettre un `alt=""` pour qu'elle soit ignorée des lecteurs d'écran.
 -   Si une image n'est pas décorative, éviter de préciser "image" ou "logo" dans son alternative textuelle : les lecteurs d'écran vocalisent déjà la nature du composant.
+-   Les emojis utilisés comme icônes significatives doivent avoir une alternative textuelle (via `aria-label` ou texte caché `.sr-only`).
 
 ### Concernant les formulaires
 
 -   Toujours associer un `label` à chaque `input` (un placeholder ne suffit pas et n'est pas restitué par un lecteur d'écran).
 -   Toujours mettre une liaison `for/id` entre un `input` et son `label`, même lorsqu'ils sont imbriqués.
 -   Les groupes de boutons radio ou de checkboxes doivent être contenus dans un `<fieldset>` avec une `<legend>`.
+-   Pour les champs simples (texte, nombre, date), utiliser `<label>` avec `htmlFor`. Réserver `<fieldset>/<legend>` aux groupes de contrôles.
+-   Indiquer le format de saisie attendu dans le label (ex: "Date de naissance au format JJ/MM/AAAA").
+
+### Concernant les liens
+
+-   Les liens qui ouvrent une nouvelle fenêtre doivent l'indiquer dans leur aria-label ou leur intitulé visible (ex: "Voir sur GitHub, nouvelle fenêtre").
+-   Les liens doivent être explicites : éviter "En savoir plus" seul. Préférer "En savoir plus sur le statut SASU" ou utiliser un `aria-label` contextuel.
+
+### Concernant les contrastes et couleurs
+
+-   Assurer un contraste suffisant entre le texte et son arrière-plan.
+-   Ne jamais indiquer une information uniquement par la couleur (ex: la page courante doit avoir un autre indicateur visuel en plus de la couleur).
+-   Dans le thème, préférer `grey[700]` ou `grey[800]` à `grey[600]` pour assurer un contraste suffisant.
+
+### Concernant la structure HTML
+
+-   Utiliser le HTML sémantique : `<ul>/<ol>/<li>` pour les listes, `<nav>` pour la navigation.
+-   Préférer `<ul>/<li>` à `role="list"/role="listitem"`.
+-   Adapter le niveau de titre au contexte (ex: utiliser `<h4>` au lieu de `<h3>` pour les cartes imbriquées dans une section `<h3>`).
+-   Ne pas imbriquer d'éléments de titre (`<h3>`, etc.) dans des boutons ou liens d'accordion : utiliser des `<span>` stylisés à la place.
+-   Le titre d'une modale doit généralement être un `<h1>` car la modale devient le contexte principal lors de son affichage.
+
+### Concernant les tableaux
+
+-   Tous les tableaux de données doivent avoir un `<caption>` pour les décrire (éventuellement avec `class="sr-only"` si le titre est visible ailleurs).
+-   Utiliser `<th scope="col">` pour les en-têtes de colonnes et `<th scope="row">` pour les en-têtes de lignes.
+
+### Concernant le focus et la navigation clavier
+
+-   Tous les éléments interactifs doivent être accessibles au clavier et avoir un indicateur de focus visible.
+-   Les styles de focus et de hover doivent être similaires (recommandation WAI).
+-   Utiliser une ancre focusable (`tabIndex={-1}`) pour gérer le focus lors des changements de contenu dynamique (ex: navigation entre questions).
+
+### Concernant les modales et overlays
+
+-   Implémenter le pattern Dialog complet : `role="dialog"`, `aria-modal="true"`, `aria-label` ou `aria-labelledby`.
+-   La touche Échap doit fermer la modale (géré par `useOverlay` de React Aria).
+-   Mettre en place un "focus trap" pour que la navigation clavier reste dans la modale (cf. `focus-trap-react`).
 
 ### Concernant les "live regions ARIA"
 
 -   Utiliser un `role="alert/status/log"` plutôt que les attributs `aria-live` et `aria-atomic`, beaucoup moins bien supportés (cf. https://a11ysupport.io).
 -   Ne pas créer dynamiquement cette "live region" au moment d'y injecter du contenu : cette "live region" sera plus fiable si elle est présente dans le DOM avant cette injection de contenu.
+
+### Concernant les nombres
+
+-   Pour les valeurs numériques avec espaces comme séparateurs de milliers (ex: "1 234 €"), supprimer les espaces dans l'`aria-label` pour que les lecteurs d'écran les lisent correctement comme un nombre unique.
+
+### Concernant les unités CSS
+
+-   Utiliser `rem` au lieu de `px` pour les tailles de police (permet le zoom navigateur).
+-   Préférer `%` à `rem` pour le positionnement fixe (meilleur support du zoom à 200%).
+
+## Patterns ARIA APG couramment utilisés
+
+Pour les composants complexes, se référer aux patterns officiels du W3C :
+
+### Pattern Dialog (Modale)
+
+```jsx
+<div role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+  <h1 id="dialog-title">Titre de la modale</h1>
+  {/* Contenu */}
+</div>
+```
+
+### Pattern Disclosure (Afficher/Masquer)
+
+```jsx
+<button aria-expanded="false" aria-controls="panel-id">
+  Afficher les détails
+</button>
+<div id="panel-id" hidden>
+  {/* Contenu masqué */}
+</div>
+```
+
+### Pattern Combobox (Autocomplete)
+
+```jsx
+<input
+  role="combobox"
+  aria-controls="listbox-id"
+  aria-expanded="true"
+  aria-activedescendant="option-2"
+  aria-autocomplete="list"
+/>
+<ul id="listbox-id" role="listbox">
+  <li id="option-1" role="option">Option 1</li>
+  <li id="option-2" role="option" aria-selected="true">Option 2</li>
+</ul>
+```
+
+## Ressources
+
+-   [Patterns ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/) - Référence officielle pour les composants complexes
+-   [a11ysupport.io](https://a11ysupport.io) - Support des fonctionnalités ARIA par les lecteurs d'écran
+-   [RGAA](https://accessibilite.numerique.gouv.fr/) - Référentiel Général d'Amélioration de l'Accessibilité
+-   [WCAG 2.1](https://www.w3.org/TR/WCAG21/) - Web Content Accessibility Guidelines
