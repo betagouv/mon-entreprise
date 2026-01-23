@@ -7,6 +7,7 @@
 
 ### Mises à jour
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
+- Hausse de la CSG non déductible sur les dividendes
 
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
