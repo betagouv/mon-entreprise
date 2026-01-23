@@ -5,6 +5,7 @@ import { styled } from 'styled-components'
 import Montant from '@/components/RéductionDeCotisations/Montant'
 import { Body, Grid } from '@/design-system'
 import { MonthState } from '@/utils/réductionDeCotisations'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type Props = {
 	label: string
@@ -70,10 +71,12 @@ export default function RécapitulatifTrimestre({
 		réduction = 0
 	}
 
+	const normalizedLabel = normalizeRuleName(label)
+
 	const MontantRéduction = () => {
 		return (
 			<Montant
-				id={`recap-${label.replace(/\s|\./g, '_')}-réduction`}
+				id={`recap-${normalizedLabel}-réduction`}
 				rémunérationBrute={rémunération}
 				réduction={réduction}
 				répartition={répartition}
@@ -88,7 +91,7 @@ export default function RécapitulatifTrimestre({
 	const MontantRégularisation = () => {
 		return (
 			<Montant
-				id={`recap-${label.replace(/\s|\./g, '_')}-régularisation`}
+				id={`recap-${normalizedLabel}-régularisation`}
 				rémunérationBrute={rémunération}
 				réduction={régularisation}
 				répartition={répartition}

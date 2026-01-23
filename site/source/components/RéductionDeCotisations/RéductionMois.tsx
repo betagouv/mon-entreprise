@@ -21,6 +21,7 @@ import {
 } from '@/utils/réductionDeCotisations'
 
 import RémunérationInput from './RémunérationInput'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type Props = {
 	dottedName: RéductionDottedName
@@ -69,10 +70,12 @@ export default function RéductionMois({
 		)
 	}
 
+	const normalizedDottedName = normalizeRuleName(dottedName)
+
 	const MontantRéduction = () => {
 		return (
 			<Montant
-				id={`${dottedName.replace(/\s|\./g, '_')}-${monthName}`}
+				id={`${normalizedDottedName}-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.réduction.value}
 				répartition={data.réduction.répartition}
@@ -88,7 +91,7 @@ export default function RéductionMois({
 	const MontantRégularisation = () => {
 		return (
 			<Montant
-				id={`${dottedName.replace(/\s|\./g, '_')}__régularisation-${monthName}`}
+				id={`${normalizedDottedName}__régularisation-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.régularisation.value}
 				répartition={data.régularisation.répartition}

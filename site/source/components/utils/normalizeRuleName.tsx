@@ -1,16 +1,14 @@
-import { DottedName } from '@/domaine/publicodes/DottedName'
+export const normalizeRuleName = (dottedName: string) =>
+	dottedName.replace(/\s|\.|'|’/g, '_')
 
-export const normalizeRuleName = (dottedName: DottedName) =>
-	dottedName.replace(/\s|\./g, '_')
-
-normalizeRuleName.Label = (dottedName: DottedName) =>
+normalizeRuleName.Label = (dottedName: string) =>
 	`${normalizeRuleName(dottedName)}-label`
 
-normalizeRuleName.Input = (dottedName: DottedName) =>
+normalizeRuleName.Input = (dottedName: string) =>
 	`${normalizeRuleName(dottedName)}-input`
 
-normalizeRuleName.Value = (dottedName: DottedName) =>
+normalizeRuleName.Value = (dottedName: string) =>
 	`${normalizeRuleName(dottedName)}-value`
 
-normalizeRuleName.Description = (dottedName: DottedName) =>
+normalizeRuleName.Description = (dottedName: string) =>
 	`${normalizeRuleName(dottedName)}-description`

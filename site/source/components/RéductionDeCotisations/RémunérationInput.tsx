@@ -1,6 +1,7 @@
 import { MontantField } from '@/design-system'
 import { euros } from '@/domaine/Montant'
 import { rémunérationBruteDottedName } from '@/utils/réductionDeCotisations'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type Props = {
 	index: number
@@ -17,7 +18,7 @@ export default function RémunérationInput({
 }: Props) {
 	return (
 		<MontantField
-			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+			id={`${normalizeRuleName(rémunérationBruteDottedName)}-${monthName}`}
 			aria={{
 				labelledby: 'simu-update-explaining',
 			}}

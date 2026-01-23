@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { Emoji } from '../../../emoji'
 import { InfoButton } from '../../../InfoButton'
 import { Checkbox } from '../Checkbox'
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 
 export interface ChoixOption {
 	id: string
@@ -62,7 +63,7 @@ function CheckBoxOption({ option, onChange }: CheckBoxOptionProps) {
 		<>
 			<Checkbox
 				defaultSelected={option.value}
-				id={`checkbox-input-${option.id.replace(/\s|\./g, '_')}`}
+				id={`checkbox-input-${normalizeRuleName(option.id)}`}
 				label={option.label}
 				onChange={onChange}
 			/>

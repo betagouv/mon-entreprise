@@ -15,6 +15,7 @@ import { ExplicableRule } from '../conversation/Explicable'
 import RuleInput from '../conversation/RuleInput'
 import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -52,6 +53,8 @@ export function AssistantGoal({
 
 	const required = meta.requis === 'oui'
 
+	const labelId = normalizeRuleName.Label(dottedName)
+
 	return (
 		<Appear unless={initialRender}>
 			<StyledGoal>
@@ -71,7 +74,7 @@ export function AssistantGoal({
 							}}
 						>
 							<Grid item>
-								<StyledBody id={`${dottedName.replace(/\s|\./g, '_')}-title`}>
+								<StyledBody id={labelId}>
 									{label || rule.title}
 									{required && <RedSpan aria-hidden>&nbsp;*</RedSpan>}
 								</StyledBody>
@@ -91,7 +94,7 @@ export function AssistantGoal({
 							missing={dottedName in evaluation.missingVariables}
 							onChange={onChange}
 							showSuggestions={false}
-							aria-labelledby={`${dottedName.replace(/\s|\./g, '_')}-title`}
+							aria-labelledby={labelId}
 							required={required}
 						/>
 					</Grid>

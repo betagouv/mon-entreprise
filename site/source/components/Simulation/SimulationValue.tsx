@@ -18,6 +18,7 @@ import LectureGuide from '../LectureGuide'
 import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type SimulationValueProps = {
 	dottedName: DottedName
@@ -57,7 +58,6 @@ export function SimulationValue({
 		return null
 	}
 	const rule = engine.getRule(dottedName)
-	const elementIdPrefix = dottedName.replace(/\s|\./g, '_')
 
 	const decoded = PublicodesAdapter.decode(evaluation)
 
@@ -84,11 +84,11 @@ export function SimulationValue({
 				>
 					<Grid item md="auto" sm={9} xs={8}>
 						{isInfoMode ? (
-							<RuleLink id={`${elementIdPrefix}-label`} dottedName={dottedName}>
+							<RuleLink id={normalizeRuleName.Label(dottedName)} dottedName={dottedName}>
 								{label || rule.title}
 							</RuleLink>
 						) : (
-							<StyledBody id={`${elementIdPrefix}-label`}>
+							<StyledBody id={normalizeRuleName.Label(dottedName)}>
 								{label || rule.title}
 							</StyledBody>
 						)}
@@ -98,7 +98,7 @@ export function SimulationValue({
 
 					<Grid item>
 						{montantValue && <AnimatedTargetValue value={montantValue} />}
-						<StyledBody id={`${elementIdPrefix}-value`}>
+						<StyledBody id={normalizeRuleName.Value(dottedName)}>
 							{formatValue(evaluation, {
 								displayedUnit,
 								precision: round ? 0 : 2,

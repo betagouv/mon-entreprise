@@ -7,6 +7,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Emoji, H3, H4, Radio, Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 export function RadioChoices<Names extends string = DottedName>({
 	choices,
@@ -27,6 +28,9 @@ export function RadioChoices<Names extends string = DottedName>({
 	return (
 		<>
 			{choices.children.map((node) => {
+				const normalizedDottedName = normalizeRuleName(node.dottedName)
+				const normalizedRootDottedName = normalizeRuleName(rootDottedName)
+
 				return (
 					<Fragment key={node.dottedName}>
 						{' '}
@@ -34,12 +38,9 @@ export function RadioChoices<Names extends string = DottedName>({
 							<div
 								role="group"
 								aria-labelledby={
-									node.dottedName.replace(/\s|\./g, '_') + '-legend'
+									normalizedDottedName + '-legend'
 								}
-								id={`radio-input-${node.dottedName.replace(
-									/\s|\./g,
-									'_'
-								)}-${rootDottedName.replace(/\s|\./g, '_')}`}
+								id={`radio-input-${normalizedDottedName}-${normalizedRootDottedName}`}
 								style={{
 									marginTop: '-1rem',
 								}}
@@ -79,10 +80,10 @@ export function RadioChoices<Names extends string = DottedName>({
 										rootDottedName,
 										node.dottedName
 									)}`}
-									id={`radio-input-${relativeDottedName(
+									id={`radio-input-${normalizeRuleName(relativeDottedName(
 										rootDottedName,
 										node.dottedName
-									).replace(/\s|\./g, '_')}-${rootDottedName.replace(
+									))}-${rootDottedName.replace(
 										/\s|\./g,
 										'_'
 									)}`}

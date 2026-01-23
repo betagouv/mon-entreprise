@@ -21,6 +21,7 @@ import { UnitéMonétaire } from '@/domaine/Unités'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -150,7 +151,7 @@ export function SimulationGoal({
 	// Pour les cas où la valeur n'est pas un nombre, on utilise le format texte
 	const valeur = isTypeBoolean ? valeurFormatee : valeurMontant
 
-	const id = (dottedName as string).replace(/\s|\./g, '_')
+	const id = normalizeRuleName(dottedName)
 
 	if (editable) {
 		return (
