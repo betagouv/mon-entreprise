@@ -683,33 +683,23 @@ pages:
     l’accessibilité (RGAA)</5>, version 4.1 en raison des non-conformités et des
     dérogations énumérées ci-dessous.</13><14>Résultats des
     tests</14><15>L’audit de conformité réalisé par la société <2>boscop</2>
-    révèle que :</15><16><0>77,78% des critères RGAA sont respectés.</0><1>Le
-    taux moyen de conformité du site s’élève à 94%.</1><2>La page \"Simulateur
-    de revenus pour salarié\" a un taux de conformité de 91%.</2></16><17>Nombre
-    de critères applicables : 63 ; Nombre de critères conformes : 49 ; Nombre de
-    critères non conformes : 14</17><18>Contenus non accessibles</18><19>Liste
-    des critères non conformes :<1><0>Pour certaines pages web, l’information
-    est donnée uniquement par la couleur.</0><1>Pour certaines pages web, le
-    contraste entre la couleur du texte et la couleur de son arrière-plan n’est
-    pas suffisamment élevé.</1><2>Certains liens ne sont pas
-    explicites.</2><3>Certains scripts ne sont pas compatibles avec les
-    technologies d’assistance.</3><4>Pour certains scripts qui initient un
-    changement de contexte, l’utilisateur n’est pas averti ou en n’a pas le
-    contrôle.</4><5>Pour certaines pages web, l’information n’est pas structurée
-    par l’utilisation appropriée de titres.</5><6>Pour certaines pages web,
-    certaines listes ne sont pas correctement structurées.</6><7>Certains champs
-    de formulaire n’ont pas d’étiquette.</7><8>Certaines étiquettes associées à
-    un champ de formulaire ne sont pas pertinentes.</8><9>Pour certains
+    révèle que :</15><16><0>87,30% des critères RGAA sont respectés.</0><1>Le
+    taux moyen de conformité du site s’élève à 97%.</1><2>La page \"Simulateur
+    de revenus pour salarié\" a un taux de conformité de 96%.</2></16><17>Nombre
+    de critères applicables : 63 ; Nombre de critères conformes : 55 ; Nombre de
+    critères non conformes : 8</17><18>Contenus non accessibles</18><19>Liste
+    des critères non conformes :<1><0>Pour certaines pages web, le contraste
+    entre la couleur du texte et la couleur de son arrière-plan n’est pas
+    suffisamment élevé.</0><1>Certains liens ne sont pas explicites.</1><2>Pour
+    certains scripts qui initient un changement de contexte, l’utilisateur n’est
+    pas averti ou en n’a pas le contrôle.</2><3>Pour certaines pages web,
+    certaines listes ne sont pas correctement structurées.</3><4>Certains champs
+    de formulaire n’ont pas d’étiquette.</4><5>Certaines étiquettes associées à
+    un champ de formulaire ne sont pas pertinentes.</5><6>Pour certains
     formulaires, certaines étiquettes de champ et son champ associé ne sont pas
-    accolés.</9><10>Pour certains formulaires, les champs de même nature ne sont
-    pas regroupés, si nécessaire.</10><11>Pour certains formulaires, certaines
-    légendes associées à un regroupement de champs de même nature ne sont pas
-    pertinentes.</11><12>Pour certains formulaires, certains contrôles de saisie
-    ne sont pas utilisés de manière pertinente.</12><13>Certaines zones de
-    regroupement de contenus présentes dans plusieurs pages web (zones
-    d’en-tête, de navigation principale, de contenu principal, de pied de page
-    et de moteur de recherche) ne pas peuvent être atteintes ou
-    évitées.</13></1></19><20>Dérogation pour charge
+    accolés.</6><7>Pour certains formulaires, certaines légendes associées à un
+    regroupement de champs de même nature ne sont pas
+    pertinentes.</7></1></19><20>Dérogation pour charge
     disproportionnée</20><21>Néant</21><22>Contenus non-soumis à l'obligation
     d'accessibilité</22><23>Néant</23><24>Établissement de cette déclaration
     d'accessibilité</24> <26>Cette déclaration d'accessibilité a été établie le
