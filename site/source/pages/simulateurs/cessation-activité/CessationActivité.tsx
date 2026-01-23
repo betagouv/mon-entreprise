@@ -23,7 +23,8 @@ const nextSteps = ['indépendant'] satisfies SimulateurId[]
 export const CessationActivitéSimulation = () => {
 	const id = 'cessation-activité'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const { t } = useTranslation()
 
@@ -66,6 +67,8 @@ export const CessationActivitéSimulation = () => {
 				externalLinks={externalLinks}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					customSimulationbutton={{
 						href: lien,
 						title: t('Vos cotisations pour l’année précédente'),

@@ -9,20 +9,14 @@ import {
 	useMemo,
 	useState,
 } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import { Raccourci } from '@/components/Simulation/Raccourcis'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
 import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
-import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
-import { listeNoireSelector } from '@/store/selectors/simulation/config/listeNoire.selector'
-import { raccourcisSelector } from '@/store/selectors/simulation/config/raccourcis.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/simulation/questions/questionsRépondues.selector'
-import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
-import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'
@@ -31,25 +25,6 @@ export interface QuestionPublicodes<S extends Situation> {
 	répondue: Predicate<S | undefined>
 }
 
-const fromQuestionPublicodeRépondue = <S extends Situation>(
-	q: QuestionRépondue,
-	estRépondue: (dottedName: DottedName) => boolean
-): QuestionPublicodes<S> => ({
-	_tag: 'QuestionPublicodes',
-	id: q.règle,
-	applicable: () => q.applicable,
-	répondue: () => estRépondue(q.règle),
-})
-const fromQuestionsPublicodesSuivante = <S extends Situation>(
-	dottedName: DottedName,
-	estRépondue: (dottedName: DottedName) => boolean
-): QuestionPublicodes<S> => ({
-	_tag: 'QuestionPublicodes',
-	id: dottedName,
-	applicable: () => true,
-	répondue: () => estRépondue(dottedName),
-})
-
 type QuestionFournie<S extends Situation> = Omit<
 	ComposantQuestion<S>,
 	'répondue' | 'applicable'
@@ -57,6 +32,7 @@ type QuestionFournie<S extends Situation> = Omit<
 	répondue: Predicate<S | undefined>
 	applicable: Predicate<S | undefined>
 } & FunctionComponent
+
 const fromQuestionFournie = <S extends Situation>(
 	q: ComposantQuestion<S>
 ): QuestionFournie<S> => {
@@ -75,10 +51,6 @@ export type Question<S extends Situation> =
 	| QuestionFournie<S>
 	| QuestionPublicodes<S>
 
-export interface Raccourci {
-	id: string
-	libellé: string
-}
 const fromRaccourciPublicodes = (
 	quickLink: RaccourciPublicodes
 ): Raccourci => ({
@@ -88,79 +60,35 @@ const fromRaccourciPublicodes = (
 
 export interface UseQuestionsProps<S extends Situation = Situation> {
 	questions?: Array<ComposantQuestion<S>>
+	questionsPublicodes?: Array<QuestionPublicodes<S>>
+	raccourcisPublicodes?: Array<RaccourciPublicodes>
 	situation?: S
-	avecQuestionsPublicodes?: boolean
 }
 
 export function useQuestions<S extends Situation>({
 	questions = [],
+	questionsPublicodes = [],
+	raccourcisPublicodes = [],
 	situation,
-	avecQuestionsPublicodes = true,
 }: UseQuestionsProps<S>) {
 	const dispatch = useDispatch()
-	const engine = useEngine()
-	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
-	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
-	const publicodesListeNoire = useSelector(listeNoireSelector)
-	const publicodesRaccourcis = useSelector(raccourcisSelector)
-
-	const publicodesQuestionsRéponduesFiltrées = useMemo(
-		() =>
-			publicodesQuestionsRépondues.filter(
-				(q) => !publicodesListeNoire.includes(q.règle)
-			),
-		[publicodesQuestionsRépondues, publicodesListeNoire]
-	)
-
-	const estQuestionPublicodesRépondue = useMemo(
-		() =>
-			estCeQueLaQuestionPublicodesEstRépondue(
-				engine,
-				publicodesQuestionsRéponduesFiltrées
-			),
-		[engine, publicodesQuestionsRéponduesFiltrées]
-	)
 
 	// TODO: ajouter et gérer les raccourcis de questions fournies
 	const raccourcis = useMemo(
-		() => publicodesRaccourcis.map(fromRaccourciPublicodes),
-		[publicodesRaccourcis]
+		() => raccourcisPublicodes.map(fromRaccourciPublicodes),
+		[raccourcisPublicodes]
 	)
-
-	const toutesLesQuestionsPublicodes = useMemo(() => {
-		const questionsRépondues = publicodesQuestionsRéponduesFiltrées.map((q) =>
-			fromQuestionPublicodeRépondue(q, estQuestionPublicodesRépondue)
-		)
-
-		const questionsSuivantes = publicodesQuestionsSuivantes.map((dottedName) =>
-			fromQuestionsPublicodesSuivante(dottedName, estQuestionPublicodesRépondue)
-		)
-
-		const toutesLesQuestions = [...questionsRépondues, ...questionsSuivantes]
-		const questionsParId = fromEntries(toutesLesQuestions.map((q) => [q.id, q]))
-
-		return Object.values(questionsParId)
-	}, [
-		publicodesQuestionsRéponduesFiltrées,
-		publicodesQuestionsSuivantes,
-		estQuestionPublicodesRépondue,
-	])
 
 	const toutesLesQuestionsApplicables = useMemo(
 		() =>
 			pipe(
 				[
 					...questions.map(fromQuestionFournie),
-					...(avecQuestionsPublicodes ? toutesLesQuestionsPublicodes : []),
+					...questionsPublicodes,
 				] as Question<S>[],
 				filter((q: Question<S>): boolean => q.applicable(situation))
 			),
-		[
-			questions,
-			avecQuestionsPublicodes,
-			toutesLesQuestionsPublicodes,
-			situation,
-		]
+		[questions, questionsPublicodes, situation]
 	)
 
 	const questionsParId = useMemo(
