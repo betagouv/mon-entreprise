@@ -9,7 +9,7 @@ export type ComposantQuestion<
 > = React.FunctionComponent<P> & {
 	_tag: 'QuestionFournie'
 	id: string
-	libellé: string | ((t: TFunction) => string)
+	libellé: (t: TFunction) => string
 	applicable: Predicate<S>
 	répondue: Predicate<S>
 }
