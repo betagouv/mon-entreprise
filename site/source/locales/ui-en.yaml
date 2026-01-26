@@ -1300,19 +1300,20 @@ pages:
           made for professional expenses. Actual expenses cannot be deducted in
           addition. Your net income is therefore your sales minus all expenses
           incurred for the company.
-    auxiliaire:
-      shortname: Medical Auxiliary
-      title: Income simulator for self-employed medical assistants
-      tooltip: Nurses, physiotherapists, chiropodists, speech therapists and orthoptists
-    auxiliaire-medical:
+    auxiliaire-médical:
       meta:
         description: Calculation of net income after contributions based on total
           income. Non-contributory income taken into account.
         title: "Medical auxiliary: income simulator"
+      professionnelles: medical auxiliaries
+      shortname: Medical Auxiliary
+      title: Income simulator for self-employed medical assistants
+      tooltip: Nurses, physiotherapists, chiropodists, speech therapists and orthoptists
     avocat:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Lawyer: income simulator"
+      professionnelles: lawyers
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
     cessation-activité:
@@ -1347,6 +1348,7 @@ pages:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Dental surgeon: income simulator"
+      professionnelles: dental surgeons
       shortname: Dental surgeon
       title: Income simulator for self-employed dentists
     cipav:
@@ -1354,6 +1356,7 @@ pages:
         description: Calculation of net income after deduction of contributions based on
           total income for self-employed professionals covered by CIPAV
         title: "Professions affiliated to Cipav: income simulator"
+      professionnelles: regulated professions Cipav
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
     comparaison-statuts:
@@ -1639,6 +1642,7 @@ pages:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Chartered accountant: income simulator"
+      professionnelles: chartered accountants
       shortname: Chartered Accountant
       title: Income simulator for independent accountants and auditors
     home:
@@ -1852,6 +1856,7 @@ pages:
           on total revenue. Sector 1, sector 2 and excess fees taken into
           account
         title: "Doctor: income simulator"
+      professionnelles: doctors
       shortname: Doctor
       title: Income simulator for self-employed doctors
     pamc:
@@ -1867,6 +1872,7 @@ pages:
         description: Calculation of net income after deduction of contributions from
           total revenues for self-employed pharmacists
         title: "Pharmacist: income simulator"
+      professionnelles: pharmacists
       shortname: Pharmacist
       title: Income simulator for self-employed pharmacists
     print-info:
@@ -1881,11 +1887,17 @@ pages:
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
       warning:
-        cotisations-ordinales: For regulated professions, the simulator does not
-          calculate the amount of membership fees. They must be added manually
-          in the "operating expenses" box.
-        général: This simulator is intended for self-employed professionals in the BNC
-          sector. It does not take into account self-employed companies.
+        cotisations-ordinales:
+          générique: For regulated professions, the simulator does not calculate the
+            amount of membership <1>fees</1>. They must be added manually in the
+            "Charges" box.
+          spécifique: The simulator does not calculate the amount of <2>membership
+            fees</2>. These must be added manually in the "Charges" box.
+        général:
+          générique: This simulator is intended for self-employed professionals who earn a
+            <2>BNC</2>. It does not take into account self-employed companies.
+          spécifique: This simulator is intended for <1> &lt;/1> in <4>BNC</4>. It does
+            not take into account partnerships.
     raccourcis:
       aria-label: "Go to question : {{question}}"
       titre: "Go to question :"
@@ -1968,6 +1980,7 @@ pages:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Midwife: income simulator"
+      professionnelles: midwives
       shortname: Midwife
       title: Income simulator for self-employed midwives
     salarié:
