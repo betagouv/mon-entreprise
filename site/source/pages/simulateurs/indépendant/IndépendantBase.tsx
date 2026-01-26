@@ -37,7 +37,22 @@ const conditionalExternalLinks = [
 ]
 
 type Props = {
-	id: ('indépendant' | 'eirl' | 'eurl') & SimulateurId
+	id: (
+		| 'indépendant'
+		| 'eirl'
+		| 'entreprise-individuelle'
+		| 'eurl'
+		| 'profession-libérale'
+		| 'auxiliaire-médical'
+		| 'avocat'
+		| 'chirurgien-dentiste'
+		| 'cipav'
+		| 'expert-comptable'
+		| 'médecin'
+		| 'pharmacien'
+		| 'sage-femme'
+	) &
+		SimulateurId
 }
 
 export default function IndépendantBase({ id }: Props) {

@@ -9,7 +9,7 @@ export const configCessationActivité: SimulationConfig = {
 		'indépendant . rémunération . brute',
 		'indépendant . rémunération . nette',
 	],
-	'unité par défaut': '€/an',
+	objectifs: [],
 	situation: {
 		...configIndépendant.situation,
 		"entreprise . en cessation d'activité": 'oui',
