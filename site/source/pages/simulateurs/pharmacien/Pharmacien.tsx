@@ -1,5 +1,5 @@
-import ProfessionLibéraleBase from '../profession-libérale/ProfessionLibéraleBase'
+import IndépendantBase from '../indépendant/IndépendantBase'
 
 export default function Pharmacien() {
-	return <ProfessionLibéraleBase id="pharmacien" />
+	return <IndépendantBase id="pharmacien" />
 }

@@ -3,38 +3,11 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { configIndépendant } from '../indépendant/simulationConfig'
 
 export const configProfessionLibérale: SimulationConfig = {
-	nomModèle: 'modele-ti',
-	'objectifs exclusifs': [
-		"entreprise . chiffre d'affaires",
-		'indépendant . rémunération . nette',
-		'indépendant . rémunération . nette . après impôt',
-	],
-	objectifs: [
-		'indépendant . cotisations et contributions',
-		'impôt . montant',
-		'protection sociale . retraite . trimestres',
-		'protection sociale . retraite . complémentaire',
-		'protection sociale . retraite . base',
-	],
-	questions: {
-		'liste noire': [
-			'entreprise . charges',
-			'entreprise . imposition . régime',
-			'entreprise . activité . revenus mixtes',
-			'entreprise . date de cessation',
-		],
-		liste: [
-			'entreprise . activité',
-			'indépendant . profession libérale . réglementée . métier',
-			'',
-		],
-		'non prioritaires': configIndépendant.questions?.['non prioritaires'],
-	},
-	'unité par défaut': '€/an',
+	...configIndépendant,
 	situation: {
+		...configIndépendant.situation,
 		'entreprise . activité': "'libérale'",
 		'entreprise . EI': 'oui',
-		'entreprise . imposition': "'IR'",
 	},
 }
 

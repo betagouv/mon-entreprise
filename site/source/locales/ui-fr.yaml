@@ -1378,20 +1378,21 @@ pages:
           de déduire des charges réelles en plus. Votre revenu net est donc le
           chiffre d’affaires moins toutes les charges engagées pour
           l’entreprise.
-    auxiliaire:
-      shortname: Auxiliaire médical
-      title: Simulateur de revenus pour auxiliaire médical en libéral
-      tooltip: Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues,
-        orthophonistes et orthoptistes
-    auxiliaire-medical:
+    auxiliaire-médical:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des
           recettes. Prise en compte des revenus non conventionnés.
         title: "Auxiliaire médical : simulateur de revenus"
+      professionnelles: auxiliaires médicales/médicaux
+      shortname: Auxiliaire médical
+      title: Simulateur de revenus pour auxiliaire médical en libéral
+      tooltip: Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues,
+        orthophonistes et orthoptistes
     avocat:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Avocat : simulateur de revenus"
+      professionnelles: avocates/avocats
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
     cessation-activité:
@@ -1427,6 +1428,7 @@ pages:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Chirurgien-dentiste : simulateur de revenus"
+      professionnelles: chirurgiennes/chirurgiens-dentistes
       shortname: Chirurgien-dentiste
       title: Simulateur de revenus pour chirurgien-dentiste en libéral
     cipav:
@@ -1434,6 +1436,7 @@ pages:
         description: Calcul du revenu net après déduction des cotisations à partir du
           total des recettes pour professions libérales rattaché à la CIPAV
         title: "Professions libérales rattachées à la Cipav : simulateur de revenus"
+      professionnelles: professions réglementées Cipav
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
     comparaison-statuts:
@@ -1740,6 +1743,7 @@ pages:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Expert-comptable : simulateur de revenus"
+      professionnelles: expertes/experts-comptables
       shortname: Expert-Comptable
       title: Simulateur de revenus pour expert comptable et commissaire aux comptes en
         libéral
@@ -1964,6 +1968,7 @@ pages:
           total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire
           pris en compte
         title: "Médecin : simulateur de revenus"
+      professionnelles: médecins
       shortname: Médecin
       title: Simulateur de revenus pour médecin en libéral
     pamc:
@@ -1979,6 +1984,7 @@ pages:
         description: Calcul du revenu net après déduction des cotisations à partir du
           total des recettes pour pharmacien en libéral
         title: "Pharmacien : simulateur de revenus"
+      professionnelles: pharmaciennes/pharmaciens
       shortname: Pharmacien
       title: Simulateur de revenus pour pharmacien en libéral
     print-info:
@@ -1994,11 +2000,19 @@ pages:
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
       warning:
-        cotisations-ordinales: Pour les professions réglementées, le simulateur ne
-          calcule pas le montant des cotisations à l’ordre. Elles doivent être
-          ajoutées manuellement dans la case « charges de fonctionnement ».
-        général: Ce simulateur est à destination des professions libérales en BNC. Il ne
-          prend pas en compte les sociétés d’exercice libéral.
+        cotisations-ordinales:
+          générique: Pour les professions réglementées, le simulateur ne calcule pas le
+            montant des <1>cotisations à l’ordre</1>. Elles doivent être
+            ajoutées manuellement dans la case « Charges ».
+          spécifique: Le simulateur ne calcule pas le montant des <2>cotisations à
+            l’ordre</2>. Elles doivent être ajoutées manuellement dans la case «
+            Charges ».
+        général:
+          générique: Ce simulateur est à destination des professions libérales en
+            <2>BNC</2>. Il ne prend pas en compte les sociétés d’exercice
+            libéral.
+          spécifique: Ce simulateur est à destination des <1></1> en <4>BNC</4>. Il ne
+            prend pas en compte les sociétés d’exercice libéral.
     raccourcis:
       aria-label: "Aller à la question : {{question}}"
       titre: "Aller à la question :"
@@ -2081,6 +2095,7 @@ pages:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Sage-femme : simulateur de revenus"
+      professionnelles: sages-femmes
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
     salarié:
