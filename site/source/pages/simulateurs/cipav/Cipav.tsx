@@ -1,5 +1,5 @@
-import ProfessionLibéraleBase from '../profession-libérale/ProfessionLibéraleBase'
+import IndépendantBase from '../indépendant/IndépendantBase'
 
 export function Cipav() {
-	return <ProfessionLibéraleBase id="cipav" />
+	return <IndépendantBase id="cipav" />
 }

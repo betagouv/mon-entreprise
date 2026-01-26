@@ -2,6 +2,7 @@ import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configAuxiliaire } from '../profession-libérale/simulationConfig'
 import { AuxiliaireMédical } from './AuxiliaireMédical'
+import { AvertissementAuxiliaireMédical } from './AvertissementAuxiliaireMédical'
 
 export function auxiliaireMédicalConfig({
 	t,
@@ -16,27 +17,27 @@ export function auxiliaireMédicalConfig({
 			chapter3: 'auxiliaire_medical',
 		},
 		tooltip: t(
-			'pages.simulateurs.auxiliaire.tooltip',
+			'pages.simulateurs.auxiliaire-médical.tooltip',
 			'Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues, orthophonistes et orthoptistes'
 		),
 		icône: '🩹',
 		iframePath: 'auxiliaire-medical',
 		pathId: 'simulateurs.profession-libérale.auxiliaire',
 		shortName: t(
-			'pages.simulateurs.auxiliaire.shortname',
+			'pages.simulateurs.auxiliaire-médical.shortname',
 			'Auxiliaire médical'
 		),
 		title: t(
-			'pages.simulateurs.auxiliaire.title',
+			'pages.simulateurs.auxiliaire-médical.title',
 			'Simulateur de revenus pour auxiliaire médical en libéral'
 		),
 		meta: {
 			title: t(
-				'pages.simulateurs.auxiliaire-medical.meta.title',
+				'pages.simulateurs.auxiliaire-médical.meta.title',
 				'Auxiliaire médical : simulateur de revenus'
 			),
 			description: t(
-				'pages.simulateurs.auxiliaire-medical.meta.description',
+				'pages.simulateurs.auxiliaire-médical.meta.description',
 				'Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des revenus non conventionnés.'
 			),
 		},
@@ -45,5 +46,6 @@ export function auxiliaireMédicalConfig({
 		codesCatégorieJuridique: ['1000', '5410'],
 		component: AuxiliaireMédical,
 		conseillersEntreprisesVariant: 'professions_liberales',
+		warning: AvertissementAuxiliaireMédical,
 	} as const)
 }

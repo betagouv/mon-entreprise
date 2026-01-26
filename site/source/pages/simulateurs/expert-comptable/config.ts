@@ -1,6 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configExpertComptable } from '../profession-libérale/simulationConfig'
+import { AvertissementExpertComptable } from './AvertissementExpertComptable'
 import { ExpertComptable } from './ExpertComptable'
 
 export function expertComptableConfig({ t, sitePaths }: SimulatorsDataParams) {
@@ -37,5 +38,6 @@ export function expertComptableConfig({ t, sitePaths }: SimulatorsDataParams) {
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: ExpertComptable,
 		conseillersEntreprisesVariant: 'professions_liberales',
+		warning: AvertissementExpertComptable,
 	} as const)
 }

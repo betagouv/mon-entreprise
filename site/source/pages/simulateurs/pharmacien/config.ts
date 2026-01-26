@@ -1,6 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configPharmacien } from '../profession-libérale/simulationConfig'
+import { AvertissementPharmacien } from './AvertissementPharmacien'
 import { Pharmacien } from './Pharmacien'
 
 export function pharmacienConfig({ t, sitePaths }: SimulatorsDataParams) {
@@ -34,5 +35,6 @@ export function pharmacienConfig({ t, sitePaths }: SimulatorsDataParams) {
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: Pharmacien,
 		conseillersEntreprisesVariant: 'professions_liberales',
+		warning: AvertissementPharmacien,
 	} as const)
 }

@@ -1,6 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configAvocat } from '../profession-libérale/simulationConfig'
+import { AvertissementAvocat } from './AvertissementAvocat'
 import { Avocat } from './Avocat'
 
 export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
@@ -34,5 +35,6 @@ export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: Avocat,
 		conseillersEntreprisesVariant: 'professions_liberales',
+		warning: AvertissementAvocat,
 	} as const)
 }
