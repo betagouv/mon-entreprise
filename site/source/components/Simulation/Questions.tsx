@@ -168,8 +168,6 @@ export function Questions<S extends Situation>({
 						)}
 					</div>
 
-					<div ref={focusAnchorForA11yRef} tabIndex={-1}></div>
-
 					{finished && (
 						<VousAvezComplétéCetteSimulation
 							customEndMessages={customEndMessages}
@@ -212,46 +210,49 @@ export function Questions<S extends Situation>({
 
 					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
 						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
-							{shouldBeWrappedByFieldset ? (
-								<fieldset>
-									<H3 as="legend">
-										{questionCouranteLabel}
-										<ExplicableRule
-											light
+							<div ref={focusAnchorForA11yRef} tabIndex={-1} role="status">
+								{shouldBeWrappedByFieldset ? (
+									<fieldset>
+										<H3 as="legend">
+											{questionCouranteLabel}
+											<ExplicableRule
+												light
+												dottedName={QuestionCourante.id}
+												ariaDescribedBy={questionCouranteLabel}
+											/>
+										</H3>
+										<RuleInput
 											dottedName={QuestionCourante.id}
-											ariaDescribedBy={questionCouranteLabel}
+											onChange={(value, name) =>
+												handlePublicodesQuestionResponse(name, value)
+											}
+											key={QuestionCourante.id}
+											onSubmit={handleGoToNext}
 										/>
-									</H3>
-									<RuleInput
-										dottedName={QuestionCourante.id}
-										onChange={(value, name) =>
-											handlePublicodesQuestionResponse(name, value)
-										}
-										key={QuestionCourante.id}
-										onSubmit={handleGoToNext}
-									/>
-								</fieldset>
-							) : (
-								<>
-									<H3 as="label" htmlFor={questionCouranteHtmlForId}>
-										{questionCouranteLabel}
-										<ExplicableRule
-											light
+									</fieldset>
+								) : (
+									<>
+										<H3 as="label" htmlFor={questionCouranteHtmlForId}>
+											{questionCouranteLabel}
+											<ExplicableRule
+												light
+												dottedName={QuestionCourante.id}
+												ariaDescribedBy={questionCouranteLabel}
+											/>
+										</H3>
+										<RuleInput
+											id={questionCouranteHtmlForId}
 											dottedName={QuestionCourante.id}
-											ariaDescribedBy={questionCouranteLabel}
+											onChange={(value, name) =>
+												handlePublicodesQuestionResponse(name, value)
+											}
+											key={QuestionCourante.id}
+											onSubmit={handleGoToNext}
 										/>
-									</H3>
-									<RuleInput
-										id={questionCouranteHtmlForId}
-										dottedName={QuestionCourante.id}
-										onChange={(value, name) =>
-											handlePublicodesQuestionResponse(name, value)
-										}
-										key={QuestionCourante.id}
-										onSubmit={handleGoToNext}
-									/>
-								</>
-							)}
+									</>
+								)}
+							</div>
+
 							<Conversation
 								onPrevious={
 									activeQuestionIndex > 0 ? handleGoToPrevious : undefined
