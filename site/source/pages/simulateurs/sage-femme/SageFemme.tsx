@@ -1,5 +1,5 @@
-import ProfessionLibéraleBase from '../profession-libérale/ProfessionLibéraleBase'
+import IndépendantBase from '../indépendant/IndépendantBase'
 
 export default function SageFemme() {
-	return <ProfessionLibéraleBase id="sage-femme" />
+	return <IndépendantBase id="sage-femme" />
 }

@@ -1,8 +1,8 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
-import { configEurl } from '../indépendant/simulationConfig'
-import EURL from './EURL'
+import { EURL } from './EURL'
+import { configEurl } from './simulationConfig'
 
 export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
