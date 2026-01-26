@@ -1,6 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import ProfessionLibérale from './ProfessionLibérale'
+import { AvertissementProfessionLibérale } from './AvertissementProfessionLibérale'
+import { ProfessionLibérale } from './ProfessionLibérale'
 import { configProfessionLibérale } from './simulationConfig'
 
 export function professionLibéraleConfig({
@@ -47,5 +48,6 @@ export function professionLibéraleConfig({
 			'5499',
 		],
 		component: ProfessionLibérale,
+		warning: AvertissementProfessionLibérale,
 	} as const)
 }

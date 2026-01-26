@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import { Body, Link } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
-export default function Avertissement() {
+export const AvertissementEIRL = () => {
 	const { absoluteSitePaths } = useSitePaths()
 
 	return (

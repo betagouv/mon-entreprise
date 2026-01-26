@@ -1,9 +1,9 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
-import { configEirl } from '../indépendant/simulationConfig'
-import Avertissement from './Avertissement'
-import EIRL from './EIRL'
+import { AvertissementEIRL } from './Avertissement'
+import { EIRL } from './EIRL'
+import { configEirl } from './simulationConfig'
 
 export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -37,7 +37,7 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 		pathId: 'simulateurs.eirl',
 		shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
 		title: t('pages.simulateurs.eirl.title', 'Simulateur de revenus pour EIRL'),
-		warning: Avertissement,
+		warning: AvertissementEIRL,
 		path: sitePaths.simulateurs.eirl,
 		simulation: configEirl,
 		codesCatégorieJuridique: ['1000'],
