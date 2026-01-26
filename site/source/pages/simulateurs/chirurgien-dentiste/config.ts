@@ -1,6 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configDentiste } from '../profession-libérale/simulationConfig'
+import { AvertissementChirurgienDentiste } from './AvertissementChirurgienDentiste'
 import ChirurgienDentiste from './ChirurgienDentiste'
 
 export function chirurgienDentisteConfig({
@@ -40,5 +41,6 @@ export function chirurgienDentisteConfig({
 		simulation: configDentiste,
 		codesCatégorieJuridique: ['1000', '5410'],
 		component: ChirurgienDentiste,
+		warning: AvertissementChirurgienDentiste,
 	} as const)
 }

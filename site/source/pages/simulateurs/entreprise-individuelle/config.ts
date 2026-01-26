@@ -4,7 +4,7 @@ import { SeoExplanations } from '@/pages/simulateurs/entreprise-individuelle/Seo
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
-import { configEntrepriseIndividuelle } from '../indépendant/simulationConfig'
+import { configEntrepriseIndividuelle } from './simulationConfig'
 
 export function entrepriseIndividuelleConfig({
 	t,
