@@ -1,6 +1,8 @@
-import React, { ForwardedRef, forwardRef } from 'react'
+import { PressEvent } from '@react-types/shared'
+import React, { ForwardedRef, forwardRef, useCallback } from 'react'
 import { css, styled } from 'styled-components'
 
+import { useTracking } from '@/hooks/useTracking'
 import { omit, wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
@@ -12,6 +14,12 @@ import {
 type Size = 'XL' | 'MD' | 'XS' | 'XXS'
 type Color = 'primary' | 'secondary' | 'tertiary'
 
+export type ButtonTracking = {
+	feature: string
+	action: string
+	simulateur?: string
+}
+
 type ButtonProps = GenericButtonOrNavLinkProps & {
 	color?: Color
 	children: React.ReactNode
@@ -19,6 +27,7 @@ type ButtonProps = GenericButtonOrNavLinkProps & {
 	light?: boolean
 	lang?: string
 	underline?: boolean
+	tracking?: ButtonTracking
 }
 
 export const Button = forwardRef(function Button(
@@ -28,14 +37,33 @@ export const Button = forwardRef(function Button(
 		color = 'primary' as const,
 		underline,
 		isDisabled,
-
+		tracking,
 		lang,
 		...ariaButtonProps
 	}: ButtonProps,
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
 ) {
+	const { trackClick } = useTracking()
+
+	const originalOnPress = ariaButtonProps.onPress
+	const onPressWithTracking = useCallback(
+		(e: PressEvent) => {
+			if (tracking) {
+				trackClick(tracking)
+			}
+			originalOnPress?.(e)
+		},
+		[tracking, trackClick, originalOnPress]
+	)
+
 	const buttonOrLinkProps = useButtonOrLink(
-		{ ...wrapperDebounceEvents(ariaButtonProps), isDisabled },
+		{
+			...wrapperDebounceEvents({
+				...ariaButtonProps,
+				onPress: onPressWithTracking,
+			}),
+			isDisabled,
+		},
 		forwardedRef
 	)
 

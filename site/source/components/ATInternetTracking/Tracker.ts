@@ -20,7 +20,8 @@ type PageHit = {
 	page_chapter2?: string
 	page_chapter3?: string
 }
-type ClickHit = {
+
+export type ClickHit = {
 	click?: string
 	click_chapter1?: string
 	click_chapter2?: string

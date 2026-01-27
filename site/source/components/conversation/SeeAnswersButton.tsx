@@ -22,7 +22,14 @@ export default function SeeAnswersButton({
 		<>
 			<PopoverWithTrigger
 				trigger={(buttonProps) => (
-					<StyledButton {...buttonProps} aria-haspopup="dialog">
+					<StyledButton
+						{...buttonProps}
+						aria-haspopup="dialog"
+						tracking={{
+							feature: 'modifier_reponses',
+							action: 'ouvre',
+						}}
+					>
 						{label ?? (
 							<>
 								<EditIcon /> <Trans>Modifier mes réponses</Trans>

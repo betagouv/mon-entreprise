@@ -15,7 +15,7 @@ import {
 } from '@/design-system'
 
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
-import { TrackPage, useTracking } from '../../ATInternetTracking'
+import { TrackPage, usePianoTracking } from '../../ATInternetTracking'
 
 const StyledTable = styled.table`
 	&,
@@ -40,7 +40,7 @@ export default function PrivacyPolicy({
 	label?: string
 	noUnderline?: boolean
 }) {
-	const tracker = useTracking()
+	const tracker = usePianoTracking()
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
 
