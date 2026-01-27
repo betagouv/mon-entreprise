@@ -278,8 +278,8 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
     > remboursables actes + montants remboursés forfaits CMU)
   question: Quel est votre « taux Urssaf » ?
-  unité: ''
-  par défaut: 1
+  unité: '%'
+  par défaut: 100%
   références:
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
