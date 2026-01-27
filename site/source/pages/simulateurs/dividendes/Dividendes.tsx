@@ -174,7 +174,7 @@ export const SeoExplanations = () => {
 			<H2>Comment sont calculés les prélèvements sur les dividendes ?</H2>
 			<Body>
 				Les dividendes peuvent être soumis au prélèvement forfaitaire unique de
-				30% incluant imposition et contributions sociales (aussi appelé
+				31,4&nbsp;% incluant imposition et contributions sociales (aussi appelé
 				<i> flat tax</i>). Par option, le barème de l'impôt peut être choisi. Ce
 				simulateur peut être utilisé pour comparer les deux régimes.
 			</Body>
