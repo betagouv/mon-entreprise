@@ -1898,6 +1898,11 @@ pages:
       warning:
         aria-label:
           lodeom: go to the Lodeom exemption simulator page
+        réforme:
+          aria-label: Find out more about the general degressive reduction (RGDU) on the
+            Urssaf website, new window
+          texte: The <2>degressive general reduction (RGDU)&lt;/2> is not yet implemented
+            on this simulator.
         texte: "<0>This simulator does not take into account <2>all the specific
           calculation rules&lt;/2> (temporary employment agencies, road haulage
           employees subject to equivalent working hours, etc.). Nor does it take
@@ -1981,11 +1986,6 @@ pages:
           agreements, nor the myriad of company subsidies. Find your collective
           bargaining agreement <2>here</2>, and explore the range of assistance
           available on <4>aides-entreprises.fr</4>.
-        réforme:
-          aria-label: Find out more about the general degressive reduction (RGDU) on the
-            Urssaf website, new window
-          texte: The <2>degressive general reduction (RGDU)&lt;/2> is not yet implemented
-            on this simulator.
     sasu:
       meta:
         description: Calculation of net salary from the total allocated to remuneration
