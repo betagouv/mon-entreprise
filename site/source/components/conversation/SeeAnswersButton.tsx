@@ -8,6 +8,7 @@ import {
 	FocusStyle,
 	PopoverWithTrigger,
 } from '@/design-system'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 import Answers from './AnswerList'
 
@@ -18,6 +19,8 @@ export default function SeeAnswersButton({
 	children?: React.ReactNode
 	label?: React.ReactNode
 }) {
+	const { key: simulateur } = useCurrentSimulatorData()
+
 	return (
 		<>
 			<PopoverWithTrigger
@@ -28,6 +31,7 @@ export default function SeeAnswersButton({
 						tracking={{
 							feature: 'modifier_reponses',
 							action: 'ouvre',
+							simulateur,
 						}}
 					>
 						{label ?? (
