@@ -141,8 +141,9 @@ dirigeant . auto-entrepreneur . Acre:
           alors: 50%
 
       références:
-        FAQ auto-entrepreneur - Urssaf: https://www.autoentrepreneur.urssaf.fr/portail/accueil/une-question/questions-frequentes.html
-        Aide à la création ou à la reprise d'une entreprise (Acre) - Service-public.fr: https://entreprendre.service-public.fr/vosdroits/F11677
+        L'essentiel du statut: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html
+        Vous souhaitez devenir Auto-entrepreneur: https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf#page=15
+        Aide à la création ou à la reprise d'une entreprise (Acre): https://entreprendre.service-public.gouv.fr/vosdroits/F11677
 
     taux service BIC:
       remplace: cotisations et contributions . cotisations . service BIC . taux
@@ -170,6 +171,8 @@ dirigeant . auto-entrepreneur . Acre:
         - si: entreprise . date de création >= 01/04/2020
           alors:
             variations:
+              - si: date >= 01/2026
+                alors: 13.40%
               - si: date >= 07/2024
                 alors: 13.90%
               - sinon: 12.10%
