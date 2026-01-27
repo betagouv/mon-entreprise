@@ -314,23 +314,25 @@ salarié . cotisations . allocations familiales:
     taux plein: 5.25%
 
     éligible taux réduit:
+      description: |
+        À partir du 1er janvier 2026, la réduction du taux allocations familiales
+        est supprimée sauf pour les employeurs bénéficiaires d’exonérations
+        spécifiques comme le dispositif d’exonération **Lodeom**.
+
+        Dans ce cas, la réduction du taux s'applique si la rémunération est
+        inférieure ou égale à **3,5 fois le Smic en vigueur au 31 décembre 2023**.
+      applicable si: exonérations . lodeom
       valeur: cotisations . assiette < plafond
       avec:
         plafond:
           produit:
-            - variations:
-                - si: date >= 01/2025
-                  alors: 3.3
-                - sinon: 3.5
+            - 3.5
             - valeur: SMIC
               contexte:
-                date:
-                  variations:
-                    - si: date >= 01/2025
-                      alors: 01/01/2025
-                    - sinon: 31/12/2023
+                date: 31/12/2023
             - temps de travail . effectif . quotité
       références:
+        La réduction du taux de la cotisation d’allocations familiales: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/cotisation-allocation-familiale.html#ancre-reduction-du-taux
         Code de la sécurité sociale - Article L241-6-1: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051285453
         Code de la sécurité sociale - Article D241-3-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000030067277/
         Code de la sécurité sociale - Article D241-7 II (salaire minimum de croissance): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
@@ -771,23 +773,25 @@ salarié . cotisations . maladie:
         taux plein: 13%
 
         éligible taux réduit:
+          description: |
+            À partir du 1er janvier 2026, la réduction du taux maladie est supprimée sauf
+            pour les employeurs bénéficiaires d’exonérations spécifiques comme le
+            dispositif d’exonération **Lodeom**.
+
+            Dans ce cas, la réduction du taux s'applique si la rémunération est
+            inférieure ou égale à **2,5 fois le Smic en vigueur au 31 décembre 2023**.
+          applicable si: exonérations . lodeom
           valeur: cotisations . assiette < plafond
           avec:
             plafond:
               produit:
-                - variations:
-                    - si: date >= 01/2025
-                      alors: 2.25
-                    - sinon: 2.5
+                - 2.5
                 - valeur: SMIC
                   contexte:
-                    date:
-                      variations:
-                        - si: date >= 01/2025
-                          alors: 01/01/2025
-                        - sinon: 31/12/2023
+                    date: 31/12/2023
                 - temps de travail . effectif . quotité
           références:
+            Réduction du taux de la cotisation maladie-maternité-invalidité-décès: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/maladie-maternite-invalidite.html#ancre-reduction-du-taux-de-la-cotisati
             Code de la sécurité sociale - Article L241-2-1: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048684728
             Code de la sécurité sociale - Article L241-1-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048807182
             Code de la sécurité sociale - Article D241-7 II (salaire minimum de croissance): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
