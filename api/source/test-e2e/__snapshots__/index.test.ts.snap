@@ -315,7 +315,6 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . cotisations . exonérations . JEI",
         "salarié . cotisations . exonérations . lodeom . zone deux",
         "salarié . cotisations . exonérations . lodeom . zone un",
-        "salarié . cotisations . exonérations . réduction générale . caisse de congés payés",
         "salarié . cotisations . exonérations . zones lodeom",
         "salarié . cotisations . prévoyances . santé . montant",
         "salarié . cotisations . prévoyances . santé . taux employeur",
@@ -336,7 +335,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "établissement . taux ATMP",
         "établissement . taux ATMP . taux collectif",
       ],
-      "nodeValue": 4748.360000000001,
+      "nodeValue": 4709.51,
       "unit": {
         "denominators": [
           "mois",
