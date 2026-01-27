@@ -2008,6 +2008,11 @@ pages:
       warning:
         aria-label:
           lodeom: aller sur la page du simulateur d’exonération Lodeom
+        réforme:
+          aria-label: En savoir plus sur la réduction générale dégressive (RGDU) sur le
+            site de l’Urssaf, nouvelle fenêtre
+          texte: La <2>réduction générale dégressive (RGDU)</2> n'est pas encore
+            implémentée sur ce simulateur.
         texte: "<0>Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
           spécifiques (Entreprises de Travail Temporaire, salariés des
           transports routiers soumis à un horaire d’équivalence...). Il ne tient
@@ -2097,11 +2102,6 @@ pages:
           conventions collectives, ni la myriade d’aides aux entreprises.
           Trouvez votre convention collective <2>ici</2>, et explorez les aides
           sur <4>aides-entreprises.fr</4>.
-        réforme:
-          aria-label: En savoir plus sur la réduction générale dégressive (RGDU) sur le
-            site de l’Urssaf, nouvelle fenêtre
-          texte: La <2>réduction générale dégressive (RGDU)</2> n'est pas encore
-            implémentée sur ce simulateur.
     sasu:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
