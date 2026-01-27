@@ -1,6 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configMédecin } from '../profession-libérale/simulationConfig'
+import { AvertissementMédecin } from './AvertissementMédecin'
 import Médecin from './Médecin'
 
 export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
@@ -34,5 +35,6 @@ export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 		simulation: configMédecin,
 		codesCatégorieJuridique: ['1000', '5410'],
 		component: Médecin,
+		warning: AvertissementMédecin,
 	} as const)
 }
