@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
-import AvertissementRéformeRGDUNonImplémentée from '@/components/AvertissementRéformeRGDUNonImplémentée'
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
@@ -83,30 +82,27 @@ export default function SalariéSimulation() {
 				<SimulateurWarning
 					simulateur="salarié"
 					informationsComplémentaires={
-						<>
-							<AvertissementRéformeRGDUNonImplémentée />
-							<Body>
-								<Trans i18nKey="pages.simulateurs.salarié.warning.général">
-									Le simulateur ne prend pour l’instant pas en compte les
-									accords et conventions collectives, ni la myriade d’aides aux
-									entreprises. Trouvez votre convention collective{' '}
-									<Link
-										href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
-										aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
-									>
-										ici
-									</Link>
-									, et explorez les aides sur&nbsp;
-									<Link
-										href="https://www.aides-entreprises.fr"
-										aria-label="aides-entreprises.fr, nouvelle fenêtre"
-									>
-										aides-entreprises.fr
-									</Link>
-									.
-								</Trans>
-							</Body>
-						</>
+						<Body>
+							<Trans i18nKey="pages.simulateurs.salarié.warning.général">
+								Le simulateur ne prend pour l’instant pas en compte les accords
+								et conventions collectives, ni la myriade d’aides aux
+								entreprises. Trouvez votre convention collective{' '}
+								<Link
+									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
+									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
+								>
+									ici
+								</Link>
+								, et explorez les aides sur&nbsp;
+								<Link
+									href="https://www.aides-entreprises.fr"
+									aria-label="aides-entreprises.fr, nouvelle fenêtre"
+								>
+									aides-entreprises.fr
+								</Link>
+								.
+							</Trans>
+						</Body>
 					}
 				/>
 				<SalariéSimulationGoals />

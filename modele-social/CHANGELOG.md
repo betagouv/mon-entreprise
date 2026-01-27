@@ -5,9 +5,13 @@
 ### Breaking changes
 - Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
 
+### Nouveautés
+- Ajout des règles de calcul de la réduction générale dégressive unique (RGDU)
+
 ### Mises à jour
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
 - Hausse de la CSG non déductible sur les dividendes
+- Suppression des taux réduits de cotisations allocations familiales et assurance maladie sauf pour Lodeom
 
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
