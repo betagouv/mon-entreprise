@@ -1667,8 +1667,8 @@ pages:
         salarié</6><7>Pour le travailleur indépendant non salarié, la part des
         dividendes dépassant 10% du capital social sera soumise aux cotisations
         et contributions suivant les mêmes modalités que sa rémunération de
-        dirigeant.</7><8>Ce cas de figure n'est pas encore pris en compte par ce
-        simulateur.</8>
+        dirigeant.</7><8>Pour ce cas de figure veuillez utiliser le
+        <2>simulateur de revenus pour indépendant</2>.</8>
       shortName: Dividendes
       title: Simulateur de versement de dividendes
       warning:

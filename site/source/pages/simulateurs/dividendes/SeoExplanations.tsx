@@ -1,8 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Body, H2, Link } from '@/design-system'
+import { useSitePaths } from '@/sitePaths'
 
 export const SeoExplanations = () => {
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (
@@ -48,7 +50,11 @@ export const SeoExplanations = () => {
 				dirigeant.
 			</Body>
 			<Body>
-				Ce cas de figure n'est pas encore pris en compte par ce simulateur.
+				Pour ce cas de figure veuillez utiliser le{' '}
+				<Link to={absoluteSitePaths.simulateurs.indépendant}>
+					simulateur de revenus pour indépendant
+				</Link>
+				.
 			</Body>
 		</Trans>
 	)
