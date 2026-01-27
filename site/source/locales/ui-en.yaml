@@ -1513,22 +1513,23 @@ pages:
           your company.
         title: Dividends
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
-        year, the previous year's earnings can be kept in reserve (for future
+        year, the previous year's earnings can be held in reserve (for future
         investment) or paid out as dividends. From the beneficiaries' point of
         view, this is income from movable capital, subject to specific
         contributions and taxation.</1><2>This simulator only takes into account
         the case of an individual beneficiary and dividends decided by the
         company.</2><3>How are dividend withholdings calculated?</3><4>Dividends
-        may be subject to a flat-rate withholding tax of 30%, including tax and
-        social security contributions (also known as<1> flat tax</1>).
-        Alternatively, you can opt for the tax scale. This simulator can be used
-        to compare the two systems.</4><5>An advance payment of 12.8% is
-        deducted at the time of dividend payment, unless the beneficiary meets
-        <2>certain criteria</2>.</5><6>Special case of self-employed
-        executives</6><7>For the self-employed worker, the portion of dividends
-        exceeding 10% of the share capital will be subject to contributions and
-        levies in the same way as his or her executive remuneration.</7><8>This
-        situation has not yet been taken into account by this simulator.</8>
+        may be subject to a single flat-rate withholding tax of 31.4%, including
+        tax and social security contributions (also known as&lt;1> flat
+        tax</1>). Alternatively, you can opt for the tax scale. This simulator
+        can be used to compare the two systems.</4><5>An advance payment in the
+        amount of the tax (12.8%) is deducted at the time of payment of the
+        dividends, unless the beneficiary meets <2>certain
+        criteria</2>.</5><6>Special case of self-employed executives</6><7>For
+        the self-employed worker, the portion of dividends exceeding 10% of the
+        share capital will be subject to contributions and levies in the same
+        way as his or her remuneration as an executive.</7><8>This situation has
+        not yet been taken into account by this simulator.</8>
       shortName: Dividends
       title: Dividend payment simulator
       warning:
