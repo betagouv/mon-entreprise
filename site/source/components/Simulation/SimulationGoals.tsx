@@ -7,7 +7,7 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Body, Grid } from '@/design-system'
 import { WatchInitialRender } from '@/hooks/useInitialRender'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
+import { firstStepCompletedSelector } from '@/store/selectors/simulation/firstStepCompleted.selector'
 
 import { LogoWithLink } from '../Logo'
 

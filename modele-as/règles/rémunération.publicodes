@@ -1,0 +1,281 @@
+assimilé salarié . rémunération:
+  icônes: 💶
+
+assimilé salarié . rémunération . totale:
+  titre: Rémunération totale
+  résumé: Total payé par l’entreprise pour la rémunération du dirigeant
+  question: Quel montant total pensez-vous dégager pour votre rémunération ?
+  description: |
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+  somme:
+    - rémunération . brute
+    - cotisations . employeur
+    - régimes spécifiques . taxe sur les salaires
+  unité: €/an
+  plancher: 0€/an
+
+assimilé salarié . rémunération . brute:
+  description: |
+    La rémunération brute correspond à l'intégralité des sommes perçues par le
+    dirigeant assimilé salarié avant déduction des cotisations de sécurité sociale
+    à sa charge, de la contribution sociale généralisée (CSG) et de la contribution
+    au remboursement de la dette sociale (CRDS).
+  titre: Rémunération brute
+  unité: €/mois
+  somme:
+    - salaire brut
+    - avantages en nature . montant
+
+assimilé salarié . rémunération . salaire brut:
+  unité: €/mois
+  inversion numérique:
+    - rémunération . totale
+    - rémunération . brute
+    - rémunération . nette
+    - rémunération . nette . à payer avant impôt
+    - rémunération . nette . après impôt
+
+assimilé salarié . rémunération . nette:
+  unité: €/an
+  titre: Rémunération nette
+  question: Quelle est votre rémunération nette ?
+  résumé: Après déduction des cotisations, contributions et charges
+  somme:
+    - rémunération . brute
+    - (- cotisations . salarié)
+
+assimilé salarié . rémunération . nette . à payer avant impôt:
+  titre: Salaire net
+  unité: €/mois
+  résumé: Salaire net avant impôt
+  description: >-
+    C'est le montant que le dirigeant assimilé salarié touche à la fin du mois
+    avant de payer l'impôt sur le revenu.
+
+    Aussi appelé salaire net à payer avant impôt.
+  somme:
+    - rémunération . nette
+    - (- avantages en nature . montant)
+
+assimilé salarié . rémunération . nette . imposable:
+  titre: Salaire net imposable
+  description: |
+    C'est la base utilisée pour calculer l'impôt sur le revenu.
+  valeur: sans déductions
+  références:
+    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+
+  avec:
+    sans déductions:
+      description: Le net imposable avant les exonérations et déductions
+      somme:
+        - rémunération . nette
+        - cotisations . CSG-CRDS . non déductible
+        - cotisations . prévoyances . employeur
+        - cotisations . prévoyances . salarié . non déductible
+
+assimilé salarié . rémunération . impôt:
+  titre: impôt sur le revenu
+  description: |
+    Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
+    salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
+    cas du calcul avec le barème standard, des autres revenus imposables du
+    foyer fiscal.
+
+    Ce simulateur n'inclue pas le calcul de l’impôt sur les revenus pour les
+    entreprises soumises à l’impôt sur les revenus (IR).
+  valeur: impôt . montant
+  unité: €/an
+  contexte:
+    paramètres . impôt . revenu imposable: rémunération . nette . imposable
+    paramètres . impôt . revenu d'activité: rémunération . nette . imposable
+    paramètres . impôt . taux neutre applicable: oui
+
+assimilé salarié . rémunération . nette . après impôt:
+  titre: Salaire net après impôt
+  identifiant court: salaire-net-apres-impot
+  résumé: Le salaire net payé
+  question: Quel est le revenu net du salarié après impôt ?
+  type: salaire
+  unité: €/mois
+  description: |
+    C'est le salaire versé sur le compte bancaire du salarié, une fois les cotisations et l'impôt prélevés.
+  références:
+    Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
+  somme:
+    - rémunération . nette . à payer avant impôt
+    - (- impôt)
+
+assimilé salarié . rémunération . avantages en nature:
+  icônes: 🛏️🚗🥗📱
+  titre: Avantages en nature
+  description: |
+    Les avantages en nature sont constitués par la fourniture par l’entreprise à ses
+    travailleurs d’un bien ou service. La mise à disposition peut être gratuite ou
+    moyennant une participation du bénéficiant inférieure à leur valeur réelle.
+
+    L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au
+    niveau du salaire brut pour être soumis à cotisations. Après détermination du
+    salaire net imposable, il sera déduit du salaire net à verser.
+  question: L'entreprise fournit-elle des avantages en nature (repas, véhicule,
+    téléphone, réductions, logement...) ?
+  par défaut: non
+  références:
+    Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
+
+  avec:
+    montant:
+      titre: Avantages en nature
+      description: >
+        Les avantages en nature sont soumis aux cotisations et à l'impôt sur le
+        revenu. Ils sont pris en compte pour vérifier que le salaire minimum est
+        atteint.
+      formule:
+        somme:
+          - nourriture . montant
+          - ntic . montant
+          - autres . montant
+
+    nourriture:
+      icônes: 🍝
+      question: >
+        L'entreprise fournit-elle gratuitement des repas ?
+      par défaut: non
+      description: |
+        Les titres-restaurant ne sont pas considérés comme un avantage en nature
+        mais comme un remboursement de frais.
+
+        Le repas d’un restaurant d’entreprise ou une cantine, que vous gérez ou
+        subventionnez moyennant une participation du salarié, constitue selon les
+        cas un avantage en nature.
+      références:
+        Avantages en nature repas: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-repas
+
+      avec:
+        montant:
+          titre: nourriture
+          unité: €/mois
+          produit:
+            - repas par mois
+            - repas forfaitaire
+          références:
+            Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
+
+        repas par mois:
+          question: >
+            Combien de repas par mois sont payés par l'entreprise ?
+          par défaut: 21 repas/mois
+          suggestions:
+            1 par jour: 21 repas/mois
+            2 par jour: 42 repas/mois
+
+        montant . repas forfaitaire:
+          titre: montant forfaitaire
+          variations:
+            - si: date >= 01/2026
+              alors: 5.50 €/repas
+            - si: date >= 01/2025
+              alors: 5.45 €/repas
+            - si: date >= 01/2024
+              alors: 5.35 €/repas
+            - sinon: 5 €/repas
+
+    ntic:
+      icônes: 💻📱
+      description: |
+        L’usage privé des outils NTIC mis à disposition dans le cadre de l’activité
+        professionnelle à titre permanent est constitutif d’un avantage en nature.
+
+        Cet avantage est inclus dans la base de calcul des cotisations de Sécurité
+        sociale.
+
+        La réalité de l’usage privé peut résulter soit d’un document écrit (contrat
+        de travail, accord d’entreprise, règlement intérieur, courrier de la
+        direction de l’entreprise autorisant le salarié à faire un usage privé des
+        outils), soit de l’existence de factures détaillées permettant d’établir
+        une utilisation privée.
+      question: >
+        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        (ordinateur, téléphone, tablette, etc.) ?
+      par défaut: oui
+      références:
+        'Avantages en nature : ordinateurs, téléphones': https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-ordinateurs-telephones
+
+      avec:
+        abonnements:
+          question:
+            Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge
+            par l'employeur ?
+          par défaut: 20 €/mois
+          suggestions:
+            aucun: 0 €/mois
+            standard: 20 €/mois
+            international: 40 €/mois
+
+        coût appareils:
+          question: >
+            Quel est le coût total neuf des appareils mis à disposition ?
+          par défaut: 800 €
+          # TODO : vérifier et documenter les chiffres
+          suggestions:
+            📱: 400 €
+            📱✨ (haut de gamme): 850 €
+            💻: 1200 €
+            💻 + 📱✨: 2050 €
+
+        montant:
+          titre: outils NTIC
+          description: |
+            Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
+            tablettes...), il y a une évaluation forfaitaire annuelle correspondant
+            à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC
+            avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur
+            le bulletin de paie sera de :
+
+            ```
+            [10 % x (850 € + (30 € x 12 mois)) ] / 12 mois
+            ```
+            soit 10,08 €
+          produit:
+            - somme:
+                - coût appareils
+                - abonnements * 12 mois
+            - 10% /an
+          références:
+            urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
+
+    autres:
+      question: >
+        Y a-t-il d'autres avantages en natures (logement, véhicule,
+        réduction...) ?
+      par défaut: non
+      avec:
+        montant:
+          titre: autres
+          question: >
+            Quel est le montant de ces autres avantages ?
+          par défaut: 0 €/mois
+          suggestions:
+            🚗 véhicule: 260 €/mois
+
+assimilé salarié . rémunération . montant net social:
+  experimental: oui
+  titre: Montant net social
+  résumé : Montant à déclarer pour les demandes de Prime d'activité et de RSA
+  description: |
+    Le montant net social, ou MNS, correspond au montant de référence à déclarer par
+    les allocataires depuis le 1er février 2024 pour bénéficier de la Prime
+    d’activité et du revenu de solidarité active (RSA).
+
+    Le résultat affiché est une estimation qui ne tient pas compte de tous les
+    éléments de votre situation.
+  unité: €/mois
+  somme:
+    - rémunération . brute
+    - avantages en nature . montant
+  abattement: cotisations . salarié
+  références :
+    Le montant net social: https://solidarites.gouv.fr/le-montant-net-social
+    Calcul du montant net social: https://boss.gouv.fr/portail/accueil/bulletin-de-paie/montant-net-social.html#titre-iicalcul-du-montant-net-social

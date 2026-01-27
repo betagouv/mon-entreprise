@@ -1,10 +1,7 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { servicePLR } from '@/external-links/servicePLR'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configAvocat } from '../profession-libérale/simulationConfig'
+import Avocat from './Avocat'
 
 export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -32,10 +29,9 @@ export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Calcul du revenu net après cotisations à partir du total des recettes.'
 			),
 		},
-		externalLinks: [servicePLR, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale'].avocat,
 		simulation: configAvocat,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
-		component: IndépendantPLSimulation,
+		component: Avocat,
 	} as const)
 }

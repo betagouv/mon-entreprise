@@ -1,0 +1,520 @@
+import rules from 'modele-ti'
+import Engine from 'publicodes'
+import { beforeEach, describe, expect, it } from 'vitest'
+
+const defaultSituation = {
+	'plafond sécurité sociale': '47100 €/an',
+	'entreprise . imposition': "'IR'",
+}
+
+describe('Cotisation retraite de base', () => {
+	let engine: Engine
+	beforeEach(() => {
+		engine = new Engine(rules)
+	})
+
+	describe('pour les artisans, commerçants et PLNR', () => {
+		it('applique un taux tranche 1 de 17,15%', () => {
+			expect(engine).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . taux',
+				17.15
+			)
+		})
+
+		it('applique un taux tranche 2 de 0,72%', () => {
+			expect(engine).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . taux',
+				0.72
+			)
+		})
+
+		it('applique une assiette minimale égale à 450 heures rémunérées au SMIC (5 409 € en 2026)', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'1000 €/an',
+			})
+
+			const assietteMinimale = e.evaluate(
+				'indépendant . assiette minimale . retraite'
+			).nodeValue
+			expect(assietteMinimale).toEqual(5409)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				assietteMinimale
+			)
+			const tranche1 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+			).nodeValue as number
+			expect(tranche1).toEqual(928)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				assietteMinimale
+			)
+			const tranche2 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+			).nodeValue as number
+			expect(tranche2).toEqual(39)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				tranche1 + tranche2
+			)
+		})
+
+		it('applique les taux des tranches 1 et 2 en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				30000
+			)
+			const tranche1 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+			).nodeValue as number
+			expect(tranche1).toEqual(5145)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				30000
+			)
+			const tranche2 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+			).nodeValue as number
+			expect(tranche2).toEqual(216)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				tranche1 + tranche2
+			)
+		})
+
+		it('applique le taux tranche 1 au PASS et le taux tranche 2 à toute l’assiette sociale en cas d’assiette sociale supérieure au PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'100000 €/an',
+			})
+
+			const PASS = e.evaluate('plafond sécurité sociale').nodeValue
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				PASS
+			)
+			const tranche1 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+			).nodeValue as number
+			expect(tranche1).toEqual(8078)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				100000
+			)
+			const tranche2 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+			).nodeValue as number
+			expect(tranche2).toEqual(720)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				tranche1 + tranche2
+			)
+		})
+
+		// Exemples issus de la doc Urssaf
+		describe('en cas d’année incomplète', () => {
+			describe('avec une durée d’activité inférieure à 90 jours', () => {
+				it('n’applique pas d’assiette minimale', () => {
+					const e = engine.setSituation({
+						...defaultSituation,
+						"entreprise . durée d'activité cette année": '60 jour',
+						'indépendant . cotisations et contributions . assiette sociale':
+							'1000 €/an',
+					})
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+						1000
+					)
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+						1000
+					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						179
+					)
+				})
+
+				it('applique un plafond tranche 1 proratisé', () => {
+					const e = engine.setSituation({
+						...defaultSituation,
+						"entreprise . durée d'activité cette année": '60 jour',
+						'indépendant . cotisations et contributions . assiette sociale':
+							'40000 €/an',
+					})
+
+					const PASSProratisé = e.evaluate(
+						'indépendant . PSS proratisé'
+					).nodeValue
+					expect(PASSProratisé).toEqual(7742)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+						PASSProratisé
+					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+						40000
+					)
+
+					const retraiteDeBase = e.evaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base'
+					).nodeValue as number
+					expect(Math.abs(retraiteDeBase - (1383 + 232))).toBeLessThanOrEqual(1)
+				})
+			})
+
+			describe('avec une durée d’activité supérieure à 90 jours', () => {
+				it('applique l’assiette minimale', () => {
+					const e = engine.setSituation({
+						...defaultSituation,
+						"entreprise . durée d'activité cette année": '120 jour',
+						'indépendant . cotisations et contributions . assiette sociale':
+							'1000 €/an',
+					})
+
+					const assietteMinimale = e.evaluate(
+						'indépendant . assiette minimale . retraite'
+					).nodeValue
+					expect(assietteMinimale).toEqual(5409)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+						assietteMinimale
+					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+						assietteMinimale
+					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						967
+					)
+				})
+
+				it('applique un plafond tranche 1 proratisé', () => {
+					const e = engine.setSituation({
+						...defaultSituation,
+						"entreprise . durée d'activité cette année": '120 jour',
+						'indépendant . cotisations et contributions . assiette sociale':
+							'50000 €/an',
+					})
+
+					const PASSProratisé = e.evaluate(
+						'indépendant . PSS proratisé'
+					).nodeValue
+					expect(PASSProratisé).toEqual(15485)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+						PASSProratisé
+					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+						50000
+					)
+
+					expect(e).toEvaluate(
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						2767 + 249
+					)
+				})
+			})
+		})
+
+		describe('n’applique pas d’assiette minimale', () => {
+			it('en cas de RSA ou de prime d’activité', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'situation personnelle . RSA': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+					1000
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					1000
+				)
+			})
+
+			it('en cas d’activité saisonnière', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'entreprise . activité . saisonnière': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+					1000
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					1000
+				)
+			})
+		})
+
+		it('applique la déduction tabac à l’assiette sociale', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+				'entreprise . activité . commerciale . débit de tabac': 'oui',
+				'indépendant . cotisations et contributions . déduction tabac':
+					'10000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				20000
+			)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				20000
+			)
+		})
+	})
+
+	describe('pour les PLR', () => {
+		const defaultSituationPLR = {
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+		}
+
+		it('applique un taux tranche 1 de 8,73%', () => {
+			const e = engine.setSituation(defaultSituationPLR)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . taux',
+				8.73
+			)
+		})
+
+		it('applique un taux tranche 2 de 1,87%', () => {
+			const e = engine.setSituation(defaultSituationPLR)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . taux',
+				1.87
+			)
+		})
+
+		it('applique une assiette minimale égale à 450 heures rémunérées au SMIC (5 409 € en 2025)', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'1000 €/an',
+			})
+
+			const assietteMinimale = e.evaluate(
+				'indépendant . assiette minimale . retraite'
+			).nodeValue
+			expect(assietteMinimale).toEqual(5409)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				assietteMinimale
+			)
+			const tranche1 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+			).nodeValue as number
+			expect(tranche1).toEqual(472)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				assietteMinimale
+			)
+			const tranche2 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+			).nodeValue as number
+			expect(tranche2).toEqual(101)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				tranche1 + tranche2
+			)
+		})
+
+		it('applique les taux des tranches 1 et 2 en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				30000
+			)
+			const tranche1 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+			).nodeValue as number
+			expect(tranche1).toEqual(2619)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				30000
+			)
+			const tranche2 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+			).nodeValue as number
+			expect(tranche2).toEqual(561)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				tranche1 + tranche2
+			)
+		})
+
+		it('applique le taux tranche 1 au PASS et le taux tranche 2 à toute l’assiette sociale en cas d’assiette sociale comprise entre 1 et 5 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'100000 €/an',
+			})
+
+			const PASS = e.evaluate('plafond sécurité sociale . annuel').nodeValue
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				PASS
+			)
+			const tranche1 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+			).nodeValue as number
+			expect(tranche1).toEqual(4112)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				100000
+			)
+			const tranche2 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+			).nodeValue as number
+			expect(tranche2).toEqual(1870)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				tranche1 + tranche2
+			)
+		})
+
+		it('applique le taux tranche 1 au PASS et le taux tranche 2 à 5 PASS en cas d’assiette sociale supérieure à 5 PASS', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'250000 €/an',
+			})
+
+			const PASS = e.evaluate('plafond sécurité sociale . annuel')
+				.nodeValue as number
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				PASS
+			)
+			const tranche1 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+			).nodeValue as number
+			expect(tranche1).toEqual(4112)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+				5 * PASS
+			)
+			const tranche2 = e.evaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+			).nodeValue as number
+			expect(tranche2).toEqual(4404)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				tranche1 + tranche2
+			)
+		})
+
+		it('applique une exonération totale en cas d’exonération incapacité', () => {
+			const e = engine.setSituation({
+				...defaultSituationPLR,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'100000 €/an',
+				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'oui',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				0
+			)
+		})
+
+		describe('n’applique pas d’assiette minimale', () => {
+			it('en cas de RSA ou de prime d’activité', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'situation personnelle . RSA': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+					1000
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					1000
+				)
+			})
+
+			it('en cas d’activité saisonnière', () => {
+				const e = engine.setSituation({
+					...defaultSituationPLR,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'entreprise . activité . saisonnière': 'oui',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+					1000
+				)
+				expect(e).toEvaluate(
+					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					1000
+				)
+			})
+		})
+	})
+})

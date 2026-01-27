@@ -1,5 +1,4 @@
 import { useOverlayTriggerState } from '@react-stately/overlays'
-import { DottedName } from 'modele-social'
 import { Evaluation } from 'publicodes'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -19,12 +18,11 @@ import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprise
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
-import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
+import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -40,16 +38,18 @@ import {
 	Strong,
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
+import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
-import useSimulationConfig from '@/hooks/useSimulationConfig'
+import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
-import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { companySituationSelector } from '@/store/selectors/simulationSelectors'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
+import { EngineProvider, useEngine } from '@/utils/publicodes/EngineContext'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 import forms from './forms.svg'
 import growth from './growth.svg'
@@ -68,9 +68,12 @@ export default function PourMonEntrepriseHome() {
 	)
 }
 
+const externalLinks = [premiersMoisUrssaf]
+
 function PourMonEntreprise() {
 	const simulateurs = useSimulatorsData()
-	const engine = useEngine()
+	const simulateurConfig = simulateurs['pour-mon-entreprise']
+	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
 	const dispatch = useDispatch()
 	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
 	const prevSiren = useRef(engineSiren)
@@ -120,141 +123,146 @@ function PourMonEntreprise() {
 				<meta name="robots" content="noindex" />
 			</Helmet>
 
-			{param && engineSiren && param !== engineSiren && !overwrite && (
-				<PopoverOverwriteSituation
-					onOverwrite={() => {
-						dispatch(resetCompany())
-						setOverwrite(true)
-					}}
-				/>
-			)}
-
 			<TrackPage name={ACCUEIL} />
-			<PageHeader picture={growth}>
-				<Intro>
-					<Trans i18nKey="pages.assistants.pour-mon-entreprise.description">
-						Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
-						payer des cotisations et des impôts. Anticipez leurs montants grâce
-						aux simulateurs adaptés à votre situation.
-					</Trans>
-				</Intro>
-				{entreprisePending ? (
-					<Message type="info" border={false}>
+
+			<EngineProvider value={engine}>
+				<SimulateurPageLayout
+					simulateurConfig={simulateurConfig}
+					isReady={isReady}
+					externalLinks={externalLinks}
+				>
+					{param && engineSiren && param !== engineSiren && !overwrite && (
+						<PopoverOverwriteSituation
+							onOverwrite={() => {
+								dispatch(resetCompany())
+								setOverwrite(true)
+							}}
+						/>
+					)}
+
+					<PageHeader picture={growth}>
 						<Intro>
-							<Trans i18nKey="loading">Chargement en cours...</Trans>
+							<Trans i18nKey="pages.assistants.pour-mon-entreprise.description">
+								Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
+								payer des cotisations et des impôts. Anticipez leurs montants
+								grâce aux simulateurs adaptés à votre situation.
+							</Trans>
 						</Intro>
-					</Message>
-				) : (
-					<AskCompanyMissingDetails />
-				)}
-				<Spacing xl />
-			</PageHeader>
+						{entreprisePending ? (
+							<Message type="info" border={false}>
+								<Intro>
+									<Trans i18nKey="loading">Chargement en cours...</Trans>
+								</Intro>
+							</Message>
+						) : (
+							<AskCompanyMissingDetails />
+						)}
+						<Spacing xl />
+					</PageHeader>
 
-			<Container backgroundColor={(theme) => theme.colors.bases.primary[600]}>
-				<FromTop>
-					<FormsImage src={forms} alt="" />
-					<Spacing xs />
-					<ForceThemeProvider forceTheme="dark">
-						<H2>Simulateurs pour votre entreprise</H2>
-					</ForceThemeProvider>
-					<Grid
-						container
-						spacing={3}
-						style={{
-							position: 'relative',
-						}}
+					<Container
+						backgroundColor={(theme) => theme.colors.bases.primary[600]}
 					>
-						<CurrentSimulatorCard fromGérer />
-
-						<Condition expression="entreprise . imposition . IS">
+						<FromTop>
+							<FormsImage src={forms} alt="" />
+							<Spacing xs />
+							<ForceThemeProvider forceTheme="dark">
+								<H2>Simulateurs pour votre entreprise</H2>
+							</ForceThemeProvider>
 							<Grid
-								item
-								xs={12}
-								md={6}
-								lg={4}
+								container
+								spacing={3}
 								style={{
-									alignSelf: 'flex-end',
+									position: 'relative',
 								}}
 							>
-								<Grid container spacing={3} columns={2}>
-									<SimulateurCard fromGérer {...simulateurs.is} small />
-									<SimulateurCard fromGérer {...simulateurs.dividendes} small />
-								</Grid>
+								<CurrentSimulatorCard fromGérer />
+
+								<Condition expression="entreprise . imposition . IS">
+									<Grid
+										item
+										xs={12}
+										md={6}
+										lg={4}
+										style={{
+											alignSelf: 'flex-end',
+										}}
+									>
+										<Grid container spacing={3} columns={2}>
+											<SimulateurCard fromGérer {...simulateurs.is} small />
+											<SimulateurCard
+												fromGérer
+												{...simulateurs.dividendes}
+												small
+											/>
+										</Grid>
+									</Grid>
+								</Condition>
 							</Grid>
-						</Condition>
-					</Grid>
-				</FromTop>
-				<Spacing xl />
-			</Container>
-			{!isAutoEntrepreneur && (
-				<FromTop>
-					<H2>
-						<Trans>Salariés et embauche</Trans>
-					</H2>
-					<Grid container spacing={3}>
-						<SimulateurCard fromGérer {...simulateurs['salarié']} />
-						<SimulateurCard fromGérer {...simulateurs['activité-partielle']} />
-					</Grid>
-				</FromTop>
-			)}
+						</FromTop>
+						<Spacing xl />
+					</Container>
 
-			<Trans i18nKey="pages.assistants.pour-mon-entreprise.info.PdE">
-				<H2>
-					Échanger avec le conseiller qui peut vous aider selon votre
-					problématique
-				</H2>
-				<Body as="div">
-					<span>Vous souhaitez :</span>
-					<UlInColumns>
-						<li>recruter, former vos salariés</li>
-						<li>financer vos projets d'investissement</li>
-						<li>résoudre un problème de trésorerie</li>
-						<li>être conseillé(e) en droit du travail</li>
-						<li>développer votre activité commerciale</li>
-						<li>vendre sur internet</li>
-						<li>vendre ou reprendre une entreprise</li>
-						<li>améliorer la santé et sécurité au travail</li>
-						<li>entrer dans une démarche de transition écologique & RSE</li>
-					</UlInColumns>
-				</Body>
-				<Body>
-					<Strong>
-						Service public simple et rapide : vous êtes rappelé(e) par LE
-						conseiller qui peut vous aider.
-					</Strong>
-				</Body>
-				<Body>
-					Plus de 40 partenaires publics sont mobilisés pour vous accompagner en
-					fonction de votre problématique.
-					<br />
-					Le conseiller compétent proche de chez vous vous rappelle sous 5
-					jours.
-				</Body>
-			</Trans>
+					{!isAutoEntrepreneur && (
+						<FromTop>
+							<H2>
+								<Trans>Salariés et embauche</Trans>
+							</H2>
+							<Grid container spacing={3}>
+								<SimulateurCard fromGérer {...simulateurs['salarié']} />
+								<SimulateurCard
+									fromGérer
+									{...simulateurs['activité-partielle']}
+								/>
+							</Grid>
+						</FromTop>
+					)}
 
-			<ConseillersEntreprisesButton
-				siret={
-					engine.evaluate('établissement . SIRET')
-						.nodeValue as Evaluation<string>
-				}
-			/>
-			<Spacing lg />
+					<Trans i18nKey="pages.assistants.pour-mon-entreprise.info.PdE">
+						<H2>
+							Échanger avec le conseiller qui peut vous aider selon votre
+							problématique
+						</H2>
+						<Body as="div">
+							<span>Vous souhaitez :</span>
+							<UlInColumns>
+								<li>recruter, former vos salariés</li>
+								<li>financer vos projets d'investissement</li>
+								<li>résoudre un problème de trésorerie</li>
+								<li>être conseillé(e) en droit du travail</li>
+								<li>développer votre activité commerciale</li>
+								<li>vendre sur internet</li>
+								<li>vendre ou reprendre une entreprise</li>
+								<li>améliorer la santé et sécurité au travail</li>
+								<li>entrer dans une démarche de transition écologique & RSE</li>
+							</UlInColumns>
+						</Body>
+						<Body>
+							<Strong>
+								Service public simple et rapide : vous êtes rappelé(e) par LE
+								conseiller qui peut vous aider.
+							</Strong>
+						</Body>
+						<Body>
+							Plus de 40 partenaires publics sont mobilisés pour vous
+							accompagner en fonction de votre problématique.
+							<br />
+							Le conseiller compétent proche de chez vous vous rappelle sous 5
+							jours.
+						</Body>
+					</Trans>
+
+					<ConseillersEntreprisesButton
+						siret={
+							engine.evaluate('établissement . SIRET')
+								.nodeValue as Evaluation<string>
+						}
+					/>
+					<Spacing lg />
+				</SimulateurPageLayout>
+			</EngineProvider>
 		</>
 	)
-}
-
-const configEntrepriseDetails: SimulationConfig = {
-	questions: {
-		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
-	},
-	objectifs: [
-		'dirigeant . régime social',
-		'entreprise . imposition',
-	] as DottedName[],
-	situation: {
-		'entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut':
-			'oui',
-	},
 }
 
 const UlInColumns = styled.ul`
@@ -267,18 +275,12 @@ const UlInColumns = styled.ul`
 `
 
 const AskCompanyMissingDetails = () => {
-	const { absoluteSitePaths } = useSitePaths()
-	useSimulationConfig({
-		key: absoluteSitePaths.assistants.index,
-		config: configEntrepriseDetails,
-	})
-
 	const [questions, onQuestionAnswered] = useQuestionList()
 	const engine = useEngine()
 
 	return (
 		<>
-			<EntrepriseDetails showSituation headingTag="h2" />
+			<EntrepriseDetailsCard showSituation headingTag="h2" />
 			{!!questions.length && (
 				<>
 					<Body

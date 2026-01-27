@@ -7,7 +7,7 @@ import { useSearchParamsForSituation } from '@/hooks/useSearchParamsForSituation
 import { useSiteUrl } from '@/hooks/useSiteUrl'
 
 type Options = {
-	path?: Partial<MergedSimulatorDataValues>
+	path?: MergedSimulatorDataValues['path']
 	situation?: SituationPublicodes
 }
 

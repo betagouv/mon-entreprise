@@ -1,9 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 
+import illustration from '@/assets/images/illustration.svg'
 import PageHeader from '@/components/PageHeader'
 import { Body, Button } from '@/design-system'
-
-import illustrationSrc from './illustration.svg'
 
 export default function ÉconomieCollaborative() {
 	const { t } = useTranslation()
@@ -12,7 +11,7 @@ export default function ÉconomieCollaborative() {
 		<Trans>
 			<PageHeader
 				titre="L'assistant économie collaborative, c'est terminé"
-				picture={illustrationSrc}
+				picture={illustration}
 			>
 				<Body>
 					Ce dernier n'a pas rencontré le succès escompté. Nous avons donc

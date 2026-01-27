@@ -1,6 +1,7 @@
 import CoutCreationEntreprise from '.'
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
+import { configCoûtCréationEntreprise } from './simulationConfig'
 
 export function coûtCréationEntrepriseConfig({
 	t,
@@ -34,22 +35,8 @@ export function coûtCréationEntrepriseConfig({
 			'pages.simulateurs.coût-création-entreprise.title',
 			"Simulateur de coût de création d'une entreprise"
 		),
-		simulation: {
-			'objectifs exclusifs': [],
-			objectifs: ['entreprise . coût formalités . création'],
-			questions: {
-				'liste noire': ['entreprise . activité . nature'],
-				'non prioritaires': ['établissement . commune'],
-			},
-			situation: {
-				'entreprise . catégorie juridique . association': {
-					'applicable si': 'non',
-				},
-			},
-		},
+		simulation: configCoûtCréationEntreprise,
 		component: CoutCreationEntreprise,
-		nextSteps: ['choix-statut'],
-
-		// Remove this "as const" when we upgrade to typescript v5:
+		// TODO: Remove this "as const" when we upgrade to typescript v5:
 	} as const)
 }

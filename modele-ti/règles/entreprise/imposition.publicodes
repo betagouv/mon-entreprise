@@ -1,0 +1,79 @@
+# Les règles parentes ci-dessous sont dans modele-commun :
+# - entreprise . imposition
+# - entreprise . imposition . IR
+# - entreprise . imposition . IS
+
+entreprise . imposition . IR . information sur le report de déficit:
+  non applicable si: régime micro-fiscal
+  type: notification
+  formule: résultat fiscal < 0 €/an
+  description: |
+    Lorsque votre résultat fiscal est négatif, ce dernier vient réduire le revenu
+    imposables du foyer fiscal.
+    Un déficit peut être imputé jusqu’à 6 ans après sa réalisation.
+
+    [Voir les règles fiscales détaillées](https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301)
+  références:
+    bofip: https://bofip.impots.gouv.fr/bofip/2003-PGP.html/identifiant%3DBOI-BIC-DEF-20-10-20170301
+
+entreprise . imposition . IR . régime micro-fiscal:
+  description: |
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+    pourcentage dépend du type d’activité :
+    - 71 % pour les activités de vente, restauration et hébergement (location de
+    meublé de tourisme classé et chambre d’hôte),
+    - 50 % pour les prestations de service commerciales ou artisanales,
+    - 34 % pour les activités libérales.
+
+    Cette option permet de simplifier votre comptabilité et peut être avantageuse
+    pour votre revenu imposable dans le cas où vos charges de fonctionnement sont
+    faibles.
+  question: Avez-vous opté pour le régime micro-fiscal ?
+  par défaut: non
+  références:
+    Régime fiscal de la micro-entreprise: https://entreprendre.service-public.fr/vosdroits/F23267
+    'Micro-entreprise, régime réel et régime de la déclaration contrôlée : les 3 régimes d’imposition des entreprises': https://www.economie.gouv.fr/entreprises/changement-regime-imposition
+    Tout ce qu’il faut savoir sur le régime micro: https://www.indy.fr/guide/creation-entreprise/etapes/regime-fiscal/micro/
+
+entreprise . imposition . IR . régime micro-fiscal . revenu abattu:
+  titre: abattement forfaitaire micro-fiscal
+  résoudre la référence circulaire: oui
+  description: |
+    Avec le régime micro-fiscal, les charges déductibles sont estimées
+    forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
+    pourcentage dépend du type d’activité :
+    - 71 % pour les activités de vente, restauration et hébergement (location de
+    meublé de tourisme classé et chambre d’hôte),
+    - 50 % pour les prestations de service commerciales ou artisanales,
+    - 34 % pour les activités libérales.
+  valeur: chiffre d'affaires
+  # somme:
+  #   - chiffre d'affaires . vente restauration hébergement
+  #   - chiffre d'affaires . service BIC
+  #   - chiffre d'affaires . service BNC
+  abattement:
+    somme:
+      - produit:
+          - chiffre d'affaires . vente restauration hébergement
+          - 71%
+        plancher:
+          applicable si: chiffre d'affaires . vente restauration hébergement > 0 €/an
+          valeur: plancher abattement
+      - produit:
+          - chiffre d'affaires . service BIC
+          - 50%
+        plancher:
+          applicable si: chiffre d'affaires . service BIC > 0 €/an
+          valeur: plancher abattement
+      - produit:
+          - chiffre d'affaires . service BNC
+          - 34%
+        plancher:
+          applicable si: chiffre d'affaires . service BNC > 0 €/an
+          valeur: plancher abattement
+  références:
+    'Impôt sur le revenu : BIC, BNC, comment ça marche ? - Comment déterminer le bénéfice imposable ?': https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/limpot-sur-les-benefices-ir-et/impot-sur-le-revenu-bic#comment-d-terminer-le-b-n-fice-i_3
+
+  avec:
+    plancher abattement: 305 €/an

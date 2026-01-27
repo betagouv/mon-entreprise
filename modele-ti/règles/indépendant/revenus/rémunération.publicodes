@@ -1,0 +1,82 @@
+indépendant . rémunération: oui
+
+indépendant . rémunération . totale:
+  titre: Rémunération totale
+  description: |
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+  titre global: Rémunération totale dirigeant
+  résumé: Total payé par l’entreprise pour la rémunération du dirigeant
+  variations:
+    - si: entreprise . imposition . IS
+      alors:
+        inversion numérique:
+          - rémunération . nette
+          - cotisations et contributions
+          - rémunération . nette . après impôt
+          - rémunération . impôt
+    - sinon: entreprise . chiffre d'affaires - entreprise . charges
+  arrondi: oui
+  unité: €/an
+
+indépendant . rémunération . nette:
+  titre: Rémunération nette
+  résumé: Après déduction des cotisations, contributions et charges
+  somme:
+    - rémunération . totale
+    - (- cotisations et contributions)
+  arrondi: oui
+  unité: €/an
+
+indépendant . rémunération . nette . avec dividendes:
+  titre: Rémunération nette
+  résumé: Après déduction des prélèvements sociaux, cotisations, contributions et charges
+  somme:
+    - rémunération . nette
+    - dividendes
+    - (- dividendes . prélèvements sociaux)
+  arrondi: oui
+  unité: €/an
+
+indépendant . rémunération . nette . imposable:
+  titre: Revenu imposable
+  somme:
+    - revenu professionnel
+    - dividendes . imposables
+  arrondi: oui
+  unité: €/an
+
+indépendant . rémunération . impôt:
+  titre: Impôt sur le revenu
+  description: |
+    Montant de l’impôt sur le revenu concernant :
+    - les rémunérations de dirigeant des entreprises à l’impôt sur les sociétés,
+    - les bénéfices des entreprises individuelles à l’impôt sur le revenu,
+  valeur: impôt . montant
+  contexte:
+    paramètres . impôt . revenu imposable: rémunération . nette . imposable
+    paramètres . impôt . revenu d'activité:
+      applicable si: entreprise . imposition . IS
+      valeur: rémunération . nette . imposable
+    paramètres . impôt . abattement revenu net global: cotisations facultatives . déductibles
+  arrondi: oui
+  unité: €/an
+
+indépendant . rémunération . impôt . avec dividendes:
+  titre: Impôt sur le revenu
+  résumé: Inclue l'impôt sur les dividendes
+  somme:
+    - rémunération . impôt
+    - dividendes . PFU
+  unité: €/an
+
+indépendant . rémunération . nette . après impôt:
+  titre: Revenu après impôt
+  résumé: Ce que vous rapporte cette activité
+  description: >-
+    Le revenu net après déduction de l’impôt sur le revenu et des cotisations
+    sociales.
+  valeur: rémunération . nette . avec dividendes - impôt . avec dividendes
+  arrondi: oui
+  unité: €/an

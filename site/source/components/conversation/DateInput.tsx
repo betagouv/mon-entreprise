@@ -1,9 +1,7 @@
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { ASTNode } from 'publicodes'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	DateField,
 	DateFieldProps,
@@ -20,7 +18,9 @@ import {
 	publicodesDateToIsoDate,
 } from '@/domaine/Date'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NoOp } from '@/utils/NoOp'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 interface DateInputProps {
 	id?: string

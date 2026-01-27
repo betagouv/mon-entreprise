@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { css, styled } from 'styled-components'
 
 import {
@@ -9,19 +10,19 @@ import {
 	SearchIcon,
 	typography,
 } from '@/design-system'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import EntrepriseInput from '../conversation/EntrepriseInput'
 import Value from '../EngineValue/Value'
 import LectureGuide from '../LectureGuide'
 import { Appear } from '../ui/animate'
-import { useEngine } from '../utils/EngineContext'
 import WrongSimulateurWarning from '../WrongSimulateurWarning'
 
 const { Body } = typography
 
 export default function EntrepriseSelection() {
 	const { t } = useTranslation()
-	const companySIREN = useEngine().evaluate('entreprise . SIREN').nodeValue
+	const existingCompany = !!useSelector(companySirenSelector)
 	const [isSearchVisible, setIsSearchVisible] = useState(false)
 
 	return (
@@ -48,7 +49,7 @@ export default function EntrepriseSelection() {
 							aria-expanded={isSearchVisible}
 							aria-controls="entreprise-search-panel"
 						>
-							{companySIREN ? (
+							{existingCompany ? (
 								<>
 									<Value expression="entreprise . nom" linkToRule={false} />
 									{isSearchVisible ? <ShowLessIcon /> : <ShowMoreIcon />}

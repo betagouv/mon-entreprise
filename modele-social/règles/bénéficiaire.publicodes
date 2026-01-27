@@ -18,11 +18,20 @@ bénéficiaire . compte courant d'associé:
     Cette valeur est nécessaire à calculer le montant maximal imposable au PFU
     pour un bénéficiaire au régime des travailleurs indépendants.
 
-    Le montant pris en compte est le solde moyen annuel du compte courant. Il est déterminé par la somme des soldes moyens mensuels du compte, divisée par le nombre de mois compris dans l’exercice.
+    Le montant pris en compte est le solde moyen annuel du compte courant. Il est
+    déterminé par la somme des soldes moyens mensuels du compte, divisée par le
+    nombre de mois compris dans l’exercice.
 
-    Le solde moyen mensuel est égal à l’addition des soldes journaliers, divisée par le nombre de jours dans le mois. Le solde moyen mensuel diffère donc du solde mensuel figurant dans les comptes de la société.
+    Le solde moyen mensuel est égal à l’addition des soldes journaliers, divisée
+    par le nombre de jours dans le mois. Le solde moyen mensuel diffère donc du
+    solde mensuel figurant dans les comptes de la société.
 
-    En cas d’ouverture ou de clôture du compte en cours d’exercice, le nombre de mois au cours de l’exercice sera réduit au nombre de mois de fonctionnement du compte. Un compte est considéré comme « fonctionnant », même s’il n’est pas mouvementé au cours de l’exercice.  La date à laquelle les sommes versées en compte courant doivent être appréciées est le dernier jour de l’exercice précédant le versement des intérêts.
+    En cas d’ouverture ou de clôture du compte en cours d’exercice, le nombre de
+    mois au cours de l’exercice sera réduit au nombre de mois de fonctionnement
+    du compte. Un compte est considéré comme « fonctionnant », même s’il n’est pas
+    mouvementé au cours de l’exercice. La date à laquelle les sommes versées en
+    compte courant doivent être appréciées est le dernier jour de l’exercice
+    précédant le versement des intérêts.
   références:
     Circulaire RSI C2014-001: https://www.secu-independants.fr/uploads/tx_rsirss/C2014-001.pdf
 
