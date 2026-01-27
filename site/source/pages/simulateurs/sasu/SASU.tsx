@@ -66,8 +66,8 @@ export const SeoExplanations = () => (
 			Le dirigeant assimilé-salarié ne paye pas de{' '}
 			<strong>cotisations chômage</strong>. Par ailleurs, il ne bénéficie pas de
 			la{' '}
-			<RuleLink dottedName="salarié . cotisations . exonérations . réduction générale">
-				réduction générale de cotisations
+			<RuleLink dottedName="salarié . cotisations . exonérations . RGDU">
+				réduction générale dégressive unique de cotisations
 			</RuleLink>{' '}
 			ni des dispositifs encadrés par le code du travail comme les{' '}
 			<RuleLink dottedName="salarié . temps de travail . heures supplémentaires">

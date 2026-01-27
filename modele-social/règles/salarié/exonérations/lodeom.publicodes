@@ -485,7 +485,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
 
 salarié . cotisations . exonérations . lodeom . montant:
   non applicable si: cotisations . assiette = 0
-  rend non applicable: réduction générale
+  rend non applicable: RGDU
   titre: montant de l’exonération
   références:
     Estimateur Urssaf: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html
