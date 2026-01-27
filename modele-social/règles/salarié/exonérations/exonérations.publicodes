@@ -16,13 +16,14 @@ salarié . cotisations . exonérations:
       somme:
         - heures supplémentaires . employeur
         - le maximum de:
-            - réduction générale
+            - RGDU
             - lodeom . montant
             - JEI . montant
             - Acre . employeur
       références:
-        urssaf.fr (cumul réduction générale): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-generale/les-regles-relatives-au-cumul.html
-        urssaf.fr (cumul JEI): https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-ou-aides-liees-au-s/jeunes-entreprises-innovantes/regles-de-cumul.html
+        La réduction générale des cotisations - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
+        Exonération Lodeom - Cumul avec d'autres dispositifs d'exonération: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-cumul
+        Les jeunes entreprises innovantes (JEI) - Règles de non-cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-secteur-activite/jeunes-entreprises-innovantes.html#ancre-l-exoneration-jei-jeu-jec
 
     salarié:
       titre: part salarié
@@ -40,7 +41,7 @@ salarié . cotisations . exonérations . heures supplémentaires:
       applicable si:
         toutes ces conditions:
           - temps de travail . heures supplémentaires > 0
-          - exonérations . réduction générale > 0
+          - exonérations . RGDU > 0
       titre: déduction forfaitaire pour heures supplémentaires
       produit:
         - temps de travail . heures supplémentaires
@@ -87,6 +88,15 @@ salarié . cotisations . exonérations . heures supplémentaires:
             - retraite complémentaire-CEG-CET . salarié
         - 1 / assiette
       plafond: 11.31%
+
+
+salarié . cotisations . exonérations . Tmin: 0.0200
+
+salarié . cotisations . exonérations . Tdelta:
+  variations:
+    - si: entreprise . salariés . effectif < 50
+      alors: 0.3781
+    - sinon: 0.3821
 
 salarié . cotisations . exonérations . T:
   titre: Coefficient T
