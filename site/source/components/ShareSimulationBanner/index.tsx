@@ -10,7 +10,7 @@ import {
 } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
-import { useTracking } from '../ATInternetTracking'
+import { usePianoTracking } from '../ATInternetTracking'
 import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
@@ -31,7 +31,7 @@ export default function ShareOrSaveSimulationBanner({
 	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
-	const tracker = useTracking()
+	const tracker = usePianoTracking()
 	const shareAPIAvailable = !!window?.navigator?.share
 	const url = useUrl()
 	const startSharing = async () => {

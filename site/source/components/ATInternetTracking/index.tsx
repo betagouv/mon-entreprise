@@ -4,7 +4,7 @@ import { ATTracker } from './Tracker'
 
 export const TrackingContext = createContext<ATTracker | null>(null)
 
-export function useTracking(): ATTracker | null {
+export function usePianoTracking(): ATTracker | null {
 	return useContext(TrackingContext)
 }
 
@@ -86,7 +86,7 @@ export function TrackPage({
 	children?: React.ReactNode
 } & TrackingChapters) {
 	const { chapter1, chapter2, chapter3 } = useChapters(chapters)
-	const tag = useTracking()
+	const tag = usePianoTracking()
 	useEffect(() => {
 		tag?.sendEvent(
 			'page.display',

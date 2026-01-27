@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 
-import { useTracking } from '@/components/ATInternetTracking'
+import { usePianoTracking } from '@/components/ATInternetTracking'
 import {
 	Body,
 	Button,
@@ -55,7 +55,7 @@ export function Feedback({
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
 	const url = useLocation().pathname
-	const tag = useTracking()
+	const tag = usePianoTracking()
 
 	const { absoluteSitePaths } = useSitePaths()
 	const currentPath = useLocation().pathname
