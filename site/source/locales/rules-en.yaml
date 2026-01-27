@@ -10490,6 +10490,54 @@ salarié . cotisations . exonérations . JEI . montant:
     Exonération pour les jeunes entreprises innovantes (JEI).
   titre.en: '[automatic] JEI exemption'
   titre.fr: Exonération JEI
+salarié . cotisations . exonérations . RGDU:
+  avec:
+    P:
+      titre.en: '[automatic] P'
+      titre.fr: P
+    coefficient:
+      titre.en: '[automatic] coefficient'
+      titre.fr: coefficient
+    plafond avec application de la DFS:
+      titre.en: '[automatic] ceiling with application of DFS'
+      titre.fr: plafond avec application de la DFS
+  description.en: >
+    [automatic] The general reduction in employers' social security
+    contributions enables
+
+    employers to reduce their contributions. As of January 1, 2026,
+
+    the contribution reduction scheme has been renamed
+
+    **single degressive general reduction" (RGDU)**.
+
+
+    This reduction is maximum for a salary at the Smic level. For
+
+    between Smic and **less than 3 Smic**, the reduction is degressive.
+
+    degressive. The reduction in contributions no longer applies from a salary of
+
+    3 Smic.
+  description.fr: >
+    Le dispositif de réduction générale de cotisations patronales permet à
+
+    l’employeur de baisser le montant de ses cotisations. Depuis le 1er janvier 2026,
+
+    le dispositif d’allègement des cotisations est renommé
+
+    **« réduction générale dégressive unique » (RGDU)**.
+
+
+    Cette réduction est maximale pour une rémunération au niveau du Smic. Pour une
+
+    rémunération comprise entre le Smic et **moins de 3 Smic**, la réduction est
+
+    dégressive. L’allègement de cotisations ne s’applique plus à partir d’une
+
+    rémunération égale à 3 Smic.
+  titre.en: '[automatic] RGDU'
+  titre.fr: RGDU
 salarié . cotisations . exonérations . T:
   avec:
     retraite complémentaire:
@@ -10500,6 +10548,12 @@ salarié . cotisations . exonérations . T:
       titre.fr: sécurité sociale et chômage
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
+salarié . cotisations . exonérations . Tdelta:
+  titre.en: '[automatic] Tdelta'
+  titre.fr: Tdelta
+salarié . cotisations . exonérations . Tmin:
+  titre.en: '[automatic] Tmin'
+  titre.fr: Tmin
 salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
   titre.en: '[automatic] Exempt employer contributions Acre'
   titre.fr: cotisations patronales exonérées Acre
@@ -13804,33 +13858,25 @@ salarié . temps de travail:
   avec:
     SMIC:
       description.en: >
-        [automatic] Several reductions in contributions ([general
-        reduction](/documentation/contrat-salarié/réduction-générale), reduced
-        rate of [family
-        allowances](/documentation/contrat-salarié/allocations-familiales/taux-réduit)
-        and
-        [sickness](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit),
-        reduction Overseas) are based on a SMIC parameter which is subject to
-        several adjustments to take account of actual working time.
+        [automatic] Several contribution reductions
+
+        ([RGDU](/documentation/salarié/cotisations/exonérations/RGDU), réduction
+
+        reduction) are based on a Smic parameter, which is subject to several
+
+        to take account of actual working time.
 
 
         Overtime and complementary hours are taken into account without
 
-        overtime and overtime are taken into account.
-      description.fr: >
-        Plusieurs réductions de cotisations ([réduction
-        générale](/documentation/contrat-salarié/réduction-générale), taux
-        réduit d'[allocations
-        familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit)
-        et de
-        [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit),
-        réduction Outre-mer) reposent sur un paramètre SMIC faisant l'objet de
-        plusieurs ajustements pour prendre en compte le temps de travail
-        effectif.
-
+        overtime and overtime pay are taken into account without any additional pay.
+      description.fr: |
+        Plusieurs réductions de cotisations
+        ([RGDU](/documentation/salarié/cotisations/exonérations/RGDU), réduction
+        Outre-mer) reposent sur un paramètre Smic faisant l'objet de plusieurs
+        ajustements pour prendre en compte le temps de travail effectif.
 
         Les heures supplémentaires et les heures complémentaires sont prises en
-
         compte sans tenir compte de la majoration.
       titre.en: '[automatic] SMIC'
       titre.fr: SMIC

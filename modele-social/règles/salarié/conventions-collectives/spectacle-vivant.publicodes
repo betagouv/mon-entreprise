@@ -187,7 +187,7 @@ salarié . régimes spécifiques . intermittents du spectacle . artiste . activi
 
 salarié . régimes spécifiques . intermittents du spectacle . artiste . réduction de taux:
   # TODO : centraliser les exonérations sous un namespace commun pour plus de facilité dans leur activiation / desactivation
-  rend non applicable: cotisations . exonérations . réduction générale
+  rend non applicable: cotisations . exonérations . RGDU
   non applicable si: activité accessoire
   formule: 70%
 
