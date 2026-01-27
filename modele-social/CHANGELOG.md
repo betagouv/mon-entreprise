@@ -9,6 +9,7 @@
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
 - Hausse de la CSG non déductible sur les dividendes
 - Mise à jour du taux de cotisations pour les BNC Cipav bénéficiant de l'Acre (13,4% depuis le 01/01/2026)
+- Suppression des taux réduits de cotisations allocations familiales et assurance maladie sauf pour Lodeom
 
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
