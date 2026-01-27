@@ -10271,6 +10271,30 @@ salarié . cotisations . allocations familiales:
         plafond:
           titre.en: '[automatic] ceiling'
           titre.fr: plafond
+      description.en: >
+        [automatic] From January 1, 2026, the reduction in the family allowance
+        rate
+
+        will be abolished, except for employers benefiting from specific
+
+        such as the **Lodeom** exemption scheme.
+
+
+        In this case, the rate reduction applies if remuneration is
+
+        less than or equal to **3.5 times the Smic in force on December 31, 2023**.
+      description.fr: >
+        À partir du 1er janvier 2026, la réduction du taux allocations
+        familiales
+
+        est supprimée sauf pour les employeurs bénéficiaires d’exonérations
+
+        spécifiques comme le dispositif d’exonération **Lodeom**.
+
+
+        Dans ce cas, la réduction du taux s'applique si la rémunération est
+
+        inférieure ou égale à **3,5 fois le Smic en vigueur au 31 décembre 2023**.
       titre.en: '[automatic] eligible for reduced rate'
       titre.fr: éligible taux réduit
   titre.en: '[automatic] family'
@@ -11626,6 +11650,30 @@ salarié . cotisations . maladie:
             plafond:
               titre.en: '[automatic] ceiling'
               titre.fr: plafond
+          description.en: >
+            [automatic] From January 1, 2026, the reduction in the sickness rate
+            will be abolished, except for
+
+            employers benefiting from specific exemptions, such as the
+
+            Lodeom** exemption scheme.
+
+
+            In this case, the rate reduction applies if remuneration is
+
+            less than or equal to **2.5 times the Smic in force on December 31, 2023**.
+          description.fr: >
+            À partir du 1er janvier 2026, la réduction du taux maladie est
+            supprimée sauf
+
+            pour les employeurs bénéficiaires d’exonérations spécifiques comme le
+
+            dispositif d’exonération **Lodeom**.
+
+
+            Dans ce cas, la réduction du taux s'applique si la rémunération est
+
+            inférieure ou égale à **2,5 fois le Smic en vigueur au 31 décembre 2023**.
           titre.en: '[automatic] eligible for reduced rate'
           titre.fr: éligible taux réduit
       titre.en: "[automatic] employer's share"

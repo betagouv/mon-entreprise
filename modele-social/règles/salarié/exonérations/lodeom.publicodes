@@ -17,6 +17,7 @@ salarié . cotisations . exonérations . lodeom:
     une de ces conditions:
       - zone un
       - zone deux
+  valeur: oui
   description: |
     Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d’Outre-mer.
     Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
