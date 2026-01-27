@@ -2119,15 +2119,16 @@ pages:
         elles sont décomposées en partie employeur et partie salarié et sont
         exprimées comme un pourcentage du salaire brut.</1><2>Le dirigeant
         assimilé-salarié ne paye pas de <2>cotisations chômage</2>. Par
-        ailleurs, il ne bénéficie pas de la <5>réduction générale de
-        cotisations</5> ni des dispositifs encadrés par le code du travail comme
-        les <9>heures supplémentaires</9> ou les primes.</2><3>Il peut en
-        revanche prétendre à la <2>réduction ACRE</2> en debut d'activité, sous
-        certaines conditions.</3><4>Vous pouvez utiliser notre simulateur pour
-        calculer la <2>rémunération nette</2> à partir d'un montant superbrut
-        alloué à la rémunération du dirigeant. Il vous suffit pour cela saisir
-        le montant total alloué dans la case \"total chargé\". La simulation
-        peut ensuite être affinée en répondant aux différentes questions.</4>"
+        ailleurs, il ne bénéficie pas de la <5>réduction générale dégressive
+        unique de cotisations</5> ni des dispositifs encadrés par le code du
+        travail comme les <9>heures supplémentaires</9> ou les primes.</2><3>Il
+        peut en revanche prétendre à la <2>réduction ACRE</2> en debut
+        d'activité, sous certaines conditions.</3><4>Vous pouvez utiliser notre
+        simulateur pour calculer la <2>rémunération nette</2> à partir d'un
+        montant superbrut alloué à la rémunération du dirigeant. Il vous suffit
+        pour cela saisir le montant total alloué dans la case \"total chargé\".
+        La simulation peut ensuite être affinée en répondant aux différentes
+        questions.</4>"
       shortname: SAS(U)
       title: Simulateur de revenus pour dirigeant de SAS(U)
       warning: Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le revenu

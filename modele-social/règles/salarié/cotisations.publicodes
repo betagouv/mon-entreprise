@@ -1229,7 +1229,7 @@ salarié . cotisations . assiette forfaitaire:
       titre: assiette forfaitaire de cotisations
       non applicable si: rémunération réelle
       rend non applicable:
-        - exonérations . réduction générale
+        - exonérations . RGDU
         - exonérations . lodeom
       remplace:
         - références à: cotisations . assiette

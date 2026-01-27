@@ -34,7 +34,10 @@ salarié . temps de travail:
 
     SMIC:
       description: |
-        Plusieurs réductions de cotisations ([réduction générale](/documentation/contrat-salarié/réduction-générale), taux réduit d'[allocations familiales](/documentation/contrat-salarié/allocations-familiales/taux-réduit) et de [maladie](/documentation/contrat-salarié/maladie/taux-employeur/taux-réduit), réduction Outre-mer) reposent sur un paramètre SMIC faisant l'objet de plusieurs ajustements pour prendre en compte le temps de travail effectif.
+        Plusieurs réductions de cotisations
+        ([RGDU](/documentation/salarié/cotisations/exonérations/RGDU), réduction
+        Outre-mer) reposent sur un paramètre Smic faisant l'objet de plusieurs
+        ajustements pour prendre en compte le temps de travail effectif.
 
         Les heures supplémentaires et les heures complémentaires sont prises en
         compte sans tenir compte de la majoration.

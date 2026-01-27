@@ -1,3 +1,56 @@
+salarié . cotisations . exonérations . RGDU:
+  description: |
+    Le dispositif de réduction générale de cotisations patronales permet à
+    l’employeur de baisser le montant de ses cotisations. Depuis le 1er janvier 2026,
+    le dispositif d’allègement des cotisations est renommé
+    **« réduction générale dégressive unique » (RGDU)**.
+
+    Cette réduction est maximale pour une rémunération au niveau du Smic. Pour une
+    rémunération comprise entre le Smic et **moins de 3 Smic**, la réduction est
+    dégressive. L’allègement de cotisations ne s’applique plus à partir d’une
+    rémunération égale à 3 Smic.
+  références:
+    La réduction générale des cotisations: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+    Réduction générale dégressive unique (RGDU) de cotisations patronales: https://entreprendre.service-public.gouv.fr/vosdroits/F24542
+    La réduction générale dégressive des cotisations et contributions sociales: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general
+    Règles de cumul: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html#toc-regles-de-cumul
+  produit:
+    - cotisations . assiette
+    - coefficient
+  plafond: plafond avec application de la DFS
+  non applicable si:
+    une de ces conditions:
+      - cotisations . assiette = 0
+      - cotisations . assiette >= 3 * temps de travail . SMIC
+
+  avec:
+    coefficient:
+      somme:
+        - Tmin
+        - produit:
+            - Tdelta
+            - 0.5 * ((3 * temps de travail . SMIC / cotisations . assiette - 1) ** P)
+      plafond: Tmin + Tdelta
+      unité: ''
+      arrondi: 4 décimales
+      références:
+        Réforme des allègements généraux de cotisations patronales de sécurité sociale: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2025/septembre/reforme-des-allegements-generaux.html
+        Article D241-7 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
+        La réduction générale des cotisations: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+        Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-a-formule-de-calcul-de-la-reduct
+
+    P: 1.75
+
+    plafond avec application de la DFS:
+      privé: oui
+      applicable si: régimes spécifiques . DFS
+      unité: €/mois
+      produit:
+        - valeur: réduction générale
+          contexte:
+            régimes spécifiques . DFS: non
+        - 130%
+
 salarié . cotisations . exonérations . réduction générale:
   description: |
     Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro
@@ -6,11 +59,10 @@ salarié . cotisations . exonérations . réduction générale:
     rémunération annuelle brute par un coefficient. Il n'y a pas de formalité
     particulière à effectuer.
   références:
-    Simulateur actuel: https://www.declaration.urssaf.fr/calcul/
-    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F24542
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
-    Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
-    Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general
+    La réduction générale des cotisations: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+    Réduction générale dégressive unique (RGDU) de cotisations patronales: https://entreprendre.service-public.gouv.fr/vosdroits/F24542
+    La réduction générale dégressive des cotisations et contributions sociales: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general
+    Règles de cumul: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html#toc-regles-de-cumul
   produit:
     - cotisations . assiette
     - coefficient
