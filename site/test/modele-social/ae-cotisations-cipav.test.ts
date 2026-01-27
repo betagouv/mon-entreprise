@@ -236,11 +236,11 @@ describe('Le simulateur auto-entrepreneur', () => {
 			)
 			expect(e).toEvaluate(
 				'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux',
-				13.9
+				13.4
 			)
 
 			expect(cotisations).toEqual(serviceBNCCipav)
-			expect(Math.round(cotisations)).toEqual(579)
+			expect(Math.round(cotisations)).toEqual(558)
 		})
 	})
 })
