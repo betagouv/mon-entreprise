@@ -23,7 +23,8 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 -   Toujours privilégier le HTML pur à l'utilisation d'attributs ARIA (cf. [_No ARIA is better than bad ARIA_](https://www.w3.org/WAI/ARIA/apg/practices/read-me-first/)) : les sites utilisant l'API ARIA sont en moyenne moins accessibles que les autres, celle-ci étant souvent mal utilisée.
 -   Pour utiliser correctement les attributs ARIA au sein de composants complexes (et savoir quelles interactions clavier sont nécessaires), se référer aux [patterns ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/).
--   Ne pas ajouter de `role` sur un élément qui a déjà ce rôle nativement (ex: `role="button"` sur un `<button>`, `role="radiogroup"` dans un `<fieldset>`).
+-   Ne pas contrarier le rôle natif d'une balise : utiliser la bonne balise plutôt qu'ajouter un `role` (ex: `<fieldset>` a déjà le rôle `group`, `<button>` a déjà le rôle `button`). En corollaire, éviter de mettre un `role="link"` sur un `<button>` ou un `role="button"` sur un `<a>`.
+-   Les hooks et composants de React Aria gèrent correctement les attributs ARIA : les utiliser plutôt que de gérer manuellement ces attributs.
 
 ### Concernant les `aria-label`
 
