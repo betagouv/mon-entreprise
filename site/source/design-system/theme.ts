@@ -139,6 +139,7 @@ export const baseTheme = {
 		},
 	},
 	darkMode: false,
+	isInIframe: false,
 	spacings: {
 		xxxs: '.125rem',
 		xxs: '.25rem',
