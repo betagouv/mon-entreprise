@@ -31,8 +31,9 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 -   L'`aria-label` d'un composant interactif doit toujours contenir l'intitulé visible, pour être déclenchable avec une commande vocale.
 -   Plus un `aria-label` est concis, plus les utilisateurs de lecteur d'écran vous remercieront.
 -   Plus on peut se passer d'`aria-label` (comme de tout autre attribut ARIA), mieux c'est.
--   Ne pas ajouter d'`aria-label` si le composant a déjà un `<label>` HTML associé ou un `aria-labelledby` : c'est redondant.
+-   Ne pas combiner `aria-label` et `aria-labelledby` : c'est redondant.
 -   Préférer un vrai `<label>` avec `htmlFor` plutôt qu'un `aria-label` quand c'est possible.
+-   On peut combiner `aria-label` avec un `<label>` HTML pour préciser le contexte (ex: `aria-label="Envoyer mon signalement"` sur un bouton "Envoyer").
 
 ### Concernant les images et emojis
 
