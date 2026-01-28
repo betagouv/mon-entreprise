@@ -19,11 +19,9 @@ export function EmbededContextProvider({
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		isIframePath = useMatch('/iframes/*')
 	} catch {
-		try {
-			isIframePath = window.document.location.pathname.includes('/iframes/')
-		} catch {
-			isIframePath = false
-		}
+		isIframePath =
+			typeof window !== 'undefined' &&
+			window.location.pathname.includes('/iframes/')
 	}
 
 	if (isIframePath && !isEmbedded) {
