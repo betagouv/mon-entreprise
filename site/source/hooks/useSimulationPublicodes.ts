@@ -5,6 +5,7 @@ import { simulationKeySelector } from '@/store/selectors/simulation/simulationKe
 
 import { MergedSimulatorDataValues } from './useCurrentSimulatorData'
 import { useEngineFromModèle } from './useEngineFromModèle'
+import { useQuestionsPublicodes } from './useQuestionsPublicodes'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 import useSimulationConfig from './useSimulationConfig'
 
@@ -26,8 +27,12 @@ export default function useSimulationPublicodes(
 
 	const currentKey = useSelector(simulationKeySelector)
 
+	const { questions, raccourcis } = useQuestionsPublicodes(nomModèle)
+
 	return {
 		isReady: currentKey === id,
 		engine,
+		questions,
+		raccourcis,
 	}
 }

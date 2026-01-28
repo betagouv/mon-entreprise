@@ -42,7 +42,8 @@ type Props = {
 export default function IndépendantBase({ id }: Props) {
 	const dispatch = useDispatch()
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	const relevantConditionalExternalLinks = conditionalExternalLinks?.filter(
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
@@ -61,6 +62,8 @@ export default function IndépendantBase({ id }: Props) {
 				externalLinks={allExternalLinks}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					explanations={<ExplicationsIndépendant />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>

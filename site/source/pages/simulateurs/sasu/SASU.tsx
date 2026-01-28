@@ -24,7 +24,8 @@ const nextSteps = ['is', 'comparaison-statuts'] satisfies SimulateurId[]
 export function SASUSimulation() {
 	const id = 'sasu'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } =
+		useSimulationPublicodes(simulateurConfig)
 
 	return (
 		<EngineProvider value={engine}>
@@ -34,6 +35,8 @@ export function SASUSimulation() {
 				nextSteps={nextSteps}
 			>
 				<Simulation
+					questionsPublicodes={questions}
+					raccourcisPublicodes={raccourcis}
 					explanations={<ExplicationsSalaire />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
