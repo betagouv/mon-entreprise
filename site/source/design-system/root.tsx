@@ -8,6 +8,7 @@ import {
 } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 
 import { GlobalStyle } from './global-style'
 import { theme as urssafTheme } from './theme'
@@ -20,13 +21,14 @@ type SystemRootProps = {
 const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
 	const userAgent = typeof navigator !== 'undefined' && navigator.userAgent
 	const [contextDarkMode] = useDarkMode()
+	const isInIframe = useIsEmbedded()
 
 	const darkMode =
 		typeof forceDarkMode === 'boolean' ? forceDarkMode : contextDarkMode
 
 	return (
 		<StyleSheetManager disableCSSOMInjection={isbot(userAgent)}>
-			<ThemeProvider theme={{ ...urssafTheme, darkMode }}>
+			<ThemeProvider theme={{ ...urssafTheme, darkMode, isInIframe }}>
 				<BackgroundStyle $darkMode={darkMode}>
 					<GlobalStyle />
 					{children}

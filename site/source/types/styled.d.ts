@@ -105,6 +105,7 @@ export interface Theme {
 	}
 
 	darkMode: boolean
+	isInIframe?: boolean
 
 	breakpoints: { values: Record<SpacingKey | 'xs', number> }
 	spacing: Array<string>

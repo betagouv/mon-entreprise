@@ -2,8 +2,6 @@ import './global.css'
 
 import { createGlobalStyle, css } from 'styled-components'
 
-import { inIframe } from '@/utils'
-
 export const SROnly = css`
 	position: absolute !important;
 	width: 1px !important;
@@ -36,14 +34,11 @@ html {
 }
 
 html, body, #js, #js > *, [data-overlay-container] {
-	${
-		inIframe()
-			? css`
-					min-height: 100%;
-			  `
-			: css``
-	}
-
+	${({ theme }) =>
+		theme.isInIframe &&
+		css`
+			min-height: 100%;
+		`}
 }
 
 *,
