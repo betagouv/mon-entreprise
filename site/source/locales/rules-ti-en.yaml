@@ -4975,8 +4975,10 @@ indépendant . rémunération . totale:
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
 
     On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
-  résumé.en: '[automatic] Total paid by the company for executive compensation'
-  résumé.fr: Total payé par l’entreprise pour la rémunération du dirigeant
+  résumé.en: "[automatic] Total paid by the company for the executive's
+    remuneration, including contributions"
+  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,
+    cotisations et contributions incluses
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale
 paramètres:
