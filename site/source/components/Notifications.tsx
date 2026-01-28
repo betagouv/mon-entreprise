@@ -14,7 +14,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInversionFail } from '@/hooks/useInversionFail'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import { useEngine } from '@/utils/publicodes/EngineContext'
+import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
@@ -49,12 +49,16 @@ function getNotifications(engine: Engine) {
 
 export default function Notifications() {
 	const { t } = useTranslation()
-	const engine = useEngine()
+	const engine = useOptionalEngine()
 	const inversionFail = useInversionFail()
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
 	)
 	const dispatch = useDispatch()
+
+	if (!engine) {
+		return null
+	}
 
 	const messages: Array<Notification> = (
 		getNotifications(engine) as Array<Notification>

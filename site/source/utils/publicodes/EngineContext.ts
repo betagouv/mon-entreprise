@@ -6,8 +6,12 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 export const EngineContext = createContext<Engine<DottedName> | null>(null)
 export const EngineProvider = EngineContext.Provider
 
+export const useOptionalEngine = () => {
+	return useContext(EngineContext)
+}
+
 export const useEngine = () => {
-	const engine = useContext(EngineContext)
+	const engine = useOptionalEngine()
 
 	if (!engine) {
 		throw new Error('useEngine doit être utilisé dans un EngineProvider')
