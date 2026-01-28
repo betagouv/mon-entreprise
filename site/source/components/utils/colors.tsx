@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react'
 import React, { useEffect, useState } from 'react'
 import { ThemeProvider, useTheme } from 'styled-components'
 
@@ -30,8 +31,7 @@ function parseIframeColorFromURL(): number[] | null {
 			return JSON.parse(decodeURIComponent(rawColor)) as number[]
 		}
 	} catch (error) {
-		// eslint-disable-next-line no-console
-		console.error(error)
+		Sentry.captureException(error)
 	}
 
 	return null
