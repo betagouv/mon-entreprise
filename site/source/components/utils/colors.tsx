@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ThemeProvider, useTheme } from 'styled-components'
 
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
@@ -23,35 +23,46 @@ const PALETTE = {
 	800: `hsl(var(--${HUE_CSS_VARIABLE_NAME}), calc(var(--${SATURATION_CSS_VARIABLE_NAME}) - 31%), 23%)`,
 }
 
-const rawIframeColor = new URLSearchParams(
-	import.meta.env.SSR ? '' : document.location.search.substring(1)
-).get('couleur')
-
-let iframeColor = DEFAULT_COLOR_HS
-try {
-	if (rawIframeColor) {
-		iframeColor = JSON.parse(decodeURIComponent(rawIframeColor)) as number[]
+function parseIframeColorFromURL(): number[] | null {
+	try {
+		const rawColor = new URLSearchParams(window.location.search).get('couleur')
+		if (rawColor) {
+			return JSON.parse(decodeURIComponent(rawColor)) as number[]
+		}
+	} catch (error) {
+		// eslint-disable-next-line no-console
+		console.error(error)
 	}
-} catch (error) {
-	// eslint-disable-next-line no-console
-	console.error(error)
+
+	return null
 }
-const IFRAME_COLOR = iframeColor
 
 // Note that the iframeColor is first set in the index.html file, but without
 // the full palette generation that happen here. This is to prevent a UI
 // flash, cf. #1786.
 
 export function ThemeColorsProvider({ children }: ProviderProps) {
-	const divRef = useRef<HTMLDivElement>(null)
-	const [themeColor, setThemeColor] = useState(IFRAME_COLOR)
+	const isEmbedded = useIsEmbedded()
+	const [themeColor, setThemeColor] = useState(DEFAULT_COLOR_HS)
+
 	useEffect(() => {
-		window.addEventListener('message', (evt: MessageEvent) => {
+		if (isEmbedded) {
+			const colorFromURL = parseIframeColorFromURL()
+			if (colorFromURL) {
+				setThemeColor(colorFromURL)
+			}
+		}
+
+		const handleMessage = (evt: MessageEvent) => {
 			if (evt.data.kind === 'change-theme-color') {
 				setThemeColor(hexToHSL(evt.data.value))
 			}
-		})
-	}, [])
+		}
+		window.addEventListener('message', handleMessage)
+
+		return () => window.removeEventListener('message', handleMessage)
+	}, [isEmbedded])
+
 	const [hue, saturation] = themeColor
 	useEffect(() => {
 		const root = document.querySelector(':root') as HTMLElement | undefined
@@ -61,9 +72,8 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 			`${saturation}%`
 		)
 	}, [hue, saturation])
-	const isEmbeded = useIsEmbedded()
 	const defaultTheme = useTheme()
-	if (!themeColor && !isEmbeded) {
+	if (!themeColor && !isEmbedded) {
 		return <>{children}</>
 	}
 
@@ -79,7 +89,6 @@ export function ThemeColorsProvider({ children }: ProviderProps) {
 		>
 			{/* This div is only used to set the CSS variables */}
 			<div
-				ref={divRef}
 				data-js-color-element
 				style={{
 					height: '100%',
