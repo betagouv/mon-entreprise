@@ -34,6 +34,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 -   Ne pas combiner `aria-label` et `aria-labelledby` : c'est redondant.
 -   Préférer un vrai `<label>` avec `htmlFor` plutôt qu'un `aria-label` quand c'est possible.
 -   On peut combiner `aria-label` avec un `<label>` HTML pour préciser le contexte (ex: `aria-label="Envoyer mon signalement"` sur un bouton "Envoyer").
+-   On peut utiliser `title` pour afficher une infobulle, mais `title` n'est pas bien interprété par tous les lecteurs d'écran : il est plus sûr d'ajouter aussi un `aria-label`.
 
 ### Concernant les images et emojis
 
