@@ -8,6 +8,7 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { useEngine } from '@/components/utils/EngineContext'
 import { H3 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { RégimeImpositionQuestion } from '@/pages/simulateurs/cessation-activité/RégimeImpositionQuestion'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
@@ -41,21 +42,7 @@ export const CessationActivitéToggles = () => {
 				<DefaultValue dottedName={'entreprise . date de cessation'} />
 			</CessationBlock>
 
-			<ImpositionBlock>
-				<RuleInput
-					inputType="toggle"
-					hideDefaultValue
-					missing={false}
-					dottedName="entreprise . imposition"
-					onChange={(imposition) => {
-						dispatch(
-							ajusteLaSituation({
-								'entreprise . imposition': imposition,
-							} as Record<DottedName, ValeurPublicodes>)
-						)
-					}}
-				/>
-			</ImpositionBlock>
+			<RégimeImpositionQuestion />
 		</>
 	)
 }
@@ -76,8 +63,4 @@ const CessationQuestion = styled(H3)`
 const CessationDateWrapper = styled.div`
 	margin-top: -1.5rem;
 	margin-bottom: -1.5rem;
-`
-
-const ImpositionBlock = styled.div`
-	margin-bottom: 0.5rem;
 `
