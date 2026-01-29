@@ -71,7 +71,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 ### Concernant les tableaux
 
--   Tous les tableaux de données doivent avoir un `<caption>` pour les décrire (éventuellement avec `class="sr-only"` si le titre est visible ailleurs).
+-   Tous les tableaux de données doivent avoir un `<caption>` pour les décrire.
 -   Utiliser `<th scope="col">` pour les en-têtes de colonnes et `<th scope="row">` pour les en-têtes de lignes.
 
 ### Concernant le focus et la navigation clavier
