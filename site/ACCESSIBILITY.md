@@ -78,7 +78,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 -   Tous les éléments interactifs doivent être accessibles au clavier et avoir un indicateur de focus visible.
 -   Les styles de focus et de hover doivent être similaires (recommandation WAI).
--   Utiliser une ancre focusable (`tabIndex={-1}`) pour gérer le focus lors des changements de contenu dynamique (ex: navigation entre questions).
+-   Ajouter un `tabindex="-1"` pour pouvoir donner le focus avec JS (via `.focus()`) à un élément qui ne le prend pas naturellement.
 
 ### Concernant les modales et overlays
 
