@@ -76,7 +76,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 ### Concernant le focus et la navigation clavier
 
--   Tous les éléments interactifs doivent être accessibles au clavier et avoir un indicateur de focus visible.
+-   Tous les éléments interactifs doivent être accessibles au clavier et avoir un indicateur de focus visible. Utiliser des éléments HTML natifs (`<button>`, `<a>`, `<input>`...) qui le sont par défaut, ou consulter les [patterns APG](https://www.w3.org/WAI/ARIA/apg/patterns/) pour les composants complexes (ils indiquent les interactions clavier à implémenter).
 -   Ajouter un `tabindex="-1"` pour pouvoir donner le focus avec JS (via `.focus()`) à un élément qui ne le prend pas naturellement.
 
 ### Concernant les modales et overlays
