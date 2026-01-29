@@ -109,6 +109,8 @@ Pour les composants complexes, se référer aux patterns officiels du W3C :
 </div>
 ```
 
+Documentation officielle : [Dialog (Modal)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+
 ### Pattern Disclosure (Afficher/Masquer)
 
 ```jsx
@@ -119,6 +121,8 @@ Pour les composants complexes, se référer aux patterns officiels du W3C :
   {/* Contenu masqué */}
 </div>
 ```
+
+Documentation officielle : [Disclosure (Show/Hide)](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)
 
 ### Pattern Combobox (Autocomplete)
 
@@ -135,6 +139,8 @@ Pour les composants complexes, se référer aux patterns officiels du W3C :
   <li id="option-2" role="option" aria-selected="true">Option 2</li>
 </ul>
 ```
+
+Documentation officielle : [Combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 
 ## Ressources
 
