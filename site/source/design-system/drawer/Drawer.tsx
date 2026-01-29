@@ -2,11 +2,11 @@ import FocusTrap from 'focus-trap-react'
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Trans, useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useOnKeyDown } from '@/hooks/useOnKeyDown'
+import { useCurrentPath } from '@/lib/navigation'
 
 import { Button } from '../buttons'
 import { Grid } from '../layout'
@@ -97,13 +97,13 @@ export const Drawer = ({
 		closeDrawer(true)
 	})
 
-	const location = useLocation()
+	const pathname = useCurrentPath()
 
 	// close the drawer when the route change
 	useEffect(() => {
 		// if the drawer close unexpectedly cause of this effect, be sure to use useCallback for the onCancel prop
 		closeDrawer(true)
-	}, [location])
+	}, [pathname])
 
 	return (
 		<>

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { generatePath, matchPath, useLocation } from 'react-router-dom'
+import { generatePath, matchPath } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import Contact from '@/components/Contact'
@@ -15,6 +15,7 @@ import {
 	GithubIcon,
 	Link,
 } from '@/design-system'
+import { useCurrentPath } from '@/lib/navigation'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
@@ -40,7 +41,7 @@ const altPathnnamesWithParams = (
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { pathname } = useLocation()
+	const pathname = useCurrentPath()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
