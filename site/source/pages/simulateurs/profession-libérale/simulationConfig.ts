@@ -6,8 +6,8 @@ export const configProfessionLibérale: SimulationConfig = {
 	...configIndépendant,
 	situation: {
 		...configIndépendant.situation,
-		'entreprise . activité': "'libérale'",
 		'entreprise . EI': 'oui',
+		'entreprise . activité': "'libérale'",
 	},
 }
 
