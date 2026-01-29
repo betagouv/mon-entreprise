@@ -1,5 +1,5 @@
 import { pipe } from 'effect'
-import { dedupe, filter } from 'effect/Array'
+import { dedupe, filter, map } from 'effect/Array'
 import { isNotUndefined, isUndefined, Predicate } from 'effect/Predicate'
 import { fromEntries } from 'effect/Record'
 import {
@@ -90,15 +90,29 @@ export function useQuestions<S extends Situation>({
 			),
 		[questions, questionsPublicodes, situation]
 	)
-
 	const questionsParId = useMemo(
 		() => fromEntries(toutesLesQuestionsApplicables.map((q) => [q.id, q])),
 		[toutesLesQuestionsApplicables]
 	)
-
 	const idsDesQuestions = useMemo(
 		() => dedupe(Object.keys(questionsParId)),
 		[questionsParId]
+	)
+
+	const questionsNonRépondues = useMemo(
+		() => toutesLesQuestionsApplicables.filter((q) => !q.répondue(situation)),
+		[situation, toutesLesQuestionsApplicables]
+	)
+	const idsDesQuestionsNonRépondues = useMemo(
+		() =>
+			pipe(
+				questionsNonRépondues,
+				map((q) => [q.id, q]),
+				Object.fromEntries,
+				Object.keys,
+				dedupe
+			),
+		[questionsNonRépondues]
 	)
 
 	const [activeQuestionId, setActiveQuestionId] = useState<
@@ -107,17 +121,24 @@ export function useQuestions<S extends Situation>({
 	const [finished, setFinished] = useState(false)
 
 	useEffect(() => {
+		const laQuestionActiveNEstPasRépondue =
+			activeQuestionId && idsDesQuestionsNonRépondues.includes(activeQuestionId)
+		const nouvellePremièreQuestionNonRépondue =
+			laQuestionActiveNEstPasRépondue &&
+			activeQuestionId !== idsDesQuestionsNonRépondues[0]
 		const laQuestionActiveNEstPlusApplicable =
 			activeQuestionId && !idsDesQuestions.includes(activeQuestionId)
 		const pasDeQuestionActiveMaisIlYADesQuestionsApplicables =
 			!activeQuestionId && idsDesQuestions.length
+
 		if (
+			nouvellePremièreQuestionNonRépondue ||
 			laQuestionActiveNEstPlusApplicable ||
 			pasDeQuestionActiveMaisIlYADesQuestionsApplicables
 		) {
-			setActiveQuestionId(idsDesQuestions[0])
+			setActiveQuestionId(idsDesQuestionsNonRépondues[0])
 		}
-	}, [activeQuestionId, idsDesQuestions])
+	}, [activeQuestionId, idsDesQuestions, idsDesQuestionsNonRépondues])
 
 	const QuestionCourante = isUndefined(activeQuestionId)
 		? undefined
