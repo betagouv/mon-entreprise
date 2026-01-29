@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 
 import {
 	Emoji,
@@ -10,10 +9,11 @@ import {
 	Spacing,
 	Ul,
 } from '@/design-system'
+import { useCurrentPath } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 export default function MoreInfosOnUs() {
-	const { pathname } = useLocation()
+	const pathname = useCurrentPath()
 	const { absoluteSitePaths } = useSitePaths()
 	const { language } = useTranslation().i18n
 
