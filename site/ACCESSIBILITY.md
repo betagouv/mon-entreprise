@@ -140,6 +140,6 @@ Pour les composants complexes, se référer aux patterns officiels du W3C :
 ## Ressources
 
 -   [Patterns ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/) - Référence officielle pour les composants complexes
--   [a11ysupport.io](https://a11ysupport.io) - Support des fonctionnalités ARIA par les lecteurs d'écran
+-   [a11ysupport.io](https://a11ysupport.io) - Support des fonctionnalités ARIA par les lecteurs d'écran (seule source en la matière, à prendre avec réserve car projet maintenu par une seule personne)
 -   [RGAA](https://accessibilite.numerique.gouv.fr/) - Référentiel Général d'Amélioration de l'Accessibilité
 -   [WCAG 2.1](https://www.w3.org/TR/WCAG21/) - Web Content Accessibility Guidelines
