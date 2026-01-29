@@ -58,7 +58,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 ### Concernant les contrastes et couleurs
 
 -   Assurer un contraste suffisant entre le texte et son arrière-plan : au minimum 4,5:1 pour le corps de texte et 3:1 pour les titres (vérifier avec le [Contrast Checker de WebAIM](https://webaim.org/resources/contrastchecker/)).
--   Assurer un contraste suffisant entre les éléments interactifs (bouton, champs de formulaire, ...) et leur arrière-plan : au minimum 3:1. Les bordures doivent aussi avoir un contraste suffisant (cf. [Contrast Finder de Tanaguru](https://contrast-finder.tanaguru.com/) pour trouver des couleurs proches mais suffisamment contrastées).
+-   Assurer un contraste suffisant entre les éléments interactifs (bouton, champs de formulaire, ...) et leur arrière-plan : au minimum 3:1. Les bordures doivent aussi avoir un contraste suffisant. Utiliser les couleurs du thème existant plutôt que d'en chercher de nouvelles (le [Contrast Finder de Tanaguru](https://contrast-finder.tanaguru.com/) est surtout utile aux designers lors de la création d'un thème).
 -   Ne jamais indiquer une information uniquement par la couleur (ex: la page courante doit avoir un autre indicateur visuel en plus de la couleur).
 
 ### Concernant la structure HTML
