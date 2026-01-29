@@ -4,11 +4,10 @@ import { Avertissement } from '../profession-libérale/Avertissement'
 
 export const AvertissementSageFemme = () => {
 	const { t } = useTranslation()
-	// On est obligés d'utiliser un composant car nous devons par ailleurs utiliser
-	// <Trans> au lieu de t() pour ne pas escaper le / (cf AvertissementAvocat.tsx)
-	const Professionnelles = () => (
-		<>{t('pages.simulateurs.sage-femme.professionnelles', 'sages-femmes')}</>
+	const professionnelles = t(
+		'pages.simulateurs.sage-femme.professionnelles',
+		'sages-femmes'
 	)
 
-	return <Avertissement Professionnelles={Professionnelles} />
+	return <Avertissement professionnelles={professionnelles} />
 }

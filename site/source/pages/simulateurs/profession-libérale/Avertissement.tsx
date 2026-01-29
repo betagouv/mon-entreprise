@@ -3,16 +3,19 @@ import { Trans } from 'react-i18next'
 import { DarkLi, Strong, Ul } from '@/design-system'
 
 type Props = {
-	Professionnelles?: () => JSX.Element
+	professionnelles?: string
 }
 
-export const Avertissement = ({ Professionnelles }: Props) => {
+export const Avertissement = ({ professionnelles }: Props) => {
 	return (
 		<Ul>
 			<DarkLi>
-				{Professionnelles ? (
-					<Trans i18nKey="pages.simulateurs.profession-libérale.warning.général.spécifique">
-						Ce simulateur est à destination des <Professionnelles /> en{' '}
+				{professionnelles ? (
+					<Trans
+						i18nKey="pages.simulateurs.profession-libérale.warning.général.spécifique"
+						shouldUnescape={true}
+					>
+						Ce simulateur est à destination des {{ professionnelles }} en{' '}
 						<Strong>BNC</Strong>. Il ne prend pas en compte les sociétés
 						d’exercice libéral.
 					</Trans>
@@ -25,7 +28,7 @@ export const Avertissement = ({ Professionnelles }: Props) => {
 				)}
 			</DarkLi>
 			<DarkLi>
-				{Professionnelles ? (
+				{professionnelles ? (
 					<Trans i18nKey="pages.simulateurs.profession-libérale.warning.cotisations-ordinales.spécifique">
 						Le simulateur ne calcule pas le montant des{' '}
 						<Strong>cotisations à l’ordre</Strong>. Elles doivent être ajoutées
