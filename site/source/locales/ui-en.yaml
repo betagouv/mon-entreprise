@@ -1356,7 +1356,7 @@ pages:
         description: Calculation of net income after deduction of contributions based on
           total income for self-employed professionals covered by CIPAV
         title: "Professions affiliated to Cipav: income simulator"
-      professionnelles: regulated professions Cipav
+      professionnelles: regulated professions covered by Cipav
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
     comparaison-statuts:
@@ -1896,8 +1896,8 @@ pages:
         général:
           générique: This simulator is intended for self-employed professionals who earn a
             <2>BNC</2>. It does not take into account self-employed companies.
-          spécifique: This simulator is intended for <1> &lt;/1> in <4>BNC</4>. It does
-            not take into account partnerships.
+          spécifique: This simulator is intended for {{professionnelles}} in <4>BNC</4>.
+            It does not take into account partnerships.
     raccourcis:
       aria-label: "Go to question : {{question}}"
       titre: "Go to question :"
