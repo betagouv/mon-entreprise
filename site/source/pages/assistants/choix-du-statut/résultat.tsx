@@ -3,7 +3,6 @@ import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
@@ -24,6 +23,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { useCurrentPath } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
@@ -31,11 +31,11 @@ import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
 export default function Résultat() {
 	const { absoluteSitePaths } = useSitePaths()
-	const location = useLocation()
+	const pathname = useCurrentPath()
 
 	const statut = Object.entries(
 		absoluteSitePaths.assistants['choix-du-statut'].résultat
-	).find(([, path]) => location.pathname === path)?.[0]
+	).find(([, path]) => pathname === path)?.[0]
 	const dottedName = STATUT_TO_DOTTEDNAME[statut as StatutType]
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)

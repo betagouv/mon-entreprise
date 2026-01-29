@@ -1,18 +1,17 @@
-import { useLocation } from 'react-router-dom'
-
 import {
 	createMDXDocumentationFromGlob,
 	DocumentationRouter,
 	MDXDocumentationIndex,
 } from '@/components/documentation'
+import { useCurrentPath } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 const mdxModules = import.meta.glob('./*.mdx', { eager: true })
 
 export const DocumentationHub = () => {
 	const { absoluteSitePaths } = useSitePaths()
-	const location = useLocation()
-	const isIndex = location.pathname.endsWith('/documentation')
+	const pathname = useCurrentPath()
+	const isIndex = pathname.endsWith('/documentation')
 
 	const baseUrl = absoluteSitePaths.simulateurs['location-de-logement-meublé']
 	const docUrl = baseUrl + '/documentation'

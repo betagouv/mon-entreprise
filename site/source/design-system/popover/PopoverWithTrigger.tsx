@@ -2,9 +2,9 @@ import { useOverlayTrigger } from '@react-aria/overlays'
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { AriaButtonProps } from '@react-types/button'
 import React, { ReactElement, Ref, RefObject, useEffect, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { useCurrentPath } from '@/lib/navigation'
 import { omit } from '@/utils'
 
 import { Button } from '../buttons'
@@ -52,7 +52,7 @@ export function PopoverWithTrigger({
 		...omit(triggerProps, 'onPress'),
 	})
 
-	const { pathname } = useLocation()
+	const pathname = useCurrentPath()
 	const pathnameRef = useRef(pathname)
 	useEffect(() => {
 		if (pathname !== pathnameRef.current) {
