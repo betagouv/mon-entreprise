@@ -1436,7 +1436,7 @@ pages:
         description: Calcul du revenu net après déduction des cotisations à partir du
           total des recettes pour professions libérales rattaché à la CIPAV
         title: "Professions libérales rattachées à la Cipav : simulateur de revenus"
-      professionnelles: professions réglementées Cipav
+      professionnelles: professions réglementées relevant de la Cipav
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
     comparaison-statuts:
@@ -2011,8 +2011,9 @@ pages:
           générique: Ce simulateur est à destination des professions libérales en
             <2>BNC</2>. Il ne prend pas en compte les sociétés d’exercice
             libéral.
-          spécifique: Ce simulateur est à destination des <1></1> en <4>BNC</4>. Il ne
-            prend pas en compte les sociétés d’exercice libéral.
+          spécifique: Ce simulateur est à destination des {{professionnelles}} en
+            <4>BNC</4>. Il ne prend pas en compte les sociétés d’exercice
+            libéral.
     raccourcis:
       aria-label: "Aller à la question : {{question}}"
       titre: "Aller à la question :"
