@@ -48,7 +48,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 -   Toujours associer un `label` à chaque `input` (un placeholder ne suffit pas et n'est pas restitué par un lecteur d'écran).
 -   Toujours mettre une liaison `for/id` entre un `input` et son `label`, même lorsqu'ils sont imbriqués.
 -   Les groupes de boutons radio ou de checkboxes doivent être contenus dans un `<fieldset>` avec une `<legend>`.
--   Indiquer le format de saisie attendu dans le label (ex: "Date de naissance au format JJ/MM/AAAA").
+-   Indiquer le format de saisie attendu dans le label ou dans une description connectée à l'input via `aria-describedby`.
 
 ### Concernant les liens
 
