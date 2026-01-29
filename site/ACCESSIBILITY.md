@@ -95,7 +95,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 ### Concernant les unités CSS
 
--   Utiliser `rem` au lieu de `px` pour les tailles de police (permet le zoom navigateur).
+-   Utiliser `rem` au lieu de `px` pour les tailles de police (permet le respect du paramètre "Taille de police" du navigateur).
 -   Préférer `%` à `rem` pour le positionnement fixe (meilleur support du zoom à 200%).
 
 ## Patterns ARIA APG couramment utilisés
