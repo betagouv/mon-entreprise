@@ -627,86 +627,82 @@ pages:
     description: The page you are looking for does not exist or no longer exists
     title: Page not found
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
-    page, but a declaration of compliance with <2>RGAA</2> 4.1, which aims to
-    define the general level of accessibility observed on the site in accordance
-    with regulations. This page is mandatory to comply with RGAA 4.1.</3><4>What
-    is digital accessibility?</4><5>An accessible website is one that enables
-    all Internet users to access its content without difficulty, including
-    people with disabilities who use specialized software or hardware.</5><6>For
-    example, an accessible site enables :</6><7><0>Navigate with voice
-    synthesizers or Braille displays (used in particular by blind or
-    partially-sighted Internet users).</0><1>Customize the site's display
-    according to your needs (enlarging characters, changing colors,
-    etc.).</1><2>Navigate without using the mouse, with the keyboard only or via
-    a touch screen.</2></7><8>Accessibility statement</8><9>Acoss undertakes to
-    make its internet, extranet and intranet sites accessible in accordance with
-    article 47 of law no. 2005-102 of February 11, 2005.</9><10>To this end, it
-    will draw up <2>a strategy and action plan to be
-    implemented</2>.</10><11>This declaration of accessibility applies to
-    <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance
-    status</12><13>Mon-entreprise - <1>https://mon-entreprise.urssaf.fr/</1> is
-    partially compliant with the RGAA <5>(référentiel général d'amélioration de
+    page, but a declaration of compliance with <2></3> RGAA&lt;/2<3>>
+    4</3><3>.1, which aims to define the general level of accessibility observed
+    on the site in accordance with regulations. This page is mandatory for
+    compliance with RGAA 4.1.</3><4>What is digital accessibility?</4><5>An
+    accessible website is one that enables all Internet users to access its
+    content without difficulty, including people with disabilities who use
+    specialized software or hardware.</5><6>An accessible site enables, for
+    example :</6><7><0>Navigate with voice synthesizers or Braille displays
+    (used in particular by blind or partially-sighted Internet
+    users).</0><1>Customize the site's display according to your needs
+    (enlarging characters, changing colors, etc.).</1><2>Navigate without using
+    the mouse, with the keyboard only or via a touch
+    screen.</2></7><8>Accessibility</8><9>statementAcoss is committed to making
+    its internet, extranet and intranet sites accessible, in accordance with
+    article 47 of law no. 2005-102 of February 11, 2005, and</9><10>has drawn up
+    a <2>strategy and action plan for</2> this purpose.</10><11>This
+    accessibility statement applies to
+    <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance statusMy
+    company</12><13>- <1>https://mon-entreprise.urssaf.fr/&lt;/1> is partially
+    compliant with the RGAA <5>(référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
-    derogations listed below.</13><14>Test results</14><15>The compliance audit
-    carried out by <2>boscop</2> revealed that :</15><16><0>77.78% of RGAA
-    criteria are met.</0><1>The site's average compliance rate is 94%.</1><2>The
-    \"Income simulator for employees\" page has a compliance rate of
-    91%.</2></16><17>Number of applicable criteria: 63; Number of compliant
-    criteria: 49; Number of non-compliant criteria: 14</17><18>Content not
-    accessible</18><19>List of non-compliant criteria :<1><0>For some web pages,
-    information is provided by color only.</0><1>For some web pages, the
-    contrast between text color and background color is not sufficiently
-    high.</1><2>Some links are not self-explanatory.</2><3>Some scripts are not
-    compatible with assistive technologies.</3><4>For some scripts that initiate
-    a context switch, the user is not warned or has no control over
-    it.</4><5>For some web pages, information is not structured by the
-    appropriate use of headings.</5><6>For some web pages, certain lists are not
-    correctly structured.</6><7>Some form fields have no label.</7><8>Some
-    labels associated with a form field are irrelevant.</8><9>For some forms,
-    some field labels and their associated fields are not attached.</9><10>For
-    some forms, fields of the same nature are not grouped together, if
-    necessary.</10><11>For some forms, certain legends associated with a
-    grouping of fields of the same nature are not relevant.</11><12>For some
-    forms, certain input controls are not used appropriately.</12><13>Some
-    content grouping zones present on several web pages (header, main
-    navigation, main content, footer and search engine zones) cannot be reached
-    or avoided.</13></1></19><20>Derogation for disproportionate
-    burden</20><21>None</21><22>Content not subject to accessibility
-    requirements</22><23>None</23><24>Drawing up this accessibility
-    declaration</24> <26>This accessibility declaration was drawn up on May 15,
-    2025.</26><27>Technologies used to create the site</27><28><0>HTML
+    derogations listed below.</13><14>Test resultsThe</14><15>compliance audit
+    carried out by <2></15> boscop&lt;/2<15>> reveals that :</15><16><0>87.30%
+    of RGAA criteria are met.</0><1>The site's average compliance rate is
+    97%.</1><2>The \"Simulateur de revenus pour salarié\" page has a compliance
+    rate of 96%.</2></16><17>Number of applicable criteria: 63; Number of
+    compliant criteria: 55; Number of non-compliant
+    criteria:</17><18>8Non-accessible contentList of</18><19>non-compliant
+    criteria:<1><0>For some web pages, the contrast between the color of the
+    text and the color of its background is not sufficiently high.</0><1>Some
+    links are not explicit.</1><2>For some scripts that initiate a context
+    switch, the user is not warned or does not have control.</2><3>For some web
+    pages, some lists are not correctly structured.</3><4>Some form fields have
+    no label.</4><5>Some labels associated with a form field are not
+    relevant.</5><6>For some forms, some field labels and their associated
+    fields are not adjoined.</6><7>For some forms, some legends associated with
+    a grouping of fields of the same nature are not
+    relevant.</7></1></19><20>Derogation
+    for</20><21>disproportionate</21><20>burdenNothingContent</20><22>not
+    subject to the accessibility</22><23>obligationNothing</23><24>Establishment
+    of this accessibility statement&lt;/24> <26>This accessibility statement was
+    established on May 15, 2025.</26><27>Technologies used to create the
+    site</27><28><0>HTML
     5</0><1>CSS</1><2>JavaScript</2><3>SVG</3><4>Aria</4></28><29>Test
-    environment</29><30>Content rendering checks were carried out on the basis
-    of the combination provided by the RGAA 4.1 reference database, with the
-    following versions: </30><31><0>NVDA and Firefox</0><1>Jaws and
-    Firefox</1><2>Voiceover and Safari</2></31><32>Tools used during the
-    evaluation</32><33><0><0>Colour Contrast Analyser</0>;</0><1><1>Web
-    Developer</1> extension;</1><2>RGAA Assistant\" extension;</2><3><1>WCAG
-    Contrast checker</1> extension;</3><4><1>ARC Toolkit</1>
-    extension;</4><5><1>HeadingsMap</1> \" extension;</5><6>Developer tools
-    integrated into the Firefox browser;</6><7>W3C HTML
-    validator.</7></33><34>Site pages checked for compliance</34><35><0><0>Home
-    page</0> </0><1>Accessibility page</1><2><0>Site map
-    page</0></2><3><0>Statistics page</0> </3><4><0>Documentation
+    environmentThe</29><30>content rendering checks were carried out on the
+    basis of the combination provided by the RGAA 4.1 reference database, with
+    the following versions: </30><31><0>NVDA and Firefox</0><1>Jaws and
+    Firefox</1><2>Voiceover and Safari</2></31><32>Tools used in the
+    evaluation</32><33><0><0>Colour Contrast Analyser&lt;/0> </0>;<1>Extension
+    \" <1>Web Developer&lt;/1> \" ;</1><2>Extension \"RGAA Wizard\"
+    ;</2><3>Extension \" <1>WCAG Contrast checker&lt;/1> \" ;</3><4>Extension \"
+    <1>ARC Toolkit&lt;/1> \" ;</4><5>Extension \" <1>HeadingsMap&lt;/1> \"
+    ;</5><6>Firefox browser-integrated developer tools ;</6><7>W3C HTML
+    Validator.</7></33><34>Site pages checked for compliance</34><35><0><0>Home
+    page&lt;/0> </0><1>Accessibility page</1><2><0>Site map
+    page</0></2><3><0>Statistics page&lt;/0> </3><4><0>Documentation\"
     page</0></4><5><0>Simulators\" page</0></5><6><0>Income simulator for
     employees\" page</0></6><7><0>Assistant for determining deductible social
     charges\" page</0></7><8><0>Self-employed income simulator\"
     page</0></8><9><0>Choose status\" page</0></9><10><0>PAMC income declaration
     wizard\" page</0></10><11><0>What's new\" page</0></11><12><0>Tools for
     developers\" page</0></12><13><0>Calculation library\"
-    page</0></13><14><0>Budget\" page</0> </14></35><36>Right to
-    compensation</36><37>Pending full compliance, you can obtain an accessible
-    version of documents or information contained therein by sending an e-mail
-    to <2>accessibilite@acoss.fr</2>, indicating the name of the document
-    concerned and/or the information you would like to obtain. The requested
-    information will be sent to you as soon as possible.</37><38>Improvement and
-    contact</38><39>You can help us to improve the accessibility of the site by
-    notifying us of any problems you encounter. To do so, send us an e-mail to
-    <2>accessibilite@acoss.fr.</2></39><40>Recourse</40><41>This procedure
-    should be used in the following cases.</41><42>You have notified the website
-    manager of a lack of accessibility that is preventing you from accessing
-    content or services on the portal, and you have not received a satisfactory
-    response.</42><43><0>Write a message to the Défenseur des
+    page</0></13><14><0>Budget\" page&lt;/0> </14></35><36>Right
+    to</36><37>compensationPending full compliance, you can obtain an accessible
+    version of documents or the information they may contain by sending an
+    e-mail to <2>accessibilite@acoss.fr&lt;/2> indicating the name of the
+    document concerned and/or the information you would like to obtain. The
+    requested information will be sent to you as soon as
+    possible.</37><38>Improvement and contactYou</38><39>can help us improve the
+    accessibility of the site by notifying us of any problems you encounter. To
+    do so, send us an e-mail to</39><40>accessibilite@acoss.fr.Voies.
+    This</40><41>procedure is to be used in the following case:</41><42>You have
+    notified the website manager of a lack of accessibility that is preventing
+    you from accessing content or services on the portal, and you have not
+    received a satisfactory response.</42><43><0>Write a message to the
+    Défenseur des
     droits<1>(https://formulaire.defenseurdesdroits.fr/)</1></0><1>Contact the
     Rights Defender delegate in your
     region<1>(https://www.defenseurdesdroits.fr/saisir/delegues)</1></1><2>Send
