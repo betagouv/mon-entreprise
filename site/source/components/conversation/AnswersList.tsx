@@ -37,15 +37,12 @@ import RuleInput from './RuleInput'
 
 const { Body, H2, H3, Intro, Link, Strong, Ul } = typography
 
-type AnswerListProps = {
+type AnswersListProps = {
 	onClose?: () => void
 	children?: React.ReactNode
 }
 
-export default function AnswerList({
-	onClose = NoOp,
-	children,
-}: AnswerListProps) {
+export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 	const { t } = useTranslation()
 	const { currentSimulatorData } = useCurrentSimulatorData()
 	const dispatch = useDispatch()
@@ -374,7 +371,6 @@ const StyledAnswerLine = styled(Grid)`
 				? theme.colors.extended.dark[500]
 				: theme.colors.bases.primary[100]};
 		color: ${({ theme }) => theme.colors.bases.primary[800]};
-		color-adjust: exact !important;
 	}
 `
 
