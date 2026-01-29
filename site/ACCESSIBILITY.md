@@ -82,9 +82,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 ### Concernant les modales et overlays
 
--   Implémenter le pattern Dialog complet : `role="dialog"`, `aria-modal="true"`, `aria-label` ou `aria-labelledby`.
--   La touche Échap doit fermer la modale (géré par `useOverlay` de React Aria).
--   Mettre en place un "focus trap" pour que la navigation clavier reste dans la modale (cf. `focus-trap-react`).
+-   Implémenter le [pattern Dialog](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) complet (attributs ARIA, touche Échap, focus trap). Utiliser le composant Modal de `react-aria-components`.
 
 ### Concernant les "live regions ARIA"
 
