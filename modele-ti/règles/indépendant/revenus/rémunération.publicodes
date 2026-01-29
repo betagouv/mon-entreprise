@@ -59,7 +59,7 @@ indépendant . rémunération . impôt:
   description: |
     Montant de l’impôt sur le revenu concernant :
     - les rémunérations de dirigeant des entreprises à l’impôt sur les sociétés,
-    - les bénéfices des entreprises individuelles à l’impôt sur le revenu,
+    - les bénéfices des entreprises individuelles à l’impôt sur le revenu.
   valeur: impôt . montant
   contexte:
     paramètres . impôt . revenu imposable: rémunération . nette . imposable
