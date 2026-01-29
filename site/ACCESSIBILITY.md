@@ -64,7 +64,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 ### Concernant la structure HTML
 
 -   Utiliser le HTML sémantique : `<ul>/<ol>/<li>` pour les listes, `<nav>` pour la navigation.
--   Préférer `<ul>/<li>` à `role="list"/role="listitem"`.
+-   Préférer `<ul>/<li>` à `role="list"`/`role="listitem"`.
 -   Respecter la hiérarchie des titres (ex: ne pas utiliser un `<h4>` à la suite d'un `<h2>`). Ressource utile : le [plugin HeadingsMap](https://addons.mozilla.org/fr/firefox/addon/headingsmap/).
 -   Ne pas imbriquer d'éléments de titre (`<h3>`, etc.) dans des boutons ou liens d'accordion : utiliser des `<span>` stylisés à la place.
 -   Le titre d'une modale doit généralement être un `<h1>` car la modale devient le contexte principal lors de son affichage.
