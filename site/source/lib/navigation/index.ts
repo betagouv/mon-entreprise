@@ -2,6 +2,7 @@ export {
 	useCurrentPath,
 	useLocationHash,
 	useMatchPath,
+	useMatchWithParams,
 	useNavigate,
 	useQueryParams,
 	useRouteParams,

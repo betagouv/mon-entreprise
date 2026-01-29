@@ -1,5 +1,4 @@
-import { useMatch } from 'react-router-dom'
-
+import { useMatchWithParams } from '@/lib/navigation'
 import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
 type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']
@@ -18,9 +17,10 @@ const stepOrder: readonly Step[] = [
 
 export function useCurrentStep() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const localizedStep = useMatch(
+	const params = useMatchWithParams<{ step: string }>(
 		`${absoluteSitePaths.assistants['choix-du-statut'].index}/:step`
-	)?.params.step
+	)
+	const localizedStep = params?.step
 	if (!localizedStep) {
 		return 'index'
 	}

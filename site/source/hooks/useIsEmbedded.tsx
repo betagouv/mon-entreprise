@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react'
-import { useMatch } from 'react-router-dom'
+
+import { useMatchPath } from '@/lib/navigation'
 
 export function useIsEmbedded(): boolean {
 	return useContext(EmbededContext)
@@ -17,7 +18,7 @@ export function EmbededContextProvider({
 	let isIframePath
 	try {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
-		isIframePath = useMatch('/iframes/*')
+		isIframePath = useMatchPath('/iframes/*')
 	} catch {
 		isIframePath =
 			typeof window !== 'undefined' &&

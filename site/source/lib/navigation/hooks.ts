@@ -2,6 +2,7 @@
 
 import {
 	useLocation,
+	useMatch,
 	useParams,
 	useNavigate as useRRNavigate,
 	useSearchParams,
@@ -63,4 +64,16 @@ export function useMatchPath(pattern: string): boolean {
 	}
 
 	return currentPath === pattern
+}
+
+/**
+ * Vérifie si le path actuel correspond à un pattern et retourne les params
+ * Abstraction de useMatch (react-router) pour future compatibilité Next.js
+ */
+export function useMatchWithParams<T extends Record<string, string>>(
+	pattern: string
+): T | null {
+	const match = useMatch(pattern)
+
+	return match?.params as T | null
 }
