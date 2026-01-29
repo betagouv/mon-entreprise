@@ -41,6 +41,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 -   Si une image est décorative, mettre un `alt=""` pour qu'elle soit ignorée des lecteurs d'écran.
 -   Si une image n'est pas décorative, éviter de préciser "image" ou "logo" dans son alternative textuelle : les lecteurs d'écran vocalisent déjà la nature du composant.
 -   Les emojis utilisés comme icônes significatives doivent avoir une alternative textuelle (via `aria-label` ou texte caché `.sr-only`).
+-   Les emojis décoratifs doivent avoir `aria-hidden="true"` pour être ignorés des lecteurs d'écran.
 
 ### Concernant les formulaires
 
