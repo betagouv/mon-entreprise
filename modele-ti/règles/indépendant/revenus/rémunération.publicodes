@@ -12,10 +12,13 @@ indépendant . rémunération . totale:
     - si: entreprise . imposition . IS
       alors:
         inversion numérique:
-          - rémunération . nette
-          - cotisations et contributions
           - rémunération . nette . après impôt
           - rémunération . impôt
+          - rémunération . impôt . avec dividendes
+          - rémunération . nette
+          - rémunération . nette . avec dividendes
+          - cotisations et contributions
+          - cotisations et contributions . avec dividendes
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
   arrondi: oui
   unité: €/an
