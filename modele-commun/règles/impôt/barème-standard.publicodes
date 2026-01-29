@@ -37,10 +37,10 @@ impôt . barème standard . revenu d'activité abattu:
 impôt . barème standard . revenu brut global:
   description: |
     Le revenu brut global est la somme de tous les revenus, après leur abattement :
-    - salaire net imposable
-    - bénéfices (BIC et BNC)
-    - dividendes
-  
+    - salaire net imposable,
+    - bénéfices (BIC et BNC),
+    - dividendes.
+
     Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
     - pensions et retraites,
     - bénéfices agricoles (BA),
@@ -137,6 +137,7 @@ impôt . barème standard . impôt brut:
     BOFIP: https://bofip.impots.gouv.fr/bofip/2494-PGP.html/identifiant%3DBOI-IR-LIQ-20-20-20-20210330
 
 impôt . barème standard . impôt brut . par part:
+  titre: Impôt brut par part de quotient familial
   description: |
     Voici le fameux barème de l’impôt sur le revenu. C’est un barème marginal à 5
     tranches.
