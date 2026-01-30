@@ -7,33 +7,13 @@
 
     [➡ Voir la convention](https://static.data.gouv.fr/resources/conventions-de-partenariat/20190423-181035/convention-du-15-avril-2019.pdf)
 
-    <table style="text-align: left">
-      <caption class="sr-only">Montants des financements répartis par financeurs et le total des financements</caption>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-      <tr>
-        <th scope="row" style="font-weight: 400;">Financement DINSIC</th>
-        <td style="text-align: right;">150 000 € HT</td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-weight: 400;">Financement Acoss initial</th>
-        <td style="text-align: right;">100 000 € HT</td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-weight: 400;">Rallonge Acoss fin d’année</th>
-        <td style="text-align: right;">12 500 € HT</td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-weight: 700;">Total HT</th>
-        <td style="text-align: right; font-weight: 700;">262 500 € HT</td>
-      </tr>
-      <tr>
-        <th scope="row" style="font-weight: 700;">Total TTC</th>
-        <td style="text-align: right; font-weight: 700;">315 000 € TTC</td>
-      </tr>
-    </table>
+    <ul>
+      <li>Financement DINSIC : 150 000 € HT</li>
+      <li>Financement Acoss initial : 100 000 € HT</li>
+      <li>Rallonge Acoss fin d’année : 12 500 € HT</li>
+      <li><b>Total HT</b> : 262 500 € HT</li>
+      <li><b>Total TTC</b> : 315 000 € HT</li>
+    </ul>
 
     En fin d’année une rallonge est attribuée pour la réalisation d’un nouveau
     simulateur et une expérimentation sur la paie.
