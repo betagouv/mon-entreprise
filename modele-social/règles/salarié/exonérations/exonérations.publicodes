@@ -81,8 +81,7 @@ salarié . cotisations . exonérations . heures supplémentaires:
       produit:
         - somme:
             - vieillesse . salarié
-            - retraite complémentaire . salarié
-            - CEG . salarié
+            - retraite complémentaire-CEG-CET . salarié
         - 1 / assiette
       plafond: 11.31%
 
