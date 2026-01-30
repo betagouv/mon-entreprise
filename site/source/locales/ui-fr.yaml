@@ -683,23 +683,18 @@ pages:
     l’accessibilité (RGAA)</5>, version 4.1 en raison des non-conformités et des
     dérogations énumérées ci-dessous.</13><14>Résultats des
     tests</14><15>L’audit de conformité réalisé par la société <2>boscop</2>
-    révèle que :</15><16><0>87,30% des critères RGAA sont respectés.</0><1>Le
-    taux moyen de conformité du site s’élève à 97%.</1><2>La page \"Simulateur
-    de revenus pour salarié\" a un taux de conformité de 96%.</2></16><17>Nombre
-    de critères applicables : 63 ; Nombre de critères conformes : 55 ; Nombre de
-    critères non conformes : 8</17><18>Contenus non accessibles</18><19>Liste
-    des critères non conformes :<1><0>Pour certaines pages web, le contraste
-    entre la couleur du texte et la couleur de son arrière-plan n’est pas
-    suffisamment élevé.</0><1>Certains liens ne sont pas explicites.</1><2>Pour
-    certains scripts qui initient un changement de contexte, l’utilisateur n’est
-    pas averti ou en n’a pas le contrôle.</2><3>Pour certaines pages web,
-    certaines listes ne sont pas correctement structurées.</3><4>Certains champs
-    de formulaire n’ont pas d’étiquette.</4><5>Certaines étiquettes associées à
-    un champ de formulaire ne sont pas pertinentes.</5><6>Pour certains
-    formulaires, certaines étiquettes de champ et son champ associé ne sont pas
-    accolés.</6><7>Pour certains formulaires, certaines légendes associées à un
+    révèle que :</15><16><0>93,65% des critères RGAA sont respectés.</0><1>Le
+    taux moyen de conformité du site s’élève à 98%.</1><2>La page \"Simulateur
+    de revenus pour salarié\" a un taux de conformité de
+    100%.</2></16><17>Nombre de critères applicables : 63 ; Nombre de critères
+    conformes : 59 ; Nombre de critères non conformes : 4</17><18>Contenus non
+    accessibles</18><19>Liste des critères non conformes :<1><0>Certains liens
+    ne sont pas explicites.</0><1>Certains scripts ne sont pas compatibles avec
+    les technologies d’assistance.</1><2>Pour certains scripts qui initient un
+    changement de contexte, l’utilisateur n’est pas averti ou en n’a pas le
+    contrôle.</2><3>Pour certains formulaires, certaines légendes associées à un
     regroupement de champs de même nature ne sont pas
-    pertinentes.</7></1></19><20>Dérogation pour charge
+    pertinentes.</3></1></19><20>Dérogation pour charge
     disproportionnée</20><21>Néant</21><22>Contenus non-soumis à l'obligation
     d'accessibilité</22><23>Néant</23><24>Établissement de cette déclaration
     d'accessibilité</24> <26>Cette déclaration d'accessibilité a été établie le
@@ -723,10 +718,9 @@ pages:
     salarié\"</0></6><7><0>Page \"Assistant à la détermination des charges
     sociales déductibles\"</0></7><8><0>Page \"Simulateur de revenus
     auto-entrepreneur\"</0></8><9><0>Page \"Choix du statut\"</0></9><10><0>Page
-    \"Assistant à la déclaration de revenus pour les PAMC\"</0></10><11><0>Page
-    \"Les nouveautés\"</0></11><12><0>Page \"Outils pour les
-    développeurs\"</0></12><13><0>Page \"Bibliothèque de
-    calcul\"</0></13><14><0>Page \"Budget\"</0> </14></35><36>Droit à la
+    \"Les nouveautés\"</0></10><11><0>Page \"Outils pour les
+    développeurs\"</0></11><12><0>Page \"Bibliothèque de
+    calcul\"</0></12><13><0>Page \"Budget\"</0> </13></35><36>Droit à la
     compensation</36><37>Dans l’attente d’une mise en conformité totale, vous
     pouvez obtenir une version accessible des documents ou des informations qui
     y seraient contenues en envoyant un courriel à <2>accessibilite@acoss.fr</2>

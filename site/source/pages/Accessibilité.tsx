@@ -104,42 +104,26 @@ export default function Accessibilité() {
 				révèle que :
 			</Body>
 			<Ul>
-				<Li>87,30% des critères RGAA sont respectés.</Li>
-				<Li>Le taux moyen de conformité du site s’élève à 97%.</Li>
+				<Li>93,65% des critères RGAA sont respectés.</Li>
+				<Li>Le taux moyen de conformité du site s’élève à 98%.</Li>
 				<Li>
 					La page "Simulateur de revenus pour salarié" a un taux de conformité
-					de 96%.
+					de 100%.
 				</Li>
 			</Ul>
 			<Body>
-				Nombre de critères applicables : 63 ; Nombre de critères conformes : 55
-				; Nombre de critères non conformes : 8
+				Nombre de critères applicables : 63 ; Nombre de critères conformes : 59
+				; Nombre de critères non conformes : 4
 			</Body>
 			<H3>Contenus non accessibles</H3>
 			<Body>
 				Liste des critères non conformes :
 				<Ul>
-					<Li>
-						Pour certaines pages web, le contraste entre la couleur du texte et
-						la couleur de son arrière-plan n’est pas suffisamment élevé.
-					</Li>
 					<Li>Certains liens ne sont pas explicites.</Li>
+					<Li>Certains scripts ne sont pas compatibles avec les technologies d’assistance.</Li>
 					<Li>
 						Pour certains scripts qui initient un changement de contexte,
 						l’utilisateur n’est pas averti ou en n’a pas le contrôle.
-					</Li>
-					<Li>
-						Pour certaines pages web, certaines listes ne sont pas correctement
-						structurées.
-					</Li>
-					<Li>Certains champs de formulaire n’ont pas d’étiquette.</Li>
-					<Li>
-						Certaines étiquettes associées à un champ de formulaire ne sont pas
-						pertinentes.
-					</Li>
-					<Li>
-						Pour certains formulaires, certaines étiquettes de champ et son
-						champ associé ne sont pas accolés.
 					</Li>
 					<Li>
 						Pour certains formulaires, certaines légendes associées à un
@@ -230,11 +214,6 @@ export default function Accessibilité() {
 				</Li>
 				<Li>
 					<Link href="/assistants/choix-du-statut">Page "Choix du statut"</Link>
-				</Li>
-				<Li>
-					<Link href="/assistants/declaration-revenus-pam">
-						Page "Assistant à la déclaration de revenus pour les PAMC"
-					</Link>
 				</Li>
 				<Li>
 					<Link href="/nouveaut%C3%A9s/f%C3%A9vrier-2025">

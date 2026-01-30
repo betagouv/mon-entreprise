@@ -629,46 +629,40 @@ pages:
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with <2></3> RGAA&lt;/2<3>>
     4</3><3>.1, which aims to define the general level of accessibility observed
-    on the site in accordance with regulations. This page is mandatory for
-    compliance with RGAA 4.1.</3><4>What is digital accessibility?</4><5>An
-    accessible website is one that enables all Internet users to access its
-    content without difficulty, including people with disabilities who use
-    specialized software or hardware.</5><6>An accessible site enables, for
-    example :</6><7><0>Navigate with voice synthesizers or Braille displays
-    (used in particular by blind or partially-sighted Internet
-    users).</0><1>Customize the site's display according to your needs
-    (enlarging characters, changing colors, etc.).</1><2>Navigate without using
-    the mouse, with the keyboard only or via a touch
-    screen.</2></7><8>Accessibility</8><9>statementAcoss is committed to making
-    its internet, extranet and intranet sites accessible, in accordance with
-    article 47 of law no. 2005-102 of February 11, 2005, and</9><10>has drawn up
-    a <2>strategy and action plan for</2> this purpose.</10><11>This
-    accessibility statement applies to
+    on the site in accordance with regulations. This page is mandatory to comply
+    with RGAA 4.1.</3><4>What is digital accessibility?</4><5>An accessible
+    website is one that enables all Internet users to access its content without
+    difficulty, including people with disabilities who use specialized software
+    or hardware.</5><6>An accessible site enables, for example
+    :</6><7><0>Navigate with voice synthesizers or Braille displays (used in
+    particular by blind or partially-sighted Internet users).</0><1>Customize
+    the site's display according to your needs (enlarging characters, changing
+    colors, etc.).</1><2>Navigate without using the mouse, with the keyboard
+    only or via a touch screen.</2></7><8>Accessibility</8><9>statementAcoss is
+    committed to making its internet, extranet and intranet sites accessible, in
+    accordance with article 47 of law no. 2005-102 of February 11, 2005,
+    and</9><10>has drawn up a <2>strategy and action plan for</2> this
+    purpose.</10><11>This accessibility statement applies to
     <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance statusMy
     company</12><13>- <1>https://mon-entreprise.urssaf.fr/&lt;/1> is partially
     compliant with the RGAA <5>(référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
     derogations listed below.</13><14>Test resultsThe</14><15>compliance audit
-    carried out by <2></15> boscop&lt;/2<15>> reveals that :</15><16><0>87.30%
+    carried out by <2></15> boscop&lt;/2<15>> reveals that :</15><16><0>93.65%
     of RGAA criteria are met.</0><1>The site's average compliance rate is
-    97%.</1><2>The \"Simulateur de revenus pour salarié\" page has a compliance
-    rate of 96%.</2></16><17>Number of applicable criteria: 63; Number of
-    compliant criteria: 55; Number of non-compliant
-    criteria:</17><18>8Non-accessible contentList of</18><19>non-compliant
-    criteria:<1><0>For some web pages, the contrast between the color of the
-    text and the color of its background is not sufficiently high.</0><1>Some
-    links are not explicit.</1><2>For some scripts that initiate a context
-    switch, the user is not warned or does not have control.</2><3>For some web
-    pages, some lists are not correctly structured.</3><4>Some form fields have
-    no label.</4><5>Some labels associated with a form field are not
-    relevant.</5><6>For some forms, some field labels and their associated
-    fields are not adjoined.</6><7>For some forms, some legends associated with
-    a grouping of fields of the same nature are not
-    relevant.</7></1></19><20>Derogation
-    for</20><21>disproportionate</21><20>burdenNothingContent</20><22>not
+    98%.</1><2>The \"Simulateur de revenus pour salarié\" page has a compliance
+    rate of 100%.</2></16><17>Number of applicable criteria: 63; Number of
+    compliant criteria: 59; Number of non-compliant
+    criteria:</17><18>4Non-accessible contentList of</18><19>non-compliant
+    criteria:<1><0>Some links are not explicit.</0><1>Some scripts are not
+    compatible with assistive technologies.</1><2>For some scripts that initiate
+    a context switch, the user is not warned or has no control over
+    it.</2><3>For certain forms, certain legends associated with a grouping of
+    fields of the same nature are not relevant.</3></1></19><20>Derogation
+    for</20><21>disproportionate</21><20>burdenNothingContents</20><22>not
     subject to the accessibility</22><23>obligationNothing</23><24>Establishment
-    of this accessibility statement&lt;/24> <26>This accessibility statement was
-    established on May 15, 2025.</26><27>Technologies used to create the
+    of this accessibility declaration&lt;/24> <26>This accessibility declaration
+    was established on May 15, 2025.</26><27>Technologies used to create the
     site</27><28><0>HTML
     5</0><1>CSS</1><2>JavaScript</2><3>SVG</3><4>Aria</4></28><29>Test
     environmentThe</29><30>content rendering checks were carried out on the
@@ -686,12 +680,11 @@ pages:
     page</0></4><5><0>Simulators\" page</0></5><6><0>Income simulator for
     employees\" page</0></6><7><0>Assistant for determining deductible social
     charges\" page</0></7><8><0>Self-employed income simulator\"
-    page</0></8><9><0>Choose status\" page</0></9><10><0>PAMC income declaration
-    wizard\" page</0></10><11><0>What's new\" page</0></11><12><0>Tools for
-    developers\" page</0></12><13><0>Calculation library\"
-    page</0></13><14><0>Budget\" page&lt;/0> </14></35><36>Right
+    page</0></8><9><0>Choose status\" page</0></9><10><0>What's new\"
+    page</0></10><11><0>Tools for developers\" page</0></11><12><0>Calculation
+    library\" page</0></12><13><0>Budget\" page&lt;/0> </13></35><36>Right
     to</36><37>compensationPending full compliance, you can obtain an accessible
-    version of documents or the information they may contain by sending an
+    version of documents or the information contained therein by sending an
     e-mail to <2>accessibilite@acoss.fr&lt;/2> indicating the name of the
     document concerned and/or the information you would like to obtain. The
     requested information will be sent to you as soon as
