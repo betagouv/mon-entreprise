@@ -120,7 +120,10 @@ export default function Accessibilité() {
 				Liste des critères non conformes :
 				<Ul>
 					<Li>Certains liens ne sont pas explicites.</Li>
-					<Li>Certains scripts ne sont pas compatibles avec les technologies d’assistance.</Li>
+					<Li>
+						Certains scripts ne sont pas compatibles avec les technologies
+						d’assistance.
+					</Li>
 					<Li>
 						Pour certains scripts qui initient un changement de contexte,
 						l’utilisateur n’est pas averti ou en n’a pas le contrôle.
