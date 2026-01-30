@@ -235,7 +235,7 @@ Notifications affichées : salarié . contrat . CDD . information"
 exports[`calculate simulations-salarié > cdd 4`] = `
 "salarié . contrat . salaire brut: 2200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4410
+salarié . coût total employeur: 4417
 salarié . rémunération . net . payé après impôt: 2241
 salarié . rémunération . net . à payer avant impôt: 2375
 
@@ -521,7 +521,7 @@ salarié . rémunération . net . à payer avant impôt: 1606"
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2359
+salarié . coût total employeur: 2357
 salarié . rémunération . net . payé après impôt: 1628
 salarié . rémunération . net . à payer avant impôt: 1636"
 `;
