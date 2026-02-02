@@ -100,19 +100,19 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 Pour les composants complexes, se référer aux patterns officiels du W3C qui détaillent les attributs ARIA nécessaires **et les interactions clavier à implémenter** :
 
--   [Accordion](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
--   [Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
--   [Breadcrumb](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
--   [Checkbox](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)
--   [Combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
--   [Dialog (Modal)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
--   [Disclosure (Show/Hide)](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)
--   [Landmarks](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/)
--   [Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
--   [Slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/)
--   [Switch](https://www.w3.org/WAI/ARIA/apg/patterns/switch/)
--   [Tabs](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
--   [Tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+-   [Accordion (Accordéon)](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+-   [Alert (Alerte)](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
+-   [Breadcrumb (Fil d'Ariane)](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+-   [Checkbox (Case à cocher)](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)
+-   [Combobox (Autocomplétion)](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+-   [Dialog (Modale)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+-   [Disclosure (Afficher/Masquer)](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)
+-   [Landmarks (Régions de page)](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/)
+-   [Radio Group (Boutons radio)](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
+-   [Slider (Curseur)](https://www.w3.org/WAI/ARIA/apg/patterns/slider/)
+-   [Switch (Interrupteur)](https://www.w3.org/WAI/ARIA/apg/patterns/switch/)
+-   [Tabs (Onglets)](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+-   [Tooltip (Infobulle)](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 
 ## Ressources
 
