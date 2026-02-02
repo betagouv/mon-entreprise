@@ -98,49 +98,21 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 
 ## Patterns ARIA APG couramment utilisés
 
-Pour les composants complexes, se référer aux patterns officiels du W3C :
+Pour les composants complexes, se référer aux patterns officiels du W3C qui détaillent les attributs ARIA nécessaires **et les interactions clavier à implémenter** :
 
-### Pattern Dialog (Modale)
-
-```jsx
-<div role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-  <h1 id="dialog-title">Titre de la modale</h1>
-  {/* Contenu */}
-</div>
-```
-
-Documentation officielle : [Dialog (Modal)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
-
-### Pattern Disclosure (Afficher/Masquer)
-
-```jsx
-<button aria-expanded="false" aria-controls="panel-id">
-  Afficher les détails
-</button>
-<div id="panel-id" hidden>
-  {/* Contenu masqué */}
-</div>
-```
-
-Documentation officielle : [Disclosure (Show/Hide)](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)
-
-### Pattern Combobox (Autocomplete)
-
-```jsx
-<input
-  role="combobox"
-  aria-controls="listbox-id"
-  aria-expanded="true"
-  aria-activedescendant="option-2"
-  aria-autocomplete="list"
-/>
-<ul id="listbox-id" role="listbox">
-  <li id="option-1" role="option">Option 1</li>
-  <li id="option-2" role="option" aria-selected="true">Option 2</li>
-</ul>
-```
-
-Documentation officielle : [Combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+-   [Accordion](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+-   [Alert](https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
+-   [Breadcrumb](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+-   [Checkbox](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)
+-   [Combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+-   [Dialog (Modal)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+-   [Disclosure (Show/Hide)](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/)
+-   [Landmarks](https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/)
+-   [Radio Group](https://www.w3.org/WAI/ARIA/apg/patterns/radio/)
+-   [Slider](https://www.w3.org/WAI/ARIA/apg/patterns/slider/)
+-   [Switch](https://www.w3.org/WAI/ARIA/apg/patterns/switch/)
+-   [Tabs](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/)
+-   [Tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 
 ## Ressources
 
