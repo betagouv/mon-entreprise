@@ -32,16 +32,6 @@ export const debounce = <T>(waitFor: number, fn: (...args: T[]) => void) => {
 
 export const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 
-/**
- * @deprecated Prefer the use of useIsEmbedded() if possible  */
-export function inIframe(): boolean {
-	try {
-		return window.self !== window.top
-	} catch (e) {
-		return true
-	}
-}
-
 export function softCatch<ArgType, ReturnType>(
 	fn: (arg: ArgType) => ReturnType
 ): (arg: ArgType) => ReturnType | null {
