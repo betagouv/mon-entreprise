@@ -53,7 +53,7 @@ Cette liste de recommandations est issue des audits RGAA et des corrections appo
 ### Concernant les liens
 
 -   Les liens qui ouvrent une nouvelle fenêtre doivent l'indiquer dans leur aria-label ou leur intitulé visible (ex: "GitHub, nouvelle fenêtre").
--   Les liens doivent être explicites : éviter "En savoir plus" seul. Préférer "En savoir plus sur le statut SASU" ou utiliser un `aria-label` contextuel.
+-   Les liens doivent être explicites : éviter "En savoir plus" seul, préférer "En savoir plus sur le statut SASU" ou utiliser un `aria-label` contextuel.
 
 ### Concernant les contrastes et couleurs
 
