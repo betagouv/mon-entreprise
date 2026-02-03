@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Card, Chip, Emoji, Grid, InfoBulle, SmallCard } from '@/design-system'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 
 type SimulateurCardProps = MergedSimulatorDataValues & {
 	small?: boolean
@@ -27,6 +28,13 @@ export function SimulateurCard({
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
+	const [, setNavigationOrigin] = useNavigationOrigin()
+
+	const handlePress = () => {
+		setNavigationOrigin(
+			fromGérer ? { fromGérer: true } : { fromSimulateurs: true }
+		)
+	}
 
 	const TitleTag = titleLevel
 
@@ -44,7 +52,7 @@ export function SimulateurCard({
 						pathname:
 							(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
 					}}
-					state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
+					onPress={handlePress}
 					title={
 						<span>
 							{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
@@ -77,7 +85,7 @@ export function SimulateurCard({
 						pathname:
 							(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
 					}}
-					state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
+					onPress={handlePress}
 				>
 					{meta?.description}
 				</Card>
