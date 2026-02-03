@@ -6,9 +6,19 @@ export const configIndépendant: SimulationConfig = {
 		"entreprise . chiffre d'affaires",
 		'indépendant . rémunération . totale',
 		'indépendant . rémunération . nette',
+		'indépendant . rémunération . nette . avec dividendes',
 		'indépendant . rémunération . nette . après impôt',
 	],
-	objectifs: ['indépendant . cotisations et contributions . début activité'],
+	objectifs: [
+		'indépendant . cotisations et contributions',
+		'indépendant . cotisations et contributions . avec dividendes',
+		'indépendant . cotisations et contributions . début activité',
+		'indépendant . rémunération . impôt',
+		'indépendant . rémunération . impôt . avec dividendes',
+		'protection sociale . retraite . trimestres',
+		'protection sociale . retraite . complémentaire',
+		'protection sociale . retraite . base',
+	],
 	questions: {
 		raccourcis: [
 			{
@@ -75,25 +85,4 @@ export const configIndépendant: SimulationConfig = {
 		'entreprise . imposition': "'IR'",
 	},
 	'règles à ignorer pour déclencher les questions': ['entreprise . imposition'],
-}
-
-export const configEntrepriseIndividuelle: SimulationConfig = {
-	...configIndépendant,
-	situation: {
-		'entreprise . EI': 'oui',
-	},
-}
-
-export const configEirl: SimulationConfig = {
-	...configIndépendant,
-	situation: {
-		'entreprise . EI': 'oui',
-	},
-}
-
-export const configEurl: SimulationConfig = {
-	...configIndépendant,
-	situation: {
-		'entreprise . EI': 'non',
-	},
 }
