@@ -1,34 +1,21 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { usePersistingState } from '@/components/utils/persistState'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Link } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useCurrentPath } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPage'
 
-type State = {
-	fromGérer?: boolean
-	fromCréer?: boolean
-	fromSimulateurs?: boolean
-}
-
 export default function Simulateurs() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { state, pathname } = useLocation()
-	const [lastState, setLastState] = usePersistingState<State>(
-		'navigation::simulateurs::locationState::v2',
-		{}
-	)
-	useEffect(() => {
-		if (state) {
-			setLastState(state as State)
-		}
-	}, [setLastState, state])
+	const pathname = useCurrentPath()
+	const [navigationOrigin] = useNavigationOrigin()
 	const simulatorsData = useSimulatorsData()
 	const simulatorRoutes = useMemo(
 		() =>
@@ -54,14 +41,14 @@ export default function Simulateurs() {
 			<ScrollToTop key={pathname} />
 
 			{pathname !== absoluteSitePaths.simulateurs.index &&
-				(lastState?.fromGérer ? (
+				(navigationOrigin?.fromGérer ? (
 					<Link
 						to={absoluteSitePaths.assistants['pour-mon-entreprise'].index}
 						noUnderline
 					>
 						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 					</Link>
-				) : lastState?.fromCréer ? (
+				) : navigationOrigin?.fromCréer ? (
 					<Link
 						to={absoluteSitePaths.assistants['choix-du-statut'].index}
 						noUnderline
@@ -69,7 +56,7 @@ export default function Simulateurs() {
 						<span aria-hidden>←</span> <Trans>Retour à la création</Trans>
 					</Link>
 				) : !isEmbedded ? (
-					(!lastState || lastState?.fromSimulateurs) && (
+					(!navigationOrigin || navigationOrigin?.fromSimulateurs) && (
 						<Link
 							className="print-hidden"
 							to={absoluteSitePaths.simulateurs.index}
