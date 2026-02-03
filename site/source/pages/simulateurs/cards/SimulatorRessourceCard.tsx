@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Article, Emoji } from '@/design-system'
+import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 
@@ -13,6 +14,8 @@ export function SimulatorRessourceCard({
 }: SimulatorRessourceCardProps) {
 	const simulator = useSimulatorsData()[simulatorId]
 	const { t } = useTranslation()
+	const [, setNavigationOrigin] = useNavigationOrigin()
+
 	if (!simulator.path) {
 		return null
 	}
@@ -32,7 +35,7 @@ export function SimulatorRessourceCard({
 				t('cards.simulator-resource.cta', 'Accéder au simulateur')
 			}
 			to={{ pathname: simulator.path }}
-			state={{ fromSimulateurs: true }}
+			onPress={() => setNavigationOrigin({ fromSimulateurs: true })}
 		>
 			{simulator.meta?.description}
 		</Article>
