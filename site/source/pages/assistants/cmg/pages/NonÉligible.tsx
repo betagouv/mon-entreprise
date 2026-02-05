@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
+import { useNavigate } from '@/lib/navigation'
 import { useCMG } from '@/contextes/cmg'
 import { Body, Button, FlexCenter, Li, Ul } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'

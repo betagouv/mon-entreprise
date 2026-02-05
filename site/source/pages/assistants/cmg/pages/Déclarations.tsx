@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
+import { useNavigate } from '@/lib/navigation'
 import {
 	auMoinsUneSalariée,
 	chaqueSalariéeAAuMoinsUneDéclaration,

@@ -1,12 +1,18 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import {
+	generatePath as rrGeneratePath,
+	matchPath as rrMatchPath,
+	useHref as useRRHref,
 	useLocation,
 	useMatch,
 	useParams,
 	useNavigate as useRRNavigate,
-	useSearchParams,
+	useSearchParams as useRRSearchParams,
 } from 'react-router-dom'
+
+export { rrGeneratePath as generatePath, rrMatchPath as matchPath }
 
 /**
  * Hook unifié pour la navigation programmatique
@@ -76,4 +82,38 @@ export function useMatchWithParams<T extends Record<string, string>>(
 	const match = useMatch(pattern)
 
 	return match?.params as T | null
+}
+
+/**
+ * Hook unifié pour les search params avec setter
+ * Abstraction de useSearchParams (react-router) pour future compatibilité Next.js
+ */
+export function useSearchParams() {
+	return useRRSearchParams()
+}
+
+/**
+ * Hook unifié pour obtenir l'URL href d'un path
+ * Abstraction de useHref (react-router) pour future compatibilité Next.js
+ */
+export function useHref(to: string): string {
+	return useRRHref(to)
+}
+
+/**
+ * Hook pour exécuter un callback lors d'une navigation
+ * Abstraction pour future compatibilité Next.js
+ */
+export function useOnNavigate(callback: () => void) {
+	const location = useLocation()
+	const isFirstRender = useRef(true)
+
+	useEffect(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false
+
+			return
+		}
+		callback()
+	}, [location, callback])
 }
