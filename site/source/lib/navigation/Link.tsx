@@ -1,7 +1,7 @@
 'use client'
 
-import { forwardRef } from 'react'
-import { Link as RRLink } from 'react-router-dom'
+import { ComponentProps, forwardRef } from 'react'
+import { Link as RRLink, NavLink as RRNavLink } from 'react-router-dom'
 
 interface LinkProps {
 	to: string
@@ -26,3 +26,15 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
 )
 
 Link.displayName = 'Link'
+
+/**
+ * Composant NavLink unifié
+ * Abstraction de NavLink (react-router) pour future compatibilité Next.js
+ * Permet d'appliquer des styles conditionnels selon si le lien est actif
+ */
+export const NavLink = forwardRef<
+	HTMLAnchorElement,
+	ComponentProps<typeof RRNavLink>
+>((props, ref) => <RRNavLink ref={ref} {...props} />)
+
+NavLink.displayName = 'NavLink'

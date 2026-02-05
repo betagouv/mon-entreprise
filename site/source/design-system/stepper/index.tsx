@@ -3,10 +3,9 @@ import { useSSRSafeId } from '@react-aria/ssr'
 import { AriaButtonProps } from '@react-types/button'
 import { ComponentPropsWithRef } from 'react'
 import { Trans } from 'react-i18next'
-import { Link as RouterLink } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
-import { useMatchPath } from '@/lib/navigation'
+import { Link as RouterLink, useMatchPath } from '@/lib/navigation'
 
 import { Link } from '../typography/link'
 
