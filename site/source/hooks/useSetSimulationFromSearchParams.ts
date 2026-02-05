@@ -5,9 +5,9 @@ import * as R from 'effect/Record'
 import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
 
 import { useEngine } from '@/components/utils/EngineContext'
+import { useSearchParams } from '@/lib/navigation'
 import {
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,

@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { generatePath, matchPath } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import Contact from '@/components/Contact'
@@ -15,7 +14,7 @@ import {
 	GithubIcon,
 	Link,
 } from '@/design-system'
-import { useCurrentPath } from '@/lib/navigation'
+import { generatePath, matchPath, useCurrentPath } from '@/lib/navigation'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 

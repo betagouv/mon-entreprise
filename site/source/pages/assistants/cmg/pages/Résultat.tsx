@@ -1,10 +1,10 @@
 import * as O from 'effect/Option'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
+import { useNavigate } from '@/lib/navigation'
 import { useCMG } from '@/contextes/cmg'
 import {
 	Body,

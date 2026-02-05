@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { generatePath, useNavigate } from 'react-router-dom'
 
 import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
+import { generatePath, useNavigate } from '@/lib/navigation'
 import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
 import { useEngine } from '@/components/utils/EngineContext'
 import {

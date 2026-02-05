@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
 
 import { toAtString } from '@/components/ATInternetTracking'
+import { useSearchParams } from '@/lib/navigation'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
