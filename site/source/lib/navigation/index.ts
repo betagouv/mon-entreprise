@@ -12,4 +12,4 @@ export {
 	useRouteParams,
 	useSearchParams,
 } from './hooks'
-export { Link } from './Link'
+export { Link, NavLink } from './Link'
