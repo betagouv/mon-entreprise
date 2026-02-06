@@ -1904,6 +1904,9 @@ dirigeant . indépendant . PL . CARMF . en retraite:
   question.fr: Êtes-vous à la retraite ?
   titre.en: '[automatic] retired'
   titre.fr: en retraite
+dirigeant . indépendant . PL . CARMF . exonération retraite complémentaire:
+  titre.en: '[automatic] supplementary pension exemption'
+  titre.fr: exonération retraite complémentaire
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   avec:
     part forfaitaire:
@@ -1946,6 +1949,19 @@ dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
     médicale) au financement de leurs cotisations du régime de base.
   titre.en: '[automatic] participation CPAM pension'
   titre.fr: participation CPAM retraite
+dirigeant . indépendant . PL . CARMF . plus de 40 ans à l'installation:
+  description.en: >
+    [automatic] The start-of-activity exemption for supplementary pensions does
+    not
+
+    does not apply to doctors who are over 40 when they start work.
+  description.fr: |
+    L'exonération de début d'activité pour la retraite complémentaire ne
+    s'applique pas aux médecins ayant plus de 40 ans lors de leur installation.
+  question.en: '[automatic] Were you over 40 when you started your own business?'
+  question.fr: Aviez-vous plus de 40 ans au début de votre activité libérale ?
+  titre.en: '[automatic] over 40 years old at installation'
+  titre.fr: plus de 40 ans à l'installation
 dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   avec:
     participation CPAM:
@@ -1955,19 +1971,37 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   titre.fr: retraite de base CNAVPL (après participation CPAM)
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   description.en: >-
-    [automatic] The CARMF manages the complementary pension scheme.
+    [automatic] CARMF manages the supplementary pension scheme.
 
-    The amount of the contributions is determined according to the net income from independent activity of the penultimate year.
+    The amount of contributions is determined on the basis of net self-employed income for the year before last.
 
-    Contributions for the first two years of membership are not due, unless you are over 40 years of age when you start your liberal activity. In that case, the contribution is proportional to the capped net self-employed income of 2018, without any subsequent adjustment, with a maximum contribution of € 14,110.
+    Contributions for the first two years of membership are not due, unless you were over 40 when you started your self-employed activity. In this case, the contribution is proportional to the capped net self-employed income for 2023, without subsequent adjustment, with a maximum contribution of €16,815.
   description.fr: >-
     La CARMF gère le régime de retraite complémentaire.
 
     Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
 
-    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous aviez plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2023 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 16 815 €.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
+dirigeant . indépendant . PL . CARMF . revenus non salariés N-1 et N-2:
+  description.en: >
+    [automatic] A doctor over the age of 40 who has not had any self-employed
+    income
+
+    income in the 2 years prior to setting up, can benefit from the exemption
+
+    for supplementary retirement.
+  description.fr: |
+    Un médecin de plus de 40 ans qui n'a pas eu de revenus non salariés
+    les 2 années précédant son installation peut bénéficier de l'exonération
+    de début d'activité pour la retraite complémentaire.
+  question.en: '[automatic] Did you have any self-employed income in the 2 years
+    preceding your installation?'
+  question.fr: Aviez-vous des revenus non salariés les 2 années précédant votre
+    installation ?
+  titre.en: '[automatic] self-employed income N-1 and N-2'
+  titre.fr: revenus non salariés N-1 et N-2
 dirigeant . indépendant . PL . CARPIMKO:
   description.en:
     '[automatic] CARPIMKO is the autonomous pension fund for medical
