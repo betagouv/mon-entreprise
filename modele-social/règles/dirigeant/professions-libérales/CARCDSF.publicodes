@@ -133,7 +133,7 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
       produit:
         - valeur: assiette des cotisations
           plafond: 5 * plafond sécurité sociale
-        - 0.725 %
+        - 0.725%
       unité: €/an
   
     participation CPAM:

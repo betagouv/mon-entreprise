@@ -596,42 +596,42 @@ impôt . taux neutre d'impôt sur le revenu:
             - plafond: 1620 €/mois
               montant: 0%
             - plafond: 1683 €/mois
-              montant: 0.5 %
+              montant: 0.5%
             - plafond: 1791 €/mois
-              montant: 1.3 %
+              montant: 1.3%
             - plafond: 1911 €/mois
-              montant: 2.1 %
+              montant: 2.1%
             - plafond: 2042 €/mois
-              montant: 2.9 %
+              montant: 2.9%
             - plafond: 2151 €/mois
-              montant: 3.5 %
+              montant: 3.5%
             - plafond: 2294 €/mois
-              montant: 4.1 %
+              montant: 4.1%
             - plafond: 2714 €/mois
-              montant: 5.3 %
+              montant: 5.3%
             - plafond: 3107 €/mois
-              montant: 7.5 %
+              montant: 7.5%
             - plafond: 3539 €/mois
-              montant: 9.9 %
+              montant: 9.9%
             - plafond: 3983 €/mois
-              montant: 11.9 %
+              montant: 11.9%
             - plafond: 4648 €/mois
-              montant: 13.8 %
+              montant: 13.8%
             - plafond: 5574 €/mois
-              montant: 15.8 %
+              montant: 15.8%
             - plafond: 6974 €/mois
-              montant: 17.9 %
+              montant: 17.9%
             - plafond: 8711 €/mois
               montant: 20%
             - plafond: 12091 €/mois
               montant: 24%
             - plafond: 16376 €/mois
-              montant: 28 %
+              montant: 28%
             - plafond: 25706 €/mois
-              montant: 33 %
+              montant: 33%
             - plafond: 55062 €/mois
-              montant: 38 %
-            - montant: 43 %
+              montant: 38%
+            - montant: 43%
     - si: date >= 01/01/2024
       alors:
         grille:
@@ -640,42 +640,42 @@ impôt . taux neutre d'impôt sur le revenu:
             - plafond: 1591 €/mois
               montant: 0%
             - plafond: 1653 €/mois
-              montant: 0.5 %
+              montant: 0.5%
             - plafond: 1759 €/mois
-              montant: 1.3 %
+              montant: 1.3%
             - plafond: 1877 €/mois
-              montant: 2.1 %
+              montant: 2.1%
             - plafond: 2006 €/mois
-              montant: 2.9 %
+              montant: 2.9%
             - plafond: 2113 €/mois
-              montant: 3.5 %
+              montant: 3.5%
             - plafond: 2253 €/mois
-              montant: 4.1 %
+              montant: 4.1%
             - plafond: 2666 €/mois
-              montant: 5.3 %
+              montant: 5.3%
             - plafond: 3052 €/mois
-              montant: 7.5 %
+              montant: 7.5%
             - plafond: 3476 €/mois
-              montant: 9.9 %
+              montant: 9.9%
             - plafond: 3913 €/mois
-              montant: 11.9 %
+              montant: 11.9%
             - plafond: 4566 €/mois
-              montant: 13.8 %
+              montant: 13.8%
             - plafond: 5475 €/mois
-              montant: 15.8 %
+              montant: 15.8%
             - plafond: 6851 €/mois
-              montant: 17.9 %
+              montant: 17.9%
             - plafond: 8557 €/mois
               montant: 20%
             - plafond: 11877 €/mois
               montant: 24%
             - plafond: 16086 €/mois
-              montant: 28 %
+              montant: 28%
             - plafond: 25251 €/mois
-              montant: 33 %
+              montant: 33%
             - plafond: 54088 €/mois
-              montant: 38 %
-            - montant: 43 %
+              montant: 38%
+            - montant: 43%
     - si: date >= 01/01/2023
       alors:
         grille:
@@ -684,42 +684,42 @@ impôt . taux neutre d'impôt sur le revenu:
             - plafond: 1518 €/mois
               montant: 0%
             - plafond: 1577 €/mois
-              montant: 0.5 %
+              montant: 0.5%
             - plafond: 1678 €/mois
-              montant: 1.3 %
+              montant: 1.3%
             - plafond: 1791 €/mois
-              montant: 2.1 %
+              montant: 2.1%
             - plafond: 1914 €/mois
-              montant: 2.9 %
+              montant: 2.9%
             - plafond: 2016 €/mois
-              montant: 3.5 %
+              montant: 3.5%
             - plafond: 2150 €/mois
-              montant: 4.1 %
+              montant: 4.1%
             - plafond: 2544 €/mois
-              montant: 5.3 %
+              montant: 5.3%
             - plafond: 2912 €/mois
-              montant: 7.5 %
+              montant: 7.5%
             - plafond: 3317 €/mois
-              montant: 9.9 %
+              montant: 9.9%
             - plafond: 3734 €/mois
-              montant: 11.9 %
+              montant: 11.9%
             - plafond: 4357 €/mois
-              montant: 13.8 %
+              montant: 13.8%
             - plafond: 5224 €/mois
-              montant: 15.8 %
+              montant: 15.8%
             - plafond: 6537 €/mois
-              montant: 17.9 %
+              montant: 17.9%
             - plafond: 8165 €/mois
               montant: 20%
             - plafond: 11333 €/mois
               montant: 24%
             - plafond: 15349 €/mois
-              montant: 28 %
+              montant: 28%
             - plafond: 24094 €/mois
-              montant: 33 %
+              montant: 33%
             - plafond: 51611 €/mois
-              montant: 38 %
-            - montant: 43 %
+              montant: 38%
+            - montant: 43%
 
     - si: date >= 01/01/2022
       alors:

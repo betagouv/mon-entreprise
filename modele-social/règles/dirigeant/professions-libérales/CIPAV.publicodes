@@ -251,7 +251,7 @@ dirigeant . indépendant . PL . CIPAV . conjoint collaborateur:
         - sinon:
             variations:
               - si: proportion . quart
-                alors: 25 %
+                alors: 25%
               - sinon: 50%
 
     proportion:

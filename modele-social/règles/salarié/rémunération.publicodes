@@ -490,12 +490,12 @@ salarié . rémunération . frais professionnels:
             Part du titre-restaurant payée par l'employeur. Doit être de 50% minimum
             et de 60% maximum.
           question: Quelle est la participation de l'employeur ?
-          par défaut: 50 %
+          par défaut: 50%
           plancher: 50%
           plafond: 60%
           suggestions:
-            50%: 50 %
-            60%: 60 %
+            50%: 50%
+            60%: 60%
 
     trajets domicile travail:
       références:

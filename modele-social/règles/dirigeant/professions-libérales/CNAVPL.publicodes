@@ -162,7 +162,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
       alors:
         produit:
           - plafond sécurité sociale
-          - 50 %
+          - 50%
     - si: proportion . quart
       alors:
         produit:
@@ -171,7 +171,7 @@ dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . assiette:
     - sinon:
         produit:
           - assiette des cotisations
-          - 50 %
+          - 50%
 
 dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . retraite:
   remplace: dirigeant . indépendant . conjoint collaborateur . cotisations .

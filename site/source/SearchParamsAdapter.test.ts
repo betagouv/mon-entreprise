@@ -266,6 +266,13 @@ describe('SearchParamsAdapter', () => {
 			expect(decoded).toEqual(original)
 		})
 
+		it('devrait préserver les pourcentages', () => {
+			const original = pourcentage(40)
+			const encoded = SearchParamsAdapter.encode(original)
+			const decoded = SearchParamsAdapter.decode(encoded)
+			expect(decoded).toEqual(original)
+		})
+
 		it('devrait préserver les nombres', () => {
 			const original = 123.45
 			const encoded = SearchParamsAdapter.encode(original)
