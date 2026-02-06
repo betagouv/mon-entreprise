@@ -68,9 +68,10 @@ salarié . cotisations . exonérations . heures supplémentaires:
         - rémunération . heures supplémentaires
         - taux des cotisations réduites
       références:
-        urssaf.fr: https://www.urssaf.fr/portail/home/employeur/beneficier-dune-exoneration/exonerations-generales/la-reduction-de-cotisations-sala/modalites-de-calcul-et-de-declar.html
-        Circulaire DSS/5B/2019/71: http://circulaire.legifrance.gouv.fr/pdf/2019/04/cir_44492.pdf
-        Code de la sécurité sociale - Article D241-21: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000038056813&cidTexte=LEGITEXT000006073189
+        Réduction de cotisations salariales: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-heures/reduction-cotisations-salariales.html
+        Calcul du montant de la réduction: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-heures-supplementai.html#350
+        Article L241-17 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947458
+        Article D241-21 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038056813
 
     salarié . taux des cotisations réduites:
       description:
