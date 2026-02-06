@@ -116,7 +116,7 @@ dirigeant . assimilé salarié:
 
     - salarié . cotisations . chômage
     - salarié . cotisations . exonérations . lodeom
-    - salarié . cotisations . exonérations . réduction générale
+    - salarié . cotisations . exonérations . RGDU
     - salarié . cotisations . AGS
     - salarié . cotisations . APEC
     - salarié . cotisations . contribution au dialogue social
