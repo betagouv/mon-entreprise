@@ -39,8 +39,8 @@ salarié . cotisations . exonérations . heures supplémentaires:
     employeur:
       applicable si:
         toutes ces conditions:
-          - entreprise . salariés . effectif < 250
           - temps de travail . heures supplémentaires > 0
+          - exonérations . réduction générale > 0
       titre: déduction forfaitaire pour heures supplémentaires
       produit:
         - temps de travail . heures supplémentaires
@@ -48,9 +48,12 @@ salarié . cotisations . exonérations . heures supplémentaires:
             - si: entreprise . salariés . effectif >= 20
               alors:
                 applicable si:
-                  toutes ces conditions:
-                    - date >= 10/2022
-                    - date < 01/2025
+                  une de ces conditions:
+                    - toutes ces conditions:
+                      - date >= 10/2022
+                      - date < 01/2025
+                      - entreprise . salariés . effectif < 250
+                    - date >= 01/2026
                 valeur: 0.50 €/heure
             - sinon: 1.50 €/heure
       note: La déduction ne s’applique pas aux heures complémentaires
