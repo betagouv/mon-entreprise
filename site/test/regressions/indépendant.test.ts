@@ -12,7 +12,7 @@ const engine = engineFactory(rules)
 
 it('calculate simulations-indépendant', () => {
 	const objectifs = [
-		'indépendant . rémunération . totale',
+		'indépendant . rémunération . brute',
 		'indépendant . cotisations et contributions . cotisations',
 		'indépendant . rémunération . nette',
 		'indépendant . revenu professionnel',

@@ -99,11 +99,11 @@ describe('Indépendant', () => {
 		}
 		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 26217
 
-		describe('à partir de la rémunération totale', () => {
+		describe('à partir de la rémunération brute', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . totale': `${RÉMUNÉRATION_TOTALE} €/an`,
+					'indépendant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
 				})
 
 				expect(e).toEvaluate(
@@ -111,10 +111,21 @@ describe('Indépendant', () => {
 					RÉMUNÉRATION_NETTE
 				)
 			})
+			it('calcule la rémunération nette avec dividendes', () => {
+				const e = engine.setSituation({
+					...situationParDéfaut,
+					'indépendant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . rémunération . nette . avec dividendes',
+					RÉMUNÉRATION_NETTE
+				)
+			})
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . totale': `${RÉMUNÉRATION_TOTALE} €/an`,
+					'indépendant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
 				})
 
 				expect(e).toEvaluate(
@@ -125,14 +136,14 @@ describe('Indépendant', () => {
 		})
 
 		describe('à partir de la rémunération nette', () => {
-			it('calcule la rémunération totale', () => {
+			it('calcule la rémunération brute', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
 					'indépendant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				const rémunérationTotaleCalculée = e.evaluate(
-					'indépendant . rémunération . totale'
+					'indépendant . rémunération . brute'
 				).nodeValue as number
 				expect(
 					Math.abs(RÉMUNÉRATION_TOTALE - rémunérationTotaleCalculée)
@@ -142,6 +153,33 @@ describe('Indépendant', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
 					'indépendant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . rémunération . nette . après impôt',
+					RÉMUNÉRATION_NETTE_APRÈS_IMPÔT
+				)
+			})
+		})
+
+		describe('à partir de la rémunération nette avec dividendes', () => {
+			it('calcule la rémunération brute', () => {
+				const e = engine.setSituation({
+					...situationParDéfaut,
+					'indépendant . rémunération . nette . avec dividendes': `${RÉMUNÉRATION_NETTE} €/an`,
+				})
+
+				const rémunérationTotaleCalculée = e.evaluate(
+					'indépendant . rémunération . brute'
+				).nodeValue as number
+				expect(
+					Math.abs(RÉMUNÉRATION_TOTALE - rémunérationTotaleCalculée)
+				).toBeLessThanOrEqual(1)
+			})
+			it('calcule le revenu après impôt', () => {
+				const e = engine.setSituation({
+					...situationParDéfaut,
+					'indépendant . rémunération . nette . avec dividendes': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				expect(e).toEvaluate(
@@ -165,14 +203,27 @@ describe('Indépendant', () => {
 					Math.abs(RÉMUNÉRATION_NETTE - rémunérationNetteCalculée)
 				).toBeLessThanOrEqual(1)
 			})
-			it('calcule la rémunération totale', () => {
+			it('calcule la rémunération nette avec dividendes', () => {
+				const e = engine.setSituation({
+					...situationParDéfaut,
+					'indépendant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
+				})
+
+				const rémunérationNetteCalculée = e.evaluate(
+					'indépendant . rémunération . nette . avec dividendes'
+				).nodeValue as number
+				expect(
+					Math.abs(RÉMUNÉRATION_NETTE - rémunérationNetteCalculée)
+				).toBeLessThanOrEqual(1)
+			})
+			it('calcule la rémunération brute', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
 					'indépendant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
 				})
 
 				const rémunérationTotaleCalculée = e.evaluate(
-					'indépendant . rémunération . totale'
+					'indépendant . rémunération . brute'
 				).nodeValue as number
 				expect(
 					Math.abs(RÉMUNÉRATION_TOTALE - rémunérationTotaleCalculée)
