@@ -119,16 +119,20 @@ protection sociale . retraite . base . cotisée:
   arrondi: oui
   valeur:
     indépendant . cotisations et contributions . cotisations . retraite de
-    base / indépendant . cotisations et contributions . cotisations . retraite
-    de base . tranche 1 . taux
+    base / (indépendant . cotisations et contributions . cotisations . retraite
+    de base . tranche 1 . taux + indépendant . cotisations et contributions . cotisations . retraite
+    de base . tranche 2 . taux)
   plafond: plafond sécurité sociale
   description: |
     Le revenu cotisé pour la retraite de base est égal à :
 
     [Cotisations à la retraite de base](/documentation/modele-ti/indépendant/
-    cotisations-et-contributions/cotisations/retraite-de-base) / [taux de cotisation à la
-    retraite de base](/documentation/modele-ti/indépendant/
-    cotisations-et-contributions/cotisations/retraite-de-base/taux)
+    cotisations-et-contributions/cotisations/retraite-de-base) / ([taux 1 de la
+    cotisation à la retraite de base](/documentation/modele-ti/indépendant/
+    cotisations-et-contributions/cotisations/retraite-de-base/tranche-1/taux) +
+    [taux 5 de cotisation à la retraite de base](/documentation/modele-ti/
+    indépendant/ cotisations-et-contributions/cotisations/retraite-de-base/
+    tranche-2/taux))
 
     En cas d’exonération de cotisations, un montant plancher est utilisé pour le
     calcul.
