@@ -4,6 +4,7 @@ import RuleInput from '@/components/conversation/RuleInput'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import AvertissementAnnéeCotisationsIndépendant from '@/components/Simulation/Avertissements/AvertissementAnnéeCotisationsIndépendant'
+import AvertissementDoubleRégimeIndépendant from '@/components/Simulation/Avertissements/AvertissementDoubleRégimeIndépendant'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Body } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
@@ -74,6 +75,9 @@ export default function IndépendantBase({ id }: Props) {
 								{Warning && <Warning />}
 								<Body>
 									<AvertissementAnnéeCotisationsIndépendant />
+								</Body>
+								<Body>
+									<AvertissementDoubleRégimeIndépendant />
 								</Body>
 							</>
 						}

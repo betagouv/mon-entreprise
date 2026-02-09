@@ -1825,8 +1825,11 @@ pages:
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning:
-        année-courante: Le montant calculé correspond aux cotisations de l’année {{ year
-          }} (pour un revenu {{ year }}).
+        année-courante: Le montant calculé correspond aux <2>cotisations de l’année
+          {{year}}</2> (pour un revenu {{year}}).
+        double-régime: Ce simulateur ne prend pas en compte la situation des usagers
+          ayant <2>deux régimes d’imposition différents</2> (régime réel et
+          micro-fiscal) sur une même année.
     is:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
