@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
@@ -24,42 +26,52 @@ export const ObjectifsIndépendant = ({
 	</SimulationGoals>
 )
 
-const ObjectifsIR = () => (
-	<>
-		<Condition expression="entreprise . imposition . IR . régime micro-fiscal = non">
+const ObjectifsIR = () => {
+	const { t } = useTranslation()
+
+	return (
+		<>
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal = non">
+				<SimulationGoal
+					appear={false}
+					dottedName="entreprise . chiffre d'affaires"
+				/>
+			</Condition>
+
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
+				<ChiffreAffairesActivitéMixte dottedName="entreprise . chiffre d'affaires" />
+			</Condition>
+
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal != oui">
+				<SimulationGoal appear={false} dottedName="entreprise . charges" />
+			</Condition>
+
 			<SimulationGoal
-				appear={false}
-				dottedName="entreprise . chiffre d'affaires"
+				small
+				editable={false}
+				dottedName="indépendant . cotisations et contributions"
 			/>
-		</Condition>
 
-		<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
-			<ChiffreAffairesActivitéMixte dottedName="entreprise . chiffre d'affaires" />
-		</Condition>
+			<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
+				<SimulationGoal appear={false} dottedName="entreprise . charges" />
+			</Condition>
 
-		<Condition expression="entreprise . imposition . IR . régime micro-fiscal != oui">
-			<SimulationGoal appear={false} dottedName="entreprise . charges" />
-		</Condition>
+			<SimulationGoal
+				dottedName="indépendant . rémunération . nette"
+				label={t(
+					'pages.simulateurs.indépendant.label.rémunération-nette',
+					'Revenu net'
+				)}
+			/>
 
-		<SimulationGoal
-			small
-			editable={false}
-			dottedName="indépendant . cotisations et contributions"
-		/>
-
-		<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
-			<SimulationGoal appear={false} dottedName="entreprise . charges" />
-		</Condition>
-
-		<SimulationGoal dottedName="indépendant . rémunération . nette" />
-
-		<SimulationGoal
-			small
-			editable={false}
-			dottedName="indépendant . rémunération . impôt"
-		/>
-	</>
-)
+			<SimulationGoal
+				small
+				editable={false}
+				dottedName="indépendant . rémunération . impôt"
+			/>
+		</>
+	)
+}
 
 const ObjectifsIS = () => {
 	const engine = useEngine()
