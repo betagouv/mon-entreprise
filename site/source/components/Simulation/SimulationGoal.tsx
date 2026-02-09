@@ -161,7 +161,7 @@ export function SimulationGoal({
 				valeur={valeurMontant}
 				rendreChampSaisie={RuleInputWrapper}
 				isInfoMode={isInfoMode}
-				small={small}
+				avecDescription={!small}
 				appear={appear}
 			/>
 		)

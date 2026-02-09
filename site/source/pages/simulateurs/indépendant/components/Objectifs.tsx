@@ -83,6 +83,7 @@ const ObjectifsIS = () => {
 		<>
 			<SimulationGoal
 				appear={false}
+				small={true}
 				dottedName="indépendant . rémunération . brute"
 			/>
 
