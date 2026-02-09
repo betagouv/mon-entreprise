@@ -1708,6 +1708,8 @@ pages:
           impôt: Tax
           revenu: Disposable income
           titre: Income breakdown
+      label:
+        rémunération-nette: Net income
       meta:
         description: Calculating net income after tax and contributions from sales and
           vice versa
