@@ -132,20 +132,24 @@ indépendant . profession libérale . réglementée . CARMF . en retraite:
   références:
     Régime invalidité-décès en cas de cumul retraite et activité libérale: https://www.carmf.fr/page.php?page=cdrom/retr/retr-continuer.htm#:~:text=Si%20vous%20cumulez%20retraite%20et,%2C%20rente%20invalidit%C3%A9%2C%20capital%20d%C3%A9c%C3%A8s.
 
-indépendant . profession libérale . réglementée . CARMF . ASV:
-  titre: Allocations supplémentaires de vieillesse
-  remplace: cotisations et contributions . cotisations . PCV
+indépendant . profession libérale . réglementée . CARMF . PCV:
+  titre: Prestations complémentaires vieillesse (PCV)
   description: >-
-    Le régime des allocations supplémentaires de vieillesse (ASV) s'applique
+    Les prestations complémentaires vieillesse (PCV) s'appliquent
     pour les médecins conventionnés.
 
-    Il fonctionne en points et comprend une part forfaitaire et une part d’ajustement calculée sur le revenu conventionnel de N-2.
+    Ce régime fonctionne en points et comprend une part forfaitaire et une part
+    d’ajustement calculée sur le revenu conventionnel de N-2.
 
-    Les deux tiers de la cotisation des médecins en secteur 1 sont financés par les Caisses maladie.
+    Les deux tiers de la cotisation des médecins en secteur 1 sont financés par les
+    caisses d’assurance maladie.
   non applicable si: métier . santé . médecin . secteur = 'non conventionné'
-  valeur: assiette
+  somme:
+    - cotisation forfaitaire
+    - cotisation proportionnelle
   abattement: participation CPAM
   arrondi: oui
+  unité: €/an
 
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
@@ -154,13 +158,7 @@ indépendant . profession libérale . réglementée . CARMF . ASV:
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
 
   avec:
-    assiette:
-      somme:
-        - forfaitaire
-        - ajustement
-      unité: €/an
-
-    forfaitaire:
+    cotisation forfaitaire:
       variations:
         - si: date >= 01/2025
           alors: 5556 €/an
@@ -168,15 +166,16 @@ indépendant . profession libérale . réglementée . CARMF . ASV:
           alors: 5421 €/an
         - sinon: 5622 €/an
 
-    ajustement:
+    cotisation proportionnelle:
       produit:
         - valeur: PAMC . assiette conventionnée
           plafond: 5 * plafond sécurité sociale
         - 3.80%
       unité: €/an
 
-indépendant . profession libérale . réglementée . CARMF . ASV . participation CPAM:
-  applicable si: métier . santé . médecin . secteur = 'S1'
-  produit:
-    - assiette
-    - 2 / 3
+    participation CPAM:
+      applicable si: métier . santé . médecin . secteur = 'S1'
+      somme:
+        - valeur: (2 / 3) * cotisation forfaitaire
+          arrondi: oui
+        - (2 / 3) * cotisation proportionnelle
