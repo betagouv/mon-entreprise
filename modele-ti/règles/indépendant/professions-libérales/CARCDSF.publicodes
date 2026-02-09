@@ -80,6 +80,13 @@ indépendant . profession libérale . réglementée . CARCDSF . invalidité et d
     - si: sage-femme
       alors: sage-femme . RID
 
+indépendant . profession libérale . réglementée . CARCDSF . PCV:
+  variations:
+    - si: chirurgien-dentiste
+      alors: chirurgien-dentiste . PCV
+    - si: sage-femme
+      alors: sage-femme . PCV
+
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste: métier = 'santé . chirurgien-dentiste'
 
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . RID:
@@ -93,9 +100,7 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . PCV:
-  titre: Prestation complémentaire vieillesse
-  remplace: cotisations et contributions . cotisations . PCV
-  non applicable si: exonération PCV
+  titre: Prestations complémentaires vieillesse (PCV)
   note:
     Une dispense peut être accordée lorsque les revenus professionnels 2019
     sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
@@ -107,36 +112,36 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
 
     Cette dispense entraîne l’annulation des droits pour l’année et
     les points non cotisés ne sont pas rachetables.
-
+  non applicable si: exonération PCV
   somme:
-    - forfaitaire
-    - proportionnelle
+    - cotisation forfaitaire
+    - cotisation proportionnelle
   arrondi: oui
+  unité: €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
     Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
   avec:
-    forfaitaire:
+    cotisation forfaitaire:
       variations:
         - si: date >= 01/2025
-          alors: 1648.76 €/an
+          alors: 4946.28 €/an
         - si: date >= 01/2024
-          alors: 1618.84 €/an
-        - sinon: 1544.36 €/an
+          alors: 4856.52 €/an
+        - sinon: 4633.08 €/an
 
-    proportionnelle:
+    cotisation proportionnelle:
       produit:
         - valeur: cotisations et contributions . assiette sociale
           plafond: 5 * plafond sécurité sociale
-        - 0.725 %
+        - 1.45 %
       unité: €/an
   
     participation CPAM:
-      formule:
-        somme:
-          - 2 * forfaitaire
-          - proportionnelle
+      somme:
+        - (2 / 3) * cotisation forfaitaire
+        - (1 / 2) * cotisation proportionnelle
       références:
         Mémento des chirurgiens dentistes: https://www.carcdsf.fr/images/pdf/2025/Memento_CD_WEB.pdf#page=8
 
@@ -167,8 +172,7 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID
     Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
 indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV:
-  remplace: cotisations et contributions . cotisations . PCV
-  non applicable si: exonération PCV
+  titre: Prestations complémentaires vieillesse (PCV)
   description: |
     Pour 2020, le montant est fixé à 780 € dont un tiers, soit 260 € à votre
     charge et 520 € à la charge des Caisses Primaires d’Assurance Maladie
@@ -183,17 +187,21 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV
 
     Cette dispense entraîne l’annulation des droits pour l’année et les points
     non cotisés ne sont pas rachetables.
+  non applicable si: exonération PCV
+  valeur: cotisation forfaitaire
+  abattement: participation CPAM
+  arrondi: oui
+  unité: €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
     Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
 
-  formule:
-    valeur: 780 €/an
-    abattement: participation CPAM
-  
   avec:
+    cotisation forfaitaire: 780 €/an
+
     participation CPAM:
-      valeur: 520 €/an
+      valeur: (2 / 3) * cotisation forfaitaire
+      arrondi: oui
       références:
         Mémento des sages-femmes: https://www.carcdsf.fr/images/pdf/2025/Memento_SF_WEB.pdf#page=8
 
