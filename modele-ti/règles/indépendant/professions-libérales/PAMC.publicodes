@@ -247,14 +247,14 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
   formule:
     produit:
       - assiette conventionnée
-      - 1 - taux Urssaf / (1 + taux Urssaf)
+      - 1 - taux dentiste / (1 + taux dentiste)
   références:
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
+indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste:
   description: |
-    Le « taux Urssaf » permet de calculer la part de votre cotisation d’assurance
+    Le « taux dentiste » permet de calculer la part de votre cotisation d’assurance
     maladie-maternité prise en charge par la CPAM.
 
     Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
@@ -268,7 +268,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
 
     La formule de calcul du taux de dépassement est la suivante :
 
-    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
+    > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
     > remboursables actes + montants remboursés forfaits CMU)
   question: Quel est votre « taux Urssaf » ?
   unité: ''
@@ -276,11 +276,11 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
   références:
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
-  formule: taux Urssaf >= 100
+indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste . notification:
+  formule: taux dentiste >= 100
   type: notification
   sévérité: avertissement
-  description: Le taux Urssaf doit être inférieur à 100
+  description: Le taux dentiste doit être inférieur à 100
 
 indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   titre: Participation assurance maladie
