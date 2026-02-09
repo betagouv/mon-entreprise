@@ -22,7 +22,7 @@ indépendant . rémunération . brute:
 
 indépendant . rémunération . nette:
   titre: Rémunération nette
-  résumé: Après déduction des cotisations, contributions et charges
+  résumé: Après déduction des charges, y compris les cotisations et contributions
   somme:
     - rémunération . brute
     - (- cotisations et contributions)
