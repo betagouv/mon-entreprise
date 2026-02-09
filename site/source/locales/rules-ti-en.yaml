@@ -4955,8 +4955,8 @@ indépendant . rémunération . impôt . avec dividendes:
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
 indépendant . rémunération . nette:
-  résumé.en: '[automatic] After deduction of contributions and expenses'
-  résumé.fr: Après déduction des cotisations, contributions et charges
+  résumé.en: '[automatic] After deduction of expenses, including contributions'
+  résumé.fr: Après déduction des charges, y compris les cotisations et contributions
   titre.en: '[automatic] Net remuneration'
   titre.fr: Rémunération nette
 indépendant . rémunération . nette . après impôt:
