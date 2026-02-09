@@ -170,7 +170,7 @@ indépendant . profession libérale . réglementée . CARMF . ASV:
 
     ajustement:
       produit:
-        - valeur: PAMC . revenus activité conventionnée
+        - valeur: PAMC . assiette conventionnée
           plafond: 5 * plafond sécurité sociale
         - 3.80%
       unité: €/an
