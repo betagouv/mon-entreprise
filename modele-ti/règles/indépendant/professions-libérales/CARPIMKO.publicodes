@@ -41,20 +41,19 @@ indépendant . profession libérale . réglementée . CARPIMKO . invalidité et 
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
-indépendant . profession libérale . réglementée . CARPIMKO . ASV:
-  titre: Avantage social vieillesse
-  remplace: cotisations et contributions . cotisations . PCV
-  formule:
-    somme:
-      - forfaitaire
-      - proportionnelle
-      - (- participation CPAM)
-    arrondi: oui
+indépendant . profession libérale . réglementée . CARPIMKO . PCV:
+  titre: Prestations complémentaires vieillesse (PCV)
+  somme:
+    - cotisation forfaitaire
+    - cotisation proportionnelle
+  abattement: participation CPAM
+  arrondi: oui
+  unité: €/an
   références:
     Taux Carpimko: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
   avec:
-    forfaitaire:
+    cotisation forfaitaire:
       variations:
         - si: date >= 01/2025
           alors: 665 €/an
@@ -62,16 +61,13 @@ indépendant . profession libérale . réglementée . CARPIMKO . ASV:
           alors: 657 €/an
         - sinon: 634 €/an
 
-    proportionnelle:
+    cotisation proportionnelle:
       produit:
         - PAMC . assiette participation CPAM
         - 0.40%
 
-indépendant . profession libérale . réglementée . CARPIMKO . ASV . participation CPAM:
-  formule:
-    somme:
-      - produit:
-          - forfaitaire
-          - 2 / 3
-        arrondi: oui
-      - 60% * proportionnelle
+    participation CPAM:
+      somme:
+        - valeur: (2 / 3) * cotisation forfaitaire
+          arrondi: oui
+        - 60% * cotisation proportionnelle
