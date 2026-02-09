@@ -30,7 +30,7 @@ describe('Indépendant', () => {
 		it('à l’IS', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 
 			expect(e).toEvaluate('indépendant . revenu brut', 40000)
@@ -43,7 +43,7 @@ describe('Indépendant', () => {
 		it('avec un abattement plafonné à 1,3 Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
-				'indépendant . rémunération . totale': '250000 €/an',
+				'indépendant . rémunération . brute': '250000 €/an',
 			})
 
 			expect(e).toEvaluate(
@@ -55,7 +55,7 @@ describe('Indépendant', () => {
 		it('avec un abattement plancher de 1,76% du Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
-				'indépendant . rémunération . totale': '1000 €/an',
+				'indépendant . rémunération . brute': '1000 €/an',
 			})
 
 			expect(e).toEvaluate(
@@ -68,7 +68,7 @@ describe('Indépendant', () => {
 	describe('calcule l’assiette sociale', () => {
 		const situationParDéfaut = {
 			'entreprise . imposition': "'IS'",
-			'indépendant . rémunération . totale': '40000 €/an',
+			'indépendant . rémunération . brute': '40000 €/an',
 		}
 
 		it('sans ajustements', () => {

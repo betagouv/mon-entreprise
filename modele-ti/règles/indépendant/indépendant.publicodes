@@ -69,7 +69,7 @@ indépendant . revenu brut:
       alors: entreprise . chiffre d'affaires - entreprise . charges
     - sinon:
         somme:
-          - rémunération . totale
+          - rémunération . brute
           - dividendes . soumis à cotisations sociales
   références:
     Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html

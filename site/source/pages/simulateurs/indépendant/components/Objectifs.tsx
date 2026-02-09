@@ -71,7 +71,7 @@ const ObjectifsIS = () => {
 		<>
 			<SimulationGoal
 				appear={false}
-				dottedName="indépendant . rémunération . totale"
+				dottedName="indépendant . rémunération . brute"
 			/>
 
 			<SimulationGoal appear={false} dottedName="indépendant . dividendes" />

@@ -77,7 +77,7 @@ entreprise . résultat fiscal:
         Les montants liés à la rémunération du dirigeant qui sont déductibles d’impôt.
       variations:
         - si: imposition . IS
-          alors: indépendant . rémunération . totale
+          alors: indépendant . rémunération . brute
         - sinon:
             valeur: indépendant . cotisations et contributions
             abattement: indépendant . cotisations et contributions . non déductibles
