@@ -1816,6 +1816,8 @@ pages:
           impôt: Impôt
           revenu: Revenu disponible
           titre: Répartition du revenu
+      label:
+        rémunération-nette: Revenu net
       meta:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
