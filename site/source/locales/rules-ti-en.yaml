@@ -4893,21 +4893,41 @@ indépendant . rémunération:
   titre.fr: rémunération
 indépendant . rémunération . brute:
   description.en: >
-    [automatic] This is how much the company spends on executive remuneration.
+    [automatic] This is the amount of gross remuneration received, including
+    personal benefits
 
-    This "super-gross" remuneration includes all social security contributions payable.
+    benefits (social security contributions paid by the company, benefits in kind, etc.), without
 
-    It can also be considered as the monetary value of the executive's work.
+    contributions, benefits in kind, etc.), without any deductions:
+
+    - do not deduct social security contributions or CSG-CRDS ;
+
+    - do not deduct tax-exempt amounts (amounts paid into a retirement savings plan
+
+    savings plan, Madelin contributions, etc.).
   description.fr: >
-    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+    Il s’agit du montant des rémunérations brutes perçues, y compris les
+    avantages
 
-    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+    personnels (prise en charge des cotisations et/ou contributions sociales par la
 
-    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
-  résumé.en: "[automatic] Total paid by the company for the executive's
-    remuneration, including contributions"
-  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,
-    cotisations et contributions incluses
+    société, avantages en nature…), sans aucune déduction :
+
+    - ne pas déduire les cotisations sociales ni la CSG-CRDS ;
+
+    - ne pas déduire les montants exonérés fiscalements (montants versés dans un
+
+    plan d’épargne retraite, cotisations Madelin…).
+  résumé.en: >
+    [automatic] Total paid by the company for the executive's remuneration,
+    including contributions
+
+    contributions
+  résumé.fr: >
+    Total payé par l’entreprise pour la rémunération du dirigeant, cotisations
+    et
+
+    contributions incluses
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute
 indépendant . rémunération . impôt:

@@ -3,10 +3,15 @@ indépendant . rémunération: oui
 indépendant . rémunération . brute:
   titre: Rémunération brute
   description: |
-    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
-    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
-    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
-  résumé: Total payé par l'entreprise pour la rémunération du dirigeant, cotisations et contributions incluses
+    Il s’agit du montant des rémunérations brutes perçues, y compris les avantages
+    personnels (prise en charge des cotisations et/ou contributions sociales par la
+    société, avantages en nature…), sans aucune déduction :
+    - ne pas déduire les cotisations sociales ni la CSG-CRDS ;
+    - ne pas déduire les montants exonérés fiscalements (montants versés dans un
+    plan d’épargne retraite, cotisations Madelin…).
+  résumé: |
+    Total payé par l’entreprise pour la rémunération du dirigeant, cotisations et
+    contributions incluses
   variations:
     - si: entreprise . imposition . IS
       alors:
