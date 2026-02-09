@@ -52,10 +52,10 @@ export const CessationActivitéGoals = () => {
 			<Condition expression="entreprise . imposition = 'IS'">
 				<SimulationGoal
 					appear={false}
-					dottedName="indépendant . rémunération . totale"
+					dottedName="indépendant . rémunération . brute"
 					label={t(
 						'pages.simulateurs.cessation-activité.label.rémunération',
-						"Rémunération totale pour l'année de cessation"
+						"Rémunération brute pour l'année de cessation"
 					)}
 				/>
 

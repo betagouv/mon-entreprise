@@ -4,7 +4,7 @@ export const configIndépendant: SimulationConfig = {
 	nomModèle: 'modele-ti',
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
-		'indépendant . rémunération . totale',
+		'indépendant . rémunération . brute',
 		'indépendant . rémunération . nette',
 		'indépendant . rémunération . nette . après impôt',
 	],

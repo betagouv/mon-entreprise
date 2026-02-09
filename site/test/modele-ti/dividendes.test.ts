@@ -67,7 +67,7 @@ describe('Dividendes', () => {
 		const dividendes = 1000
 		const defaultSituationAvecDividendes = {
 			...defaultSituation,
-			'indépendant . rémunération . totale': '40000 €/an',
+			'indépendant . rémunération . brute': '40000 €/an',
 			'indépendant . dividendes': `${dividendes} €/an`,
 			'entreprise . capital social': '10000 €',
 		}
@@ -96,7 +96,7 @@ describe('Dividendes', () => {
 		it('s’ajoutent à la rémunération nette avec dividendes après prélèvements sociaux', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteSansDividendes = e1.evaluate(
 				'indépendant . rémunération . nette . avec dividendes'
@@ -127,7 +127,7 @@ describe('Dividendes', () => {
 		it('ne modifient pas la rémunération imposable en cas de PFU', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteImposableSansDividendes = e1.evaluate(
 				'indépendant . rémunération . nette . imposable'
@@ -146,7 +146,7 @@ describe('Dividendes', () => {
 		it('ne modifient pas le montant de l’impôt en cas de PFU', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const impôtSansDividendes = e1.evaluate(
 				'indépendant . rémunération . impôt'
@@ -163,7 +163,7 @@ describe('Dividendes', () => {
 		it('s’ajoutent à la rémunération nette après impôt après prélèvements sociaux et PFU', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteAprèsImpôtSansDividendes = e1.evaluate(
 				'indépendant . rémunération . nette . après impôt'
@@ -206,7 +206,7 @@ describe('Dividendes', () => {
 		it('s’ajoutent à la rémunération nette imposable en cas d’imposition au barème progressif', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteImposableSansDividendes = e1.evaluate(
 				'indépendant . rémunération . nette . imposable'
@@ -234,7 +234,7 @@ describe('Dividendes', () => {
 		const dividendes = 1200
 		const defaultSituationAvecDividendes = {
 			...defaultSituation,
-			'indépendant . rémunération . totale': `${rémunérationTotale} €/an`,
+			'indépendant . rémunération . brute': `${rémunérationTotale} €/an`,
 			'indépendant . dividendes': `${dividendes} €/an`,
 			'entreprise . capital social': '10000 €',
 		}
@@ -266,7 +266,7 @@ describe('Dividendes', () => {
 		it('la part soumise à cotisations sociales est intégrée au revenu brut', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const revenuBrutSansDividendes = e1.evaluate('indépendant . revenu brut')
 				.nodeValue as number
@@ -282,10 +282,10 @@ describe('Dividendes', () => {
 			)
 		})
 
-		it('la part soumise à cotisations sociales augmente les cotisations et contributions autant qu’une augmentation de rémunération totale', () => {
+		it('la part soumise à cotisations sociales augmente les cotisations et contributions autant qu’une augmentation de rémunération brute', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': `${
+				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,
 			})
@@ -309,7 +309,7 @@ describe('Dividendes', () => {
 			// celle-ci est donc inférieure.
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteSansDividendes = e.evaluate(
 				'indépendant . rémunération . nette'
@@ -320,7 +320,7 @@ describe('Dividendes', () => {
 
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': `${
+				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,
 			})
@@ -342,7 +342,7 @@ describe('Dividendes', () => {
 		it('s’ajoutent à la la rémunération nette avec dividendes après prélèvements sociaux', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteSansDividendes = e.evaluate(
 				'indépendant . rémunération . nette . avec dividendes'
@@ -353,7 +353,7 @@ describe('Dividendes', () => {
 
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': `${
+				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,
 			})
@@ -388,7 +388,7 @@ describe('Dividendes', () => {
 		it('ne s’ajoutent pas à la rémunération nette imposable', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': '40000 €/an',
+				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteImposableSansDividendes = e.evaluate(
 				'indépendant . rémunération . nette . imposable'
@@ -402,7 +402,7 @@ describe('Dividendes', () => {
 
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . rémunération . totale': `${
+				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,
 			})
