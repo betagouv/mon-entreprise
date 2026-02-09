@@ -109,14 +109,14 @@ indépendant . profession libérale . réglementée . PAMC . dépassement d'hono
   question: Quels est votre dépassement honoraires moyen (estimation) ?
   par défaut: 0%
 
-indépendant . profession libérale . réglementée . PAMC . revenus activité conventionnée:
+indépendant . profession libérale . réglementée . PAMC . assiette conventionnée:
   description: |
     Les revenus conventionnés sont ceux correspondant aux recettes tirées des
     honoraires et des rémunérations forfaitaires versées par la CPAM.
   note: |
     Pour éviter d’avoir à ventiler les charges entre celles issues de
     l’activité conventionnée et celles qui ne le sont pas (ce qui aboutirait à
-    deux comptabilités distinct), on peut le calculer à partir du revenu
+    deux comptabilités distinctes), on peut le calculer à partir du revenu
     professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
     provenant des actes conventionnés.
   formule:
@@ -132,7 +132,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
 
     Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
     conventionnée.
-  formule: revenus activité conventionnée / (100% + dépassement d'honoraire moyen)
+  formule: assiette conventionnée / (100% + dépassement d'honoraire moyen)
   note: |
     La formule donnée par l’Urssaf est la suivante :
 
@@ -190,7 +190,7 @@ indépendant . profession libérale . réglementée . PAMC . maladie . participa
 
 indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
   produit:
-    - (cotisations et contributions . assiette sociale - revenus activité conventionnée)
+    - (cotisations et contributions . assiette sociale - assiette conventionnée)
     - taux
   arrondi: oui
   avec:
@@ -246,7 +246,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
   remplace: assiette participation CPAM
   formule:
     produit:
-      - revenus activité conventionnée
+      - assiette conventionnée
       - 1 - taux Urssaf / (1 + taux Urssaf)
   références:
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
