@@ -5841,36 +5841,38 @@ protection sociale . retraite . base . cotisée:
 
     [Basic pension contributions](/documentation/modele-ti/indépendant/
 
-    cotisations-et-contributions/cotisations/retraite-de-base) / [taux de cotisation à la retraite
+    cotisations-et-contributions/cotisations/retraite-de-base) / ([taux 1 de la
 
-    contributions](/documentation/modele-ti/indépendant/
+    basic pension contribution](/documentation/modele-ti/indépendant/
 
-    cotisations-et-contributions/cotisations/retraite-de-base/rates)
+    cotisations-et-contributions/cotisations/retraite-de-base/tranche-1/taux) +
+
+    [basic pension contribution rate 5](/documentation/modele-ti/
+
+    self-employed/contributions/contributions/basic-retirement/
+
+    bracket-2/rate))
 
 
-    In the case of contribution exemptions, a minimum amount is used for the calculation.
+    Where contributions are waived, a minimum amount is used for the calculation.
 
     calculation.
 
 
     In all cases, the result is limited to the social security ceiling.
-  description.fr: >
+  description.fr: |
     Le revenu cotisé pour la retraite de base est égal à :
 
-
     [Cotisations à la retraite de base](/documentation/modele-ti/indépendant/
-
-    cotisations-et-contributions/cotisations/retraite-de-base) / [taux de cotisation à la
-
-    retraite de base](/documentation/modele-ti/indépendant/
-
-    cotisations-et-contributions/cotisations/retraite-de-base/taux)
-
+    cotisations-et-contributions/cotisations/retraite-de-base) / ([taux 1 de la
+    cotisation à la retraite de base](/documentation/modele-ti/indépendant/
+    cotisations-et-contributions/cotisations/retraite-de-base/tranche-1/taux) +
+    [taux 5 de cotisation à la retraite de base](/documentation/modele-ti/
+    indépendant/ cotisations-et-contributions/cotisations/retraite-de-base/
+    tranche-2/taux))
 
     En cas d’exonération de cotisations, un montant plancher est utilisé pour le
-
     calcul.
-
 
     Dans tous les cas, le résultat est limité au plafond de la sécurité sociale.
   note.en: >-

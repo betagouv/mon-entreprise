@@ -77,7 +77,7 @@ indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 14
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 3`] = `
@@ -93,7 +93,7 @@ indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 29
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 4`] = `
@@ -285,7 +285,7 @@ indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
 protection sociale . retraite . base: 79
 protection sociale . retraite . complémentaire: 12
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV exonération incapacité 1`] = `
@@ -317,7 +317,7 @@ indépendant . rémunération . nette . après impôt: 500
 indépendant . rémunération . nette . avec dividendes: 500
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 2
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 2`] = `
@@ -333,7 +333,7 @@ indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 7
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 3`] = `
@@ -349,7 +349,7 @@ indépendant . rémunération . nette . après impôt: 1500
 indépendant . rémunération . nette . avec dividendes: 1500
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 10
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 4`] = `
@@ -365,7 +365,7 @@ indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 14
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 5`] = `
@@ -381,7 +381,7 @@ indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
 protection sociale . retraite . base: 39
 protection sociale . retraite . complémentaire: 29
-protection sociale . retraite . trimestres: 3"
+protection sociale . retraite . trimestres: 2"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 6`] = `
