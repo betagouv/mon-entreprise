@@ -11,7 +11,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 26
 protection sociale . retraite . trimestres: 0"
 `;
@@ -27,7 +27,7 @@ indépendant . rémunération . impôt . avec dividendes: 552
 indépendant . rémunération . nette: 20000
 indépendant . rémunération . nette . après impôt: 19448
 indépendant . rémunération . nette . avec dividendes: 20000
-protection sociale . retraite . base: 130
+protection sociale . retraite . base: 138
 protection sociale . retraite . complémentaire: 99
 protection sociale . retraite . trimestres: 1"
 `;
@@ -43,7 +43,7 @@ indépendant . rémunération . impôt . avec dividendes: 8617
 indépendant . rémunération . nette: 50000
 indépendant . rémunération . nette . après impôt: 41383
 indépendant . rémunération . nette . avec dividendes: 50000
-protection sociale . retraite . base: 350
+protection sociale . retraite . base: 371
 protection sociale . retraite . complémentaire: 311
 protection sociale . retraite . trimestres: 4"
 `;
@@ -75,7 +75,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 2000
 indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 14
 protection sociale . retraite . trimestres: 2"
 `;
@@ -91,7 +91,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 29
 protection sociale . retraite . trimestres: 2"
 `;
@@ -107,7 +107,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 10000
 indépendant . rémunération . nette . après impôt: 10000
 indépendant . rémunération . nette . avec dividendes: 10000
-protection sociale . retraite . base: 72
+protection sociale . retraite . base: 76
 protection sociale . retraite . complémentaire: 55
 protection sociale . retraite . trimestres: 4"
 `;
@@ -123,7 +123,7 @@ indépendant . rémunération . impôt . avec dividendes: 26248
 indépendant . rémunération . nette: 100000
 indépendant . rémunération . nette . après impôt: 73752
 indépendant . rémunération . nette . avec dividendes: 100000
-protection sociale . retraite . base: 354
+protection sociale . retraite . base: 375
 protection sociale . retraite . complémentaire: 925
 protection sociale . retraite . trimestres: 4"
 `;
@@ -139,7 +139,7 @@ indépendant . rémunération . impôt . avec dividendes: 471589
 indépendant . rémunération . nette: 1000000
 indépendant . rémunération . nette . après impôt: 528411
 indépendant . rémunération . nette . avec dividendes: 1000000
-protection sociale . retraite . base: 363
+protection sociale . retraite . base: 384
 protection sociale . retraite . complémentaire: 1806
 protection sociale . retraite . trimestres: 4"
 `;
@@ -155,7 +155,7 @@ indépendant . rémunération . impôt . avec dividendes: 11728
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 48272
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 348
+protection sociale . retraite . base: 369
 protection sociale . retraite . complémentaire: 450
 protection sociale . retraite . trimestres: 4"
 `;
@@ -203,7 +203,7 @@ indépendant . rémunération . impôt . avec dividendes: 11780
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 48220
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 351
+protection sociale . retraite . base: 372
 protection sociale . retraite . complémentaire: 511
 protection sociale . retraite . trimestres: 4"
 `;
@@ -219,7 +219,7 @@ indépendant . rémunération . impôt . avec dividendes: 11793
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 48207
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 351
+protection sociale . retraite . base: 373
 protection sociale . retraite . complémentaire: 525
 protection sociale . retraite . trimestres: 4"
 `;
@@ -235,7 +235,7 @@ indépendant . rémunération . impôt . avec dividendes: 11773
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 48227
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 508
+protection sociale . retraite . base: 539
 protection sociale . retraite . complémentaire: 501
 protection sociale . retraite . trimestres: 4"
 `;
@@ -251,7 +251,7 @@ indépendant . rémunération . impôt . avec dividendes: 11793
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 48207
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 351
+protection sociale . retraite . base: 373
 protection sociale . retraite . complémentaire: 525
 protection sociale . retraite . trimestres: 4"
 `;
@@ -267,7 +267,7 @@ indépendant . rémunération . impôt . avec dividendes: 11773
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 48227
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 508
+protection sociale . retraite . base: 539
 protection sociale . retraite . complémentaire: 501
 protection sociale . retraite . trimestres: 4"
 `;
@@ -283,7 +283,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
-protection sociale . retraite . base: 79
+protection sociale . retraite . base: 83
 protection sociale . retraite . complémentaire: 12
 protection sociale . retraite . trimestres: 2"
 `;
@@ -299,7 +299,7 @@ indépendant . rémunération . impôt . avec dividendes: 5456
 indépendant . rémunération . nette: 40000
 indépendant . rémunération . nette . après impôt: 34544
 indépendant . rémunération . nette . avec dividendes: 40000
-protection sociale . retraite . base: 507
+protection sociale . retraite . base: 522
 protection sociale . retraite . complémentaire: 0
 protection sociale . retraite . trimestres: 0"
 `;
@@ -315,7 +315,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 500
 indépendant . rémunération . nette . après impôt: 500
 indépendant . rémunération . nette . avec dividendes: 500
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 2
 protection sociale . retraite . trimestres: 2"
 `;
@@ -331,7 +331,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 7
 protection sociale . retraite . trimestres: 2"
 `;
@@ -347,7 +347,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 1500
 indépendant . rémunération . nette . après impôt: 1500
 indépendant . rémunération . nette . avec dividendes: 1500
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 10
 protection sociale . retraite . trimestres: 2"
 `;
@@ -363,7 +363,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 2000
 indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 14
 protection sociale . retraite . trimestres: 2"
 `;
@@ -379,7 +379,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
-protection sociale . retraite . base: 39
+protection sociale . retraite . base: 42
 protection sociale . retraite . complémentaire: 29
 protection sociale . retraite . trimestres: 2"
 `;
@@ -395,7 +395,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 10000
 indépendant . rémunération . nette . après impôt: 10000
 indépendant . rémunération . nette . avec dividendes: 10000
-protection sociale . retraite . base: 72
+protection sociale . retraite . base: 76
 protection sociale . retraite . complémentaire: 55
 protection sociale . retraite . trimestres: 4"
 `;
@@ -411,7 +411,7 @@ indépendant . rémunération . impôt . avec dividendes: 26248
 indépendant . rémunération . nette: 100000
 indépendant . rémunération . nette . après impôt: 73752
 indépendant . rémunération . nette . avec dividendes: 100000
-protection sociale . retraite . base: 354
+protection sociale . retraite . base: 375
 protection sociale . retraite . complémentaire: 925
 protection sociale . retraite . trimestres: 4"
 `;
@@ -427,7 +427,7 @@ indépendant . rémunération . impôt . avec dividendes: 471589
 indépendant . rémunération . nette: 1000000
 indépendant . rémunération . nette . après impôt: 528411
 indépendant . rémunération . nette . avec dividendes: 1000000
-protection sociale . retraite . base: 363
+protection sociale . retraite . base: 384
 protection sociale . retraite . complémentaire: 1806
 protection sociale . retraite . trimestres: 4"
 `;
