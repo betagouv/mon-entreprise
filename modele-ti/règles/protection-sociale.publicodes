@@ -243,7 +243,10 @@ protection sociale . retraite . base . CNAVPL:
 
     points acquis . points T1:
       produit:
-        - 525 point
+        - variations:
+            - si: indépendant . cotisations et contributions . après réforme
+              alors: 557 point
+            - sinon: 525 point
         - indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 /
           cotisation maximum T1
       arrondi: 1 décimale
