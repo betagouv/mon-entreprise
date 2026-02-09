@@ -101,49 +101,49 @@ indépendant . profession libérale . réglementée . CAVP . invalidité et déc
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations
 
 indépendant . profession libérale . réglementée . CAVP . PCV:
-  titre: Prestation complémentaire de vieillesse (CAVP)
-  remplace: cotisations et contributions . cotisations . PCV
-  applicable si: CAVP . directeur non médecin
-  formule:
-    somme:
-      - cotisations forfaitaire
-      - cotisations proportionnelle
-      - (- aide CPAM)
-    arrondi: oui
+  titre: Prestations complémentaires vieillesse (PCV)
+  applicable si: directeur non médecin
+  somme:
+    - cotisation forfaitaire
+    - cotisation proportionnelle
+  abattement: participation CPAM
+  arrondi: oui
+  unité: €/an
   références:
     Montant de la cotisation: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
     La retraite en claire: https://www.la-retraite-en-clair.fr/parcours-professionnel-regimes-retraite/retraite-travailleurs-independants/retraite-complementaire-pharmaciens-cavp
     Le montant de la cotisation: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
 
   avec:
-    cotisations forfaitaire:
+    cotisation forfaitaire:
       variations:
         - si: date >= 01/2025
           alors: 2138 €/an
         - si: date >= 01/2024
           alors: 2051 €/an
-        - sinon: 1911 €/an
+        - si: date >= 01/2023
+          alors: 1911 €/an
+        - si: date >= 01/2022
+          alors: 1788 €/an
+        - si: date >= 01/2021
+          alors: 1728 €/an
 
-    cotisations proportionnelle:
+    cotisation proportionnelle:
       produit:
         - valeur: cotisations et contributions . assiette sociale
           plafond: 5 * plafond sécurité sociale
         - variations:
             - si: date >= 01/2024
               alors: 1.20%
-            - sinon: 0.60%
+            - si: date >= 01/2023
+              alors: 0.60%
+            - sinon: 0.30%
 
-indépendant . profession libérale . réglementée . CAVP . PCV . aide CPAM:
-  somme:
-    - aide CPAM forfaitaire
-    - aide CPAM proportionnelle
-  références:
-    CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
-    La retraite en clair: https://www.la-retraite-en-clair.fr/parcours-professionnel-regimes-retraite/retraite-travailleurs-independants/retraite-complementaire-pharmaciens-cavp
-
-  avec:
-    aide CPAM forfaitaire:
-      formule: 66% * cotisations forfaitaire
-
-    aide CPAM proportionnelle:
-      formule: 50% * cotisations proportionnelle
+    participation CPAM:
+      somme:
+        - valeur: (2 / 3) * cotisation forfaitaire
+          arrondi: oui
+        - (1 / 2) * cotisation proportionnelle
+      références:
+        CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-des-prestations-complementaires-vieillesse
+        La retraite en clair: https://www.la-retraite-en-clair.fr/parcours-professionnel-regimes-retraite/retraite-travailleurs-independants/retraite-complementaire-pharmaciens-cavp
