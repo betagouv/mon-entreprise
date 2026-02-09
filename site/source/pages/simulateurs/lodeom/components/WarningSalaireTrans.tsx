@@ -39,7 +39,7 @@ export default function WarningSalaireTrans() {
 		seuil &&
 		year &&
 		plafond && (
-			<Trans i18nKey={'pages.simulateurs.lodeom.warnings.salaire'}>
+			<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire">
 				Le {{ barème }} concerne uniquement les salaires inférieurs à{' '}
 				{{ seuil }} Smic. C'est-à-dire, pour {{ year }}, une rémunération totale
 				qui ne dépasse pas <strong>{{ plafond }}</strong> bruts par an.
