@@ -13,6 +13,7 @@ indépendant . rémunération . totale:
       alors:
         inversion numérique:
           - rémunération . nette
+          - rémunération . nette . avec dividendes
           - cotisations et contributions
           - rémunération . nette . après impôt
           - rémunération . impôt
