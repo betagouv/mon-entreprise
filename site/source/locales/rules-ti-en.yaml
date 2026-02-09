@@ -4224,10 +4224,10 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
 indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste:
   titre.en: '[automatic] CPAM contribution (dental surgeon)'
   titre.fr: assiette participation CPAM (chirurgien dentiste)
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux Urssaf:
+indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste:
   description.en: >
-    [automatic] The "Urssaf rate" is used to calculate the portion of your
-    sickness and maternity insurance contribution
+    [automatic] The "dentist's rate" is used to calculate the proportion of your
+    health and
 
     paid by the CPAM.
 
@@ -4250,11 +4250,11 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     The formula for calculating the overrun rate is as follows:
 
 
-    > Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable acts
+    > Dentist rate = (overcharges - amounts reimbursed at CMU fixed rates) / (amounts
 
     > reimbursed acts + amounts reimbursed CMU lump sums)
   description.fr: >
-    Le « taux Urssaf » permet de calculer la part de votre cotisation
+    Le « taux dentiste » permet de calculer la part de votre cotisation
     d’assurance
 
     maladie-maternité prise en charge par la CPAM.
@@ -4278,16 +4278,16 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     La formule de calcul du taux de dépassement est la suivante :
 
 
-    > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
+    > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
 
     > remboursables actes + montants remboursés forfaits CMU)
   question.en: '[automatic] What is your "Urssaf rate"?'
   question.fr: Quel est votre « taux Urssaf » ?
-  titre.en: '[automatic] Urssaf rate'
-  titre.fr: taux Urssaf
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux Urssaf . notification:
-  description.en: '[automatic] The Urssaf rate must be less than 100'
-  description.fr: Le taux Urssaf doit être inférieur à 100
+  titre.en: '[automatic] dentist rate'
+  titre.fr: taux dentiste
+indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste . notification:
+  description.en: "[automatic] The dentist's rate must be less than 100"
+  description.fr: Le taux dentiste doit être inférieur à 100
   titre.en: '[automatic] notification'
   titre.fr: notification
 indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen:
