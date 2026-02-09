@@ -1,10 +1,13 @@
 entreprise . chiffre d'affaires:
   résumé: Montant total des recettes brutes (hors taxe)
   description: |
-    ### Chiffre d’affaires estimé
     Le chiffre d’affaires est la
-    **somme des montants des ventes réalisées pendant votre exercice comptable**
-    (un an) : CA = prix de vente x quantités vendues.
+    **somme des montants des ventes et des prestations réalisées pendant l’année civile**
+    (du 1er janvier au 31 décembre) : CA = prix de vente ou de prestations x
+    quantités vendues ou réalisées.
+
+    Le chiffre d’affaires à déclarer est le montant hors taxes (c’est-à-dire sans la
+    TVA payée par les clients).
   inversion numérique:
     - indépendant . rémunération . nette
     - indépendant . rémunération . nette . après impôt
