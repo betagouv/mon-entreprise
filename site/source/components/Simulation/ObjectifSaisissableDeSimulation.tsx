@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 import React, { useState } from 'react'
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Body, Grid, TitreObjectifSaisissable } from '@/design-system'
@@ -22,7 +22,7 @@ export type ObjectifSaisissableDeSimulationProps = {
 	explication?: React.ReactNode
 	valeur: O.Option<Montant>
 	rendreChampSaisie: (props: ChampSaisieProps) => React.ReactNode
-	small?: boolean
+	avecDescription?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
 	onFocus?: () => void
@@ -36,7 +36,7 @@ export function ObjectifSaisissableDeSimulation({
 	explication,
 	valeur,
 	rendreChampSaisie,
-	small = false,
+	avecDescription = true,
 	appear = true,
 	onFocus,
 	onBlur,
@@ -58,9 +58,9 @@ export function ObjectifSaisissableDeSimulation({
 
 	return (
 		<Appear unless={!appear || initialRender}>
-			<StyledGoal $small={small}>
+			<StyledGoal>
 				<GridCentered container spacing={2}>
-					<Grid item>
+					<StyledGridItem item $avecDescription={avecDescription}>
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
@@ -75,18 +75,13 @@ export function ObjectifSaisissableDeSimulation({
 							</BiggerForceThemeProvider>
 						)}
 
-						{description && (
-							<StyledBody
-								className={small ? 'sr-only' : ''}
-								id={`${id}-description`}
-							>
-								{description}
-							</StyledBody>
+						{avecDescription && description && (
+							<StyledBody id={`${id}-description`}>{description}</StyledBody>
 						)}
-					</Grid>
+					</StyledGridItem>
 
 					<Grid item>
-						{!isFocused && !small && montantAnimation !== undefined && (
+						{!isFocused && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
 						<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
@@ -144,14 +139,24 @@ const GridCentered = styled(Grid)`
 	}
 `
 
-const StyledGoal = styled.div<{ $small: boolean }>`
+const StyledGoal = styled.div`
 	position: relative;
-	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'xs']} 0;
+	padding: ${({ theme }) => theme.spacings.xs} 0;
 	z-index: 1;
 
 	@media print {
 		padding: 0;
 	}
+`
+
+const StyledGridItem = styled(Grid)<{ $avecDescription: boolean }>`
+	${({ $avecDescription }) =>
+		!$avecDescription &&
+		css`
+			display: flex;
+			justify-content: end;
+			align-items: center;
+		`}
 `
 
 const StyledBody = styled(Body)`
