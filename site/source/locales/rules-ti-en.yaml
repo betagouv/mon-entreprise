@@ -4919,6 +4919,25 @@ indépendant . revenus étrangers . montant:
 indépendant . rémunération:
   titre.en: '[automatic] compensation'
   titre.fr: rémunération
+indépendant . rémunération . brute:
+  description.en: >
+    [automatic] This is how much the company spends on executive remuneration.
+
+    This "super-gross" remuneration includes all social security contributions payable.
+
+    It can also be considered as the monetary value of the executive's work.
+  description.fr: >
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+
+    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+  résumé.en: "[automatic] Total paid by the company for the executive's
+    remuneration, including contributions"
+  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,
+    cotisations et contributions incluses
+  titre.en: '[automatic] Gross remuneration'
+  titre.fr: Rémunération brute
 indépendant . rémunération . impôt:
   description.en: |
     [automatic] Amount of income tax on :
@@ -4962,25 +4981,6 @@ indépendant . rémunération . nette . avec dividendes:
 indépendant . rémunération . nette . imposable:
   titre.en: '[automatic] Taxable income'
   titre.fr: Revenu imposable
-indépendant . rémunération . totale:
-  description.en: >
-    [automatic] This is how much the company spends on executive remuneration.
-
-    This "super-gross" remuneration includes all social security contributions payable.
-
-    It can also be considered as the monetary value of the executive's work.
-  description.fr: >
-    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
-
-    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
-
-    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
-  résumé.en: "[automatic] Total paid by the company for the executive's
-    remuneration, including contributions"
-  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,
-    cotisations et contributions incluses
-  titre.en: '[automatic] Total compensation'
-  titre.fr: Rémunération totale
 paramètres:
   titre.en: '[automatic] settings'
   titre.fr: paramètres

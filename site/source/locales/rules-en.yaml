@@ -2811,7 +2811,7 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     [automatic] To avoid having to break down expenses between those arising
     from
 
-    and those that are not (which would result in two separate accounts), it can be
+    activity and those that are not (which would result in two separate
 
     two separate accounts), it can be calculated on the basis of professional income
 
@@ -7534,7 +7534,7 @@ protection sociale . maladie:
     serious or long-term illness, 100% of care is reimbursed.
 
 
-    ### Health insurance in France in figures
+    ### Health insurance in France in a few figures
       - 92%** of healthcare expenses reimbursed on average by health insurance
       and supplementary health insurance
       - 30,000 / year / patient**: example of full coverage for a person with
@@ -7975,7 +7975,7 @@ protection sociale . retraite . base:
     benefit from the **full rate**.
 
 
-    > **Detailed calculation:** 50% x average annual income x pension pro rata
+    > **Detailed calculation:** 50% x average annual income x pension prorata
 
     >
 
@@ -13808,7 +13808,7 @@ salarié . temps de travail:
 
         Overtime and complementary hours are taken into account without
 
-        overtime and overtime are taken into account.
+        overtime and overtime pay are taken into account without any additional pay.
       description.fr: >
         Plusieurs réductions de cotisations ([réduction
         générale](/documentation/contrat-salarié/réduction-générale), taux

@@ -1,12 +1,11 @@
 indépendant . rémunération: oui
 
-indépendant . rémunération . totale:
-  titre: Rémunération totale
+indépendant . rémunération . brute:
+  titre: Rémunération brute
   description: |
     C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
     On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
-  titre global: Rémunération totale dirigeant
   résumé: Total payé par l'entreprise pour la rémunération du dirigeant, cotisations et contributions incluses
   variations:
     - si: entreprise . imposition . IS
@@ -25,7 +24,7 @@ indépendant . rémunération . nette:
   titre: Rémunération nette
   résumé: Après déduction des cotisations, contributions et charges
   somme:
-    - rémunération . totale
+    - rémunération . brute
     - (- cotisations et contributions)
   arrondi: oui
   unité: €/an

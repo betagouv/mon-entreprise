@@ -6,7 +6,7 @@ export const configCessationActivité: SimulationConfig = {
 	...configIndépendant,
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
-		'indépendant . rémunération . totale',
+		'indépendant . rémunération . brute',
 		'indépendant . rémunération . nette',
 	],
 	'unité par défaut': '€/an',
