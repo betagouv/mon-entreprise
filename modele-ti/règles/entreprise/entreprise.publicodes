@@ -22,33 +22,21 @@ entreprise . charges:
   résumé: Total des dépenses nécessaires à l’entreprise, en excluant cotisations sociales, CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement déduites par le simulateur.
   question: Quelles sont les charges de l’entreprise ?
   description: |
-    **Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la contribution à la formation professionnelle.**
+    **Il ne faut pas déclarer ici les cotisations sociales, ni la CSG-CRDS, ni la contribution à la formation professionnelle.**
 
     Sont à déclarer, les dépenses de l’entreprise engagées dans l’intérêt de celle-ci,
-    hors rémunération du dirigeant. Pour les sociétés et entreprises hors
-    auto-entrepreneur, ces charges sont dites déductibles du résultat : l’entreprise
-    ne paiera pas de cotisations ou impôt dessus. Pour l’auto-entrepreneur, elles ne
-    sont pas déductibles du chiffre d’affaires encaissé.
+    hors rémunération du dirigeant. Ces charges sont déductibles du résultat :
+    l’entreprise ne paiera pas de cotisations ni d’impôt dessus.
 
-    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe
-    (excepté pour les auto-entrepreneurs en franchise de TVA)
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxes.
 
-    Par exemple, les charges peuvent être :
+    Exemples de charges déductibles :
 
     - achat de matières premières pour une activité de production
     - achat de produits en vue de leur revente, pour une activité commerciale
     - frais de repas : le supplément par rapport au coût d’un repas à domicile
 
-    Attention : l’achat d’un ordinateur à 1000€ n’est pas une charge, mais une
-    immobilisation : c’est un bien qui va profiter à l’entreprise pendant plusieurs
-    années. Chaque année, une partie de cette immobilisation est amortie, et cet
-    amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par
-    an pendant 5 ans.
-
-    A l’inverse, un téléphone portable à moins de 500€ peut être assimilé à une
-    charge sans immobilisation.
-
-    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
+    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
     part de CSG déductible font partie des charges déductibles du revenu imposable et
     du revenu soumis à cotisations, mais elles ne sont pas à renseigner dans cette
     rubrique « charges ».
