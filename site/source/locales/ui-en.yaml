@@ -1717,8 +1717,11 @@ pages:
       shortname: Independent
       title: Income simulator for the self-employed
       warning:
-        année-courante: The amount calculated corresponds to the contributions for the
-          year {{ year }} (for an income {{ year }}).
+        année-courante: The amount calculated corresponds to <2>contributions for the
+          year {{year}} &lt;/2> (for an income of {{year}}).
+        double-régime: This simulator does not take into account the situation of users
+          who have <2>two different tax regimes&lt;/2> (actual and micro-tax
+          regimes) in the same year.
     is:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
