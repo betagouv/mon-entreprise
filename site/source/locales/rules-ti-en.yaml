@@ -461,53 +461,31 @@ entreprise . catégorie juridique . autre:
   titre.fr: autre
 entreprise . charges:
   description.en: >
-    [automatic] **No social security contributions, CSG-CRDS or vocational
-    training contributions are to be declared here **.
+    [automatic] **Social security contributions, CSG-CRDS and vocational
+    training contributions are not to be declared here **.
 
 
     Expenses incurred in the interest of the company must be declared,
 
-    excluding management remuneration. For companies and businesses other than
+    excluding management remuneration. These expenses are deductible from income:
 
-    auto-entrepreneur, these expenses are said to be deductible from income: the company
-
-    will not pay any contributions or taxes on them. For auto-entrepreneurs, they are not
-
-    are not deductible from sales.
+    the company pays no contributions or taxes on them.
 
 
-    We do not yet deal with VAT: expenses are to be entered exclusive of tax
-
-    (except for auto-entrepreneurs exempt from VAT).
+    We do not yet deal with VAT: expenses should be entered exclusive of tax.
 
 
-    For example, expenses may be :
+    Examples of deductible expenses:
 
 
     - purchase of raw materials for a production activity
 
     - purchase of products for resale, for a commercial activity
 
-    - meal expenses: the additional cost of a meal at home
+    - meal expenses: the supplement to the cost of a meal at home
 
 
-    Note: the purchase of a €1,000 computer is not an expense, but a capital asset.
-
-    an asset that will benefit the company for several years.
-
-    years. Each year, part of this fixed asset is depreciated, and this deductible
-
-    deductible depreciation can be included in this calculation, for example 200€ per year
-
-    year for 5 years.
-
-
-    Conversely, a cell phone costing less than €500 can be treated as an expense with no
-
-    expense with no fixed asset.
-
-
-    &gt; Note**: social contributions to the self-employed workers' scheme and the deductible
+    > **Note**: social security contributions for self-employed workers and the deductible
 
     and the deductible portion of CSG are deductible from taxable income and income subject to
 
@@ -521,27 +499,21 @@ entreprise . charges:
 
     income net of charges.
   description.fr: >
-    **Il ne faut pas déclarer ici de cotisations sociales, ni la CSG-CRDS, ni la
-    contribution à la formation professionnelle.**
+    **Il ne faut pas déclarer ici les cotisations sociales, ni la CSG-CRDS, ni
+    la contribution à la formation professionnelle.**
 
 
     Sont à déclarer, les dépenses de l’entreprise engagées dans l’intérêt de celle-ci,
 
-    hors rémunération du dirigeant. Pour les sociétés et entreprises hors
+    hors rémunération du dirigeant. Ces charges sont déductibles du résultat :
 
-    auto-entrepreneur, ces charges sont dites déductibles du résultat : l’entreprise
-
-    ne paiera pas de cotisations ou impôt dessus. Pour l’auto-entrepreneur, elles ne
-
-    sont pas déductibles du chiffre d’affaires encaissé.
+    l’entreprise ne paiera pas de cotisations ni d’impôt dessus.
 
 
-    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxe
-
-    (excepté pour les auto-entrepreneurs en franchise de TVA)
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxes.
 
 
-    Par exemple, les charges peuvent être :
+    Exemples de charges déductibles :
 
 
     - achat de matières premières pour une activité de production
@@ -551,23 +523,7 @@ entreprise . charges:
     - frais de repas : le supplément par rapport au coût d’un repas à domicile
 
 
-    Attention : l’achat d’un ordinateur à 1000€ n’est pas une charge, mais une
-
-    immobilisation : c’est un bien qui va profiter à l’entreprise pendant plusieurs
-
-    années. Chaque année, une partie de cette immobilisation est amortie, et cet
-
-    amortissement déductible peut être intégré dans ce calcul, par exemple 200€ par
-
-    an pendant 5 ans.
-
-
-    A l’inverse, un téléphone portable à moins de 500€ peut être assimilé à une
-
-    charge sans immobilisation.
-
-
-    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
+    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
 
     part de CSG déductible font partie des charges déductibles du revenu imposable et
 
@@ -591,16 +547,32 @@ entreprise . charges:
   titre.en: '[automatic] expenses (excluding management remuneration)'
   titre.fr: charges (hors rémunération dirigeant)
 entreprise . chiffre d'affaires:
-  description.en: |
-    [automatic] ### Estimated sales
-    Sales are
-    **sum of all sales made during your accounting period** (one year).
-    (one year): Sales = selling price x quantities sold.
-  description.fr: |
-    ### Chiffre d’affaires estimé
+  description.en: >
+    [automatic] Sales are
+
+    **sum of sales and services rendered during the calendar year** (from January 1st to December 31st).
+
+    (January 1 to December 31): Sales = sales or service price x
+
+    quantities sold or rendered.
+
+
+    The sales figure to be declared is the amount before tax (i.e. excluding
+
+    VAT paid by customers).
+  description.fr: >
     Le chiffre d’affaires est la
-    **somme des montants des ventes réalisées pendant votre exercice comptable**
-    (un an) : CA = prix de vente x quantités vendues.
+
+    **somme des montants des ventes et des prestations réalisées pendant l’année civile**
+
+    (du 1er janvier au 31 décembre) : CA = prix de vente ou de prestations x
+
+    quantités vendues ou réalisées.
+
+
+    Le chiffre d’affaires à déclarer est le montant hors taxes (c’est-à-dire sans la
+
+    TVA payée par les clients).
   résumé.en: '[automatic] Total gross revenue (excluding tax)'
   résumé.fr: Montant total des recettes brutes (hors taxe)
   titre.en: '[automatic] sales'
