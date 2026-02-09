@@ -1403,7 +1403,7 @@ pages:
       label:
         chiffre-affaires: Chiffre d'affaires pour l'année de cessation
         cotisations: Total des cotisations à devoir pour l'année de cessation d'activité
-        rémunération: Rémunération totale pour l'année de cessation
+        rémunération: Rémunération brute pour l'année de cessation
       meta:
         description: Estimez vos cotisations de l’année de cessation de votre activité
           en tant qu’indépendant.

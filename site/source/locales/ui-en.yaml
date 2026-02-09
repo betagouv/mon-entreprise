@@ -1324,7 +1324,7 @@ pages:
       label:
         chiffre-affaires: Sales for the year of cessation
         cotisations: Total contributions due for the year of cessation of activity
-        rémunération: Total compensation for the year of termination
+        rémunération: Gross compensation for the year of termination
       meta:
         description: Estimate your contributions for the year in which you cease
           self-employed activity.

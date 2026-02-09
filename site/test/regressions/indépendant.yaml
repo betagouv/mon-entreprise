@@ -74,32 +74,32 @@ cotisations facultatives:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des
   # cotisations ne change pas:
-  - indépendant . rémunération . totale: 30000 €/an
+  - indépendant . rémunération . brute: 30000 €/an
     indépendant . cotisations facultatives: oui
     indépendant . cotisations facultatives . prévoyance: 0 €/an
     indépendant . cotisations facultatives . retraite: 3800 €/an # plafond: 10% PSS donc environ 4100
   # Cas retraite: la cotisation retraite est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
-  - indépendant . rémunération . totale: 30000 €/an
+  - indépendant . rémunération . brute: 30000 €/an
     indépendant . cotisations facultatives: oui
     indépendant . cotisations facultatives . prévoyance: 0 €/an
     indépendant . cotisations facultatives . retraite: 5000 €/an # plafond: 10% PSS donc environ 4100
   # Cas prévoyance
-  - indépendant . rémunération . totale: 30000 €/an
+  - indépendant . rémunération . brute: 30000 €/an
     indépendant . cotisations facultatives: oui
     indépendant . cotisations facultatives . prévoyance: 1000 €/an
   # Cas global faible
-  - indépendant . rémunération . totale: 20000 €/an
+  - indépendant . rémunération . brute: 20000 €/an
     indépendant . cotisations facultatives: oui
     indépendant . cotisations facultatives . prévoyance: 200 €/an
     indépendant . cotisations facultatives . retraite: 300 €/an
   # Cas global grand (plafonds calculés différemment)
-  - indépendant . rémunération . totale: 300000 €/an
+  - indépendant . rémunération . brute: 300000 €/an
     indépendant . cotisations facultatives: oui
     indépendant . cotisations facultatives . prévoyance: 1500 €/an
     indépendant . cotisations facultatives . retraite: 5000 €/an
   # Cas retraite grand
-  - indépendant . rémunération . totale: 300000 €/an
+  - indépendant . rémunération . brute: 300000 €/an
     indépendant . cotisations facultatives: oui
     indépendant . cotisations facultatives . prévoyance: 1500 €/an
     indépendant . cotisations facultatives . retraite: 8500 €/an
@@ -109,35 +109,35 @@ imposition à l'IR:
     entreprise . imposition: "'IR'"
 
 exonération pension invalidité:
-  - indépendant . rémunération . totale: 45000 €/an
+  - indépendant . rémunération . brute: 45000 €/an
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
   # Partielle
-  - indépendant . rémunération . totale: 9000 €/an
+  - indépendant . rémunération . brute: 9000 €/an
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée: 4 mois
   # Cumul Acre
-  - indépendant . rémunération . totale: 10000 €/an
+  - indépendant . rémunération . brute: 10000 €/an
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
     entreprise . date de création: période . début d'année
     indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
   # Cumul âge
-  - indépendant . rémunération . totale: 15000 €/an
+  - indépendant . rémunération . brute: 15000 €/an
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
     indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée: 10 mois
     entreprise . date de création: 01/01/2010
     indépendant . cotisations et contributions . cotisations . exonérations . âge: oui
 
 exonération âge:
-  - indépendant . rémunération . totale: 55000 €/an
+  - indépendant . rémunération . brute: 55000 €/an
     entreprise . date de création: 01/01/2010
     indépendant . cotisations et contributions . cotisations . exonérations . âge: oui
 
 DROM:
-  - indépendant . rémunération . totale: 20000 €/an
+  - indépendant . rémunération . brute: 20000 €/an
     établissement . commune . département . outre-mer: oui
 
 cotisations forfaitaires début d'activité:
-  - indépendant . rémunération . totale: 50000 €/an
+  - indépendant . rémunération . brute: 50000 €/an
     entreprise . date de création: période . début d'année
     indépendant . cotisations et contributions . cotisations . exonérations . Acre: non
 
