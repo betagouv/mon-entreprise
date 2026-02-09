@@ -3474,20 +3474,23 @@ indépendant . profession libérale . réglementée . CARCDSF:
     et des sages-femmes.
   titre.en: '[automatic] CARCDSF'
   titre.fr: CARCDSF
+indépendant . profession libérale . réglementée . CARCDSF . PCV:
+  titre.en: '[automatic] PCV'
+  titre.fr: PCV
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste:
   titre.en: '[automatic] dental surgeon'
   titre.fr: chirurgien-dentiste
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . PCV:
   avec:
-    forfaitaire:
-      titre.en: '[automatic] lump-sum'
-      titre.fr: forfaitaire
+    cotisation forfaitaire:
+      titre.en: '[automatic] flat-rate contribution'
+      titre.fr: cotisation forfaitaire
+    cotisation proportionnelle:
+      titre.en: '[automatic] proportional contribution'
+      titre.fr: cotisation proportionnelle
     participation CPAM:
       titre.en: '[automatic] CPAM contribution'
       titre.fr: participation CPAM
-    proportionnelle:
-      titre.en: '[automatic] proportional'
-      titre.fr: proportionnelle
   note.en: >-
     [automatic] A waiver may be granted when 2019 professional income is less
     than or equal to 500 C (value at January 1 of the year in question), i.e.
@@ -3504,8 +3507,8 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     La demande doit être accompagnée d’une photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
 
     Cette dispense entraîne l’annulation des droits pour l’année et les points non cotisés ne sont pas rachetables.
-  titre.en: '[automatic] Supplementary old-age benefit'
-  titre.fr: Prestation complémentaire vieillesse
+  titre.en: '[automatic] Supplementary old-age benefits (PCV)'
+  titre.fr: Prestations complémentaires vieillesse (PCV)
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . RID:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
@@ -3599,6 +3602,9 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme:
   titre.fr: sage-femme
 indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV:
   avec:
+    cotisation forfaitaire:
+      titre.en: '[automatic] flat-rate contribution'
+      titre.fr: cotisation forfaitaire
     participation CPAM:
       titre.en: '[automatic] CPAM contribution'
       titre.fr: participation CPAM
@@ -3639,8 +3645,8 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV
 
     Cette dispense entraîne l’annulation des droits pour l’année et les points
     non cotisés ne sont pas rachetables.
-  titre.en: '[automatic] PCV'
-  titre.fr: PCV
+  titre.en: '[automatic] Supplementary old-age benefits (PCV)'
+  titre.fr: Prestations complémentaires vieillesse (PCV)
 indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
@@ -3686,36 +3692,33 @@ indépendant . profession libérale . réglementée . CARMF:
     métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
   titre.en: '[automatic] CARMF'
   titre.fr: CARMF
-indépendant . profession libérale . réglementée . CARMF . ASV:
+indépendant . profession libérale . réglementée . CARMF . PCV:
   avec:
-    ajustement:
-      titre.en: '[automatic] adjustment'
-      titre.fr: ajustement
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    forfaitaire:
-      titre.en: '[automatic] lump-sum'
-      titre.fr: forfaitaire
+    cotisation forfaitaire:
+      titre.en: '[automatic] flat-rate contribution'
+      titre.fr: cotisation forfaitaire
+    cotisation proportionnelle:
+      titre.en: '[automatic] proportional contribution'
+      titre.fr: cotisation proportionnelle
+    participation CPAM:
+      titre.en: '[automatic] CPAM contribution'
+      titre.fr: participation CPAM
   description.en: >-
-    [automatic] The Supplementary Old-Age Allowance (ASV) scheme applies to
-    contracted physicians.
+    [automatic] Supplementary old-age benefits (PCV) apply to contracted
+    physicians.
 
-    It is based on points, and comprises a flat-rate portion and an adjustment portion calculated on the basis of N-2 contractual income.
+    The scheme is based on points, and comprises a flat-rate portion and an adjustment portion calculated on the basis of N-2 contractual income.
 
     Two-thirds of the contribution for sector 1 doctors is financed by the health insurance funds.
   description.fr: >-
-    Le régime des allocations supplémentaires de vieillesse (ASV) s'applique
-    pour les médecins conventionnés.
+    Les prestations complémentaires vieillesse (PCV) s'appliquent pour les
+    médecins conventionnés.
 
-    Il fonctionne en points et comprend une part forfaitaire et une part d’ajustement calculée sur le revenu conventionnel de N-2.
+    Ce régime fonctionne en points et comprend une part forfaitaire et une part d’ajustement calculée sur le revenu conventionnel de N-2.
 
-    Les deux tiers de la cotisation des médecins en secteur 1 sont financés par les Caisses maladie.
-  titre.en: '[automatic] Supplementary old-age benefits'
-  titre.fr: Allocations supplémentaires de vieillesse
-indépendant . profession libérale . réglementée . CARMF . ASV . participation CPAM:
-  titre.en: '[automatic] CPAM contribution'
-  titre.fr: participation CPAM
+    Les deux tiers de la cotisation des médecins en secteur 1 sont financés par les caisses d’assurance maladie.
+  titre.en: '[automatic] Supplementary old-age benefits (PCV)'
+  titre.fr: Prestations complémentaires vieillesse (PCV)
 indépendant . profession libérale . réglementée . CARMF . en retraite:
   description.en: >
     [automatic] If you combine retirement and self-employment, you no longer
@@ -3805,19 +3808,19 @@ indépendant . profession libérale . réglementée . CARPIMKO:
     médicales/médicaux.
   titre.en: '[automatic] CARPIMKO'
   titre.fr: CARPIMKO
-indépendant . profession libérale . réglementée . CARPIMKO . ASV:
+indépendant . profession libérale . réglementée . CARPIMKO . PCV:
   avec:
-    forfaitaire:
-      titre.en: '[automatic] lump-sum'
-      titre.fr: forfaitaire
-    proportionnelle:
-      titre.en: '[automatic] proportional'
-      titre.fr: proportionnelle
-  titre.en: '[automatic] Old-age benefits'
-  titre.fr: Avantage social vieillesse
-indépendant . profession libérale . réglementée . CARPIMKO . ASV . participation CPAM:
-  titre.en: '[automatic] CPAM contribution'
-  titre.fr: participation CPAM
+    cotisation forfaitaire:
+      titre.en: '[automatic] flat-rate contribution'
+      titre.fr: cotisation forfaitaire
+    cotisation proportionnelle:
+      titre.en: '[automatic] proportional contribution'
+      titre.fr: cotisation proportionnelle
+    participation CPAM:
+      titre.en: '[automatic] CPAM contribution'
+      titre.fr: participation CPAM
+  titre.en: '[automatic] Supplementary old-age benefits (PCV)'
+  titre.fr: Prestations complémentaires vieillesse (PCV)
 indépendant . profession libérale . réglementée . CARPIMKO . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
@@ -3868,24 +3871,17 @@ indépendant . profession libérale . réglementée . CAVP:
   titre.fr: CAVP
 indépendant . profession libérale . réglementée . CAVP . PCV:
   avec:
-    cotisations forfaitaire:
-      titre.en: '[automatic] flat-rate contributions'
-      titre.fr: cotisations forfaitaire
-    cotisations proportionnelle:
-      titre.en: '[automatic] proportional contributions'
-      titre.fr: cotisations proportionnelle
-  titre.en: '[automatic] Supplementary old-age pension (CAVP)'
-  titre.fr: Prestation complémentaire de vieillesse (CAVP)
-indépendant . profession libérale . réglementée . CAVP . PCV . aide CPAM:
-  avec:
-    aide CPAM forfaitaire:
-      titre.en: '[automatic] flat-rate CPAM assistance'
-      titre.fr: aide CPAM forfaitaire
-    aide CPAM proportionnelle:
-      titre.en: '[automatic] proportional CPAM assistance'
-      titre.fr: aide CPAM proportionnelle
-  titre.en: '[automatic] CPAM assistance'
-  titre.fr: aide CPAM
+    cotisation forfaitaire:
+      titre.en: '[automatic] flat-rate contribution'
+      titre.fr: cotisation forfaitaire
+    cotisation proportionnelle:
+      titre.en: '[automatic] proportional contribution'
+      titre.fr: cotisation proportionnelle
+    participation CPAM:
+      titre.en: '[automatic] CPAM contribution'
+      titre.fr: participation CPAM
+  titre.en: '[automatic] Supplementary old-age benefits (PCV)'
+  titre.fr: Prestations complémentaires vieillesse (PCV)
 indépendant . profession libérale . réglementée . CAVP . cotisation de référence:
   titre.en: '[automatic] reference contribution'
   titre.fr: cotisation de référence
@@ -4088,6 +4084,9 @@ indépendant . profession libérale . réglementée . PAMC . IJSS:
     paternité perçu au titre de votre activité libérale ?
   titre.en: '[automatic] social security daily allowances'
   titre.fr: indemnités journalières de sécurité sociale
+indépendant . profession libérale . réglementée . PAMC . PCV:
+  titre.en: '[automatic] PCV'
+  titre.fr: PCV
 indépendant . profession libérale . réglementée . PAMC . allocations familiales:
   titre.en: '[automatic] family allowances (after CPAM contribution)'
   titre.fr: allocations familiales (après participation CPAM)

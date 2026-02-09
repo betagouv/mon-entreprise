@@ -64,6 +64,18 @@ indépendant . profession libérale . réglementée . PAMC . remplaçant:
       références:
         Site de l’offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
 
+indépendant . profession libérale . réglementée . PAMC . PCV:
+  variations:
+    - si: profession libérale . réglementée . CARCDSF
+      alors: profession libérale . réglementée . CARCDSF . PCV
+    - si: profession libérale . réglementée . CARMF
+      alors: profession libérale . réglementée . CARMF . PCV
+    - si: profession libérale . réglementée . CARPIMKO
+      alors: profession libérale . réglementée . CARPIMKO . PCV
+    - si: profession libérale . réglementée . CAVP
+      alors: profession libérale . réglementée . CAVP . PCV
+  unité: €/an
+
 indépendant . profession libérale . réglementée . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
   description: |
@@ -290,11 +302,12 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
     somme:
       - PAMC . allocations familiales . participation CPAM
       - PAMC . maladie . participation CPAM
-      - CARMF . ASV . participation CPAM
-      - CARPIMKO . ASV . participation CPAM
       - CARCDSF . chirurgien-dentiste . PCV . participation CPAM
       - CARCDSF . sage-femme . PCV . participation CPAM
       - CARMF . participation CPAM retraite
+      - CARMF . PCV . participation CPAM
+      - CARPIMKO . PCV . participation CPAM
+      - CAVP . PCV . participation CPAM
     arrondi: oui
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam

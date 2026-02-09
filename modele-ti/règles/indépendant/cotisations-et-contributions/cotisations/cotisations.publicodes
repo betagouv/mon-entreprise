@@ -424,6 +424,21 @@ indépendant . cotisations et contributions . cotisations . retraite complément
       références:
         Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
 
+indépendant . cotisations et contributions . cotisations . PCV:
+  titre: Prestations complémentaires vieillesse
+  acronyme: PCV
+  description: |
+    Certaines catégories professionnelles bénéficient de
+    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
+    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
+    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
+    directeurs de laboratoires. Ce régime résulte de la prise en charge
+    partielle par l’Assurance maladie de leurs cotisations d’assurance
+    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
+    conventionnel.
+  applicable si: profession libérale . réglementée . PAMC
+  valeur: profession libérale . réglementée . PAMC . PCV
+
 indépendant . cotisations et contributions . cotisations . invalidité et décès:
   description: |
     Cette cotisation permet de bénéficier, sous certaines conditions, d’une pension
@@ -459,17 +474,3 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
       abattement:
         applicable si: déduction tabac
         valeur: déduction tabac
-
-indépendant . cotisations et contributions . cotisations . PCV:
-  titre: Prestations complémentaires vieillesse
-  acronyme: PCV
-  non applicable si: oui
-  description: |
-    Certaines catégories professionnelles bénéficient de
-    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
-    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
-    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
-    directeurs de laboratoires. Ce régime résulte de la prise en charge
-    partielle par l’Assurance maladie de leurs cotisations d’assurance
-    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
-    conventionnel.
