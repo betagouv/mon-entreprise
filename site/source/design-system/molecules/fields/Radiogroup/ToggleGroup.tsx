@@ -19,6 +19,7 @@ type ToggleGroupProps = RARadioGroupProps & {
 }
 
 export function ToggleGroup({
+	defaultValue = null,
 	legend,
 	options,
 	value,
@@ -26,6 +27,7 @@ export function ToggleGroup({
 }: ToggleGroupProps) {
 	return (
 		<StyledRARadioGroup
+			defaultValue={defaultValue}
 			value={value}
 			onChange={onChange}
 			orientation="horizontal"
