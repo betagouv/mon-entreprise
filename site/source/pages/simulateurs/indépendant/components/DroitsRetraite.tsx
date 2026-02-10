@@ -62,7 +62,7 @@ export default function DroitsRetraite() {
 								<Li>
 									Retraite de base&nbsp;:{' '}
 									<Value
-										expression="protection sociale . retraite . trimestres"
+										expression="protection sociale . retraite . base . trimestres"
 										displayedUnit={t('trimestres acquis')}
 									/>
 								</Li>
