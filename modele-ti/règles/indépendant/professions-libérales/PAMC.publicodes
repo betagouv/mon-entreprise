@@ -332,8 +332,6 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
 
 indépendant . profession libérale . réglementée . PAMC . IJSS:
-  remplace: indépendant . IJSS . imposable
-  rend non applicable: indépendant . IJSS
   titre: indemnités journalières de sécurité sociale
   description: >-
     Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le
@@ -352,6 +350,8 @@ indépendant . profession libérale . réglementée . PAMC . IJSS:
     Note : Les prestations d’invalidité versées par les régimes d’invalidité-décès
     ne sont pas concernées.
 
+  non applicable si: cotisations et contributions . après réforme
+  remplace: indépendant . IJSS . imposable
   question: Quel est le montant des indemnités journalières de maternité ou
     paternité perçu au titre de votre activité libérale ?
   par défaut: 0 €/an

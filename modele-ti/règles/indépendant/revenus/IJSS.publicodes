@@ -29,7 +29,9 @@ indépendant . IJSS . montant:
     perçues, imposables et non imposables, qui figure sur le relevé de prestations
     fourni par votre caisse primaire d’assurance maladie.
 
-    Ces revenus de remplacement sont soumis au taux réduit de CSG-CRDS.
+    La CSG-CRDS est automatiquement précomptée par l’Assurance maladie lors du
+    versement. Le montant de ces revenus de remplacement est ajouté à l’assiette
+    sociale après application d’un abattement de 26 %.
 
     <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
     - indemnité journalière maladie
@@ -38,10 +40,17 @@ indépendant . IJSS . montant:
     - indemnité de remplacement pour maternité, paternité ou adoption
   par défaut: 0 €/an
 
+indépendant . IJSS . après abattement:
+  valeur: IJSS . montant
+  abattement: 26%
+
 indépendant . IJSS . imposable:
   titre: part imposable
-  résumé: Uniquement si vous ne relevez pas du régime micro-fiscal
-  non applicable si: entreprise . imposition . IR . régime micro-fiscal
+  non applicable si:
+    une de ces conditions:
+      - cotisations et contributions . après réforme
+      - entreprise . imposition . IR . régime micro-fiscal
+      - profession libérale . réglementée . PAMC
   question: Quel est le montant brut imposable de vos allocations et indemnités
     journalières de sécurité sociale ?
   description: |
@@ -61,6 +70,3 @@ indépendant . IJSS . imposable:
   par défaut: 0 €/an
   unité: €/an
 
-indépendant . IJSS . après abattement:
-  valeur: IJSS . montant
-  abattement: 26%

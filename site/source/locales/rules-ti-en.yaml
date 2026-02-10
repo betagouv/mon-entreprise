@@ -1644,8 +1644,6 @@ indépendant . IJSS . imposable:
   question.fr:
     Quel est le montant brut imposable de vos allocations et indemnités
     journalières de sécurité sociale ?
-  résumé.en: '[automatic] Only if you are not covered by the micro-tax system'
-  résumé.fr: Uniquement si vous ne relevez pas du régime micro-fiscal
   titre.en: '[automatic] taxable portion'
   titre.fr: part imposable
 indépendant . IJSS . montant:
@@ -1658,7 +1656,11 @@ indépendant . IJSS . montant:
     provided by your primary health insurance fund.
 
 
-    This replacement income is subject to the reduced CSG-CRDS rate.
+    CSG-CRDS is automatically deducted by the Assurance Maladie at the time of payment.
+
+    payment. The amount of this replacement income is added to the social security base
+
+    after application of a 26% allowance.
 
 
     <p><u>The benefits and daily allowances concerned are :</u></p>
@@ -1678,7 +1680,11 @@ indépendant . IJSS . montant:
     fourni par votre caisse primaire d’assurance maladie.
 
 
-    Ces revenus de remplacement sont soumis au taux réduit de CSG-CRDS.
+    La CSG-CRDS est automatiquement précomptée par l’Assurance maladie lors du
+
+    versement. Le montant de ces revenus de remplacement est ajouté à l’assiette
+
+    sociale après application d’un abattement de 26 %.
 
 
     <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
@@ -2626,6 +2632,9 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   titre.fr: invalidité et décès
 indépendant . cotisations et contributions . cotisations . maladie-maternité:
   avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
     plafond taux 1:
       titre.en: '[automatic] ceiling rate 1'
       titre.fr: plafond taux 1
