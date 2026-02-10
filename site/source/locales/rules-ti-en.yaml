@@ -4121,6 +4121,9 @@ indépendant . profession libérale . réglementée . PAMC . assiette convention
     provenant des actes conventionnés.
   titre.en: '[automatic] conventional plate'
   titre.fr: assiette conventionnée
+indépendant . profession libérale . réglementée . PAMC . assiette non conventionnée:
+  titre.en: '[automatic] non-conventional plate'
+  titre.fr: assiette non conventionnée
 indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
   description.en: >
     [automatic] Also known as conventional income, this is income from
