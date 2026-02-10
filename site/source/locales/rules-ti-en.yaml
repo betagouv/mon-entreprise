@@ -1512,6 +1512,9 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
 impôt . taux neutre . barème Guyane Mayotte:
   titre.en: '[automatic] scale Guiana Mayotte'
   titre.fr: barème Guyane Mayotte
+impôt . taux neutre . barème métropole:
+  titre.en: '[automatic] metropolitan France'
+  titre.fr: barème métropole
 impôt . taux personnalisé:
   description.en: |
     [automatic] Your personalized average tax rate, which you can find on :

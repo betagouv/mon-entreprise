@@ -807,7 +807,7 @@ assimilé salarié . exonérations . JEI:
 
     - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - corporate officers who are primarily involved in the company's research and development project
+    - corporate officers who are principally involved in the company's research and development project
 
 
     By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
@@ -2125,6 +2125,9 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
 impôt . taux neutre . barème Guyane Mayotte:
   titre.en: '[automatic] scale Guiana Mayotte'
   titre.fr: barème Guyane Mayotte
+impôt . taux neutre . barème métropole:
+  titre.en: '[automatic] metropolitan France'
+  titre.fr: barème métropole
 impôt . taux personnalisé:
   description.en: |
     [automatic] Your personalized average tax rate, which you can find on :
