@@ -136,6 +136,9 @@ indépendant . profession libérale . réglementée . PAMC . assiette convention
       - valeur: 100% - proportion recette activité non conventionnée
         plancher: 0%
 
+indépendant . profession libérale . réglementée . PAMC . assiette non conventionnée:
+  valeur: cotisations et contributions . assiette sociale - assiette conventionnée
+
 indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
   description: |
     Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
@@ -201,7 +204,7 @@ indépendant . profession libérale . réglementée . PAMC . maladie . participa
 
 indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
   produit:
-    - (cotisations et contributions . assiette sociale - assiette conventionnée)
+    - assiette non conventionnée
     - taux
   arrondi: oui
   avec:
@@ -214,10 +217,22 @@ indépendant . profession libérale . réglementée . PAMC . maladie . contribut
               assiette: cotisations et contributions . assiette sociale
               multiplicateur: plafond sécurité sociale
               tranches:
-                - plafond: 40%
+                - plafond:
+                    variations:
+                      - si: cotisations et contributions . après réforme
+                        alors: 20%
+                      - sinon: 40%
                   taux: 3.25%
-                - plafond: 110%
-                  taux: 9.75%
+                - plafond:
+                    variations:
+                      - si: cotisations et contributions . après réforme
+                        alors: 300%
+                      - sinon: 110%
+                  taux:
+                    variations:
+                      - si: cotisations et contributions . après réforme
+                        alors: 11.75%
+                      - sinon: 9.75%
   références:
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
