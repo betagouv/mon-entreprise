@@ -33,7 +33,6 @@ export function RadioGroup({
 	return (
 		<StyledRARadioGroup
 			defaultValue={defaultValue}
-			orientation="horizontal"
 			value={value}
 			onChange={onChange}
 		>
