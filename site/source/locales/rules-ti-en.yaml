@@ -5162,145 +5162,26 @@ protection sociale . formation:
   titre.fr: formation
 protection sociale . invalidité et décès:
   avec:
-    capital décès:
-      titre.en: '[automatic] death benefit'
-      titre.fr: capital décès
-    capital décès . orphelin:
+    raam:
       description.en: >
-        [automatic] An "orphan" capital sum is paid to the children of
-        self-employed workers
+        [automatic] Since July 1, 2016, you can only receive one disability
+        pension
 
-        who have died. It concerns :
+        disability pension: either for your salaried activity, or for your activity as a
 
+        for your activity as a craftsman/trader. However, the amount of
 
-        - children under the age of 16 on the day of the insured's death and dependent on the insured
+        However, the amount of your pension takes into account all your income, whether from
 
-        dependent ;
-
-        - dependent children of the deceased aged over 16 and under 20,
-
-        pursuing their studies or apprenticeship;
-
-        - children, regardless of age, who are in receipt of benefits
-
-        disabled persons.
-      description.fr: >
-        Un capital « orphelin » est versé aux enfants des travailleurs
-        indépendants
-
-        décédés. Il concerne :
-
-
-        - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa
-
-        charge ;
-
-        - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans,
-
-        poursuivant leurs études ou leur apprentissage ;
-
-        - les enfants, quel que soit leur âge, bénéficiaires des allocations
-
-        instituées en faveur des personnes handicapées.
-      titre.en: '[automatic] orphan'
-      titre.fr: orphelin
-    pension de reversion:
-      description.en: >
-        [automatic] When your husband/wife or ex-husband/wife dies, you may be
-        entitled to a
-
-        reversionary pension.
-
-        Payment of the pension is possible, under certain conditions, when
-
-        the deceased was gainfully employed or self-employed (self-employed, liberal
-
-        self-employed, self-employed professionals, farmers).
-
-
-        The pension is equal to 54% of the pension your husband/wife or ex-husband/wife
-
-        ex-spouse was receiving or could have received (excluding increases).
-      description.fr: >
-        Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir
-        une
-
-        pension de réversion.
-
-        Le versement de la pension est possible, sous certaines conditions, lorsque
-
-        le défunt exerçait une activité salariée ou non salariée (travailleur
-
-        indépendant, professionnel libéral, agriculteur).
-
-
-        La pension est égale à 54 % de la retraite que votre époux/épouse ou
-
-        ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
-      titre.en: '[automatic] maximum reversionary pension'
-      titre.fr: pension de reversion maximum
-    pension invalidité:
-      avec:
-        invalidité partielle:
-          description.en:
-            '[automatic] If you are capable of gainful employment, you are
-            classified in category 1.'
-          description.fr:
-            Si vous êtes capable d’exercer une activité professionnelle
-            rémunérée, vous êtes classé en 1re catégorie.
-          titre.en: '[automatic] partial disability'
-          titre.fr: invalidité partielle
-        invalidité totale:
-          description.en:
-            '[automatic] If you can no longer work, you are classified in
-            category 2.'
-          description.fr:
-            Si vous ne pouvez plus exercer d’activité professionnelle, vous
-            êtes classé en 2e catégorie.
-          titre.en: '[automatic] total disability'
-          titre.fr: invalidité totale
-        minimum:
-          titre.en: '[automatic] minimum'
-          titre.fr: minimum
-        minimum indépendant:
-          avec:
-            minimum invalidité partielle:
-              titre.en: '[automatic] minimum partial disability'
-              titre.fr: minimum invalidité partielle
-            minimum invalidité totale:
-              titre.en: '[automatic] minimum total disability'
-              titre.fr: minimum invalidité totale
-          titre.en: '[automatic] minimum independent'
-          titre.fr: minimum indépendant
-        revenu annuel moyen des 10 meilleures années:
-          description.en: >
-            [automatic] Since July 1, 2016, you can only receive one disability
-            pension
-
-            disability pension: either for your salaried activity, or for your activity as a
-
-            for your activity as a craftsman/trader. However, the amount of
-
-            However, the amount of your pension takes into account all your income, whether from
-
-            your salaried activity or your self-employed activity.
-          description.fr: >
-            Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
-
-            pension d’invalidité : soit au titre de votre activité salariée, soit au
-
-            titre de votre activité d’artisan/commerçant. Toutefois, le montant de
-
-            la pension tient compte de tous vos revenus perçus qu’ils proviennent de
-
-            votre activité salariée ou de votre activité comme indépendant.
-          titre.en: '[automatic] average annual income for the 10 best years'
-          titre.fr: revenu annuel moyen des 10 meilleures années
-      titre.en: '[automatic] disability pension'
-      titre.fr: pension invalidité
-    revenu annuel moyen:
-      titre.en: '[automatic] average annual income'
-      titre.fr: revenu annuel moyen
+        your salaried activity or your self-employed activity.
+      description.fr: |
+        Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
+        pension d’invalidité : soit au titre de votre activité salariée, soit au
+        titre de votre activité d’artisan/commerçant. Toutefois, le montant de
+        la pension tient compte de tous vos revenus perçus qu’ils proviennent de
+        votre activité salariée ou de votre activité comme indépendant.
+      titre.en: '[automatic] Average annual income'
+      titre.fr: Revenu d’activité annuel moyen
   description.en: >
     [automatic] You may be recognized as disabled if your ability to work and
     earn a living is
@@ -5340,8 +5221,108 @@ protection sociale . invalidité et décès:
     à vos proches en cas de décès.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
+protection sociale . invalidité et décès . capital décès:
+  titre.en: '[automatic] death benefit'
+  titre.fr: capital décès
+protection sociale . invalidité et décès . capital décès . orphelin:
+  description.en: >
+    [automatic] An "orphan" capital sum is paid to the children of self-employed
+    workers
+
+    who have died. It concerns :
+
+
+    - children under the age of 16 on the day of the insured's death and dependent on the insured
+
+    dependent ;
+
+    - dependent children of the deceased aged over 16 and under 20,
+
+    pursuing their studies or apprenticeship;
+
+    - children of any age in receipt of disability benefits.
+
+    disabled persons.
+  description.fr: >
+    Un capital « orphelin » est versé aux enfants des travailleurs indépendants
+
+    décédés. Il concerne :
+
+
+    - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa
+
+    charge ;
+
+    - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans,
+
+    poursuivant leurs études ou leur apprentissage ;
+
+    - les enfants, quel que soit leur âge, bénéficiaires des allocations
+
+    instituées en faveur des personnes handicapées.
+  titre.en: '[automatic] orphan'
+  titre.fr: orphelin
+protection sociale . invalidité et décès . pension de reversion:
+  description.en: >
+    [automatic] When your husband/wife or ex-husband/wife dies, you may be
+    entitled to a survivor's pension.
+
+    reversionary pension.
+
+    Payment of the pension is possible, under certain conditions, when
+
+    the deceased was gainfully employed or self-employed (self-employed, liberal
+
+    self-employed, self-employed professionals, farmers).
+
+
+    The pension is equal to 54% of the pension your husband/wife or ex-husband/wife
+
+    ex-spouse was receiving or could have received (excluding increases).
+  description.fr: >
+    Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir une
+
+    pension de réversion.
+
+    Le versement de la pension est possible, sous certaines conditions, lorsque
+
+    le défunt exerçait une activité salariée ou non salariée (travailleur
+
+    indépendant, professionnel libéral, agriculteur).
+
+
+    La pension est égale à 54 % de la retraite que votre époux/épouse ou
+
+    ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
+  titre.en: '[automatic] maximum reversionary pension'
+  titre.fr: pension de reversion maximum
+protection sociale . invalidité et décès . pension invalidité:
+  avec:
+    invalidité partielle:
+      description.en:
+        '[automatic] If you are capable of gainful employment, you are
+        classified in category 1.'
+      description.fr:
+        Si vous êtes capable d’exercer une activité professionnelle
+        rémunérée, vous êtes classé en 1ère catégorie.
+      titre.en: '[automatic] partial disability'
+      titre.fr: invalidité partielle
+    invalidité totale:
+      description.en:
+        '[automatic] If you can no longer work, you are classified in
+        2nd category.'
+      description.fr:
+        Si vous ne pouvez plus exercer d’activité professionnelle, vous
+        êtes classé en 2ème catégorie.
+      titre.en: '[automatic] total disability'
+      titre.fr: invalidité totale
+  titre.en: '[automatic] disability pension'
+  titre.fr: pension invalidité
 protection sociale . maladie:
   avec:
+    condition revenu:
+      titre.en: '[automatic] income condition'
+      titre.fr: condition revenu
     raam:
       titre.en: '[automatic] Average annual income'
       titre.fr: Revenu d’activité annuel moyen
@@ -5406,62 +5387,32 @@ protection sociale . maladie:
   titre.fr: assurance maladie
 protection sociale . maladie . arrêt maladie:
   avec:
-    conditions:
-      avec:
-        délai d'attente:
-          description.en: >
-            [automatic] In order to claim compensation for illness related to
-            your professional activity
-
-            your professional activity, you must provide proof of continuous
-
-            of continuous affiliation to this activity.
-
-
-            **Please note**: if you are not entitled to sick pay, you may, under certain conditions
-
-            may, under certain conditions, be eligible for compensation under your previous
-
-            your previous activity. Contact your
-
-            primary health insurance fund (CPAM).
-          description.fr: >
-            Pour pouvoir prétendre à une indemnisation pour maladie au titre de
-
-            votre activité professionnelle, vous devez justifier d’un délai
-
-            d’affiliation continus dans cette activité.
-
-
-            > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail
-
-            peut, sous certaines conditions, être indemnisable au titre du maintien
-
-            de droits de votre activité précédente. Renseignez-vous auprès de votre
-
-            caisse primaire d’assurance maladie (CPAM).
-          titre.en: '[automatic] waiting period'
-          titre.fr: délai d'attente
-        revenu:
-          titre.en: '[automatic] income'
-          titre.fr: revenu
-      description.en: >-
-        [automatic] In the event of low self-employed income, the amount of
-        daily allowance (IJ) received by the self-employed worker may be zero.
-        Similarly, at the start of a business, you have to wait a certain number
-        of months before you can receive benefits.
-
-        Since January 1, 2022, it has therefore been possible to receive daily sickness and/or maternity benefits for your former activity (regardless of the scheme you were affiliated to).
-      description.fr: >-
-        En cas de revenu d’activité indépendante faible, le montant de
-        l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
-        être nul. De même en début d’activité, il faut attendre un certain
-        nombre de mois avant de pouvoir bénéficier d’indemnités.
-
-        Depuis le 1er janvier 2022, il est donc possible de percevoir des indemnités journalières pour maladie et/ou pour maternité au titre de son ancienne activité (quel que soit le régime auquel on était affilié).
-      titre.en: '[automatic] conditions'
-      titre.fr: conditions
     délai d'attente:
+      description.en: >
+        [automatic] In order to claim compensation for illness related to your
+        professional activity
+
+        your professional activity, you must provide proof of continuous
+
+        of continuous affiliation to this activity.
+
+
+        > **Please note**: if you are not entitled to sick pay, you may, under certain conditions
+
+        may, under certain conditions, be eligible for compensation under your previous
+
+        your previous activity. Contact your
+
+        primary health insurance fund (CPAM).
+      description.fr: |
+        Pour pouvoir prétendre à une indemnisation pour maladie au titre de
+        votre activité professionnelle, vous devez justifier d’un délai
+        d’affiliation continus dans cette activité.
+
+        > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail
+        peut, sous certaines conditions, être indemnisable au titre du maintien
+        de droits de votre activité précédente. Renseignez-vous auprès de votre
+        caisse primaire d’assurance maladie (CPAM).
       titre.en: '[automatic] waiting period'
       titre.fr: délai d'attente
     délai de carence:
@@ -5479,18 +5430,61 @@ protection sociale . maladie . arrêt maladie:
       titre.en: '[automatic] waiting time'
       titre.fr: délai de carence
   description.en: >
-    [automatic] The daily allowance you receive while you're off work is
+    [automatic] The daily indemnity you will receive while you are off work is
 
-    equal to 1/730th of your average annual earned income (Raam) (1). This
+    equal to 1/730th of your [average annual earned income (Raam)](/documentation/
 
-    is calculated on the basis of your average contributory income over the 3 calendar years
+    modele-ti/protection-sociale/maladie/raam). This is calculated on the average
 
-    preceding the date of your work stoppage.
-  description.fr: |
+    of your contributory income for the 3 calendar years prior to the date you stopped working.
+
+    work stoppage.
+
+
+    In the event of low self-employed income, the amount of the
+
+    received by the self-employed worker may be zero.
+
+    be zero. Similarly, at the start of an activity, you have to wait a certain number of months
+
+    a number of months before receiving any benefits.
+
+
+    Since January 1, 2022, it has therefore been possible to receive
+
+    daily sickness and/or maternity benefits in respect of your former activity
+
+    former activity (regardless of the scheme you were affiliated to).
+
+    affiliated).
+  description.fr: >
     L’indemnité journalière que vous recevrez pendant votre arrêt de travail est
-    égale à 1/730e de votre revenu d’activité annuel moyen (Raam) (1). Celui-ci
-    est calculé sur la moyenne de vos revenus cotisés des 3 années civiles
-    précédant la date de votre arrêt de travail.
+
+    égale à 1/730ème de votre [revenu d’activité annuel moyen (Raam)](/documentation/
+
+    modele-ti/protection-sociale/maladie/raam). Celui-ci est calculé sur la moyenne
+
+    de vos revenus cotisés des 3 années civiles précédant la date de votre arrêt de
+
+    travail.
+
+
+    En cas de revenu d’activité indépendante faible, le montant de
+
+    l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
+
+    être nul. De même en début d’activité, il faut attendre un certain
+
+    nombre de mois avant de pouvoir bénéficier d’indemnités.
+
+
+    Depuis le 1er janvier 2022, il est donc possible de percevoir
+
+    des indemnités journalières pour maladie et/ou pour maternité au titre
+
+    de son ancienne activité (quel que soit le régime auquel on était
+
+    affilié).
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
 protection sociale . maladie . maternité paternité adoption:
@@ -5553,7 +5547,7 @@ protection sociale . retraite:
   description.en: >
     [automatic] ### A compulsory system ...
 
-    As soon as you start working, you and your employer contribute to the pension scheme. This contribution is based on your salary.
+    As soon as you start working, you and your employer contribute to your pension scheme. This contribution is based on your salary.
 
 
     ###Pay-as-you-go
@@ -5583,7 +5577,6 @@ protection sociale . retraite:
     also acquire rights. No retired person is left destitute.
 
     without resources.
-
 
 
     Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
@@ -5620,7 +5613,6 @@ protection sociale . retraite:
     acquièrent également des droits. Aucune personne à la retraite n’est laissée
 
     sans ressources.
-
 
 
     Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
@@ -5722,64 +5714,6 @@ protection sociale . retraite . base:
   titre.fr: Retraite de base maximum
 protection sociale . retraite . base . CNAVPL:
   avec:
-    points acquis:
-      avec:
-        cotisation maximum T1:
-          titre.en: '[automatic] T1 maximum contribution'
-          titre.fr: cotisation maximum T1
-        cotisation maximum T2:
-          titre.en: '[automatic] maximum T2 contribution'
-          titre.fr: cotisation maximum T2
-      note.en: >-
-        [automatic] Additional points can be awarded :
-
-        - redeemed points ;
-
-        - 100 additional points for the calendar quarter in which childbirth
-
-        childbirth occurs,
-
-        - 200 additional points per calendar year concerned for insureds
-
-        disability requiring the assistance of a third party
-
-        assistance;
-
-        - 400 points per calendar year for persons recognized as being unable to exercise their
-
-        incapacity to practice their profession for more than 6 months.
-      note.fr: >-
-        Des points supplémentaires peuvent être attribués :
-
-        - points rachetés ;
-
-        - 100 points supplémentaires au titre du trimestre civil au cours duquel
-
-        survient l’accouchement,
-
-        - 200 points supplémentaires par année civile concernée pour l’assuré
-
-        atteint d’invalidité l’obligeant à avoir recours à l’assistance d’une tierce
-
-        personne ;
-
-        - 400 points par année civile pour les personnes reconnues atteintes d’une
-
-        incapacité d’exercice de leur profession pour une durée de plus de 6 mois.
-      titre.en: '[automatic] points acquired'
-      titre.fr: points acquis
-    points acquis . points T1:
-      titre.en: '[automatic] T1 points'
-      titre.fr: points T1
-    points acquis . points T2:
-      titre.en: '[automatic] T2 points'
-      titre.fr: points T2
-    points acquis . points incapacité:
-      titre.en: '[automatic] disability points'
-      titre.fr: points incapacité
-    références:
-      titre.en: '[automatic] references'
-      titre.fr: références
     valeur du point:
       titre.en: '[automatic] point value'
       titre.fr: valeur du point
@@ -5836,7 +5770,54 @@ protection sociale . retraite . base . CNAVPL:
     proche.
   titre.en: '[automatic] CNAVPL basic pension'
   titre.fr: retraite de base CNAVPL
-protection sociale . retraite . base . cotisée:
+protection sociale . retraite . base . CNAVPL . points acquis:
+  avec:
+    cotisation maximum T1:
+      titre.en: '[automatic] T1 maximum contribution'
+      titre.fr: cotisation maximum T1
+    cotisation maximum T2:
+      titre.en: '[automatic] maximum T2 contribution'
+      titre.fr: cotisation maximum T2
+    points T1:
+      titre.en: '[automatic] T1 points'
+      titre.fr: points T1
+    points T2:
+      titre.en: '[automatic] T2 points'
+      titre.fr: points T2
+    points incapacité:
+      titre.en: '[automatic] disability points'
+      titre.fr: points incapacité
+  note.en: >-
+    [automatic] Additional points can be awarded :
+
+    - redeemed points ;
+
+    - 100 additional points for the calendar quarter in which childbirth
+
+    childbirth occurs,
+
+    - 200 additional points per calendar year concerned for insureds
+
+    disability requiring the assistance of a third party
+
+    assistance;
+
+    - 400 points per calendar year for persons recognized as being unable to exercise their
+
+    incapacity to practice their profession for more than 6 months.
+  note.fr: |-
+    Des points supplémentaires peuvent être attribués :
+    - points rachetés ;
+    - 100 points supplémentaires au titre du trimestre civil au cours duquel
+    survient l’accouchement,
+    - 200 points supplémentaires par année civile concernée pour l’assuré
+    atteint d’invalidité l’obligeant à avoir recours à l’assistance d’une tierce
+    personne ;
+    - 400 points par année civile pour les personnes reconnues atteintes d’une
+    incapacité d’exercice de leur profession pour une durée de plus de 6 mois.
+  titre.en: '[automatic] points acquired'
+  titre.fr: points acquis
+protection sociale . retraite . base . revenu cotisé:
   description.en: >
     [automatic] The income contributed for the basic pension is equal to :
 
@@ -5907,7 +5888,7 @@ protection sociale . retraite . base . cotisée:
 
     contributions actually paid (and not contributions called in).
 
-    contributions).
+    called).
 
 
     The annual income corresponding to the deductions made by the insured (known as "contributory income") is defined as follows
@@ -6006,6 +5987,13 @@ protection sociale . retraite . base . cotisée:
     à valider (revenu cotisé de l’année N /150 smic h).
   titre.en: '[automatic] income contributed for basic pension'
   titre.fr: revenu cotisé pour la retraite de base
+protection sociale . retraite . base . trimestres:
+  avec:
+    exonération invalidité indépendant:
+      titre.en: '[automatic] self-employed disability exemption'
+      titre.fr: exonération invalidité indépendant
+  titre.en: '[automatic] validated quarters'
+  titre.fr: trimestres validés
 protection sociale . retraite . complémentaire:
   description.en: >
     [automatic] Retirement pension supplement acquired through 10 full years of
@@ -6075,62 +6063,6 @@ protection sociale . retraite . complémentaire . RCI:
       titre.fr: valeur du point
   titre.en: '[automatic] supplementary pension for self-employed workers'
   titre.fr: retraite complémentaire des indépendants
-protection sociale . retraite . trimestres:
-  avec:
-    exonération invalidité indépendant:
-      titre.en: '[automatic] self-employed disability exemption'
-      titre.fr: exonération invalidité indépendant
-  titre.en: '[automatic] validated quarters'
-  titre.fr: trimestres validés
-protection sociale . transport:
-  description.en: >
-    [automatic] This contribution is paid in full to the [mobility organizing
-    authority
-
-    mobility](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
-
-    in the area where the company is located. It can then be used to
-
-    ubsidize existing public transport or develop new transport infrastructure
-
-    infrastructure (tramway, metro, bus, etc.).
-
-
-    ### Mobility payment in figures
-
-    - 45% reduction** on the cost of public transport in France's 12 biggest conurbations.
-
-    France's largest conurbations.
-
-    - 263 / year / inhabitant** in purchasing power gains for the inhabitants of
-
-    Île-de-France
-  description.fr: >
-    Cette contribution est reversée intégralement à l’[autorité organisatrice de
-    la
-
-    mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
-
-    de la zone ou est implantée l’entreprise. Celle-ci peut ensuite l’utiliser pour
-
-    ubventionner les transports en commun existants ou pour développer de nouvelles
-
-    infrastructures de transport (tramway, métro, bus...).
-
-
-    ### Le versement mobilité en quelques chiffres
-
-    - **45% de réduction** sur le coût des transports en communs dans les 12 plus
-
-    grandes agglomérations de France.
-
-    - **263 € / an / habitant** de gain de pouvoir d’achat pour les habitants
-
-    d’Île-de-France
-  résumé.en: '[automatic] Keeps transit fares low'
-  résumé.fr: Permet de maintenir le prix d’un billet de transport en commun à un bas prix
-  titre.en: '[automatic] transport'
-  titre.fr: transport
 période:
   titre.en: '[automatic] period'
   titre.fr: période
