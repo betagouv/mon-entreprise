@@ -9,6 +9,17 @@ impôt . taux neutre:
     abattu.
 
   variations:
+    - si: établissement . commune . département . outre-mer . Guadeloupe Réunion Martinique
+      alors: barème Guadeloupe Réunion Martinique
+    - si:
+        une de ces conditions:
+          - établissement . commune . département = 'Guyane'
+          - établissement . commune . département = 'Mayotte'
+      alors: barème Guyane Mayotte
+    - sinon: barème métropole
+
+impôt . taux neutre . barème métropole:
+  variations:
     - si: date >= 01/05/2025
       alors:
         grille:
@@ -141,7 +152,6 @@ impôt . taux neutre:
             - plafond: 51611 €/mois
               montant: 38 %
             - montant: 43 %
-
     - sinon:
         grille:
           assiette: paramètres . impôt . revenu imposable
@@ -192,11 +202,6 @@ impôt . taux neutre:
 
 impôt . taux neutre . barème Guadeloupe Réunion Martinique:
   icônes: 🇬🇵 🇷🇪 🇲🇶
-  applicable si: établissement . commune . département . outre-mer . Guadeloupe
-    Réunion Martinique
-  références:
-    Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
-  remplace: taux neutre
   variations:
     - si: date >= 01/05/2025
       alors:
@@ -373,18 +378,11 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
             - montant: 38%
               plafond: 53670 €/mois
             - montant: 43%
-
-impôt . taux neutre . barème Guyane Mayotte:
-  icônes: 🇬🇫 🇾🇹
-  applicable si:
-    par défaut: non
-    une de ces conditions:
-      - établissement . commune . département = 'Guyane'
-      - établissement . commune . département = 'Mayotte'
-  remplace: taux neutre
   références:
     Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
 
+impôt . taux neutre . barème Guyane Mayotte:
+  icônes: 🇬🇫 🇾🇹
   variations:
     - si: date >= 01/05/2025
       alors:
@@ -561,3 +559,5 @@ impôt . taux neutre . barème Guyane Mayotte:
             - montant: 38%
               plafond: 56708 €/mois
             - montant: 43%
+  références:
+    Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
