@@ -807,7 +807,7 @@ assimilé salarié . exonérations . JEI:
 
     - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - corporate officers who are primarily involved in the company's research and development project
+    - corporate officers who are principally involved in the company's research and development project
 
 
     By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
@@ -1797,8 +1797,8 @@ impôt . barème standard . impôt brut . par part:
     41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
 
     uniquement à la part de ses revenus supérieure à 72 617 €.
-  titre.en: '[automatic] per share'
-  titre.fr: par part
+  titre.en: '[automatic] Gross tax per family share'
+  titre.fr: Impôt brut par part de quotient familial
 impôt . barème standard . impôt brut . sans parts rattachées:
   titre.en: '[automatic] without attached shares'
   titre.fr: sans parts rattachées
@@ -1835,9 +1835,9 @@ impôt . barème standard . quotient familial . plafond avantage:
 impôt . barème standard . revenu brut global:
   description.en: |
     [automatic] Overall gross income is the sum of all income after deductions:
-    - net taxable salary
-    - profits (BIC and BNC)
-    - dividends
+    - net taxable salary,
+    - profits (BIC and BNC),
+    - dividends.
 
     Our simulators do not yet include all the income to be included:
     - pensions and retirement,
@@ -1849,11 +1849,11 @@ impôt . barème standard . revenu brut global:
     Le revenu brut global est la somme de tous les revenus, après leur
     abattement :
 
-    - salaire net imposable
+    - salaire net imposable,
 
-    - bénéfices (BIC et BNC)
+    - bénéfices (BIC et BNC),
 
-    - dividendes
+    - dividendes.
 
 
     Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
@@ -2126,7 +2126,7 @@ impôt . taux neutre . barème Guyane Mayotte:
   titre.en: '[automatic] scale Guiana Mayotte'
   titre.fr: barème Guyane Mayotte
 impôt . taux neutre . barème métropole:
-  titre.en: '[automatic] metropolitan France'
+  titre.en: '[automatic] scale metropolitan France'
   titre.fr: barème métropole
 impôt . taux personnalisé:
   description.en: |
