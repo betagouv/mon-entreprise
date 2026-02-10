@@ -8,11 +8,9 @@ indépendant . profession libérale . réglementée . CNBF:
     Site CNBF: https://www.cnbf.fr
 
 indépendant . profession libérale . réglementée . CNBF . retraite de base:
-  remplace: cotisations et contributions . cotisations . retraite de base
-  formule:
-    somme:
-      - cotisation forfaitaire
-      - cotisation proportionnelle
+  somme:
+    - cotisation forfaitaire
+    - cotisation proportionnelle
   références:
     Barèmes: https://www.cnbf.fr/medias/documents/?_sft_thematique-media=baremes
     Barème 2025: https://www.cnbf.fr/wp-content/uploads/2025/02/Bareme-CNBF-2025-01.01_vDf-1.pdf
