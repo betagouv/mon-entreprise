@@ -51,3 +51,7 @@ type Story = StoryObj<typeof ToggleGroup>
 export const Default: Story = {
 	render: () => ToggleGroupToRender(TOGGLE_OPTIONS, TOGGLE_OPTIONS[0].value),
 }
+
+export const WithoutDefaultValue: Story = {
+	render: () => ToggleGroupToRender(TOGGLE_OPTIONS, ''),
+}
