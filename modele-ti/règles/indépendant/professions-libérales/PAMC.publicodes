@@ -146,7 +146,13 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
 
     Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
     conventionnée.
-  formule: assiette conventionnée / (100% + dépassement d'honoraire moyen)
+  variations:
+    - si: métier = 'santé . chirurgien-dentiste'
+      alors:
+        produit:
+          - assiette conventionnée
+          - 1 - taux dentiste / (1 + taux dentiste)
+    - sinon: assiette conventionnée / (100% + dépassement d'honoraire moyen)
   note: |
     La formule donnée par l’Urssaf est la suivante :
 
@@ -172,6 +178,40 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     > 3. `revenu de l’activité conventionnée / (100% + d%)`
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+  avec:
+    taux dentiste:
+      description: |
+        Le « taux dentiste » permet de calculer la part de votre cotisation d’assurance
+        maladie-maternité prise en charge par la CPAM.
+
+        Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
+        est issu des données de votre Relevé individuel d’activité et de
+        prescriptions (RIAP).
+
+        Plus le taux est faible, plus la participation CPAM est importante et donc
+        la part à la charge du praticien est faible.
+
+        ### Calcul du taux
+
+        La formule de calcul du taux de dépassement est la suivante :
+
+        > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
+        > remboursables actes + montants remboursés forfaits CMU)
+      applicable si: métier = 'santé . chirurgien-dentiste'
+      question: Quel est votre « taux dentiste?
+      unité: '%'
+      par défaut: 100%
+      références:
+        Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+    taux dentiste . notification:
+      formule: taux dentiste >= 100%
+      type: notification
+      sévérité: avertissement
+      description: Le taux dentiste doit être inférieur à 100%
 
 indépendant . profession libérale . réglementée . PAMC . maladie:
   remplace: cotisations et contributions . cotisations . maladie-maternité
@@ -265,48 +305,6 @@ indépendant . profession libérale . réglementée . PAMC . allocations familia
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
-
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste:
-  applicable si: métier = 'santé . chirurgien-dentiste'
-  titre: assiette participation CPAM (chirurgien dentiste)
-  remplace: assiette participation CPAM
-  formule:
-    produit:
-      - assiette conventionnée
-      - 1 - taux dentiste / (1 + taux dentiste)
-  références:
-    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
-    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
-
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste:
-  description: |
-    Le « taux dentiste » permet de calculer la part de votre cotisation d’assurance
-    maladie-maternité prise en charge par la CPAM.
-
-    Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
-    est issu des données de votre Relevé individuel d’activité et de
-    prescriptions (RIAP).
-
-    Plus le taux est faible, plus la participation CPAM est importante et donc
-    la part à la charge du praticien est faible.
-
-    ### Calcul du taux
-
-    La formule de calcul du taux de dépassement est la suivante :
-
-    > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
-    > remboursables actes + montants remboursés forfaits CMU)
-  question: Quel est votre « taux Urssaf » ?
-  unité: ''
-  par défaut: 1
-  références:
-    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
-
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste . notification:
-  formule: taux dentiste >= 100
-  type: notification
-  sévérité: avertissement
-  description: Le taux dentiste doit être inférieur à 100
 
 indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   titre: Participation assurance maladie
