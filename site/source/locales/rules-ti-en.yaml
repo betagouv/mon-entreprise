@@ -4128,6 +4128,73 @@ indépendant . profession libérale . réglementée . PAMC . assiette non conven
   titre.en: '[automatic] non-conventional plate'
   titre.fr: assiette non conventionnée
 indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
+  avec:
+    taux dentiste:
+      description.en: >
+        [automatic] The "dentist's rate" is used to calculate the proportion of
+        your health and
+
+        paid by the CPAM.
+
+
+        This rate is pre-filled on your professional income tax return. It
+
+        from your Relevé individuel d'activité et de prescriptions (RIAP).
+
+        prescriptions (RIAP).
+
+
+        The lower the rate, the higher the CPAM contribution and therefore the
+
+        the practitioner's out-of-pocket expenses.
+
+
+        ### Rate calculation
+
+
+        The formula for calculating the overrun rate is as follows:
+
+
+        > Dentist rate = (overcharges - amounts reimbursed at CMU fixed rates) / (amounts
+
+        > reimbursed acts + amounts reimbursed CMU lump sums)
+      description.fr: >
+        Le « taux dentiste » permet de calculer la part de votre cotisation
+        d’assurance
+
+        maladie-maternité prise en charge par la CPAM.
+
+
+        Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
+
+        est issu des données de votre Relevé individuel d’activité et de
+
+        prescriptions (RIAP).
+
+
+        Plus le taux est faible, plus la participation CPAM est importante et donc
+
+        la part à la charge du praticien est faible.
+
+
+        ### Calcul du taux
+
+
+        La formule de calcul du taux de dépassement est la suivante :
+
+
+        > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
+
+        > remboursables actes + montants remboursés forfaits CMU)
+      question.en: '[automatic] What is your "dentist rate?'
+      question.fr: Quel est votre « taux dentiste?
+      titre.en: '[automatic] dentist rate'
+      titre.fr: taux dentiste
+    taux dentiste . notification:
+      description.en: "[automatic] The dentist's rate must be less than 100%."
+      description.fr: Le taux dentiste doit être inférieur à 100%
+      titre.en: '[automatic] notification'
+      titre.fr: notification
   description.en: >
     [automatic] Also known as conventional income, this is income from
     conventional
@@ -4226,75 +4293,6 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     > 3. `revenu de l’activité conventionnée / (100% + d%)`
   titre.en: '[automatic] CPAM contribution base'
   titre.fr: assiette participation CPAM
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste:
-  titre.en: '[automatic] CPAM contribution (dental surgeon)'
-  titre.fr: assiette participation CPAM (chirurgien dentiste)
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste:
-  description.en: >
-    [automatic] The "dentist's rate" is used to calculate the proportion of your
-    health and
-
-    paid by the CPAM.
-
-
-    This rate is pre-filled on your professional income tax return. It
-
-    from your Relevé individuel d'activité et de prescriptions (RIAP).
-
-    prescriptions (RIAP).
-
-
-    The lower the rate, the higher the CPAM contribution and therefore the
-
-    the practitioner's out-of-pocket expenses.
-
-
-    ### Rate calculation
-
-
-    The formula for calculating the overrun rate is as follows:
-
-
-    > Dentist rate = (overcharges - amounts reimbursed at CMU fixed rates) / (amounts
-
-    > reimbursed acts + amounts reimbursed CMU lump sums)
-  description.fr: >
-    Le « taux dentiste » permet de calculer la part de votre cotisation
-    d’assurance
-
-    maladie-maternité prise en charge par la CPAM.
-
-
-    Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
-
-    est issu des données de votre Relevé individuel d’activité et de
-
-    prescriptions (RIAP).
-
-
-    Plus le taux est faible, plus la participation CPAM est importante et donc
-
-    la part à la charge du praticien est faible.
-
-
-    ### Calcul du taux
-
-
-    La formule de calcul du taux de dépassement est la suivante :
-
-
-    > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
-
-    > remboursables actes + montants remboursés forfaits CMU)
-  question.en: '[automatic] What is your "Urssaf rate"?'
-  question.fr: Quel est votre « taux Urssaf » ?
-  titre.en: '[automatic] dentist rate'
-  titre.fr: taux dentiste
-indépendant . profession libérale . réglementée . PAMC . assiette participation chirurgien-dentiste . taux dentiste . notification:
-  description.en: "[automatic] The dentist's rate must be less than 100"
-  description.fr: Le taux dentiste doit être inférieur à 100
-  titre.en: '[automatic] notification'
-  titre.fr: notification
 indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen:
   question.en: '[automatic] What is your average excess fee (estimate)?'
   question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
