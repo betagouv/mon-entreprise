@@ -36,10 +36,8 @@ export function ToggleGroup({
 
 			<StyledGroupContainer>
 				{options.map((option) => (
-					<StyledRadioContainer>
-						<StyledRARadio value={option.value} key={`key-${option.value}`}>
-							{option.label}
-						</StyledRARadio>
+					<StyledRadioContainer key={`key-${option.value}`}>
+						<StyledRARadio value={option.value}>{option.label}</StyledRARadio>
 					</StyledRadioContainer>
 				))}
 			</StyledGroupContainer>
