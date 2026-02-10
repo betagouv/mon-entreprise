@@ -219,13 +219,14 @@ indépendant . profession libérale . réglementée . PAMC . maladie:
   somme:
     - cotisations et contributions . cotisations . maladie-maternité
     - contribution additionnelle
-    - (- participation CPAM)
+  abattement: participation CPAM
 
 indépendant . profession libérale . réglementée . PAMC . maladie . participation CPAM:
   non applicable si: métier . santé . médecin . secteur = 'S2'
   produit:
     - assiette participation CPAM
-    - taux maladie - 0.1%
+    - valeur: taux maladie
+      abattement: 0.1%
   arrondi: oui
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
