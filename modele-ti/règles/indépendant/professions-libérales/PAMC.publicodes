@@ -146,13 +146,6 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
 
     Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
     conventionnée.
-  variations:
-    - si: métier = 'santé . chirurgien-dentiste'
-      alors:
-        produit:
-          - assiette conventionnée
-          - 1 - taux dentiste / (1 + taux dentiste)
-    - sinon: assiette conventionnée / (100% + dépassement d'honoraire moyen)
   note: |
     La formule donnée par l’Urssaf est la suivante :
 
@@ -176,6 +169,14 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     > 1. `revenu de l’activité conventionnée * h / h+`
     > 2. `revenu de l’activité conventionnée * h / (h * (100% + d%))`
     > 3. `revenu de l’activité conventionnée / (100% + d%)`
+  variations:
+    - si: métier = 'santé . chirurgien-dentiste'
+      alors:
+        produit:
+          - assiette conventionnée
+          - 1 - taux dentiste / (1 + taux dentiste)
+    - sinon: assiette conventionnée / (100% + dépassement d'honoraire moyen)
+  abattement: cotisations et contributions . cotisations . exonérations . pension invalidité . exonération
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
