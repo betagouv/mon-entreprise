@@ -138,24 +138,24 @@ exports[`calculate simulations-indépendant > années précédentes 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 73208
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
+indépendant . cotisations et contributions . cotisations: 16453
 indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
+indépendant . revenu professionnel: 51985
 indépendant . rémunération . brute: 73208
 indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: undefined"
+indépendant . rémunération . nette . après impôt: 41118"
 `;
 
 exports[`calculate simulations-indépendant > années précédentes 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 59111
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
+indépendant . cotisations et contributions . cotisations: 13642
 indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
+indépendant . revenu professionnel: 41602
 indépendant . rémunération . brute: 59111
 indépendant . rémunération . nette: 40000
-indépendant . rémunération . nette . après impôt: undefined"
+indépendant . rémunération . nette . après impôt: 33926"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `
