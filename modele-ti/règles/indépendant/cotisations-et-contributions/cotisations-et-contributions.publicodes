@@ -106,11 +106,11 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
           - assiette sociale . sans plancher
           - cotisations
           - conjoint collaborateur . cotisations
-      abattement:
-        somme:
-          - revenus étrangers . montant
-          - IJSS . imposable
-        plancher: 0 €/an
+        abattement:
+          somme:
+            - revenus étrangers . montant
+            - IJSS . imposable
+          plancher: 0 €/an
 
   avec:
     abattement:
