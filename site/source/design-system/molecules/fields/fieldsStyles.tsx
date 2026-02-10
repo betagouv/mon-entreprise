@@ -109,3 +109,53 @@ export const errorMessageStyle = css`
 		fill: ${({ theme }) => theme.colors.extended.error[400]};
 	}
 `
+
+export const radioFieldsSharedStyles = css`
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	margin: ${({ theme }) => theme.spacings.xxs};
+	padding-right: ${({ theme }) => theme.spacings.xs};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	outline: transparent solid 1px;
+
+	&::before,
+	&::after {
+		content: '';
+
+		border-radius: 50%;
+
+		cursor: pointer;
+
+		${fieldTransition}
+	}
+
+	&::before {
+		padding: ${({ theme }) => theme.spacings.xxs};
+		border: ${({ theme }) => theme.spacings.sm} solid white;
+
+		background: transparent;
+	}
+
+	&::after {
+		position: absolute;
+
+		left: ${({ theme }) => theme.spacings.xs};
+
+		width: ${({ theme }) => theme.spacings.md};
+		height: ${({ theme }) => theme.spacings.md};
+		border: ${({ theme }) => theme.spacings.xxxs} solid
+			${({ theme }) => theme.colors.extended.grey[600]};
+	}
+
+	&[data-focused='true'] {
+		&:focus-within {
+			${outlineOnFocus}
+		}
+	}
+
+	&[data-selected='true']::after {
+		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+`
