@@ -214,7 +214,9 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
       description: Le taux dentiste doit être inférieur à 100%
 
 indépendant . profession libérale . réglementée . PAMC . maladie:
-  remplace: cotisations et contributions . cotisations . maladie-maternité
+  remplace:
+    références à: cotisations et contributions . cotisations . maladie-maternité
+    sauf dans: participation CPAM
   titre: maladie (après participation CPAM)
   somme:
     - cotisations et contributions . cotisations . maladie-maternité
@@ -241,7 +243,9 @@ indépendant . profession libérale . réglementée . PAMC . maladie . participa
           alors: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger . taux
         - si: cotisations et contributions . après réforme = non
           alors: profession libérale . CNAVPL . maladie . taux
-        - sinon: cotisations et contributions . cotisations . maladie-maternité . taux 1
+        - sinon:
+            valeur: cotisations et contributions . cotisations . maladie-maternité / cotisations et contributions . cotisations . maladie-maternité . assiette
+            unité: '%'
 
 indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
   produit:
