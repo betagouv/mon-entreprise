@@ -15,7 +15,7 @@ export const configIndépendant: SimulationConfig = {
 		'indépendant . cotisations et contributions . début activité',
 		'indépendant . rémunération . impôt',
 		'indépendant . rémunération . impôt . avec dividendes',
-		'protection sociale . retraite . trimestres',
+		'protection sociale . retraite . base . trimestres',
 		'protection sociale . retraite . complémentaire',
 		'protection sociale . retraite . base',
 	],
