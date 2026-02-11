@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 export default function Redirections({ children }: Props) {
 	const { absoluteSitePaths } = useSitePaths()
-	const pathname = useCurrentPath()
+	const { currentPath: pathname } = useNavigation()
 
 	const redirections = useMemo(() => {
 		return [

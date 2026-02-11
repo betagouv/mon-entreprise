@@ -18,7 +18,7 @@ import {
 	TextField,
 } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 
 type SubmitError = {
 	message?: string
@@ -119,7 +119,8 @@ export default function FeedbackForm({
 	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
 		undefined
 	)
-	const pathname = decodeURI(useCurrentPath())
+	const { currentPath } = useNavigation()
+	const pathname = decodeURI(currentPath)
 
 	const { t } = useTranslation()
 

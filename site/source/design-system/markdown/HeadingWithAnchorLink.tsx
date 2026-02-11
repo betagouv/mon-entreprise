@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { H1, H2, H3, H4, H5, H6, Link } from '@/design-system'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { isIterable } from '@/utils'
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 export default function HeadingWithAnchorLink({ level, children }: Props) {
 	useScrollToHash()
-	const pathname = useCurrentPath()
+	const { currentPath: pathname } = useNavigation()
 	const headingId = flatMapChildren(children)
 		.join(' ')
 		.toLowerCase()

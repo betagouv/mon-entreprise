@@ -1,16 +1,14 @@
 'use client'
 
 import { ComponentProps, forwardRef } from 'react'
-import { Link as RRLink, NavLink as RRNavLink } from 'react-router-dom'
+import {
+	Link as RRLink,
+	NavLink as RRNavLink,
+	To,
+} from 'react-router-dom'
 
-interface LinkProps {
-	to: string
-	children: React.ReactNode
-	className?: string
-	style?: React.CSSProperties
-	target?: string
-	rel?: string
-	onClick?: (e: React.MouseEvent) => void
+type LinkProps = Omit<ComponentProps<typeof RRLink>, 'to'> & {
+	to: To
 }
 
 /**

@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 import ChargesSocialesIndépendant from './declaration-charges-sociales-independant'
@@ -13,12 +13,12 @@ import ÉconomieCollaborative from './économie-collaborative'
 
 export default function Assistants() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
-	const pathname = useCurrentPath()
+	const { currentPath } = useNavigation()
 	const simulateurs = useSimulatorsData()
 
 	return (
 		<>
-			<ScrollToTop key={pathname} />
+			<ScrollToTop key={currentPath} />
 
 			<Routes>
 				<Route

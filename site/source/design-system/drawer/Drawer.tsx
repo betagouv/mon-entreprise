@@ -6,7 +6,7 @@ import { css, styled } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useOnKeyDown } from '@/hooks/useOnKeyDown'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 
 import { Button } from '../buttons'
 import { Grid } from '../layout'
@@ -97,13 +97,13 @@ export const Drawer = ({
 		closeDrawer(true)
 	})
 
-	const pathname = useCurrentPath()
+	const { currentPath } = useNavigation()
 
 	// close the drawer when the route change
 	useEffect(() => {
 		// if the drawer close unexpectedly cause of this effect, be sure to use useCallback for the onCancel prop
 		closeDrawer(true)
-	}, [pathname])
+	}, [currentPath])
 
 	return (
 		<>

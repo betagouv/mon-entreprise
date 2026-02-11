@@ -9,11 +9,11 @@ import {
 	Spacing,
 	Ul,
 } from '@/design-system'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 export default function MoreInfosOnUs() {
-	const pathname = useCurrentPath()
+	const { currentPath: pathname } = useNavigation()
 	const { absoluteSitePaths } = useSitePaths()
 	const { language } = useTranslation().i18n
 
