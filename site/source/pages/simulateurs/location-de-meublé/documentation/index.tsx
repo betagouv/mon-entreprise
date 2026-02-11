@@ -3,15 +3,15 @@ import {
 	DocumentationRouter,
 	MDXDocumentationIndex,
 } from '@/components/documentation'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 const mdxModules = import.meta.glob('./*.mdx', { eager: true })
 
 export const DocumentationHub = () => {
 	const { absoluteSitePaths } = useSitePaths()
-	const pathname = useCurrentPath()
-	const isIndex = pathname.endsWith('/documentation')
+	const { currentPath } = useNavigation()
+	const isIndex = currentPath.endsWith('/documentation')
 
 	const baseUrl = absoluteSitePaths.simulateurs['location-de-logement-meublé']
 	const docUrl = baseUrl + '/documentation'

@@ -13,6 +13,7 @@ import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { DesignSystemThemeProvider } from '@/design-system'
 import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
+import { ReactRouterNavigationProvider } from '@/lib/navigation'
 
 import { makeStore } from '../store/store'
 import { ErrorFallback } from './ErrorPage'
@@ -97,7 +98,9 @@ function BrowserRouterProvider({
 					basename={import.meta.env.MODE === 'production' ? '' : basename}
 					future={{ v7_startTransition: true }}
 				>
-					{children}
+					<ReactRouterNavigationProvider>
+						{children}
+					</ReactRouterNavigationProvider>
 				</BrowserRouter>
 			</TrackingProvider>
 		</HelmetProvider>

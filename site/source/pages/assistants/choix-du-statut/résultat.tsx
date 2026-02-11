@@ -23,7 +23,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
@@ -31,11 +31,11 @@ import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
 export default function Résultat() {
 	const { absoluteSitePaths } = useSitePaths()
-	const pathname = useCurrentPath()
+	const { currentPath } = useNavigation()
 
 	const statut = Object.entries(
 		absoluteSitePaths.assistants['choix-du-statut'].résultat
-	).find(([, path]) => pathname === path)?.[0]
+	).find(([, path]) => currentPath === path)?.[0]
 	const dottedName = STATUT_TO_DOTTEDNAME[statut as StatutType]
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)

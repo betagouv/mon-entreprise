@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
 import { Button, Chip, Emoji, theme, typography } from '@/design-system'
+import { useNavigation } from '@/lib/navigation'
 import { useFetchData } from '@/hooks/useFetchData'
 
 import { StatsStruct } from './types'
@@ -68,7 +68,7 @@ type PaginationProps = {
 }
 
 function Pagination({ title, items, pageParam }: PaginationProps) {
-	const [searchParams, setSearchParams] = useSearchParams()
+	const { searchParams, setSearchParams } = useNavigation()
 	const currentPage = Number(searchParams.get(pageParam) ?? 0)
 
 	const goToPage = (page: number) => {

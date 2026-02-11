@@ -1,4 +1,4 @@
-import { useMatchWithParams } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
 type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']
@@ -17,10 +17,11 @@ const stepOrder: readonly Step[] = [
 
 export function useCurrentStep() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const params = useMatchWithParams<{ step: string }>(
+	const { matchPath } = useNavigation()
+	const match = matchPath(
 		`${absoluteSitePaths.assistants['choix-du-statut'].index}/:step`
 	)
-	const localizedStep = params?.step
+	const localizedStep = match?.params.step
 	if (!localizedStep) {
 		return 'index'
 	}

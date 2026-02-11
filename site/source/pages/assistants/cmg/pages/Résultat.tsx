@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
-import { useNavigate } from '@/lib/navigation'
 import { useCMG } from '@/contextes/cmg'
 import {
 	Body,
@@ -16,9 +15,10 @@ import {
 } from '@/design-system'
 import { euros, toString as formatMontant } from '@/domaine/Montant'
 import { useGetPath } from '@/hooks/useGetPath'
+import { useNavigation } from '@/lib/navigation'
 
 export default function Résultat() {
-	const navigate = useNavigate()
+	const { navigate } = useNavigation()
 	const { montantCT, set } = useCMG()
 	const { t } = useTranslation()
 	const getPath = useGetPath()

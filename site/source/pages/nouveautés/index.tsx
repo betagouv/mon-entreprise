@@ -19,7 +19,7 @@ import {
 	typography,
 } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useMatchWithParams, useNavigate } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 const { Body, H1, Link } = typography
@@ -30,12 +30,10 @@ type Releases = typeof import('@/public/data/releases.json')
 
 export default function Nouveautés() {
 	const { data } = useFetchData<Releases>('/data/releases.json')
-	const navigate = useNavigate()
+	const { navigate, matchPath } = useNavigation()
 	const { absoluteSitePaths } = useSitePaths()
-	const params = useMatchWithParams<{ date: string }>(
-		encodeURI(absoluteSitePaths.nouveautés.date)
-	)
-	const slug = params?.date
+	const slug = matchPath(encodeURI(absoluteSitePaths.nouveautés.date))?.params
+		.date
 	useHideNewsBanner()
 
 	const { t } = useTranslation()

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 
 const DEVELOPMENT_BASE_PATHS = {
 	fr: '/mon-entreprise',
@@ -10,7 +10,7 @@ const DEVELOPMENT_BASE_PATHS = {
 
 export const useGetFullURL = () => {
 	const { i18n } = useTranslation()
-	const pathname = useCurrentPath()
+	const { currentPath: pathname } = useNavigation()
 
 	const language = i18n.language as 'fr' | 'en'
 

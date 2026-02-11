@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 const PAGE_TITLE = 'Un avis sur cette page ?'
@@ -9,7 +9,7 @@ const SIMULATOR_TITLE = 'Un avis sur cet outil ?'
 
 export const useFeedback = () => {
 	const [shouldShowRater, setShouldShowRater] = useState(false)
-	const currentPath = useCurrentPath()
+	const { currentPath } = useNavigation()
 	const currentPathDecoded = decodeURI(currentPath)
 	const { absoluteSitePaths } = useSitePaths()
 	const simulators = useSimulatorsData()

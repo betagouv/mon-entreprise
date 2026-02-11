@@ -7,12 +7,12 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { useSearchParams } from '@/lib/navigation'
 import {
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
+import { useNavigation } from '@/lib/navigation'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
 	batchUpdateSituation,
@@ -22,7 +22,7 @@ import {
 import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
 
 export default function useSetSimulationFromSearchParams() {
-	const [searchParams, setSearchParams] = useSearchParams()
+	const { searchParams, setSearchParams } = useNavigation()
 	// saves params for development, as strict mode is running twice
 	const [initialSearchParams] = useState(new URLSearchParams(searchParams))
 	const objectifs = useSelector(configObjectifsSelector)

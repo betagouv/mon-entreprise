@@ -13,15 +13,15 @@ import { InstitutionsPartenairesArtisteAuteur } from '@/components/simulationExp
 import { useEngine } from '@/components/utils/EngineContext'
 import { typography } from '@/design-system'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 
 import { configArtisteAuteur } from './simulationConfig'
 
 const { Body, H2 } = typography
 
 export default function ArtisteAuteur() {
-	const pathname = useCurrentPath()
-	useSimulationConfig({ key: pathname, config: configArtisteAuteur })
+	const { currentPath } = useNavigation()
+	useSimulationConfig({ key: currentPath, config: configArtisteAuteur })
 
 	return (
 		<>

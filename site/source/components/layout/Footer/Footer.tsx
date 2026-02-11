@@ -14,7 +14,7 @@ import {
 	GithubIcon,
 	Link,
 } from '@/design-system'
-import { generatePath, matchPath, useCurrentPath } from '@/lib/navigation'
+import { NavigationAPI, useNavigation } from '@/lib/navigation'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
@@ -25,9 +25,11 @@ import TermsOfUse from './TermsOfUse'
 
 const altPathname = alternatePathname()
 
-const altPathnnamesWithParams = (
+const getAltPathnamesWithParams = (
 	lang: keyof typeof altPathname,
-	path: string
+	path: string,
+	matchPath: NavigationAPI['matchPath'],
+	generatePath: NavigationAPI['generatePath']
 ) =>
 	Object.entries(altPathname[lang])
 		.filter(([pth]) => /\/:/.test(pth))
@@ -40,7 +42,7 @@ const altPathnnamesWithParams = (
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const pathname = useCurrentPath()
+	const { currentPath: pathname, matchPath, generatePath } = useNavigation()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
@@ -53,7 +55,7 @@ export default function Footer() {
 			? import.meta.env.VITE_FR_BASE_URL
 			: import.meta.env.VITE_EN_BASE_URL) +
 		(altPathname[language][path] ??
-			altPathnnamesWithParams(language, path)?.[0] ??
+			getAltPathnamesWithParams(language, path, matchPath, generatePath)?.[0] ??
 			'/')
 
 	const isFrenchMode = language === 'fr'

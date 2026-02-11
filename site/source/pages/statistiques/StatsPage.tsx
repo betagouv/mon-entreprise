@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { toAtString } from '@/components/ATInternetTracking'
-import { useSearchParams } from '@/lib/navigation'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { Emoji, Grid, Spacing, Switch, typography } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useNavigation } from '@/lib/navigation'
 import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 import PagesChart from '@/pages/statistiques/_components/PagesCharts'
 
@@ -194,7 +194,7 @@ export function getFilter(s: SimulatorDataValues): Filter | '' {
 }
 
 function useStatState() {
-	const [searchParams, setSearchParams] = useSearchParams()
+	const { searchParams, setSearchParams } = useNavigation()
 
 	const simulators = useSimulatorsData()
 	const URLFilter: string = searchParams.get('module') ?? ''
@@ -213,11 +213,12 @@ function useStatState() {
 				(s) =>
 					!!filter && JSON.stringify(getFilter(s)) === JSON.stringify(filter)
 			)?.id ?? filter
-		const paramsEntries = [['module', module]].filter(
-			([, val]) => val !== ''
-		) as [string, string][]
+		const newParams = new URLSearchParams()
+		if (module) {
+			newParams.set('module', module as string)
+		}
 
-		setSearchParams(paramsEntries, { replace: true })
+		setSearchParams(newParams, { replace: true })
 	}, [filter, simulators, setSearchParams])
 
 	return [filter, setFilter] as const

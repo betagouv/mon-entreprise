@@ -11,7 +11,7 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 import * as safeLocalStorage from '../../storage/safeLocalStorage'
@@ -54,19 +54,19 @@ export function Feedback({
 	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
-	const currentPath = useCurrentPath()
+	const { currentPath: url } = useNavigation()
 	const tag = usePianoTracking()
 
 	const { absoluteSitePaths } = useSitePaths()
 	const isSimulateurSalaire =
-		currentPath.includes(absoluteSitePaths.simulateurs.salarié) ||
-		currentPath.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
+		url.includes(absoluteSitePaths.simulateurs.salarié) ||
+		url.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
 
 	const { shouldShowRater, customTitle } = useFeedback()
 
 	const submitFeedback = useCallback(
 		(rating: FeedbackT) => {
-			setFeedbackGivenForUrl(currentPath)
+			setFeedbackGivenForUrl(url)
 			tag?.sendEvent('click.action', {
 				click_chapter1: 'satisfaction',
 				click: rating,
@@ -80,10 +80,10 @@ export function Feedback({
 			setIsShowingThankMessage(!isNotSatisfiedValue)
 			setIsShowingSuggestionForm(isNotSatisfiedValue)
 		},
-		[tag, currentPath]
+		[tag, url]
 	)
 
-	const shouldAskFeedback = getShouldAskFeedback(currentPath)
+	const shouldAskFeedback = getShouldAskFeedback(url)
 
 	return (
 		<>

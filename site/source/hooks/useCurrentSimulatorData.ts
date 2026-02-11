@@ -1,4 +1,4 @@
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 import { Merge, ToOptional } from '@/types/utils'
 
@@ -11,7 +11,8 @@ export type MergedSimulatorDataValues = ToOptional<Merge<SimulatorDataValues>>
  */
 export const useCurrentSimulatorData = () => {
 	const simulatorsData = useSimulatorsData()
-	const pathname = decodeURI(useCurrentPath())
+	const { currentPath } = useNavigation()
+	const pathname = decodeURI(currentPath)
 
 	const entries = Object.entries(simulatorsData)
 	const [key, data] =

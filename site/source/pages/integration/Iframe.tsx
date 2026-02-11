@@ -5,7 +5,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import urssafLogo from '@/assets/images/Urssaf.svg'
-import { useHref, useSearchParams } from '@/lib/navigation'
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Article,
@@ -26,6 +25,7 @@ import {
 	Ul,
 } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useNavigation } from '@/lib/navigation'
 
 import Meta from '../../components/utils/Meta'
 
@@ -56,7 +56,7 @@ const getFromSimu = <S extends SimulatorData, T extends string>(
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
 	const simulatorsData = useSimulatorsData()
-	const [searchParams, setSearchParams] = useSearchParams()
+	const { searchParams, setSearchParams, getHref } = useNavigation()
 
 	const defaultModuleFromUrl = searchParams.get('module') ?? ''
 
@@ -67,7 +67,9 @@ function IntegrationCustomizer() {
 	)
 
 	useEffect(() => {
-		setSearchParams({ module: currentModule }, { replace: true })
+		const newParams = new URLSearchParams()
+		newParams.set('module', currentModule)
+		setSearchParams(newParams, { replace: true })
 	}, [currentModule, setSearchParams])
 
 	const [color, setColor] = useState<string>('#005aa1')
@@ -86,7 +88,7 @@ function IntegrationCustomizer() {
 		''
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
-	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
+	const iframeSrc = getHref(`/iframes/${currentIframePath}`)
 
 	useEffect(() => {
 		window.addEventListener(
