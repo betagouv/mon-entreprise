@@ -9,7 +9,7 @@ import {
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSetSimulationFromSearchParams from '@/hooks/useSetSimulationFromSearchParams'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 import { Merge } from '@/types/utils'
 
@@ -19,9 +19,9 @@ import DateChip from './DateChip'
 
 export default function SimulateurOrAssistantPage() {
 	const { currentSimulatorData } = useCurrentSimulatorData()
-	const pathname = useCurrentPath()
+	const { currentPath } = useNavigation()
 	if (!currentSimulatorData) {
-		throw new Error(`No simulator found with url: ${pathname}`)
+		throw new Error(`No simulator found with url: ${currentPath}`)
 	}
 	const {
 		meta,

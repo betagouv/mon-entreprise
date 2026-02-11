@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useLocation, useNavigationType } from 'react-router-dom'
 
+import { useNavigation } from '@/lib/navigation'
 import { debounce, getSessionStorage } from '@/utils'
 
 const POP_ACTION_LABEL = 'POP'
@@ -8,26 +8,23 @@ const REPLACE_ACTION_LABEL = 'REPLACE'
 const sessionStorage = getSessionStorage()
 
 export const useSaveAndRestoreScrollPosition = () => {
-	const location = useLocation()
-	const navigationType = useNavigationType()
+	const { currentPath, navigationType } = useNavigation()
 
 	useEffect(() => {
-		const scrollPosition = sessionStorage?.getItem(location.pathname)
+		const scrollPosition = sessionStorage?.getItem(currentPath)
 
 		if (
 			scrollPosition &&
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
 			(navigationType === POP_ACTION_LABEL ||
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
 				navigationType === REPLACE_ACTION_LABEL)
 		) {
 			window.scrollTo(0, parseInt(scrollPosition))
 		}
-	}, [location, navigationType])
+	}, [currentPath, navigationType])
 
 	useEffect(() => {
 		const saveScrollYPosition = debounce(100, () => {
-			sessionStorage?.setItem(location.pathname, String(window.scrollY))
+			sessionStorage?.setItem(currentPath, String(window.scrollY))
 		}) as (this: Window, ev: Event) => void
 
 		window.addEventListener('scroll', saveScrollYPosition)
@@ -35,5 +32,5 @@ export const useSaveAndRestoreScrollPosition = () => {
 		return () => {
 			window.removeEventListener('scroll', saveScrollYPosition)
 		}
-	}, [location.pathname])
+	}, [currentPath])
 }

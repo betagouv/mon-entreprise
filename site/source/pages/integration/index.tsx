@@ -5,7 +5,7 @@ import { TrackChapter } from '@/components/ATInternetTracking'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Banner, Emoji, InnerBanner, Link } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useCurrentPath } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 import API from './API'
@@ -22,7 +22,7 @@ type JobOffer = {
 
 export default function Integration() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const pathname = useCurrentPath()
+	const { currentPath: pathname } = useNavigation()
 	const { data: jobOffers } = useFetchData<JobOffer[]>('/data/job-offers.json')
 	const openJobOffer = jobOffers?.[0]
 

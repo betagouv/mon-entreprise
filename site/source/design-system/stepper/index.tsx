@@ -5,7 +5,7 @@ import { ComponentPropsWithRef } from 'react'
 import { Trans } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { Link as RouterLink, useMatchPath } from '@/lib/navigation'
+import { Link as RouterLink, useNavigation } from '@/lib/navigation'
 
 import { Link } from '../typography/link'
 
@@ -26,7 +26,8 @@ export function Step({
 	if (import.meta.env.DEV && (progress > 1 || progress < 0)) {
 		throw new TypeError('`progress` should be a number between 0 and 1')
 	}
-	const active = useMatchPath(props.to)
+	const { matchPath } = useNavigation()
+	const active = matchPath(props.to) !== null
 	const propsBar = {
 		'aria-labelledby': labelId,
 		minValue: 0,

@@ -1,12 +1,15 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react'
 
-import { useQueryParams } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 
 const BPIContext = createContext(false)
 
 export const IsBPIProvider = ({ children }: PropsWithChildren) => {
 	const [isBPI, setIsBPI] = useState(false)
-	const BPIInSearchParams = useQueryParams().has('bpifrance-creation')
+	const { searchParams } = useNavigation()
+	const BPIInSearchParams = searchParams
+		.toString()
+		.includes('bpifrance-creation')
 	const BPIInReferer =
 		!import.meta.env.SSR && document.referrer?.includes('bpifrance-creation')
 	if (!isBPI && (BPIInSearchParams || BPIInReferer)) {

@@ -10,7 +10,6 @@ import * as O from 'effect/Option'
 import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 
 import { useEngine } from '@/components/utils/EngineContext'
@@ -22,12 +21,13 @@ import {
 	pourcentage,
 	titresRestaurantParMois,
 } from '@/domaine/Quantité'
+import { useNavigation } from '@/lib/navigation'
 import { batchUpdateSituation, updateUnit } from '@/store/actions/actions'
 
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 
-vi.mock('react-router-dom', () => ({
-	useSearchParams: vi.fn(),
+vi.mock('@/lib/navigation', () => ({
+	useNavigation: vi.fn(),
 }))
 const setSearchParamsMock = vi.fn()
 
@@ -59,10 +59,20 @@ describe('useSetSimulationFromSearchParams hook', () => {
 				'17.33 heures/mois',
 			unité: '€/mois',
 		})
-		vi.mocked(useSearchParams).mockReturnValue([
-			initialParams,
-			setSearchParamsMock,
-		])
+		vi.mocked(useNavigation).mockReturnValue({
+			searchParams: initialParams,
+			setSearchParams: setSearchParamsMock,
+			navigate: vi.fn(),
+			currentPath: '/',
+			routeParams: {},
+			locationHash: '',
+			locationState: null,
+			navigationType: 'PUSH',
+			getHref: vi.fn((to: string) => to),
+			onNavigate: vi.fn(() => () => {}),
+			matchPath: vi.fn(() => null),
+			generatePath: vi.fn((pattern: string) => pattern),
+		})
 
 		vi.mocked(useDispatch).mockReturnValue(dispatchMock)
 
@@ -117,10 +127,20 @@ describe('useSetSimulationFromSearchParams hook', () => {
 			unité: '€/mois',
 			utm_campaign: 'marketing',
 		})
-		vi.mocked(useSearchParams).mockReturnValue([
-			initialParams,
-			setSearchParamsMock,
-		])
+		vi.mocked(useNavigation).mockReturnValue({
+			searchParams: initialParams,
+			setSearchParams: setSearchParamsMock,
+			navigate: vi.fn(),
+			currentPath: '/',
+			routeParams: {},
+			locationHash: '',
+			locationState: null,
+			navigationType: 'PUSH',
+			getHref: vi.fn((to: string) => to),
+			onNavigate: vi.fn(() => () => {}),
+			matchPath: vi.fn(() => null),
+			generatePath: vi.fn((pattern: string) => pattern),
+		})
 
 		vi.mocked(useDispatch).mockReturnValue(dispatchMock)
 
