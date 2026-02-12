@@ -1,9 +1,18 @@
 import { DottedName } from 'modele-social'
+import { RuleNode } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+
+const RADIO_GROUP = '<RadioGroup />'
+
+function getRuleFieldNature(rule: RuleNode): string {
+	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
+
+	return 'Nature non déterminée'
+}
 
 type RuleFieldProps = {
 	dottedName: DottedName
@@ -27,7 +36,11 @@ export function RuleField({ dottedName, onChange, onSubmit }: RuleFieldProps) {
 	const engineValue = useEngine()
 	const rule = engineValue.getRule(dottedName)
 
+	console.log('rule', rule)
+
 	const labelOrLegend = rule.rawNode.question || 'Missing label or legend'
+
+	const ruleFieldNature = getRuleFieldNature(rule)
 
 	return (
 		<WorkInProgressContainer>
@@ -35,6 +48,10 @@ export function RuleField({ dottedName, onChange, onSubmit }: RuleFieldProps) {
 				{labelOrLegend}
 
 				<ExplicableRule light dottedName={dottedName} />
+			</div>
+
+			<div>
+				Type de champ(s) à afficher : <i>{ruleFieldNature}</i>
 			</div>
 		</WorkInProgressContainer>
 	)
