@@ -32,6 +32,7 @@ import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
+import { RuleField } from '../conversation/RuleField'
 import Raccourcis from './Raccourcis'
 
 export interface QuestionsProps<S extends Situation = Situation> {
@@ -205,6 +206,14 @@ export function Questions<S extends Situation>({
 					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
 						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
 							<div ref={focusAnchorForA11yRef} tabIndex={-1} role="status">
+								<RuleField
+									dottedName={QuestionCourante.id}
+									onChange={(value, name) =>
+										handlePublicodesQuestionResponse(name, value)
+									}
+									onSubmit={handleGoToNext}
+								/>
+
 								{shouldBeWrappedByFieldset ? (
 									<fieldset>
 										<H3 as="legend">
