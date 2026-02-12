@@ -1,6 +1,7 @@
 import { DottedName } from 'modele-social'
 import { styled } from 'styled-components'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 
@@ -28,10 +29,22 @@ export function RuleField({ dottedName, onChange, onSubmit }: RuleFieldProps) {
 
 	const labelOrLegend = rule.rawNode.question || 'Missing label or legend'
 
-	return <WorkInProgressContainer>{labelOrLegend}</WorkInProgressContainer>
+	return (
+		<WorkInProgressContainer>
+			<div>
+				{labelOrLegend}
+
+				<ExplicableRule light dottedName={dottedName} />
+			</div>
+		</WorkInProgressContainer>
+	)
 }
 
 const WorkInProgressContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+
 	margin: 1rem -1rem;
 	padding: 1rem;
 	border: 1px dotted grey;
