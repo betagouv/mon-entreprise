@@ -6,8 +6,8 @@ import {
 	matchPath as rrMatchPath,
 } from 'react-router-dom'
 
-import { NavigationContext } from '../NavigationContext'
 import { NavigationAPI, NavigationType } from '../NavigationAPI'
+import { NavigationContext } from '../NavigationContext'
 
 interface Props {
 	children: ReactNode
