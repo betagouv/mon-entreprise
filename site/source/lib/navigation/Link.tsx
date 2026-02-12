@@ -1,11 +1,7 @@
 'use client'
 
 import { ComponentProps, forwardRef } from 'react'
-import {
-	Link as RRLink,
-	NavLink as RRNavLink,
-	To,
-} from 'react-router-dom'
+import { Link as RRLink, NavLink as RRNavLink, To } from 'react-router-dom'
 
 type LinkProps = Omit<ComponentProps<typeof RRLink>, 'to'> & {
 	to: To

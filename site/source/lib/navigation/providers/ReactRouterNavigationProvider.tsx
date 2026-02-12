@@ -12,8 +12,8 @@ import {
 	useSearchParams,
 } from 'react-router-dom'
 
-import { NavigationContext } from '../NavigationContext'
 import { NavigationAPI } from '../NavigationAPI'
+import { NavigationContext } from '../NavigationContext'
 
 interface Props {
 	children: ReactNode
