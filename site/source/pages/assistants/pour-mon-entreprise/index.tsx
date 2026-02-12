@@ -6,8 +6,6 @@ import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
-
-import { useNavigation } from '@/lib/navigation'
 import { styled } from 'styled-components'
 
 import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
@@ -41,6 +39,7 @@ import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
@@ -395,7 +394,9 @@ const usePourMonEntreprisePath = () => {
 const useSirenFromParams = (overwrite: boolean) => {
 	const { matchPath } = useNavigation()
 	const { absoluteSitePaths } = useSitePaths()
-	const match = matchPath(absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise)
+	const match = matchPath(
+		absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise
+	)
 	const param = match?.params.entreprise
 	const [entreprise, setEntreprise] = useState<Entreprise | null>(null)
 

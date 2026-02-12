@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useNavigation } from '@/lib/navigation'
 
 import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
@@ -18,6 +17,7 @@ import {
 import { Entreprise } from '@/domaine/Entreprise'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'

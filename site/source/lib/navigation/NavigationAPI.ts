@@ -1,7 +1,10 @@
 export type NavigationType = 'PUSH' | 'POP' | 'REPLACE'
 
 export interface NavigationAPI {
-	navigate: (to: string, options?: { replace?: boolean; state?: unknown }) => void
+	navigate: (
+		to: string,
+		options?: { replace?: boolean; state?: unknown }
+	) => void
 	currentPath: string
 	searchParams: URLSearchParams
 	setSearchParams: (

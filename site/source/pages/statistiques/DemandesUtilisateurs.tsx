@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { Button, Chip, Emoji, theme, typography } from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
 import { useFetchData } from '@/hooks/useFetchData'
+import { useNavigation } from '@/lib/navigation'
 
 import { StatsStruct } from './types'
 
