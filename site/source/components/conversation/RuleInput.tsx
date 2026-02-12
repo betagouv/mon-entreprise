@@ -218,6 +218,8 @@ export default function RuleInput({
 
 	const meta = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
+	console.log('inputNature', inputNature)
+
 	if (inputNature === PLUSIEURS_POSSIBILITES) {
 		return (
 			<>

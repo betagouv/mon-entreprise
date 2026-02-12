@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { styled } from 'styled-components'
@@ -6,10 +7,13 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 
+const AMOUNT_FIELD = '<AmountField />'
 const RADIO_GROUP = '<RadioGroup />'
 
 function getRuleFieldNature(rule: RuleNode): string {
 	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
+
+	if (rule.dottedName.endsWith('montant')) return AMOUNT_FIELD
 
 	return 'Nature non déterminée'
 }
@@ -38,7 +42,8 @@ export function RuleField({ dottedName, onChange, onSubmit }: RuleFieldProps) {
 
 	console.log('rule', rule)
 
-	const labelOrLegend = rule.rawNode.question || 'Missing label or legend'
+	const labelOrLegend =
+		rule.rawNode.question || 'ERROR: Missing label or legend'
 
 	const ruleFieldNature = getRuleFieldNature(rule)
 
