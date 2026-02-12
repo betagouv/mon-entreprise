@@ -40,13 +40,13 @@ export default function Provider({
 	const store = makeStore(engine)
 
 	return (
-		<EmbededContextProvider>
-			<DarkModeProvider>
-				<DesignSystemThemeProvider>
-					<ErrorBoundary fallback={ErrorFallback}>
-						<I18nextProvider i18n={i18next}>
-							<ReduxProvider store={store}>
-								<BrowserRouterProvider basename={basename}>
+		<DarkModeProvider>
+			<DesignSystemThemeProvider>
+				<ErrorBoundary fallback={ErrorFallback}>
+					<I18nextProvider i18n={i18next}>
+						<ReduxProvider store={store}>
+							<BrowserRouterProvider basename={basename}>
+								<EmbededContextProvider>
 									<ErrorBoundary
 										fallback={(errorData) => (
 											// eslint-disable-next-line react/jsx-props-no-spreading
@@ -69,13 +69,13 @@ export default function Provider({
 											</ThemeColorsProvider>
 										</OverlayProvider>
 									</ErrorBoundary>
-								</BrowserRouterProvider>
-							</ReduxProvider>
-						</I18nextProvider>
-					</ErrorBoundary>
-				</DesignSystemThemeProvider>
-			</DarkModeProvider>
-		</EmbededContextProvider>
+								</EmbededContextProvider>
+							</BrowserRouterProvider>
+						</ReduxProvider>
+					</I18nextProvider>
+				</ErrorBoundary>
+			</DesignSystemThemeProvider>
+		</DarkModeProvider>
 	)
 }
 

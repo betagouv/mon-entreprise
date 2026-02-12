@@ -7,6 +7,8 @@ import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
+import { ReactRouterNavigationProvider } from '@/lib/navigation'
+
 import i18next from '../locales/i18n'
 import { AppEn } from './entry-en'
 import { AppFr } from './entry-fr'
@@ -46,7 +48,9 @@ export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
 			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
 					<StaticRouter location={url}>
-						{lang === 'fr' ? <AppFr /> : <AppEn />}
+						<ReactRouterNavigationProvider>
+							{lang === 'fr' ? <AppFr /> : <AppEn />}
+						</ReactRouterNavigationProvider>
 					</StaticRouter>
 				</StyleSheetManager>
 			</SSRProvider>
