@@ -148,48 +148,48 @@ indépendant . rémunération . nette . après impôt: 41118"
 
 exports[`calculate simulations-indépendant > années précédentes 3`] = `
 "entreprise . charges: 0
-entreprise . chiffre d'affaires: 59111
+entreprise . chiffre d'affaires: 59110
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 13642
+indépendant . cotisations et contributions . cotisations: 13641
 indépendant . cotisations et contributions . début activité: null
 indépendant . revenu professionnel: 41602
-indépendant . rémunération . brute: 59111
+indépendant . rémunération . brute: 59110
 indépendant . rémunération . nette: 40000
 indépendant . rémunération . nette . après impôt: 33926"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `
 "entreprise . charges: 0
-entreprise . chiffre d'affaires: 79445
+entreprise . chiffre d'affaires: 79448
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 19115
+indépendant . cotisations et contributions . cotisations: 19117
 indépendant . cotisations et contributions . début activité: null
 indépendant . revenu professionnel: 51705
-indépendant . rémunération . brute: 79445
+indépendant . rémunération . brute: 79448
 indépendant . rémunération . nette: 50000
 indépendant . rémunération . nette . après impôt: 41323"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 2`] = `
 "entreprise . charges: 0
-entreprise . chiffre d'affaires: 81039
+entreprise . chiffre d'affaires: 81038
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 19512
+indépendant . cotisations et contributions . cotisations: 19511
 indépendant . cotisations et contributions . début activité: null
 indépendant . revenu professionnel: 51739
-indépendant . rémunération . brute: 81039
+indépendant . rémunération . brute: 81038
 indépendant . rémunération . nette: 50000
 indépendant . rémunération . nette . après impôt: 41313"
 `;
 
 exports[`calculate simulations-indépendant > conjoint collaborateur 3`] = `
 "entreprise . charges: 0
-entreprise . chiffre d'affaires: 85758
+entreprise . chiffre d'affaires: 85757
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: 20691
 indépendant . cotisations et contributions . début activité: null
 indépendant . revenu professionnel: 51840
-indépendant . rémunération . brute: 85758
+indépendant . rémunération . brute: 85757
 indépendant . rémunération . nette: 50000
 indépendant . rémunération . nette . après impôt: 41283"
 `;
@@ -438,12 +438,12 @@ exports[`calculate simulations-indépendant > inversions IR 1`] = `
 "entreprise . charges: 1000
 entreprise . chiffre d'affaires: 20000
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 4027
+indépendant . cotisations et contributions . cotisations: 4028
 indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 13897
+indépendant . revenu professionnel: 13896
 indépendant . rémunération . brute: 19000
-indépendant . rémunération . nette: 13489
-indépendant . rémunération . nette . après impôt: 13489"
+indépendant . rémunération . nette: 13488
+indépendant . rémunération . nette . après impôt: 13488"
 `;
 
 exports[`calculate simulations-indépendant > inversions IR 2`] = `
@@ -460,12 +460,12 @@ indépendant . rémunération . nette . après impôt: 10000"
 
 exports[`calculate simulations-indépendant > inversions IR 3`] = `
 "entreprise . charges: 0
-entreprise . chiffre d'affaires: 62309
+entreprise . chiffre d'affaires: 62308
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 15479
+indépendant . cotisations et contributions . cotisations: 15478
 indépendant . cotisations et contributions . début activité: null
 indépendant . revenu professionnel: 43575
-indépendant . rémunération . brute: 62309
+indépendant . rémunération . brute: 62308
 indépendant . rémunération . nette: 42238
 indépendant . rémunération . nette . après impôt: 36000"
 `;

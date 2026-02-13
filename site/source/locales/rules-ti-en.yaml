@@ -2748,6 +2748,16 @@ indépendant . cotisations et contributions . cotisations . retraite complément
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 indépendant . cotisations et contributions . cotisations . retraite de base:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    taux T1:
+      titre.en: '[automatic] T1 rate'
+      titre.fr: taux T1
+    taux T2:
+      titre.en: '[automatic] T2 rates'
+      titre.fr: taux T2
   description.en: >
     [automatic] ### Craftsmen, shopkeepers and unregulated professionals
 
@@ -2836,26 +2846,6 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     ces différentes caisses.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-  titre.en: '[automatic] tranche 1'
-  titre.fr: tranche 1
-indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-  titre.en: '[automatic] tranche 2'
-  titre.fr: tranche 2
 indépendant . cotisations et contributions . début activité:
   avec:
     assiette forfaitaire:
@@ -3357,6 +3347,24 @@ indépendant . profession libérale . CNAVPL . maladie:
 indépendant . profession libérale . CNAVPL . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
+indépendant . profession libérale . CNAVPL . retraite de base:
+  avec:
+    tranche 1:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] tranche 1'
+      titre.fr: tranche 1
+    tranche 2:
+      avec:
+        taux:
+          titre.en: '[automatic] rate'
+          titre.fr: taux
+      titre.en: '[automatic] tranche 2'
+      titre.fr: tranche 2
+  titre.en: '[automatic] basic retirement'
+  titre.fr: retraite de base
 indépendant . profession libérale . Cipav:
   description.en: >
     [automatic] Cipav is the independent pension fund for the liberal
@@ -5739,13 +5747,13 @@ protection sociale . retraite . base . CNAVPL:
     income subject to contributions:
 
 
-    - the maximum contribution on bracket T1 allows you to acquire 525 points (from 0 to
+    - the maximum contribution on bracket T1 gives 557 points (from 0 to
 
-    one annual social security ceiling),
+    1 annual social security ceiling),
 
-    - the maximum contribution on tranche T2 is 25 points (from 0 to five times the annual social security ceiling).
+    - the maximum contribution on bracket T2 earns 25 points (from 0 to
 
-    five times the annual social security ceiling).
+    5 times the annual social security ceiling).
 
 
     For each bracket, the number of points allocated is calculated in proportion to the
@@ -5764,13 +5772,13 @@ protection sociale . retraite . base . CNAVPL:
     professionnels soumis à cotisations :
 
 
-    - la cotisation maximale sur la tranche T1 permet d’acquérir 525 points (de 0 à
+    - la cotisation maximale sur la tranche T1 permet d’acquérir 557 points (de 0 à
 
-    un plafond annuel de la sécurité sociale),
+    1 plafond annuel de la sécurité sociale),
 
     - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à
 
-    cinq fois le plafond annuel de la sécurité sociale).
+    5 fois le plafond annuel de la sécurité sociale).
 
 
     Pour chaque tranche, le nombre de points attribué est calculé au prorata de la
@@ -5828,6 +5836,10 @@ protection sociale . retraite . base . CNAVPL . points acquis:
   titre.en: '[automatic] points acquired'
   titre.fr: points acquis
 protection sociale . retraite . base . revenu cotisé:
+  avec:
+    taux de cotisation:
+      titre.en: '[automatic] contribution rates'
+      titre.fr: taux de cotisation
   description.en: >
     [automatic] The income contributed for the basic pension is equal to :
 
@@ -5838,10 +5850,10 @@ protection sociale . retraite . base . revenu cotisé:
 
     basic pension contribution](/documentation/modele-ti/indépendant/
 
-    cotisations-et-contributions/cotisations/retraite-de-base/tranche-1/rate)
+    cotisations-et-contributions/cotisations/retraite-de-base/taux-T1)
 
 
-    In the case of contribution exemptions, a minimum amount is used for the calculation.
+    In the case of contribution exemptions, a floor amount is used for the calculation.
 
     calculation.
 
@@ -5853,139 +5865,12 @@ protection sociale . retraite . base . revenu cotisé:
     [Cotisations à la retraite de base](/documentation/modele-ti/indépendant/
     cotisations-et-contributions/cotisations/retraite-de-base) / [taux de la
     cotisation à la retraite de base](/documentation/modele-ti/indépendant/
-    cotisations-et-contributions/cotisations/retraite-de-base/tranche-1/taux)
+    cotisations-et-contributions/cotisations/retraite-de-base/taux-T1)
 
     En cas d’exonération de cotisations, un montant plancher est utilisé pour le
     calcul.
 
     Dans tous les cas, le résultat est limité au plafond de la sécurité sociale.
-  note.en: >-
-    [automatic] Reminder: for the self-employed, validation of quarters is based
-    on the **contributed income**.
-
-    on the basis of **contributed income**.
-
-
-    The last paragraph of article R351-9 of the French Social Security Code, as made
-
-    made applicable to self-employed workers by articles D634-1 and
-
-    R634-1 of the same code, provides that for the period after
-
-    after December 31, 2013, as many quarters are deducted as the annual income
-
-    as the annual income corresponding to the deductions made by the insured person
-
-    times the amount of the minimum growth wage in force on the
-
-    January 1 of the year in question, calculated on the basis of 150 hours, up to a maximum of four quarters per calendar year.
-
-    maximum of four quarters per calendar year.
-
-
-    The text refers to the deductions made by the insured (in the case of a self-employed person who is not necessarily a salaried employee).
-
-    who is not necessarily up to date with his contributions) the contributions to the
-
-    contributions actually paid (and not contributions called in).
-
-    called).
-
-
-    The annual income corresponding to the deductions made by the insured (known as "contributory income") is defined as follows
-
-    "the income reconstituted on the basis of the basic old-age scheme contributions
-
-    contributions ("RVB") actually paid by the insured.
-
-
-    Contributed income therefore corresponds to the basic old-age pension contributions
-
-    contributions actually paid in respect of year N divided by the basic old-age
-
-    contribution rate for that year N.
-
-
-    Final RVB contribution actually paid for year N
-
-    (+entitlement-generating reductions or exemptions) / contribution rate
-
-    RVB contribution rate for that year N (for the rights-generating portion applicable
-
-    capped income).
-
-
-    This income (known as "contributory income" for year N) is used to validate
-
-    validation of quarters for year N.
-
-
-    It is compared with the threshold of 150 smic/hour to determine the number of quarters
-
-    to be validated (contributed income for year N / 150 smic h).
-  note.fr: >-
-    Rappel : la validation de trimestres s’effectue, pour les travailleurs
-
-    indépendants à partir du **revenu cotisé**
-
-
-    Le dernier alinéa de l’article R351-9  du code de la sécurité sociale, tel
-
-    que rendu applicable aux travailleurs indépendants par les articles D634-1 et
-
-    R634-1 du même code, moyennant adaptations, prévoit que pour la période
-
-    postérieure au 31 décembre 2013, il y a lieu de retenir autant de trimestres
-
-    que le revenu annuel correspondant aux retenues subies par l’assuré
-
-    représente de fois le montant du salaire minimum de croissance en vigueur au
-
-    1er janvier de l’année considérée calculé sur la base de 150 heures, avec un
-
-    maximum de quatre trimestres par année civile.
-
-
-    Par retenues subies par l’assuré, le texte vise (s’agissant d’un indépendant
-
-    qui n’est pas forcément à jour de ses cotisations) les cotisations du régime
-
-    vieillesse de base effectivement versées par lui (et non des cotisations
-
-    appelées).
-
-
-    Par revenu annuel correspondant aux retenues subies par l’assuré (dit
-
-    « revenu cotisé ») on entend le revenu reconstitué à partir des cotisations
-
-    du régime vieillesse de base (« RVB ») effectivement payées par l’assuré.
-
-
-    Le revenu cotisé correspond donc à la cotisation du régime vieillesse de
-
-    base effectivement versée au titre de l’année N divisée par le taux de
-
-    cotisation du régime vieillesse de base de cette année N.
-
-
-    Cotisation définitive RVB effectivement versée au titre d’une année N
-
-    (+réductions ou exonérations génératrices de droits)  / taux de cotisation
-
-    RVB au titre de cette année N (pour la part génératrice de droit applicable
-
-    au revenu plafonné).
-
-
-    Ce revenu (dit « revenu cotisé » d’une année N) est retenu pour la
-
-    validation de trimestres d’une année N.
-
-
-    Il est comparé au seuil de 150 smic/h pour déterminer le nombre de trimestres
-
-    à valider (revenu cotisé de l’année N /150 smic h).
   titre.en: '[automatic] income contributed for basic pension'
   titre.fr: revenu cotisé pour la retraite de base
 protection sociale . retraite . base . trimestres:

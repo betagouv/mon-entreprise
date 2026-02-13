@@ -7,6 +7,8 @@ const defaultSituation = {
 	'entreprise . imposition': "'IR'",
 }
 
+const PASS = 47_100
+
 describe('Cotisation retraite de base', () => {
 	let engine: Engine
 	beforeEach(() => {
@@ -14,19 +16,19 @@ describe('Cotisation retraite de base', () => {
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		const TAUX_T1 = 17.15
+		const TAUX_T1 = 17.87
 		const TAUX_T2 = 0.72
 
-		it('applique un taux tranche 1 de 17,15%', () => {
+		it('applique un taux T1 de 17,87%', () => {
 			expect(engine).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . taux',
+				'indépendant . cotisations et contributions . cotisations . retraite de base . taux T1',
 				TAUX_T1
 			)
 		})
 
 		it('applique un taux tranche 2 de 0,72%', () => {
 			expect(engine).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . taux',
+				'indépendant . cotisations et contributions . cotisations . retraite de base . taux T2',
 				TAUX_T2
 			)
 		})
@@ -43,37 +45,19 @@ describe('Cotisation retraite de base', () => {
 				'indépendant . assiette minimale . retraite'
 			).nodeValue as number
 
-			// Assiette minimale
 			expect(assietteMinimale).toEqual(450 * SmicHoraire)
-
-			// Tranche 1
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 				assietteMinimale
 			)
-			const tranche1 = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
-			).nodeValue as number
-			expect(tranche1).toEqual(Math.round((assietteMinimale * TAUX_T1) / 100))
 
-			// Tranche 2
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				assietteMinimale
-			)
-			const tranche2 = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
-			).nodeValue as number
-			expect(tranche2).toEqual(Math.round((assietteMinimale * TAUX_T2) / 100))
-
-			// Total
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
-				tranche1 + tranche2
+				Math.round((assietteMinimale * TAUX_T1) / 100)
 			)
 		})
 
-		it('applique les taux des tranches 1 et 2 en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS', () => {
+		it('applique le taux T1 uniquement en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
 				'indépendant . cotisations et contributions . assiette sociale':
@@ -81,49 +65,28 @@ describe('Cotisation retraite de base', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 				30_000
 			)
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
 				Math.round((30_000 * TAUX_T1) / 100)
-			)
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				30_000
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
-				Math.round((30_000 * TAUX_T2) / 100)
 			)
 		})
 
-		it('applique le taux tranche 1 au PASS et le taux tranche 2 à toute l’assiette sociale en cas d’assiette sociale supérieure au PASS', () => {
+		it('applique le taux tranche 1 au PASS et le taux tranche 2 au reste de l’assiette sociale en cas d’assiette sociale supérieure au PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
 				'indépendant . cotisations et contributions . assiette sociale':
 					'100000 €/an',
 			})
 
-			const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
+			const T1 = (PASS * TAUX_T1) / 100
+			const T2 = ((100_000 - PASS) * TAUX_T2) / 100
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-				PASS
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
-				Math.round((PASS * TAUX_T1) / 100)
-			)
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				100_000
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
-				Math.round((100_000 * TAUX_T2) / 100)
+				'indépendant . cotisations et contributions . cotisations . retraite de base',
+				Math.round(T1 + T2)
 			)
 		})
 
@@ -138,21 +101,8 @@ describe('Cotisation retraite de base', () => {
 					})
 
 					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+						'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 						1_000
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
-						Math.round((1_000 * TAUX_T1) / 100)
-					)
-
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-						1_000
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
-						Math.round((1_000 * TAUX_T2) / 100)
 					)
 				})
 
@@ -166,23 +116,14 @@ describe('Cotisation retraite de base', () => {
 
 					const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
 						.nodeValue as number
+					expect(PASSProratisé).toEqual(Math.round((PASS * 60) / 365))
+
+					const T1 = (PASSProratisé * TAUX_T1) / 100
+					const T2 = ((40_000 - PASSProratisé) * TAUX_T2) / 100
 
 					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-						PASSProratisé
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
-						Math.round((PASSProratisé * TAUX_T1) / 100)
-					)
-
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-						40_000
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
-						Math.round((40_000 * TAUX_T2) / 100)
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						Math.round(T1 + T2)
 					)
 				})
 			})
@@ -201,21 +142,8 @@ describe('Cotisation retraite de base', () => {
 					).nodeValue as number
 
 					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+						'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 						assietteMinimale
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
-						Math.round((assietteMinimale * TAUX_T1) / 100)
-					)
-
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-						assietteMinimale
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
-						Math.round((assietteMinimale * TAUX_T2) / 100)
 					)
 				})
 
@@ -229,23 +157,14 @@ describe('Cotisation retraite de base', () => {
 
 					const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
 						.nodeValue as number
+					expect(PASSProratisé).toEqual(Math.round((PASS * 120) / 365))
+
+					const T1 = (PASSProratisé * TAUX_T1) / 100
+					const T2 = ((50_000 - PASSProratisé) * TAUX_T2) / 100
 
 					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-						PASSProratisé
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
-						Math.round((PASSProratisé * TAUX_T1) / 100)
-					)
-
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-						50_000
-					)
-					expect(e).toEvaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
-						Math.round((50_000 * TAUX_T2) / 100)
+						'indépendant . cotisations et contributions . cotisations . retraite de base',
+						Math.round(T1 + T2)
 					)
 				})
 			})
@@ -261,11 +180,7 @@ describe('Cotisation retraite de base', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-					1_000
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 					1_000
 				)
 			})
@@ -279,11 +194,7 @@ describe('Cotisation retraite de base', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-					1_000
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 					1_000
 				)
 			})
@@ -300,13 +211,8 @@ describe('Cotisation retraite de base', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-				20_000
-			)
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				20_000
+				'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
+				30_000 - 10_000
 			)
 		})
 	})
@@ -325,7 +231,7 @@ describe('Cotisation retraite de base', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . taux',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1 . taux',
 				TAUX_T1
 			)
 		})
@@ -334,7 +240,7 @@ describe('Cotisation retraite de base', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . taux',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2 . taux',
 				TAUX_T2
 			)
 		})
@@ -353,24 +259,20 @@ describe('Cotisation retraite de base', () => {
 
 			// Assiette minimale
 			expect(assietteMinimale).toEqual(450 * SmicHoraire)
-
-			// Tranche 1
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 				assietteMinimale
 			)
+
+			// Tranche 1
 			const tranche1 = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1'
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1'
 			).nodeValue as number
 			expect(tranche1).toEqual(Math.round((assietteMinimale * TAUX_T1) / 100))
 
 			// Tranche 2
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				assietteMinimale
-			)
 			const tranche2 = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2'
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2'
 			).nodeValue as number
 			expect(tranche2).toEqual(Math.round((assietteMinimale * TAUX_T2) / 100))
 
@@ -389,20 +291,17 @@ describe('Cotisation retraite de base', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
+				'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 				30_000
 			)
+
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1',
 				Math.round((30_000 * TAUX_T1) / 100)
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				30_000
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2',
 				Math.round((30_000 * TAUX_T2) / 100)
 			)
 		})
@@ -414,23 +313,13 @@ describe('Cotisation retraite de base', () => {
 					'100000 €/an',
 			})
 
-			const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
-
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-				PASS
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1',
 				Math.round((PASS * TAUX_T1) / 100)
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				100_000
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2',
 				Math.round((100_000 * TAUX_T2) / 100)
 			)
 		})
@@ -442,23 +331,13 @@ describe('Cotisation retraite de base', () => {
 					'250000 €/an',
 			})
 
-			const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
-
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-				PASS
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1',
 				Math.round((PASS * TAUX_T1) / 100)
 			)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
-				5 * PASS
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2',
+				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2',
 				Math.round((5 * PASS * TAUX_T2) / 100)
 			)
 		})
@@ -488,11 +367,7 @@ describe('Cotisation retraite de base', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-					1_000
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 					1_000
 				)
 			})
@@ -506,11 +381,7 @@ describe('Cotisation retraite de base', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 1 . assiette',
-					1_000
-				)
-				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . retraite de base . tranche 2 . assiette',
+					'indépendant . cotisations et contributions . cotisations . retraite de base . assiette',
 					1_000
 				)
 			})
