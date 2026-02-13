@@ -202,7 +202,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
         > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
         > remboursables actes + montants remboursés forfaits CMU)
       applicable si: métier = 'santé . chirurgien-dentiste'
-      question: Quel est votre « taux dentiste?
+      question: Quel est votre « taux dentiste » ?
       unité: '%'
       par défaut: 100%
       références:
