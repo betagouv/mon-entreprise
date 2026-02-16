@@ -58,10 +58,7 @@ export function ObjectifDeSimulation({
 					spacing={2}
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
-						<TitreObjectif id={`${id}-label`} noWrap={true}>
-							{titre}
-						</TitreObjectif>
-
+						<TitreObjectif id={`${id}-label`}>{titre}</TitreObjectif>
 						{explication && (
 							<ForceThemeProvider forceTheme="default">
 								{explication}
@@ -98,9 +95,19 @@ const GridCentered = styled(Grid)`
 	grid-template-columns: 1.25fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
 
-	& > div:first-of-type {
+	& > div {
+		padding: 0;
 		max-width: 100%;
 		text-align: right;
+	}
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		grid-template-columns: 1fr;
+		gap: ${({ theme }) => theme.spacings.xs};
+
+		& > div {
+			text-align: left;
+		}
 	}
 `
 
@@ -120,4 +127,7 @@ const StyledBody = styled(Body)`
 
 const StyledValue = styled(Body)`
 	margin: 1.2rem 0;
+	font-size: ${({ theme }) => theme.fontSizes.lg};
+	text-align: right;
+	padding-right: ${({ theme }) => theme.spacings.sm};
 `
