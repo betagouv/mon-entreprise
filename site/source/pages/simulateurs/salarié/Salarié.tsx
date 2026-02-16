@@ -103,8 +103,8 @@ export default function SalariéSimulation() {
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.salarié.warning.général">
-									Le simulateur ne prend pour l’instant pas en compte les accords
-									et conventions collectives, ni la myriade d’aides aux
+									Le simulateur ne prend pour l’instant pas en compte les
+									accords et conventions collectives, ni la myriade d’aides aux
 									entreprises. Trouvez votre convention collective{' '}
 									<Link
 										href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
