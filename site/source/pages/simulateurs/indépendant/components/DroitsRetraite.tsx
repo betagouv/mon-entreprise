@@ -83,7 +83,7 @@ export default function DroitsRetraite() {
 										<Value
 											linkToRule
 											unit="€/an"
-											expression="protection sociale . retraite . base . cotisée"
+											expression="protection sociale . retraite . base . revenu cotisé"
 										/>
 									</Li>
 								</WhenNotApplicable>
