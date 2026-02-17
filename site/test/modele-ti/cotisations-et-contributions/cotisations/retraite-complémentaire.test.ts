@@ -3,28 +3,35 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const defaultSituation = {
-	'plafond sécurité sociale': '47100 €/an',
 	'entreprise . imposition': "'IR'",
 }
 
 describe('Cotisation retraite complémentaire', () => {
 	let engine: Engine
+	let PASS: number
 	beforeEach(() => {
 		engine = new Engine(rules)
+		PASS = engine.evaluate({
+			valeur: 'plafond sécurité sociale',
+			unité: '€/an',
+		}).nodeValue as number
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
+		const TAUX_T1 = 8.1 / 100
+		const TAUX_T2 = 9.1 / 100
+
 		it('applique un taux tranche 1 de 8,1%', () => {
 			expect(engine).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux tranche 1',
-				8.1
+				100 * TAUX_T1
 			)
 		})
 
 		it('applique un taux tranche 2 de 9,1%', () => {
 			expect(engine).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire . taux tranche 2',
-				9.1
+				100 * TAUX_T2
 			)
 		})
 
@@ -37,7 +44,7 @@ describe('Cotisation retraite complémentaire', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-				810
+				Math.round(10_000 * TAUX_T1)
 			)
 		})
 
@@ -48,18 +55,12 @@ describe('Cotisation retraite complémentaire', () => {
 					'100000 €/an',
 			})
 
-			// Tranche 1 :
-			// 1 PASS x taux tranche 1 = 47 100 €/an x 8,1% = 3 815 €/an
+			const tranche1 = PASS * TAUX_T1
+			const tranche2 = (100_000 - PASS) * TAUX_T2
 
-			// Tranche 2 :
-			// assiette sociale - 1 PASS = 100 000 €/an - 47 100 €/an = 52 900 €/an
-			// (assiette sociale - 1 PASS) x taux tranche 2 = 52 900 €/an x 9,1% = 4 814 €/an
-
-			// Total :
-			// Tranche 1 + Tranche 2 = 3 815 €/an + 4 814 €/an = 8 629 €/an
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-				8629
+				Math.round(tranche1 + tranche2)
 			)
 		})
 
@@ -70,18 +71,12 @@ describe('Cotisation retraite complémentaire', () => {
 					'200000 €/an',
 			})
 
-			// Tranche 1 :
-			// 1 PASS x taux tranche 1 = 47 100 €/an x 8,1% = 3 815 €/an
+			const tranche1 = PASS * TAUX_T1
+			const tranche2 = 3 * PASS * TAUX_T2
 
-			// Tranche 2 :
-			// 3 PASS = 3 x 47 100 €/an = 141 300 €/an
-			// 3 PASS x taux tranche 2 = 141 300 €/an x 9,1% = 12 858 €/an
-
-			// Total :
-			// Tranche 1 + Tranche 2 = 3 815 €/an + 12 858 €/an = 16 673 €/an
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-				16673
+				Math.round(tranche1 + tranche2)
 			)
 		})
 
@@ -94,10 +89,9 @@ describe('Cotisation retraite complémentaire', () => {
 						'10000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					810
+					Math.round(10_000 * TAUX_T1)
 				)
 			})
 
@@ -109,19 +103,16 @@ describe('Cotisation retraite complémentaire', () => {
 						'50000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
-				// Tranche 1 :
-				// 1 PASS proratisé x taux tranche 1 = 19 356 €/an x 8,1% = 1 567,84 €/an
+				const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+					.nodeValue as number
+				expect(PASSProratisé).toEqual(Math.round((PASS * 150) / 365))
 
-				// Tranche 2 :
-				// assiette sociale - 1 PASS proratisé = 50 000 €/an - 19 356 €/an = 30 644 €/an
-				// (assiette sociale - 1 PASS proratisé) x taux tranche 2 = 30 644 €/an x 9,1% = 2 788,60 €/an
+				const tranche1 = PASSProratisé * TAUX_T1
+				const tranche2 = (50_000 - PASSProratisé) * TAUX_T2
 
-				// Total :
-				// Tranche 1 + Tranche 2 = 1 567,84 €/an + 2 788,60 €/an = 4 356,44 €/an
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					4356
+					Math.round(tranche1 + tranche2)
 				)
 			})
 
@@ -133,19 +124,16 @@ describe('Cotisation retraite complémentaire', () => {
 						'200000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19356)
-				// Tranche 1 :
-				// 1 PASS proratisé x taux tranche 1 = 19 356 €/an x 8,1% = 1 567,84 €/an
+				const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+					.nodeValue as number
+				expect(PASSProratisé).toEqual(Math.round((PASS * 150) / 365))
 
-				// Tranche 2 :
-				// 3 PASS proratisé = 3 x 19 356 €/an = 58 068 €/an
-				// 3 PASS proratisé x taux tranche 2 = 58 068 €/an x 9,1% = 5 284,19 €/an
+				const tranche1 = PASSProratisé * TAUX_T1
+				const tranche2 = 3 * PASSProratisé * TAUX_T2
 
-				// Total :
-				// Tranche 1 + Tranche 2 = 1 567,84 €/an + 5 284,19 €/an = 6 852,03 €/an
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					6852
+					Math.round(tranche1 + tranche2)
 				)
 			})
 		})
@@ -162,11 +150,13 @@ describe('Cotisation retraite complémentaire', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite complémentaire . assiette',
-				20000
+				30_000 - 10_000
 			)
 		})
 
 		describe('en cas de taux spécifiques PLNR', () => {
+			const TAUX_SPÉCIFIQUE = 14 / 100
+
 			it('applique un taux tranche 1 nul en cas d’assiette sociale inférieure au PASS', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
@@ -196,12 +186,11 @@ describe('Cotisation retraite complémentaire', () => {
 				})
 
 				// Tranche 1 : 0 €
-				// Tranche 2 :
-				// assiette sociale - 1 PASS = 100 000 €/an - 47 100 €/an = 52 900 €/an
-				// (assiette sociale - 1 PASS) x taux tranche 2 = 52 900 €/an x 14% = 7 406 €/an
+				const tranche2 = (100_000 - PASS) * TAUX_SPÉCIFIQUE
+
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					7406
+					Math.round(tranche2)
 				)
 			})
 
@@ -217,12 +206,11 @@ describe('Cotisation retraite complémentaire', () => {
 				})
 
 				// Tranche 1 : 0 €
-				// Tranche 2 :
-				// 3 PASS = 3 x 47 100 €/an = 141 300 €/an
-				// 3 PASS x taux tranche 2 = 141 300 €/an x 14% = 19 782 €/an
+				const tranche2 = 3 * PASS * TAUX_SPÉCIFIQUE
+
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					19782
+					Math.round(tranche2)
 				)
 			})
 		})
@@ -420,6 +408,9 @@ describe('Cotisation retraite complémentaire', () => {
 		})
 
 		describe('affiliées Cipav', () => {
+			const TAUX_T1 = 11 / 100
+			const TAUX_T2 = 21 / 100
+
 			it('applique le taux tranche 1 de 11% en cas d’assiette sociale inférieure au PASS', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
@@ -429,7 +420,7 @@ describe('Cotisation retraite complémentaire', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					1100
+					Math.round(10_000 * TAUX_T1)
 				)
 			})
 
@@ -440,18 +431,12 @@ describe('Cotisation retraite complémentaire', () => {
 						'100000 €/an',
 				})
 
-				// Tranche 1 :
-				// 1 PASS x taux tranche 1 = 47 100 €/an x 11% = 5 181 €/an
+				const tranche1 = PASS * TAUX_T1
+				const tranche2 = (100_000 - PASS) * TAUX_T2
 
-				// Tranche 2 :
-				// assiette sociale - 1 PASS = 100 000 €/an - 47 100 €/an = 52 900 €/an
-				// (assiette sociale - 1 PASS) x taux tranche 2 = 52 900 €/an x 21% = 11 109 €/an
-
-				// Total :
-				// Tranche 1 + Tranche 2 = 5 181 €/an + 11 109 €/an = 16 290 €/an
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					16290
+					Math.round(tranche1 + tranche2)
 				)
 			})
 
@@ -462,18 +447,12 @@ describe('Cotisation retraite complémentaire', () => {
 						'200000 €/an',
 				})
 
-				// Tranche 1 :
-				// 1 PASS x taux tranche 1 = 47 100 €/an x 11% = 5 181 €/an
+				const tranche1 = PASS * TAUX_T1
+				const tranche2 = 3 * PASS * TAUX_T2
 
-				// Tranche 2 :
-				// 3 PASS = 3 x 47 100 €/an = 141 300 €/an
-				// 3 PASS x taux tranche 2 = 141 300 €/an x 21% = 29 673 €/an
-
-				// Total :
-				// Tranche 1 + Tranche 2 = 5 181 €/an + 29 673 €/an = 34 854 €/an
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . retraite complémentaire',
-					34854
+					Math.round(tranche1 + tranche2)
 				)
 			})
 		})
