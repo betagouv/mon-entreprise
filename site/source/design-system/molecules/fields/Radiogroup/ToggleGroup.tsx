@@ -13,7 +13,10 @@ export type ToggleOption = {
 	value: string
 }
 
-type ToggleGroupProps = RARadioGroupProps & {
+type ToggleGroupProps = Pick<
+	RARadioGroupProps,
+	'defaultValue' | 'value' | 'onChange'
+> & {
 	legend: string
 	options: ToggleOption[]
 }
