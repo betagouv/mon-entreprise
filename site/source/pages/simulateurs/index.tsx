@@ -14,7 +14,7 @@ import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPag
 
 export default function Simulateurs() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { currentPath: pathname } = useNavigation()
+	const { currentPath } = useNavigation()
 	const [lastState] = useNavigationOrigin()
 	const simulatorsData = useSimulatorsData()
 	const simulatorRoutes = useMemo(
@@ -38,9 +38,9 @@ export default function Simulateurs() {
 
 	return (
 		<>
-			<ScrollToTop key={pathname} />
+			<ScrollToTop key={currentPath} />
 
-			{pathname !== absoluteSitePaths.simulateurs.index &&
+			{currentPath !== absoluteSitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
 					<Link
 						to={absoluteSitePaths.assistants['pour-mon-entreprise'].index}
