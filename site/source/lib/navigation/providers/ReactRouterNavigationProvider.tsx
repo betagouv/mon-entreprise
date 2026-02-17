@@ -53,7 +53,7 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 			// Resolve relative path against current location
 			const base = baseHref.endsWith('/') ? baseHref : baseHref + '/'
 
-			return new URL(to, new URL(base, 'http://localhost')).pathname
+			return new URL(to, new URL(base, 'http://localhost/')).pathname
 		},
 		[baseHref]
 	)
