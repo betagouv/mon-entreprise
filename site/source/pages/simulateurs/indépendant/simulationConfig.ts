@@ -70,7 +70,7 @@ export const configIndépendant: SimulationConfig = {
 			'entreprise . activité . saisonnière',
 			'situation personnelle . RSA',
 			'indépendant . profession libérale . CNAVPL . exonération incapacité',
-			'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité',
+			'indépendant . cotisations et contributions . cotisations . exonérations . invalidité',
 			'indépendant . cotisations et contributions . cotisations . exonérations . âge',
 			"situation personnelle . domiciliation fiscale à l'étranger",
 			'indépendant . revenus étrangers',

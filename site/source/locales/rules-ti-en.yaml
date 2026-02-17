@@ -1955,6 +1955,20 @@ indépendant . conjoint collaborateur . choix assiette:
 indépendant . conjoint collaborateur . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
+indépendant . conjoint collaborateur . cotisations . exonération Acre:
+  description.en: >
+    [automatic] Acre applies to the contributions of the collaborating spouse
+    only when he/she
+
+    only when the collaborating spouse contributes on a **shared income** basis.
+
+    income-sharing basis**.
+  description.fr: |
+    L'Acre s’applique aux cotisations de la conjointe collaboratrice ou du
+    conjoint collaborateur uniquement lorsque celle/celui-ci cotise sur une base
+    de **revenu avec partage**.
+  titre.en: '[automatic] Acre exemption'
+  titre.fr: exonération Acre
 indépendant . conjoint collaborateur . cotisations . indemnités journalières:
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
@@ -2338,9 +2352,9 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
   titre.fr: Acre
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
-  titre.en: '[automatic] exemption'
-  titre.fr: exonération
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . montant:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description.en: >
     [automatic] As self-employed contributions are calculated on a full-year
@@ -2376,6 +2390,9 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux:
   titre.en: '[automatic] rate'
   titre.fr: taux
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux proratisé:
+  titre.en: '[automatic] prorated rate'
+  titre.fr: taux proratisé
 indépendant . cotisations et contributions . cotisations . exonérations . DROM:
   description.en: >
     [automatic] At the start of their activity, for a period of 24 months,
@@ -2404,14 +2421,14 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
     Ce simulateur ne prend pas en compte les exonérations DROM.
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
-indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité:
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité:
   description.en: >-
     [automatic] If you are receiving a disability pension from a pension scheme
     for the self-employed
 
-    self-employed workers, craftsmen, shopkeepers and self-employed professionals
+    self-employed workers, artisans, shopkeepers and the liberal professions are
 
-    liberal professions are exempt from :
+    are **exempt from contributions** :
 
     - Sickness
 
@@ -2419,7 +2436,8 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
 
     - Supplementary pension
 
-    Regulated liberal professions are also exempt from contributions to :
+
+    Regulated liberal professions are also exempt from contributions for :
 
     - Basic pension
 
@@ -2431,19 +2449,17 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
     self-employed activity.
 
 
-    This exemption applies to overseas territories. It does not apply to
-
-    self-employed entrepreneurs.
+    This exemption applies to overseas territories.
 
 
-    This exemption is prorated to the number of months your disability has been
+    This exemption is **prorated according to the number of months** your disability has been
 
     recognized. If you have received a disability pension for the whole year, then
 
     the exemption is total.
 
 
-    Each quarter in which your disability pension is paid is treated as a quarter of insurance
+    Each quarter in which your disability pension is paid is treated as one insurance
 
     and will be taken into account when calculating your pension.
 
@@ -2453,13 +2469,14 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
 
     travailleurs indépendants les artisans, commerçants et professions
 
-    libérales sont exonérés des cotisations :
+    libérales sont **exonérés des cotisations** :
 
     - Maladie
 
     - Indemnités journalières
 
     - Retraite complémentaire
+
 
     Les professions libérales réglementées sont en plus exonérées des cotisations :
 
@@ -2473,12 +2490,10 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
     travailleur indépendant.
 
 
-    Cette exonération est applicable en outre-mer. Elle ne concerne pas les
-
-    auto-entrepreneurs et auto-entrepreneuses.
+    Cette exonération est applicable en outre-mer.
 
 
-    Cette exonération est au prorata du nombre de mois où votre invalidité a été
+    Cette exonération est au **prorata du nombre de mois** où votre invalidité a été
 
     reconnue. Si vous avez reçu une pension d’invalidité sur l’année complète, alors
 
@@ -2503,19 +2518,22 @@ indépendant . cotisations et contributions . cotisations . exonérations . pens
             indépendant ?
   titre.en: '[automatic] disability exemption'
   titre.fr: exonération invalidité
-indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée:
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée:
   question.en: '[automatic] For how many months of the year do you receive this pension?'
   question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
   titre.en: '[automatic] duration'
   titre.fr: durée
-indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . exonération:
-  titre.en: '[automatic] exemption'
-  titre.fr: exonération
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . montant:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année:
+  titre.en: '[automatic] pro rata over the year'
+  titre.fr: prorata sur l'année
 indépendant . cotisations et contributions . cotisations . exonérations . âge:
   avec:
-    exonération:
-      titre.en: '[automatic] exemption'
-      titre.fr: exonération
+    montant:
+      titre.en: '[automatic] amount'
+      titre.fr: montant
   description.en: >
     [automatic] ### Craftsmen, shopkeepers and self-employed professionals
     outside Cipav
@@ -3299,10 +3317,6 @@ indépendant . profession libérale . CNAVPL:
   titre.en: '[automatic] CNAVPL'
   titre.fr: CNAVPL
 indépendant . profession libérale . CNAVPL . exonération incapacité:
-  avec:
-    exonération:
-      titre.en: '[automatic] exemption'
-      titre.fr: exonération
   description.en: >
     [automatic] If you have been incapacitated for work for at least six months
 
