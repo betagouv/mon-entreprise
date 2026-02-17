@@ -29,7 +29,7 @@ protection sociale . retraite . complémentaire . RCI:
     points acquis:
       non applicable si:
         indépendant . cotisations et contributions .
-        cotisations . exonérations . pension invalidité # Non implémenté (cf règle)
+        cotisations . exonérations . invalidité # Non implémenté (cf règle)
       arrondi: oui
       valeur: indépendant . cotisations et contributions . cotisations . retraite complémentaire / valeur d'acquisition
 

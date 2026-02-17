@@ -65,11 +65,11 @@ protection sociale . retraite . base . trimestres:
   avec:
     exonération invalidité indépendant:
       applicable si: indépendant . cotisations et contributions .
-        cotisations . exonérations . pension invalidité
+        cotisations . exonérations . invalidité
       privé: oui
       produit:
         - 4 trimestre validé/an
-        - indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . exonération
+        - indépendant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année
 
 protection sociale . retraite . base . revenu cotisé:
   titre: revenu cotisé pour la retraite de base

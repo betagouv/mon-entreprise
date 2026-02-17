@@ -108,22 +108,22 @@ imposition à l'IR:
   - entreprise . chiffre d'affaires: 100000 €/an
     entreprise . imposition: "'IR'"
 
-exonération pension invalidité:
+exonération invalidité:
   - indépendant . rémunération . brute: 45000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
   # Partielle
   - indépendant . rémunération . brute: 9000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
-    indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée: 4 mois
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 4 mois
   # Cumul Acre
   - indépendant . rémunération . brute: 10000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
     entreprise . date de création: période . début d'année
     indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
   # Cumul âge
   - indépendant . rémunération . brute: 15000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité: oui
-    indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité . durée: 10 mois
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 10 mois
     entreprise . date de création: 01/01/2010
     indépendant . cotisations et contributions . cotisations . exonérations . âge: oui
 
