@@ -1,12 +1,11 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { usePersistingState } from '@/components/utils/persistState'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { NavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { Link } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
@@ -15,16 +14,8 @@ import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPag
 
 export default function Simulateurs() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { currentPath: pathname, locationState: state } = useNavigation()
-	const [lastState, setLastState] = usePersistingState<NavigationOrigin>(
-		'navigation::simulateurs::locationState::v2',
-		{}
-	)
-	useEffect(() => {
-		if (state) {
-			setLastState(state as NavigationOrigin)
-		}
-	}, [setLastState, state])
+	const { currentPath: pathname } = useNavigation()
+	const [lastState] = useNavigationOrigin()
 	const simulatorsData = useSimulatorsData()
 	const simulatorRoutes = useMemo(
 		() =>
