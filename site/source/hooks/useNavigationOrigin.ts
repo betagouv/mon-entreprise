@@ -2,7 +2,6 @@ import { usePersistingState } from '@/components/utils/persistState'
 
 export type NavigationOrigin = {
 	fromGérer?: boolean
-	fromCréer?: boolean
 	fromSimulateurs?: boolean
 }
 
