@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { usePersistingState } from '@/components/utils/persistState'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
+import { NavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { Link } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
@@ -12,22 +13,16 @@ import { useSitePaths } from '@/sitePaths'
 
 import SimulateurOrAssistantPage from '../../components/SimulateurOrAssistantPage'
 
-type State = {
-	fromGérer?: boolean
-	fromCréer?: boolean
-	fromSimulateurs?: boolean
-}
-
 export default function Simulateurs() {
 	const { absoluteSitePaths } = useSitePaths()
 	const { currentPath: pathname, locationState: state } = useNavigation()
-	const [lastState, setLastState] = usePersistingState<State>(
+	const [lastState, setLastState] = usePersistingState<NavigationOrigin>(
 		'navigation::simulateurs::locationState::v2',
 		{}
 	)
 	useEffect(() => {
 		if (state) {
-			setLastState(state as State)
+			setLastState(state as NavigationOrigin)
 		}
 	}, [setLastState, state])
 	const simulatorsData = useSimulatorsData()
