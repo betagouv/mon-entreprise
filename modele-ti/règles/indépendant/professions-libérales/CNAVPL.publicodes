@@ -94,11 +94,6 @@ indépendant . profession libérale . CNAVPL . retraite complémentaire:
     - si: profession libérale . réglementée . CNBF
       alors: profession libérale . réglementée . CNBF . retraite complémentaire
     - sinon: Cipav . retraite complémentaire
-  abattement:
-    # L'exonération invalidité est un dispositif de l'Urssaf et ne concerne donc
-    # pas les PLR non Cipav
-    applicable si: Cipav
-    valeur: cotisations et contributions . cotisations . exonérations . pension invalidité . exonération
   unité: €/an
 
 indépendant . profession libérale . CNAVPL . invalidité et décès:
@@ -130,5 +125,3 @@ indépendant . profession libérale . CNAVPL . exonération incapacité:
   références:
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=24
     # https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=79
-  avec:
-    exonération: 100%

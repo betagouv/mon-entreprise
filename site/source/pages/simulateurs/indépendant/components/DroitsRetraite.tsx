@@ -26,7 +26,7 @@ export default function DroitsRetraite() {
 	const exonérationRetraiteActive = {
 		'une de ces conditions': [
 			'indépendant . cotisations et contributions . cotisations . exonérations . Acre',
-			'indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité',
+			'indépendant . cotisations et contributions . cotisations . exonérations . invalidité',
 			'indépendant . profession libérale . CNAVPL . exonération incapacité',
 		] as Array<DottedName>,
 	}

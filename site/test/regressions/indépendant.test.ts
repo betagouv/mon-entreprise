@@ -47,7 +47,7 @@ it('calculate simulations-indépendant', () => {
 		  "indépendant . IJSS",
 		  "indépendant . conjoint collaborateur",
 		  "indépendant . cotisations et contributions",
-		  "indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité",
+		  "indépendant . cotisations et contributions . cotisations . exonérations . invalidité",
 		  "indépendant . cotisations facultatives",
 		  "indépendant . revenus étrangers",
 		  "indépendant . rémunération . impôt",

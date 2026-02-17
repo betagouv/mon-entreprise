@@ -23,5 +23,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
   par défaut: non
   références:
     Article 4.6 des statuts de la Cipav: https://www.lacipav.fr/sites/default/files/2025-09/Statuts%20CIPAV_doc%20VF%20Septembre%2020250923.pdf#page=19
+
   avec:
-    exonération: 100%
+    montant: invalidité et décès

@@ -7,6 +7,12 @@ indépendant . cotisations et contributions . cotisations:
     - retraite complémentaire
     - PCV
     - invalidité et décès
+  abattement:
+    le maximum de:
+      - exonérations . Acre . montant
+      - exonérations . invalidité . montant
+  arrondi: oui
+  unité: €/an
   références:
     Taux de cotisations - Artisan, commerçant et profession libérale non réglementée: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html
     Taux de cotisations - Professions libérales réglementées hors Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-hors-cipav.html
@@ -40,10 +46,6 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
             - taux: taux 1
               plafond: plafond taux 1
             - taux: taux 2
-  abattement:
-    le maximum de:
-      - exonérations . Acre . exonération
-      - exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -144,10 +146,6 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
   produit:
     - assiette
     - taux
-  abattement:
-    le maximum de:
-      - exonérations . Acre . exonération
-      - exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -194,7 +192,6 @@ indépendant . cotisations et contributions . cotisations . allocations familial
   produit:
     - assiette sociale
     - taux
-  abattement: exonérations . Acre . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -268,14 +265,8 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
               plafond: 1
             - taux: taux T2
   abattement:
-    le maximum de:
-      - exonérations . Acre . exonération
-      - profession libérale . CNAVPL . exonération incapacité . exonération
-      # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraite de base.
-      # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de cette exonération.
-      # Les A/C/PLNR ne bénéficient pas de cette exonération.
-      - applicable si: profession libérale . Cipav
-        valeur: exonérations . pension invalidité . exonération
+    applicable si: profession libérale . CNAVPL . exonération incapacité
+    valeur: 100%
   arrondi: oui
   unité: €/an
   références:
@@ -352,7 +343,6 @@ indépendant . cotisations et contributions . cotisations . retraite complément
                   - taux: taux tranche 2
                     plafond: 4 * PSS proratisé
               arrondi: oui
-        abattement: exonérations . pension invalidité . exonération
   arrondi: oui
   unité: €/an
   références:
@@ -426,10 +416,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
           - assiette
           - 1.3%
         arrondi: oui
-  abattement:
-    le maximum de:
-      - exonérations . âge . exonération
-      - exonérations . Acre . exonération
+  abattement: exonérations . âge . montant
   arrondi: oui
   unité: €/an
   références:
