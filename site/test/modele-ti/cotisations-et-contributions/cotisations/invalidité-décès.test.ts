@@ -3,17 +3,23 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const defaultSituation = {
-	'plafond sécurité sociale': '47100 €/an',
 	'entreprise . imposition': "'IR'",
 }
 
 describe('Cotisation invalidité et décès', () => {
 	let engine: Engine
+	let PASS: number
 	beforeEach(() => {
 		engine = new Engine(rules)
+		PASS = engine.evaluate({
+			valeur: 'plafond sécurité sociale',
+			unité: '€/an',
+		}).nodeValue as number
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
+		const TAUX = 1.3 / 100
+
 		it('applique une assiette minimale égale à 11,5% du PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
@@ -23,8 +29,8 @@ describe('Cotisation invalidité et décès', () => {
 
 			const assietteMinimale = e.evaluate(
 				'indépendant . assiette minimale . invalidité et décès'
-			).nodeValue
-			expect(assietteMinimale).toEqual(5417)
+			).nodeValue as number
+			expect(assietteMinimale).toEqual(Math.round((PASS * 11.5) / 100))
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
@@ -33,7 +39,7 @@ describe('Cotisation invalidité et décès', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-				70
+				Math.round(assietteMinimale * TAUX)
 			)
 		})
 
@@ -46,12 +52,12 @@ describe('Cotisation invalidité et décès', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-				30000
+				30_000
 			)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-				390
+				Math.round(30_000 * TAUX)
 			)
 		})
 
@@ -62,8 +68,6 @@ describe('Cotisation invalidité et décès', () => {
 					'50000 €/an',
 			})
 
-			const PASS = e.evaluate('plafond sécurité sociale').nodeValue
-
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
 				PASS
@@ -71,7 +75,7 @@ describe('Cotisation invalidité et décès', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-				612
+				Math.round(PASS * TAUX)
 			)
 		})
 
@@ -86,7 +90,7 @@ describe('Cotisation invalidité et décès', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-					1000
+					1_000
 				)
 			})
 
@@ -100,7 +104,7 @@ describe('Cotisation invalidité et décès', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-					1000
+					1_000
 				)
 			})
 		})
@@ -116,10 +120,16 @@ describe('Cotisation invalidité et décès', () => {
 						'1000 €/an',
 				})
 
+				const PSSProratisé = e.evaluate('indépendant . PSS proratisé')
+					.nodeValue as number
+				expect(PSSProratisé).toEqual(Math.round((PASS * 152) / 365))
+
 				const assietteMinimale = e.evaluate(
 					'indépendant . assiette minimale . invalidité et décès'
-				).nodeValue
-				expect(assietteMinimale).toEqual(2256)
+				).nodeValue as number
+				expect(assietteMinimale).toEqual(
+					Math.round((PSSProratisé * 11.5) / 100)
+				)
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
@@ -128,7 +138,7 @@ describe('Cotisation invalidité et décès', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					29
+					Math.round(assietteMinimale * TAUX)
 				)
 			})
 
@@ -141,8 +151,9 @@ describe('Cotisation invalidité et décès', () => {
 						'40000 €/an',
 				})
 
-				const PSSProratisé = e.evaluate('indépendant . PSS proratisé').nodeValue
-				expect(PSSProratisé).toEqual(19614)
+				const PSSProratisé = e.evaluate('indépendant . PSS proratisé')
+					.nodeValue as number
+				expect(PSSProratisé).toEqual(Math.round((PASS * 152) / 365))
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
@@ -151,7 +162,7 @@ describe('Cotisation invalidité et décès', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					255
+					Math.round(PSSProratisé * TAUX)
 				)
 			})
 
@@ -164,16 +175,14 @@ describe('Cotisation invalidité et décès', () => {
 						'10000 €/an',
 				})
 
-				expect(e).toEvaluate('indépendant . PSS proratisé', 19614)
-
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-					10000
+					10_000
 				)
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					130
+					Math.round(10_000 * TAUX)
 				)
 			})
 		})
@@ -190,7 +199,7 @@ describe('Cotisation invalidité et décès', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . invalidité et décès . assiette',
-				20000
+				30_000 - 10_000
 			)
 		})
 	})
@@ -387,6 +396,8 @@ describe('Cotisation invalidité et décès', () => {
 		})
 
 		describe('affiliées Cipav', () => {
+			const TAUX = 0.5 / 100
+
 			it('applique une assiette minimale égale à 37% du PASS', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
@@ -396,8 +407,8 @@ describe('Cotisation invalidité et décès', () => {
 
 				const assietteMinimale = e.evaluate(
 					'indépendant . assiette minimale . invalidité et décès Cipav'
-				).nodeValue
-				expect(assietteMinimale).toEqual(17427)
+				).nodeValue as number
+				expect(assietteMinimale).toEqual(Math.round((PASS * 37) / 100))
 
 				expect(e).toEvaluate(
 					'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
@@ -406,7 +417,7 @@ describe('Cotisation invalidité et décès', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					87
+					Math.round(assietteMinimale * TAUX)
 				)
 			})
 
@@ -419,12 +430,12 @@ describe('Cotisation invalidité et décès', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
-					50000
+					50_000
 				)
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					250
+					Math.round(50_000 * TAUX)
 				)
 			})
 
@@ -435,7 +446,6 @@ describe('Cotisation invalidité et décès', () => {
 						'100000 €/an',
 				})
 
-				const PASS = e.evaluate('plafond sécurité sociale').nodeValue as number
 				expect(e).toEvaluate(
 					'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
 					1.85 * PASS
@@ -443,7 +453,7 @@ describe('Cotisation invalidité et décès', () => {
 
 				expect(e).toEvaluate(
 					'indépendant . cotisations et contributions . cotisations . invalidité et décès',
-					436
+					Math.round(1.85 * PASS * TAUX)
 				)
 			})
 
@@ -458,7 +468,7 @@ describe('Cotisation invalidité et décès', () => {
 
 					expect(e).toEvaluate(
 						'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
-						1000
+						1_000
 					)
 				})
 
@@ -472,7 +482,7 @@ describe('Cotisation invalidité et décès', () => {
 
 					expect(e).toEvaluate(
 						'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
-						1000
+						1_000
 					)
 				})
 			})
