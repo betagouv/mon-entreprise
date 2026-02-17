@@ -42,12 +42,12 @@ const getAltPathnamesWithParams = (
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { currentPath: pathname, matchPath, generatePath } = useNavigation()
+	const { currentPath, matchPath, generatePath } = useNavigation()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
 	const path = decodeURIComponent(
-		pathname.replace(/^\/(mon-entreprise|infrance)/, '')
+		currentPath.replace(/^\/(mon-entreprise|infrance)/, '')
 	)
 	const altLang = language === 'en' ? 'fr' : 'en'
 	const altHref =
@@ -81,7 +81,7 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					<FeedbackButton key={`${pathname}-feedback-key`} />
+					<FeedbackButton key={`${currentPath}-feedback-key`} />
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}
