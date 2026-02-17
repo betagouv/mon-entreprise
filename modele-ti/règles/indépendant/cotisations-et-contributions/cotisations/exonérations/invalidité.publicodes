@@ -1,0 +1,74 @@
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité:
+  titre: exonération invalidité
+  acronyme: PI
+  question:
+    variations:
+      - si: indépendant . profession libérale . réglementée . PAMC #TODO demande Urssaf implémentée sans reflechir : il faudra regarder de plus près le pourquoi du comment de cette variations
+        alors:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
+            retraite ?
+      - sinon:
+          texte:
+            Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
+            indépendant ?
+  description: |-
+    En cas de versement d’une pension d’invalidité par un régime de retraite des
+    travailleurs indépendants les artisans, commerçants et professions
+    libérales sont **exonérés des cotisations** :
+    - Maladie
+    - Indemnités journalières
+    - Retraite complémentaire
+
+    Les professions libérales réglementées sont en plus exonérées des cotisations :
+    - Retraite de base
+
+    La reconnaissance d’une pension d’invalidité versée par un autre régime (salarié,
+    agricole…) n’ouvre pas droit à exonération au titre de leur activité de
+    travailleur indépendant.
+
+    Cette exonération est applicable en outre-mer.
+
+    Cette exonération est au **prorata du nombre de mois** où votre invalidité a été
+    reconnue. Si vous avez reçu une pension d’invalidité sur l’année complète, alors
+    l’exonération est totale.
+
+    Chaque trimestre de versement de la pension d’invalidité est assimilé à un
+    trimestre d’assurance et sera pris en compte pour le calcul de votre retraite.
+    Des points gratuits dans le régime de retraite complémentaire sont attribués.
+  par défaut: non
+  références:
+    'Travailleurs indépendants : artisans et commerçants - Votre assurance invalidité (2017)': https://www.secu-independants.fr/fileadmin/mediatheque/Espace_telechargement/Protection_sociale/Depliant_assur_invalidite.pdf#page=8
+    Article D621-4 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656758
+    Article D635-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966510
+    Article L642-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033745702
+
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée:
+  question: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+  unité: mois
+  par défaut: 12 mois
+  plancher: 1 mois
+  plafond: 12 mois
+
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année:
+  valeur: durée / 1 an
+  unité: '%'
+  arrondi: oui
+
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . montant:
+  produit:
+    - somme:
+        - maladie-maternité
+        - indemnités journalières
+        - applicable si: profession libérale . Cipav
+          # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraite de base.
+          # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de cette exonération.
+          # Les A/C/PLNR ne bénéficient pas de cette exonération.
+          valeur: retraite de base
+        - non applicable si: profession libérale . CNAVPL . hors Urssaf
+          # L'exonération invalidité est un dispositif de l'Urssaf et ne concerne donc
+          # pas les PLR non Cipav
+          valeur: retraite complémentaire
+    - prorata sur l'année
+  arrondi: oui
+  unité: €/an

@@ -1,5 +1,6 @@
-import { DottedName } from 'modele-social'
 import { ASTNode } from 'publicodes'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export type Choice = ASTNode<'rule'> & {
 	children: Array<

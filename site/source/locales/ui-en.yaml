@@ -46,17 +46,16 @@ Charger plus de résultats: Load more results
 Charges: Charges
 Chiffre d'affaires: Sales figures
 Chiffre d'affaires estimé: Estimated sales
-Chiffre d'affaires pour l'année de cessation: Sales for the year of cessation
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   How does it work? See the explanatory page on the github repository page, new
   window
 Commune ou code postal: Town or zip code
 Communes et code postaux correspondants: Corresponding towns and postcodes
 Confirmer: Confirm
+Contactez-nous: Contact us
 Cotisations: Contributions
 Cotisations sociales: Social security contributions
 "Crée le :": "Created on:"
-Dividendes nets: Net dividends
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
 Donner votre avis: Give your opinion
@@ -72,7 +71,6 @@ En savoir plus: Read more
 "En savoir plus sur ": "Find out more about "
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
-Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
 EntrepriseSearchField:
   description: "The Siret number is a 14-digit number unique to each company.
     Example: 40123778000127"
@@ -92,7 +90,6 @@ Graphique détaillant la satisfaction des utilisateurs (alternative accessible a
 Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
   Graph detailing number of visits (alternative accessible via the switch at the
   start of the section)
-Impôt: Tax
 Impôt au barème: Tax scale
 Impôt sur le revenu: Income tax
 Impôts: Taxes
@@ -116,7 +113,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
 "Lire la documentation au sujet de :": "Read the documentation about :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Read the page on {{ site }}, new window.
 Lire les précisions, ouvrir le message condensé.: Read the details, open the condensed message.
-Liste des intégrations: List of integrations
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
@@ -153,9 +149,6 @@ Passer: Pass
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
 Plus de 50 salariés: More than 50 employees
-Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
-  urssaf:
-    fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
@@ -176,12 +169,10 @@ Retour à mon activité: Back to my activity
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
-Revenu disponible: Disposable income
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
-Rémunération totale pour l'année de cessation: Total compensation for the year of termination
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
 Salaire net: Net salary
@@ -206,7 +197,6 @@ Tableau indiquant le nombre de visites par {{period}}.: Table showing the number
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
 Titres-restaurant: Meal vouchers
 Total des cotisations et contributions: Total contributions
-Total des cotisations à devoir pour l'année de cessation d'activité: Total contributions due for the year of cessation of activity
 Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
@@ -217,8 +207,7 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
-Voir la fiche Urssaf: See the Urssaf sheet
-Voir la fiche de paie: View pay slip
+Version bêta: Beta version
 Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
 Voir les simulateurs personnalisés: See customized simulators
@@ -244,6 +233,20 @@ août: August
 api:
   description: Tools for developers
   title: Use our REST API
+aquoiserventmescotisations:
+  en-savoir-plus: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
+  h2: What are my contributions used for?
+aria-label:
+  aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, new window
+  beta-gouv: beta.gouv.fr, go to beta.gouv.fr, new window
+  cpam: CPAM, access to ameli.fr, new window
+  dgfip: DGFiP, access to impots.gouv.fr, new window
+  economie-gouv: economie.gouv.fr, new window
+  entreprendre-service-public: entreprendre.service-public.fr, new window
+  ircec: Ircec, access to ircec.fr, new window
+  service-public: service-public.fr, new window
+  urssaf: Urssaf, access to urssaf.fr, new window
+  équipe: team, access our team presentation page, new window
 assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
@@ -267,8 +270,11 @@ betawarning: "<0><0>This tool is in beta version</0>: we are working on
 cards:
   simulator-resource:
     cta: Access the simulator
-certains critères, en savoir plus sur service-public:
-  fr, nouvelle fenêtre: certain criteria, find out more on service-public.fr, new window
+certains critères, en savoir plus sur entreprendre:
+  service-public:
+    gouv:
+      fr, nouvelle fenêtre: certain criteria, find out more at
+        entreprendre.service-public.gouv.fr, new window
 checklist:
   showmore:
     closed: Read more
@@ -348,7 +354,7 @@ choix-statut:
       status best suited to your activity</2>. The administrative procedures
       vary according to the legal status chosen.
     warning-entreprise-existante: <0>A company has already been entered</0><1>To
-      access the wizard, you need to reset the data</1>
+      access the wizard, you need to reset the data.</1>
   rémunération:
     CA:
       help:
@@ -452,7 +458,6 @@ créer:
       aide-cci-cma: If you're not sure whether to choose a craft or commercial
         activity, you can consult the <2>CCI</2> or <5>CMA</5> websites.
       title: Details of your business
-d'aides: aids
 design-system:
   date-picker:
     close: Close
@@ -466,8 +471,8 @@ design-system:
     prev-month: Previous month
     year: Year
 décembre: December
-en incluant: including
-en titres-restaurant: in meal vouchers
+entreprise:
+  détails: Company created on <1> &lt;/1> and domiciled at <3></3>.
 error:
   back: Back to home page
   body0: <0>If you would like to help us correct this problem, please describe the
@@ -510,16 +515,6 @@ footer:
 février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
 gérer:
-  choix:
-    chomage-partiel:
-      body: Calculate the amount remaining to be paid after government reimbursement
-        when you activate the scheme for an employee.
-      cta: See the simulator
-      title: Partial activity
-    is:
-      body: Calculate your corporate income tax liability based on your profit.
-      cta: Launch simulator
-      title: Estimate corporate tax liability
   ressources:
     annuaire-entreprises:
       aria-label: Company directory, new window
@@ -537,7 +532,6 @@ header:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
-impôt sur le revenu: income tax
 impôt sur le revenu prélevé à la source: income tax deducted at source
 info: info
 intégration:
@@ -549,10 +543,10 @@ juillet: July
 juin: June
 l'annuaire des entreprises, nouvelle fenêtre: business directory, new window
 landing:
-  aboutUs: "<0>Who are we?</0><1>We're a small, independent, multi-disciplinary
-    <2>team</2> within <6>Urssaf</6>. We are committed to being close to your
-    needs, in order to constantly improve this site in line with the
-    <9>beta.gouv.fr</9> approach.</1><2>We have developed this site to support
+  aboutUs: "<0>Who are we?</0><1>We are a small <2>team&lt;/2> autonomous and
+    multidisciplinary within<5>Urssaf</5>. We are committed to listening to your
+    needs, and to constantly improving this site in line with the
+    <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to support
     entrepreneurs in the development of their business.</2><3>Our aim is to
     remove any uncertainties with regard to the administration, so that you can
     concentrate on what matters: your business.</3>"
@@ -912,6 +906,7 @@ pages:
     title: Choose your status
   documentation:
     back: Back to simulation
+    body: Explore all the rules of documentation
     meta:
       description: Documentation of calculation rules for our simulators and wizards
       descriptionBis: Explore all the rules of documentation
@@ -1080,6 +1075,21 @@ pages:
         theme.</2></0><1></1><2></2><3>Please note that if your site uses a
         content security policy via the HTTP <1>Content-Security-Policy</1>
         response header, a benign error may appear in the console. <3></3></3>
+      intégrations:
+        CCI:
+          aria-label: CCI de France, see integration, new window
+          cta-label: See integration
+        code-du-travail-numérique:
+          aria-label: Code du travail numérique", view simulator, new window
+          cta-label: See the simulator
+        france-travail:
+          aria-label: France Travail, see the simulator, new window
+          cta-label: See the simulator
+        suggestion: Do you have a project or an idea to share?
+        titre: List of integrations
+        urssaf:
+          aria-label: Urssaf, see integration, new window
+          cta-label: See integration
     module: Which module?
     spreadsheet: <0>Using a spreadsheet</0><1>Would you like to use a simulator in a
       Google Sheets or Excel spreadsheet? Our <2>REST API</2> makes it
@@ -1173,17 +1183,52 @@ pages:
           indemnities provided for by a collective agreement or unilateral
           decision by the employer.
     artiste-auteur:
+      explications:
+        cotisations:
+          précompte: For your salary and wage income, these contributions are
+            "précomptée", i.e. paid at source by the broadcaster.
+          titre: Your contributions
+        institutions:
+          urssaf: Urssaf collects contributions used to finance social security (health
+            insurance, family allowances, long-term care and retirement &lt;2>
+            </2> ).
       externalLinks:
         "1":
           title: The Artist-Author online service
       meta:
-        description: Estimate social security contributions on copyright and BNC income
+        description: Estimate social security contributions on royalties and BNC income
+        ogDescription: Enter your income (royalties and bnc) and find out immediately
+          the amount of contributions you will have to pay for the year.
+        ogTitle: "Artiste-auteur: estimate your Urssaf contributions"
         title: "Artiste-auteur: calculating Urssaf contributions"
       shortname: Artist-author
       title: Artist contribution simulator
       warning: This simulator allows you to estimate the amount of your contributions
         based on your projected income.
+    assimilé-salarié:
+      explications:
+        répartition:
+          cotisations: Contributions
+          impôt: Tax
+          revenu: Disposable income
     auto-entrepreneur:
+      explications:
+        institutions:
+          urssaf: Urssaf collects social security contributions (health insurance, family
+            allowances, dependence&lt;1> and retirement</1>).
+        retraite:
+          droits: "<0>Pension rights acquired over the year</0><1><0>Basic pension :
+            <2></2></0><1><0>Basic pension points acquired (CNAVPL) :
+            <2></2></0></1><2><0>Income contributed to basic pension :
+            <2></2></0></2><3><0>Supplementary pension points acquired (Cipav) :
+            <2></2></0></3><4><0>Supplementary pension points acquired :
+            <2></2></0></4></1>"
+          titre: Your retirement
+        répartition:
+          cotisations: Contributions
+          h2: Sales breakdown
+          impôt: Tax
+          revenu: Income (including activity-related expenses)
       externalLinks:
         "1":
           ariaLabel: Visit auto-entrepreneur.urssaf.fr, new window.
@@ -1207,11 +1252,6 @@ pages:
         ogTitle: "Self-employed entrepreneurs: quickly calculate your net income from
           sales and vice versa"
         titre: "Self-employed entrepreneurs: income simulator"
-      répartition:
-        cotisations: Contributions
-        h2: Sales breakdown
-        impôt: Tax
-        revenu: Income (including activity-related expenses)
       seo explanation: <0>How do you calculate the net income of an
         auto-entrepreneur?</0><1>An auto-entrepreneur must pay social security
         contributions to the authorities. These contributions are used to
@@ -1260,19 +1300,20 @@ pages:
           made for professional expenses. Actual expenses cannot be deducted in
           addition. Your net income is therefore your sales minus all expenses
           incurred for the company.
-    auxiliaire:
-      shortname: Medical Auxiliary
-      title: Income simulator for self-employed medical assistants
-      tooltip: Nurses, physiotherapists, chiropodists, speech therapists and orthoptists
-    auxiliaire-medical:
+    auxiliaire-médical:
       meta:
         description: Calculation of net income after contributions based on total
           income. Non-contributory income taken into account.
         title: "Medical auxiliary: income simulator"
+      professionnelles: medical auxiliaries
+      shortname: Medical Auxiliary
+      title: Income simulator for self-employed medical assistants
+      tooltip: Nurses, physiotherapists, chiropodists, speech therapists and orthoptists
     avocat:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Lawyer: income simulator"
+      professionnelles: lawyers
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
     cessation-activité:
@@ -1281,6 +1322,10 @@ pages:
           description: Urssaf will be with you every step of the way when you decide to
             stop working.
           title: Termination of activity service
+      label:
+        chiffre-affaires: Sales for the year of cessation
+        cotisations: Total contributions due for the year of cessation of activity
+        rémunération: Gross compensation for the year of termination
       meta:
         description: Estimate your contributions for the year in which you cease
           self-employed activity.
@@ -1292,17 +1337,18 @@ pages:
         question: How are you taxed?
       shortname: Cessation of activity
       title: Retirement simulator
-      warning: <0>You are self-employed and would like to estimate the contributions
-        due before you stop working. This simulator is here to help you. Please
-        note that the amount indicated by this simulator is an estimate. Only
-        the "real Urssaf statement" will tell you the exact amount.
-        </0><1><0>This simulator does not take into account&lt;/0> payments
-        already made, provisional contributions already called in, or any
-        debts.</1>
+      warning: <0>You are self-employed and would like to estimate <2>the
+        contributions due before you stop working</2>. This simulator is here to
+        help you. Please note that the amount indicated by this simulator is an
+        estimate. Only the "real Urssaf statement" will tell you the exact
+        amount. </0><1><0>This simulator does not take into
+        account</0><1><0>payments already made,</0><1>provisional contributions
+        already called,</1><2>or any debts.</2></1></1>
     chirurgien-dentiste:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Dental surgeon: income simulator"
+      professionnelles: dental surgeons
       shortname: Dental surgeon
       title: Income simulator for self-employed dentists
     cipav:
@@ -1310,6 +1356,7 @@ pages:
         description: Calculation of net income after deduction of contributions based on
           total income for self-employed professionals covered by CIPAV
         title: "Professions affiliated to Cipav: income simulator"
+      professionnelles: regulated professions covered by Cipav
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
     comparaison-statuts:
@@ -1492,17 +1539,17 @@ pages:
       href: https://www.urssaf.fr/en/accueil/services/travail-etranger-mobilite.html
       intro: From now on, for all your international mobility requests, the forms
         corresponding to your situation are available on the <2>International
-        Mobility Service</2> page.
-      meta:
-        description: Interactive form to be completed when working abroad
-        title: "Self-employed workers: applying for mobility in Europe"
-      shortname: International mobility request
+        Mobility service</2> page.
       title: International mobility request
     dividendes:
       meta:
         description: Calculate the amount of tax and contributions on dividends paid by
           your company.
         title: Dividends
+      répartition:
+        cotisations: Contributions
+        impôt: Tax
+        revenu: Net dividends
       seo: <0>Dividends and distributions</0><1>At the end of a company's financial
         year, the previous year's earnings can be held in reserve (for future
         investment) or paid out as dividends. From the beneficiaries' point of
@@ -1510,17 +1557,16 @@ pages:
         contributions and taxation.</1><2>This simulator only takes into account
         the case of an individual beneficiary and dividends decided by the
         company.</2><3>How are dividend withholdings calculated?</3><4>Dividends
-        may be subject to a single flat-rate withholding tax of 31.4%, including
-        tax and social security contributions (also known as&lt;1> flat
-        tax</1>). Alternatively, you can opt for the tax scale. This simulator
-        can be used to compare the two systems.</4><5>An advance payment in the
-        amount of the tax (12.8%) is deducted at the time of payment of the
-        dividends, unless the beneficiary meets <2>certain
+        may be subject to a flat-rate withholding tax of 30%, including tax and
+        social security contributions (also known as&lt;1> flat tax</1>).
+        Alternatively, you can opt for the tax scale. This simulator can be used
+        to compare the two systems.</4><5>A 12.8% advance payment is made at the
+        time of dividend payment, unless the beneficiary meets <2>certain
         criteria</2>.</5><6>Special case of self-employed executives</6><7>For
         the self-employed worker, the portion of dividends exceeding 10% of the
         share capital will be subject to contributions and levies in the same
-        way as his or her remuneration as an executive.</7><8>This situation has
-        not yet been taken into account by this simulator.</8>
+        way as his or her executive remuneration.</7><8>In this case, please use
+        the <2>income simulator for self-employed workers</2>.</8>
       shortName: Dividends
       title: Dividend payment simulator
       warning:
@@ -1538,31 +1584,30 @@ pages:
         ogTitle: "Sole proprietorship: quickly calculate your net income from sales and
           vice versa"
         titre: "Sole proprietorship: income simulator"
-      seo explanation: <0>How do you calculate the net income of a sole
-        trader?</0><1>The manager of a sole proprietorship is required to pay
-        social security contributions to the tax authorities. These
+      seo explanation: <0>How to calculate a sole trader's net income</0><1>A sole
+        trader must pay social security contributions to the authorities. These
         contributions are used to finance the social security system, and give
         entitlement to pension and health insurance benefits. They are also used
-        to finance professional training.</1><2><0></0> <2>See how contributions
-        are calculated</2></2><3>Don't forget to deduct all expenses incurred in
-        the course of your business (equipment, raw materials, premises,
-        transport). These are deductible from the company's income, which means
-        you won't pay tax or contributions on their amount (unless you've opted
-        for the micro-tax option).</3><4>The complete calculation formula is as
-        follows</4><5>Net income = Sales - Professional expenses - Social
-        security contributions</5><6>How do you calculate social security
-        contributions for a sole proprietorship?</6><7>The manager of a sole
-        proprietorship pays social security contributions, which are
-        proportional to the company's <2>taxable income</2>. Their amount also
-        varies according to the type of activity (liberal profession, craftsman,
-        shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
-        etc.).</7><8> As a company's income is only known at the end of the
-        accounting year, the manager pays provisional contributions, which will
-        be adjusted once the actual income has been declared, the following
-        year.</8><9>This simulator enables you to calculate the exact amount of
-        social security contributions, based on your desired sales or net
-        income. You can specify your situation by answering the questions
-        displayed below the simulation.</9>
+        to finance vocational training.</1><2><0></2> &lt;/0<2>> <2>See details
+        of how contributions are calculatedDon</2></2><3>'t forget to deduct all
+        expenses incurred in the course of your business (equipment, raw
+        materials, premises, transport). These are deductible from the company's
+        income, which means you won't pay tax or social security contributions
+        on their amount (unless you've opted for the micro-tax
+        option).</3><4>The complete calculation formula is therefore:</4><5>Net
+        income = Sales - Professional expenses - Social security
+        contributionsHow to</5><6>calculate social security contributions for a
+        sole proprietorship?</6><7>The manager of a sole proprietorship pays
+        social security contributions, proportional to the company's
+        <2>income&lt;/2> taxable income. The amount also varies according to the
+        type of activity (liberal professions, craftsmen, shopkeepers, etc.), or
+        any exemptions granted (Acre, ZFU, RSA, etc.).</7>&lt;8> As a company's
+        income is only known at the end of the accounting year, the manager pays
+        provisional contributions which will then be regularized once the actual
+        income has been declared, the following year.</8><9>This simulator
+        calculates the exact amount of social security contributions based on a
+        desired net income or sales figure. You can specify your situation by
+        answering the questions displayed below the simulation.</9>
       shortname: Sole proprietorship
       title: Simulator for sole proprietorships
     eirl:
@@ -1597,6 +1642,7 @@ pages:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Chartered accountant: income simulator"
+      professionnelles: chartered accountants
       shortname: Chartered Accountant
       title: Income simulator for independent accountants and auditors
     home:
@@ -1629,49 +1675,57 @@ pages:
         included in the simulator.</5>
       title: Corporate tax simulator
     indépendant:
-      cotisations-forfaitaires: "Flat-rate contributions : "
+      explications:
+        cotisations:
+          fiche: See the Urssaf sheet
+          forfaitaires: "Flat-rate contributions :"
+          régularisation:
+            description: <0>Contributions are calculated provisionally on the basis of the
+              last income declared (or the lump sum if no income has yet been
+              declared). Once the year is over and the professional income is
+              known, contributions are adjusted.</0><1>This simulator calculates
+              contributions <2>after regularization</2>. It therefore enables
+              you to anticipate the amount of this regularization and plan your
+              cash flow accordingly.</1><2>If your business income changes
+              significantly from the previous year, you can provide Urssaf with
+              a <2>forecast amount for the current year, which will be used as
+              the basis for calculation</2>(although you will be required to
+              make a precise estimate).</2>
+            titre: How does the adjustment of provisional contributions work?
+        institutions:
+          cpam: As an approved healthcare professional, part of your contributions are
+            reimbursed by the Assurance Maladie.
+          urssaf: Urssaf collects social security contributions (health insurance, family
+            allowances, dependence&lt;1> and retirement</1>).
+        retraite:
+          droits: "<0>Pension rights acquired over the year</0><1><0>Basic pension :
+            <2></2></0><1><0>Basic pension points acquired (CNAVPL) :
+            <2></2></0></1><2><0>Income contributed to basic pension :
+            <2></2></0></2><3>Supplementary pension points acquired :
+            <2><0></0></2><3><0>not known</0><1><0>This simulator does not
+            manage acquired supplementary pension rights for the liberal
+            professions.</0></1></3></3></1>"
+          montant: <0>Projecting your retirement income</0><1><0></0><1></1></1>
+          titre: Your retirement
+        répartition:
+          cotisations: Contributions
+          impôt: Tax
+          revenu: Disposable income
+          titre: Income breakdown
+      label:
+        rémunération-nette: Net income
       meta:
         description: Calculating net income after tax and contributions from sales and
           vice versa
         title: "Self-employed: income simulator"
-      retraite-droits-acquis: "<0><0><0>Retirement: rights acquired over the
-        year</0><1><0>DROM exemptions have no impact on determining basic and
-        supplementary pension rights for auto-entrepreneurs</0></1><2><0>The
-        ACRE exemption has no impact on the calculation of basic and
-        supplementary pension rights for auto-entrepreneurs.</0></2><3><0>The
-        calculation of open pension rights has not yet been implemented for
-        cases involving contribution exemptions (ACRE, disability pension,
-        etc.).</0></3><4><0><0>Basic pension : <2></2></0><1><0>Basic pension
-        points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
-        basic pension : <2></2></0></2><3><0>Supplementary pension points
-        acquired (Cipav) : <2></2></0></3><4><0>Supplementary pension points
-        acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
-        not manage acquired supplementary pension rights for the liberal
-        professions.</0></1></3></0></4></0></4></0><1><0><0>Projecting your
-        retirement amount</0><1><0></0><1></1></1></0></1></0>"
-      régularisation:
-        description: <0>Contributions are calculated provisionally on the basis of the
-          last income declared (or the lump sum if no income has yet been
-          declared). Once the year is over and the professional income is known,
-          contributions are adjusted.</0><1>This simulator calculates
-          contributions <2>after regularization</2>. It therefore enables you to
-          anticipate the amount of this regularization and plan your cash flow
-          accordingly.</1><2>If your business income changes significantly from
-          the previous year, you can provide Urssaf with a <2>forecast amount
-          for the current year, which will be used as the basis for
-          calculation</2>(although you will be required to make a precise
-          estimate).</2>
-        title: How does the adjustment of provisional contributions work?
       shortname: Independent
       title: Income simulator for the self-employed
       warning:
-        année-courante: The amount calculated corresponds to the contributions for the
-          year {{ year }} (for an income {{ year }}).
-        réforme:
-          aria-label: Read the page dedicated to the reform of the contribution base and
-            scale on the Urssaf website, new window
-          texte: The <2>reform of the contribution base and scale&lt;/2> has not yet been
-            implemented on this simulator.
+        année-courante: The amount calculated corresponds to <2>contributions for the
+          year {{year}} &lt;/2> (for an income of {{year}}).
+        double-régime: This simulator does not take into account the situation of users
+          who have <2>two different tax regimes&lt;/2> (actual and micro-tax
+          regimes) in the same year.
     is:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
@@ -1802,6 +1856,7 @@ pages:
           on total revenue. Sector 1, sector 2 and excess fees taken into
           account
         title: "Doctor: income simulator"
+      professionnelles: doctors
       shortname: Doctor
       title: Income simulator for self-employed doctors
     pamc:
@@ -1811,11 +1866,13 @@ pages:
         title: PAMC plan simulators
       shortname: PAMC
       title: Contribution and income simulator for PAMC
+      titre: What do you do for a living?
     pharmacien:
       meta:
         description: Calculation of net income after deduction of contributions from
           total revenues for self-employed pharmacists
         title: "Pharmacist: income simulator"
+      professionnelles: pharmacists
       shortname: Pharmacist
       title: Income simulator for self-employed pharmacists
     print-info:
@@ -1830,11 +1887,17 @@ pages:
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
       warning:
-        cotisations-ordinales: For regulated professions, the simulator does not
-          calculate the amount of membership fees. They must be added manually
-          in the "operating expenses" box.
-        général: This simulator is intended for self-employed professionals in the BNC
-          sector. It does not take into account self-employed companies.
+        cotisations-ordinales:
+          générique: For regulated professions, the simulator does not calculate the
+            amount of membership <1>fees</1>. They must be added manually in the
+            "Charges" box.
+          spécifique: The simulator does not calculate the amount of <2>membership
+            fees</2>. These must be added manually in the "Charges" box.
+        général:
+          générique: This simulator is intended for self-employed professionals who earn a
+            <2>BNC</2>. It does not take into account self-employed companies.
+          spécifique: This simulator is intended for {{professionnelles}} in <4>BNC</4>.
+            It does not take into account partnerships.
     raccourcis:
       aria-label: "Go to question : {{question}}"
       titre: "Go to question :"
@@ -1922,13 +1985,20 @@ pages:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Midwife: income simulator"
+      professionnelles: midwives
       shortname: Midwife
       title: Income simulator for self-employed midwives
     salarié:
       SASU: Are you an SAS(U) director? <2>Access the dedicated income simulator</2>
+      aides: including <2> &lt;/2> aid
       alt-image1: Net salary (received by the employee) is equal to Gross salary
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).
+      explications:
+        répartition:
+          cotisations: Contributions
+          impôt: Tax
+          revenu: Disposable income
       externalLinks:
         "1":
           ariaLabel: Visit Code du travail numérique, new window.
@@ -1981,6 +2051,7 @@ pages:
         missions...</4><5></5></2>"
       shortname: Employee
       title: Income simulator for employees
+      titres-restaurant: in meal vouchers
       warning:
         général: The simulator does not currently take into account collective
           agreements, nor the myriad of company subsidies. Find your collective
@@ -1994,8 +2065,8 @@ pages:
           income after tax from the total allocated to your remuneration.
         ogTitle: "SASU manager's remuneration: a simulator to find out your net salary"
         titre: "SASU: income simulator for managers"
-      seo-explanation: "<0>How do you calculate the salary of a SAS or SASU director?
-        </0><1>As with a conventional employee, the <1>director of an
+      seo-explanation: "<0>How do you calculate the salary of an SAS or SASU
+        executive? </0><1>As with a conventional employee, the <1>director of an
         SAS(U)&lt;/1> pays social security contributions on the remuneration he
         or she receives. Contributions are calculated in the same way as for an
         employee: they are broken down into employer and employee portions, and
@@ -2003,7 +2074,7 @@ pages:
         they do not benefit from the <5>réduction générale dégressive unique de
         cotisations&lt;/5> or from schemes governed by the French Labor Code,
         such as <9>heures supplémentaires&lt;/9> or bonuses.</2><3>However, they
-        are eligible for the <2>réduction ACRE&lt;/2> at the start of business,
+        can claim the <2>réduction Acre&lt;/2> at the start of their activity,
         under certain conditions.</3><4>You can use our simulator to calculate
         <2>rémunération nette&lt;/2> from a superbrut amount allocated to the
         manager's remuneration. Simply enter the total amount allocated in the
@@ -2040,6 +2111,7 @@ payslip:
     to understand your pay slip: you can click on the links to understand how
     each amount is calculated. This payslip is not a substitute for a real
     payslip. For more information, visit <2>service-public.fr</2>."
+  link: See the pay slip
   repartition: Breakdown of total expenses
 periode-calcul: Calculation period
 points: points
@@ -2170,23 +2242,36 @@ shareSimulation:
 simulateurs:
   explanation:
     institutions:
-      CIPAV: From January 1, 2023, Urssaf will collect basic and supplementary pension
-        and disability-death contributions from self-employed professionals
-        covered by Cipav. Cipav will continue to manage the pension and
-        provident fund file.
-      CNAPL: It collects contributions related to your pension and to the
-        disability-death scheme.
-      cpam: As an approved healthcare professional, part of your contributions are
-        reimbursed by the Assurance Maladie.
+      CARCDSF:
+        description: CARCDSF is the pension fund for dental surgeons and midwives.
+      CARMF:
+        description: CARMF is the independent pension fund for French doctors.
+      CARPIMKO:
+        description: CARPIMKO is the autonomous pension fund for medical auxiliaries.
+      CAVEC:
+        description: CAVEC is the social security organization for chartered accountants
+          and statutory auditors.
+      CAVP:
+        description: CAVP is the pension fund for pharmacists.
+      CIPAV:
+        description: Cipav is the independent pension fund for the regulated liberal
+          professions.
+        img: Cipav website, new window
+        note: From January 1, 2023, Urssaf will collect basic and supplementary pension
+          and disability-death contributions from self-employed professionals
+          covered by Cipav. Cipav will continue to manage pension and
+          contingency files.
+      CNAVPL:
+        img: "{{ caisse }} website, new window"
+        note: It collects contributions related to your pension and to the
+          disability-death scheme.
+      CNBF:
+        description: Caisse Nationale des Barreaux Français (CNBF) is the social
+          security organization for lawyers.
       dgfip: The Direction Générale des Finances Publiques (DGFiP) is the organization
         that collects income tax. <2>The amount calculated takes into <2>account
         the micro-tax allowance</2>.</2>
-      précompte-artiste-auteur: For your salary and wage income, these contributions
-        are "précomptée", i.e. paid at source by the broadcaster.
       titre: Your partner institutions
-      urssaf: Urssaf collects contributions used to finance the social security system
-        (health insurance, family allowances, long-term care<1> and <3>
-        basic</3> pensions</1>).
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:

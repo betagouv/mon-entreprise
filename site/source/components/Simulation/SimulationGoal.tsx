@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,13 +13,14 @@ import {
 	ChampSaisieProps,
 	ObjectifSaisissableDeSimulation,
 } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
-import { useEngine } from '@/components/utils/EngineContext'
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaire } from '@/domaine/Unités'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 type SimulationGoalProps = {
 	dottedName: DottedName
@@ -74,7 +74,7 @@ export function SimulationGoal({
 			dispatch(
 				ajusteLaSituation({ [dottedName]: montantDansLaBonneUnité } as Record<
 					DottedName,
-					ValeurPublicodes
+					ValeurPublicodes | undefined
 				>)
 			)
 			onUpdateSituation?.(dottedName, montantDansLaBonneUnité)
@@ -161,7 +161,7 @@ export function SimulationGoal({
 				valeur={valeurMontant}
 				rendreChampSaisie={RuleInputWrapper}
 				isInfoMode={isInfoMode}
-				small={small}
+				avecDescription={!small}
 				appear={appear}
 			/>
 		)

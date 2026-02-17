@@ -23,3 +23,5 @@ export default function useSimulatorsData(): SimulatorData {
 		[t, absoluteSitePaths, i18n.language]
 	)
 }
+
+export type SimulateurId = keyof ReturnType<typeof useSimulatorsData>

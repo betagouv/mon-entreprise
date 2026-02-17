@@ -14,6 +14,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
         "dirigeant . indépendant . revenus étrangers",
         "entreprise . charges",
         "entreprise . imposition",
+        "entreprise . imposition . IR . régime micro-fiscal",
         "entreprise . imposition . régime",
         "entreprise . imposition . régime . micro-entreprise",
         "impôt . foyer fiscal . enfants à charge",
@@ -374,7 +375,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
   "evaluate": [
     {
       "missingVariables": [
-        "entreprise . activités . revenus mixtes",
+        "entreprise . activité . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],
@@ -394,7 +395,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     },
     {
       "missingVariables": [
-        "entreprise . activités . revenus mixtes",
+        "entreprise . activité . revenus mixtes",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
       ],

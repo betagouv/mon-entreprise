@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { DottedName } from 'modele-social'
 import Engine, { Evaluation, PublicodesExpression } from 'publicodes'
 import { expect } from 'vitest'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { PublicodesTypes } from '../helpers/PublicodesTypes'
 

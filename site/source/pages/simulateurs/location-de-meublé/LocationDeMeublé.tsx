@@ -11,6 +11,7 @@ import {
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 import { Body, ConteneurBleu, Emoji, Message } from '@/design-system'
+import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
 import { TypeHébergementSwitch } from '@/pages/simulateurs/location-de-meublé/components/TypeHébergementSwitch'
 import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
@@ -22,18 +23,46 @@ import {
 	RecettesCourteDuréeQuestion,
 	TypeDuréeQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
+import { URSSAF } from '@/utils/logos'
 
+import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
 
 const LocationDeMeublé = () => {
+	const id = 'location-de-logement-meublé'
+	const simulateurConfig = useSimulatorData(id)
 	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
 
 	const isMeubléDeTourisme = situation.typeHébergement === 'meublé-tourisme'
 	const isChambreDHôte = situation.typeHébergement === 'chambre-hôte'
 
+	const externalLinks = [
+		{
+			url: 'https://www.urssaf.fr/accueil/services/economie-collaborative.html',
+			title: t(
+				'pages.simulateurs.location-de-logement-meublé.externalLinks.1.title',
+				'Le service Économie collaborative'
+			),
+			description: t(
+				'pages.simulateurs.location-de-logement-meublé.externalLinks.1.description',
+				'Vous louez des logements meublés ou des biens ? Le service Économie collaborative vous facilite la déclaration et le paiement de vos cotisations.'
+			),
+			logo: URSSAF,
+			ctaLabel: t('external-links.service.ctaLabel', 'Accéder au service'),
+			ariaLabel: t(
+				'external-links.service.ariaLabel',
+				'Accéder au service sur urssaf.fr, nouvelle fenêtre'
+			),
+		},
+	]
+
 	return (
-		<>
+		<SimulateurPageLayout
+			simulateurConfig={simulateurConfig}
+			externalLinks={externalLinks}
+			showDate={false}
+		>
 			<Simulation<SituationÉconomieCollaborative>
 				entrepriseSelection={false}
 				situation={situation}
@@ -46,7 +75,6 @@ const LocationDeMeublé = () => {
 						: []),
 				]}
 				showQuestionsFromBeginning={estSituationValide(situation)}
-				avecQuestionsPublicodes={false}
 			>
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
 				<SimulationGoals toggles={<TypeHébergementSwitch />}>
@@ -87,7 +115,7 @@ const LocationDeMeublé = () => {
 				</Button>
 			</ConteneurBleu>
 			*/}
-		</>
+		</SimulateurPageLayout>
 	)
 }
 

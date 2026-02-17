@@ -1,0 +1,67 @@
+indépendant . cotisations et contributions . début activité:
+  titre: Cotisations forfaitaires de début d’activité
+  description: |
+    Lorsque vous commencez votre activité, vos revenus professionnels n’étant pas
+    connus, les **cotisations et contributions** des deux premières années sont
+    calculées sur une **base forfaitaire**.
+
+
+    Ces cotisations seront ajustées et régularisées en fonction de vos revenus réels
+    de l’année d’exercice. Si votre revenu est supérieur à la base forfaitaire prise
+    en compte pour le calcul des cotisations provisionnelles alors vous serez
+    redevable d’un **complément de cotisations**.
+
+
+    Ce simulateur calcule les cotisations dites définitives sur la base des revenus
+    réels de votre activité. Il vous permet donc de pouvoir anticiper le montant de
+    cette régularisation et de **planifier votre trésorerie** en conséquence.
+
+  note: La base forfaitaire s’élève à **19 % du plafond annuel de la Sécurité sociale**
+    au titre de la première et de la deuxième année d’activité (à l’exception de la
+    cotisation indemnités journalières pour lesquelles l’assiette
+    forfaitaire est égale à 40 % du plafond annuel de la Sécurité sociale).
+
+  applicable si: entreprise . date de création >= période . début d'année
+  unité: €/an
+  valeur: cotisations et contributions
+  contexte:
+    assiette sociale: assiette forfaitaire
+    assiette CSG-CRDS: assiette forfaitaire
+    cotisations . indemnités journalières . assiette: assiette forfaitaire indemnités journalières
+    profession libérale . Cipav . invalidité et décès . assiette: assiette forfaitaire invalidité décès Cipav
+    cotisations facultatives: non
+
+  références:
+    'Indépendant : Comment sont calculées vos cotisations ?': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#ancre-le-calcul-vos-cotisations
+    Article R131-2-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038750307
+    Article D131-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038786941
+    Article R613-17 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038750258
+
+  avec:
+    assiette forfaitaire:
+      produit:
+        - PSS proratisé
+        - 19%
+      arrondi: oui
+      unité: €/an
+      références:
+        'Indépendant : Vos cotisations en début d’activité': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#titre-bonasavoir-dc7c46c0-20f6-4d0c-bb9d-d963a1afff95
+        Article R131-2-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038750307
+        Article D131-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038786941
+        Article R613-17 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038750258
+
+    assiette forfaitaire indemnités journalières:
+      produit:
+        - plafond sécurité sociale
+        - 40%
+      arrondi: oui
+      unité: €/an
+      références:
+        Article D621-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904537
+
+    assiette forfaitaire invalidité décès Cipav:
+      produit:
+        - PSS proratisé
+        - 37%
+      arrondi: oui
+      unité: €/an

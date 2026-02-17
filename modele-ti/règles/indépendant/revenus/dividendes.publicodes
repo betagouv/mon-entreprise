@@ -1,0 +1,152 @@
+indépendant . dividendes:
+  titre: Dividendes bruts
+  résumé: Montant brut des dividendes versés par l’entreprise
+  description: |
+    Il s’agit du montant **avant le PFNL** (prélèvement forfaitaire non libératoire)
+    de 12,8 %.
+  applicable si: entreprise . imposition . IS
+  par défaut: 0 €/an
+
+indépendant . dividendes . plafond exonéré de cotisations sociales:
+  applicable si: dividendes > 0 €/an
+  produit:
+    - variations:
+        - si: entreprise . EI
+          alors: entreprise . bénéfice net de l'exercice précédent
+        - sinon: entreprise . capital social
+    - 10%
+  par défaut: dividendes
+  arrondi: oui
+  unité: €/an
+
+indépendant . dividendes . soumis à cotisations sociales:
+  description: |
+    La part des dividendes **supérieure à 10 % du capital social** (ou du bénéfice
+    net de l’exercice précédent pour les entreprises individuelles) est soumise aux
+    **cotisations sociales** et contributions du régime indépendant.
+  applicable si: dividendes > plafond exonéré de cotisations sociales
+  valeur: dividendes
+  abattement: plafond exonéré de cotisations sociales
+
+indépendant . dividendes . soumis à prélèvements sociaux:
+  description: |
+    La part des dividendes **inférieure à 10 % du capital social** (ou du bénéfice
+    net de l’exercice précédent pour les entreprises individuelles) est soumise aux
+    **prélèvements sociaux** en tant que revenus du patrimoine.
+  applicable si: dividendes > 0 €/an
+  le minimum de:
+    - dividendes
+    - plafond exonéré de cotisations sociales
+  références:
+    Prélèvements sociaux (CSG, CRDS...) sur les revenus du patrimoine: https://www.service-public.gouv.fr/particuliers/vosdroits/F2329
+
+indépendant . dividendes . prélèvements sociaux:
+  description: |
+    En tant que revenus du patrimoine, les dividendes sont soumis à prélèvements
+    sociaux. Ces prélèvements sont :
+    - contribution sociale généralisée (CSG),
+    - contribution au remboursement de la dette sociale (CRDS),
+    - prélèvement de solidarité.
+  note: |
+    La CSG sur les dividendes soumis au PFU (prélèvement forfaitaire unique) n’est
+    pas déductible.
+  applicable si: dividendes > 0 €/an
+  somme:
+    - CSG non déductible
+    - CSG déductible
+    - CRDS
+    - prélèvement de solidarité
+  références:
+    Prélèvements sociaux (CSG, CRDS...) sur les revenus du patrimoine: https://www.service-public.gouv.fr/particuliers/vosdroits/F2329
+    Article L136-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173130/
+    Article L136-7 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173129/
+    Article L136-8 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051287395
+
+  avec:
+    CRDS:
+      produit:
+        - dividendes . soumis à prélèvements sociaux
+        - 0.5%
+
+    CSG déductible:
+      produit:
+        - dividendes . soumis à prélèvements sociaux
+        - variations:
+            - si: imposition . PFU
+              alors: 0%
+            - sinon: 6.8%
+
+    CSG non déductible:
+      produit:
+        - dividendes . soumis à prélèvements sociaux
+        - variations:
+            - si: imposition . PFU
+              alors:
+                variations:
+                  - si: date < 01/2026
+                    alors: 9.2%
+                  - sinon: 10.6%
+            - sinon: 2.4%
+
+    prélèvement de solidarité:
+      produit:
+        - dividendes . soumis à prélèvements sociaux
+        - 7.5%
+
+indépendant . dividendes . imposition:
+  applicable si: dividendes > 0 €/an
+  question: Quel est le mode d’imposition de vos dividendes ?
+  une possibilité:
+    - PFU:
+        valeur: imposition = 'PFU'
+        titre: prélèvement forfaitaire unique (PFU)
+        description: |
+          Il s’agit du mode d’imposition **par défaut**. Il s’applique tant que
+          vous ne faites pas de demande pour y renoncer.
+
+          Le prélèvement forfaitaire unique (PFU) est égal à 31,4 % :
+          - **12,8 %** correspondant à l’impôt sur le revenu ;
+          - 18,6 % correspondant aux prélèvements sociaux.
+    - barème progressif:
+        valeur: imposition = 'barème progressif'
+        titre: barème progressif de l’impôt sur le revenu
+        description: |
+          Pour que les dividendes soient imposés selon le barème progressif de
+          l’impôt sur le revenu, vous devez renoncer à l’imposition des dividendes
+          au titre du PFU (prélèvement forfaitaire unique) en en faisant la demande
+          au moment de votre déclaration de revenus.
+
+          Le montant imposable des dividendes est alors leur montant brut après
+          **abattement de 40 %**. Ce montant imposable est ensuite ajouté aux
+          autres revenus d’activité et abattu de **10 % pour frais professionnels**.
+  par défaut: "'PFU'"
+  références:
+    Fiscalité des dividendes perçus par les associés: https://entreprendre.service-public.gouv.fr/vosdroits/F32963
+    Les revenus mobiliers: https://www.impots.gouv.fr/particulier/les-revenus-mobiliers
+
+indépendant . dividendes . PFU:
+  titre: Prélèvement forfaitaire unique (PFU)
+  description: |
+    La part du PFU (prélèvement forfaitaire unique) correspondant à l’impôt sur le
+    revenu est égale à **12,8 %**.
+  applicable si: imposition = 'PFU'
+  produit:
+    - dividendes
+    - 12.8%
+  références:
+    Fiscalité des dividendes perçus par les associés: https://entreprendre.service-public.gouv.fr/vosdroits/F32963
+    Les revenus mobiliers: https://www.impots.gouv.fr/particulier/les-revenus-mobiliers
+
+indépendant . dividendes . imposables:
+  description: |
+    Lors que les dividendes sont soumis au barème progressif de l’impôt sur le
+    revenu, un **abattement de 40%** leur est d’abord appliqué.
+  applicable si: imposition = 'barème progressif'
+  somme:
+    - valeur: dividendes
+      abattement: 40%
+    - (- prélèvements sociaux . CSG déductible)
+  références:
+    Fiscalité des dividendes perçus par les associés: https://entreprendre.service-public.gouv.fr/vosdroits/F32963
+    Les revenus mobiliers: https://www.impots.gouv.fr/particulier/les-revenus-mobiliers
+    Article 158 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051765203

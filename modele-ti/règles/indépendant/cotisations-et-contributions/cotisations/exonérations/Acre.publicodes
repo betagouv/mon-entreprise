@@ -1,0 +1,60 @@
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre:
+  applicable si: entreprise . durée d'activité . en début d'année < 1 an
+  question: Bénéficiez-vous de l’Acre ?
+  par défaut: non
+  description: >-
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
+    exonération partielle de charges sociales, dite exonération de début
+    d’activité pendant 12 mois.
+
+
+    Elle est **automatique** pour les **sociétés et les entreprises individuelles**
+    (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois
+    dernières années).
+  références:
+    'L’Acre : une aide pour favoriser les créations et reprises d’entreprises': https://www.urssaf.fr/accueil/exoneration-acre-createur.html
+    Aide à la création ou à la reprise d’une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
+    # BPI ONLY
+    'Acre : aide aux créateurs et repreneurs d’entreprise': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
+  description: |
+    Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
+    l'exonération est proratisée en fonction de la durée effective de l'Acre sur
+    l'année courante.
+
+    Par exemple, pour une entreprise crée le 1er février 2024, le calcul du prorata
+    pour les cotisations 2025 sera le suivant :
+
+    `31 jour d'Acre restant en 2025 / 365 jour = 8,5%`
+  unité: '%'
+  valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux:
+  taux progressif:
+    assiette: assiette sociale
+    multiplicateur: PSS proratisé
+    tranches:
+      - taux: 100%
+        plafond: 75%
+      - taux: 0%
+        plafond: 100%
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux proratisé:
+  produit:
+    - taux
+    - prorata sur l'année
+  unité: '%'
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . montant:
+  produit:
+    - somme:
+        - maladie-maternité
+        - indemnités journalières
+        - allocations familiales
+        - retraite de base
+        - invalidité et décès
+    - taux proratisé
+  arrondi: oui
+  unité: €/an
