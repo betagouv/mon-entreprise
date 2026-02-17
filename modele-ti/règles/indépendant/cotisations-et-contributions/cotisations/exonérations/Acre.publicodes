@@ -41,9 +41,20 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
       - taux: 0%
         plafond: 100%
 
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux proratisé:
   produit:
     - taux
     - prorata sur l'année
-  arrondi: oui
   unité: '%'
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . montant:
+  produit:
+    - somme:
+        - maladie-maternité
+        - indemnités journalières
+        - allocations familiales
+        - retraite de base
+        - invalidité et décès
+    - taux proratisé
+  arrondi: oui
+  unité: €/an

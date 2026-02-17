@@ -42,7 +42,7 @@ it('calculate simulations-professions-libérales', () => {
 		  "indépendant . IJSS",
 		  "indépendant . conjoint collaborateur",
 		  "indépendant . cotisations et contributions",
-		  "indépendant . cotisations et contributions . cotisations . exonérations . pension invalidité",
+		  "indépendant . cotisations et contributions . cotisations . exonérations . invalidité",
 		  "indépendant . cotisations et contributions . cotisations . exonérations . âge",
 		  "indépendant . cotisations facultatives",
 		  "indépendant . profession libérale . CNAVPL . exonération incapacité",
