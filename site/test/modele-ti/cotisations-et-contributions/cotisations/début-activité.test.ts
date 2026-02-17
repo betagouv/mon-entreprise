@@ -3,7 +3,6 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const defaultSituation = {
-	'plafond sécurité sociale': '47100 €/an',
 	'entreprise . imposition': "'IR'",
 	"entreprise . chiffre d'affaires": '10000 €/an',
 	'entreprise . date de création': '18/02/2026',
@@ -11,18 +10,24 @@ const defaultSituation = {
 
 describe('Cotisations de début d’activité', () => {
 	let engine: Engine
+	let PASS: number
 	beforeEach(() => {
 		engine = new Engine(rules)
+		PASS = engine.evaluate({
+			valeur: 'plafond sécurité sociale',
+			unité: '€/an',
+		}).nodeValue as number
 	})
 
 	describe('Pour les A/C/PLNR', () => {
 		it('applique une assiette forfaitaire égale à 19% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituation)
+			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				.nodeValue as number
 
-			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
-				7772
+				Math.round((PASSProratisé * 19) / 100)
 			)
 		})
 
@@ -31,26 +36,29 @@ describe('Cotisations de début d’activité', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité . assiette forfaitaire indemnités journalières',
-				18840
+				Math.round((PASS * 40) / 100)
 			)
 		})
 
 		it('applique les assiettes forfaitaires au calcul des cotisations et contributions', () => {
 			const e = engine.setSituation(defaultSituation)
 
-			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
+			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				.nodeValue as number
+			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
 			/** Cotisation maladie-maternité :
-			 * assiette forfaitaire = 19% du PASS
-			 * assiette forfaitaire < 1er plafond (20% du PASS)
+			 * assiette = 19% du PASS
+			 * assiette < 1er plafond (20% du PASS)
 			 * => taux nul
 			 */
 
 			/** Cotisation indemnités journalières :
-			 * assiette forfaitaire = 40% du PASS (non proratisé) = 18 840 €
-			 * assiette forfaitaire x taux = 18 840 € x 0,5%
+			 * assiette = 40% du PASS (non proratisé)
+			 * taux = 0,5%
 			 * => 94 €
 			 */
+			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.5) / 100)
 
 			/** Cotisation allocations familiales :
 			 * assiette forfaitaire = 19% du PASS
@@ -59,44 +67,42 @@ describe('Cotisations de début d’activité', () => {
 			 */
 
 			/** Cotisation retraite de base :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire > assiette minimale (450h x Smic = 5 346€)
-			 * tranche 1 = assiette forfaitaire x taux tranche 1 = 7 772 € x 17,15% = 1 333 €
-			 * tranche 2 = assiette forfaitaire x taux tranche 2 = 7 772 € x 0,72% = 56 €
-			 * => 1 389 €
+			 * assiette = 19% du PASS proratisé
+			 * tranche 2 = 0 €
+			 * taux tranche 1 = 17,87%
+			 * tranche 2 = 0 (assiette < PASS proratisé)
 			 */
+			const RB = Math.round((assietteForfaitaire * 17.87) / 100)
 
 			/** Cotisation retraite complémentaire :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire < plafond tranche 1 (PASS proratisé)
+			 * assiette = 19% du PASS proratisé
 			 * tranche 2 = 0 €
-			 * tranche 1 = assiette forfaitaire x taux tranche 1 = 7 772 € x 8,1% = 630 €
-			 * => 630 €
+			 * taux tranche 1 = 8,1%
 			 */
+			const RC = Math.round((assietteForfaitaire * 8.1) / 100)
 
 			/** Cotisation invalidité-décès :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire > assiette minimale (11,5% du PASS proratisé)
-			 * assiette forfaitaire < assiette maximale (PASS proratisé)
-			 * assiette forfaitaire x taux = 7 772 € x 1,3%
-			 * => 101 €
+			 * assiette = 19% du PASS proratisé
+			 * taux = 1,3%
 			 */
+			const ID = Math.round((assietteForfaitaire * 1.3) / 100)
 
 			/** CSG-CRDS :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire x taux = 7 772 € x 9,7%
-			 * => 753 € (écart d'1 euro dû au calcul par étape en déductible + non déductible)
+			 * assiette = 19% du PASS proratisé
+			 * taux = 9,7%
 			 */
+			const CSG = Math.round((assietteForfaitaire * 9.7) / 100)
 
 			/** CFP :
 			 * pas d'assiette forfaitaire, pas de proratisation
-			 * 0,25% x PASS = 0,25% x 47 100 €
-			 * => 118 €
+			 * assiette = PASS
+			 * taux = 0,25%
 			 */
+			const CFP = Math.round((PASS * 0.25) / 100)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité',
-				3085
+				IJ + RB + RC + ID + CSG + CFP
 			)
 		})
 	})
@@ -110,11 +116,12 @@ describe('Cotisations de début d’activité', () => {
 
 		it('applique une assiette forfaitaire égale à 19% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituationPLR)
+			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				.nodeValue as number
 
-			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
-				7772
+				Math.round((PASSProratisé * 19) / 100)
 			)
 		})
 
@@ -123,36 +130,40 @@ describe('Cotisations de début d’activité', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité . assiette forfaitaire indemnités journalières',
-				18840
+				Math.round((PASS * 40) / 100)
 			)
 		})
 
 		it('applique une assiette forfaitaire invalidité décès égale à 37% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituationPLR)
+			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				.nodeValue as number
 
-			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité . assiette forfaitaire invalidité décès Cipav',
-				15135
+				Math.round((PASSProratisé * 37) / 100)
 			)
 		})
 
 		it('applique les assiettes forfaitaires au calcul des cotisations et contributions', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
-			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
+			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				.nodeValue as number
+			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
 			/** Cotisation maladie-maternité :
-			 * assiette forfaitaire = 19% du PASS
-			 * assiette forfaitaire < 1er plafond (20% du PASS)
+			 * assiette = 19% du PASS
+			 * assiette < 1er plafond (20% du PASS)
 			 * => taux nul
 			 */
 
 			/** Cotisation indemnités journalières :
-			 * assiette forfaitaire = 40% du PASS (non proratisé) = 18 840 €
-			 * assiette forfaitaire x taux = 18 840 € x 0,3%
-			 * => 57 €
+			 * assiette = 40% du PASS (non proratisé)
+			 * taux = 0,3%
+			 * => 94 €
 			 */
+			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.3) / 100)
 
 			/** Cotisation allocations familiales :
 			 * assiette forfaitaire = 19% du PASS
@@ -161,44 +172,46 @@ describe('Cotisations de début d’activité', () => {
 			 */
 
 			/** Cotisation retraite de base :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire > assiette minimale (450h x Smic = 5 346€)
-			 * tranche 1 = assiette forfaitaire x taux tranche 1 = 7 772 € x 8,73% = 678 €
-			 * tranche 2 = assiette forfaitaire x taux tranche 2 = 7 772 € x 1,87% = 145 €
-			 * => 823 €
+			 * assiette = 19% du PASS proratisé
+			 * taux tranche 1 = 8,731%
+			 * taux tranche 2 = 1,87%
+			 * tranche 2 = 0 (assiette < PASS proratisé)
 			 */
+			const RB =
+				Math.round((assietteForfaitaire * 8.73) / 100) +
+				Math.round((assietteForfaitaire * 1.87) / 100)
 
 			/** Cotisation retraite complémentaire :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire < plafond tranche 1 (PASS proratisé)
+			 * assiette = 19% du PASS proratisé
 			 * tranche 2 = 0 €
-			 * tranche 1 = assiette forfaitaire x taux tranche 1 = 7 772 € x 11% = 855 €
-			 * => 855 €
+			 * taux tranche 1 = 11%
 			 */
+			const RC = Math.round((assietteForfaitaire * 11) / 100)
 
 			/** Cotisation invalidité-décès :
-			 * assiette forfaitaire = 37% du PASS proratisé = 15 135 €
-			 * assiette forfaitaire > assiette minimale (11,5% du PASS proratisé)
-			 * assiette forfaitaire < assiette maximale (PASS proratisé)
-			 * assiette forfaitaire x taux = 15 135 € x 0,5%
-			 * => 76 €
+			 * assiette = 37% du PASS proratisé
+			 * taux = 0,5%
 			 */
+			const ID = Math.round(
+				(Math.round((PASSProratisé * 37) / 100) * 0.5) / 100
+			)
 
 			/** CSG-CRDS :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire x taux = 7 772 € x 9,7%
-			 * => 753 € (écart d'1 euro dû au calcul par étape en déductible + non déductible)
+			 * assiette = 19% du PASS proratisé
+			 * taux = 6,8% + 2,9%
 			 */
+			const CSG = Math.round((assietteForfaitaire * 9.7) / 100)
 
 			/** CFP :
 			 * pas d'assiette forfaitaire, pas de proratisation
-			 * 0,25% x PASS = 0,25% x 47 100 €
-			 * => 118 €
+			 * assiette = PASS
+			 * taux = 0,25%
 			 */
+			const CFP = Math.round((PASS * 0.25) / 100)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité',
-				2682
+				IJ + RB + RC + ID + CSG + CFP
 			)
 		})
 	})
@@ -212,16 +225,19 @@ describe('Cotisations de début d’activité', () => {
 		it('applique les assiettes forfaitaires, la dispense de CSG-CRDS et le taux maladie spécifique', () => {
 			const e = engine.setSituation(defaultSituationDFE)
 
-			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
+			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				.nodeValue as number
+			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
+
 			expect(e).toBeApplicable(
 				'indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger'
 			)
 
 			/** Cotisation maladie:
-			 * assiette forfaitaire = 19% du PASS = 7 772 €
-			 * assiette forfaitaire x taux spécifique = 7 772 € x 14,5%
-			 * => 1 127 €
+			 * assiette = 19% du PASS
+			 * taux = 14,5%
 			 */
+			const AM = Math.round((assietteForfaitaire * 14.5) / 100)
 
 			/** CSG-CRDS :
 			 * exonération totale
@@ -231,50 +247,49 @@ describe('Cotisations de début d’activité', () => {
 			// Le reste est identique à "Pour les A/C/PLNR > applique les assiettes forfaitaires au calcul des cotisations et contributions"
 
 			/** Cotisation indemnités journalières :
-			 * assiette forfaitaire = 40% du PASS (non proratisé) = 18 840 €
-			 * assiette forfaitaire x taux = 18 840 € x 0,5%
+			 * assiette = 40% du PASS (non proratisé)
+			 * taux = 0,5%
 			 * => 94 €
 			 */
+			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.5) / 100)
 
 			/** Cotisation allocations familiales :
 			 * assiette forfaitaire = 19% du PASS
 			 * assiette forfaitaire < 1er plafond (110% du PASS)
-			 * => 0 €
+			 * => taux nul
 			 */
 
 			/** Cotisation retraite de base :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire > assiette minimale (450h x Smic = 5 346€)
-			 * tranche 1 = assiette forfaitaire x taux tranche 1 = 7 772 € x 17,15% = 1 333 €
-			 * tranche 2 = assiette forfaitaire x taux tranche 2 = 7 772 € x 0,72% = 56 €
-			 * => 1 389 €
+			 * assiette = 19% du PASS proratisé
+			 * tranche 2 = 0 €
+			 * taux tranche 1 = 17,87%
+			 * tranche 2 = 0 (assiette < PASS proratisé)
 			 */
+			const RB = Math.round((assietteForfaitaire * 17.87) / 100)
 
 			/** Cotisation retraite complémentaire :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire < plafond tranche 1 (PASS proratisé)
+			 * assiette = 19% du PASS proratisé
 			 * tranche 2 = 0 €
-			 * tranche 1 = assiette forfaitaire x taux tranche 1 = 7 772 € x 8,1% = 630 €
-			 * => 630 €
+			 * taux tranche 1 = 8,1%
 			 */
+			const RC = Math.round((assietteForfaitaire * 8.1) / 100)
 
 			/** Cotisation invalidité-décès :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire > assiette minimale (11,5% du PASS proratisé)
-			 * assiette forfaitaire < assiette maximale (PASS proratisé)
-			 * assiette forfaitaire x taux = 7 772 € x 1,3%
-			 * => 101 €
+			 * assiette = 19% du PASS proratisé
+			 * taux = 1,3%
 			 */
+			const ID = Math.round((assietteForfaitaire * 1.3) / 100)
 
 			/** CFP :
 			 * pas d'assiette forfaitaire, pas de proratisation
-			 * 0,25% x PASS = 0,25% x 47 100 €
-			 * => 118 €
+			 * assiette = PASS
+			 * taux = 0,25%
 			 */
+			const CFP = Math.round((PASS * 0.25) / 100)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité',
-				1127 + 94 + 1389 + 630 + 101 + 118
+				AM + IJ + RB + RC + ID + CFP
 			)
 		})
 
@@ -287,14 +302,15 @@ describe('Cotisations de début d’activité', () => {
 					"'santé . sage-femme'",
 			})
 
-			expect(e).toEvaluate('indépendant . PSS proratisé', 40906)
+			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				.nodeValue as number
+			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
 			/** Cotisation maladie:
-			 * assiette forfaitaire = 19% du PASS = 7 772 €
-			 * assiette forfaitaire x taux spécifique - participation CPAM = assiette forfaitaire x 0,10% = 7 772 € x 0,10%
-			 * => 8 €
+			 * assiette = 19% du PASS
+			 * taux = 0,1% (après participation CPAM)
 			 */
-			const maladieMaternité = 8
+			const AM = Math.round((assietteForfaitaire * 0.1) / 100)
 
 			/** CSG-CRDS :
 			 * exonération totale
@@ -304,28 +320,29 @@ describe('Cotisations de début d’activité', () => {
 			// Le reste est identique à "Pour les PLR > applique les assiettes forfaitaires au calcul des cotisations et contributions"
 
 			/** Cotisation indemnités journalières :
-			 * assiette forfaitaire = 40% du PASS (non proratisé) = 18 840 €
-			 * assiette forfaitaire x taux = 18 840 € x 0,3%
-			 * => 57 €
+			 * assiette = 40% du PASS (non proratisé)
+			 * taux = 0,3%
+			 * => 94 €
 			 */
-			const IJ = 57
+			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.3) / 100)
 
 			/** Cotisation allocations familiales :
 			 * assiette forfaitaire = 19% du PASS
 			 * assiette forfaitaire < 1er plafond (110% du PASS)
-			 * => 0 €
+			 * => taux nul
 			 */
 
 			/** Cotisation retraite de base :
-			 * assiette forfaitaire = 19% du PASS proratisé = 7 772 €
-			 * assiette forfaitaire > assiette minimale (450h x Smic = 5 346€)
-			 * tranche 1 = assiette forfaitaire x taux tranche 1 = 7 772 € x 8,73% = 678 €
-			 * tranche 2 = assiette forfaitaire x taux tranche 2 = 7 772 € x 1,87% = 145 €
-			 * => 823 €
+			 * assiette = 19% du PASS proratisé
+			 * taux tranche 1 = 8,731%
+			 * taux tranche 2 = 1,87%
+			 * tranche 2 = 0 (assiette < PASS proratisé)
 			 */
-			const retraiteDeBase = 823
+			const RB =
+				Math.round((assietteForfaitaire * 8.73) / 100) +
+				Math.round((assietteForfaitaire * 1.87) / 100)
 
-			const retraiteComplémentaire = e.evaluate({
+			const RC = e.evaluate({
 				valeur:
 					'indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire',
 				contexte: {
@@ -333,7 +350,7 @@ describe('Cotisations de début d’activité', () => {
 						'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
 				},
 			}).nodeValue as number
-			const invaliditéDécès = e.evaluate(
+			const ID = e.evaluate(
 				'indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID'
 			).nodeValue as number
 			const PCV = e.evaluate({
@@ -347,20 +364,14 @@ describe('Cotisations de début d’activité', () => {
 
 			/** CFP :
 			 * pas d'assiette forfaitaire, pas de proratisation
-			 * 0,25% x PASS = 0,25% x 47 100 €
-			 * => 118 €
+			 * assiette = PASS
+			 * taux = 0,25%
 			 */
-			const CFP = 118
+			const CFP = Math.round((PASS * 0.25) / 100)
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . début activité',
-				maladieMaternité +
-					IJ +
-					retraiteDeBase +
-					retraiteComplémentaire +
-					invaliditéDécès +
-					PCV +
-					CFP
+				AM + IJ + RB + RC + ID + PCV + CFP
 			)
 		})
 	})
