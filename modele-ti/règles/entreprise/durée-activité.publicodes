@@ -79,11 +79,10 @@ entreprise . durée d'activité . en fin d'année:
     - durée:
         depuis: date de création
         jusqu'à: période . fin d'année
-    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+    - applicable si: date de création <= période . fin d'année
+      valeur: 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité . en début d'année:
-  somme:
-    - durée:
-        depuis: date de création
-        jusqu'à: période . début d'année
-    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+  durée:
+    depuis: date de création
+    jusqu'à: période . début d'année
