@@ -3,33 +3,35 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const defaultSituation = {
-	'plafond sécurité sociale': '47100 €/an',
 	'entreprise . imposition': "'IR'",
 }
 
-const PASS = 47_100
-
 describe('Cotisation retraite de base', () => {
 	let engine: Engine
+	let PASS: number
 	beforeEach(() => {
 		engine = new Engine(rules)
+		PASS = engine.evaluate({
+			valeur: 'plafond sécurité sociale',
+			unité: '€/an',
+		}).nodeValue as number
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
-		const TAUX_T1 = 17.87
-		const TAUX_T2 = 0.72
+		const TAUX_T1 = 17.87 / 100
+		const TAUX_T2 = 0.72 / 100
 
 		it('applique un taux T1 de 17,87%', () => {
 			expect(engine).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . taux T1',
-				TAUX_T1
+				100 * TAUX_T1
 			)
 		})
 
 		it('applique un taux tranche 2 de 0,72%', () => {
 			expect(engine).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base . taux T2',
-				TAUX_T2
+				100 * TAUX_T2
 			)
 		})
 
@@ -53,7 +55,7 @@ describe('Cotisation retraite de base', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
-				Math.round((assietteMinimale * TAUX_T1) / 100)
+				Math.round(assietteMinimale * TAUX_T1)
 			)
 		})
 
@@ -70,7 +72,7 @@ describe('Cotisation retraite de base', () => {
 			)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
-				Math.round((30_000 * TAUX_T1) / 100)
+				Math.round(30_000 * TAUX_T1)
 			)
 		})
 
@@ -81,8 +83,8 @@ describe('Cotisation retraite de base', () => {
 					'100000 €/an',
 			})
 
-			const T1 = (PASS * TAUX_T1) / 100
-			const T2 = ((100_000 - PASS) * TAUX_T2) / 100
+			const T1 = PASS * TAUX_T1
+			const T2 = (100_000 - PASS) * TAUX_T2
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . cotisations . retraite de base',
@@ -118,8 +120,8 @@ describe('Cotisation retraite de base', () => {
 						.nodeValue as number
 					expect(PASSProratisé).toEqual(Math.round((PASS * 60) / 365))
 
-					const T1 = (PASSProratisé * TAUX_T1) / 100
-					const T2 = ((40_000 - PASSProratisé) * TAUX_T2) / 100
+					const T1 = PASSProratisé * TAUX_T1
+					const T2 = (40_000 - PASSProratisé) * TAUX_T2
 
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base',
@@ -159,8 +161,8 @@ describe('Cotisation retraite de base', () => {
 						.nodeValue as number
 					expect(PASSProratisé).toEqual(Math.round((PASS * 120) / 365))
 
-					const T1 = (PASSProratisé * TAUX_T1) / 100
-					const T2 = ((50_000 - PASSProratisé) * TAUX_T2) / 100
+					const T1 = PASSProratisé * TAUX_T1
+					const T2 = (50_000 - PASSProratisé) * TAUX_T2
 
 					expect(e).toEvaluate(
 						'indépendant . cotisations et contributions . cotisations . retraite de base',
@@ -218,8 +220,8 @@ describe('Cotisation retraite de base', () => {
 	})
 
 	describe('pour les PLR', () => {
-		const TAUX_T1 = 8.73
-		const TAUX_T2 = 1.87
+		const TAUX_T1 = 8.73 / 100
+		const TAUX_T2 = 1.87 / 100
 
 		const defaultSituationPLR = {
 			...defaultSituation,
@@ -232,7 +234,7 @@ describe('Cotisation retraite de base', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1 . taux',
-				TAUX_T1
+				100 * TAUX_T1
 			)
 		})
 
@@ -241,7 +243,7 @@ describe('Cotisation retraite de base', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2 . taux',
-				TAUX_T2
+				100 * TAUX_T2
 			)
 		})
 
@@ -268,13 +270,13 @@ describe('Cotisation retraite de base', () => {
 			const tranche1 = e.evaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1'
 			).nodeValue as number
-			expect(tranche1).toEqual(Math.round((assietteMinimale * TAUX_T1) / 100))
+			expect(tranche1).toEqual(Math.round(assietteMinimale * TAUX_T1))
 
 			// Tranche 2
 			const tranche2 = e.evaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2'
 			).nodeValue as number
-			expect(tranche2).toEqual(Math.round((assietteMinimale * TAUX_T2) / 100))
+			expect(tranche2).toEqual(Math.round(assietteMinimale * TAUX_T2))
 
 			// Total
 			expect(e).toEvaluate(
@@ -297,12 +299,12 @@ describe('Cotisation retraite de base', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1',
-				Math.round((30_000 * TAUX_T1) / 100)
+				Math.round(30_000 * TAUX_T1)
 			)
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2',
-				Math.round((30_000 * TAUX_T2) / 100)
+				Math.round(30_000 * TAUX_T2)
 			)
 		})
 
@@ -315,12 +317,12 @@ describe('Cotisation retraite de base', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1',
-				Math.round((PASS * TAUX_T1) / 100)
+				Math.round(PASS * TAUX_T1)
 			)
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2',
-				Math.round((100_000 * TAUX_T2) / 100)
+				Math.round(100_000 * TAUX_T2)
 			)
 		})
 
@@ -333,12 +335,12 @@ describe('Cotisation retraite de base', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 1',
-				Math.round((PASS * TAUX_T1) / 100)
+				Math.round(PASS * TAUX_T1)
 			)
 
 			expect(e).toEvaluate(
 				'indépendant . profession libérale . CNAVPL . retraite de base . tranche 2',
-				Math.round((5 * PASS * TAUX_T2) / 100)
+				Math.round(5 * PASS * TAUX_T2)
 			)
 		})
 
