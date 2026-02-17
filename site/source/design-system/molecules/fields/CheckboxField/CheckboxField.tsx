@@ -1,7 +1,4 @@
-import {
-	Checkbox as RACheckbox,
-	type CheckboxProps as RACheckboxProps,
-} from 'react-aria-components'
+import { Checkbox as RACheckbox } from 'react-aria-components'
 import { styled } from 'styled-components'
 
 import { InfoButton } from '@/design-system/InfoButton'
@@ -14,7 +11,7 @@ export type CheckboxOption = {
 	value: string
 }
 
-type CheckboxFieldProps = RACheckboxProps & {
+type CheckboxFieldProps = {
 	option: CheckboxOption
 }
 
