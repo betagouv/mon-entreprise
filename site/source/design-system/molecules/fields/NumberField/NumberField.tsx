@@ -23,7 +23,10 @@ import {
 	fieldLabelStyles,
 } from '../fieldsStyles'
 
-type NumberFieldProps = RANumberFieldProps & {
+type NumberFieldProps = Pick<
+	RANumberFieldProps,
+	'defaultValue' | 'formatOptions'
+> & {
 	description?: string
 	displayedUnit?: string
 	errorMessage?: string

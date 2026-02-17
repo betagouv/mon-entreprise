@@ -13,8 +13,6 @@ import {
 	Label as RALabel,
 	Popover as RAPopover,
 	Text as RAText,
-	type DatePickerProps as RADatePickerProps,
-	type DateValue as RADateValue,
 } from 'react-aria-components'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
@@ -29,11 +27,10 @@ import {
 	outlineOnFocus,
 } from '../fieldsStyles'
 
-type DateFieldsWithPickerProps = RADateValue &
-	RADatePickerProps<RADateValue> & {
-		defaultSelected?: Date
-		label: string
-	}
+type DateFieldsWithPickerProps = {
+	defaultSelected?: Date
+	label: string
+}
 
 export function DateFieldWithPicker({
 	defaultSelected,

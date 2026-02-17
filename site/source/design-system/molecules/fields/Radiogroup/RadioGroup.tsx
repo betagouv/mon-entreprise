@@ -16,7 +16,10 @@ export type RadioOption = {
 	value: string
 }
 
-type RadioGroupProps = RARadioGroupProps & {
+type RadioGroupProps = Pick<
+	RARadioGroupProps,
+	'defaultValue' | 'value' | 'onChange'
+> & {
 	legend: string
 	options: RadioOption[]
 }
