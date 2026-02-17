@@ -19,6 +19,7 @@ export const TitreObjectif = ({ id, children, noWrap = false }: Props) => {
 }
 
 const StyledBody = styled(Body)<{ $noWrap?: boolean }>`
+	display: inline;
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
 	${({ $noWrap }) =>
