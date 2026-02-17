@@ -8,7 +8,10 @@ import { styled } from 'styled-components'
 import { CheckboxField, type CheckboxOption } from '../CheckboxField'
 import { fieldContainerStyles } from '../fieldsStyles'
 
-type CheckboxGroupProps = RACheckboxGroupProps & {
+type CheckboxGroupProps = Pick<
+	RACheckboxGroupProps,
+	'defaultValue' | 'value' | 'onChange'
+> & {
 	legend: string
 	options: CheckboxOption[]
 }

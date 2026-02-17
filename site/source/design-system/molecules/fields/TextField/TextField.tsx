@@ -19,7 +19,7 @@ import {
 	labelAndInputContainerStyles,
 } from '../fieldsStyles'
 
-type TextFieldProps = RATextFieldProps & {
+type TextFieldProps = Pick<RATextFieldProps, 'defaultValue' | 'type'> & {
 	description?: string
 	errorMessage?: string
 	label: string
@@ -30,8 +30,8 @@ export function TextField({
 	defaultValue,
 	description,
 	errorMessage,
-	placeholder,
 	label,
+	placeholder,
 	type = 'text',
 }: TextFieldProps) {
 	return (
