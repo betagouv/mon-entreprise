@@ -7,8 +7,10 @@ import { useNavigation } from '@/lib/navigation'
 
 import { StatsStruct } from './types'
 
-const PAGE_PARAM_OPEN = 'page-open'
-const PAGE_PARAM_CLOSED = 'page-closed'
+const PAGE_PARAM_OPEN = 'page-open' as const
+const PAGE_PARAM_CLOSED = 'page-closed' as const
+
+type PageParam = typeof PAGE_PARAM_OPEN | typeof PAGE_PARAM_CLOSED
 
 const { headings, Link, lists, paragraphs } = typography
 const { H2, H3 } = headings
@@ -64,7 +66,7 @@ type IssueProps = {
 type PaginationProps = {
 	items: Array<IssueProps>
 	title: string
-	pageParam: string
+	pageParam: PageParam
 }
 
 function Pagination({ title, items, pageParam }: PaginationProps) {
