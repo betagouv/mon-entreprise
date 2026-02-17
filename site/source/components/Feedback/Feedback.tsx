@@ -54,19 +54,19 @@ export function Feedback({
 	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
-	const { currentPath: url } = useNavigation()
+	const { currentPath } = useNavigation()
 	const tag = usePianoTracking()
 
 	const { absoluteSitePaths } = useSitePaths()
 	const isSimulateurSalaire =
-		url.includes(absoluteSitePaths.simulateurs.salarié) ||
-		url.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
+		currentPath.includes(absoluteSitePaths.simulateurs.salarié) ||
+		currentPath.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
 
 	const { shouldShowRater, customTitle } = useFeedback()
 
 	const submitFeedback = useCallback(
 		(rating: FeedbackT) => {
-			setFeedbackGivenForUrl(url)
+			setFeedbackGivenForUrl(currentPath)
 			tag?.sendEvent('click.action', {
 				click_chapter1: 'satisfaction',
 				click: rating,
@@ -80,10 +80,10 @@ export function Feedback({
 			setIsShowingThankMessage(!isNotSatisfiedValue)
 			setIsShowingSuggestionForm(isNotSatisfiedValue)
 		},
-		[tag, url]
+		[tag, currentPath]
 	)
 
-	const shouldAskFeedback = getShouldAskFeedback(url)
+	const shouldAskFeedback = getShouldAskFeedback(currentPath)
 
 	return (
 		<>
