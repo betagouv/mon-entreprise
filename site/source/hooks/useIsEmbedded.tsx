@@ -3,12 +3,12 @@ import { createContext, useContext } from 'react'
 import { useNavigation } from '@/lib/navigation'
 
 export function useIsEmbedded(): boolean {
-	return useContext(EmbededContext)
+	return useContext(EmbeddedContext)
 }
 
-const EmbededContext = createContext(false)
+const EmbeddedContext = createContext(false)
 
-export function EmbededContextProvider({
+export function EmbeddedContextProvider({
 	children,
 }: {
 	children: React.ReactNode
@@ -17,8 +17,8 @@ export function EmbededContextProvider({
 	const isEmbedded = matchPath('/iframes/*') !== null
 
 	return (
-		<EmbededContext.Provider value={isEmbedded}>
+		<EmbeddedContext.Provider value={isEmbedded}>
 			{children}
-		</EmbededContext.Provider>
+		</EmbeddedContext.Provider>
 	)
 }
