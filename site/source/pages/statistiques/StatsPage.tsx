@@ -214,16 +214,19 @@ function useStatState() {
 					!!filter && JSON.stringify(getFilter(s)) === JSON.stringify(filter)
 			)?.id ?? filter
 
-		setSearchParams((prev) => {
-			const newParams = new URLSearchParams(prev)
-			if (module) {
-				newParams.set('module', module as string)
-			} else {
-				newParams.delete('module')
-			}
+		setSearchParams(
+			(prev) => {
+				const newParams = new URLSearchParams(prev)
+				if (module) {
+					newParams.set('module', module as string)
+				} else {
+					newParams.delete('module')
+				}
 
-			return newParams
-		}, { replace: true })
+				return newParams
+			},
+			{ replace: true }
+		)
 	}, [filter, simulators, setSearchParams])
 
 	return [filter, setFilter] as const
