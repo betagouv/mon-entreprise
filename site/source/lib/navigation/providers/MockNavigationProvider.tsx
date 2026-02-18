@@ -1,5 +1,3 @@
-'use client'
-
 import { ReactNode, useCallback, useMemo, useRef, useState } from 'react'
 import {
 	generatePath as rrGeneratePath,
@@ -13,7 +11,6 @@ interface Props {
 	children: ReactNode
 	initialPath?: string
 	initialSearchParams?: URLSearchParams
-	initialRouteParams?: Record<string, string>
 	initialHash?: string
 	initialState?: unknown
 	initialNavigationType?: NavigationType
@@ -23,7 +20,6 @@ export function MockNavigationProvider({
 	children,
 	initialPath = '/',
 	initialSearchParams,
-	initialRouteParams = {},
 	initialHash = '',
 	initialState = null,
 	initialNavigationType = 'PUSH',
@@ -83,7 +79,6 @@ export function MockNavigationProvider({
 					setSearchParamsState(params)
 				}
 			},
-			routeParams: initialRouteParams,
 			locationHash,
 			locationState: initialState,
 			navigationType: initialNavigationType,
@@ -96,7 +91,6 @@ export function MockNavigationProvider({
 			currentPath,
 			searchParams,
 			locationHash,
-			initialRouteParams,
 			initialState,
 			initialNavigationType,
 			getHref,
