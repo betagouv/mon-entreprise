@@ -27,7 +27,7 @@ import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
-import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
+import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
 
 export default function Résultat() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -174,7 +174,7 @@ function useSetStatutInSituation(dottedName: DottedName) {
 const BPIWhiteList = ['bpifrance-creation.fr', 'associations.gouv.fr']
 
 export function useReferences(rule: RuleNode) {
-	const onBPISite = useIsEmbededOnBPISite()
+	const onBPISite = useIsEmbeddedOnBPISite()
 	if (!rule.rawNode.références) {
 		return {}
 	}
@@ -189,7 +189,7 @@ export function useReferences(rule: RuleNode) {
 }
 
 function useExternalGuideLink() {
-	const onBPISite = useIsEmbededOnBPISite()
+	const onBPISite = useIsEmbeddedOnBPISite()
 
 	return onBPISite
 		? 'https://bpifrance-creation.fr/boiteaoutils/guide-pratique-du-createur-reussir-votre-creation-dentreprise'
