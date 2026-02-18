@@ -11,7 +11,6 @@ export interface NavigationAPI {
 		params: URLSearchParams | ((prev: URLSearchParams) => URLSearchParams),
 		options?: { replace?: boolean }
 	) => void
-	routeParams: Record<string, string>
 	locationHash: string
 	locationState: unknown
 	navigationType: NavigationType
