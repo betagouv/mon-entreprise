@@ -13,7 +13,7 @@ type Props = {
 
 export default function HeadingWithAnchorLink({ level, children }: Props) {
 	useScrollToHash()
-	const { currentPath: pathname } = useNavigation()
+	const { currentPath } = useNavigation()
 	const headingId = flatMapChildren(children)
 		.join(' ')
 		.toLowerCase()
@@ -24,7 +24,7 @@ export default function HeadingWithAnchorLink({ level, children }: Props) {
 
 	const childrenWithAnchor = headingId ? (
 		<>
-			<Link className="anchor-link" to={`${pathname}#${headingId}`}>
+			<Link className="anchor-link" to={`${currentPath}#${headingId}`}>
 				#
 			</Link>
 			{children}
