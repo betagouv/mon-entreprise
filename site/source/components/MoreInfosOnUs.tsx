@@ -13,7 +13,7 @@ import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 export default function MoreInfosOnUs() {
-	const { currentPath: pathname } = useNavigation()
+	const { currentPath } = useNavigation()
 	const { absoluteSitePaths } = useSitePaths()
 	const { language } = useTranslation().i18n
 
@@ -25,7 +25,7 @@ export default function MoreInfosOnUs() {
 		<>
 			<H2>Plus d'informations sur mon-entreprise</H2>
 			<Grid as={Ul} container spacing={2}>
-				{!pathname.startsWith(absoluteSitePaths.nouveautés.index) && (
+				{!currentPath.startsWith(absoluteSitePaths.nouveautés.index) && (
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji={'✨'} />}
@@ -36,7 +36,7 @@ export default function MoreInfosOnUs() {
 						</SmallCard>
 					</Grid>
 				)}
-				{!pathname.startsWith(absoluteSitePaths.stats) && (
+				{!currentPath.startsWith(absoluteSitePaths.stats) && (
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji="📊" />}
@@ -47,7 +47,7 @@ export default function MoreInfosOnUs() {
 						</SmallCard>
 					</Grid>
 				)}
-				{!pathname.startsWith(absoluteSitePaths.budget) && (
+				{!currentPath.startsWith(absoluteSitePaths.budget) && (
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji="💶" />}
