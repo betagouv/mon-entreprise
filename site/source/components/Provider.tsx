@@ -12,7 +12,7 @@ import { TrackingProvider } from '@/components/TrackingProvider'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { DesignSystemThemeProvider } from '@/design-system'
-import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
+import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
 import { ReactRouterNavigationProvider } from '@/lib/navigation'
 
 import { makeStore } from '../store/store'
@@ -46,7 +46,7 @@ export default function Provider({
 					<I18nextProvider i18n={i18next}>
 						<ReduxProvider store={store}>
 							<BrowserRouterProvider basename={basename}>
-								<EmbededContextProvider>
+								<EmbeddedContextProvider>
 									<ErrorBoundary
 										fallback={(errorData) => (
 											// eslint-disable-next-line react/jsx-props-no-spreading
@@ -69,7 +69,7 @@ export default function Provider({
 											</ThemeColorsProvider>
 										</OverlayProvider>
 									</ErrorBoundary>
-								</EmbededContextProvider>
+								</EmbeddedContextProvider>
 							</BrowserRouterProvider>
 						</ReduxProvider>
 					</I18nextProvider>
