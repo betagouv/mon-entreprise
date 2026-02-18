@@ -22,7 +22,7 @@ type JobOffer = {
 
 export default function Integration() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const { currentPath: pathname } = useNavigation()
+	const { currentPath } = useNavigation()
 	const { data: jobOffers } = useFetchData<JobOffer[]>('/data/job-offers.json')
 	const openJobOffer = jobOffers?.[0]
 
@@ -32,7 +32,7 @@ export default function Integration() {
 		<TrackChapter chapter1="integration">
 			<ScrollToTop />
 
-			{pathname !== absoluteSitePaths.développeur.index && (
+			{currentPath !== absoluteSitePaths.développeur.index && (
 				<Link to={absoluteSitePaths.développeur.index}>
 					<span aria-hidden>←</span> <Trans>Outils pour les développeurs</Trans>{' '}
 					<Emoji emoji="👨‍💻" />

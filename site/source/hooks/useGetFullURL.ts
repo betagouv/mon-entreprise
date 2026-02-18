@@ -10,7 +10,7 @@ const DEVELOPMENT_BASE_PATHS = {
 
 export const useGetFullURL = () => {
 	const { i18n } = useTranslation()
-	const { currentPath: pathname } = useNavigation()
+	const { currentPath } = useNavigation()
 
 	const language = i18n.language as 'fr' | 'en'
 
@@ -22,5 +22,5 @@ export const useGetFullURL = () => {
 		originRef.current = window?.location?.origin || ''
 	}, [])
 
-	return `${originRef.current}${pathStart}${pathname !== '/' ? pathname : ''}`
+	return `${originRef.current}${pathStart}${currentPath !== '/' ? currentPath : ''}`
 }
