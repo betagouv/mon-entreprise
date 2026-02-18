@@ -1,7 +1,8 @@
 import { useButton } from '@react-aria/button'
 import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
+
+import { Link } from '@/lib/navigation'
 
 import { H6 } from '../typography/heading'
 import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'

@@ -1,7 +1,6 @@
 import * as A from 'effect/Array'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
@@ -16,6 +15,7 @@ import {
 } from '@/contextes/cmg'
 import { Button, Spacing } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'
+import { useNavigation } from '@/lib/navigation'
 
 import EnfantInput from '../components/enfants/EnfantInput'
 import QuestionsAeeH from '../components/enfants/QuestionsAeeH'
@@ -27,7 +27,7 @@ import {
 } from '../components/styled-components'
 
 export default function Enfants() {
-	const navigate = useNavigate()
+	const { navigate } = useNavigation()
 	const { t } = useTranslation()
 	const { raisonsInéligibilité, situation, enfants, set } = useCMG()
 	const getPath = useGetPath()

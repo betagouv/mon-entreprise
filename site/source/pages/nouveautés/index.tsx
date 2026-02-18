@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate, useMatch, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
@@ -19,6 +19,7 @@ import {
 	typography,
 } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 const { Body, H1, Link } = typography
@@ -29,10 +30,10 @@ type Releases = typeof import('@/public/data/releases.json')
 
 export default function Nouveautés() {
 	const { data } = useFetchData<Releases>('/data/releases.json')
-	const navigate = useNavigate()
+	const { navigate, matchPath } = useNavigation()
 	const { absoluteSitePaths } = useSitePaths()
-	const slug = useMatch(encodeURI(absoluteSitePaths.nouveautés.date))?.params
-		?.date
+	const slug = matchPath(encodeURI(absoluteSitePaths.nouveautés.date))?.params
+		.date
 	useHideNewsBanner()
 
 	const { t } = useTranslation()

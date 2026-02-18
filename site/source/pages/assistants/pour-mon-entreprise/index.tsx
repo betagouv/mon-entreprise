@@ -5,13 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	generatePath,
-	Navigate,
-	Route,
-	Routes,
-	useParams,
-} from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
@@ -45,6 +39,7 @@ import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationConfig from '@/hooks/useSimulationConfig'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
@@ -381,6 +376,7 @@ const PopoverOverwriteSituation = ({
 
 const usePourMonEntreprisePath = () => {
 	const { absoluteSitePaths } = useSitePaths()
+	const { generatePath } = useNavigation()
 	const company = useSelector(companySituationSelector)
 
 	if (company['entreprise . SIREN']) {
@@ -396,7 +392,12 @@ const usePourMonEntreprisePath = () => {
 }
 
 const useSirenFromParams = (overwrite: boolean) => {
-	const { entreprise: param } = useParams<{ entreprise?: string }>()
+	const { matchPath } = useNavigation()
+	const { absoluteSitePaths } = useSitePaths()
+	const match = matchPath(
+		absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise
+	)
+	const param = match?.params.entreprise
 	const [entreprise, setEntreprise] = useState<Entreprise | null>(null)
 
 	const [entreprisePending, setEntreprisePending] = useState(false)

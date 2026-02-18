@@ -7,9 +7,9 @@ import React, {
 	useCallback,
 	useRef,
 } from 'react'
-import { NavLink } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
+import { NavLink } from '@/lib/navigation'
 import { omit } from '@/utils'
 
 export const StyledLinkHover = css`

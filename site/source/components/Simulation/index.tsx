@@ -1,7 +1,6 @@
 import { Option } from 'effect'
 import React, { ReactNode } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import ShareOrSaveSimulationBanner, {
@@ -10,6 +9,7 @@ import ShareOrSaveSimulationBanner, {
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button, Grid, H3, Spacing } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
+import { useNavigation } from '@/lib/navigation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
@@ -93,7 +93,8 @@ export default function Simulation<S extends Situation = Situation>({
 	avecQuestionsPublicodes = true,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
-	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
+	const { currentPath } = useNavigation()
+	const shouldShowFeedback = getShouldAskFeedback(currentPath)
 	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
 
 	return (
