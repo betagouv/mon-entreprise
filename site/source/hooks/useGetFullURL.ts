@@ -22,5 +22,7 @@ export const useGetFullURL = () => {
 		originRef.current = window?.location?.origin || ''
 	}, [])
 
-	return `${originRef.current}${pathStart}${currentPath !== '/' ? currentPath : ''}`
+	return `${originRef.current}${pathStart}${
+		currentPath !== '/' ? currentPath : ''
+	}`
 }

@@ -67,9 +67,7 @@ function IntegrationCustomizer() {
 	)
 
 	useEffect(() => {
-		const newParams = new URLSearchParams()
-		newParams.set('module', currentModule)
-		setSearchParams(newParams, { replace: true })
+		setSearchParams({ module: currentModule }, { replace: true })
 	}, [currentModule, setSearchParams])
 
 	const [color, setColor] = useState<string>('#005aa1')
