@@ -188,6 +188,7 @@ const PagerButton = styled(Button)<PagerButtonProps>`
 
 const Pager = styled.ol`
 	display: flex;
+	flex-wrap: wrap;
 	gap: ${theme.spacings.xs};
 	justify-content: center;
 	font-family: ${({ theme }) => theme.fonts.main};
