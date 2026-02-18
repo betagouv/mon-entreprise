@@ -75,8 +75,10 @@ export function MockNavigationProvider({
 			setSearchParams: (params) => {
 				if (typeof params === 'function') {
 					setSearchParamsState(params)
-				} else {
+				} else if (params instanceof URLSearchParams) {
 					setSearchParamsState(params)
+				} else {
+					setSearchParamsState(new URLSearchParams(params))
 				}
 			},
 			locationHash,
