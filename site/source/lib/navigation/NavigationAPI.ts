@@ -8,7 +8,10 @@ export interface NavigationAPI {
 	currentPath: string
 	searchParams: URLSearchParams
 	setSearchParams: (
-		params: URLSearchParams | ((prev: URLSearchParams) => URLSearchParams),
+		params:
+			| URLSearchParams
+			| Record<string, string>
+			| ((prev: URLSearchParams) => URLSearchParams),
 		options?: { replace?: boolean }
 	) => void
 	locationHash: string
