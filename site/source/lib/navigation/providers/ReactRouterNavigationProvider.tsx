@@ -6,7 +6,6 @@ import {
 	useLocation,
 	useNavigate,
 	useNavigationType,
-	useParams,
 	useSearchParams,
 } from 'react-router-dom'
 
@@ -21,7 +20,6 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 	const rrNavigate = useNavigate()
 	const location = useLocation()
 	const [searchParams, setSearchParams] = useSearchParams()
-	const params = useParams()
 	const navigationType = useNavigationType()
 	const baseHref = useHref('.')
 
@@ -73,7 +71,6 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 			currentPath: location.pathname,
 			searchParams,
 			setSearchParams,
-			routeParams: params as Record<string, string>,
 			locationHash: location.hash,
 			locationState: location.state,
 			navigationType,
@@ -87,7 +84,6 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 			location,
 			searchParams,
 			setSearchParams,
-			params,
 			navigationType,
 			getHref,
 			onNavigate,
