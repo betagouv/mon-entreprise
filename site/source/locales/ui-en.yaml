@@ -1378,11 +1378,11 @@ pages:
           title: Your disability and death coverage
         retraite:
           base:
-            body: The pension calculated corresponds to <2>your best 25 years</2>, assuming
-              that you have contributed enough quarters (4 quarters per year)
-              and that you retire at the age required to obtain a full pension.
-            evolution-label: at full rate
-            h4: Basic pension
+            body: Each year, depending on your earnings, you can validate <2>up to 4
+              quarters&lt;/2> for your basic pension. The total number of
+              validated quarters determines your entitlement to a full pension.
+            h4: Validated quarters for basic pension
+            unit: quarters/year
           body: The amount of your pension is made up of <2>your basic pension + your
             supplementary pension</2>.
           complémentaire:

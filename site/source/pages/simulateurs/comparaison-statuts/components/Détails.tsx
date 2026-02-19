@@ -272,27 +272,25 @@ const Détails = ({
 					<StyledH4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.h4',
-							'Retraite de base'
+							'Trimestres validés pour la retraite de base'
 						)}
-						<ExplicableRule dottedName="protection sociale . retraite . base" />
+						<ExplicableRule dottedName="protection sociale . retraite . trimestres" />
 					</StyledH4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.base.body">
-							La pension calculée correspond à celle de{' '}
-							<Strong>vos 25 meilleures années</Strong>, en considérant que vous
-							avez cotisé suffisamment de trimestres (4 trimestres par an) et
-							que vous partez en retraite à l’âge requis pour obtenir un taux
-							plein.
+							Chaque année, selon votre rémunération, vous validez{' '}
+							<Strong>jusqu'à 4 trimestres</Strong> pour votre retraite de base.
+							Le nombre total de trimestres validés détermine votre droit à une
+							retraite à taux plein.
 						</Trans>
 					</Body>
 
 					<DetailsRowCards
-						dottedName="protection sociale . retraite . base"
+						dottedName="protection sociale . retraite . trimestres"
 						namedEngines={namedEngines}
-						unit="€/mois"
-						evolutionLabel={t(
-							'pages.simulateurs.comparaison-statuts.items.retraite.base.evolution-label',
-							'avec un taux plein'
+						displayedUnit={t(
+							'pages.simulateurs.comparaison-statuts.items.retraite.base.unit',
+							'trimestres/an'
 						)}
 					/>
 
