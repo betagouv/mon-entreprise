@@ -1736,6 +1736,10 @@ pages:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
+      retraite:
+        simulateur-cnav:
+          aria-label: Accéder au simulateur de retraite de l'Assurance retraite, nouvelle
+            fenêtre
       retraite-droits-acquis: "<0>Retraite : droits acquis sur l'année</0><1><0>Les
         exonérations DROM n'ont aucune incidence sur la détermination des droits
         à la retraite de base et complémentaire des
@@ -1750,7 +1754,9 @@ pages:
         complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points de retraite
         complémentaire acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce
         simulateur ne gère pas les droits acquis de retraite complémentaire pour
-        les professions libérales</0></1></3></0></4></0></4>"
+        les professions libérales</0></1></3></0></4></0></4><5>Pour estimer le
+        montant de votre future pension de retraite, utilisez le <2>simulateur
+        de l'Assurance retraite</2>.</5>"
       régularisation:
         description: <0>Les cotisations et contributions sont calculées à titre
           provisionnel sur la base du dernier revenu déclaré (ou du montat

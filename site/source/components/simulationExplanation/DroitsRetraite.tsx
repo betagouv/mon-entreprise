@@ -5,7 +5,16 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
-import { Emoji, H3, Li, Message, SmallBody, Strong, Ul } from '@/design-system'
+import {
+	Emoji,
+	H3,
+	Li,
+	Link,
+	Message,
+	SmallBody,
+	Strong,
+	Ul,
+} from '@/design-system'
 
 export function DroitsRetraite() {
 	const { t } = useTranslation()
@@ -131,6 +140,20 @@ export function DroitsRetraite() {
 					</Condition>
 				</Ul>
 			</Condition>
+
+			<Message type="info" border={false}>
+				Pour estimer le montant de votre future pension de retraite, utilisez le{' '}
+				<Link
+					href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
+					aria-label={t(
+						'pages.simulateurs.indépendant.retraite.simulateur-cnav.aria-label',
+						"Accéder au simulateur de retraite de l'Assurance retraite, nouvelle fenêtre"
+					)}
+				>
+					simulateur de l'Assurance retraite
+				</Link>
+				.
+			</Message>
 		</Trans>
 	)
 }
