@@ -1634,6 +1634,9 @@ pages:
         description: Calculating net income after tax and contributions from sales and
           vice versa
         title: "Self-employed: income simulator"
+      retraite:
+        simulateur-cnav:
+          aria-label: Access the Retirement Insurance retirement simulator, new window
       retraite-droits-acquis: "<0>Retirement: rights acquired over the
         year</0><1><0>DROM exemptions have no impact on determining basic and
         supplementary pension rights for auto-entrepreneurs</0></1><2><0>The
@@ -1647,7 +1650,9 @@ pages:
         acquired (Cipav) : <2></2></0></3><4><0>Supplementary pension points
         acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
         not manage acquired supplementary pension rights for the liberal
-        professions.</0></1></3></0></4></0></4>"
+        professions.</0></1></3></0></4></0></4><5>To estimate the amount of
+        your future retirement pension, use the <2>Assurance Retraite
+        simulator</2>.</5>"
       régularisation:
         description: <0>Contributions are calculated provisionally on the basis of the
           last income declared (or the lump sum if no income has yet been
