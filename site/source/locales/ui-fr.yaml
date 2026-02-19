@@ -1459,12 +1459,12 @@ pages:
           title: Votre couverture invalidité et décès
         retraite:
           base:
-            body: La pension calculée correspond à celle de <2>vos 25 meilleures années</2>,
-              en considérant que vous avez cotisé suffisamment de trimestres (4
-              trimestres par an) et que vous partez en retraite à l’âge requis
-              pour obtenir un taux plein.
-            evolution-label: avec un taux plein
-            h4: Retraite de base
+            body: Chaque année, selon votre rémunération, vous validez <2>jusqu'à 4
+              trimestres</2> pour votre retraite de base. Le nombre total de
+              trimestres validés détermine votre droit à une retraite à taux
+              plein.
+            h4: Trimestres validés pour la retraite de base
+            unit: trimestres/an
           body: Le montant de votre retraite est constitué de <2>votre retraite de base +
             votre retraite complémentaire</2>.
           complémentaire:
