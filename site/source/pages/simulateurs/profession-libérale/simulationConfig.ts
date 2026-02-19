@@ -12,8 +12,6 @@ export const configProfessionLibérale: SimulationConfig = {
 		'dirigeant . indépendant . cotisations et contributions',
 		'impôt . montant',
 		'protection sociale . retraite . trimestres',
-		'protection sociale . retraite . complémentaire',
-		'protection sociale . retraite . base',
 	],
 	questions: {
 		'liste noire': [
