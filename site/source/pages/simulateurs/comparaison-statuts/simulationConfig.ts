@@ -15,7 +15,6 @@ export const configComparateurStatuts: ComparateurConfig = {
 		'dirigeant . rémunération . net . après impôt',
 		'entreprise . activité . nature . libérale . réglementée',
 		'protection sociale . retraite . trimestres',
-		'protection sociale . retraite . base',
 		'protection sociale . retraite . complémentaire',
 		'protection sociale . maladie . arrêt maladie',
 		'protection sociale . maladie . arrêt maladie . délai de carence',
