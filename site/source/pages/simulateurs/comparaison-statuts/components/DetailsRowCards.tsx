@@ -4,7 +4,6 @@ import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import RuleLink from '@/components/RuleLink'
@@ -47,14 +46,18 @@ const DetailsRowCards = ({
 	footer?: (engine: Engine<DottedName>) => ReactNode
 }) => {
 	const expressionOrDottedName = dottedName ?? expression
-	const options = namedEngines.map(({ engine, name }) => ({
-		engine,
-		name,
-		value: engine.evaluate({
+	const options = namedEngines.map(({ engine, name }) => {
+		const evaluation = engine.evaluate({
 			valeur: expressionOrDottedName,
 			...(unit && { unité: unit }),
-		}).nodeValue,
-	})) as [OptionType, OptionType, OptionType]
+		})
+
+		return {
+			engine,
+			name,
+			value: evaluation.nodeValue,
+		}
+	}) as [OptionType, OptionType, OptionType]
 
 	const groupedOptions = options
 		.reduce(
@@ -85,6 +88,30 @@ const DetailsRowCards = ({
 		<Grid container spacing={4} as={Ul}>
 			{groupedOptions.map((sameValueOptions) => {
 				const statusObject = sameValueOptions[0]
+				const { engine } = statusObject
+
+				// On évalue les conditions directement plutôt que via le composant
+				// <Condition>, car celui-ci wrappe l'expression avec
+				// `{ '!=': [expression, 'non'], contexte: {} }`. Le `contexte: {}`
+				// (objet vide par défaut) provoque un bug dans le navigateur : pour
+				// certaines règles avec des unités custom (ex: trimestre validé/an),
+				// l'évaluation retourne un résultat faux alors que la règle est bien
+				// définie et applicable. L'évaluation directe sans contexte fonctionne
+				// correctement.
+				const isDefinedAndApplicable =
+					expressionOrDottedName &&
+					engine.evaluate({
+						et: [
+							{ 'est défini': expressionOrDottedName },
+							{ 'est applicable': expressionOrDottedName },
+						],
+					}).nodeValue
+
+				const isNotDefined =
+					expressionOrDottedName &&
+					engine.evaluate({
+						'est non défini': expressionOrDottedName,
+					}).nodeValue
 
 				return (
 					<Grid
@@ -102,35 +129,24 @@ const DetailsRowCards = ({
 							{expressionOrDottedName && (
 								<StatusCard.Titre>
 									{dottedName && (
-										<WhenNotApplicable
-											dottedName={dottedName}
-											engine={statusObject.engine}
-										>
+										<WhenNotApplicable dottedName={dottedName} engine={engine}>
 											<DisabledLabel>Ne s'applique pas</DisabledLabel>
 											<StyledRuleLink
 												documentationPath={`${statusObject.name as string}`}
 												dottedName={dottedName}
-												engine={statusObject.engine}
+												engine={engine}
 											>
 												<HelpIcon />
 											</StyledRuleLink>
 										</WhenNotApplicable>
 									)}
-									<Condition
-										expression={{
-											et: [
-												{ 'est défini': expressionOrDottedName },
-												{ 'est applicable': expressionOrDottedName },
-											],
-										}}
-										engine={statusObject.engine}
-									>
+									{isDefinedAndApplicable && (
 										<StyledDiv>
 											<span>
 												<Value
 													linkToRule={false}
 													expression={expressionOrDottedName}
-													engine={statusObject.engine}
+													engine={engine}
 													precision={0}
 													unit={unit}
 													displayedUnit={displayedUnit}
@@ -142,27 +158,22 @@ const DetailsRowCards = ({
 												<StyledRuleLink
 													documentationPath={`${statusObject.name}`}
 													dottedName={dottedName}
-													engine={statusObject.engine}
+													engine={engine}
 												>
 													<HelpIcon />
 												</StyledRuleLink>
 											)}
-											{warning?.(statusObject.engine)}
+											{warning?.(engine)}
 										</StyledDiv>
-									</Condition>
-									<Condition
-										expression={{
-											'est non défini': expressionOrDottedName,
-										}}
-										engine={statusObject.engine}
-									>
+									)}
+									{isNotDefined && (
 										<StyledSmall>
 											<Trans>
 												Le montant demandé n'est{' '}
 												<Strong>pas calculable...</Strong>
 											</Trans>
 										</StyledSmall>
-									</Condition>
+									)}
 								</StatusCard.Titre>
 							)}
 							{evolutionDottedName && (
@@ -170,7 +181,7 @@ const DetailsRowCards = ({
 									<Value
 										linkToRule={false}
 										expression={evolutionDottedName}
-										engine={statusObject.engine}
+										engine={engine}
 										precision={0}
 										unit={unit}
 									/>{' '}
@@ -182,10 +193,8 @@ const DetailsRowCards = ({
 									{evolutionLabel}
 								</StatusCard.ValeurSecondaire>
 							)}
-							{footer?.(statusObject.engine) && (
-								<StatusCard.Action>
-									{footer?.(statusObject.engine)}
-								</StatusCard.Action>
+							{footer?.(engine) && (
+								<StatusCard.Action>{footer?.(engine)}</StatusCard.Action>
 							)}
 						</StatusCard>
 					</Grid>
