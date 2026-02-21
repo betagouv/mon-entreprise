@@ -1465,17 +1465,22 @@ pages:
               plein.
             h4: Trimestres validés pour la retraite de base
             unit: trimestres/an
-          body: Le montant de votre retraite est constitué de <2>votre retraite de base +
-            votre retraite complémentaire</2>.
+          body: Vos droits pour la retraite se composent de <2>trimestres validés</2>
+            (retraite de base) et de <5>points acquis</5> (retraite
+            complémentaire). Ce sont ces droits qui détermineront le montant de
+            votre future pension.
           complémentaire:
-            body: "Tous les ans, selon votre rémunération, <2>vous gagnez des points qui
-              constituent votre pension de retraite complémentaire</2>. En fin
-              de carrière, vos points sont transformés en <5>un montant qui
-              s’ajoute chaque mois à votre retraite de base</5>. Cette valeur se
-              calcule sur le long terme. Par exemple, au bout de 10 ans, vous
-              auriez droit à :"
-            evolution-label: au bout de 10 ans
-            h4: Retraite complémentaire
+            body: Tous les ans, selon votre rémunération, <2>vous gagnez des points de
+              retraite complémentaire</2>. En fin de carrière, vos points sont
+              convertis en pension mensuelle qui s'ajoute à votre retraite de
+              base.
+            h4: Points de retraite complémentaire acquis
+            unit: points/an
+          info:
+            aria-label: Accéder au simulateur de retraite de l'Assurance retraite, nouvelle
+              fenêtre
+            message: Pour estimer le montant de votre future pension de retraite, utilisez
+              le <2>simulateur de l'Assurance retraite</2>.
           title: Vos droits pour la retraite
         revenus:
           button-title: Calculer vos revenus
