@@ -19,7 +19,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 725
 protection sociale . retraite . complémentaire: 75
 protection sociale . retraite . trimestres: 4
 
@@ -45,7 +44,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 1642
 protection sociale . retraite . complémentaire: 143
 protection sociale . retraite . trimestres: 4"
 `;
@@ -69,7 +67,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 86
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 1653
 protection sociale . retraite . complémentaire: 146
 protection sociale . retraite . trimestres: 4"
 `;
@@ -93,7 +90,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 1197
 protection sociale . retraite . complémentaire: 104
 protection sociale . retraite . trimestres: 4"
 `;
@@ -117,7 +113,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: null
 protection sociale . maladie . maternité paternité adoption: 7
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 200
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 401
-protection sociale . retraite . base: 24
 protection sociale . retraite . complémentaire: 2
 protection sociale . retraite . trimestres: 0"
 `;
@@ -141,7 +136,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 225
 protection sociale . retraite . complémentaire: 2
 protection sociale . retraite . trimestres: 2"
 `;
@@ -165,7 +159,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: null
 protection sociale . maladie . maternité paternité adoption: 0
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 53
 protection sociale . retraite . complémentaire: 5
 protection sociale . retraite . trimestres: 0"
 `;
@@ -189,7 +182,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 725
 protection sociale . retraite . complémentaire: 75
 protection sociale . retraite . trimestres: 4"
 `;
@@ -213,7 +205,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 1430
 protection sociale . retraite . complémentaire: 125
 protection sociale . retraite . trimestres: 4"
 `;
@@ -237,7 +228,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 75
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 1435
 protection sociale . retraite . complémentaire: 127
 protection sociale . retraite . trimestres: 4"
 `;
@@ -261,7 +251,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 1650
 protection sociale . retraite . complémentaire: 166
 protection sociale . retraite . trimestres: 4"
 `;
@@ -285,7 +274,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 66
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: 2003
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: 4005
-protection sociale . retraite . base: 1343
 protection sociale . retraite . complémentaire: 117
 protection sociale . retraite . trimestres: 4"
 `;
@@ -309,7 +297,6 @@ protection sociale . maladie . arrêt maladie . délai de carence: 3
 protection sociale . maladie . maternité paternité adoption: 70
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption: null
 protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel: null
-protection sociale . retraite . base: 1345
 protection sociale . retraite . complémentaire: 119
 protection sociale . retraite . trimestres: 4"
 `;
