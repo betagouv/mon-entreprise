@@ -90,14 +90,7 @@ const DetailsRowCards = ({
 				const statusObject = sameValueOptions[0]
 				const { engine } = statusObject
 
-				// On évalue les conditions directement plutôt que via le composant
-				// <Condition>, car celui-ci wrappe l'expression avec
-				// `{ '!=': [expression, 'non'], contexte: {} }`. Le `contexte: {}`
-				// (objet vide par défaut) provoque un bug dans le navigateur : pour
-				// certaines règles avec des unités custom (ex: trimestre validé/an),
-				// l'évaluation retourne un résultat faux alors que la règle est bien
-				// définie et applicable. L'évaluation directe sans contexte fonctionne
-				// correctement.
+				// Évaluation directe au lieu de <Condition> — voir #4323
 				const isDefinedAndApplicable =
 					expressionOrDottedName &&
 					engine.evaluate({
