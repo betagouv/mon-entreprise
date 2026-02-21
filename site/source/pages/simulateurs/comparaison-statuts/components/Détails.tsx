@@ -262,13 +262,28 @@ const Détails = ({
 				>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.body">
-							Le montant de votre retraite est constitué de{' '}
-							<Strong>
-								votre retraite de base + votre retraite complémentaire
-							</Strong>
-							.
+							Vos droits pour la retraite se composent de{' '}
+							<Strong>trimestres validés</Strong> (retraite de base) et de{' '}
+							<Strong>points acquis</Strong> (retraite complémentaire). Ce sont
+							ces droits qui détermineront le montant de votre future pension.
 						</Trans>
 					</Body>
+					<Message type="info" border={false}>
+						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.info.message">
+							Pour estimer le montant de votre future pension de retraite,
+							utilisez le{' '}
+							<Link
+								href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
+								aria-label={t(
+									'pages.simulateurs.comparaison-statuts.items.retraite.info.aria-label',
+									"Accéder au simulateur de retraite de l'Assurance retraite, nouvelle fenêtre"
+								)}
+							>
+								simulateur de l'Assurance retraite
+							</Link>
+							.
+						</Trans>
+					</Message>
 					<StyledH4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.h4',
@@ -297,33 +312,31 @@ const Détails = ({
 					<StyledH4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.h4',
-							'Retraite complémentaire'
+							'Points de retraite complémentaire acquis'
 						)}
 						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
 					</StyledH4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.body">
 							Tous les ans, selon votre rémunération,{' '}
-							<Strong>
-								vous gagnez des points qui constituent votre pension de retraite
-								complémentaire
-							</Strong>
-							. En fin de carrière, vos points sont transformés en{' '}
-							<Strong>
-								un montant qui s’ajoute chaque mois à votre retraite de base
-							</Strong>
-							. Cette valeur se calcule sur le long terme. Par exemple, au bout
-							de 10 ans, vous auriez droit à :
+							<Strong>vous gagnez des points de retraite complémentaire</Strong>
+							. En fin de carrière, vos points sont convertis en pension
+							mensuelle qui s'ajoute à votre retraite de base.
 						</Trans>
 					</Body>
 
 					<DetailsRowCards
-						dottedName="protection sociale . retraite . complémentaire"
+						expression={{
+							somme: [
+								'protection sociale . retraite . complémentaire . AGIRC ARRCO . points acquis',
+								'protection sociale . retraite . complémentaire . RCI . points acquis',
+								'protection sociale . retraite . complémentaire . CIPAV . points acquis',
+							],
+						}}
 						namedEngines={namedEngines}
-						unit="€/mois"
-						evolutionLabel={t(
-							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.evolution-label',
-							'au bout de 10 ans'
+						displayedUnit={t(
+							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.unit',
+							'points/an'
 						)}
 					/>
 				</Item>
