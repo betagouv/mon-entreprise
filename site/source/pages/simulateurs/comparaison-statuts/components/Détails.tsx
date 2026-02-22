@@ -268,22 +268,6 @@ const Détails = ({
 							ces droits qui détermineront le montant de votre future pension.
 						</Trans>
 					</Body>
-					<Message type="info" border={false}>
-						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.info.message">
-							Pour estimer le montant de votre future pension de retraite,
-							utilisez le{' '}
-							<Link
-								href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
-								aria-label={t(
-									'pages.simulateurs.comparaison-statuts.items.retraite.info.aria-label',
-									"Accéder au simulateur de retraite de l'Assurance retraite, nouvelle fenêtre"
-								)}
-							>
-								simulateur de l'Assurance retraite
-							</Link>
-							.
-						</Trans>
-					</Message>
 					<StyledH4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.h4',
