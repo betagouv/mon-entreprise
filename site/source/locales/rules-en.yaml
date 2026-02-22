@@ -315,14 +315,14 @@ bénéficiaire:
   titre.fr: bénéficiaire
 bénéficiaire . compte courant d'associé:
   description.en: >
-    [automatic] This value is necessary to calculate the maximum amount taxable
+    [automatic] This value is needed to calculate the maximum amount taxable
     under the PFU for a beneficiary under the self-employed workers' scheme.
 
-    The amount taken into account is the average annual balance of the current account. It is determined by the sum of the average monthly balances of the account, divided by the number of months included in the financial year.
+    The amount taken into account is the average annual current account balance. It is determined by the sum of the average monthly account balances, divided by the number of months in the financial year.
 
     The average monthly balance is equal to the sum of the daily balances, divided by the number of days in the month. The average monthly balance therefore differs from the monthly balance shown in the company's accounts.
 
-    If the account is opened or closed during the fiscal year, the number of months in the fiscal year will be reduced to the number of months the account is in operation. An account is considered to be "operating" even if it is not moved during the fiscal year.  The date on which the sums paid into the current account must be assessed is the last day of the financial year preceding the payment of interest.
+    If an account is opened or closed during the year, the number of months in the year is reduced to the number of months the account was in operation. An account is considered to be "in operation" even if there are no transactions during the year.  The date on which the sums paid into the current account must be assessed is the last day of the financial year preceding the interest payment.
   description.fr: >
     Cette valeur est nécessaire à calculer le montant maximal imposable au PFU
     pour un bénéficiaire au régime des travailleurs indépendants.
@@ -781,7 +781,7 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations:
             serious or long-term illness, 100% of treatment is reimbursed.
 
 
-            ## Health insurance in France in figures
+            ## Health insurance in France in a few figures
               - 92%** of healthcare expenses reimbursed on average by health insurance
               and supplementary health insurance
               - 30,000 / year / patient**: example of full coverage
@@ -2639,9 +2639,9 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     The formula for calculating the overrun rate is as follows:
 
 
-    > Urssaf rate = (overruns - reimbursed CMU lump-sum amounts) / (reimbursable
+    > Urssaf rate = (overruns - amounts reimbursed CMU lump sums) / (amounts reimbursable acts
 
-    > procedures amounts + reimbursed CMU lump-sum amounts)
+    > reimbursed acts + amounts reimbursed CMU lump sums)
   description.fr: >
     Le « taux Urssaf » permet de calculer la part de votre cotisation
     d’assurance
@@ -5122,9 +5122,7 @@ entreprise . activités . revenus mixtes:
     Si votre entreprise a des activités correspondants à plusieurs catégories de
 
     revenus, répondez oui à cette question.
-  question.en:
-    '[automatic] Does your company have activities with different types
-    of revenues?'
+  question.en: '[automatic] Does your company have different revenue streams?'
   question.fr: Votre entreprise a-t-elle des activités avec des types de revenus
     différents ?
   titre.en: '[automatic] Mixed activities'
@@ -5219,11 +5217,11 @@ entreprise . associés:
       titre.en: '[automatic] alone'
       titre.fr: seul(e)
   description.en: >
-    [automatic] If you are the only partner of your company, then you are in the
-    case of a "one person company".
+    [automatic] If you are the sole shareholder of your company, you are in a
+    "one-person company" situation.
 
 
-    Thus, a SARL with only one partner is called EURL (Entreprise Unipersonnelle à Responsabilité Limitée). The same goes for the SASU, the SELASU and the SERLARLU which are the respective single-member forms of the SAS, the SELAS and the SELARL.
+    A SARL with a single partner is called an EURL (Entreprise Unipersonnelle à Responsabilité Limité). The same applies to SASU, SELASU and SERLARLU, which are the respective single-member forms of SAS, SELAS and SELARL.
   description.fr: >
     Si vous êtes le seul associé de votre société, alors vous êtes dans le cas
     d'une « société unipersonnelle ».
@@ -5239,7 +5237,7 @@ entreprise . capital social:
     [automatic] This value must include the value of share premiums.
   description.fr: |
     Cette valeur doit inclure la valeur des primes d’émission.
-  question.en: '[automatic] What is the share capital of the company?'
+  question.en: "[automatic] What is the company's share capital?"
   question.fr: Quele est le capital social de la société ?
   titre.en: '[automatic] Share capital'
   titre.fr: Capital social
@@ -7494,7 +7492,7 @@ protection sociale . maladie:
     serious or long-term illness, 100% of care is reimbursed.
 
 
-    ## Health insurance in France in figures
+    ## Health insurance in France in a few figures
       - 92%** of healthcare expenses reimbursed on average by health insurance
       and supplementary health insurance
       - 30,000 / year / patient**: example of full coverage for a person with
@@ -7935,21 +7933,21 @@ protection sociale . retraite . base:
     benefit from the **full rate**.
 
 
-    > **Detailed calculation:** 50% x average annual income x pension pro rata
+    > **Detailed calculation:** 50% x average annual income x pension prorata
 
-    >
+    &gt;
 
     > With :
 
-    > - _average annual income_ = average of salaries and income contributed by
+    > - average annual income_ = average of salaries and income contributed by
 
-    > self-employed during the 25 most advantageous years of your
+    > self-employed for the best 25 years of your career
 
     > career ;
 
-    > - _prorata de pension_ = length of insurance with the Assurance retraite /q
+    > - pension prorata_ = length of insurance with the French pension insurance scheme /q
 
-    > insurance period to obtain a full pension.
+    > insurance period required to obtain a full pension.
   description.fr: >
     Le montant de votre pension pour la retraite de base est calculé à partir de
     la
@@ -10783,7 +10781,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - research and development
           - information and communication technologies.
 
-        The employer must **also** meet **at least one of the following conditions**:
+        The employer must **also** meet **at least one of the following conditions** :
 
         - be in one of the following **sectors** :
           - 🔬 research and development ;
@@ -10972,7 +10970,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - research and development
               - information and communication technologies.
 
-            The employer must **also** meet **at least one of the following conditions**:
+            The employer must **also** meet **at least one of the following conditions** :
 
             - be in one of the following **sectors** :
               - 🔬 research and development ;
@@ -11119,7 +11117,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         - employers with fewer than 11 employees;
 
-        - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness scale
+        - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness or innovation and growth scales
 
         or the innovation and growth scale;
 
@@ -11171,7 +11169,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
         The employer must meet **at least one of the following conditions**:
 
         - be in one of the following **sectors**:
-          - 🚜 agriculture (including agricultural cooperatives and collectives
+          - 🚜 agriculture (including agricultural cooperatives and agricultural collective interest companies
           and their unions, as well as maritime cooperatives and their unions) ;
           - 🎣 fishing, marine farming and aquaculture;
           - 🏭 industry ;
@@ -11316,7 +11314,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
             - employers with fewer than 11 employees;
 
-            - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness scale
+            - companies in Lodeom-eligible sectors that do not benefit from the enhanced competitiveness or innovation and growth scales
 
             or the innovation and growth scale;
 
@@ -11461,7 +11459,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
               - 🖥️ IT, including programming, systems and software consulting, third-party maintenance
               systems and applications, facilities management, data processing, hosting and related activities
               related activities;
-              - 🌐 internet portal and software publishing;
+              - 🌐 Internet portal and software publishing;
               - 🎴 computer graphics, including visual and digital content design;
               - 🤖 design of connected objects.
 

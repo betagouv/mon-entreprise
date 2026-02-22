@@ -24,7 +24,7 @@ export function Condition({
 	expression,
 	children,
 	engine: engineFromProps,
-	contexte = {},
+	contexte = {}, // TODO: remplacer par undefined ? Voir #4323
 	non = false,
 }: ConditionProps) {
 	const defaultEngine = useEngine()
