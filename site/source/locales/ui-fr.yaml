@@ -1476,11 +1476,6 @@ pages:
               base.
             h4: Points de retraite complémentaire acquis
             unit: points/an
-          info:
-            aria-label: Accéder au simulateur de retraite de l'Assurance retraite, nouvelle
-              fenêtre
-            message: Pour estimer le montant de votre future pension de retraite, utilisez
-              le <2>simulateur de l'Assurance retraite</2>.
           title: Vos droits pour la retraite
         revenus:
           button-title: Calculer vos revenus
