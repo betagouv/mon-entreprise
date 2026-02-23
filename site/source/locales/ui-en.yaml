@@ -1381,7 +1381,11 @@ pages:
             body: Each year, depending on your earnings, you can validate <2>up to 4
               quarters&lt;/2> for your basic pension. The total number of
               validated quarters determines your entitlement to a full pension.
-            h4: Validated quarters for basic pension
+            h4: Basic pension
+            revenu-cotisé:
+              body: The amount of your pension also depends on the <2>income you
+                contribute</2>, i.e. the portion of your income on which you
+                contribute to the basic pension.
             unit: quarters/year
           body: Your pension rights depend on your <2>trimestres validés&lt;/2> (basic
             pension), your <5>points acquis&lt;/5> (supplementary pension) and
@@ -1391,7 +1395,7 @@ pages:
             body: Every year, depending on your salary, <2>you earn supplementary pension
               points</2>. At the end of your career, your points are converted
               into a monthly pension, which is added to your basic pension.
-            h4: Supplementary pension points acquired
+            h4: Supplementary pension
             unit: points/year
           lien-assurance-retraite:
             aria-label: Access the Retirement Insurance simulator, new window

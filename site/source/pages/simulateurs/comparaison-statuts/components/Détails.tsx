@@ -272,7 +272,7 @@ const Détails = ({
 					<StyledH4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.h4',
-							'Trimestres validés pour la retraite de base'
+							'Retraite de base'
 						)}
 						<ExplicableRule dottedName="protection sociale . retraite . trimestres" />
 					</StyledH4>
@@ -294,10 +294,33 @@ const Détails = ({
 						)}
 					/>
 
+					<Condition
+						expression={{
+							'=': [
+								'entreprise . activité . nature . libérale . réglementée',
+								'non',
+							],
+						}}
+					>
+						<Body>
+							<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.base.revenu-cotisé.body">
+								Le montant de votre pension dépend aussi du{' '}
+								<Strong>revenu cotisé</Strong>, c'est-à-dire la part de vos
+								revenus sur laquelle vous cotisez pour la retraite de base.
+							</Trans>
+						</Body>
+
+						<DetailsRowCards
+							dottedName="protection sociale . retraite . base . cotisée"
+							namedEngines={namedEngines}
+							unit="€/an"
+						/>
+					</Condition>
+
 					<StyledH4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.h4',
-							'Points de retraite complémentaire acquis'
+							'Retraite complémentaire'
 						)}
 						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
 					</StyledH4>
