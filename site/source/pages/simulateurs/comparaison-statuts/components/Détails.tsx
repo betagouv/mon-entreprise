@@ -262,10 +262,11 @@ const Détails = ({
 				>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.body">
-							Vos droits pour la retraite se composent de{' '}
-							<Strong>trimestres validés</Strong> (retraite de base) et de{' '}
-							<Strong>points acquis</Strong> (retraite complémentaire). Ce sont
-							ces droits qui détermineront le montant de votre future pension.
+							Vos droits pour la retraite dépendent de vos{' '}
+							<Strong>trimestres validés</Strong> (retraite de base), de vos{' '}
+							<Strong>points acquis</Strong> (retraite complémentaire) et du{' '}
+							<Strong>montant cotisé</Strong>. Ce sont ces droits qui
+							détermineront le montant de votre future pension.
 						</Trans>
 					</Body>
 					<StyledH4>

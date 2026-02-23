@@ -1383,9 +1383,10 @@ pages:
               validated quarters determines your entitlement to a full pension.
             h4: Validated quarters for basic pension
             unit: quarters/year
-          body: Your pension entitlements are made up of <2>trimestres validés&lt;/2>
-            (basic pension) and <5>points acquis&lt;/5> (supplementary pension).
-            These entitlements will determine the amount of your future pension.
+          body: Your pension rights depend on your <2>trimestres validés&lt;/2> (basic
+            pension), your <5>points acquis&lt;/5> (supplementary pension) and
+            the <8>amount contributed</8>. These entitlements will determine the
+            amount of your future pension.
           complémentaire:
             body: Every year, depending on your salary, <2>you earn supplementary pension
               points</2>. At the end of your career, your points are converted

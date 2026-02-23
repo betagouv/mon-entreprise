@@ -1465,10 +1465,10 @@ pages:
               plein.
             h4: Trimestres validés pour la retraite de base
             unit: trimestres/an
-          body: Vos droits pour la retraite se composent de <2>trimestres validés</2>
-            (retraite de base) et de <5>points acquis</5> (retraite
-            complémentaire). Ce sont ces droits qui détermineront le montant de
-            votre future pension.
+          body: Vos droits pour la retraite dépendent de vos <2>trimestres validés</2>
+            (retraite de base), de vos <5>points acquis</5> (retraite
+            complémentaire) et du <8>montant cotisé</8>. Ce sont ces droits qui
+            détermineront le montant de votre future pension.
           complémentaire:
             body: Tous les ans, selon votre rémunération, <2>vous gagnez des points de
               retraite complémentaire</2>. En fin de carrière, vos points sont
