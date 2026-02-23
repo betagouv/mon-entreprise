@@ -92,6 +92,8 @@ export function getRuleInputNature(
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate({ valeur: dottedName, ...modifiers })
 
+	console.log('evaluation', evaluation)
+
 	if (isMultiplePossibilities(engine, dottedName)) return PLUSIEURS_POSSIBILITES
 
 	if (isOnePossibility(engine.getRule(dottedName))) return UNE_POSSIBILITE
