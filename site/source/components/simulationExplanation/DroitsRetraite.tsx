@@ -6,6 +6,7 @@ import Value from '@/components/EngineValue/Value'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import {
+	Body,
 	Emoji,
 	H3,
 	Li,
@@ -32,22 +33,30 @@ export function DroitsRetraite() {
 
 			<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
 				<Message type="info" border>
-					Les exonérations DROM n'ont aucune incidence sur la détermination des
-					droits à la retraite de base et complémentaire des auto-entrepreneurs
+					<Body>
+						Les exonérations DROM n'ont aucune incidence sur la détermination
+						des droits à la retraite de base et complémentaire des
+						auto-entrepreneurs
+					</Body>
 				</Message>
 			</WhenApplicable>
 			<WhenApplicable dottedName="dirigeant . exonérations . ACRE">
 				<Message type="info" border>
-					L'exonération ACRE n'a aucune incidence sur la détermination des
-					droits à la retraite de base et complémentaire des auto-entrepreneurs
+					<Body>
+						L'exonération ACRE n'a aucune incidence sur la détermination des
+						droits à la retraite de base et complémentaire des
+						auto-entrepreneurs
+					</Body>
 				</Message>
 			</WhenApplicable>
 
 			<Condition expression={exonérationRetraiteActive}>
 				<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
-					Le calcul des droits ouverts à la retraite n'est pas encore implémenté
-					pour les cas incluant des exonérations de cotisations (pension
-					invalidité, etc).
+					<Body>
+						Le calcul des droits ouverts à la retraite n'est pas encore
+						implémenté pour les cas incluant des exonérations de cotisations
+						(pension invalidité, etc).
+					</Body>
 				</Message>
 			</Condition>
 
@@ -141,17 +150,20 @@ export function DroitsRetraite() {
 			</Condition>
 
 			<Message type="info" border={false}>
-				Pour estimer le montant de votre future pension de retraite, utilisez le{' '}
-				<Link
-					href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
-					aria-label={t(
-						'pages.simulateurs.indépendant.retraite.simulateur-cnav.aria-label',
-						"Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre"
-					)}
-				>
-					simulateur de l'Assurance retraite
-				</Link>
-				.
+				<Body>
+					Pour estimer le montant de votre future pension de retraite, utilisez
+					le{' '}
+					<Link
+						href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
+						aria-label={t(
+							'pages.simulateurs.indépendant.retraite.simulateur-cnav.aria-label',
+							"Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre"
+						)}
+					>
+						simulateur de l'Assurance retraite
+					</Link>
+					.
+				</Body>
 			</Message>
 		</Trans>
 	)
