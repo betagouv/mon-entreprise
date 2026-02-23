@@ -146,7 +146,7 @@ export function DroitsRetraite() {
 					href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
 					aria-label={t(
 						'pages.simulateurs.indépendant.retraite.simulateur-cnav.aria-label',
-						"Accéder au simulateur de retraite de l'Assurance retraite, nouvelle fenêtre"
+						"Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre"
 					)}
 				>
 					simulateur de l'Assurance retraite
