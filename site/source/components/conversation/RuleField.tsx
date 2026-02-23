@@ -9,12 +9,15 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 
 const AMOUNT_FIELD = '<AmountField />'
 const RADIO_GROUP = '<RadioGroup />'
+const SELECT_COMMUNE = '<SelectCommune />'
 const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
 
 function getRuleFieldNature(rule: RuleNode): string {
 	if (rule.dottedName.endsWith('montant')) return AMOUNT_FIELD
 
 	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
+
+	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
 
 	if (['oui', 'non'].includes(rule.rawNode['par défaut'] as string))
 		return YES_OR_NO_TOGGLE_GROUP
