@@ -1393,6 +1393,10 @@ pages:
               into a monthly pension, which is added to your basic pension.
             h4: Supplementary pension points acquired
             unit: points/year
+          lien-assurance-retraite:
+            aria-label: Access the Retirement Insurance simulator, new window
+            message: To estimate the amount of your future retirement pension, use the
+              <2>Retirement Insurance simulator</2>.
           title: Your pension rights
         revenus:
           button-title: Calculate your income

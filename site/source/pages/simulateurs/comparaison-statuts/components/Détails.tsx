@@ -324,6 +324,25 @@ const Détails = ({
 							'points/an'
 						)}
 					/>
+
+					<Message type="info" border={false}>
+						<Body>
+							<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.lien-assurance-retraite.message">
+								Pour estimer le montant de votre future pension de retraite,
+								utilisez le{' '}
+								<Link
+									href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
+									aria-label={t(
+										'pages.simulateurs.comparaison-statuts.items.retraite.lien-assurance-retraite.aria-label',
+										"Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre"
+									)}
+								>
+									simulateur de l'Assurance retraite
+								</Link>
+								.
+							</Trans>
+						</Body>
+					</Message>
 				</Item>
 
 				<Item
