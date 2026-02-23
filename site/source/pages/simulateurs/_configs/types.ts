@@ -15,7 +15,7 @@ export interface PageConfig {
 
 	/** Chemin de la page
 	 *  Ce dernier doit exister dans le fichier sitePaths.ts */
-	path?: string
+	path: string
 
 	/** Chemin de l'iframe */
 	iframePath: string
@@ -102,32 +102,42 @@ export interface PageConfig {
 	 */
 	nextSteps?: string[] | false
 
-	/** Liens externes à  faire apparaître dans la section « Ressources utiles » en bas de page. */
+	/** Liens externes à faire apparaître dans la section « Ressources utiles » en bas de page. */
 	externalLinks?: ExternalLink[]
+
+	/**
+	 * Liens externes à faire apparaître dans la section « Ressources utiles » en bas de page,
+	 * associés à une règle Publicode qui conditionne leur affichage.
+	 */
+	conditionalExternalLinks?: ConditionalExternalLink[]
 
 	/** Configuration de la simulation */
 	simulation?: SimulationConfig
 
-	/** Indique si la dernière simulation doit être chargée automatiquement à l'arrivée
+	/**
+	 * Indique si la dernière simulation doit être chargée automatiquement à l'arrivée
 	 * sur la page
 	 */
 	autoloadLastSimulation?: boolean
 
-	/** Indique les catégories d'entreprise concernées par le simulateur.
+	/**
+	 * Indique les catégories d'entreprise concernées par le simulateur.
 	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
 	 */
 	codesCatégorieJuridique?: string[]
 
-	/** Indique si la date du simulateur doit être masquée ou pas.
+	/**
+	 * Indique si la date du simulateur doit être masquée ou pas.
 	 */
 	hideDate?: boolean
 
-	/** Indique si le formulaire de retour doit être désactivé en iframe
+	/**
+	 * Indique si le formulaire de retour doit être désactivé en iframe
 	 */
 	disableIframeFeedback?: boolean
 
-	/** Composant React de la page
-	 *
+	/**
+	 * Composant React de la page
 	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche
 	 * example: `component: MyComponent,`
 	 */
@@ -137,10 +147,13 @@ export interface PageConfig {
 	seoExplanations?: () => JSX.Element
 }
 
+export type ConditionalExternalLink = ExternalLink & {
+	associatedRule: PublicodesExpression
+}
+
 export type ExternalLink = {
 	url: string
 	title: string
-	associatedRule?: PublicodesExpression
 	description?: string
 	logo?: string
 	ctaLabel?: string

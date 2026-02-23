@@ -1,22 +1,16 @@
 import { composeWithDevToolsDevelopmentOnly } from '@redux-devtools/extension'
 import { createReduxEnhancer } from '@sentry/react'
-import Engine from 'publicodes'
 import { applyMiddleware, createStore, StoreEnhancer } from 'redux'
 
-import {
-	retrievePersistedChoixStatutJuridique,
-	setupChoixStatutJuridiquePersistence,
-} from '@/storage/persistChoixStatutJuridique'
 import {
 	retrievePersistedCompanySituation,
 	setupCompanySituationPersistence,
 } from '@/storage/persistCompanySituation'
 import { setupSimulationPersistence } from '@/storage/persistSimulation'
 import { prendLaProchaineQuestionMiddleware } from '@/store/middlewares/prendLaProchaineQuestion.middleware'
-import reducers from '@/store/reducers/rootReducer'
+import rootReducer from '@/store/reducers/rootReducer'
 
 const initialStore = {
-	choixStatutJuridique: retrievePersistedChoixStatutJuridique(),
 	companySituation: retrievePersistedCompanySituation(),
 }
 
@@ -26,15 +20,14 @@ const composeEnhancers = composeWithDevToolsDevelopmentOnly(
 
 const sentryReduxEnhancer = createReduxEnhancer({}) as StoreEnhancer
 
-export const makeStore = (engine: Engine) => {
+export const makeStore = () => {
 	const storeEnhancer = composeEnhancers(
-		applyMiddleware(prendLaProchaineQuestionMiddleware(engine)),
+		applyMiddleware(prendLaProchaineQuestionMiddleware),
 		sentryReduxEnhancer
 	)
 
-	const store = createStore(reducers, initialStore, storeEnhancer)
+	const store = createStore(rootReducer, initialStore, storeEnhancer)
 
-	setupChoixStatutJuridiquePersistence(store)
 	setupCompanySituationPersistence(store)
 	setupSimulationPersistence(store)
 

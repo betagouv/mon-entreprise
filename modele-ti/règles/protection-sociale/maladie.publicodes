@@ -1,0 +1,146 @@
+protection sociale . maladie:
+  icônes: 🏥
+  titre: assurance maladie
+  type: branche
+  résumé:
+    Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
+    maladies graves comme les séjours à l’hôpital.
+  description: |
+    L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+    personnelle ou professionnelle.
+
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en
+    prenant en charge leurs soins quels que soient leurs ressources, leur situation
+    ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle
+    permet l’accès aux soins.
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de
+    maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+    ### L’assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
+      maladie et la complémentaire
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une
+      personne atteinte de mucoviscidose
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+  références:
+    À quel organisme de sécurité sociale est-on rattaché pour l’assurance maladie ?: https://www.service-public.fr/particuliers/vosdroits/F648
+    Ce qui est remboursé pour tout le monde: https://www.ameli.fr/assure/remboursements/rembourse
+    Rapport d’activité de l’assurance maladie 2017 (PDF): https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
+    Rapport OCDE sur l’espérance de vie dans les différents pays: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+
+  avec:
+    raam:
+      titre: Revenu d’activité annuel moyen
+      valeur: indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette
+      plafond:
+        variations:
+          - si: entreprise . activité . libérale . réglementée
+            alors: 3 * plafond sécurité sociale
+          - sinon: plafond sécurité sociale
+
+    condition revenu: raam >= 10% * plafond sécurité sociale
+
+protection sociale . maladie . arrêt maladie:
+  titre: indemnités journalières
+  description: |
+    L’indemnité journalière que vous recevrez pendant votre arrêt de travail est
+    égale à 1/730ème de votre [revenu d’activité annuel moyen (Raam)](/documentation/
+    modele-ti/protection-sociale/maladie/raam). Celui-ci est calculé sur la moyenne
+    de vos revenus cotisés des 3 années civiles précédant la date de votre arrêt de
+    travail.
+
+    En cas de revenu d’activité indépendante faible, le montant de
+    l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
+    être nul. De même en début d’activité, il faut attendre un certain
+    nombre de mois avant de pouvoir bénéficier d’indemnités.
+
+    Depuis le 1er janvier 2022, il est donc possible de percevoir
+    des indemnités journalières pour maladie et/ou pour maternité au titre
+    de son ancienne activité (quel que soit le régime auquel on était
+    affilié).
+  applicable si: condition revenu
+  unité: €/jour
+  produit:
+    - raam
+    - 1 an / 730 jour
+  références:
+    Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
+    Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
+    Comment bénéficier d’indemnités liées à son ancien régime: https://www.ameli.fr/assure/actualites/indemnites-maladie-et-maternite-du-nouveau-pour-certains-travailleurs-independants
+
+  avec:
+    délai d'attente:
+      description: |
+        Pour pouvoir prétendre à une indemnisation pour maladie au titre de
+        votre activité professionnelle, vous devez justifier d’un délai
+        d’affiliation continus dans cette activité.
+
+        > **À noter** : si les droits ne sont pas réunis, votre arrêt de travail
+        peut, sous certaines conditions, être indemnisable au titre du maintien
+        de droits de votre activité précédente. Renseignez-vous auprès de votre
+        caisse primaire d’assurance maladie (CPAM).
+      non applicable si: arrêt maladie = 0
+      valeur: 12 mois
+      références:
+        'Artisan/commerçant : quels sont les critères pour être indemnisé en cas de maladie ?': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972#text_124921
+        'Profession libérale : quels sont les critères pour être indemnisé en cas de maladie ?': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170646
+
+    délai de carence:
+      non applicable si: arrêt maladie = 0
+      description: |
+        Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité
+        journalière ne vous est versée ; c’est ce que l’on appelle le délai de
+        carence. Il s’applique au début de chaque arrêt de travail.
+      valeur: 3 jour
+      références:
+        Délai de carence pour les indépendants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124978
+
+protection sociale . maladie . maternité paternité adoption:
+  titre: indemnités journalières forfaitaires de congé maternité paternité adoption
+  unité: €/jour
+  produit:
+    - plafond sécurité sociale
+    - 50%
+  abattement:
+    applicable si: raam < 10% * plafond sécurité sociale
+    valeur: 90%
+  références:
+    Les indemnités journalières forfaitaires maternité des travailleuses indépendantes: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125695
+    'Paternité et accueil de l’enfant : les indemnités journalières pour les travailleurs indépendants': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant#text_114763
+    Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
+    'Congé d’adoption : les indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-adoption
+    Simulateur maternité paternité adoption: https://www.ameli.fr/assure/simulateur-maternite-paternite
+
+  avec:
+    délai d'attente:
+      description: |
+        ### Maternité
+        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
+        accouchement, et cesser toute activité professionnelle pendant la période de
+        perception et au moins pendant 8 semaines dont 6 après l’accouchement.
+        ### Paternité / Adoption
+        Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
+        naissance / à l’adoption.
+      valeur: 10 mois
+
+    allocation forfaitaire de repos adoption:
+      valeur: 50% * allocation forfaitaire de repos maternel
+      références:
+        Article L623-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685502/
+
+    allocation forfaitaire de repos maternel:
+      description: |
+        Elle est versée pour moitié au début du congé et pour moitié à la fin de
+        la période obligatoire de cessation d’activité de 8 semaines. La
+        totalité du montant de l’allocation est versée après l’accouchement
+        lorsque celui-ci a lieu avant la fin du 7e mois de la grossesse.
+      produit:
+        - variations:
+            - si: raam < 10% * plafond sécurité sociale
+              alors: 10% * plafond sécurité sociale
+            - sinon: plafond sécurité sociale
+        - 1 mois
+      références:
+        L’allocation forfaitaire de repos maternel: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125689
+        Article L623-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685502/

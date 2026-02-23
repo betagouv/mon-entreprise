@@ -1,6 +1,3 @@
-import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
-import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import LodeomSimulation from './Lodeom'
@@ -29,8 +26,6 @@ export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 				"Estimation du montant de l'exonération Lodeom. Cette exonération est applicable, sous conditions, aux salariés d'Outre-mer."
 			),
 		},
-		nextSteps: ['salarié'],
-		externalLinks: [embaucherGérerSalariés, nouvelEmployeur],
 		path: sitePaths.simulateurs.lodeom,
 		simulation: configLodeom,
 		component: LodeomSimulation,

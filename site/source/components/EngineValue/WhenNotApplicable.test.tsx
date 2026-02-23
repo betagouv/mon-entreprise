@@ -1,18 +1,25 @@
 import { render, screen } from '@testing-library/react'
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 describe('WhenNotApplicable', () => {
 	const mockEngine = {
 		evaluate: vi.fn(),
 	}
+
+	vi.mock('@/utils/publicodes/EngineContext', () => ({
+		useEngine: vi.fn(),
+	}))
+
 	const engine = mockEngine as typeof mockEngine & Engine<DottedName>
 
 	beforeEach(() => {
 		vi.clearAllMocks()
+		vi.mocked(useEngine).mockReturnValue(engine)
 	})
 
 	it('should render children when the condition not applicable', () => {

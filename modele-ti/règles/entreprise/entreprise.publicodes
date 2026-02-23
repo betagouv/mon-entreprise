@@ -1,0 +1,96 @@
+# La règle parente "entreprise" est dans modele-commun
+
+entreprise . EI:
+  titre: entreprise individuelle (EI)
+  description: |
+    L’entreprise individuelle (EI) est la forme juridique la plus fréquente pour
+    les petites entreprises. Elle peut être choisie pour exercer tout type
+    d’activité commerciale, artisanale, industrielle ou libérale.
+  question: Votre entreprise est-elle une entreprise individuelle (EI) ?
+  par défaut: non
+  références:
+    Tout ce que vous devez savoir sur l’entreprise individuelle: https://www.urssaf.fr/accueil/choisir-forme-juridique/creer-entreprise-individuelle.html
+    'Entrepreneur individuel (EI) : ce qu’il faut savoir': https://entreprendre.service-public.gouv.fr/vosdroits/F37396
+    Entrepreneur individuel: https://bpifrance-creation.fr/encyclopedie/structures-juridiques/entreprendre-seul/entrepreneur-individuel
+
+entreprise . charges:
+  synonymes:
+    - charges d'exploitation
+    - charges de fonctionnement
+  titre: charges (hors rémunération dirigeant)
+  identifiant court: charges
+  résumé: Total des dépenses nécessaires à l’entreprise, en excluant cotisations sociales, CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement déduites par le simulateur.
+  question: Quelles sont les charges de l’entreprise ?
+  description: |
+    **Il ne faut pas déclarer ici les cotisations sociales, ni la CSG-CRDS, ni la contribution à la formation professionnelle.**
+
+    Sont à déclarer, les dépenses de l’entreprise engagées dans l’intérêt de celle-ci,
+    hors rémunération du dirigeant. Ces charges sont déductibles du résultat :
+    l’entreprise ne paiera pas de cotisations ni d’impôt dessus.
+
+    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxes.
+
+    Exemples de charges déductibles :
+
+    - achat de matières premières pour une activité de production
+    - achat de produits en vue de leur revente, pour une activité commerciale
+    - frais de repas : le supplément par rapport au coût d’un repas à domicile
+
+    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
+    part de CSG déductible font partie des charges déductibles du revenu imposable et
+    du revenu soumis à cotisations, mais elles ne sont pas à renseigner dans cette
+    rubrique « charges ».
+    Le simulateur les calcule à partir du chiffre d’affaires et des charges
+    renseignées, et les déduit de ce chiffre d’affaires pour estimer le montant du
+    revenu net de charges.
+  références:
+    Charges déductibles ou non du résultat fiscal d’une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
+  par défaut: 0 €/an
+
+entreprise . résultat fiscal:
+  unité: €/an
+  variations:
+    - si: imposition . IR . régime micro-fiscal
+      alors: imposition . IR . régime micro-fiscal . revenu abattu
+    - sinon:
+        somme:
+          - chiffre d'affaires
+          - (- charges)
+          - (- rémunération dirigeant déductible)
+
+  avec:
+    rémunération dirigeant déductible:
+      titre: charges déductibles dirigeant
+      description: |
+        Les montants liés à la rémunération du dirigeant qui sont déductibles d’impôt.
+      variations:
+        - si: imposition . IS
+          alors: indépendant . rémunération . brute
+        - sinon:
+            valeur: indépendant . cotisations et contributions
+            abattement: indépendant . cotisations et contributions . non déductibles
+
+entreprise . capital social:
+  description: |
+    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
+    sociales du régime indépendant (sauf pour les entreprises individuelles).
+
+    Cette valeur doit inclure :
+    - les apports financiers et en nature ;
+    - la valeur des primes d’émission ;
+    - les sommes versées en compte courant d’associé par vous et votre famille.
+  applicable si: imposition . IS
+  non applicable si: EI
+  question: Quel est le capital social de l'entreprise ?
+  unité: €
+
+entreprise . bénéfice net de l'exercice précédent:
+  description: |
+    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
+    sociales du régime indépendant pour les entreprises individuelles.
+  applicable si:
+    toutes ces conditions:
+      - imposition . IS
+      - EI
+  question: Quel est le bénéfice net de l'exercice précédent de l'entreprise ?
+  unité: €

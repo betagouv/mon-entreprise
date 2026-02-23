@@ -1,10 +1,8 @@
-import { DottedName } from 'modele-social'
 import Engine, { RuleNode } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
 import {
 	CloseButton,
 	Emoji,
@@ -12,8 +10,11 @@ import {
 	Message,
 	typography,
 } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useInversionFail } from '@/hooks/useInversionFail'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
+import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
@@ -48,12 +49,16 @@ function getNotifications(engine: Engine) {
 
 export default function Notifications() {
 	const { t } = useTranslation()
-	const engine = useEngine()
+	const engine = useOptionalEngine()
 	const inversionFail = useInversionFail()
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
 	)
 	const dispatch = useDispatch()
+
+	if (!engine) {
+		return null
+	}
 
 	const messages: Array<Notification> = (
 		getNotifications(engine) as Array<Notification>

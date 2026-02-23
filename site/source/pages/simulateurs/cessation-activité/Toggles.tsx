@@ -1,16 +1,16 @@
-import { DottedName } from 'modele-social'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { DefaultValue } from '@/components/conversation/DefaultValue'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
-import { useEngine } from '@/components/utils/EngineContext'
 import { H3 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { RégimeImpositionQuestion } from '@/pages/simulateurs/cessation-activité/RégimeImpositionQuestion'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { evaluateQuestion } from '@/utils/publicodes'
+import { useEngine } from '@/utils/publicodes/EngineContext'
+import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 export const CessationActivitéToggles = () => {
 	const dispatch = useDispatch()
@@ -33,7 +33,7 @@ export const CessationActivitéToggles = () => {
 							dispatch(
 								ajusteLaSituation({
 									'entreprise . date de cessation': date,
-								} as Record<DottedName, ValeurPublicodes>)
+								} as Record<DottedName, ValeurPublicodes | undefined>)
 							)
 						}}
 						hideDefaultValue

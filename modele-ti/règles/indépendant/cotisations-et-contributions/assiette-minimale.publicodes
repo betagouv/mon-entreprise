@@ -1,0 +1,79 @@
+indépendant . assiette minimale:
+  non applicable si:
+    une de ces conditions:
+      - situation personnelle . RSA
+      - entreprise . activité . saisonnière
+  valeur: oui
+  description: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+    Les cotisations pour les indemnités journalières, retraite de base,
+    invalidité-décès et pour la formation ne sont plus calculées selon le revenu du
+    chef d’entreprise mais selon une « assiette » (montant retenu qui sert de base au
+    calcul d’un impôt ou d’une taxe).
+
+    Les cotisations minimales ne s’appliquent pas si vous bénéficiez du RSA ou de la
+    prime d’activité.
+  références:
+    Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
+
+indépendant . assiette minimale . maladie:
+  description: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  non applicable si: profession libérale . réglementée . PAMC
+  produit:
+    - PSS proratisé
+    - 40%
+  unité: €/an
+  arrondi: oui
+  références:
+    Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
+
+indépendant . assiette minimale . indemnités journalières:
+  description: La cotisation indemnités journalières n’est pas proratisée.
+  produit:
+    - plafond sécurité sociale
+    - 40%
+  unité: €/an
+  arrondi: oui
+  références:
+    Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
+
+indépendant . assiette minimale . retraite:
+  description: La cotisation minimale de retraite de base permet de valider 3
+    trimestres de retraite, quel que soit le revenu.
+  variations:
+    - si: entreprise . durée d'activité cette année < 90 jour
+      alors: 0
+    - sinon: 450 heure/an * SMIC . horaire . début d'année
+  unité: €/an
+  arrondi: oui
+  références:
+    Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
+
+indépendant . assiette minimale . invalidité et décès:
+  description: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  produit:
+    - PSS proratisé
+    - 11.5%
+  unité: €/an
+  arrondi: oui
+  références:
+    Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
+    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+
+indépendant . assiette minimale . invalidité et décès Cipav:
+  description: |
+    Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
+    calcul, certaines cotisations seront portées à un montant minimum.
+  applicable si: profession libérale . Cipav
+  produit:
+    - PSS proratisé
+    - 37%
+  unité: €/an
+  arrondi: oui
+  références:
+    Profession libérale réglementée relevant de la Cipav - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html#ancre-vos-cotisations-minimales

@@ -29,7 +29,7 @@ export function CasParticuliers() {
 					historisées. Cela veut dire que l'on peut effectuer une simulation
 					avec la législation effective à une date antérieure. Pour cela, il
 					vous suffit de renseigner le paramètre{' '}
-					<RuleLink dottedName="date">
+					<RuleLink dottedName="date" aria-label="date">
 						<Code>date</Code>
 					</RuleLink>{' '}
 					dans la situation.

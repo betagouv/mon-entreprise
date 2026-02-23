@@ -2,7 +2,7 @@ import { URSSAF } from '@/utils/logos'
 
 // TODO: gérer les traductions
 export const servicePAM = {
-	associatedRule: 'dirigeant . indépendant . PL . PAMC',
+	associatedRule: 'indépendant . profession libérale . réglementée . PAMC',
 	url: 'https://www.urssaf.fr/accueil/services/services-independants/service-pam.html',
 	title: 'Le service en ligne Praticien ou auxiliaire médical',
 	description:

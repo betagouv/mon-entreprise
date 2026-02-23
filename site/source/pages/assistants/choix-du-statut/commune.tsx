@@ -1,19 +1,19 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { Commune as CommuneType } from '@/api/commune'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
-import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import { Body, HelpButtonWithPopover } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
-	batchUpdateSituation,
-	enregistreLesRéponses,
+	enregistreLesRéponsesÀLaQuestion,
+	enregistreLesRéponsesAuxQuestions,
 } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -73,18 +73,25 @@ function useCommuneSelection(): [
 
 	const handleChange = (commune: CommuneType) => {
 		setState({ commune })
-		dispatch(enregistreLesRéponses('établissement . commune', commune))
+		dispatch(
+			enregistreLesRéponsesÀLaQuestion('établissement . commune', commune)
+		)
 	}
 
 	useEffect(() => {
 		state.commune &&
-			dispatch(enregistreLesRéponses('établissement . commune', state.commune))
+			dispatch(
+				enregistreLesRéponsesÀLaQuestion(
+					'établissement . commune',
+					state.commune
+				)
+			)
 	}, [])
 
 	const reset = () => {
 		setState({ commune: undefined })
 		dispatch(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				'établissement . commune . code postal': O.none(),
 				'établissement . commune . département': O.none(),
 				'établissement . commune . nom': O.none(),

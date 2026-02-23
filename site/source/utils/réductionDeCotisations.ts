@@ -2,11 +2,12 @@ import { pipe } from 'effect'
 import { last, map, take } from 'effect/Array'
 import { sumAll } from 'effect/Number'
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
-import Engine, { PublicodesExpression } from 'publicodes'
+import Engine from 'publicodes'
 import { AnyAction, Dispatch } from 'redux'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { eurosParAn } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
@@ -496,10 +497,7 @@ const updateRémunérationBruteAnnuelle = (
 	)
 	dispatch(
 		ajusteLaSituation({
-			[rémunérationBruteDottedName]: {
-				valeur: rémunérationBruteAnnuelle,
-				unité: '€/an',
-			} as PublicodesExpression,
+			[rémunérationBruteDottedName]: eurosParAn(rémunérationBruteAnnuelle),
 		} as Record<DottedName, ValeurPublicodes>)
 	)
 }

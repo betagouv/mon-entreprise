@@ -1,6 +1,7 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import DividendesSimulation, { SeoExplanations } from './Dividendes'
+import DividendesSimulation from './Dividendes'
+import { SeoExplanations } from './SeoExplanations'
 import { configDividendes } from './simulationConfig'
 
 export function dividendesConfig({ t, sitePaths }: SimulatorsDataParams) {

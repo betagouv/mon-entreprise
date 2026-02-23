@@ -1,0 +1,127 @@
+indépendant . profession libérale . CNAVPL:
+  description: |
+    La caisse nationale d'assurance vieillesse des professions libérales est
+    l'organisme qui fédère les différentes caisses existantes (Cipav, CARPIMKO,
+    CARCDSF, CAVEC etc..)
+  une de ces conditions:
+    - profession libérale . réglementée
+    - profession libérale . non réglementée . Cipav
+  rend non applicable:
+    références à: situation personnelle . RSA
+    dans: cotisations et contributions
+  références:
+    Liste des caisses: https://www.cnavpl.fr/regimes-complementaires-et-prevoyance/
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf
+
+indépendant . profession libérale . CNAVPL . hors Urssaf:
+  valeur: Cipav = non
+
+indépendant . profession libérale . CNAVPL . maladie:
+  description: |
+    Cotisation maladie pour les professions libérales réglementées
+    **avant la réforme** des cotisations de 2025. Depuis la réforme, la
+    cotisation maladie est la même pour tous les publics.
+  applicable si: cotisations et contributions . après réforme = non
+  produit:
+    - valeur: cotisations et contributions . assiette sociale
+      plancher: assiette minimale . maladie
+    - taux
+  arrondi: oui
+  unité: €/an
+
+  avec:
+    taux:
+      arrondi: 2 décimales
+      taux progressif:
+        assiette: cotisations et contributions . assiette sociale
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - plafond: 40%
+            taux: 0%
+          - plafond: 60%
+            taux: 4%
+          - plafond: 110%
+            taux: 6.5%
+
+indépendant . profession libérale . CNAVPL . retraite de base:
+  somme:
+    - tranche 1
+    - tranche 2
+  abattement: profession libérale . réglementée . CARMF . participation CPAM retraite
+  références:
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=23
+    Article D642-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904651
+
+  avec:
+    tranche 1:
+      produit:
+        - valeur: cotisations et contributions . cotisations . retraite de base . assiette
+          plafond: PSS proratisé
+        - taux
+      arrondi: oui
+      unité: €/an
+
+      avec:
+        taux:
+          variations:
+            - si: cotisations et contributions . après réforme
+              alors: 8.73%
+            - sinon: 8.23%
+
+    tranche 2:
+      produit:
+        - valeur: cotisations et contributions . cotisations . retraite de base . assiette
+          plafond: 5 * PSS proratisé
+        - 1.87%
+      arrondi: oui
+      unité: €/an
+
+      avec:
+        taux: 1.87%
+
+indépendant . profession libérale . CNAVPL . retraite complémentaire:
+  variations:
+    - si: profession libérale . réglementée . CARCDSF
+      alors: profession libérale . réglementée . CARCDSF . retraite complémentaire
+    - si: profession libérale . réglementée . CARMF
+      alors: profession libérale . réglementée . CARMF . retraite complémentaire
+    - si: profession libérale . réglementée . CARPIMKO
+      alors: profession libérale . réglementée . CARPIMKO . retraite complémentaire
+    - si: profession libérale . réglementée . CAVEC
+      alors: profession libérale . réglementée . CAVEC . retraite complémentaire
+    - si: profession libérale . réglementée . CAVP
+      alors: profession libérale . réglementée . CAVP . retraite complémentaire
+    - si: profession libérale . réglementée . CNBF
+      alors: profession libérale . réglementée . CNBF . retraite complémentaire
+    - sinon: Cipav . retraite complémentaire
+  unité: €/an
+
+indépendant . profession libérale . CNAVPL . invalidité et décès:
+  variations:
+    - si: profession libérale . réglementée . CARCDSF
+      alors: profession libérale . réglementée . CARCDSF . invalidité et décès
+    - si: profession libérale . réglementée . CARMF
+      alors: profession libérale . réglementée . CARMF . invalidité et décès
+    - si: profession libérale . réglementée . CARPIMKO
+      alors: profession libérale . réglementée . CARPIMKO . invalidité et décès
+    - si: profession libérale . réglementée . CAVEC
+      alors: profession libérale . réglementée . CAVEC . invalidité et décès
+    - si: profession libérale . réglementée . CAVP
+      alors: profession libérale . réglementée . CAVP . invalidité et décès
+    - si: profession libérale . réglementée . CNBF
+      alors: profession libérale . réglementée . CNBF . invalidité et décès
+    - sinon: Cipav . invalidité et décès
+  unité: €/an
+
+indépendant . profession libérale . CNAVPL . exonération incapacité:
+  description: |
+    Si vous avez été atteint d’une incapacité d’exercice de votre profession
+    pendant au moins six mois, vous êtes alors exonéré du paiement des cotisations
+    du régime général et, selon votre caisse, du régime complémentaire.
+  question: |
+    Avez-vous été atteint d’une incapacité d’exercice de votre profession
+    pendant au moins six mois consécutifs cette année ?
+  par défaut: non
+  références:
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=24
+    # https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=79

@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
@@ -7,10 +6,9 @@ import { useLocation } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
+import { References } from '@/components/documentation/References/References'
 import { Feedback } from '@/components/Feedback/Feedback'
-import { References } from '@/components/References'
 import { StatutType } from '@/components/StatutTag'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Article,
 	Button,
@@ -24,8 +22,10 @@ import {
 	Strong,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useSitePaths } from '@/sitePaths'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
@@ -156,14 +156,14 @@ function useSetStatutInSituation(dottedName: DottedName) {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				...setAllStatutTo('non'),
 				[dottedName]: 'oui',
 			})
 		)
 
 		return () => {
-			dispatch(batchUpdateSituation(setAllStatutTo(undefined)))
+			dispatch(enregistreLesRéponsesAuxQuestions(setAllStatutTo(undefined)))
 		}
 	}, [])
 }

@@ -1,0 +1,89 @@
+indépendant: oui
+
+indépendant . revenu professionnel:
+  résumé: rémunération du dirigeant au régime des indépendants
+  description:
+    Le revenu professionnel est la rémunération du dirigeant au régime
+    des indépendants.
+
+    Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il
+    s’agit du **résultat fiscal**.
+
+    Pour les entreprises qui ont opté pour l’**impôt sur les sociétés**, il
+    s’agit de la rémunération du dirigeant, auquel on ajoute les cotisations non
+    déductibles.
+  note: |
+    ### Comment est calculé le revenu professionnel à partir du chiffre d’affaires dans le simulateur ?
+
+    Pour retrouver le revenu professionnel il faut résoudre l’équation suivante :
+
+    `CA = revenu professionnel + charges + cotisations (revenu professionnel)`
+
+    Comme les cotisations dépendent du revenu professionnel, nous ne pouvons pas
+    avoir de formule « toute faite » pour le calculer. Nous procédons donc par un
+    algorithme qui retrouve la valeur qui fonctionne dans l’équation précédente.
+    C’est ce que signifie « résoudre la référence circulaire »
+
+    Cet algorithme fonctionne par essai-erreur, en testant des valeurs jusqu’à
+    trouver la bonne (avec une heuristique pour trouver les valeurs à tester).
+
+    Dans la réalité, comme les cotisations sont régularisées d’une année sur l’autre,
+    ce calcul n’est jamais à faire (sauf exceptions). Mais nous avons choisi de
+    l’implémenter pour fournir le résultat le plus proche sans avoir à demander le
+    montant des cotisations provisionnelles payées l’année N-1.
+
+  unité: €/an
+  résoudre la référence circulaire: oui
+  variations:
+    - si: entreprise . imposition . IS
+      alors:
+        somme:
+          - rémunération . nette
+          - cotisations et contributions . non déductibles
+    - sinon: entreprise . résultat fiscal
+
+indépendant . revenu brut:
+  description: |
+    Le revenu brut ou « super-brut » correspond au coût du travail ou encore au
+    chiffre d’affaires après déduction des charges professionnelles d’exploitations
+    (hors contributions et cotisations sociales).
+
+    ### À l’impôt sur le revenu
+
+    Le revenu brut correspond au
+    **chiffre d’affaires moins les charges** de l’entreprise liées à
+    l’exploitation, c’est-à-dire aux charges autres que les contributions et
+    cotisations sociales.
+
+    Pour les gérantes et gérants associées/associés, le chiffre d’affaires est
+    proratisé selon leurs parts.
+
+    ### À l’impôt sur les sociétés
+
+    Le revenu brut correspond à la **rémunération brute** et la part des dividendes
+    supérieure à 10 % du capital social. La rémunération brute prise en compte
+    n’inclue pas la déduction des frais professionnels, ni des contributions et
+    cotisations sociales.
+  variations:
+    - si: entreprise . imposition . IR
+      alors: entreprise . chiffre d'affaires - entreprise . charges
+    - sinon:
+        somme:
+          - rémunération . brute
+          - dividendes . soumis à cotisations sociales
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
+
+indépendant . PSS proratisé:
+  titre: plafond de la sécurité sociale proratisé
+  description: |
+    Le plafond de la sécurité sociale, proratisé par la durée d’activité pendant
+    l’année (dans le cas d’activité crée ou cessée en cours d’année).
+
+    Utile pour calculer les cotisations forfaitaires de début d’activité ou le
+    montant de l’Acre.
+  unité: €/an
+  produit:
+    - plafond sécurité sociale
+    - entreprise . prorata temporis
+  arrondi: oui

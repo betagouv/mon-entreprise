@@ -1,4 +1,4 @@
-import { DottedName } from 'modele-social'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export const normalizeRuleName = (dottedName: DottedName) =>
 	dottedName.replace(/\s|\./g, '_')

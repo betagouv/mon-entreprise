@@ -1,36 +1,17 @@
-import { useEngine } from '../utils/EngineContext'
+import { useEngine } from '@/utils/publicodes/EngineContext'
+
 import { ConditionProps } from './types'
 
-/**
- * Utilisation :
- *
- * <Condition expression={expression Publicodes}>
- * 	{ children }
- * </Condition>
- * Les enfants seront rendus si l'expression est vraie.
- * Exemple : <Condition expression={salarié . cotisations > 0}>
- *
- * <Condition non expression={expression Publicodes}>
- * 	{ children }
- * </Condition>
- * Les enfants seront rendus si l'expression est fausse.
- * Exemple : <Condition non expression={salarié . cotisations > 0}>
- * Cet exemple est équivalent à <Condition expression={salarié . cotisations <= 0}>
- * mais cette propriété est utile lorsque la condition d'affichage est du type
- * "toujours sauf toutes ces conditions" qui se traduit en Publicodes par
- * "toutes ces conditions" != oui
- */
 export function Condition({
 	expression,
 	children,
 	engine: engineFromProps,
 	contexte = {},
-	non = false,
 }: ConditionProps) {
 	const defaultEngine = useEngine()
 	const engine = engineFromProps ?? defaultEngine
 	const nodeValue = engine.evaluate({
-		'!=': [expression, non ? 'oui' : 'non'],
+		'!=': [expression, 'non'],
 		contexte,
 	}).nodeValue
 

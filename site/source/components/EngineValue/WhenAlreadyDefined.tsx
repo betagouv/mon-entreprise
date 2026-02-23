@@ -1,8 +1,8 @@
-import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import React from 'react'
 
-import { useEngine } from '../utils/EngineContext'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function WhenAlreadyDefined({
 	dottedName,

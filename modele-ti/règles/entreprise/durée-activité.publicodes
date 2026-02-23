@@ -1,0 +1,88 @@
+entreprise . date de création:
+  question: Quelle est votre date de début d’activité ?
+  par défaut: 01/01/2021
+  description: |
+    La date de début d’activité (ou date de création) est fixée lors de la
+    déclaration de votre entreprise.
+
+    Vous pouvez [renseigner votre entreprise](/), pour préremplir
+    automatiquement cette information.
+
+    Si vous n’avez pas le jour exact, le mois suffit en général pour une bonne
+    approximation.
+  suggestions:
+    Début d’année: période . début d'année
+    Début 2025: 01/01/2025
+    Il y a plus de 10 ans: 01/01/2016
+  type: date
+
+entreprise . date de création . contrôle date future:
+  type: notification
+  sévérité: avertissement
+  formule: date de création > période . fin d'année
+  description: Nous ne pouvons voir aussi loin dans le futur
+
+entreprise . date de création . contrôle date passée:
+  type: notification
+  sévérité: avertissement
+  formule: date de création < 01/1900
+  description: Il s’agit d’une très vieille entreprise ! Êtes-vous sûr de ne pas
+    vous être trompé dans la saisie ?
+
+entreprise . créée cette année:
+  titre: Entreprise créée cette année
+  formule:
+    toutes ces conditions:
+      - période . début d'année <= entreprise . date de création
+      - entreprise . date de création <= période . fin d'année
+  description: Indique si l’entreprise a été créée l’année de la simulation.
+
+entreprise . durée d'activité:
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: date
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+
+entreprise . durée d'activité cette année:
+  variations:
+    - si:
+        toutes ces conditions:
+          - créée cette année
+          - radiée cette année
+      alors:
+        somme:
+          - durée:
+              depuis: date de création
+              jusqu'à: date de cessation
+          - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+    - si: radiée cette année
+      alors:
+        somme:
+          - durée:
+              depuis: période . début d'année
+              jusqu'à: date de cessation
+          - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+    - si: créée cette année
+      alors: durée d'activité . en fin d'année
+    - sinon: 1 an
+  unité: jour
+
+entreprise . prorata temporis:
+  description: |
+    Pourcentage d’exercice de l’entreprise sur l’année en cours
+  unité: '%'
+  formule: entreprise . durée d'activité cette année / 1 an
+
+entreprise . durée d'activité . en fin d'année:
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: période . fin d'année
+    - applicable si: date de création <= période . fin d'année
+      valeur: 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+
+entreprise . durée d'activité . en début d'année:
+  durée:
+    depuis: date de création
+    jusqu'à: période . début d'année

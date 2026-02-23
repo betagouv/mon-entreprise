@@ -1,0 +1,93 @@
+protection sociale . retraite . complémentaire:
+  titre: Retraite complémentaire
+  description: |
+    Supplément de pension de retraite acquis grâce à 10 années complètes de
+    cotisation retraite complémentaire.
+
+    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
+    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
+    permet de comparer les régimes de retraite complémentaire entre eux
+  produit:
+    - somme:
+        - RCI
+        - Cipav
+    - 10 ans
+  arrondi: oui
+  unité: €/mois
+
+protection sociale . retraite . complémentaire . RCI:
+  acronyme: RCI
+  titre: retraite complémentaire des indépendants
+  non applicable si: indépendant . profession libérale . CNAVPL
+  produit:
+    - points acquis
+    - valeur du point
+  références:
+    Retraite complémentaire des indépendants: https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/travailleurs-independants/retraite-complementaire.html
+
+  avec:
+    points acquis:
+      non applicable si:
+        indépendant . cotisations et contributions .
+        cotisations . exonérations . invalidité # Non implémenté (cf règle)
+      arrondi: oui
+      valeur: indépendant . cotisations et contributions . cotisations . retraite complémentaire / valeur d'acquisition
+
+    valeur d'acquisition:
+      variations:
+        - si: date >= 01/2026
+          alors: 21.726 €/point
+        - si: date >= 01/2025
+          alors: 21.532 €/point
+        - si: date >= 01/2024
+          alors: 20.734 €/point
+        - sinon: 19.394 €/point
+      références:
+        Valeur d’achat du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_achat_point_bar.aspx
+
+    valeur du point:
+      variations:
+        - si: date >= 01/2026
+          alors: 1.347 €/an/point
+        - si: date >= 01/2025
+          alors: 1.335 €/an/point
+        - si: date >= 01/2024
+          alors: 1.327 €/an/point
+        - sinon: 1.280 €/an/point
+      références:
+        Valeur de service du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
+
+protection sociale . retraite . complémentaire . Cipav:
+  applicable si: indépendant . profession libérale . Cipav
+  produit:
+    - points acquis
+    - valeur de service du point
+  références:
+    Comment est calculée la retraite ?: https://www.lacipav.fr/sites/default/files/2025-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital%202025.pdf
+
+  avec:
+    points acquis:
+      valeur: montant cotisé / valeur d'acquisition
+      arrondi: oui
+
+    montant cotisé:
+      description: |
+        Le montant cotisé est calculé en multipliant l’**assiette des cotisations**
+        par un taux qui varie en fonction de la tranche de l’assiette des
+        cotisations.
+      variations:
+        - sinon: indépendant . profession libérale . Cipav . retraite complémentaire
+      unité: €/an
+
+    valeur d'acquisition:
+      variations:
+        - si: date >= 01/2024
+          alors: 47.40 €/point
+        - sinon: 45.30 €/point
+
+    valeur de service du point:
+      unité: €/an/point
+      variations:
+        - si: date >= 01/2024
+          alors: 2.89 €/an/point
+        - sinon: 2.77 €/an/point

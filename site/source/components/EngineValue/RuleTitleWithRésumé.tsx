@@ -1,7 +1,6 @@
-import { DottedName } from 'modele-social'
-
-import { useEngine } from '@/components/utils/EngineContext'
 import { Strong } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export default function RuleTitleWithRésumé({
 	dottedName,

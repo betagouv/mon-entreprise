@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
-import { useEngine } from '@/components/utils/EngineContext'
 import { Body, Message } from '@/design-system'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import { situationSelector } from '@/store/selectors/simulationSelectors'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,

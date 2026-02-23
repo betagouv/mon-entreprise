@@ -1,5 +1,4 @@
 import { isNone } from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,14 +9,15 @@ import { Body, Grid } from '@/design-system'
 import { Contexte } from '@/domaine/Contexte'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInitialRender } from '@/hooks/useInitialRender'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import LectureGuide from '../LectureGuide'
 import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
-import { useEngine } from '../utils/EngineContext'
 
 type SimulationValueProps = {
 	dottedName: DottedName

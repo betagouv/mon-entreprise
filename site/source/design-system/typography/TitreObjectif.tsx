@@ -12,7 +12,7 @@ type Props = {
 
 export const TitreObjectif = ({ id, children, noWrap = false }: Props) => {
 	return (
-		<StyledBody id={id} $noWrap={noWrap}>
+		<StyledBody as="span" id={id} $noWrap={noWrap}>
 			<Strong>{children}</Strong>
 		</StyledBody>
 	)

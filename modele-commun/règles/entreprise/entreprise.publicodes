@@ -1,0 +1,14 @@
+# Règles utilisées pour la recherche d'entreprise
+
+entreprise:
+
+entreprise . nom:
+  type: texte
+
+entreprise . SIREN:
+  description: |
+    Le numéro Siren est un numéro de 9 chiffres unique pour chaque entreprise. Exemple : 401237780
+  type: texte
+
+entreprise . code catégorie juridique:
+  description: Code représentant la catégorie juridique de l'entreprise, tel que défini par l'INSEE.

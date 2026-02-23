@@ -1,10 +1,10 @@
-import { DottedName } from 'modele-social'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
-import { enregistreLaRéponse } from '@/store/actions/actions'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import {
 	SwitchContainer,
@@ -35,7 +35,7 @@ export default function EffectifSwitch() {
 				value={currentEffectif}
 				onChange={(value) => {
 					setCurrentEffectif(value)
-					dispatch(enregistreLaRéponse(dottedName, value))
+					dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 				}}
 				aria-labelledby="effectif-switch-label"
 			>

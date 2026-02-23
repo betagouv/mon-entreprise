@@ -2,13 +2,9 @@ import { ComponentType, lazy, Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import {
-	Body,
-	Button,
-	Emoji,
-	Loader,
-	PopoverWithTrigger,
-} from '@/design-system'
+import { Body, Button, Emoji, PopoverWithTrigger } from '@/design-system'
+
+import Loader from './utils/Loader'
 
 const LazyIframe = lazy<ComponentType<{ src: string; onLoad: () => void }>>(
 	async () => {
@@ -93,18 +89,7 @@ export const ConseillersEntreprisesButton = ({
 							)}
 						</Body>
 
-						<Suspense
-							fallback={
-								<Container
-									style={{
-										height: '300px',
-										alignItems: 'center',
-									}}
-								>
-									<Loader />
-								</Container>
-							}
-						>
+						<Suspense fallback={<Loader />}>
 							<LazyIframe
 								src={url.href}
 								onLoad={function () {

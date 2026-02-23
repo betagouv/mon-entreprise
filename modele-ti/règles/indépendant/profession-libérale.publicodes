@@ -1,0 +1,187 @@
+indépendant . profession libérale:
+  titre: Profession libérale
+  valeur: entreprise . activité . libérale
+
+indépendant . profession libérale . non réglementée:
+  valeur: entreprise . activité . libérale . réglementée = non
+
+indépendant . profession libérale . non réglementée . option régime général:
+  description: |
+    Les personnes exerçant déjà une profession libérale non réglementée avant
+    2019, pouvaient opter entre 2019 et 2023 pour la Sécurité sociale des
+    indépendants, elle-même intégrée au régime général de la Sécurité sociale.
+
+    Depuis le 1er janvier 2024, les professions libérales non réglementées qui n’ont
+    pas demandé leur rattachement au régime général restent affiliés à la Cipav pour
+    la gestion de leur retraite et de leur invalidité-décès.
+  applicable si: entreprise . date de création < 01/2019
+  question: Avez-vous opté pour le rattachement au régime général des indépendants ?
+  par défaut: non
+
+indépendant . profession libérale . non réglementée . Cipav:
+  variations:
+    - si:
+        est applicable: option régime général
+      alors: option régime général = non
+    - sinon: non
+
+indépendant . profession libérale . non réglementée . taux spécifique retraite complémentaire:
+  description: |
+    Les professions libérales non règlementées dépendant du régime général des
+    travailleurs indépendants (ou Sécurité Sociale des Indépendants) avaient la
+    possibilité d’opter pour des taux spécifiques de cotisation retraite
+    complémentaire avant 2024.
+
+    Depuis le 1er janvier 2024, il n'est plus possible de bénéficier d’un taux
+    spécifique de retraite complémentaire pour les professions libérales non
+    réglementées. En revanche, ce taux spécifique continue de s'appliquer si
+    vous en avez fait la demande avant cette date.
+  applicable si:
+    toutes ces conditions:
+      - entreprise . date de création < 01/2024
+      - profession libérale . non réglementée . Cipav = non
+  question: Avez-vous opté pour des taux spécifiques de cotisation retraite
+    complémentaire ?
+  par défaut: non
+
+indépendant . profession libérale . réglementée:
+  valeur: entreprise . activité . libérale . réglementée
+
+indépendant . profession libérale . réglementée . métier:
+  applicable si: entreprise . activité . libérale . réglementée
+  par défaut: "'rattaché Cipav'"
+  question: A quelle catégorie appartient votre profession ?
+  une possibilité:
+    - santé
+    - juridique
+    - expert-comptable
+    - rattaché Cipav
+
+indépendant . profession libérale . réglementée . métier . rattaché Cipav:
+  titre: Autre métier rattaché à la Cipav
+  description: |
+    Vous exercez un métier réglementé rattaché à la Cipav. La liste de ces métiers est :
+
+    - Architecte (architecte, architecte d’intérieur, économiste de la construction, maître d’œuvre, géomètre expert)
+    - Guide-montagne (moniteur de ski, guide de haute montagne, accompagnateur de moyenne montagne)
+    - Ostéopathe
+    - Psychologue
+    - Psychothérapeute
+    - Psychomotriciens
+    - Ergothérapeute
+    - Diététicien
+    - Chiropracteur
+    - Ingénieur conseil
+    - Guide-conférencier
+    - Artistes autres que les artistes-auteurs
+    - Experts devant les tribunaux
+    - Experts automobiles
+    - Mandataires judiciaires à la protection des majeurs
+
+indépendant . profession libérale . réglementée . métier . santé:
+  titre: Professions de santé
+  question: Quel métier exercez-vous en tant que professionnel de santé ?
+  description: |
+    **Exceptions** : Les ostéopathe, psychologue, psychothérapeute, ergothérapeute,
+    diététicien et chiropracteur dépendent de la
+    Cipav pour leur retraite et invalidité.
+  une possibilité:
+    - médecin
+    - chirurgien-dentiste
+    - sage-femme
+    - auxiliaire médical
+    - pharmacien
+
+  avec:
+    auxiliaire médical:
+      description: |
+        Vous exercez un des métiers suivants : infirmier, masseur-kinésithérapeute, orthophoniste, orthoptiste ou pédicure-podologue.
+    chirurgien-dentiste:
+    médecin:
+
+    médecin . secteur:
+      applicable si: métier = 'santé . médecin'
+      question: Sur quel secteur êtes-vous conventionné ?
+      description: |
+        Les taux de cotisations et remboursement de la CPAM ne sont pas les même en
+        fonction du régime de tarification choisie par le praticien.
+      par défaut: "'S1'"
+      une possibilité:
+        - 'S1'
+        - 'S2'
+        - 'non conventionné'
+
+      avec:
+        non conventionné:
+
+        S1:
+          titre: Secteur 1
+
+        S2:
+          titre: Secteur 2
+
+    pharmacien:
+      titre: Pharmacien ou biologiste médical
+      description: Pharmaciens libéraux, officinaux et biologistes affiliés à la CAVP.
+    sage-femme:
+
+indépendant . profession libérale . réglementée . métier . juridique:
+  titre: Professions juridiques et judicaires
+  une possibilité:
+    - avocat
+    - notaire
+    - officier
+
+  avec:
+    avocat:
+      description: |
+        Les avocats cotisent auprès de la CNBF pour la retraite et la
+        prévoyance.
+
+    notaire:
+      experimental: oui
+      description: |
+        Les notaires libéraux cotisent auprès de la CPRN pour la retraite et la
+        prévoyance.
+
+        > Les règles de cotisation et de protection sociale de la CPRN ne sont
+        > pas implémentées.
+
+    officier:
+      experimental: oui
+      titre: Officier ministériel, officier public, compagnie judicaire
+      description: |
+        Les officiers ministériels, les officiers publics et les compagnies
+        judiciaires sont affiliées à la Cavom pour leur retraite et de prévoyance.
+
+        Liste des métiers concernés :
+
+        - Huissiers de justice ;
+        - Commissaires-priseurs (judiciaires et/ou de ventes volontaires) ;
+        - Commissaires de justice ;
+        - Greffiers près les tribunaux de commerce ;
+        - Administrateurs judiciaires ;
+        - Mandataires judiciaires.
+
+        > Les règles de cotisation et de protection sociale de la Cavom ne sont
+        > pas implémentées.
+
+indépendant . profession libérale . réglementée . métier . expert-comptable:
+  métier: expert-comptable, commissaire aux comptes
+  description: |
+    Les experts comptables et les commissaires aux comptes cotisent auprès de la CAVEC pour la retraite et la prévoyance.
+
+indépendant . profession libérale . cotisations caisse de retraite:
+  description: |
+    Les cotisations recouvrée par la caisse de retraite autonome spécifique à la
+    profession libérale effectuée.
+  note: |
+    Depuis 2023, les cotisations des professions libérales affiliées à la Cipav sont
+    recouvrées par l'Urssaf.
+  applicable si: CNAVPL . hors Urssaf
+  somme:
+    - cotisations et contributions . cotisations . retraite de base
+    - cotisations et contributions . cotisations . retraite complémentaire
+    - cotisations et contributions . cotisations . invalidité et décès
+    - cotisations et contributions . cotisations . PCV
+  arrondi: oui

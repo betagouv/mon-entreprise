@@ -120,7 +120,7 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     honoraires et des rémunérations forfaitaires versées par la CPAM.
   note: |
     Pour éviter d’avoir à ventiler les charges entre celles issues de
-    l’activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
+    l’activité conventionnée et celles qui ne le sont pas (ce qui aboutirait à
     deux comptabilités distinct), on peut le calculer à partir du revenu
     professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
     provenant des actes conventionnés.
@@ -271,7 +271,7 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     Plus le taux est faible, plus la participation CPAM est importante et donc
     la part à la charge du praticien est faible.
 
-    ## Calcul du taux
+    ### Calcul du taux
 
     La formule de calcul du taux de dépassement est la suivante :
 

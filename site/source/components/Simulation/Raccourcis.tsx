@@ -2,7 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Link, SmallBody } from '@/design-system'
-import { Raccourci } from '@/hooks/useQuestions'
+
+export interface Raccourci {
+	id: string
+	libellé: string
+}
 
 type Props = {
 	raccourcis: Raccourci[]

@@ -1,0 +1,36 @@
+{
+	"name": "modele-ti",
+	"version": "0.0.1",
+	"description": "Les règles publicodes du système social français pour les TI.",
+	"type": "module",
+	"main": "./dist/index.js",
+	"module": "dist/index.js",
+	"types": "./index.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"directory": "modele-ti"
+	},
+	"bugs": "https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%F0%9F%93%95+l%C3%A9gislation%22",
+	"homepage": "https://mon-entreprise.urssaf.fr/int%C3%A9gration/biblioth%C3%A8que-de-calcul",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"index.d.ts"
+	],
+	"devDependencies": {
+		"js-yaml": "^4.1.0",
+		"onchange": "^7.1.0"
+	},
+	"peerDependencies": {
+		"publicodes": "^1.0.4"
+	},
+	"scripts": {
+		"build": "node ../scripts/build-rules.js && echo 'ℹ️  Compilation effectuée'",
+		"start": "yarn run build && onchange 'règles/**/*.publicodes' -- yarn run build && echo 'ℹ️  Compilation effectuée'",
+		"clean": "rimraf dist node_modules",
+		"prepack": "yarn run build",
+		"up": "yarn version --minor && echo \"ℹ N'oubliez pas de poussez le tag git\"",
+		"test": "node ../scripts/check-changelog.js"
+	}
+}

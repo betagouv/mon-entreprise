@@ -1,4 +1,4 @@
-import { DottedName } from 'modele-social'
+import { DottedName } from './publicodes/DottedName'
 
 export type RaccourciPublicodes = {
 	label: string

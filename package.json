@@ -8,6 +8,8 @@
 	"type": "module",
 	"workspaces": [
 		"modele-social",
+		"modele-as",
+		"modele-ti",
 		"exoneration-covid",
 		"api",
 		"site",

@@ -1,10 +1,8 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { servicePAM } from '@/external-links/servicePAM'
-import { IndépendantPLSimulation } from '@/pages/simulateurs/indépendant/IndépendantPLSimulation'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import { configMédecin } from '../profession-libérale/simulationConfig'
+import { AvertissementMédecin } from './AvertissementMédecin'
+import Médecin from './Médecin'
 
 export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -33,10 +31,10 @@ export function médecinConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.médecin.title',
 			'Simulateur de revenus pour médecin en libéral'
 		),
-		externalLinks: [servicePAM, premiersMoisUrssaf],
 		path: sitePaths.simulateurs['profession-libérale'].médecin,
 		simulation: configMédecin,
 		codesCatégorieJuridique: ['1000', '5410'],
-		component: IndépendantPLSimulation,
+		component: Médecin,
+		warning: AvertissementMédecin,
 	} as const)
 }

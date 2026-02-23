@@ -1,11 +1,11 @@
 import * as A from 'effect/Array'
-import { DottedName } from 'modele-social'
+import * as R from 'effect/Record'
 import * as Optics from 'optics-ts'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { updateSituation } from '@/domaine/updateSituation'
-import { updateSituationMulti } from '@/domaine/updateSituationMulti'
 import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
 import { Action } from '@/store/actions/actions'
 import { omit, reject } from '@/utils'
@@ -16,6 +16,7 @@ export type QuestionRépondue = {
 }
 
 export type Simulation = {
+	key: string
 	config: SimulationConfig
 	url: string
 	hiddenNotifications: Array<string>
@@ -30,10 +31,11 @@ export function simulationReducer(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
-	if (action.type === 'SET_SIMULATION') {
-		const { config, url } = action
+	if (action.type === 'CONFIGURE_LA_SIMULATION') {
+		const { config, url, key } = action
 
 		return {
+			key,
 			config,
 			url,
 			hiddenNotifications: [],
@@ -55,7 +57,7 @@ export function simulationReducer(
 				hiddenNotifications: [...state.hiddenNotifications, action.id],
 			}
 
-		case 'RESET_SIMULATION':
+		case 'RÉINITIALISE_LA_SIMULATION':
 			return {
 				...state,
 				hiddenNotifications: [],
@@ -67,15 +69,26 @@ export function simulationReducer(
 		case 'AJUSTE_LA_SITUATION': {
 			return {
 				...state,
-				situation: updateSituationMulti(
-					state.config,
+				situation: R.reduce(
+					action.amendement,
 					state.situation,
-					action.amendement
+					(newSituation, value, dottedName) => {
+						if (value === undefined) {
+							return omit(newSituation, dottedName)
+						}
+
+						return updateSituation(
+							state.config,
+							newSituation,
+							dottedName,
+							value
+						)
+					}
 				),
 			}
 		}
 
-		case 'ENREGISTRE_LA_RÉPONSE': {
+		case 'ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION': {
 			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
 				(question) => question.règle === action.fieldName
 			)
@@ -99,7 +112,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'ENREGISTRE_LES_RÉPONSES': {
+		case 'ENREGISTRE_LES_RÉPONSES_À_LA_QUESTION': {
 			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
 				(question) => question.règle === action.règle
 			)
@@ -115,7 +128,6 @@ export function simulationReducer(
 				...state,
 				questionsRépondues: answeredQuestions,
 				situation: updateSituationMultiple(
-					state.config,
 					state.situation,
 					action.règle,
 					action.valeurs
@@ -123,7 +135,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'DELETE_FROM_SITUATION': {
+		case 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION': {
 			const newState = {
 				...state,
 				questionsRépondues: reject(
@@ -236,7 +248,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'QUESTIONS_SUIVANTES': {
+		case 'MET_À_JOUR_LES_QUESTIONS_SUIVANTES': {
 			const currentQuestion = state.currentQuestion
 			const pasDeQuestionEnCours = !currentQuestion
 			const questionEnCoursNEstPasÀRépondre = currentQuestion

@@ -1,0 +1,72 @@
+# La règle parente "entreprise" est dans modele-commun
+
+entreprise . salariés:
+
+entreprise . salariés . effectif:
+  unité: employé
+  variations:
+    - si: seuil = 'moins de 5'
+      alors: 4 employé
+    - si: seuil = 'moins de 50'
+      alors: 49 employé
+    - si: seuil = 'moins de 250'
+      alors: 249 employé
+    - si: seuil = 'moins de 2000'
+      alors: 251 employé
+    - si: seuil = '2000 ou plus'
+      alors: 2000 employé
+
+  avec:
+    seuil:
+      titre: seuil d’effectif
+      question: Quel est l’effectif de l’entreprise ?
+      description: >
+        De nombreuses cotisations patronales varient selon l’effectif de
+        l’entreprise.
+
+        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
+      une possibilité:
+        - moins de 5
+        - moins de 50
+        - moins de 250
+        - moins de 2000
+        - plus de 2000
+      par défaut: "'moins de 5'"
+      avec:
+        moins de 5:
+        moins de 50:
+          titre: entre 20 et 49
+        moins de 250:
+          titre: entre 150 et 249
+        moins de 2000:
+          titre: entre 250 et 1 999
+        plus de 2000:
+          titre: 2 000 et plus
+
+entreprise . salariés . ratio alternants:
+  question:
+    Quelle est la fraction de contrats d’alternance dans l’effectif moyen
+    de l’entreprise ?
+  titre: Fraction d’alternants
+  description: |
+    Cette fraction détermine la contribution supplémentaire pour l’apprentissage pour les entreprises concernées.
+  suggestions:
+    1%: 1%
+    5%: 5%
+  par défaut: 0%
+
+entreprise . TVA:
+  question: L’entreprise est-elle assujettie à la TVA ?
+  par défaut: oui
+  description: |
+    Certains types d’entreprises ne sont pas assujetties à la TVA.
+    Ces dernières payent la taxe sur les salaires en contrepartie.
+
+    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
+
+    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
+
+  références:
+    Les régimes d’imposition à la TVA: https://www.impots.gouv.fr/professionnel/les-regimes-dimposition-la-tva
+    Tout savoir sur la TVA: https://entreprendre.service-public.fr/vosdroits/N13445
+    Liste des activités exonérées (Article 61 du Code général des impôts): https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006179649/

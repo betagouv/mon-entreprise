@@ -1,0 +1,435 @@
+indépendant . cotisations et contributions . cotisations:
+  somme:
+    - maladie-maternité
+    - indemnités journalières
+    - allocations familiales
+    - retraite de base
+    - retraite complémentaire
+    - PCV
+    - invalidité et décès
+  abattement:
+    le maximum de:
+      - exonérations . Acre . montant
+      - exonérations . invalidité . montant
+  arrondi: oui
+  unité: €/an
+  références:
+    Taux de cotisations - Artisan, commerçant et profession libérale non réglementée: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html
+    Taux de cotisations - Professions libérales réglementées hors Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-hors-cipav.html
+    Taux de cotisations - Profession libérale réglementée relevant de la Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html
+    Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
+
+indépendant . cotisations et contributions . cotisations . maladie-maternité:
+  description: |
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
+
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
+    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
+    souscrire une assurance maladie complémentaire.
+  variations:
+    - si:
+        est applicable: domiciliation fiscale étranger
+      alors: domiciliation fiscale étranger
+    # Cotisation spécifique PLR avant réforme :
+    - si:
+        est applicable: profession libérale . CNAVPL . maladie
+      alors: profession libérale . CNAVPL . maladie
+    # Cotisation commune après réforme :
+    - sinon:
+        barème:
+          assiette: assiette
+          multiplicateur: PSS proratisé
+          tranches:
+            - taux: taux 1
+              plafond: plafond taux 1
+            - taux: taux 2
+  arrondi: oui
+  unité: €/an
+  références:
+    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
+    Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
+    Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
+
+  avec:
+    assiette:
+      valeur: assiette sociale
+      plancher: plancher assiette
+
+    plancher assiette:
+      variations:
+        - si: après réforme
+          alors: 0
+        - sinon: assiette minimale . maladie
+
+    plafond taux 1:
+      variations:
+        - si: après réforme
+          alors: 3
+        - sinon: 5
+
+    taux 1:
+      arrondi: 2 décimales
+      variations:
+        - si: après réforme
+          alors:
+            variations:
+              - si: établissement . commune . département . outre-mer
+                alors: 8.50%
+              - sinon:
+                  taux progressif:
+                    assiette: assiette sociale
+                    multiplicateur: PSS proratisé
+                    tranches:
+                      - taux: 0%
+                        plafond: 20%
+                      - taux: 1.50%
+                        plafond: 40%
+                      - taux: 4.00%
+                        plafond: 60%
+                      - taux: 6.50%
+                        plafond: 110%
+                      - taux: 7.70%
+                        plafond: 200%
+                      - taux: 8.50%
+                        plafond: 300%
+        - sinon:
+            taux progressif:
+              assiette: assiette sociale
+              multiplicateur: PSS proratisé
+              tranches:
+                - taux: 0%
+                  plafond: 40%
+                - taux: 4%
+                  plafond: 60%
+                - taux: 6.70%
+                  plafond: 110%
+                - taux: 6.70%
+                  plafond: 500%
+      références:
+        Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
+
+    taux 2:
+      valeur: 6.50%
+      références:
+        Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
+
+indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
+  description: |
+    En contrepartie de l’exonération de CSG, les cotisants ont un taux
+    maladie plus elevé. Contrairement aux autres assurés commerçants/artisans
+    ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
+    fonction du revenu déclaré.
+  applicable si: situation personnelle . domiciliation fiscale à l'étranger
+  produit:
+    - assiette sociale
+    - taux
+  arrondi: oui
+  unité: €/an
+
+  avec:
+    taux: 14.5%
+
+indépendant . cotisations et contributions . cotisations . indemnités journalières:
+  description: |
+    Cette cotisation permet d’obtenir le versement d’indemnités journalières en cas
+    d’arrêt de travail pour cause de maladie ou d’accident.
+
+    Les indemnités sont calculées sur la base du revenu moyen soumis à cotisations
+    des trois dernières années.
+  note: |
+    Les avocats ne sont pas redevables de cette cotisation car ils cotisent déjà à
+    une caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
+  non applicable si: profession libérale . réglementée . CNBF
+  produit:
+    - assiette
+    - taux
+  arrondi: oui
+  unité: €/an
+  références:
+    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Article D621-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904537
+
+  avec:
+    assiette:
+      valeur: assiette sociale
+      plancher: assiette minimale . indemnités journalières
+      plafond:
+        produit:
+          - plafond sécurité sociale
+          - variations:
+              - si: profession libérale . CNAVPL
+                alors: 3
+              - sinon: 5
+
+    taux:
+      valeur:
+        variations:
+          - si: profession libérale . CNAVPL
+            alors: 0.30%
+          - sinon:
+              variations:
+                - si: date >= 01/2024
+                  alors: 0.50%
+                - sinon: 0.85%
+
+indépendant . cotisations et contributions . cotisations . allocations familiales:
+  description: |
+    Cette cotisation permet de bénéficier des allocations familiales versées par la
+    caisse d’allocations familiales dans les mêmes conditions que les salariés :
+
+    - compensation des charges familiales (naissance, enfant à charge, garde,
+    rentrée scolaire) ;
+    - prestations liées au logement, handicap, précarité (RSA...).
+
+    Le versement de la plupart de ces prestations est soumis à des conditions de
+    ressources.
+    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
+    des revenus de la famille.
+  produit:
+    - assiette sociale
+    - taux
+  arrondi: oui
+  unité: €/an
+  références:
+    Allocations familiales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-allocations-familiales
+    Article D613-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966324
+
+  avec:
+    taux:
+      arrondi: 2 décimales
+      variations:
+        - si: établissement . commune . département . outre-mer
+          alors: 3.10%
+        - sinon:
+            taux progressif:
+              assiette: assiette sociale
+              multiplicateur: PSS proratisé
+              tranches:
+                - plafond: 110%
+                  taux: 0%
+                - plafond: 140%
+                  taux: 3.10%
+
+indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
+  valeur: assiette sociale
+  abattement:
+    applicable si: conjoint collaborateur . choix assiette . revenu avec partage
+    valeur: conjoint collaborateur . assiette de cotisations
+
+indépendant . cotisations et contributions . cotisations . retraite de base:
+  description: |
+    ### Artisans, commerçants et professions libérales non réglementées
+
+    Depuis 1973, la cotisation versée au titre de l’assurance vieillesse de base
+    permet aux artisans et commerçants de bénéficier d’une retraite de base calculée
+    de la même manière que les salariés.
+
+    Le régime est géré depuis 2020 par l’assurance retraite et les Carsat et se
+    fonde sur la solidarité nationale.
+
+    Il garantit des pensions égales à celles des salariés non cadres du secteur
+    privé pour une durée et un niveau de cotisation identique.
+
+    ### Professions libérales réglementées
+
+    Pour les professions libérales réglementées, c'est la CNAVPL (caisse nationale
+    d'assurance vieillesse des professions libérales) qui gère le régime de
+    retraite de base.
+
+    À l'exception des avocats, toutes les professions libérales réglementées ont
+    les mêmes taux de cotisations pour leur retraite de base.
+
+    Les régimes de retraite complémentaire, d'invalidité décès et de prévoyance
+    complémentaire sont gérées par les caisses spécifiques à chaque profession
+    (Cipav, CARPIMKO, CARCDSF, CAVEC...). La CNAVPL est l'organisme qui fédère
+    ces différentes caisses.
+  variations:
+    - si: profession libérale . réglementée . CNBF
+      alors: profession libérale . réglementée . CNBF . retraite de base
+    - si: profession libérale . CNAVPL
+      alors: profession libérale . CNAVPL . retraite de base
+    - sinon:
+        # Le code de la sécurité sociale décrit un calcul identique à celui des PLR
+        # (taux T1 sur la part de l'assiette < PASS + taux T2 sur toute l'assiette)
+        # mais l'Urssaf calcule différemment (taux T2 sur la part de l'assiette > PASS
+        # uniquement) et a insisté pour que l'on reprenne leur méthode.
+        barème:
+          assiette: assiette
+          multiplicateur: PSS proratisé
+          tranches:
+            - taux: taux T1
+              plafond: 1
+            - taux: taux T2
+  abattement:
+    applicable si: profession libérale . CNAVPL . exonération incapacité
+    valeur: 100%
+  arrondi: oui
+  unité: €/an
+  références:
+    Retraite de base: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-de-base
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Article D633-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838330
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=23
+    Article D633-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904636
+
+  avec:
+    assiette:
+      valeur: assiette retraite et invalidité-décès
+      plancher: assiette minimale . retraite
+      abattement:
+        applicable si: déduction tabac
+        valeur: déduction tabac
+      références:
+        Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+        Article D633-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838330
+        Article D642-4 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838321
+
+    taux T1:
+      variations:
+        - si: après réforme
+          alors: 17.87%
+        - sinon: 17.75%
+      références:
+        Article D633-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904636
+
+    taux T2:
+      variations:
+        - si: après réforme
+          alors: 0.72%
+        - sinon: 0.60%
+      références:
+        Article D633-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904636
+
+indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+  description: |
+    Depuis le 1er janvier 2013, les artisans et les commerçants bénéficient de
+    droits identiques en matière de retraite complémentaire.
+    Ce régime commun est géré, depuis 2020 par l’assurance et les Carsat, suivant le
+    principe de répartition avec la constitution d’une réserve de sécurité qui
+    garantit à long terme son équilibre.
+
+    Il fonctionne selon les mêmes principes que les régimes de retraite
+    complémentaire des salariés.
+  variations:
+    - si: profession libérale . CNAVPL
+      alors: profession libérale . CNAVPL . retraite complémentaire
+    - sinon:
+        variations:
+          - si: profession libérale . non réglementée . taux spécifique retraite complémentaire
+            alors:
+              barème:
+                assiette: assiette
+                multiplicateur: PSS proratisé
+                tranches:
+                  - taux: 0%
+                    plafond: 1
+                  - taux: 14%
+                    plafond: 4
+              arrondi: oui
+          - sinon:
+              barème:
+                assiette: assiette
+                tranches:
+                  - taux: taux tranche 1
+                    plafond:
+                      variations:
+                        - si: après réforme
+                          alors: PSS proratisé
+                        - sinon: PRCI
+                  - taux: taux tranche 2
+                    plafond: 4 * PSS proratisé
+              arrondi: oui
+  arrondi: oui
+  unité: €/an
+  références:
+    Retraite complémentaire: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-retraite-complementaire
+    Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
+
+  avec:
+    assiette:
+      valeur: assiette retraite et invalidité-décès
+      abattement:
+        applicable si: déduction tabac
+        valeur: déduction tabac
+
+    taux tranche 1:
+      variations:
+        - si: après réforme
+          alors: 8.1%
+        - sinon: 7%
+      références:
+        Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
+
+    taux tranche 2:
+      variations:
+        - si: après réforme
+          alors: 9.1%
+        - sinon: 8%
+      références:
+        Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
+
+    PRCI:
+      titre: plafond retraite complémentaire des indépendants
+      valeur:
+        produit:
+          - entreprise . prorata temporis
+          - variations:
+              - si: date >= 01/2025
+                alors: 43891 €/an
+              - si: date >= 01/2024
+                alors: 42946 €/an
+              - sinon: 40784 €/an
+      références:
+        Plafond de cotisations - Régime complémentaire des indépendants: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=ti_cotisation_plafond_cotisation_rci.aspx
+
+indépendant . cotisations et contributions . cotisations . PCV:
+  titre: Prestations complémentaires vieillesse
+  acronyme: PCV
+  description: |
+    Certaines catégories professionnelles bénéficient de
+    prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
+    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
+    chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
+    directeurs de laboratoires. Ce régime résulte de la prise en charge
+    partielle par l’Assurance maladie de leurs cotisations d’assurance
+    vieillesse sous réserve qu’ils aient exercé leur activité dans le cadre
+    conventionnel.
+  applicable si: profession libérale . réglementée . PAMC
+  valeur: profession libérale . réglementée . PAMC . PCV
+
+indépendant . cotisations et contributions . cotisations . invalidité et décès:
+  description: |
+    Cette cotisation permet de bénéficier, sous certaines conditions, d’une pension
+    d’invalidité avant l’âge de départ à la retraite.
+
+    L’assurance décès garantit le versement aux ayants droit d’un capital décès quel
+    que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
+  variations:
+    - si: profession libérale . CNAVPL
+      alors: profession libérale . CNAVPL . invalidité et décès
+    - sinon:
+        produit:
+          - assiette
+          - 1.3%
+        arrondi: oui
+  abattement: exonérations . âge . montant
+  arrondi: oui
+  unité: €/an
+  références:
+    Invalidité-décès: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-invalidite-deces
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
+    Article D632-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036471466
+
+  avec:
+    assiette:
+      valeur: assiette retraite et invalidité-décès
+      plancher: assiette minimale . invalidité et décès
+      plafond: PSS proratisé
+      abattement:
+        applicable si: déduction tabac
+        valeur: déduction tabac

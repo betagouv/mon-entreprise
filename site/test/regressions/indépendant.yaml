@@ -1,160 +1,157 @@
 échelle de revenus:
-  - dirigeant . rémunération . net: 500 €/an
-  - dirigeant . rémunération . net: 1000 €/an
-  - dirigeant . rémunération . net: 1500 €/an
-  - dirigeant . rémunération . net: 2000 €/an
-  - dirigeant . rémunération . net: 5000 €/an
-  - dirigeant . rémunération . net: 10000 €/an
-  - dirigeant . rémunération . net: 100000 €/an
-  - dirigeant . rémunération . net: 1000000 €/an
+  - indépendant . rémunération . nette: 500 €/an
+  - indépendant . rémunération . nette: 1000 €/an
+  - indépendant . rémunération . nette: 1500 €/an
+  - indépendant . rémunération . nette: 2000 €/an
+  - indépendant . rémunération . nette: 5000 €/an
+  - indépendant . rémunération . nette: 10000 €/an
+  - indépendant . rémunération . nette: 100000 €/an
+  - indépendant . rémunération . nette: 1000000 €/an
 
 années précédentes:
-  - dirigeant . rémunération . net: 60000 €/an
+  - indépendant . rémunération . nette: 60000 €/an
     date: 01/2025
-  - dirigeant . rémunération . net: 50000 €/an
+  - indépendant . rémunération . nette: 50000 €/an
     date: 01/2024
-  - dirigeant . rémunération . net: 40000 €/an
+  - indépendant . rémunération . nette: 40000 €/an
     date: 01/2023
 
-inversions:
-  - dirigeant . rémunération . totale: 2000 €/an
-  - dirigeant . rémunération . totale: 5000 €/mois
-    entreprise . imposition: "'IS'"
-  - dirigeant . rémunération . net . après impôt: 10000 €/an
-  - dirigeant . rémunération . net . après impôt: 10000 €/an
+inversions IS:
+  - indépendant . rémunération . nette: 10000 €/an
+  - indépendant . rémunération . nette . après impôt: 10000 €/an
+
+inversions IR:
+  - entreprise . imposition: "'IR'"
+    entreprise . chiffre d'affaires: 20000 €/an
     entreprise . charges: 1000 €/an
-  - dirigeant . rémunération . net . après impôt: 3000 €/mois
-    entreprise . imposition: "'IS'"
-  - entreprise . chiffre d'affaires: 20000 €/an
-    entreprise . charges: 1000 €/an
-  - entreprise . chiffre d'affaires: 20000 €/an
-    entreprise . charges: 2000 €/an
+  - entreprise . imposition: "'IR'"
+    indépendant . rémunération . nette: 10000 €/an
+  - entreprise . imposition: "'IR'"
+    indépendant . rémunération . nette . après impôt: 3000 €/mois
 
 cotisations minimales:
-  - dirigeant . rémunération . net: 100 €/an
-  - dirigeant . rémunération . net: 100 €/an
+  - indépendant . rémunération . nette: 100 €/an
+  - indépendant . rémunération . nette: 100 €/an
     situation personnelle . RSA: oui
-  - dirigeant . rémunération . net: 800 €/an
-    entreprise . activités . saisonnière: oui
+  - indépendant . rémunération . nette: 800 €/an
+    entreprise . activité . saisonnière: oui
 
 activité:
-  - dirigeant . rémunération . net: 20000 €/an
-    entreprise . activité . nature: "'libérale'"
-  - dirigeant . rémunération . net: 20000 €/an
-    entreprise . activité . nature: "'artisanale'"
+  - indépendant . rémunération . nette: 20000 €/an
+    entreprise . activité . libérale: oui
+  - indépendant . rémunération . nette: 20000 €/an
+    entreprise . activité . artisanale: oui
 
 acre:
-  - dirigeant . rémunération . net: 50000 €/an
+  - indépendant . rémunération . nette: 50000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
 
 impôt sur le revenu:
-  - dirigeant . rémunération . net: 20000 €/an
+  - indépendant . rémunération . nette: 20000 €/an
     impôt . méthode de calcul: "'taux personnalisé'"
     impôt . taux personnalisé: 10%
 
 conjoint collaborateur:
   - &conjoint-collab
-    dirigeant . rémunération . net: 50000 €/an
-    dirigeant . indépendant . conjoint collaborateur: oui
+    indépendant . rémunération . nette: 50000 €/an
+    indépendant . conjoint collaborateur: oui
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
-    dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    indépendant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
   - <<: *conjoint-collab
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
-    dirigeant . indépendant . conjoint collaborateur . assiette . pourcentage: "'moitié'"
+    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    indépendant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
   - <<: *conjoint-collab
-    dirigeant . rémunération . net: 500000 €/an
-    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    indépendant . rémunération . nette: 500000 €/an
+    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
 
 cotisations facultatives:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des
   # cotisations ne change pas:
-  - dirigeant . rémunération . totale: 30000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 3800 €/an # plafond: 10% PSS donc environ 4100
-  # Cas retraite: la cotisation Madelin est supérieure au plafond => le revenu net de
+  - indépendant . rémunération . brute: 30000 €/an
+    indépendant . cotisations facultatives: oui
+    indépendant . cotisations facultatives . prévoyance: 0 €/an
+    indépendant . cotisations facultatives . retraite: 3800 €/an # plafond: 10% PSS donc environ 4100
+  # Cas retraite: la cotisation retraite est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
-  - dirigeant . rémunération . totale: 30000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 5000 €/an # plafond: 10% PSS donc environ 4100
-  # Cas mutuelle
-  - dirigeant . rémunération . totale: 30000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 1000 €/an
-  # Cas global madelin faible
-  - dirigeant . rémunération . totale: 20000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 200 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 300 €/an
-  # Cas global madelin grand (plafonds calculés différemment)
-  - dirigeant . rémunération . totale: 300000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 1500 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
-  # Cas madelin + PER grand
-  - dirigeant . rémunération . totale: 300000 €/an
-    dirigeant . indépendant . cotisations facultatives: oui
-    dirigeant . indépendant . cotisations facultatives . PER: 3500 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . prévoyance: 1500 €/an
-    dirigeant . indépendant . cotisations facultatives . contrats madelin . retraite: 5000 €/an
+  - indépendant . rémunération . brute: 30000 €/an
+    indépendant . cotisations facultatives: oui
+    indépendant . cotisations facultatives . prévoyance: 0 €/an
+    indépendant . cotisations facultatives . retraite: 5000 €/an # plafond: 10% PSS donc environ 4100
+  # Cas prévoyance
+  - indépendant . rémunération . brute: 30000 €/an
+    indépendant . cotisations facultatives: oui
+    indépendant . cotisations facultatives . prévoyance: 1000 €/an
+  # Cas global faible
+  - indépendant . rémunération . brute: 20000 €/an
+    indépendant . cotisations facultatives: oui
+    indépendant . cotisations facultatives . prévoyance: 200 €/an
+    indépendant . cotisations facultatives . retraite: 300 €/an
+  # Cas global grand (plafonds calculés différemment)
+  - indépendant . rémunération . brute: 300000 €/an
+    indépendant . cotisations facultatives: oui
+    indépendant . cotisations facultatives . prévoyance: 1500 €/an
+    indépendant . cotisations facultatives . retraite: 5000 €/an
+  # Cas retraite grand
+  - indépendant . rémunération . brute: 300000 €/an
+    indépendant . cotisations facultatives: oui
+    indépendant . cotisations facultatives . prévoyance: 1500 €/an
+    indépendant . cotisations facultatives . retraite: 8500 €/an
 
-imposition à l'IS:
+imposition à l'IR:
   - entreprise . chiffre d'affaires: 100000 €/an
-    entreprise . imposition: "'IS'"
-  - entreprise . chiffre d'affaires: 100000 €/an
-    entreprise . imposition: "'IS'"
-    impôt . méthode de calcul: "'barème standard'"
+    entreprise . imposition: "'IR'"
 
-exonération pension invalidité:
-  - dirigeant . rémunération . totale: 45000 €/an
-    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
+exonération invalidité:
+  - indépendant . rémunération . brute: 45000 €/an
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
   # Partielle
-  - dirigeant . rémunération . totale: 9000 €/an
-    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
-    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . durée: 4 mois
-  # Cumul ACRE
-  - dirigeant . rémunération . totale: 10000 €/an
-    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
+  - indépendant . rémunération . brute: 9000 €/an
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 4 mois
+  # Cumul Acre
+  - indépendant . rémunération . brute: 10000 €/an
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
   # Cumul âge
-  - dirigeant . rémunération . totale: 15000 €/an
-    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité: oui
-    dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité . durée: 10 mois
+  - indépendant . rémunération . brute: 15000 €/an
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 10 mois
     entreprise . date de création: 01/01/2010
-    dirigeant . indépendant . cotisations et contributions . exonérations . âge: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . âge: oui
 
 exonération âge:
-  - dirigeant . rémunération . totale: 55000 €/an
+  - indépendant . rémunération . brute: 55000 €/an
     entreprise . date de création: 01/01/2010
-    dirigeant . indépendant . cotisations et contributions . exonérations . âge: oui
+    indépendant . cotisations et contributions . cotisations . exonérations . âge: oui
 
 DROM:
-  - dirigeant . rémunération . totale: 20000 €/an
+  - indépendant . rémunération . brute: 20000 €/an
     établissement . commune . département . outre-mer: oui
 
 cotisations forfaitaires début d'activité:
-  - dirigeant . rémunération . totale: 50000 €/an
+  - indépendant . rémunération . brute: 50000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: non
+    indépendant . cotisations et contributions . cotisations . exonérations . Acre: non
 
 Année incomplète:
   - &AnnéeIncomplete
     entreprise . date de création: 01/05/2025
     entreprise . date de cessation: 31/08/2025
   - <<: *AnnéeIncomplete
-    dirigeant . rémunération . net: 2000 €/an
+    indépendant . rémunération . nette: 2000 €/an
   - <<: *AnnéeIncomplete
-    dirigeant . rémunération . net: 5000 €/an
+    indépendant . rémunération . nette: 5000 €/an
   - <<: *AnnéeIncomplete
-    dirigeant . rémunération . net: 10000 €/an
+    indépendant . rémunération . nette: 10000 €/an
   - <<: *AnnéeIncomplete
-    dirigeant . rémunération . net: 100000 €/an
+    indépendant . rémunération . nette: 100000 €/an
   - <<: *AnnéeIncomplete
-    dirigeant . rémunération . net: 1000000 €/an
+    indépendant . rémunération . nette: 1000000 €/an

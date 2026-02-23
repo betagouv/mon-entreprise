@@ -1,10 +1,8 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
 	Body,
@@ -15,8 +13,10 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn, Montant } from '@/domaine/Montant'
-import { batchUpdateSituation } from '@/store/actions/actions'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { debounce } from '@/utils'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -182,7 +182,7 @@ function useChiffreAffairesState(): [
 	const debouncedUpdateSituation = useCallback(
 		debounce(1000, (newState: CAState) => {
 			dispatch(
-				batchUpdateSituation({
+				enregistreLesRéponsesAuxQuestions({
 					"entreprise . chiffre d'affaires": O.some(newState.CA),
 					'entreprise . charges': O.some(newState.charges),
 					'dirigeant . rémunération . totale': O.none(),
@@ -231,7 +231,7 @@ function useRémunérationTotaleState(): [
 	const debouncedUpdateSituation = useCallback(
 		debounce(1000, (newState: RémunérationState) => {
 			dispatch(
-				batchUpdateSituation({
+				enregistreLesRéponsesAuxQuestions({
 					"entreprise . chiffre d'affaires": O.none(),
 					'entreprise . charges': O.none(),
 					'dirigeant . rémunération . totale': O.fromNullable(

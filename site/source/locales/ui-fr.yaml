@@ -49,17 +49,16 @@ Charger plus de résultats: Charger plus de résultats
 Charges: Charges
 Chiffre d'affaires: Chiffre d'affaires
 Chiffre d'affaires estimé: Chiffre d'affaires estimé
-Chiffre d'affaires pour l'année de cessation: Chiffre d'affaires pour l'année de cessation
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
 Commune ou code postal: Commune ou code postal
 Communes et code postaux correspondants: Communes et code postaux correspondants
 Confirmer: Confirmer
+Contactez-nous: Contactez-nous
 Cotisations: Cotisations
 Cotisations sociales: Cotisations sociales
 "Crée le :": "Crée le :"
-Dividendes nets: Dividendes nets
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
 Donner votre avis: Donner votre avis
@@ -76,7 +75,6 @@ En savoir plus: En savoir plus
 "En savoir plus sur ": "En savoir plus sur "
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
-Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>
 EntrepriseSearchField:
   description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
     entreprise. Exemple : 40123778000127"
@@ -96,7 +94,6 @@ Graphique détaillant la satisfaction des utilisateurs (alternative accessible a
 Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
   Graphique détaillant le nombre de visites (alternative accessible avec
   l'interrupteur en début de section)
-Impôt: Impôt
 Impôt au barème: Impôt au barème
 Impôt sur le revenu: Impôt sur le revenu
 Impôts: Impôts
@@ -122,7 +119,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
 "Lire la documentation au sujet de :": "Lire la documentation au sujet de :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
-Liste des intégrations: Liste des intégrations
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
@@ -160,10 +156,6 @@ Passer: Passer
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
 Plus de 50 salariés: Plus de 50 salariés
-Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
-  urssaf:
-    fr</2>: Pour en savoir plus, rendez-vous sur le site
-      <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Précédent: Précédent
@@ -186,12 +178,10 @@ Retrouver ma précédente simulation, charger les données de ma précédente si
   simulation.
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
-Revenu disponible: Revenu disponible
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
-Rémunération totale pour l'année de cessation: Rémunération totale pour l'année de cessation
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
 Salaire brut: Salaire brut
 Salaire net: Salaire net
@@ -217,7 +207,6 @@ Tableau indiquant le nombre de visites par {{period}}.: Tableau indiquant le nom
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
 Titres-restaurant: Titres-restaurant
 Total des cotisations et contributions: Total des cotisations et contributions
-Total des cotisations à devoir pour l'année de cessation d'activité: Total des cotisations à devoir pour l'année de cessation d'activité
 Tout déplier: Tout déplier
 Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
@@ -228,8 +217,7 @@ Urssaf, voir le site urssaf:
   fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
-Voir la fiche Urssaf: Voir la fiche Urssaf
-Voir la fiche de paie: Voir la fiche de paie
+Version bêta: Version bêta
 Voir les autres simulateurs: Voir les autres simulateurs
 Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
 Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
@@ -260,6 +248,21 @@ août: août
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
+aquoiserventmescotisations:
+  en-savoir-plus: Pour en savoir plus, rendez-vous sur le site
+    <2>aquoiserventlescotisations.urssaf.fr</2>
+  h2: À quoi servent mes cotisations ?
+aria-label:
+  aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, nouvelle fenêtre
+  beta-gouv: beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre
+  cpam: CPAM, accéder à ameli.fr, nouvelle fenêtre
+  dgfip: DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre
+  economie-gouv: economie.gouv.fr, nouvelle fenêtre
+  entreprendre-service-public: entreprendre.service-public.fr, nouvelle fenêtre
+  ircec: Ircec, accéder à ircec.fr, nouvelle fenêtre
+  service-public: service-public.fr, nouvelle fenêtre
+  urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
+  équipe: équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre
 assistants:
   pour-mon-entreprise:
     annuaire-entreprises:
@@ -285,8 +288,11 @@ betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
 cards:
   simulator-resource:
     cta: Accéder au simulateur
-certains critères, en savoir plus sur service-public:
-  fr, nouvelle fenêtre: certains critères, en savoir plus sur service-public.fr, nouvelle fenêtre
+certains critères, en savoir plus sur entreprendre:
+  service-public:
+    gouv:
+      fr, nouvelle fenêtre: certains critères, en savoir plus sur
+        entreprendre.service-public.gouv.fr, nouvelle fenêtre
 checklist:
   showmore:
     closed: En savoir plus
@@ -369,8 +375,8 @@ choix-statut:
     intro: La première étape pour créer votre entreprise consiste à <2>choisir un
       statut juridique adapté à votre activité</2>. Les démarches
       administratives changent en fonction de ce dernier.
-    warning-entreprise-existante: <0>Une entreprise a déjà renseignée</0><1>Pour
-      accéder à l'assistant, il vous faut réinitialiser les données</1>
+    warning-entreprise-existante: <0>Une entreprise est déjà renseignée</0><1>Pour
+      accéder à l'assistant, il vous faut réinitialiser les données.</1>
   rémunération:
     CA:
       help:
@@ -476,7 +482,6 @@ créer:
       aide-cci-cma: Si vous hésitez entre une activité artisanale ou commerciale, vous
         pouvez consulter les sites de la <2>CCI</2> ou de la <5>CMA</5>.
       title: Précisions sur votre activité
-d'aides: d'aides
 design-system:
   date-picker:
     close: Fermer
@@ -491,8 +496,8 @@ design-system:
     prev-month: Mois précédent
     year: Année
 décembre: décembre
-en incluant: en incluant
-en titres-restaurant: en titres-restaurant
+entreprise:
+  détails: Entreprise créée le <1></1> et domiciliée à <3></3>.
 error:
   back: Retourner à la page d'accueil
   body0: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
@@ -536,17 +541,6 @@ footer:
 février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérer:
-  choix:
-    chomage-partiel:
-      body: Calculez le reste à payer après remboursement de l'État lorsque vous
-        activez le dispositif pour un employé.
-      cta: Voir le simulateur
-      title: Activité partielle
-    is:
-      body: Calculez le montant de l'impôt sur les sociétés à partir de votre
-        bénéfice.
-      cta: Lancer le simulateur
-      title: Estimer le montant de l’impôt sur les sociétés
   ressources:
     annuaire-entreprises:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
@@ -565,7 +559,6 @@ header:
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
-impôt sur le revenu: impôt sur le revenu
 impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
 info: info
 intégration:
@@ -578,9 +571,9 @@ juin: juin
 l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
-    autonome et pluridisciplinaire au sein de <6>l’Urssaf</6>. Nous avons à cœur
+    autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à cœur
     d’être au près de vos besoins afin d’améliorer en permanence ce site
-    conformément à l'approche <9>beta.gouv.fr</9>.</1><2>Nous avons développé ce
+    conformément à l'approche <8>beta.gouv.fr</8>.</1><2>Nous avons développé ce
     site pour accompagner les créateurs d’entreprise dans le développement de
     leur activité.</2><3>Notre objectif est de lever toutes les incertitudes vis
     à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
@@ -964,6 +957,7 @@ pages:
     title: Choisir votre statut
   documentation:
     back: Retourner à la simulation
+    body: Explorez toutes les règles de la documentation
     meta:
       description: Documentation des règles de calcul de nos simulateurs et assistants
       descriptionBis: Explorez toutes les règles de la documentation
@@ -1145,6 +1139,21 @@ pages:
         votre site utilise une politique de sécurité de contenu via l'en-tête de
         réponse HTTP <1>Content-Security-Policy</1>, une erreur bénigne peut
         apparaître dans la console. <3></3></3>
+      intégrations:
+        CCI:
+          aria-label: CCI de France, voir l’intégration, nouvelle fenêtre
+          cta-label: Voir l’intégration
+        code-du-travail-numérique:
+          aria-label: Code du travail numérique", voir le simulateur, nouvelle fenêtre
+          cta-label: Voir le simulateur
+        france-travail:
+          aria-label: France Travail, voir le simulateur, nouvelle fenêtre
+          cta-label: Voir le simulateur
+        suggestion: Vous avez un projet ou une idée à nous partager ?
+        titre: Liste des intégrations
+        urssaf:
+          aria-label: Urssaf, voir l’intégration, nouvelle fenêtre
+          cta-label: Voir l’intégration
     module: Quel module ?
     spreadsheet: <0>Utiliser avec un tableur</0><1>Vous souhaitez utiliser un
       simulateur dans une feuille Google Sheets ou Excel ? C'est possible grâce
@@ -1240,18 +1249,55 @@ pages:
           partielle prévue par une convention/accord collectif ou une décision
           unilatérale de l’employeur.
     artiste-auteur:
+      explications:
+        cotisations:
+          précompte: Pour vos revenus en traitement et salaires, ces cotisations sont «
+            précomptées », c’est-à-dire payées à la source par le diffuseur.
+          titre: Vos cotisations
+        institutions:
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance et
+            retraite <2> de base</2>).
       externalLinks:
         "1":
           title: Le service en ligne Artiste-auteur
       meta:
-        description: Estimez les cotisations sociales sur les droits d'auteur et sur le
+        description: Estimez les cotisations sociales sur les droits d’auteur et sur le
           revenu BNC
+        ogDescription: Renseignez vos revenus (droits d’auteur et bnc) et découvrez
+          immédiatement le montant des cotisations que vous aurez à payer sur
+          l’année.
+        ogTitle: "Artiste-auteur : estimez vos cotisations Urssaf"
         title: "Artiste-auteur: calcul des cotisations Urssaf"
       shortname: Artiste-auteur
       title: Simulateur de cotisations d’artiste-auteur
       warning: Ce simulateur permet d’estimer le montant de vos cotisations à partir
         de votre revenu projeté.
+    assimilé-salarié:
+      explications:
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
     auto-entrepreneur:
+      explications:
+        institutions:
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance<1> et
+            retraite</1>).
+        retraite:
+          droits: "<0>Droits retraite acquis sur l’année</0><1><0>Retraite de base :
+            <2></2></0><1><0>Points de retraite de base acquis (CNAVPL) :
+            <2></2></0></1><2><0>Revenu cotisé pour la retraite de base :
+            <2></2></0></2><3><0>Points de retraite complémentaire acquis
+            (Cipav) : <2></2></0></3><4><0>Points de retraite complémentaire
+            acquis : <2></2></0></4></1>"
+          titre: Votre retraite
+        répartition:
+          cotisations: Cotisations
+          h2: Répartition du chiffre d’affaires
+          impôt: Impôt
+          revenu: Revenu (incluant les dépenses liées à l’activité)
       externalLinks:
         "1":
           ariaLabel: Visiter le site auto-entrepreneur.urssaf.fr, nouvelle fenêtre.
@@ -1279,11 +1325,6 @@ pages:
         ogTitle: "Auto-entrepreneur : calculez rapidement votre revenu net à partir du
           CA et vice-versa"
         titre: "Auto-entrepreneurs : simulateur de revenus"
-      répartition:
-        cotisations: Cotisations
-        h2: Répartition du chiffre d’affaires
-        impôt: Impôt
-        revenu: Revenu (incluant les dépenses liées à l’activité)
       seo explanation: <0>Comment calculer le revenu net d'un auto-entrepreneur
         ?</0><1>Un auto-entrepreneur doit payer des cotisations et contributions
         sociales à l'administration. Ces cotisations servent au financement de
@@ -1337,20 +1378,21 @@ pages:
           de déduire des charges réelles en plus. Votre revenu net est donc le
           chiffre d’affaires moins toutes les charges engagées pour
           l’entreprise.
-    auxiliaire:
-      shortname: Auxiliaire médical
-      title: Simulateur de revenus pour auxiliaire médical en libéral
-      tooltip: Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues,
-        orthophonistes et orthoptistes
-    auxiliaire-medical:
+    auxiliaire-médical:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des
           recettes. Prise en compte des revenus non conventionnés.
         title: "Auxiliaire médical : simulateur de revenus"
+      professionnelles: auxiliaires médicales/médicaux
+      shortname: Auxiliaire médical
+      title: Simulateur de revenus pour auxiliaire médical en libéral
+      tooltip: Infirmiers, masseurs-kinésithérapeutes, pédicures-podologues,
+        orthophonistes et orthoptistes
     avocat:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Avocat : simulateur de revenus"
+      professionnelles: avocates/avocats
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
     cessation-activité:
@@ -1359,6 +1401,10 @@ pages:
           description: L’Urssaf vous accompagne à toutes les étapes clés de votre démarche
             de cessation d’activité.
           title: Le service Cessation d’activité
+      label:
+        chiffre-affaires: Chiffre d'affaires pour l'année de cessation
+        cotisations: Total des cotisations à devoir pour l'année de cessation d'activité
+        rémunération: Rémunération brute pour l'année de cessation
       meta:
         description: Estimez vos cotisations de l’année de cessation de votre activité
           en tant qu’indépendant.
@@ -1371,17 +1417,18 @@ pages:
       shortname: Cessation d’activité
       title: Simulateur de cessation d’activité
       warning: <0>Vous êtes travailleur indépendant ou travailleuse indépendante et
-        vous souhaitez estimer les cotisations dues avant de cesser votre
-        activité. Ce simulateur est là pour vous aider. À noter que le montant
-        indiqué par ce simulateur est une estimation. Seul le « décompte réel de
-        l'Urssaf » vous permettra de connaître le montant exact. </0><1><0>Ce
-        simulateur ne tient pas compte</0> des versements déjà effectués, des
-        cotisations provisionnelles déjà appelées, ni des éventuelles
-        dettes.</1>
+        vous souhaitez estimer <2>les cotisations dues avant de cesser votre
+        activité</2>. Ce simulateur est là pour vous aider. À noter que le
+        montant indiqué par ce simulateur est une estimation. Seul le « décompte
+        réel de l'Urssaf » vous permettra de connaître le montant exact.
+        </0><1><0>Ce simulateur ne tient pas compte :</0><1><0>des versements
+        déjà effectués,</0><1>des cotisations provisionnelles déjà
+        appelées,</1><2>ni des éventuelles dettes.</2></1></1>
     chirurgien-dentiste:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Chirurgien-dentiste : simulateur de revenus"
+      professionnelles: chirurgiennes/chirurgiens-dentistes
       shortname: Chirurgien-dentiste
       title: Simulateur de revenus pour chirurgien-dentiste en libéral
     cipav:
@@ -1389,6 +1436,7 @@ pages:
         description: Calcul du revenu net après déduction des cotisations à partir du
           total des recettes pour professions libérales rattaché à la CIPAV
         title: "Professions libérales rattachées à la Cipav : simulateur de revenus"
+      professionnelles: professions réglementées relevant de la Cipav
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
     comparaison-statuts:
@@ -1579,18 +1627,17 @@ pages:
       href: https://www.urssaf.fr/accueil/services/travail-etranger-mobilite.html
       intro: Désormais, pour toutes vos demandes de mobilité internationale, les
         formulaires correspondants à votre situation sont disponibles sur la
-        page du <2>service Mobilité internationale.</2>
-      meta:
-        description: Formulaire interactif à compléter en cas d'exercice d'une activité
-          professionnelle à l'étranger
-        title: "Travailleur indépendant : demande de mobilité en Europe"
-      shortname: Demande de mobilité internationale
+        page du <2>service Mobilité internationale</2>.
       title: Demande de mobilité internationale
     dividendes:
       meta:
         description: Calculez le montant de l'impôt et des cotisations sur les
           dividendes versés par votre entreprise.
         title: Dividendes
+      répartition:
+        cotisations: Cotisations
+        impôt: Impôt
+        revenu: Dividendes nets
       seo: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
         société, le résultat de l'exercice précédent peut être conservé en
         réserve (pour de futurs investissements) ou bien être versé en
@@ -1600,17 +1647,17 @@ pages:
         de figure du bénéficiaire personne physique et des dividendes décidés
         par la société.</2><3>Comment sont calculés les prélèvements sur les
         dividendes ?</3><4>Les dividendes peuvent être soumis au prélèvement
-        forfaitaire unique de 31,4 % incluant imposition et contributions
-        sociales (aussi appelé<1> flat tax</1>). Par option, le barème de
-        l'impôt peut être choisi. Ce simulateur peut être utilisé pour comparer
-        les deux régimes.</4><5>Un acompte du montant de l'impôt (12,8%) est
-        prélevé au moment du versement des dividendes, sauf si le bénéficiaire
-        remplit <2>certains critères</2>.</5><6>Cas particulier du dirigeant non
+        forfaitaire unique de 30% incluant imposition et contributions sociales
+        (aussi appelé<1> flat tax</1>). Par option, le barème de l'impôt peut
+        être choisi. Ce simulateur peut être utilisé pour comparer les deux
+        régimes.</4><5>Un acompte du montant de l'impôt (12,8%) est prélevé au
+        moment du versement des dividendes, sauf si le bénéficiaire remplit
+        <2>certains critères</2>.</5><6>Cas particulier du dirigeant non
         salarié</6><7>Pour le travailleur indépendant non salarié, la part des
         dividendes dépassant 10% du capital social sera soumise aux cotisations
         et contributions suivant les mêmes modalités que sa rémunération de
-        dirigeant.</7><8>Ce cas de figure n'est pas encore pris en compte par ce
-        simulateur.</8>
+        dirigeant.</7><8>Pour ce cas de figure veuillez utiliser le
+        <2>simulateur de revenus pour indépendant</2>.</8>
       shortName: Dividendes
       title: Simulateur de versement de dividendes
       warning:
@@ -1651,7 +1698,7 @@ pages:
         proportionnelles au <2>résultat fiscal</2> de l'entreprise. Leur montant
         varie également en fonction du type d'activité (profession libérale,
         artisan, commerçants, etc), où des éventuelles exonérations accordées
-        (ACRE, ZFU, RSA, etc.).</7><8> Comme le résultat d'une entreprise n'est
+        (Acre, ZFU, RSA, etc.).</7><8> Comme le résultat d'une entreprise n'est
         connu qu'à la fin de l'exercice comptable, le dirigeant paye des
         cotisations provisionnelles qui seront ensuite régularisée une fois le
         revenu réel déclaré, l'année suivante.</8><9>Ce simulateur permet de
@@ -1696,6 +1743,7 @@ pages:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Expert-comptable : simulateur de revenus"
+      professionnelles: expertes/experts-comptables
       shortname: Expert-Comptable
       title: Simulateur de revenus pour expert comptable et commissaire aux comptes en
         libéral
@@ -1731,52 +1779,61 @@ pages:
         pas intégrés dans le simulateur.</5>
       title: Simulateur d’impôt sur les sociétés
     indépendant:
-      cotisations-forfaitaires: "Cotisations forfaitaires : "
+      explications:
+        cotisations:
+          fiche: Voir la fiche Urssaf
+          forfaitaires: "Cotisations forfaitaires :"
+          régularisation:
+            description: <0>Les cotisations et contributions sont calculées à titre
+              provisionnel sur la base du dernier revenu déclaré (ou du montat
+              forfaitaire, si aucun revenu n’est encore déclaré). Une fois
+              l’année écoulée et le revenu professionnel connu, les cotisations
+              et contributions sont régularisées.</0><1>Ce simulateur calcule
+              les cotisations <2>après régularisation</2>. Il vous permet donc
+              d’anticiper le montant de cette régularisation et de planifier
+              votre trésorerie en conséquence.</1><2>Si vos revenus d’activité
+              changent beaucoup par rapport à l’année précédente, vous avez la
+              possibilité de communiquer à l’Urssaf un <2>montant prévisionnel
+              pour l’année en cours, qui sera pris comme base de
+              calcul</2>(attention cependant, vous serez tenus de faire une
+              estimation précise).</2>
+            titre: Comment fonctionne la régularisation des cotisations provisionnelles ?
+        institutions:
+          cpam: En tant que professionnel de santé conventionné, vous bénéficiez d’une
+            prise en charge d’une partie de vos cotisations par l’Assurance
+            Maladie.
+          urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
+            sociale (assurance maladie, allocations familiales, dépendance<1> et
+            retraite</1>).
+        retraite:
+          droits: "<0>Droits retraite acquis sur l’année</0><1><0>Retraite de base :
+            <2></2></0><1><0>Points de retraite de base acquis (CNAVPL) :
+            <2></2></0></1><2><0>Revenu cotisé pour la retraite de base :
+            <2></2></0></2><3>Points de retraite complémentaire acquis :
+            <2><0></0></2><3><0>non connue</0><1><0>Ce simulateur ne gère pas
+            les droits acquis de retraite complémentaire pour les professions
+            libérales</0></1></3></3></1>"
+          montant: <0>Projection du montant de votre retraite</0><1><0></0><1></1></1>
+          titre: Votre retraite
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
+          titre: Répartition du revenu
+      label:
+        rémunération-nette: Revenu net
       meta:
         description: Calcul du revenu net après impôt et des cotisations à partir du
           chiffre d'affaires et inversement
         title: "Indépendant : simulateur de revenus"
-      retraite-droits-acquis: "<0><0><0>Retraite : droits acquis sur
-        l’année</0><1><0>Les exonérations DROM n’ont aucune incidence sur la
-        détermination des droits à la retraite de base et complémentaire des
-        auto-entrepreneurs</0></1><2><0>L’exonération ACRE n’a aucune incidence
-        sur la détermination des droits à la retraite de base et complémentaire
-        des auto-entrepreneurs</0></2><3><0>Le calcul des droits ouverts à la
-        retraite n’est pas encore implémenté pour les cas incluants des
-        d’exonérations de cotisations (ACRE, pension invalidité,
-        etc).</0></3><4><0><0>Retraite de base : <2></2></0><1><0>Points de
-        retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu cotisé
-        pour la retraite de base : <2></2></0></2><3><0>Points de retraite
-        complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points de retraite
-        complémentaire acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce
-        simulateur ne gère pas les droits acquis de retraite complémentaire pour
-        les professions
-        libérales</0></1></3></0></4></0></4></0><1><0><0>Projection du montant
-        de votre retraite</0><1><0></0><1></1></1></0></1></0>"
-      régularisation:
-        description: <0>Les cotisations et contributions sont calculées à titre
-          provisionnel sur la base du dernier revenu déclaré (ou du montat
-          forfaitaire, si aucun revenu n’est encore déclaré). Une fois l’année
-          écoulée et le revenu professionnel connu, les cotisations et
-          contributions sont régularisées.</0><1>Ce simulateur calcule les
-          cotisations <2>après régularisation</2>. Il vous permet donc
-          d’anticiper le montant de cette régularisation et de planifier votre
-          trésorerie en conséquence.</1><2>Si vos revenus d’activité changent
-          beaucoup par rapport à l’année précédente, vous avez la possibilité de
-          communiquer à l’Urssaf un <2>montant prévisionnel pour l’année en
-          cours, qui sera pris comme base de calcul</2>(attention cependant,
-          vous serez tenus de faire une estimation précise).</2>
-        title: Comment fonctionne la régularisation des cotisations provisionnelles ?
       shortname: Indépendant
       title: Simulateur de revenus pour indépendant
       warning:
-        année-courante: Le montant calculé correspond aux cotisations de l’année {{ year
-          }} (pour un revenu {{ year }}).
-        réforme:
-          aria-label: Lire la page dédiée à la réforme de l’assiette et du barème des
-            cotisations sur le site de l’Urssaf, nouvelle fenêtre
-          texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
-            encore implémentée sur ce simulateur.
+        année-courante: Le montant calculé correspond aux <2>cotisations de l’année
+          {{year}}</2> (pour un revenu {{year}}).
+        double-régime: Ce simulateur ne prend pas en compte la situation des usagers
+          ayant <2>deux régimes d’imposition différents</2> (régime réel et
+          micro-fiscal) sur une même année.
     is:
       warning: "Ce simulateur s’adresse aux <2>TPE</2> : il prend en compte les taux
         réduits de l’impôt sur les sociétés."
@@ -1911,6 +1968,7 @@ pages:
           total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire
           pris en compte
         title: "Médecin : simulateur de revenus"
+      professionnelles: médecins
       shortname: Médecin
       title: Simulateur de revenus pour médecin en libéral
     pamc:
@@ -1920,11 +1978,13 @@ pages:
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: Simulateur de cotisations et de revenu pour les PAMC
+      titre: Quelle profession exercez-vous ?
     pharmacien:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
           total des recettes pour pharmacien en libéral
         title: "Pharmacien : simulateur de revenus"
+      professionnelles: pharmaciennes/pharmaciens
       shortname: Pharmacien
       title: Simulateur de revenus pour pharmacien en libéral
     print-info:
@@ -1940,11 +2000,20 @@ pages:
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
       warning:
-        cotisations-ordinales: Pour les professions réglementées, le simulateur ne
-          calcule pas le montant des cotisations à l’ordre. Elles doivent être
-          ajoutées manuellement dans la case « charges de fonctionnement ».
-        général: Ce simulateur est à destination des professions libérales en BNC. Il ne
-          prend pas en compte les sociétés d’exercice libéral.
+        cotisations-ordinales:
+          générique: Pour les professions réglementées, le simulateur ne calcule pas le
+            montant des <1>cotisations à l’ordre</1>. Elles doivent être
+            ajoutées manuellement dans la case « Charges ».
+          spécifique: Le simulateur ne calcule pas le montant des <2>cotisations à
+            l’ordre</2>. Elles doivent être ajoutées manuellement dans la case «
+            Charges ».
+        général:
+          générique: Ce simulateur est à destination des professions libérales en
+            <2>BNC</2>. Il ne prend pas en compte les sociétés d’exercice
+            libéral.
+          spécifique: Ce simulateur est à destination des {{professionnelles}} en
+            <4>BNC</4>. Il ne prend pas en compte les sociétés d’exercice
+            libéral.
     raccourcis:
       aria-label: "Aller à la question : {{question}}"
       titre: "Aller à la question :"
@@ -2032,14 +2101,21 @@ pages:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.
         title: "Sage-femme : simulateur de revenus"
+      professionnelles: sages-femmes
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
     salarié:
       SASU: Vous êtes dirigeant d'une SAS(U) ? <2>Accédez au simulateur de revenu
         dédié</2>
+      aides: en incluant <2></2> d'aides
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
+      explications:
+        répartition:
+          cotisations: Cotisations
+          impôt: Impôt
+          revenu: Revenu disponible
       externalLinks:
         "1":
           ariaLabel: Visiter le site Code du travail numérique, nouvelle fenêtre.
@@ -2097,6 +2173,7 @@ pages:
         locales...</4><5></5></2>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
+      titres-restaurant: en titres-restaurant
       warning:
         général: Le simulateur ne prend pour l’instant pas en compte les accords et
           conventions collectives, ni la myriade d’aides aux entreprises.
@@ -2122,7 +2199,7 @@ pages:
         ailleurs, il ne bénéficie pas de la <5>réduction générale dégressive
         unique de cotisations</5> ni des dispositifs encadrés par le code du
         travail comme les <9>heures supplémentaires</9> ou les primes.</2><3>Il
-        peut en revanche prétendre à la <2>réduction ACRE</2> en debut
+        peut en revanche prétendre à la <2>réduction Acre</2> en debut
         d'activité, sous certaines conditions.</3><4>Vous pouvez utiliser notre
         simulateur pour calculer la <2>rémunération nette</2> à partir d'un
         montant superbrut alloué à la rémunération du dirigeant. Il vous suffit
@@ -2162,6 +2239,7 @@ payslip:
     les liens pour comprendre le calcul de chaque montant. Cette fiche de paie
     ne peut pas de substituer à une fiche de paie réelle. Pour plus
     d'informations, rendez-vous sur <2>service-public.fr</2>."
+  link: Voir la fiche de paie
   repartition: Répartition du total chargé
 periode-calcul: Période de calcul
 points: points
@@ -2299,24 +2377,38 @@ shareSimulation:
 simulateurs:
   explanation:
     institutions:
-      CIPAV: Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
-        de base, de retraite complémentaire et d’invalidité-décès des
-        professionnels libéraux relevant de la Cipav. La Cipav conserve la
-        gestion du dossier de retraite ou de prévoyance.
-      CNAPL: Elle recouvre les cotisations liées à votre retraite et au régime
-        d'invalidité-décès.
-      cpam: En tant que professionnel de santé conventionné, vous bénéficiez d'une
-        prise en charge d'une partie de vos cotisations par l'Assurance Maladie.
+      CARCDSF:
+        description: La CARCDSF est la caisse de retraite des chirurgiennes et
+          chirurgiens dentistes et des sages-femmes.
+      CARMF:
+        description: La CARMF est la caisse de retraite autonome des médecins de France.
+      CARPIMKO:
+        description: La CARPIMKO est la caisse de retraite autonome des auxiliaires
+          médicales/médicaux.
+      CAVEC:
+        description: La CAVEC est l’organisme de sécurité sociale des experts-comptables
+          et des commissaires aux comptes.
+      CAVP:
+        description: La CAVP est la caisse de retraite des pharmaciennes et pharmaciens.
+      CIPAV:
+        description: La Cipav est la caisse de retraite autonomes des professions
+          libérales réglementées.
+        img: Site de la Cipav, nouvelle fenêtre
+        note: Depuis le 1er janvier 2023, l’Urssaf recouvre les cotisations de retraite
+          de base, de retraite complémentaire et d’invalidité-décès des
+          professionnels libéraux relevant de la Cipav. La Cipav conserve la
+          gestion du dossier de retraite ou de prévoyance.
+      CNAVPL:
+        img: Site de la {{ caisse }}, nouvelle fenêtre
+        note: Elle recouvre les cotisations liées à votre retraite et au régime
+          d'invalidité-décès.
+      CNBF:
+        description: La Caisse Nationale des Barreaux Français (CNBF) est l’organisme de
+          sécurité sociale des avocates et avocats.
       dgfip: La direction générale des finances publiques (DGFiP) est l'organisme qui
         collecte l'impôt sur le revenu. <2>Le montant calculé <2>prend en compte
         l'abattement du régime micro-fiscal</2>.</2>
-      précompte-artiste-auteur: Pour vos revenus en traitement et salaires, ces
-        cotisations sont « précomptées », c'est à dire payées à la source par le
-        diffuseur.
       titre: Vos institutions partenaires
-      urssaf: L’Urssaf recouvre les cotisations servant au financement de la sécurité
-        sociale (assurance maladie, allocations familiales, dépendance<1> et
-        retraite <3> de base</3></1>).
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
@@ -2329,7 +2421,7 @@ simulateurs:
     titre: Avant de commencer...
 simulation-end:
   hiring:
-    text: Vous pouvez maintenant concrétiser votre projet d'embauche.
+    text: Vous pouvez maintenant concrétiser votre projet d’embauche.
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
   title: Vous avez complété cette simulation
 simulationPréremplieBanner:

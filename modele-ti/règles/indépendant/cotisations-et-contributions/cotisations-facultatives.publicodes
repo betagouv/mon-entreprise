@@ -1,0 +1,124 @@
+indépendant . cotisations facultatives:
+  description: |
+    Il est possible pour l’indépendant de souscrire à des contrats privés pour la
+    prévoyance santé, ou un plan d’épargne retraite.
+    Les versements à ces contrats sont désigné par l’appellation « cotisations
+    facultative » par l’administration fiscale.
+
+    Ils sont déductible d’impôts (dans la limite d’un plafond), mais non déductible
+    pour l’assiette des cotisations et contributions sociales.
+  non applicable si: entreprise . imposition . IR . régime micro-fiscal
+  question: Avez-vous souscrit à des contrats de prévoyance et / ou de retraite
+    complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
+  par défaut: non
+  références:
+    Comment fonctionne le plan d’épargne retraite (PER) individuel ?: https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne-retraite-individuel
+
+indépendant . cotisations facultatives . montant:
+  somme:
+    - retraite
+    - prévoyance
+
+indépendant . cotisations facultatives . déductibles:
+  titre: Part déductible fiscalement
+  formule:
+    somme:
+      - valeur: retraite
+        plafond: retraite . plafond déductible
+      - valeur: prévoyance
+        plafond: prévoyance . plafond déductible
+
+indépendant . cotisations facultatives . non déductibles:
+  titre: Part non déductible fiscalement
+  formule: montant - déductibles
+
+indépendant . cotisations facultatives . retraite:
+  titre: PER / contrat Madelin retraite
+  description: |
+    Le plan d’épargne retraite (PER) est un produit d’épargne retraite pour les
+    particuliers. Il vous permet d’accumuler une épargne afin de compléter vos
+    revenus au moment de la retraite. Vous pouvez le souscrire auprès d’un
+    établissement de crédit ou d’une compagnie d’assurance.
+
+    Les cotisations versées sur un PER ou un contrat Madelin retraite sont
+    déductibles de votre bénéfice ou revenu imposable.
+
+    > Le PER remplace le PERP (plan d’épargne retraite populaire) et le contrat
+    > Madelin retraite, qui ne sont plus proposés depuis le 1er octobre 2020.
+  question:
+    Quel est le montant des cotisations que vous versez dans le cadre d’un
+    PER ou d’un contrat Madelin retraite ?
+  par défaut: 0 €/mois
+  unité: €/an
+  références:
+    Plan d'épargne retraite (PER) - PER individuel: https://www.service-public.gouv.fr/particuliers/vosdroits/F36526/0
+    Comment fonctionne le plan d’épargne retraite (PER) individuel ?: https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne-retraite-individuel
+    Article 154 bis du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020675349/2010-04-01
+
+indépendant . cotisations facultatives . retraite . plafond déductible:
+  description: |
+    Les cotisations versées sur un PER ou sur un contrat Madelin retraite sont
+    déductibles de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
+
+    Ce plafond de déductions est égal au maximum entre :
+    - 10 % du revenu professionnel limité à 8 plafond annuel de la sécurité
+    sociale (PASS) + 15 % du revenu professionnel compris entre 1 et 8 PASS ;
+    - 10 % du plafond annuel de la sécurité sociale.
+  le maximum de:
+    - somme:
+        - produit:
+            - valeur: revenu professionnel
+              plafond: 8 * plafond sécurité sociale
+            - 10%
+        - produit:
+            - valeur: revenu professionnel
+              abattement: plafond sécurité sociale
+              plafond: 8 * plafond sécurité sociale
+            - 15%
+    - produit:
+        - plafond sécurité sociale
+        - 10%
+  unité: €/an
+  références:
+    Article 154 bis du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020675349/2010-04-01
+    Calcul du plafond de déduction de l'épargne retraite pour les non-salariés: https://bofip.impots.gouv.fr/bofip/1124-PGP.html/identifiant=BOI-IR-BASE-20-50-20-20170711#Pour_les_non-salaries_212
+    Les principes de fonctionnement des contrats Madelin - Limites de déduction des primes d’épargne retraite: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html#toc-regle-de-plafonnement
+
+indépendant . cotisations facultatives . prévoyance:
+  titre: Contrat Madelin prévoyance
+  description: |
+    Vous pouvez souscrire à un contrat Madelin de prévoyance pour compléter votre
+    protection sociale et celle de votre famille, notamment en cas d’invalidité ou
+    de décès.
+
+    Les cotisations versées sur un contrat Madelin de prévoyance sont déductibles
+    de votre bénéfice ou revenu imposable.
+  question: Quel est le montant des cotisations que vous versez dans le cadre d’un
+    contrat Madelin de prévoyance complémentaire (santé, perte d’emploi subie) ?
+  par défaut: 50 €/mois
+  références:
+    Article 154 bis du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020675349/2010-04-01
+
+indépendant . cotisations facultatives . prévoyance . plafond déductible:
+  description: |
+    Les cotisations versées sur un contrat Madelin de prévoyance sont déductibles
+    de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
+
+    Ce plafond de déductions est limité à 3 % de 8 plafond annuel de la sécurité
+    sociale (PASS) et est égal à la somme entre :
+    - 3,75 % du revenu professionnel ;
+    - 7 % du PASS.
+  somme:
+    - produit:
+        - revenu professionnel
+        - 3.75%
+    - produit:
+        - plafond sécurité sociale
+        - 7%
+  plafond:
+    produit:
+      - 8 * plafond sécurité sociale
+      - 3%
+  unité: €/an
+  références:
+    Article 154 bis du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020675349/2010-04-01

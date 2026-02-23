@@ -1,0 +1,215 @@
+indépendant . profession libérale . réglementée . CARCDSF:
+  description: |
+    La CARCDSF est la caisse de retraite des chirurgiennes et chirurgiens dentistes
+    et des sages-femmes.
+  applicable si:
+    une de ces conditions:
+      - métier = 'santé . chirurgien-dentiste'
+      - métier = 'santé . sage-femme'
+  valeur: oui
+  références:
+    Site de la CARCDSF: https://www.carcdsf.fr
+
+indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire:
+  somme:
+    - cotisation forfaitaire
+    - cotisation proportionnelle
+  abattement:
+    applicable si: CNAVPL . exonération incapacité
+    valeur: 100%
+  références:
+    Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=50
+
+  avec:
+    cotisation forfaitaire:
+      produit:
+        - variations:
+            - si: date >= 01/2025
+              alors: 3178.80 €/an
+            - si: date >= 01/2024
+              alors: 3108.00 €/an
+            - sinon: 2959.80 €/an
+        - variations:
+            - si: taux réduction
+              alors: taux réduction
+            - sinon: 100%
+      arrondi: oui
+
+    cotisation proportionnelle:
+      unité: €/an
+      barème:
+        assiette: cotisations et contributions . assiette sociale
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - taux: 0%
+            plafond: 0.85
+          - taux: 10.80%
+            plafond: 5
+        arrondi: oui
+
+indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
+  formule: cotisations et contributions . assiette sociale < 85% * plafond sécurité sociale
+  description: |
+    Vous avez la possibilité de bénéficier d'une réduction de cotisation
+    pour la retraite complémentaire si vous en faites la demande. [En savoir
+    plus](/documentation/modele-ti/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
+  type: notification
+
+indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
+  applicable si: réduction applicable
+  description: |
+    Les affiliés dont les revenus professionnels nets sur l'année N-1 sont inférieurs à 85
+    % du PASS en vigueur au 1er janvier de l’année considérée 
+    peuvent, sur demande, obtenir une réduction de la cotisation forfaitaire.
+
+    Le coefficient de réduction appliqué est égal au rapport des revenus
+    professionnels non-salariés sur le seuil mentionné ci-dessus.
+
+    La demande doit être adressée à la CARCDSF et être accompagnée d’une
+    photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
+    annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
+  unité: '%'
+  formule: cotisations et contributions . assiette sociale / (85% * plafond sécurité sociale)
+
+indépendant . profession libérale . réglementée . CARCDSF . invalidité et décès:
+  variations:
+    - si: chirurgien-dentiste
+      alors: chirurgien-dentiste . RID
+    - si: sage-femme
+      alors: sage-femme . RID
+
+indépendant . profession libérale . réglementée . CARCDSF . PCV:
+  variations:
+    - si: chirurgien-dentiste
+      alors: chirurgien-dentiste . PCV
+    - si: sage-femme
+      alors: sage-femme . PCV
+
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste: métier = 'santé . chirurgien-dentiste'
+
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . RID:
+  titre: invalidité et décès
+  variations:
+    - si: date >= 01/2024
+      alors: 1284.40 €/an
+    - sinon: 1235 €/an
+  références:
+    Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
+
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . PCV:
+  titre: Prestations complémentaires vieillesse (PCV)
+  note:
+    Une dispense peut être accordée lorsque les revenus professionnels 2019
+    sont inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année
+    considérée), soit 11 500 €.
+
+    La demande doit être accompagnée d’une photocopie de la
+    déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033
+    B et D ou 2053 et 2058 A) de l’année 2019.
+
+    Cette dispense entraîne l’annulation des droits pour l’année et
+    les points non cotisés ne sont pas rachetables.
+  non applicable si: exonération PCV
+  somme:
+    - cotisation forfaitaire
+    - cotisation proportionnelle
+  arrondi: oui
+  unité: €/an
+  références:
+    Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
+
+  avec:
+    cotisation forfaitaire:
+      variations:
+        - si: date >= 01/2025
+          alors: 4946.28 €/an
+        - si: date >= 01/2024
+          alors: 4856.52 €/an
+        - sinon: 4633.08 €/an
+
+    cotisation proportionnelle:
+      produit:
+        - valeur: cotisations et contributions . assiette sociale
+          plafond: 5 * plafond sécurité sociale
+        - 1.45 %
+      unité: €/an
+  
+    participation CPAM:
+      somme:
+        - (2 / 3) * cotisation forfaitaire
+        - (1 / 2) * cotisation proportionnelle
+      références:
+        Mémento des chirurgiens dentistes: https://www.carcdsf.fr/images/pdf/2025/Memento_CD_WEB.pdf#page=8
+
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . exonération PCV:
+  type: notification
+  formule: (cotisations et contributions . assiette sociale / prix d'une consultation) <=  500 consultation/an
+  description: >-
+    Vous avez la possibilité de bénéficier d'une exonération totale de
+    cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
+    faites la demande. [En savoir
+    plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
+
+indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . prix d'une consultation:
+  formule: 23 €/consultation
+
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme: métier = 'santé . sage-femme'
+
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID:
+  titre: invalidité et décès
+  variations:
+    - si: date >= 01/2025
+      alors: 380 €/an
+    - si: date >= 01/2024
+      alors: 351 €/an
+    - sinon: 280.80 €/an
+  références:
+    Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
+
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV:
+  titre: Prestations complémentaires vieillesse (PCV)
+  description: |
+    Pour 2020, le montant est fixé à 780 € dont un tiers, soit 260 € à votre
+    charge et 520 € à la charge des Caisses Primaires d’Assurance Maladie
+    (CPAM).
+  note: |
+    Une dispense peut être accordée lorsque les revenus professionnels sont
+    inférieurs ou égaux à 3120 €.
+
+    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
+    n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
+    A).
+
+    Cette dispense entraîne l’annulation des droits pour l’année et les points
+    non cotisés ne sont pas rachetables.
+  non applicable si: exonération PCV
+  valeur: cotisation forfaitaire
+  abattement: participation CPAM
+  arrondi: oui
+  unité: €/an
+  références:
+    Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
+    Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
+
+  avec:
+    cotisation forfaitaire: 780 €/an
+
+    participation CPAM:
+      valeur: (2 / 3) * cotisation forfaitaire
+      arrondi: oui
+      références:
+        Mémento des sages-femmes: https://www.carcdsf.fr/images/pdf/2025/Memento_SF_WEB.pdf#page=8
+
+indépendant . profession libérale . réglementée . CARCDSF . sage-femme . exonération PCV:
+  type: notification
+  formule: cotisations et contributions . assiette sociale <= 3120 €/an
+  description: >-
+    Vous avez la possibilité de bénéficier d'une exonération totale de
+    cotisation pour la prestation complémentaire de vieillesse (PCV) si vous en
+    faites la demande. [En savoir
+    plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)

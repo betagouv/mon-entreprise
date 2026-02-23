@@ -1,11 +1,11 @@
 import { Option } from 'effect/Option'
-import { DottedName } from 'modele-social'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function usePublicodes() {
 	const engine = useEngine()

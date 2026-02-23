@@ -9,10 +9,12 @@ import ShareOrSaveSimulationBanner, {
 } from '@/components/ShareSimulationBanner'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button, Grid, H3, Spacing } from '@/design-system'
+import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
+import { QuestionPublicodes } from '@/hooks/useQuestions'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
+import { firstStepCompletedSelector } from '@/store/selectors/simulation/firstStepCompleted.selector'
 
 import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../ATInternetTracking'
 import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
@@ -73,7 +75,8 @@ type SimulationProps<S extends Situation = Situation> = {
 
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
-	avecQuestionsPublicodes?: boolean
+	questionsPublicodes?: Array<QuestionPublicodes<S>>
+	raccourcisPublicodes?: Array<RaccourciPublicodes>
 }
 
 export default function Simulation<S extends Situation = Situation>({
@@ -90,7 +93,8 @@ export default function Simulation<S extends Situation = Situation>({
 	entrepriseSelection = true,
 	situation,
 	questions,
-	avecQuestionsPublicodes = true,
+	questionsPublicodes,
+	raccourcisPublicodes,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
 	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
@@ -114,7 +118,8 @@ export default function Simulation<S extends Situation = Situation>({
 
 							<Questions
 								questions={questions}
-								avecQuestionsPublicodes={avecQuestionsPublicodes}
+								questionsPublicodes={questionsPublicodes}
+								raccourcisPublicodes={raccourcisPublicodes}
 								customEndMessages={customEndMessages}
 								situation={situation}
 							/>

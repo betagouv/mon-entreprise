@@ -1,0 +1,191 @@
+protection sociale . retraite . base:
+  titre: Retraite de base maximum
+  résumé: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  description: |
+    Le montant de votre pension pour la retraite de base est calculé à partir de la
+    moyenne de vos revenus des 25 meilleures années et du nombre de trimestres
+    cotisés.
+
+    Cette **estimation** de votre pension de retraite de base **maximum** est
+    calculée avec les hypothèses suivantes :
+    - La rémunération que vous avez saisie correspond à celle de vos
+    **25 meilleures années** ;
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+    - Vous n’avez pas d’autres sources de revenus ;
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+    bénéficier du **taux plein**.
+
+    > **Calcul détaillé :** 50% x revenu annuel moyen x prorata de pension
+    >
+    > Avec :
+    > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
+    > travailleur indépendant pendant les 25 années les plus avantageuses de votre
+    > carrière ;
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
+    > durée d’assurance pour obtenir une pension à taux plein.
+  variations:
+    - si: indépendant . profession libérale . CNAVPL
+      alors: retraite . base . CNAVPL
+    - sinon:
+        produit:
+          - revenu cotisé
+          - 50%
+  arrondi: oui
+  unité: €/mois
+  références:
+    Assurance Retraite de la Sécurité sociale: https://www.lassuranceretraite.fr/
+    Régime de retraite de l'entrepreneur individuel (EI): https://entreprendre.service-public.gouv.fr/vosdroits/F33841
+    Durée d’assurance pour le taux plein: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_taux_duree_assurance_pour_taux_plein_ex.aspx
+    Article L161-17-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028494794/
+    Montant de la retraite personnelle: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_montant_montant_ex.aspx
+
+protection sociale . retraite . base . trimestres:
+  titre: trimestres validés
+  somme:
+    - grille:
+        assiette: revenu cotisé
+        multiplicateur: SMIC . horaire . début d'année
+        tranches:
+          - montant: 0 trimestre validé/an
+            plafond: 150 heure/an
+          - montant: 1 trimestre validé/an
+            plafond: 300 heure/an
+          - montant: 2 trimestre validé/an
+            plafond: 450 heure/an
+          - montant: 3 trimestre validé/an
+            plafond: 600 heure/an
+          - montant: 4 trimestre validé/an
+    - exonération invalidité indépendant
+  plafond: 4 trimestre validé/an
+  références:
+    Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=26
+
+  avec:
+    exonération invalidité indépendant:
+      applicable si: indépendant . cotisations et contributions .
+        cotisations . exonérations . invalidité
+      privé: oui
+      produit:
+        - 4 trimestre validé/an
+        - indépendant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année
+
+protection sociale . retraite . base . revenu cotisé:
+  titre: revenu cotisé pour la retraite de base
+  valeur:
+    indépendant . cotisations et contributions . cotisations . retraite de
+    base / taux de cotisation
+  plafond: plafond sécurité sociale
+  arrondi: oui
+  description: |
+    Le revenu cotisé pour la retraite de base est égal à :
+
+    [Cotisations à la retraite de base](/documentation/modele-ti/indépendant/
+    cotisations-et-contributions/cotisations/retraite-de-base) / [taux de la
+    cotisation à la retraite de base](/documentation/modele-ti/indépendant/
+    cotisations-et-contributions/cotisations/retraite-de-base/taux-T1)
+
+    En cas d’exonération de cotisations, un montant plancher est utilisé pour le
+    calcul.
+
+    Dans tous les cas, le résultat est limité au plafond de la sécurité sociale.
+  références:
+    Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530
+    Article R634-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038787378
+
+  avec:
+    taux de cotisation:
+      variations:
+        - si: indépendant . profession libérale . CNAVPL
+          alors: indépendant . profession libérale . CNAVPL . retraite de base . tranche 1 . taux
+        - sinon: indépendant . cotisations et contributions . cotisations . retraite
+            de base . taux T1
+
+protection sociale . retraite . base . CNAVPL:
+  applicable si: indépendant . profession libérale . CNAVPL
+  titre: retraite de base CNAVPL
+  description: |-
+    Les professions libérales affiliées à la CNAVPL ont un régime de retraite de
+    base par point.
+
+    Le nombre de points acquis chaque année est déterminé en fonction des revenus
+    professionnels soumis à cotisations :
+
+    - la cotisation maximale sur la tranche T1 permet d’acquérir 557 points (de 0 à
+    1 plafond annuel de la sécurité sociale),
+    - la cotisation maximale sur la tranche T2 permet d’acquérir 25 points (de 0 à
+    5 fois le plafond annuel de la sécurité sociale).
+
+    Pour chaque tranche, le nombre de points attribué est calculé au prorata de la
+    cotisation effective sur la cotisation maximale et arrondi à la décimale la plus
+    proche.
+  produit:
+    - points acquis
+    - valeur du point
+  arrondi: oui
+  unité: €/mois
+  références:
+    Comprendre sa retraite - Pension du professionnel libéral - Montant de la pension: https://www.cnavpl.fr/comprendre-sa-retraite/
+    Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=27
+
+  avec:
+    valeur du point:
+      variations:
+        - si: date >= 01/2026
+          alors: 0.6599 €/an/point
+        - si: date >= 01/2025
+          alors: 0.6540 €/an/point
+        - si: date >= 01/2024
+          alors: 0.6399 €/an/point
+        - sinon: 0.6076 €/an/point
+
+protection sociale . retraite . base . CNAVPL . points acquis:
+  somme:
+    - points T1
+    - points T2
+    - points incapacité
+  note: |-
+    Des points supplémentaires peuvent être attribués :
+    - points rachetés ;
+    - 100 points supplémentaires au titre du trimestre civil au cours duquel
+    survient l’accouchement,
+    - 200 points supplémentaires par année civile concernée pour l’assuré
+    atteint d’invalidité l’obligeant à avoir recours à l’assistance d’une tierce
+    personne ;
+    - 400 points par année civile pour les personnes reconnues atteintes d’une
+    incapacité d’exercice de leur profession pour une durée de plus de 6 mois.
+
+  avec:
+    points T1:
+      produit:
+        - variations:
+            - si: indépendant . cotisations et contributions . après réforme
+              alors: 557 point
+            - sinon: 525 point
+        - indépendant . profession libérale . CNAVPL . retraite de base . tranche 1 /
+          cotisation maximum T1
+      arrondi: 1 décimale
+
+    cotisation maximum T1:
+      privé: oui
+      valeur: indépendant . profession libérale . CNAVPL . retraite de base . tranche 1
+      contexte:
+        indépendant . cotisations et contributions . assiette sociale: plafond sécurité sociale
+
+    points T2:
+      produit:
+        - 25 point
+        - indépendant . profession libérale . CNAVPL . retraite de base . tranche 2 /
+          cotisation maximum T2
+      arrondi: 1 décimale
+
+    cotisation maximum T2:
+      privé: oui
+      valeur: indépendant . profession libérale . CNAVPL . retraite de base . tranche 2
+      contexte:
+        indépendant . cotisations et contributions . assiette sociale: 5 * plafond sécurité sociale
+
+    points incapacité:
+      applicable si: indépendant . profession libérale . CNAVPL . exonération incapacité
+      valeur: 400 point

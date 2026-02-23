@@ -1,7 +1,7 @@
 dirigeant . indépendant . PL:
   titre: Profession libérale
   applicable si: entreprise . activité . nature = 'libérale'
-  rend non applicable: entreprise . activités . revenus mixtes
+  rend non applicable: entreprise . activité . revenus mixtes
   formule: oui
 
 dirigeant . indépendant . PL . métier:
@@ -237,17 +237,17 @@ dirigeant . indépendant . PL . cotisations Urssaf:
 
 dirigeant . indépendant . PL . cotisations caisse de retraite:
   non applicable si:
-    # Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
     toutes ces conditions:
       - CIPAV
       - date >= 01/2023
 
   description: |
     Les cotisations recouvrée par la caisse de retraite autonome spécifique à la profession libérale effectuée.
-  formule:
-    somme:
-      - cotisations et contributions . retraite de base
-      - cotisations et contributions . retraite complémentaire
-      - cotisations et contributions . invalidité et décès
-      - cotisations et contributions . PCV
-    arrondi: oui
+  note: Depuis 2023 les cotisations des PL affiliés à la Cipav sont recouvrées par l'Urssaf
+
+  somme:
+    - cotisations et contributions . retraite de base
+    - cotisations et contributions . retraite complémentaire
+    - cotisations et contributions . invalidité et décès
+    - cotisations et contributions . PCV
+  arrondi: oui

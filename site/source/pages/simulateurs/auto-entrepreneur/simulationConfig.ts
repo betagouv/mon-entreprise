@@ -1,6 +1,7 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configAutoEntrepreneur: SimulationConfig = {
+	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		"dirigeant . auto-entrepreneur . chiffre d'affaires",
 		'dirigeant . auto-entrepreneur . revenu net',
@@ -39,7 +40,7 @@ export const configAutoEntrepreneur: SimulationConfig = {
 		],
 		'non prioritaires': ['établissement . commune'],
 		'liste noire': [
-			'entreprise . activités . revenus mixtes',
+			'entreprise . activité . revenus mixtes',
 			'entreprise . charges',
 			"entreprise . chiffre d'affaires",
 		],

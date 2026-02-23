@@ -1,0 +1,167 @@
+indépendant . cotisations et contributions:
+  description: |
+    C’est le montant total dû par l’indépendant au titre des cotisations et
+    contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
+  somme:
+    - cotisations et contributions . cotisations
+    - CSG-CRDS
+    - formation professionnelle
+    - cotisations facultatives . montant
+    - conjoint collaborateur . cotisations
+    - contributions spéciales
+
+  avec:
+    Urssaf:
+      experimentale: oui
+      titre: cotisations recouvrées par l’Urssaf
+      valeur: cotisations et contributions
+      abattement: cotisations facultatives . montant
+
+indépendant . cotisations et contributions . avec dividendes:
+  titre: Cotisations et contributions
+  résumé: Inclue les prélèvements sociaux sur les dividendes
+  description: |
+    C’est le montant total dû par l’indépendant au titre des cotisations et
+    contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
+    telles que les contrats Madelin.
+
+    Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
+  somme:
+    - cotisations et contributions
+    - dividendes . prélèvements sociaux
+
+indépendant . cotisations et contributions . non déductibles:
+  titre: Part non déductible fiscalement
+  somme:
+    - CSG-CRDS . non déductible
+    - cotisations facultatives . non déductibles
+
+indépendant . cotisations et contributions . non déductibles . avec dividendes:
+  titre: Part non déductible fiscalement
+  résumé: Inclue la CSG non déductible des prélèvements sociaux sur les dividendes
+  somme:
+    - non déductibles
+    - dividendes . prélèvements sociaux . CSG non déductible
+
+indépendant . cotisations et contributions . contributions spéciales:
+  description: |
+    Certains régimes spéciaux peuvent ajouter des contributions additionnelles
+    (par exemple, la CURPS pour les CPAM)
+  applicable si: profession libérale . réglementée . PAMC
+  valeur: profession libérale . réglementée . PAMC . CURPS
+
+indépendant . cotisations et contributions . formation professionnelle:
+  acronyme: CFP
+  titre: contribution à la formation professionnelle
+  produit:
+    - plafond sécurité sociale
+    - taux
+  unité: €/an
+  arrondi: oui
+  note: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
+  références:
+    Contribution à la formation professionnelle (CFP): https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-formation-professionnelle
+    Contribution à la formation professionnelle (CFP) des entrepreneurs individuels: https://entreprendre.service-public.fr/vosdroits/F23459
+    Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
+    Article L6331-48 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044056633
+
+  avec:
+    taux:
+      variations:
+        - si: entreprise . activité . artisanale
+          alors: 0.29%
+        - si: conjoint collaborateur
+          alors: 0.34%
+        - sinon: 0.25%
+
+indépendant . cotisations et contributions . après réforme:
+  valeur: date >= 01/2025
+
+indépendant . cotisations et contributions . assiette CSG-CRDS:
+  titre: assiette de la CSG-CRDS
+  description: |
+    Avec la réforme du calcul de l’assiette de cotisations et contributions
+    sociales des travailleurs indépendants portée par la Loi de Financement de la
+    Sécurité Sociale 2024, **l’assiette de la CSG-CRDS est égale** :
+    - au revenu « brut » (chiffre d’affaires moins les charges autres que les
+    cotisations sociales)
+    - abattu d’un taux forfaitaire de 26 %.
+
+    Le montant de l’abattement de 26 % est encadré par un plancher et
+    un plafond.
+
+  variations:
+    - si: après réforme
+      alors:
+        variations:
+          - si: entreprise . imposition . IR . régime micro-fiscal
+            alors: entreprise . imposition . IR . régime micro-fiscal . revenu abattu
+          - sinon:
+              valeur: revenu brut
+              abattement: abattement
+        arrondi: oui
+    - sinon:
+        somme:
+          - assiette sociale . sans plancher
+          - cotisations
+          - conjoint collaborateur . cotisations
+        abattement:
+          somme:
+            - revenus étrangers . montant
+            - IJSS . imposable
+          plancher: 0 €/an
+
+  avec:
+    abattement:
+      valeur: 26% * revenu brut
+      plancher: 1.76% * plafond sécurité sociale . annuel
+      plafond: 130% * plafond sécurité sociale . annuel
+      arrondi: oui
+
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
+    Article L136-3 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051284498
+    Article D136-5 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049899286
+
+  note: >-
+    Avant la réforme, seule la partie imposable des IJSS est retranchée de
+    l’assiette de la CSG, puisque la partie non imposable a déjà été retranchée du
+    revenu net fiscal fourni.
+
+indépendant . cotisations et contributions . assiette sociale:
+  description: |
+    Avec la réforme du calcul de l’assiette de cotisations et contributions
+    sociales des travailleurs indépendants portée par la Loi de Financement de la
+    Sécurité Sociale 2024,
+    **l’assiette des cotisations sociales est alignée sur l’assiette de la CSG-CRDS**.
+
+    Pour obtenir l’assiette des cotisations sociales à partir de celle de la
+    CSG-CRDS il faut :
+    - y ajouter les revenus de remplacement (hors affection de longue durée)
+    - et en soustraire la participation, l’intéressement et l’abondement au PER.
+
+  variations:
+    - si: après réforme
+      alors:
+        somme:
+          - assiette CSG-CRDS
+          - IJSS . après abattement
+          - revenus étrangers . montant
+          # - (- cotisations facultatives . déductibles)
+    - sinon:
+        valeur: sans plancher
+        plancher: 0 €/an
+
+  avec:
+    sans plancher:
+      somme:
+        - revenu professionnel
+        - cotisations facultatives . déductibles
+
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
+    Article L131-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048683707
+    Article L3312-4 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075048
+    Article L3324-5 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038589722
+    Article L3332-27 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075039

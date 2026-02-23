@@ -1,7 +1,8 @@
 import 'vitest'
 
-import { DottedName } from 'modele-social'
 import { Evaluation, PublicodesExpression } from 'publicodes'
+
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { PublicodesTypes } from './modele-social/helpers/PublicodesTypes'
 

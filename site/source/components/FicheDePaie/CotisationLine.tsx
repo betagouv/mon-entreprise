@@ -1,10 +1,10 @@
-import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { useEngine } from '@/components/utils/EngineContext'
-import { findReferenceInNode } from '@/utils/publicodes'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/utils/publicodes/EngineContext'
+import { findReferenceInNode } from '@/utils/publicodes/publicodes'
 
 export default function CotisationLine({
 	dottedName,

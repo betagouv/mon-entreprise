@@ -1,5 +1,4 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -11,7 +10,6 @@ import {
 	getOnePossibilityOptions,
 	isOnePossibility,
 } from '@/components/conversation/getOnePossibilityOptions'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	ChoiceDisplayType,
 	InputSuggestionsRecord,
@@ -30,6 +28,7 @@ import {
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { isQuantité, Quantité } from '@/domaine/Quantité'
 import {
 	isUnitéMonétaire,
@@ -38,9 +37,10 @@ import {
 	UnitéMonétaire,
 	UnitéQuantité,
 } from '@/domaine/Unités'
-import { enregistreLesRéponses } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
-import { getMeta } from '@/utils/publicodes'
+import { enregistreLesRéponsesÀLaQuestion } from '@/store/actions/actions'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
+import { getMeta } from '@/utils/publicodes/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import { DateInput } from './DateInput'
@@ -244,7 +244,7 @@ export default function RuleInput({
 							}
 						}, {})
 
-						dispatch(enregistreLesRéponses(dottedName, valeurs))
+						dispatch(enregistreLesRéponsesÀLaQuestion(dottedName, valeurs))
 					}}
 					engine={engineValue}
 					id={inputId}
@@ -299,7 +299,7 @@ export default function RuleInput({
 					autoFocus={accessibilityProps.autoFocus}
 					missing={missing ?? dottedName in evaluation.missingVariables}
 					onChange={(c) => {
-						dispatch(enregistreLesRéponses(dottedName, c))
+						dispatch(enregistreLesRéponsesÀLaQuestion(dottedName, c))
 					}}
 					value={value as Evaluation<string>}
 				/>

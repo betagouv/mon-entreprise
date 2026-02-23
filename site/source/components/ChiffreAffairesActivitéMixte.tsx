@@ -3,7 +3,6 @@ import * as A from 'effect/Array'
 import * as E from 'effect/Either'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { DottedName } from 'modele-social'
 import { useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,23 +14,24 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
-import { batchUpdateSituation } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Condition } from './EngineValue/Condition'
 import { WhenApplicable } from './EngineValue/WhenApplicable'
 import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
-import { useEngine } from './utils/EngineContext'
 
 const proportions = {
-	'entreprise . activités . revenus mixtes . proportions . service BIC':
+	'entreprise . activité . revenus mixtes . proportions . service BIC':
 		"entreprise . chiffre d'affaires . service BIC",
-	'entreprise . activités . revenus mixtes . proportions . service BNC':
+	'entreprise . activité . revenus mixtes . proportions . service BNC':
 		"entreprise . chiffre d'affaires . service BNC",
-	'entreprise . activités . revenus mixtes . proportions . vente restauration hébergement':
+	'entreprise . activité . revenus mixtes . proportions . vente restauration hébergement':
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
 
@@ -45,15 +45,17 @@ const CAÀNone = pipe(
 
 export default function ChiffreAffairesActivitéMixte({
 	dottedName,
+	label,
 }: {
 	dottedName: DottedName
+	label?: string
 }) {
 	const { t } = useTranslation()
 	const adjustProportions = useAdjustProportions(dottedName)
 	const dispatch = useDispatch()
 	const clearChiffreAffaireMixte = useCallback(() => {
 		dispatch(
-			batchUpdateSituation(
+			enregistreLesRéponsesAuxQuestions(
 				Object.values(proportions).reduce(
 					(acc, chiffreAffaires) => ({ ...acc, [chiffreAffaires]: O.none() }),
 					{} as Record<DottedName, O.Option<ValeurPublicodes>>
@@ -69,12 +71,13 @@ export default function ChiffreAffairesActivitéMixte({
 				appear={false}
 				onUpdateSituation={clearChiffreAffaireMixte}
 				dottedName={dottedName}
+				label={label}
 			/>
-			<WhenApplicable dottedName="entreprise . activités . revenus mixtes">
+			<WhenApplicable dottedName="entreprise . activité . revenus mixtes">
 				<FromTop>
 					<ActivitéMixte />
 					<ConditionWrapper>
-						<Condition expression="entreprise . activités . revenus mixtes">
+						<Condition expression="entreprise . activité . revenus mixtes">
 							{Object.values(proportions).map((chiffreAffaires) => (
 								<SimulationGoal
 									small
@@ -149,7 +152,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 				...nouvellesProportions,
 			} as Record<DottedName, O.Option<ValeurPublicodes>>
 
-			dispatch(batchUpdateSituation(situation))
+			dispatch(enregistreLesRéponsesAuxQuestions(situation))
 		},
 		[CADottedName, dispatch, currentUnit, engine]
 	)
@@ -157,18 +160,18 @@ function useAdjustProportions(CADottedName: DottedName) {
 
 function ActivitéMixte() {
 	const dispatch = useDispatch()
-	const rule = useEngine().getRule('entreprise . activités . revenus mixtes')
+	const engine = useEngine()
+	const rule = engine.getRule('entreprise . activité . revenus mixtes')
 	const defaultChecked =
-		useEngine().evaluate('entreprise . activités . revenus mixtes')
-			.nodeValue === true
+		engine.evaluate('entreprise . activité . revenus mixtes').nodeValue === true
 	const onMixteChecked = useCallback(
 		(checked: boolean) => {
 			dispatch(
-				batchUpdateSituation(
+				enregistreLesRéponsesAuxQuestions(
 					Object.values(proportions).reduce(
 						(acc, dottedName) => ({ ...acc, [dottedName]: O.none() }),
 						{
-							'entreprise . activités . revenus mixtes': O.some(
+							'entreprise . activité . revenus mixtes': O.some(
 								checked ? 'oui' : 'non'
 							),
 						} as Record<DottedName, O.Option<ValeurPublicodes>>
