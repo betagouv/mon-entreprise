@@ -208,6 +208,7 @@ export function Questions<S extends Situation>({
 							<div ref={focusAnchorForA11yRef} tabIndex={-1} role="status">
 								<RuleField
 									dottedName={QuestionCourante.id}
+									labelOrLegend={questionCouranteLabel}
 									onChange={(value, name) =>
 										handlePublicodesQuestionResponse(name, value)
 									}
