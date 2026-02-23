@@ -5,15 +5,31 @@ import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
+import { isMontant } from '@/domaine/Montant'
+import { isQuantité } from '@/domaine/Quantité'
+import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
 
 const AMOUNT_FIELD = '<AmountField />'
+const QUANTITY_FIELD = '<QuantityField />'
 const RADIO_GROUP = '<RadioGroup />'
 const SELECT_COMMUNE = '<SelectCommune />'
 const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
 
-function getRuleFieldNature(rule: RuleNode): string {
-	if (rule.dottedName.endsWith('montant')) return AMOUNT_FIELD
+function getRuleFieldNature(
+	rule: RuleNode,
+	value: ValeurPublicodes | undefined
+): string {
+	const unitéPublicodes = rule.rawNode.unité
+
+	if ((value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes))
+		return AMOUNT_FIELD
+
+	if ((value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes))
+		return QUANTITY_FIELD
 
 	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
 
@@ -44,15 +60,26 @@ type RuleFieldProps = {
  * compliquant la mise en place de l'accessibilité de ces champs.
  */
 export function RuleField({ dottedName, onChange, onSubmit }: RuleFieldProps) {
-	const engineValue = useEngine()
-	const rule = engineValue.getRule(dottedName)
+	const engine = useEngine()
+
+	const rule = engine.getRule(dottedName)
+
+	const evaluation = engine.evaluate(dottedName)
+	const decodedEvaluation: O.Option<ValeurPublicodes> =
+		PublicodesAdapter.decode(evaluation)
 
 	console.log('rule', rule)
+	console.log('evaluation', evaluation)
+	console.log('decodedEvaluation', decodedEvaluation)
+
+	const value = O.getOrUndefined(decodedEvaluation)
+
+	console.log('value', value)
 
 	const labelOrLegend =
 		rule.rawNode.question || 'ERROR: Missing label or legend'
 
-	const ruleFieldNature = getRuleFieldNature(rule)
+	const ruleFieldNature = getRuleFieldNature(rule, value)
 
 	return (
 		<WorkInProgressContainer>
