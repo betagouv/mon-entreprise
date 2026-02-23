@@ -1463,7 +1463,11 @@ pages:
               trimestres</2> pour votre retraite de base. Le nombre total de
               trimestres validés détermine votre droit à une retraite à taux
               plein.
-            h4: Trimestres validés pour la retraite de base
+            h4: Retraite de base
+            revenu-cotisé:
+              body: Le montant de votre pension dépend aussi du <2>revenu cotisé</2>,
+                c'est-à-dire la part de vos revenus sur laquelle vous cotisez
+                pour la retraite de base.
             unit: trimestres/an
           body: Vos droits pour la retraite dépendent de vos <2>trimestres validés</2>
             (retraite de base), de vos <5>points acquis</5> (retraite
@@ -1474,7 +1478,7 @@ pages:
               retraite complémentaire</2>. En fin de carrière, vos points sont
               convertis en pension mensuelle qui s'ajoute à votre retraite de
               base.
-            h4: Points de retraite complémentaire acquis
+            h4: Retraite complémentaire
             unit: points/an
           lien-assurance-retraite:
             aria-label: Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre
