@@ -260,15 +260,6 @@ const Détails = ({
 					key="retraite"
 					hasChildItems={false}
 				>
-					<Body>
-						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.body">
-							Vos droits pour la retraite dépendent de vos{' '}
-							<Strong>trimestres validés</Strong> (retraite de base), de vos{' '}
-							<Strong>points acquis</Strong> (retraite complémentaire) et du{' '}
-							<Strong>montant cotisé</Strong>. Ce sont ces droits qui
-							détermineront le montant de votre future pension.
-						</Trans>
-					</Body>
 					<StyledH4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.h4',
@@ -290,7 +281,7 @@ const Détails = ({
 						namedEngines={namedEngines}
 						displayedUnit={t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.unit',
-							'trimestres/an'
+							'trimestre(s) acquis par an'
 						)}
 					/>
 
@@ -313,7 +304,7 @@ const Détails = ({
 						<DetailsRowCards
 							dottedName="protection sociale . retraite . base . cotisée"
 							namedEngines={namedEngines}
-							unit="€/an"
+							unit="€ cotisés par an"
 						/>
 					</Condition>
 
@@ -344,7 +335,7 @@ const Détails = ({
 						namedEngines={namedEngines}
 						displayedUnit={t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.unit',
-							'points/an'
+							'point(s) acquis par an'
 						)}
 					/>
 
