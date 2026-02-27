@@ -29,7 +29,7 @@ salarié . cotisations . exonérations . RGDU:
         - Tmin
         - produit:
             - Tdelta
-            - 0.5 * ((3 * temps de travail . SMIC / cotisations . assiette - 1) ** P)
+            - (0.5 * (3 * temps de travail . SMIC / cotisations . assiette - 1)) ** P
       plafond: Tmin + Tdelta
       unité: ''
       arrondi: 4 décimales
