@@ -16,6 +16,7 @@ import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
 const AMOUNT_FIELD = '<AmountField />'
 const QUANTITY_FIELD = '<QuantityField />'
 const RADIO_GROUP = '<RadioGroup />'
+const SELECT_ATMP = '<SelectAtmp />'
 const SELECT_COMMUNE = '<SelectCommune />'
 const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
 
@@ -25,15 +26,10 @@ function getRuleFieldNature(
 	evaluationType: string | null | undefined,
 	value: ValeurPublicodes | undefined
 ): string {
-	const unitéPublicodes = rule.rawNode.unité
-
-	if ((value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes))
-		return AMOUNT_FIELD
-
-	if ((value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes))
-		return QUANTITY_FIELD
-
 	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
+
+	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
+		return SELECT_ATMP
 
 	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
 
@@ -45,6 +41,14 @@ function getRuleFieldNature(
 		evaluationType !== 'number'
 	)
 		return YES_OR_NO_TOGGLE_GROUP
+
+	const unitéPublicodes = rule.rawNode.unité
+
+	if ((value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes))
+		return AMOUNT_FIELD
+
+	if ((value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes))
+		return QUANTITY_FIELD
 
 	return 'Nature non déterminée'
 }
