@@ -49,9 +49,9 @@ const ToggleGroupToRender = (options: ToggleOption[], defaultValue: string) => {
 type Story = StoryObj<typeof ToggleGroup>
 
 export const Default: Story = {
-	render: () => ToggleGroupToRender(TOGGLE_OPTIONS, TOGGLE_OPTIONS[0].value),
+	render: () => ToggleGroupToRender(TOGGLE_OPTIONS, ''),
 }
 
-export const WithoutDefaultValue: Story = {
-	render: () => ToggleGroupToRender(TOGGLE_OPTIONS, ''),
+export const WithDefaultValue: Story = {
+	render: () => ToggleGroupToRender(TOGGLE_OPTIONS, TOGGLE_OPTIONS[0].value),
 }
