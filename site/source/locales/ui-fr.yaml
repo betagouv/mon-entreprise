@@ -546,7 +546,7 @@ gérer:
       body: Calculez le montant de l'impôt sur les sociétés à partir de votre
         bénéfice.
       cta: Lancer le simulateur
-      title: Estimer le montant de l’impôt sur les sociétés
+      title: Estimer le montant de l'impôt sur les sociétés
   ressources:
     annuaire-entreprises:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre

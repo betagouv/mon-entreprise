@@ -1,36 +1,24 @@
-import { createContext, useContext, useState } from 'react'
-import { useMatch } from 'react-router-dom'
+import { createContext, useContext } from 'react'
+
+import { useNavigation } from '@/lib/navigation'
 
 export function useIsEmbedded(): boolean {
-	return useContext(EmbededContext)
+	return useContext(EmbeddedContext)
 }
 
-const EmbededContext = createContext(false)
+const EmbeddedContext = createContext(false)
 
-export function EmbededContextProvider({
+export function EmbeddedContextProvider({
 	children,
 }: {
 	children: React.ReactNode
 }) {
-	const [isEmbedded, setIsEmbedded] = useState(false)
-
-	let isIframePath
-	try {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
-		isIframePath = useMatch('/iframes/*')
-	} catch {
-		isIframePath =
-			typeof window !== 'undefined' &&
-			window.location.pathname.includes('/iframes/')
-	}
-
-	if (isIframePath && !isEmbedded) {
-		setIsEmbedded(true)
-	}
+	const { matchPath } = useNavigation()
+	const isEmbedded = matchPath('/iframes/*') !== null
 
 	return (
-		<EmbededContext.Provider value={isEmbedded}>
+		<EmbeddedContext.Provider value={isEmbedded}>
 			{children}
-		</EmbededContext.Provider>
+		</EmbeddedContext.Provider>
 	)
 }

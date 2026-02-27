@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
 import { useCMG } from '@/contextes/cmg'
 import { Body, Button, FlexCenter, Li, Ul } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'
+import { useNavigation } from '@/lib/navigation'
 
 export default function NonÉligible() {
-	const navigate = useNavigate()
+	const { navigate } = useNavigation()
 	const { raisonsInéligibilité, getRaisonsInéligibilitéHumaines, set } =
 		useCMG()
 	const { t } = useTranslation()

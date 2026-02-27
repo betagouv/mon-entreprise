@@ -3,7 +3,6 @@ import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useLocation } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
@@ -24,18 +23,19 @@ import {
 	Strong,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
-import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
+import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
 
 export default function Résultat() {
 	const { absoluteSitePaths } = useSitePaths()
-	const location = useLocation()
+	const { currentPath } = useNavigation()
 
 	const statut = Object.entries(
 		absoluteSitePaths.assistants['choix-du-statut'].résultat
-	).find(([, path]) => location.pathname === path)?.[0]
+	).find(([, path]) => currentPath === path)?.[0]
 	const dottedName = STATUT_TO_DOTTEDNAME[statut as StatutType]
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)
@@ -174,7 +174,7 @@ function useSetStatutInSituation(dottedName: DottedName) {
 const BPIWhiteList = ['bpifrance-creation.fr', 'associations.gouv.fr']
 
 export function useReferences(rule: RuleNode) {
-	const onBPISite = useIsEmbededOnBPISite()
+	const onBPISite = useIsEmbeddedOnBPISite()
 	if (!rule.rawNode.références) {
 		return {}
 	}
@@ -189,7 +189,7 @@ export function useReferences(rule: RuleNode) {
 }
 
 function useExternalGuideLink() {
-	const onBPISite = useIsEmbededOnBPISite()
+	const onBPISite = useIsEmbeddedOnBPISite()
 
 	return onBPISite
 		? 'https://bpifrance-creation.fr/boiteaoutils/guide-pratique-du-createur-reussir-votre-creation-dentreprise'

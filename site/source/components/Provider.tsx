@@ -12,7 +12,8 @@ import { TrackingProvider } from '@/components/TrackingProvider'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { DesignSystemThemeProvider } from '@/design-system'
-import { EmbededContextProvider } from '@/hooks/useIsEmbedded'
+import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
+import { ReactRouterNavigationProvider } from '@/lib/navigation'
 
 import { makeStore } from '../store/store'
 import { ErrorFallback } from './ErrorPage'
@@ -39,13 +40,13 @@ export default function Provider({
 	const store = makeStore(engine)
 
 	return (
-		<EmbededContextProvider>
-			<DarkModeProvider>
-				<DesignSystemThemeProvider>
-					<ErrorBoundary fallback={ErrorFallback}>
-						<I18nextProvider i18n={i18next}>
-							<ReduxProvider store={store}>
-								<BrowserRouterProvider basename={basename}>
+		<DarkModeProvider>
+			<DesignSystemThemeProvider>
+				<ErrorBoundary fallback={ErrorFallback}>
+					<I18nextProvider i18n={i18next}>
+						<ReduxProvider store={store}>
+							<BrowserRouterProvider basename={basename}>
+								<EmbeddedContextProvider>
 									<ErrorBoundary
 										fallback={(errorData) => (
 											// eslint-disable-next-line react/jsx-props-no-spreading
@@ -68,13 +69,13 @@ export default function Provider({
 											</ThemeColorsProvider>
 										</OverlayProvider>
 									</ErrorBoundary>
-								</BrowserRouterProvider>
-							</ReduxProvider>
-						</I18nextProvider>
-					</ErrorBoundary>
-				</DesignSystemThemeProvider>
-			</DarkModeProvider>
-		</EmbededContextProvider>
+								</EmbeddedContextProvider>
+							</BrowserRouterProvider>
+						</ReduxProvider>
+					</I18nextProvider>
+				</ErrorBoundary>
+			</DesignSystemThemeProvider>
+		</DarkModeProvider>
 	)
 }
 
@@ -97,7 +98,9 @@ function BrowserRouterProvider({
 					basename={import.meta.env.MODE === 'production' ? '' : basename}
 					future={{ v7_startTransition: true }}
 				>
-					{children}
+					<ReactRouterNavigationProvider>
+						{children}
+					</ReactRouterNavigationProvider>
 				</BrowserRouter>
 			</TrackingProvider>
 		</HelmetProvider>

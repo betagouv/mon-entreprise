@@ -5,13 +5,7 @@ import { ComponentProps, lazy, Suspense, useMemo, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import {
-	Navigate,
-	Route,
-	Routes,
-	useLocation,
-	useParams,
-} from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
@@ -28,6 +22,7 @@ import {
 	Spacing,
 	typography,
 } from '@/design-system'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { RootState } from '@/store/reducers/rootReducer'
 
@@ -45,8 +40,8 @@ export default function Documentation({
 	engine: Engine
 }) {
 	const { t } = useTranslation()
-	const location = useLocation()
-	const pathname = decodeURI(location?.pathname ?? '')
+	const { currentPath } = useNavigation()
+	const pathname = decodeURI(currentPath ?? '')
 	const documentationSitePaths = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
@@ -128,7 +123,10 @@ function DocumentationPageBody({
 }) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { i18n } = useTranslation()
-	const params = useParams<{ '*': string }>()
+	const { currentPath } = useNavigation()
+	const rulePath = decodeURI(currentPath)
+		.replace(documentationPath, '')
+		.replace(/^\//, '')
 
 	const { current: renderers } = useRef({
 		Head: Helmet,
@@ -142,7 +140,7 @@ function DocumentationPageBody({
 		<StyledDocumentation>
 			<RulePage
 				language={i18n.language as 'fr' | 'en'}
-				rulePath={params['*'] ?? ''}
+				rulePath={rulePath}
 				engine={engine}
 				documentationPath={documentationPath}
 				renderers={renderers}

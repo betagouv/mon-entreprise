@@ -1,7 +1,8 @@
 import { AriaButtonProps } from '@react-types/button'
 import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
-import { Link as BaseLink } from 'react-router-dom'
 import { css, IStyledComponent, styled } from 'styled-components'
+
+import { Link as BaseLink } from '@/lib/navigation'
 
 import { StyledButton } from '../buttons/Button'
 import { H3, H4, HeadingUnderline } from '../typography/heading'

@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { generatePath, useNavigate } from 'react-router-dom'
 
 import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
@@ -18,6 +17,7 @@ import {
 import { Entreprise } from '@/domaine/Entreprise'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { getCookieValue } from '@/storage/readCookie'
 import { resetCompany } from '@/store/actions/companyActions'
@@ -26,6 +26,7 @@ import { resetCompany } from '@/store/actions/companyActions'
 
 export default function SearchOrCreate() {
 	const { absoluteSitePaths } = useSitePaths()
+	const { generatePath } = useNavigation()
 	// const statutChoisi = useSelector(
 	// 	(state: RootState) => state.choixStatutJuridique.companyStatusChoice
 	// )
@@ -95,7 +96,7 @@ export default function SearchOrCreate() {
 }
 
 function useHandleCompanySubmit() {
-	const navigate = useNavigate()
+	const { navigate, generatePath } = useNavigation()
 	const { absoluteSitePaths } = useSitePaths()
 	const setEntreprise = useSetEntreprise()
 
@@ -112,7 +113,7 @@ function useHandleCompanySubmit() {
 			)
 			navigate(path)
 		},
-		[absoluteSitePaths.assistants, navigate, setEntreprise]
+		[absoluteSitePaths.assistants, navigate, setEntreprise, generatePath]
 	)
 
 	return handleCompanySubmit

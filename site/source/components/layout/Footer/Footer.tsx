@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
-import { generatePath, matchPath, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import Contact from '@/components/Contact'
@@ -15,6 +14,7 @@ import {
 	GithubIcon,
 	Link,
 } from '@/design-system'
+import { NavigationAPI, useNavigation } from '@/lib/navigation'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
@@ -25,9 +25,11 @@ import TermsOfUse from './TermsOfUse'
 
 const altPathname = alternatePathname()
 
-const altPathnnamesWithParams = (
+const getAltPathnamesWithParams = (
 	lang: keyof typeof altPathname,
-	path: string
+	path: string,
+	matchPath: NavigationAPI['matchPath'],
+	generatePath: NavigationAPI['generatePath']
 ) =>
 	Object.entries(altPathname[lang])
 		.filter(([pth]) => /\/:/.test(pth))
@@ -40,12 +42,12 @@ const altPathnnamesWithParams = (
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { pathname } = useLocation()
+	const { currentPath, matchPath, generatePath } = useNavigation()
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
 
 	const path = decodeURIComponent(
-		pathname.replace(/^\/(mon-entreprise|infrance)/, '')
+		currentPath.replace(/^\/(mon-entreprise|infrance)/, '')
 	)
 	const altLang = language === 'en' ? 'fr' : 'en'
 	const altHref =
@@ -53,7 +55,7 @@ export default function Footer() {
 			? import.meta.env.VITE_FR_BASE_URL
 			: import.meta.env.VITE_EN_BASE_URL) +
 		(altPathname[language][path] ??
-			altPathnnamesWithParams(language, path)?.[0] ??
+			getAltPathnamesWithParams(language, path, matchPath, generatePath)?.[0] ??
 			'/')
 
 	const isFrenchMode = language === 'fr'
@@ -79,7 +81,7 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					<FeedbackButton key={`${pathname}-feedback-key`} />
+					<FeedbackButton key={`${currentPath}-feedback-key`} />
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}

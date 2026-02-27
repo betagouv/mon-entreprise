@@ -1,11 +1,16 @@
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
 import { Button, Chip, Emoji, theme, typography } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
+import { useNavigation } from '@/lib/navigation'
 
 import { StatsStruct } from './types'
+
+const PAGE_PARAM_OPEN = 'page-open' as const
+const PAGE_PARAM_CLOSED = 'page-closed' as const
+
+type PageParam = typeof PAGE_PARAM_OPEN | typeof PAGE_PARAM_CLOSED
 
 const { headings, Link, lists, paragraphs } = typography
 const { H2, H3 } = headings
@@ -38,12 +43,14 @@ export default function DemandeUtilisateurs() {
 			<Pagination
 				items={stats?.retoursUtilisateurs.open ?? []}
 				title="Demandes en attente d'implémentation"
+				pageParam={PAGE_PARAM_OPEN}
 			/>
 
 			<H3>Réalisées</H3>
 			<Pagination
 				items={stats?.retoursUtilisateurs.closed ?? []}
 				title="Demandes réalisées"
+				pageParam={PAGE_PARAM_CLOSED}
 			/>
 		</section>
 	)
@@ -59,12 +66,22 @@ type IssueProps = {
 type PaginationProps = {
 	items: Array<IssueProps>
 	title: string
+	pageParam: PageParam
 }
 
-function Pagination({ title, items }: PaginationProps) {
-	const state: Record<string, number> = useLocation().state ?? {}
-	const currentPage = state[title] ?? 0
-	const currentSearch = useLocation().search
+function Pagination({ title, items, pageParam }: PaginationProps) {
+	const { searchParams, setSearchParams } = useNavigation()
+	const currentPage = Number(searchParams.get(pageParam) ?? 0)
+
+	const goToPage = (page: number) => {
+		const newParams = new URLSearchParams(searchParams)
+		if (page === 0) {
+			newParams.delete(pageParam)
+		} else {
+			newParams.set(pageParam, String(page))
+		}
+		setSearchParams(newParams, { replace: true })
+	}
 
 	return (
 		<>
@@ -80,11 +97,7 @@ function Pagination({ title, items }: PaginationProps) {
 							<PagerButton
 								light
 								size="XXS"
-								replace
-								to={{
-									search: currentSearch,
-								}}
-								state={{ ...state, [title]: i }}
+								onPress={() => goToPage(i)}
 								aria-label={`${title}, Page ${i + 1}${
 									currentPage === i ? ', page actuelle' : ''
 								}`}
@@ -175,6 +188,7 @@ const PagerButton = styled(Button)<PagerButtonProps>`
 
 const Pager = styled.ol`
 	display: flex;
+	flex-wrap: wrap;
 	gap: ${theme.spacings.xs};
 	justify-content: center;
 	font-family: ${({ theme }) => theme.fonts.main};

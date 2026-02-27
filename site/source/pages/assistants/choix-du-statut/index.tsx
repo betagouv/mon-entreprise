@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { useSitePaths } from '@/sitePaths'
 
-import { IsBPIProvider } from './_components/useIsEmbededBPI'
+import { IsBPIProvider } from './_components/useIsEmbeddedBPI'
 import { useCurrentStep } from './_components/useSteps'
 import Association from './association'
 import Associé from './associé'

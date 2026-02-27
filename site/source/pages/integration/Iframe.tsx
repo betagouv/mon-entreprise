@@ -2,7 +2,6 @@ import ColorPicker from '@atomik-color/component'
 import { str2Color } from '@atomik-color/core'
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useHref, useSearchParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import urssafLogo from '@/assets/images/Urssaf.svg'
@@ -26,6 +25,7 @@ import {
 	Ul,
 } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useNavigation } from '@/lib/navigation'
 
 import Meta from '../../components/utils/Meta'
 
@@ -56,7 +56,7 @@ const getFromSimu = <S extends SimulatorData, T extends string>(
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
 	const simulatorsData = useSimulatorsData()
-	const [searchParams, setSearchParams] = useSearchParams()
+	const { searchParams, setSearchParams, getHref } = useNavigation()
 
 	const defaultModuleFromUrl = searchParams.get('module') ?? ''
 
@@ -86,7 +86,7 @@ function IntegrationCustomizer() {
 		''
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
-	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
+	const iframeSrc = getHref(`/iframes/${currentIframePath}`)
 
 	useEffect(() => {
 		window.addEventListener(

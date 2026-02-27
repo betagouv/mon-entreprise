@@ -1,6 +1,5 @@
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
@@ -19,6 +18,7 @@ import {
 	TextField,
 } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
+import { useNavigation } from '@/lib/navigation'
 
 type SubmitError = {
 	message?: string
@@ -119,7 +119,8 @@ export default function FeedbackForm({
 	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
 		undefined
 	)
-	const pathname = decodeURI(useLocation().pathname)
+	const { currentPath } = useNavigation()
+	const pathname = decodeURI(currentPath)
 
 	const { t } = useTranslation()
 
