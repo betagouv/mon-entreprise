@@ -165,3 +165,9 @@ indépendant . cotisations et contributions . assiette sociale:
     Article L3312-4 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075048
     Article L3324-5 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038589722
     Article L3332-27 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037075039
+
+indépendant . cotisations et contributions . assiette sociale après déduction tabac:
+  valeur: assiette sociale
+  abattement:
+    applicable si: entreprise . activité . commerciale . débit de tabac
+    valeur: déduction tabac
