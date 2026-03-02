@@ -12,8 +12,8 @@ describe('Indépendant', () => {
 			.nodeValue as number
 	})
 
-	describe('calcule l’assiette CSG-CRDS', () => {
-		it('à l’IR', () => {
+	describe('assiette CSG-CRDS', () => {
+		it('calcule à l’IR', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IR'",
 				"entreprise . chiffre d'affaires": '50000 €/an',
@@ -27,7 +27,7 @@ describe('Indépendant', () => {
 			)
 		})
 
-		it('à l’IS', () => {
+		it('calcule à l’IS', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . brute': '40000 €/an',
@@ -40,7 +40,7 @@ describe('Indépendant', () => {
 			)
 		})
 
-		it('avec un abattement plafonné à 1,3 Pass', () => {
+		it('applique un abattement plafonné à 1,3 Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . brute': '250000 €/an',
@@ -52,7 +52,7 @@ describe('Indépendant', () => {
 			)
 		})
 
-		it('avec un abattement plancher de 1,76% du Pass', () => {
+		it('applique un abattement plancher de 1,76% du Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . brute': '1000 €/an',
@@ -65,13 +65,13 @@ describe('Indépendant', () => {
 		})
 	})
 
-	describe('calcule l’assiette sociale', () => {
+	describe('assiette sociale', () => {
 		const situationParDéfaut = {
 			'entreprise . imposition': "'IS'",
 			'indépendant . rémunération . brute': '40000 €/an',
 		}
 
-		it('sans ajustements', () => {
+		it('calcule sans ajustements', () => {
 			const e = engine.setSituation(situationParDéfaut)
 
 			const assietteCSG = e.evaluate(
@@ -84,7 +84,7 @@ describe('Indépendant', () => {
 			expect(assietteSociale).toEqual(assietteCSG)
 		})
 
-		it('avec des revenus de remplacement', () => {
+		it('calcule avec des revenus de remplacement', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				'indépendant . IJSS': 'oui',
@@ -106,7 +106,7 @@ describe('Indépendant', () => {
 			expect(assietteSociale).toEqual(assietteCSG + IJSS)
 		})
 
-		it('avec des revenus étrangers bénéficiaires', () => {
+		it('calcule avec des revenus étrangers bénéficiaires', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				'indépendant . revenus étrangers': 'oui',
@@ -124,7 +124,7 @@ describe('Indépendant', () => {
 			expect(assietteSociale).toEqual(assietteCSG + 4000)
 		})
 
-		it('avec des revenus étrangers déficitaires', () => {
+		it('calcule avec des revenus étrangers déficitaires', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				'indépendant . revenus étrangers': 'oui',
@@ -142,7 +142,7 @@ describe('Indépendant', () => {
 			expect(assietteSociale).toEqual(assietteCSG - 4000)
 		})
 
-		it('en cas de domiciliation fiscale à l’étranger', () => {
+		it('calcule en cas de domiciliation fiscale à l’étranger', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
@@ -151,6 +151,71 @@ describe('Indépendant', () => {
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette sociale',
 				29600
+			)
+		})
+	})
+
+	describe('assiette retraite et invalidité-décès', () => {
+		const situationParDéfaut = {
+			'indépendant . cotisations et contributions . assiette sociale':
+				'60000 €/an',
+		}
+
+		it('calcule situation de base', () => {
+			const e = engine.setSituation(situationParDéfaut)
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				60_000
+			)
+		})
+
+		it('calcule avec déduction tabac', () => {
+			const e = engine.setSituation({
+				...situationParDéfaut,
+				'entreprise . activité . commerciale . débit de tabac': 'oui',
+				'indépendant . cotisations et contributions . déduction tabac':
+					'20000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				60_000 - 20_000
+			)
+		})
+
+		it('calcule avec conjoint collaborateur', () => {
+			const e = engine.setSituation({
+				...situationParDéfaut,
+				'indépendant . conjoint collaborateur': 'oui',
+				'indépendant . conjoint collaborateur . choix assiette':
+					"'revenu avec partage'",
+				'indépendant . conjoint collaborateur . choix assiette . proportion':
+					"'moitié'",
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				60_000 / 2
+			)
+		})
+
+		it('calcule avec déduction tabac et conjoint collaborateur', () => {
+			const e = engine.setSituation({
+				...situationParDéfaut,
+				'entreprise . activité . commerciale . débit de tabac': 'oui',
+				'indépendant . cotisations et contributions . déduction tabac':
+					'20000 €/an',
+				'indépendant . conjoint collaborateur': 'oui',
+				'indépendant . conjoint collaborateur . choix assiette':
+					"'revenu avec partage'",
+				'indépendant . conjoint collaborateur . choix assiette . proportion':
+					"'moitié'",
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				(60_000 - 20_000) / 2
 			)
 		})
 	})
