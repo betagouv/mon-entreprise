@@ -4,6 +4,7 @@ import rawRules from 'modele-social'
 import Engine, { ParsedRules } from 'publicodes'
 
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { NomModèle } from '@/domaine/SimulationConfig'
 
 dotenv.config()
 
@@ -19,12 +20,14 @@ const ALGOLIA_APP_ID = env.ALGOLIA_APP_ID || ''
 const ALGOLIA_ADMIN_KEY = env.ALGOLIA_ADMIN_KEY || ''
 const ALGOLIA_INDEX_PREFIX = env.ALGOLIA_INDEX_PREFIX || ''
 
-const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
+const formatRulesToAlgolia = (rules: ParsedRules<string>, nomModèle?: NomModèle) =>
 	Object.entries(rules)
 		.map(([dottedName, rule]) => {
 			if (!rule) {
 				return false
 			}
+
+			const objectID = nomModèle ? `${nomModèle} . ${dottedName}` : dottedName
 			const path = dottedName.split(' . ')
 			const namespace = path.slice(0, -1)
 			const {
@@ -34,7 +37,9 @@ const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 			const ruleName = `${title} ${' ' + icônes}`.trim()
 
 			return {
-				objectID: dottedName,
+				objectID,
+				nomModèle: nomModèle || 'modele-social',
+				dottedName,
 				path,
 				ruleName,
 				namespace,
