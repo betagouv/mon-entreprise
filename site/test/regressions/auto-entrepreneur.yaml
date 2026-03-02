@@ -91,9 +91,9 @@ activité mixte:
   - entreprise . chiffre d'affaires . service BIC: 20000 €/an
     entreprise . chiffre d'affaires . service BNC: 10000 €/an
     entreprise . chiffre d'affaires . vente restauration hébergement: 15000 €/an
-    entreprise . activité . revenus mixtes . proportions . service BIC: 44.44%
-    entreprise . activité . revenus mixtes . proportions . service BNC: 22.22%
-    entreprise . activité . revenus mixtes . proportions . vente restauration hébergement: 33.33%
+    entreprise . chiffre d'affaires . proportions . service BIC: 44.44%
+    entreprise . chiffre d'affaires . proportions . service BNC: 22.22%
+    entreprise . chiffre d'affaires . proportions . vente restauration hébergement: 33.33%
     entreprise . activité . revenus mixtes: oui
     entreprise . activité . nature: "'commerciale'"
 
