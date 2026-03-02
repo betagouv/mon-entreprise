@@ -27,11 +27,11 @@ import { SimulationGoal } from './Simulation'
 import { FromTop } from './ui/animate'
 
 const proportions = {
-	'entreprise . activité . revenus mixtes . proportions . service BIC':
+	"entreprise . chiffre d'affaires . proportions . service BIC":
 		"entreprise . chiffre d'affaires . service BIC",
-	'entreprise . activité . revenus mixtes . proportions . service BNC':
+	"entreprise . chiffre d'affaires . proportions . service BNC":
 		"entreprise . chiffre d'affaires . service BNC",
-	'entreprise . activité . revenus mixtes . proportions . vente restauration hébergement':
+	"entreprise . chiffre d'affaires . proportions . vente restauration hébergement":
 		"entreprise . chiffre d'affaires . vente restauration hébergement",
 } as const
 
