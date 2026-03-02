@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import rawRules from 'modele-social'
 import Engine, { ParsedRules } from 'publicodes'
 
+import { NomModèle } from '@/domaine/SimulationConfig'
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 dotenv.config()
@@ -12,19 +13,23 @@ const path = '../../source/public/simulation-data.json'
 const simuData = (await import(path, { assert: { type: 'json' } }))
 	.default as unknown as Omit<SimulatorData, 'component'>
 
-
 const env = process.env
 
 const ALGOLIA_APP_ID = env.ALGOLIA_APP_ID || ''
 const ALGOLIA_ADMIN_KEY = env.ALGOLIA_ADMIN_KEY || ''
 const ALGOLIA_INDEX_PREFIX = env.ALGOLIA_INDEX_PREFIX || ''
 
-const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
+const formatRulesToAlgolia = (
+	rules: ParsedRules<string>,
+	nomModèle?: NomModèle
+) =>
 	Object.entries(rules)
 		.map(([dottedName, rule]) => {
 			if (!rule) {
 				return false
 			}
+
+			const objectID = nomModèle ? `${nomModèle} . ${dottedName}` : dottedName
 			const path = dottedName.split(' . ')
 			const namespace = path.slice(0, -1)
 			const {
@@ -34,7 +39,9 @@ const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 			const ruleName = `${title} ${' ' + icônes}`.trim()
 
 			return {
-				objectID: dottedName,
+				objectID,
+				nomModèle: nomModèle || 'modele-social',
+				dottedName,
 				path,
 				ruleName,
 				namespace,
