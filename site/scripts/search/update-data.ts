@@ -1,9 +1,12 @@
-import algoliasearch from 'algoliasearch'
+import algoliasearch, { SearchIndex } from 'algoliasearch'
 import dotenv from 'dotenv'
-import rawRules from 'modele-social'
+import rulesModèleSocial from 'modele-social'
+import rulesModèleAS from 'modele-as'
+import rulesModèleTI from 'modele-ti'
 import Engine, { ParsedRules } from 'publicodes'
 
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { NomModèle } from '@/domaine/SimulationConfig'
 
 dotenv.config()
 
@@ -12,7 +15,6 @@ const path = '../../source/public/simulation-data.json'
 const simuData = (await import(path, { assert: { type: 'json' } }))
 	.default as unknown as Omit<SimulatorData, 'component'>
 
-const parsedRules = new Engine(rawRules).getParsedRules()
 
 const env = process.env
 
@@ -20,29 +22,26 @@ const ALGOLIA_APP_ID = env.ALGOLIA_APP_ID || ''
 const ALGOLIA_ADMIN_KEY = env.ALGOLIA_ADMIN_KEY || ''
 const ALGOLIA_INDEX_PREFIX = env.ALGOLIA_INDEX_PREFIX || ''
 
-const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
-
-const rulesIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}rules`)
-const simulateursIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}simulateurs`)
-
-const falsy = <T>(value: T | false): value is T => Boolean(value)
-
-const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
+const formatRulesToAlgolia = (rules: ParsedRules<string>, nomModèle?: NomModèle) =>
 	Object.entries(rules)
-		.map(([n, rule]) => {
+		.map(([dottedName, rule]) => {
 			if (!rule) {
 				return false
 			}
-			const path = n.split(' . ')
+
+			const objectID = nomModèle ? `${nomModèle} . ${dottedName}` : dottedName
+			const path = dottedName.split(' . ')
+			const namespace = path.slice(0, -1)
 			const {
 				title,
 				rawNode: { icônes = '', description, acronyme, résumé },
 			} = rule
 			const ruleName = `${title} ${' ' + icônes}`.trim()
-			const namespace = path.slice(0, -1)
 
 			return {
-				objectID: n,
+				objectID,
+				nomModèle: nomModèle || 'modele-social',
+				dottedName,
 				path,
 				ruleName,
 				namespace,
@@ -53,7 +52,7 @@ const formatRulesToAlgolia = (rules: ParsedRules<string>) =>
 				description: description || résumé,
 			}
 		})
-		.filter(falsy)
+		.filter(<T>(value: T | false): value is T => Boolean(value))
 
 const formatSimulationDataToAlgolia = (
 	simulations: Omit<SimulatorData, 'component'>
@@ -78,92 +77,95 @@ const formatSimulationDataToAlgolia = (
 			description: simulation.meta?.description,
 		}))
 
-try {
-	console.log('Algolia update START')
+const commonIndexSettings = {
+	// Parameters are documented on Algolia website https://www.algolia.com/doc/api-reference/api-parameters/
+	minWordSizefor1Typo: 4,
+	minWordSizefor2Typos: 8,
+	hitsPerPage: 20,
+	maxValuesPerFacet: 100,
+	paginationLimitedTo: 1000,
+	exactOnSingleWordQuery: 'attribute' as 'attribute' | 'none' | 'word',
+	ranking: [
+		'typo',
+		'geo',
+		'words',
+		'filters',
+		'proximity',
+		'attribute',
+		'exact',
+		'custom',
+	],
+	separatorsToIndex: '',
+	removeWordsIfNoResults: 'none' as 'none' | 'lastWords' | 'firstWords' | 'allOptional',
+	queryType: 'prefixLast' as 'prefixLast' | 'prefixAll' | 'prefixNone',
+	highlightPreTag: '<em>',
+	highlightPostTag: '</em>',
+	snippetEllipsisText: '',
+	alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'] satisfies ReadonlyArray<'ignorePlurals' | 'singleWordSynonym' | 'multiWordsSynonym'>,
+}
 
-	console.log('Clearing: rules')
-	await rulesIndex.clearObjects().wait()
-	console.log('Configure index: rules')
-	await rulesIndex
+const updateIndex = async (index: SearchIndex, settings: object, objects: object[]) => {
+	console.log('Clearing index')
+	await index.clearObjects().wait()
+
+	console.log('Configure index')
+	await index
 		.setSettings({
-			// Parameters are documented on Algolia website https://www.algolia.com/doc/api-reference/api-parameters/
-			minWordSizefor1Typo: 4,
-			minWordSizefor2Typos: 8,
-			hitsPerPage: 20,
-			maxValuesPerFacet: 100,
-			attributesToIndex: ['unordered(ruleName)', 'unordered(namespace)'],
-			attributesToHighlight: ['ruleName', 'namespace'],
-			paginationLimitedTo: 1000,
-			exactOnSingleWordQuery: 'attribute',
-			ranking: [
-				'typo',
-				'geo',
-				'words',
-				'filters',
-				'proximity',
-				'attribute',
-				'exact',
-				'custom',
-			],
-			customRanking: ['asc(pathDepth)'],
-			separatorsToIndex: '',
-			removeWordsIfNoResults: 'none',
-			queryType: 'prefixLast',
-			highlightPreTag: '<em>',
-			highlightPostTag: '</em>',
-			snippetEllipsisText: '',
-			alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
+			...commonIndexSettings,
+			...settings,
 		})
 		.wait()
 
-	console.log('Uploading: rules')
+	console.log('Uploading data')
+	await index.saveObjects(objects).wait()
+}
 
-	await rulesIndex.saveObjects(formatRulesToAlgolia(parsedRules)).wait()
+const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
 
-	console.log('Clearing: simulateurs')
-	await simulateursIndex.clearObjects().wait()
-	console.log('Configure index: simulateurs')
-	await simulateursIndex
-		.setSettings({
-			// Parameters are documented on Algolia website https://www.algolia.com/doc/api-reference/api-parameters/
-			minWordSizefor1Typo: 4,
-			minWordSizefor2Typos: 8,
-			hitsPerPage: 20,
-			maxValuesPerFacet: 100,
-			attributesToIndex: [
+const rulesIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}rules`)
+const simulateursIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}simulateurs`)
+
+const parsedRulesModèleSocial = new Engine(rulesModèleSocial).getParsedRules()
+const parsedRulesModèleAS = new Engine(rulesModèleAS).getParsedRules()
+const parsedRulesModèleTI = new Engine(rulesModèleTI).getParsedRules()
+const rules = {
+	...formatRulesToAlgolia(parsedRulesModèleSocial),
+	...formatRulesToAlgolia(parsedRulesModèleAS, 'modele-as'),
+	...formatRulesToAlgolia(parsedRulesModèleTI, 'modele-ti'),
+}
+
+const simulateurs = formatSimulationDataToAlgolia(simuData)
+
+try {
+	console.log('Algolia update START')
+
+
+	console.log('RULES index')
+	await updateIndex(
+		rulesIndex,
+		{
+			searchableAttributes: ['unordered(ruleName)', 'unordered(namespace)'],
+			attributesToHighlight: ['ruleName', 'namespace'],
+			customRanking: ['asc(pathDepth)'],
+		},
+		rules
+	)
+
+	console.log('SIMULATEURS index')
+	await updateIndex(
+		simulateursIndex,
+		{
+			searchableAttributes: [
 				'unordered(title)',
 				'unordered(tooltip)',
 				'unordered(description)',
 			],
 			attributesToHighlight: ['title'],
-			paginationLimitedTo: 1000,
-			exactOnSingleWordQuery: 'attribute',
-			ranking: [
-				'typo',
-				'geo',
-				'words',
-				'filters',
-				'proximity',
-				'attribute',
-				'exact',
-				'custom',
-			],
-			separatorsToIndex: '',
-			removeWordsIfNoResults: 'none',
-			queryType: 'prefixLast',
-			highlightPreTag: '<em>',
-			highlightPostTag: '</em>',
-			snippetEllipsisText: '',
-			alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
-		})
-		.wait()
-	console.log('Uploading: simulateurs')
-
-	await simulateursIndex
-		.saveObjects(formatSimulationDataToAlgolia(simuData))
-		.wait()
+		},
+		simulateurs
+	)
 
 	console.log('Algolia update DONE')
-} catch (e) {
-	console.log(JSON.stringify(e, null, 2))
+} catch (error) {
+	console.log(JSON.stringify(error, null, 2))
 }
