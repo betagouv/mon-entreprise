@@ -215,10 +215,13 @@ indépendant . cotisations et contributions . cotisations . allocations familial
                   taux: 3.10%
 
 indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
-  valeur: assiette sociale
+  variations:
+    - si: entreprise . activité . commerciale . débit de tabac
+      alors: assiette sociale après déduction tabac
+    - sinon: assiette sociale
   abattement:
     applicable si: conjoint collaborateur . choix assiette . revenu avec partage
-    valeur: conjoint collaborateur . assiette de cotisations
+    valeur: conjoint collaborateur . assiette retraite et invalidité-décès
 
 indépendant . cotisations et contributions . cotisations . retraite de base:
   description: |
@@ -280,9 +283,6 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     assiette:
       valeur: assiette retraite et invalidité-décès
       plancher: assiette minimale . retraite
-      abattement:
-        applicable si: déduction tabac
-        valeur: déduction tabac
       références:
         Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
         Article D633-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048838330
@@ -322,7 +322,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
           - si: profession libérale . non réglementée . taux spécifique retraite complémentaire
             alors:
               barème:
-                assiette: assiette
+                assiette: assiette retraite et invalidité-décès
                 multiplicateur: PSS proratisé
                 tranches:
                   - taux: 0%
@@ -332,7 +332,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
               arrondi: oui
           - sinon:
               barème:
-                assiette: assiette
+                assiette: assiette retraite et invalidité-décès
                 tranches:
                   - taux: taux tranche 1
                     plafond:
@@ -350,12 +350,6 @@ indépendant . cotisations et contributions . cotisations . retraite complément
     Article D635-7 du Code de la sécurité sociale: www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966498
 
   avec:
-    assiette:
-      valeur: assiette retraite et invalidité-décès
-      abattement:
-        applicable si: déduction tabac
-        valeur: déduction tabac
-
     taux tranche 1:
       variations:
         - si: après réforme
@@ -430,6 +424,3 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
       valeur: assiette retraite et invalidité-décès
       plancher: assiette minimale . invalidité et décès
       plafond: PSS proratisé
-      abattement:
-        applicable si: déduction tabac
-        valeur: déduction tabac
