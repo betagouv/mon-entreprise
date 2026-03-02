@@ -1,6 +1,8 @@
 import algoliasearch, { SearchIndex } from 'algoliasearch'
 import dotenv from 'dotenv'
-import rawRules from 'modele-social'
+import rulesModèleAS from 'modele-as'
+import rulesModèleSocial from 'modele-social'
+import rulesModèleTI from 'modele-ti'
 import Engine, { ParsedRules } from 'publicodes'
 
 import { NomModèle } from '@/domaine/SimulationConfig'
@@ -125,16 +127,25 @@ const updateIndex = async (
 }
 
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
+
 const rulesIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}rules`)
 const simulateursIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}simulateurs`)
 
-const parsedRules = new Engine(rawRules).getParsedRules()
+const parsedRulesModèleSocial = new Engine(rulesModèleSocial).getParsedRules()
+const parsedRulesModèleAS = new Engine(rulesModèleAS).getParsedRules()
+const parsedRulesModèleTI = new Engine(rulesModèleTI).getParsedRules()
+const rules = [
+	...formatRulesToAlgolia(parsedRulesModèleSocial),
+	...formatRulesToAlgolia(parsedRulesModèleAS, 'modele-as'),
+	...formatRulesToAlgolia(parsedRulesModèleTI, 'modele-ti'),
+]
+
+const simulateurs = formatSimulationDataToAlgolia(simuData)
 
 try {
 	console.log('Algolia update START')
 
 	console.log('RULES index')
-	const rules = formatRulesToAlgolia(parsedRules)
 	await updateIndex(
 		rulesIndex,
 		{
@@ -156,7 +167,7 @@ try {
 			],
 			attributesToHighlight: ['title'],
 		},
-		formatSimulationDataToAlgolia(simuData)
+		simulateurs
 	)
 
 	console.log('Algolia update DONE')
