@@ -5,7 +5,7 @@ import { Rule } from 'publicodes'
 
 import { Names } from './dist/names.js'
 
-export type RègleModeleSocial = Names
+export type RègleModèleSocial = Names
 declare let rules: Record<Names, Rule>
 
 export default rules

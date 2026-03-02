@@ -1,8 +1,8 @@
-import { RègleModeleAssimiléSalarié } from 'modele-as'
-import { RègleModeleSocial } from 'modele-social'
-import { RègleModeleTravailleurIndépendant } from 'modele-ti'
+import { RègleModèleAssimiléSalarié } from 'modele-as'
+import { RègleModèleSocial } from 'modele-social'
+import { RègleModèleTravailleurIndépendant } from 'modele-ti'
 
 export type DottedName =
-	| RègleModeleSocial
-	| RègleModeleAssimiléSalarié
-	| RègleModeleTravailleurIndépendant
+	| RègleModèleSocial
+	| RègleModèleAssimiléSalarié
+	| RègleModèleTravailleurIndépendant
