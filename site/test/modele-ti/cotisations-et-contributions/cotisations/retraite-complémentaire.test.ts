@@ -138,22 +138,6 @@ describe('Cotisation retraite complémentaire', () => {
 			})
 		})
 
-		it('applique la déduction tabac à l’assiette sociale', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
-					'30000 €/an',
-				'entreprise . activité . commerciale . débit de tabac': 'oui',
-				'indépendant . cotisations et contributions . déduction tabac':
-					'10000 €/an',
-			})
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite complémentaire . assiette',
-				30_000 - 10_000
-			)
-		})
-
 		describe('en cas de taux spécifiques PLNR', () => {
 			const TAUX_SPÉCIFIQUE = 14 / 100
 

@@ -1908,9 +1908,13 @@ indépendant . conjoint collaborateur:
   question.fr: Avez-vous un conjoint collaborateur ?
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
-indépendant . conjoint collaborateur . assiette de cotisations:
-  titre.en: '[automatic] contribution base'
-  titre.fr: assiette de cotisations
+indépendant . conjoint collaborateur . assiette retraite et invalidité-décès:
+  avec:
+    assiette chef d'entreprise:
+      titre.en: "[automatic] business manager's base"
+      titre.fr: assiette chef d'entreprise
+  titre.en: '[automatic] pension and disability-death base'
+  titre.fr: assiette retraite et invalidité-décès
 indépendant . conjoint collaborateur . choix assiette:
   avec:
     proportion:
@@ -2217,6 +2221,9 @@ indépendant . cotisations et contributions . assiette sociale:
     - et en soustraire la participation, l’intéressement et l’abondement au PER.
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
+indépendant . cotisations et contributions . assiette sociale après déduction tabac:
+  titre.en: '[automatic] social base after tobacco deduction'
+  titre.fr: assiette sociale après déduction tabac
 indépendant . cotisations et contributions . avec dividendes:
   description.en: >
     [automatic] This is the total amount owed by the self-employed person for
@@ -2723,9 +2730,6 @@ indépendant . cotisations et contributions . cotisations . retraite complément
     PRCI:
       titre.en: '[automatic] supplementary pension ceiling for self-employed workers'
       titre.fr: plafond retraite complémentaire des indépendants
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
     taux tranche 1:
       titre.en: '[automatic] rate tranche 1'
       titre.fr: taux tranche 1
