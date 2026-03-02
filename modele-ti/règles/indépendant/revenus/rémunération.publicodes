@@ -67,6 +67,9 @@ indépendant . rémunération . impôt:
       applicable si: entreprise . imposition . IS
       valeur: rémunération . nette . imposable
     paramètres . impôt . abattement revenu net global: cotisations facultatives . déductibles
+    impôt . foyer fiscal . situation de famille:
+      applicable si: conjoint collaborateur
+      valeur: "'couple'"
   arrondi: oui
   unité: €/an
 
