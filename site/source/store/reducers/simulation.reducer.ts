@@ -24,7 +24,6 @@ export type Simulation = {
 	targetUnit: string
 	questionsRépondues: Array<QuestionRépondue>
 	questionsSuivantes?: Array<DottedName>
-	currentQuestion?: DottedName | null
 }
 
 export function simulationReducer(
@@ -42,7 +41,6 @@ export function simulationReducer(
 			situation: {},
 			targetUnit: config['unité par défaut'] || '€/mois',
 			questionsRépondues: [],
-			currentQuestion: null,
 		}
 	}
 
@@ -63,7 +61,6 @@ export function simulationReducer(
 				hiddenNotifications: [],
 				situation: {},
 				questionsRépondues: [],
-				currentQuestion: null,
 			}
 
 		case 'AJUSTE_LA_SITUATION': {
@@ -169,37 +166,9 @@ export function simulationReducer(
 		}
 
 		case 'MET_À_JOUR_LES_QUESTIONS_SUIVANTES': {
-			const currentQuestion = state.currentQuestion
-			const pasDeQuestionEnCours = !currentQuestion
-			const questionEnCoursNEstPasÀRépondre = currentQuestion
-				? !action.questionsSuivantes.includes(currentQuestion)
-				: false
-			const questionEnCoursNEstPasRépondue = currentQuestion
-				? !state.questionsRépondues?.some(
-						(question) => question.règle === currentQuestion
-				  )
-				: false
-			const questionEnCoursPlusNécessaire =
-				questionEnCoursNEstPasÀRépondre && questionEnCoursNEstPasRépondue
-			const questionEnCoursNestPasLaPremièreQuestionNonRépondue =
-				currentQuestion !== action.questionsSuivantes[0]
-			const nouvellePremièreQuestionNonRépondue =
-				questionEnCoursNEstPasRépondue &&
-				questionEnCoursNestPasLaPremièreQuestionNonRépondue
-
-			const nouvelleQuestionEnCours =
-				pasDeQuestionEnCours ||
-				questionEnCoursPlusNécessaire ||
-				nouvellePremièreQuestionNonRépondue
-					? action.questionsSuivantes.length
-						? action.questionsSuivantes[0]
-						: null
-					: currentQuestion
-
 			return {
 				...state,
 				questionsSuivantes: action.questionsSuivantes,
-				currentQuestion: nouvelleQuestionEnCours,
 			}
 		}
 
