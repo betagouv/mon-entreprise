@@ -15,7 +15,6 @@ indépendant . dividendes . plafond exonéré de cotisations sociales:
           alors: entreprise . bénéfice net de l'exercice précédent
         - sinon: entreprise . capital social
     - 10%
-  par défaut: dividendes
   arrondi: oui
   unité: €/an
 

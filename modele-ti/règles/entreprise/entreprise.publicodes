@@ -82,6 +82,7 @@ entreprise . capital social:
   applicable si: imposition . IS
   non applicable si: EI
   question: Quel est le capital social de l'entreprise ?
+  par défaut: 10 * indépendant . dividendes
   unité: €
 
 entreprise . bénéfice net de l'exercice précédent:
@@ -93,4 +94,5 @@ entreprise . bénéfice net de l'exercice précédent:
       - imposition . IS
       - EI
   question: Quel est le bénéfice net de l'exercice précédent de l'entreprise ?
+  par défaut: 10 * indépendant . dividendes
   unité: €
