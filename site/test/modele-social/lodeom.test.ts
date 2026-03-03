@@ -1,4 +1,4 @@
-import rules, { RègleModeleSocial } from 'modele-social'
+import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -18,7 +18,7 @@ const situationZone2 = {
 }
 
 describe('Lodeom', () => {
-	let engine: Engine<RègleModeleSocial>
+	let engine: Engine<RègleModèleSocial>
 	beforeEach(() => {
 		engine = new Engine(rules)
 	})

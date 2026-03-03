@@ -1,4 +1,4 @@
-import rules, { RègleModeleSocial } from 'modele-social'
+import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -7,7 +7,7 @@ import { configRéductionGénérale } from '@/pages/simulateurs/reduction-genera
 const situationParDéfaut = configRéductionGénérale.situation
 
 describe('Réduction générale des cotisations patronales', () => {
-	let engine: Engine<RègleModeleSocial>
+	let engine: Engine<RègleModèleSocial>
 	beforeEach(() => {
 		engine = new Engine(rules)
 	})
