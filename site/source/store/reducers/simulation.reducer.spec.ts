@@ -56,7 +56,6 @@ describe('simulationReducer', () => {
 				situation: {},
 				targetUnit: '€/an',
 				questionsRépondues: [],
-				currentQuestion: null,
 			})
 		})
 	})
@@ -78,7 +77,6 @@ describe('simulationReducer', () => {
 					{ règle: 'a' as DottedName, applicable: true },
 					{ règle: 'b' as DottedName, applicable: true },
 				],
-				currentQuestion: 'b' as DottedName,
 			}
 			expect(
 				simulationReducer(state, réinitialiseLaSimulation())
@@ -92,7 +90,6 @@ describe('simulationReducer', () => {
 				situation: {},
 				targetUnit: '€/mois',
 				questionsRépondues: [],
-				currentQuestion: null,
 			})
 		})
 	})
@@ -333,104 +330,6 @@ describe('simulationReducer', () => {
 				)
 			).toMatchObject({
 				questionsSuivantes: ['c' as DottedName, 'd' as DottedName],
-			})
-		})
-		it('prend la première des questions suivantes s’il n’y a pas de question en cours', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: null,
-			}
-			expect(
-				simulationReducer(
-					state,
-					metÀJourLesQuestionsSuivantes(['a' as DottedName, 'b' as DottedName])
-				)
-			).toMatchObject({
-				currentQuestion: 'a',
-			})
-		})
-		it('prend la première des questions suivantes si la question en cours n’est pas à répondre ni répondue', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'c' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(
-				simulationReducer(
-					state,
-					metÀJourLesQuestionsSuivantes(['d' as DottedName, 'e' as DottedName])
-				)
-			).toMatchObject({
-				currentQuestion: 'd',
-			})
-		})
-		it('conserve la question en cours si elle n’est plus à répondre mais qu’elle est déjà répondue', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'b' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(
-				simulationReducer(
-					state,
-					metÀJourLesQuestionsSuivantes(['c' as DottedName, 'd' as DottedName])
-				)
-			).toMatchObject({
-				currentQuestion: 'b',
-			})
-		})
-		it('conserve la question en cours si elle est toujours à répondre et n’est pas encore répondue', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'c' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(
-				simulationReducer(
-					state,
-					metÀJourLesQuestionsSuivantes(['c' as DottedName, 'd' as DottedName])
-				)
-			).toMatchObject({
-				currentQuestion: 'c',
-			})
-		})
-		it('supprime la question en cours s’il n’y en a pas et qu’il n’y a pas de questions suivantes', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: null,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(
-				simulationReducer(state, metÀJourLesQuestionsSuivantes([]))
-			).toMatchObject({
-				currentQuestion: null,
-			})
-		})
-		it('supprime la question en cours si elle n’est plus nécessaire et qu’il n’y a pas de questions suivantes', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'c' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(
-				simulationReducer(state, metÀJourLesQuestionsSuivantes([]))
-			).toMatchObject({
-				currentQuestion: null,
 			})
 		})
 	})
