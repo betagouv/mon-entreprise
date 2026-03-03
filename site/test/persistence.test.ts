@@ -31,7 +31,6 @@ const initialSimulation: Simulation = {
 	situation: {},
 	targetUnit: '€/mois',
 	questionsRépondues: [{ règle: 'somestep' as DottedName, applicable: true }],
-	currentQuestion: null,
 }
 
 describe.skip('[persistence] When simulation persistence is setup', () => {
