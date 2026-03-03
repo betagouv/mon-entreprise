@@ -151,100 +151,20 @@ export function simulationReducer(
 			return newState
 		}
 
-		case 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE': {
-			if (state.questionsRépondues.length === 0) {
-				return state
-			}
+		case 'IGNORE_LA_QUESTION': {
+			const questionsRépondues = [
+				...state.questionsRépondues,
+				{ règle: action.question, applicable: true },
+			]
 
-			const currentIndex = state.currentQuestion
-				? state.questionsRépondues.findIndex(
-						(question) => question.règle === state.currentQuestion
-				  )
-				: -1
-
-			if (currentIndex === -1) {
-				return {
-					...state,
-					currentQuestion: state.questionsRépondues
-						.filter((q) => q.applicable)
-						.at(-1)?.règle,
-				}
-			}
-
-			const destination = state.questionsRépondues.findLastIndex(
-				(q, index) => index < currentIndex && q.applicable
+			const questionsSuivantes = state.questionsSuivantes?.filter(
+				(question) => question !== action.question
 			)
 
-			if (destination === -1) {
-				return state
-			}
-
 			return {
 				...state,
-				currentQuestion: state.questionsRépondues[destination]?.règle,
-			}
-		}
-
-		case 'VA_À_LA_QUESTION_SUIVANTE': {
-			const currentIndex = state.currentQuestion
-				? state.questionsRépondues.findIndex(
-						(question) => question.règle === state.currentQuestion
-				  )
-				: -1
-
-			// La question en cours n'est pas répondue, l’usager veut passer la question
-			if (currentIndex === -1 && state.currentQuestion) {
-				const answeredQuestions = [
-					...state.questionsRépondues,
-					{ règle: state.currentQuestion, applicable: true },
-				]
-
-				const questionsSuivantes = state.questionsSuivantes?.filter(
-					(question) => question !== state.currentQuestion
-				)
-
-				return {
-					...state,
-					questionsRépondues: answeredQuestions,
-					currentQuestion: questionsSuivantes?.[0] || null,
-					questionsSuivantes,
-				}
-			}
-
-			// On était sur la dernière question posée, on en prend une nouvelle
-			if (currentIndex === state.questionsRépondues.length - 1) {
-				return {
-					...state,
-					currentQuestion: state.questionsSuivantes?.length
-						? state.questionsSuivantes[0]
-						: null,
-				}
-			}
-
-			// Sinon, on navigue simplement à la question déjà répondue suivante
-			const destination = state.questionsRépondues.findIndex(
-				(q, index) => index > currentIndex && q.applicable
-			)
-			if (destination > -1) {
-				return {
-					...state,
-					currentQuestion: state.questionsRépondues[destination].règle,
-				}
-			}
-
-			// On est sur la dernière question posée applicable, on en prend une nouvelle
-			return {
-				...state,
-				currentQuestion: state.questionsSuivantes?.length
-					? state.questionsSuivantes[0]
-					: null,
-			}
-		}
-
-		case 'VA_À_LA_QUESTION': {
-			return {
-				...state,
-				currentQuestion: action.question,
+				questionsRépondues,
+				questionsSuivantes,
 			}
 		}
 
@@ -261,9 +181,16 @@ export function simulationReducer(
 				: false
 			const questionEnCoursPlusNécessaire =
 				questionEnCoursNEstPasÀRépondre && questionEnCoursNEstPasRépondue
+			const questionEnCoursNestPasLaPremièreQuestionNonRépondue =
+				currentQuestion !== action.questionsSuivantes[0]
+			const nouvellePremièreQuestionNonRépondue =
+				questionEnCoursNEstPasRépondue &&
+				questionEnCoursNestPasLaPremièreQuestionNonRépondue
 
 			const nouvelleQuestionEnCours =
-				pasDeQuestionEnCours || questionEnCoursPlusNécessaire
+				pasDeQuestionEnCours ||
+				questionEnCoursPlusNécessaire ||
+				nouvellePremièreQuestionNonRépondue
 					? action.questionsSuivantes.length
 						? action.questionsSuivantes[0]
 						: null

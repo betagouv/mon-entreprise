@@ -11,17 +11,13 @@ import {
 	enregistreLaRéponseÀLaQuestion,
 	enregistreLesRéponsesÀLaQuestion,
 	hideNotification,
+	ignoreLaQuestion,
 	metÀJourLesQuestionsSuivantes,
 	réinitialiseLaSimulation,
-	retourneÀLaQuestionPrécédente,
 	supprimeLaRègleDeLaSituation,
 	updateUnit,
-	vaÀLaQuestion,
-	vaÀLaQuestionSuivante,
 } from '../actions/actions'
 
-const previousQuestionAction = retourneÀLaQuestionPrécédente()
-const nextQuestionAction = vaÀLaQuestionSuivante()
 const defaultState = {
 	key: 'simulateur',
 	config: {
@@ -293,185 +289,34 @@ describe('simulationReducer', () => {
 			})
 		})
 	})
-	describe('RETOURNE_À_LA_QUESTION_PRÉCÉDENTE', () => {
-		it('fonctionne quand la question en cours est la dernière posée', () => {
+	describe('IGNORE_LA_QUESTION', () => {
+		it('ajoute la question aux questions répondues', () => {
 			const state = {
 				...defaultState,
-				currentQuestion: 'c' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: false },
-					{ règle: 'c' as DottedName, applicable: true },
-				],
-			}
-			expect(simulationReducer(state, previousQuestionAction)).toMatchObject({
-				currentQuestion: 'a',
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: false },
-					{ règle: 'c' as DottedName, applicable: true },
-				],
-			})
-		})
-		it('fonctionne quand la question en cours n’a pas été répondue', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'd' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: false },
-				],
-			}
-			expect(simulationReducer(state, previousQuestionAction)).toMatchObject({
-				currentQuestion: 'b',
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: false },
-				],
-			})
-		})
-
-		it('fonctionne quand on est au milieu de l’historique', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'c' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: false },
-					{ règle: 'c' as DottedName, applicable: true },
-					{ règle: 'd' as DottedName, applicable: true },
-				],
-			}
-			expect(simulationReducer(state, previousQuestionAction)).toMatchObject({
-				currentQuestion: 'a',
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: false },
-					{ règle: 'c' as DottedName, applicable: true },
-					{ règle: 'd' as DottedName, applicable: true },
-				],
-			})
-		})
-
-		it('fonctionne quand on a déjà répondu à toutes les questions', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: null,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: false },
-				],
-			}
-			expect(simulationReducer(state, previousQuestionAction)).toMatchObject({
-				currentQuestion: 'b',
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: false },
-				],
-			})
-		})
-
-		it('ne fait rien si on est sur la première question', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'a' as DottedName,
-				questionsRépondues: [],
-			}
-			expect(simulationReducer(state, previousQuestionAction)).toEqual(state)
-		})
-
-		it('ne fait rien quand on est revenu à la première question', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'a' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(simulationReducer(state, previousQuestionAction)).toEqual(state)
-		})
-	})
-	describe('VA_À_LA_QUESTION_SUIVANTE', () => {
-		it('va à la prochaine question déjà répondue de l’historique le cas échéant', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'b' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: false },
-					{ règle: 'd' as DottedName, applicable: true },
-				],
-			}
-			expect(simulationReducer(state, nextQuestionAction)).toMatchObject({
-				currentQuestion: 'd',
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: false },
-					{ règle: 'd' as DottedName, applicable: true },
-				],
-			})
-		})
-		it('demande une nouvelle question si par défaut', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'b' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(simulationReducer(state, nextQuestionAction)).toMatchObject({
-				currentQuestion: null,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			})
-		})
-		it('passe à la question suivante si la question actuelle n’a pas été répondue', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'c' as DottedName,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-				],
-			}
-			expect(simulationReducer(state, nextQuestionAction)).toMatchObject({
-				currentQuestion: null,
-				questionsRépondues: [
-					{ règle: 'a' as DottedName, applicable: true },
-					{ règle: 'b' as DottedName, applicable: true },
-					{ règle: 'c' as DottedName, applicable: true },
-				],
-			})
-		})
-	})
-	describe('VA_À_LA_QUESTION', () => {
-		it('va à la question demandée', () => {
-			const state = {
-				...defaultState,
-				currentQuestion: 'b' as DottedName,
 				questionsRépondues: [
 					{ règle: 'a' as DottedName, applicable: true },
 					{ règle: 'b' as DottedName, applicable: true },
 				],
 			}
 			expect(
-				simulationReducer(state, vaÀLaQuestion('c' as DottedName))
+				simulationReducer(state, ignoreLaQuestion('c' as DottedName))
 			).toMatchObject({
-				currentQuestion: 'c',
 				questionsRépondues: [
 					{ règle: 'a' as DottedName, applicable: true },
 					{ règle: 'b' as DottedName, applicable: true },
+					{ règle: 'c' as DottedName, applicable: true },
 				],
+			})
+		})
+		it('supprime la question des questions suivantes', () => {
+			const state = {
+				...defaultState,
+				questionsSuivantes: ['c' as DottedName, 'd' as DottedName],
+			}
+			expect(
+				simulationReducer(state, ignoreLaQuestion('c' as DottedName))
+			).toMatchObject({
+				questionsSuivantes: ['d' as DottedName],
 			})
 		})
 	})

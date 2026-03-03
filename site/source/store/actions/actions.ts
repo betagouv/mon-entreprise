@@ -14,12 +14,10 @@ export type Action =
 			| typeof chargeLaSimulationPrécédente
 			| typeof ajusteLaSituation
 			| typeof enregistreLaRéponseÀLaQuestion
+			| typeof ignoreLaQuestion
 			| typeof enregistreLesRéponsesÀLaQuestion
 			| typeof enregistreLesRéponsesAuxQuestions
 			| typeof supprimeLaRègleDeLaSituation
-			| typeof retourneÀLaQuestionPrécédente
-			| typeof vaÀLaQuestionSuivante
-			| typeof vaÀLaQuestion
 			| typeof applicabilitéDesQuestionsRépondues
 			| typeof metÀJourLesQuestionsSuivantes
 			| typeof updateUnit
@@ -84,6 +82,15 @@ export const enregistreLaRéponseÀLaQuestion = (
 		  } as const)
 
 /**
+ * Modifie la liste des question répondues, sans modifier la situation
+ */
+export const ignoreLaQuestion = (question: DottedName) =>
+	({
+		type: 'IGNORE_LA_QUESTION',
+		question,
+	}) as const
+
+/**
  * Modifie la situation et la liste des questions répondues,
  * pour une question de type "plusieurs possibilités"
  */
@@ -113,24 +120,6 @@ export const supprimeLaRègleDeLaSituation = (fieldName: DottedName) =>
 	({
 		type: 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION',
 		fieldName,
-	}) as const
-
-// Navigation dans les questions
-
-export const retourneÀLaQuestionPrécédente = () =>
-	({
-		type: 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE',
-	}) as const
-
-export const vaÀLaQuestionSuivante = () =>
-	({
-		type: 'VA_À_LA_QUESTION_SUIVANTE',
-	}) as const
-
-export const vaÀLaQuestion = (question: DottedName) =>
-	({
-		type: 'VA_À_LA_QUESTION',
-		question,
 	}) as const
 
 // Mise à jour des questions
