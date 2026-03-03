@@ -55,11 +55,6 @@ export const configIndépendant: SimulationConfig = {
 				dottedName: 'indépendant . dividendes . imposition',
 			},
 		],
-		liste: [
-			'entreprise . capital social',
-			"entreprise . bénéfice net de l'exercice précédent",
-			'',
-		],
 		'liste noire': [
 			"entreprise . chiffre d'affaires",
 			'entreprise . charges',
