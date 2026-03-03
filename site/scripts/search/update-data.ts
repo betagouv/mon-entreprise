@@ -113,10 +113,7 @@ const updateIndex = async (
 			highlightPreTag: '<em>',
 			highlightPostTag: '</em>',
 			snippetEllipsisText: '',
-			alternativesAsExact: [
-				'ignorePlurals',
-				'singleWordSynonym',
-			],
+			alternativesAsExact: ['ignorePlurals', 'singleWordSynonym'],
 			...settings,
 		})
 		.wait()
