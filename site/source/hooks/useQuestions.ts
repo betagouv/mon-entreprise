@@ -7,6 +7,7 @@ import {
 	useCallback,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from 'react'
 import { useDispatch } from 'react-redux'
@@ -16,7 +17,7 @@ import { Raccourci } from '@/components/Simulation/Raccourcis'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
+import { ignoreLaQuestion } from '@/store/actions/actions'
 
 export interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'
@@ -90,6 +91,8 @@ export function useQuestions<S extends Situation>({
 			),
 		[questions, questionsPublicodes, situation]
 	)
+	const toutesLesQuestionsApplicablesRef = useRef(toutesLesQuestionsApplicables)
+
 	const questionsParId = useMemo(
 		() => fromEntries(toutesLesQuestionsApplicables.map((q) => [q.id, q])),
 		[toutesLesQuestionsApplicables]
@@ -121,18 +124,43 @@ export function useQuestions<S extends Situation>({
 	const [finished, setFinished] = useState(false)
 
 	useEffect(() => {
-		const laQuestionActiveNEstPasRépondue =
-			activeQuestionId && idsDesQuestionsNonRépondues.includes(activeQuestionId)
-		const nouvellePremièreQuestionNonRépondue =
-			laQuestionActiveNEstPasRépondue &&
-			activeQuestionId !== idsDesQuestionsNonRépondues[0]
+		const laListeDesQuestionsAChangé =
+			toutesLesQuestionsApplicablesRef.current.length !==
+				toutesLesQuestionsApplicables.length ||
+			toutesLesQuestionsApplicables.find(
+				(question, index) =>
+					question.id !== toutesLesQuestionsApplicablesRef.current[index].id
+			)
+
+		if (laListeDesQuestionsAChangé) {
+			const laQuestionActiveNEstPasRépondue =
+				activeQuestionId &&
+				idsDesQuestionsNonRépondues.includes(activeQuestionId)
+			const laQuestionActiveNestPasLaPremièreQuestionNonRépondue =
+				activeQuestionId !== idsDesQuestionsNonRépondues[0]
+			const nouvellePremièreQuestionNonRépondue =
+				laQuestionActiveNEstPasRépondue &&
+				laQuestionActiveNestPasLaPremièreQuestionNonRépondue
+
+			if (nouvellePremièreQuestionNonRépondue) {
+				setActiveQuestionId(idsDesQuestionsNonRépondues[0])
+			}
+
+			toutesLesQuestionsApplicablesRef.current = toutesLesQuestionsApplicables
+		}
+	}, [
+		activeQuestionId,
+		idsDesQuestionsNonRépondues,
+		toutesLesQuestionsApplicables,
+	])
+
+	useEffect(() => {
 		const laQuestionActiveNEstPlusApplicable =
 			activeQuestionId && !idsDesQuestions.includes(activeQuestionId)
 		const pasDeQuestionActiveMaisIlYADesQuestionsApplicables =
 			!activeQuestionId && idsDesQuestions.length
 
 		if (
-			nouvellePremièreQuestionNonRépondue ||
 			laQuestionActiveNEstPlusApplicable ||
 			pasDeQuestionActiveMaisIlYADesQuestionsApplicables
 		) {
@@ -149,19 +177,33 @@ export function useQuestions<S extends Situation>({
 			return
 		}
 
+		// TODO: gérer le cas "ignorer la question" pour une question fournie
 		const questionCourante = questionsParId[activeQuestionId]
-		if (questionCourante?._tag === 'QuestionPublicodes') {
-			dispatch(vaÀLaQuestionSuivante())
+		const laQuestionActiveNEstPasRépondue =
+			idsDesQuestionsNonRépondues.includes(activeQuestionId)
+		if (
+			questionCourante?._tag === 'QuestionPublicodes' &&
+			laQuestionActiveNEstPasRépondue
+		) {
+			dispatch(ignoreLaQuestion(activeQuestionId as DottedName))
 		}
 
 		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
-		if (currentIndex < idsDesQuestions.length - 1) {
+		const laQuestionCouranteNEstPasLaDernièreQuestion =
+			currentIndex < idsDesQuestions.length - 1
+		if (laQuestionCouranteNEstPasLaDernièreQuestion) {
 			const nextId = idsDesQuestions[currentIndex + 1]
 			setActiveQuestionId(nextId)
 		} else {
 			setFinished(true)
 		}
-	}, [activeQuestionId, questionsParId, idsDesQuestions, dispatch])
+	}, [
+		activeQuestionId,
+		questionsParId,
+		idsDesQuestionsNonRépondues,
+		idsDesQuestions,
+		dispatch,
+	])
 
 	const goToPrevious = useCallback(() => {
 		if (finished) {
