@@ -91,7 +91,7 @@ exports[`calculate simulations-indépendant > acre 1`] = `
 entreprise . chiffre d'affaires: 72973
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: 17615
-indépendant . cotisations et contributions . début activité: 1746
+indépendant . cotisations et contributions . début activité: 3131
 indépendant . revenu professionnel: 51566
 indépendant . rémunération . brute: 72973
 indépendant . rémunération . nette: 50000
@@ -379,7 +379,7 @@ exports[`calculate simulations-indépendant > exonération invalidité 3`] = `
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: 1746
+indépendant . cotisations et contributions . début activité: 2319
 indépendant . revenu professionnel: undefined
 indépendant . rémunération . brute: 10000
 indépendant . rémunération . nette: undefined

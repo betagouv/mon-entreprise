@@ -2,13 +2,16 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
+const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
+
 const defaultSituation = {
 	'entreprise . imposition': "'IR'",
 	'indépendant . cotisations et contributions . assiette sociale': '50000 €/an',
+}
+const defaultSituationInvalidité = {
+	...defaultSituation,
 	'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
 		'oui',
-	'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
-		'9 mois',
 }
 
 describe('L’exonération invalidité', () => {
@@ -17,69 +20,42 @@ describe('L’exonération invalidité', () => {
 		engine = new Engine(rules)
 	})
 
-	it('applique un taux égal au prorata de la durée d’invalidité', () => {
-		const e = engine.setSituation(defaultSituation)
+	it('s’applique aux cotisations maladie-maternité, indemnités journalières et retraite complémentaire pour les A/C/PLNR', () => {
+		const e1 = engine.setSituation(defaultSituation)
 
-		expect(e).toEvaluate(
-			"indépendant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année",
-			75
+		expect(e1).not.toBeApplicable(
+			`${COTISATIONS} . exonérations . invalidité . exonération`
 		)
+
+		const retraiteDeBase = e1.evaluate(`${COTISATIONS} . retraite de base`)
+			.nodeValue as number
+
+		const e2 = engine.setSituation(defaultSituationInvalidité)
+
+		expect(e2).toEvaluate(`${COTISATIONS} . maladie-maternité`, 0)
+		expect(e2).toEvaluate(`${COTISATIONS} . indemnités journalières`, 0)
+		expect(e2).toEvaluate(`${COTISATIONS} . retraite de base`, retraiteDeBase)
+		expect(e2).toEvaluate(`${COTISATIONS} . retraite complémentaire`, 0)
 	})
 
-	describe('pour les A/C/PLNR', () => {
-		it('s’applique aux cotisations maladie-maternité, indemnités journalières et retraite complémentaire', () => {
-			const e = engine.setSituation(defaultSituation)
-			const maladie = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
-			).nodeValue as number
-			const IJ = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
-			).nodeValue as number
-			const retraiteComplémentaire = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
-			).nodeValue as number
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . montant',
-				Math.round(0.75 * (maladie + IJ + retraiteComplémentaire))
-			)
-		})
-	})
-
-	describe('pour les PLR Cipav', () => {
+	it('s’applique aux cotisations maladie-maternité, indemnités journalières, retraite de base et retraite complémentaire pour les PLR Cipav', () => {
 		const situationCipav = {
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
 		}
 
-		it('s’applique aux cotisations maladie-maternité, indemnités journalières, retraite de base et retraite complémentaire', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				...situationCipav,
-			})
-			const maladie = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
-			).nodeValue as number
-			const IJ = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
-			).nodeValue as number
-			const retraiteDeBase = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite de base'
-			).nodeValue as number
-			const retraiteComplémentaire = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
-			).nodeValue as number
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . montant',
-				Math.round(
-					0.75 * (maladie + IJ + retraiteDeBase + retraiteComplémentaire)
-				)
-			)
+		const e = engine.setSituation({
+			...defaultSituationInvalidité,
+			...situationCipav,
 		})
+
+		expect(e).toEvaluate(`${COTISATIONS} . maladie-maternité`, 0)
+		expect(e).toEvaluate(`${COTISATIONS} . indemnités journalières`, 0)
+		expect(e).toEvaluate(`${COTISATIONS} . retraite de base`, 0)
+		expect(e).toEvaluate(`${COTISATIONS} . retraite complémentaire`, 0)
 	})
 
-	describe('pour les PLR non Cipav', () => {
+	it('s’applique aux cotisations maladie-maternité et indemnités journalières pour les PLR non Cipav', () => {
 		const situationPLRNonCipav = {
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
@@ -87,22 +63,41 @@ describe('L’exonération invalidité', () => {
 				"'expert-comptable'",
 		}
 
-		it('s’applique aux cotisations maladie-maternité et indemnités journalières', () => {
-			const e = engine.setSituation({
-				...defaultSituation,
-				...situationPLRNonCipav,
-			})
-			const maladie = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité'
-			).nodeValue as number
-			const IJ = e.evaluate(
-				'indépendant . cotisations et contributions . cotisations . indemnités journalières'
-			).nodeValue as number
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . montant',
-				Math.round(0.75 * (maladie + IJ))
-			)
+		const e1 = engine.setSituation({
+			...defaultSituation,
+			...situationPLRNonCipav,
 		})
+
+		const retraiteDeBase = e1.evaluate(`${COTISATIONS} . retraite de base`)
+			.nodeValue as number
+		const retraiteComplémentaire = e1.evaluate(
+			`${COTISATIONS} . retraite complémentaire`
+		).nodeValue as number
+
+		const e2 = engine.setSituation({
+			...defaultSituationInvalidité,
+			...situationPLRNonCipav,
+		})
+
+		expect(e2).toEvaluate(`${COTISATIONS} . maladie-maternité`, 0)
+		expect(e2).toEvaluate(`${COTISATIONS} . indemnités journalières`, 0)
+		expect(e2).toEvaluate(`${COTISATIONS} . retraite de base`, retraiteDeBase)
+		expect(e2).toEvaluate(
+			`${COTISATIONS} . retraite complémentaire`,
+			retraiteComplémentaire
+		)
+	})
+
+	it('est proratisée en fonction de la durée d’invalidité', () => {
+		const e = engine.setSituation({
+			...defaultSituationInvalidité,
+			'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
+				'9 mois',
+		})
+
+		expect(e).toEvaluate(
+			`${COTISATIONS} . exonérations . invalidité . prorata sur l'année`,
+			75
+		)
 	})
 })
