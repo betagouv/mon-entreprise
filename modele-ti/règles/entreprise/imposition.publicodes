@@ -48,10 +48,6 @@ entreprise . imposition . IR . régime micro-fiscal . revenu abattu:
     - 50 % pour les prestations de service commerciales ou artisanales,
     - 34 % pour les activités libérales.
   valeur: chiffre d'affaires
-  # somme:
-  #   - chiffre d'affaires . vente restauration hébergement
-  #   - chiffre d'affaires . service BIC
-  #   - chiffre d'affaires . service BNC
   abattement:
     somme:
       - produit:
