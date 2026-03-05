@@ -36,7 +36,7 @@ impôt . barème standard . revenu d'activité abattu:
 
 impôt . barème standard . revenu brut global:
   description: |
-    Le revenu brut global est la somme de tous les revenus, après leur abattement :
+    Le **revenu brut global** est la somme de tous les revenus, après leur abattement :
     - salaire net imposable,
     - bénéfices (BIC et BNC),
     - dividendes.
@@ -55,12 +55,21 @@ impôt . barème standard . revenu brut global:
     - foyer fiscal . autres revenus imposables
 
 impôt . barème standard . revenu net global:
+  description: |
+    Le **revenu net global** est le revenu brut global après déduction de certaines
+    charges comme :
+    - les pensions alimentaires versées,
+    - les cotisations d’épargne-retraite,
+    - une partie de la CSG afférente aux revenus du patrimoine et aux produits de
+      placement.
+
+    Comme nos simulateurs n’intégrent pas ces charges, le revenu net global est ici
+    directement égal au revenu brut global.
   valeur: revenu brut global
-  abattement: paramètres . impôt . abattement revenu net global
 
 impôt . barème standard . revenu net imposable:
   description: |
-    Le revenu net imposable est le revenu net global après abattements spéciaux.
+    Le **revenu net imposable** est le revenu net global après abattements spéciaux.
 
     Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
     conditions suivantes :
