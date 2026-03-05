@@ -60,7 +60,7 @@ export default function DroitsRetraite() {
 						<Li>
 							Retraite de base&nbsp;:{' '}
 							<Value
-								expression="protection sociale . retraite . trimestres"
+								expression="protection sociale . retraite . base . trimestres"
 								displayedUnit={t('trimestres acquis')}
 							/>
 						</Li>
@@ -87,18 +87,18 @@ export default function DroitsRetraite() {
 							</Li>
 						</WhenNotApplicable>
 
-						<WhenApplicable dottedName="protection sociale . retraite . complémentaire . CIPAV">
+						<WhenApplicable dottedName="protection sociale . retraite . complémentaire . Cipav">
 							<Li>
 								Points de retraite complémentaire acquis (Cipav)&nbsp;:{' '}
 								<Value
 									linkToRule
-									expression="protection sociale . retraite . complémentaire . CIPAV . points acquis"
+									expression="protection sociale . retraite . complémentaire . Cipav . points acquis"
 									displayedUnit={t('points')}
 								/>
 							</Li>
 						</WhenApplicable>
 
-						<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . CIPAV">
+						<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . Cipav">
 							<Li>
 								Points de retraite complémentaire acquis&nbsp;:{' '}
 								<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
