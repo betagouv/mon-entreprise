@@ -51,9 +51,13 @@ export const SeoExplanations = () => (
 			<RuleLink dottedName="entreprise . résultat fiscal">
 				résultat fiscal
 			</RuleLink>{' '}
-			de l'entreprise. Leur montant varie également en fonction du type
-			d'activité (profession libérale, artisan, commerçants, etc), où des
-			éventuelles exonérations accordées (Acre, ZFU, RSA, etc.).
+			de l'entreprise s'il a opté pour l'impôt sur le revenu, ou à son{' '}
+			<RuleLink dottedName="indépendant . revenu professionnel">
+				revenu professionnel
+			</RuleLink>{' '}
+			s'il a opté pour l'impôt sur les sociétés. Leur montant varie également en
+			fonction du type d'activité (profession libérale, artisan, commerçants,
+			etc), où des éventuelles exonérations accordées (Acre, ZFU, RSA, etc.).
 		</Body>
 		<Body>
 			{' '}

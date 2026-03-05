@@ -48,7 +48,7 @@ entreprise . charges:
   par défaut: 0 €/an
 
 entreprise . résultat fiscal:
-  unité: €/an
+  applicable si: imposition . IR
   variations:
     - si: imposition . IR . régime micro-fiscal
       alors: imposition . IR . régime micro-fiscal . revenu abattu
@@ -56,19 +56,8 @@ entreprise . résultat fiscal:
         somme:
           - chiffre d'affaires
           - (- charges)
-          - (- rémunération dirigeant déductible)
-
-  avec:
-    rémunération dirigeant déductible:
-      titre: charges déductibles dirigeant
-      description: |
-        Les montants liés à la rémunération du dirigeant qui sont déductibles d’impôt.
-      variations:
-        - si: imposition . IS
-          alors: indépendant . rémunération . brute
-        - sinon:
-            valeur: indépendant . cotisations et contributions
-            abattement: indépendant . cotisations et contributions . non déductibles
+          - (- indépendant . cotisations et contributions)
+  unité: €/an
 
 entreprise . capital social:
   description: |
