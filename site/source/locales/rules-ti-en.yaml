@@ -1956,137 +1956,6 @@ indépendant . conjoint collaborateur . choix assiette:
   question.fr: Sur quelle base le conjoint cotise-t-il ?
   titre.en: '[automatic] plate selection'
   titre.fr: choix assiette
-indépendant . conjoint collaborateur . cotisations:
-  titre.en: '[automatic] contributions'
-  titre.fr: cotisations
-indépendant . conjoint collaborateur . cotisations . exonération Acre:
-  description.en: >
-    [automatic] Acre applies to the contributions of the collaborating spouse
-    only when he/she
-
-    only when the collaborating spouse contributes on a **shared income** basis.
-
-    income-sharing basis**.
-  description.fr: |
-    L'Acre s’applique aux cotisations de la conjointe collaboratrice ou du
-    conjoint collaborateur uniquement lorsque celle/celui-ci cotise sur une base
-    de **revenu avec partage**.
-  titre.en: '[automatic] Acre exemption'
-  titre.fr: exonération Acre
-indépendant . conjoint collaborateur . cotisations . indemnités journalières:
-  titre.en: '[automatic] daily allowances'
-  titre.fr: indemnités journalières
-indépendant . conjoint collaborateur . cotisations . invalidité et décès:
-  description.en: >
-    [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
-    professionals
-
-
-    The disability-death contribution for the collaborating spouse is calculated on the same
-
-    is calculated according to the same scale as for the head of the company
-
-    but using the contribution base calculated according to the option
-
-    option chosen (flat-rate or proportion of professional income).
-
-
-    ### For regulated liberal professions
-
-
-    The invalidity-death contribution of the collaborating spouse is
-
-    collaborating spouse is equal to a proportion of the professional
-
-    or the self-employed professional. This proportion is 50% in the case of a choice
-
-    half of professional income, and 25% in other cases (quarter of professional income or
-
-    (quarter of professional income or flat rate).
-  description.fr: >
-    ### Pour les artisans, commerçants et professions libérales non réglementées
-
-
-    La cotisation invalidité-décès de la conjointe collaboratrice ou du
-
-    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
-
-    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
-
-    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
-
-
-    ### Pour les professions libérales réglementées
-
-
-    La cotisation invalidité-décès de la conjointe collaboratrice ou du
-
-    conjoint collaborateur est égale à une proportion de la professionnelle libérale
-
-    ou du professionnel libéral. Cette proportion est de 50 % dans le cas d’un choix
-
-    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
-
-    (quart du revenu professionnel ou assiette forfaitaire).
-  titre.en: '[automatic] disability and death'
-  titre.fr: invalidité et décès
-indépendant . conjoint collaborateur . cotisations . retraite complémentaire:
-  description.en: >
-    [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
-    professionals
-
-
-    The supplementary pension contribution for the collaborating spouse is calculated on the same
-
-    contributions are calculated according to the same scale as for the company
-
-    but using the contribution base calculated according to the option
-
-    depending on the option chosen (flat-rate or proportion of professional income).
-
-
-    ### For regulated liberal professions
-
-
-    The supplementary pension contribution for the collaborating spouse is equal to a proportion of the professional income.
-
-    spouse is equal to a proportion of the contribution made by the head
-
-    contribution. This proportion is 50% in the case of a choice
-
-    half of professional income, and 25% in other cases (quarter of professional income or
-
-    (quarter of professional income or flat rate).
-  description.fr: >
-    ### Pour les artisans, commerçants et professions libérales non réglementées
-
-
-    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
-
-    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
-
-    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
-
-    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
-
-
-    ### Pour les professions libérales réglementées
-
-
-    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
-
-    conjoint collaborateur est égale à une proportion de la cotisation de la cheffe
-
-    ou du chef d’entreprise. Cette proportion est de 50 % dans le cas d’un choix
-
-    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
-
-    (quart du revenu professionnel ou assiette forfaitaire).
-  titre.en: '[automatic] supplementary pension'
-  titre.fr: retraite complémentaire
-indépendant . conjoint collaborateur . cotisations . retraite de base:
-  titre.en: '[automatic] basic retirement'
-  titre.fr: retraite de base
 indépendant . cotisations et contributions:
   avec:
     Urssaf:
@@ -2337,31 +2206,512 @@ indépendant . cotisations et contributions . cotisations . allocations familial
 indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
   titre.en: '[automatic] pension and disability-death base'
   titre.fr: assiette retraite et invalidité-décès
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur:
+  titre.en: '[automatic] collaborating spouse'
+  titre.fr: conjoint collaborateur
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . indemnités journalières:
+  titre.en: '[automatic] daily allowances'
+  titre.fr: indemnités journalières
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . invalidité et décès:
+  description.en: >
+    [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
+    professionals
+
+
+    The disability-death contribution for the collaborating spouse is calculated on the same
+
+    is calculated according to the same scale as for the head of the company
+
+    but using the contribution base calculated according to the option
+
+    option chosen (flat-rate or proportion of professional income).
+
+
+    ### For regulated liberal professions
+
+
+    The invalidity-death contribution of the collaborating spouse is
+
+    spouse is equal to a proportion of the self-employed professional's
+
+    or the self-employed professional. This proportion is 50% in the case of a choice
+
+    half of professional income, and 25% in other cases (quarter of professional income or
+
+    (quarter of professional income or flat rate).
+  description.fr: >
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+
+    ### Pour les professions libérales réglementées
+
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est égale à une proportion de la professionnelle libérale
+
+    ou du professionnel libéral. Cette proportion est de 50 % dans le cas d’un choix
+
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+
+    (quart du revenu professionnel ou assiette forfaitaire).
+  titre.en: '[automatic] disability and death'
+  titre.fr: invalidité et décès
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . retraite complémentaire:
+  description.en: >
+    [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
+    professionals
+
+
+    The supplementary pension contribution for the collaborating spouse is calculated on the same
+
+    contributions are calculated according to the same scale as for the company
+
+    but using the contribution base calculated according to the option
+
+    depending on the option chosen (flat-rate or proportion of professional income).
+
+
+    ### For regulated liberal professions
+
+
+    The supplementary pension contribution for the collaborating spouse is equal to a proportion of the professional income.
+
+    spouse is equal to a proportion of the contribution made by the head
+
+    contribution. This proportion is 50% in the case of a choice
+
+    half of professional income, and 25% in other cases (quarter of professional income or
+
+    (quarter of professional income or flat rate).
+  description.fr: >
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+
+    ### Pour les professions libérales réglementées
+
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+
+    conjoint collaborateur est égale à une proportion de la cotisation de la cheffe
+
+    ou du chef d’entreprise. Cette proportion est de 50 % dans le cas d’un choix
+
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+
+    (quart du revenu professionnel ou assiette forfaitaire).
+  titre.en: '[automatic] supplementary pension'
+  titre.fr: retraite complémentaire
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . retraite de base:
+  titre.en: '[automatic] basic retirement'
+  titre.fr: retraite de base
 indépendant . cotisations et contributions . cotisations . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 indépendant . cotisations et contributions . cotisations . exonérations . Acre:
-  description.en: >-
-    [automatic] Assistance for setting up or taking over a business (Acre)
-    consists of a partial exemption from social security contributions, known as
-    the "start-up exemption", for a period of 12 months.
+  description.en: >
+    [automatic] Assistance with setting up or taking over a business (Acre)
+    consists of a
+
+    **partial** exemption from social security charges for 12 months, known as the
+
+    exemption.
 
 
-    It is **automatic** for **companies and sole proprietorships** (subject to certain conditions, such as not having benefited from it in the last three years).
-  description.fr: >-
+    To qualify, you must **apply to Urssaf** within
+
+    within 60 days of setting up your business.
+
+
+    You can only benefit from Acre if you are in one of the following situations
+
+    **one of the following situations** at the time of setting up your business:
+
+    - a job-seeker receiving compensation ;
+
+    - a job-seeker who is not receiving compensation but is registered with France Travail
+
+    6 months in the last 18 months;
+
+    - beneficiary of the revenu de solidarité active (RSA) or the allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - young people aged 18 to 25;
+
+    - person under 30 not receiving benefit (duration of activity insufficient to
+
+    for entitlement);
+
+    - disabled persons under 30;
+
+    - salaried employees or those made redundant by a company in receivership or liquidation
+
+    or liquidation and who takes over the business;
+
+    - a person who has signed a Cape (contrat d'appui au projet d'entreprise), provided that
+
+    provided they meet one of the above seven conditions on the date of signing
+
+    on the date the contract is signed;
+
+    - a person setting up a business in a priority district of the
+
+    (QPV);
+
+    - beneficiary of the "prestation partagée d'éducation de l'enfant" (PrePare) ;
+
+    - person carrying on business in a France ruralités revitalization zone
+
+    (ZFRR) or a France ruralités revitalization "plus" zone (ZFRR+).
+
+
+    For **companies**, you must meet at least one of the following conditions
+
+    conditions:
+
+    - you and your family own more than 50% of the capital, of which at least 35% is held personally
+
+    personally;
+
+    - you manage the company and hold at least 1/3 of the capital with your family
+
+    capital, of which at least 25% is held by you personally (provided that no other person
+
+    owns more than 50% of the capital) ;
+
+    - you and the other persons requesting Acre hold more than 50% of the capital, provided that
+
+    capital, provided that at least one of these persons is a director,
+
+    and that each of them holds a share of the capital at least equal to 10% of the share held by the main partner.
+
+    the share held by the main partner.
+
+
+    Prior to 2026, the Acre was granted automatically to all business
+
+    business creators.
+
+
+    In addition, to benefit from Acre, you must not have already received it
+
+    in the previous three years.
+  description.fr: >
     L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
-    exonération partielle de charges sociales, dite exonération de début
-    d’activité pendant 12 mois.
+
+    **exonération partielle** de charges sociales pendant 12 mois, dite exonération
+
+    de début d’activité.
 
 
-    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de l’Urssaf**
+
+    dans un délai de 60 jours après la création de votre entreprise.
+
+
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
+
+    **une des situations suivantes** au moment de la création de votre entreprise :
+
+    - personne demandeuse d’emploi indemnisée ;
+
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
+
+    6 mois au cours des 18 derniers mois ;
+
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - jeune de 18 à 25 ans révolus ;
+
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante pour
+
+    l’ouverture de droits) ;
+
+    - personne de moins de 30 ans reconnue handicapée ;
+
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en redressement
+
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise), sous
+
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+
+    de signature de ce contrat ;
+
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire de
+
+    la politique de la ville (QPV) ;
+
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+
+    - personne exerçant l’activité au sein d’une zone France ruralités revitalisation
+
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
+
+
+    Pour les **sociétés**, vous devez respecter au moins une des conditions
+
+    suivantes :
+
+    - vous détenez avec votre famille plus de 50 % du capital dont au moins 35 % à
+
+    titre personnel ;
+
+    - vous dirigez la société et vous détenez avec votre famille au moins 1/3 du
+
+    capital dont au moins 25 % à titre personnel (sous réserve que personne d’autre
+
+    ne détienne plus de 50 % du capital) ;
+
+    - vous détenez, avec les autres personnes demandant l’Acre, plus de 50 % du
+
+    capital, à condition qu’au moins l’une de ces personnes soit dirigeant/dirigeante,
+
+    et que chacune d’elle détienne une part du capital au moins égal à 10 % de
+
+    la part détenue par la principale associée ou le principal associé.
+
+
+    Avant 2026, l'attribution de l’Acre était automatique et concernait tous les
+
+    créateurs et créatrices d’entreprise.
+
+
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+
+    bénéficié au cours des trois années précédentes.
   question.en: '[automatic] Did you benefit from Acre?'
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
   titre.fr: Acre
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . montant:
-  titre.en: '[automatic] amount'
-  titre.fr: montant
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
+  avec:
+    montant maladie-maternité:
+      titre.en: '[automatic] sickness and maternity amount'
+      titre.fr: montant maladie-maternité
+    taux allocations familiales:
+      titre.en: '[automatic] family allowance rates'
+      titre.fr: taux allocations familiales
+    taux indemnités journalières:
+      titre.en: '[automatic] daily allowance rates'
+      titre.fr: taux indemnités journalières
+    taux retraite de base et invalidité-décès:
+      titre.en: '[automatic] basic pension and disability-death rates'
+      titre.fr: taux retraite de base et invalidité-décès
+  description.en: >
+    [automatic] The exemption applies to :
+
+    - sickness and maternity contributions ;
+
+    - daily allowance contributions;
+
+    - family allowance contributions;
+
+    - basic pension contributions;
+
+    - disability and death contributions.
+
+
+    The exemption is :
+
+    - equal to **one-quarter of the contributions** concerned if the social security base
+
+    **less than 75% of the annual social security ceiling (PASS)** ;
+
+    - degressive** for contributions **between 75% and 100% of the PASS**;
+
+    - nil** in the case of a base **above the PASS**.
+
+
+    > The formula for calculating the degressive exemption is as follows:
+
+    &gt;
+
+    > (PASS - R) x E / PASS
+
+    &gt;
+
+    > where :
+
+    > - PASS = annual social security ceiling (prorated in the case of an incomplete year)
+
+    > incomplete year) ;
+
+    > - R = social security base ;
+
+    > - E = amount of exempt contributions calculated for a base equal to
+
+    > 75% of PASS (prorated in the case of an incomplete year).
+  description.fr: >
+    L’exonération concerne :
+
+    - la cotisation maladie-maternité ;
+
+    - la cotisation indemnités journalières ;
+
+    - la cotisation allocations familiales ;
+
+    - la cotisation retraite de base ;
+
+    - la cotisation invalidité et décès.
+
+
+    L’exonération est :
+
+    - égale au **quart des cotisations** concernées en cas d’assiette sociale
+
+    **inférieure à 75 % du plafond annuel de la sécurité sociale (PASS)** ;
+
+    - **dégressive** en cas d’assiette comprise **entre 75 % et 100 % du PASS** ;
+
+    - **nulle** en cas d’assiette **supérieure au PASS**.
+
+
+    > La formule de calcul du montant de l’exonération dégressive est la suivante :
+
+    >
+
+    > (PASS - R) x E / PASS
+
+    >
+
+    > avec :
+
+    > - PASS = plafond annuel de la sécurité sociale (proratisé en cas d’année
+
+    > incomplète) ;
+
+    > - R = assiette sociale ;
+
+    > - E = montant des cotisations exonérées calculées pour une assiette égale à
+
+    > 75 % du PASS (proratisé en cas d’année incomplète).
+  note.en: >
+    [automatic] For performance reasons, we do not calculate the amount of the
+    exemption
+
+    but its rate. In other words, the ratio between the amount of the exemption and the amount of the contribution excluding the exemption.
+
+    the amount of the contribution excluding the exemption.
+
+
+    To simplify calculations, we have also simplified the formula for this
+
+    exemption rate for contributions to daily allowances, family allowances
+
+    basic pension and disability-death contributions. Indeed, under the
+
+    Acre, the base is less than the PASS and in this case the formula for each of these
+
+    of each of these contributions is of the "base x rate" type.
+
+
+    If we denote this rate as T, the contribution excluding the exemption is therefore `R x T` and the contribution for a base of `R x T` is `R x T`.
+
+    contribution for a base equal to 75% of PASS is `0.75 x PASS x T`.
+
+
+    The exemption rate then becomes **`0.75 x (PASS - R) / R`**.
+
+
+    > Proof :
+
+    &gt;
+
+    > [(PASS - R) x E / PASS] / (R x T)
+
+    &gt;
+
+    > = [(PASS - R) x (0.75 x PASS x T) / PASS] / (R x T)
+
+    &gt;
+
+    > = [(PASS - R) x (0.75 / R)
+
+    &gt;
+
+    > = 0.75 x (PASS - R) / R
+
+
+    For sickness and maternity contributions, the calculation of which is more complex, we calculate the amount of the exemption using the official formula.
+
+    calculate the amount of the exemption using the official formula.
+  note.fr: >
+    Pour des raisons de performance, nous ne calculons pas le montant de
+
+    l’exonération mais son taux. C’est-à-dire, le rapport entre le montant de
+
+    l’exonération et le montant de la cotisation hors exonération.
+
+
+    Afin de faciliter les calculs, nous avons également simplifié la formule de ce
+
+    taux d’exonération pour les cotisations indemnités journalières, allocations
+
+    familiales, retraite de base et invalidité-décès. En effet, dans le cadre de
+
+    l’Acre, l’assiette est inférieure au PASS et dans ce cas la formule de chacune
+
+    de ces cotisations est du type `assiette x taux`.
+
+
+    En notant T ce taux, la cotisation hors exonération vaut donc `R x T` et la
+
+    cotisation pour une assiette valant 75 % du PASS vaut `0,75 x PASS x T`.
+
+
+    Le taux d’exonération devient alors **`0,75 x (PASS - R) / R`**
+
+
+    > Preuve :
+
+    >
+
+    > [(PASS - R) x E / PASS] / (R x T)
+
+    >
+
+    > = [(PASS - R) x (0,75 x PASS x T) / PASS] / (R x T)
+
+    >
+
+    > = [(PASS - R) x (0,75 / R)
+
+    >
+
+    > = 0,75 x (PASS - R) / R
+
+
+    Pour la cotisation maladie-maternité, dont le calcul est plus complexe, nous
+
+    calculons le montant de l’exonération en utilisant la formule officielle.
+  titre.en: '[automatic] exemption'
+  titre.fr: exonération
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération maximale:
+  titre.en: '[automatic] maximum exemption'
+  titre.fr: exonération maximale
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description.en: >
     [automatic] As self-employed contributions are calculated on a full-year
@@ -2372,34 +2722,30 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     current year.
 
 
-    For example, for a company created on February 1, 2024, the prorata calculation for
+    > For example, for a company created on February 1, 2025, the prorata calculation for
 
-    for 2025 contributions will be as follows :
+    > for 2026 contributions will be as follows :
 
+    &gt;
 
-    31 days of Acre remaining in 2025 / 365 days = 8.5%`.
+    > 31 days of Acre remaining in 2026 / 365 days = 8.5%`.
   description.fr: >
-    Comme le calcul des cotisations indépendants s'effectue sur l'année entière,
+    Comme le calcul des cotisations indépendants s’effectue sur l’année entière,
 
-    l'exonération est proratisée en fonction de la durée effective de l'Acre sur
+    l’exonération est proratisée en fonction de la durée effective de l’Acre sur
 
-    l'année courante.
-
-
-    Par exemple, pour une entreprise crée le 1er février 2024, le calcul du prorata
-
-    pour les cotisations 2025 sera le suivant :
+    l’année courante.
 
 
-    `31 jour d'Acre restant en 2025 / 365 jour = 8,5%`
+    > Par exemple, pour une entreprise crée le 1er février 2025, le calcul du prorata
+
+    > pour les cotisations 2026 sera le suivant :
+
+    >
+
+    > `31 jours d’Acre restant en 2026 / 365 jours = 8,5 %`
   titre.en: '[automatic] pro rata over the year'
   titre.fr: prorata sur l'année
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux:
-  titre.en: '[automatic] rate'
-  titre.fr: taux
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . taux proratisé:
-  titre.en: '[automatic] prorated rate'
-  titre.fr: taux proratisé
 indépendant . cotisations et contributions . cotisations . exonérations . DROM:
   description.en: >
     [automatic] At the start of their activity, for a period of 24 months,
@@ -2530,17 +2876,26 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
   question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
   titre.en: '[automatic] duration'
   titre.fr: durée
-indépendant . cotisations et contributions . cotisations . exonérations . invalidité . montant:
-  titre.en: '[automatic] amount'
-  titre.fr: montant
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
+  avec:
+    montant maladie-maternité:
+      titre.en: '[automatic] sickness and maternity amount'
+      titre.fr: montant maladie-maternité
+    taux indemnités journalières:
+      titre.en: '[automatic] daily allowance rates'
+      titre.fr: taux indemnités journalières
+    taux retraite complémentaire:
+      titre.en: '[automatic] supplementary pension rate'
+      titre.fr: taux retraite complémentaire
+    taux retraite de base:
+      titre.en: '[automatic] basic retirement rate'
+      titre.fr: taux retraite de base
+  titre.en: '[automatic] exemption'
+  titre.fr: exonération
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année:
   titre.en: '[automatic] pro rata over the year'
   titre.fr: prorata sur l'année
 indépendant . cotisations et contributions . cotisations . exonérations . âge:
-  avec:
-    montant:
-      titre.en: '[automatic] amount'
-      titre.fr: montant
   description.en: >
     [automatic] ### Craftsmen, shopkeepers and self-employed professionals
     outside Cipav

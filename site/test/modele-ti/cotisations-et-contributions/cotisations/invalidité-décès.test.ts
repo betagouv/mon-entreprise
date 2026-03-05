@@ -11,10 +11,8 @@ describe('Cotisation invalidité et décès', () => {
 	let PASS: number
 	beforeEach(() => {
 		engine = new Engine(rules)
-		PASS = engine.evaluate({
-			valeur: 'plafond sécurité sociale',
-			unité: '€/an',
-		}).nodeValue as number
+		PASS = engine.evaluate('plafond sécurité sociale . annuel')
+			.nodeValue as number
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
@@ -109,7 +107,6 @@ describe('Cotisation invalidité et décès', () => {
 			})
 		})
 
-		// Exemples issus de la doc Urssaf
 		describe('en cas d’année incomplète', () => {
 			it('applique une assiette minimale proratisée', () => {
 				const e = engine.setSituation({
