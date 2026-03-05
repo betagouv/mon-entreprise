@@ -55,20 +55,28 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
   unité: '%'
   arrondi: oui
 
-indépendant . cotisations et contributions . cotisations . exonérations . invalidité . montant:
-  produit:
-    - somme:
-        - maladie-maternité
-        - indemnités journalières
-        - applicable si: profession libérale . Cipav
-          # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraite de base.
-          # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de cette exonération.
-          # Les A/C/PLNR ne bénéficient pas de cette exonération.
-          valeur: retraite de base
-        - non applicable si: profession libérale . CNAVPL . hors Urssaf
-          # L'exonération invalidité est un dispositif de l'Urssaf et ne concerne donc
-          # pas les PLR non Cipav
-          valeur: retraite complémentaire
-    - prorata sur l'année
-  arrondi: oui
-  unité: €/an
+indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
+  avec:
+    montant maladie-maternité:
+      produit:
+        - valeur: cotisations . maladie-maternité
+          contexte:
+            invalidité: non
+        - prorata sur l'année
+      arrondi: oui
+      unité: €/an
+
+    taux indemnités journalières: prorata sur l'année
+
+    taux retraite de base:
+      # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraitede base.
+      # Les PLR non Cipav ne sont pas gérées par l'Urssaf et ne bénéficient donc pas de cette exonération.
+      # Les A/C/PLNR ne bénéficient pas de cette exonération.
+      applicable si: profession libérale . Cipav
+      valeur: prorata sur l'année
+
+    taux retraite complémentaire:
+      # L'exonération invalidité est un dispositif de l'Urssaf et ne concerne donc
+      # pas les PLR non Cipav
+      non applicable si: profession libérale . CNAVPL . hors Urssaf
+      valeur: prorata sur l'année

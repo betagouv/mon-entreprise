@@ -13,10 +13,8 @@ describe('Cotisations de début d’activité', () => {
 	let PASS: number
 	beforeEach(() => {
 		engine = new Engine(rules)
-		PASS = engine.evaluate({
-			valeur: 'plafond sécurité sociale',
-			unité: '€/an',
-		}).nodeValue as number
+		PASS = engine.evaluate('plafond sécurité sociale . annuel')
+			.nodeValue as number
 	})
 
 	describe('Pour les A/C/PLNR', () => {

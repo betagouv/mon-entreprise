@@ -8,7 +8,7 @@ indépendant . cotisations et contributions:
     - CSG-CRDS
     - formation professionnelle
     - cotisations facultatives . montant
-    - conjoint collaborateur . cotisations
+    - cotisations . conjoint collaborateur
     - contributions spéciales
 
   avec:
@@ -105,7 +105,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
         somme:
           - assiette sociale . sans plancher
           - cotisations
-          - conjoint collaborateur . cotisations
+          - cotisations . conjoint collaborateur
         abattement:
           somme:
             - revenus étrangers . montant
