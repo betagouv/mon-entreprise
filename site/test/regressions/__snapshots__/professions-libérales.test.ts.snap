@@ -1,35 +1,35 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 1`] = `
-"entreprise . chiffre d'affaires: 6165
-indépendant . cotisations et contributions: 1165
-indépendant . cotisations et contributions . avec dividendes: 1165
+"entreprise . chiffre d'affaires: 6713
+indépendant . cotisations et contributions: 1713
+indépendant . cotisations et contributions . avec dividendes: 1713
 indépendant . cotisations et contributions . début activité: null
-indépendant . rémunération . brute: 6165
+indépendant . rémunération . brute: 6713
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
 protection sociale . retraite . base: 3
-protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 26"
+protection sociale . retraite . base . trimestres: 2
+protection sociale . retraite . complémentaire: 29"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 2`] = `
-"entreprise . chiffre d'affaires: 24133
-indépendant . cotisations et contributions: 4133
-indépendant . cotisations et contributions . avec dividendes: 4133
+"entreprise . chiffre d'affaires: 26068
+indépendant . cotisations et contributions: 6060
+indépendant . cotisations et contributions . avec dividendes: 6060
 indépendant . cotisations et contributions . début activité: null
-indépendant . rémunération . brute: 24133
-indépendant . rémunération . impôt: 552
-indépendant . rémunération . impôt . avec dividendes: 552
+indépendant . rémunération . brute: 26068
+indépendant . rémunération . impôt: 560
+indépendant . rémunération . impôt . avec dividendes: 560
 indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19448
+indépendant . rémunération . nette . après impôt: 19440
 indépendant . rémunération . nette . avec dividendes: 20000
-protection sociale . retraite . base: 11
+protection sociale . retraite . base: 12
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 99"
+protection sociale . retraite . complémentaire: 108"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 3`] = `
@@ -209,67 +209,67 @@ protection sociale . retraite . complémentaire: 511"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
-"entreprise . chiffre d'affaires: 97495
-indépendant . cotisations et contributions: 37496
-indépendant . cotisations et contributions . avec dividendes: 37496
+"entreprise . chiffre d'affaires: 94336
+indépendant . cotisations et contributions: 34336
+indépendant . cotisations et contributions . avec dividendes: 34336
 indépendant . cotisations et contributions . début activité: null
-indépendant . rémunération . brute: 97495
-indépendant . rémunération . impôt: 4959
-indépendant . rémunération . impôt . avec dividendes: 4959
+indépendant . rémunération . brute: 94336
+indépendant . rémunération . impôt: 4938
+indépendant . rémunération . impôt . avec dividendes: 4938
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55041
+indépendant . rémunération . nette . après impôt: 55062
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 525"
+protection sociale . retraite . complémentaire: 501"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
-"entreprise . chiffre d'affaires: 94420
-indépendant . cotisations et contributions: 34420
-indépendant . cotisations et contributions . avec dividendes: 34420
+"entreprise . chiffre d'affaires: 93803
+indépendant . cotisations et contributions: 33803
+indépendant . cotisations et contributions . avec dividendes: 33803
 indépendant . cotisations et contributions . début activité: null
-indépendant . rémunération . brute: 94420
-indépendant . rémunération . impôt: 4939
-indépendant . rémunération . impôt . avec dividendes: 4939
+indépendant . rémunération . brute: 93803
+indépendant . rémunération . impôt: 4935
+indépendant . rémunération . impôt . avec dividendes: 4935
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55061
+indépendant . rémunération . nette . après impôt: 55065
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 45
+protection sociale . retraite . base: 41
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 501"
+protection sociale . retraite . complémentaire: 496"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
-"entreprise . chiffre d'affaires: 97495
-indépendant . cotisations et contributions: 37496
-indépendant . cotisations et contributions . avec dividendes: 37496
+"entreprise . chiffre d'affaires: 94336
+indépendant . cotisations et contributions: 34336
+indépendant . cotisations et contributions . avec dividendes: 34336
 indépendant . cotisations et contributions . début activité: null
-indépendant . rémunération . brute: 97495
-indépendant . rémunération . impôt: 4959
-indépendant . rémunération . impôt . avec dividendes: 4959
+indépendant . rémunération . brute: 94336
+indépendant . rémunération . impôt: 4938
+indépendant . rémunération . impôt . avec dividendes: 4938
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55041
+indépendant . rémunération . nette . après impôt: 55062
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 525"
+protection sociale . retraite . complémentaire: 501"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
-"entreprise . chiffre d'affaires: 94420
-indépendant . cotisations et contributions: 34420
-indépendant . cotisations et contributions . avec dividendes: 34420
+"entreprise . chiffre d'affaires: 93803
+indépendant . cotisations et contributions: 33803
+indépendant . cotisations et contributions . avec dividendes: 33803
 indépendant . cotisations et contributions . début activité: null
-indépendant . rémunération . brute: 94420
-indépendant . rémunération . impôt: 4939
-indépendant . rémunération . impôt . avec dividendes: 4939
+indépendant . rémunération . brute: 93803
+indépendant . rémunération . impôt: 4935
+indépendant . rémunération . impôt . avec dividendes: 4935
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55061
+indépendant . rémunération . nette . après impôt: 55065
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 45
+protection sociale . retraite . base: 41
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 501"
+protection sociale . retraite . complémentaire: 496"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `
@@ -283,7 +283,7 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
-protection sociale . retraite . base: 7
+protection sociale . retraite . base: 5
 protection sociale . retraite . base . trimestres: 3
 protection sociale . retraite . complémentaire: 12"
 `;
