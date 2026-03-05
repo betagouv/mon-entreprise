@@ -397,7 +397,7 @@ describe('Dividendes', () => {
 				'indépendant . cotisations et contributions'
 			).nodeValue as number
 			const contributionsNonDéductiblesSansDividendes = e.evaluate(
-				'indépendant . cotisations et contributions . non déductibles'
+				'indépendant . cotisations et contributions . CSG-CRDS . non déductible'
 			).nodeValue as number
 
 			const e1 = engine.setSituation({
@@ -411,7 +411,7 @@ describe('Dividendes', () => {
 					.nodeValue as number
 			const contributionsNonDéductiblesAvecRémunérationTotaleAugmentée =
 				e1.evaluate(
-					'indépendant . cotisations et contributions . non déductibles'
+					'indépendant . cotisations et contributions . CSG-CRDS . non déductible'
 				).nodeValue as number
 
 			const e2 = engine.setSituation(defaultSituationAvecDividendes)
