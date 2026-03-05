@@ -1138,15 +1138,6 @@ entreprise . radiée cette année:
   titre.en: '[automatic] Company written off this year'
   titre.fr: Entreprise radiée cette année
 entreprise . résultat fiscal:
-  avec:
-    rémunération dirigeant déductible:
-      description.en: |
-        [automatic] Tax-deductible executive compensation.
-      description.fr: >
-        Les montants liés à la rémunération du dirigeant qui sont déductibles
-        d’impôt.
-      titre.en: '[automatic] deductible expenses manager'
-      titre.fr: charges déductibles dirigeant
   titre.en: '[automatic] tax result'
   titre.fr: résultat fiscal
 impôt:
@@ -2049,10 +2040,6 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
   titre.en: '[automatic] CSG-CRDS tax base'
   titre.fr: assiette de la CSG-CRDS
 indépendant . cotisations et contributions . assiette sociale:
-  avec:
-    sans plancher:
-      titre.en: '[automatic] without floor'
-      titre.fr: sans plancher
   description.en: >
     [automatic] With the reform of the calculation basis for social security
     contributions
@@ -5136,70 +5123,6 @@ indépendant . revenu professionnel:
     Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il s’agit du **résultat fiscal**.
 
     Pour les entreprises qui ont opté pour l’**impôt sur les sociétés**, il s’agit de la rémunération du dirigeant, auquel on ajoute les cotisations non déductibles.
-  note.en: >
-    [automatic] ### How is professional income calculated from sales in the
-    simulator?
-
-
-    To find your professional income, solve the following equation:
-
-
-    CAS = professional income + expenses + contributions (professional income)`.
-
-
-    As contributions depend on professional income, we cannot have a "ready-made
-
-    to calculate it. We therefore use an algorithm
-
-    algorithm that finds the value that works in the previous equation.
-
-    This is what is meant by "solving the circular reference".
-
-
-    This algorithm works on a trial-and-error basis, testing values until the right one is found.
-
-    find the right one (with a heuristic for finding the values to test).
-
-
-    In reality, as contributions are regularized from one year to the next,
-
-    this calculation never needs to be made (with a few exceptions). But we have chosen to
-
-    to provide the closest result without having to ask for the amount of provisional
-
-    provisional contributions paid in year N-1.
-  note.fr: >
-    ### Comment est calculé le revenu professionnel à partir du chiffre
-    d’affaires dans le simulateur ?
-
-
-    Pour retrouver le revenu professionnel il faut résoudre l’équation suivante :
-
-
-    `CA = revenu professionnel + charges + cotisations (revenu professionnel)`
-
-
-    Comme les cotisations dépendent du revenu professionnel, nous ne pouvons pas
-
-    avoir de formule « toute faite » pour le calculer. Nous procédons donc par un
-
-    algorithme qui retrouve la valeur qui fonctionne dans l’équation précédente.
-
-    C’est ce que signifie « résoudre la référence circulaire »
-
-
-    Cet algorithme fonctionne par essai-erreur, en testant des valeurs jusqu’à
-
-    trouver la bonne (avec une heuristique pour trouver les valeurs à tester).
-
-
-    Dans la réalité, comme les cotisations sont régularisées d’une année sur l’autre,
-
-    ce calcul n’est jamais à faire (sauf exceptions). Mais nous avons choisi de
-
-    l’implémenter pour fournir le résultat le plus proche sans avoir à demander le
-
-    montant des cotisations provisionnelles payées l’année N-1.
   résumé.en: "[automatic] executive compensation under the self-employed workers' scheme"
   résumé.fr: rémunération du dirigeant au régime des indépendants
   titre.en: '[automatic] professional income'

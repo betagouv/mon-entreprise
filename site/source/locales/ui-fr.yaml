@@ -1708,17 +1708,18 @@ pages:
         professionnelles - Cotisations sociales</5><6>Comment calculer les
         cotisations sociales d'une entreprise individuelle ?</6><7>Le dirigeant
         d'une entreprise individuelle paye des cotisations sociales,
-        proportionnelles au <2>résultat fiscal</2> de l'entreprise. Leur montant
-        varie également en fonction du type d'activité (profession libérale,
-        artisan, commerçants, etc), où des éventuelles exonérations accordées
-        (Acre, ZFU, RSA, etc.).</7><8> Comme le résultat d'une entreprise n'est
-        connu qu'à la fin de l'exercice comptable, le dirigeant paye des
-        cotisations provisionnelles qui seront ensuite régularisée une fois le
-        revenu réel déclaré, l'année suivante.</8><9>Ce simulateur permet de
-        calculer le montant exact des cotisations sociale en partant d'un
-        chiffre d'affaires ou d'un revenu net souhaité. Vous pourrez préciser
-        votre situation en répondant aux questions s'affichant en dessous de la
-        simulation.</9>
+        proportionnelles au <2>résultat fiscal</2> de l'entreprise s'il a opté
+        pour l'impôt sur le revenu, ou à son <6>revenu professionnel</6> s'il a
+        opté pour l'impôt sur les sociétés. Leur montant varie également en
+        fonction du type d'activité (profession libérale, artisan, commerçants,
+        etc), où des éventuelles exonérations accordées (Acre, ZFU, RSA,
+        etc.).</7><8> Comme le résultat d'une entreprise n'est connu qu'à la fin
+        de l'exercice comptable, le dirigeant paye des cotisations
+        provisionnelles qui seront ensuite régularisée une fois le revenu réel
+        déclaré, l'année suivante.</8><9>Ce simulateur permet de calculer le
+        montant exact des cotisations sociale en partant d'un chiffre d'affaires
+        ou d'un revenu net souhaité. Vous pourrez préciser votre situation en
+        répondant aux questions s'affichant en dessous de la simulation.</9>
       shortname: Entreprise Individuelle
       title: Simulateur pour entreprise individuelle (EI)
     eirl:

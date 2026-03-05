@@ -31,19 +31,6 @@ indépendant . cotisations et contributions . avec dividendes:
     - cotisations et contributions
     - dividendes . prélèvements sociaux
 
-indépendant . cotisations et contributions . non déductibles:
-  titre: Part non déductible fiscalement
-  somme:
-    - CSG-CRDS . non déductible
-    - cotisations facultatives . non déductibles
-
-indépendant . cotisations et contributions . non déductibles . avec dividendes:
-  titre: Part non déductible fiscalement
-  résumé: Inclue la CSG non déductible des prélèvements sociaux sur les dividendes
-  somme:
-    - non déductibles
-    - dividendes . prélèvements sociaux . CSG non déductible
-
 indépendant . cotisations et contributions . contributions spéciales:
   description: |
     Certains régimes spéciaux peuvent ajouter des contributions additionnelles
@@ -103,7 +90,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
         arrondi: oui
     - sinon:
         somme:
-          - assiette sociale . sans plancher
+          - revenu professionnel
           - cotisations
           - cotisations . conjoint collaborateur
         abattement:
@@ -148,16 +135,9 @@ indépendant . cotisations et contributions . assiette sociale:
           - assiette CSG-CRDS
           - IJSS . après abattement
           - revenus étrangers . montant
-          # - (- cotisations facultatives . déductibles)
     - sinon:
-        valeur: sans plancher
+        valeur: revenu professionnel
         plancher: 0 €/an
-
-  avec:
-    sans plancher:
-      somme:
-        - revenu professionnel
-        - cotisations facultatives . déductibles
 
   références:
     Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html

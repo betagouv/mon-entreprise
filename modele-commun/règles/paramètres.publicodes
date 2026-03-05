@@ -17,5 +17,3 @@ paramètres . impôt . revenu d'activité:
   par défaut: 0 €/an
 paramètres . impôt . taux neutre applicable:
   par défaut: non
-paramètres . impôt . abattement revenu net global:
-  par défaut: 0 €/an
