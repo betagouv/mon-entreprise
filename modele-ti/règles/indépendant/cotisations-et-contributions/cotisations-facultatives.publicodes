@@ -68,15 +68,15 @@ indépendant . cotisations facultatives . retraite . plafond déductible:
     - somme:
         - produit:
             - valeur: revenu professionnel
-              plafond: 8 * plafond sécurité sociale
+              plafond: 8 * PSS proratisé
             - 10%
         - produit:
             - valeur: revenu professionnel
-              abattement: plafond sécurité sociale
-              plafond: 8 * plafond sécurité sociale
+              abattement: PSS proratisé
+              plafond: 8 * PSS proratisé
             - 15%
     - produit:
-        - plafond sécurité sociale
+        - PSS proratisé
         - 10%
   unité: €/an
   références:
@@ -113,11 +113,11 @@ indépendant . cotisations facultatives . prévoyance . plafond déductible:
         - revenu professionnel
         - 3.75%
     - produit:
-        - plafond sécurité sociale
+        - PSS proratisé
         - 7%
   plafond:
     produit:
-      - 8 * plafond sécurité sociale
+      - 8 * PSS proratisé
       - 3%
   unité: €/an
   références:
