@@ -1,15 +1,9 @@
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
-import { serviceIndépendant } from '@/external-links/serviceIndépendant'
-import { servicePAM } from '@/external-links/servicePAM'
-import { servicePLR } from '@/external-links/servicePLR'
-
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
 import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
-import IndépendantSimulation from '../indépendant/Indépendant'
-import { configEirl } from '../indépendant/simulationConfig'
-import Avertissement from './Avertissement'
+import { AvertissementEIRL } from './Avertissement'
+import { EIRL } from './EIRL'
+import { configEirl } from './simulationConfig'
 
 export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 	return config({
@@ -43,18 +37,10 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 		pathId: 'simulateurs.eirl',
 		shortName: t('pages.simulateurs.eirl.shortname', 'EIRL'),
 		title: t('pages.simulateurs.eirl.title', 'Simulateur de revenus pour EIRL'),
-		warning: Avertissement,
-		nextSteps: ['comparaison-statuts'],
-		externalLinks: [
-			serviceIndépendant,
-			servicePLR,
-			servicePAM,
-			serviceExpertComptable,
-			premiersMoisUrssaf,
-		],
+		warning: AvertissementEIRL,
 		path: sitePaths.simulateurs.eirl,
 		simulation: configEirl,
 		codesCatégorieJuridique: ['1000'],
-		component: IndépendantSimulation,
+		component: EIRL,
 	} as const)
 }

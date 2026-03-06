@@ -2,7 +2,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	baseTheme,
 	Body,
@@ -22,6 +21,7 @@ import {
 import { euros } from '@/domaine/Montant'
 import { heuresParMois } from '@/domaine/Quantité'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 import { Options } from '@/utils/réductionDeCotisations'
 
 type Props = {

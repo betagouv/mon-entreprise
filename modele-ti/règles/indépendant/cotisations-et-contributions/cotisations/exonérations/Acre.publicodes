@@ -1,0 +1,213 @@
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre:
+  applicable si: entreprise . durée d'activité . en début d'année < 1 an
+  question: Bénéficiez-vous de l’Acre ?
+  par défaut: non
+  description: |
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
+    **exonération partielle** de charges sociales pendant 12 mois, dite exonération
+    de début d’activité.
+
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de l’Urssaf**
+    dans un délai de 60 jours après la création de votre entreprise.
+
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
+    **une des situations suivantes** au moment de la création de votre entreprise :
+    - personne demandeuse d’emploi indemnisée ;
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
+    6 mois au cours des 18 derniers mois ;
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+    solidarité spécifique (ASS) ;
+    - jeune de 18 à 25 ans révolus ;
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante pour
+    l’ouverture de droits) ;
+    - personne de moins de 30 ans reconnue handicapée ;
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en redressement
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise), sous
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+    de signature de ce contrat ;
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire de
+    la politique de la ville (QPV) ;
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+    - personne exerçant l’activité au sein d’une zone France ruralités revitalisation
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
+
+    Pour les **sociétés**, vous devez respecter au moins une des conditions
+    suivantes :
+    - vous détenez avec votre famille plus de 50 % du capital dont au moins 35 % à
+    titre personnel ;
+    - vous dirigez la société et vous détenez avec votre famille au moins 1/3 du
+    capital dont au moins 25 % à titre personnel (sous réserve que personne d’autre
+    ne détienne plus de 50 % du capital) ;
+    - vous détenez, avec les autres personnes demandant l’Acre, plus de 50 % du
+    capital, à condition qu’au moins l’une de ces personnes soit dirigeant/dirigeante,
+    et que chacune d’elle détienne une part du capital au moins égal à 10 % de
+    la part détenue par la principale associée ou le principal associé.
+
+    Avant 2026, l'attribution de l’Acre était automatique et concernait tous les
+    créateurs et créatrices d’entreprise.
+
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+    bénéficié au cours des trois années précédentes.
+  références:
+    'Acre : nouvelles règles et démarches à partir du 1er janvier 2026': https://www.urssaf.fr/accueil/actualites/acre-nouvelles-regles-demarches.html
+    'L’Acre : une aide pour favoriser les créations et reprises d’entreprises': https://www.urssaf.fr/accueil/exoneration-acre-createur.html
+    Aide à la création ou à la reprise d’une entreprise: https://www.service-public.gouv.fr/particuliers/vosdroits/F11677
+    # BPI ONLY
+    'Acre : aide aux créateurs et repreneurs d’entreprise (ex Accre)': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
+  description: |
+    Comme le calcul des cotisations indépendants s’effectue sur l’année entière,
+    l’exonération est proratisée en fonction de la durée effective de l’Acre sur
+    l’année courante.
+
+    > Par exemple, pour une entreprise crée le 1er février 2025, le calcul du prorata
+    > pour les cotisations 2026 sera le suivant :
+    >
+    > `31 jours d’Acre restant en 2026 / 365 jours = 8,5 %`
+  unité: '%'
+  valeur: (1 an - entreprise . durée d'activité . en début d'année) / 1 an
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération maximale:
+  variations:
+    - si: date < 01/2026
+      alors: 100%
+    - sinon: 25%
+
+indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
+  description: |
+    L’exonération concerne :
+    - la cotisation maladie-maternité ;
+    - la cotisation indemnités journalières ;
+    - la cotisation allocations familiales ;
+    - la cotisation retraite de base ;
+    - la cotisation invalidité et décès.
+
+    L’exonération est :
+    - égale au **quart des cotisations** concernées en cas d’assiette sociale
+    **inférieure à 75 % du plafond annuel de la sécurité sociale (PASS)** ;
+    - **dégressive** en cas d’assiette comprise **entre 75 % et 100 % du PASS** ;
+    - **nulle** en cas d’assiette **supérieure au PASS**.
+
+    > La formule de calcul du montant de l’exonération dégressive est la suivante :
+    >
+    > (PASS - R) x E / PASS
+    >
+    > avec :
+    > - PASS = plafond annuel de la sécurité sociale (proratisé en cas d’année
+    > incomplète) ;
+    > - R = assiette sociale ;
+    > - E = montant des cotisations exonérées calculées pour une assiette égale à
+    > 75 % du PASS (proratisé en cas d’année incomplète).
+  note: |
+    Pour des raisons de performance, nous ne calculons pas le montant de
+    l’exonération mais son taux. C’est-à-dire, le rapport entre le montant de
+    l’exonération et le montant de la cotisation hors exonération.
+
+    Afin de faciliter les calculs, nous avons également simplifié la formule de ce
+    taux d’exonération pour les cotisations indemnités journalières, allocations
+    familiales, retraite de base et invalidité-décès. En effet, dans le cadre de
+    l’Acre, l’assiette est inférieure au PASS et dans ce cas la formule de chacune
+    de ces cotisations est du type `assiette x taux`.
+
+    En notant T ce taux, la cotisation hors exonération vaut donc `R x T` et la
+    cotisation pour une assiette valant 75 % du PASS vaut `0,75 x PASS x T`.
+
+    Le taux d’exonération devient alors **`0,75 x (PASS - R) / R`**
+
+    > Preuve :
+    >
+    > [(PASS - R) x E / PASS] / (R x T)
+    >
+    > = [(PASS - R) x (0,75 x PASS x T) / PASS] / (R x T)
+    >
+    > = [(PASS - R) x (0,75 / R)
+    >
+    > = 0,75 x (PASS - R) / R
+
+    Pour la cotisation maladie-maternité, dont le calcul est plus complexe, nous
+    calculons le montant de l’exonération en utilisant la formule officielle.
+  références:
+    Article D131-6-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036475110
+
+  avec:
+    montant maladie-maternité:
+      produit:
+        - variations:
+            - si: assiette sociale > PSS proratisé
+              alors: 0 €/an
+            - si: assiette sociale < 75% * PSS proratisé
+              alors:
+                produit:
+                  - valeur: cotisations . maladie-maternité
+                    contexte:
+                      Acre: non
+                  - exonération maximale
+            - sinon:
+                produit:
+                  - PSS proratisé - assiette sociale
+                  - valeur: cotisations . maladie-maternité
+                    contexte:
+                      assiette sociale: 75% * PSS proratisé
+                      Acre: non
+                  - 1 / PSS proratisé
+                  - variations:
+                      - si: date < 01/2026
+                        alors: 1 / 0.25
+                      - sinon: 1
+        - prorata sur l'année
+      arrondi: oui
+      unité: €/an
+
+    taux indemnités journalières:
+      produit:
+        - variations:
+            - si: indemnités journalières . assiette > PSS proratisé
+              alors: 0%
+            - si: indemnités journalières . assiette < 75% * PSS proratisé
+              alors: exonération maximale
+            - sinon:
+                produit:
+                  - (PSS proratisé - indemnités journalières . assiette) / indemnités journalières . assiette
+                  - variations:
+                      - si: date < 01/2026
+                        alors: 3
+                      - sinon: 0.75
+        - prorata sur l'année
+      unité: '%'
+
+    taux allocations familiales:
+      produit:
+        - variations:
+            - si: assiette sociale > PSS proratisé
+              alors: 0%
+            - si: assiette sociale < 75% * PSS proratisé
+              alors: exonération maximale
+            - sinon:
+                produit:
+                  - (PSS proratisé - assiette sociale) / assiette sociale
+                  - variations:
+                      - si: date < 01/2026
+                        alors: 3
+                      - sinon: 0.75
+        - prorata sur l'année
+      unité: '%'
+
+    taux retraite de base et invalidité-décès:
+      produit:
+        - variations:
+            - si: assiette retraite et invalidité-décès > PSS proratisé
+              alors: 0%
+            - si: assiette retraite et invalidité-décès < 75% * PSS proratisé
+              alors: exonération maximale
+            - sinon:
+                produit:
+                  - (PSS proratisé - assiette retraite et invalidité-décès) / assiette retraite et invalidité-décès
+                  - variations:
+                      - si: date < 01/2026
+                        alors: 3
+                      - sinon: 0.75
+        - prorata sur l'année
+      unité: '%'

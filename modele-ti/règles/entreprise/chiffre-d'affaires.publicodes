@@ -1,0 +1,174 @@
+entreprise . chiffre d'affaires:
+  résumé: Montant total des recettes brutes (hors taxe)
+  description: |
+    Le chiffre d’affaires est la
+    **somme des montants des ventes et des prestations réalisées pendant l’année civile**
+    (du 1er janvier au 31 décembre) : CA = prix de vente ou de prestations x
+    quantités vendues ou réalisées.
+
+    Le chiffre d’affaires à déclarer est le montant hors taxes (c’est-à-dire sans la
+    TVA payée par les clients).
+  inversion numérique:
+    - indépendant . rémunération . nette
+    - indépendant . rémunération . nette . après impôt
+    - indépendant . cotisations et contributions
+    - indépendant . rémunération . impôt
+    - charges
+  plancher: 0 €/an
+  arrondi: oui
+  unité: €/an
+
+entreprise . chiffre d'affaires . proportions:
+  titre: proportions activités mixtes
+  description: Part des différentes activités dans le chiffre d’affaires
+  note: |
+    Il vous appartient de bien vérifier que la somme des trois pourcentages
+    renseignés vaut 100 %.
+  applicable si: activité . revenus mixtes
+  somme:
+    - service BIC
+    - service BNC
+    - vente restauration hébergement
+  unité: '%'
+
+  avec:
+    service BIC:
+      variations:
+        - si: activité . libérale
+          alors: 0%
+        - sinon: 50%
+
+    service BNC:
+      variations:
+        - si: activité . libérale
+          alors: 2 / 3
+        - sinon: 0%
+
+    vente restauration hébergement:
+      variations:
+        - si: activité . libérale
+          alors: 1 / 3
+        - sinon: 50%
+
+entreprise . chiffre d'affaires . vente restauration hébergement:
+  titre: Vente de biens, restauration, hébergement (BIC)
+  description: |
+    ### Vente de biens
+    Il s’agit du chiffre d’affaires de toutes les opérations comportant
+    transfert de propriété d’un bien corporel, c’est-à-dire un bien ayant une
+    existence matérielle.
+
+    ### Restauration et hébergement
+    Il s’agit du chiffre d’affaires de toutes les opérations de restauration
+    ou hébergement
+
+    > Note : pour les locations meublées, seules les locations de meublé de tourisme
+    > classé et de chambre d’hôte entrent dans cette catégorie hébergement. Les
+    > autres locations meublées relèvent de la catégorie « Prestations de service
+    > BIC »
+
+    Ces revenus sont imposables dans la catégorie des BIC.
+  variations:
+    - si: activité . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - proportions . vente restauration hébergement
+    - si: activité . principale = 'vente'
+      alors: chiffre d'affaires
+  plancher: 0 €/an
+  par défaut: 0 €/an
+  arrondi: oui
+  références:
+    'Bénéfices industriels et commerciaux (BIC) : régime réel d’imposition': https://entreprendre.service-public.gouv.fr/vosdroits/F32919
+    Achat/vente de biens: https://www.impots.gouv.fr/portail/professionnel/achatvente-de-biens
+
+entreprise . chiffre d'affaires . service BIC:
+  titre: Prestations de service commerciales ou artisanales (BIC)
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c’est-à-dire ayant une existence matérielle), dont
+    l’activité manuelle joue le principal rôle.
+
+    Pour simplifier on pourrait dire que ce sont toutes les prestations de
+    services qui nécessite plus qu’un ordinateur pour être effectuées.
+
+    **Exemples** : transports, service à la personne, réparation etc.
+  variations:
+    - si: activité . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - proportions . service BIC
+    - si: activité . principale = 'service'
+      alors: chiffre d'affaires
+  plancher: 0 €/an
+  par défaut: 0 €/an
+  arrondi: oui
+  références:
+    'Bénéfices industriels et commerciaux (BIC) : régime réel d’imposition': https://entreprendre.service-public.gouv.fr/vosdroits/F32919
+
+entreprise . chiffre d'affaires . service BNC:
+  titre: Autres prestations de service et activités libérales (BNC)
+  description: |
+    Ce sont toutes les opérations dont l’activité intellectuelle tient
+    un rôle essentiel.
+
+    **Exemples** : conseil, accompagnement, traduction, développement,
+    formation, enseignement, sportif
+
+    Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
+  variations:
+    - si: activité . revenus mixtes
+      alors:
+        produit:
+          - chiffre d'affaires
+          - proportions . service BNC
+    - si: activité . libérale
+      alors: chiffre d'affaires
+  plancher: 0 €/an
+  par défaut: 0 €/an
+  arrondi: oui
+  références:
+    Liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
+
+entreprise . chiffre d'affaires . service:
+  titre: Chiffre d’affaires de prestation de service
+  description: |
+    Il s’agit de toute opération ne comportant pas de transfert de propriété de
+    biens corporels (c’est-à-dire ayant une existence matérielle)
+  unité: €/an
+  somme:
+    - service BIC
+    - service BNC
+
+entreprise . chiffre d'affaires . seuil micro-fiscal:
+  applicable si: imposition . IR . régime micro-fiscal
+  avec:
+    service: 77700 €/an
+    vente: 188700 €/an
+  références:
+    'Impôt sur le revenu : BIC, BNC, comment ça marche ? - Quel régime d’imposition concerne les BIC et les BNC ?': https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/limpot-sur-les-benefices-ir-et/impot-sur-le-revenu-bic#quel-r-gime-d-imposition-concern_2
+
+entreprise . chiffre d'affaires . seuil micro-fiscal . dépassé:
+  description: |
+    Le régime micro-fiscal s’applique tant que le chiffre d’affaires annuel
+    (effectivement encaissé au cours de l’année civile) ne dépasse pas certains
+    seuils.
+
+    ### Multi-activité
+    Si vous exercez plusieurs activités au sein de votre entreprise, le seuil de
+    chiffre d’affaires à respecter est celui de l’activité principale.
+  une de ces conditions:
+    - chiffre d'affaires . vente restauration hébergement > seuil micro-fiscal . vente
+    - chiffre d'affaires . service > seuil micro-fiscal . service
+  références:
+    Article 50-0 du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006199553&cidTexte=LEGITEXT000006069577
+    Article 102 ter du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000036426856/2025-12-20
+
+entreprise . chiffre d'affaires . seuil micro-fiscal . dépassé . alerte:
+  type: notification
+  sévérité: avertissement
+  description: Le seuil annuel de chiffre d’affaires pour le régime micro-fiscal
+    est dépassé. [En savoir
+    plus](/documentation/modele-ti/entreprise/chiffre-d'affaires/seuil-micro/dépassé)

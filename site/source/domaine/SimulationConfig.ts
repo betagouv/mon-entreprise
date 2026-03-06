@@ -1,9 +1,10 @@
-import { DottedName } from 'modele-social'
-
+import { DottedName } from './publicodes/DottedName'
 import { RaccourciPublicodes } from './RaccourciPublicodes'
 import { SituationPublicodes } from './SituationPublicodes'
 
 export type SimulationConfig = Partial<{
+	nomModèle: NomModèle
+
 	/**
 	 * Objectifs exclusifs de la simulation : si une règle change dans la situation
 	 * et qu'elle est dans `objectifs exclusifs`, alors toute les autres règles
@@ -28,7 +29,7 @@ export type SimulationConfig = Partial<{
 		'non prioritaires'?: DottedName[]
 
 		/**
-		 * Whitelist des questions qui sont affiché à l'utilisateur.
+		 * Whitelist des questions qui sont affichées à l'utilisateur.
 		 * Cela peut également servir pour prioriser des questions
 		 * en mettant une string vide comme dernier élément
 		 */
@@ -49,3 +50,5 @@ export type SimulationConfig = Partial<{
 
 	'règles à ignorer pour déclencher les questions'?: DottedName[]
 }>
+
+export type NomModèle = 'modele-social' | 'modele-as' | 'modele-ti'

@@ -1,0 +1,71 @@
+indépendant: oui
+
+indépendant . revenu professionnel:
+  résumé: rémunération du dirigeant au régime des indépendants
+  description: |
+    Le **revenu professionnel** est la rémunération du dirigeant / de la dirigeante
+    au régime des indépendants.
+
+    Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il s’agit du
+    **résultat fiscal**.
+
+    Pour les entreprises qui ont opté pour l’**impôt sur les sociétés**, il s’agit
+    de la **rémunération nette** du dirigeant / de la dirigeante.
+
+    Dans les deux cas on y ajoute la CSG non déductible ainsi que les cotisations
+    facultatives (plan d’épargne retraite, contrats Madelin...).
+  unité: €/an
+  résoudre la référence circulaire: oui
+  somme:
+    - variations:
+        - si: entreprise . imposition . IS
+          alors: rémunération . nette
+        - sinon: entreprise . résultat fiscal
+    - cotisations et contributions . CSG-CRDS . non déductible
+    - cotisations facultatives . montant
+
+indépendant . revenu brut:
+  description: |
+    Le revenu brut ou « super-brut » correspond au coût du travail ou encore au
+    chiffre d’affaires après déduction des charges professionnelles d’exploitations
+    (hors contributions et cotisations sociales).
+
+    ### À l’impôt sur le revenu
+
+    Le revenu brut correspond au
+    **chiffre d’affaires moins les charges** de l’entreprise liées à
+    l’exploitation, c’est-à-dire aux charges autres que les contributions et
+    cotisations sociales.
+
+    Pour les gérantes et gérants associées/associés, le chiffre d’affaires est
+    proratisé selon leurs parts.
+
+    ### À l’impôt sur les sociétés
+
+    Le revenu brut correspond à la **rémunération brute** et la part des dividendes
+    supérieure à 10 % du capital social. La rémunération brute prise en compte
+    n’inclue pas la déduction des frais professionnels, ni des contributions et
+    cotisations sociales.
+  variations:
+    - si: entreprise . imposition . IR
+      alors: entreprise . chiffre d'affaires - entreprise . charges
+    - sinon:
+        somme:
+          - rémunération . brute
+          - dividendes . soumis à cotisations sociales
+  références:
+    Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
+
+indépendant . PSS proratisé:
+  titre: plafond de la sécurité sociale proratisé
+  description: |
+    Le plafond de la sécurité sociale, proratisé par la durée d’activité pendant
+    l’année (dans le cas d’activité crée ou cessée en cours d’année).
+
+    Utile pour calculer les cotisations forfaitaires de début d’activité ou le
+    montant de l’Acre.
+  unité: €/an
+  produit:
+    - plafond sécurité sociale
+    - entreprise . prorata temporis
+  arrondi: oui

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import SimulationBanner from '@/components/Simulation/Banner'
 import { Link } from '@/design-system'
-import { loadPreviousSimulation } from '@/store/actions/actions'
-import { previousSimulationSelector } from '@/store/selectors/simulationSelectors'
+import { chargeLaSimulationPrécédente } from '@/store/actions/actions'
+import { previousSimulationSelector } from '@/store/selectors/previousSimulation.selector'
 
 export default function PreviousSimulationBanner() {
 	const previousSimulation = useSelector(previousSimulationSelector)
@@ -21,7 +21,7 @@ export default function PreviousSimulationBanner() {
 				Votre précédente simulation a été sauvegardée :
 			</Trans>{' '}
 			<Link
-				onPress={() => dispatch(loadPreviousSimulation())}
+				onPress={() => dispatch(chargeLaSimulationPrécédente())}
 				aria-label={t(
 					'Retrouver ma précédente simulation, charger les données de ma précédente simulation.'
 				)}

@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 
 import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
 import { updateUnit } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 type Props = {
 	periods?: Array<{

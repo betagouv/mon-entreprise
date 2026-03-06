@@ -16,9 +16,9 @@ entreprise . chiffre d'affaires:
   unité: €/an
   description: |
     ### Chiffre d’affaires estimé
-    Le chiffre d’affaires est la **somme des montants des ventes réalisées
-    pendant votre exercice comptable** (un an) : CA = prix de vente x quantités
-    vendues.
+    Le chiffre d’affaires est la
+    **somme des montants des ventes réalisées pendant votre exercice comptable**
+    (un an) : CA = prix de vente x quantités vendues.
   variations:
     - si: dirigeant . auto-entrepreneur
       alors: dirigeant . auto-entrepreneur . chiffre d'affaires
@@ -35,6 +35,38 @@ entreprise . chiffre d'affaires:
         plancher: 0€/an
         arrondi: oui
 
+entreprise . chiffre d'affaires . proportions:
+  titre: proportions activités mixtes
+  description: Part des différentes activités dans le chiffre d’affaires
+  note: |
+    Il vous appartient de bien vérifier que la somme des trois pourcentages
+    renseignés vaut 100 %.
+  applicable si: activité . revenus mixtes
+  somme:
+    - service BIC
+    - service BNC
+    - vente restauration hébergement
+  unité: '%'
+
+  avec:
+    service BIC:
+      variations:
+        - si: activité . nature . libérale
+          alors: 0%
+        - sinon: 50%
+
+    service BNC:
+      variations:
+        - si: activité . nature . libérale
+          alors: 2 / 3
+        - sinon: 0%
+
+    vente restauration hébergement:
+      variations:
+        - si: activité . nature . libérale
+          alors: 1 / 3
+        - sinon: 50%
+
 entreprise . chiffre d'affaires . vente restauration hébergement:
   titre: Vente de biens, restauration, hébergement (BIC)
   résumé: Chiffre d’affaires hors taxe
@@ -43,11 +75,11 @@ entreprise . chiffre d'affaires . vente restauration hébergement:
     ou hébergement ?
   unité: €/an
   variations:
-    - si: activités . revenus mixtes
+    - si: activité . revenus mixtes
       alors:
         produit:
           - chiffre d'affaires
-          - activités . revenus mixtes . proportions . vente restauration
+          - proportions . vente restauration
             hébergement
     - sinon:
         applicable si: activités . service ou vente = 'vente'
@@ -91,11 +123,11 @@ entreprise . chiffre d'affaires . service BIC:
     **Exemples** : transports, service à la personne, réparation etc.
   par défaut: 0€/an
   variations:
-    - si: activités . revenus mixtes
+    - si: activité . revenus mixtes
       alors:
         produit:
           - chiffre d'affaires
-          - activités . revenus mixtes . proportions . service BIC
+          - proportions . service BIC
     - sinon:
         applicable si: activités . service ou vente = 'service'
         valeur: chiffre d'affaires
@@ -118,11 +150,11 @@ entreprise . chiffre d'affaires . service BNC:
 
     Les revenus tirés de ce chiffre d’affaires sont imposable au régime BNC (bénéfices non commerciaux)
   variations:
-    - si: activités . revenus mixtes
+    - si: activité . revenus mixtes
       alors:
         produit:
           - chiffre d'affaires
-          - activités . revenus mixtes . proportions . service BNC
+          - proportions . service BNC
     - sinon:
         applicable si: activité . nature . libérale
         valeur: chiffre d'affaires
@@ -329,8 +361,7 @@ entreprise . capital social:
   experimental: oui
   description: |
     Cette valeur doit inclure la valeur des primes d’émission.
-  titre: Capital social
-  question: Quele est le capital social de la société ?
+  question: Quel est le capital social de la société ?
   unité: €
 
 entreprise . capital social . détenu au moins à 75 pourcents par des personnes physiques: oui

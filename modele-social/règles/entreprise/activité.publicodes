@@ -210,7 +210,7 @@ entreprise . activités:
 
 entreprise . activités . service ou vente:
   experimental: oui
-  non applicable si: revenus mixtes
+  non applicable si: activité . revenus mixtes
   applicable si:
     une de ces conditions:
       - activité . nature . artisanale
@@ -249,7 +249,7 @@ entreprise . activités . commerciale . débit de tabac:
   question: Exercez-vous une activité de vente de tabac ?
   par défaut: non
 
-entreprise . activités . revenus mixtes:
+entreprise . activité . revenus mixtes:
   experimental: oui
   titre: Activités mixtes
   applicable si: imposition . régime . micro-entreprise
@@ -271,37 +271,6 @@ entreprise . activités . revenus mixtes:
 
     Si votre entreprise a des activités correspondants à plusieurs catégories de
     revenus, répondez oui à cette question.
-
-  avec:
-    proportions:
-      description: Part des différentes activités dans le chiffre d’affaires
-      titre: proportion activité
-      unité: '%'
-      somme:
-        - service BIC
-        - service BNC
-        - vente restauration hébergement
-      note:
-        Il appartient à l’utilisateur de bien vérifier que la somme des trois
-        pourcentages renseignés vaut 100%.
-
-    proportions . service BIC:
-      variations:
-        - si: activité . nature . libérale
-          alors: 0%
-        - sinon: 50%
-
-    proportions . service BNC:
-      variations:
-        - si: activité . nature . libérale
-          alors: 2 / 3
-        - sinon: 0%
-
-    proportions . vente restauration hébergement:
-      variations:
-        - si: activité . nature . libérale
-          alors: 1 / 3
-        - sinon: 50%
 
 entreprise . activités . saisonnière:
   question: Exercez-vous une activité saisonnière ?

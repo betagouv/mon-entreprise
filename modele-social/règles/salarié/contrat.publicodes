@@ -103,7 +103,9 @@ salarié . contrat:
             Article
             L124-7](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000029234119&cidTexte=LEGITEXT000006071191)
 
-            Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
+            Par ailleurs, une entreprise de moins de 20 salariés ne peut pas
+            accueillir plus de **3&nbsp;stagiaires**, et pas plus de
+            **15% de l’effectif** pour les entreprises de plus de 20 salariés.
 
         contrôle gratification minimale:
           type: notification

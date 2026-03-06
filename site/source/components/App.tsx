@@ -1,20 +1,14 @@
 import { ErrorBoundary } from '@sentry/react'
-import rules from 'modele-social'
-import { StrictMode, useMemo } from 'react'
+import { StrictMode } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
-import {
-	engineFactory,
-	EngineProvider,
-	Rules,
-	useEngine,
-	useSetupSafeSituation,
-} from '@/components/utils/EngineContext'
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
+import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
@@ -24,7 +18,7 @@ import Accessibilité from '@/pages/Accessibilité'
 import Assistants from '@/pages/assistants/index'
 import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
-import Documentation from '@/pages/Documentation'
+import Documentation from '@/pages/documentation/Documentation'
 import Iframes from '@/pages/iframes'
 import IframeFooter from '@/pages/iframes/IframeFooter'
 import Integration from '@/pages/integration/index'
@@ -41,44 +35,23 @@ import Redirections from './Redirections'
 
 type RootProps = {
 	basename: ProviderProps['basename']
-	rulesPreTransform?: (rules: Rules) => Rules
 }
 
-export default function Root({
-	basename,
-	rulesPreTransform = (r) => r,
-}: RootProps) {
-	const engine = useMemo(
-		() => engineFactory(rulesPreTransform(rules)),
-
-		// We need to keep [rules] in the dependency list for hot reload of the rules
-		// in dev mode, even if ESLint think it is unnecessary since `rules` isn't
-		// defined in the component scope.
-		//
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[rules]
-	)
-
+export default function Root({ basename }: RootProps) {
 	return (
 		<StrictMode>
-			<EngineProvider value={engine}>
-				<Provider engine={engine} basename={basename}>
-					<Redirections>
-						<ErrorBoundary fallback={CatchOffline}>
-							<Router />
-						</ErrorBoundary>
-					</Redirections>
-				</Provider>
-			</EngineProvider>
+			<Provider basename={basename}>
+				<Redirections>
+					<ErrorBoundary fallback={CatchOffline}>
+						<Router />
+					</ErrorBoundary>
+				</Redirections>
+			</Provider>
 		</StrictMode>
 	)
 }
 
 const Router = () => {
-	const engine = useEngine()
-
-	useSetupSafeSituation(engine)
-
 	return (
 		<Routes>
 			<Route path="/iframes/*" element={<Iframes />} />
@@ -98,8 +71,13 @@ const App = () => {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useAxeCoreAnalysis()
 	}
-	const documentationPath = useSitePaths().absoluteSitePaths.documentation.index
-	const engine = useEngine()
+
+	const documentationPathModèleSocial = useDocumentationPath('modele-social')
+	const engineModèleSocial = useEngineFromModèle('modele-social')
+	const documentationPathModèleTI = useDocumentationPath('modele-ti')
+	const engineModèleTI = useEngineFromModèle('modele-ti')
+	const documentationPathModèleAS = useDocumentationPath('modele-as')
+	const engineModèleAS = useEngineFromModèle('modele-as')
 
 	return (
 		<StyledLayout $isEmbedded={isEmbedded}>
@@ -131,11 +109,32 @@ const App = () => {
 							element={<SimulateursEtAssistants />}
 						/>
 						<Route
+							path={relativeSitePaths.documentation.index + '/modele-ti/*'}
+							element={
+								<Documentation
+									documentationPath={documentationPathModèleTI}
+									engine={engineModèleTI}
+									nomModèle="modele-ti"
+								/>
+							}
+						/>
+						<Route
+							path={relativeSitePaths.documentation.index + '/modele-as/*'}
+							element={
+								<Documentation
+									documentationPath={documentationPathModèleAS}
+									engine={engineModèleAS}
+									nomModèle="modele-as"
+								/>
+							}
+						/>
+						<Route
 							path={relativeSitePaths.documentation.index + '/*'}
 							element={
 								<Documentation
-									documentationPath={documentationPath}
-									engine={engine}
+									documentationPath={documentationPathModèleSocial}
+									engine={engineModèleSocial}
+									nomModèle="modele-social"
 								/>
 							}
 						/>

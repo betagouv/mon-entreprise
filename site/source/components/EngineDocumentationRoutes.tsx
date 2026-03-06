@@ -1,7 +1,7 @@
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import { Popover } from '@/design-system'
-import Documentation from '@/pages/Documentation'
+import Documentation from '@/pages/documentation/Documentation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 export function EngineDocumentationRoutes({
@@ -33,6 +33,7 @@ export function EngineDocumentationRoutes({
 								<Documentation
 									engine={engine}
 									documentationPath={`${basePath}/${name}`}
+									nomModèle="modele-social"
 								/>
 							</Popover>
 						</div>
