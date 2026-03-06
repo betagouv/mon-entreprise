@@ -132,77 +132,13 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
       références:
         Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 
-indépendant . profession libérale . réglementée . PAMC . maladie:
-  remplace:
-    références à: cotisations et contributions . cotisations . maladie-maternité
-    sauf dans: participation CPAM
-  titre: maladie (après participation CPAM)
-  somme:
-    - cotisations et contributions . cotisations . maladie-maternité
-    - contribution additionnelle
-  abattement: participation CPAM
-
-indépendant . profession libérale . réglementée . PAMC . maladie . participation CPAM:
-  non applicable si: métier . santé . médecin . secteur = 'S2'
-  produit:
-    - assiette participation CPAM
-    - valeur: taux maladie
-      abattement: 0.1%
-  arrondi: oui
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
-    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
-    Les exonérations d'un praticien ou auxiliaire médical - L’exonération domiciliation fiscale à l’étranger: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/exonerations.html#ancre-domiciliation-fiscale-a-l-etrang
-    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
-
-  avec:
-    taux maladie:
-      variations:
-        - si: situation personnelle . domiciliation fiscale à l'étranger
-          alors: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger . taux
-        - si: cotisations et contributions . après réforme = non
-          alors: profession libérale . CNAVPL . maladie . taux
-        - sinon:
-            valeur: cotisations et contributions . cotisations . maladie-maternité / cotisations et contributions . cotisations . maladie-maternité . assiette
-            unité: '%'
-
-indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
+indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
   produit:
     - assiette autres revenus
     - 3.25%
   arrondi: oui
   références:
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
-
-indépendant . profession libérale . réglementée . PAMC . allocations familiales:
-  applicable si: métier . santé . médecin . secteur = 'S1'
-  titre: allocations familiales (après participation CPAM)
-  remplace:
-    références à: cotisations et contributions . cotisations . allocations familiales
-    sauf dans: participation CPAM
-  formule:
-    valeur: cotisations et contributions . cotisations . allocations familiales
-    abattement: participation CPAM
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html
-
-indépendant . profession libérale . réglementée . PAMC . allocations familiales . participation CPAM:
-  formule:
-    produit:
-      - cotisations et contributions . cotisations . allocations familiales
-      - grille:
-          assiette: assiette participation CPAM
-          multiplicateur: plafond sécurité sociale
-          tranches:
-            - montant: 100%
-              plafond: 140%
-            - montant: 75%
-              plafond: 250%
-            - montant: 60%
-    arrondi: oui
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
-    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
 
 indépendant . profession libérale . réglementée . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
@@ -287,8 +223,8 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
     d’une partie de leur cotisations par l’Assurance Maladie.
   formule:
     somme:
-      - PAMC . allocations familiales . participation CPAM
-      - PAMC . maladie . participation CPAM
+      - PAMC . participation CPAM . allocations familiales
+      - PAMC . participation CPAM . maladie
       - CARCDSF . chirurgien-dentiste . PCV . participation CPAM
       - CARCDSF . sage-femme . PCV . participation CPAM
       - CARMF . participation CPAM retraite
@@ -299,3 +235,46 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . maladie:
+  non applicable si: métier . santé . médecin . secteur = 'S2'
+  produit:
+    - assiette participation CPAM
+    - valeur: taux maladie
+      abattement: 0.1%
+  arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Les exonérations d'un praticien ou auxiliaire médical - L’exonération domiciliation fiscale à l’étranger: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/exonerations.html#ancre-domiciliation-fiscale-a-l-etrang
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+  avec:
+    taux maladie:
+      variations:
+        - si:
+            est applicable: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger
+          alors: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger . taux
+        - si:
+            est applicable: profession libérale . CNAVPL . maladie
+          alors: profession libérale . CNAVPL . maladie . taux
+        - sinon:
+            valeur: cotisations et contributions . cotisations . maladie-maternité avant abattements / cotisations et contributions . cotisations . maladie-maternité avant abattements . assiette
+            unité: '%'
+
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . allocations familiales:
+  applicable si: métier . santé . médecin . secteur = 'S1'
+  produit:
+    - cotisations et contributions . cotisations . allocations familiales avant abattements
+    - grille:
+        assiette: assiette participation CPAM
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - montant: 100%
+            plafond: 140%
+          - montant: 75%
+            plafond: 250%
+          - montant: 60%
+  arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
