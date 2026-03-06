@@ -22,7 +22,8 @@ salarié . cotisations:
         - APEC . employeur
         - autres employeur
         - prévoyances . incapacité invalidité décès . employeur
-        # - retraite supplémentaire . employeur
+        - retraite supplémentaire . employeur
+        - prévoyance complémentaire . employeur
       abattement: exonérations . employeur
 
     salarié:
@@ -39,7 +40,8 @@ salarié . cotisations:
         - CSG-CRDS . sur revenus imposables non déductible
         - CSG-CRDS . sur revenus non imposables
         - prévoyances . incapacité invalidité décès . salarié
-        # - retraite supplémentaire . salarié
+        - retraite supplémentaire . salarié
+        - prévoyance complémentaire . salarié
       abattement: exonérations . salarié
 
 salarié . cotisations . catégories:
@@ -1273,22 +1275,115 @@ salarié . cotisations . assiette forfaitaire:
         lieu de la base forfaitaire) ?
       par défaut: non
 
-# TODO: ajouter les cotisations sur la retraite supplémentaire
 
-# salarié . cotisations . retraite supplémentaire :
-#   titre: retraite supplémentaire
-#   cotisation:
-#     branche: facultatives
-#   somme:
-#     - employeur
-#     - salarié
+salarié . cotisations . retraite supplémentaire:
+  titre: retraite supplémentaire
+  description: |
+    Les contributions patronales de retraite supplémentaire sont exclues de l'assiette des cotisations de sécurité sociale sous certaines conditions et limites.
+  cotisation:
+    branche: facultatives
+  possiblement non applicable: oui
+  question: Bénéficiez-vous d'une retraite supplémentaire ?
+  par défaut: non
+  avec:
+    montant:
+      titre: montant total de la retraite supplémentaire
+      question: Quel est le montant mensuel total (salarié et employeur) de la retraite supplémentaire ?
+      par défaut: 0 €/mois
+      plancher: 0 €/mois
+      suggestions:
+        basique: 100 €/mois
+        moyen: 200 €/mois
+    taux employeur:
+      description: Part de la retraite supplémentaire payée par l'employeur
+      question: Quelle est la part de la retraite supplémentaire payée par l'employeur ?
+      par défaut: 100%
+      suggestions:
+        50%: 50%
+        100%: 100%
+    respect des conditions:
+      titre: respect des conditions d'exonération
+      description: |
+        Pour bénéficier de l'exonération, la retraite supplémentaire doit être versée sous forme de rente viagère, avec un montant limité à 5% du plafond de sécurité sociale, et mise en place par accord collectif.
+      question: La retraite supplémentaire respecte-t-elle les conditions d'exonération ?
+      par défaut: oui
+      références:
+        Conditions d'exonération - Article L242-1 CSS: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218352#L242-1-II-4-a
+    employeur:
+      titre: part employeur
+      valeur: montant * taux employeur
+    salarié:
+      titre: part salarié
+      valeur: montant - employeur
+    employeur . exonéré:
+      titre: part employeur exonérée de cotisations
+      valeur: employeur
+      applicable si: respect des conditions
+      plafond :
+        valeur maximale de :
+          - 5 % × plafond de la sécurité sociale
+          - 5 % × rémunération soumise à cotisations (limitée à 5 × PASS)
+      références:
+        Conditions d'exonération - Article L242-1 CSS: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218352#L242-1-II-4-a
+        Montant maximum - Article D242-1 CSS: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037456320
+    employeur . non exonéré:
+      titre: part employeur soumise à cotisations (avantage en nature)
+      valeur: employeur - employeur . exonéré
 
-#   avec:
-#     employeur:
-#       produit:
-#         - cotisations . assiette
-#         - 0 %
-#     salarié :
-#       produit:
-#         - cotisations . assiette
-#         - 0 %
+salarié . cotisations . prévoyance complémentaire:
+  titre: prévoyance complémentaire (hors santé)
+  description: |
+    Les contributions patronales de prévoyance complémentaire (décès, invalidité, incapacité) sont exclues de l'assiette des cotisations sous certaines conditions.
+  cotisation:
+    branche: facultatives
+  possiblement non applicable: oui
+  question: Bénéficiez-vous d'une prévoyance complémentaire ?
+  par défaut: non
+  avec:
+    montant:
+      titre: montant total de la prévoyance complémentaire
+      question: Quel est le montant mensuel total (salarié et employeur) de la prévoyance complémentaire ?
+      par défaut: 0 €/mois
+      plancher: 0 €/mois
+      suggestions:
+        basique: 50 €/mois
+        moyen: 100 €/mois
+      références:
+        Article L242-1 CSS - Exclusion prévoyance complémentaire: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218352#L242-1-II-4-b
+        Article D242-1 CSS - Limites d'exonération: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037456320
+    taux employeur:
+      description: Part de la prévoyance complémentaire payée par l'employeur
+      question: Quelle est la part de la prévoyance complémentaire payée par l'employeur ?
+      par défaut: 100%
+      suggestions:
+        50%: 50%
+        100%: 100%
+    respect des conditions:
+      titre: respect des conditions d'exonération
+      description: |
+        Pour bénéficier de l'exonération, la prévoyance complémentaire doit couvrir les risques de décès, incapacité de travail ou invalidité, avec un montant limité à 6% du plafond de sécurité sociale, et mise en place par accord collectif.
+      question: La prévoyance complémentaire respecte-t-elle les conditions d'exonération ?
+      par défaut: oui
+      références:
+        Conditions d'exonération - Article L242-1 CSS: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218352#L242-1-II-4-b
+        Montant maximum - Article D242-1 CSS: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037456320
+    employeur:
+      titre: part employeur
+      valeur: montant * taux employeur
+    salarié:
+      titre: part salarié
+      valeur: montant - employeur
+    employeur . exonéré:
+      titre: part employeur exonérée de cotisations
+      valeur: employeur
+      applicable si: respect des conditions
+      plafond:
+        valeur maximale de:
+          - 6% * plafond sécurité sociale + 1.5% * cotisations . assiette
+          - 12% * plafond sécurité sociale
+      références:
+        Conditions d'exonération - Article L242-1 CSS: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051218352#L242-1-II-4-b
+        Montant maximum - Article D242-1 CSS: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037456320
+    employeur . non exonéré:
+      titre: part employeur soumise à cotisations (avantage en nature)
+      valeur: employeur - employeur . exonéré
