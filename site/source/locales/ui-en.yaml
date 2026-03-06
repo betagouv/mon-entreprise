@@ -1992,6 +1992,8 @@ pages:
           agreements, nor the myriad of company subsidies. Find your collective
           bargaining agreement <2>here</2>, and explore the range of assistance
           available on <4>aides-entreprises.fr</4>.
+        réformes: The simulator incorporates <2>updates for 2026</2>, including the
+          one-off degressive general reduction (RGDU).
     sasu:
       meta:
         description: Calculation of net salary from the total allocated to remuneration
