@@ -22,7 +22,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				0
 			)
 			expect(e).toEvaluate(
@@ -39,7 +39,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				1.8
 			)
 			expect(e).toEvaluate(
@@ -56,7 +56,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e).toEvaluate(
@@ -75,7 +75,7 @@ describe('Cotisation allocations familiales', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 					0
 				)
 				expect(e).toEvaluate(
@@ -93,7 +93,7 @@ describe('Cotisation allocations familiales', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 					1.8
 				)
 				expect(e).toEvaluate(
@@ -111,7 +111,7 @@ describe('Cotisation allocations familiales', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 					3.1
 				)
 				expect(e).toEvaluate(
@@ -134,7 +134,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e1).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e1).toEvaluate(
@@ -149,7 +149,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e2).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e2).toEvaluate(
@@ -164,7 +164,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e3).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e3).toEvaluate(
@@ -189,7 +189,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e1).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				0
 			)
 			expect(e1).toEvaluate(
@@ -204,7 +204,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e2).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				1.8
 			)
 			expect(e2).toEvaluate(
@@ -219,7 +219,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e3).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e3).toEvaluate(
@@ -241,7 +241,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e1).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e1).toEvaluate(
@@ -256,7 +256,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e2).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e2).toEvaluate(
@@ -271,7 +271,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e3).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . allocations familiales . taux',
+				'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . taux',
 				3.1
 			)
 			expect(e3).toEvaluate(

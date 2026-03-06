@@ -2181,10 +2181,6 @@ indépendant . cotisations et contributions . cotisations . PCV:
   titre.en: '[automatic] Supplementary old-age benefits'
   titre.fr: Prestations complémentaires vieillesse
 indépendant . cotisations et contributions . cotisations . allocations familiales:
-  avec:
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
   description.en: >
     [automatic] This contribution entitles employees to family allowances paid
     by the
@@ -2229,6 +2225,13 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     des revenus de la famille.
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
+indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  titre.en: '[automatic] family allowances before allowances'
+  titre.fr: allocations familiales avant abattements
 indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
   titre.en: '[automatic] pension and disability-death base'
   titre.fr: assiette retraite et invalidité-décès
@@ -3037,22 +3040,6 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 indépendant . cotisations et contributions . cotisations . maladie-maternité:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    plafond taux 1:
-      titre.en: '[automatic] ceiling rate 1'
-      titre.fr: plafond taux 1
-    plancher assiette:
-      titre.en: '[automatic] floor plate'
-      titre.fr: plancher assiette
-    taux 1:
-      titre.en: '[automatic] rate 1'
-      titre.fr: taux 1
-    taux 2:
-      titre.en: '[automatic] rate 2'
-      titre.fr: taux 2
   description.en: >
     [automatic] This contribution entitles the member to all benefits
 
@@ -3106,6 +3093,25 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité .
     fonction du revenu déclaré.
   titre.en: '[automatic] tax domicile abroad'
   titre.fr: domiciliation fiscale étranger
+indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    plafond taux 1:
+      titre.en: '[automatic] ceiling rate 1'
+      titre.fr: plafond taux 1
+    plancher assiette:
+      titre.en: '[automatic] floor plate'
+      titre.fr: plancher assiette
+    taux 1:
+      titre.en: '[automatic] rate 1'
+      titre.fr: taux 1
+    taux 2:
+      titre.en: '[automatic] rate 2'
+      titre.fr: taux 2
+  titre.en: '[automatic] sickness-maternity before deductions'
+  titre.fr: maladie-maternité avant abattements
 indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   avec:
     PRCI:
@@ -4497,12 +4503,6 @@ indépendant . profession libérale . réglementée . PAMC . IJSS:
 indépendant . profession libérale . réglementée . PAMC . PCV:
   titre.en: '[automatic] PCV'
   titre.fr: PCV
-indépendant . profession libérale . réglementée . PAMC . allocations familiales:
-  titre.en: '[automatic] family allowances (after CPAM contribution)'
-  titre.fr: allocations familiales (après participation CPAM)
-indépendant . profession libérale . réglementée . PAMC . allocations familiales . participation CPAM:
-  titre.en: '[automatic] CPAM contribution'
-  titre.fr: participation CPAM
 indépendant . profession libérale . réglementée . PAMC . assiette autres revenus:
   titre.en: '[automatic] other income base'
   titre.fr: assiette autres revenus
@@ -4640,24 +4640,14 @@ indépendant . profession libérale . réglementée . PAMC . assiette sociale co
     provenant des actes conventionnés.
   titre.en: '[automatic] agreed social base'
   titre.fr: assiette sociale conventionnée
+indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
+  titre.en: '[automatic] additional health contribution'
+  titre.fr: contribution maladie additionnelle
 indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire:
   question.en: '[automatic] How much are your extra fees?'
   question.fr: Quel est le montant de vos dépassements d'honoraires ?
   titre.en: '[automatic] excess fees'
   titre.fr: dépassements d'honoraire
-indépendant . profession libérale . réglementée . PAMC . maladie:
-  titre.en: '[automatic] illness (after CPAM contribution)'
-  titre.fr: maladie (après participation CPAM)
-indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
-  titre.en: '[automatic] additional contribution'
-  titre.fr: contribution additionnelle
-indépendant . profession libérale . réglementée . PAMC . maladie . participation CPAM:
-  avec:
-    taux maladie:
-      titre.en: '[automatic] sickness rate'
-      titre.fr: taux maladie
-  titre.en: '[automatic] CPAM contribution'
-  titre.fr: participation CPAM
 indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   description.en: >
     [automatic] Health professionals who are members of a health insurance
@@ -4669,6 +4659,16 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
     d’une partie de leur cotisations par l’Assurance Maladie.
   titre.en: '[automatic] Health insurance contribution'
   titre.fr: Participation assurance maladie
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . allocations familiales:
+  titre.en: '[automatic] family allowances'
+  titre.fr: allocations familiales
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . maladie:
+  avec:
+    taux maladie:
+      titre.en: '[automatic] sickness rate'
+      titre.fr: taux maladie
+  titre.en: '[automatic] disease'
+  titre.fr: maladie
 indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée:
   description.en: >
     [automatic] Conventional income includes all income falling into the

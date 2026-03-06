@@ -36,7 +36,9 @@ indépendant . cotisations et contributions . contributions spéciales:
     Certains régimes spéciaux peuvent ajouter des contributions additionnelles
     (par exemple, la CURPS pour les CPAM)
   applicable si: profession libérale . réglementée . PAMC
-  valeur: profession libérale . réglementée . PAMC . CURPS
+  somme:
+    - profession libérale . réglementée . PAMC . contribution maladie additionnelle
+    - profession libérale . réglementée . PAMC . CURPS
 
 indépendant . cotisations et contributions . formation professionnelle:
   acronyme: CFP
