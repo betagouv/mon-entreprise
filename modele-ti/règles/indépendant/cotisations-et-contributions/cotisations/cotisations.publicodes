@@ -13,20 +13,11 @@ indépendant . cotisations et contributions . cotisations:
     Taux de cotisations - Profession libérale réglementée relevant de la Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
-indépendant . cotisations et contributions . cotisations . maladie-maternité:
-  description: |
-    Cette cotisation permet de bénéficier de l’ensemble des prestations
-    maladie-maternité gérées par l’assurance maladie et les Cpam :
-
-    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
-    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
-    - une assurance maternité complète en cas de grossesse ou d’adoption ;
-    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
-    souscrire une assurance maladie complémentaire.
+indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements:
   variations:
     - si:
-        est applicable: domiciliation fiscale étranger
-      alors: domiciliation fiscale étranger
+        est applicable: maladie-maternité . domiciliation fiscale étranger
+      alors: maladie-maternité . domiciliation fiscale étranger
     # Cotisation spécifique PLR avant réforme :
     - si:
         est applicable: profession libérale . CNAVPL . maladie
@@ -40,16 +31,6 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
             - taux: taux 1
               plafond: plafond taux 1
             - taux: taux 2
-  abattement:
-    le maximum de:
-      - exonérations . Acre . exonération . montant maladie-maternité
-      - exonérations . invalidité . exonération . montant maladie-maternité
-  arrondi: oui
-  unité: €/an
-  références:
-    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
-    Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
-    Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
 
   avec:
     assiette:
@@ -114,6 +95,38 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
       références:
         Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
 
+indépendant . cotisations et contributions . cotisations . maladie-maternité:
+  description: |
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
+
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
+    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
+    souscrire une assurance maladie complémentaire.
+  valeur:
+    valeur: maladie-maternité avant abattements
+    abattement: profession libérale . réglementée . PAMC . participation CPAM . maladie
+  abattement:
+    variations:
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre
+            - exonérations . invalidité = non
+        alors: exonérations . Acre . exonération . montant maladie-maternité
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre = non
+            - exonérations . invalidité
+        alors: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
+  arrondi: oui
+  unité: €/an
+  références:
+    Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
+    Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
+    Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
+
 indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
   description: |
     En contrepartie de l’exonération de CSG, les cotisants ont un taux
@@ -145,9 +158,17 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
     - assiette
     - taux
   abattement:
-    le maximum de:
-      - exonérations . Acre . exonération . taux indemnités journalières
-      - exonérations . invalidité . exonération . taux indemnités journalières
+    variations:
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre
+            - exonérations . invalidité = non
+        alors: exonérations . Acre . exonération . taux indemnités journalières
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre = non
+            - exonérations . invalidité
+        alors: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
   arrondi: oui
   unité: €/an
   références:
@@ -178,28 +199,10 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
                   alors: 0.50%
                 - sinon: 0.85%
 
-indépendant . cotisations et contributions . cotisations . allocations familiales:
-  description: |
-    Cette cotisation permet de bénéficier des allocations familiales versées par la
-    caisse d’allocations familiales dans les mêmes conditions que les salariés :
-
-    - compensation des charges familiales (naissance, enfant à charge, garde,
-    rentrée scolaire) ;
-    - prestations liées au logement, handicap, précarité (RSA...).
-
-    Le versement de la plupart de ces prestations est soumis à des conditions de
-    ressources.
-    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
-    des revenus de la famille.
+indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements:
   produit:
     - assiette sociale
     - taux
-  abattement: exonérations . Acre . exonération . taux allocations familiales
-  arrondi: oui
-  unité: €/an
-  références:
-    Allocations familiales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-allocations-familiales
-    Article D613-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966324
 
   avec:
     taux:
@@ -216,6 +219,31 @@ indépendant . cotisations et contributions . cotisations . allocations familial
                   taux: 0%
                 - plafond: 140%
                   taux: 3.10%
+
+indépendant . cotisations et contributions . cotisations . allocations familiales:
+  description: |
+    Cette cotisation permet de bénéficier des allocations familiales versées par la
+    caisse d’allocations familiales dans les mêmes conditions que les salariés :
+
+    - compensation des charges familiales (naissance, enfant à charge, garde,
+    rentrée scolaire) ;
+    - prestations liées au logement, handicap, précarité (RSA...).
+
+    Le versement de la plupart de ces prestations est soumis à des conditions de
+    ressources.
+    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
+    des revenus de la famille.
+  valeur:
+    valeur: allocations familiales avant abattements
+    abattement: profession libérale . réglementée . PAMC . participation CPAM . allocations familiales
+  abattement:
+    applicable si: exonérations . invalidité = non
+    valeur: exonérations . Acre . exonération . taux allocations familiales
+  arrondi: oui
+  unité: €/an
+  références:
+    Allocations familiales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-allocations-familiales
+    Article D613-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966324
 
 indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
   variations:
@@ -275,9 +303,17 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
       - si: profession libérale . CNAVPL . exonération incapacité
         alors: 100%
       - sinon:
-          le maximum de:
-            - exonérations . Acre . exonération . taux retraite de base et invalidité-décès
-            - exonérations . invalidité . exonération . taux retraite de base
+          variations:
+            - si:
+                toutes ces conditions:
+                  - exonérations . Acre
+                  - exonérations . invalidité = non
+              alors: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
+            - si:
+                toutes ces conditions:
+                  - exonérations . Acre = non
+                  - exonérations . invalidité
+              alors: exonérations . invalidité . exonération . taux retraite de base
   arrondi: oui
   unité: €/an
   références:
@@ -423,7 +459,9 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     variations:
       - si: exonérations . âge
         alors: 100%
-      - sinon: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
+      - sinon:
+          applicable si: exonérations . invalidité = non
+          valeur: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
   arrondi: oui
   unité: €/an
   références:

@@ -22,6 +22,7 @@ indépendant . cotisations et contributions . début activité:
     forfaitaire est égale à 40 % du plafond annuel de la Sécurité sociale).
 
   applicable si: entreprise . date de création >= période . début d'année
+  non applicable si: cotisations . exonérations . invalidité
   unité: €/an
   valeur: cotisations et contributions
   contexte:

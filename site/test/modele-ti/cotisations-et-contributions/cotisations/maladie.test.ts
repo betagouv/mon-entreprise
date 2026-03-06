@@ -23,7 +23,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				0
 			)
 			expect(e).toEvaluate(
@@ -41,7 +41,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				0.09
 			)
 			expect(e).toEvaluate(
@@ -59,7 +59,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				2.6
 			)
 			expect(e).toEvaluate(
@@ -77,7 +77,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				5.25
 			)
 			expect(e).toEvaluate(
@@ -95,7 +95,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				6.73
 			)
 			expect(e).toEvaluate(
@@ -113,7 +113,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				7.8
 			)
 			expect(e).toEvaluate(
@@ -131,7 +131,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				8.5
 			)
 			// Tranche 1 :
@@ -161,7 +161,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					0
 				)
 				expect(e).toEvaluate(
@@ -179,7 +179,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					0.11
 				)
 				expect(e).toEvaluate(
@@ -197,7 +197,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					1.88
 				)
 				expect(e).toEvaluate(
@@ -215,7 +215,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					4.23
 				)
 				expect(e).toEvaluate(
@@ -233,7 +233,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					6.7
 				)
 				expect(e).toEvaluate(
@@ -251,7 +251,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					7.73
 				)
 				expect(e).toEvaluate(
@@ -270,11 +270,11 @@ describe('Cotisation maladie', () => {
 
 				expect(e).toEvaluate('indépendant . PSS proratisé', 1290)
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					8.5
 				)
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 2',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 2',
 					6.5
 				)
 				// Tranche 1 :
@@ -304,7 +304,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+					'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 					8.5
 				)
 				expect(e).toEvaluate(
@@ -349,7 +349,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e1).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				0
 			)
 			expect(e1).toEvaluate(
@@ -364,7 +364,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e2).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				0.09
 			)
 			expect(e2).toEvaluate(
@@ -379,7 +379,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e3).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				2.6
 			)
 			expect(e3).toEvaluate(
@@ -394,7 +394,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e4).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				5.25
 			)
 			expect(e4).toEvaluate(
@@ -409,7 +409,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e5).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				6.73
 			)
 			expect(e5).toEvaluate(
@@ -424,7 +424,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e6).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				7.8
 			)
 			expect(e6).toEvaluate(
@@ -439,7 +439,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e7).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				8.5
 			)
 			// Tranche 1 :
@@ -566,7 +566,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . taux 1',
+				'indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements . taux 1',
 				8.5
 			)
 			expect(e).toEvaluate(

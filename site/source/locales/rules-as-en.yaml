@@ -1834,7 +1834,7 @@ impôt . barème standard . quotient familial . plafond avantage:
   titre.fr: plafond avantage
 impôt . barème standard . revenu brut global:
   description.en: |
-    [automatic] Overall gross income is the sum of all income after deductions:
+    [automatic] Total gross income** is the sum of all income after deductions:
     - net taxable salary,
     - profits (BIC and BNC),
     - dividends.
@@ -1846,7 +1846,7 @@ impôt . barème standard . revenu brut global:
     - other income from movable property and capital gains on securities,
     - real estate capital gains.
   description.fr: >
-    Le revenu brut global est la somme de tous les revenus, après leur
+    Le **revenu brut global** est la somme de tous les revenus, après leur
     abattement :
 
     - salaire net imposable,
@@ -1884,15 +1884,47 @@ impôt . barème standard . revenu d'activité abattu:
   titre.en: '[automatic] reduced business income'
   titre.fr: revenu d'activité abattu
 impôt . barème standard . revenu net global:
+  description.en: >
+    [automatic] The **net global income** is the gross global income after
+    deduction of certain
+
+    expenses such as :
+
+    - maintenance payments,
+
+    - retirement savings contributions,
+
+    - part of the CSG levied on income from property and investments.
+      investment income.
+
+    As our simulators do not include these charges, overall net income here is directly equal to overall gross income.
+
+    directly equal to overall gross income.
+  description.fr: >
+    Le **revenu net global** est le revenu brut global après déduction de
+    certaines
+
+    charges comme :
+
+    - les pensions alimentaires versées,
+
+    - les cotisations d’épargne-retraite,
+
+    - une partie de la CSG afférente aux revenus du patrimoine et aux produits de
+      placement.
+
+    Comme nos simulateurs n’intégrent pas ces charges, le revenu net global est ici
+
+    directement égal au revenu brut global.
   titre.en: '[automatic] overall net income'
   titre.fr: revenu net global
 impôt . barème standard . revenu net imposable:
   description.en: >
-    [automatic] Net taxable income is overall net income after special
+    [automatic] Net taxable income** is overall net income after special
     allowances.
 
 
-    You can benefit from a special allowance if you are in one of the following conditions 
+    You can benefit from a special allowance if one of the following conditions applies to you 
 
     following conditions:
 
@@ -1900,18 +1932,25 @@ impôt . barème standard . revenu net imposable:
 
     - you are disabled,
 
-    - you are attaching a married or civil union child to your property.
+    - you are attaching a married or civil union child to your household.
 
 
     These allowances are not yet implemented in our simulators.
-  description.fr: |
-    Le revenu net imposable est le revenu net global après abattements spéciaux.
+  description.fr: >
+    Le **revenu net imposable** est le revenu net global après abattements
+    spéciaux.
+
 
     Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
+
     conditions suivantes :
+
     - vous avez 65 ans ou plus,
+
     - vous êtes invalide,
+
     - vous rattachez votre enfant marié, pacsé ou chargé de famille.
+
 
     Ces abattements ne sont pas encore implémentés dans nos simulateurs.
   titre.en: '[automatic] net taxable income'
@@ -2149,9 +2188,6 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
-paramètres . impôt . abattement revenu net global:
-  titre.en: '[automatic] overall net income allowance'
-  titre.fr: abattement revenu net global
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using

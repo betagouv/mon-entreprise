@@ -168,7 +168,7 @@ indépendant . profession libérale . réglementée . CARMF . PCV:
 
     cotisation proportionnelle:
       produit:
-        - valeur: PAMC . assiette conventionnée
+        - valeur: PAMC . assiette sociale conventionnée
           plafond: 5 * plafond sécurité sociale
         - 3.80%
       unité: €/an

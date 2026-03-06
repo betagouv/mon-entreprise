@@ -2181,10 +2181,6 @@ indépendant . cotisations et contributions . cotisations . PCV:
   titre.en: '[automatic] Supplementary old-age benefits'
   titre.fr: Prestations complémentaires vieillesse
 indépendant . cotisations et contributions . cotisations . allocations familiales:
-  avec:
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
   description.en: >
     [automatic] This contribution entitles employees to family allowances paid
     by the
@@ -2229,6 +2225,13 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     des revenus de la famille.
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
+indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements:
+  avec:
+    taux:
+      titre.en: '[automatic] rate'
+      titre.fr: taux
+  titre.en: '[automatic] family allowances before allowances'
+  titre.fr: allocations familiales avant abattements
 indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
   titre.en: '[automatic] pension and disability-death base'
   titre.fr: assiette retraite et invalidité-décès
@@ -2800,6 +2803,19 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
     Ce simulateur ne prend pas en compte les exonérations DROM.
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
+indépendant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité:
+  description.en: >
+    [automatic] This simulator does not handle cases where the exemption is
+    combined in the same year with
+
+    **with a **disability pension**.
+  description.fr: >
+    Ce simulateur ne gère pas les cas de cumul sur la même année de
+    l’exonération
+
+    **Acre** avec une **pension d’invalidité**.
+  titre.en: '[automatic] accumulation of Acre and disability'
+  titre.fr: cumul Acre et invalidité
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité:
   description.en: >-
     [automatic] If you are receiving a disability pension from a pension scheme
@@ -2904,12 +2920,12 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
   titre.fr: durée
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
   avec:
-    montant maladie-maternité:
-      titre.en: '[automatic] sickness and maternity amount'
-      titre.fr: montant maladie-maternité
     taux indemnités journalières:
       titre.en: '[automatic] daily allowance rates'
       titre.fr: taux indemnités journalières
+    taux maladie-maternité et indemnités journalières:
+      titre.en: '[automatic] sickness-maternity rates and daily allowances'
+      titre.fr: taux maladie-maternité et indemnités journalières
     taux retraite complémentaire:
       titre.en: '[automatic] supplementary pension rate'
       titre.fr: taux retraite complémentaire
@@ -3037,22 +3053,6 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 indépendant . cotisations et contributions . cotisations . maladie-maternité:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    plafond taux 1:
-      titre.en: '[automatic] ceiling rate 1'
-      titre.fr: plafond taux 1
-    plancher assiette:
-      titre.en: '[automatic] floor plate'
-      titre.fr: plancher assiette
-    taux 1:
-      titre.en: '[automatic] rate 1'
-      titre.fr: taux 1
-    taux 2:
-      titre.en: '[automatic] rate 2'
-      titre.fr: taux 2
   description.en: >
     [automatic] This contribution entitles the member to all benefits
 
@@ -3106,6 +3106,25 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité .
     fonction du revenu déclaré.
   titre.en: '[automatic] tax domicile abroad'
   titre.fr: domiciliation fiscale étranger
+indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    plafond taux 1:
+      titre.en: '[automatic] ceiling rate 1'
+      titre.fr: plafond taux 1
+    plancher assiette:
+      titre.en: '[automatic] floor plate'
+      titre.fr: plancher assiette
+    taux 1:
+      titre.en: '[automatic] rate 1'
+      titre.fr: taux 1
+    taux 2:
+      titre.en: '[automatic] rate 2'
+      titre.fr: taux 2
+  titre.en: '[automatic] sickness-maternity before deductions'
+  titre.fr: maladie-maternité avant abattements
 indépendant . cotisations et contributions . cotisations . retraite complémentaire:
   avec:
     PRCI:
@@ -4497,49 +4516,15 @@ indépendant . profession libérale . réglementée . PAMC . IJSS:
 indépendant . profession libérale . réglementée . PAMC . PCV:
   titre.en: '[automatic] PCV'
   titre.fr: PCV
-indépendant . profession libérale . réglementée . PAMC . allocations familiales:
-  titre.en: '[automatic] family allowances (after CPAM contribution)'
-  titre.fr: allocations familiales (après participation CPAM)
-indépendant . profession libérale . réglementée . PAMC . allocations familiales . participation CPAM:
-  titre.en: '[automatic] CPAM contribution'
-  titre.fr: participation CPAM
-indépendant . profession libérale . réglementée . PAMC . assiette conventionnée:
-  description.en: >
-    [automatic] Revenues under agreement are those corresponding to income from
-    fees and
-
-    fees and flat-rate remuneration paid by the CPAM.
-  description.fr: |
-    Les revenus conventionnés sont ceux correspondant aux recettes tirées des
-    honoraires et des rémunérations forfaitaires versées par la CPAM.
-  note.en: >
-    [automatic] To avoid having to break down expenses between those arising
-    from
-
-    and those that do not (which would result in two separate accounts), it can be
-
-    two separate accounts), it can be calculated on the basis of professional income
-
-    income, which is then adjusted according to the proportion of sales
-
-    to the proportion of sales generated by approved procedures.
-  note.fr: |
-    Pour éviter d’avoir à ventiler les charges entre celles issues de
-    l’activité conventionnée et celles qui ne le sont pas (ce qui aboutirait à
-    deux comptabilités distinctes), on peut le calculer à partir du revenu
-    professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
-    provenant des actes conventionnés.
-  titre.en: '[automatic] conventional plate'
-  titre.fr: assiette conventionnée
-indépendant . profession libérale . réglementée . PAMC . assiette non conventionnée:
-  titre.en: '[automatic] non-conventional plate'
-  titre.fr: assiette non conventionnée
+indépendant . profession libérale . réglementée . PAMC . assiette autres revenus:
+  titre.en: '[automatic] other income base'
+  titre.fr: assiette autres revenus
 indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
   avec:
     taux dentiste:
       description.en: >
-        [automatic] The "dentist's rate" is used to calculate the proportion of
-        your health and
+        [automatic] The "dentist's rate" is used to calculate the portion of
+        your health and maternity
 
         paid by the CPAM.
 
@@ -4562,9 +4547,9 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
         The formula for calculating the overrun rate is as follows:
 
 
-        > Dentist rate = (overcharges - amounts reimbursed at CMU fixed rates) / (amounts
+        > Dentist rate = (fees exceeded - amounts reimbursed at fixed
 
-        > reimbursed acts + amounts reimbursed CMU lump sums)
+        > CMU) / (amounts reimbursed for procedures + amounts reimbursed for CMU packages)
       description.fr: >
         Le « taux dentiste » permet de calculer la part de votre cotisation
         d’assurance
@@ -4590,138 +4575,92 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
         La formule de calcul du taux de dépassement est la suivante :
 
 
-        > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
+        > Taux dentiste = (dépassements d'honoraires- montants remboursés forfaits
 
-        > remboursables actes + montants remboursés forfaits CMU)
+        > CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
       question.en: '[automatic] What is your "dentist rate"?'
       question.fr: Quel est votre « taux dentiste » ?
       titre.en: '[automatic] dentist rate'
       titre.fr: taux dentiste
-    taux dentiste . notification:
-      description.en: "[automatic] The dentist's rate must be less than 100%."
-      description.fr: Le taux dentiste doit être inférieur à 100%
-      titre.en: '[automatic] notification'
-      titre.fr: notification
   description.en: >
-    [automatic] Also known as conventional income, this is income from
-    conventional
+    [automatic] These are revenues from conventional activities, net of excess
+    fees.
 
-    net of excess fees.
-
-
-    The calculation depends on whether or not there is any income other than that from
-
-    income.
-  description.fr: |
-    Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
-    l’activité conventionnée nets de dépassements d’honoraires.
-
-    Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
-    conventionnée.
-  note.en: >
-    [automatic] The Urssaf formula is as follows:
+    fees.
 
 
-    **income from activity under agreement x (total fees - total excess fees) / total fees**.
+    This base is calculated using the following formula:
+
+    **social base under agreement x (total fees - total excess fees) / total fees**.
 
 
-    This formula can be simplified to :
+    For surgeons and dental surgeons, the base is calculated using the
+
+    For dentists, the base is calculated using the "dentist rate" (indicated on your professional tax return).
+  description.fr: >
+    Il s’agit des revenus tirés de l’activité conventionnée nets de dépassements
+
+    d’honoraires.
 
 
-    **income from conventional activity / (100% + average fee overrun)**.
+    Cette assiette se calcule avec la formule suivante :
+
+    **assiette sociale conventionnée x (total des honoraires - total des dépassements d’honoraires) / total des honoraires**
 
 
-    > **Proof:**
+    Pour les chirurgiennes et chirurgiens-dentistes, l’assiette se calcule avec le
 
-    &gt;
-
-    > If we take the following variables,
-
-    > - h+`: total fees (with overrun)
-
-    > - h`: fees without overrun
-
-    > - `d%` : average percentage of excess fee
-
-    &gt;
-
-    > We have: `h+ = h + h * d% = h * (100% + d%)`.
-
-    > And: `total fees - total excess fees = fees without excess = h`.
-
-    &gt;
-
-    > If we replace in the CPAM participation base formula, we obtain :
-
-    > 1. `income from conventional activity * h / h+` &gt; `income from conventional activity * h / h+` &gt; `income from conventional activity * h / h+` &gt; `income from conventional activity
-
-    > 2. income from conventional activity * h / (h * (100% + d%))`.
-
-    > 3. `income from conventional activity / (100% + d%)`.
-  note.fr: >
-    La formule donnée par l’Urssaf est la suivante :
-
-
-    **revenu de l’activité conventionnée x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires**
-
-
-    On peut simplififer cette formule en :
-
-
-    **revenu de l’activité conventionnée / (100% + dépassement d’honoraire moyen)**
-
-
-    > **Preuve :**
-
-    >
-
-    > Si on prends les variables suivantes,
-
-    > - `h+` : total des honoraires (avec dépassement)
-
-    > - `h` : honoraires sans dépassement
-
-    > - `d%` : pourcentage de dépassement d’honoraire moyen
-
-    >
-
-    > On a : `h+ = h + h * d% = h * (100% + d%)`
-
-    > Et : `total des honoraires - total des dépassements d’honoraires = honoraires sans dépassement = h`
-
-    >
-
-    > Si on remplace dans la formule de l’assiette participation CPAM, on obtient :
-
-    > 1. `revenu de l’activité conventionnée * h / h+`
-
-    > 2. `revenu de l’activité conventionnée * h / (h * (100% + d%))`
-
-    > 3. `revenu de l’activité conventionnée / (100% + d%)`
+    « taux dentiste » (indiqué sur votre déclaration de revenus professionnels).
   titre.en: '[automatic] CPAM contribution base'
   titre.fr: assiette participation CPAM
-indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen:
-  question.en: '[automatic] What is your average excess fee (estimate)?'
-  question.fr: Quels est votre dépassement honoraires moyen (estimation) ?
-  titre.en: '[automatic] average excess fee'
-  titre.fr: dépassement d'honoraire moyen
-indépendant . profession libérale . réglementée . PAMC . maladie:
-  titre.en: '[automatic] illness (after CPAM contribution)'
-  titre.fr: maladie (après participation CPAM)
-indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
-  avec:
-    taux:
-      titre.en: '[automatic] rate'
-      titre.fr: taux
-  titre.en: '[automatic] additional contribution'
-  titre.fr: contribution additionnelle
-indépendant . profession libérale . réglementée . PAMC . maladie . participation CPAM:
-  avec:
-    taux maladie:
-      titre.en: '[automatic] sickness rate'
-      titre.fr: taux maladie
-  titre.en: '[automatic] CPAM contribution'
-  titre.fr: participation CPAM
+indépendant . profession libérale . réglementée . PAMC . assiette sociale conventionnée:
+  description.en: >
+    [automatic] The "assiette sociale conventionnée" is the portion of the
+    social security base corresponding to
+
+    to your activity.
+
+
+    It is obtained by multiplying the social security base by the ratio between
+
+    total sales.
+  description.fr: >
+    L’assiette sociale conventionnée est la part de l’assiette sociale
+    correspondant
+
+    à votre activité conventionnée.
+
+
+    Elle s’obtient en multipliant l’assiette sociale par le rapport entre les
+
+    recettes conventionnées et le chiffre d’affaires total.
+  note.en: >
+    [automatic] To avoid having to break down expenses between those arising
+    from
+
+    and those that do not (which would result in two separate accounts), it can be
+
+    two separate accounts), it can be calculated on the basis of professional income
+
+    income, which is then adjusted according to the proportion of sales
+
+    to the proportion of sales generated by approved procedures.
+  note.fr: |
+    Pour éviter d’avoir à ventiler les charges entre celles issues de
+    l’activité conventionnée et celles qui ne le sont pas (ce qui aboutirait à
+    deux comptabilités distinctes), on peut le calculer à partir du revenu
+    professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
+    provenant des actes conventionnés.
+  titre.en: '[automatic] agreed social base'
+  titre.fr: assiette sociale conventionnée
+indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
+  titre.en: '[automatic] additional health contribution'
+  titre.fr: contribution maladie additionnelle
+indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire:
+  question.en: '[automatic] How much are your extra fees?'
+  question.fr: Quel est le montant de vos dépassements d'honoraires ?
+  titre.en: '[automatic] excess fees'
+  titre.fr: dépassements d'honoraire
 indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   description.en: >
     [automatic] Health professionals who are members of a health insurance
@@ -4733,19 +4672,27 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
     d’une partie de leur cotisations par l’Assurance Maladie.
   titre.en: '[automatic] Health insurance contribution'
   titre.fr: Participation assurance maladie
-indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée:
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . allocations familiales:
+  titre.en: '[automatic] family allowances'
+  titre.fr: allocations familiales
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . maladie:
+  avec:
+    taux maladie:
+      titre.en: '[automatic] sickness rate'
+      titre.fr: taux maladie
+  titre.en: '[automatic] disease'
+  titre.fr: maladie
+indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée:
   description.en: >
-    [automatic] Non-agreed revenues are all those that do not fall into the
+    [automatic] Conventional income includes all income falling into the
     following categories
 
-    the following categories:
+    categories:
 
 
     - Fees from reimbursable procedures (including excess fees and
 
-    fees and travel expenses shown on the SNIR statement).
-
-    SNIR STATEMENT)
+    fees and travel expenses shown on the SNIR statement)
 
 
     - Fees from retrocessions for reimbursable procedures
@@ -4758,39 +4705,32 @@ indépendant . profession libérale . réglementée . PAMC . proportion recette 
     (assistance with teletransmission, indemnity, compensation for continuing
 
     training, installation bonus, etc.)
-  description.fr: |
-    Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
-    les catégories suivantes :
+  description.fr: >
+    Les recettes conventionnées sont toutes celles qui rentrent dans les
+    catégories
 
-    - Honoraires tirés des actes remboursables (y compris les
-    dépassements d’honoraires et les frais de déplacement figurant sur le relevé
-    SNIR)
+    suivantes :
+
+
+    - Honoraires tirés des actes remboursables (y compris les dépassements
+
+    d’honoraires et les frais de déplacement figurant sur le relevé SNIR)
+
 
     - Honoraires issus de rétrocessions concernant les actes remboursables
+
     perçues en qualité de remplaçant
 
+
     - Toutes les rémunérations forfaitaires versées par l’assurance maladie
+
     (aide à la télétransmission, indemnisation, indemnisation de la formation
+
     continue, prime à l’installation, ...)
-  question.en: |
-    [automatic] How much of your sales are linked to non-standard activities?
-    (estimate)?
-  question.fr: |
-    Quel est la part de votre chiffre d’affaires liée à une activité non
-    conventionnée (estimation) ?
-  suggestions.10%.en: '[automatic] 10%'
-  suggestions.10%.fr: 10%
-  suggestions.30%.en: '[automatic] 30%'
-  suggestions.30%.fr: 30%
-  titre.en: '[automatic] proportion of revenue from non-contracted activities'
-  titre.fr: proportion recette activité non conventionnée
-indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée . notification:
-  description.en: |
-    [automatic] The proportion may not exceed 100%.
-  description.fr: |
-    La proportion ne peut pas être supérieure à 100%
-  titre.en: '[automatic] notification'
-  titre.fr: notification
+  question.en: '[automatic] How much do you earn under contract?'
+  question.fr: Quel est le montant de vos recettes conventionnées ?
+  titre.en: '[automatic] revenues from conventional activities'
+  titre.fr: recettes activité conventionnée
 indépendant . profession libérale . réglementée . PAMC . remplaçant:
   avec:
     offre simplifiée médecins:

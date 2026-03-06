@@ -12,36 +12,6 @@ indépendant . profession libérale . réglementée . PAMC:
     - conjoint collaborateur
     - revenus étrangers
 
-indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée:
-  question: |
-    Quel est la part de votre chiffre d’affaires liée à une activité non
-    conventionnée (estimation) ?
-  par défaut: 0%
-  suggestions:
-    10%: 10%
-    30%: 30%
-  description: |
-    Les recettes non conventionnées sont toutes celles qui ne rentrent pas dans
-    les catégories suivantes :
-
-    - Honoraires tirés des actes remboursables (y compris les
-    dépassements d’honoraires et les frais de déplacement figurant sur le relevé
-    SNIR)
-
-    - Honoraires issus de rétrocessions concernant les actes remboursables
-    perçues en qualité de remplaçant
-
-    - Toutes les rémunérations forfaitaires versées par l’assurance maladie
-    (aide à la télétransmission, indemnisation, indemnisation de la formation
-    continue, prime à l’installation, ...)
-
-indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée . notification:
-  type: notification
-  sévérité: avertissement
-  formule: proportion recette activité non conventionnée > 100%
-  description: |
-    La proportion ne peut pas être supérieure à 100%
-
 indépendant . profession libérale . réglementée . PAMC . remplaçant:
   question:
     texte: Au {{ période . début d'année }}, exerciez-vous votre activité
@@ -64,17 +34,111 @@ indépendant . profession libérale . réglementée . PAMC . remplaçant:
       références:
         Site de l’offre simplifié dédiée aux médecins remplaçant: https://www.medecins-remplacants.urssaf.fr/accueil
 
-indépendant . profession libérale . réglementée . PAMC . PCV:
+indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée:
+  description: |
+    Les recettes conventionnées sont toutes celles qui rentrent dans les catégories
+    suivantes :
+
+    - Honoraires tirés des actes remboursables (y compris les dépassements
+    d’honoraires et les frais de déplacement figurant sur le relevé SNIR)
+
+    - Honoraires issus de rétrocessions concernant les actes remboursables
+    perçues en qualité de remplaçant
+
+    - Toutes les rémunérations forfaitaires versées par l’assurance maladie
+    (aide à la télétransmission, indemnisation, indemnisation de la formation
+    continue, prime à l’installation, ...)
+  question: Quel est le montant de vos recettes conventionnées ?
+  par défaut: entreprise . chiffre d'affaires
+  plafond: entreprise . chiffre d'affaires
+
+indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire:
+  question: Quel est le montant de vos dépassements d'honoraires ?
+  par défaut: 0 €/an
+  plafond: recettes activité conventionnée
+
+indépendant . profession libérale . réglementée . PAMC . assiette sociale conventionnée:
+  description: |
+    L’assiette sociale conventionnée est la part de l’assiette sociale correspondant
+    à votre activité conventionnée.
+
+    Elle s’obtient en multipliant l’assiette sociale par le rapport entre les
+    recettes conventionnées et le chiffre d’affaires total.
+  note: |
+    Pour éviter d’avoir à ventiler les charges entre celles issues de
+    l’activité conventionnée et celles qui ne le sont pas (ce qui aboutirait à
+    deux comptabilités distinctes), on peut le calculer à partir du revenu
+    professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
+    provenant des actes conventionnés.
+  formule:
+    produit:
+      - cotisations et contributions . assiette sociale
+      - recettes activité conventionnée / entreprise . chiffre d'affaires
+
+indépendant . profession libérale . réglementée . PAMC . assiette autres revenus:
+  valeur: cotisations et contributions . assiette sociale - assiette sociale conventionnée
+
+indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
+  description: |
+    Il s’agit des revenus tirés de l’activité conventionnée nets de dépassements
+    d’honoraires.
+
+    Cette assiette se calcule avec la formule suivante :
+    **assiette sociale conventionnée x (total des honoraires - total des dépassements d’honoraires) / total des honoraires**
+
+    Pour les chirurgiennes et chirurgiens-dentistes, l’assiette se calcule avec le
+    « taux dentiste » (indiqué sur votre déclaration de revenus professionnels).
   variations:
-    - si: profession libérale . réglementée . CARCDSF
-      alors: profession libérale . réglementée . CARCDSF . PCV
-    - si: profession libérale . réglementée . CARMF
-      alors: profession libérale . réglementée . CARMF . PCV
-    - si: profession libérale . réglementée . CARPIMKO
-      alors: profession libérale . réglementée . CARPIMKO . PCV
-    - si: profession libérale . réglementée . CAVP
-      alors: profession libérale . réglementée . CAVP . PCV
-  unité: €/an
+    - si: métier = 'santé . chirurgien-dentiste'
+      alors:
+        produit:
+          - assiette sociale conventionnée
+          - 1 - taux dentiste / (1 + taux dentiste)
+    - sinon:
+        produit:
+          - assiette sociale conventionnée
+          - (recettes activité conventionnée - dépassements d'honoraire) / recettes activité conventionnée
+  abattement: cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+  avec:
+    taux dentiste:
+      description: |
+        Le « taux dentiste » permet de calculer la part de votre cotisation d’assurance
+        maladie-maternité prise en charge par la CPAM.
+
+        Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
+        est issu des données de votre Relevé individuel d’activité et de
+        prescriptions (RIAP).
+
+        Plus le taux est faible, plus la participation CPAM est importante et donc
+        la part à la charge du praticien est faible.
+
+        ### Calcul du taux
+
+        La formule de calcul du taux de dépassement est la suivante :
+
+        > Taux dentiste = (dépassements d'honoraires- montants remboursés forfaits
+        > CMU) / (montants remboursables actes + montants remboursés forfaits CMU)
+      applicable si: métier = 'santé . chirurgien-dentiste'
+      question: Quel est votre « taux dentiste » ?
+      par défaut: 100%
+      plancher: 0%
+      plafond: 100%
+      unité: '%'
+      références:
+        Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
+  produit:
+    - assiette autres revenus
+    - 3.25%
+  arrondi: oui
+  références:
+    Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
 indépendant . profession libérale . réglementée . PAMC . CURPS:
   titre: Contribution aux unions régionales des professionnels de santé
@@ -115,222 +179,17 @@ indépendant . profession libérale . réglementée . PAMC . CURPS:
   références:
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
-indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen:
-  non applicable si: métier . santé . médecin . secteur = 'S1'
-  question: Quels est votre dépassement honoraires moyen (estimation) ?
-  par défaut: 0%
-
-indépendant . profession libérale . réglementée . PAMC . assiette conventionnée:
-  description: |
-    Les revenus conventionnés sont ceux correspondant aux recettes tirées des
-    honoraires et des rémunérations forfaitaires versées par la CPAM.
-  note: |
-    Pour éviter d’avoir à ventiler les charges entre celles issues de
-    l’activité conventionnée et celles qui ne le sont pas (ce qui aboutirait à
-    deux comptabilités distinctes), on peut le calculer à partir du revenu
-    professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
-    provenant des actes conventionnés.
-  formule:
-    produit:
-      - cotisations et contributions . assiette sociale
-      - valeur: 100% - proportion recette activité non conventionnée
-        plancher: 0%
-
-indépendant . profession libérale . réglementée . PAMC . assiette non conventionnée:
-  valeur: cotisations et contributions . assiette sociale - assiette conventionnée
-
-indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
-  description: |
-    Aussi appelé revenu conventionnel, il s’agit des revenus tirés de
-    l’activité conventionnée nets de dépassements d’honoraires.
-
-    Le calcul dépend s’il y a ou non d’autres revenus que ceux de l’activité
-    conventionnée.
-  note: |
-    La formule donnée par l’Urssaf est la suivante :
-
-    **revenu de l’activité conventionnée x (total des honoraires - total des dépassements d’honoraires) / montant total des honoraires**
-
-    On peut simplififer cette formule en :
-
-    **revenu de l’activité conventionnée / (100% + dépassement d’honoraire moyen)**
-
-    > **Preuve :**
-    >
-    > Si on prends les variables suivantes,
-    > - `h+` : total des honoraires (avec dépassement)
-    > - `h` : honoraires sans dépassement
-    > - `d%` : pourcentage de dépassement d’honoraire moyen
-    >
-    > On a : `h+ = h + h * d% = h * (100% + d%)`
-    > Et : `total des honoraires - total des dépassements d’honoraires = honoraires sans dépassement = h`
-    >
-    > Si on remplace dans la formule de l’assiette participation CPAM, on obtient :
-    > 1. `revenu de l’activité conventionnée * h / h+`
-    > 2. `revenu de l’activité conventionnée * h / (h * (100% + d%))`
-    > 3. `revenu de l’activité conventionnée / (100% + d%)`
+indépendant . profession libérale . réglementée . PAMC . PCV:
   variations:
-    - si: métier = 'santé . chirurgien-dentiste'
-      alors:
-        produit:
-          - assiette conventionnée
-          - 1 - taux dentiste / (1 + taux dentiste)
-    - sinon: assiette conventionnée / (100% + dépassement d'honoraire moyen)
-  abattement: cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
-    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
-    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
-
-  avec:
-    taux dentiste:
-      description: |
-        Le « taux dentiste » permet de calculer la part de votre cotisation d’assurance
-        maladie-maternité prise en charge par la CPAM.
-
-        Ce taux est pré-rempli sur votre déclaration de revenus professionnels. Il
-        est issu des données de votre Relevé individuel d’activité et de
-        prescriptions (RIAP).
-
-        Plus le taux est faible, plus la participation CPAM est importante et donc
-        la part à la charge du praticien est faible.
-
-        ### Calcul du taux
-
-        La formule de calcul du taux de dépassement est la suivante :
-
-        > Taux dentiste = (dépassements - montants remboursés forfaits CMU) / (montants
-        > remboursables actes + montants remboursés forfaits CMU)
-      applicable si: métier = 'santé . chirurgien-dentiste'
-      question: Quel est votre « taux dentiste » ?
-      unité: '%'
-      par défaut: 100%
-      références:
-        Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
-
-    taux dentiste . notification:
-      formule: taux dentiste >= 100%
-      type: notification
-      sévérité: avertissement
-      description: Le taux dentiste doit être inférieur à 100%
-
-indépendant . profession libérale . réglementée . PAMC . maladie:
-  remplace:
-    références à: cotisations et contributions . cotisations . maladie-maternité
-    sauf dans: participation CPAM
-  titre: maladie (après participation CPAM)
-  somme:
-    - cotisations et contributions . cotisations . maladie-maternité
-    - contribution additionnelle
-  abattement: participation CPAM
-
-indépendant . profession libérale . réglementée . PAMC . maladie . participation CPAM:
-  non applicable si: métier . santé . médecin . secteur = 'S2'
-  produit:
-    - assiette participation CPAM
-    - valeur: taux maladie
-      abattement: 0.1%
-  arrondi: oui
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
-    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
-    Les exonérations d'un praticien ou auxiliaire médical - L’exonération domiciliation fiscale à l’étranger: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/exonerations.html#ancre-domiciliation-fiscale-a-l-etrang
-    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
-
-  avec:
-    taux maladie:
-      variations:
-        - si: situation personnelle . domiciliation fiscale à l'étranger
-          alors: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger . taux
-        - si: cotisations et contributions . après réforme = non
-          alors: profession libérale . CNAVPL . maladie . taux
-        - sinon:
-            valeur: cotisations et contributions . cotisations . maladie-maternité / cotisations et contributions . cotisations . maladie-maternité . assiette
-            unité: '%'
-
-indépendant . profession libérale . réglementée . PAMC . maladie . contribution additionnelle:
-  produit:
-    - assiette non conventionnée
-    - taux
-  arrondi: oui
-  avec:
-    taux:
-      variations:
-        - si: métier . santé . médecin . secteur = 'S2'
-          alors: 3.25%
-        - sinon:
-            taux progressif:
-              assiette: cotisations et contributions . assiette sociale
-              multiplicateur: plafond sécurité sociale
-              tranches:
-                - plafond:
-                    variations:
-                      - si: cotisations et contributions . après réforme
-                        alors: 20%
-                      - sinon: 40%
-                  taux: 3.25%
-                - plafond:
-                    variations:
-                      - si: cotisations et contributions . après réforme
-                        alors: 300%
-                      - sinon: 110%
-                  taux:
-                    variations:
-                      - si: cotisations et contributions . après réforme
-                        alors: 11.75%
-                      - sinon: 9.75%
-  références:
-    Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
-
-indépendant . profession libérale . réglementée . PAMC . allocations familiales:
-  applicable si: métier . santé . médecin . secteur = 'S1'
-  titre: allocations familiales (après participation CPAM)
-  remplace:
-    références à: cotisations et contributions . cotisations . allocations familiales
-    sauf dans: participation CPAM
-  formule:
-    valeur: cotisations et contributions . cotisations . allocations familiales
-    abattement: participation CPAM
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html
-
-indépendant . profession libérale . réglementée . PAMC . allocations familiales . participation CPAM:
-  formule:
-    produit:
-      - cotisations et contributions . cotisations . allocations familiales
-      - grille:
-          assiette: assiette participation CPAM
-          multiplicateur: plafond sécurité sociale
-          tranches:
-            - montant: 100%
-              plafond: 140%
-            - montant: 75%
-              plafond: 250%
-            - montant: 60%
-    arrondi: oui
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
-    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
-
-indépendant . profession libérale . réglementée . PAMC . participation CPAM:
-  titre: Participation assurance maladie
-  description: |
-    Les professionnels de santé conventionnés bénéficient d’une prise en charge
-    d’une partie de leur cotisations par l’Assurance Maladie.
-  formule:
-    somme:
-      - PAMC . allocations familiales . participation CPAM
-      - PAMC . maladie . participation CPAM
-      - CARCDSF . chirurgien-dentiste . PCV . participation CPAM
-      - CARCDSF . sage-femme . PCV . participation CPAM
-      - CARMF . participation CPAM retraite
-      - CARMF . PCV . participation CPAM
-      - CARPIMKO . PCV . participation CPAM
-      - CAVP . PCV . participation CPAM
-    arrondi: oui
-  références:
-    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
-    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    - si: profession libérale . réglementée . CARCDSF
+      alors: profession libérale . réglementée . CARCDSF . PCV
+    - si: profession libérale . réglementée . CARMF
+      alors: profession libérale . réglementée . CARMF . PCV
+    - si: profession libérale . réglementée . CARPIMKO
+      alors: profession libérale . réglementée . CARPIMKO . PCV
+    - si: profession libérale . réglementée . CAVP
+      alors: profession libérale . réglementée . CAVP . PCV
+  unité: €/an
 
 indépendant . profession libérale . réglementée . PAMC . IJSS:
   titre: indemnités journalières de sécurité sociale
@@ -356,3 +215,66 @@ indépendant . profession libérale . réglementée . PAMC . IJSS:
   question: Quel est le montant des indemnités journalières de maternité ou
     paternité perçu au titre de votre activité libérale ?
   par défaut: 0 €/an
+
+indépendant . profession libérale . réglementée . PAMC . participation CPAM:
+  titre: Participation assurance maladie
+  description: |
+    Les professionnels de santé conventionnés bénéficient d’une prise en charge
+    d’une partie de leur cotisations par l’Assurance Maladie.
+  formule:
+    somme:
+      - PAMC . participation CPAM . allocations familiales
+      - PAMC . participation CPAM . maladie
+      - CARCDSF . chirurgien-dentiste . PCV . participation CPAM
+      - CARCDSF . sage-femme . PCV . participation CPAM
+      - CARMF . participation CPAM retraite
+      - CARMF . PCV . participation CPAM
+      - CARPIMKO . PCV . participation CPAM
+      - CAVP . PCV . participation CPAM
+    arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . maladie:
+  non applicable si: métier . santé . médecin . secteur = 'S2'
+  produit:
+    - assiette participation CPAM
+    - valeur: taux maladie
+      abattement: 0.1%
+  arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
+    Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
+    Les exonérations d'un praticien ou auxiliaire médical - L’exonération domiciliation fiscale à l’étranger: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/exonerations.html#ancre-domiciliation-fiscale-a-l-etrang
+    Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+  avec:
+    taux maladie:
+      variations:
+        - si:
+            est applicable: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger
+          alors: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger . taux
+        - si:
+            est applicable: profession libérale . CNAVPL . maladie
+          alors: profession libérale . CNAVPL . maladie . taux
+        - sinon:
+            valeur: cotisations et contributions . cotisations . maladie-maternité avant abattements / cotisations et contributions . cotisations . maladie-maternité avant abattements . assiette
+            unité: '%'
+
+indépendant . profession libérale . réglementée . PAMC . participation CPAM . allocations familiales:
+  applicable si: métier . santé . médecin . secteur = 'S1'
+  produit:
+    - cotisations et contributions . cotisations . allocations familiales avant abattements
+    - grille:
+        assiette: assiette participation CPAM
+        multiplicateur: plafond sécurité sociale
+        tranches:
+          - montant: 100%
+            plafond: 140%
+          - montant: 75%
+            plafond: 250%
+          - montant: 60%
+  arrondi: oui
+  références:
+    Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam

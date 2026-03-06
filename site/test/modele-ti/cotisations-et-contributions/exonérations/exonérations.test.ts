@@ -12,15 +12,7 @@ const defaultSituation = {
 	'entreprise . date de création': '18/02/2025',
 	'indépendant . cotisations et contributions . assiette sociale': '36000 €/an',
 }
-const defaultSituationAvecExonérations = {
-	...defaultSituation,
-	'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-		'oui',
-	'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-		'oui',
-}
 
-// TODO: mettre à jour une fois le calcul de l'Acre corrigé
 describe('L’exonération appliquée', () => {
 	let engine: Engine
 	beforeEach(() => {
@@ -28,145 +20,221 @@ describe('L’exonération appliquée', () => {
 	})
 
 	describe('à la cotisation maladie-maternité', () => {
-		it('est l’Acre lorsqu’elle est plus avantageuse que l’exonération invalidité', () => {
+		it('est l’Acre lorsqu’il n’y a pas d’exonération invalidité', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . maladie-maternité`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . montant maladie-maternité':
-					'100 €/an',
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . montant maladie-maternité':
-					'200 €/an',
+					'100 €/an',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . maladie-maternité`
-			).nodeValue
-
-			expect(cotisationExonérée).toEqual(cotisation - 200)
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . maladie-maternité`,
+				cotisation - 100
+			)
 		})
 
-		it('est l’exonération invalidité lorsqu’elle est plus avantageuse que l’Acre', () => {
+		it('est l’exonération invalidité lorsqu’il n’y a pas d’Acre', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . maladie-maternité`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . montant maladie-maternité':
-					'200 €/an',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . montant maladie-maternité':
-					'100 €/an',
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières':
+					'50%',
+			})
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . maladie-maternité`,
+				Math.round(cotisation / 2)
+			)
+		})
+
+		it('est nulle lorsqu’il y a à la fois Acre et invalidité', () => {
+			const e1 = engine.setSituation(defaultSituation)
+			const cotisation = e1.evaluate(`${COTISATIONS} . maladie-maternité`)
+				.nodeValue as number
+
+			const e2 = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . maladie-maternité`
-			).nodeValue
-
-			expect(cotisationExonérée).toEqual(cotisation - 200)
+			expect(e2).toEvaluate(`${COTISATIONS} . maladie-maternité`, cotisation)
 		})
 	})
 
 	describe('à la cotisation indemnités journalières', () => {
-		it('est l’Acre lorsqu’elle est plus avantageuse que l’exonération invalidité', () => {
+		it('est l’Acre lorsqu’il n’y a pas d’exonération invalidité', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . indemnités journalières`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux indemnités journalières':
-					'10 %',
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux indemnités journalières':
-					'20 %',
+					'50 %',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . indemnités journalières`
-			).nodeValue
-
-			expect(cotisationExonérée).toEqual(
-				cotisation - Math.round(0.2 * cotisation)
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . indemnités journalières`,
+				Math.round(cotisation / 2)
 			)
 		})
 
-		it('est l’exonération invalidité lorsqu’elle est plus avantageuse que l’Acre', () => {
+		it('est l’exonération invalidité lorsqu’il n’y a pas d’Acre', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . indemnités journalières`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux indemnités journalières':
-					'20 %',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux indemnités journalières':
-					'10 %',
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières':
+					'50%',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . indemnités journalières`
-			).nodeValue
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . indemnités journalières`,
+				Math.round(cotisation / 2)
+			)
+		})
 
-			expect(cotisationExonérée).toEqual(
-				cotisation - Math.round(0.2 * cotisation)
+		it('est nulle lorsqu’il y a à la fois Acre et invalidité', () => {
+			const e1 = engine.setSituation(defaultSituation)
+			const cotisation = e1.evaluate(`${COTISATIONS} . indemnités journalières`)
+				.nodeValue as number
+
+			const e2 = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
+			})
+
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . indemnités journalières`,
+				cotisation
+			)
+		})
+	})
+
+	describe('à la cotisation allocations familiales', () => {
+		it('est l’Acre lorsqu’il n’y a pas d’exonération invalidité', () => {
+			const e1 = engine.setSituation(defaultSituation)
+			const cotisation = e1.evaluate(`${COTISATIONS} . allocations familiales`)
+				.nodeValue as number
+
+			const e2 = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux allocations familiales':
+					'50 %',
+			})
+
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . allocations familiales`,
+				Math.round(cotisation / 2)
+			)
+		})
+
+		it('est nulle lorsqu’il y a à la fois Acre et invalidité', () => {
+			const e1 = engine.setSituation(defaultSituation)
+			const cotisation = e1.evaluate(`${COTISATIONS} . allocations familiales`)
+				.nodeValue as number
+
+			const e2 = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
+			})
+
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . allocations familiales`,
+				cotisation
 			)
 		})
 	})
 
 	describe('à la cotisation retraite de base', () => {
-		it('est l’Acre lorsqu’elle est plus avantageuse que l’exonération invalidité', () => {
+		it('est l’Acre lorsqu’il n’y a pas d’exonération invalidité ni incapacité', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . retraite de base`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite de base':
-					'10 %',
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux retraite de base et invalidité-décès':
-					'20 %',
+					'50 %',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . retraite de base`
-			).nodeValue
-
-			expect(cotisationExonérée).toEqual(
-				cotisation - Math.round(0.2 * cotisation)
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . retraite de base`,
+				Math.round(cotisation / 2)
 			)
 		})
 
-		it('est l’exonération invalidité lorsqu’elle est plus avantageuse que l’Acre', () => {
+		it('est l’exonération invalidité lorsqu’il n’y a pas d’Acre ni d’exonération incapacité', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . retraite de base`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite de base':
-					'20 %',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux retraite de base et invalidité-décès':
-					'10 %',
+					'50%',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . retraite de base`
-			).nodeValue
-
-			expect(cotisationExonérée).toEqual(
-				cotisation - Math.round(0.2 * cotisation)
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . retraite de base`,
+				Math.round(cotisation / 2)
 			)
+		})
+
+		it('est nulle lorsqu’il y a à la fois Acre et invalidité mais pas d’exonération incapacité', () => {
+			const e1 = engine.setSituation(defaultSituation)
+			const cotisation = e1.evaluate(`${COTISATIONS} . retraite de base`)
+				.nodeValue as number
+
+			const e2 = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
+			})
+
+			expect(e2).toEvaluate(`${COTISATIONS} . retraite de base`, cotisation)
 		})
 
 		it('est l’exonération incapacité lorsqu’elle est présente', () => {
 			const e = engine.setSituation({
-				...defaultSituationAvecExonérations,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite de base':
-					'10 %',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux retraite de base et invalidité-décès':
-					'20 %',
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
 				'indépendant . profession libérale . CNAVPL . exonération incapacité':
 					'oui',
 			})
@@ -182,25 +250,26 @@ describe('L’exonération appliquée', () => {
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite complémentaire':
-					'20 %',
+					'50%',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . retraite complémentaire`
-			).nodeValue
-
-			expect(cotisationExonérée).toEqual(
-				cotisation - Math.round(0.2 * cotisation)
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . retraite complémentaire`,
+				Math.round(cotisation / 2)
 			)
 		})
 
 		it('est l’exonération incapacité lorsqu’elle est présente', () => {
 			const e = engine.setSituation({
-				...defaultSituationAvecExonérations,
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite complémentaire':
-					'20 %',
+					'50%',
 				'indépendant . profession libérale . CNAVPL . exonération incapacité':
 					'oui',
 			})
@@ -210,31 +279,48 @@ describe('L’exonération appliquée', () => {
 	})
 
 	describe('à la cotisation invalidité-décès', () => {
-		it('est l’Acre lorsqu’il n’y a pas d’exonération incapacité', () => {
+		it('est l’Acre lorsqu’il n’y a pas d’exonération invalidité ni âge', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . invalidité et décès`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
-				...defaultSituationAvecExonérations,
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux retraite de base et invalidité-décès':
-					'20 %',
+					'50 %',
 			})
 
-			const cotisationExonérée = e2.evaluate(
-				`${COTISATIONS} . invalidité et décès`
-			).nodeValue
-
-			expect(cotisationExonérée).toEqual(
-				cotisation - Math.round(0.2 * cotisation)
+			expect(e2).toEvaluate(
+				`${COTISATIONS} . invalidité et décès`,
+				Math.round(cotisation / 2)
 			)
+		})
+
+		it('est nulle lorsqu’il y a à la fois Acre et invalidité mais pas d’exonération âge', () => {
+			const e1 = engine.setSituation(defaultSituation)
+			const cotisation = e1.evaluate(`${COTISATIONS} . invalidité et décès`)
+				.nodeValue as number
+
+			const e2 = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
+			})
+
+			expect(e2).toEvaluate(`${COTISATIONS} . invalidité et décès`, cotisation)
 		})
 
 		it('est l’exonération âge lorsqu’elle est présente', () => {
 			const e = engine.setSituation({
-				...defaultSituationAvecExonérations,
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux retraite de base et invalidité-décès':
-					'20 %',
+				...defaultSituation,
+				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'oui',
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'oui',
 				'indépendant . cotisations et contributions . cotisations . exonérations . âge':
 					'oui',
 			})
