@@ -87,7 +87,11 @@ bénéficiaire . dividendes . cotisations et contributions:
                   - si: date >= 01/2026
                     alors: 10.6%
                   - sinon: 9.2%
-            - sinon: 2.4%
+            - sinon:
+                variations:
+                  - si: date >= 01/2026
+                    alors: 3.8%
+                  - sinon: 2.4%
 
     prélèvement de solidarité:
       produit:
