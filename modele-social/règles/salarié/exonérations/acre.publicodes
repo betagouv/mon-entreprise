@@ -34,7 +34,11 @@ salarié . cotisations . exonérations . Acre . employeur:
     assiette: salarié . cotisations . assiette
     multiplicateur: plafond sécurité sociale
     tranches:
-      - montant: cotisations patronales exonérées Acre
+      - montant:
+          variations:
+            - si: date < 01/2026
+              alors: cotisations patronales exonérées Acre
+            - sinon: 25% * cotisations patronales exonérées Acre
         plafond: 75%
       - montant:
           produit:
@@ -59,7 +63,10 @@ salarié . cotisations . exonérations . Acre . salarié:
       - montant: 0
 
 salarié . cotisations . exonérations . Acre . coefficient dégressif:
-  valeur: (plafond sécurité sociale - salarié . cotisations . assiette) / (25% * plafond sécurité sociale)
+  variations:
+    - si: date < 01/2026
+      alors: (plafond sécurité sociale - salarié . cotisations . assiette) / (25% * plafond sécurité sociale)
+    - sinon: (plafond sécurité sociale - salarié . cotisations . assiette) / plafond sécurité sociale
 
 salarié . cotisations . exonérations . Acre . cotisations patronales exonérées pour 75% du PSS:
   unité: €/an

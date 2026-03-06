@@ -1322,83 +1322,185 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
   résumé.fr: Avant déduction des dépenses liées à l’activité
   titre.en: '[automatic] after tax'
   titre.fr: après impôt
-dirigeant . auto-entrepreneur . éligible à l'ACRE:
-  description.en: >
-    [automatic] ACRE is reserved for the following self-entrepreneurs:
-
-    - Jobseekers (with or without benefits, but with at least 6 months
-
-    months of registration with France Travail in the last 18 months).
-
-    - Recipients of social assistance (RSA, ASS, ATA).
-
-    - Young people aged between 18 and 25 (up to 29 for people recognized as being
-
-    disabled)
-
-    - People setting up a micro-business in a priority urban district (QPPV).
-
-    quartier prioritaire de la ville (QPPV)
-  description.fr: >
-    L’ACRE est réservée aux auto-entrepreneurs suivants :
-
-    - Les demandeurs d’emplois (indemnisés ou non indemnisés mais ayant au moins 6
-
-    mois d’inscription à France Travail au cours des 18 derniers mois).
-
-    - Les bénéficiaires d’aides sociales (RSA, ASS, ATA)
-
-    - Les jeunes entre 18 et 25 ans (jusqu’à 29 ans pour les personnes reconnues en
-
-    situation de handicap)
-
-    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la
-
-    ville (QPPV)
-  question.en: '[automatic] Are you eligible for ACRE for your auto-entreprise?'
-  question.fr: Êtes-vous éligible à l’ACRE pour votre auto-entreprise ?
-  titre.en: '[automatic] eligible for ACRE'
-  titre.fr: éligible à l'ACRE
 dirigeant . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 dirigeant . exonérations . ACRE:
-  description.en: >-
-    [automatic] Assistance for setting up or taking over a business (Acre)
-    consists of a partial exemption from social security contributions, known as
-    the "start-up exemption", for a period of 12 months.
+  description.en: >
+    [automatic] Assistance with setting up or taking over a business (Acre)
+    consists of a
+
+    **partial** exemption from social security charges for 12 months, known as the
+
+    exemption.
 
 
-    It is **automatic** for **companies and sole proprietorships** (subject to certain conditions, such as not having benefited from it in the last three years).
+    To qualify, you must **apply to Urssaf** within
+
+    within 60 days of setting up your business.
 
 
-    For **self-employed** entrepreneurs, on the other hand, it must be applied for, and is reserved for the following beneficiaries:
+    You can only benefit from Acre if you are in one of the following situations
 
-    - Jobseekers (with or without benefits, but with at least 6 months' registration with France Travail in the last 18 months).
+    **one of the following situations** at the time of setting up your business:
 
-    - Recipients of social assistance (RSA, ASS, ATA).
+    - a job-seeker receiving compensation ;
 
-    - Young people aged between 18 and 25 (up to 29 for people recognized as disabled).
+    - a job-seeker who is not receiving benefits but is registered with France Travail
 
-    - People setting up a micro-business in a priority urban district (QPPV).
-  description.fr: >-
+    6 months in the last 18 months;
+
+    - beneficiary of the revenu de solidarité active (RSA) or the allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - young people aged 18 to 25;
+
+    - person under 30 not receiving benefit (duration of activity insufficient to
+
+    for entitlement);
+
+    - disabled persons under 30;
+
+    - salaried employees or those made redundant by a company in receivership or liquidation
+
+    or liquidation and who takes over the business;
+
+    - a person who has signed a Cape (contrat d'appui au projet d'entreprise), provided that
+
+    provided they meet one of the above seven conditions on the date of signing
+
+    on the date the contract is signed;
+
+    - a person setting up a business in a priority district of the
+
+    (QPV);
+
+    - beneficiary of the "prestation partagée d'éducation de l'enfant" (PrePare) ;
+
+    - person carrying on business in a France ruralités revitalization zone
+
+    (ZFRR) or a France ruralités revitalization "plus" zone (ZFRR+).
+
+
+    For **companies**, you must meet at least one of the following conditions
+
+    conditions:
+
+    - you and your family own more than 50% of the capital, of which at least 35% is held personally
+
+    personally;
+
+    - you manage the company and hold at least 1/3 of the capital with your family
+
+    capital, of which at least 25% is held by you personally (provided that no other person
+
+    owns more than 50% of the capital) ;
+
+    - you and the other persons requesting Acre hold more than 50% of the capital, provided that
+
+    capital, provided that at least one of these persons is a director,
+
+    and that each of them holds a share of the capital at least equal to 10% of the share held by the main partner.
+
+    the share held by the main partner.
+
+
+    Prior to 2026, the Acre was granted automatically to all business
+
+    business creators.
+
+
+    In addition, to benefit from Acre, you must not have already received it
+
+    in the previous three years.
+  description.fr: >
     L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
-    exonération partielle de charges sociales, dite exonération de début
-    d’activité pendant 12 mois.
+
+    **exonération partielle** de charges sociales pendant 12 mois, dite exonération
+
+    de début d’activité.
 
 
-    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de l’Urssaf**
+
+    dans un délai de 60 jours après la création de votre entreprise.
 
 
-    Pour les **auto-entrepreneurs** en revanche, elle doit être demandée et est réservée aux bénéficiaires suivants :
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
 
-    - Les demandeurs d’emplois (indemnisés ou non indemnisés mais ayant au moins 6 mois d’inscription à France Travail au cours des 18 derniers mois).
+    **une des situations suivantes** au moment de la création de votre entreprise :
 
-    - Les bénéficiaires d’aides sociales (RSA, ASS, ATA)
+    - personne demandeuse d’emploi indemnisée ;
 
-    - Les jeunes entre 18 et 25 ans (jusqu’à 29 ans pour les personnes reconnues en situation de handicap)
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
 
-    - Les personnes créant une micro-entreprise dans un quartier prioritaire de la ville (QPPV)
+    6 mois au cours des 18 derniers mois ;
+
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - jeune de 18 à 25 ans révolus ;
+
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante pour
+
+    l’ouverture de droits) ;
+
+    - personne de moins de 30 ans reconnue handicapée ;
+
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en redressement
+
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise), sous
+
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+
+    de signature de ce contrat ;
+
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire de
+
+    la politique de la ville (QPV) ;
+
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+
+    - personne exerçant l’activité au sein d’une zone France ruralités revitalisation
+
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
+
+
+    Pour les **sociétés**, vous devez respecter au moins une des conditions
+
+    suivantes :
+
+    - vous détenez avec votre famille plus de 50 % du capital dont au moins 35 % à
+
+    titre personnel ;
+
+    - vous dirigez la société et vous détenez avec votre famille au moins 1/3 du
+
+    capital dont au moins 25 % à titre personnel (sous réserve que personne d’autre
+
+    ne détienne plus de 50 % du capital) ;
+
+    - vous détenez, avec les autres personnes demandant l’Acre, plus de 50 % du
+
+    capital, à condition qu’au moins l’une de ces personnes soit dirigeant/dirigeante,
+
+    et que chacune d’elle détienne une part du capital au moins égal à 10 % de
+
+    la part détenue par la principale associée ou le principal associé.
+
+
+    Avant 2026, l'attribution de l’Acre était automatique et concernait tous les
+
+    créateurs et créatrices d’entreprise.
+
+
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+
+    bénéficié au cours des trois années précédentes.
   question.en: '[automatic] Did you benefit from Acre?'
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] ACRE'

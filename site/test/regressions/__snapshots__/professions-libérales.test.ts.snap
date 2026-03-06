@@ -1,20 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 1`] = `
-"dirigeant . indépendant . cotisations et contributions: 1236
+"dirigeant . indépendant . cotisations et contributions: 1732
 dirigeant . rémunération . net: 5000
 dirigeant . rémunération . net . après impôt: 5000
-entreprise . chiffre d'affaires: 6236
+entreprise . chiffre d'affaires: 6732
 impôt . montant: 0
 protection sociale . retraite . trimestres: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV ACRE 2`] = `
-"dirigeant . indépendant . cotisations et contributions: 4529
+"dirigeant . indépendant . cotisations et contributions: 6227
 dirigeant . rémunération . net: 20000
-dirigeant . rémunération . net . après impôt: 19424
-entreprise . chiffre d'affaires: 24529
-impôt . montant: 576
+dirigeant . rémunération . net . après impôt: 19417
+entreprise . chiffre d'affaires: 26227
+impôt . montant: 583
 protection sociale . retraite . trimestres: 4"
 `;
 
