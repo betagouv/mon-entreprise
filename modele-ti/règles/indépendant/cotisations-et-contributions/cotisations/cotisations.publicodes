@@ -109,9 +109,17 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     valeur: maladie-maternité avant abattements
     abattement: profession libérale . réglementée . PAMC . participation CPAM . maladie
   abattement:
-    le maximum de:
-      - exonérations . Acre . exonération . montant maladie-maternité
-      - exonérations . invalidité . exonération . montant maladie-maternité
+    variations:
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre
+            - exonérations . invalidité = non
+        alors: exonérations . Acre . exonération . montant maladie-maternité
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre = non
+            - exonérations . invalidité
+        alors: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
   arrondi: oui
   unité: €/an
   références:
@@ -150,9 +158,17 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
     - assiette
     - taux
   abattement:
-    le maximum de:
-      - exonérations . Acre . exonération . taux indemnités journalières
-      - exonérations . invalidité . exonération . taux indemnités journalières
+    variations:
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre
+            - exonérations . invalidité = non
+        alors: exonérations . Acre . exonération . taux indemnités journalières
+      - si:
+          toutes ces conditions:
+            - exonérations . Acre = non
+            - exonérations . invalidité
+        alors: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
   arrondi: oui
   unité: €/an
   références:
@@ -220,7 +236,9 @@ indépendant . cotisations et contributions . cotisations . allocations familial
   valeur:
     valeur: allocations familiales avant abattements
     abattement: profession libérale . réglementée . PAMC . participation CPAM . allocations familiales
-  abattement: exonérations . Acre . exonération . taux allocations familiales
+  abattement:
+    applicable si: exonérations . invalidité = non
+    valeur: exonérations . Acre . exonération . taux allocations familiales
   arrondi: oui
   unité: €/an
   références:
@@ -285,9 +303,17 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
       - si: profession libérale . CNAVPL . exonération incapacité
         alors: 100%
       - sinon:
-          le maximum de:
-            - exonérations . Acre . exonération . taux retraite de base et invalidité-décès
-            - exonérations . invalidité . exonération . taux retraite de base
+          variations:
+            - si:
+                toutes ces conditions:
+                  - exonérations . Acre
+                  - exonérations . invalidité = non
+              alors: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
+            - si:
+                toutes ces conditions:
+                  - exonérations . Acre = non
+                  - exonérations . invalidité
+              alors: exonérations . invalidité . exonération . taux retraite de base
   arrondi: oui
   unité: €/an
   références:
@@ -433,7 +459,9 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     variations:
       - si: exonérations . âge
         alors: 100%
-      - sinon: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
+      - sinon:
+          applicable si: exonérations . invalidité = non
+          valeur: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
   arrondi: oui
   unité: €/an
   références:
