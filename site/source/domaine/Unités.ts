@@ -37,4 +37,4 @@ const UNITÉS_QUANTITÉS = [
 export type UnitéQuantité = (typeof UNITÉS_QUANTITÉS)[number]
 
 export const isUnitéQuantité = (unité?: string): unité is UnitéQuantité =>
-	 UNITÉS_QUANTITÉS.includes(unité as UnitéQuantité)
+	UNITÉS_QUANTITÉS.includes(unité as UnitéQuantité)

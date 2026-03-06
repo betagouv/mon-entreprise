@@ -5,7 +5,6 @@ import { split } from 'effect/String'
 import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 
 import { quantité, Quantité } from '@/domaine/Quantité'
-import { UnitéQuantité } from '@/domaine/Unités'
 
 export const QuantitéAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Quantité> => {
@@ -31,7 +30,7 @@ export const QuantitéAdapter = {
 			return O.none()
 		}
 
-		return O.some(quantité(numberValue, formattedUnit as UnitéQuantité))
+		return O.some(quantité(numberValue, formattedUnit))
 	},
 	encode: (valeur: O.Option<Quantité>) =>
 		pipe(
