@@ -2,16 +2,18 @@ indépendant: oui
 
 indépendant . revenu professionnel:
   résumé: rémunération du dirigeant au régime des indépendants
-  description:
-    Le revenu professionnel est la rémunération du dirigeant au régime
-    des indépendants.
+  description: |
+    Le **revenu professionnel** est la rémunération du dirigeant / de la dirigeante
+    au régime des indépendants.
 
-    Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il
-    s’agit du **résultat fiscal**.
+    Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il s’agit du
+    **résultat fiscal**.
 
-    Pour les entreprises qui ont opté pour l’**impôt sur les sociétés**, il
-    s’agit de la rémunération du dirigeant, auquel on ajoute les cotisations non
-    déductibles.
+    Pour les entreprises qui ont opté pour l’**impôt sur les sociétés**, il s’agit
+    de la **rémunération nette** du dirigeant / de la dirigeante.
+
+    Dans les deux cas on y ajoute la CSG non déductible ainsi que les cotisations
+    facultatives (plan d’épargne retraite, contrats Madelin...).
   unité: €/an
   résoudre la référence circulaire: oui
   somme:

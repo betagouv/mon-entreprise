@@ -1225,7 +1225,7 @@ impôt . barème standard . quotient familial . plafond avantage:
   titre.fr: plafond avantage
 impôt . barème standard . revenu brut global:
   description.en: |
-    [automatic] Overall gross income is the sum of all income after deductions:
+    [automatic] Total gross income** is the sum of all income after deductions:
     - net taxable salary,
     - profits (BIC and BNC),
     - dividends.
@@ -1237,7 +1237,7 @@ impôt . barème standard . revenu brut global:
     - other income from movable property and capital gains on securities,
     - real estate capital gains.
   description.fr: >
-    Le revenu brut global est la somme de tous les revenus, après leur
+    Le **revenu brut global** est la somme de tous les revenus, après leur
     abattement :
 
     - salaire net imposable,
@@ -1275,15 +1275,47 @@ impôt . barème standard . revenu d'activité abattu:
   titre.en: '[automatic] reduced business income'
   titre.fr: revenu d'activité abattu
 impôt . barème standard . revenu net global:
+  description.en: >
+    [automatic] The **net global income** is the gross global income after
+    deduction of certain
+
+    expenses such as :
+
+    - maintenance payments,
+
+    - retirement savings contributions,
+
+    - part of the CSG levied on income from property and investments.
+      investment income.
+
+    As our simulators do not include these charges, overall net income here is directly equal to overall gross income.
+
+    directly equal to overall gross income.
+  description.fr: >
+    Le **revenu net global** est le revenu brut global après déduction de
+    certaines
+
+    charges comme :
+
+    - les pensions alimentaires versées,
+
+    - les cotisations d’épargne-retraite,
+
+    - une partie de la CSG afférente aux revenus du patrimoine et aux produits de
+      placement.
+
+    Comme nos simulateurs n’intégrent pas ces charges, le revenu net global est ici
+
+    directement égal au revenu brut global.
   titre.en: '[automatic] overall net income'
   titre.fr: revenu net global
 impôt . barème standard . revenu net imposable:
   description.en: >
-    [automatic] Net taxable income is overall net income after special
+    [automatic] Net taxable income** is overall net income after special
     allowances.
 
 
-    You can benefit from a special allowance if you are in one of the following conditions 
+    You can benefit from a special allowance if one of the following conditions applies to you 
 
     following conditions:
 
@@ -1295,14 +1327,21 @@ impôt . barème standard . revenu net imposable:
 
 
     These allowances are not yet implemented in our simulators.
-  description.fr: |
-    Le revenu net imposable est le revenu net global après abattements spéciaux.
+  description.fr: >
+    Le **revenu net imposable** est le revenu net global après abattements
+    spéciaux.
+
 
     Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
+
     conditions suivantes :
+
     - vous avez 65 ans ou plus,
+
     - vous êtes invalide,
+
     - vous rattachez votre enfant marié, pacsé ou chargé de famille.
+
 
     Ces abattements ne sont pas encore implémentés dans nos simulateurs.
   titre.en: '[automatic] net taxable income'
@@ -3336,15 +3375,6 @@ indépendant . cotisations et contributions . formation professionnelle:
   note.fr: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
   titre.en: '[automatic] contribution to professional training'
   titre.fr: contribution à la formation professionnelle
-indépendant . cotisations et contributions . non déductibles:
-  titre.en: '[automatic] Non-deductible portion'
-  titre.fr: Part non déductible fiscalement
-indépendant . cotisations et contributions . non déductibles . avec dividendes:
-  résumé.en: '[automatic] Includes CSG not deductible from social security
-    contributions on dividends'
-  résumé.fr: Inclue la CSG non déductible des prélèvements sociaux sur les dividendes
-  titre.en: '[automatic] Non-deductible portion'
-  titre.fr: Part non déductible fiscalement
 indépendant . cotisations facultatives:
   description.en: >
     [automatic] It is possible for the self-employed to take out private
@@ -5109,20 +5139,46 @@ indépendant . revenu brut:
   titre.en: '[automatic] gross income'
   titre.fr: revenu brut
 indépendant . revenu professionnel:
-  description.en: >-
-    [automatic] Professional income is the manager's remuneration under the
-    self-employed workers' scheme.
+  description.en: >
+    [automatic] The **professional income** is the remuneration paid to the
+    executive
 
-    For companies that have opted for the **income tax**, this is the **taxable income**.
+    for self-employed workers.
 
-    For companies that have opted for the **taxe sur les sociétés**, this is the manager's remuneration, plus non-deductible contributions.
-  description.fr: >-
-    Le revenu professionnel est la rémunération du dirigeant au régime des
-    indépendants.
 
-    Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il s’agit du **résultat fiscal**.
+    For companies that have opted for the **tax sur le revenu**, it is the
 
-    Pour les entreprises qui ont opté pour l’**impôt sur les sociétés**, il s’agit de la rémunération du dirigeant, auquel on ajoute les cotisations non déductibles.
+    **taxable income**.
+
+
+    For companies that have opted for the **corporate income tax**, this is
+
+    the **net remuneration** of the manager.
+
+
+    In both cases, the non-deductible CSG is added, as are optional contributions
+
+    contributions (retirement savings plan, Madelin contracts, etc.).
+  description.fr: >
+    Le **revenu professionnel** est la rémunération du dirigeant / de la
+    dirigeante
+
+    au régime des indépendants.
+
+
+    Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il s’agit du
+
+    **résultat fiscal**.
+
+
+    Pour les entreprises qui ont opté pour l’**impôt sur les sociétés**, il s’agit
+
+    de la **rémunération nette** du dirigeant / de la dirigeante.
+
+
+    Dans les deux cas on y ajoute la CSG non déductible ainsi que les cotisations
+
+    facultatives (plan d’épargne retraite, contrats Madelin...).
   résumé.en: "[automatic] executive compensation under the self-employed workers' scheme"
   résumé.fr: rémunération du dirigeant au régime des indépendants
   titre.en: '[automatic] professional income'
@@ -5295,9 +5351,6 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
-paramètres . impôt . abattement revenu net global:
-  titre.en: '[automatic] overall net income allowance'
-  titre.fr: abattement revenu net global
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using
