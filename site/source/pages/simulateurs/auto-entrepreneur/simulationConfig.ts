@@ -27,7 +27,7 @@ export const configAutoEntrepreneur: SimulationConfig = {
 			},
 			{
 				label: 'ACRE',
-				dottedName: "dirigeant . auto-entrepreneur . éligible à l'ACRE",
+				dottedName: 'dirigeant . exonérations . ACRE',
 			},
 		],
 		liste: [

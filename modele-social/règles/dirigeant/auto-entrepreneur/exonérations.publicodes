@@ -113,32 +113,11 @@ dirigeant . auto-entrepreneur . Acre:
         l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
         l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
         cotisations.
-      unité: '%'
       variations:
-        - si: entreprise . date de création < 01/04/2019
-          alors:
-            grille:
-              assiette: entreprise . durée d'activité
-              tranches:
-                - montant: 25%
-                  plafond: 1 an
-                - montant: 50%
-                  plafond: 2 ans
-                - montant: 90%
-                  plafond: 3 ans
-        - si: entreprise . date de création < 01/04/2020
-          alors:
-            grille:
-              assiette: entreprise . durée d'activité
-              tranches:
-                - montant: 25%
-                  plafond: 1 an
-                - montant: 75%
-                  plafond: 2 ans
-                - montant: 90%
-                  plafond: 3 ans
-        - si: entreprise . durée d'activité < 1 an
+        - si: date < 07/2026
           alors: 50%
+        - sinon: 75%
+      unité: '%'
 
       références:
         L'essentiel du statut: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html
