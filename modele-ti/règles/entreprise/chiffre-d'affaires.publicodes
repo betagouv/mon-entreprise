@@ -8,12 +8,19 @@ entreprise . chiffre d'affaires:
 
     Le chiffre d’affaires à déclarer est le montant hors taxes (c’est-à-dire sans la
     TVA payée par les clients).
-  inversion numérique:
-    - indépendant . rémunération . nette
-    - indépendant . rémunération . nette . après impôt
-    - indépendant . cotisations et contributions
-    - indépendant . rémunération . impôt
-    - charges
+  variations:
+    - si: imposition . IR
+      alors:
+        inversion numérique:
+          - indépendant . rémunération . nette
+          - indépendant . rémunération . nette . après impôt
+          - indépendant . cotisations et contributions
+          - indépendant . rémunération . impôt
+          - charges
+    - sinon:
+        somme:
+          - indépendant . rémunération . brute
+          - indépendant . dividendes
   plancher: 0 €/an
   arrondi: oui
   unité: €/an
