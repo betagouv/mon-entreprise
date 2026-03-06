@@ -238,7 +238,11 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
     assiette: assiette des cotisations
     multiplicateur: PSS proratisé
     tranches:
-      - taux: 100%
+      - taux:
+          variations:
+            - si: date < 01/2026
+              alors: 100%
+            - sinon: 25%
         plafond: 75%
       - taux: 0%
         plafond: 100%

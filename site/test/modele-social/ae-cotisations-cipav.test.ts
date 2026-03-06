@@ -189,7 +189,6 @@ describe('Le simulateur auto-entrepreneur', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				'entreprise . date de création': '01/01/2026',
-				"dirigeant . auto-entrepreneur . éligible à l'ACRE": 'oui',
 				'dirigeant . exonérations . ACRE': 'oui',
 			})
 
@@ -220,7 +219,6 @@ describe('Le simulateur auto-entrepreneur', () => {
 				...situationParDéfaut,
 				'entreprise . activité . nature . libérale . réglementée': 'oui',
 				'entreprise . date de création': '01/01/2026',
-				"dirigeant . auto-entrepreneur . éligible à l'ACRE": 'oui',
 				'dirigeant . exonérations . ACRE': 'oui',
 			})
 

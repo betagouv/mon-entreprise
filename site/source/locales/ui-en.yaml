@@ -1436,8 +1436,6 @@ pages:
           body: Assistance for setting up or taking over a business (Acre) consists of a
             <2>partial exemption from social security contributions</2>, known
             as the "start-up exemption", for a <4>period of 12 months</4>.
-          body-ae: <2>Conditions of access to</2> Acre are more restrictive for
-            auto-enterprises.
           info-title: Benefit from Acre
           label: Activate Acre in simulation
           title: Acre
@@ -1458,7 +1456,6 @@ pages:
         title: Modify my options
         versement-libératoire:
           label: Activate final payment in simulation
-        éligible-acre: I'm eligible for Acre for my self-employed business
       option-applicable: Applicable option.
       option-non-applicable: Option not applicable.
       option-sous-conditions: Option available subject to conditions.
