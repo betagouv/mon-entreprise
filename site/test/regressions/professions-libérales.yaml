@@ -5,18 +5,18 @@ médecin:
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 50000 €/an
     indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 20%
+    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 10000 €/an
   - # Secteur 2 avec dépassement honoraire et grosse rémunération
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 300000 €/an
     indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 50%
+    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 150000 €/an
   - # Secteur 2 avec grosse rémunération et activité non conventionnée
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 400000 €/an
     indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 50%
-    indépendant . profession libérale . réglementée . PAMC . proportion recette activité non conventionnée: 40%
+    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 80000 €/an
+    indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée: 160000 €/an
   - # Non conventionné
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 120000 €/an
@@ -42,11 +42,11 @@ auxiliaire médical:
   - # Dépassement honoraire
     indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . brute: 30000 €/an
-    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 20%
+    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 15000 €/an
   - # Grosse rémunération
     indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . brute: 300000 €/an
-    indépendant . profession libérale . réglementée . PAMC . dépassement d'honoraire moyen: 100%
+    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 300000 €/an
 
 avocat:
   - indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
