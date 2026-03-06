@@ -2803,6 +2803,19 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
     Ce simulateur ne prend pas en compte les exonérations DROM.
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
+indépendant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité:
+  description.en: >
+    [automatic] This simulator does not handle cases where the exemption is
+    combined in the same year with
+
+    **with a **disability pension**.
+  description.fr: >
+    Ce simulateur ne gère pas les cas de cumul sur la même année de
+    l’exonération
+
+    **Acre** avec une **pension d’invalidité**.
+  titre.en: '[automatic] accumulation of Acre and disability'
+  titre.fr: cumul Acre et invalidité
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité:
   description.en: >-
     [automatic] If you are receiving a disability pension from a pension scheme
@@ -2907,12 +2920,12 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
   titre.fr: durée
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
   avec:
-    montant maladie-maternité:
-      titre.en: '[automatic] sickness and maternity amount'
-      titre.fr: montant maladie-maternité
     taux indemnités journalières:
       titre.en: '[automatic] daily allowance rates'
       titre.fr: taux indemnités journalières
+    taux maladie-maternité et indemnités journalières:
+      titre.en: '[automatic] sickness-maternity rates and daily allowances'
+      titre.fr: taux maladie-maternité et indemnités journalières
     taux retraite complémentaire:
       titre.en: '[automatic] supplementary pension rate'
       titre.fr: taux retraite complémentaire
