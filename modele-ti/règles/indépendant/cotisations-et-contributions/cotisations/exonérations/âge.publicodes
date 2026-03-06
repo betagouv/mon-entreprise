@@ -13,11 +13,12 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
   applicable si:
     une de ces conditions:
       - toutes ces conditions:
-          - une de ces conditions:
-              - profession libérale = non
-              - profession libérale . non réglementée . Cipav = non
+          - profession libérale = non
           - entreprise . date de création < 01/2016
-      - profession libérale . Cipav
+      - profession libérale . réglementée
+      - toutes ces conditions:
+          - profession libérale . non réglementée . Cipav
+          - entreprise . date de création < 01/2019
   question: Bénéficiez-vous du dispositif d’exonération « âge pour la retraite »
     de la cotisation invalidité-décès ?
   par défaut: non
