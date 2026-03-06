@@ -57,16 +57,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
 
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
   avec:
-    montant maladie-maternité:
-      produit:
-        - valeur: cotisations . maladie-maternité
-          contexte:
-            invalidité: non
-        - prorata sur l'année
-      arrondi: oui
-      unité: €/an
-
-    taux indemnités journalières: prorata sur l'année
+    taux maladie-maternité et indemnités journalières: prorata sur l'année
 
     taux retraite de base:
       # Seules les PLR Cipav bénéficient de l'exonération invalidité sur la retraitede base.
