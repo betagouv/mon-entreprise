@@ -22,6 +22,7 @@ indépendant . cotisations et contributions . début activité:
     forfaitaire est égale à 40 % du plafond annuel de la Sécurité sociale).
 
   applicable si: entreprise . date de création >= période . début d'année
+  non applicable si: cotisations . exonérations . invalidité
   unité: €/an
   valeur: cotisations et contributions
   contexte:
@@ -38,7 +39,6 @@ indépendant . cotisations et contributions . début activité:
     Article R613-17 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038750258
 
   avec:
-    # TODO: recadrer avec invalidité
     assiette forfaitaire:
       produit:
         - PSS proratisé

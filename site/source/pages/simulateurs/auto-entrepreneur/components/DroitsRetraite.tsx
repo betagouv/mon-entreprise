@@ -30,31 +30,30 @@ export default function DroitsRetraite() {
 			<Trans i18nKey="pages.simulateurs.auto-entrepreneur.explications.retraite.droits">
 				<H3>Droits acquis sur l'année</H3>
 
-				<WhenApplicable dottedName="dirigeant . auto-entrepreneur . DROM">
-					<Message type="info" border>
-						Les exonérations DROM n’ont aucune incidence sur la détermination
-						des droits à la retraite de base et complémentaire des
-						auto-entrepreneurs.
-					</Message>
-				</WhenApplicable>
-
-				<Condition expression="dirigeant . exonérations . ACRE">
-					<Message type="info" border>
-						L’exonération Acre n’a aucune incidence sur la détermination des
-						droits à la retraite de base et complémentaire des
-						auto-entrepreneurs.
-					</Message>
-				</Condition>
-
 				<Condition expression={exonérationRetraiteActive}>
 					<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
 						Le calcul des droits ouverts à la retraite n’est pas encore
-						implémenté pour les cas incluants des exonérations de cotisations
-						(pension invalidité, etc).
+						implémenté pour les cas incluant une pension invalidité.
 					</Message>
 				</Condition>
 
 				<Condition expression={{ '=': [exonérationRetraiteActive, 'non'] }}>
+					<Condition expression="dirigeant . auto-entrepreneur . DROM">
+						<Message type="info" border>
+							Les exonérations DROM n’ont aucune incidence sur la détermination
+							des droits à la retraite de base et complémentaire des
+							auto-entrepreneurs.
+						</Message>
+					</Condition>
+
+					<Condition expression="dirigeant . exonérations . ACRE">
+						<Message type="info" border>
+							L’exonération Acre n’a aucune incidence sur la détermination des
+							droits à la retraite de base et complémentaire des
+							auto-entrepreneurs.
+						</Message>
+					</Condition>
+
 					<Ul>
 						<Li>
 							Retraite de base&nbsp;:{' '}
