@@ -85,7 +85,11 @@ indépendant . dividendes . prélèvements sociaux:
                   - si: date < 01/2026
                     alors: 9.2%
                   - sinon: 10.6%
-            - sinon: 2.4%
+            - sinon:
+                variations:
+                  - si: date < 01/2026
+                    alors: 2.4%
+                  - sinon: 3.8%
 
     prélèvement de solidarité:
       produit:
