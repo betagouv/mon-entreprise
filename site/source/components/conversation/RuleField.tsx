@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
-import { Evaluation, RuleNode, Unit } from 'publicodes'
+import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
@@ -72,12 +72,7 @@ type RuleFieldProps = {
  * Il a vocation à remplacer <RuleInput /> qui n'embarque pas le label ou la legend,
  * compliquant la mise en place de l'accessibilité de ces champs.
  */
-export function RuleField({
-	dottedName,
-	labelOrLegend,
-	onChange,
-	onSubmit,
-}: RuleFieldProps) {
+export function RuleField({ dottedName, labelOrLegend }: RuleFieldProps) {
 	const engine = useEngine()
 
 	const rule = engine.getRule(dottedName)
@@ -88,13 +83,7 @@ export function RuleField({
 	const decodedEvaluation: O.Option<ValeurPublicodes> =
 		PublicodesAdapter.decode(evaluation)
 
-	console.log('rule', rule)
-	console.log('evaluation', evaluation)
-	console.log('decodedEvaluation', decodedEvaluation)
-
 	const value = O.getOrUndefined(decodedEvaluation)
-
-	console.log('value', value)
 
 	const ruleFieldNature = getRuleFieldNature(
 		rule,
