@@ -82,27 +82,36 @@ export default function SalariéSimulation() {
 				<SimulateurWarning
 					simulateur="salarié"
 					informationsComplémentaires={
-						<Body>
-							<Trans i18nKey="pages.simulateurs.salarié.warning.général">
-								Le simulateur ne prend pour l’instant pas en compte les accords
-								et conventions collectives, ni la myriade d’aides aux
-								entreprises. Trouvez votre convention collective{' '}
-								<Link
-									href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
-									aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
-								>
-									ici
-								</Link>
-								, et explorez les aides sur&nbsp;
-								<Link
-									href="https://www.aides-entreprises.fr"
-									aria-label="aides-entreprises.fr, nouvelle fenêtre"
-								>
-									aides-entreprises.fr
-								</Link>
-								.
-							</Trans>
-						</Body>
+						<>
+							<Body>
+								<Trans i18nKey="pages.simulateurs.salarié.warning.réformes">
+									Le simulateur intègre les{' '}
+									<Strong>mises à jour de 2026</Strong>, y compris la réduction
+									générale dégressive unique (RGDU).
+								</Trans>
+							</Body>
+							<Body>
+								<Trans i18nKey="pages.simulateurs.salarié.warning.général">
+									Le simulateur ne prend pour l’instant pas en compte les
+									accords et conventions collectives, ni la myriade d’aides aux
+									entreprises. Trouvez votre convention collective{' '}
+									<Link
+										href="https://code.travail.gouv.fr/outils/convention-collective#entreprise"
+										aria-label="ici, trouvez votre convention collective sur code.travail.gouv.fr, nouvelle fenêtre"
+									>
+										ici
+									</Link>
+									, et explorez les aides sur&nbsp;
+									<Link
+										href="https://www.aides-entreprises.fr"
+										aria-label="aides-entreprises.fr, nouvelle fenêtre"
+									>
+										aides-entreprises.fr
+									</Link>
+									.
+								</Trans>
+							</Body>
+						</>
 					}
 				/>
 				<SalariéSimulationGoals />
