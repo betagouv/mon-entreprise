@@ -1300,21 +1300,20 @@ pages:
             sociale (assurance maladie, allocations familiales, dépendance<1> et
             retraite</1>).
         retraite:
-          droits: "<0>Droits acquis sur l'année</0><1><0>Les exonérations DROM n’ont
+          droits: "<0>Droits acquis sur l'année</0><1><0>Le calcul des droits ouverts à la
+            retraite n’est pas encore implémenté pour les cas incluant une
+            pension invalidité.</0></1><2><0><0>Les exonérations DROM n’ont
             aucune incidence sur la détermination des droits à la retraite de
             base et complémentaire des
-            auto-entrepreneurs.</0></1><2><0>L’exonération Acre n’a aucune
+            auto-entrepreneurs.</0></0><1><0>L’exonération Acre n’a aucune
             incidence sur la détermination des droits à la retraite de base et
-            complémentaire des auto-entrepreneurs.</0></2><3><0>Le calcul des
-            droits ouverts à la retraite n’est pas encore implémenté pour les
-            cas incluants des exonérations de cotisations (pension invalidité,
-            etc).</0></3><4><0><0>Retraite de base : <2></2></0><1>Revenu cotisé
-            pour la retraite de base : <2></2></1><2><0>Points de retraite
-            complémentaire acquis (Cipav) : <2></2></0></2><3><0>Points de
-            retraite complémentaire acquis :
-            <2><0></0></2></0></3></0></4><5><0>Pour estimer le montant de votre
+            complémentaire des auto-entrepreneurs.</0></1><2><0>Retraite de base
+            : <2></2></0><1>Revenu cotisé pour la retraite de base :
+            <2></2></1><2><0>Points de retraite complémentaire acquis (Cipav) :
+            <2></2></0></2><3><0>Points de retraite complémentaire acquis :
+            <2><0></0></2></0></3></2></2><3><0>Pour estimer le montant de votre
             future pension de retraite, utilisez le <2>simulateur de l'Assurance
-            retraite</2>.</0></5>"
+            retraite</2>.</0></3>"
           titre: Votre retraite
         répartition:
           cotisations: Cotisations
@@ -1808,6 +1807,8 @@ pages:
         cotisations:
           fiche: Voir la fiche Urssaf
           forfaitaires: "Cotisations forfaitaires :"
+          invalidité: Le calcul des cotisations forfaitaires de début d’activité n’est pas
+            encore implémenté pour les cas incluant une pension invalidité.
           régularisation:
             description: <0>Les cotisations et contributions sont calculées à titre
               provisionnel sur la base du dernier revenu déclaré (ou du montat
@@ -1831,21 +1832,21 @@ pages:
             sociale (assurance maladie, allocations familiales, dépendance<1> et
             retraite</1>).
         retraite:
-          droits: "<0>Droits acquis sur l'année</0><1><0>L’exonération ACRE n’a aucune
+          droits: "<0>Droits acquis sur l'année</0><1><0>Le calcul des droits ouverts à la
+            retraite n’est pas encore implémenté pour les cas incluant une
+            pension invalidité.</0></1><2><0><0>L’exonération ACRE n’a aucune
             incidence sur la détermination des droits à la retraite de base et
-            complémentaire.</0></1><2><0>Le calcul des droits ouverts à la
-            retraite n’est pas encore implémenté pour les cas incluants des
-            exonérations de cotisations (pension invalidité,
-            etc).</0></2><3><0><0>Retraite de base : <2></2></0><1><0>Points de
-            retraite de base acquis (CNAVPL) : <2></2></0></1><2><0>Revenu
-            cotisé pour la retraite de base : <2></2></0></2><3><0>Points de
-            retraite complémentaire acquis (Cipav) : <2></2></0></3><4><0>Points
-            de retraite complémentaire acquis : <2><0></0></2><3><0>non
-            connue</0><1><0>Ce simulateur ne gère pas les droits acquis de
-            retraite complémentaire pour les professions libérales réglementées
-            hors Cipav.</0></1></3></0></4></0></3><4><0>Pour estimer le montant
-            de votre future pension de retraite, utilisez le <2>simulateur de
-            l'Assurance retraite</2>.</0></4>"
+            complémentaire.</0></0><1><0>Retraite de base :
+            <2></2></0><1><0>Points de retraite de base acquis (CNAVPL) :
+            <2></2></0></1><2><0>Revenu cotisé pour la retraite de base :
+            <2></2></0></2><3><0>Points de retraite complémentaire acquis
+            (Cipav) : <2></2></0></3><4><0>Points de retraite complémentaire
+            acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce simulateur ne
+            gère pas les droits acquis de retraite complémentaire pour les
+            professions libérales réglementées hors
+            Cipav.</0></1></3></0></4></1></2><3><0>Pour estimer le montant de
+            votre future pension de retraite, utilisez le <2>simulateur de
+            l'Assurance retraite</2>.</0></3>"
           titre: Votre retraite
         répartition:
           cotisations: Cotisations
