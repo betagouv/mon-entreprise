@@ -27,8 +27,6 @@ const DOTTEDNAME_ENTREPRISE_IMPOSITION = 'entreprise . imposition'
 const DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE =
 	'dirigeant . auto-entrepreneur . impôt . versement libératoire'
 const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
-const DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE =
-	"dirigeant . auto-entrepreneur . éligible à l'ACRE"
 
 type IRouIS = "'IR'" | "'IS'"
 
@@ -36,7 +34,6 @@ export default function ModifierOptions() {
 	const { set, cancel, confirm, values } = useStatefulRulesEdit(
 		[
 			DOTTEDNAME_ACRE,
-			DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE,
 			DOTTEDNAME_ENTREPRISE_IMPOSITION,
 			DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE,
 		] as const,
@@ -108,34 +105,6 @@ export default function ModifierOptions() {
 							defaultValue={values[DOTTEDNAME_ACRE] as OuiNon | undefined}
 						/>
 					</FlexCentered>
-
-					{values[DOTTEDNAME_ACRE] === 'oui' && (
-						<>
-							<Body>
-								<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.acre.body-ae">
-									Les{' '}
-									<Link href="https://www.urssaf.fr/portail/home/independant/je-beneficie-dexonerations/accre/qui-peut-en-beneficier.html">
-										conditions d’accès
-									</Link>{' '}
-									à l’Acre sont plus restrictives pour les auto-entreprises.
-								</Trans>
-							</Body>
-							<FlexCentered>
-								<OuiNonSwitch
-									label={t(
-										'pages.simulateurs.comparaison-statuts.modifier-options.éligible-acre',
-										'Je suis éligible à l’Acre pour mon auto-entreprise'
-									)}
-									onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE]}
-									defaultValue={
-										values[DOTTEDNAME_AUTOENTREPRENEUR_ELIGIBLE_ACRE] as
-											| OuiNon
-											| undefined
-									}
-								/>
-							</FlexCentered>
-						</>
-					)}
 				</div>
 
 				<Spacing md />

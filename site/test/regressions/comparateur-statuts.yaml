@@ -34,7 +34,6 @@ ACRE:
       - &ACRE
         entreprise . chiffre d'affaires: 20000 €/an
         dirigeant . exonérations . ACRE: oui
-        dirigeant . auto-entrepreneur . éligible à l'ACRE: oui
   - <<: [*EI, *ACRE]
   - <<: [*SASU, *ACRE]
 

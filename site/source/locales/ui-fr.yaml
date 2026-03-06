@@ -1521,8 +1521,6 @@ pages:
           body: L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en
             une <2>exonération partielle de charges sociales</2>, dite
             exonération de début d’activité, <4>pendant 12 mois</4>.
-          body-ae: Les <2>conditions d’accès</2> à l’Acre sont plus restrictives pour les
-            auto-entreprises.
           info-title: Bénéficier de l’Acre
           label: Activer l’Acre dans la simulation
           title: Acre
@@ -1543,7 +1541,6 @@ pages:
         title: Modifier mes options
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
-        éligible-acre: Je suis éligible à l’Acre pour mon auto-entreprise
       option-applicable: Option applicable.
       option-non-applicable: Option non applicable.
       option-sous-conditions: Option applicable sous conditions.
