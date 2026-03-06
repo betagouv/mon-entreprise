@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import {
@@ -14,6 +13,7 @@ import {
 	useCMG,
 } from '@/contextes/cmg'
 import { useGetPath } from '@/hooks/useGetPath'
+import { useNavigation } from '@/lib/navigation'
 
 import AMA from '../components/AMA/AMA'
 import QuestionModesDeGarde from '../components/déclaration/QuestionModesDeGarde'
@@ -22,7 +22,7 @@ import Navigation from '../components/Navigation'
 import { MessageFormulaireInvalide } from '../components/styled-components'
 
 export default function Déclarations() {
-	const navigate = useNavigate()
+	const { navigate } = useNavigation()
 	const { t } = useTranslation()
 	const { raisonsInéligibilité, situation, salariéesAMA, salariéesGED } =
 		useCMG()

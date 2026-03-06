@@ -1,10 +1,11 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { TrackChapter } from '@/components/ATInternetTracking'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Banner, Emoji, InnerBanner, Link } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 import API from './API'
@@ -21,7 +22,7 @@ type JobOffer = {
 
 export default function Integration() {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
-	const { pathname } = useLocation()
+	const { currentPath } = useNavigation()
 	const { data: jobOffers } = useFetchData<JobOffer[]>('/data/job-offers.json')
 	const openJobOffer = jobOffers?.[0]
 
@@ -31,7 +32,7 @@ export default function Integration() {
 		<TrackChapter chapter1="integration">
 			<ScrollToTop />
 
-			{pathname !== absoluteSitePaths.développeur.index && (
+			{currentPath !== absoluteSitePaths.développeur.index && (
 				<Link to={absoluteSitePaths.développeur.index}>
 					<span aria-hidden>←</span> <Trans>Outils pour les développeurs</Trans>{' '}
 					<Emoji emoji="👨‍💻" />

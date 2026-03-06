@@ -1,18 +1,18 @@
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+
+import { useNavigation } from '@/lib/navigation'
 
 export default function useScrollToHash() {
-	const location = useLocation()
+	const { locationHash } = useNavigation()
 
 	useEffect(() => {
-		const { hash } = location
-		if (hash) {
-			const id = hash.replace('#', '')
+		if (locationHash) {
+			const id = locationHash.replace('#', '')
 			const element = document.getElementById(id)
 			if (!element) {
 				return
 			}
 			element.scrollIntoView()
 		}
-	}, [location])
+	}, [locationHash])
 }

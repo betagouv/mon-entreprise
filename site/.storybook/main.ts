@@ -5,6 +5,10 @@ const config: StorybookConfig = {
 		'../source/**/*.stories.mdx',
 		'../source/**/*.stories.@(js|jsx|ts|tsx)',
 	],
+	env: (config) => ({
+		...config,
+		STORYBOOK: 'true',
+	}),
 	addons: [
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',

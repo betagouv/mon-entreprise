@@ -9,7 +9,7 @@ import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
-import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
+import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
 
 export default function RechercheActivité() {
 	const [codeApe, setCodeApe] = useState('')
@@ -20,7 +20,7 @@ export default function RechercheActivité() {
 		dispatch(resetSimulation())
 	}, [])
 
-	const isBpi = useIsEmbededOnBPISite()
+	const isBpi = useIsEmbeddedOnBPISite()
 
 	const NavigationComponent = (
 		<Navigation

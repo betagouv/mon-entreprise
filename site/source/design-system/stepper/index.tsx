@@ -3,8 +3,9 @@ import { useSSRSafeId } from '@react-aria/ssr'
 import { AriaButtonProps } from '@react-types/button'
 import { ComponentPropsWithRef } from 'react'
 import { Trans } from 'react-i18next'
-import { Link as RouterLink, useMatch } from 'react-router-dom'
 import { css, styled } from 'styled-components'
+
+import { Link as RouterLink, useNavigation } from '@/lib/navigation'
 
 import { Link } from '../typography/link'
 
@@ -25,7 +26,8 @@ export function Step({
 	if (import.meta.env.DEV && (progress > 1 || progress < 0)) {
 		throw new TypeError('`progress` should be a number between 0 and 1')
 	}
-	const active = !!useMatch({ path: props.to })
+	const { matchPath } = useNavigation()
+	const active = matchPath(props.to) !== null
 	const propsBar = {
 		'aria-labelledby': labelId,
 		minValue: 0,
