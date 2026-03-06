@@ -23,6 +23,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     - une assurance maternité complète en cas de grossesse ou d’adoption ;
     - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
     souscrire une assurance maladie complémentaire.
+  # TODO: inclure la participation CPAM ici et supprimer le remplace
   variations:
     - si:
         est applicable: domiciliation fiscale étranger
@@ -191,6 +192,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     ressources.
     Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
     des revenus de la famille.
+  # TODO: inclure la participation CPAM ici et supprimer le remplace
   produit:
     - assiette sociale
     - taux
