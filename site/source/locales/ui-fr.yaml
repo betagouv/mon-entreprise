@@ -2106,6 +2106,8 @@ pages:
           conventions collectives, ni la myriade d’aides aux entreprises.
           Trouvez votre convention collective <2>ici</2>, et explorez les aides
           sur <4>aides-entreprises.fr</4>.
+        réformes: Le simulateur intègre les <2>mises à jour de 2026</2>, y compris la
+          réduction générale dégressive unique (RGDU).
     sasu:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
