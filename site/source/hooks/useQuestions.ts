@@ -107,7 +107,10 @@ export function useQuestions<S extends Situation>({
 	const publicodesQuestionsRéponduesFiltrées = useMemo(
 		() =>
 			publicodesQuestionsRépondues.filter(
-				(q) => !publicodesListeNoire.includes(q.règle)
+				(q) =>
+					!publicodesListeNoire.find((questionListeNoire) =>
+						q.règle.startsWith(questionListeNoire)
+					)
 			),
 		[publicodesQuestionsRépondues, publicodesListeNoire]
 	)
