@@ -1,0 +1,72 @@
+indépendant . revenus de remplacement:
+  titre: Revenus de remplacement
+  description: |
+    Les **revenus de remplacement** sont soumis à cotisations sociales, y compris au
+    régime micro-fiscal. Ils sont soumis à la CSG-CRDS, mais celle-ci est déjà
+    précomptée par l’organisme qui les verse.
+
+    Les revenus de remplacement concernés sont :
+    - les **indemnités journalières** versées par la CPAM :
+      - indemnités journalières maladie (hors affection de longue durée),
+      - indemnités journalières maternité, adoption, paternité et d’accueil de
+      l’enfant,
+      - allocation forfaitaire de repos maternel ;
+    - les **allocation journalière du proche aidant (AJPA)** versée par la Caf ;
+    - les indemnités journalières versées dans le cadre d’un **contrat Madelin**
+    (hors affection de longue durée).
+  résumé: Indemnités jouranlières, AJPA...
+  question: Avez-vous perçu des revenus de remplacement ?
+  par défaut: non
+
+indépendant . revenus de remplacement . bruts:
+  titre: Montant brut des revenus de remplacement
+  question: Quel est le montant brut total de vos revenus de remplacement ?
+  description: |
+    Indiquez le **montant brut** total de vos revenus de remplacement :
+    - indemnités journalières versées par la CPAM :
+      - indemnités journalières maladie (hors affection de longue durée),
+      - indemnités journalières maternité, adoption, paternité et d’accueil de
+      l’enfant,
+      - allocation forfaitaire de repos maternel ;
+    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
+    - indemnités journalières versées dans le cadre d’un contrat Madelin
+    (hors affection de longue durée).
+    
+    Ces montants figurent sur les relevés de prestations fournis par les
+    organismes qui les versent.
+
+    > Note : Les **prestations d’invalidité** versées par les régimes
+    > d’invalidité-décès ne sont pas concernées.
+
+    Les revenus de remplacement sont **soumis à cotisations sociales**, y compris au
+    régime micro-fiscal. Ils sont soumis à la CSG-CRDS, mais celle-ci est déjà
+    précomptée par l’organisme qui les verse.
+
+    Le montant brut renseigné ici est ajouté à l’assiette sociale après
+    application d’un **abattement forfaitaire de 26 %**.
+  par défaut: 0 €/an
+
+indépendant . revenus de remplacement . imposables:
+  titre: Part imposable des revenus de remplacement
+  non applicable si:
+    une de ces conditions:
+      - cotisations et contributions . après réforme
+      - entreprise . imposition . IR . régime micro-fiscal
+  question: Quel est le montant brut imposable de vos allocations et indemnités
+    journalières de sécurité sociale ?
+  description: |
+    Indiquez uniquement le **montant imposable** de vos revenus de remplacement
+    perçus :
+    - indemnités journalières versées par la CPAM :
+      - indemnités journalières maladie (hors affection de longue durée),
+      - indemnités journalières maternité, adoption, paternité et d’accueil de
+      l’enfant,
+      - allocation forfaitaire de repos maternel ;
+    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
+    - indemnités journalières versées dans le cadre d’un contrat Madelin
+    (hors affection de longue durée).
+
+    Ces indemnités et allocations seront déduites de vos revenus d’activité, afin
+    d’être soumises au taux réduit de la CSG-CRDS.
+  par défaut: 0 €/an
+  unité: €/an
