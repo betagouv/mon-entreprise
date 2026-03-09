@@ -87,23 +87,19 @@ describe('Indépendant', () => {
 		it('calcule avec des revenus de remplacement', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
-				'indépendant . IJSS': 'oui',
-				'indépendant . IJSS . montant': '2000 €/an',
+				'indépendant . revenus de remplacement': 'oui',
+				'indépendant . revenus de remplacement . bruts': '2000 €/an',
 			})
 
 			const assietteCSG =
 				(e.evaluate(
 					'indépendant . cotisations et contributions . assiette CSG-CRDS'
 				).nodeValue as number) || 0
-			const IJSS =
-				(e.evaluate('indépendant . IJSS . après abattement')
-					.nodeValue as number) || 0
 			const assietteSociale = e.evaluate(
 				'indépendant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
-			expect(IJSS).toEqual(1480)
-			expect(assietteSociale).toEqual(assietteCSG + IJSS)
+			expect(assietteSociale).toEqual(assietteCSG + (2_000 * (100 - 26)) / 100)
 		})
 
 		it('calcule avec des revenus étrangers bénéficiaires', () => {
