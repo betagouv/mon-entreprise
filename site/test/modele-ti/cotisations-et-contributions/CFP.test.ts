@@ -2,116 +2,75 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-const defaultSituation = {
-	'plafond sécurité sociale': '47100 €/an',
-	'entreprise . imposition': "'IR'",
-	"entreprise . chiffre d'affaires": '10000 €/an',
-}
+const COTISATION =
+	'indépendant . cotisations et contributions . formation professionnelle'
 
 describe('Contribution à la formation professionnelle', () => {
 	let engine: Engine
+	let PASS: number
 	beforeEach(() => {
 		engine = new Engine(rules)
+		PASS = engine.evaluate('plafond sécurité sociale . annuel')
+			.nodeValue as number
 	})
 
 	describe('pour les artisans, commerçants et PLNR', () => {
 		it('vaut 0,25% du PASS pour le cas général', () => {
-			const e = engine.setSituation(defaultSituation)
-
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle . taux',
-				0.25
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle',
-				118
-			)
+			expect(engine).toEvaluate(`${COTISATION} . taux`, 0.25)
+			expect(engine).toEvaluate(COTISATION, Math.round((PASS * 0.25) / 100))
 		})
 
 		it('vaut 0,34% du PASS avec conjoint collaborateur', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
 				'indépendant . conjoint collaborateur': 'oui',
 			})
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle . taux',
-				0.34
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle',
-				160
-			)
+			expect(e).toEvaluate(`${COTISATION} . taux`, 0.34)
+			expect(e).toEvaluate(COTISATION, Math.round((PASS * 0.34) / 100))
 		})
 
 		it('vaut 0,29% du PASS pour les activités artisanales', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
 				'entreprise . activité': "'artisanale'",
 			})
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle . taux',
-				0.29
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle',
-				137
-			)
+			expect(e).toEvaluate(`${COTISATION} . taux`, 0.29)
+			expect(e).toEvaluate(COTISATION, Math.round((PASS * 0.29) / 100))
 		})
 
 		it('n’est pas proratisée en cas d’année incomplète', () => {
-			const e1 = engine.setSituation(defaultSituation)
-			const annéeComplète = e1.evaluate(
-				'indépendant . cotisations et contributions . formation professionnelle'
-			).nodeValue
+			const annéeComplète = engine.evaluate(COTISATION).nodeValue
 
-			const e2 = engine.setSituation({
-				...defaultSituation,
+			const e = engine.setSituation({
 				"entreprise . durée d'activité cette année": '250 jour',
 			})
-			const annéeIncomplète = e2.evaluate(
-				'indépendant . cotisations et contributions . formation professionnelle'
-			).nodeValue
+			const annéeIncomplète = e.evaluate(COTISATION).nodeValue
 
 			expect(annéeIncomplète).toEqual(annéeComplète)
 		})
 	})
 
 	describe('pour les PLR', () => {
-		const defaultSituationPLR = {
-			...defaultSituation,
+		const defaultSituation = {
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
 		}
 
 		it('vaut 0,25% du PASS', () => {
-			const e = engine.setSituation(defaultSituationPLR)
+			const e = engine.setSituation(defaultSituation)
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle . taux',
-				0.25
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle',
-				118
-			)
+			expect(e).toEvaluate(`${COTISATION} . taux`, 0.25)
+			expect(e).toEvaluate(COTISATION, Math.round((PASS * 0.25) / 100))
 		})
 
 		it('vaut 0,34% du PASS avec conjoint collaborateur', () => {
 			const e = engine.setSituation({
-				...defaultSituationPLR,
+				...defaultSituation,
 				'indépendant . conjoint collaborateur': 'oui',
 			})
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle . taux',
-				0.34
-			)
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . formation professionnelle',
-				160
-			)
+			expect(e).toEvaluate(`${COTISATION} . taux`, 0.34)
+			expect(e).toEvaluate(COTISATION, Math.round((PASS * 0.34) / 100))
 		})
 	})
 })

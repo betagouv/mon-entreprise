@@ -2,8 +2,10 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
+const DÉBUT_ACTIVITÉ =
+	'indépendant . cotisations et contributions . début activité'
+
 const defaultSituation = {
-	'entreprise . imposition': "'IR'",
 	"entreprise . chiffre d'affaires": '10000 €/an',
 	'entreprise . date de création': '18/02/2026',
 }
@@ -24,7 +26,7 @@ describe('Cotisations de début d’activité', () => {
 				.nodeValue as number
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
+				`${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
 				Math.round((PASSProratisé * 19) / 100)
 			)
 		})
@@ -33,7 +35,7 @@ describe('Cotisations de début d’activité', () => {
 			const e = engine.setSituation(defaultSituation)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . assiette forfaitaire indemnités journalières',
+				`${DÉBUT_ACTIVITÉ} . assiette forfaitaire indemnités journalières`,
 				Math.round((PASS * 40) / 100)
 			)
 		})
@@ -54,7 +56,6 @@ describe('Cotisations de début d’activité', () => {
 			/** Cotisation indemnités journalières :
 			 * assiette = 40% du PASS (non proratisé)
 			 * taux = 0,5%
-			 * => 94 €
 			 */
 			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.5) / 100)
 
@@ -98,10 +99,7 @@ describe('Cotisations de début d’activité', () => {
 			 */
 			const CFP = Math.round((PASS * 0.25) / 100)
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité',
-				IJ + RB + RC + ID + CSG + CFP
-			)
+			expect(e).toEvaluate(DÉBUT_ACTIVITÉ, IJ + RB + RC + ID + CSG + CFP)
 		})
 	})
 
@@ -118,7 +116,7 @@ describe('Cotisations de début d’activité', () => {
 				.nodeValue as number
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
+				`${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
 				Math.round((PASSProratisé * 19) / 100)
 			)
 		})
@@ -127,7 +125,7 @@ describe('Cotisations de début d’activité', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . assiette forfaitaire indemnités journalières',
+				`${DÉBUT_ACTIVITÉ} . assiette forfaitaire indemnités journalières`,
 				Math.round((PASS * 40) / 100)
 			)
 		})
@@ -138,7 +136,7 @@ describe('Cotisations de début d’activité', () => {
 				.nodeValue as number
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité . assiette forfaitaire invalidité décès Cipav',
+				`${DÉBUT_ACTIVITÉ} . assiette forfaitaire invalidité décès Cipav`,
 				Math.round((PASSProratisé * 37) / 100)
 			)
 		})
@@ -159,7 +157,6 @@ describe('Cotisations de début d’activité', () => {
 			/** Cotisation indemnités journalières :
 			 * assiette = 40% du PASS (non proratisé)
 			 * taux = 0,3%
-			 * => 94 €
 			 */
 			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.3) / 100)
 
@@ -207,10 +204,7 @@ describe('Cotisations de début d’activité', () => {
 			 */
 			const CFP = Math.round((PASS * 0.25) / 100)
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité',
-				IJ + RB + RC + ID + CSG + CFP
-			)
+			expect(e).toEvaluate(DÉBUT_ACTIVITÉ, IJ + RB + RC + ID + CSG + CFP)
 		})
 	})
 
@@ -247,7 +241,6 @@ describe('Cotisations de début d’activité', () => {
 			/** Cotisation indemnités journalières :
 			 * assiette = 40% du PASS (non proratisé)
 			 * taux = 0,5%
-			 * => 94 €
 			 */
 			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.5) / 100)
 
@@ -285,10 +278,7 @@ describe('Cotisations de début d’activité', () => {
 			 */
 			const CFP = Math.round((PASS * 0.25) / 100)
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité',
-				AM + IJ + RB + RC + ID + CFP
-			)
+			expect(e).toEvaluate(DÉBUT_ACTIVITÉ, AM + IJ + RB + RC + ID + CFP)
 		})
 
 		it('applique les assiettes forfaitaires, la dispense de CSG-CRDS et le taux maladie spécifique pour les PAMC', () => {
@@ -320,7 +310,6 @@ describe('Cotisations de début d’activité', () => {
 			/** Cotisation indemnités journalières :
 			 * assiette = 40% du PASS (non proratisé)
 			 * taux = 0,3%
-			 * => 94 €
 			 */
 			const IJ = Math.round((Math.round((PASS * 40) / 100) * 0.3) / 100)
 
@@ -344,8 +333,7 @@ describe('Cotisations de début d’activité', () => {
 				valeur:
 					'indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire',
 				contexte: {
-					'indépendant . cotisations et contributions . assiette sociale':
-						'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
+					'indépendant . cotisations et contributions . assiette sociale': `${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
 				},
 			}).nodeValue as number
 			const ID = e.evaluate(
@@ -355,8 +343,7 @@ describe('Cotisations de début d’activité', () => {
 				valeur:
 					'indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV',
 				contexte: {
-					'indépendant . cotisations et contributions . assiette sociale':
-						'indépendant . cotisations et contributions . début activité . assiette forfaitaire',
+					'indépendant . cotisations et contributions . assiette sociale': `${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
 				},
 			}).nodeValue as number
 
@@ -367,10 +354,7 @@ describe('Cotisations de début d’activité', () => {
 			 */
 			const CFP = Math.round((PASS * 0.25) / 100)
 
-			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . début activité',
-				AM + IJ + RB + RC + ID + PCV + CFP
-			)
+			expect(e).toEvaluate(DÉBUT_ACTIVITÉ, AM + IJ + RB + RC + ID + PCV + CFP)
 		})
 	})
 })

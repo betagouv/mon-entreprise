@@ -5,8 +5,6 @@ import { beforeEach, describe, expect, it } from 'vitest'
 const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
 
 const defaultSituation = {
-	'plafond sécurité sociale': '47100 €/an',
-	'entreprise . imposition': "'IR'",
 	'entreprise . activité': "'libérale'",
 	'entreprise . activité . libérale . réglementée': 'oui',
 	'entreprise . date de création': '18/02/2025',
