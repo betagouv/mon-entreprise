@@ -15,6 +15,8 @@ import {
 	Message,
 	Spacing,
 } from '@/design-system'
+import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
+import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
@@ -23,6 +25,8 @@ import ModifierOptions from './ModifierOptions'
 import StatutChoice from './StatutChoice'
 
 function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
+	const simulateurConfig = useSimulatorData('comparaison-statuts')
+	const { questions, raccourcis } = useSimulationPublicodes(simulateurConfig)
 	const { t } = useTranslation()
 
 	const { absoluteSitePaths } = useSitePaths()
@@ -32,6 +36,8 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 			<Simulation
 				hideDetails
 				showQuestionsFromBeginning
+				questionsPublicodes={questions}
+				raccourcisPublicodes={raccourcis}
 				fullWidth
 				id="simulation-comparateur"
 			>
@@ -45,6 +51,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
 				</SimulationGoals>
 			</Simulation>
+
 			<Spacing lg />
 
 			<Condition expression="entreprise . activité . nature . libérale . réglementée">
@@ -67,6 +74,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					</Trans>
 				</Message>
 			</Condition>
+
 			<Condition expression="entreprise . activité . nature . libérale . réglementée = non">
 				<ConteneurBleu>
 					<StatutChoice namedEngines={namedEngines} hideCTA />
@@ -80,6 +88,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					</div>
 				</ConteneurBleu>
 				<Détails namedEngines={namedEngines} expandRevenuSection />
+
 				<EngineDocumentationRoutes
 					basePath={absoluteSitePaths.simulateurs.comparaison}
 					namedEngines={namedEngines}

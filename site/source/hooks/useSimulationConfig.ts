@@ -1,23 +1,22 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useSetupSafeSituation } from '@/hooks/useSetupSafeSituation'
 import {
-	useEngine,
-	useSetupSafeSituation,
-} from '@/components/utils/EngineContext'
-import {
-	loadPreviousSimulation,
-	setSimulationConfig,
+	chargeLaSimulationPrécédente,
+	configureLaSimulation,
 } from '@/store/actions/actions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
-import { configSelector } from '@/store/selectors/config.selector'
+import { configSelector } from '@/store/selectors/simulation/config/config.selector'
 
 export default function useSimulationConfig({
 	key,
+	url,
 	config,
 	autoloadLastSimulation = false,
 }: {
 	key: string
+	url: string
 	config?: SimulationConfig
 	autoloadLastSimulation?: boolean
 }) {
@@ -25,7 +24,7 @@ export default function useSimulationConfig({
 
 	// Initialize redux store in SSR mode
 	if (import.meta.env.SSR) {
-		dispatch(setSimulationConfig(config ?? {}, key))
+		dispatch(configureLaSimulation(config ?? {}, url, key))
 	}
 
 	const lastConfig = useSelector(configSelector)
@@ -38,12 +37,12 @@ export default function useSimulationConfig({
 
 	useLayoutEffectWithoutWarnInSSR(() => {
 		if (config && lastConfig !== config) {
-			dispatch(setSimulationConfig(config ?? {}, key))
+			dispatch(configureLaSimulation(config ?? {}, url, key))
 		}
 		if (autoloadLastSimulation) {
-			dispatch(loadPreviousSimulation())
+			dispatch(chargeLaSimulationPrécédente())
 		}
 	}, [config, dispatch, lastConfig, key])
 
-	useSetupSafeSituation(useEngine())
+	useSetupSafeSituation(config?.nomModèle)
 }

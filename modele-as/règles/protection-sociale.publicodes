@@ -1,0 +1,618 @@
+protection sociale:
+  experimental: oui
+  description: >
+    La protection sociale est composée de 5 branches principales : maladie,
+    famille, accidents du travail et maladies professionnelles, retraite et
+    chômage. A cela s’ajoutent aussi les cotisations pour la formation
+    professionnelle et le transport.
+  références:
+    securite-sociale.fr: https://www.securite-sociale.fr/accueil
+
+protection sociale . retraite:
+  icônes: 👵
+  type: branche
+  résumé: Garantit en moyenne 60 à 70 % du dernier revenu d’activité pour votre
+    pension de retraite.
+
+  description: |
+    ### Un système obligatoire …
+    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+
+    ###… par répartition
+    Le montant total des cotisations que vous versez chaque année sert à payer les
+    pensions des retraités pour cette même année. Le système organise ainsi un
+    transfert direct des générations en activité vers les générations à la retraite.
+
+    ###… principalement contributif
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu »
+    à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à
+    la retraite et du nombre d’années passées à travailler.
+
+    **Notre système de retraite est également solidaire** : les chômeurs, les
+    personnes en arrêt maladie, les personnes en situation de handicap, les
+    travailleurs touchant de faibles revenus, les femmes en congé maternité
+    acquièrent également des droits. Aucune personne à la retraite n’est laissée
+    sans ressources.
+
+
+    Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+  références:
+    Panorama des régimes de retraites: https://travail-emploi.gouv.fr/IMG/pdf/panorama_regimes_retraites_janvier-2024.pdf
+    'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
+    Régime de retraite des travailleurs indépendants: https://entreprendre.service-public.fr/vosdroits/F33841
+
+protection sociale . retraite . trimestres:
+  titre: trimestres validés
+  grille:
+    assiette: base . cotisée
+    multiplicateur: SMIC . horaire . début d'année
+    tranches:
+      - montant: 0 trimestre validé/an
+        plafond: 150 heure/an
+      - montant: 1 trimestre validé/an
+        plafond: 300 heure/an
+      - montant: 2 trimestre validé/an
+        plafond: 450 heure/an
+      - montant: 3 trimestre validé/an
+        plafond: 600 heure/an
+      - montant: 4 trimestre validé/an
+  plafond: 4 trimestre validé/an
+  références:
+    Durée d’assurance retraite du salarié du secteur privé: https://www.service-public.fr/particuliers/vosdroits/F1761
+    # Lien mort :
+    # Salaire validant un trimestre: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx
+    Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+
+protection sociale . retraite . base:
+  titre: Retraite de base maximum
+  résumé: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  description: |
+    Le montant de votre pension pour la retraite de base est calculé à partir de la
+    moyenne de vos revenus des 25 meilleures années et du nombre de trimestres
+    cotisés.
+
+    Cette **estimation** de votre pension de retraite de base **maximum** est
+    calculée avec les hypothèses suivantes :
+    - La rémunération que vous avez saisie correspond à celle de vos
+    **25 meilleures années** ;
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+    - Vous n’avez pas d’autres sources de revenus ;
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+    bénéficier du **taux plein**.
+
+    > **Calcul détaillé :** 50% x revenu annuel moyen x prorata de pension
+    >
+    > Avec :
+    > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
+    > travailleur indépendant pendant les 25 années les plus avantageuses de votre
+    > carrière ;
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
+    > durée d’assurance pour obtenir une pension à taux plein.
+
+  arrondi: oui
+  unité: €/mois
+  produit:
+    - base . cotisée
+    - 50%
+  références:
+    'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
+    Assurance Retraite de la Sécurité sociale: https://www.lassuranceretraite.fr/
+    Calcul de la retraite du salarié du secteur privé: https://www.service-public.fr/particuliers/vosdroits/F21552
+    Régime de retraite des travailleurs indépendants: https://entreprendre.service-public.fr/vosdroits/F33841
+    Montant de la retraite personnelle: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_montant_montant_ex.aspx
+    Durée d’assurance pour le taux plein: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_taux_duree_assurance_pour_taux_plein_ex.aspx
+
+protection sociale . retraite . base . cotisée:
+  titre: revenu cotisé pour la retraite de base
+  arrondi: oui
+  valeur:
+    assimilé salarié . cotisations . vieillesse . salarié / (assimilé salarié . cotisations .
+    vieillesse . salarié . plafonnée . taux + assimilé salarié . cotisations .
+    vieillesse . salarié . déplafonnée . taux)
+  plafond: plafond sécurité sociale
+  références:
+    Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+    Salaire validant un trimestre: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx
+
+protection sociale . retraite . complémentaire:
+  titre: Retraite complémentaire
+  arrondi: oui
+  description: |
+    Supplément de pension de retraite acquis grâce à 10 années complètes de
+    cotisation retraite complémentaire.
+
+    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
+    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
+    permet de comparer les régimes de retraite complémentaire entre eux
+  unité: €/mois
+  produit:
+    - AGIRC ARRCO
+    - 10 ans
+
+protection sociale . retraite . complémentaire . AGIRC ARRCO:
+  titre: Agirc-Arrco
+  produit:
+    - points acquis
+    - valeur du point
+  note:
+    La revalorisation de la valeur du point a lieu au 1er novembre, et non au
+    1er janvier.
+  références:
+    'Retraite complémentaire dans le privé : Agirc-Arrco': https://www.service-public.fr/particuliers/vosdroits/F15396
+    'Points de retraite : comment sont-ils obtenus ?': https://www.agirc-arrco.fr/ma-retraite/comprendre-ma-retraite/points-de-retraite-comment-sont-ils-obtenus/
+    Calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire
+    Le calcul des points cotisés Agirc-Arrco: https://www.agirc-arrco.fr/mes-services-particuliers/les-experts-retraite/parole-experts/le-calcul-des-points-cotises-agirc-arrco/
+
+  avec:
+    points acquis:
+      description: |
+        Tout au long de votre carrière, vous obtenez des points de retraite via le
+        versement de cotisations de retraite obligatoires. C’est le nombre total des
+        points acquis qui déterminera le montant annuel de votre future retraite
+        complémentaire.
+
+        Il est donc important de bien comprendre comment ces points de retraite sont
+        attribués.
+
+        #### Formule de calcul du nombre de points
+
+        **Nombre de points** = **Assiette des cotisations** × **Taux de calcul des points** / **Valeur d’achat d’un point**
+
+        #### Le taux de calcul des points, c’est quoi ?
+
+        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer
+        les points.
+
+        A noter : il sert aussi de base au calcul des cotisations payées par
+        l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer
+        les cotisations à payer.
+
+        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le
+        salarié et l’employeur est donc supérieur au taux d’acquisition des points.
+        Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des
+        points.
+
+      valeur: (assimilé salarié . cotisations . retraite complémentaire / 1.27) / valeur
+        d'acquisition
+      note:
+        Le taux de cotisation de retraite complémentaire étant 127% du taux de
+        calcul des points, il faut diviser par 1.27 le montant des cotisations
+        versées par le salarié pour obtenir le montant à utiliser pour le calcul
+        des points.
+
+    valeur d'acquisition:
+      variations:
+        - si: date >= 01/2026
+          alors: 20.1877 €/point
+        - si: date >= 01/2025
+          alors: 20.1877 €/point
+        - si: date >= 01/2024
+          alors: 19.6321 €/point
+        - si: date >= 01/2023
+          alors: 18.7669 €/point
+        - sinon: 17.4316 €/point
+      références:
+        'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
+
+    valeur du point:
+      variations:
+        - si: date >= 11/2024
+          alors: 1.4386 €/an/point
+        - si: date >= 11/2023
+          alors: 1.4159 €/an/point
+        - sinon: 1.3498 €/an/point
+      références:
+        'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
+
+protection sociale . maladie:
+  icônes: 🏥
+  titre: assurance maladie
+  type: branche
+  résumé:
+    Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
+    maladies graves comme les séjours à l’hôpital.
+  description: |
+    L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+    personnelle ou professionnelle.
+
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en
+    prenant en charge leurs soins quels que soient leurs ressources, leur situation
+    ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle
+    permet l’accès aux soins.
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de
+    maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+    ## L’assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
+      maladie et la complémentaire
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une
+      personne atteinte de mucoviscidose
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+
+  références:
+    À quel organisme de sécurité sociale est-on rattaché pour l’assurance maladie ?: https://www.service-public.fr/particuliers/vosdroits/F648
+    Ce qui est remboursé pour tout le monde: https://www.ameli.fr/assure/remboursements/rembourse
+    Rapport d’activité de l’assurance maladie 2017 (PDF): https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
+    Rapport OCDE sur l’espérance de vie dans les différents pays: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+
+  avec:
+    abattement forfaitaire salarié:
+      privé: oui
+      valeur: 21%
+    plancher indemnités salarié:
+      privé: oui
+      valeur: 1015 heure * SMIC . horaire
+
+protection sociale . maladie . arrêt maladie:
+  titre: indemnités journalières
+  description: |
+    L’indemnité journalière que vous recevrez pendant votre arrêt de travail est
+    égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur
+    la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de
+    travail (12 mois en cas d’activité saisonnière).
+  applicable si: conditions . revenu
+  unité: €/jour
+  produit:
+    - valeur: assimilé salarié . cotisations . assiette
+      unité: €/jour
+      plafond:
+        variations:
+          - si: date > 04/2025
+            alors: 1.4 * SMIC
+          - sinon: 1.8 * SMIC
+    - 50%
+  références:
+    'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
+    'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
+
+  avec:
+    délai d'attente:
+      non applicable si: arrêt maladie = 0
+
+    délai de carence:
+      non applicable si: arrêt maladie = 0
+      description: |
+        Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité
+        journalière ne vous est versée ; c’est ce que l’on appelle le délai de
+        carence. Il s’applique au début de chaque arrêt de travail.
+      valeur: 3 jour
+      références:
+        Délai de carence pour les salarié: https://www.service-public.fr/particuliers/vosdroits/F3053#fiche-item-aria-3
+        Délai de carence pour les indépendants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124978
+
+    conditions:
+      références:
+        Quels sont les critères pour être indemnisé en cas de maladie ?: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie#text_2632
+
+      avec:
+        délai d'attente:
+          description: |
+            Pour pouvoir prétendre à une indemnisation pour maladie au titre de
+            votre activité professionnelle, vous devez justifier d’un délai
+            d’affiliation continus dans cette activité. Ce dernier dépend de votre
+            rémunération des mois précédents.
+
+          remplace: arrêt maladie . délai d'attente
+          applicable si: conditions . revenu
+          valeur: (plancher indemnités salarié / assimilé salarié . cotisations . assiette) + 0.5
+          arrondi: oui
+        revenu: assimilé salarié . cotisations . assiette * 6 mois > plancher indemnités salarié
+
+protection sociale . maladie . maternité paternité adoption:
+  titre: indemnités journalières de congé maternité paternité adoption
+  applicable si: arrêt maladie . conditions . revenu
+  unité: €/jour
+  description: |
+    L’indemnité journalière que vous recevrez pendant votre arrêt de travail
+    est égale à 50 % de votre salaire journalier de base. Celui-ci est
+    calculé sur la moyenne des salaires bruts des 3 derniers mois précédant
+    votre arrêt de travail (12 mois en cas d’activité saisonnière).
+  produit:
+    - valeur: assimilé salarié . cotisations . assiette
+      unité: €/jour
+      plafond:
+        unité: €/jour
+        arrondi: 2 décimales
+        le minimum de:
+          - plafond sécurité sociale
+          - assimilé salarié . cotisations . assiette - abattement forfaitaire
+            salarié
+      plancher: invalidité et décès . pension invalidité . minimum salarié
+  références:
+    'Congé maternité : les indemnités journalières pour les salariées': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-maternite-salariee
+    'Paternité et accueil de l’enfant : vos indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant
+    Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
+    'Congé d’adoption : les indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-adoption
+    Simulateur maternité paternité adoption: https://www.ameli.fr/assure/simulateur-maternite-paternite
+
+  avec:
+    allocation forfaitaire de repos adoption:
+      non applicable si: oui
+
+    allocation forfaitaire de repos maternel:
+      non applicable si: oui
+
+    délai d'attente:
+      description: |
+        ## Maternité
+        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
+        accouchement, et cesser toute activité professionnelle pendant la période de
+        perception et au moins pendant 8 semaines dont 6 après l’accouchement.
+        ## Paternité / Adoption
+        Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
+        naissance / à l’adoption.
+      valeur: 10 mois
+          
+protection sociale . maladie . accidents du travail et maladies professionnelles:
+  icônes: ☣️
+  résumé: Offre une couverture complète des maladies ou accidents du travail.
+  description: |
+    Vous avez subi un accident du travail ou êtes atteint d’une maladie
+    professionnelle ?
+    Vos frais médicaux sont pris en charge à 100 %.
+
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités
+    journalières.
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez
+    recevoir une indemnité temporaire d’inaptitude.
+  unité: €/jour
+
+  références:
+    Comprendre l’assurance AT/MP: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
+    'Maladie professionnelle : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/maladie-professionnelle
+    'Accident du travail : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/accident-travail
+    Qu’est-ce qu’un accident de trajet ?: https://www.service-public.fr/particuliers/vosdroits/F31881
+    Qu’est-ce qu’une maladie professionnelle ?: https://www.service-public.fr/particuliers/vosdroits/F31880
+    'Accident du travail : indemnités journalières pendant l’arrêt de travail': https://www.service-public.fr/particuliers/vosdroits/F175
+    'Maladie professionnelle : indemnités journalières pendant l’arrêt de travail': https://www.service-public.fr/particuliers/vosdroits/F32148
+    Articles R433-1 à R433-17 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156659/2020-12-10/
+
+  avec:
+    indemmnités:
+      produit:
+        - salaire journalier de référence
+        - 60%
+
+      avec:
+        à partir du 29ème jour:
+          produit:
+            - salaire journalier de référence
+            - 80%
+
+    indemmnités . salaire journalier de référence:
+      privé: oui
+      valeur: assimilé salarié . cotisations . assiette
+      unité: €/jour
+      plafond:
+        arrondi: 2 décimales
+        unité: €/jour
+        le minimum de:
+          - 0.834% * (plafond sécurité sociale * 1 an) / 1 jour
+          - assimilé salarié . cotisations . assiette - abattement forfaitaire salarié
+
+protection sociale . invalidité et décès:
+  icônes: 🦽
+  type: branche
+  résumé:
+    Garantit le versement d’une pension en cas d’invalidité et un capital à
+    vos proches en cas de décès.
+  description: |
+    Vous pouvez être reconnu invalide si votre capacité de travail et de gain est
+    réduite d’au moins 2/3 à la suite d’un accident ou d’une maladie d’origine non
+    professionnelle. Vous pouvez obtenir le versement d’une pension d’invalidité
+    afin de compenser la perte de revenus.
+
+    Le capital décès est une indemnité qui garantit le versement d’un capital aux
+    ayants droit d’un travailleur décédé, sous certaines conditions. Son montant est
+    forfaitaire.
+  références:
+    capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
+    capital décès (salarié privé): https://www.service-public.fr/particuliers/vosdroits/F3005
+    pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
+
+  avec:
+    revenu annuel moyen:
+      valeur: assimilé salarié . cotisations . assiette
+      plafond: plafond sécurité sociale
+
+    accidents du travail et maladies professionnelles:
+      références:
+        'Incapacité permanente suite à un accident du travail : indemnités et rente': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-accident-travail
+        'Incapacité permanente suite à une maladie professionnelle : indemnités et rentes': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-maladie-professionnelle
+
+      avec:
+        rente décès:
+          titre: Rente décès AT/MP
+          description: |
+            Si l’accident du travail entraîne le décès de l’assuré, les proches
+            (conjoint, concubin, partenaire lié par un pacte civil de solidarité
+            (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d’une
+            rente.
+          produit:
+            - assimilé salarié . cotisations . assiette
+            - 40%
+          références:
+            'Décès d’un salarié suite à un accident de travail ou de trajet : indemnisation des ayants droit': https://www.service-public.fr/particuliers/vosdroits/F14868
+
+        rente incapacité:
+          titre: Rente incapacité AT/MP
+          description: |
+            Si votre taux d’incapacité permanente suite à un accident du travail ou
+            une maladie professionnelle est supérieur à 10 %, vous percevrez une
+            rente d’incapacité permanente.
+          produit:
+            - barème:
+                assiette: assimilé salarié . cotisations . assiette
+                multiplicateur: SMIC
+                tranches:
+                  - taux: 100%
+                    plafond: 2
+                  - taux: 1 / 3
+                    plafond: 8
+            - barème:
+                assiette: taux incapacité
+                tranches:
+                  - taux: 50%
+                    plafond: 50%
+                  - taux: 150%
+          références:
+            'Accident du travail : indemnisation en cas d’incapacité permanente': https://www.service-public.fr/particuliers/vosdroits/F14840
+
+    accidents du travail et maladies professionnelles . rente incapacité . taux incapacité:
+      question:
+        Quel taux d’incapacité voulez-vous simuler pour la rente accidents du
+        travail et maladie professionnelle ?
+      plancher: 10%
+      plafond: 100%
+      par défaut: 50%
+
+    capital décès:
+      unité: €
+      valeur: 3681€
+
+    pension de reversion:
+      titre: pension de reversion maximum
+      unité: €/mois
+      description: |
+        Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir une
+        pension de réversion.
+        Le versement de la pension est possible, sous certaines conditions, lorsque
+        le défunt exerçait une activité salariée ou non salariée (travailleur
+        indépendant, professionnel libéral, agriculteur).
+
+        La pension est égale à 54 % de la retraite que votre époux/épouse ou
+        ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
+      références:
+        Pension de réversion: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/veuvage/pension-reversion-veuvage.html
+        Montants minimums de la pension de reversion: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=retraite_reversion_montant_minimum_bar.aspx
+        Pension de réversion - Défunt ayant travaillé dans le privé: https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
+      plancher:
+        variations:
+          - si: date >= 07/2022
+            alors: 3672.01 €/an
+          - sinon: 3530.78 €/an
+      valeur: 54 % * retraite . base
+
+    pension invalidité:
+      références:
+        Articles R341-4 à R341-6-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173390
+
+      avec:
+        minimum:
+          privé: oui
+          valeur: non
+
+        invalidité partielle:
+          unité: €/mois
+          description:
+            Si vous êtes capable d’exercer une activité professionnelle
+            rémunérée, vous êtes classé en 1re catégorie.
+          plancher: minimum
+          produit:
+            - revenu annuel moyen
+            - 30%
+          références:
+            Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+        invalidité totale:
+          unité: €/mois
+          plancher: minimum
+          description:
+            Si vous ne pouvez plus exercer d’activité professionnelle, vous
+            êtes classé en 2e catégorie.
+          produit:
+            - revenu annuel moyen
+            - 50%
+          références:
+            Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+        minimum salarié:
+          remplace: minimum
+          applicable si: condition revenu
+          valeur: 309.09 €/mois
+          références:
+            Montant minimal de la pension d’invalidité de travailleur salarié: https://www.legislation.cnav.fr/Lists/ArticlesBareme/DispForm.aspx?ID=4266&ContentTypeId=0x01007CF8FA8574A1B64CA3888B8B205B3F58
+            Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+        condition revenu: assimilé salarié . cotisations . assiette >= 2030 heure/an * SMIC . horaire
+
+        revenu annuel moyen des 10 meilleures années:
+          description: |
+            Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
+            pension d’invalidité : soit au titre de votre activité salariée, soit au
+            titre de votre activité d’artisan/commerçant. Toutefois, le montant de
+            la pension tient compte de tous vos revenus perçus qu’ils proviennent de
+            votre activité salariée ou de votre activité comme indépendant.
+          applicable si: condition revenu
+          valeur: assimilé salarié . cotisations . assiette
+          plafond: plafond sécurité sociale
+
+protection sociale . famille:
+  icônes: 👶
+  type: branche
+  résumé: |
+    Assure des prestations en soutien aux familles : garde d’enfants, aide au
+    logement...
+  description: |
+    Créée en 1945, la branche Famille est l’un des principaux acteurs de la
+    politique familiale française. Actuellement, elle a deux missions prioritaires :
+      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la
+      conciliation entre vie familiale et vie professionnelle ;
+      - Développer la solidarité envers les plus vulnérables, dont les personnes
+      handicapées.
+
+    Pour remplir ces missions, elle s’appuie sur deux leviers :
+      - Le versement de prestations financières aux familles (prestations familiales
+      et sociales, aides au logement et minima sociaux comme l’aide aux adultes
+      handicapés et le revenu de solidarité active) ;
+      - L’accompagnement des familles et la mise en place ou le cofinancement de
+      différents services et équipements collectifs qui leur sont destinés (comme
+      les crèches)
+
+  références:
+    Quelles sont les missions de la branche Famille ?: https://www.caf.fr/nous-connaitre/nos-missions
+    Allocations destinées aux familles: https://www.service-public.fr/particuliers/vosdroits/N156
+    Tout savoir sur les Allocations familiales: https://www.caf.fr/nous-connaitre/qui-sommes-nous
+
+protection sociale . formation:
+  icônes: 👩‍🎓
+  résumé: Finance la possibilité de suivre des formations professionnelles.
+  description: |
+    La formation professionnelle permet à chaque personne, indépendamment de son
+    statut, d’acquérir et d’actualiser ses connaissances et ses compétences,
+    d’accroître son niveau de qualification et de favoriser son évolution
+    professionnelle.
+
+    Pour avoir un compte-rendu personnalisé de vos droits à la formation,
+    rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+
+protection sociale . transport:
+  icônes: 🚌
+  résumé: Permet de maintenir le prix d’un billet de transport en commun à un bas prix
+  description: |
+    Cette contribution est reversée intégralement à l’[autorité organisatrice de la
+    mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
+    de la zone ou est implantée l’entreprise. Celle-ci peut ensuite l’utiliser pour
+    ubventionner les transports en commun existants ou pour développer de nouvelles
+    infrastructures de transport (tramway, métro, bus...).
+
+    ## Le versement mobilité en quelques chiffres
+    - **45% de réduction** sur le coût des transports en communs dans les 12 plus
+    grandes agglomérations de France.
+    - **263 € / an / habitant** de gain de pouvoir d’achat pour les habitants
+    d’Île-de-France
+  références:
+    wikipedia: https://fr.wikipedia.org/wiki/Versement_transport
+
+protection sociale . autres:
+  icônes: 🔧
+  résumé: Autres contributions au système social.
+  description: |
+    Toutes les contributions transverses au système social.
+
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la
+    dette sociale) qui est un impôt destiné à résorber l’endettement de la Sécurité
+    sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants
+    et petits-enfants.

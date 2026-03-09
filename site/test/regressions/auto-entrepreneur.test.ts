@@ -1,12 +1,17 @@
+import rules from 'modele-social'
 import { expect, it } from 'vitest'
 
 import { configAutoEntrepreneur } from '@/pages/simulateurs/auto-entrepreneur/simulationConfig'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import autoEntrepreneurSituations from './auto-entrepreneur.yaml'
-import { engine, getMissingVariables, runSimulations } from './utils'
+import { getMissingVariables, runSimulations } from './utils'
+
+const engine = engineFactory(rules)
 
 it('calculate simulations-auto-entrepreneur', () => {
 	runSimulations(
+		engine,
 		autoEntrepreneurSituations,
 		[
 			...(configAutoEntrepreneur['objectifs exclusifs'] ?? []),
@@ -42,7 +47,7 @@ it('calculate simulations-auto-entrepreneur', () => {
 		[
 		  "dirigeant . auto-entrepreneur . impôt . versement libératoire",
 		  "entreprise . activité . nature",
-		  "entreprise . activités . revenus mixtes",
+		  "entreprise . activité . revenus mixtes",
 		  "entreprise . activités . service ou vente",
 		  "entreprise . date de création",
 		  "impôt . foyer fiscal . enfants à charge",

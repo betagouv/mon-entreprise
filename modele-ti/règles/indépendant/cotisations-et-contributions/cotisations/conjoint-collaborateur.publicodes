@@ -1,0 +1,107 @@
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur:
+  applicable si: conjoint collaborateur
+  somme:
+    - indemnités journalières
+    - retraite de base
+    - retraite complémentaire
+    - invalidité et décès
+  arrondi: oui
+  unité: €/an
+
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . indemnités journalières:
+  valeur: cotisations . indemnités journalières
+  contexte:
+    cotisations . indemnités journalières . assiette: assiette minimale . indemnités journalières
+    exonérations . Acre:
+      toutes ces conditions:
+        - exonérations . Acre
+        - conjoint collaborateur . choix assiette . revenu avec partage
+    exonérations . invalidité: non
+  unité: €/an
+
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . retraite de base:
+  valeur: cotisations . retraite de base
+  contexte:
+    cotisations . assiette retraite et invalidité-décès: conjoint collaborateur . assiette retraite et invalidité-décès
+    exonérations . Acre:
+      toutes ces conditions:
+        - exonérations . Acre
+        - conjoint collaborateur . choix assiette . revenu avec partage
+    exonérations . invalidité: non
+    profession libérale . CNAVPL . exonération incapacité: non
+  unité: €/an
+
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . retraite complémentaire:
+  description: |
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+    ### Pour les professions libérales réglementées
+
+    La cotisation retraite complémentaire de la conjointe collaboratrice ou du
+    conjoint collaborateur est égale à une proportion de la cotisation de la cheffe
+    ou du chef d’entreprise. Cette proportion est de 50 % dans le cas d’un choix
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+    (quart du revenu professionnel ou assiette forfaitaire).
+  variations:
+    - si: profession libérale . CNAVPL
+      alors:
+        produit:
+          - valeur: cotisations . retraite complémentaire
+            contexte:
+              profession libérale . CNAVPL . exonération incapacité: non
+          - variations:
+              - si: conjoint collaborateur . choix assiette . proportion . moitié
+                alors: 50%
+              - sinon: 25%
+    - sinon:
+        valeur: cotisations . retraite complémentaire
+        contexte:
+          cotisations . assiette retraite et invalidité-décès: conjoint collaborateur . assiette retraite et invalidité-décès
+          exonérations . invalidité: non
+  unité: €/an
+
+indépendant . cotisations et contributions . cotisations . conjoint collaborateur . invalidité et décès:
+  description: |
+    ### Pour les artisans, commerçants et professions libérales non réglementées
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+    conjoint collaborateur est calculée selon le même barème que la cheffe ou le
+    chef d’entreprise mais en utilisant l’assiette de cotisations calculée en
+    fonction de l’option choisie (forfaitaire ou proportion du revenu professionnel).
+
+    ### Pour les professions libérales réglementées
+
+    La cotisation invalidité-décès de la conjointe collaboratrice ou du
+    conjoint collaborateur est égale à une proportion de la professionnelle libérale
+    ou du professionnel libéral. Cette proportion est de 50 % dans le cas d’un choix
+    d’assiette de la moitié du revenu professionnel, et de 25 % dans les autres cas
+    (quart du revenu professionnel ou assiette forfaitaire).
+  variations:
+    - si: profession libérale . CNAVPL
+      alors:
+        produit:
+          - valeur: cotisations . invalidité et décès
+            contexte:
+              exonérations . Acre:
+                toutes ces conditions:
+                  - exonérations . Acre
+                  - conjoint collaborateur . choix assiette . revenu avec partage
+          - variations:
+              - si: conjoint collaborateur . choix assiette . proportion . moitié
+                alors: 50%
+              - sinon: 25%
+    - sinon:
+        valeur: cotisations . invalidité et décès
+        contexte:
+          cotisations . assiette retraite et invalidité-décès: conjoint collaborateur . assiette retraite et invalidité-décès
+          exonérations . Acre:
+            toutes ces conditions:
+              - exonérations . Acre
+              - conjoint collaborateur . choix assiette . revenu avec partage
+          exonérations . âge: non
+  unité: €/an

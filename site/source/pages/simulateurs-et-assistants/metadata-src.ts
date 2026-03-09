@@ -1,6 +1,5 @@
 import { choixStatutJuridiqueConfig } from '@/pages/assistants/choix-du-statut/config'
 import { CMGConfig } from '@/pages/assistants/cmg/config'
-import { demandeMobilitéConfig } from '@/pages/assistants/demande-mobilité/config'
 import { pourMonEntrepriseConfig } from '@/pages/assistants/pour-mon-entreprise/config'
 import { rechercheCodeApeConfig } from '@/pages/assistants/recherche-code-ape/config'
 import {
@@ -42,7 +41,7 @@ import { ImmutableType } from '@/types/utils'
  * des données pour Algolia.
  */
 const getMetadataSrc = (params: SimulatorsDataParams) => {
-	const data = {
+	return {
 		// simulateurs:
 		...salariéConfig(params),
 		...entrepriseIndividuelleConfig(params),
@@ -75,12 +74,9 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		// assistants:
 		...choixStatutJuridiqueConfig(params),
 		...CMGConfig(params),
-		...demandeMobilitéConfig(params),
 		...pourMonEntrepriseConfig(params),
 		...rechercheCodeApeConfig(params),
-	} as const
-
-	return data satisfies ImmutableType<Record<string, PageConfig>>
+	} as const satisfies ImmutableType<Record<string, PageConfig>>
 }
 
 export type SimulatorData = ReturnType<typeof getMetadataSrc>

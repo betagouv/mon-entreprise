@@ -1,9 +1,9 @@
 import { pipe } from 'effect'
 import { flatMap, NonEmptyArray, reduce } from 'effect/Array'
-import { DottedName } from 'modele-social'
 import Engine, { utils } from 'publicodes'
 
 import { Contexte } from '@/domaine/Contexte'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export const evalueDansLeContexte =
 	(engine: Engine, contexte: Contexte) => (expression: DottedName) =>

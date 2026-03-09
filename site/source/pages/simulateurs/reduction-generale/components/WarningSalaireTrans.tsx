@@ -1,9 +1,9 @@
 import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import useYear from '@/hooks/useYear'
 import { round } from '@/utils/number'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export default function WarningSalaireTrans() {
 	const year = useYear()
@@ -17,7 +17,7 @@ export default function WarningSalaireTrans() {
 	}) as string
 
 	return (
-		<Trans i18nKey={'pages.simulateurs.réduction-générale.warnings.salaire'}>
+		<Trans i18nKey="pages.simulateurs.réduction-générale.warnings.salaire">
 			La RGCP concerne uniquement les salaires inférieurs à 1,6 Smic.
 			C'est-à-dire, pour {{ year }}, une rémunération totale qui ne dépasse pas{' '}
 			<strong>{{ plafond }}</strong> bruts par an.

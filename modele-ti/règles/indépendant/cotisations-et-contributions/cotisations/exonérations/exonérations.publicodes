@@ -1,0 +1,11 @@
+indépendant . cotisations et contributions . cotisations . exonérations:
+
+indépendant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité:
+  type: notification
+  sévérité: avertissement
+  description: |
+    Ce simulateur ne gère pas les cas de cumul sur la même année de l’exonération
+    **Acre** avec une **pension d’invalidité**.
+  toutes ces conditions:
+    - Acre
+    - invalidité

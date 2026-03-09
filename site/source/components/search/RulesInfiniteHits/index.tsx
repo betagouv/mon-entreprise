@@ -1,16 +1,19 @@
-import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import { connectInfiniteHits } from 'react-instantsearch-dom'
 import { styled } from 'styled-components'
 
+import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'
 import { Body, Button, H3, SmallBody } from '@/design-system'
-
-import RuleLink from '../../RuleLink'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { NomModèle } from '@/domaine/SimulationConfig'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 type THit = AlgoliaHit<{
-	objectID: DottedName
+	dottedName: DottedName
+	nomModèle: NomModèle
 	namespace?: string
 	ruleName?: string
 }>
@@ -33,7 +36,7 @@ const StyledRuleLink = styled(RuleLink)`
 const HitContainer = styled.li`
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start
+	align-items: flex-start;
 
 	border-top: 1px solid #eee;
 	padding-top: 0.5rem;
@@ -47,6 +50,8 @@ const HitContainer = styled.li`
 `
 
 const Hit = (hit: THit) => {
+	const engine = useEngineFromModèle(hit.nomModèle)
+
 	return (
 		<HitContainer>
 			{hit.namespace && (
@@ -55,11 +60,13 @@ const Hit = (hit: THit) => {
 				</SmallBody>
 			)}
 
-			<StyledRuleLink dottedName={hit.objectID} aria-label={hit.ruleName}>
-				<Body as="span" className="hit-ruleName">
-					{hit.ruleName}
-				</Body>
-			</StyledRuleLink>
+			<EngineProvider value={engine}>
+				<StyledRuleLink dottedName={hit.dottedName} aria-label={hit.ruleName}>
+					<Body as="span" className="hit-ruleName">
+						{hit.ruleName}
+					</Body>
+				</StyledRuleLink>
+			</EngineProvider>
 		</HitContainer>
 	)
 }

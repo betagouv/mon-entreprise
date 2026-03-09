@@ -4,6 +4,7 @@ import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 
 export const configComparateurStatuts: ComparateurConfig = {
+	nomModèle: 'modele-social',
 	contextes: [
 		AssimiléSalariéContexte,
 		AutoEntrepreneurContexteDansPublicodes,
@@ -42,7 +43,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 			'entreprise . salariés . effectif . seuil',
 			'salarié . rémunération . avantages en nature',
 			'entreprise . activités',
-			'entreprise . activités . revenus mixtes',
+			'entreprise . activité . revenus mixtes',
 			'entreprise . activités . saisonnière',
 		],
 		liste: [
@@ -54,7 +55,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 	},
 	'unité par défaut': '€/mois',
 	situation: {
-		'entreprise . activités . revenus mixtes': 'non',
+		'entreprise . activité . revenus mixtes': 'non',
 		'entreprise . catégorie juridique': "''",
 		salarié: 'non',
 		'salarié . cotisations . ATMP . taux fonctions support': 'oui',

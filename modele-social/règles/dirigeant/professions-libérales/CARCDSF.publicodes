@@ -8,7 +8,7 @@ dirigeant . indépendant . PL . CARCDSF:
       - métier = 'santé . chirurgien-dentiste'
       - métier = 'santé . sage-femme'
   références:
-    Site de la CARCDSF: http://www.carcdsf.fr
+    Site de la CARCDSF: https://www.carcdsf.fr
 
 dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire

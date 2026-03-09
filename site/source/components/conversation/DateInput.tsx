@@ -1,9 +1,7 @@
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { ASTNode } from 'publicodes'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	DateField,
 	DateFieldProps,
@@ -20,13 +18,15 @@ import {
 	publicodesDateToIsoDate,
 } from '@/domaine/Date'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NoOp } from '@/utils/NoOp'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 interface DateInputProps {
 	id?: string
 	dottedName: DottedName
 	value?: IsoDate
-	onChange?: (value: IsoDate | undefined) => void
+	onChange?: (value: IsoDate) => void
 	missing?: boolean
 	hideDefaultValue?: boolean
 	onSubmit?: (source?: string) => void
@@ -55,14 +55,15 @@ export const DateInput = ({
 	const engine = useEngine()
 
 	const handleDateChange = (value?: Date) => {
-		if (!value) {
-			return onChange(undefined)
+		if (value) {
+			onChange(value && dateToIsoDate(value))
 		}
-		onChange(value && dateToIsoDate(value))
 	}
 
 	const handleSuggestion = (value?: IsoDate) => {
-		onChange(value)
+		if (value) {
+			onChange(value)
+		}
 	}
 
 	return (

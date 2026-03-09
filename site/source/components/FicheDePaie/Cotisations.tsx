@@ -1,15 +1,16 @@
-import { DottedName } from 'modele-social'
 import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 import { Fragment } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
+import { DottedName } from '@/domaine/publicodes/DottedName'
+
 import './FicheDePaie.css'
 
 import { H3 } from '@/design-system'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
-import { useEngine } from '../utils/EngineContext'
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import CotisationLine from './CotisationLine'
 

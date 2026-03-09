@@ -7,14 +7,14 @@
 
 import { renderHook } from '@testing-library/react'
 import * as O from 'effect/Option'
-import rules, { DottedName } from 'modele-social'
+import rules from 'modele-social'
 import Engine from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 import { describe, expect, it, vi } from 'vitest'
 
-import { useEngine } from '@/components/utils/EngineContext'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParMois, eurosParTitreRestaurant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	heuresParMois,
 	joursOuvrés,
@@ -22,8 +22,12 @@ import {
 	titresRestaurantParMois,
 } from '@/domaine/Quantité'
 import { useNavigation } from '@/lib/navigation'
-import { batchUpdateSituation, updateUnit } from '@/store/actions/actions'
+import {
+	enregistreLesRéponsesAuxQuestions,
+	updateUnit,
+} from '@/store/actions/actions'
 
+import { useEngineFromModèle } from './useEngineFromModèle'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 
 vi.mock('@/lib/navigation', () => ({
@@ -37,8 +41,8 @@ vi.mock('react-redux', () => ({
 }))
 const dispatchMock = vi.fn()
 
-vi.mock('@/components/utils/EngineContext', () => ({
-	useEngine: vi.fn(),
+vi.mock('@/hooks/useEngineFromModèle', () => ({
+	useEngineFromModèle: vi.fn(),
 }))
 
 describe('useSetSimulationFromSearchParams hook', () => {
@@ -89,15 +93,15 @@ describe('useSetSimulationFromSearchParams hook', () => {
 			return []
 		})
 
-		const engine = new Engine(rules)
-		vi.mocked(useEngine).mockReturnValue(engine)
+		const engine = new Engine(rules) as Engine<DottedName>
+		vi.mocked(useEngineFromModèle).mockReturnValue(engine)
 
-		renderHook(() => useSetSimulationFromSearchParams())
+		renderHook(() => useSetSimulationFromSearchParams('modele-social'))
 
 		expect(dispatchMock).toHaveBeenCalledWith(updateUnit('€/mois'))
 
 		expect(dispatchMock).toHaveBeenCalledWith(
-			batchUpdateSituation({
+			enregistreLesRéponsesAuxQuestions({
 				'salarié . contrat': O.some('CDD'),
 				'salarié . contrat . CDD . congés pris': O.some(joursOuvrés(2.08)),
 				'salarié . contrat . salaire brut': O.some(eurosParMois(2700)),
@@ -146,10 +150,10 @@ describe('useSetSimulationFromSearchParams hook', () => {
 			return []
 		})
 
-		const engine = new Engine(rules)
-		vi.mocked(useEngine).mockReturnValue(engine)
+		const engine = new Engine(rules) as Engine<DottedName>
+		vi.mocked(useEngineFromModèle).mockReturnValue(engine)
 
-		renderHook(() => useSetSimulationFromSearchParams())
+		renderHook(() => useSetSimulationFromSearchParams('modele-social'))
 
 		expect(setSearchParamsMock).toHaveBeenCalledWith(
 			new URLSearchParams('utm_campaign=marketing'),

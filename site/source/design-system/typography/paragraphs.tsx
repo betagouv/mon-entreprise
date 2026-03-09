@@ -21,10 +21,13 @@ export const Intro = styled.p<{ $xxl?: boolean }>`
 	line-height: ${({ $xxl }) => ($xxl ? '2.5rem' : '2rem')};
 `
 
-export const Body = styled.p`
+export const BodyStyle = css`
 	${baseParagraphStyle}
 	font-size: 1rem;
 	line-height: 1.5rem;
+`
+export const Body = styled.p`
+	${BodyStyle}
 `
 
 export const SmallBody = styled.p<{ $grey?: boolean }>`
