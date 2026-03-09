@@ -24,7 +24,7 @@ indépendant . cotisations et contributions . CSG-CRDS:
     déductible . revenus de remplacement:
       non applicable si: après réforme
       produit:
-        - IJSS . montant
+        - revenus de remplacement . bruts
         - 3.8%
     déductible . taux: 6.8%
 
@@ -39,6 +39,6 @@ indépendant . cotisations et contributions . CSG-CRDS:
 
     non déductible . revenus de remplacement:
       produit:
-        - IJSS . montant
+        - revenus de remplacement . bruts
         - non déductible . taux
     non déductible . taux: 2.9%

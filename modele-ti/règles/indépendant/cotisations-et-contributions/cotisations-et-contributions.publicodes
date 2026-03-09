@@ -98,7 +98,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
         abattement:
           somme:
             - revenus étrangers . montant
-            - IJSS . imposable
+            - revenus de remplacement . imposables
           plancher: 0 €/an
 
   avec:
@@ -114,9 +114,9 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
     Article D136-5 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049899286
 
   note: >-
-    Avant la réforme, seule la partie imposable des IJSS est retranchée de
-    l’assiette de la CSG, puisque la partie non imposable a déjà été retranchée du
-    revenu net fiscal fourni.
+    Avant la réforme, seule la partie imposable des revenus de remplacement est
+    retranchée de l’assiette de la CSG, puisque la partie non imposable a déjà été
+    retranchée du revenu net fiscal fourni.
 
 indépendant . cotisations et contributions . assiette sociale:
   description: |
@@ -135,7 +135,8 @@ indépendant . cotisations et contributions . assiette sociale:
       alors:
         somme:
           - assiette CSG-CRDS
-          - IJSS . après abattement
+          - valeur: revenus de remplacement . bruts
+            abattement: 26%
           - revenus étrangers . montant
     - sinon:
         valeur: revenu professionnel

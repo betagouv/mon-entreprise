@@ -1563,176 +1563,6 @@ impôt . taux personnalisé:
 indépendant:
   titre.en: '[automatic] independent'
   titre.fr: indépendant
-indépendant . IJSS:
-  description.en: >
-    [automatic] These are the daily allowances and benefits paid by your Caisse
-
-    primary health insurance fund in the event of illness, maternity, paternity or adoption
-
-    adoption, work stoppage or childcare in connection with the Covid-19 epidemic.
-
-
-    These replacement incomes are specifically requested because they benefit from
-
-    a reduced rate of CSG-CRDS.
-
-
-    Supplementary benefits paid under private provident insurance contracts
-
-    contracts (including Madelin contracts) are not concerned.
-
-
-    Disability benefits paid under disability-death schemes are not affected.
-
-    concerned.
-  description.fr: >
-    Il s’agit des allocations et indemnités journalières versées par votre
-    caisse
-
-    primaire d’assurance maladie en cas de maladie, maternité, paternité ou
-
-    adoption, arrêt de travail ou garde d’enfant en lien avec l’épidémie de Covid-19.
-
-
-    Ces revenus de remplacement sont demandés spécifiquement car ils bénéficient
-
-    d’un taux réduit de CSG-CRDS.
-
-
-    Les indemnités complémentaires versées dans le cadre de contrats de prévoyance
-
-    privés (y compris contrat Madelin) ne sont pas concernées.
-
-
-    Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont
-
-    pas concernées.
-  question.en:
-    '[automatic] Have you received daily allowances or social security
-    benefits for your self-employed activity (sickness, maternity, paternity,
-    adoption)?'
-  question.fr: Avez-vous perçu des indemnités journalières ou allocations de
-    sécurité sociale au titre de votre activité indépendante (maladie,
-    maternité, paternité, adoption) ?
-  titre.en: '[automatic] Social security benefits and daily allowances'
-  titre.fr: Allocations et indemnités journalières de sécurité sociale
-indépendant . IJSS . après abattement:
-  titre.en: '[automatic] after allowance'
-  titre.fr: après abattement
-indépendant . IJSS . imposable:
-  description.en: >
-    [automatic] Indicate only the amount of taxable benefits and daily
-    allowances
-
-    received, i.e. all allowances and benefits, with the exception of those
-
-    with the exception of those related to a long-term illness.
-
-
-    These allowances will be deducted from your earned income, in order to be subject to
-
-    the reduced CSG-CRDS rate.
-
-
-    <p><u>The replacement incomes concerned are :</u></p>
-
-    - daily sickness benefit
-
-    - lump-sum maternal rest allowance
-
-    - lump-sum daily allowance for interruption of activity (maternity)
-
-    - maternity, paternity or adoption replacement allowance
-
-    - daily caregiver's allowance (AJPA, paid by the CAF)
-  description.fr: >
-    Indiquez uniquement le montant des allocations et indemnités journalières
-
-    imposables perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
-
-    l’exception de celles en lien avec une affection de longue durée.
-
-
-    Ces indemnités seront déduites de vos revenus d’activité, afin d’être soumises
-
-    au taux réduit de la CSG-CRDS.
-
-
-    <p><u>Les revenus de remplacement concernés sont :</u></p>
-
-    - indemnité journalière maladie
-
-    - allocation forfaitaire de repos maternel
-
-    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
-
-    - indemnité de remplacement pour maternité, paternité ou adoption
-
-    - allocation journalière du proche aidant (AJPA, versée par la CAF)
-  question.en: '[automatic] What is the gross taxable amount of your social
-    security benefits and daily allowances?'
-  question.fr:
-    Quel est le montant brut imposable de vos allocations et indemnités
-    journalières de sécurité sociale ?
-  titre.en: '[automatic] taxable portion'
-  titre.fr: part imposable
-indépendant . IJSS . montant:
-  description.en: >
-    [automatic] Indicate the total gross amount of your taxable and non-taxable
-    daily benefits
-
-    received, taxable and non-taxable, as shown on the statement of benefits
-
-    provided by your primary health insurance fund.
-
-
-    CSG-CRDS is automatically deducted by the Assurance Maladie at the time of payment.
-
-    payment. The amount of this replacement income is added to the social security base
-
-    after application of a 26% allowance.
-
-
-    <p><u>The benefits and daily allowances concerned are :</u></p>
-
-    - daily sickness benefit
-
-    - lump-sum maternal rest allowance
-
-    - lump-sum daily benefit for interruption of activity (maternity)
-
-    - maternity, paternity or adoption replacement benefit
-  description.fr: >
-    Indiquez le montant total brut de vos allocations et indemnités journalières
-
-    perçues, imposables et non imposables, qui figure sur le relevé de prestations
-
-    fourni par votre caisse primaire d’assurance maladie.
-
-
-    La CSG-CRDS est automatiquement précomptée par l’Assurance maladie lors du
-
-    versement. Le montant de ces revenus de remplacement est ajouté à l’assiette
-
-    sociale après application d’un abattement de 26 %.
-
-
-    <p><u>Les allocations et indemnités journalières concernées sont :</u></p>
-
-    - indemnité journalière maladie
-
-    - allocation forfaitaire de repos maternel
-
-    - indemnité journalière forfaitaire d’interruption d’activité (maternité)
-
-    - indemnité de remplacement pour maternité, paternité ou adoption
-  question.en:
-    '[automatic] What is the total gross amount of your social security
-    benefits and daily allowances?'
-  question.fr: Quel est le montant brut total de vos allocations et indemnités
-    journalières de sécurité sociale ?
-  titre.en: '[automatic] Total amount'
-  titre.fr: Montant total
 indépendant . PSS proratisé:
   description.en: >
     [automatic] The social security ceiling, prorated according to the length of
@@ -2069,13 +1899,14 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
     Le montant de l’abattement de 26 % est encadré par un plancher et
 
     un plafond.
-  note.en: '[automatic] Before the reform, only the taxable portion of IJSS was
-    deducted from the CSG base, since the non-taxable portion had already been
-    deducted from the net taxable income provided.'
+  note.en:
+    '[automatic] Before the reform, only the taxable portion of replacement
+    income was deducted from the CSG base, since the non-taxable portion had
+    already been deducted from the net taxable income provided.'
   note.fr:
-    Avant la réforme, seule la partie imposable des IJSS est retranchée de
-    l’assiette de la CSG, puisque la partie non imposable a déjà été retranchée
-    du revenu net fiscal fourni.
+    Avant la réforme, seule la partie imposable des revenus de remplacement
+    est retranchée de l’assiette de la CSG, puisque la partie non imposable a
+    déjà été retranchée du revenu net fiscal fourni.
   titre.en: '[automatic] CSG-CRDS tax base'
   titre.fr: assiette de la CSG-CRDS
 indépendant . cotisations et contributions . assiette sociale:
@@ -2920,9 +2751,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
   titre.fr: durée
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
   avec:
-    taux indemnités journalières:
-      titre.en: '[automatic] daily allowance rates'
-      titre.fr: taux indemnités journalières
     taux maladie-maternité et indemnités journalières:
       titre.en: '[automatic] sickness-maternity rates and daily allowances'
       titre.fr: taux maladie-maternité et indemnités journalières
@@ -4484,35 +4312,6 @@ indépendant . profession libérale . réglementée . PAMC . CURPS:
     régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   titre.en: '[automatic] Contribution to regional unions of healthcare professionals'
   titre.fr: Contribution aux unions régionales des professionnels de santé
-indépendant . profession libérale . réglementée . PAMC . IJSS:
-  description.en: >-
-    [automatic] Social Security daily allowances (IJSS) are paid in the event of
-    maternity/paternity/adoption leave.
-
-
-    The CSG-CRDS is automatically deducted by the Assurance Maladie at the time of payment. The amount is therefore deducted from the base for calculating the remaining CSG-CRDS due.
-
-
-    Benefits supplementing Social Security daily allowances paid under a provident insurance contract do not constitute replacement income.
-
-    Note: This does not apply to disability benefits paid under disability-death schemes.
-  description.fr: >-
-    Les indemnités journalières de Sécurité sociale (IJSS) sont versées dans le
-    cas de congé maternité/paternité/adoption.
-
-
-    La CSG-CRDS est automatiquement précomptée par l’Assurance maladie lors du versement. Leur montant est donc retranché à l’assiette pour le calcul de la CSG-CRDS restante dûe.
-
-
-    Les indemnités complémentaires aux indemnités journalières de la Sécurité sociale versées dans le cadre d’un contrat de prévoyance ne constituent pas des revenus de remplacement.
-
-    Note : Les prestations d’invalidité versées par les régimes d’invalidité-décès ne sont pas concernées.
-  question.en: '[automatic] How much daily maternity or paternity benefit do you
-    receive from your self-employed activity?'
-  question.fr: Quel est le montant des indemnités journalières de maternité ou
-    paternité perçu au titre de votre activité libérale ?
-  titre.en: '[automatic] social security daily allowances'
-  titre.fr: indemnités journalières de sécurité sociale
 indépendant . profession libérale . réglementée . PAMC . PCV:
   titre.en: '[automatic] PCV'
   titre.fr: PCV
@@ -5123,6 +4922,178 @@ indépendant . revenu professionnel:
   résumé.fr: rémunération du dirigeant au régime des indépendants
   titre.en: '[automatic] professional income'
   titre.fr: revenu professionnel
+indépendant . revenus de remplacement:
+  description.en: >
+    [automatic] Replacement income** is subject to social security
+    contributions, including under the
+
+    micro-tax regime. They are subject to CSG-CRDS, but this is already deducted
+
+    already deducted by the organization that pays them.
+
+
+    The replacement incomes concerned are :
+
+    - daily benefits** paid by the CPAM:
+      - daily sickness benefits (excluding long-term illnesses),
+      - daily maternity, adoption, paternity and childcare allowances
+      childcare,
+      - lump-sum maternal rest allowance;
+    - daily allowance for caregivers (AJPA)** paid by the Caf ;
+
+    - daily allowances paid under a **Madelin contract**.
+
+    (excluding long-term illnesses).
+  description.fr: >
+    Les **revenus de remplacement** sont soumis à cotisations sociales, y
+    compris au
+
+    régime micro-fiscal. Ils sont soumis à la CSG-CRDS, mais celle-ci est déjà
+
+    précomptée par l’organisme qui les verse.
+
+
+    Les revenus de remplacement concernés sont :
+
+    - les **indemnités journalières** versées par la CPAM :
+      - indemnités journalières maladie (hors affection de longue durée),
+      - indemnités journalières maternité, adoption, paternité et d’accueil de
+      l’enfant,
+      - allocation forfaitaire de repos maternel ;
+    - les **allocation journalière du proche aidant (AJPA)** versée par la Caf ;
+
+    - les indemnités journalières versées dans le cadre d’un **contrat Madelin**
+
+    (hors affection de longue durée).
+  question.en: '[automatic] Have you received any replacement income?'
+  question.fr: Avez-vous perçu des revenus de remplacement ?
+  résumé.en: '[automatic] Daily allowances, AJPA...'
+  résumé.fr: Indemnités jouranlières, AJPA...
+  titre.en: '[automatic] Replacement income'
+  titre.fr: Revenus de remplacement
+indépendant . revenus de remplacement . bruts:
+  description.en: >
+    [automatic] Indicate the total **gross amount** of your replacement income:
+
+    - daily allowances paid by the CPAM :
+      - daily sickness benefit (excluding long-term illness),
+      - daily maternity, adoption, paternity and childcare allowances
+      childcare,
+      - lump-sum maternal rest allowance;
+    - daily caregiver's allowance (AJPA) paid by Caf ;
+
+    - daily allowances paid under a Madelin contract
+
+    (excluding long-term illnesses).
+
+
+    These amounts are shown on the benefit statements provided by the
+
+    organizations that pay them.
+
+
+    > Note: **Invalidity benefits** paid by disability-death
+
+    > plans are not concerned.
+
+
+    Replacement income is **subject to social security contributions**, including under the
+
+    micro-tax regime. They are subject to CSG-CRDS, but this has already been
+
+    deducted by the organization that pays them.
+
+
+    The gross amount entered here is added to the social security base after
+
+    application of a **flat-rate deduction of 26%**.
+  description.fr: >
+    Indiquez le **montant brut** total de vos revenus de remplacement :
+
+    - indemnités journalières versées par la CPAM :
+      - indemnités journalières maladie (hors affection de longue durée),
+      - indemnités journalières maternité, adoption, paternité et d’accueil de
+      l’enfant,
+      - allocation forfaitaire de repos maternel ;
+    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
+
+    - indemnités journalières versées dans le cadre d’un contrat Madelin
+
+    (hors affection de longue durée).
+
+
+    Ces montants figurent sur les relevés de prestations fournis par les
+
+    organismes qui les versent.
+
+
+    > Note : Les **prestations d’invalidité** versées par les régimes
+
+    > d’invalidité-décès ne sont pas concernées.
+
+
+    Les revenus de remplacement sont **soumis à cotisations sociales**, y compris au
+
+    régime micro-fiscal. Ils sont soumis à la CSG-CRDS, mais celle-ci est déjà
+
+    précomptée par l’organisme qui les verse.
+
+
+    Le montant brut renseigné ici est ajouté à l’assiette sociale après
+
+    application d’un **abattement forfaitaire de 26 %**.
+  question.en: '[automatic] What is the total gross amount of your replacement income?'
+  question.fr: Quel est le montant brut total de vos revenus de remplacement ?
+  titre.en: '[automatic] Gross replacement income'
+  titre.fr: Montant brut des revenus de remplacement
+indépendant . revenus de remplacement . imposables:
+  description.en: >
+    [automatic] Indicate only the **taxable amount** of your replacement income
+
+    received :
+
+    - daily allowances paid by the CPAM :
+      - daily sickness benefit (excluding long-term illness),
+      - daily maternity, adoption, paternity and childcare allowances
+      childcare,
+      - lump-sum maternal rest allowance;
+    - daily caregiver's allowance (AJPA) paid by Caf ;
+
+    - daily allowances paid under a Madelin contract
+
+    (excluding long-term illnesses).
+
+
+    These allowances and benefits will be deducted from your earned income, so as to
+
+    be subject to the reduced CSG-CRDS rate.
+  description.fr: >
+    Indiquez uniquement le **montant imposable** de vos revenus de remplacement
+
+    perçus :
+
+    - indemnités journalières versées par la CPAM :
+      - indemnités journalières maladie (hors affection de longue durée),
+      - indemnités journalières maternité, adoption, paternité et d’accueil de
+      l’enfant,
+      - allocation forfaitaire de repos maternel ;
+    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
+
+    - indemnités journalières versées dans le cadre d’un contrat Madelin
+
+    (hors affection de longue durée).
+
+
+    Ces indemnités et allocations seront déduites de vos revenus d’activité, afin
+
+    d’être soumises au taux réduit de la CSG-CRDS.
+  question.en: '[automatic] What is the gross taxable amount of your social
+    security benefits and daily allowances?'
+  question.fr:
+    Quel est le montant brut imposable de vos allocations et indemnités
+    journalières de sécurité sociale ?
+  titre.en: '[automatic] Taxable portion of replacement income'
+  titre.fr: Part imposable des revenus de remplacement
 indépendant . revenus étrangers:
   description.en: >
     [automatic] If you are self-employed outside France, in a country of the
