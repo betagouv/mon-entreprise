@@ -3,7 +3,6 @@ import Engine from 'publicodes'
 import { ComponentProps, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { References } from '@/components/documentation/References/References'
@@ -23,6 +22,7 @@ import {
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/SimulationConfig'
+import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
@@ -43,7 +43,10 @@ export default function DocumentationPageBody({
 }) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { i18n } = useTranslation()
-	const params = useParams<{ '*': string }>()
+	const { currentPath } = useNavigation()
+	const rulePath = decodeURI(currentPath)
+		.replace(documentationPath, '')
+		.replace(/^\//, '')
 
 	const ReferencesWithEngine = ({
 		references,
@@ -63,7 +66,7 @@ export default function DocumentationPageBody({
 		<StyledDocumentation>
 			<RulePage
 				language={i18n.language as 'fr' | 'en'}
-				rulePath={params['*'] ?? ''}
+				rulePath={rulePath}
 				engine={engine}
 				documentationPath={documentationPath}
 				renderers={renderers}
