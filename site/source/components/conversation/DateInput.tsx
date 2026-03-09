@@ -26,7 +26,7 @@ interface DateInputProps {
 	id?: string
 	dottedName: DottedName
 	value?: IsoDate
-	onChange?: (value: IsoDate | undefined) => void
+	onChange?: (value: IsoDate) => void
 	missing?: boolean
 	hideDefaultValue?: boolean
 	onSubmit?: (source?: string) => void
@@ -55,14 +55,15 @@ export const DateInput = ({
 	const engine = useEngine()
 
 	const handleDateChange = (value?: Date) => {
-		if (!value) {
-			return onChange(undefined)
+		if (value) {
+			onChange(value && dateToIsoDate(value))
 		}
-		onChange(value && dateToIsoDate(value))
 	}
 
 	const handleSuggestion = (value?: IsoDate) => {
-		onChange(value)
+		if (value) {
+			onChange(value)
+		}
 	}
 
 	return (
