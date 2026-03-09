@@ -11,8 +11,8 @@ import {
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
-import { useNavigation } from '@/lib/navigation'
 import { NomModèle } from '@/domaine/SimulationConfig'
+import { useNavigation } from '@/lib/navigation'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
 	enregistreLesRéponsesAuxQuestions,

@@ -1,17 +1,17 @@
 import * as O from 'effect/Option'
-import { DottedName } from 'modele-social'
 import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import { useEngine } from '@/components/utils/EngineContext'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
+import { DottedName } from '@/domaine/publicodes/DottedName'
 import { isQuantité } from '@/domaine/Quantité'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 const AMOUNT_FIELD = '<AmountField />'
 const QUANTITY_FIELD = '<QuantityField />'

@@ -171,7 +171,6 @@ Rechercher une règle dans la documentation: Rechercher une règle dans la docum
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
 Remboursements et déductions diverses: Remboursements et déductions diverses
 Replier: Replier
-Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.:
   Retrouver ma précédente simulation, charger les données de ma précédente
@@ -541,20 +540,6 @@ footer:
 février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 gérer:
-<<<<<<< HEAD
-  choix:
-    chomage-partiel:
-      body: Calculez le reste à payer après remboursement de l'État lorsque vous
-        activez le dispositif pour un employé.
-      cta: Voir le simulateur
-      title: Activité partielle
-    is:
-      body: Calculez le montant de l'impôt sur les sociétés à partir de votre
-        bénéfice.
-      cta: Lancer le simulateur
-      title: Estimer le montant de l'impôt sur les sociétés
-=======
->>>>>>> 23b896515 (refactor: inversion de responsabilité entre SimulateurOrAssistantPage et Component)
   ressources:
     annuaire-entreprises:
       aria-label: Annuaire des Entreprises, nouvelle fenêtre
