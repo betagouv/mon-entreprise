@@ -20,10 +20,10 @@ describe('Indépendant', () => {
 				'entreprise . charges': '10000 €/an',
 			})
 
-			expect(e).toEvaluate('indépendant . revenu brut', 40000)
+			expect(e).toEvaluate('indépendant . revenu brut', 40_000)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette CSG-CRDS',
-				29600
+				Math.round((40_000 * (100 - 26)) / 100)
 			)
 		})
 
@@ -33,10 +33,10 @@ describe('Indépendant', () => {
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 
-			expect(e).toEvaluate('indépendant . revenu brut', 40000)
+			expect(e).toEvaluate('indépendant . revenu brut', 40_000)
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette CSG-CRDS',
-				29600
+				Math.round((40_000 * (100 - 26)) / 100)
 			)
 		})
 
@@ -121,7 +121,7 @@ describe('Indépendant', () => {
 				'indépendant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
-			expect(assietteSociale).toEqual(assietteCSG + 4000)
+			expect(assietteSociale).toEqual(assietteCSG + 4_000)
 		})
 
 		it('calcule avec des revenus étrangers déficitaires', () => {
@@ -139,7 +139,7 @@ describe('Indépendant', () => {
 				'indépendant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
-			expect(assietteSociale).toEqual(assietteCSG - 4000)
+			expect(assietteSociale).toEqual(assietteCSG - 4_000)
 		})
 
 		it('calcule en cas de domiciliation fiscale à l’étranger', () => {
@@ -150,7 +150,7 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette sociale',
-				29600
+				Math.round((40_000 * (100 - 26)) / 100)
 			)
 		})
 	})
