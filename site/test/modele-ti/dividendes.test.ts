@@ -2,10 +2,6 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-const defaultSituation = {
-	'entreprise . imposition': "'IS'",
-}
-
 describe('Dividendes', () => {
 	let engine: Engine
 	beforeEach(() => {
@@ -15,7 +11,6 @@ describe('Dividendes', () => {
 	describe('exonérés de cotisations sociales', () => {
 		it('est le montant total par défaut', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
 				'indépendant . dividendes': '1000 €/an',
 			})
 
@@ -27,7 +22,6 @@ describe('Dividendes', () => {
 
 		it('sont plafonnés à 10% du capital social pour les sociétés', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
 				'indépendant . dividendes': '1000 €/an',
 				'entreprise . capital social': '20000 €',
 				"entreprise . bénéfice net de l'exercice précédent": '30000 €',
@@ -45,7 +39,6 @@ describe('Dividendes', () => {
 
 		it('sont plafonnés à 10% du bénéfice net de l’exercice précédent pour les entreprises individuelles', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
 				'indépendant . dividendes': '1000 €/an',
 				'entreprise . capital social': '20000 €',
 				"entreprise . bénéfice net de l'exercice précédent": '30000 €',
@@ -66,7 +59,6 @@ describe('Dividendes', () => {
 	describe('inférieurs ou égaux à 10% du capital social', () => {
 		const dividendes = 1000
 		const defaultSituationAvecDividendes = {
-			...defaultSituation,
 			'indépendant . rémunération . brute': '40000 €/an',
 			'indépendant . dividendes': `${dividendes} €/an`,
 			'entreprise . capital social': '10000 €',
@@ -95,7 +87,6 @@ describe('Dividendes', () => {
 
 		it('s’ajoutent à la rémunération nette avec dividendes après prélèvements sociaux', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteSansDividendes = e1.evaluate(
@@ -126,7 +117,6 @@ describe('Dividendes', () => {
 
 		it('ne modifient pas la rémunération imposable en cas de PFU', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteImposableSansDividendes = e1.evaluate(
@@ -145,7 +135,6 @@ describe('Dividendes', () => {
 
 		it('ne modifient pas le montant de l’impôt en cas de PFU', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const impôtSansDividendes = e1.evaluate(
@@ -162,7 +151,6 @@ describe('Dividendes', () => {
 
 		it('s’ajoutent à la rémunération nette après impôt après prélèvements sociaux et PFU', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteAprèsImpôtSansDividendes = e1.evaluate(
@@ -205,7 +193,6 @@ describe('Dividendes', () => {
 
 		it('s’ajoutent à la rémunération nette imposable en cas d’imposition au barème progressif', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteImposableSansDividendes = e1.evaluate(
@@ -233,7 +220,6 @@ describe('Dividendes', () => {
 		const rémunérationTotale = 40000
 		const dividendes = 1200
 		const defaultSituationAvecDividendes = {
-			...defaultSituation,
 			'indépendant . rémunération . brute': `${rémunérationTotale} €/an`,
 			'indépendant . dividendes': `${dividendes} €/an`,
 			'entreprise . capital social': '10000 €',
@@ -265,7 +251,6 @@ describe('Dividendes', () => {
 
 		it('la part soumise à cotisations sociales est intégrée au revenu brut', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const revenuBrutSansDividendes = e1.evaluate('indépendant . revenu brut')
@@ -284,7 +269,6 @@ describe('Dividendes', () => {
 
 		it('la part soumise à cotisations sociales augmente les cotisations et contributions autant qu’une augmentation de rémunération brute', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,
@@ -308,7 +292,6 @@ describe('Dividendes', () => {
 			// rémunération nette (uniquement à la rémunération nette avec dividendes),
 			// celle-ci est donc inférieure.
 			const e = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteSansDividendes = e.evaluate(
@@ -319,7 +302,6 @@ describe('Dividendes', () => {
 			).nodeValue as number
 
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,
@@ -341,7 +323,6 @@ describe('Dividendes', () => {
 
 		it('s’ajoutent à la la rémunération nette avec dividendes après prélèvements sociaux', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteSansDividendes = e.evaluate(
@@ -352,7 +333,6 @@ describe('Dividendes', () => {
 			).nodeValue as number
 
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,
@@ -387,7 +367,6 @@ describe('Dividendes', () => {
 
 		it('ne s’ajoutent pas à la rémunération nette imposable', () => {
 			const e = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': '40000 €/an',
 			})
 			const rémunérationNetteImposableSansDividendes = e.evaluate(
@@ -401,7 +380,6 @@ describe('Dividendes', () => {
 			).nodeValue as number
 
 			const e1 = engine.setSituation({
-				...defaultSituation,
 				'indépendant . rémunération . brute': `${
 					rémunérationTotale + dividendesSupérieursAuPlafond
 				} €/an`,

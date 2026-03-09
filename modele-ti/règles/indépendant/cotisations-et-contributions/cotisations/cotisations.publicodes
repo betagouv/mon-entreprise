@@ -187,6 +187,7 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
               - si: profession libérale . CNAVPL
                 alors: 3
               - sinon: 5
+      unité: €/an
 
     taux:
       valeur:

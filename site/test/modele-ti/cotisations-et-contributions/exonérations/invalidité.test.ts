@@ -5,7 +5,6 @@ import { beforeEach, describe, expect, it } from 'vitest'
 const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
 
 const defaultSituation = {
-	'entreprise . imposition': "'IR'",
 	'indépendant . cotisations et contributions . assiette sociale': '50000 €/an',
 }
 const defaultSituationInvalidité = {
