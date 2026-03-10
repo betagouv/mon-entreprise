@@ -345,7 +345,7 @@ const Détails = ({
 										<Value
 											engine={engine}
 											expression="protection sociale . retraite . complémentaire . valeur du point"
-											displayedUnit="€/an"
+											displayedUnit="€ par an"
 											linkToRule={false}
 										/>
 									</Strong>
