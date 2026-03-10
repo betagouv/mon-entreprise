@@ -337,6 +337,21 @@ const Détails = ({
 							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.unit',
 							'point(s) acquis par an'
 						)}
+						footer={(engine) => (
+							<Body style={{ margin: 0 }}>
+								<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.valeur-du-point">
+									Valeur du point&nbsp;:{' '}
+									<Strong>
+										<Value
+											engine={engine}
+											expression="protection sociale . retraite . complémentaire . valeur du point"
+											displayedUnit="€ par an"
+											linkToRule={false}
+										/>
+									</Strong>
+								</Trans>
+							</Body>
+						)}
 					/>
 
 					<Message type="info" border={false}>

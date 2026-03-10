@@ -1531,6 +1531,7 @@ pages:
               base.
             h4: Retraite complémentaire
             unit: point(s) acquis par an
+            valeur-du-point: "Valeur du point : <2><0></0></2>"
           lien-assurance-retraite:
             aria-label: Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre
             message: Pour estimer le montant de votre future pension de retraite, utilisez

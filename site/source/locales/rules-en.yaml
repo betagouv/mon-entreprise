@@ -8694,6 +8694,20 @@ protection sociale . retraite . complémentaire . RCI:
       titre.fr: valeur du point
   titre.en: '[automatic] supplementary pension for the self-employed'
   titre.fr: retraite complémentaire des indépendants
+protection sociale . retraite . complémentaire . valeur du point:
+  description.en: >
+    [automatic] The service value of the point is used to convert acquired
+    supplementary retirement
+
+    points into an annual pension. This value is regularly
+
+    by the pension funds.
+  description.fr: |
+    La valeur de service du point permet de convertir les points de retraite
+    complémentaire acquis en pension annuelle. Cette valeur est revalorisée
+    régulièrement par les caisses de retraite.
+  titre.en: '[automatic] Point service value'
+  titre.fr: Valeur de service du point
 protection sociale . retraite . trimestres:
   avec:
     exonération invalidité indépendant:
