@@ -262,6 +262,23 @@ protection sociale . retraite . complémentaire:
         - CIPAV
     - 10 ans
 
+protection sociale . retraite . complémentaire . valeur du point:
+  titre: Valeur de service du point
+  description: |
+    La valeur de service du point permet de convertir les points de retraite
+    complémentaire acquis en pension annuelle. Cette valeur est revalorisée
+    régulièrement par les caisses de retraite.
+  unité: €/an/point
+  variations:
+    - si: salarié
+      alors: AGIRC ARRCO . valeur du point
+    - si:
+        une de ces conditions:
+          - dirigeant . indépendant . PL . CIPAV
+          - dirigeant . auto-entrepreneur . Cipav
+      alors: CIPAV . valeur de service du point
+    - sinon: RCI . valeur du point
+
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   titre: Agirc-Arrco
   applicable si: salarié
