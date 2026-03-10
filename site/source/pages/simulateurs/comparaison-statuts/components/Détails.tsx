@@ -340,7 +340,7 @@ const Détails = ({
 						footer={(engine) => (
 							<Body style={{ margin: 0 }}>
 								<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.valeur-du-point">
-									Valeur du point :{' '}
+									Valeur du point&nbsp;:{' '}
 									<Strong>
 										<Value
 											engine={engine}
