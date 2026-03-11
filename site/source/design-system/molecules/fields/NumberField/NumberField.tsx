@@ -126,6 +126,7 @@ const StyledRAGroup = styled(RAGroup)`
 `
 
 const StyledRAInput = styled(RAInput)`
+	padding: 0;
 	border: none;
 	outline: none;
 

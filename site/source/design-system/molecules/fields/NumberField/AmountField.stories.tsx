@@ -21,3 +21,11 @@ export const Default: Story = {
 		unit: '€/an',
 	},
 }
+
+export const WithCents: Story = {
+	args: {
+		label: 'Salaire mensuel net',
+		unit: '€/mois',
+		withCents: true,
+	},
+}
