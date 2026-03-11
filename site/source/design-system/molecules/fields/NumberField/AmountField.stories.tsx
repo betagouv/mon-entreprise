@@ -17,6 +17,7 @@ type Story = StoryObj<typeof AmountField>
 
 export const Default: Story = {
 	args: {
-		label: 'Montant',
+		label: 'Salaire annuel brut',
+		unit: '€/an',
 	},
 }

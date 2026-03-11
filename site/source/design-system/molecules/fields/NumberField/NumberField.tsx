@@ -23,7 +23,7 @@ import {
 	fieldLabelStyles,
 } from '../fieldsStyles'
 
-export type NumberFieldProps = Pick<
+type NumberFieldProps = Pick<
 	RANumberFieldProps,
 	'defaultValue' | 'formatOptions'
 > & {
@@ -119,7 +119,7 @@ const StyledRAGroup = styled(RAGroup)`
 	${fieldInputStyles}
 
 	display: flex;
-	gap: ${({ theme }) => `${theme.spacings.xs}`};
+	gap: ${({ theme }) => `${theme.spacings.xxs}`};
 
 	width: fit-content;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
