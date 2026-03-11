@@ -4,11 +4,11 @@ export type UnitéMonétaire = UnitéMonétairePonctuelle | UnitéMonétaireRéc
 
 const UNITÉS_MONÉTAIRES = [
 	'€',
-	'€/titre-restaurant',
 	'€/an',
 	'€/mois',
 	'€/jour',
 	'€/heure',
+	'€/titre-restaurant',
 ]
 
 export const isUnitéMonétaire = (unité?: string): unité is UnitéMonétaire =>
