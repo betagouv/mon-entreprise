@@ -24,22 +24,28 @@ export type AmountFieldProps = Pick<
 	label: string
 	suggestions?: InputSuggestionsRecord<number>
 	unit: UnitéMonétaire
+	withCents?: boolean
 	onSubmit?: (source?: string) => void
 }
 
 export function AmountField({
 	defaultValue,
 	description,
-	unit,
 	errorMessage,
 	label,
 	suggestions,
+	unit,
+	withCents = false,
 }: AmountFieldProps) {
 	return (
 		<NumberField
 			defaultValue={defaultValue}
 			description={description}
 			displayedUnit={UNIT_TO_DISPLAY[unit]}
+			formatOptions={{
+				minimumFractionDigits: 0,
+				maximumFractionDigits: withCents ? 2 : 0,
+			}}
 			errorMessage={errorMessage}
 			label={label}
 			suggestions={suggestions}
