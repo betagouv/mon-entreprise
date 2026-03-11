@@ -304,7 +304,8 @@ const Détails = ({
 						<DetailsRowCards
 							dottedName="protection sociale . retraite . base . cotisée"
 							namedEngines={namedEngines}
-							unit="€ cotisés par an"
+							unit="€/an"
+							displayedUnit="€ cotisés par an"
 						/>
 					</Condition>
 
