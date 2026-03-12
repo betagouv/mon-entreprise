@@ -22,6 +22,7 @@ import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
+import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
 import {
 	companySituationSelector,
@@ -52,16 +53,24 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 	const passedQuestions = useSelector(
 		questionsRéponduesEncoreApplicablesNomsSelector
 	)
+	const questionsListeNoire = useSelector(listeNoireSelector)
+
+	const isNotQuestionListeNoire = useCallback(
+		(dottedName: DottedName) =>
+			!questionsListeNoire.find((question) => dottedName.startsWith(question)),
+		[questionsListeNoire]
+	)
 
 	const answeredAndPassedQuestions = useMemo(
 		() =>
 			passedQuestions
+				.filter(isNotQuestionListeNoire)
 				.filter(
 					(dottedName) =>
 						engine.getRule(dottedName).rawNode.question !== undefined
 				)
 				.map((dottedName) => engine.getRule(dottedName)),
-		[engine, passedQuestions, situation]
+		[engine, isNotQuestionListeNoire, passedQuestions]
 	)
 	const nextSteps = useNextQuestions().map((dottedName) =>
 		engine.evaluate(engine.getRule(dottedName))
@@ -74,6 +83,7 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 			),
 		[answeredAndPassedQuestions]
 	)
+
 	const companyQuestions = useMemo(
 		() =>
 			Array.from(
@@ -84,10 +94,18 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 							...Object.keys(situation),
 							...Object.keys(companySituation),
 						] as Array<DottedName>
-					).filter(isCompanyDottedName)
+					)
+						.filter(isCompanyDottedName)
+						.filter(isNotQuestionListeNoire)
 				)
 			).map((dottedName) => engine.getRule(dottedName)),
-		[answeredAndPassedQuestions]
+		[
+			answeredAndPassedQuestions,
+			companySituation,
+			engine,
+			isNotQuestionListeNoire,
+			situation,
+		]
 	)
 
 	const siret = engine.evaluate('établissement . SIRET').nodeValue as string
