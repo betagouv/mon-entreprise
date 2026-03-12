@@ -56,5 +56,6 @@ export function eirlConfig({ t, sitePaths }: SimulatorsDataParams) {
 		simulation: configEirl,
 		codesCatégorieJuridique: ['1000'],
 		component: IndépendantSimulation,
+		conseillersEntreprisesVariant: 'revenus_par_statut',
 	} as const)
 }

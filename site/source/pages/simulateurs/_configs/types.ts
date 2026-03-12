@@ -2,6 +2,7 @@ import type { TFunction } from 'i18next'
 import { PublicodesExpression } from 'publicodes'
 
 import { TrackingChapters } from '@/components/ATInternetTracking'
+import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprisesButton'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
@@ -135,6 +136,8 @@ export interface PageConfig {
 
 	/** Composant React pour les explications SEO, qui apparaissent en dessous du simulateur */
 	seoExplanations?: () => JSX.Element
+
+	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 }
 
 export type ExternalLink = {
