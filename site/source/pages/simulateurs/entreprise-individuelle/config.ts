@@ -62,5 +62,6 @@ export function entrepriseIndividuelleConfig({
 		codesCatégorieJuridique: ['1000'],
 		component: EntrepriseIndividuelle,
 		seoExplanations: SeoExplanationsEI,
+		conseillersEntreprisesVariant: 'revenus_par_statut',
 	} as const)
 }

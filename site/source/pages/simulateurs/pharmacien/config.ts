@@ -37,5 +37,6 @@ export function pharmacienConfig({ t, sitePaths }: SimulatorsDataParams) {
 		simulation: configPharmacien,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: IndépendantPLSimulation,
+		conseillersEntreprisesVariant: 'professions_liberales',
 	} as const)
 }

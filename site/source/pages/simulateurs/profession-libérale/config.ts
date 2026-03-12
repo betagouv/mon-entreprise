@@ -60,5 +60,6 @@ export function professionLibéraleConfig({
 			'5499',
 		],
 		component: IndépendantPLSimulation,
+		conseillersEntreprisesVariant: 'professions_liberales',
 	} as const)
 }

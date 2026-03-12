@@ -45,5 +45,6 @@ export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 		codesCatégorieJuridique: ['5710'],
 		component: SASUSimulation,
 		seoExplanations: SeoExplanations,
+		conseillersEntreprisesVariant: 'revenus_par_statut',
 	} as const)
 }

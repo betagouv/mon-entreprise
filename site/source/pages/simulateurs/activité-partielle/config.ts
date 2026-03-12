@@ -54,5 +54,6 @@ export function activitéPartielleConfig({
 		simulation: configActivitéPartielle,
 		component: ActivitéPartielleComponent,
 		seoExplanations: SeoExplanations,
+		conseillersEntreprisesVariant: 'activite_partielle',
 	} as const)
 }
