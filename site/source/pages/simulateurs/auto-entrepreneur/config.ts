@@ -95,5 +95,6 @@ export function autoEntrepreneurConfig({ t, sitePaths }: SimulatorsDataParams) {
 		codesCatégorieJuridique: ['1000'],
 		component: AutoEntrepreneur,
 		seoExplanations: SeoExplanations,
+		conseillersEntreprisesVariant: 'micro_entrepreneur',
 	} as const)
 }

@@ -9,6 +9,7 @@ import ShareOrSaveSimulationBanner, {
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button, Grid, H3, Spacing } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNavigation } from '@/lib/navigation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
@@ -93,6 +94,7 @@ export default function Simulation<S extends Situation = Situation>({
 	avecQuestionsPublicodes = true,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
+	const { currentSimulatorData } = useCurrentSimulatorData()
 	const { currentPath } = useNavigation()
 	const shouldShowFeedback = getShouldAskFeedback(currentPath)
 	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
@@ -146,7 +148,13 @@ export default function Simulation<S extends Situation = Situation>({
 								</>
 							)}
 
-							<ShareOrSaveSimulationBanner share print conseillersEntreprises />
+							<ShareOrSaveSimulationBanner
+								share
+								print
+								conseillersEntreprisesVariant={
+									currentSimulatorData?.conseillersEntreprisesVariant
+								}
+							/>
 							<Spacing lg />
 						</>
 					)}

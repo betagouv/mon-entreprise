@@ -11,7 +11,10 @@ import {
 import { useUrl } from '@/hooks/useUrl'
 
 import { usePianoTracking } from '../ATInternetTracking'
-import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
+import {
+	ConseillersEntreprisesButton,
+	type ConseillersEntreprisesVariant,
+} from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
 export interface CustomSimulationButton {
@@ -22,12 +25,12 @@ export interface CustomSimulationButton {
 export default function ShareOrSaveSimulationBanner({
 	share,
 	print,
-	conseillersEntreprises,
+	conseillersEntreprisesVariant,
 	customSimulationbutton,
 }: {
 	share?: boolean
 	print?: boolean
-	conseillersEntreprises?: boolean
+	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
@@ -134,9 +137,11 @@ export default function ShareOrSaveSimulationBanner({
 					</Grid>
 				)}
 
-				{conseillersEntreprises && (
+				{conseillersEntreprisesVariant && (
 					<Grid as="li" item xs={12} sm="auto">
-						<ConseillersEntreprisesButton variant="recrutement" />
+						<ConseillersEntreprisesButton
+							variant={conseillersEntreprisesVariant}
+						/>
 					</Grid>
 				)}
 			</Grid>

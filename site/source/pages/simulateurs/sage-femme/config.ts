@@ -38,5 +38,6 @@ export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 		simulation: configSageFemme,
 		codesCatégorieJuridique: ['1000', '5410'],
 		component: IndépendantPLSimulation,
+		conseillersEntreprisesVariant: 'professions_liberales',
 	} as const)
 }

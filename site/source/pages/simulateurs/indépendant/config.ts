@@ -45,5 +45,6 @@ export function indépendantConfig({ t, sitePaths }: SimulatorsDataParams) {
 		path: sitePaths.simulateurs.indépendant,
 		simulation: configIndépendant,
 		component: IndépendantSimulation,
+		conseillersEntreprisesVariant: 'revenus_par_statut',
 	} as const)
 }
