@@ -44,5 +44,6 @@ export function chirurgienDentisteConfig({
 		simulation: configDentiste,
 		codesCatégorieJuridique: ['1000', '5410'],
 		component: IndépendantPLSimulation,
+		conseillersEntreprisesVariant: 'professions_liberales',
 	} as const)
 }

@@ -1,6 +1,5 @@
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { DottedName } from 'modele-social'
-import { Evaluation } from 'publicodes'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
@@ -9,7 +8,6 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
-import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
@@ -31,7 +29,6 @@ import {
 	Message,
 	Popover,
 	Spacing,
-	Strong,
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
 import { useQuestionList } from '@/hooks/useQuestionList'
@@ -192,48 +189,6 @@ function PourMonEntreprise() {
 					</Grid>
 				</FromTop>
 			)}
-
-			<Trans i18nKey="pages.assistants.pour-mon-entreprise.info.PdE">
-				<H2>
-					Échanger avec le conseiller qui peut vous aider selon votre
-					problématique
-				</H2>
-				<Body as="div">
-					<span>Vous souhaitez :</span>
-					<UlInColumns>
-						<li>recruter, former vos salariés</li>
-						<li>financer vos projets d'investissement</li>
-						<li>résoudre un problème de trésorerie</li>
-						<li>être conseillé(e) en droit du travail</li>
-						<li>développer votre activité commerciale</li>
-						<li>vendre sur internet</li>
-						<li>vendre ou reprendre une entreprise</li>
-						<li>améliorer la santé et sécurité au travail</li>
-						<li>entrer dans une démarche de transition écologique & RSE</li>
-					</UlInColumns>
-				</Body>
-				<Body>
-					<Strong>
-						Service public simple et rapide : vous êtes rappelé(e) par LE
-						conseiller qui peut vous aider.
-					</Strong>
-				</Body>
-				<Body>
-					Plus de 40 partenaires publics sont mobilisés pour vous accompagner en
-					fonction de votre problématique.
-					<br />
-					Le conseiller compétent proche de chez vous vous rappelle sous 5
-					jours.
-				</Body>
-			</Trans>
-
-			<ConseillersEntreprisesButton
-				siret={
-					engine.evaluate('établissement . SIRET')
-						.nodeValue as Evaluation<string>
-				}
-			/>
-			<Spacing lg />
 		</>
 	)
 }
@@ -251,15 +206,6 @@ const configEntrepriseDetails: SimulationConfig = {
 			'oui',
 	},
 }
-
-const UlInColumns = styled.ul`
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
-		columns: 2;
-	}
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
-		columns: 3;
-	}
-`
 
 const AskCompanyMissingDetails = () => {
 	const { absoluteSitePaths } = useSitePaths()

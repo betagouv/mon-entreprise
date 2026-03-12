@@ -71,5 +71,6 @@ export function salariéConfig(params: SimulatorsDataParams) {
 		simulation: configSalarié,
 		component: SalariéSimulation,
 		seoExplanations: SeoExplanations,
+		conseillersEntreprisesVariant: 'recrutement',
 	} as const)
 }

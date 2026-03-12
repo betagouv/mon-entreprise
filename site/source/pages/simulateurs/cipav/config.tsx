@@ -39,5 +39,6 @@ export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 		simulation: cipavSimulationConfig,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: IndépendantPLSimulation,
+		conseillersEntreprisesVariant: 'professions_liberales',
 	} as const)
 }

@@ -29,26 +29,33 @@ const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
 
-type ConseillersEntreprisesVariant =
-	| 'generic'
+export type ConseillersEntreprisesVariant =
 	| 'activite_partielle'
 	| 'recrutement'
+	| 'micro_entrepreneur'
+	| 'revenus_par_statut'
+	| 'professions_liberales'
 
 export const ConseillersEntreprisesButton = ({
-	variant = 'generic',
+	variant,
 	siret,
 }: {
-	variant?: ConseillersEntreprisesVariant
+	variant: ConseillersEntreprisesVariant
 	siret?: string | null
 }) => {
 	const { t } = useTranslation()
 
 	const paths: Record<ConseillersEntreprisesVariant, string> = {
-		generic: '/aide-entreprise/mon-entreprise-urssaf-fr',
 		recrutement:
 			'/aide-entreprise/rh-mon-entreprise-urssaf-fr/theme/recrutement-formation',
 		activite_partielle:
 			'/aide-entreprise/activite-partielle-mon-entreprise-urssaf-fr/theme/droit-du-travail',
+		micro_entrepreneur:
+			'/aide-entreprise/simulateur-de-revenus-des-micro-entrepreneurs-sur-mon-entreprise',
+		revenus_par_statut:
+			'/aide-entreprise/simulateur-de-revenus-par-statut-sur-mon-entreprise',
+		professions_liberales:
+			'/aide-entreprise/professions-liberales-mon-entreprise-urssaf-fr',
 	}
 
 	const baseURL =
@@ -87,7 +94,7 @@ export const ConseillersEntreprisesButton = ({
 							{t(
 								'Décrivez votre projet ou votre problème en donnant quelques éléments de contexte',
 								`Décrivez votre projet ou votre problème en donnant quelques éléments de contexte.
-  Notre partenaire Conseillers-Entreprises.Service-Public.fr identifiera, parmi l’ensemble des partenaires publics et parapublics,
+  Conseillers-Entreprises Service Public identifiera, parmi l’ensemble des partenaires publics et parapublics,
   le conseiller compétent pour votre demande.
   Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.`
 							)}
