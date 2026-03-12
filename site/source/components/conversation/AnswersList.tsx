@@ -17,11 +17,13 @@ import {
 	typography,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { estPasQuestionEnListeNoire } from '@/domaine/estPasQuestionEnListeNoire'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
+import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
 import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/questionsRéponduesEncoreApplicablesNoms.selector'
 import {
 	companySituationSelector,
@@ -52,16 +54,18 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 	const passedQuestions = useSelector(
 		questionsRéponduesEncoreApplicablesNomsSelector
 	)
+	const questionsListeNoire = useSelector(listeNoireSelector) as DottedName[]
 
 	const answeredAndPassedQuestions = useMemo(
 		() =>
 			passedQuestions
+				.filter(estPasQuestionEnListeNoire(questionsListeNoire))
 				.filter(
 					(dottedName) =>
 						engine.getRule(dottedName).rawNode.question !== undefined
 				)
 				.map((dottedName) => engine.getRule(dottedName)),
-		[engine, passedQuestions, situation]
+		[engine, passedQuestions, questionsListeNoire]
 	)
 	const nextSteps = useNextQuestions().map((dottedName) =>
 		engine.evaluate(engine.getRule(dottedName))
@@ -74,6 +78,7 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 			),
 		[answeredAndPassedQuestions]
 	)
+
 	const companyQuestions = useMemo(
 		() =>
 			Array.from(
@@ -84,10 +89,18 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 							...Object.keys(situation),
 							...Object.keys(companySituation),
 						] as Array<DottedName>
-					).filter(isCompanyDottedName)
+					)
+						.filter(isCompanyDottedName)
+						.filter(estPasQuestionEnListeNoire(questionsListeNoire))
 				)
 			).map((dottedName) => engine.getRule(dottedName)),
-		[answeredAndPassedQuestions]
+		[
+			answeredAndPassedQuestions,
+			companySituation,
+			engine,
+			questionsListeNoire,
+			situation,
+		]
 	)
 
 	const siret = engine.evaluate('établissement . SIRET').nodeValue as string
