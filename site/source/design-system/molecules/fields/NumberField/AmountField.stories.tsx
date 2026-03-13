@@ -30,10 +30,20 @@ export const WithCents: Story = {
 	},
 }
 
+export const WithPlaceholder: Story = {
+	args: {
+		label: 'Montant mensuel brut',
+		placeholder: '1801.8',
+		unit: '€/mois',
+		withCents: true,
+	},
+}
+
 export const WithInitialValue: Story = {
 	args: {
 		defaultValue: 1801.8,
-		displayedUnit: '€/mois',
 		label: 'Montant mensuel brut (SMIC par défaut)',
+		unit: '€/mois',
+		withCents: true,
 	},
 }

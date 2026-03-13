@@ -31,6 +31,7 @@ type NumberFieldProps = Pick<
 	displayedUnit?: string
 	errorMessage?: string
 	label: string
+	placeholder?: string
 	suggestions?: InputSuggestionsRecord<number>
 	onSubmit?: (source?: string) => void
 }
@@ -45,9 +46,10 @@ export function NumberField({
 		maximumFractionDigits: 2,
 	},
 	label,
+	placeholder,
 	suggestions,
 }: NumberFieldProps) {
-	const [value, setValue] = useState(defaultValue || 0)
+	const [value, setValue] = useState(defaultValue || undefined)
 	const { t } = useTranslation()
 
 	return (
@@ -64,7 +66,7 @@ export function NumberField({
 			)}
 
 			<StyledRAGroup className="input-and-unit-group">
-				<StyledRAInput />
+				<StyledRAInput placeholder={placeholder} />
 
 				{displayedUnit && <span>{displayedUnit}</span>}
 			</StyledRAGroup>

@@ -28,6 +28,14 @@ export const WithDisplayedUnit: Story = {
 	},
 }
 
+export const WithPlaceholder: Story = {
+	args: {
+		displayedUnit: '€/mois',
+		label: 'Montant mensuel brut',
+		placeholder: '1801.8',
+	},
+}
+
 export const WithInitialValue: Story = {
 	args: {
 		defaultValue: 1801.8,
