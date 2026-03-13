@@ -33,7 +33,7 @@ export const WithCents: Story = {
 export const WithPlaceholder: Story = {
 	args: {
 		label: 'Montant mensuel brut',
-		placeholder: '1801.80',
+		placeholder: 'par exemple : 2000',
 		unit: '€/mois',
 		withCents: true,
 	},

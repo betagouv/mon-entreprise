@@ -25,7 +25,7 @@ import {
 
 type NumberFieldProps = Pick<
 	RANumberFieldProps,
-	'defaultValue' | 'formatOptions'
+	'defaultValue' | 'formatOptions' | 'value'
 > & {
 	description?: string
 	displayedUnit?: string
@@ -49,14 +49,14 @@ export function NumberField({
 	placeholder,
 	suggestions,
 }: NumberFieldProps) {
-	const [value, setValue] = useState(defaultValue || undefined)
+	const [currentValue, setCurrentValue] = useState(defaultValue || undefined)
 	const { t } = useTranslation()
 
 	return (
 		<StyledRANumberField
 			defaultValue={defaultValue}
 			formatOptions={formatOptions}
-			value={value}
+			value={currentValue}
 			$hasError={!!errorMessage}
 		>
 			<StyledRALabel>{label}</StyledRALabel>
@@ -87,7 +87,7 @@ export function NumberField({
 					<InputSuggestions
 						suggestions={suggestions}
 						onFirstClick={(value: number) => {
-							setValue(value)
+							setCurrentValue(value)
 						}}
 					/>
 				</StyledSuggestionsContainer>
