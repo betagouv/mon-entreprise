@@ -8,6 +8,7 @@ import {
 } from '@/store/actions/actions'
 import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { configSelector } from '@/store/selectors/simulation/config/config.selector'
+import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 
 export default function useSimulationConfig({
 	key,
@@ -28,6 +29,7 @@ export default function useSimulationConfig({
 	}
 
 	const lastConfig = useSelector(configSelector)
+	const lastKey = useSelector(simulationKeySelector)
 
 	// useLayoutEffect like useEffect does nothing in SSR mode but triggers a warning,
 	// so we replace it with useEffect which does not trigger any warning
@@ -36,7 +38,7 @@ export default function useSimulationConfig({
 		: useLayoutEffect
 
 	useLayoutEffectWithoutWarnInSSR(() => {
-		if (config && lastConfig !== config) {
+		if (key !== lastKey || (config && lastConfig !== config)) {
 			dispatch(configureLaSimulation(config ?? {}, url, key))
 		}
 		if (autoloadLastSimulation) {

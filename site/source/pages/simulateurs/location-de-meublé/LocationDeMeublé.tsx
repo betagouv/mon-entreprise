@@ -5,12 +5,14 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, { SimulationGoals } from '@/components/Simulation'
 import {
 	ÉconomieCollaborativeProvider,
+	estSituationÉconomieCollaborative,
 	estSituationValide,
 	isCotisationsEnabled,
 	SituationÉconomieCollaborative,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 import { Body, ConteneurBleu, Emoji, Message } from '@/design-system'
+import { Situation } from '@/domaine/Situation'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
 import { TypeHébergementSwitch } from '@/pages/simulateurs/location-de-meublé/components/TypeHébergementSwitch'
@@ -74,7 +76,11 @@ const LocationDeMeublé = () => {
 						? [PremiereAnneeQuestion, AlsaceMoselleQuestion]
 						: []),
 				]}
-				showQuestionsFromBeginning={estSituationValide(situation)}
+				simulationCommencée={<S extends Situation>(situation?: S) =>
+					estSituationÉconomieCollaborative(situation) &&
+					estSituationValide(situation)
+				}
+				hideDetails={true}
 			>
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
 				<SimulationGoals toggles={<TypeHébergementSwitch />}>

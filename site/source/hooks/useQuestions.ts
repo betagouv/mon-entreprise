@@ -118,7 +118,7 @@ export function useQuestions<S extends Situation>({
 		[questionsNonRépondues]
 	)
 
-	const [activeQuestionId, setActiveQuestionId] = useState<
+	const [questionCouranteId, setQuestionCouranteId] = useState<
 		Question<S>['id'] | undefined
 	>(idsDesQuestions[0])
 	const [finished, setFinished] = useState(false)
@@ -133,72 +133,72 @@ export function useQuestions<S extends Situation>({
 			)
 
 		if (laListeDesQuestionsAChangé) {
-			const laQuestionActiveNEstPasRépondue =
-				activeQuestionId &&
-				idsDesQuestionsNonRépondues.includes(activeQuestionId)
-			const laQuestionActiveNestPasLaPremièreQuestionNonRépondue =
-				activeQuestionId !== idsDesQuestionsNonRépondues[0]
+			const laQuestiondCouranteNEstPasRépondue =
+				questionCouranteId &&
+				idsDesQuestionsNonRépondues.includes(questionCouranteId)
+			const laQuestiondCouranteNestPasLaPremièreQuestionNonRépondue =
+				questionCouranteId !== idsDesQuestionsNonRépondues[0]
 			const nouvellePremièreQuestionNonRépondue =
-				laQuestionActiveNEstPasRépondue &&
-				laQuestionActiveNestPasLaPremièreQuestionNonRépondue
+				laQuestiondCouranteNEstPasRépondue &&
+				laQuestiondCouranteNestPasLaPremièreQuestionNonRépondue
 
 			if (nouvellePremièreQuestionNonRépondue) {
-				setActiveQuestionId(idsDesQuestionsNonRépondues[0])
+				setQuestionCouranteId(idsDesQuestionsNonRépondues[0])
 			}
 
 			toutesLesQuestionsApplicablesRef.current = toutesLesQuestionsApplicables
 		}
 	}, [
-		activeQuestionId,
+		questionCouranteId,
 		idsDesQuestionsNonRépondues,
 		toutesLesQuestionsApplicables,
 	])
 
 	useEffect(() => {
-		const laQuestionActiveNEstPlusApplicable =
-			activeQuestionId && !idsDesQuestions.includes(activeQuestionId)
-		const pasDeQuestionActiveMaisIlYADesQuestionsApplicables =
-			!activeQuestionId && idsDesQuestions.length
+		const laQuestiondCouranteNEstPlusApplicable =
+			questionCouranteId && !idsDesQuestions.includes(questionCouranteId)
+		const pasDeQuestiondCouranteMaisIlYADesQuestionsApplicables =
+			!questionCouranteId && idsDesQuestions.length
 
 		if (
-			laQuestionActiveNEstPlusApplicable ||
-			pasDeQuestionActiveMaisIlYADesQuestionsApplicables
+			laQuestiondCouranteNEstPlusApplicable ||
+			pasDeQuestiondCouranteMaisIlYADesQuestionsApplicables
 		) {
-			setActiveQuestionId(idsDesQuestionsNonRépondues[0])
+			setQuestionCouranteId(idsDesQuestionsNonRépondues[0])
 		}
-	}, [activeQuestionId, idsDesQuestions, idsDesQuestionsNonRépondues])
+	}, [questionCouranteId, idsDesQuestions, idsDesQuestionsNonRépondues])
 
-	const QuestionCourante = isUndefined(activeQuestionId)
+	const QuestionCourante = isUndefined(questionCouranteId)
 		? undefined
-		: questionsParId[activeQuestionId]
+		: questionsParId[questionCouranteId]
 
 	const goToNext = useCallback(() => {
-		if (!activeQuestionId) {
+		if (!questionCouranteId) {
 			return
 		}
 
 		// TODO: gérer le cas "ignorer la question" pour une question fournie
-		const questionCourante = questionsParId[activeQuestionId]
-		const laQuestionActiveNEstPasRépondue =
-			idsDesQuestionsNonRépondues.includes(activeQuestionId)
+		const questionCourante = questionsParId[questionCouranteId]
+		const laQuestiondCouranteNEstPasRépondue =
+			idsDesQuestionsNonRépondues.includes(questionCouranteId)
 		if (
 			questionCourante?._tag === 'QuestionPublicodes' &&
-			laQuestionActiveNEstPasRépondue
+			laQuestiondCouranteNEstPasRépondue
 		) {
-			dispatch(ignoreLaQuestion(activeQuestionId as DottedName))
+			dispatch(ignoreLaQuestion(questionCouranteId as DottedName))
 		}
 
-		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
+		const currentIndex = idsDesQuestions.indexOf(questionCouranteId)
 		const laQuestionCouranteNEstPasLaDernièreQuestion =
 			currentIndex < idsDesQuestions.length - 1
 		if (laQuestionCouranteNEstPasLaDernièreQuestion) {
 			const nextId = idsDesQuestions[currentIndex + 1]
-			setActiveQuestionId(nextId)
+			setQuestionCouranteId(nextId)
 		} else {
 			setFinished(true)
 		}
 	}, [
-		activeQuestionId,
+		questionCouranteId,
 		questionsParId,
 		idsDesQuestionsNonRépondues,
 		idsDesQuestions,
@@ -207,22 +207,22 @@ export function useQuestions<S extends Situation>({
 
 	const goToPrevious = useCallback(() => {
 		if (finished) {
-			setActiveQuestionId(idsDesQuestions[idsDesQuestions.length - 1])
+			setQuestionCouranteId(idsDesQuestions[idsDesQuestions.length - 1])
 			setFinished(false)
 
 			return
 		}
 
-		if (!activeQuestionId) {
+		if (!questionCouranteId) {
 			return
 		}
 
-		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
+		const currentIndex = idsDesQuestions.indexOf(questionCouranteId)
 		if (currentIndex > 0) {
 			const prevId = idsDesQuestions[currentIndex - 1]
-			setActiveQuestionId(prevId)
+			setQuestionCouranteId(prevId)
 		}
-	}, [activeQuestionId, finished, idsDesQuestions])
+	}, [questionCouranteId, finished, idsDesQuestions])
 
 	const goTo = useCallback(
 		(id: string) => {
@@ -230,7 +230,7 @@ export function useQuestions<S extends Situation>({
 				return
 			}
 
-			setActiveQuestionId(id)
+			setQuestionCouranteId(id)
 		},
 		[idsDesQuestions]
 	)
@@ -241,8 +241,8 @@ export function useQuestions<S extends Situation>({
 		q.répondue(situation)
 	).length
 
-	const activeQuestionIndex = activeQuestionId
-		? idsDesQuestions.indexOf(activeQuestionId)
+	const questionCouranteIndex = questionCouranteId
+		? idsDesQuestions.indexOf(questionCouranteId)
 		: -1
 
 	const questionCouranteRépondue =
@@ -251,7 +251,7 @@ export function useQuestions<S extends Situation>({
 	return {
 		nombreDeQuestions,
 		nombreDeQuestionsRépondues,
-		activeQuestionIndex,
+		questionCouranteIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
 		raccourcis,
