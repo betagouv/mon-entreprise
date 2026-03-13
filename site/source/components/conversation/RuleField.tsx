@@ -1,10 +1,10 @@
 import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import { RuleNode, Unit } from 'publicodes'
-import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useEngine } from '@/components/utils/EngineContext'
+import { H3 } from '@/design-system'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
@@ -12,6 +12,8 @@ import {
 import { isMontant } from '@/domaine/Montant'
 import { isQuantité } from '@/domaine/Quantité'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
+
+import RuleInput from './RuleInput'
 
 const AMOUNT_FIELD = '<AmountField />'
 const QUANTITY_FIELD = '<QuantityField />'
@@ -72,7 +74,12 @@ type RuleFieldProps = {
  * Il a vocation à remplacer <RuleInput /> qui n'embarque pas le label ou la legend,
  * compliquant la mise en place de l'accessibilité de ces champs.
  */
-export function RuleField({ dottedName, labelOrLegend }: RuleFieldProps) {
+export function RuleField({
+	dottedName,
+	labelOrLegend,
+	onChange,
+	onSubmit,
+}: RuleFieldProps) {
 	const engine = useEngine()
 
 	const rule = engine.getRule(dottedName)
@@ -92,29 +99,40 @@ export function RuleField({ dottedName, labelOrLegend }: RuleFieldProps) {
 		value
 	)
 
+	const htmlForId = dottedName.replaceAll(' . ', '_').replaceAll(' ', '-')
+
+	if ([RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(ruleFieldNature)) {
+		return (
+			<fieldset>
+				<H3 as="legend">
+					{labelOrLegend}
+
+					<ExplicableRule light dottedName={dottedName} />
+				</H3>
+
+				<RuleInput
+					dottedName={dottedName}
+					onChange={onChange}
+					onSubmit={onSubmit}
+				/>
+			</fieldset>
+		)
+	}
+
 	return (
-		<WorkInProgressContainer>
-			<div>
+		<>
+			<H3 as="label" htmlFor={htmlForId}>
 				{labelOrLegend}
 
 				<ExplicableRule light dottedName={dottedName} />
-			</div>
+			</H3>
 
-			<div>
-				Type de champ(s) à afficher : <i>{ruleFieldNature}</i>
-			</div>
-		</WorkInProgressContainer>
+			<RuleInput
+				id={htmlForId}
+				dottedName={dottedName}
+				onChange={onChange}
+				onSubmit={onSubmit}
+			/>
+		</>
 	)
 }
-
-const WorkInProgressContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-
-	margin: 1rem -1rem;
-	padding: 1rem;
-	border: 1px dotted grey;
-
-	background: #f8f8f8;
-`
