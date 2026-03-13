@@ -75,34 +75,34 @@ cotisations facultatives:
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des
   # cotisations ne change pas:
   - indépendant . rémunération . brute: 30000 €/an
-    indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . prévoyance: 0 €/an
-    indépendant . cotisations facultatives . retraite: 3800 €/an # plafond: 10% PSS donc environ 4100
+    indépendant . cotisations et contributions . cotisations facultatives: oui
+    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 0 €/an
+    indépendant . cotisations et contributions . cotisations facultatives . retraite: 3800 €/an # plafond: 10% PSS donc environ 4100
   # Cas retraite: la cotisation retraite est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
   - indépendant . rémunération . brute: 30000 €/an
-    indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . prévoyance: 0 €/an
-    indépendant . cotisations facultatives . retraite: 5000 €/an # plafond: 10% PSS donc environ 4100
+    indépendant . cotisations et contributions . cotisations facultatives: oui
+    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 0 €/an
+    indépendant . cotisations et contributions . cotisations facultatives . retraite: 5000 €/an # plafond: 10% PSS donc environ 4100
   # Cas prévoyance
   - indépendant . rémunération . brute: 30000 €/an
-    indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . prévoyance: 1000 €/an
+    indépendant . cotisations et contributions . cotisations facultatives: oui
+    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 1000 €/an
   # Cas global faible
   - indépendant . rémunération . brute: 20000 €/an
-    indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . prévoyance: 200 €/an
-    indépendant . cotisations facultatives . retraite: 300 €/an
+    indépendant . cotisations et contributions . cotisations facultatives: oui
+    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 200 €/an
+    indépendant . cotisations et contributions . cotisations facultatives . retraite: 300 €/an
   # Cas global grand (plafonds calculés différemment)
   - indépendant . rémunération . brute: 300000 €/an
-    indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . prévoyance: 1500 €/an
-    indépendant . cotisations facultatives . retraite: 5000 €/an
+    indépendant . cotisations et contributions . cotisations facultatives: oui
+    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 1500 €/an
+    indépendant . cotisations et contributions . cotisations facultatives . retraite: 5000 €/an
   # Cas retraite grand
   - indépendant . rémunération . brute: 300000 €/an
-    indépendant . cotisations facultatives: oui
-    indépendant . cotisations facultatives . prévoyance: 1500 €/an
-    indépendant . cotisations facultatives . retraite: 8500 €/an
+    indépendant . cotisations et contributions . cotisations facultatives: oui
+    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 1500 €/an
+    indépendant . cotisations et contributions . cotisations facultatives . retraite: 8500 €/an
 
 imposition à l'IR:
   - entreprise . chiffre d'affaires: 100000 €/an

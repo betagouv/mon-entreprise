@@ -472,7 +472,9 @@ entreprise . charges:
     the company pays no contributions or taxes on them.
 
 
-    We do not yet deal with VAT: expenses should be entered exclusive of tax.
+    Expenses should be entered exclusive of tax (except for companies that are
+
+    exempt from VAT).
 
 
     Examples of deductible expenses:
@@ -485,19 +487,23 @@ entreprise . charges:
     - meal expenses: the supplement to the cost of a meal at home
 
 
-    > **Note**: social security contributions for self-employed workers and the deductible
+    > **Please note** :
 
-    and the deductible portion of CSG are deductible from taxable income and income subject to
+    &gt;
 
-    deductible from taxable income and income subject to contributions.
+    > Social security contributions for self-employed workers
 
-    expenses" section.
+    > and the deductible portion of CSG are part of the expenses
 
-    The simulator calculates them on the basis of the sales and expenses
+    > **deductible from taxable income**.
 
-    and deducts them from sales to estimate the amount of income net of expenses.
+    &gt;
 
-    income net of charges.
+    > Since the reform of the social security base, they are not
+
+    > **not deductible from income subject to contributions** for their actual amount:
+
+    > Urssaf applies a **flat deduction of 26%** instead.
   description.fr: >
     **Il ne faut pas déclarer ici les cotisations sociales, ni la CSG-CRDS, ni
     la contribution à la formation professionnelle.**
@@ -510,7 +516,9 @@ entreprise . charges:
     l’entreprise ne paiera pas de cotisations ni d’impôt dessus.
 
 
-    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxes.
+    Les charges sont à renseigner hors taxes (excepté pour les entreprises en
+
+    franchise de TVA).
 
 
     Exemples de charges déductibles :
@@ -523,27 +531,39 @@ entreprise . charges:
     - frais de repas : le supplément par rapport au coût d’un repas à domicile
 
 
-    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
+    > **À noter** :
 
-    part de CSG déductible font partie des charges déductibles du revenu imposable et
+    >
 
-    du revenu soumis à cotisations, mais elles ne sont pas à renseigner dans cette
+    > Les cotisations sociales au régime des travailleurs indépendants
 
-    rubrique « charges ».
+    > et la part de CSG déductible font partie des charges
 
-    Le simulateur les calcule à partir du chiffre d’affaires et des charges
+    > **déductibles du revenu imposable**.
 
-    renseignées, et les déduit de ce chiffre d’affaires pour estimer le montant du
+    >
 
-    revenu net de charges.
+    > Depuis la réforme de l’assiette sociale, elles ne sont
+
+    > **pas déductibles du revenu soumis à cotisations** pour leur montant réel :
+
+    > l’Urssaf applique un **abattement forfaitaire de 26 %** en remplacement.
   question.en: "[automatic] What are the company's expenses?"
   question.fr: Quelles sont les charges de l’entreprise ?
-  résumé.en: '[automatic] Total expenditure required by the company, excluding
-    social security contributions, CSG-CRDS and vocational training
-    contributions, which are automatically deducted by the simulator.'
-  résumé.fr: Total des dépenses nécessaires à l’entreprise, en excluant
-    cotisations sociales, CSG-CRDS et contribution à la formation
-    professionnelle qui sont automatiquement déduites par le simulateur.
+  résumé.en: >
+    [automatic] Total expenses incurred by the company, excluding social
+    security contributions,
+
+    CSG-CRDS and vocational training contributions, which are automatically
+
+    deducted by the simulator.
+  résumé.fr: >
+    Total des dépenses nécessaires à l’entreprise, en excluant cotisations
+    sociales,
+
+    CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement
+
+    déduites par le simulateur.
   titre.en: '[automatic] expenses (excluding management remuneration)'
   titre.fr: charges (hors rémunération dirigeant)
 entreprise . chiffre d'affaires:
@@ -3096,6 +3116,172 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     ces différentes caisses.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
+indépendant . cotisations et contributions . cotisations facultatives:
+  description.en: |
+    [automatic] The self-employed can also take out private contracts
+    "Madelin" for health insurance, or a retirement savings plan.
+
+    Payments into these contracts are tax-deductible (up to a ceiling), but not
+    ceiling), but are not deductible from social security contributions.
+    contributions.
+  description.fr: >
+    Il est possible pour l’indépendant de souscrire à des contrats privés
+
+    « Madelin » pour la prévoyance santé, ou un plan d’épargne retraite.
+
+
+    Les versements à ces contrats sont déductibles d’impôts (dans la limite d’un
+
+    plafond), mais non déductibles de l’assiette des cotisations et contributions
+
+    sociales.
+  question.en: '[automatic] Have you taken out any private provident and/or
+    supplementary pension contracts (Madelin contracts, retirement savings
+    plans)?'
+  question.fr:
+    Avez-vous souscrit à des contrats de prévoyance et / ou de retraite
+    complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
+  titre.en: '[automatic] optional contributions'
+  titre.fr: cotisations facultatives
+indépendant . cotisations et contributions . cotisations facultatives . déductibles:
+  titre.en: '[automatic] Tax-deductible portion'
+  titre.fr: Part déductible fiscalement
+indépendant . cotisations et contributions . cotisations facultatives . montant:
+  titre.en: '[automatic] amount'
+  titre.fr: montant
+indépendant . cotisations et contributions . cotisations facultatives . non déductibles:
+  titre.en: '[automatic] Non-deductible portion'
+  titre.fr: Part non déductible fiscalement
+indépendant . cotisations et contributions . cotisations facultatives . prévoyance:
+  description.en: >
+    [automatic] You can take out a Madelin provident contract to supplement your
+    social protection
+
+    and your family, particularly in the event of disability or death.
+
+    death.
+
+
+    Contributions to a Madelin provident savings plan are tax-deductible
+
+    from your taxable profit or income.
+  description.fr: >
+    Vous pouvez souscrire à un contrat Madelin de prévoyance pour compléter
+    votre
+
+    protection sociale et celle de votre famille, notamment en cas d’invalidité ou
+
+    de décès.
+
+
+    Les cotisations versées sur un contrat Madelin de prévoyance sont déductibles
+
+    de votre bénéfice ou revenu imposable.
+  question.en: '[automatic] How much do you pay in contributions under a Madelin
+    supplementary provident contract (health, sudden loss of employment)?'
+  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
+    d’un contrat Madelin de prévoyance complémentaire (santé, perte d’emploi
+    subie) ?
+  titre.en: '[automatic] Madelin provident contract'
+  titre.fr: Contrat Madelin prévoyance
+indépendant . cotisations et contributions . cotisations facultatives . prévoyance . plafond déductible:
+  description.en: >
+    [automatic] Contributions paid into a Madelin provident savings contract are
+    deductible
+
+    from your taxable profit or income, up to a maximum limit.
+
+
+    This deduction ceiling is limited to 3% of 8 of the annual social security ceiling
+
+    (PASS) and is equal to the sum of :
+
+    - 3.75% of professional income ;
+
+    - 7% of the PASS.
+  description.fr: >
+    Les cotisations versées sur un contrat Madelin de prévoyance sont
+    déductibles
+
+    de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
+
+
+    Ce plafond de déductions est limité à 3 % de 8 plafond annuel de la sécurité
+
+    sociale (PASS) et est égal à la somme entre :
+
+    - 3,75 % du revenu professionnel ;
+
+    - 7 % du PASS.
+  titre.en: '[automatic] deductible ceiling'
+  titre.fr: plafond déductible
+indépendant . cotisations et contributions . cotisations facultatives . retraite:
+  description.en: >
+    [automatic] The Plan d'Epargne Retraite (PER) is a retirement savings
+    product for individuals.
+
+    individuals. It enables you to accumulate savings to supplement your income
+
+    when you retire. You can subscribe to it with a
+
+    insurance company.
+
+
+    Contributions to a PER or a Madelin retirement contract are
+
+    deductible from your taxable profit or income.
+
+
+    > The PER replaces the PERP (Plan d'Epargne Retraite Populaire) and the Madelin
+
+    > Madelin retraite contracts, which will no longer be available from October 1, 2020.
+  description.fr: |
+    Le plan d’épargne retraite (PER) est un produit d’épargne retraite pour les
+    particuliers. Il vous permet d’accumuler une épargne afin de compléter vos
+    revenus au moment de la retraite. Vous pouvez le souscrire auprès d’un
+    établissement de crédit ou d’une compagnie d’assurance.
+
+    Les cotisations versées sur un PER ou un contrat Madelin retraite sont
+    déductibles de votre bénéfice ou revenu imposable.
+
+    > Le PER remplace le PERP (plan d’épargne retraite populaire) et le contrat
+    > Madelin retraite, qui ne sont plus proposés depuis le 1er octobre 2020.
+  question.en: '[automatic] How much do you contribute to a PER or a Madelin
+    retirement contract?'
+  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
+    d’un PER ou d’un contrat Madelin retraite ?
+  titre.en: '[automatic] PER / Madelin retirement contract'
+  titre.fr: PER / contrat Madelin retraite
+indépendant . cotisations et contributions . cotisations facultatives . retraite . plafond déductible:
+  description.en: >
+    [automatic] Contributions paid into a PER or a Madelin retirement contract
+    are
+
+    deductible from your taxable profit or income, subject to a ceiling.
+
+
+    This deduction ceiling is equal to a maximum of :
+
+    - 10% of professional income, limited to 8 times the annual social security ceiling
+
+    (PASS) + 15% of professional income between 1 and 8 PASS ;
+
+    - 10% of the annual social security ceiling.
+  description.fr: >
+    Les cotisations versées sur un PER ou sur un contrat Madelin retraite sont
+
+    déductibles de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
+
+
+    Ce plafond de déductions est égal au maximum entre :
+
+    - 10 % du revenu professionnel limité à 8 plafond annuel de la sécurité
+
+    sociale (PASS) + 15 % du revenu professionnel compris entre 1 et 8 PASS ;
+
+    - 10 % du plafond annuel de la sécurité sociale.
+  titre.en: '[automatic] deductible ceiling'
+  titre.fr: plafond déductible
 indépendant . cotisations et contributions . début activité:
   avec:
     assiette forfaitaire:
@@ -3222,193 +3408,18 @@ indépendant . cotisations et contributions . formation professionnelle:
   note.fr: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
   titre.en: '[automatic] contribution to professional training'
   titre.fr: contribution à la formation professionnelle
-indépendant . cotisations facultatives:
-  description.en: >
-    [automatic] It is possible for the self-employed to take out private
-    contracts for health
-
-    or a retirement savings plan.
-
-    Payments into these contracts are referred to by the tax authorities as "optional contributions".
-
-    by the tax authorities.
-
-
-    They are tax-deductible (up to a ceiling), but not deductible
-
-    social security contributions.
-  description.fr: >
-    Il est possible pour l’indépendant de souscrire à des contrats privés pour
-    la
-
-    prévoyance santé, ou un plan d’épargne retraite.
-
-    Les versements à ces contrats sont désigné par l’appellation « cotisations
-
-    facultative » par l’administration fiscale.
-
-
-    Ils sont déductible d’impôts (dans la limite d’un plafond), mais non déductible
-
-    pour l’assiette des cotisations et contributions sociales.
-  question.en: '[automatic] Have you taken out any private provident and/or
-    supplementary pension contracts (Madelin contracts, retirement savings
-    plans)?'
-  question.fr:
-    Avez-vous souscrit à des contrats de prévoyance et / ou de retraite
-    complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
-  titre.en: '[automatic] optional contributions'
-  titre.fr: cotisations facultatives
-indépendant . cotisations facultatives . déductibles:
-  titre.en: '[automatic] Tax-deductible portion'
-  titre.fr: Part déductible fiscalement
-indépendant . cotisations facultatives . montant:
-  titre.en: '[automatic] amount'
-  titre.fr: montant
-indépendant . cotisations facultatives . non déductibles:
-  titre.en: '[automatic] Non-deductible portion'
-  titre.fr: Part non déductible fiscalement
-indépendant . cotisations facultatives . prévoyance:
-  description.en: >
-    [automatic] You can take out a Madelin provident contract to supplement your
-    social protection
-
-    and your family, particularly in the event of disability or death.
-
-    death.
-
-
-    Contributions paid to a Madelin provident savings plan are tax-deductible
-
-    from your taxable profit or income.
-  description.fr: >
-    Vous pouvez souscrire à un contrat Madelin de prévoyance pour compléter
-    votre
-
-    protection sociale et celle de votre famille, notamment en cas d’invalidité ou
-
-    de décès.
-
-
-    Les cotisations versées sur un contrat Madelin de prévoyance sont déductibles
-
-    de votre bénéfice ou revenu imposable.
-  question.en: '[automatic] How much do you pay in contributions under a Madelin
-    supplementary provident contract (health, sudden loss of employment)?'
-  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
-    d’un contrat Madelin de prévoyance complémentaire (santé, perte d’emploi
-    subie) ?
-  titre.en: '[automatic] Madelin provident contract'
-  titre.fr: Contrat Madelin prévoyance
-indépendant . cotisations facultatives . prévoyance . plafond déductible:
-  description.en: >
-    [automatic] Contributions paid into a Madelin provident savings contract are
-    deductible
-
-    from your taxable profit or income, up to a maximum limit.
-
-
-    This deduction ceiling is limited to 3% of 8 of the annual social security ceiling
-
-    (PASS) and is equal to the sum of :
-
-    - 3.75% of professional income ;
-
-    - 7% of the PASS.
-  description.fr: >
-    Les cotisations versées sur un contrat Madelin de prévoyance sont
-    déductibles
-
-    de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
-
-
-    Ce plafond de déductions est limité à 3 % de 8 plafond annuel de la sécurité
-
-    sociale (PASS) et est égal à la somme entre :
-
-    - 3,75 % du revenu professionnel ;
-
-    - 7 % du PASS.
-  titre.en: '[automatic] deductible ceiling'
-  titre.fr: plafond déductible
-indépendant . cotisations facultatives . retraite:
-  description.en: >
-    [automatic] The Plan d'Epargne Retraite (PER) is a retirement savings
-    product for individuals.
-
-    individuals. It enables you to accumulate savings to supplement your income
-
-    when you retire. You can subscribe to it with a
-
-    insurance company.
-
-
-    Contributions to a PER or a Madelin retirement contract are
-
-    deductible from your taxable profit or income.
-
-
-    > The PER replaces the PERP (Plan d'Epargne Retraite Populaire) and the Madelin
-
-    > Madelin retraite contracts, which will no longer be available from October 1, 2020.
-  description.fr: |
-    Le plan d’épargne retraite (PER) est un produit d’épargne retraite pour les
-    particuliers. Il vous permet d’accumuler une épargne afin de compléter vos
-    revenus au moment de la retraite. Vous pouvez le souscrire auprès d’un
-    établissement de crédit ou d’une compagnie d’assurance.
-
-    Les cotisations versées sur un PER ou un contrat Madelin retraite sont
-    déductibles de votre bénéfice ou revenu imposable.
-
-    > Le PER remplace le PERP (plan d’épargne retraite populaire) et le contrat
-    > Madelin retraite, qui ne sont plus proposés depuis le 1er octobre 2020.
-  question.en: '[automatic] How much do you contribute to a PER or a Madelin
-    retirement contract?'
-  question.fr: Quel est le montant des cotisations que vous versez dans le cadre
-    d’un PER ou d’un contrat Madelin retraite ?
-  titre.en: '[automatic] PER / Madelin retirement contract'
-  titre.fr: PER / contrat Madelin retraite
-indépendant . cotisations facultatives . retraite . plafond déductible:
-  description.en: >
-    [automatic] Contributions paid into a PER or a Madelin retirement contract
-    are
-
-    deductible from your taxable profit or income, subject to a ceiling.
-
-
-    This deduction ceiling is equal to a maximum of :
-
-    - 10% of professional income, limited to 8 times the annual social security ceiling
-
-    (PASS) + 15% of professional income between 1 and 8 PASS ;
-
-    - 10% of the annual social security ceiling.
-  description.fr: >
-    Les cotisations versées sur un PER ou sur un contrat Madelin retraite sont
-
-    déductibles de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
-
-
-    Ce plafond de déductions est égal au maximum entre :
-
-    - 10 % du revenu professionnel limité à 8 plafond annuel de la sécurité
-
-    sociale (PASS) + 15 % du revenu professionnel compris entre 1 et 8 PASS ;
-
-    - 10 % du plafond annuel de la sécurité sociale.
-  titre.en: '[automatic] deductible ceiling'
-  titre.fr: plafond déductible
 indépendant . dividendes:
   description.en: >
-    [automatic] This is the amount **before the withholding tax** (prélèvement
-    forfaitaire non libératoire)
+    [automatic] This is the gross amount, **before the PFNL** (prélèvement
+    forfaitaire non
 
-    of 12.8%.
-  description.fr: >
-    Il s’agit du montant **avant le PFNL** (prélèvement forfaitaire non
-    libératoire)
+    of 12.8% and before the 40% tax allowance, of dividends received, including
 
-    de 12,8 %.
+    including the portion representing less than 10% of share capital.
+  description.fr: |
+    Il s’agit du montant brut, **avant le PFNL** (prélèvement forfaitaire non
+    libératoire) de 12,8 % et avant l’abattement fiscal de 40 %, des dividendes
+    perçus, y compris la part inférieure à 10 % du capital social.
   résumé.en: '[automatic] Gross dividends paid by the company'
   résumé.fr: Montant brut des dividendes versés par l’entreprise
   titre.en: '[automatic] Gross dividends'
@@ -3490,19 +3501,39 @@ indépendant . dividendes . prélèvements sociaux:
   titre.fr: prélèvements sociaux
 indépendant . dividendes . soumis à cotisations sociales:
   description.en: >
-    [automatic] Dividends ** exceeding 10% of share capital** (or net income for
-    the previous year
+    [automatic] Dividends
 
-    for sole proprietorships) is subject to social security contributions
+    **exceeding 10% of the share capital held by the self-employed person** and his/her family
 
-    **social security contributions** and self-employed status contributions.
+    and his/her family (or of the net profit for the previous financial year for
+
+    is subject to the **social security contributions** and contributions of the
+
+    contributions.
+
+
+    The family members to be taken into account are :
+
+    - spouse or civil union partner
+
+    - minor children
   description.fr: >
-    La part des dividendes **supérieure à 10 % du capital social** (ou du
-    bénéfice
+    La part des dividendes
 
-    net de l’exercice précédent pour les entreprises individuelles) est soumise aux
+    **supérieure à 10 % du capital social détenu par le travailleur indépendant ou la travailleuse indépendante**
 
-    **cotisations sociales** et contributions du régime indépendant.
+    et sa famille (ou du bénéfice net de l’exercice précédent pour les entreprises
+
+    individuelles) est soumise aux **cotisations sociales** et contributions du
+
+    régime indépendant.
+
+
+    Les membres de la famille à prebdre en compte sont :
+
+    - conjoint/conjointe ou partenaire pacsé/pacsée
+
+    - enfants mineurs
   titre.en: '[automatic] subject to social security contributions'
   titre.fr: soumis à cotisations sociales
 indépendant . dividendes . soumis à prélèvements sociaux:
@@ -4973,16 +5004,15 @@ indépendant . revenus de remplacement:
   titre.fr: Revenus de remplacement
 indépendant . revenus de remplacement . bruts:
   description.en: >
-    [automatic] Indicate the total **gross amount** of your replacement income:
+    [automatic] This is the gross amount (before CSG-CRDS) of :
 
-    - daily allowances paid by the CPAM :
-      - daily sickness benefit (excluding long-term illness),
-      - daily maternity, adoption, paternity and childcare allowances
-      childcare,
-      - lump-sum maternal rest allowance;
-    - daily caregiver's allowance (AJPA) paid by Caf ;
+    - the **allowances and daily benefits** paid by your Caisse
+      primary health insurance fund (CPAM) in the event of :
+      - illness (excluding long-term illness),
+      - maternity, paternity, adoption or childcare ;
+    - the **allocation journalière du proche aidant** (AJPA) paid by the Caf ;
 
-    - daily allowances paid under a Madelin contract
+    - daily allowances paid under a **Madelin contract** (excluding long-term illness).
 
     (excluding long-term illnesses).
 
@@ -4992,32 +5022,29 @@ indépendant . revenus de remplacement . bruts:
     organizations that pay them.
 
 
-    > Note: **Invalidity benefits** paid by disability-death
+    These replacement incomes are requested specifically because they are
 
-    > plans are not concerned.
-
-
-    Replacement income is **subject to social security contributions**, including under the
-
-    micro-tax regime. They are subject to CSG-CRDS, but this has already been
-
-    deducted by the organization that pays them.
+    **subject to social security contributions**, including under the micro-tax system.
 
 
-    The gross amount entered here is added to the social security base after
+    The gross amount entered here is added to the social security base after a
 
     application of a **flat-rate deduction of 26%**.
+
+
+    > Note: **disability benefits** paid by disability and death
+
+    > are not concerned.
   description.fr: >
-    Indiquez le **montant brut** total de vos revenus de remplacement :
+    Il s’agit du montant brut (avant précompte de la CSG-CRDS) :
 
-    - indemnités journalières versées par la CPAM :
-      - indemnités journalières maladie (hors affection de longue durée),
-      - indemnités journalières maternité, adoption, paternité et d’accueil de
-      l’enfant,
-      - allocation forfaitaire de repos maternel ;
-    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
+    - des **allocations et indemnités journalières** versées par votre caisse
+      primaire d’assurance maladie (CPAM) en cas de :
+      - maladie (hors affection de longue durée),
+      - maternité, paternité, adoption ou accueil de l’enfant ;
+    - de l’**allocation journalière du proche aidant** (AJPA) versée par la Caf ;
 
-    - indemnités journalières versées dans le cadre d’un contrat Madelin
+    - des indemnités journalières versées dans le cadre d’un **contrat Madelin**
 
     (hors affection de longue durée).
 
@@ -5027,66 +5054,83 @@ indépendant . revenus de remplacement . bruts:
     organismes qui les versent.
 
 
-    > Note : Les **prestations d’invalidité** versées par les régimes
+    Ces revenus de remplacement sont demandés spécifiquement car ils sont
 
-    > d’invalidité-décès ne sont pas concernées.
-
-
-    Les revenus de remplacement sont **soumis à cotisations sociales**, y compris au
-
-    régime micro-fiscal. Ils sont soumis à la CSG-CRDS, mais celle-ci est déjà
-
-    précomptée par l’organisme qui les verse.
+    **soumis à cotisations sociales**, y compris au régime micro-fiscal.
 
 
     Le montant brut renseigné ici est ajouté à l’assiette sociale après
 
     application d’un **abattement forfaitaire de 26 %**.
+
+
+    > Note : Les **prestations d’invalidité** versées par les régimes
+
+    > d’invalidité-décès ne sont pas concernées.
   question.en: '[automatic] What is the total gross amount of your replacement income?'
   question.fr: Quel est le montant brut total de vos revenus de remplacement ?
   titre.en: '[automatic] Gross replacement income'
   titre.fr: Montant brut des revenus de remplacement
 indépendant . revenus de remplacement . imposables:
   description.en: >
-    [automatic] Indicate only the **taxable amount** of your replacement income
+    [automatic] Indicate only the **taxable amount** of the daily allowances and
+    benefits
 
-    received :
+    received, i.e. all allowances and indemnities, except those related
 
-    - daily allowances paid by the CPAM :
-      - daily sickness benefit (excluding long-term illness),
-      - daily maternity, adoption, paternity and childcare allowances
-      childcare,
-      - lump-sum maternal rest allowance;
-    - daily caregiver's allowance (AJPA) paid by Caf ;
-
-    - daily allowances paid under a Madelin contract
-
-    (excluding long-term illnesses).
+    except those related to a long-term illness.
 
 
-    These allowances and benefits will be deducted from your earned income, so as to
+    This replacement income will be deducted from your earned income, in order to
 
     be subject to the reduced CSG-CRDS rate.
+
+
+    The replacement incomes concerned are
+
+    - daily sickness benefits (including those paid under a Madelin contract)
+      under a Madelin contract), excluding long-term illness ;
+    - lump-sum maternal rest allowance;
+
+    - lump-sum daily maternity benefits;
+
+    - replacement benefits for maternity, paternity, adoption or childcare
+      of the child ;
+    - daily allowances for caregivers (AJPA) paid by the Caf.
+
+
+    > This data is only used to calculate contributions.
+
+    > **before the reform of the social base**.
   description.fr: >
-    Indiquez uniquement le **montant imposable** de vos revenus de remplacement
+    Indiquez uniquement le **montant imposable** des allocations et indemnités
 
-    perçus :
+    journalières perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
 
-    - indemnités journalières versées par la CPAM :
-      - indemnités journalières maladie (hors affection de longue durée),
-      - indemnités journalières maternité, adoption, paternité et d’accueil de
-      l’enfant,
-      - allocation forfaitaire de repos maternel ;
-    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
-
-    - indemnités journalières versées dans le cadre d’un contrat Madelin
-
-    (hors affection de longue durée).
+    l’exception de celles en lien avec une affection de longue durée.
 
 
-    Ces indemnités et allocations seront déduites de vos revenus d’activité, afin
+    Ces revenus de remplacement seront déduits de vos revenus d’activité, afin
 
-    d’être soumises au taux réduit de la CSG-CRDS.
+    d’être soumis au taux réduit de la CSG-CRDS.
+
+
+    Les revenus de remplacement concernés sont :
+
+    - les indemnités journalières maladie (y compris celles versées dans le cadre
+      d’un contrat Madelin), hors affection de longue durée ;
+    - l’allocation forfaitaire de repos maternel ;
+
+    - les indemnités journalières forfaitaires d’interruption d’activité (maternité) ;
+
+    - les indemnités de remplacement pour maternité, paternité, adoption ou accueil
+      de l’enfant ;
+    - les allocations journalières du proche aidant (AJPA) versée par la Caf.
+
+
+    > Cette donnée ne sert que pour le calcul des cotisations
+
+    > **avant la réforme de l’assiette sociale**.
   question.en: '[automatic] What is the gross taxable amount of your social
     security benefits and daily allowances?'
   question.fr:
@@ -5096,19 +5140,20 @@ indépendant . revenus de remplacement . imposables:
   titre.fr: Part imposable des revenus de remplacement
 indépendant . revenus étrangers:
   description.en: >
-    [automatic] If you are self-employed outside France, in a country of the
+    [automatic] If you are self-employed outside France, in one of the following
+    countries
 
-    the European Union (EU)*, the European Economic Area (EEA)** or Switzerland
+    the European Union (EU)*, the European Economic Area (EEA)**, the United Kingdom
 
-    or in a country outside the EU/EEA/Switzerland, with which coordination
+    Switzerland or a non-EU/EEA/United Kingdom/Switzerland country with which
 
-    coordination of social protection schemes apply, and that the exercise of your self-employed
+    with which provisions for the coordination of social protection schemes
 
-    self-employed activity outside France gave rise to affiliation to the
+    apply, and that the exercise of your self-employed activity outside France
 
-    general scheme for self-employed workers: indicate the amount of your income
+    gave rise to affiliation to the general scheme for self-employed workers :
 
-    established outside France.
+    indicate the amount of your income established outside France.
 
 
     Income from activities carried out outside France is only subject to social security contributions.
@@ -5122,26 +5167,26 @@ indépendant . revenus étrangers:
 
     Denmark, Estonia, Finland, Germany, Greece, Hungary, Ireland, Italy, Latvia, Spain,
 
-    Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Czech Republic,
+    Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Spain, Czech Republic,
 
     Romania, Slovakia, Slovenia, Spain, Sweden.
 
 
-    \** EEA countries: Iceland, Liechtenstein, Norway.
+    \** EEA states: Iceland, Liechtenstein, Norway.
   description.fr: >
     Si vous exercez une activité non salariée hors de France, dans un État de
 
-    l’Union Européenne (UE)\*, de l’Espace Économique Européen (EEE)\** ou en Suisse
+    l’Union Européenne (UE)\*, de l’Espace Économique Européen (EEE)\**, au
 
-    ou dans un Etat hors UE/EEE/Suisse, avec lequel des dispositions de coordination
+    Royaume-Uni, en Suisse ou dans un Etat hors UE/EEE/Royaume-Uni/Suisse, avec
 
-    des régimes de protection sociale s’appliquent, et que l’exercice de votre
+    lequel des dispositions de coordination des régimes de protection sociale
 
-    activité non salariée hors de France a donné lieu à affiliation au régime
+    s’appliquent, et que l’exercice de votre activité non salariée hors de France
 
-    général des travailleurs indépendants : indiquez le montant de votre revenu
+    a donné lieu à affiliation au régime général des travailleurs indépendants :
 
-    établi hors de France.
+    indiquez le montant de votre revenu établi hors de France.
 
 
     En effet, les revenus provenant d’une activité exercée hors de France sont
@@ -5151,7 +5196,7 @@ indépendant . revenus étrangers:
     CSG-CRDS.
 
 
-    \* États de l’UE : Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie,
+    \* États de l’UE : Allemagne, Autriche, Belgique, Bulgarie, Chypre, Croatie,
 
     Danemark, Espagne, Estonie, Finlande, Grèce, Hongrie, Irlande, Italie, Lettonie,
 
@@ -5160,7 +5205,7 @@ indépendant . revenus étrangers:
     Roumanie, Slovaquie, Slovénie, Suède.
 
 
-    \** États l’EEE : Islande, Liechtenstein, Norvège.
+    \** États de l’EEE : Islande, Liechtenstein, Norvège.
   question.en: '[automatic] Have you received any income from self-employment abroad?'
   question.fr: Avez-vous perçu des revenus au titre de l’exercice d’une activité
     non salariée à l’étranger ?
@@ -5187,7 +5232,9 @@ indépendant . rémunération . brute:
 
     - do not deduct tax-exempt amounts (amounts paid into a retirement savings plan
 
-    savings plan, Madelin contributions, etc.).
+    savings plan, Madelin contributions, amounts received as profit-sharing
+
+    profit-sharing schemes, etc.).
   description.fr: >
     Il s’agit du montant des rémunérations brutes perçues, y compris les
     avantages
@@ -5200,16 +5247,16 @@ indépendant . rémunération . brute:
 
     - ne pas déduire les montants exonérés fiscalements (montants versés dans un
 
-    plan d’épargne retraite, cotisations Madelin…).
+    plan d’épargne retraite, cotisations Madelin, montants perçus au titre de
+
+    l’intéressement…).
   résumé.en: >
-    [automatic] Total paid by the company for the executive's remuneration,
-    including contributions
+    [automatic] Total gross remuneration paid by the company, including
+    contributions
 
     contributions
-  résumé.fr: >
-    Total payé par l’entreprise pour la rémunération du dirigeant, cotisations
-    et
-
+  résumé.fr: |
+    Total des rémunérations brutes versées par l’entreprise, cotisations et
     contributions incluses
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute

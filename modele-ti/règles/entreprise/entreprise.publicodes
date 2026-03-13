@@ -19,7 +19,10 @@ entreprise . charges:
     - charges de fonctionnement
   titre: charges (hors rémunération dirigeant)
   identifiant court: charges
-  résumé: Total des dépenses nécessaires à l’entreprise, en excluant cotisations sociales, CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement déduites par le simulateur.
+  résumé: |
+    Total des dépenses nécessaires à l’entreprise, en excluant cotisations sociales,
+    CSG-CRDS et contribution à la formation professionnelle qui sont automatiquement
+    déduites par le simulateur.
   question: Quelles sont les charges de l’entreprise ?
   description: |
     **Il ne faut pas déclarer ici les cotisations sociales, ni la CSG-CRDS, ni la contribution à la formation professionnelle.**
@@ -28,7 +31,8 @@ entreprise . charges:
     hors rémunération du dirigeant. Ces charges sont déductibles du résultat :
     l’entreprise ne paiera pas de cotisations ni d’impôt dessus.
 
-    Nous ne traitons pas encore la TVA : les charges sont à renseigner hors taxes.
+    Les charges sont à renseigner hors taxes (excepté pour les entreprises en
+    franchise de TVA).
 
     Exemples de charges déductibles :
 
@@ -36,13 +40,15 @@ entreprise . charges:
     - achat de produits en vue de leur revente, pour une activité commerciale
     - frais de repas : le supplément par rapport au coût d’un repas à domicile
 
-    > **À noter** : les cotisations sociales au régime des travailleurs indépendants et la
-    part de CSG déductible font partie des charges déductibles du revenu imposable et
-    du revenu soumis à cotisations, mais elles ne sont pas à renseigner dans cette
-    rubrique « charges ».
-    Le simulateur les calcule à partir du chiffre d’affaires et des charges
-    renseignées, et les déduit de ce chiffre d’affaires pour estimer le montant du
-    revenu net de charges.
+    > **À noter** :
+    >
+    > Les cotisations sociales au régime des travailleurs indépendants
+    > et la part de CSG déductible font partie des charges
+    > **déductibles du revenu imposable**.
+    >
+    > Depuis la réforme de l’assiette sociale, elles ne sont
+    > **pas déductibles du revenu soumis à cotisations** pour leur montant réel :
+    > l’Urssaf applique un **abattement forfaitaire de 26 %** en remplacement.
   références:
     Charges déductibles ou non du résultat fiscal d’une entreprise: https://www.service-public.fr/professionnels-entreprises/vosdroits/F31973
   par défaut: 0 €/an
