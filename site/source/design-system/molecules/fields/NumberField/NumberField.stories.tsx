@@ -30,9 +30,8 @@ export const WithDisplayedUnit: Story = {
 
 export const WithPlaceholder: Story = {
 	args: {
-		displayedUnit: '€/mois',
-		label: 'Montant mensuel brut',
-		placeholder: '1801.8',
+		label: "Nombre d'enfants de 0 à 17 ans",
+		placeholder: 'par exemple : 2',
 	},
 }
 
