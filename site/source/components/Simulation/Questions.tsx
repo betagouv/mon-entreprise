@@ -1,17 +1,9 @@
-import * as O from 'effect/Option'
 import { DottedName } from 'modele-social'
 import React, { useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
-import RuleInput, {
-	getRuleInputNature,
-	OUI_NON_INPUT,
-	PLUSIEURS_POSSIBILITES,
-	UNE_POSSIBILITE,
-} from '@/components/conversation/RuleInput'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
 import Notifications from '@/components/Notifications'
@@ -20,18 +12,13 @@ import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Body, Conversation, H3, Spacing } from '@/design-system'
-import {
-	PublicodesAdapter,
-	ValeurPublicodes,
-} from '@/domaine/engine/PublicodesAdapter'
-import { isMontant } from '@/domaine/Montant'
-import { isQuantité } from '@/domaine/Quantité'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { Situation } from '@/domaine/Situation'
-import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
 import { useQuestions } from '@/hooks/useQuestions'
 import { enregistreLaRéponse } from '@/store/actions/actions'
 import { evaluateQuestion } from '@/utils/publicodes'
 
+import { RuleField } from '../conversation/RuleField'
 import Raccourcis from './Raccourcis'
 
 export interface QuestionsProps<S extends Situation = Situation> {
@@ -103,45 +90,6 @@ export function Questions<S extends Situation>({
 		[goTo, focusAnchorForA11yRef]
 	)
 
-	let shouldBeWrappedByFieldset = false
-	if (!finished && QuestionCourante?._tag === 'QuestionPublicodes') {
-		const dottedName = QuestionCourante.id
-		const rule = engine.getRule(dottedName)
-		const evaluation = engine.evaluate({ valeur: dottedName })
-
-		const decoded: O.Option<ValeurPublicodes> =
-			PublicodesAdapter.decode(evaluation)
-		const value = O.getOrUndefined(decoded)
-
-		const unitéPublicodes = rule.rawNode.unité
-
-		const estUnMontant = Boolean(
-			(value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes)
-		)
-
-		const estUneQuantité = Boolean(
-			(value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes)
-		)
-
-		const ruleInputNature = getRuleInputNature(
-			QuestionCourante.id,
-			engine,
-			{},
-			estUnMontant,
-			estUneQuantité
-		)
-
-		shouldBeWrappedByFieldset = [
-			PLUSIEURS_POSSIBILITES,
-			UNE_POSSIBILITE,
-			OUI_NON_INPUT,
-		].includes(ruleInputNature)
-	}
-
-	const questionCouranteHtmlForId = QuestionCourante?.id
-		.replaceAll(' . ', '_')
-		.replaceAll(' ', '-')
-
 	const questionCouranteLabel =
 		QuestionCourante?._tag === 'QuestionPublicodes'
 			? evaluateQuestion(engine, engine.getRule(QuestionCourante.id))
@@ -205,46 +153,14 @@ export function Questions<S extends Situation>({
 					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
 						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
 							<div ref={focusAnchorForA11yRef} tabIndex={-1} role="status">
-								{shouldBeWrappedByFieldset ? (
-									<fieldset>
-										<H3 as="legend">
-											{questionCouranteLabel}
-											<ExplicableRule
-												light
-												dottedName={QuestionCourante.id}
-												ariaDescribedBy={questionCouranteLabel}
-											/>
-										</H3>
-										<RuleInput
-											dottedName={QuestionCourante.id}
-											onChange={(value, name) =>
-												handlePublicodesQuestionResponse(name, value)
-											}
-											key={QuestionCourante.id}
-											onSubmit={handleGoToNext}
-										/>
-									</fieldset>
-								) : (
-									<>
-										<H3 as="label" htmlFor={questionCouranteHtmlForId}>
-											{questionCouranteLabel}
-											<ExplicableRule
-												light
-												dottedName={QuestionCourante.id}
-												ariaDescribedBy={questionCouranteLabel}
-											/>
-										</H3>
-										<RuleInput
-											id={questionCouranteHtmlForId}
-											dottedName={QuestionCourante.id}
-											onChange={(value, name) =>
-												handlePublicodesQuestionResponse(name, value)
-											}
-											key={QuestionCourante.id}
-											onSubmit={handleGoToNext}
-										/>
-									</>
-								)}
+								<RuleField
+									dottedName={QuestionCourante.id}
+									labelOrLegend={questionCouranteLabel}
+									onChange={(value, name) =>
+										handlePublicodesQuestionResponse(name, value)
+									}
+									onSubmit={handleGoToNext}
+								/>
 							</div>
 
 							<Conversation
