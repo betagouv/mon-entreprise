@@ -40,7 +40,8 @@ export const configIndépendant: SimulationConfig = {
 			},
 			{
 				label: 'Contrats Madelins',
-				dottedName: 'indépendant . cotisations facultatives',
+				dottedName:
+					'indépendant . cotisations et contributions . cotisations facultatives',
 			},
 			{
 				label: 'Conjoint collaborateur',
@@ -65,7 +66,7 @@ export const configIndépendant: SimulationConfig = {
 			'indépendant . profession libérale . CNAVPL . exonération incapacité',
 			'indépendant . cotisations et contributions . cotisations . exonérations . invalidité',
 			'indépendant . cotisations et contributions . cotisations . exonérations . âge',
-			'indépendant . cotisations facultatives',
+			'indépendant . cotisations et contributions . cotisations facultatives',
 			'indépendant . revenus de remplacement',
 			'indépendant . revenus étrangers',
 			"situation personnelle . domiciliation fiscale à l'étranger",
