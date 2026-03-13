@@ -35,7 +35,7 @@ import { evaluateQuestion } from '@/utils/publicodes'
 import Value from '../EngineValue/Value'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import { ExplicableRule } from './Explicable'
-import RuleInput from './RuleInput'
+import { RuleField } from './RuleField'
 
 const { Body, H2, H3, Intro, Link, Strong, Ul } = typography
 
@@ -335,15 +335,13 @@ function AnswerElement(rule: RuleNode) {
 			{(onClose) => (
 				<>
 					<form onSubmit={onClose}>
-						<H3>
-							{evaluateQuestion(engine, engine.getRule(questionDottedName))}
-							<ExplicableRule light dottedName={questionDottedName} />
-						</H3>
-						<RuleInput
+						<RuleField
 							dottedName={questionDottedName}
+							labelOrLegend={evaluateQuestion(
+								engine,
+								engine.getRule(questionDottedName)
+							)}
 							onChange={handleChange}
-							autoFocus
-							showSuggestions={false}
 							onSubmit={onClose}
 						/>
 					</form>
