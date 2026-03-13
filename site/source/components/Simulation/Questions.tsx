@@ -5,55 +5,46 @@ import { styled } from 'styled-components'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
 import Notifications from '@/components/Notifications'
-import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { Body, Conversation, H3, Spacing } from '@/design-system'
-import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import {
-	QuestionPublicodes as TypeQuestionPublicodes,
-	useQuestions,
-} from '@/hooks/useQuestions'
+import { Question } from '@/hooks/useQuestions'
 
 import { QuestionPublicodes } from './QuestionPublicodes'
-import Raccourcis from './Raccourcis'
+import Raccourcis, { Raccourci } from './Raccourcis'
 
 export interface QuestionsProps<S extends Situation = Situation> {
-	situation?: S
-	questions?: Array<ComposantQuestion<S>>
-	questionsPublicodes?: Array<TypeQuestionPublicodes<S>>
-	raccourcisPublicodes?: Array<RaccourciPublicodes>
+	nombreDeQuestions: number
+	nombreDeQuestionsRépondues: number
+	questionCouranteIndex: number
+	QuestionCourante: Question<S> | undefined
+	questionCouranteRépondue: boolean
+	raccourcis: Raccourci[]
+	finished: boolean
+	goToNext: () => void
+	goToPrevious: () => void
+	goTo: (id: string) => void
+	showModifierMesRéponses?: boolean
 	customEndMessages?: React.ReactNode
 }
 
 export function Questions<S extends Situation>({
-	questions,
-	questionsPublicodes,
-	raccourcisPublicodes,
+	nombreDeQuestions,
+	nombreDeQuestionsRépondues,
+	questionCouranteIndex,
+	QuestionCourante,
+	questionCouranteRépondue,
+	raccourcis,
+	finished,
+	goToNext,
+	goToPrevious,
+	goTo,
 	customEndMessages,
-	situation,
+	showModifierMesRéponses = true,
 }: QuestionsProps<S>) {
 	const { t } = useTranslation()
 	const focusAnchorForA11yRef = useRef<HTMLDivElement>(null)
-
-	const {
-		nombreDeQuestions,
-		nombreDeQuestionsRépondues,
-		activeQuestionIndex,
-		QuestionCourante,
-		questionCouranteRépondue,
-		raccourcis,
-		finished,
-		goToNext,
-		goToPrevious,
-		goTo,
-	} = useQuestions({
-		questions,
-		questionsPublicodes,
-		raccourcisPublicodes,
-		situation,
-	})
 
 	const handleGoToPrevious = useCallback(() => {
 		goToPrevious()
@@ -86,7 +77,7 @@ export function Questions<S extends Situation>({
 		nombreDeQuestions > 0 && (
 			<>
 				<Progress
-					progress={activeQuestionIndex + 1}
+					progress={questionCouranteIndex + 1}
 					maxValue={nombreDeQuestions}
 				/>
 				<QuestionsContainer>
@@ -131,13 +122,13 @@ export function Questions<S extends Situation>({
 
 							<Conversation
 								onPrevious={
-									activeQuestionIndex > 0 ? handleGoToPrevious : undefined
+									questionCouranteIndex > 0 ? handleGoToPrevious : undefined
 								}
 								onNext={handleGoToNext}
 								questionIsAnswered={questionCouranteRépondue}
-								isPreviousDisabled={activeQuestionIndex === 0}
+								isPreviousDisabled={questionCouranteIndex === 0}
 								customVisualisation={
-									questionsPublicodes?.length ? <SeeAnswersButton /> : undefined
+									showModifierMesRéponses ? <SeeAnswersButton /> : undefined
 								}
 							>
 								{QuestionCourante?._tag === 'QuestionFournie' && (

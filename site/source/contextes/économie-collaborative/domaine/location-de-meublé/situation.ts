@@ -54,6 +54,12 @@ export type SituationÉconomieCollaborative =
 	| SituationChambreDHôte
 	| SituationMeubléDeTourisme
 
+export function estSituationÉconomieCollaborative(
+	situation?: Situation
+): situation is SituationÉconomieCollaborative {
+	return situation !== undefined && situation._type === 'économie-collaborative'
+}
+
 export type Classement = 'classé' | 'non-classé' | 'mixte'
 
 export type TypeDurée = 'courte' | 'longue' | 'mixte'

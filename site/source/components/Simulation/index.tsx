@@ -10,7 +10,7 @@ import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button, Grid, H3, Spacing } from '@/design-system'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import { QuestionPublicodes } from '@/hooks/useQuestions'
+import { QuestionPublicodes, useQuestions } from '@/hooks/useQuestions'
 import { useNavigation } from '@/lib/navigation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
@@ -25,7 +25,6 @@ import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
-export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
 export { SimulationGoals } from './SimulationGoals'
 
@@ -72,6 +71,7 @@ type SimulationProps<S extends Situation = Situation> = {
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
+	simulationCommencée?: (situation?: S) => boolean
 
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
@@ -91,20 +91,42 @@ export default function Simulation<S extends Situation = Situation>({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
+	simulationCommencée,
 	situation,
 	questions,
 	questionsPublicodes,
 	raccourcisPublicodes,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
+	const laSimulationEstCommencée = simulationCommencée
+		? simulationCommencée(situation)
+		: isFirstStepCompleted
 	const { currentPath } = useNavigation()
 	const shouldShowFeedback = getShouldAskFeedback(currentPath)
-	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
+	const showQuestions = showQuestionsFromBeginning || laSimulationEstCommencée
+
+	const {
+		nombreDeQuestions,
+		nombreDeQuestionsRépondues,
+		questionCouranteIndex,
+		QuestionCourante,
+		questionCouranteRépondue,
+		raccourcis,
+		finished,
+		goToNext,
+		goToPrevious,
+		goTo,
+	} = useQuestions({
+		questions,
+		questionsPublicodes,
+		raccourcisPublicodes,
+		situation,
+	})
 
 	return (
 		<>
-			{!isFirstStepCompleted && <TrackPage name={ACCUEIL} />}
-			{isFirstStepCompleted && <TrackPage name={SIMULATION_COMMENCEE} />}
+			{!laSimulationEstCommencée && <TrackPage name={ACCUEIL} />}
+			{laSimulationEstCommencée && <TrackPage name={SIMULATION_COMMENCEE} />}
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />
@@ -118,23 +140,34 @@ export default function Simulation<S extends Situation = Situation>({
 							{entrepriseSelection && <EntrepriseSelection />}
 
 							<Questions
-								questions={questions}
-								questionsPublicodes={questionsPublicodes}
-								raccourcisPublicodes={raccourcisPublicodes}
+								nombreDeQuestions={nombreDeQuestions}
+								nombreDeQuestionsRépondues={nombreDeQuestionsRépondues}
+								questionCouranteIndex={questionCouranteIndex}
+								QuestionCourante={QuestionCourante}
+								questionCouranteRépondue={questionCouranteRépondue}
+								raccourcis={raccourcis}
+								finished={finished}
+								goToNext={goToNext}
+								goToPrevious={goToPrevious}
+								goTo={goTo}
 								customEndMessages={customEndMessages}
-								situation={situation}
+								showModifierMesRéponses={!!questionsPublicodes?.length}
 							/>
 						</>
 					)}
 					<Spacing md />
 
-					{!entrepriseSelection && <SimulationPréremplieBanner />}
+					{!entrepriseSelection && questionsPublicodes?.length && (
+						<SimulationPréremplieBanner />
+					)}
 
-					{!showQuestions && <PreviousSimulationBanner />}
+					{!showQuestions && questionsPublicodes?.length && (
+						<PreviousSimulationBanner />
+					)}
 
 					{afterQuestionsSlot}
 
-					{isFirstStepCompleted && !hideDetails && (
+					{laSimulationEstCommencée && !hideDetails && (
 						<>
 							{customSimulationbutton && (
 								<>
@@ -157,8 +190,8 @@ export default function Simulation<S extends Situation = Situation>({
 					)}
 				</FromTop>
 			</SimulationContainer>
-			{isFirstStepCompleted && !hideDetails && explanations}
-			{isFirstStepCompleted && !hideDetails && shouldShowFeedback && (
+			{laSimulationEstCommencée && !hideDetails && explanations}
+			{laSimulationEstCommencée && !hideDetails && shouldShowFeedback && (
 				<div
 					style={{
 						textAlign: 'center',
