@@ -2,8 +2,9 @@ indépendant . dividendes:
   titre: Dividendes bruts
   résumé: Montant brut des dividendes versés par l’entreprise
   description: |
-    Il s’agit du montant **avant le PFNL** (prélèvement forfaitaire non libératoire)
-    de 12,8 %.
+    Il s’agit du montant brut, **avant le PFNL** (prélèvement forfaitaire non
+    libératoire) de 12,8 % et avant l’abattement fiscal de 40 %, des dividendes
+    perçus, y compris la part inférieure à 10 % du capital social.
   applicable si: entreprise . imposition . IS
   par défaut: 0 €/an
 
@@ -20,9 +21,15 @@ indépendant . dividendes . plafond exonéré de cotisations sociales:
 
 indépendant . dividendes . soumis à cotisations sociales:
   description: |
-    La part des dividendes **supérieure à 10 % du capital social** (ou du bénéfice
-    net de l’exercice précédent pour les entreprises individuelles) est soumise aux
-    **cotisations sociales** et contributions du régime indépendant.
+    La part des dividendes
+    **supérieure à 10 % du capital social détenu par le travailleur indépendant ou la travailleuse indépendante**
+    et sa famille (ou du bénéfice net de l’exercice précédent pour les entreprises
+    individuelles) est soumise aux **cotisations sociales** et contributions du
+    régime indépendant.
+
+    Les membres de la famille à prebdre en compte sont :
+    - conjoint/conjointe ou partenaire pacsé/pacsée
+    - enfants mineurs
   applicable si: dividendes > plafond exonéré de cotisations sociales
   valeur: dividendes
   abattement: plafond exonéré de cotisations sociales

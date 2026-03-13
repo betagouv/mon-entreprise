@@ -1,12 +1,11 @@
-indépendant . cotisations facultatives:
+indépendant . cotisations et contributions . cotisations facultatives:
   description: |
-    Il est possible pour l’indépendant de souscrire à des contrats privés pour la
-    prévoyance santé, ou un plan d’épargne retraite.
-    Les versements à ces contrats sont désigné par l’appellation « cotisations
-    facultative » par l’administration fiscale.
+    Il est possible pour l’indépendant de souscrire à des contrats privés
+    « Madelin » pour la prévoyance santé, ou un plan d’épargne retraite.
 
-    Ils sont déductible d’impôts (dans la limite d’un plafond), mais non déductible
-    pour l’assiette des cotisations et contributions sociales.
+    Les versements à ces contrats sont déductibles d’impôts (dans la limite d’un
+    plafond), mais non déductibles de l’assiette des cotisations et contributions
+    sociales.
   non applicable si: entreprise . imposition . IR . régime micro-fiscal
   question: Avez-vous souscrit à des contrats de prévoyance et / ou de retraite
     complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
@@ -14,12 +13,12 @@ indépendant . cotisations facultatives:
   références:
     Comment fonctionne le plan d’épargne retraite (PER) individuel ?: https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne-retraite-individuel
 
-indépendant . cotisations facultatives . montant:
+indépendant . cotisations et contributions . cotisations facultatives . montant:
   somme:
     - retraite
     - prévoyance
 
-indépendant . cotisations facultatives . déductibles:
+indépendant . cotisations et contributions . cotisations facultatives . déductibles:
   titre: Part déductible fiscalement
   formule:
     somme:
@@ -28,11 +27,11 @@ indépendant . cotisations facultatives . déductibles:
       - valeur: prévoyance
         plafond: prévoyance . plafond déductible
 
-indépendant . cotisations facultatives . non déductibles:
+indépendant . cotisations et contributions . cotisations facultatives . non déductibles:
   titre: Part non déductible fiscalement
   formule: montant - déductibles
 
-indépendant . cotisations facultatives . retraite:
+indépendant . cotisations et contributions . cotisations facultatives . retraite:
   titre: PER / contrat Madelin retraite
   description: |
     Le plan d’épargne retraite (PER) est un produit d’épargne retraite pour les
@@ -55,7 +54,7 @@ indépendant . cotisations facultatives . retraite:
     Comment fonctionne le plan d’épargne retraite (PER) individuel ?: https://www.economie.gouv.fr/particuliers/gerer-mon-argent/gerer-mon-budget-et-mon-epargne/comment-fonctionne-le-plan-depargne-retraite-individuel
     Article 154 bis du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020675349/2010-04-01
 
-indépendant . cotisations facultatives . retraite . plafond déductible:
+indépendant . cotisations et contributions . cotisations facultatives . retraite . plafond déductible:
   description: |
     Les cotisations versées sur un PER ou sur un contrat Madelin retraite sont
     déductibles de votre bénéfice ou revenu imposable, dans la limite d’un plafond.
@@ -84,7 +83,7 @@ indépendant . cotisations facultatives . retraite . plafond déductible:
     Calcul du plafond de déduction de l'épargne retraite pour les non-salariés: https://bofip.impots.gouv.fr/bofip/1124-PGP.html/identifiant=BOI-IR-BASE-20-50-20-20170711#Pour_les_non-salaries_212
     Les principes de fonctionnement des contrats Madelin - Limites de déduction des primes d’épargne retraite: https://www.legifiscal.fr/impots-personnels/impot-revenu/deduction-des-contrats-madelin-retraite.html#toc-regle-de-plafonnement
 
-indépendant . cotisations facultatives . prévoyance:
+indépendant . cotisations et contributions . cotisations facultatives . prévoyance:
   titre: Contrat Madelin prévoyance
   description: |
     Vous pouvez souscrire à un contrat Madelin de prévoyance pour compléter votre
@@ -99,7 +98,7 @@ indépendant . cotisations facultatives . prévoyance:
   références:
     Article 154 bis du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000020675349/2010-04-01
 
-indépendant . cotisations facultatives . prévoyance . plafond déductible:
+indépendant . cotisations et contributions . cotisations facultatives . prévoyance . plafond déductible:
   description: |
     Les cotisations versées sur un contrat Madelin de prévoyance sont déductibles
     de votre bénéfice ou revenu imposable, dans la limite d’un plafond.

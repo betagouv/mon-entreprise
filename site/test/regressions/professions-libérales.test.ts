@@ -43,7 +43,7 @@ it('calculate simulations-professions-libérales', () => {
 		  "indépendant . cotisations et contributions",
 		  "indépendant . cotisations et contributions . cotisations . exonérations . invalidité",
 		  "indépendant . cotisations et contributions . cotisations . exonérations . âge",
-		  "indépendant . cotisations facultatives",
+		  "indépendant . cotisations et contributions . cotisations facultatives",
 		  "indépendant . profession libérale . CNAVPL . exonération incapacité",
 		  "indépendant . profession libérale . réglementée . métier",
 		  "indépendant . revenus de remplacement",

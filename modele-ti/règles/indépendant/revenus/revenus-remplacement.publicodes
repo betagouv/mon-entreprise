@@ -22,28 +22,26 @@ indépendant . revenus de remplacement . bruts:
   titre: Montant brut des revenus de remplacement
   question: Quel est le montant brut total de vos revenus de remplacement ?
   description: |
-    Indiquez le **montant brut** total de vos revenus de remplacement :
-    - indemnités journalières versées par la CPAM :
-      - indemnités journalières maladie (hors affection de longue durée),
-      - indemnités journalières maternité, adoption, paternité et d’accueil de
-      l’enfant,
-      - allocation forfaitaire de repos maternel ;
-    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
-    - indemnités journalières versées dans le cadre d’un contrat Madelin
+    Il s’agit du montant brut (avant précompte de la CSG-CRDS) :
+    - des **allocations et indemnités journalières** versées par votre caisse
+      primaire d’assurance maladie (CPAM) en cas de :
+      - maladie (hors affection de longue durée),
+      - maternité, paternité, adoption ou accueil de l’enfant ;
+    - de l’**allocation journalière du proche aidant** (AJPA) versée par la Caf ;
+    - des indemnités journalières versées dans le cadre d’un **contrat Madelin**
     (hors affection de longue durée).
-    
+
     Ces montants figurent sur les relevés de prestations fournis par les
     organismes qui les versent.
 
-    > Note : Les **prestations d’invalidité** versées par les régimes
-    > d’invalidité-décès ne sont pas concernées.
-
-    Les revenus de remplacement sont **soumis à cotisations sociales**, y compris au
-    régime micro-fiscal. Ils sont soumis à la CSG-CRDS, mais celle-ci est déjà
-    précomptée par l’organisme qui les verse.
+    Ces revenus de remplacement sont demandés spécifiquement car ils sont
+    **soumis à cotisations sociales**, y compris au régime micro-fiscal.
 
     Le montant brut renseigné ici est ajouté à l’assiette sociale après
     application d’un **abattement forfaitaire de 26 %**.
+
+    > Note : Les **prestations d’invalidité** versées par les régimes
+    > d’invalidité-décès ne sont pas concernées.
   par défaut: 0 €/an
 
 indépendant . revenus de remplacement . imposables:
@@ -55,18 +53,23 @@ indépendant . revenus de remplacement . imposables:
   question: Quel est le montant brut imposable de vos allocations et indemnités
     journalières de sécurité sociale ?
   description: |
-    Indiquez uniquement le **montant imposable** de vos revenus de remplacement
-    perçus :
-    - indemnités journalières versées par la CPAM :
-      - indemnités journalières maladie (hors affection de longue durée),
-      - indemnités journalières maternité, adoption, paternité et d’accueil de
-      l’enfant,
-      - allocation forfaitaire de repos maternel ;
-    - allocation journalière du proche aidant (AJPA) versée par la Caf ;
-    - indemnités journalières versées dans le cadre d’un contrat Madelin
-    (hors affection de longue durée).
+    Indiquez uniquement le **montant imposable** des allocations et indemnités
+    journalières perçues, c’est-à-dire l’ensemble des allocations et indemnités, à
+    l’exception de celles en lien avec une affection de longue durée.
 
-    Ces indemnités et allocations seront déduites de vos revenus d’activité, afin
-    d’être soumises au taux réduit de la CSG-CRDS.
+    Ces revenus de remplacement seront déduits de vos revenus d’activité, afin
+    d’être soumis au taux réduit de la CSG-CRDS.
+
+    Les revenus de remplacement concernés sont :
+    - les indemnités journalières maladie (y compris celles versées dans le cadre
+      d’un contrat Madelin), hors affection de longue durée ;
+    - l’allocation forfaitaire de repos maternel ;
+    - les indemnités journalières forfaitaires d’interruption d’activité (maternité) ;
+    - les indemnités de remplacement pour maternité, paternité, adoption ou accueil
+      de l’enfant ;
+    - les allocations journalières du proche aidant (AJPA) versée par la Caf.
+
+    > Cette donnée ne sert que pour le calcul des cotisations
+    > **avant la réforme de l’assiette sociale**.
   par défaut: 0 €/an
   unité: €/an
