@@ -140,7 +140,9 @@ export default function Accessibilité() {
 			<Body>Néant</Body>
 			<H3>Établissement de cette déclaration d'accessibilité</H3>{' '}
 			<Body>
-				Cette déclaration d'accessibilité a été établie le 15 mai 2025.
+				Cette déclaration d'accessibilité a été établie le 15 mai 2025. Elle a
+				été mise à jour le 13 janvier 2026 lors d'un audit de contrôle, après
+				correction de non-conformités par l'équipe de développement.
 			</Body>
 			<H4>Technologies utilisées pour la réalisation du site</H4>
 			<Ul>
