@@ -17,15 +17,23 @@ type Story = StoryObj<typeof AmountField>
 
 export const Default: Story = {
 	args: {
-		label: 'Salaire annuel brut',
+		label: 'Montant annuel brut',
 		unit: '€/an',
 	},
 }
 
 export const WithCents: Story = {
 	args: {
-		label: 'Salaire mensuel net',
+		label: 'Montant mensuel net',
 		unit: '€/mois',
 		withCents: true,
+	},
+}
+
+export const WithInitialValue: Story = {
+	args: {
+		defaultValue: 1801.8,
+		displayedUnit: '€/mois',
+		label: 'Montant mensuel brut (SMIC par défaut)',
 	},
 }
