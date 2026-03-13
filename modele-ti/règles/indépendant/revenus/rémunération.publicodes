@@ -8,9 +8,10 @@ indépendant . rémunération . brute:
     société, avantages en nature…), sans aucune déduction :
     - ne pas déduire les cotisations sociales ni la CSG-CRDS ;
     - ne pas déduire les montants exonérés fiscalements (montants versés dans un
-    plan d’épargne retraite, cotisations Madelin…).
+    plan d’épargne retraite, cotisations Madelin, montants perçus au titre de
+    l’intéressement…).
   résumé: |
-    Total payé par l’entreprise pour la rémunération du dirigeant, cotisations et
+    Total des rémunérations brutes versées par l’entreprise, cotisations et
     contributions incluses
   variations:
     - si: entreprise . imposition . IS
@@ -51,7 +52,7 @@ indépendant . rémunération . nette . imposable:
   somme:
     - revenu professionnel
     - dividendes . imposables
-  abattement: cotisations facultatives . déductibles
+  abattement: cotisations et contributions . cotisations facultatives . déductibles
   arrondi: oui
   unité: €/an
 

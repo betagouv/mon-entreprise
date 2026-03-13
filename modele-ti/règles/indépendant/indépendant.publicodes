@@ -22,7 +22,7 @@ indépendant . revenu professionnel:
           alors: rémunération . nette
         - sinon: entreprise . résultat fiscal
     - cotisations et contributions . CSG-CRDS . non déductible
-    - cotisations facultatives . montant
+    - cotisations et contributions . cotisations facultatives . montant
 
 indépendant . revenu brut:
   description: |
