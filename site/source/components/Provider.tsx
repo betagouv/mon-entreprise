@@ -41,40 +41,38 @@ export default function Provider({
 
 	return (
 		<DarkModeProvider>
-			<DesignSystemThemeProvider>
-				<ErrorBoundary fallback={ErrorFallback}>
-					<I18nextProvider i18n={i18next}>
-						<ReduxProvider store={store}>
-							<BrowserRouterProvider basename={basename}>
-								<EmbeddedContextProvider>
-									<ErrorBoundary
-										fallback={(errorData) => (
-											// eslint-disable-next-line react/jsx-props-no-spreading
-											<ErrorFallback {...errorData} showFeedbackForm />
-										)}
-									>
-										{!import.meta.env.SSR && 'serviceWorker' in navigator && (
-											<BrowserOnly>
-												<ServiceWorker />
-											</BrowserOnly>
-										)}
-										<IframeResizer />
-										<OverlayProvider>
-											<ThemeColorsProvider>
-												<DisableAnimationOnPrintProvider>
-													<SiteNameContext.Provider value={basename}>
-														{children}
-													</SiteNameContext.Provider>
-												</DisableAnimationOnPrintProvider>
-											</ThemeColorsProvider>
-										</OverlayProvider>
-									</ErrorBoundary>
-								</EmbeddedContextProvider>
-							</BrowserRouterProvider>
-						</ReduxProvider>
-					</I18nextProvider>
-				</ErrorBoundary>
-			</DesignSystemThemeProvider>
+			<I18nextProvider i18n={i18next}>
+				<ReduxProvider store={store}>
+					<BrowserRouterProvider basename={basename}>
+						<EmbeddedContextProvider>
+							<DesignSystemThemeProvider>
+								<ErrorBoundary
+									fallback={(errorData) => (
+										// eslint-disable-next-line react/jsx-props-no-spreading
+										<ErrorFallback {...errorData} showFeedbackForm />
+									)}
+								>
+									{!import.meta.env.SSR && 'serviceWorker' in navigator && (
+										<BrowserOnly>
+											<ServiceWorker />
+										</BrowserOnly>
+									)}
+									<IframeResizer />
+									<OverlayProvider>
+										<ThemeColorsProvider>
+											<DisableAnimationOnPrintProvider>
+												<SiteNameContext.Provider value={basename}>
+													{children}
+												</SiteNameContext.Provider>
+											</DisableAnimationOnPrintProvider>
+										</ThemeColorsProvider>
+									</OverlayProvider>
+								</ErrorBoundary>
+							</DesignSystemThemeProvider>
+						</EmbeddedContextProvider>
+					</BrowserRouterProvider>
+				</ReduxProvider>
+			</I18nextProvider>
 		</DarkModeProvider>
 	)
 }
