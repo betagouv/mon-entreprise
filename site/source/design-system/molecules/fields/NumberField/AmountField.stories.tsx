@@ -33,7 +33,7 @@ export const WithCents: Story = {
 export const WithPlaceholder: Story = {
 	args: {
 		label: 'Montant mensuel brut',
-		placeholder: '1801.8',
+		placeholder: '1801.80',
 		unit: '€/mois',
 		withCents: true,
 	},
@@ -43,6 +43,17 @@ export const WithInitialValue: Story = {
 	args: {
 		defaultValue: 1801.8,
 		label: 'Montant mensuel brut (SMIC par défaut)',
+		unit: '€/mois',
+		withCents: true,
+	},
+}
+
+export const WithSuggestionns = {
+	args: {
+		description:
+			'Brut de référence (sans les primes, indemnités ni majorations)',
+		label: 'Salaire mensuel brut',
+		suggestions: { 'salaire médian': 2700, SMIC: 1801.8 },
 		unit: '€/mois',
 		withCents: true,
 	},

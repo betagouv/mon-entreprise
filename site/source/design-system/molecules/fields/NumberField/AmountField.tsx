@@ -47,7 +47,7 @@ export function AmountField({
 			description={description}
 			displayedUnit={UNIT_TO_DISPLAY[unit]}
 			formatOptions={{
-				minimumFractionDigits: 0,
+				minimumFractionDigits: withCents ? 2 : 0,
 				maximumFractionDigits: withCents ? 2 : 0,
 			}}
 			errorMessage={errorMessage}
