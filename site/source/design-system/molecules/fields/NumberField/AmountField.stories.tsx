@@ -48,6 +48,15 @@ export const WithInitialValue: Story = {
 	},
 }
 
+export const WithDescription: Story = {
+	args: {
+		description:
+			'Brut de référence (sans les primes, indemnités ni majorations)',
+		displayedUnit: '€/mois',
+		label: 'Salaire mensuel brut',
+	},
+}
+
 export const WithSuggestionns = {
 	args: {
 		description:
