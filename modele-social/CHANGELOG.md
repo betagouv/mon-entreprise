@@ -17,6 +17,7 @@
 - Suppression des taux réduits de cotisations allocations familiales et assurance maladie sauf pour Lodeom
 - Extension de la déduction forfaitaire patronale sur les heures supplémentaires aux entreprises de plus de 250 employé⋅es
 - Barème de l'impôt sur le revenu et autres éléments de calcul de l'impôt
+- Mise à jour des aides à l'embauche pour les apprenti⋅es
 
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
