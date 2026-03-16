@@ -31,40 +31,42 @@ salarié . coût total employeur . aides . embauche . apprentis:
       - contrat . apprentissage . diplôme . niveau 8 = non
 
   variations:
-    - si: contrat . date d'embauche < 24/02/2025
+    - si: régimes spécifiques . apprentissage . handicap
       alors: 6000 €/an
-    - si:
-        toutes ces conditions:
-          - contrat . date d'embauche >= 24/02/2025
-          - contrat . date d'embauche <= 31/12/2025
-      alors:
-        variations:
-          - si: entreprise . salariés . effectif > 250
-            alors: 2000 €/an
-          - sinon: 5000 €/an
-    - si:
-        toutes ces conditions:
-          - contrat . date d'embauche >= 01/01/2026
-          - contrat . date d'embauche <= 07/03/2026
-          - entreprise . salariés . effectif < 250
-      alors: 5000 €/an
     - sinon:
         variations:
-          - si: entreprise . salariés . effectif > 250
+          - si:
+              toutes ces conditions:
+                - contrat . date d'embauche >= 24/02/2025
+                - contrat . date d'embauche <= 31/12/2025
             alors:
               variations:
-                - si: contrat . apprentissage . diplôme . niveau 6 ou 7
-                  alors: 750 €/an
-                - si: contrat . apprentissage . diplôme . niveau 5
-                  alors: 1500 €/an
-                - sinon: 2000 €/an
+                - si: entreprise . salariés . effectif > 250
+                  alors: 2000 €/an
+                - sinon: 5000 €/an
+          - si:
+              toutes ces conditions:
+                - contrat . date d'embauche >= 01/01/2026
+                - contrat . date d'embauche <= 07/03/2026
+                - entreprise . salariés . effectif < 250
+            alors: 5000 €/an
           - sinon:
               variations:
-                - si: contrat . apprentissage . diplôme . niveau 6 ou 7
-                  alors: 2000 €/an
-                - si: contrat . apprentissage . diplôme . niveau 5
-                  alors: 4500 €/an
-                - sinon: 5000 €/an
+                - si: entreprise . salariés . effectif > 250
+                  alors:
+                    variations:
+                      - si: contrat . apprentissage . diplôme . niveau 6 ou 7
+                        alors: 750 €/an
+                      - si: contrat . apprentissage . diplôme . niveau 5
+                        alors: 1500 €/an
+                      - sinon: 2000 €/an
+                - sinon:
+                    variations:
+                      - si: contrat . apprentissage . diplôme . niveau 6 ou 7
+                        alors: 2000 €/an
+                      - si: contrat . apprentissage . diplôme . niveau 5
+                        alors: 4500 €/an
+                      - sinon: 5000 €/an
   références:
     Aides à l'embauche en contrat d'apprentissage: https://entreprendre.service-public.gouv.fr/vosdroits/F23556
     'Embauche d’un apprenti : vous avez droit à des aides': https://www.economie.gouv.fr/entreprises/gerer-ses-ressources-humaines-et-ses-salaries/embauche-dun-apprenti-vous-avez-droit-des-aides
