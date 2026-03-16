@@ -119,38 +119,22 @@ salarié . contrat:
 
 salarié . contrat . apprentissage . diplôme:
   titre: Diplôme préparé
-
-salarié . contrat . apprentissage . diplôme . niveau 8:
-  par défaut: non
-  question: L'apprenti prépare-t-il un diplôme de niveau 8 (doctorat ou HDR) ?
-  description: |
-    Pour bénéficier de l'aide à l'embauche pour un contrat d'apprentissage, l'apprenti doit préparer un diplôme ou un titre à finalité professionnelle inférieur ou égal au niveau 7 du cadre national des certifications professionnelles (tous les diplômes sauf doctorat et HDR).
-  références:
-    Aides à l'embauche pour un contrat d'apprentissage: https://entreprendre.service-public.fr/vosdroits/F23556
-    Quelle est la nomenclature des diplômes par niveau ?: https://www.service-public.fr/particuliers/vosdroits/F199
-
-salarié . contrat . apprentissage . diplôme préparé:
-  déprécié: oui # Était utile pour une aide à l'embauche de 2019
-  question: Quel type de diplôme l'apprenti prépare-t-il ?
+  question: Quel niveau de diplôme l’apprenti/apprentie prépare-t-il/elle ?
   une possibilité:
-    - niveau bac ou moins
-    - niveau supérieur au bac
-  par défaut: "'niveau supérieur au bac'"
-
-  avec:
-    niveau bac ou moins:
-      titre: Diplôme d'un niveau inférieur ou égal au bac
-      valeur: diplôme préparé = 'niveau bac ou moins'
-      description:
-        Concerne les diplôme de niveau V (CAP, BEP, CTM...) et de niveau IV
-        (Bac Pro, BP, BTM)
-
-    niveau supérieur au bac:
-      titre: Diplôme d'un niveau supérieur au bac
-      valeur: diplôme préparé = 'niveau supérieur au bac'
-      description: Concerne les diplôme de niveau I (Master, Ingénieur, Grandes
-        écoles...), de niveau II (License, BMS...), et de niveau III (BTS, SUT,
-        BM, ...)
+    - niveau 5 ou moins:
+        valeur: diplôme = 'niveau 5 ou moins'
+        titre: Niveau 5 ou moins (CAP, BEP, Baccalauréat, BP, DEUG, BTS, DUT, DEUST)
+    - niveau 6 ou 7:
+        valeur: diplôme = 'niveau 6 ou 7'
+        titre: Niveau 6 ou 7 (Licence, BUR, Maîtrise, Master, DEA, DESS ou diplôme d’ingénieur)
+    - niveau 8:
+        valeur: diplôme = 'niveau 8'
+        titre: Niveau 8 (Doctorat ou HDR)
+  par défaut: "'niveau 5 ou moins'"
+  références:
+    Quand l’entreprise doit-elle verser une participation forfaitaire pour un contrat d’apprentissage ?: https://entreprendre.service-public.gouv.fr/vosdroits/F39190
+    Aides à l'embauche en contrat d'apprentissage: https://entreprendre.service-public.gouv.fr/vosdroits/F23556
+    Quelle est la nomenclature des diplômes par niveau ?: https://www.service-public.gouv.fr/particuliers/vosdroits/F199
 
 salarié . contrat . apprentissage . ancienneté:
   déprécié: oui # Était utile pour une aide à l'embauche de 2019

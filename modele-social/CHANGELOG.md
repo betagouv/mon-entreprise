@@ -4,9 +4,11 @@
 
 ### Breaking changes
 - Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
+- Suppression de la règle dépréciée `salarié . contrat . apprentissage . diplôme préparé`
 
 ### Nouveautés
 - Ajout des règles de calcul de la réduction générale dégressive unique (RGDU)
+- Ajout de la participation employeur pour les contrats d’apprentissage
 
 ### Mises à jour
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
