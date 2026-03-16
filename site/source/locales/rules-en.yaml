@@ -12454,6 +12454,11 @@ salarié . régimes spécifiques . alsace moselle . ATMP:
 salarié . régimes spécifiques . apprentissage:
   titre.en: '[automatic] learning'
   titre.fr: apprentissage
+salarié . régimes spécifiques . apprentissage . handicap:
+  question.en: '[automatic] Is the apprentice disabled?'
+  question.fr: L’apprenti/apprentie est-il/ell en situation de handicap ?
+  titre.en: '[automatic] disability'
+  titre.fr: handicap
 salarié . régimes spécifiques . apprentissage . participation employeur:
   description.en: >
     [automatic] For apprenticeship contracts leading to a diploma or

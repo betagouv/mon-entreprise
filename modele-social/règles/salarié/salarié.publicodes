@@ -546,6 +546,11 @@ salarié . régimes spécifiques . taxe sur les salaires:
     assiette: cotisations . CSG-CRDS . assiette de base
 
 salarié . régimes spécifiques . apprentissage:
+  applicable si: contrat . apprentissage
+
+salarié . régimes spécifiques . apprentissage . handicap:
+  question: L’apprenti/apprentie est-il/ell en situation de handicap ?
+  par défaut: non
 
 salarié . régimes spécifiques . apprentissage . participation employeur:
   description: |
@@ -565,10 +570,11 @@ salarié . régimes spécifiques . apprentissage . participation employeur:
     réduite, de **200 €**.
   applicable si:
     toutes ces conditions:
-      - contrat . date d'embauche >= période . début d'année
-      - contrat . date d'embauche <= période . fin d'année
       - contrat . apprentissage . diplôme = 'niveau 6 ou 7'
+      - contrat . date d'embauche >= 01/07/2025
   valeur: 750 €/an
+  références:
+    Quand l’entreprise doit-elle verser une participation forfaitaire pour un contrat d’apprentissage ?: https://entreprendre.service-public.gouv.fr/vosdroits/F39190
 
 salarié . coût total employeur:
   identifiant court: cout-total-employeur
