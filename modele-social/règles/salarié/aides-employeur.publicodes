@@ -27,19 +27,49 @@ salarié . coût total employeur . aides . embauche . apprentis:
 
   applicable si:
     toutes ces conditions:
-      - entreprise . salariés . effectif < 250
       - contrat . apprentissage
       - contrat . apprentissage . diplôme . niveau 8 = non
 
   variations:
-    - si: contrat . date d'embauche >= 24/02/2025
+    - si: contrat . date d'embauche < 24/02/2025
+      alors: 6000 €/an
+    - si:
+        toutes ces conditions:
+          - contrat . date d'embauche >= 24/02/2025
+          - contrat . date d'embauche <= 31/12/2025
+      alors:
+        variations:
+          - si: entreprise . salariés . effectif > 250
+            alors: 2000 €/an
+          - sinon: 5000 €/an
+    - si:
+        toutes ces conditions:
+          - contrat . date d'embauche >= 01/01/2026
+          - contrat . date d'embauche <= 07/03/2026
+          - entreprise . salariés . effectif < 250
       alors: 5000 €/an
-    - sinon: 6000 €/an
-
+    - sinon:
+        variations:
+          - si: entreprise . salariés . effectif > 250
+            alors:
+              variations:
+                - si: contrat . apprentissage . diplôme . niveau 6 ou 7
+                  alors: 750 €/an
+                - si: contrat . apprentissage . diplôme . niveau 5
+                  alors: 1500 €/an
+                - sinon: 2000 €/an
+          - sinon:
+              variations:
+                - si: contrat . apprentissage . diplôme . niveau 6 ou 7
+                  alors: 2000 €/an
+                - si: contrat . apprentissage . diplôme . niveau 5
+                  alors: 4500 €/an
+                - sinon: 5000 €/an
   références:
-    Aides à l'embauche pour un contrat d'apprentissage: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23556
-    "Embauche d'un(e) apprenti(e) : vous avez droit à des aides": https://www.economie.gouv.fr/entreprises/aides-embauche-apprenti
+    Aides à l'embauche en contrat d'apprentissage: https://entreprendre.service-public.gouv.fr/vosdroits/F23556
+    'Embauche d’un apprenti : vous avez droit à des aides': https://www.economie.gouv.fr/entreprises/gerer-ses-ressources-humaines-et-ses-salaries/embauche-dun-apprenti-vous-avez-droit-des-aides
     L'aide aux employeurs qui recrutent en apprentissage: https://travail-emploi.gouv.fr/laide-aux-employeurs-qui-recrutent-en-apprentissage
+    Article 1 du Décret n° 2026-168 du 6 mars 2026 relatif à l'aide exceptionnelle aux employeurs d'apprentis: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053634608
 
 salarié . coût total employeur . aides . embauche . senior professionnalisation:
   description: |

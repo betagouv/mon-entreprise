@@ -121,9 +121,12 @@ salarié . contrat . apprentissage . diplôme:
   titre: Diplôme préparé
   question: Quel niveau de diplôme l’apprenti/apprentie prépare-t-il/elle ?
   une possibilité:
-    - niveau 5 ou moins:
-        valeur: diplôme = 'niveau 5 ou moins'
-        titre: Niveau 5 ou moins (CAP, BEP, Baccalauréat, BP, DEUG, BTS, DUT, DEUST)
+    - niveau 4 ou moins:
+        valeur: diplôme = 'niveau 4 ou moins'
+        titre: Niveau 4 ou moins (niveau Baccalauréat maximum)
+    - niveau 5:
+        valeur: diplôme = 'niveau 5'
+        titre: Niveau 5 (niveau Bac +2)
     - niveau 6 ou 7:
         valeur: diplôme = 'niveau 6 ou 7'
         titre: Niveau 6 ou 7 (Licence, BUR, Maîtrise, Master, DEA, DESS ou diplôme d’ingénieur)
