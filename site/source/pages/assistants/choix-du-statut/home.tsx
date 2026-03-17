@@ -27,7 +27,7 @@ import créerSvg from './_illustrations/créer.svg'
 export default function AccueilChoixStatut() {
 	const nextStep = useNextStep()
 	const choixStatutPath =
-		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']
+		useSitePaths().relativeSitePaths.assistants['choix-du-statut']
 	const existingCompany = useEngine().evaluate('entreprise . SIREN').nodeValue!
 	const dispatch = useDispatch()
 	const { t } = useTranslation()

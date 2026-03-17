@@ -28,14 +28,16 @@ import { useSitePaths } from '@/sitePaths'
 import { batchUpdateSituation } from '@/store/actions/actions'
 
 import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
+import { lastPathSegment } from './_components/useSteps'
 
 export default function Résultat() {
-	const { absoluteSitePaths } = useSitePaths()
+	const { relativeSitePaths } = useSitePaths()
 	const { currentPath } = useNavigation()
+	const segment = lastPathSegment(currentPath)
 
 	const statut = Object.entries(
-		absoluteSitePaths.assistants['choix-du-statut'].résultat
-	).find(([, path]) => currentPath === path)?.[0]
+		relativeSitePaths.assistants['choix-du-statut'].résultat
+	).find(([key, value]) => key !== 'index' && value === segment)?.[0]
 	const dottedName = STATUT_TO_DOTTEDNAME[statut as StatutType]
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)
@@ -99,12 +101,7 @@ export default function Résultat() {
 					}}
 					xl="auto"
 				>
-					<Button
-						color="secondary"
-						light
-						size="XXS"
-						to={absoluteSitePaths.assistants['choix-du-statut'].index}
-					>
+					<Button color="secondary" light size="XXS" to="..">
 						<span aria-hidden>↻</span> Recommencer l'assistant
 					</Button>
 				</Grid>

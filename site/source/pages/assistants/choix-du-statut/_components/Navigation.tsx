@@ -3,14 +3,14 @@ import { css, styled } from 'styled-components'
 
 import { TrackPage } from '@/components/ATInternetTracking'
 import { Button, Grid, Spacing } from '@/design-system'
-import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
-import { useCurrentStep, useNextStep, usePreviousStep } from './useSteps'
-
-type Statuts = Exclude<
-	keyof RelativeSitePaths['assistants']['choix-du-statut']['résultat'],
-	'index'
->
+import {
+	useCurrentStep,
+	useNextStep,
+	usePreviousStep,
+	useStepPaths,
+	type Statuts,
+} from './useSteps'
 
 export default function Navigation({
 	currentStepIsComplete,
@@ -32,8 +32,7 @@ export default function Navigation({
 	const nextStep = useNextStep()
 	const currentStep = useCurrentStep()
 	const previousStep = usePreviousStep()
-	const choixDuStatutPath =
-		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']
+	const { toStep, toResult } = useStepPaths()
 
 	return (
 		<>
@@ -57,7 +56,7 @@ export default function Navigation({
 							light
 							size={small ? 'XS' : 'MD'}
 							color={'secondary'}
-							to={choixDuStatutPath[previousStep]}
+							to={toStep(previousStep)}
 							onPress={onPreviousStep}
 						>
 							<span aria-hidden>←</span> <Trans>Précédent</Trans>
@@ -68,7 +67,7 @@ export default function Navigation({
 							<Button
 								size={small ? 'XS' : 'MD'}
 								onPress={onNextStep}
-								to={choixDuStatutPath[nextStep]}
+								to={toStep(nextStep)}
 								isDisabled={!currentStepIsComplete}
 							>
 								{nextStepLabel || <Trans>Enregistrer et continuer</Trans>}{' '}
@@ -78,7 +77,7 @@ export default function Navigation({
 					)}
 					{assistantIsCompleted && (
 						<Grid item xs={12} sm="auto">
-							<Button to={choixDuStatutPath['résultat'][assistantIsCompleted]}>
+							<Button to={toResult(assistantIsCompleted)}>
 								{nextStepLabel || (
 									<Trans>Enregistrer et voir le résultat</Trans>
 								)}{' '}

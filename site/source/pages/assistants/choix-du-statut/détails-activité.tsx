@@ -125,12 +125,11 @@ export default function DétailsActivité() {
 }
 
 function CodeAPENonConnu() {
-	const { absoluteSitePaths } = useSitePaths()
+	const { relativeSitePaths } = useSitePaths()
 
 	return (
-		// For now, we don't handle the case where the user doesn't find his code APE
 		<Navigate
-			to={absoluteSitePaths.assistants['choix-du-statut']['recherche-activité']}
+			to={`../${relativeSitePaths.assistants['choix-du-statut']['recherche-activité']}`}
 			replace
 		/>
 	)
