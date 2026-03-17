@@ -2,17 +2,9 @@ import { pipe } from 'effect'
 import { flatMap, NonEmptyArray, reduce } from 'effect/Array'
 import Engine, { utils } from 'publicodes'
 
-import { Contexte } from '@/domaine/Contexte'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-export const evalueDansLeContexte =
-	(engine: Engine, contexte: Contexte) => (expression: DottedName) =>
-		engine.evaluate({
-			valeur: expression,
-			contexte,
-		})
-
-export type MissingVariables = Partial<Record<DottedName, number>>
+type MissingVariables = Partial<Record<DottedName, number>>
 
 export const listeLesVariablesManquantes = (
 	engines: NonEmptyArray<Engine>,
