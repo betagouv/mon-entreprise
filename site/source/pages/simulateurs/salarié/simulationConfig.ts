@@ -8,6 +8,7 @@ export const configSalarié: SimulationConfig = {
 		'salarié . rémunération . net . à payer avant impôt',
 		'salarié . rémunération . net . payé après impôt',
 	],
+	objectifs: ['salarié . rémunération . contrôle minimum'],
 	questions: {
 		raccourcis: [
 			{

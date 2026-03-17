@@ -56,10 +56,6 @@ contrat pro:
   - salarié . contrat: "'professionnalisation'"
     salarié . contrat . date d'embauche: 01/10/2020
     salarié . contrat . salaire brut: 1500 €/mois
-  - salarié . contrat: "'professionnalisation'"
-    salarié . contrat . date d'embauche: 01/10/2020
-    salarié . contrat . salaire brut: 1500 €/mois
-    salarié . contrat . professionnalisation . jeune de moins de 30 ans: non
 
 cadre:
   - salarié . contrat . salaire brut: 3000 €/mois

@@ -60,7 +60,6 @@ salarié . contrat:
         indéterminée (CDI), la période de professionnalisation proprement-dite
         devant durer entre 6 et 12 mois. Dans certains cas cette période peut être
         prolongée jusqu'à 36 mois.
-      rend non applicable: rémunération . assiette de vérification du SMIC . contrôle
       références:
         Contrat de professionnalisation: https://www.service-public.fr/particuliers/vosdroits/F15478
 
@@ -88,8 +87,6 @@ salarié . contrat:
         - régimes spécifiques . DFS
         - régimes spécifiques . impatriés
 
-        - rémunération . assiette de vérification du SMIC . contrôle
-
       avec:
         avertissement:
           type: notification
@@ -105,20 +102,18 @@ salarié . contrat:
 
             Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
 
-        contrôle gratification minimale:
-          type: notification
-          sévérité: avertissement
-          valeur: contrat . salaire brut < gratification minimale
-          description: >-
-            La rémunération du stage est inférieure à la [gratification
-            minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
-
-        gratification minimale:
-          valeur: 15% * plafond sécurité sociale
-          Gratification minimale: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131
+salarié . contrat . stage . gratification minimale:
+  valeur: 15% * plafond sécurité sociale
+  références:
+    Gratification minimale d'un stagiaire étudiant ou élève dans une entreprise: https://entreprendre.service-public.gouv.fr/vosdroits/F32131
 
 salarié . contrat . apprentissage . diplôme:
   titre: Diplôme préparé
+  description: |
+    Le niveau du diplôme préparé par l’apprenti/apprentie a des conséquences sur :
+    - la **rémunération** de l’apprenti/apprentie,
+    - l’**aide à l’embauche** pour l’employeur,
+    - la **participation de l’employeur**.
   question: Quel niveau de diplôme l’apprenti/apprentie prépare-t-il/elle ?
   une possibilité:
     - niveau 4 ou moins:
@@ -135,35 +130,103 @@ salarié . contrat . apprentissage . diplôme:
         titre: Niveau 8 (Doctorat ou HDR)
   par défaut: "'niveau 5 ou moins'"
   références:
-    Quand l’entreprise doit-elle verser une participation forfaitaire pour un contrat d’apprentissage ?: https://entreprendre.service-public.gouv.fr/vosdroits/F39190
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
     Aides à l'embauche en contrat d'apprentissage: https://entreprendre.service-public.gouv.fr/vosdroits/F23556
+    Quand l’entreprise doit-elle verser une participation forfaitaire pour un contrat d’apprentissage ?: https://entreprendre.service-public.gouv.fr/vosdroits/F39190
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
     Quelle est la nomenclature des diplômes par niveau ?: https://www.service-public.gouv.fr/particuliers/vosdroits/F199
 
-salarié . contrat . apprentissage . ancienneté:
-  déprécié: oui # Était utile pour une aide à l'embauche de 2019
-  question: Depuis combien de temps l'apprenti est-il employé ?
+salarié . contrat . apprentissage . âge:
+  description: |
+    La **rémunération minimale** varie en fonction de **l’âge** de
+    l’apprenti/apprentie.
+  question: Quel est l’âge de l’apprenti/apprentie ?
   une possibilité:
-    - moins d'un an
-    - moins de deux ans
-    - moins de trois ans
-    - moins de quatre ans
-  par défaut: "'moins d'un an'"
+    - moins de 18:
+        valeur: âge = 'moins de 18'
+        titre: moins de 18 ans
+    - de 18 à 20:
+        valeur: âge = 'de 18 à 20'
+        titre: de 18 ans à 20 ans (inclus)
+    - de 21 à 25:
+        valeur: âge = 'de 21 à 25'
+        titre: de 21 ans à 25 ans (inclus)
+    - plus de 25:
+        valeur: âge = 'plus de 25'
+        titre: 26 ans ou plus
+  par défaut: "'moins de 18'"
+  références:
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
 
-salarié . contrat . apprentissage . ancienneté . moins d'un an:
-  formule: ancienneté = 'moins d'un an'
+salarié . contrat . apprentissage . ancienneté:
+  description: |
+    La **rémunération** de l’apprenti/apprentie progresse chaque nouvelle
+    **année d’exécution** de son contrat.
+  question: Depuis combien de temps l’apprenti/apprentie est-il/elle employé/employée ?
+  une possibilité:
+    - moins de 1:
+        valeur: ancienneté = 'moins de 1'
+        titre: moins d’1 an
+    - moins de 2:
+        valeur: ancienneté = 'moins de 2'
+        titre: moins de 2 ans
+    - moins de 3:
+        valeur: ancienneté = 'moins de 3'
+        titre: moins de 3 ans
+    - moins de 4:
+        valeur: ancienneté = 'moins de 4'
+        titre: moins de 4 ans
+        type: notification
+        description: |
+          La durée maximale du contrat d’apprentissage peut être portée à 4 ans
+          lorsque la qualité de travailleur/travailleuse handicapé/handicapée est
+          reconnue à l’apprenti/apprentie.
+  par défaut: "'moins de 1'"
+  références:
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
 
-salarié . contrat . apprentissage . ancienneté . moins de deux ans:
-  formule: ancienneté = 'moins de deux ans'
+salarié . contrat . apprentissage . rémunération minimale:
+  description: |
+    L’apprenti/apprentie bénéficie d’une **rémunération** variant en fonction de son
+    **âge**. De plus, sa rémunération progresse chaque nouvelle année d’exécution de
+    son contrat.
 
-salarié . contrat . apprentissage . ancienneté . moins de trois ans:
-  formule: ancienneté = 'moins de trois ans'
-
-salarié . contrat . apprentissage . ancienneté . moins de quatre ans:
-  formule: ancienneté = 'moins de quatre ans'
-  type: notification
-  description: >-
-    La durée maximale du contrat peut être portée à 4 ans lorsque la qualité de
-    travailleur handicapé est reconnue à l'apprenti.
+    Le salaire minimum perçu par l’apprenti/apprentie correspond à un pourcentage du
+    Smic.
+  variations:
+    - si: âge . plus de 25
+      alors: temps de travail . SMIC
+    - sinon:
+        variations:
+          - si: ancienneté . moins de 1
+            alors:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 53% * temps de travail . SMIC
+                - si: âge . de 18 à 20
+                  alors: 43% * temps de travail . SMIC
+                - sinon: 27% * temps de travail . SMIC
+          - si: ancienneté . moins de 2
+            alors:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 61% * temps de travail . SMIC
+                - si: âge . de 18 à 20
+                  alors: 51% * temps de travail . SMIC
+                - sinon: 39% * temps de travail . SMIC
+          - sinon:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 78% * temps de travail . SMIC
+                - si: âge . de 18 à 20
+                  alors: 67% * temps de travail . SMIC
+                - sinon: 55% * temps de travail . SMIC
+  arrondi: oui
+  références:
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
 
 salarié . contrat . apprentissage . assiette réduite apprentissage:
   description:
@@ -245,7 +308,7 @@ salarié . contrat . apprentissage . exonération taxe sur les salaires:
 
 salarié . contrat . professionnalisation . âge:
   description: |
-    La **rémunération** varie en fonction de **l’âge** du ou de la salariée
+    La **rémunération minimale** varie en fonction de **l’âge** du ou de la salariée
     embauchée en contrat de professionnalisation.
 
     D’autre part, une **aide à l’embauche** existe pour les demandeurs/demandeuses
@@ -253,21 +316,69 @@ salarié . contrat . professionnalisation . âge:
   question: Quel est l’âge du ou de la salariée embauchée ?
   une possibilité:
     - moins de 21:
-        valeur: âge = '21 ou moins'
+        valeur: âge = 'moins de 21'
         titre: moins de 21 ans
     - de 21 à 25:
-        valeur: âge = '21 à 25'
-        titre: de 21 à 25 ans (inclus)
+        valeur: âge = 'de 21 à 25'
+        titre: de 21 ans à 25 ans (inclus)
     - de 26 à 44:
-        valeur: âge = '26 à 44'
-        titre: de 26 à 44 ans (inclus)
+        valeur: âge = 'de 26 à 44'
+        titre: de 26 ans à 44 ans (inclus)
     - plus de 44:
-        valeur: âge = '45 ou plus'
+        valeur: âge = 'plus de 44'
         titre: 45 ans ou plus
   par défaut: "'moins de 21'"
   références:
+    Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
     Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
     Aide à l’embauche d'un demandeur d’emploi de 45 ans et plus en contrat de professionnalisation: https://www.francetravail.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
+
+salarié . contrat . professionnalisation . formation:
+  titre: Niveau de formation
+  description: |
+    La **rémunération** du ou de la salariée en contrat de professionnalisation
+    varie en fonction de son **niveau de formation initiale**.
+  question: Quel est le niveau de formation du ou de la salariée ?
+  une possibilité:
+    - moins que bac:
+        valeur: formation = 'moins que bac'
+        titre: Inférieur au baccalauréat
+    - bac ou plus:
+        valeur: formation = 'bac ou plus'
+        titre: Égal ou supérieur au baccalauréat
+  par défaut: "'moins que bac'"
+  références:
+    Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+
+salarié . contrat . professionnalisation . rémunération minimale:
+  description: |
+    La rémunération du ou de la salariée en contrat de professionnalisation varie
+    en fonction du **niveau de sa formation initiale** et de son **âge**.
+  variations:
+    - si:
+        une de ces conditions:
+          - âge . de 26 à 44
+          - âge . plus de 44
+      alors: temps de travail . SMIC
+    - sinon:
+        variations:
+          - si: formation . bac ou plus
+            alors:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 80% * temps de travail . SMIC
+                - sinon: 65% * temps de travail . SMIC
+          - sinon:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 70% * temps de travail . SMIC
+                - sinon: 55% * temps de travail . SMIC
+  arrondi: oui
+  références:
+    Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+
 salarié . contrat . CDD . motif:
   titre: Motif de recours
   question: Quel est le motif de recours au CDD ?

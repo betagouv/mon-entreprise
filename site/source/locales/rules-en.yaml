@@ -9056,20 +9056,6 @@ salarié . contrat:
             Par ailleurs, une entreprise de moins de 20 salariés ne peut pas accueillir plus de **3&nbsp;stagiaires**, et pas plus de **15% de l’effectif** pour les entreprises de plus de 20 salariés.
           titre.en: '[automatic] warning'
           titre.fr: avertissement
-        contrôle gratification minimale:
-          description.en:
-            "[automatic] The remuneration for the internship is less than
-            the [minimum
-            fee](https://www.service-public.fr/professionnels-entreprises/vosdr\
-            oits/F32131)."
-          description.fr:
-            La rémunération du stage est inférieure à la [gratification
-            minimale](https://www.service-public.fr/professionnels-entreprises/vosdroits/F32131).
-          titre.en: '[automatic] control minimum gratification'
-          titre.fr: contrôle gratification minimale
-        gratification minimale:
-          titre.en: '[automatic] minimum gratuity'
-          titre.fr: gratification minimale
       description.en: >
         [automatic] An employer who takes on an intern must pay him or her a
         minimum gratuity. This is partly exempt from social security
@@ -9352,6 +9338,19 @@ salarié . contrat . CDD . reconduction en CDI:
   question.fr: Le CDD sera-t-il reconduit en CDI ?
   titre.en: '[automatic] renewal on permanent contract'
   titre.fr: reconduction en CDI
+salarié . contrat . apprentissage . ancienneté:
+  description.en: >
+    [automatic] The apprentice's **remuneration** increases with each new **year
+    of performance** of the contract.
+
+    **year of performance** of the contract.
+  description.fr: |
+    La **rémunération** de l’apprenti/apprentie progresse chaque nouvelle
+    **année d’exécution** de son contrat.
+  question.en: '[automatic] How long has the apprentice been employed?'
+  question.fr: Depuis combien de temps l’apprenti/apprentie est-il/elle employé/employée ?
+  titre.en: '[automatic] seniority'
+  titre.fr: ancienneté
 salarié . contrat . apprentissage . assiette réduite apprentissage:
   description.en: >-
     [automatic] For contracts signed on or after March 1, 2025, apprentices are
@@ -9396,6 +9395,24 @@ salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur 
   titre.en: '[automatic] payroll tax'
   titre.fr: taxe sur les salaires
 salarié . contrat . apprentissage . diplôme:
+  description.en: >
+    [automatic] The level of the diploma prepared by the apprentice has
+    consequences on :
+
+    - the apprentice's **remuneration**,
+
+    - the **hiring aid** for the employer,
+
+    - employer's **contribution**.
+  description.fr: >
+    Le niveau du diplôme préparé par l’apprenti/apprentie a des conséquences
+    sur :
+
+    - la **rémunération** de l’apprenti/apprentie,
+
+    - l’**aide à l’embauche** pour l’employeur,
+
+    - la **participation de l’employeur**.
   question.en: '[automatic] What level of diploma is the apprentice preparing?'
   question.fr: Quel niveau de diplôme l’apprenti/apprentie prépare-t-il/elle ?
   titre.en: '[automatic] Diploma prepared'
@@ -9411,6 +9428,46 @@ salarié . contrat . apprentissage . exonération taxe sur les salaires:
     salaires de ses apprentis.
   titre.en: '[automatic] payroll tax exemption'
   titre.fr: exonération taxe sur les salaires
+salarié . contrat . apprentissage . rémunération minimale:
+  description.en: >
+    [automatic] The apprentice receives **pay** which varies according to
+    his/her
+
+    **age**. In addition, the apprentice's remuneration increases with each year of the
+
+    of their contract.
+
+
+    The minimum wage received by the apprentice corresponds to a percentage of the
+
+    minimum wage.
+  description.fr: >
+    L’apprenti/apprentie bénéficie d’une **rémunération** variant en fonction de
+    son
+
+    **âge**. De plus, sa rémunération progresse chaque nouvelle année d’exécution de
+
+    son contrat.
+
+
+    Le salaire minimum perçu par l’apprenti/apprentie correspond à un pourcentage du
+
+    Smic.
+  titre.en: '[automatic] minimum compensation'
+  titre.fr: rémunération minimale
+salarié . contrat . apprentissage . âge:
+  description.en: >
+    [automatic] The **minimum wage** varies according to the **age** of the
+    apprentice.
+
+    age** of the apprentice.
+  description.fr: |
+    La **rémunération minimale** varie en fonction de **l’âge** de
+    l’apprenti/apprentie.
+  question.en: '[automatic] How old is the apprentice?'
+  question.fr: Quel est l’âge de l’apprenti/apprentie ?
+  titre.en: '[automatic] age'
+  titre.fr: âge
 salarié . contrat . date d'embauche:
   question.en: "[automatic] What is the employee's date of hire?"
   question.fr: Quelle est la date d'embauche du salarié ?
@@ -9420,10 +9477,37 @@ salarié . contrat . date d'embauche:
   suggestions.Fin d'année.fr: Fin d'année
   titre.en: '[automatic] date of hire'
   titre.fr: date d'embauche
+salarié . contrat . professionnalisation . formation:
+  description.en: >
+    [automatic] The **remuneration** of an employee on a professionalization
+    contract
+
+    varies according to the employee's **level of initial training**.
+  description.fr: |
+    La **rémunération** du ou de la salariée en contrat de professionnalisation
+    varie en fonction de son **niveau de formation initiale**.
+  question.en: "[automatic] What is the employee's level of training?"
+  question.fr: Quel est le niveau de formation du ou de la salariée ?
+  titre.en: '[automatic] Level of training'
+  titre.fr: Niveau de formation
+salarié . contrat . professionnalisation . rémunération minimale:
+  description.en: >
+    [automatic] The remuneration of an employee on a professionalization
+    contract varies according to the **level of initial training** and his/her
+    **age**.
+
+    according to **level of initial training** and **age**.
+  description.fr: >
+    La rémunération du ou de la salariée en contrat de professionnalisation
+    varie
+
+    en fonction du **niveau de sa formation initiale** et de son **âge**.
+  titre.en: '[automatic] minimum compensation'
+  titre.fr: rémunération minimale
 salarié . contrat . professionnalisation . âge:
   description.en: >
-    [automatic] The **payment** varies according to the **age** of the employee
-    hired under
+    [automatic] The **minimum remuneration** varies according to the **age** of
+    the employee
 
     hired under a professionalization contract.
 
@@ -9432,7 +9516,8 @@ salarié . contrat . professionnalisation . âge:
 
     45 and over on a professionalization contract.
   description.fr: >
-    La **rémunération** varie en fonction de **l’âge** du ou de la salariée
+    La **rémunération minimale** varie en fonction de **l’âge** du ou de la
+    salariée
 
     embauchée en contrat de professionnalisation.
 
@@ -9486,6 +9571,9 @@ salarié . contrat . salaire brut:
   suggestions.salaire médian.fr: salaire médian
   titre.en: '[automatic] gross salary'
   titre.fr: salaire brut
+salarié . contrat . stage . gratification minimale:
+  titre.en: '[automatic] minimum bonus'
+  titre.fr: gratification minimale
 salarié . contrat . statut cadre:
   description.en: >
     [automatic] A corporate executive is an employee or officer of a company
@@ -12921,12 +13009,6 @@ salarié . rémunération:
   titre.en: '[automatic] compensation'
   titre.fr: rémunération
 salarié . rémunération . assiette de vérification du SMIC:
-  avec:
-    contrôle:
-      description.en: '[automatic] '
-      description.fr: Le salaire saisi est inférieur au SMIC.
-      titre.en: '[automatic] '
-      titre.fr: contrôle
   description.en: >
     [automatic] This is the salary taken into account to verify that the minimum
     wage is reached.
@@ -13173,6 +13255,50 @@ salarié . rémunération . brut:
     remboursement de la dette sociale (CRDS).
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute
+salarié . rémunération . contrôle minimum:
+  avec:
+    apprentissage:
+      description.en: >
+        [automatic] The salary entered is lower than the minimum wage for an
+        apprenticeship contract.
+
+        apprenticeship contract.
+      description.fr: |
+        Le salaire saisi est inférieur à la rémunération minimale d’un contrat
+        d’apprentissage.
+      titre.en: '[automatic] learning'
+      titre.fr: apprentissage
+    professionnalisation:
+      description.en: >
+        [automatic] The salary entered is lower than the minimum remuneration
+        for a professional
+
+        contract.
+      description.fr: >
+        Le salaire saisi est inférieur à la rémunération minimale d’un contrat
+        de
+
+        professionnalisation.
+      titre.en: '[automatic] professionalization'
+      titre.fr: professionnalisation
+    smic:
+      description.en: '[automatic] The salary entered is less than the minimum wage.'
+      description.fr: Le salaire saisi est inférieur au SMIC.
+      titre.en: '[automatic] smic'
+      titre.fr: smic
+    stage:
+      description.en:
+        "[automatic] The remuneration for the internship is less than
+        the [minimum
+        gratification](https://entreprendre.service-public.gouv.fr/vosdroits/F3\
+        2131)."
+      description.fr:
+        La rémunération du stage est inférieure à la [gratification
+        minimale](https://entreprendre.service-public.gouv.fr/vosdroits/F32131).
+      titre.en: '[automatic] internship'
+      titre.fr: stage
+  titre.en: '[automatic] minimum control'
+  titre.fr: contrôle minimum
 salarié . rémunération . frais professionnels:
   avec:
     déductible:
