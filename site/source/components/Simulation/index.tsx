@@ -25,7 +25,6 @@ import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
-export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
 export { SimulationGoals } from './SimulationGoals'
 
@@ -72,6 +71,7 @@ type SimulationProps<S extends Situation = Situation> = {
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
+	simulationEstCommencée?: (situation?: S) => boolean
 
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
@@ -91,20 +91,24 @@ export default function Simulation<S extends Situation = Situation>({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
+	simulationEstCommencée,
 	situation,
 	questions,
 	questionsPublicodes,
 	raccourcisPublicodes,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
+	const laSimulationEstCommencée = simulationEstCommencée
+		? simulationEstCommencée(situation)
+		: isFirstStepCompleted
 	const { currentPath } = useNavigation()
 	const shouldShowFeedback = getShouldAskFeedback(currentPath)
-	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
+	const showQuestions = showQuestionsFromBeginning || laSimulationEstCommencée
 
 	return (
 		<>
-			{!isFirstStepCompleted && <TrackPage name={ACCUEIL} />}
-			{isFirstStepCompleted && <TrackPage name={SIMULATION_COMMENCEE} />}
+			{!laSimulationEstCommencée && <TrackPage name={ACCUEIL} />}
+			{laSimulationEstCommencée && <TrackPage name={SIMULATION_COMMENCEE} />}
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />
@@ -118,23 +122,28 @@ export default function Simulation<S extends Situation = Situation>({
 							{entrepriseSelection && <EntrepriseSelection />}
 
 							<Questions
+								situation={situation}
 								questions={questions}
 								questionsPublicodes={questionsPublicodes}
 								raccourcisPublicodes={raccourcisPublicodes}
 								customEndMessages={customEndMessages}
-								situation={situation}
+								showModifierMesRéponses={!!questionsPublicodes?.length}
 							/>
 						</>
 					)}
 					<Spacing md />
 
-					{!entrepriseSelection && <SimulationPréremplieBanner />}
+					{!entrepriseSelection && questionsPublicodes?.length && (
+						<SimulationPréremplieBanner />
+					)}
 
-					{!showQuestions && <PreviousSimulationBanner />}
+					{!showQuestions && questionsPublicodes?.length && (
+						<PreviousSimulationBanner />
+					)}
 
 					{afterQuestionsSlot}
 
-					{isFirstStepCompleted && !hideDetails && (
+					{laSimulationEstCommencée && !hideDetails && (
 						<>
 							{customSimulationbutton && (
 								<>
@@ -157,8 +166,8 @@ export default function Simulation<S extends Situation = Situation>({
 					)}
 				</FromTop>
 			</SimulationContainer>
-			{isFirstStepCompleted && !hideDetails && explanations}
-			{isFirstStepCompleted && !hideDetails && shouldShowFeedback && (
+			{laSimulationEstCommencée && !hideDetails && explanations}
+			{laSimulationEstCommencée && !hideDetails && shouldShowFeedback && (
 				<div
 					style={{
 						textAlign: 'center',

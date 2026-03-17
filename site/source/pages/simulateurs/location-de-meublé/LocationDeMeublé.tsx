@@ -10,6 +10,7 @@ import {
 	SituationÉconomieCollaborative,
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
+import { simulationEstCommencée } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
 import { Body, ConteneurBleu, Emoji, Message } from '@/design-system'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
@@ -74,7 +75,8 @@ const LocationDeMeublé = () => {
 						? [PremiereAnneeQuestion, AlsaceMoselleQuestion]
 						: []),
 				]}
-				showQuestionsFromBeginning={estSituationValide(situation)}
+				simulationEstCommencée={simulationEstCommencée}
+				hideDetails={true}
 			>
 				<SimulateurWarning simulateur="location-de-logement-meublé" />
 				<SimulationGoals toggles={<TypeHébergementSwitch />}>
