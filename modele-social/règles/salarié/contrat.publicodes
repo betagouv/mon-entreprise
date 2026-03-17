@@ -243,15 +243,31 @@ salarié . contrat . apprentissage . exonération taxe sur les salaires:
   références:
     Article 231 bis I du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303786/
 
-salarié . contrat . professionnalisation . jeune de moins de 30 ans:
-  question: Le salarié embauché a-t-il moins de 30 ans ?
-  par défaut: oui
+salarié . contrat . professionnalisation . âge:
+  description: |
+    La **rémunération** varie en fonction de **l’âge** du ou de la salariée
+    embauchée en contrat de professionnalisation.
 
-salarié . contrat . professionnalisation . salarié de 45 ans et plus:
-  non applicable si: jeune de moins de 30 ans
-  question: Le salarié embauché a-t-il 45 ans ou plus ?
-  par défaut: non
-
+    D’autre part, une **aide à l’embauche** existe pour les demandeurs/demandeuses
+    d’emploi de 45 ans et plus en contrat de professionnalisation.
+  question: Quel est l’âge du ou de la salariée embauchée ?
+  une possibilité:
+    - moins de 21:
+        valeur: âge = '21 ou moins'
+        titre: moins de 21 ans
+    - de 21 à 25:
+        valeur: âge = '21 à 25'
+        titre: de 21 à 25 ans (inclus)
+    - de 26 à 44:
+        valeur: âge = '26 à 44'
+        titre: de 26 à 44 ans (inclus)
+    - plus de 44:
+        valeur: âge = '45 ou plus'
+        titre: 45 ans ou plus
+  par défaut: "'moins de 21'"
+  références:
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+    Aide à l’embauche d'un demandeur d’emploi de 45 ans et plus en contrat de professionnalisation: https://www.francetravail.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
 salarié . contrat . CDD . motif:
   titre: Motif de recours
   question: Quel est le motif de recours au CDD ?

@@ -5,6 +5,8 @@
 ### Breaking changes
 - Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
 - Suppression de la règle dépréciée `salarié . contrat . apprentissage . diplôme préparé`
+- Renomme `salarié . coût total employeur . aides . embauche . apprentis` en `salarié . coût total employeur . aides . embauche . apprentissage`
+- Renomme `salarié . coût total employeur . aides . embauche . senior professionnalisation` en `salarié . coût total employeur . aides . embauche . professionnalisation`
 
 ### Nouveautés
 - Ajout des règles de calcul de la réduction générale dégressive unique (RGDU)
