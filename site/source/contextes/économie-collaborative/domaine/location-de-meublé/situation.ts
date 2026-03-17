@@ -191,6 +191,10 @@ export function estSituationValide(
 	)
 }
 
+export const simulationEstCommencée = (
+	situation?: SituationÉconomieCollaborative
+) => !!situation && estSituationValide(situation)
+
 export function faitDeLaLocationCourteDurée(
 	situation: SituationMeubléDeTourismeValide
 ): situation is

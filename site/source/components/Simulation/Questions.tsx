@@ -5,7 +5,6 @@ import { styled } from 'styled-components'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
 import Notifications from '@/components/Notifications'
-import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
 import { Body, Conversation, H3, Spacing } from '@/design-system'
@@ -16,6 +15,7 @@ import {
 	useQuestions,
 } from '@/hooks/useQuestions'
 
+import { ComposantQuestion } from './ComposantQuestion'
 import { QuestionPublicodes } from './QuestionPublicodes'
 import Raccourcis from './Raccourcis'
 
@@ -24,15 +24,17 @@ export interface QuestionsProps<S extends Situation = Situation> {
 	questions?: Array<ComposantQuestion<S>>
 	questionsPublicodes?: Array<TypeQuestionPublicodes<S>>
 	raccourcisPublicodes?: Array<RaccourciPublicodes>
+	showModifierMesRéponses?: boolean
 	customEndMessages?: React.ReactNode
 }
 
 export function Questions<S extends Situation>({
+	situation,
 	questions,
 	questionsPublicodes,
 	raccourcisPublicodes,
 	customEndMessages,
-	situation,
+	showModifierMesRéponses = true,
 }: QuestionsProps<S>) {
 	const { t } = useTranslation()
 	const focusAnchorForA11yRef = useRef<HTMLDivElement>(null)
@@ -40,7 +42,7 @@ export function Questions<S extends Situation>({
 	const {
 		nombreDeQuestions,
 		nombreDeQuestionsRépondues,
-		activeQuestionIndex,
+		questionCouranteIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
 		raccourcis,
@@ -86,7 +88,7 @@ export function Questions<S extends Situation>({
 		nombreDeQuestions > 0 && (
 			<>
 				<Progress
-					progress={activeQuestionIndex + 1}
+					progress={questionCouranteIndex + 1}
 					maxValue={nombreDeQuestions}
 				/>
 				<QuestionsContainer>
@@ -131,13 +133,13 @@ export function Questions<S extends Situation>({
 
 							<Conversation
 								onPrevious={
-									activeQuestionIndex > 0 ? handleGoToPrevious : undefined
+									questionCouranteIndex > 0 ? handleGoToPrevious : undefined
 								}
 								onNext={handleGoToNext}
 								questionIsAnswered={questionCouranteRépondue}
-								isPreviousDisabled={activeQuestionIndex === 0}
+								isPreviousDisabled={questionCouranteIndex === 0}
 								customVisualisation={
-									questionsPublicodes?.length ? <SeeAnswersButton /> : undefined
+									showModifierMesRéponses ? <SeeAnswersButton /> : undefined
 								}
 							>
 								{QuestionCourante?._tag === 'QuestionFournie' && (
