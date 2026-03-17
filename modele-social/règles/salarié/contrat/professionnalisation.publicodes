@@ -1,0 +1,72 @@
+salarié . contrat . professionnalisation . âge:
+  description: |
+    La **rémunération minimale** varie en fonction de **l’âge** du ou de la salariée
+    embauchée en contrat de professionnalisation.
+
+    D’autre part, une **aide à l’embauche** existe pour les demandeurs/demandeuses
+    d’emploi de 45 ans et plus en contrat de professionnalisation.
+  question: Quel est l’âge du ou de la salariée embauchée ?
+  une possibilité:
+    - moins de 21:
+        valeur: âge = 'moins de 21'
+        titre: moins de 21 ans
+    - de 21 à 25:
+        valeur: âge = 'de 21 à 25'
+        titre: de 21 ans à 25 ans (inclus)
+    - de 26 à 44:
+        valeur: âge = 'de 26 à 44'
+        titre: de 26 ans à 44 ans (inclus)
+    - plus de 44:
+        valeur: âge = 'plus de 44'
+        titre: 45 ans ou plus
+  par défaut: "'moins de 21'"
+  références:
+    Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+    Aide à l’embauche d'un demandeur d’emploi de 45 ans et plus en contrat de professionnalisation: https://www.francetravail.fr/employeur/aides-aux-recrutements/les-aides-a-lembauche/embauche-de-de-de-45-ans-et-plus.html
+
+salarié . contrat . professionnalisation . formation:
+  titre: Niveau de formation
+  description: |
+    La **rémunération** du ou de la salariée en contrat de professionnalisation
+    varie en fonction de son **niveau de formation initiale**.
+  question: Quel est le niveau de formation du ou de la salariée ?
+  une possibilité:
+    - moins que bac:
+        valeur: formation = 'moins que bac'
+        titre: Inférieur au baccalauréat
+    - bac ou plus:
+        valeur: formation = 'bac ou plus'
+        titre: Égal ou supérieur au baccalauréat
+  par défaut: "'moins que bac'"
+  références:
+    Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+
+salarié . contrat . professionnalisation . rémunération minimale:
+  description: |
+    La rémunération du ou de la salariée en contrat de professionnalisation varie
+    en fonction du **niveau de sa formation initiale** et de son **âge**.
+  variations:
+    - si:
+        une de ces conditions:
+          - âge . de 26 à 44
+          - âge . plus de 44
+      alors: temps de travail . SMIC
+    - sinon:
+        variations:
+          - si: formation . bac ou plus
+            alors:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 80% * temps de travail . SMIC
+                - sinon: 65% * temps de travail . SMIC
+          - sinon:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 70% * temps de travail . SMIC
+                - sinon: 55% * temps de travail . SMIC
+  arrondi: oui
+  références:
+    Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
