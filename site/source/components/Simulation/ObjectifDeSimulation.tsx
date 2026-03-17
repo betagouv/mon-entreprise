@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Grid, TitreObjectif, typography } from '@/design-system'
-import { toString as formatMontant, Montant } from '@/domaine/Montant'
+import { Montant, montantToString } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import { Appear } from '../ui/animate'
@@ -43,7 +43,7 @@ export function ObjectifDeSimulation({
 			? valeur
 			: Option.match(valeur, {
 					onNone: () => '—',
-					onSome: (montant) => formatMontant(montant, displayedUnit),
+					onSome: (montant) => montantToString(montant, displayedUnit),
 			  })
 
 	return (

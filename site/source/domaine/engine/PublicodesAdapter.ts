@@ -23,9 +23,7 @@ import { isQuantité, Quantité } from '@/domaine/Quantité'
 
 import { QuantitéAdapter } from './QuantitéAdapter'
 
-export type Nombre = number
-
-export type ValeurPublicodes = string | Montant | Quantité | Nombre
+export type ValeurPublicodes = string | Montant | Quantité | number
 
 const decode = (node: EvaluatedNode): O.Option<ValeurPublicodes> => {
 	if (node.nodeValue === null || node.nodeValue === undefined) {

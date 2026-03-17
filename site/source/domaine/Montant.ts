@@ -26,12 +26,6 @@ export const isMontantRécurrent = (
 const makeMontant = Data.tagged<Montant>('Montant')
 
 export class DivisionParZéro extends Data.TaggedError('DivisionParZéro') {}
-export class ConversionImpossible extends Data.TaggedError(
-	'ConversionImpossible'
-)<{
-	readonly source: UnitéMonétaire
-	readonly cible: UnitéMonétaire
-}> {}
 
 const arrondirAuCentime = (valeur: number): number =>
 	Math.round(valeur * 100) / 100
@@ -287,7 +281,6 @@ export const estPlusGrandQue = dual<
 	<M extends Montant>(b: M) => (a: M) => boolean,
 	<M extends Montant>(a: M, b: M) => boolean
 >(2, <M extends Montant>(a: M, b: M): boolean => a.valeur > b.valeur)
-
 export const estPlusPetitQue = dual<
 	<M extends Montant>(b: M) => (a: M) => boolean,
 	<M extends Montant>(a: M, b: M) => boolean
@@ -307,10 +300,11 @@ export const estZéro = (montant: Montant): boolean => montant.valeur === 0
 
 export const montantToNumber = (montant: Montant): number => montant.valeur
 
-export const toString = (montant: Montant, displayedUnit?: string): string => {
+export const montantToString = (
+	montant: Montant,
+	displayedUnit?: string
+): string => {
 	return `${montant.valeur.toLocaleString('fr-FR')} ${
 		displayedUnit ?? montant.unité
 	}`
 }
-
-export const montantToString = toString

@@ -13,7 +13,7 @@ import {
 	SmallBody,
 	Strong,
 } from '@/design-system'
-import { euros, toString as formatMontant } from '@/domaine/Montant'
+import { euros, montantToString } from '@/domaine/Montant'
 import { useGetPath } from '@/hooks/useGetPath'
 import { useNavigation } from '@/lib/navigation'
 
@@ -30,7 +30,7 @@ export default function Résultat() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	const amount = formatMontant(O.getOrElse(montantCT, () => euros(0)))
+	const amount = montantToString(O.getOrElse(montantCT, () => euros(0)))
 
 	return (
 		<>

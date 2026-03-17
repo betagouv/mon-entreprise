@@ -13,7 +13,7 @@ export interface Entreprise {
 	établissement: Établissement
 }
 
-export const établissementEstLeSiège = (entreprise: Entreprise): boolean =>
+const établissementEstLeSiège = (entreprise: Entreprise): boolean =>
 	!!entreprise.siège &&
 	!!entreprise.siège.adresse.complète &&
 	entreprise.siège.adresse.complète ===
