@@ -99,7 +99,6 @@ salarié . cotisations . CPF CDD:
   applicable si: contrat . CDD
   non applicable si:
     une de ces conditions:
-      - contrat . apprentissage
       - contrat . CDD . motif = 'classique . saisonnier'
       - contrat . CDD . motif . contrat aidé
   produit:

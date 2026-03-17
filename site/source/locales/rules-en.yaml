@@ -9339,6 +9339,29 @@ salarié . contrat . CDD . reconduction en CDI:
   titre.en: '[automatic] renewal on permanent contract'
   titre.fr: reconduction en CDI
 salarié . contrat . apprentissage . ancienneté:
+  avec:
+    durée maximale avec RQTH:
+      description.en: >
+        [automatic] The maximum duration of an apprenticeship contract is 3
+        years, unless
+
+        the apprentice is disabled.
+      description.fr: |
+        La durée maximale du contrat d’apprentissage est de 3 ans, sauf si
+        l’apprenti/apprentie est en situation de handicap.
+      titre.en: '[automatic] maximum duration with RQTH'
+      titre.fr: durée maximale avec RQTH
+    durée maximale sans RQTH:
+      description.en: >
+        [automatic] The maximum duration of an apprenticeship contract for a
+        disabled apprentice is 4 years.
+
+        disabled apprentice.
+      description.fr: |
+        La durée maximale du contrat d’apprentissage est de 4 ans pour un ou une
+        apprentie en situation de handicap.
+      titre.en: '[automatic] maximum duration without RQTH'
+      titre.fr: durée maximale sans RQTH
   description.en: >
     [automatic] The apprentice's **remuneration** increases with each new **year
     of performance** of the contract.
@@ -9347,8 +9370,6 @@ salarié . contrat . apprentissage . ancienneté:
   description.fr: |
     La **rémunération** de l’apprenti/apprentie progresse chaque nouvelle
     **année d’exécution** de son contrat.
-  question.en: '[automatic] How long has the apprentice been employed?'
-  question.fr: Depuis combien de temps l’apprenti/apprentie est-il/elle employé/employée ?
   titre.en: '[automatic] seniority'
   titre.fr: ancienneté
 salarié . contrat . apprentissage . assiette réduite apprentissage:
@@ -12163,21 +12184,40 @@ salarié . cotisations . vieillesse:
   titre.fr: vieillesse
 salarié . coût total employeur:
   description.en: >
-    [automatic] The total cost of hiring an employee, including deferred
-    assistance in addition to the remuneration components.
+    [automatic] Total cost of hiring an employee including, in addition to
+    remuneration, deferred
 
-    > It is therefore also a measure of the value that the employee brings to the company: the employer is willing to pay this amount in return for the work provided.
+    deferred subsidies.
+
+    > It is therefore also a measure of the value the employee brings to the
+
+    > the company: the employer is prepared to pay this sum in return for the
+
+    > work done.
 
 
-    To this total cost, you must not forget to add the expenses specific to your company: finding the right candidate, workstation, equipment, initial training, occupational medicine, etc.
+    To this total cost, don't forget to add your company's specific expenses
+
+    the right candidate, workstation, equipment,
+
+    training, occupational medicine, etc.
   description.fr: >
     Coût total d'embauche d'un salarié en incluant, en plus des éléments de
+
     rémunération, les aides différées.
 
-    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à
+
+    > l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du
+
+    > travail fourni.
 
 
-    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, médecine du travail, etc.
+    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à
+
+    votre entreprise : recherche du bon candidat, poste de travail, équipement,
+
+    formation initiale, médecine du travail, etc.
   question.en: What
   question.fr: Quel est le coût total de cette embauche ?
   résumé.en: Spent by the company
@@ -12539,7 +12579,7 @@ salarié . régimes spécifiques . apprentissage:
   titre.fr: apprentissage
 salarié . régimes spécifiques . apprentissage . handicap:
   question.en: '[automatic] Is the apprentice disabled?'
-  question.fr: L’apprenti/apprentie est-il/ell en situation de handicap ?
+  question.fr: L’apprenti/apprentie est-il/elle en situation de handicap ?
   titre.en: '[automatic] disability'
   titre.fr: handicap
 salarié . régimes spécifiques . apprentissage . participation employeur:
@@ -12547,7 +12587,7 @@ salarié . régimes spécifiques . apprentissage . participation employeur:
     [automatic] For apprenticeship contracts leading to a diploma or
     professional qualification
 
-    at least equal to Bac+3 (levels 6 and 7 of the national framework of
+    at least equal to Bac +3 (levels 6 and 7 of the national framework of
 
     certifications), the company contributes to the financing of the training
 
@@ -12558,14 +12598,14 @@ salarié . régimes spécifiques . apprentissage . participation employeur:
 
     If the contract is terminated during the first **45 days of practical training** (the period during which the contract can be terminated), the company will pay a lump sum.
 
-    (a period during which the contract can be freely broken by either the apprentice or the
+    (period during which the contract can be freely broken by the apprentice/apprentice)
 
-    the employer), the company is liable to pay **50%** of the funding due from the OPCO
+    the apprentice or the employer), the company is liable for **50%** of the funding due from the
 
-    for the period in question, up to a maximum of €750.
+    financing due from the OPCO for the period in question, up to a maximum of €750.
 
 
-    When a company takes on an apprentice whose initial contract has been broken
+    When a company takes on an apprentice whose initial contract has been
 
     contract has been terminated, the new company pays only a reduced contribution of
 
@@ -12573,7 +12613,7 @@ salarié . régimes spécifiques . apprentissage . participation employeur:
   description.fr: >
     Pour les contrats d’apprentissage préparant à un diplôme ou un titre
 
-    professionnel au moins égal à Bac+3 (niveaux 6 et 7 du cadre national des
+    professionnel au moins égal à Bac +3 (niveaux 6 et 7 du cadre national des
 
     certifications professionnelles), l’entreprise participe au financement de la
 
@@ -12584,14 +12624,14 @@ salarié . régimes spécifiques . apprentissage . participation employeur:
 
     Si le contrat est rompu au cours des **45 premiers jours de formation pratique**
 
-    (période pendant laquelle le contrat peut être librement rompu par l’apprenti ou
+    (période pendant laquelle le contrat peut être librement rompu par
 
-    l’employeur), l’entreprise est redevable de **50 %** du financement dû par l’OPCO
+    l’apprenti/apprentie ou l’employeur), l’entreprise est redevable de **50 %** du
 
-    pour la période effectuée, dans la limite de 750 €.
+    financement dû par l’OPCO pour la période effectuée, dans la limite de 750 €.
 
 
-    Lorsqu’une entreprise accueille un/une apprenti/apprentie dont le contrat
+    Lorsqu’une entreprise accueille un ou une apprentie dont le contrat
 
     initial a été rompu, cette nouvelle entreprise ne verse qu’une participation
 
