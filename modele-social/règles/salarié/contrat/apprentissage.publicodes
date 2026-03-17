@@ -1,0 +1,198 @@
+salarié . contrat . apprentissage . diplôme:
+  titre: Diplôme préparé
+  description: |
+    Le niveau du diplôme préparé par l’apprenti/apprentie a des conséquences sur :
+    - la **rémunération** de l’apprenti/apprentie,
+    - l’**aide à l’embauche** pour l’employeur,
+    - la **participation de l’employeur**.
+  question: Quel niveau de diplôme l’apprenti/apprentie prépare-t-il/elle ?
+  une possibilité:
+    - niveau 4 ou moins:
+        valeur: diplôme = 'niveau 4 ou moins'
+        titre: Niveau 4 ou moins (niveau Baccalauréat maximum)
+    - niveau 5:
+        valeur: diplôme = 'niveau 5'
+        titre: Niveau 5 (niveau Bac +2)
+    - niveau 6 ou 7:
+        valeur: diplôme = 'niveau 6 ou 7'
+        titre: Niveau 6 ou 7 (Licence, BUR, Maîtrise, Master, DEA, DESS ou diplôme d’ingénieur)
+    - niveau 8:
+        valeur: diplôme = 'niveau 8'
+        titre: Niveau 8 (Doctorat ou HDR)
+  par défaut: "'niveau 5 ou moins'"
+  références:
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+    Aides à l'embauche en contrat d'apprentissage: https://entreprendre.service-public.gouv.fr/vosdroits/F23556
+    Quand l’entreprise doit-elle verser une participation forfaitaire pour un contrat d’apprentissage ?: https://entreprendre.service-public.gouv.fr/vosdroits/F39190
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+    Quelle est la nomenclature des diplômes par niveau ?: https://www.service-public.gouv.fr/particuliers/vosdroits/F199
+
+salarié . contrat . apprentissage . âge:
+  description: |
+    La **rémunération minimale** varie en fonction de **l’âge** de
+    l’apprenti/apprentie.
+  question: Quel est l’âge de l’apprenti/apprentie ?
+  une possibilité:
+    - moins de 18:
+        valeur: âge = 'moins de 18'
+        titre: moins de 18 ans
+    - de 18 à 20:
+        valeur: âge = 'de 18 à 20'
+        titre: de 18 ans à 20 ans (inclus)
+    - de 21 à 25:
+        valeur: âge = 'de 21 à 25'
+        titre: de 21 ans à 25 ans (inclus)
+    - plus de 25:
+        valeur: âge = 'plus de 25'
+        titre: 26 ans ou plus
+  par défaut: "'moins de 18'"
+  références:
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+
+salarié . contrat . apprentissage . ancienneté:
+  description: |
+    La **rémunération** de l’apprenti/apprentie progresse chaque nouvelle
+    **année d’exécution** de son contrat.
+  question: Depuis combien de temps l’apprenti/apprentie est-il/elle employé/employée ?
+  une possibilité:
+    - moins de 1:
+        valeur: ancienneté = 'moins de 1'
+        titre: moins d’1 an
+    - moins de 2:
+        valeur: ancienneté = 'moins de 2'
+        titre: moins de 2 ans
+    - moins de 3:
+        valeur: ancienneté = 'moins de 3'
+        titre: moins de 3 ans
+    - moins de 4:
+        valeur: ancienneté = 'moins de 4'
+        titre: moins de 4 ans
+        type: notification
+        description: |
+          La durée maximale du contrat d’apprentissage peut être portée à 4 ans
+          lorsque la qualité de travailleur/travailleuse handicapé/handicapée est
+          reconnue à l’apprenti/apprentie.
+  par défaut: "'moins de 1'"
+  références:
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+
+salarié . contrat . apprentissage . rémunération minimale:
+  description: |
+    L’apprenti/apprentie bénéficie d’une **rémunération** variant en fonction de son
+    **âge**. De plus, sa rémunération progresse chaque nouvelle année d’exécution de
+    son contrat.
+
+    Le salaire minimum perçu par l’apprenti/apprentie correspond à un pourcentage du
+    Smic.
+  variations:
+    - si: âge . plus de 25
+      alors: temps de travail . SMIC
+    - sinon:
+        variations:
+          - si: ancienneté . moins de 1
+            alors:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 53% * temps de travail . SMIC
+                - si: âge . de 18 à 20
+                  alors: 43% * temps de travail . SMIC
+                - sinon: 27% * temps de travail . SMIC
+          - si: ancienneté . moins de 2
+            alors:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 61% * temps de travail . SMIC
+                - si: âge . de 18 à 20
+                  alors: 51% * temps de travail . SMIC
+                - sinon: 39% * temps de travail . SMIC
+          - sinon:
+              variations:
+                - si: âge . de 21 à 25
+                  alors: 78% * temps de travail . SMIC
+                - si: âge . de 18 à 20
+                  alors: 67% * temps de travail . SMIC
+                - sinon: 55% * temps de travail . SMIC
+  arrondi: oui
+  références:
+    Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+    Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+
+salarié . contrat . apprentissage . assiette réduite apprentissage:
+  description:
+    Pour les contrats conclus depuis le 1er mars 2025, les apprentis bénéficient
+    d’une exonération de cotisations sociales jusqu’à 50% du Smic.
+
+    Pour les contrats conclus avant, cette exonération va jusqu’à 79%.
+  références:
+    Embaucher un alternant en contrat d’apprentissage - les exonérations: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/contrat-apprentissage.html#ancre-les-exonerations
+    Contrat d’apprentissage - Quel est le salaire de l’apprenti ?: https://www.service-public.fr/particuliers/vosdroits/F2918#fiche-item-4
+    Code du travail - Article L6243-2: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037947681
+  remplace:
+    références à: cotisations . assiette
+    dans:
+      - cotisations . maladie . salarié
+      - cotisations . CEG . salarié
+      - cotisations . CET . salarié
+      - cotisations . retraite complémentaire . salarié
+      - cotisations . vieillesse . salarié
+  valeur: cotisations . assiette
+  abattement:
+    produit:
+      - variations:
+          - si: date >= 03/2025
+            alors: 50%
+          - sinon: 79%
+      - SMIC
+
+salarié . contrat . apprentissage . assiette réduite apprentissage . CSG-CRDS:
+  description:
+    Pour les contrats conclus **depuis le 1er mars 2025**, les apprentis bénéficient
+    d’une exonération de CSG et de CRDS jusqu’à **50 % du Smic**.
+
+    Si la rémunération brute de l’apprenti est inférieure à 50 % du Smic, alors la
+    part employeur de la mutuelle (qui fait partie de l’assiette de la CSG-CRDS)
+    est également exonérée de CSG et de CRDS.
+
+    Pour les contrats conclus **avant le 1er mars 2025**, cette exonération est
+    totale.
+  références:
+    Embaucher un alternant en contrat d’apprentissage - les exonérations: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/contrat-apprentissage.html#ancre-les-exonerations
+    Contrat d’apprentissage - Quel est le salaire de l’apprenti ?: https://www.service-public.fr/particuliers/vosdroits/F2918#fiche-item-4
+    Article L136-1-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048683400
+  remplace: cotisations . CSG-CRDS . assiette de base
+  variations:
+    - si:
+        toutes ces conditions:
+          - date >= 03/2025
+          - rémunération . brut > 50% * SMIC
+      alors:
+        valeur: salarié . cotisations . CSG-CRDS . assiette de base
+        contexte:
+          cotisations . assiette . sans prévoyance:
+            valeur: cotisations . assiette . sans prévoyance
+            abattement: 50% * SMIC
+    - sinon: 0
+
+salarié . contrat . apprentissage . assiette réduite apprentissage . taxe sur les salaires:
+  description: |
+    La part du salaire des apprentis correspondant à 11 % du Smic n’est pas soumise
+    à la taxe sur les salaires.
+  remplace: régimes spécifiques . taxe sur les salaires . assiette
+  valeur: cotisations . CSG-CRDS . assiette de base
+  contexte:
+    salarié . cotisations . CSG-CRDS . assiette de base . assiette avant abattement:
+      valeur: salarié . cotisations . CSG-CRDS . assiette de base . assiette avant abattement
+      abattement: 11% * SMIC
+  références:
+    Article 231 bis I du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303786/
+
+salarié . contrat . apprentissage . exonération taxe sur les salaires:
+  description: |
+    Les entreprises de 10 salariés ou moins sont exonérées de la taxe sur les
+    salaires de ses apprentis.
+  valeur: entreprise . salariés . effectif < 11
+  rend non applicable: régimes spécifiques . taxe sur les salaires
+  références:
+    Article 231 bis I du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006303786/
