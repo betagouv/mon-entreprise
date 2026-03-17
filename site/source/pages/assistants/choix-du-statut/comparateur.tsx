@@ -1,7 +1,7 @@
 import { flow, pipe } from 'effect'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import { Trans } from 'react-i18next'
 
 import { TrackPage } from '@/components/ATInternetTracking'
@@ -17,21 +17,22 @@ import {
 	Strong,
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { useNavigation } from '@/lib/navigation'
 import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
 import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/StatutChoice'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
-import { useSitePaths } from '@/sitePaths'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
-import { usePreviousStep } from './_components/useSteps'
+import { usePreviousStep, useStepPaths } from './_components/useSteps'
 
 export default function Comparateur() {
 	const namedEngines = useStatutComparaison()
-	const { absoluteSitePaths } = useSitePaths()
 	const previousStep = usePreviousStep()
-	const choixDuStatutPath = absoluteSitePaths.assistants['choix-du-statut']
+	const { toStep } = useStepPaths()
+	const { currentPath } = useNavigation()
+	const initialPath = useRef(currentPath)
 
 	return (
 		<>
@@ -62,11 +63,7 @@ export default function Comparateur() {
 				<Spacing xl />
 				<Grid container spacing={3}>
 					<Grid item xs={12} sm="auto">
-						<Button
-							light
-							color={'secondary'}
-							to={choixDuStatutPath[previousStep]}
-						>
+						<Button light color={'secondary'} to={toStep(previousStep)}>
 							{' '}
 							<span aria-hidden>←</span> <Trans>Précédent</Trans>
 						</Button>
@@ -79,7 +76,7 @@ export default function Comparateur() {
 
 			<EngineDocumentationRoutes
 				namedEngines={namedEngines}
-				basePath={absoluteSitePaths.assistants['choix-du-statut'].comparateur}
+				basePath={initialPath.current}
 			/>
 		</>
 	)
