@@ -9352,28 +9352,6 @@ salarié . contrat . CDD . reconduction en CDI:
   question.fr: Le CDD sera-t-il reconduit en CDI ?
   titre.en: '[automatic] renewal on permanent contract'
   titre.fr: reconduction en CDI
-salarié . contrat . apprentissage . ancienneté:
-  question.en: '[automatic] How long has the apprentice been employed?'
-  question.fr: Depuis combien de temps l'apprenti est-il employé ?
-  titre.en: '[automatic] seniority'
-  titre.fr: ancienneté
-salarié . contrat . apprentissage . ancienneté . moins d'un an:
-  titre.en: '[automatic] less than one year'
-  titre.fr: moins d'un an
-salarié . contrat . apprentissage . ancienneté . moins de deux ans:
-  titre.en: '[automatic] less than two years old'
-  titre.fr: moins de deux ans
-salarié . contrat . apprentissage . ancienneté . moins de quatre ans:
-  description.en: '[automatic] The maximum duration of the contract can be
-    extended to 4 years when the apprentice is recognized as a disabled worker.'
-  description.fr:
-    La durée maximale du contrat peut être portée à 4 ans lorsque la
-    qualité de travailleur handicapé est reconnue à l'apprenti.
-  titre.en: '[automatic] less than four years old'
-  titre.fr: moins de quatre ans
-salarié . contrat . apprentissage . ancienneté . moins de trois ans:
-  titre.en: '[automatic] less than three years old'
-  titre.fr: moins de trois ans
 salarié . contrat . apprentissage . assiette réduite apprentissage:
   description.en: >-
     [automatic] For contracts signed on or after March 1, 2025, apprentices are
@@ -9442,16 +9420,30 @@ salarié . contrat . date d'embauche:
   suggestions.Fin d'année.fr: Fin d'année
   titre.en: '[automatic] date of hire'
   titre.fr: date d'embauche
-salarié . contrat . professionnalisation . jeune de moins de 30 ans:
-  question.en: '[automatic] Is the hired employee under 30 years old?'
-  question.fr: Le salarié embauché a-t-il moins de 30 ans ?
-  titre.en: '[automatic] young person under 30 years old'
-  titre.fr: jeune de moins de 30 ans
-salarié . contrat . professionnalisation . salarié de 45 ans et plus:
-  question.en: '[automatic] Is the hired employee 45 years old or older?'
-  question.fr: Le salarié embauché a-t-il 45 ans ou plus ?
-  titre.en: '[automatic] employee aged 45 and over'
-  titre.fr: salarié de 45 ans et plus
+salarié . contrat . professionnalisation . âge:
+  description.en: >
+    [automatic] The **payment** varies according to the **age** of the employee
+    hired under
+
+    hired under a professionalization contract.
+
+
+    In addition, a **hiring aid** is available for jobseekers aged
+
+    45 and over on a professionalization contract.
+  description.fr: >
+    La **rémunération** varie en fonction de **l’âge** du ou de la salariée
+
+    embauchée en contrat de professionnalisation.
+
+
+    D’autre part, une **aide à l’embauche** existe pour les demandeurs/demandeuses
+
+    d’emploi de 45 ans et plus en contrat de professionnalisation.
+  question.en: '[automatic] What is the age of the new employee?'
+  question.fr: Quel est l’âge du ou de la salariée embauchée ?
+  titre.en: '[automatic] age'
+  titre.fr: âge
 salarié . contrat . salaire brut:
   avec:
     contrôle salaire élevé:
@@ -12132,9 +12124,9 @@ salarié . coût total employeur . aides . embauche:
     prioritaires. Ces aides sont non cumulables entre elles.
   titre.en: '[automatic] hiring aids'
   titre.fr: aides à l'embauche
-salarié . coût total employeur . aides . embauche . apprentis:
+salarié . coût total employeur . aides . embauche . apprentissage:
   description.en: >
-    [automatic] This scheme provides financial support for employers recruiting
+    [automatic] This scheme provides financial support to employers recruiting
     apprentices.
 
 
@@ -12147,17 +12139,20 @@ salarié . coût total employeur . aides . embauche . apprentis:
     Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible depuis le 1er janvier 2023.
   titre.en: '[automatic] Hiring aid for apprenticeship contracts'
   titre.fr: Aides à l'embauche pour un contrat d'apprentissage
-salarié . coût total employeur . aides . embauche . senior professionnalisation:
-  description.en: >
-    [automatic] Employers can obtain €2,000 in aid for the hiring of a job
-    seeker over 45 years old
+salarié . coût total employeur . aides . embauche . professionnalisation:
+  description.en: |
+    [automatic] Employers can obtain a €2,000 subsidy for the hiring of a
+    jobseeker aged 45 or over on a professionalization contract.
+    professionalization contract.
+  description.fr: >
+    Les employeurs peuvent obtenir une aide de 2000 € pour l’embauche d’un ou
+    d’une
 
-    jobseeker over 45 years old in a professionalization contract.
-  description.fr: |
-    Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
-    demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
-  titre.en: '[automatic] senior professionalization'
-  titre.fr: senior professionnalisation
+    demandeur/demandeuse d’emploi de 45 ans ou plus en contrat de
+
+    professionnalisation.
+  titre.en: '[automatic] professionalization'
+  titre.fr: professionnalisation
 salarié . coût total employeur . aides . emploi franc:
   titre.en: '[automatic] free employment'
   titre.fr: emploi franc

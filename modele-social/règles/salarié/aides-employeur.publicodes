@@ -14,11 +14,11 @@ salarié . coût total employeur . aides . embauche:
   description: |
     L'État met en place des aides pour encourager l'embauche de certains publics prioritaires. Ces aides sont non cumulables entre elles.
   le maximum de:
-    - apprentis
-    - senior professionnalisation
+    - apprentissage
+    - professionnalisation
     - emploi franc . montant
 
-salarié . coût total employeur . aides . embauche . apprentis:
+salarié . coût total employeur . aides . embauche . apprentissage:
   titre: Aides à l'embauche pour un contrat d'apprentissage
   description: |
     Il s'agit d'une aide pour accompagner financièrement les employeurs qui recrutent en contrats d'apprentissage.
@@ -73,11 +73,12 @@ salarié . coût total employeur . aides . embauche . apprentis:
     L'aide aux employeurs qui recrutent en apprentissage: https://travail-emploi.gouv.fr/laide-aux-employeurs-qui-recrutent-en-apprentissage
     Article 1 du Décret n° 2026-168 du 6 mars 2026 relatif à l'aide exceptionnelle aux employeurs d'apprentis: https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000053634608
 
-salarié . coût total employeur . aides . embauche . senior professionnalisation:
+salarié . coût total employeur . aides . embauche . professionnalisation:
   description: |
-    Les employeurs peuvent obtenir une aide de 2000 € pour l'embauche d'un
-    demandeur d'emploi de plus de 45 ans en contrat de professionnalisation.
-  applicable si: contrat . professionnalisation . salarié de 45 ans et plus
+    Les employeurs peuvent obtenir une aide de 2000 € pour l’embauche d’un ou d’une
+    demandeur/demandeuse d’emploi de 45 ans ou plus en contrat de
+    professionnalisation.
+  applicable si: contrat . professionnalisation . âge . plus de 44
   produit:
     - 2000 €/an
     - temps de travail . effectif . quotité
