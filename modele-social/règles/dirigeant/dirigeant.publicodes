@@ -108,7 +108,7 @@ dirigeant . assimilé salarié:
   rend non applicable:
     - salarié . rémunération . primes
     - salarié . rémunération . frais professionnels
-    - salarié . rémunération . assiette de vérification du SMIC . contrôle
+    - salarié . rémunération . contrôle minimum
 
     - salarié . activité partielle
     - salarié . contrat . temps de travail . temps partiel

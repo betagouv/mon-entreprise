@@ -11,6 +11,7 @@
 ### Nouveautés
 - Ajout des règles de calcul de la réduction générale dégressive unique (RGDU)
 - Ajout de la participation employeur pour les contrats d’apprentissage
+- Ajout du contrôle de rémunération minimale pour l’alternance
 
 ### Mises à jour
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné

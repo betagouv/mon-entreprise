@@ -173,12 +173,49 @@ salarié . rémunération . assiette de vérification du SMIC:
     Assiette minimale de cotisations: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-minimale-des-cotisatio/lassiette-minimale-soumise-a-cot.html
     Comment vérifier que le SMIC est atteint ?: https://travail-emploi.gouv.fr/droit-du-travail/la-remuneration/article/le-smic
 
+salarié . rémunération . contrôle minimum:
   avec:
-    contrôle:
+    stage:
+      applicable si: contrat . stage
       type: notification
       sévérité: avertissement
-      description: Le salaire saisi est inférieur au SMIC.
+      valeur: contrat . salaire brut < contrat . stage . gratification minimale
+      description: >-
+        La rémunération du stage est inférieure à la [gratification
+        minimale](https://entreprendre.service-public.gouv.fr/vosdroits/F32131).
+
+    apprentissage:
+      applicable si: contrat . apprentissage
+      type: notification
+      sévérité: avertissement
+      valeur: contrat . salaire brut < contrat . apprentissage . rémunération minimale
+      description: |
+        Le salaire saisi est inférieur à la rémunération minimale d’un contrat
+        d’apprentissage.
+      références:
+        Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
+
+    professionnalisation:
+      applicable si: contrat . professionnalisation
+      type: notification
+      sévérité: avertissement
+      valeur: contrat . salaire brut < contrat . professionnalisation . rémunération minimale
+      description: |
+        Le salaire saisi est inférieur à la rémunération minimale d’un contrat de
+        professionnalisation.
+      références:
+        Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
+
+    smic:
+      non applicable si:
+        une de ces conditions:
+          - contrat . stage
+          - contrat . apprentissage
+          - contrat . professionnalisation
+      type: notification
+      sévérité: avertissement
       valeur: assiette de vérification du SMIC < contrat . temps de travail . SMIC
+      description: Le salaire saisi est inférieur au SMIC.
 
 salarié . rémunération . primes:
   description: |
