@@ -549,23 +549,23 @@ salarié . régimes spécifiques . apprentissage:
   applicable si: contrat . apprentissage
 
 salarié . régimes spécifiques . apprentissage . handicap:
-  question: L’apprenti/apprentie est-il/ell en situation de handicap ?
+  question: L’apprenti/apprentie est-il/elle en situation de handicap ?
   par défaut: non
 
 salarié . régimes spécifiques . apprentissage . participation employeur:
   description: |
     Pour les contrats d’apprentissage préparant à un diplôme ou un titre
-    professionnel au moins égal à Bac+3 (niveaux 6 et 7 du cadre national des
+    professionnel au moins égal à Bac +3 (niveaux 6 et 7 du cadre national des
     certifications professionnelles), l’entreprise participe au financement de la
     formation en versant une somme forfaitaire de **750 € par contrat**, quelle que
     soit sa durée.
 
     Si le contrat est rompu au cours des **45 premiers jours de formation pratique**
-    (période pendant laquelle le contrat peut être librement rompu par l’apprenti ou
-    l’employeur), l’entreprise est redevable de **50 %** du financement dû par l’OPCO
-    pour la période effectuée, dans la limite de 750 €.
+    (période pendant laquelle le contrat peut être librement rompu par
+    l’apprenti/apprentie ou l’employeur), l’entreprise est redevable de **50 %** du
+    financement dû par l’OPCO pour la période effectuée, dans la limite de 750 €.
 
-    Lorsqu’une entreprise accueille un/une apprenti/apprentie dont le contrat
+    Lorsqu’une entreprise accueille un ou une apprentie dont le contrat
     initial a été rompu, cette nouvelle entreprise ne verse qu’une participation
     réduite, de **200 €**.
   applicable si:
@@ -582,11 +582,15 @@ salarié . coût total employeur:
   résumé: Dépensé par l'entreprise
   question: Quel est le coût total de cette embauche ?
   description: |
-    Coût total d'embauche d'un salarié en incluant, en plus des éléments de rémunération, les aides différées.
-    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
+    Coût total d'embauche d'un salarié en incluant, en plus des éléments de
+    rémunération, les aides différées.
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à
+    > l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du
+    > travail fourni.
 
-    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, médecine du travail, etc.
-
+    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à
+    votre entreprise : recherche du bon candidat, poste de travail, équipement,
+    formation initiale, médecine du travail, etc.
   somme:
     - rémunération . brut
     - cotisations . employeur
@@ -594,5 +598,5 @@ salarié . coût total employeur:
     - régimes spécifiques . taxe sur les salaires
     - régimes spécifiques . apprentissage . participation employeur
   abattement: aides
+  plancher: 0 €/an
   unité: €/mois
-  plancher: 0€/an

@@ -54,29 +54,36 @@ salarié . contrat . apprentissage . ancienneté:
   description: |
     La **rémunération** de l’apprenti/apprentie progresse chaque nouvelle
     **année d’exécution** de son contrat.
-  question: Depuis combien de temps l’apprenti/apprentie est-il/elle employé/employée ?
-  une possibilité:
-    - moins de 1:
-        valeur: ancienneté = 'moins de 1'
-        titre: moins d’1 an
-    - moins de 2:
-        valeur: ancienneté = 'moins de 2'
-        titre: moins de 2 ans
-    - moins de 3:
-        valeur: ancienneté = 'moins de 3'
-        titre: moins de 3 ans
-    - moins de 4:
-        valeur: ancienneté = 'moins de 4'
-        titre: moins de 4 ans
-        type: notification
-        description: |
-          La durée maximale du contrat d’apprentissage peut être portée à 4 ans
-          lorsque la qualité de travailleur/travailleuse handicapé/handicapée est
-          reconnue à l’apprenti/apprentie.
-  par défaut: "'moins de 1'"
+  somme:
+    - durée:
+        depuis: contrat . date d'embauche
+        jusqu'à: date
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+  unité: an
   références:
     Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
     Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
+
+  avec:
+    durée maximale avec RQTH:
+      type: notification
+      sévérité: avertissement
+      toutes ces conditions:
+        - ancienneté > 3
+        - régimes spécifiques . apprentissage . handicap = non
+      description: |
+        La durée maximale du contrat d’apprentissage est de 3 ans, sauf si
+        l’apprenti/apprentie est en situation de handicap.
+
+    durée maximale sans RQTH:
+      type: notification
+      sévérité: avertissement
+      toutes ces conditions:
+        - ancienneté > 4
+        - régimes spécifiques . apprentissage . handicap
+      description: |
+        La durée maximale du contrat d’apprentissage est de 4 ans pour un ou une
+        apprentie en situation de handicap.
 
 salarié . contrat . apprentissage . rémunération minimale:
   description: |
@@ -91,7 +98,7 @@ salarié . contrat . apprentissage . rémunération minimale:
       alors: temps de travail . SMIC
     - sinon:
         variations:
-          - si: ancienneté . moins de 1
+          - si: ancienneté < 1 an
             alors:
               variations:
                 - si: âge . de 21 à 25
@@ -99,7 +106,7 @@ salarié . contrat . apprentissage . rémunération minimale:
                 - si: âge . de 18 à 20
                   alors: 43% * temps de travail . SMIC
                 - sinon: 27% * temps de travail . SMIC
-          - si: ancienneté . moins de 2
+          - si: ancienneté < 2 ans
             alors:
               variations:
                 - si: âge . de 21 à 25
