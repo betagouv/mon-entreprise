@@ -3,6 +3,7 @@ export { ÉconomieCollaborativeProvider } from './hooks/ÉconomieCollaborativeCo
 export { isCotisationsEnabled } from './featureToggles'
 export {
 	aRenseignéSesAutresRevenus,
+	simulationEstCommencée,
 	estSituationValide,
 	faitDeLaLocationCourteDurée,
 	faitDeLaLocationCourteEtLongueDurée,
