@@ -60,11 +60,6 @@ Dividendes nets: Net dividends
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
 Donner votre avis: Give your opinion
-Décrivez votre projet ou votre problème en donnant quelques éléments de contexte: >-
-  Describe your project or problem and provide some background information.
-    Our partner Conseillers-Entreprises.Service-Public.fr will identify, from among all our public and semi-public partners,
-    the right advisor for your request.
-    He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
 Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
@@ -171,7 +166,6 @@ Rechercher une règle dans la documentation: Search for a rule in the documentat
 Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
 Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Replier: Fold
-Retour à la création: Back to creation
 Retour à mon activité: Back to my activity
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
 Revenu après impôt: After-tax income
@@ -392,6 +386,12 @@ comparaisonRégimes:
     and have access to dedicated statutes: liberal practice companies
     (SEL).</1><2><0>To find out more</0> </2>"
 components:
+  conseillersEntreprises:
+    description: Describe your project or problem and provide some background
+      information. Conseillers-Entreprises Service Public will identify the
+      appropriate advisor for your request from among all our public and
+      semi-public partners. He or she will contact you by telephone within 5
+      days, and will provide you with assistance tailored to your situation.
   feedback:
     form:
       email:
@@ -857,19 +857,6 @@ pages:
       description: Do you want to earn an income or hire someone? You'll have to pay
         contributions and taxes. Use our simulators to find out how much you'll
         have to pay.
-      info:
-        PdE: "<0>Talk to an advisor who can help you with your specific
-          needs</0><1><0>You want to:</0><1><0>recruit or train
-          employees</0><1>finance your investment projects</1><2>solve a
-          cash-flow problem</2><3>receive advice on employment law</3><4>develop
-          your commercial activity</4><5>sell on the internet</5><6>selling or
-          taking over a business</6><7>improving health and safety in the
-          workplace</7><8>embracing ecological transition &amp;
-          CSR</8></1></1><2><0>Quick and easy public service: you'll be called
-          back by THE advisor who can help you.</0></2><3>More than 40
-          public-sector partners are mobilized to help you with your specific
-          needs.<1></1>The right advisor near you will call you back within 5
-          days.</3>"
       meta:
         description: Simulators and wizards for your business
       title: Assistants for my business
