@@ -63,12 +63,6 @@ Dividendes nets: Dividendes nets
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
 Donner votre avis: Donner votre avis
-Décrivez votre projet ou votre problème en donnant quelques éléments de contexte: >-
-  Décrivez votre projet ou votre problème en donnant quelques éléments de
-  contexte.
-    Notre partenaire Conseillers-Entreprises.Service-Public.fr identifiera, parmi l’ensemble des partenaires publics et parapublics,
-    le conseiller compétent pour votre demande.
-    Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.
 Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
@@ -179,7 +173,6 @@ Rechercher une règle dans la documentation: Rechercher une règle dans la docum
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
 Remboursements et déductions diverses: Remboursements et déductions diverses
 Replier: Replier
-Retour à la création: Retour à la création
 Retour à mon activité: Retour à mon activité
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.:
   Retrouver ma précédente simulation, charger les données de ma précédente
@@ -415,6 +408,12 @@ comparaisonRégimes:
     soumises à des règles spécifiques, et ont accès à des statuts dédiés : les
     sociétés d'exercice libérale (SEL).</1><2><0>En savoir plus</0> </2>"
 components:
+  conseillersEntreprises:
+    description: Décrivez votre projet ou votre problème en donnant quelques
+      éléments de contexte. Conseillers-Entreprises Service Public identifiera,
+      parmi l'ensemble des partenaires publics et parapublics, le conseiller
+      compétent pour votre demande. Celui-ci vous contactera par téléphone sous
+      5 jours et vous accompagnera en fonction de votre situation.
   feedback:
     form:
       email:
@@ -907,20 +906,6 @@ pages:
       description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
         payer des cotisations et des impôts. Anticipez leurs montants grâce aux
         simulateurs adaptés à votre situation.
-      info:
-        PdE: "<0>Échanger avec le conseiller qui peut vous aider selon votre
-          problématique</0><1><0>Vous souhaitez :</0><1><0>recruter, former vos
-          salariés</0><1>financer vos projets d'investissement</1><2>résoudre un
-          problème de trésorerie</2><3>être conseillé(e) en droit du
-          travail</3><4>développer votre activité commerciale</4><5>vendre sur
-          internet</5><6>vendre ou reprendre une entreprise</6><7>améliorer la
-          santé et sécurité au travail</7><8>entrer dans une démarche de
-          transition écologique & RSE</8></1></1><2><0>Service public simple et
-          rapide : vous êtes rappelé(e) par LE conseiller qui peut vous
-          aider.</0></2><3>Plus de 40 partenaires publics sont mobilisés pour
-          vous accompagner en fonction de votre problématique.<1></1>Le
-          conseiller compétent proche de chez vous vous rappelle sous 5
-          jours.</3>"
       meta:
         description: Simulateurs et assistants adaptés à votre entreprise
       title: Assistants pour mon activité

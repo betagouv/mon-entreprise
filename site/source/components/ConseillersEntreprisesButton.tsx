@@ -58,11 +58,7 @@ export const ConseillersEntreprisesButton = ({
 			'/aide-entreprise/professions-liberales-mon-entreprise-urssaf-fr',
 	}
 
-	const baseURL =
-		'https://' +
-		(IS_PRODUCTION
-			? 'conseillers-entreprises.service-public.gouv.fr'
-			: 'reso-staging.osc-fr1.scalingo.io')
+	const baseURL = 'https://conseillers-entreprises.service-public.gouv.fr'
 
 	const url = new URL(baseURL + paths[variant])
 
@@ -92,11 +88,8 @@ export const ConseillersEntreprisesButton = ({
 					<>
 						<Body>
 							{t(
-								'Décrivez votre projet ou votre problème en donnant quelques éléments de contexte',
-								`Décrivez votre projet ou votre problème en donnant quelques éléments de contexte.
-  Conseillers-Entreprises Service Public identifiera, parmi l’ensemble des partenaires publics et parapublics,
-  le conseiller compétent pour votre demande.
-  Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.`
+								'components.conseillersEntreprises.description',
+								`Décrivez votre projet ou votre problème en donnant quelques éléments de contexte. Conseillers-Entreprises Service Public identifiera, parmi l'ensemble des partenaires publics et parapublics, le conseiller compétent pour votre demande. Celui-ci vous contactera par téléphone sous 5 jours et vous accompagnera en fonction de votre situation.`
 							)}
 						</Body>
 
