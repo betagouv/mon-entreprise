@@ -527,8 +527,6 @@ feedback:
     title: Merci pour votre message !
   thanks: Merci de votre retour !
 footer:
-  accessibilité: "Accessibilité : partiellement conforme"
-  accessibilitéAriaLabel: "Accessibilité : partiellement conforme, en savoir plus"
   github:
     new-window: Voir le code source sur Github, nouvelle fenêtre
     text: Voir le code source sur Github
@@ -604,8 +602,6 @@ legalNotice:
     content: La plateforme est <2>partiellement conforme</2> aux normes
       d’accessibilité numérique. Nous tâchons de rendre cette plateforme
       accessible à toutes et à tous.
-    label: Aller à la page https://mon-entreprise.urssaf.fr/accessibilit%C3%A9,
-      nouvel onglet
     title: Accessibilité
   contact:
     content: <0>contact@mon-entreprise.beta.gouv.fr</0>
