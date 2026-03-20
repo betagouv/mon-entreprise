@@ -73,7 +73,7 @@ describe('PAMC', () => {
 			)
 		})
 
-		it('est recadrée en cas d’exonération invalidité', () => {
+		it('n’est pas recadrée en cas d’exonération invalidité', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
 				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
@@ -85,7 +85,7 @@ describe('PAMC', () => {
 				'indépendant . cotisations et contributions . assiette sociale'
 			).nodeValue as number
 
-			expect(e).toEvaluate(ASSIETTE_CPAM, (assietteSociale * (12 - 9)) / 12)
+			expect(e).toEvaluate(ASSIETTE_CPAM, assietteSociale)
 		})
 	})
 })

@@ -95,7 +95,6 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
         produit:
           - assiette sociale conventionnée
           - (recettes activité conventionnée - dépassements d'honoraire) / recettes activité conventionnée
-  abattement: cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
