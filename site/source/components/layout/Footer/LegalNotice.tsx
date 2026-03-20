@@ -1,8 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Body, H2, Link, PopoverWithTrigger, StyledLink } from '@/design-system'
+import { useSitePaths } from '@/sitePaths'
 
 export default function LegalNotice() {
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (
@@ -60,17 +62,9 @@ export default function LegalNotice() {
 			<Body>
 				<Trans i18nKey="legalNotice.accessibility.content">
 					La plateforme est{' '}
-					<StyledLink
-						href="https://mon-entreprise.urssaf.fr/accessibilit%C3%A9"
-						aria-label={t(
-							'legalNotice.accessibility.label',
-							'Aller à la page https://mon-entreprise.urssaf.fr/accessibilit%C3%A9, nouvel onglet'
-						)}
-						target="_blank"
-						rel="noreferrer"
-					>
+					<Link to={absoluteSitePaths.accessibilité}>
 						partiellement conforme
-					</StyledLink>{' '}
+					</Link>{' '}
 					aux normes d’accessibilité numérique. Nous tâchons de rendre cette
 					plateforme accessible à toutes et à tous.
 				</Trans>

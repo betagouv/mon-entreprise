@@ -91,7 +91,7 @@ const rawSitePathsFr = {
 		date: ':date',
 	},
 	stats: 'statistiques',
-	accessibilité: 'accessibilité',
+	accessibilité: 'accessibilite',
 	budget: 'budget',
 	simulateursEtAssistants: 'simulateurs-et-assistants',
 	développeur: {
