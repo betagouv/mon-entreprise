@@ -75,9 +75,6 @@ indépendant . profession libérale . réglementée . PAMC . assiette sociale co
       - cotisations et contributions . assiette sociale
       - recettes activité conventionnée / entreprise . chiffre d'affaires
 
-indépendant . profession libérale . réglementée . PAMC . assiette autres revenus:
-  valeur: cotisations et contributions . assiette sociale - assiette sociale conventionnée
-
 indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
   description: |
     Il s’agit des revenus tirés de l’activité conventionnée nets de dépassements
@@ -132,6 +129,9 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
       unité: ''
       références:
         Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
+
+indépendant . profession libérale . réglementée . PAMC . assiette autres revenus:
+  valeur: cotisations et contributions . assiette sociale - assiette participation CPAM
 
 indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
   produit:
