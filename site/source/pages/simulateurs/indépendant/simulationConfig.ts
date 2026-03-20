@@ -57,9 +57,14 @@ export const configIndépendant: SimulationConfig = {
 			},
 		],
 		'liste noire': [
+			'entreprise . imposition',
 			"entreprise . chiffre d'affaires",
 			'entreprise . charges',
-			'entreprise . imposition',
+			'indépendant . rémunération . brute',
+			'indépendant . rémunération . nette',
+			'indépendant . rémunération . nette . avec dividendes',
+			'indépendant . rémunération . nette . après impôt',
+			'indépendant . dividendes',
 		],
 		'non prioritaires': [
 			'entreprise . activité . commerciale . débit de tabac',
