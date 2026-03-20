@@ -70,7 +70,7 @@ const buildSimulateursQuery =
 				filter: {
 					property: {
 						page_chapter1: {
-							$in: ['assistant', 'simulateurs', 'gerer'],
+							$in: ['assistant', 'assistants', 'simulateurs', 'gerer'],
 						},
 					},
 				},
@@ -106,7 +106,7 @@ const buildSatisfactionQuery = (page = 1) => ({
 					$AND: [
 						{
 							page_chapter1: {
-								$in: ['assistant', 'gerer', 'simulateurs'],
+								$in: ['assistant', 'assistants', 'gerer', 'simulateurs'],
 							},
 						},
 						{
