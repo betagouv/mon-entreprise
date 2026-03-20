@@ -2756,7 +2756,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
       - alors:
           texte:
             Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
-            retraite ?
+            retraite ?
         si: indépendant . profession libérale . réglementée . PAMC
       - sinon:
           texte:
