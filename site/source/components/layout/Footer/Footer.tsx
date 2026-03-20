@@ -200,17 +200,8 @@ export default function Footer() {
 									</StyledLi>
 									{language === 'fr' && (
 										<StyledLi>
-											<Link
-												to={absoluteSitePaths.accessibilité}
-												aria-label={t(
-													'footer.accessibilitéAriaLabel',
-													'Accessibilité : partiellement conforme, en savoir plus'
-												)}
-												noUnderline
-											>
-												<Trans i18nKey="footer.accessibilité">
-													Accessibilité : partiellement conforme
-												</Trans>
+											<Link to={absoluteSitePaths.accessibilité} noUnderline>
+												Accessibilité : partiellement conforme
 											</Link>
 										</StyledLi>
 									)}
