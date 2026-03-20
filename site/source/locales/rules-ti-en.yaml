@@ -2765,8 +2765,11 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
   titre.en: '[automatic] disability exemption'
   titre.fr: exonération invalidité
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée:
-  question.en: '[automatic] For how many months of the year do you receive this pension?'
-  question.fr: Pendant combien de mois dans l'année bénéficiez-vous de cette pension ?
+  question.en: '[automatic] For how many months of the year do you receive a
+    disability pension?'
+  question.fr:
+    Pendant combien de mois dans l’année bénéficiez-vous d’une pension
+    d’invalidité ?
   titre.en: '[automatic] duration'
   titre.fr: durée
 indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
