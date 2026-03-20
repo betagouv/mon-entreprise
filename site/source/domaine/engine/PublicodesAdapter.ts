@@ -54,7 +54,7 @@ const decode = (node: EvaluatedNode): O.Option<ValeurPublicodes> => {
 			return MontantAdapter.decode(node)
 		}
 
-		if (node.unit) {
+		if (node.unit?.denominators.length || node.unit?.numerators.length) {
 			return QuantitéAdapter.decode(node)
 		} else {
 			return O.some(node.nodeValue)
