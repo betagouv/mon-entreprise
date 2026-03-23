@@ -14,6 +14,8 @@ impôt . barème standard . revenu d'activité abattu:
     valeur: 10% * paramètres . impôt . revenu d'activité
     plafond:
       variations:
+        - si: date >= 01/2026
+          alors: 14555 €/an
         - si: date >= 01/2025
           alors: 14426 €/an
         - si: date >= 01/2024
@@ -23,6 +25,8 @@ impôt . barème standard . revenu d'activité abattu:
         - sinon: 12829 €/an
     plancher:
       variations:
+        - si: date >= 01/2026
+          alors: 509 €/an
         - si: date >= 01/2025
           alors: 504 €/an
         - si: date >= 01/2024
@@ -101,6 +105,8 @@ impôt . barème standard . quotient familial . plafond avantage:
     plafonnement général:
       produit:
         - variations:
+            - si: date >= 01/2026
+              alors: 1807 €/demi-part/an
             - si: date >= 01/2025
               alors: 1791 €/demi-part/an
             - si: date >= 01/2024
@@ -121,6 +127,8 @@ impôt . barème standard . quotient familial . plafond avantage:
         contribuables célibataires ou divorcés vivant seuls.
       applicable si: foyer fiscal . nombre de parts . majoration personne seule avec enfant
       variations:
+        - si: date >= 01/2026
+          alors: 4262 €/an
         - si: date >= 01/2025
           alors: 4224 €/an
         - si: date >= 01/2024
@@ -163,6 +171,8 @@ impôt . barème standard . impôt brut . par part:
       - taux: 0%
         plafond:
           variations:
+            - si: date >= 01/2026
+              alors: 11600 €/part/an
             - si: date >= 01/2025
               alors: 11497 €/part/an
             - si: date >= 01/2024
@@ -173,6 +183,8 @@ impôt . barème standard . impôt brut . par part:
       - taux: 11%
         plafond:
           variations:
+            - si: date >= 01/2026
+              alors: 29579 €/part/an
             - si: date >= 01/2025
               alors: 29315 €/part/an
             - si: date >= 01/2024
@@ -183,6 +195,8 @@ impôt . barème standard . impôt brut . par part:
       - taux: 30%
         plafond:
           variations:
+            - si: date >= 01/2026
+              alors: 84577 €/part/an
             - si: date >= 01/2025
               alors: 83823 €/part/an
             - si: date >= 01/2024
@@ -193,6 +207,8 @@ impôt . barème standard . impôt brut . par part:
       - taux: 41%
         plafond:
           variations:
+            - si: date >= 01/2026
+              alors: 181917 €/part/an
             - si: date >= 01/2025
               alors: 180294 €/part/an
             - si: date >= 01/2024
@@ -241,6 +257,8 @@ impôt . barème standard . décote:
     - si: foyer fiscal . situation de famille = 'couple'
       alors:
         variations:
+          - si: date >= 01/2026
+            alors: 1483 €/an
           - si: date >= 01/2025
             alors: 1470 €/an
           - si: date >= 01/2024
@@ -250,6 +268,8 @@ impôt . barème standard . décote:
           - sinon: 1307 €/an
     - sinon:
         variations:
+          - si: date >= 01/2026
+            alors: 897 €/an
           - si: date >= 01/2025
             alors: 889 €/an
           - si: date >= 01/2024

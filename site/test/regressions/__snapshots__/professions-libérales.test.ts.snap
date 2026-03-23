@@ -22,10 +22,10 @@ indépendant . cotisations et contributions: 6060
 indépendant . cotisations et contributions . avec dividendes: 6060
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 26068
-indépendant . rémunération . impôt: 560
-indépendant . rémunération . impôt . avec dividendes: 560
+indépendant . rémunération . impôt: 536
+indépendant . rémunération . impôt . avec dividendes: 536
 indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19440
+indépendant . rémunération . nette . après impôt: 19464
 indépendant . rémunération . nette . avec dividendes: 20000
 protection sociale . retraite . base: 12
 protection sociale . retraite . base . trimestres: 4
@@ -38,10 +38,10 @@ indépendant . cotisations et contributions: 20159
 indépendant . cotisations et contributions . avec dividendes: 20159
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 70159
-indépendant . rémunération . impôt: 8617
-indépendant . rémunération . impôt . avec dividendes: 8617
+indépendant . rémunération . impôt: 8556
+indépendant . rémunération . impôt . avec dividendes: 8556
 indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 41383
+indépendant . rémunération . nette . après impôt: 41444
 indépendant . rémunération . nette . avec dividendes: 50000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
@@ -118,10 +118,10 @@ indépendant . cotisations et contributions: 48036
 indépendant . cotisations et contributions . avec dividendes: 48036
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 148036
-indépendant . rémunération . impôt: 26248
-indépendant . rémunération . impôt . avec dividendes: 26248
+indépendant . rémunération . impôt: 26103
+indépendant . rémunération . impôt . avec dividendes: 26103
 indépendant . rémunération . nette: 100000
-indépendant . rémunération . nette . après impôt: 73752
+indépendant . rémunération . nette . après impôt: 73897
 indépendant . rémunération . nette . avec dividendes: 100000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
@@ -134,10 +134,10 @@ indépendant . cotisations et contributions: 283863
 indépendant . cotisations et contributions . avec dividendes: 283863
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 1283863
-indépendant . rémunération . impôt: 471589
-indépendant . rémunération . impôt . avec dividendes: 471589
+indépendant . rémunération . impôt: 471380
+indépendant . rémunération . impôt . avec dividendes: 471380
 indépendant . rémunération . nette: 1000000
-indépendant . rémunération . nette . après impôt: 528411
+indépendant . rémunération . nette . après impôt: 528620
 indépendant . rémunération . nette . avec dividendes: 1000000
 protection sociale . retraite . base: 32
 protection sociale . retraite . base . trimestres: 4
@@ -198,10 +198,10 @@ indépendant . cotisations et contributions: 35450
 indépendant . cotisations et contributions . avec dividendes: 35450
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 95450
-indépendant . rémunération . impôt: 4945
-indépendant . rémunération . impôt . avec dividendes: 4945
+indépendant . rémunération . impôt: 4822
+indépendant . rémunération . impôt . avec dividendes: 4822
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55055
+indépendant . rémunération . nette . après impôt: 55178
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
@@ -214,10 +214,10 @@ indépendant . cotisations et contributions: 34336
 indépendant . cotisations et contributions . avec dividendes: 34336
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 94336
-indépendant . rémunération . impôt: 4938
-indépendant . rémunération . impôt . avec dividendes: 4938
+indépendant . rémunération . impôt: 4815
+indépendant . rémunération . impôt . avec dividendes: 4815
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55062
+indépendant . rémunération . nette . après impôt: 55185
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
@@ -230,10 +230,10 @@ indépendant . cotisations et contributions: 33803
 indépendant . cotisations et contributions . avec dividendes: 33803
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 93803
-indépendant . rémunération . impôt: 4935
-indépendant . rémunération . impôt . avec dividendes: 4935
+indépendant . rémunération . impôt: 4812
+indépendant . rémunération . impôt . avec dividendes: 4812
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55065
+indépendant . rémunération . nette . après impôt: 55188
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base: 41
 protection sociale . retraite . base . trimestres: 4
@@ -246,10 +246,10 @@ indépendant . cotisations et contributions: 34336
 indépendant . cotisations et contributions . avec dividendes: 34336
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 94336
-indépendant . rémunération . impôt: 4938
-indépendant . rémunération . impôt . avec dividendes: 4938
+indépendant . rémunération . impôt: 4815
+indépendant . rémunération . impôt . avec dividendes: 4815
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55062
+indépendant . rémunération . nette . après impôt: 55185
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
@@ -262,10 +262,10 @@ indépendant . cotisations et contributions: 33803
 indépendant . cotisations et contributions . avec dividendes: 33803
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 93803
-indépendant . rémunération . impôt: 4935
-indépendant . rémunération . impôt . avec dividendes: 4935
+indépendant . rémunération . impôt: 4812
+indépendant . rémunération . impôt . avec dividendes: 4812
 indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 55065
+indépendant . rémunération . nette . après impôt: 55188
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base: 41
 protection sociale . retraite . base . trimestres: 4
@@ -294,10 +294,10 @@ indépendant . cotisations et contributions: 5117
 indépendant . cotisations et contributions . avec dividendes: 5117
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 45117
-indépendant . rémunération . impôt: 5456
-indépendant . rémunération . impôt . avec dividendes: 5456
+indépendant . rémunération . impôt: 5394
+indépendant . rémunération . impôt . avec dividendes: 5394
 indépendant . rémunération . nette: 40000
-indépendant . rémunération . nette . après impôt: 34544
+indépendant . rémunération . nette . après impôt: 34606
 indépendant . rémunération . nette . avec dividendes: 40000
 protection sociale . retraite . base: 43
 protection sociale . retraite . base . trimestres: 0
@@ -406,10 +406,10 @@ indépendant . cotisations et contributions: 48036
 indépendant . cotisations et contributions . avec dividendes: 48036
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 148036
-indépendant . rémunération . impôt: 26248
-indépendant . rémunération . impôt . avec dividendes: 26248
+indépendant . rémunération . impôt: 26103
+indépendant . rémunération . impôt . avec dividendes: 26103
 indépendant . rémunération . nette: 100000
-indépendant . rémunération . nette . après impôt: 73752
+indépendant . rémunération . nette . après impôt: 73897
 indépendant . rémunération . nette . avec dividendes: 100000
 protection sociale . retraite . base: 31
 protection sociale . retraite . base . trimestres: 4
@@ -422,10 +422,10 @@ indépendant . cotisations et contributions: 283863
 indépendant . cotisations et contributions . avec dividendes: 283863
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 1283863
-indépendant . rémunération . impôt: 471589
-indépendant . rémunération . impôt . avec dividendes: 471589
+indépendant . rémunération . impôt: 471380
+indépendant . rémunération . impôt . avec dividendes: 471380
 indépendant . rémunération . nette: 1000000
-indépendant . rémunération . nette . après impôt: 528411
+indépendant . rémunération . nette . après impôt: 528620
 indépendant . rémunération . nette . avec dividendes: 1000000
 protection sociale . retraite . base: 32
 protection sociale . retraite . base . trimestres: 4
