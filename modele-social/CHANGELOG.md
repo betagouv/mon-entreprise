@@ -14,6 +14,7 @@
 - Mise à jour du taux de cotisations pour les BNC Cipav bénéficiant de l'Acre (13,4% depuis le 01/01/2026)
 - Suppression des taux réduits de cotisations allocations familiales et assurance maladie sauf pour Lodeom
 - Extension de la déduction forfaitaire patronale sur les heures supplémentaires aux entreprises de plus de 250 employé⋅es
+- Barème de l'impôt sur le revenu et autres éléments de calcul de l'impôt
 
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
