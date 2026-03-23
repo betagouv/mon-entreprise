@@ -17,7 +17,7 @@ describe('Indépendant', () => {
 			'entreprise . imposition': "'IR'",
 			'entreprise . charges': `${CHARGES} €/an`,
 		}
-		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 25762
+		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 25787
 
 		describe('à partir du chiffre d’affaires', () => {
 			it('calcule la rémunération nette', () => {
@@ -97,7 +97,7 @@ describe('Indépendant', () => {
 		const situationParDéfaut = {
 			'entreprise . imposition': "'IS'",
 		}
-		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 26217
+		const RÉMUNÉRATION_NETTE_APRÈS_IMPÔT = 26241
 
 		describe('à partir de la rémunération brute', () => {
 			it('calcule la rémunération nette', () => {

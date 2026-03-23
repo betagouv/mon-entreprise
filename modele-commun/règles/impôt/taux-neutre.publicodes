@@ -20,6 +20,50 @@ impôt . taux neutre:
 
 impôt . taux neutre . barème métropole:
   variations:
+    - si: date >= 01/01/2026
+      alors:
+        grille:
+          assiette: paramètres . impôt . revenu imposable
+          tranches:
+            - plafond: 1635 €/mois
+              montant: 0%
+            - plafond: 1698 €/mois
+              montant: 0.5 %
+            - plafond: 1807 €/mois
+              montant: 1.3 %
+            - plafond: 1928 €/mois
+              montant: 2.1 %
+            - plafond: 2060 €/mois
+              montant: 2.9 %
+            - plafond: 2170 €/mois
+              montant: 3.5 %
+            - plafond: 2315 €/mois
+              montant: 4.1 %
+            - plafond: 2738 €/mois
+              montant: 5.3 %
+            - plafond: 3135 €/mois
+              montant: 7.5 %
+            - plafond: 3571 €/mois
+              montant: 9.9 %
+            - plafond: 4019 €/mois
+              montant: 11.9 %
+            - plafond: 4690 €/mois
+              montant: 13.8 %
+            - plafond: 5624 €/mois
+              montant: 15.8 %
+            - plafond: 7037 €/mois
+              montant: 17.9 %
+            - plafond: 8789 €/mois
+              montant: 20%
+            - plafond: 12200 €/mois
+              montant: 24%
+            - plafond: 16523 €/mois
+              montant: 28 %
+            - plafond: 25937 €/mois
+              montant: 33 %
+            - plafond: 55558 €/mois
+              montant: 38 %
+            - montant: 43 %
     - si: date >= 01/05/2025
       alors:
         grille:
@@ -203,6 +247,50 @@ impôt . taux neutre . barème métropole:
 impôt . taux neutre . barème Guadeloupe Réunion Martinique:
   icônes: 🇬🇵 🇷🇪 🇲🇶
   variations:
+    - si: date >= 01/01/2026
+      alors:
+        grille:
+          assiette: paramètres . impôt . revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 1875 €/mois
+            - montant: 0.5%
+              plafond: 1989 €/mois
+            - montant: 1.3%
+              plafond: 2191 €/mois
+            - montant: 2.1%
+              plafond: 2392 €/mois
+            - montant: 2.9%
+              plafond: 2642 €/mois
+            - montant: 3.5%
+              plafond: 2786 €/mois
+            - montant: 4.1%
+              plafond: 2881 €/mois
+            - montant: 5.3%
+              plafond: 3170 €/mois
+            - montant: 7.5%
+              plafond: 3920 €/mois
+            - montant: 9.9%
+              plafond: 5016 €/mois
+            - montant: 11.9%
+              plafond: 5697 €/mois
+            - montant: 13.8%
+              plafond: 6599 €/mois
+            - montant: 15.8%
+              plafond: 7907 €/mois
+            - montant: 17.9%
+              plafond: 8789 €/mois
+            - montant: 20%
+              plafond: 9989 €/mois
+            - montant: 24%
+              plafond: 13738 €/mois
+            - montant: 28%
+              plafond: 18253 €/mois
+            - montant: 33%
+              plafond: 27858 €/mois
+            - montant: 38%
+              plafond: 60893 €/mois
+            - montant: 43%
     - si: date >= 01/05/2025
       alors:
         grille:
@@ -384,6 +472,50 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
 impôt . taux neutre . barème Guyane Mayotte:
   icônes: 🇬🇫 🇾🇹
   variations:
+    - si: date >= 01/01/2026
+      alors:
+        grille:
+          assiette: paramètres . impôt . revenu imposable
+          tranches:
+            - montant: 0%
+              plafond: 2008 €/mois
+            - montant: 0.5%
+              plafond: 2170 €/mois
+            - montant: 1.3%
+              plafond: 2420 €/mois
+            - montant: 2.1%
+              plafond: 2728 €/mois
+            - montant: 2.9%
+              plafond: 2833 €/mois
+            - montant: 3.5%
+              plafond: 2930 €/mois
+            - montant: 4.1%
+              plafond: 3026 €/mois
+            - montant: 5.3%
+              plafond: 3362 €/mois
+            - montant: 7.5%
+              plafond: 4639 €/mois
+            - montant: 9.9%
+              plafond: 6005 €/mois
+            - montant: 11.9%
+              plafond: 6772 €/mois
+            - montant: 13.8%
+              plafond: 7858 €/mois
+            - montant: 15.8%
+              plafond: 8644 €/mois
+            - montant: 17.9%
+              plafond: 9577 €/mois
+            - montant: 20%
+              plafond: 11115 €/mois
+            - montant: 24%
+              plafond: 14953 €/mois
+            - montant: 28%
+              plafond: 19020 €/mois
+            - montant: 33%
+              plafond: 30482 €/mois
+            - montant: 38%
+              plafond: 64341 €/mois
+            - montant: 43%
     - si: date >= 01/05/2025
       alors:
         grille:
