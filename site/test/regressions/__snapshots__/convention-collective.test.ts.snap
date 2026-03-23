@@ -24,7 +24,7 @@ exports[`calculate simulations-salarié > CCN batiment 2`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3686
-salarié . rémunération . net . payé après impôt: 1861
+salarié . rémunération . net . payé après impôt: 1873
 salarié . rémunération . net . à payer avant impôt: 1933
 
 Notifications affichées : salarié . convention collective . avertissement convention collective"
@@ -44,7 +44,7 @@ exports[`calculate simulations-salarié > CCN compta 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3229
-salarié . rémunération . net . payé après impôt: 1935
+salarié . rémunération . net . payé après impôt: 1947
 salarié . rémunération . net . à payer avant impôt: 2006
 
 Notifications affichées : salarié . convention collective . avertissement convention collective"
@@ -54,7 +54,7 @@ exports[`calculate simulations-salarié > CCN optique 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3401
-salarié . rémunération . net . payé après impôt: 1969
+salarié . rémunération . net . payé après impôt: 1982
 salarié . rémunération . net . à payer avant impôt: 2058
 
 Notifications affichées : salarié . convention collective . avertissement convention collective"
