@@ -86,7 +86,14 @@ const ObjectifsIS = () => {
 				dottedName="indépendant . rémunération . brute"
 			/>
 
-			<SimulationGoal appear={false} dottedName="indépendant . dividendes" />
+			<SimulationGoal
+				appear={false}
+				dottedName="indépendant . dividendes . soumis à prélèvements sociaux"
+			/>
+			<SimulationGoal
+				appear={false}
+				dottedName="indépendant . dividendes . soumis à cotisations sociales"
+			/>
 
 			<SimulationGoal
 				small={!dividendesVersés}

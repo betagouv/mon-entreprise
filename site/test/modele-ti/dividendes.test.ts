@@ -8,60 +8,11 @@ describe('Dividendes', () => {
 		engine = new Engine(rules)
 	})
 
-	describe('exonérés de cotisations sociales', () => {
-		it('est le montant total par défaut', () => {
-			const e = engine.setSituation({
-				'indépendant . dividendes': '1000 €/an',
-			})
-
-			expect(e).toEvaluate(
-				'indépendant . dividendes . plafond exonéré de cotisations sociales',
-				1000
-			)
-		})
-
-		it('sont plafonnés à 10% du capital social pour les sociétés', () => {
-			const e = engine.setSituation({
-				'indépendant . dividendes': '1000 €/an',
-				'entreprise . capital social': '20000 €',
-				"entreprise . bénéfice net de l'exercice précédent": '30000 €',
-			})
-
-			expect(e).toBeApplicable('entreprise . capital social')
-			expect(e).not.toBeApplicable(
-				"entreprise . bénéfice net de l'exercice précédent"
-			)
-			expect(e).toEvaluate(
-				'indépendant . dividendes . plafond exonéré de cotisations sociales',
-				2000
-			)
-		})
-
-		it('sont plafonnés à 10% du bénéfice net de l’exercice précédent pour les entreprises individuelles', () => {
-			const e = engine.setSituation({
-				'indépendant . dividendes': '1000 €/an',
-				'entreprise . capital social': '20000 €',
-				"entreprise . bénéfice net de l'exercice précédent": '30000 €',
-				'entreprise . EI': 'oui',
-			})
-
-			expect(e).not.toBeApplicable('entreprise . capital social')
-			expect(e).toBeApplicable(
-				"entreprise . bénéfice net de l'exercice précédent"
-			)
-			expect(e).toEvaluate(
-				'indépendant . dividendes . plafond exonéré de cotisations sociales',
-				3000
-			)
-		})
-	})
-
 	describe('inférieurs ou égaux à 10% du capital social', () => {
 		const dividendes = 1000
 		const defaultSituationAvecDividendes = {
 			'indépendant . rémunération . brute': '40000 €/an',
-			'indépendant . dividendes': `${dividendes} €/an`,
-			'entreprise . capital social': '10000 €',
+			'indépendant . dividendes . soumis à prélèvements sociaux': `${dividendes} €/an`,
 		}
 
 		it('sont soumis à 17,2% de prélèvements sociaux', () => {
@@ -74,14 +25,6 @@ describe('Dividendes', () => {
 			expect(e).toEvaluate(
 				'indépendant . dividendes . prélèvements sociaux',
 				186
-			)
-		})
-
-		it('ne sont pas soumis à cotisations sociales', () => {
-			const e = engine.setSituation(defaultSituationAvecDividendes)
-
-			expect(e).not.toBeApplicable(
-				'indépendant . dividendes . soumis à cotisations sociales'
 			)
 		})
 
@@ -219,13 +162,13 @@ describe('Dividendes', () => {
 	describe('supérieurs à 10% du capital social', () => {
 		const rémunérationTotale = 40000
 		const dividendes = 1200
+		const plafondDividendes = 1000
+		const dividendesSoumisÀCotisationsSociales = dividendes - plafondDividendes
 		const defaultSituationAvecDividendes = {
 			'indépendant . rémunération . brute': `${rémunérationTotale} €/an`,
-			'indépendant . dividendes': `${dividendes} €/an`,
-			'entreprise . capital social': '10000 €',
+			'indépendant . dividendes . soumis à prélèvements sociaux': `${plafondDividendes} €/an`,
+			'indépendant . dividendes . soumis à cotisations sociales': `${dividendesSoumisÀCotisationsSociales} €/an`,
 		}
-		const plafondDividendes = 1000
-		const dividendesSupérieursAuPlafond = dividendes - plafondDividendes
 
 		it('sont soumis à 17,2% de prélèvements sociaux sur la part inférieure à 10% du capital social', () => {
 			const e = engine.setSituation(defaultSituationAvecDividendes)
@@ -257,9 +200,6 @@ describe('Dividendes', () => {
 				.nodeValue as number
 
 			const e2 = engine.setSituation(defaultSituationAvecDividendes)
-			const dividendesSoumisÀCotisationsSociales = e2.evaluate(
-				'indépendant . dividendes . soumis à cotisations sociales'
-			).nodeValue as number
 
 			expect(e2).toEvaluate(
 				'indépendant . revenu brut',
@@ -270,7 +210,7 @@ describe('Dividendes', () => {
 		it('la part soumise à cotisations sociales augmente les cotisations et contributions autant qu’une augmentation de rémunération brute', () => {
 			const e1 = engine.setSituation({
 				'indépendant . rémunération . brute': `${
-					rémunérationTotale + dividendesSupérieursAuPlafond
+					rémunérationTotale + dividendesSoumisÀCotisationsSociales
 				} €/an`,
 			})
 			const cotisationsEtContributionsAvecRémunérationTotaleAugmentée =
@@ -303,7 +243,7 @@ describe('Dividendes', () => {
 
 			const e1 = engine.setSituation({
 				'indépendant . rémunération . brute': `${
-					rémunérationTotale + dividendesSupérieursAuPlafond
+					rémunérationTotale + dividendesSoumisÀCotisationsSociales
 				} €/an`,
 			})
 			const cotisationsEtContributionsAvecRémunérationTotaleAugmentée =
@@ -334,7 +274,7 @@ describe('Dividendes', () => {
 
 			const e1 = engine.setSituation({
 				'indépendant . rémunération . brute': `${
-					rémunérationTotale + dividendesSupérieursAuPlafond
+					rémunérationTotale + dividendesSoumisÀCotisationsSociales
 				} €/an`,
 			})
 			const cotisationsEtContributionsAvecRémunérationTotaleAugmentée =
@@ -381,7 +321,7 @@ describe('Dividendes', () => {
 
 			const e1 = engine.setSituation({
 				'indépendant . rémunération . brute': `${
-					rémunérationTotale + dividendesSupérieursAuPlafond
+					rémunérationTotale + dividendesSoumisÀCotisationsSociales
 				} €/an`,
 			})
 			const cotisationsEtContributionsAvecRémunérationTotaleAugmentée =
