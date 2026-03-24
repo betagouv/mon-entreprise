@@ -13,6 +13,7 @@ import { isMontant } from '@/domaine/Montant'
 import { isQuantité } from '@/domaine/Quantité'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
 
+import { normalizeRuleName } from '../utils/normalizeRuleName'
 import RuleInput from './RuleInput'
 
 const AMOUNT_FIELD = '<AmountField />'
@@ -99,8 +100,6 @@ export function RuleField({
 		value
 	)
 
-	const htmlForId = dottedName.replaceAll(' . ', '_').replaceAll(' ', '-')
-
 	if ([RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(ruleFieldNature)) {
 		return (
 			<fieldset>
@@ -118,6 +117,8 @@ export function RuleField({
 			</fieldset>
 		)
 	}
+
+	const htmlForId = normalizeRuleName.Input(dottedName)
 
 	return (
 		<>
