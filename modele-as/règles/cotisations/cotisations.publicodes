@@ -729,6 +729,8 @@ assimilé salarié . cotisations . vieillesse:
       avec:
         taux:
           variations:
+            - si: date >= 01/2026
+              alors: 2.11%
             - si: date >= 01/2024
               alors: 2.02%
             - sinon: 1.9%
