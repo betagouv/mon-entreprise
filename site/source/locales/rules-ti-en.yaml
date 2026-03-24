@@ -393,46 +393,6 @@ entreprise . activité . saisonnière:
   question.fr: Exercez-vous une activité saisonnière ?
   titre.en: '[automatic] seasonal'
   titre.fr: saisonnière
-entreprise . bénéfice net de l'exercice précédent:
-  description.en: >
-    [automatic] This amount is used to determine the portion of dividends
-    subject to social security contributions
-
-    social security contributions for sole proprietorships.
-  description.fr: |
-    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
-    sociales du régime indépendant pour les entreprises individuelles.
-  question.en: "[automatic] What is the company's net profit for the previous year?"
-  question.fr: Quel est le bénéfice net de l'exercice précédent de l'entreprise ?
-  titre.en: '[automatic] net income for the previous year'
-  titre.fr: bénéfice net de l'exercice précédent
-entreprise . capital social:
-  description.en: >
-    [automatic] This amount is used to determine the portion of dividends
-    subject to social security contributions
-
-    social security contributions (except for sole proprietorships).
-
-
-    This value must include :
-
-    - financial and in-kind contributions ;
-
-    - the value of share premiums;
-
-    - sums paid into partners' current accounts by you and your family.
-  description.fr: |
-    Ce montant sert à déterminer la part des dividendes soumis aux cotisations
-    sociales du régime indépendant (sauf pour les entreprises individuelles).
-
-    Cette valeur doit inclure :
-    - les apports financiers et en nature ;
-    - la valeur des primes d’émission ;
-    - les sommes versées en compte courant d’associé par vous et votre famille.
-  question.en: "[automatic] What is the company's share capital?"
-  question.fr: Quel est le capital social de l'entreprise ?
-  titre.en: '[automatic] share capital'
-  titre.fr: capital social
 entreprise . catégorie juridique:
   note.en: '[automatic] Here we use the legal categories defined by INSEE.'
   note.fr: On se base ici sur les catégories juridiques définies par l'INSEE
@@ -3416,17 +3376,15 @@ indépendant . dividendes:
     [automatic] This is the gross amount, **before the PFNL** (prélèvement
     forfaitaire non
 
-    of 12.8% and before the 40% tax allowance, of dividends received, including
+    (prélèvement forfaitaire non libératoire) of 12.8% and before the 40% tax allowance, of dividends
 
     including the portion representing less than 10% of share capital.
   description.fr: |
     Il s’agit du montant brut, **avant le PFNL** (prélèvement forfaitaire non
     libératoire) de 12,8 % et avant l’abattement fiscal de 40 %, des dividendes
     perçus, y compris la part inférieure à 10 % du capital social.
-  résumé.en: '[automatic] Gross dividends paid by the company'
-  résumé.fr: Montant brut des dividendes versés par l’entreprise
-  titre.en: '[automatic] Gross dividends'
-  titre.fr: Dividendes bruts
+  titre.en: '[automatic] dividends'
+  titre.fr: dividendes
 indépendant . dividendes . PFU:
   description.en: >
     [automatic] The income tax portion of the PFU (prélèvement forfaitaire
@@ -3456,9 +3414,6 @@ indépendant . dividendes . imposition:
   question.fr: Quel est le mode d’imposition de vos dividendes ?
   titre.en: '[automatic] taxation'
   titre.fr: imposition
-indépendant . dividendes . plafond exonéré de cotisations sociales:
-  titre.en: '[automatic] ceiling exempt from social security contributions'
-  titre.fr: plafond exonéré de cotisations sociales
 indépendant . dividendes . prélèvements sociaux:
   avec:
     CRDS:
@@ -3537,8 +3492,10 @@ indépendant . dividendes . soumis à cotisations sociales:
     - conjoint/conjointe ou partenaire pacsé/pacsée
 
     - enfants mineurs
-  titre.en: '[automatic] subject to social security contributions'
-  titre.fr: soumis à cotisations sociales
+  résumé.en: '[automatic] Subject to social security contributions'
+  résumé.fr: Soumis à cotisations sociales
+  titre.en: '[automatic] Dividends exceeding 10% of share capital'
+  titre.fr: Part des dividendes supérieure à 10 % du capital social
 indépendant . dividendes . soumis à prélèvements sociaux:
   description.en: >
     [automatic] The portion of dividends **in excess of 10% of share capital**
@@ -3554,8 +3511,10 @@ indépendant . dividendes . soumis à prélèvements sociaux:
     net de l’exercice précédent pour les entreprises individuelles) est soumise aux
 
     **prélèvements sociaux** en tant que revenus du patrimoine.
-  titre.en: '[automatic] subject to social security contributions'
-  titre.fr: soumis à prélèvements sociaux
+  résumé.en: '[automatic] Subject to social security contributions'
+  résumé.fr: Soumis à prélèvements sociaux
+  titre.en: '[automatic] Dividends less than 10% of share capital'
+  titre.fr: Part des dividendes inférieure à 10 % du capital social
 indépendant . profession libérale:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
