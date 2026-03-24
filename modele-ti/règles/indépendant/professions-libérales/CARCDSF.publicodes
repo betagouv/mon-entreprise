@@ -116,6 +116,7 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
   somme:
     - cotisation forfaitaire
     - cotisation proportionnelle
+  abattement: participation CPAM
   arrondi: oui
   unité: €/an
   références:
