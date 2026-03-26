@@ -1,11 +1,20 @@
 import * as R from 'effect/Record'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { isExpressionAvecUnité } from '@/domaine/ExpressionPublicodes'
+import { isMontant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { isQuantité } from '@/domaine/Quantité'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SearchParamsAdapter, ValeurDomaine } from '@/SearchParamsAdapter'
 
 export const TARGET_UNIT_PARAM = 'unité'
+
+const isEncodable = (value: unknown): value is ValeurDomaine =>
+	typeof value === 'string' ||
+	typeof value === 'number' ||
+	isMontant(value) ||
+	isQuantité(value)
 
 export const getSearchParamsFromSituation = (
 	situation: SituationPublicodes,
@@ -14,13 +23,17 @@ export const getSearchParamsFromSituation = (
 	const searchParams = new URLSearchParams()
 	searchParams.set(TARGET_UNIT_PARAM, targetUnit)
 
-	R.map(situation as Record<DottedName, ValeurDomaine>, (value, dottedName) => {
-		try {
-			const encodedValue = SearchParamsAdapter.encode(value)
-			searchParams.set(dottedName as string, encodedValue)
-		} catch (error) {
-			// eslint-disable-next-line no-console
-			console.error(error)
+	R.map(situation as Record<DottedName, unknown>, (value, dottedName) => {
+		if (isEncodable(value)) {
+			searchParams.set(dottedName as string, SearchParamsAdapter.encode(value))
+
+			return
+		}
+		if (isExpressionAvecUnité(value)) {
+			searchParams.set(
+				dottedName as string,
+				SearchParamsAdapter.encode(`${value.valeur} ${value.unité}`)
+			)
 		}
 	})
 
@@ -44,10 +57,3 @@ export const getSituationFromSearchParams = (
 
 	return situation
 }
-
-export const getTargetUnitFromSearchParams = (
-	searchParams: URLSearchParams
-): string | null =>
-	searchParams.has(TARGET_UNIT_PARAM)
-		? searchParams.get(TARGET_UNIT_PARAM)
-		: null
