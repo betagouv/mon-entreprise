@@ -1076,39 +1076,26 @@ salarié . cotisations . taxe d'apprentissage:
     une de ces conditions:
       - entreprise . salariés . effectif > 10
       - contrat . apprentissage = non
+  non applicable si:
+      toutes ces conditions:
+        - entreprise . association non lucrative
+        - date < 03/2026
   références:
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taxe-apprentissage-csa.html
+    La taxe d’apprentissage et la contribution supplémentaire à l’apprentissage: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taxe-apprentissage-csa.html
     Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F22574
 
-  note:
-    Taxe complexe, comportant notamment des exonérations non prises en compte
-    ici.
+  note: |
+    Le calcul de cette taxe est complexe et comporte des exonérations et déductions
+    qui ne sont pas prises en compte ici.
   somme:
     - base
     - solde
     - contribution supplémentaire
 
   avec:
-    assiette:
-      titre: assiette de la taxe d'apprentissage
-      privé: oui
-      description:
-        Le salaire des apprentis est partiellement exonéré dans la base de
-        calcul de la taxe d'apprentissage.
-      variations:
-        - si: contrat . apprentissage
-          alors:
-            valeur: cotisations . assiette
-            abattement:
-              variations:
-                - si: établissement . commune . département . outre-mer
-                  alors: 20% * temps de travail . SMIC
-                - sinon: 11% * temps de travail . SMIC
-        - sinon: cotisations . assiette
-
     base:
       produit:
-        - assiette
+        - cotisations . assiette
         - variations:
             - si: régimes spécifiques . alsace moselle
               alors: 0.44%
@@ -1117,7 +1104,7 @@ salarié . cotisations . taxe d'apprentissage:
     solde:
       non applicable si: régimes spécifiques . alsace moselle
       produit:
-        - assiette
+        - cotisations . assiette
         - 0.09%
 
     contribution supplémentaire:
@@ -1127,7 +1114,7 @@ salarié . cotisations . taxe d'apprentissage:
           - entreprise . salariés . effectif >= 250
           - entreprise . salariés . ratio alternants < 5%
       produit:
-        - assiette
+        - cotisations . assiette
         - taux
 
       avec:
@@ -1163,14 +1150,6 @@ salarié . cotisations . taxe d'apprentissage:
           toutes ces conditions:
             - entreprise . salariés . effectif >= 2000
             - entreprise . salariés . ratio alternants < 1%
-  # TODO :
-  # exception:
-  #   si: régime géographique = Alsace-Moselle
-  #   références:
-  #     - http://circulaires.legifrance.gouv.fr/pdf/2012/03/cir_34909.pdf
-  #     - http://bofip.impots.gouv.fr/bofip/6325-PGP.html
-  #     # Toutefois, en application du IV de l’article 1609 quinvicies du CGI , dans les départements du Haut-Rhin, du Bas-Rhin et de la Moselle, les taux précités sont réduits à 52 % de leur montant, soit :
-  #   facteur: 0.52
 
 salarié . cotisations . versement mobilité:
   description: Contribution sur les salaires destinée au financement des transports publics.

@@ -401,7 +401,8 @@ entreprise . salariés . ratio alternants:
     de l’entreprise ?
   titre: Fraction d’alternants
   description: |
-    Cette fraction détermine la contribution supplémentaire pour l’apprentissage pour les entreprises concernées.
+    Cette fraction détermine la contribution supplémentaire pour l’apprentissage
+    pour les entreprises concernées.
   suggestions:
     1%: 1%
     5%: 5%
@@ -412,9 +413,6 @@ entreprise . association non lucrative:
   description: L’entreprise est une association non lucrative
   question: S’agit-il d’une association à but non lucratif ?
   par défaut: non
-  # L'association a but non lucratif ne paie pas d'IS de droit commun article 206 du Code général des impôts
-  # -> pas de taxe ni contribution d'apprentissage
-  rend non applicable: salarié . cotisations . taxe d'apprentissage
 
 entreprise . TVA:
   question: L’entreprise est-elle assujettie à la TVA ?

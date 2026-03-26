@@ -6717,8 +6717,10 @@ entreprise . salariés . effectif:
 entreprise . salariés . ratio alternants:
   description.en: >
     [automatic] This fraction determines the additional apprenticeship
-    contribution for the companies concerned.
-  description.fr: >
+    contribution
+
+    for the companies concerned.
+  description.fr: |
     Cette fraction détermine la contribution supplémentaire pour l’apprentissage
     pour les entreprises concernées.
   question.en:
@@ -12080,15 +12082,6 @@ salarié . cotisations . retraite complémentaire-CEG-CET:
   titre.fr: retraite complémentaire, CEG et CET
 salarié . cotisations . taxe d'apprentissage:
   avec:
-    assiette:
-      description.en:
-        '[automatic] The salary of apprentices is partially exempted in
-        the calculation of the apprenticeship tax.'
-      description.fr:
-        Le salaire des apprentis est partiellement exonéré dans la base
-        de calcul de la taxe d'apprentissage.
-      titre.en: '[automatic] basis for the apprenticeship tax'
-      titre.fr: assiette de la taxe d'apprentissage
     base:
       titre.en: '[automatic] base'
       titre.fr: base
@@ -12111,9 +12104,16 @@ salarié . cotisations . taxe d'apprentissage:
   description.fr: La taxe d'apprentissage permet de financer par les entreprises
     les dépenses de l'apprentissage et des formations technologiques et
     professionnelles
-  note.en: '[automatic] Complex tax, including exemptions not taken into account here.'
-  note.fr: Taxe complexe, comportant notamment des exonérations non prises en
-    compte ici.
+  note.en: >
+    [automatic] The calculation of this tax is complex and includes exemptions
+    and deductions
+
+    which are not taken into account here.
+  note.fr: >
+    Le calcul de cette taxe est complexe et comporte des exonérations et
+    déductions
+
+    qui ne sont pas prises en compte ici.
   titre.en: '[automatic] apprenticeship tax'
   titre.fr: taxe d'apprentissage
 salarié . cotisations . versement mobilité:
