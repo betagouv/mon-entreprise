@@ -1,5 +1,13 @@
 import { Names } from 'modele-social/dist/names'
-import { describe, expect, it } from 'vitest'
+import {
+	afterEach,
+	beforeEach,
+	describe,
+	expect,
+	it,
+	vi,
+	type MockInstance,
+} from 'vitest'
 
 import { eurosParMois, eurosParTitreRestaurant } from './Montant'
 import {
@@ -16,6 +24,68 @@ import {
 
 describe('searchParams', () => {
 	describe('getSearchParamsFromSituation', () => {
+		let consoleError: MockInstance
+
+		beforeEach(() => {
+			consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+		})
+
+		afterEach(() => {
+			consoleError.mockRestore()
+		})
+
+		it('ignore silencieusement les expressions Publicodes complexes (objets sans tag domaine)', () => {
+			const situation = {
+				'salarié . contrat . salaire brut': '2700 €/mois',
+				'impôt . méthode de calcul . par défaut': {
+					variations: [
+						{
+							si: 'salarié . contrat . salaire brut <= 6000 €/mois',
+							alors: "'taux neutre'",
+						},
+						{ sinon: "'barème standard'" },
+					],
+				},
+				'salarié . cotisations . prévoyances': {
+					'applicable si': 'non',
+				},
+			}
+
+			const result = getSearchParamsFromSituation(situation as never, '€/mois')
+
+			expect(result.get('salarié . contrat . salaire brut')).toBe('2700 €/mois')
+			expect(result.has('impôt . méthode de calcul . par défaut')).toBe(false)
+			expect(result.has('salarié . cotisations . prévoyances')).toBe(false)
+			expect(consoleError).not.toHaveBeenCalled()
+		})
+
+		it('encode les expressions Publicodes simples {valeur, unité} sans tag domaine', () => {
+			const situation = {
+				'salarié . cotisations . prévoyances . santé . taux employeur': {
+					valeur: 50,
+					unité: '%',
+				},
+				'impôt . foyer fiscal . enfants à charge': {
+					valeur: 2,
+					unité: 'enfant',
+				},
+				'salarié . contrat . salaire brut': '2700 €/mois',
+			}
+
+			const result = getSearchParamsFromSituation(situation as never, '€/mois')
+
+			expect(
+				result.get(
+					'salarié . cotisations . prévoyances . santé . taux employeur'
+				)
+			).toBe('50%')
+			expect(result.get('impôt . foyer fiscal . enfants à charge')).toBe(
+				'2 enfant'
+			)
+			expect(result.get('salarié . contrat . salaire brut')).toBe('2700 €/mois')
+			expect(consoleError).not.toHaveBeenCalled()
+		})
+
 		it('construit des search params à partir d’une situation Publicodes et d’une unité cible', () => {
 			const situation = {
 				'salarié . contrat': 'CDD',
