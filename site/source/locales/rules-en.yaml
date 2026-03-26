@@ -9422,16 +9422,12 @@ salarié . contrat . apprentissage . diplôme:
     [automatic] The level of the diploma prepared by the apprentice has
     consequences on :
 
-    - the apprentice's **remuneration**,
-
     - the **hiring aid** for the employer,
 
     - employer's **contribution**.
   description.fr: >
     Le niveau du diplôme préparé par l’apprenti/apprentie a des conséquences
     sur :
-
-    - la **rémunération** de l’apprenti/apprentie,
 
     - l’**aide à l’embauche** pour l’employeur,
 
