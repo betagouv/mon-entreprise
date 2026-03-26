@@ -351,9 +351,9 @@ entreprise . salariés . effectif:
     - si: seuil = 'moins de 150'
       alors: 149 employé
     - si: seuil = 'moins de 250'
-      alors: 250 employé
+      alors: 249 employé
     - si: seuil = 'plus de 250'
-      alors: 251 employé
+      alors: 250 employé
 
   avec:
     seuil:
@@ -386,14 +386,14 @@ entreprise . salariés . effectif:
           titre: entre 11 et 19
 
         moins de 250:
-          titre: entre 150 et 250
+          titre: entre 150 et 249
         moins de 5:
 
         moins de 50:
           titre: entre 20 et 49
 
         plus de 250:
-          titre: 251 et plus
+          titre: 250 et plus
 
 entreprise . salariés . ratio alternants:
   question:

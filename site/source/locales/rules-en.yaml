@@ -6687,8 +6687,8 @@ entreprise . salariés . effectif:
           titre.en: '[automatic] between 11 and 19'
           titre.fr: entre 11 et 19
         moins de 250:
-          titre.en: '[automatic] between 150 and 250'
-          titre.fr: entre 150 et 250
+          titre.en: '[automatic] between 150 and 249'
+          titre.fr: entre 150 et 249
         moins de 5:
           titre.en: '[automatic] less than 5'
           titre.fr: moins de 5
@@ -6696,8 +6696,8 @@ entreprise . salariés . effectif:
           titre.en: '[automatic] between 20 and 49'
           titre.fr: entre 20 et 49
         plus de 250:
-          titre.en: '[automatic] 251 and more'
-          titre.fr: 251 et plus
+          titre.en: '[automatic] 250 and more'
+          titre.fr: 250 et plus
       description.en: >
         [automatic] Many employer contributions vary according to the size of
         the company's workforce.
