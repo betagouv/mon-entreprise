@@ -174,6 +174,15 @@ salarié . rémunération . assiette de vérification du SMIC:
     Comment vérifier que le SMIC est atteint ?: https://travail-emploi.gouv.fr/droit-du-travail/la-remuneration/article/le-smic
 
 salarié . rémunération . contrôle minimum:
+  variations:
+    - si: contrat . stage
+      alors: stage
+    - si: contrat . apprentissage
+      alors: apprentissage
+    - si: contrat . professionnalisation
+      alors: professionnalisation
+    - sinon: smic
+
   avec:
     stage:
       applicable si: contrat . stage

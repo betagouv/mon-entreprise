@@ -93,33 +93,31 @@ salarié . contrat . apprentissage . rémunération minimale:
     Le salaire minimum perçu par l’apprenti/apprentie correspond à un pourcentage du
     Smic.
   variations:
-    - si: âge . plus de 25
-      alors: temps de travail . SMIC
-    - sinon:
+    - si: âge . moins de 18
+      alors:
         variations:
           - si: ancienneté < 1 an
-            alors:
-              variations:
-                - si: âge . de 21 à 25
-                  alors: 53% * temps de travail . SMIC
-                - si: âge . de 18 à 20
-                  alors: 43% * temps de travail . SMIC
-                - sinon: 27% * temps de travail . SMIC
+            alors: 27% * temps de travail . SMIC
           - si: ancienneté < 2 ans
-            alors:
-              variations:
-                - si: âge . de 21 à 25
-                  alors: 61% * temps de travail . SMIC
-                - si: âge . de 18 à 20
-                  alors: 51% * temps de travail . SMIC
-                - sinon: 39% * temps de travail . SMIC
-          - sinon:
-              variations:
-                - si: âge . de 21 à 25
-                  alors: 78% * temps de travail . SMIC
-                - si: âge . de 18 à 20
-                  alors: 67% * temps de travail . SMIC
-                - sinon: 55% * temps de travail . SMIC
+            alors: 39% * temps de travail . SMIC
+          - sinon: 55% * temps de travail . SMIC
+    - si: âge . de 18 à 20
+      alors:
+        variations:
+          - si: ancienneté < 1 an
+            alors: 43% * temps de travail . SMIC
+          - si: ancienneté < 2 ans
+            alors: 51% * temps de travail . SMIC
+          - sinon: 67% * temps de travail . SMIC
+    - si: âge . de 21 à 25
+      alors:
+        variations:
+          - si: ancienneté < 1 an
+            alors: 53% * temps de travail . SMIC
+          - si: ancienneté < 2 ans
+            alors: 61% * temps de travail . SMIC
+          - sinon: 78% * temps de travail . SMIC
+    - sinon: temps de travail . SMIC
   arrondi: oui
   références:
     Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
