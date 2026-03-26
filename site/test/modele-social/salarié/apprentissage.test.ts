@@ -10,11 +10,11 @@ describe('En contrat d’apprentissage', () => {
 		Smic = engine.evaluate('SMIC').nodeValue as number
 	})
 
-	describe('La rémunération minimale', () => {
+	describe('la rémunération minimale', () => {
 		describe('la 1ère année', () => {
 			const situation = {
 				'salarié . contrat': "'apprentissage'",
-				"salarié . contrat . date d'embauche": '18/02/2025',
+				"salarié . contrat . date d'embauche": '18/02/2026',
 			}
 
 			it('est de 27% du Smic pour les apprenti⋅es de moins de 18 ans', () => {
@@ -69,7 +69,7 @@ describe('En contrat d’apprentissage', () => {
 		describe('la 2ème année', () => {
 			const situation = {
 				'salarié . contrat': "'apprentissage'",
-				"salarié . contrat . date d'embauche": '18/02/2024',
+				"salarié . contrat . date d'embauche": '18/02/2025',
 			}
 
 			it('est de 39% du Smic pour les apprenti⋅es de moins de 18 ans', () => {
@@ -124,7 +124,7 @@ describe('En contrat d’apprentissage', () => {
 		describe('la 3ème année', () => {
 			const situation = {
 				'salarié . contrat': "'apprentissage'",
-				"salarié . contrat . date d'embauche": '18/02/2023',
+				"salarié . contrat . date d'embauche": '18/02/2024',
 			}
 
 			it('est de 55% du Smic pour les apprenti⋅es de moins de 18 ans', () => {
@@ -179,7 +179,7 @@ describe('En contrat d’apprentissage', () => {
 		describe('la 4ème année', () => {
 			const situation = {
 				'salarié . contrat': "'apprentissage'",
-				"salarié . contrat . date d'embauche": '18/02/2022',
+				"salarié . contrat . date d'embauche": '18/02/2023',
 			}
 
 			it('est de 55% du Smic pour les apprenti⋅es de moins de 18 ans', () => {

@@ -21,6 +21,7 @@
 - Extension de la déduction forfaitaire patronale sur les heures supplémentaires aux entreprises de plus de 250 employé⋅es
 - Barème de l'impôt sur le revenu et autres éléments de calcul de l'impôt
 - Mise à jour des aides à l'embauche pour les apprenti⋅es (y compris RQTH)
+- Élargissement de la taxe d'apprentissage aux associations à partir de mars 2026
 
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
