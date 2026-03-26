@@ -231,4 +231,107 @@ describe('En contrat d’apprentissage', () => {
 			})
 		})
 	})
+
+	describe('l’aide à l’embauche', () => {
+		describe('pour les entreprises de moins de 250 salarié⋅es', () => {
+			const situation = {
+				'salarié . contrat': "'apprentissage'",
+				"salarié . contrat . date d'embauche": '08/03/2026',
+				'entreprise . salariés . effectif': 249,
+			}
+
+			it('est de 5000 € si l’apprenti⋅e prépare un diplôme de niveau 4 ou moins', () => {
+				const e = engine.setSituation({
+					...situation,
+					'salarié . contrat . apprentissage . diplôme': "'niveau 4 ou moins'",
+				})
+
+				expect(e).toEvaluate(
+					'salarié . coût total employeur . aides . embauche . apprentissage',
+					5_000
+				)
+			})
+
+			it('est de 4500 € si l’apprenti⋅e prépare un diplôme de niveau 5', () => {
+				const e = engine.setSituation({
+					...situation,
+					'salarié . contrat . apprentissage . diplôme': "'niveau 5'",
+				})
+
+				expect(e).toEvaluate(
+					'salarié . coût total employeur . aides . embauche . apprentissage',
+					4_500
+				)
+			})
+
+			it('est de 2000 € si l’apprenti⋅e prépare un diplôme de niveau 6 ou 7', () => {
+				const e = engine.setSituation({
+					...situation,
+					'salarié . contrat . apprentissage . diplôme': "'niveau 6 ou 7'",
+				})
+
+				expect(e).toEvaluate(
+					'salarié . coût total employeur . aides . embauche . apprentissage',
+					2_000
+				)
+			})
+		})
+
+		describe('pour les entreprises de 250 salarié⋅es ou plus', () => {
+			const situation = {
+				'salarié . contrat': "'apprentissage'",
+				"salarié . contrat . date d'embauche": '08/03/2026',
+				'entreprise . salariés . effectif': 250,
+				'entreprise . salariés . ratio alternants': '5%',
+			}
+
+			it('est de 2000 € si l’apprenti⋅e prépare un diplôme de niveau 4 ou moins', () => {
+				const e = engine.setSituation({
+					...situation,
+					'salarié . contrat . apprentissage . diplôme': "'niveau 4 ou moins'",
+				})
+
+				expect(e).toEvaluate(
+					'salarié . coût total employeur . aides . embauche . apprentissage',
+					2_000
+				)
+			})
+
+			it('est de 1500 € si l’apprenti⋅e prépare un diplôme de niveau 5', () => {
+				const e = engine.setSituation({
+					...situation,
+					'salarié . contrat . apprentissage . diplôme': "'niveau 5'",
+				})
+
+				expect(e).toEvaluate(
+					'salarié . coût total employeur . aides . embauche . apprentissage',
+					1_500
+				)
+			})
+
+			it('est de 750 € si l’apprenti⋅e prépare un diplôme de niveau 6 ou 7', () => {
+				const e = engine.setSituation({
+					...situation,
+					'salarié . contrat . apprentissage . diplôme': "'niveau 6 ou 7'",
+				})
+
+				expect(e).toEvaluate(
+					'salarié . coût total employeur . aides . embauche . apprentissage',
+					750
+				)
+			})
+
+			it('est nulle si l’entreprise a moins de 5% d’alternants', () => {
+				const e = engine.setSituation({
+					...situation,
+					'entreprise . salariés . ratio alternants': '4%',
+				})
+
+				expect(e).toEvaluate(
+					'salarié . coût total employeur . aides . embauche . apprentissage',
+					null
+				)
+			})
+		})
+	})
 })

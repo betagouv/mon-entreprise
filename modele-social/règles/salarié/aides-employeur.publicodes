@@ -21,10 +21,14 @@ salarié . coût total employeur . aides . embauche:
 salarié . coût total employeur . aides . embauche . apprentissage:
   titre: Aides à l'embauche pour un contrat d'apprentissage
   description: |
-    Il s'agit d'une aide pour accompagner financièrement les employeurs qui recrutent en contrats d'apprentissage.
+    Il s'agit d'une aide pour accompagner financièrement les employeurs qui
+    recrutent en contrats d'apprentissage.
 
-    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible depuis le 1er janvier 2023.
-
+    Les conditions et le montant de l’aide dépendent :
+    - de la **date de signature** du contrat,
+    - de l’**effectif** de l’entreprise,
+    - du **diplôme** préparé par l’apprenti/apprentie,
+    et, pour les entreprises de 250 salariés ou plus, du **ratio d’alternants**.
   applicable si:
     toutes ces conditions:
       - contrat . apprentissage
@@ -41,9 +45,13 @@ salarié . coût total employeur . aides . embauche . apprentissage:
                 - contrat . date d'embauche <= 31/12/2025
             alors:
               variations:
-                - si: entreprise . salariés . effectif > 250
+                - si: entreprise . salariés . effectif < 250
+                  alors: 5000 €/an
+                - si:
+                    toutes ces conditions:
+                      - entreprise . salariés . effectif >= 250
+                      - entreprise . salariés . ratio alternants >= 5%
                   alors: 2000 €/an
-                - sinon: 5000 €/an
           - si:
               toutes ces conditions:
                 - contrat . date d'embauche >= 01/01/2026
@@ -52,7 +60,18 @@ salarié . coût total employeur . aides . embauche . apprentissage:
             alors: 5000 €/an
           - sinon:
               variations:
-                - si: entreprise . salariés . effectif > 250
+                - si: entreprise . salariés . effectif < 250
+                  alors:
+                    variations:
+                      - si: contrat . apprentissage . diplôme . niveau 6 ou 7
+                        alors: 2000 €/an
+                      - si: contrat . apprentissage . diplôme . niveau 5
+                        alors: 4500 €/an
+                      - sinon: 5000 €/an
+                - si:
+                    toutes ces conditions:
+                      - entreprise . salariés . effectif >= 250
+                      - entreprise . salariés . ratio alternants >= 5%
                   alors:
                     variations:
                       - si: contrat . apprentissage . diplôme . niveau 6 ou 7
@@ -60,13 +79,6 @@ salarié . coût total employeur . aides . embauche . apprentissage:
                       - si: contrat . apprentissage . diplôme . niveau 5
                         alors: 1500 €/an
                       - sinon: 2000 €/an
-                - sinon:
-                    variations:
-                      - si: contrat . apprentissage . diplôme . niveau 6 ou 7
-                        alors: 2000 €/an
-                      - si: contrat . apprentissage . diplôme . niveau 5
-                        alors: 4500 €/an
-                      - sinon: 5000 €/an
   références:
     Aides à l'embauche en contrat d'apprentissage: https://entreprendre.service-public.gouv.fr/vosdroits/F23556
     'Embauche d’un apprenti : vous avez droit à des aides': https://www.economie.gouv.fr/entreprises/gerer-ses-ressources-humaines-et-ses-salaries/embauche-dun-apprenti-vous-avez-droit-des-aides
