@@ -12254,17 +12254,29 @@ salarié . coût total employeur . aides . embauche:
   titre.fr: aides à l'embauche
 salarié . coût total employeur . aides . embauche . apprentissage:
   description.en: >
-    [automatic] This scheme provides financial support to employers recruiting
-    apprentices.
+    [automatic] This is a grant to provide financial support for employers who
+
+    who recruit apprentices.
 
 
-    This aid takes over from that applicable until December 31, 2022, and has been available since January 1, 2023.
-  description.fr: >
+    The conditions and amount of assistance depend on :
+
+    - the **date of signature** of the contract,
+
+    - the company's **workforce**,
+
+    - the **diploma** prepared by the apprentice,
+
+    and, for companies with 250 or more employees, the **ratio of alternating trainees**.
+  description.fr: |
     Il s'agit d'une aide pour accompagner financièrement les employeurs qui
     recrutent en contrats d'apprentissage.
 
-
-    Cette aide prend la suite de celle qui était applicable jusqu'au 31 décembre 2022, et est disponible depuis le 1er janvier 2023.
+    Les conditions et le montant de l’aide dépendent :
+    - de la **date de signature** du contrat,
+    - de l’**effectif** de l’entreprise,
+    - du **diplôme** préparé par l’apprenti/apprentie,
+    et, pour les entreprises de 250 salariés ou plus, du **ratio d’alternants**.
   titre.en: '[automatic] Hiring aid for apprenticeship contracts'
   titre.fr: Aides à l'embauche pour un contrat d'apprentissage
 salarié . coût total employeur . aides . embauche . professionnalisation:
