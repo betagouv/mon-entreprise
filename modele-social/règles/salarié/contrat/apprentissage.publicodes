@@ -2,7 +2,6 @@ salarié . contrat . apprentissage . diplôme:
   titre: Diplôme préparé
   description: |
     Le niveau du diplôme préparé par l’apprenti/apprentie a des conséquences sur :
-    - la **rémunération** de l’apprenti/apprentie,
     - l’**aide à l’embauche** pour l’employeur,
     - la **participation de l’employeur**.
   question: Quel niveau de diplôme l’apprenti/apprentie prépare-t-il/elle ?
@@ -19,7 +18,7 @@ salarié . contrat . apprentissage . diplôme:
     - niveau 8:
         valeur: diplôme = 'niveau 8'
         titre: Niveau 8 (Doctorat ou HDR)
-  par défaut: "'niveau 5 ou moins'"
+  par défaut: "'niveau 4 ou moins'"
   références:
     Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
     Aides à l'embauche en contrat d'apprentissage: https://entreprendre.service-public.gouv.fr/vosdroits/F23556
