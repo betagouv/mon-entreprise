@@ -1,3 +1,14 @@
+# Redirect www → non-www
+[[redirects]]
+from = "https://www.mon-entreprise.urssaf.fr/*"
+to = "https://mon-entreprise.urssaf.fr/:splat"
+status = 301
+
+[[redirects]]
+from = "https://www.mycompanyinfrance.urssaf.fr/*"
+to = "https://mycompanyinfrance.urssaf.fr/:splat"
+status = 301
+
 [[headers]]
 for = "/*"
 [headers.values]
