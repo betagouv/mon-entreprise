@@ -17,7 +17,7 @@ export interface NavigationAPI {
 	locationHash: string
 	locationState: unknown
 	navigationType: NavigationType
-	getHref: (to: string) => string
+	useHref: (to: string) => string
 	onNavigate: (callback: () => void) => () => void
 	matchPath: (
 		pattern: string,
