@@ -2,7 +2,7 @@ import { ReactNode, useCallback, useEffect, useMemo, useRef } from 'react'
 import {
 	generatePath as rrGeneratePath,
 	matchPath as rrMatchPath,
-	useHref,
+	useHref as rrUseHref,
 	useLocation,
 	useNavigate,
 	useNavigationType,
@@ -21,7 +21,6 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 	const location = useLocation()
 	const [searchParams, setSearchParams] = useSearchParams()
 	const navigationType = useNavigationType()
-	const baseHref = useHref('.')
 
 	const subscribersRef = useRef(new Set<() => void>())
 	const isFirstRenderRef = useRef(true)
@@ -43,19 +42,6 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 		}
 	}, [])
 
-	const getHref = useCallback(
-		(to: string) => {
-			if (to.startsWith('/')) {
-				return to
-			}
-			// Resolve relative path against current location
-			const base = baseHref.endsWith('/') ? baseHref : baseHref + '/'
-
-			return new URL(to, new URL(base, 'http://localhost/')).pathname
-		},
-		[baseHref]
-	)
-
 	const matchPath = useCallback(
 		(pattern: string, pathname?: string) => {
 			const match = rrMatchPath(pattern, pathname ?? location.pathname)
@@ -74,7 +60,7 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 			locationHash: location.hash,
 			locationState: location.state,
 			navigationType,
-			getHref,
+			useHref: (to) => rrUseHref(to),
 			onNavigate,
 			matchPath,
 			generatePath: rrGeneratePath,
@@ -85,7 +71,6 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 			searchParams,
 			setSearchParams,
 			navigationType,
-			getHref,
 			onNavigate,
 			matchPath,
 		]
