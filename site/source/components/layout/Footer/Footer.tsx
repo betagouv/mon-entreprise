@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import Contact from '@/components/Contact'
-import FeedbackButton from '@/components/Feedback'
+import { FeedbackButton } from '@/components/Feedback/FeedbackButton'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import {
 	Body,
