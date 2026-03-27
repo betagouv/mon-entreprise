@@ -1,6 +1,7 @@
 import ColorPicker from '@atomik-color/component'
 import { str2Color } from '@atomik-color/core'
-import { useEffect, useRef, useState } from 'react'
+import * as R from 'effect/Record'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -31,62 +32,63 @@ import Meta from '../../components/utils/Meta'
 
 import './iframe.css'
 
-import {
-	SimulatorData,
-	SimulatorDataValues,
-} from '@/pages/simulateurs-et-assistants/metadata-src'
+import { pipe } from 'effect'
+
+import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
 import poleEmploiLogo from './images/pole-emploi.png'
-
-const checkIframe = (obj: SimulatorDataValues) =>
-	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
-
-const getFromSimu = <S extends SimulatorData, T extends string>(
-	obj: S,
-	key: T
-) =>
-	key in obj &&
-	obj[key as keyof SimulatorData] &&
-	checkIframe(obj[key as keyof SimulatorData])
-		? obj[key as keyof SimulatorData]
-		: undefined
 
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
 	const simulatorsData = useSimulatorsData()
 	const { searchParams, setSearchParams, getHref } = useNavigation()
 
-	const defaultModuleFromUrl = searchParams.get('module') ?? ''
+	const simulateursValidesPourIntégration = pipe(
+		simulatorsData,
+		R.filter((simulateur: SimulatorData[keyof SimulatorData]) => {
+			const simulateurIsNotPrivate = !(
+				'private' in simulateur && simulateur.private
+			)
+			const simulateurHasIframePath =
+				'iframePath' in simulateur && !!simulateur.iframePath
 
-	const [currentModule, setCurrentModule] = useState(
-		getFromSimu(simulatorsData, defaultModuleFromUrl)
-			? defaultModuleFromUrl
-			: 'salarié'
+			return simulateurIsNotPrivate && simulateurHasIframePath
+		})
+	)
+	type SimulateurValideId = keyof typeof simulateursValidesPourIntégration
+
+	const estSimulateurValidePourIntégration = useCallback(
+		(simulateur: string): simulateur is SimulateurValideId =>
+			!!simulateur && simulateur in simulateursValidesPourIntégration,
+		[simulateursValidesPourIntégration]
 	)
 
+	const simulateurFromUrl = searchParams.get('simulateur') ?? ''
+	const defaultSimulateur = estSimulateurValidePourIntégration(
+		simulateurFromUrl
+	)
+		? simulateurFromUrl
+		: ('salarié' as SimulateurValideId)
+
+	const [currentSimulateur, setCurrentSimulateur] =
+		useState<SimulateurValideId>(defaultSimulateur)
+
 	useEffect(() => {
-		setSearchParams({ module: currentModule }, { replace: true })
-	}, [currentModule, setSearchParams])
+		setSearchParams({ simulateur: currentSimulateur }, { replace: true })
+	}, [currentSimulateur, setSearchParams])
 
-	const [color, setColor] = useState<string>('#005aa1')
+	const currentSimulator = useMemo(
+		() => simulateursValidesPourIntégration[currentSimulateur],
+		[currentSimulateur, simulateursValidesPourIntégration]
+	)
 
-	const currentSimulator = getFromSimu(simulatorsData, currentModule)
+	const currentIframePath = currentSimulator.iframePath
+	const currentIframeTitle = currentSimulator.title
 
-	const currentIframePath =
-		(currentSimulator &&
-			'iframePath' in currentSimulator &&
-			currentSimulator.iframePath) ||
-		''
-	const currentIframeTitle =
-		(currentSimulator &&
-			'title' in currentSimulator &&
-			currentSimulator.title) ||
-		''
-
-	const iframeRef = useRef<HTMLIFrameElement>(null)
 	const iframeSrc = getHref(`/iframes/${currentIframePath}`)
+	const iframeRef = useRef<HTMLIFrameElement>(null)
 
 	useEffect(() => {
 		window.addEventListener(
@@ -98,6 +100,8 @@ function IntegrationCustomizer() {
 			}
 		)
 	}, [iframeRef])
+
+	const [color, setColor] = useState<string>('#005aa1')
 
 	useEffect(() => {
 		iframeRef.current?.contentWindow?.postMessage({
@@ -128,28 +132,25 @@ function IntegrationCustomizer() {
 					</H3>
 					<Select
 						label="Assistant ou simulateur"
-						onSelectionChange={(val) => setCurrentModule(String(val))}
-						selectedKey={currentModule}
+						onSelectionChange={(value) =>
+							estSimulateurValidePourIntégration(value as string) &&
+							setCurrentSimulateur(value as keyof SimulatorData)
+						}
+						selectedKey={currentSimulateur}
 					>
-						{Object.entries(simulatorsData)
-							.map(
-								([module, s]) =>
-									getFromSimu(simulatorsData, module) && (
-										<Item
-											key={module}
-											textValue={s.shortName ?? ('title' in s ? s.title : '')}
-										>
-											{s.icône && (
-												<>
-													<Emoji emoji={s.icône} />
-													&nbsp;
-												</>
-											)}
-											{s.shortName ?? ('title' in s ? s.title : '')}
-										</Item>
-									)
+						{Object.values(simulateursValidesPourIntégration).map(
+							({ id, shortName, title, icône }) => (
+								<Item key={id} textValue={shortName ?? title ?? ''}>
+									{icône && (
+										<>
+											<Emoji emoji={icône} />
+											&nbsp;
+										</>
+									)}
+									{shortName ?? title ?? ''}
+								</Item>
 							)
-							.filter(((el) => Boolean(el)) as <T>(x: T | undefined) => x is T)}
+						)}
 					</Select>
 				</Grid>
 				<Grid item xs={'auto'}>

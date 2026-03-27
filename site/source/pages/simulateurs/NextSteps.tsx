@@ -3,33 +3,29 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { Grid, H2, Spacing, Ul } from '@/design-system'
-import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
-import { useSitePaths } from '@/sitePaths'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { ExternalLink } from './_configs/types'
 import ExternalLinkCard from './cards/ExternalLinkCard'
 
 interface NextStepsProps {
-	iframePath?: MergedSimulatorDataValues['iframePath']
+	simulateur?: SimulateurId
 	nextSteps?: SimulateurId[]
 	externalLinks?: ExternalLink[]
 }
 
 export default function NextSteps({
-	iframePath,
+	simulateur,
 	nextSteps,
 	externalLinks,
 }: NextStepsProps) {
-	const { absoluteSitePaths } = useSitePaths()
-
 	const existingCompany = !!useSelector(companySirenSelector)
 
-	if (!iframePath && !nextSteps && !externalLinks) {
+	if (!simulateur && !nextSteps && !externalLinks) {
 		return null
 	}
 
@@ -59,12 +55,9 @@ export default function NextSteps({
 						</GridItem>
 					))}
 
-				{iframePath && (
+				{simulateur && (
 					<GridItem>
-						<IframeIntegrationCard
-							iframePath={iframePath}
-							sitePaths={absoluteSitePaths}
-						/>
+						<IframeIntegrationCard simulateur={simulateur} />
 					</GridItem>
 				)}
 			</Grid>
