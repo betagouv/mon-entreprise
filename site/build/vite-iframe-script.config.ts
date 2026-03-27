@@ -24,7 +24,6 @@ export default defineConfig({
 		{
 			name: 'postbuild-commands',
 			closeBundle: () => {
-				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				setTimeout(() => {
 					const path = './dist/simulateur-iframe-integration.js'
 					const stats = statSync(path)

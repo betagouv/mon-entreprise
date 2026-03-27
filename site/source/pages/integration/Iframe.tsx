@@ -35,6 +35,7 @@ import './iframe.css'
 import { pipe } from 'effect'
 
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { setupIframeMessageHandlers } from '@/utils/iframeMessageHandlers'
 
 import cciLogo from './images/cci.png'
 import minTraLogo from './images/min-tra.jpg'
@@ -91,14 +92,13 @@ function IntegrationCustomizer() {
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
 	useEffect(() => {
-		window.addEventListener(
-			'message',
-			function (evt: MessageEvent<{ kind: string; value: number }>) {
-				if (iframeRef.current && evt.data.kind === 'resize-height') {
-					iframeRef.current.style.height = `${evt.data.value}px`
-				}
-			}
-		)
+		if (!iframeRef.current) {
+			return
+		}
+
+		const handlers = setupIframeMessageHandlers(iframeRef.current)
+
+		return () => handlers.cleanup()
 	}, [iframeRef])
 
 	const [color, setColor] = useState<string>('#005aa1')
