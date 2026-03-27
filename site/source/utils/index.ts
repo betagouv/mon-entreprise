@@ -1,5 +1,7 @@
 import { formatValue } from 'publicodes'
 
+import { IframeMessage } from '@/types/iframe-messages'
+
 /** The `capitalise0` function is a utility function that capitalizes the first letter of a string. The
 function takes an optional `name` parameter, which is a string that needs to be capitalized. */
 export function capitalise0(name: undefined): undefined
@@ -200,16 +202,27 @@ export const wrapperDebounceEvents = <T>(
 
 export async function getIframeOffset(): Promise<number> {
 	return new Promise<number>((resolve, reject) => {
-		const returnOffset = (evt: MessageEvent) => {
+		const timeout = setTimeout(() => {
+			window.removeEventListener('message', returnOffset)
+			// console.warn('[IFRAME] Pas de réponse du parent')
+			// resolve(0)
+			reject(new Error('No answer from parent'))
+		}, 2000)
+
+		const returnOffset = (evt: MessageEvent<IframeMessage>) => {
 			if (evt.data.kind !== 'offset') {
 				return
 			}
+
+			clearTimeout(timeout)
 			window.removeEventListener('message', returnOffset)
 			resolve(evt.data.value)
 		}
+
 		if (!window.parent.postMessage) {
 			reject(new Error('No parent window'))
 		}
+
 		window.parent?.postMessage({ kind: 'get-offset' }, '*')
 		window.addEventListener('message', returnOffset)
 	})

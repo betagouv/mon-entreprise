@@ -10,8 +10,9 @@
  **/
 
 // @ts-ignore ignore file not exist error
-import simulationData from '../public/simulation-data-title.json' assert { type: 'json' }
-import { hexToHSL } from '../utils/hexToHSL'
+import simulationData from '@/public/simulation-data-title.json' assert { type: 'json' }
+import { hexToHSL } from '@/utils/hexToHSL'
+import { setupIframeMessageHandlers } from '@/utils/iframeMessageHandlers'
 
 type KeyofSimulationData = keyof typeof simulationData
 
@@ -74,7 +75,16 @@ const moduleToSitePath = {
 	'simulateur-embauche': '/simulateurs/salaire-brut-net',
 	'simulateur-autoentrepreneur': '/simulateurs/auto-entrepreneur',
 	'simulateur-independant': '/simulateurs/indépendant',
-	'simulateur-dirigeantsasu': '/simulateurs/dirigeant-sasu',
+	'simulateur-assimilesalarie': '/simulateurs/sasu',
+	// 'choix-statut-juridique': '/assistants/choix-du-statut',
+	// 'simulateur-chomage-partiel': '/simulateurs/chômage-partiel',
+	// 'simulateur-artiste-auteur': '/simulateurs/artiste-auteur',
+	// 'simulateur-cessation-activité': '/simulateurs/cessation-activité',
+	// 'comparaison-statuts': '/simulateurs/comparaison-régimes-sociaux',
+	// 'cout-creation-entreprise': '/simulateurs/cout-creation-entreprise',
+	// 'simulateur-EI': '/simulateurs/entreprise-individuelle',
+	// 'simulateur-location-de-logement-meuble':
+	// 	'/simulateurs/location-de-logement-meuble',
 }
 
 const simulateurLink =
@@ -109,18 +119,5 @@ if (script.parentElement?.tagName === 'HEAD') {
 script.before(iframe)
 script.before(links)
 
-window.addEventListener(
-	'message',
-	function (evt: MessageEvent<{ kind: string; value: number }>) {
-		if (evt.data.kind === 'resize-height') {
-			iframe.style.height = `${evt.data.value}px`
-		}
-		if (evt.data.kind === 'get-offset') {
-			const iframePosition = iframe.getBoundingClientRect()
-			iframe.contentWindow?.postMessage(
-				{ kind: 'offset', value: Math.max(iframePosition.top * -1, 0) },
-				'*'
-			)
-		}
-	}
-)
+const handlers = setupIframeMessageHandlers(iframe)
+window.addEventListener('beforeunload', handlers.cleanup)
