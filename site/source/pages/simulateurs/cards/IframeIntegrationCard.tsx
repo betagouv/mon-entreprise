@@ -1,16 +1,17 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Article, Emoji } from '@/design-system'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import { useSitePaths } from '@/sitePaths'
 
 type IframeIntegrationCardProps = {
-	sitePaths: { développeur: { iframe: string } }
-	iframePath: string
+	simulateur: MergedSimulatorDataValues['id']
 }
 
 export function IframeIntegrationCard({
-	sitePaths,
-	iframePath,
+	simulateur,
 }: IframeIntegrationCardProps) {
+	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
 	return (
@@ -27,8 +28,8 @@ export function IframeIntegrationCard({
 				'Intégrer le module web, Voir la documentation'
 			)}
 			to={{
-				pathname: sitePaths.développeur.iframe,
-				search: `?module=${iframePath}`,
+				pathname: absoluteSitePaths.développeur.iframe,
+				search: `?simulateur=${simulateur}`,
 			}}
 		>
 			<Trans i18nKey="nextSteps.integration-iframe.body">

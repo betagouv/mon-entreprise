@@ -22,14 +22,14 @@ export default function Iframes() {
 			*/}
 			<base target="_parent" />
 			<Routes>
-				{simulateursEtAssistants.map((s) => (
+				{simulateursEtAssistants.map((simulateur) => (
 					<Route
-						key={s.iframePath}
-						path={s.iframePath + '/*'}
+						key={simulateur.iframePath}
+						path={simulateur.iframePath + '/*'}
 						element={
 							<>
 								<Helmet>
-									<link rel="canonical" href={s.path} />
+									<link rel="canonical" href={simulateur.path} />
 								</Helmet>
 								<SimulateurOrAssistantPage />
 							</>

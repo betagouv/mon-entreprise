@@ -62,6 +62,7 @@ export default function Assistants() {
 					path={relativeSitePaths.assistants.formulaireMobilité}
 					element={<DemandeMobilité />}
 				/>
+				{/* Tous les simulateur et assistants */}
 				{assistants.map((assistant) => (
 					<Route
 						key={assistant.path}

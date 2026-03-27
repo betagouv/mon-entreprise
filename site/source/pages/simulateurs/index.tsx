@@ -1,7 +1,7 @@
 import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as R from 'effect/Record'
-import { Suspense } from 'react'
+import { Suspense, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
@@ -23,13 +23,15 @@ export default function Simulateurs() {
 	const [lastState] = useNavigationOrigin()
 	const isEmbedded = useIsEmbedded()
 	const simulateursEtAssistants = useSimulatorsData()
-	const simulateurs = pipe(
-		simulateursEtAssistants,
-		R.values,
-		A.filter((s) =>
-			(s as PageConfig).path.startsWith(absoluteSitePaths.simulateurs.index)
-		)
-	) as PageConfig[]
+	const simulateurs = useMemo(
+		() =>
+			pipe(
+				simulateursEtAssistants,
+				R.values,
+				A.filter((s) => (s as PageConfig).pathId.startsWith('simulateurs.'))
+			) as PageConfig[],
+		[simulateursEtAssistants]
+	)
 
 	return (
 		<>

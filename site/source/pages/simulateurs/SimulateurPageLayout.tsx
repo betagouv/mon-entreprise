@@ -39,12 +39,12 @@ export default function SimulateurPageLayout({
 	}
 
 	const {
+		id,
 		tracking,
 		meta,
 		title,
 		beta,
 		tooltip,
-		iframePath,
 		private: privateIframe,
 		seoExplanations: SeoExplanations,
 	} = simulateurConfig
@@ -86,7 +86,7 @@ export default function SimulateurPageLayout({
 					)}
 
 					<NextSteps
-						iframePath={privateIframe ? undefined : iframePath}
+						simulateur={privateIframe ? undefined : id}
 						nextSteps={nextSteps}
 						externalLinks={externalLinks}
 					/>
