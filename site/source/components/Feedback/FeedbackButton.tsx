@@ -3,26 +3,26 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Emoji, FocusStyle } from '@/design-system'
+import { CrossIcon, Emoji, FocusStyle } from '@/design-system'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 import { ForceThemeProvider } from '../utils/DarkModeContext'
 import { Feedback } from './Feedback'
 
-const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
-	const [isFormOpen, setIsFormOpen] = useState(false)
+export const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
+	const [isPanelOpen, setIsPanelOpen] = useState(false)
 	const { t } = useTranslation()
 	const containerRef = useRef<HTMLElement | null>(null)
 	const [feedbackFormIsOpened, setFeedbackFormIsOpened] = useState(false)
 	useOnClickOutside(
 		containerRef,
-		() => !feedbackFormIsOpened && setIsFormOpen(false)
+		() => !feedbackFormIsOpened && setIsPanelOpen(false)
 	)
 
 	const buttonRef = useRef() as MutableRefObject<HTMLButtonElement | null>
 
 	const handleClose = () => {
-		setIsFormOpen(false)
+		setIsPanelOpen(false)
 		setTimeout(() => {
 			if (buttonRef.current) {
 				buttonRef.current.focus()
@@ -36,14 +36,14 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 				handleClose()
 			}
 		}
-		if (isFormOpen) {
+		if (isPanelOpen) {
 			document.addEventListener('keydown', closeOnEscape)
 		} else {
 			document.removeEventListener('keydown', closeOnEscape)
 		}
-	}, [isFormOpen])
+	}, [isPanelOpen])
 
-	if (isFormOpen) {
+	if (isPanelOpen) {
 		return (
 			<Section ref={containerRef} $isEmbedded={isEmbedded} aria-expanded={true}>
 				<FocusTrap>
@@ -51,31 +51,13 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 						<CloseButtonContainer>
 							<CloseButton onClick={handleClose} aria-expanded={true}>
 								Fermer
-								<svg
-									role="img"
-									aria-hidden
-									viewBox="0 0 24 24"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-									style={{ pointerEvents: 'none' }}
-								>
-									<path
-										fillRule="evenodd"
-										clipRule="evenodd"
-										d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
-									/>
-									<path
-										fillRule="evenodd"
-										clipRule="evenodd"
-										d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
-									/>
-								</svg>
+								<CrossIcon />
 							</CloseButton>
 						</CloseButtonContainer>
 						<Feedback
 							onEnd={() => {
 								if (!feedbackFormIsOpened) {
-									setIsFormOpen(false)
+									setIsPanelOpen(false)
 								}
 								setFeedbackFormIsOpened(false)
 							}}
@@ -91,7 +73,7 @@ const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 		<StyledButton
 			ref={buttonRef}
 			aria-label={t('Donner votre avis')}
-			onClick={() => setIsFormOpen(true)}
+			onClick={() => setIsPanelOpen(true)}
 			$isEmbedded={isEmbedded}
 			aria-expanded={false}
 		>
@@ -209,5 +191,3 @@ const CloseButton = styled.button`
 		width: 1.5rem;
 	}
 `
-
-export default FeedbackButton

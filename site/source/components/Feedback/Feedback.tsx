@@ -14,32 +14,11 @@ import {
 import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
-import * as safeLocalStorage from '../../storage/safeLocalStorage'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import FeedbackForm from './FeedbackForm'
 import FeedbackRating, { FeedbackT } from './FeedbackRating'
 import { useFeedback } from './useFeedback'
-
-const localStorageKey = (url: string) => `app::feedback::v3::${url}`
-const setFeedbackGivenForUrl = (url: string) => {
-	safeLocalStorage.setItem(
-		localStorageKey(url),
-		JSON.stringify(new Date().toISOString())
-	)
-}
-
-// Ask for feedback again after 4 months
-export const getShouldAskFeedback = (url: string) => {
-	const previousFeedbackDate = safeLocalStorage.getItem(localStorageKey(url))
-	if (!previousFeedbackDate) {
-		return true
-	}
-
-	return (
-		new Date(previousFeedbackDate) <
-		new Date(new Date().setMonth(new Date().getMonth() - 4))
-	)
-}
+import { setFeedbackGivenForUrl, shouldAskFeedback } from './utils'
 
 const IFRAME_SIMULATEUR_EMBAUCHE_PATH = '/iframes/simulateur-embauche'
 
@@ -83,11 +62,11 @@ export function Feedback({
 		[tag, currentPath]
 	)
 
-	const shouldAskFeedback = getShouldAskFeedback(currentPath)
+	const shouldShowFeedback = shouldAskFeedback(currentPath)
 
 	return (
 		<>
-			{isShowingThankMessage || !shouldAskFeedback ? (
+			{isShowingThankMessage || !shouldShowFeedback ? (
 				<>
 					<Body>
 						<Strong>

@@ -17,6 +17,7 @@ import { wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
 import { useIFrameOffset } from '../hooks'
+import { CrossIcon } from '../icons'
 import { Container, Grid } from '../layout'
 import { H1 } from '../typography/heading'
 
@@ -109,23 +110,7 @@ export function Popover(
 												{/* TODO : replace with Link when in design system */}
 												<CloseButton {...closeButtonProps} ref={closeButtonRef}>
 													Fermer
-													<svg
-														aria-hidden
-														viewBox="0 0 24 24"
-														fill="none"
-														xmlns="http://www.w3.org/2000/svg"
-													>
-														<path
-															fillRule="evenodd"
-															clipRule="evenodd"
-															d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
-														/>
-														<path
-															fillRule="evenodd"
-															clipRule="evenodd"
-															d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
-														/>
-													</svg>
+													<CrossIcon />
 												</CloseButton>
 											</CloseButtonContainer>
 										)}
