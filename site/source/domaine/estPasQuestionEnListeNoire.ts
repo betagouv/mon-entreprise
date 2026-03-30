@@ -1,4 +1,4 @@
-import { DottedName } from 'modele-social'
+import { DottedName } from './publicodes/DottedName'
 
 export const estPasQuestionEnListeNoire =
 	(listeNoire: DottedName[]) =>

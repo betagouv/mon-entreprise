@@ -1,9 +1,9 @@
-import rules, { DottedName } from 'modele-social'
+import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 describe('En contrat de professionnalisation', () => {
-	let engine: Engine<DottedName>
+	let engine: Engine<RègleModèleSocial>
 	let Smic: number
 	beforeEach(() => {
 		engine = new Engine(rules)
