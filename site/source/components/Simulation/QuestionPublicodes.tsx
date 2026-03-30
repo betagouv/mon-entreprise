@@ -1,9 +1,7 @@
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 
-import {
-	ValeurPublicodes
-} from '@/domaine/engine/PublicodesAdapter'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
 import { QuestionPublicodes as TypeQuestionPublicodes } from '@/hooks/useQuestions'
