@@ -78,7 +78,7 @@ describe('searchParams', () => {
 				result.get(
 					'salarié . cotisations . prévoyances . santé . taux employeur'
 				)
-			).toBe('50%')
+			).toBe('50 %')
 			expect(result.get('impôt . foyer fiscal . enfants à charge')).toBe(
 				'2 enfant'
 			)
