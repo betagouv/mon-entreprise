@@ -57,3 +57,10 @@ export const getSituationFromSearchParams = (
 
 	return situation
 }
+
+export const getTargetUnitFromSearchParams = (
+	searchParams: URLSearchParams
+): string | null =>
+	searchParams.has(TARGET_UNIT_PARAM)
+		? searchParams.get(TARGET_UNIT_PARAM)
+		: null
