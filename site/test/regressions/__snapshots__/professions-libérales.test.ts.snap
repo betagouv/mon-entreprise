@@ -18,14 +18,14 @@ protection sociale . retraite . complémentaire: 29"
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 2`] = `
 "entreprise . chiffre d'affaires: 26068
-indépendant . cotisations et contributions: 6060
-indépendant . cotisations et contributions . avec dividendes: 6060
+indépendant . cotisations et contributions: 6068
+indépendant . cotisations et contributions . avec dividendes: 6068
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 26068
-indépendant . rémunération . impôt: 536
-indépendant . rémunération . impôt . avec dividendes: 536
+indépendant . rémunération . impôt: 534
+indépendant . rémunération . impôt . avec dividendes: 534
 indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19464
+indépendant . rémunération . nette . après impôt: 19466
 indépendant . rémunération . nette . avec dividendes: 20000
 protection sociale . retraite . base: 12
 protection sociale . retraite . base . trimestres: 4

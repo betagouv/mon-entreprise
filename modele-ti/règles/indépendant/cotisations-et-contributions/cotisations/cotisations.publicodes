@@ -107,19 +107,23 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     souscrire une assurance maladie complémentaire.
   valeur:
     valeur: maladie-maternité avant abattements
-    abattement: profession libérale . réglementée . PAMC . participation CPAM . maladie
-  abattement:
-    variations:
-      - si:
-          toutes ces conditions:
-            - exonérations . Acre
-            - exonérations . invalidité = non
-        alors: exonérations . Acre . exonération . montant maladie-maternité
-      - si:
-          toutes ces conditions:
-            - exonérations . Acre = non
-            - exonérations . invalidité
-        alors: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
+    abattement:
+      variations:
+        - si:
+            toutes ces conditions:
+              - exonérations . Acre
+              - exonérations . invalidité = non
+          alors:
+            valeur: exonérations . Acre . exonération . montant maladie-maternité
+            unité: €/an
+        - si:
+            toutes ces conditions:
+              - exonérations . Acre = non
+              - exonérations . invalidité
+          alors:
+            valeur: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
+            unité: '%'
+  abattement: profession libérale . réglementée . PAMC . participation CPAM . maladie
   arrondi: oui
   unité: €/an
   références:
