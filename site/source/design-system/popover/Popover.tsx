@@ -39,7 +39,7 @@ export function Popover(
 
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
-	const ref = useRef(null)
+	const ref = useRef<HTMLDivElement>(null)
 	const { overlayProps, underlayProps } = useOverlay(
 		{ isOpen: true, ...props },
 		ref
@@ -60,9 +60,6 @@ export function Popover(
 	)
 
 	const offsetTop = useIFrameOffset()
-	if (offsetTop === undefined) {
-		return null
-	}
 
 	return (
 		<OverlayContainer>
@@ -142,7 +139,7 @@ const fromtop = keyframes`
 	to { transform: translateY(0px)}
 `
 
-type UnderlayProps = { $offsetTop: number | null }
+type UnderlayProps = { $offsetTop?: number }
 const Underlay = styled.div<UnderlayProps>`
 	position: fixed;
 	top: 0;
@@ -155,7 +152,7 @@ const Underlay = styled.div<UnderlayProps>`
 	animation: ${appear} 0.2s;
 	display: flex;
 	${({ $offsetTop }) =>
-		$offsetTop === null &&
+		$offsetTop === undefined &&
 		css`
 			align-items: center;
 			@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
@@ -164,7 +161,7 @@ const Underlay = styled.div<UnderlayProps>`
 		`}
 `
 
-const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
+const PopoverContainer = styled.div<{ $offsetTop?: number }>`
 	max-height: 90vh;
 
 	background: ${({ theme }) =>
@@ -178,7 +175,7 @@ const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
 	animation: ${fromtop} 0.2s;
 
 	${({ theme, $offsetTop }) =>
-		$offsetTop
+		$offsetTop !== undefined
 			? css`
 					position: relative;
 					top: ${$offsetTop}px;

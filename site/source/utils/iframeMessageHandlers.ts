@@ -9,8 +9,23 @@ export function setupIframeMessageHandlers(
 		}
 
 		if (evt.data.kind === 'get-offset') {
-			const iframePosition = iframe.getBoundingClientRect()
-			const offset = Math.max(iframePosition.top * -1, 0)
+			const { top, height } = iframe.getBoundingClientRect()
+			// Modale de retour =~ 45 rem de haut
+			const modalHeight =
+				45 * parseFloat(getComputedStyle(document.documentElement).fontSize)
+			let offset = 0
+			// Haut de l'iframe est hors de l'écran
+			if (top < 0) {
+				if (height + top > modalHeight) {
+					// Il y a la place d'afficher la modale :
+					// on l'affiche en haut de la partie visible de l'iframe
+					offset = top * -1
+				} else {
+					// Il n'y a pas la place :
+					// on l'affiche au-dessus du bas de l'iframe
+					offset = height - modalHeight
+				}
+			}
 			iframe.contentWindow?.postMessage({ kind: 'offset', value: offset }, '*')
 		}
 	}
