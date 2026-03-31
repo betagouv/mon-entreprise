@@ -107,8 +107,8 @@ export const getDataAfterSituationChange = (
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
-	régularisationMethod?: RégularisationMethod,
-	withRépartition: boolean = true
+	régularisationMethod: RégularisationMethod,
+	withRépartitionAndRégularisation: boolean = true
 ): MonthState[] => {
 	const newOptions = getOptionsFromSituations(previousSituation, situation)
 
@@ -127,8 +127,8 @@ export const getDataAfterSituationChange = (
 		updatedData,
 		year,
 		engine,
-		withRépartition,
-		régularisationMethod
+		withRépartitionAndRégularisation,
+		withRépartitionAndRégularisation ? régularisationMethod : undefined
 	)
 }
 
@@ -140,9 +140,10 @@ export const getDataAfterRémunérationChange = (
 	year: number,
 	engine: Engine<DottedName>,
 	dispatch: Dispatch<AnyAction>,
-	régularisationMethod?: RégularisationMethod,
-	withRépartition: boolean = true
+	régularisationMethod: RégularisationMethod,
+	withRépartitionAndRégularisation: boolean = true
 ): MonthState[] => {
+	console.log(régularisationMethod)
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
 		...updatedData[monthIndex],
@@ -156,8 +157,8 @@ export const getDataAfterRémunérationChange = (
 		updatedData,
 		year,
 		engine,
-		withRépartition,
-		régularisationMethod
+		withRépartitionAndRégularisation,
+		withRépartitionAndRégularisation ? régularisationMethod : undefined
 	)
 }
 
@@ -168,8 +169,8 @@ export const getDataAfterOptionsChange = (
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
-	régularisationMethod?: RégularisationMethod,
-	withRépartition: boolean = true
+	régularisationMethod: RégularisationMethod,
+	withRépartitionAndRégularisation: boolean = true
 ): MonthState[] => {
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
@@ -182,8 +183,8 @@ export const getDataAfterOptionsChange = (
 		updatedData,
 		year,
 		engine,
-		withRépartition,
-		régularisationMethod
+		withRépartitionAndRégularisation,
+		withRépartitionAndRégularisation ? régularisationMethod : undefined
 	)
 }
 
