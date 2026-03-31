@@ -141,17 +141,14 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
             - si: assiette sociale < 75% * PSS proratisé
               alors:
                 produit:
-                  - valeur: cotisations . maladie-maternité
-                    contexte:
-                      Acre: non
+                  - cotisations . maladie-maternité avant abattements
                   - exonération maximale
             - sinon:
                 produit:
                   - PSS proratisé - assiette sociale
-                  - valeur: cotisations . maladie-maternité
+                  - valeur: cotisations . maladie-maternité avant abattements
                     contexte:
                       assiette sociale: 75% * PSS proratisé
-                      Acre: non
                   - 1 / PSS proratisé
                   - variations:
                       - si: date < 01/2026
