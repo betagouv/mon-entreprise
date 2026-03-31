@@ -22,13 +22,12 @@ import { setFeedbackGivenForUrl, shouldAskFeedback } from './utils'
 
 const IFRAME_SIMULATEUR_EMBAUCHE_PATH = '/iframes/simulateur-embauche'
 
-export function Feedback({
-	onEnd,
-	onFeedbackFormOpen,
-}: {
+type Props = {
 	onEnd?: () => void
 	onFeedbackFormOpen?: () => void
-}) {
+}
+
+export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 	const [isShowingThankMessage, setIsShowingThankMessage] = useState(false)
 	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
