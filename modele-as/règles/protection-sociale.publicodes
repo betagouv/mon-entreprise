@@ -173,6 +173,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des
         points.
 
+      unité: point/an
       valeur: (assimilé salarié . cotisations . retraite complémentaire / 1.27) / valeur
         d'acquisition
       note:
