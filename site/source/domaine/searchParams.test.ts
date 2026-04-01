@@ -17,6 +17,7 @@ import {
 	titresRestaurantParMois,
 } from './Quantité'
 import {
+	getRèglesIgnoréesFromSearchParams,
 	getSearchParamsFromSituation,
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,
@@ -209,6 +210,49 @@ describe('searchParams', () => {
 			)
 
 			expect(result).toEqual({})
+		})
+	})
+
+	describe('getRèglesIgnoréesFromSearchParams', () => {
+		it('retourne un tableau vide quand tous les params correspondent à des règles', () => {
+			const rules = ['salarié . contrat', 'salarié . contrat . salaire brut'] as Names[]
+
+			const result = getRèglesIgnoréesFromSearchParams(
+				new URLSearchParams({
+					'salarié . contrat': 'CDD',
+					'salarié . contrat . salaire brut': '2700 €/mois',
+					unité: '€/mois',
+				}),
+				rules
+			)
+
+			expect(result).toEqual([])
+		})
+
+		it('retourne les params qui ne correspondent à aucune règle', () => {
+			const rules = ['salarié . contrat'] as Names[]
+
+			const result = getRèglesIgnoréesFromSearchParams(
+				new URLSearchParams({
+					'salarié . contrat': 'CDD',
+					'ancienne . règle . supprimée': 'oui',
+					unité: '€/mois',
+				}),
+				rules
+			)
+
+			expect(result).toEqual(['ancienne . règle . supprimée'])
+		})
+
+		it('exclut les paramètres réservés (unité)', () => {
+			const rules = [] as Names[]
+
+			const result = getRèglesIgnoréesFromSearchParams(
+				new URLSearchParams({ unité: '€/mois' }),
+				rules
+			)
+
+			expect(result).toEqual([])
 		})
 	})
 

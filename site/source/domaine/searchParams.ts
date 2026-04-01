@@ -58,6 +58,19 @@ export const getSituationFromSearchParams = (
 	return situation
 }
 
+const PARAMS_RÉSERVÉS = new Set([TARGET_UNIT_PARAM])
+
+export const getRèglesIgnoréesFromSearchParams = (
+	searchParams: URLSearchParams,
+	rules: DottedName[]
+): DottedName[] =>
+	[...searchParams.keys()]
+		.filter(
+			(key) =>
+				!PARAMS_RÉSERVÉS.has(key) && !rules.includes(key as DottedName)
+		)
+		.map((key) => key as DottedName)
+
 export const getTargetUnitFromSearchParams = (
 	searchParams: URLSearchParams
 ): string | null =>

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
+	getRèglesIgnoréesFromSearchParams,
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
@@ -19,6 +20,7 @@ import {
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
+import { simulationChargéeDepuisLien } from '@/store/slices/simulationSource.slice'
 import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
@@ -91,6 +93,18 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 		setNewTargetUnit()
 		setNewSituation(newSituation)
 		setNewActiveTarget(newSituation)
+
+		const règlesIgnorées = getRèglesIgnoréesFromSearchParams(
+			initialSearchParams,
+			rules
+		)
+
+		if (
+			!R.isEmptyReadonlyRecord(newSituation) ||
+			règlesIgnorées.length > 0
+		) {
+			dispatch(simulationChargéeDepuisLien(règlesIgnorées))
+		}
 
 		resetSearchParams()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
