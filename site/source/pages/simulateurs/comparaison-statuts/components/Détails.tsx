@@ -326,13 +326,7 @@ const Détails = ({
 					</Body>
 
 					<DetailsRowCards
-						expression={{
-							somme: [
-								'protection sociale . retraite . complémentaire . AGIRC ARRCO . points acquis',
-								'protection sociale . retraite . complémentaire . RCI . points acquis',
-								'protection sociale . retraite . complémentaire . CIPAV . points acquis',
-							],
-						}}
+						dottedName="protection sociale . retraite . complémentaire . points acquis"
 						namedEngines={namedEngines}
 						displayedUnit={t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.unit',
