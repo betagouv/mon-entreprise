@@ -2,11 +2,12 @@ import rules from 'modele-social'
 import { describe, expect, it } from 'vitest'
 
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
+import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { configComparateurStatuts } from '@/pages/simulateurs/comparaison-statuts/simulationConfig'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
-describe('Retraite complémentaire dans le comparateur de statuts', () => {
-	it('les points AGIRC-ARRCO acquis par la SASU sont calculés sur une base annuelle, pas mensuelle (#4146)', () => {
+describe('Retraite complémentaire dans le comparateur de statuts (#4146)', () => {
+	it('les points AGIRC-ARRCO acquis par la SASU sont calculés sur une base annuelle', () => {
 		const engine = engineFactory(rules)
 		engine.setSituation({
 			...configComparateurStatuts.situation,
@@ -22,5 +23,31 @@ describe('Retraite complémentaire dans le comparateur de statuts', () => {
 		// Points annuels = (2028 / 1.27) / 20.1877 ≈ 79 points/an
 		expect(pointsAcquis.nodeValue).toBeCloseTo(79, 0)
 		expect(pointsAcquis.unit?.denominators).toContain('an')
+	})
+
+	it('la SASU ne comptabilise pas de retraite complémentaire indépendant (RCI)', () => {
+		const engine = engineFactory(rules)
+		engine.setSituation({
+			...configComparateurStatuts.situation,
+			...AssimiléSalariéContexte,
+		})
+
+		const rci = engine.evaluate(
+			'protection sociale . retraite . complémentaire . RCI'
+		)
+		expect(rci.nodeValue).toBeNull()
+	})
+
+	it("l'EI ne comptabilise pas de retraite complémentaire salarié (AGIRC-ARRCO)", () => {
+		const engine = engineFactory(rules)
+		engine.setSituation({
+			...configComparateurStatuts.situation,
+			...IndépendantContexte,
+		})
+
+		const agircArrco = engine.evaluate(
+			'protection sociale . retraite . complémentaire . AGIRC ARRCO'
+		)
+		expect(agircArrco.nodeValue).toBeNull()
 	})
 })
