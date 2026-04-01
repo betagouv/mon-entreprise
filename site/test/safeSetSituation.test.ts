@@ -29,13 +29,10 @@ describe('safeSetSituation', () => {
 	it('fonctionne sans callback onError', () => {
 		const engine = new Engine({ a: 'oui' })
 
-		safeSetSituation(
-			(s) => engine.setSituation(s),
-			{
-				a: 'non',
-				'règle supprimée': 'oui',
-			} as Record<string, string>
-		)
+		safeSetSituation((s) => engine.setSituation(s), {
+			a: 'non',
+			'règle supprimée': 'oui',
+		} as Record<string, string>)
 
 		expect(engine.evaluate('a').nodeValue).toBe(false)
 	})
