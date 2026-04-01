@@ -25,6 +25,7 @@ import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
 import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
+import SimulationChargéeBanner from './SimulationChargéeBanner'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
 export { SimulationGoal } from './SimulationGoal'
@@ -115,6 +116,7 @@ export default function Simulation<S extends Situation = Situation>({
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />
+				<SimulationChargéeBanner />
 				{children}
 				<FromTop>
 					{showQuestions && (

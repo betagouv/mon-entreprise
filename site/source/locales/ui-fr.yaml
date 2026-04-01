@@ -2437,6 +2437,12 @@ simulation-end:
     text: Vous pouvez maintenant concrétiser votre projet d’embauche.
   text: Vous avez maintenant accès à l'estimation la plus précise possible.
   title: Vous avez complété cette simulation
+simulationChargéeBanner:
+  fermer: Fermer
+  lienPartagé: Cette simulation a été chargée depuis un lien partagé.
+  règlesDéfaillantes: Certains paramètres n'ont pas pu être appliqués suite à une
+    évolution du simulateur.
+  sauvegarde: Votre simulation précédente a été restaurée.
 simulationPréremplieBanner:
   aria-label: Voir ma situation, accéder à la page de gestion de mon entreprise
   button: Voir ma situation

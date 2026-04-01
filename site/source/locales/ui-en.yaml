@@ -2299,6 +2299,11 @@ simulation-end:
     text: Now you can make your hiring plans a reality.
   text: You now have access to the most accurate estimate possible.
   title: You have completed this simulation
+simulationChargéeBanner:
+  fermer: Close
+  lienPartagé: This simulation was loaded from a shared link.
+  règlesDéfaillantes: Some parameters could not be applied due to an evolution of the simulator.
+  sauvegarde: Your previous simulation has been restored.
 simulationPréremplieBanner:
   aria-label: View my situation, access my company management page
   button: See my situation

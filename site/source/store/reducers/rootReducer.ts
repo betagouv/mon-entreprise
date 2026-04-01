@@ -10,6 +10,8 @@ import { simulationReducer } from '@/store/reducers/simulation.reducer'
 import { PreviousSimulation } from '@/store/selectors/simulation/currentSimulation.selector'
 import situationReducer from '@/store/slices/simulateursSlice'
 
+import { simulationSourceReducer } from '@/store/slices/simulationSource.slice'
+
 import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
@@ -50,6 +52,7 @@ const mainReducer = combineReducers({
 	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	situation: situationReducer,
+	simulationSource: simulationSourceReducer,
 })
 
 export default reduceReducers<RootState>(
