@@ -22,27 +22,31 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 	}
 
 	try {
-		safeSetSituation(nomModèle, completeSituation, ({ faultyDottedName }) => {
-			if (!faultyDottedName) {
-				throw new Error('Bad empty faultyDottedName')
-			}
-
-			if (faultyDottedName in simulatorSituation) {
-				dispatch(supprimeLaRègleDeLaSituation(faultyDottedName))
-				dispatch(règleObsolèteDétectée(faultyDottedName))
-			} else {
-				const dottedName = JSON.stringify(faultyDottedName)
-				let errorMessage = `Bad unknow situation : ${dottedName}`
-
-				if (faultyDottedName in configSituation) {
-					errorMessage = `Bad config situation : ${dottedName}`
-				} else if (faultyDottedName in companySituation) {
-					errorMessage = `Bad company situation : ${dottedName}`
+		safeSetSituation(
+			(s) => setEngineSituation(nomModèle, s),
+			completeSituation,
+			({ faultyDottedName }) => {
+				if (!faultyDottedName) {
+					throw new Error('Bad empty faultyDottedName')
 				}
 
-				throw new Error(errorMessage)
+				if (faultyDottedName in simulatorSituation) {
+					dispatch(supprimeLaRègleDeLaSituation(faultyDottedName))
+					dispatch(règleObsolèteDétectée(faultyDottedName))
+				} else {
+					const dottedName = JSON.stringify(faultyDottedName)
+					let errorMessage = `Bad unknow situation : ${dottedName}`
+
+					if (faultyDottedName in configSituation) {
+						errorMessage = `Bad config situation : ${dottedName}`
+					} else if (faultyDottedName in companySituation) {
+						errorMessage = `Bad company situation : ${dottedName}`
+					}
+
+					throw new Error(errorMessage)
+				}
 			}
-		})
+		)
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.error(error)
