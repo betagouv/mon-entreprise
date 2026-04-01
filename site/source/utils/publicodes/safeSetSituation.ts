@@ -1,17 +1,13 @@
 import { isPublicodesError, PublicodesExpression } from 'publicodes'
 
-import { setEngineSituation } from '@/domaine/engine/engineCache'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/SimulationConfig'
 import { omit } from '@/utils'
 
-/**
- * Try to set situation and delete all rules with syntax/evaluation error
- */
-export const safeSetSituation = <Names extends DottedName>(
-	nomModèle: NomModèle,
+export const safeSetSituation = <Names extends string>(
+	setSituation: (
+		situation: Partial<Record<Names, PublicodesExpression>>
+	) => void,
 	rawSituation: Partial<Record<Names, PublicodesExpression>>,
-	onError: (data: {
+	onError?: (data: {
 		situation: Partial<Record<Names, PublicodesExpression>>
 		faultyDottedName?: Names
 	}) => void
@@ -21,14 +17,11 @@ export const safeSetSituation = <Names extends DottedName>(
 	let situation = { ...rawSituation }
 	do {
 		try {
-			// Try to set situation
-			setEngineSituation(nomModèle, situation)
+			setSituation(situation)
 			situationError = false
 		} catch (error) {
 			situationError = true
 
-			// Clears the situation to avoid an infinite loop
-			// if the error is already known
 			if (
 				errors.some(
 					(err) =>
@@ -40,10 +33,10 @@ export const safeSetSituation = <Names extends DottedName>(
 			}
 			errors.push(error as Error)
 
-			// If it's a Publicodes syntax/evaluation error
 			if (
 				(isPublicodesError(error, 'SyntaxError') ||
-					isPublicodesError(error, 'EvaluationError')) &&
+					isPublicodesError(error, 'EvaluationError') ||
+					isPublicodesError(error, 'SituationError')) &&
 				error.info.dottedName
 			) {
 				const faultyDottedName = error.info.dottedName as Names
@@ -54,10 +47,9 @@ export const safeSetSituation = <Names extends DottedName>(
 					error
 				)
 
-				// Omit faultyDottedName from situation for next loop
 				situation = omit(situation, faultyDottedName) as typeof rawSituation
 
-				onError({ faultyDottedName, situation })
+				onError?.({ faultyDottedName, situation })
 			} else {
 				// eslint-disable-next-line no-console
 				console.error('safeSituationCatch', error)

@@ -24,6 +24,7 @@ import { Simulation } from '@/store/reducers/simulation.reducer'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { completeSituationsSelonContextesSelector } from '@/store/selectors/completeSituationSelonContextes.selector'
 import { complement } from '@/utils/complement'
+import { safeSetSituation } from '@/utils/publicodes/safeSetSituation'
 
 let lastSimulation: Simulation | null = null
 let lastConfig: SimulationConfig | null = null
@@ -84,7 +85,10 @@ export const prendLaProchaineQuestionMiddleware: Middleware<
 			lastSituationsAvecContextes = situationsAvecContextes
 
 			engines.forEach((engine, index) => {
-				engine.setSituation(situationsAvecContextes[index])
+				safeSetSituation(
+					(s) => engine.setSituation(s),
+					situationsAvecContextes[index]
+				)
 			})
 
 			lastSimulation = simulation
