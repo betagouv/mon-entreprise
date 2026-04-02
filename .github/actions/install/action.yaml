@@ -4,9 +4,9 @@ description: 'Yarn install with cache'
 runs:
   using: 'composite'
   steps:
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
       with:
-        node-version: '18.18.2'
+        node-version: '24'
         cache: 'yarn'
     - run: yarn install --immutable
       shell: bash
