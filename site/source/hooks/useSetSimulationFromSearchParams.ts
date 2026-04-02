@@ -20,8 +20,8 @@ import {
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
-import { simulationChargéeDepuisLien } from '@/store/slices/simulationSource.slice'
 import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
+import { simulationChargéeDepuisLien } from '@/store/slices/simulationSource.slice'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
 
@@ -99,10 +99,7 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 			rules
 		)
 
-		if (
-			!R.isEmptyReadonlyRecord(newSituation) ||
-			règlesIgnorées.length > 0
-		) {
+		if (!R.isEmptyReadonlyRecord(newSituation) || règlesIgnorées.length > 0) {
 			dispatch(simulationChargéeDepuisLien(règlesIgnorées))
 		}
 

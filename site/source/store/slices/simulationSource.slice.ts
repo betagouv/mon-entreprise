@@ -19,10 +19,7 @@ const simulationSourceSlice = createSlice({
 	name: 'simulationSource',
 	initialState: null as SimulationSourceState,
 	reducers: {
-		simulationChargéeDepuisLien(
-			_,
-			action: PayloadAction<DottedName[]>
-		) {
+		simulationChargéeDepuisLien(_, action: PayloadAction<DottedName[]>) {
 			return {
 				origine: OrigineSimulation.LIEN_PARTAGÉ,
 				règlesObsolètes: action.payload,

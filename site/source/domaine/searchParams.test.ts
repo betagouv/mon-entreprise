@@ -215,7 +215,10 @@ describe('searchParams', () => {
 
 	describe('getRèglesIgnoréesFromSearchParams', () => {
 		it('retourne un tableau vide quand tous les params correspondent à des règles', () => {
-			const rules = ['salarié . contrat', 'salarié . contrat . salaire brut'] as Names[]
+			const rules = [
+				'salarié . contrat',
+				'salarié . contrat . salaire brut',
+			] as Names[]
 
 			const result = getRèglesIgnoréesFromSearchParams(
 				new URLSearchParams({

@@ -17,7 +17,7 @@ describe('simulationSourceReducer', () => {
 		expect(simulationSourceReducer(undefined, { type: '@@INIT' })).toBeNull()
 	})
 
-	it("enregistre le chargement depuis un lien partagé sans règles ignorées", () => {
+	it('enregistre le chargement depuis un lien partagé sans règles ignorées', () => {
 		const state = simulationSourceReducer(
 			undefined,
 			simulationChargéeDepuisLien([])

@@ -48,8 +48,7 @@ export default function SimulationChargéeBanner() {
 						évolution du simulateur.
 					</Trans>
 				</>
-			)}
-			{' '}
+			)}{' '}
 			<Link onPress={() => dispatch(fermeLeBandeau())}>
 				<Trans i18nKey="simulationChargéeBanner.fermer">Fermer</Trans>
 			</Link>
