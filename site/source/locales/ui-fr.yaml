@@ -2427,9 +2427,9 @@ simulateurs:
   warning:
     general: <0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
       éléments que vous avez saisis et des éléments réglementaires applicables,
-      mais ils ne tiennent pas compte de l’ensemble de votre situation. <3>Ils
-      ne se substituent pas aux décomptes réels</3> de l’Urssaf, de
-      l’administration fiscale ou de tout autre organisme.
+      mais ils ne tiennent pas compte de l'ensemble de votre situation. <3>Ils
+      ne se substituent pas aux décomptes réels</3> de l'Urssaf, de
+      l'administration fiscale ou de tout autre organisme.
     plus: Lire les précisions
     titre: Avant de commencer...
 simulation-end:

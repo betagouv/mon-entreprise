@@ -2287,10 +2287,10 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    general: <0>The calculations are indicative.</0> They are based on the
-      information you have entered and the applicable regulations, but they do
-      not take into account your entire situation. <3>They are not a substitute
-      for actual statements</3> from Urssaf, the tax authorities or any other
+    general: <0>The calculations are indicative.&lt;/0> They are based on the
+      information you have entered and on the applicable regulations, but they
+      do not take into account your entire situation. <3>They do not replace
+      actual statements&lt;/3> from Urssaf, the tax authorities or any other
       organization.
     plus: Read more
     titre: Before we begin...
