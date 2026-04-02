@@ -8699,10 +8699,10 @@ protection sociale . retraite . complémentaire . RCI:
 protection sociale . retraite . complémentaire . points acquis:
   description.en: |
     [automatic] Total number of supplementary pension points acquired in a year,
-    all schemes combined (AGIRC-ARRCO, RCI or CIPAV depending on status).
+    all schemes combined (AGIRC-ARRCO, RCI or Cipav depending on status).
   description.fr: |
     Nombre total de points de retraite complémentaire acquis sur une année,
-    tous régimes confondus (AGIRC-ARRCO, RCI ou CIPAV selon le statut).
+    tous régimes confondus (AGIRC-ARRCO, RCI ou Cipav selon le statut).
   titre.en: '[automatic] Supplementary pension points acquired'
   titre.fr: Points de retraite complémentaire acquis
 protection sociale . retraite . complémentaire . valeur du point:

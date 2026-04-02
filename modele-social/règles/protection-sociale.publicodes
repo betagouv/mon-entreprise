@@ -266,7 +266,7 @@ protection sociale . retraite . complémentaire . points acquis:
   titre: Points de retraite complémentaire acquis
   description: |
     Nombre total de points de retraite complémentaire acquis sur une année,
-    tous régimes confondus (AGIRC-ARRCO, RCI ou CIPAV selon le statut).
+    tous régimes confondus (AGIRC-ARRCO, RCI ou Cipav selon le statut).
   unité: point
   arrondi: oui
   somme:
