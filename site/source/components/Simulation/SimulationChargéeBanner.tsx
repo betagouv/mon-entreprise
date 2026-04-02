@@ -22,8 +22,8 @@ export default function SimulationChargéeBanner() {
 		return null
 	}
 
-	const { origine, règlesIgnorées } = simulationSource
-	const aDesRèglesIgnorées = règlesIgnorées.length > 0
+	const { origine, règlesObsolètes } = simulationSource
+	const aDesRèglesIgnorées = règlesObsolètes.length > 0
 
 	return (
 		<SimulationBanner icon={aDesRèglesIgnorées ? '⚠️' : icôneParOrigine[origine]}>
