@@ -1824,6 +1824,11 @@ pages:
           revenu: Revenu disponible
           titre: Répartition du revenu
       label:
+        dividendes:
+          soumis-à-cotisations-sociales: Part des dividendes supérieure à 10 % du bénéfice
+            net de l’exercice précédent
+          soumis-à-prélèvements-sociaux: Part des dividendes inférieure à 10 % du bénéfice
+            net de l’exercice précédent
         rémunération-nette: Revenu net
       meta:
         description: Calcul du revenu net après impôt et des cotisations à partir du
