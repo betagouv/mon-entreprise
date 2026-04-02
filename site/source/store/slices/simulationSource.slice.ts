@@ -2,8 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
+export const OrigineSimulation = {
+	LIEN_PARTAGÉ: 'lien-partagé',
+	SAUVEGARDE: 'sauvegarde',
+} as const
+
+export type OrigineSimulation =
+	(typeof OrigineSimulation)[keyof typeof OrigineSimulation]
+
 export type SimulationSourceState = {
-	origine: 'lien-partagé' | 'sauvegarde'
+	origine: OrigineSimulation
 	règlesIgnorées: DottedName[]
 } | null
 
@@ -16,7 +24,7 @@ const simulationSourceSlice = createSlice({
 			action: PayloadAction<DottedName[]>
 		) {
 			return {
-				origine: 'lien-partagé',
+				origine: OrigineSimulation.LIEN_PARTAGÉ,
 				règlesIgnorées: action.payload,
 			}
 		},
@@ -33,7 +41,7 @@ const simulationSourceSlice = createSlice({
 			.addMatcher(
 				(action) => action.type === 'CHARGE_LA_SIMULATION_PRÉCÉDENTE',
 				() => ({
-					origine: 'sauvegarde' as const,
+					origine: OrigineSimulation.SAUVEGARDE,
 					règlesIgnorées: [] as DottedName[],
 				})
 			)
