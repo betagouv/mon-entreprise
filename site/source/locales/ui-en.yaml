@@ -1717,6 +1717,9 @@ pages:
           revenu: Disposable income
           titre: Income breakdown
       label:
+        dividendes:
+          soumis-à-cotisations-sociales: Dividends exceeding 10% of previous year's net income
+          soumis-à-prélèvements-sociaux: Dividends less than 10% of previous year's net income
         rémunération-nette: Net income
       meta:
         description: Calculating net income after tax and contributions from sales and

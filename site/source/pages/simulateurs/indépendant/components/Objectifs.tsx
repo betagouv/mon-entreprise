@@ -74,7 +74,9 @@ const ObjectifsIR = () => {
 }
 
 const ObjectifsIS = () => {
+	const { t } = useTranslation()
 	const engine = useEngine()
+	const estEI = engine.evaluate('entreprise . EI').nodeValue as boolean
 	const dividendesValue = engine.evaluate('indépendant . dividendes')
 		.nodeValue as number
 	const dividendesVersés = dividendesValue > 0
@@ -89,10 +91,24 @@ const ObjectifsIS = () => {
 			<SimulationGoal
 				appear={false}
 				dottedName="indépendant . dividendes . soumis à prélèvements sociaux"
+				label={
+					estEI &&
+					t(
+						'pages.simulateurs.indépendant.label.dividendes.soumis-à-prélèvements-sociaux',
+						'Part des dividendes inférieure à 10 % du bénéfice net de l’exercice précédent'
+					)
+				}
 			/>
 			<SimulationGoal
 				appear={false}
 				dottedName="indépendant . dividendes . soumis à cotisations sociales"
+				label={
+					estEI &&
+					t(
+						'pages.simulateurs.indépendant.label.dividendes.soumis-à-cotisations-sociales',
+						'Part des dividendes supérieure à 10 % du bénéfice net de l’exercice précédent'
+					)
+				}
 			/>
 
 			<SimulationGoal
