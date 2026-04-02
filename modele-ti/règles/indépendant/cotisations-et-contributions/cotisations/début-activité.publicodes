@@ -30,7 +30,9 @@ indépendant . cotisations et contributions . début activité:
     assiette CSG-CRDS: assiette forfaitaire
     cotisations . indemnités journalières . assiette: assiette forfaitaire indemnités journalières
     profession libérale . Cipav . invalidité et décès . assiette: assiette forfaitaire invalidité décès Cipav
-    cotisations facultatives: non
+    cotisations facultatives:
+      non applicable si: entreprise . imposition . IR . régime micro-fiscal
+      valeur: non
 
   références:
     'Indépendant : Comment sont calculées vos cotisations ?': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#ancre-le-calcul-vos-cotisations
