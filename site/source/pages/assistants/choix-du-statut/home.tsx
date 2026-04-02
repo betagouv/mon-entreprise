@@ -17,17 +17,15 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
-import { useNextStep } from './_components/useSteps'
+import { useNextStep, useStepPaths } from './_components/useSteps'
 import créerSvg from './_illustrations/créer.svg'
 
 export default function AccueilChoixStatut() {
 	const nextStep = useNextStep()
-	const choixStatutPath =
-		useSitePaths().relativeSitePaths.assistants['choix-du-statut']
+	const { toStep } = useStepPaths()
 	const existingCompany = !!useSelector(companySirenSelector)
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
@@ -50,7 +48,7 @@ export default function AccueilChoixStatut() {
 
 						<Grid container spacing={3} style={{ alignItems: 'center' }}>
 							<Grid item xs={12} sm={'auto'}>
-								<Button size="XL" to={choixStatutPath[nextStep]}>
+								<Button size="XL" to={toStep(nextStep)}>
 									<Trans i18nKey="choix-statut.home.find-statut">
 										Trouver le bon statut
 									</Trans>
