@@ -67,19 +67,25 @@ export function usePreviousStep() {
 export function useStepPaths() {
 	const { relativeSitePaths } = useSitePaths()
 	const paths = relativeSitePaths.assistants['choix-du-statut']
+	const currentStep = useCurrentStep()
+	const isAtIndex = currentStep === 'index'
 
 	return useMemo(() => {
 		const toStep = (step: Step | undefined): string => {
 			if (!step || step === 'index') {
-				return '..'
+				return isAtIndex ? '.' : '..'
 			}
 
-			return `../${paths[step]}`
+			const segment = paths[step] as string
+
+			return isAtIndex ? segment : `../${segment}`
 		}
 
 		const toResult = (statut: Statuts): string =>
-			`../${paths.résultat.index}/${paths.résultat[statut]}`
+			`${isAtIndex ? '' : '../'}${paths.résultat.index}/${
+				paths.résultat[statut]
+			}`
 
 		return { toStep, toResult }
-	}, [paths])
+	}, [paths, isAtIndex])
 }
