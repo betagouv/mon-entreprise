@@ -23,10 +23,13 @@ export default function SimulationChargéeBanner() {
 	}
 
 	const { origine, règlesObsolètes } = simulationSource
-	const aDesRèglesIgnorées = règlesObsolètes.length > 0
+	const aDesRèglesObsolètes = règlesObsolètes.length > 0
 
 	return (
-		<SimulationBanner icon={aDesRèglesIgnorées ? '⚠️' : icôneParOrigine[origine]}>
+		<SimulationBanner
+			icon={aDesRèglesObsolètes ? '⚠️' : icôneParOrigine[origine]}
+			type={aDesRèglesObsolètes ? 'error' : 'info'}
+		>
 			{origine === OrigineSimulation.LIEN_PARTAGÉ && (
 				<Trans i18nKey="simulationChargéeBanner.lienPartagé">
 					Cette simulation a été chargée depuis un lien partagé.
@@ -37,7 +40,7 @@ export default function SimulationChargéeBanner() {
 					Votre simulation précédente a été restaurée.
 				</Trans>
 			)}
-			{aDesRèglesIgnorées && (
+			{aDesRèglesObsolètes && (
 				<>
 					{' '}
 					<Trans i18nKey="simulationChargéeBanner.règlesDéfaillantes">
