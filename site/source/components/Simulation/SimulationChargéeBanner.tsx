@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import SimulationBanner from '@/components/Simulation/Banner'
 import { Link } from '@/design-system'
 import { simulationSourceSelector } from '@/store/selectors/simulationSource.selector'
-import { fermeLeBandeau } from '@/store/slices/simulationSource.slice'
+import {
+	fermeLeBandeau,
+	OrigineSimulation,
+} from '@/store/slices/simulationSource.slice'
 
-const icôneParOrigine = {
-	'lien-partagé': '🔗',
-	sauvegarde: '💾',
-} as const
+const icôneParOrigine: Record<OrigineSimulation, string> = {
+	[OrigineSimulation.LIEN_PARTAGÉ]: '🔗',
+	[OrigineSimulation.SAUVEGARDE]: '💾',
+}
 
 export default function SimulationChargéeBanner() {
 	const simulationSource = useSelector(simulationSourceSelector)
@@ -24,12 +27,12 @@ export default function SimulationChargéeBanner() {
 
 	return (
 		<SimulationBanner icon={aDesRèglesIgnorées ? '⚠️' : icôneParOrigine[origine]}>
-			{origine === 'lien-partagé' && (
+			{origine === OrigineSimulation.LIEN_PARTAGÉ && (
 				<Trans i18nKey="simulationChargéeBanner.lienPartagé">
 					Cette simulation a été chargée depuis un lien partagé.
 				</Trans>
 			)}
-			{origine === 'sauvegarde' && (
+			{origine === OrigineSimulation.SAUVEGARDE && (
 				<Trans i18nKey="simulationChargéeBanner.sauvegarde">
 					Votre simulation précédente a été restaurée.
 				</Trans>
