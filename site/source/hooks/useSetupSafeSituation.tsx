@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setEngineSituation } from '@/domaine/engine/engineCache'
 import { NomModèle } from '@/domaine/SimulationConfig'
 import { supprimeLaRègleDeLaSituation } from '@/store/actions/actions'
+import { règleObsolèteDétectée } from '@/store/slices/simulationSource.slice'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { configSituationSelector } from '@/store/selectors/simulation/config/configSituation.selector'
@@ -28,6 +29,7 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 
 			if (faultyDottedName in simulatorSituation) {
 				dispatch(supprimeLaRègleDeLaSituation(faultyDottedName))
+				dispatch(règleObsolèteDétectée(faultyDottedName))
 			} else {
 				const dottedName = JSON.stringify(faultyDottedName)
 				let errorMessage = `Bad unknow situation : ${dottedName}`

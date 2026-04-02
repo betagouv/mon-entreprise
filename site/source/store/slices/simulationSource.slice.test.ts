@@ -4,12 +4,13 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import {
 	fermeLeBandeau,
+	règleObsolèteDétectée,
 	simulationChargéeDepuisLien,
 	simulationSourceReducer,
 	SimulationSourceState,
 } from './simulationSource.slice'
 
-const règleIgnorée = 'dirigeant . auto-entrepreneur . éligible' as DottedName
+const règleObsolète = 'dirigeant . auto-entrepreneur . éligible' as DottedName
 
 describe('simulationSourceReducer', () => {
 	it("est null à l'initialisation", () => {
@@ -24,41 +25,41 @@ describe('simulationSourceReducer', () => {
 
 		expect(state).toEqual({
 			origine: 'lien-partagé',
-			règlesIgnorées: [],
+			règlesObsolètes: [],
 		})
 	})
 
 	it('enregistre le chargement depuis un lien partagé avec des règles ignorées', () => {
 		const state = simulationSourceReducer(
 			undefined,
-			simulationChargéeDepuisLien([règleIgnorée])
+			simulationChargéeDepuisLien([règleObsolète])
 		)
 
 		expect(state).toEqual({
 			origine: 'lien-partagé',
-			règlesIgnorées: [règleIgnorée],
+			règlesObsolètes: [règleObsolète],
 		})
 	})
 
-	it("ajoute une règle ignorée quand une source est active", () => {
+	it('ajoute une règle obsolète quand une source est active', () => {
 		const initial: SimulationSourceState = {
 			origine: 'sauvegarde',
-			règlesIgnorées: [],
+			règlesObsolètes: [],
 		}
 
-		const state = simulationSourceReducer(initial, {
-			type: 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION',
-			fieldName: règleIgnorée,
-		})
+		const state = simulationSourceReducer(
+			initial,
+			règleObsolèteDétectée(règleObsolète)
+		)
 
-		expect(state?.règlesIgnorées).toEqual([règleIgnorée])
+		expect(state?.règlesObsolètes).toEqual([règleObsolète])
 	})
 
-	it("n'ajoute pas de règle ignorée quand aucune source n'est active", () => {
-		const state = simulationSourceReducer(null, {
-			type: 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION',
-			fieldName: règleIgnorée,
-		})
+	it("n'ajoute pas de règle obsolète quand aucune source n'est active", () => {
+		const state = simulationSourceReducer(
+			null,
+			règleObsolèteDétectée(règleObsolète)
+		)
 
 		expect(state).toBeNull()
 	})
@@ -70,14 +71,14 @@ describe('simulationSourceReducer', () => {
 
 		expect(state).toEqual({
 			origine: 'sauvegarde',
-			règlesIgnorées: [],
+			règlesObsolètes: [],
 		})
 	})
 
 	it('se réinitialise quand la simulation est reconfigurée', () => {
 		const initial: SimulationSourceState = {
 			origine: 'lien-partagé',
-			règlesIgnorées: [],
+			règlesObsolètes: [],
 		}
 
 		const state = simulationSourceReducer(initial, {
@@ -93,7 +94,7 @@ describe('simulationSourceReducer', () => {
 	it("se réinitialise quand l'utilisateur ferme le bandeau", () => {
 		const initial: SimulationSourceState = {
 			origine: 'sauvegarde',
-			règlesIgnorées: [règleIgnorée],
+			règlesObsolètes: [règleObsolète],
 		}
 
 		const state = simulationSourceReducer(initial, fermeLeBandeau())

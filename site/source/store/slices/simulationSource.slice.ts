@@ -12,7 +12,7 @@ export type OrigineSimulation =
 
 export type SimulationSourceState = {
 	origine: OrigineSimulation
-	règlesIgnorées: DottedName[]
+	règlesObsolètes: DottedName[]
 } | null
 
 const simulationSourceSlice = createSlice({
@@ -25,7 +25,12 @@ const simulationSourceSlice = createSlice({
 		) {
 			return {
 				origine: OrigineSimulation.LIEN_PARTAGÉ,
-				règlesIgnorées: action.payload,
+				règlesObsolètes: action.payload,
+			}
+		},
+		règleObsolèteDétectée(state, action: PayloadAction<DottedName>) {
+			if (state) {
+				state.règlesObsolètes.push(action.payload)
 			}
 		},
 		fermeLeBandeau() {
@@ -42,21 +47,16 @@ const simulationSourceSlice = createSlice({
 				(action) => action.type === 'CHARGE_LA_SIMULATION_PRÉCÉDENTE',
 				() => ({
 					origine: OrigineSimulation.SAUVEGARDE,
-					règlesIgnorées: [] as DottedName[],
+					règlesObsolètes: [] as DottedName[],
 				})
-			)
-			.addMatcher(
-				(action) => action.type === 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION',
-				(state, action: { fieldName: DottedName }) => {
-					if (state) {
-						state.règlesIgnorées.push(action.fieldName)
-					}
-				}
 			)
 	},
 })
 
-export const { simulationChargéeDepuisLien, fermeLeBandeau } =
-	simulationSourceSlice.actions
+export const {
+	simulationChargéeDepuisLien,
+	règleObsolèteDétectée,
+	fermeLeBandeau,
+} = simulationSourceSlice.actions
 
 export const simulationSourceReducer = simulationSourceSlice.reducer
