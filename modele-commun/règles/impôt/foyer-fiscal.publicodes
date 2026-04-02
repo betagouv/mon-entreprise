@@ -18,6 +18,16 @@ impôt . foyer fiscal . autres revenus imposables:
   par défaut: 0 €/an
 
 impôt . foyer fiscal . situation de famille:
+  variations:
+    - si:
+        toutes ces conditions:
+          - est défini: paramètres . impôt . foyer fiscal . situation de famille
+          - paramètres . impôt . foyer fiscal . situation de famille
+      alors: paramètres . impôt . foyer fiscal . situation de famille
+    - sinon: question
+
+impôt . foyer fiscal . situation de famille . question:
+  titre: Situation de famille
   question: Quelle est votre situation familiale ?
   une possibilité:
     - célibataire:

@@ -1,5 +1,7 @@
 paramètres:
+
 paramètres . impôt:
+
 paramètres . impôt . revenu imposable:
   description: |
     C’est le revenu à prendre en compte, sans y appliquer d'abattement
@@ -15,5 +17,11 @@ paramètres . impôt . revenu d'activité:
 
     Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l'IS.
   par défaut: 0 €/an
+
 paramètres . impôt . taux neutre applicable:
   par défaut: non
+
+paramètres . impôt . foyer fiscal:
+paramètres . impôt . foyer fiscal . situation de famille:
+  description: |
+    Permet d'imposer une valeur à situation de famille.
