@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setEngineSituation } from '@/domaine/engine/engineCache'
 import { NomModèle } from '@/domaine/SimulationConfig'
 import { supprimeLaRègleDeLaSituation } from '@/store/actions/actions'
-import { règleObsolèteDétectée } from '@/store/slices/simulationSource.slice'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { configSituationSelector } from '@/store/selectors/simulation/config/configSituation.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { règleObsolèteDétectée } from '@/store/slices/simulationSource.slice'
 import { safeSetSituation } from '@/utils/publicodes/safeSetSituation'
 
 export const useSetupSafeSituation = (nomModèle?: NomModèle) => {

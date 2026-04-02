@@ -66,8 +66,7 @@ export const getRèglesIgnoréesFromSearchParams = (
 ): DottedName[] =>
 	[...searchParams.keys()]
 		.filter(
-			(key) =>
-				!PARAMS_RÉSERVÉS.has(key) && !rules.includes(key as DottedName)
+			(key) => !PARAMS_RÉSERVÉS.has(key) && !rules.includes(key as DottedName)
 		)
 		.map((key) => key as DottedName)
 
