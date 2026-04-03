@@ -2056,18 +2056,42 @@ dirigeant . indépendant . PL . CARMF . retraite CNAVPL:
   titre.en: '[automatic] CNAVPL basic pension (after CPAM participation)'
   titre.fr: retraite de base CNAVPL (après participation CPAM)
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
-  description.en: >-
-    [automatic] The CARMF manages the complementary pension scheme.
+  description.en: >
+    [automatic] CARMF manages the supplementary pension scheme.
 
-    The amount of the contributions is determined according to the net income from independent activity of the penultimate year.
 
-    Contributions for the first two years of membership are not due, unless you are over 40 years of age when you start your liberal activity. In that case, the contribution is proportional to the capped net self-employed income of 2018, without any subsequent adjustment, with a maximum contribution of € 14,110.
-  description.fr: >-
+    The amount of contributions is determined on the basis of net self-employed income
+
+    of the penultimate year.
+
+
+    No contributions are due for the first two years of membership, unless
+
+    you are over 40 when you start your self-employed activity. In this case,
+
+    contributions are proportional to your net self-employed income of
+
+    2024, without subsequent adjustment, with a maximum contribution of
+
+    of €19,849.
+  description.fr: >
     La CARMF gère le régime de retraite complémentaire.
 
-    Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
 
-    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+    Le montant des cotisations est déterminé en fonction des revenus nets d’activité
+
+    indépendante de l’avant-dernière année.
+
+
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf
+
+    si vous avez plus de 40 ans au début de votre activité libérale. Dans ce cas,
+
+    la cotisation est proportionnelle aux revenus nets d'activité indépendante de
+
+    2024 plafonnés, sans régularisation ultérieure, avec une cotisation maximale
+
+    de 19 849 €.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 dirigeant . indépendant . PL . CARPIMKO:

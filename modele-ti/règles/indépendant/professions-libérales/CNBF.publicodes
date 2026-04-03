@@ -13,6 +13,7 @@ indépendant . profession libérale . réglementée . CNBF . retraite de base:
     - cotisation proportionnelle
   références:
     Barèmes: https://www.cnbf.fr/medias/documents/?_sft_thematique-media=baremes
+    Barème 2026: https://www.cnbf.fr/wp-content/uploads/2026/01/Bareme-CNBF-2026.01.01.pdf
     Barème 2025: https://www.cnbf.fr/wp-content/uploads/2025/02/Bareme-CNBF-2025-01.01_vDf-1.pdf
     Barème 2024: https://www.cnbf.fr/wp-content/uploads/2024/11/Bareme-CNBF-2024-01.20.pdf
     Barème 2023: https://www.cnbf.fr/wp-content/uploads/2024/11/Bareme-CNBF-2023-01.10.pdf
@@ -24,49 +25,62 @@ indépendant . profession libérale . réglementée . CNBF . retraite de base:
         tranches:
           - montant:
               variations:
-                - si: date >= 01/2025
-                  alors: 351 €/an
-                - si: date >= 01/2024
+                - si: date < 01/2024
+                  alors: 324 €/an
+                - si: date < 01/2025
                   alors: 337 €/an
-                - sinon: 324 €/an
+                - si: date < 01/2026
+                  alors: 351 €/an
+                - sinon: 363 €/an
             plafond: 1 an
           - montant:
               variations:
-                - si: date >= 01/2025
-                  alors: 705 €/an
-                - si: date >= 01/2024
+                - si: date < 01/2024
+                  alors: 651 €/an
+                - si: date < 01/2025
                   alors: 677 €/an
-                - sinon: 651 €/an
+                - si: date < 01/2026
+                  alors: 705 €/an
+                - sinon: 730 €/an
             plafond: 2 an
           - montant:
               variations:
-                - si: date >= 01/2025
-                  alors: 1106 €/an
-                - si: date >= 01/2024
+                - si: date < 01/2024
+                  alors: 1021 €/an
+                - si: date < 01/2025
                   alors: 1062 €/an
-                - sinon: 1021 €/an
+                - si: date < 01/2026
+                  alors: 1106 €/an
+                - sinon: 1145 €/an
             plafond: 3 an
           - montant:
               variations:
-                - si: date >= 01/2025
-                  alors: 1505 €/an
-                - si: date >= 01/2024
+                - si: date < 01/2024
+                  alors: 1390 €/an
+                - si: date < 01/2025
                   alors: 1446 €/an
-                - sinon: 1390 €/an
+                - si: date < 01/2026
+                  alors: 1505 €/an
+                - sinon: 1558 €/an
             plafond: 5 an
           - montant:
               variations:
-                - si: date >= 01/2025
-                  alors: 1921 €/an
-                - si: date >= 01/2024
+                - si: date < 01/2024
+                  alors: 1774 €/an
+                - si: date < 01/2025
                   alors: 1845 €/an
-                - sinon: 1774 €/an
+                - si: date < 01/2026
+                  alors: 1921 €/an
+                - sinon: 1988 €/an
 
     cotisation proportionnelle:
       produit:
         - valeur: cotisations et contributions . assiette sociale
           plafond: 297549 €/an
-        - 3.1%
+        - variations:
+            - si: date < 01/2025
+              alors: 3.1%
+            - sinon: 3.2%
 
 indépendant . profession libérale . réglementée . CNBF . retraite complémentaire:
   barème:
@@ -75,43 +89,49 @@ indépendant . profession libérale . réglementée . CNBF . retraite complémen
     tranches:
       - taux:
           variations:
-            - si: classe = 'C1'
+            - si: date < 01/2026
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 5.2%
-                  - si: date >= 01/2024
-                    alors: 5%
-                  - sinon: 4.8%
-            - si: classe = 'C2'
-              alors:
-                variations:
-                  - si: date >= 01/2025
+                  - si: classe = 'C1'
+                    alors:
+                      variations:
+                        - si: date < 01/2024
+                          alors: 4.8%
+                        - si: date < 01/2025
+                          alors: 5%
+                        - sinon: 5.2%
+                  - si: classe = 'C2'
+                    alors:
+                      variations:
+                        - si: date < 01/2024
+                          alors: 5.4%
+                        - si: date < 01/2025
+                          alors: 5.5%
+                        - sinon: 6%
+                  - si: classe = 'C2P'
                     alors: 6%
-                  - si: date >= 01/2024
-                    alors: 5.5%
-                  - sinon: 5.4%
-            - si: classe = 'C2P'
-              alors: 6%
+            - sinon: 7%
         plafond: 1
       - taux:
           variations:
             - si: classe = 'C1'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 10%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 9.2%
+                  - si: date < 01/2025
                     alors: 9.6%
-                  - sinon: 9.2%
+                  - si: date < 01/2026
+                    alors: 10%
+                  - sinon: 10.4%
             - si: classe = 'C2'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 11.6%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 10.4%
+                  - si: date < 01/2025
                     alors: 10.6%
-                  - sinon: 10.4%
+                  - sinon: 11.6%
             - si: classe = 'C2P'
               alors: 11.6%
         plafond: 2
@@ -120,19 +140,21 @@ indépendant . profession libérale . réglementée . CNBF . retraite complémen
             - si: classe = 'C1'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 11.7%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 10.7%
+                  - si: date < 01/2025
                     alors: 11.2%
-                  - sinon: 10.7%
+                  - si: date < 01/2026
+                    alors: 11.7%
+                  - sinon: 12.2%
             - si: classe = 'C2'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 13.7%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 12.2%
+                  - si: date < 01/2025
                     alors: 12.45%
-                  - sinon: 12.2%
+                  - sinon: 13.7%
             - si: classe = 'C2P'
               alors: 13.7%
         plafond: 3
@@ -141,19 +163,21 @@ indépendant . profession libérale . réglementée . CNBF . retraite complémen
             - si: classe = 'C1'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 13.4%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 12.2%
+                  - si: date < 01/2025
                     alors: 12.8%
-                  - sinon: 12.2%
+                  - si: date < 01/2026
+                    alors: 13.4%
+                  - sinon: 14%
             - si: classe = 'C2'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 15.8%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 14%
+                  - si: date < 01/2025
                     alors: 14.3%
-                  - sinon: 14%
+                  - sinon: 15.8%
             - si: classe = 'C2P'
               alors: 15.8%
         plafond: 4
@@ -162,25 +186,27 @@ indépendant . profession libérale . réglementée . CNBF . retraite complémen
             - si: classe = 'C1'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 15.1%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 13.7%
+                  - si: date < 01/2025
                     alors: 14.4%
-                  - sinon: 13.7%
+                  - si: date < 01/2026
+                    alors: 15.1%
+                  - sinon: 15.8%
             - si: classe = 'C2'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 17.9%
-                  - si: date >= 01/2024
+                  - si: date < 01/2024
+                    alors: 15.8%
+                  - si: date < 01/2025
                     alors: 16.15%
-                  - sinon: 15.8%
+                  - sinon: 17.9%
             - si: classe = 'C2P'
               alors:
                 variations:
-                  - si: date >= 01/2025
-                    alors: 20.4%
-                  - sinon: 17.9%
+                  - si: date < 01/2025
+                    alors: 17.9%
+                  - sinon: 20.4%
         plafond: 5
   arrondi: oui
   note: |
@@ -189,9 +215,10 @@ indépendant . profession libérale . réglementée . CNBF . retraite complémen
     La classe 3+ n'est pas implémentée.
   références:
     Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2026: https://www.cnbf.fr/wp-content/uploads/2026/01/Bareme-CNBF-2026.01.01.pdf
     Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
     Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
-    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf
+    Barème 2023: https://www.cnbf.fr/wp-content/uploads/2024/11/Bareme-CNBF-2023-01.10.pdf
 
   avec:
     classe:
@@ -222,20 +249,21 @@ indépendant . profession libérale . réglementée . CNBF . invalidité et déc
       - si: entreprise . durée d'activité . en fin d'année < 5 an
         alors:
           variations:
-            - si: date >= 01/2025
-              alors: 68 €/an
-            - si: date >= 01/2024
+            - si: date < 01/2024
+              alors: 62 €/an
+            - si: date < 01/2025
               alors: 65 €/an
-            - sinon: 62 €/an
+            - sinon: 68 €/an
       - sinon:
           variations:
-            - si: date >= 01/2025
-              alors: 170 €/an
-            - si: date >= 01/2024
+            - si: date < 01/2024
+              alors: 153 €/an
+            - si: date < 01/2025
               alors: 162 €/an
-            - sinon: 153 €/an
+            - sinon: 170 €/an
   références:
     Barèmes: https://www.cnbf.fr/espace-documentaire/baremes/
+    Barème 2026: https://www.cnbf.fr/wp-content/uploads/2026/01/Bareme-CNBF-2026.01.01.pdf
     Barème 2025: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2025-01.09.pdf
     Barème 2024: https://www.cnbf.fr/wp-content/uploads/2023/09/Bareme-CNBF-2024-01.20.pdf
     Barème 2023: https://www.cnbf.fr/wp-content/uploads/2023/01/Bareme-CNBF-2023-01.10.pdf

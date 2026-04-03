@@ -4038,18 +4038,42 @@ indépendant . profession libérale . réglementée . CARMF . participation CPAM
   titre.en: '[automatic] participation CPAM retraite'
   titre.fr: participation CPAM retraite
 indépendant . profession libérale . réglementée . CARMF . retraite complémentaire:
-  description.en: >-
+  description.en: >
     [automatic] CARMF manages the supplementary pension scheme.
 
-    The amount of contributions is determined on the basis of net self-employed income for the penultimate year.
 
-    No contributions are due for the first two years of membership, unless you are over 40 when you start your self-employed activity. In this case, the contribution is proportional to the capped 2018 net self-employed income, with no subsequent adjustment, and a maximum contribution of €14,110.
-  description.fr: >-
+    The amount of contributions is determined on the basis of net self-employed income
+
+    of the penultimate year.
+
+
+    No contributions are due for the first two years of membership, unless
+
+    you are over 40 when you start your self-employed activity. In this case,
+
+    contributions are proportional to your net self-employed income of
+
+    2024, without subsequent adjustment, with a maximum contribution of
+
+    of €19,849.
+  description.fr: >
     La CARMF gère le régime de retraite complémentaire.
 
-    Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
 
-    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+    Le montant des cotisations est déterminé en fonction des revenus nets d’activité
+
+    indépendante de l’avant-dernière année.
+
+
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf
+
+    si vous avez plus de 40 ans au début de votre activité libérale. Dans ce cas,
+
+    la cotisation est proportionnelle aux revenus nets d'activité indépendante de
+
+    2024 plafonnés, sans régularisation ultérieure, avec une cotisation maximale
+
+    de 19 849 €.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
 indépendant . profession libérale . réglementée . CARPIMKO:
@@ -4178,12 +4202,12 @@ indépendant . profession libérale . réglementée . CAVP . invalidité et déc
   titre.fr: invalidité et décès
 indépendant . profession libérale . réglementée . CAVP . retraite complémentaire:
   avec:
-    part géré par capitalisation:
+    part gérée par capitalisation:
       titre.en: '[automatic] share managed by capitalization'
-      titre.fr: part géré par capitalisation
-    part géré par répartition:
-      titre.en: '[automatic] pay-as-you-go'
-      titre.fr: part géré par répartition
+      titre.fr: part gérée par capitalisation
+    part gérée par répartition:
+      titre.en: '[automatic] portion managed on a pay-as-you-go basis'
+      titre.fr: part gérée par répartition
   description.en: >
     [automatic] Contributions to the supplementary scheme comprise :
 

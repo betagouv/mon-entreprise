@@ -31,13 +31,14 @@ indépendant . profession libérale . réglementée . CAVP . demande reduction:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
 indépendant . profession libérale . réglementée . CAVP . cotisation de référence:
-  valeur:
-    variations:
-      - si: date >= 01/2025
-        alors: 1423 €
-      - si: date >= 01/2024
-        alors: 1376 €
-      - sinon: 1306 €
+  variations:
+    - si: date < 01/2024
+      alors: 1306 €/an
+    - si: date < 01/2025
+      alors: 1376 €/an
+    - si: date < 01/2026
+      alors: 1423 €/an
+    - sinon: 1453 €/an
   reference:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
@@ -48,8 +49,8 @@ indépendant . profession libérale . réglementée . CAVP . retraite complémen
     - une part gérée par capitalisation dont le montant varie de 2 à 12 fois la cotisation de référence
     selon le montant de votre revenu de référence (revenu d’activité non salarié N-2).
   somme:
-    - part géré par répartition
-    - part géré par capitalisation
+    - part gérée par répartition
+    - part gérée par capitalisation
   abattement:
     applicable si: CNAVPL . exonération incapacité
     valeur: 100%
@@ -59,10 +60,16 @@ indépendant . profession libérale . réglementée . CAVP . retraite complémen
     Arrêté du 3 octobre 2019 portant approbation des modifications apportées aux statuts du régime d'assurance vieillesse complémentaire et aux statuts généraux de la section professionnelle des pharmaciens (CAVP): https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000039357705
 
   avec:
-    part géré par répartition:
-      formule: 5 * cotisation de référence
+    part gérée par répartition:
+      variations:
+        - si:
+            toutes ces conditions:
+              - date >= 01/2026
+              - date < 01/2027
+          alors: 7657 €/an
+        - sinon: 5 * cotisation de référence
 
-    part géré par capitalisation:
+    part gérée par capitalisation:
       grille:
         assiette: cotisations et contributions . assiette sociale
         multiplicateur: plafond sécurité sociale . N-1
@@ -90,13 +97,14 @@ indépendant . profession libérale . réglementée . CAVP . retraite complémen
             - montant: 12 * cotisation de référence
 
 indépendant . profession libérale . réglementée . CAVP . invalidité et décès:
-  valeur:
-    variations:
-      - si: date >= 01/2025
-        alors: 689 €/an
-      - si: date >= 01/2024
-        alors: 674 €/an
-      - sinon: 608 €/an
+  variations:
+    - si: date < 01/2024
+      alors: 608 €/an
+    - si: date < 01/2025
+      alors: 674 €/an
+    - si: date < 01/2026
+      alors: 689 €/an
+    - sinon: 696 €/an
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations
 
@@ -117,27 +125,22 @@ indépendant . profession libérale . réglementée . CAVP . PCV:
   avec:
     cotisation forfaitaire:
       variations:
-        - si: date >= 01/2025
-          alors: 2138 €/an
-        - si: date >= 01/2024
-          alors: 2051 €/an
-        - si: date >= 01/2023
+        - si: date < 01/2024
           alors: 1911 €/an
-        - si: date >= 01/2022
-          alors: 1788 €/an
-        - si: date >= 01/2021
-          alors: 1728 €/an
+        - si: date < 01/2025
+          alors: 2051 €/an
+        - si: date < 01/2026
+          alors: 2138 €/an
+        - sinon: 2200 €/an
 
     cotisation proportionnelle:
       produit:
         - valeur: cotisations et contributions . assiette sociale
           plafond: 5 * plafond sécurité sociale
         - variations:
-            - si: date >= 01/2024
-              alors: 1.20%
-            - si: date >= 01/2023
+            - si: date < 01/2024
               alors: 0.60%
-            - sinon: 0.30%
+            - sinon: 1.20%
 
     participation CPAM:
       somme:

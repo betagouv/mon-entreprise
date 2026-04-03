@@ -35,25 +35,25 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur d'acquisition:
       variations:
-        - si: date >= 01/2026
-          alors: 21.726 €/point
-        - si: date >= 01/2025
-          alors: 21.532 €/point
-        - si: date >= 01/2024
+        - si: date < 01/2024
+          alors: 19.394 €/point
+        - si: date < 01/2025
           alors: 20.734 €/point
-        - sinon: 19.394 €/point
+        - si: date < 01/2026
+          alors: 21.532 €/point
+        - sinon: 21.726 €/point
       références:
         Valeur d’achat du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_achat_point_bar.aspx
 
     valeur du point:
       variations:
-        - si: date >= 01/2026
-          alors: 1.347 €/an/point
-        - si: date >= 01/2025
-          alors: 1.335 €/an/point
-        - si: date >= 01/2024
+        - si: date < 01/2024
+          alors: 1.280 €/an/point
+        - si: date < 01/2025
           alors: 1.327 €/an/point
-        - sinon: 1.280 €/an/point
+        - si: date < 01/2026
+          alors: 1.335 €/an/point
+        - sinon: 1.347 €/an/point
       références:
         Valeur de service du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
 
@@ -81,13 +81,13 @@ protection sociale . retraite . complémentaire . Cipav:
 
     valeur d'acquisition:
       variations:
-        - si: date >= 01/2024
-          alors: 47.40 €/point
-        - sinon: 45.30 €/point
+        - si: date < 01/2024
+          alors: 45.30 €/point
+        - sinon: 47.40 €/point
 
     valeur de service du point:
       unité: €/an/point
       variations:
-        - si: date >= 01/2024
-          alors: 2.89 €/an/point
-        - sinon: 2.77 €/an/point
+        - si: date < 01/2024
+          alors: 2.77 €/an/point
+        - sinon: 2.89 €/an/point
