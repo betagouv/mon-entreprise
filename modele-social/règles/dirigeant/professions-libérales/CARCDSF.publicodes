@@ -26,13 +26,13 @@ dirigeant . indépendant . PL . CARCDSF . retraite complémentaire:
     cotisation forfaitaire:
       produit:
         - variations:
-            - si: date >= 01/2025
-              alors: 3178.80 €/an
-            - si: date >= 01/2024
-              alors: 3108.00 €/an
-            - si: date >= 01/2023
+            - si: date < 01/2024
               alors: 2959.80 €/an
-            - sinon: 2960.40 €/an
+            - si: date < 01/2025
+              alors: 3108.00 €/an
+            - si: date < 01/2026
+              alors: 3178.80 €/an
+            - sinon: 3210.60 €/an
         - variations:
             - si: taux réduction
               alors: taux réduction
@@ -85,11 +85,11 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . RID:
   titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
   variations:
-    - si: date >= 01/2024
-      alors: 1284.40 €/an
-    - si: date >= 01/2023
+    - si: date < 01/2024
       alors: 1235 €/an
-    - sinon: 1078 €/an
+    - si: date < 01/2026
+      alors: 1284.40 €/an
+    - sinon: 1235 €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
     Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
@@ -121,6 +121,8 @@ dirigeant . indépendant . PL . CARCDSF . chirurgien-dentiste . PCV:
   avec:
     forfaitaire:
       variations:
+        - si: date >= 01/2026
+          alors: 1663.60 €/an
         - si: date >= 01/2025
           alors: 1648.76 €/an
         - si: date >= 01/2024
@@ -171,6 +173,8 @@ dirigeant . indépendant . PL . CARCDSF . sage-femme . RID:
     Aucun changement de classe n'est autorisé après le 1er juillet du 56e anniversaire.
   remplace: cotisations et contributions . invalidité et décès
   variations:
+    - si: date >= 01/2026
+      alors: 384 €/an
     - si: date >= 01/2025
       alors: 380 €/an
     - si: date >= 01/2024

@@ -31,18 +31,14 @@ dirigeant . indépendant . PL . CAVP . demande reduction:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
 dirigeant . indépendant . PL . CAVP . cotisation de référence:
-  valeur:
-    variations:
-      - si: date >= 01/2025
-        alors: 1423 €
-      - si: date >= 01/2024
-        alors: 1376 €
-      - si: date >= 01/2023
-        alors: 1306 €
-      - si: date >= 01/2022
-        alors: 1232 €
-      - si: date >= 01/2021
-        alors: 1200 €
+  variations:
+    - si: date < 01/2024
+      alors: 1306 €/an
+    - si: date < 01/2025
+      alors: 1376 €/an
+    - si: date < 01/2026
+      alors: 1423 €/an
+    - sinon: 1453 €/an
   reference:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
@@ -101,13 +97,14 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire:
 dirigeant . indépendant . PL . CAVP . invalidité et décès:
   titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
-  valeur:
-    variations:
-      - si: date >= 01/2025
-        alors: 689 €/an
-      - si: date >= 01/2024
-        alors: 674 €/an
-      - sinon: 608 €/an
+  variations:
+    - si: date < 01/2024
+      alors: 608 €/an
+    - si: date < 01/2025
+      alors: 674 €/an
+    - si: date < 01/2026
+      alors: 689 €/an
+    - sinon: 696 €/an
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations
 
@@ -129,27 +126,22 @@ dirigeant . indépendant . PL . CAVP . PCV:
   avec:
     cotisations forfaitaire:
       variations:
-        - si: date >= 01/2025
-          alors: 2138 €/an
-        - si: date >= 01/2024
-          alors: 2051 €/an
-        - si: date >= 01/2023
+        - si: date < 01/2024
           alors: 1911 €/an
-        - si: date >= 01/2022
-          alors: 1788 €/an
-        - si: date >= 01/2021
-          alors: 1728 €/an
+        - si: date < 01/2025
+          alors: 2051 €/an
+        - si: date < 01/2026
+          alors: 2138 €/an
+        - sinon: 2200 €/an
 
     cotisations proportionnelle:
       produit:
         - valeur: assiette des cotisations
           plafond: 5 * plafond sécurité sociale
         - variations:
-            - si: date >= 01/2024
-              alors: 1.20%
-            - si: date >= 01/2023
+            - si: date < 01/2024
               alors: 0.60%
-            - sinon: 0.30%
+            - sinon: 1.20%
 
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
   somme:

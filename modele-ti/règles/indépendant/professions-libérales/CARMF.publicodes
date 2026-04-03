@@ -40,12 +40,17 @@ indépendant . profession libérale . réglementée . CARMF . participation CPAM
     Avenant 5 à la convention médical: https://www.ameli.fr/sites/default/files/Documents/434342/document/avis_relatif_a_lavenant_ndeg_5_a_la_convention_nationale_organisant_les_rapports_entre_les_medecins_liberaux_et_lassurance_maladie.pdf
 
 indépendant . profession libérale . réglementée . CARMF . retraite complémentaire:
-  description: >-
+  description: |
     La CARMF gère le régime de retraite complémentaire.
 
-    Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
+    Le montant des cotisations est déterminé en fonction des revenus nets d’activité
+    indépendante de l’avant-dernière année.
 
-    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf
+    si vous avez plus de 40 ans au début de votre activité libérale. Dans ce cas,
+    la cotisation est proportionnelle aux revenus nets d'activité indépendante de
+    2024 plafonnés, sans régularisation ultérieure, avec une cotisation maximale
+    de 19 849 €.
   variations:
     - si: entreprise . durée d'activité . en fin d'année < 2 ans
       alors: 0€/an
@@ -86,28 +91,33 @@ indépendant . profession libérale . réglementée . CARMF . invalidité et dé
       tranches:
         - montant:
             variations:
-              - si: date >= 01/2025
+              - si: date < 01/2025
+                alors: 631 €/an
+              - si: date < 01/2026
                 alors: 623 €/an
-              - sinon: 631 €/an
+              - sinon: 626 €/an
           plafond: 1
         - montant:
             variations:
-              - si: date >= 01/2025
-                alors:
+              - si: date < 01/2025
+                alors: 712 €/an
+              - sinon:
                   somme:
                     - part forfaitaire
                     - part variable maladie
                     - part variable invalidité
-              - sinon: 712 €/an
           plafond: 3
         - montant:
             variations:
-              - si: date >= 01/2025
+              - si: date < 01/2025
+                alors: 828 €/an
+              - si: date < 01/2026
                 alors: 999 €/an
-              - sinon: 828 €/an
+              - sinon: 1010 €/an
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
+    Taux 2026: https://www.carmf.fr/page.php?page=chiffrescles/stats/2026/taux2026.htm
     Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
     Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
@@ -153,6 +163,7 @@ indépendant . profession libérale . réglementée . CARMF . PCV:
 
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Taux 2026: https://www.carmf.fr/page.php?page=chiffrescles/stats/2026/taux2026.htm
     Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
     Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
@@ -160,17 +171,22 @@ indépendant . profession libérale . réglementée . CARMF . PCV:
   avec:
     cotisation forfaitaire:
       variations:
-        - si: date >= 01/2025
-          alors: 5556 €/an
-        - si: date >= 01/2024
+        - si: date < 01/2024
+          alors: 5622 €/an
+        - si: date < 01/2025
           alors: 5421 €/an
-        - sinon: 5622 €/an
+        - si: date < 01/2026
+          alors: 5556 €/an
+        - sinon: 5751 €/an
 
     cotisation proportionnelle:
       produit:
         - valeur: PAMC . assiette sociale conventionnée
           plafond: 5 * plafond sécurité sociale
-        - 3.80%
+        - variations:
+            - si: date < 01/2026
+              alors: 3.80%
+            - sinon: 4.00%
       unité: €/an
 
     participation CPAM:

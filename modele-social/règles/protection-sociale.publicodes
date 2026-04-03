@@ -346,39 +346,21 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
     valeur d'acquisition:
       variations:
-        - si: date >= 01/2026
-          alors: 20.1877 €/point
-        - si: date >= 01/2025
-          alors: 20.1877 €/point
-        - si: date >= 01/2024
-          alors: 19.6321 €/point
-        - si: date >= 01/2023
+        - si: date < 01/2024
           alors: 18.7669 €/point
-        - si: date >= 01/2022
-          alors: 17.4316 €/point
-        - si: date >= 01/2021
-          alors: 17.3982 €/point
-        - si: date >= 01/2020
-          alors: 17.3982 €/point
-        - si: date >= 01/01/2019
-          alors: 17.0571 €/point
+        - si: date < 01/2025
+          alors: 19.6321 €/point
+        - sinon: 20.1877 €/point
       références:
         'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
 
     valeur du point:
       variations:
-        - si: date >= 11/2024
-          alors: 1.4386 €/an/point
-        - si: date >= 11/2023
-          alors: 1.4159 €/an/point
-        - si: date >= 11/2022
+        - si: date < 11/2023
           alors: 1.3498 €/an/point
-        - si: date >= 11/2021
-          alors: 1.2841 €/an/point
-        - si: date >= 11/2019
-          alors: 1.2714 €/an/point
-        - si: date >= 01/2019
-          alors: 1.2588 €/an/point
+        - si: date < 11/2024
+          alors: 1.4159 €/an/point
+        - sinon: 1.4386 €/an/point
       références:
         'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
 
@@ -562,7 +544,7 @@ protection sociale . retraite . complémentaire . CIPAV:
     - points acquis
     - valeur de service du point
   références:
-    Comment est calculée la retraite ?: https://www.lacipav.fr/sites/default/files/2025-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital%202025.pdf
+    Comment est calculée ma retraite ?: https://www.lacipav.fr/calcul-retraite
 
   avec:
     points acquis:
@@ -593,20 +575,16 @@ protection sociale . retraite . complémentaire . CIPAV:
 
     valeur d'acquisition:
       variations:
-        - si: date >= 01/2024
-          alors: 47.40 €/point
-        - si: date >= 01/2023
+        - si: date < 01/2024
           alors: 45.30 €/point
+        - sinon: 47.40 €/point
 
     valeur de service du point:
       unité: €/an/point
       variations:
-        - si: date >= 01/2024
-          alors: 2.89 €/an/point
-        - si: date >= 01/2023
+        - si: date < 01/2024
           alors: 2.77 €/an/point
-        - si: date >= 01/2022
-          alors: 2.63 €/an/point
+        - sinon: 2.89 €/an/point
 
 protection sociale . maladie:
   icônes: 🏥

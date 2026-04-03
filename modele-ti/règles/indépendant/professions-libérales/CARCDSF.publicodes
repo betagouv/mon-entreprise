@@ -26,11 +26,13 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
     cotisation forfaitaire:
       produit:
         - variations:
-            - si: date >= 01/2025
-              alors: 3178.80 €/an
-            - si: date >= 01/2024
+            - si: date < 01/2024
+              alors: 2959.80 €/an
+            - si: date < 01/2025
               alors: 3108.00 €/an
-            - sinon: 2959.80 €/an
+            - si: date < 01/2026
+              alors: 3178.80 €/an
+            - sinon: 3210.60 €/an
         - variations:
             - si: taux réduction
               alors: taux réduction
@@ -92,7 +94,9 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
 indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . RID:
   titre: invalidité et décès
   variations:
-    - si: date >= 01/2024
+    - si: date < 01/2024
+      alors: 1235 €/an
+    - si: date < 01/2026
       alors: 1284.40 €/an
     - sinon: 1235 €/an
   références:
@@ -126,11 +130,13 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
   avec:
     cotisation forfaitaire:
       variations:
-        - si: date >= 01/2025
-          alors: 4946.28 €/an
-        - si: date >= 01/2024
+        - si: date < 01/2024
+          alors: 4633.08 €/an
+        - si: date < 01/2025
           alors: 4856.52 €/an
-        - sinon: 4633.08 €/an
+        - si: date < 01/2026
+          alors: 4946.28 €/an
+        - sinon: 4990.80 €/an
 
     cotisation proportionnelle:
       produit:
@@ -163,11 +169,13 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme: mét
 indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID:
   titre: invalidité et décès
   variations:
-    - si: date >= 01/2025
-      alors: 380 €/an
-    - si: date >= 01/2024
+    - si: date < 01/2024
+      alors: 280.80 €/an
+    - si: date < 01/2025
       alors: 351 €/an
-    - sinon: 280.80 €/an
+    - si: date < 01/2026
+      alors: 380 €/an
+    - sinon: 384 €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
     Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf

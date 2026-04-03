@@ -48,12 +48,17 @@ dirigeant . indépendant . PL . CARMF . participation CPAM retraite:
 
 dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   remplace: cotisations et contributions . retraite complémentaire
-  description: >-
+  description: |
     La CARMF gère le régime de retraite complémentaire.
 
-    Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
+    Le montant des cotisations est déterminé en fonction des revenus nets d’activité
+    indépendante de l’avant-dernière année.
 
-    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf
+    si vous avez plus de 40 ans au début de votre activité libérale. Dans ce cas,
+    la cotisation est proportionnelle aux revenus nets d'activité indépendante de
+    2024 plafonnés, sans régularisation ultérieure, avec une cotisation maximale
+    de 19 849 €.
   arrondi: oui
   variations:
     - si: entreprise . durée d'activité . en fin d'année < 2 ans
@@ -94,29 +99,29 @@ dirigeant . indépendant . PL . CARMF . invalidité décès:
       tranches:
         - montant:
             variations:
-              - si: date >= 01/2025
+              - si: date < 01/2025
+                alors: 631 €/an
+              - si: date < 01/2026
                 alors: 623 €/an
-              - sinon: 631 €/an
+              - sinon: 626 €/an
           plafond: 1
         - montant:
             variations:
-              - si: date >= 01/2025
-                alors:
+              - si: date < 01/2025
+                alors: 712 €/an
+              - sinon:
                   somme:
                     - part forfaitaire
                     - part variable maladie
                     - part variable invalidité
-              - si: date >= 01/2023
-                alors: 712 €/an
-              - sinon: 738 €/an
           plafond: 3
         - montant:
             variations:
-              - si: date >= 01/2025
-                alors: 999 €/an
-              - si: date >= 01/2023
+              - si: date < 01/2025
                 alors: 828 €/an
-              - sinon: 863 €/an
+              - si: date < 01/2026
+                alors: 999 €/an
+              - sinon: 1010 €/an
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
     Détails des couvertures: http://www.carmf.fr/page.php?page=cdrom/prev/prev-chiffre.htm
@@ -174,19 +179,22 @@ dirigeant . indépendant . PL . CARMF . ASV:
 
     forfaitaire:
       variations:
-        - si: date >= 01/2025
-          alors: 5556 €/an
-        - si: date >= 01/2024
-          alors: 5421 €/an
-        - si: date >= 01/2023
+        - si: date < 01/2024
           alors: 5622 €/an
-        - sinon: 5136 €/an
+        - si: date < 01/2025
+          alors: 5421 €/an
+        - si: date < 01/2026
+          alors: 5556 €/an
+        - sinon: 5751 €/an
 
     ajustement:
       produit:
         - valeur: PAMC . revenus activité conventionnée
           plafond: 5 * plafond sécurité sociale
-        - 3.80%
+        - variations:
+            - si: date < 01/2026
+              alors: 3.80%
+            - sinon: 4.00%
       unité: €/an
 
 dirigeant . indépendant . PL . CARMF . ASV . participation CPAM:

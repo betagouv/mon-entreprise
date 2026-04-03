@@ -8,36 +8,46 @@ indépendant . profession libérale . réglementée . CARPIMKO:
     Site CARPIMKO: https://www.carpimko.com
 
 indépendant . profession libérale . réglementée . CARPIMKO . retraite complémentaire:
-  somme:
-    - variations:
-        - si: date >= 01/2025
-          alors: 2312 €/an
-        - si: date >= 01/2024
-          alors: 2176 €/an
-        - sinon: 1944 €/an
-    - barème:
-        assiette: cotisations et contributions . assiette sociale
-        tranches:
-          - taux: 0%
-            plafond: 25246 €/an
-          - taux: 3%
-            plafond:
-              variations:
-                - si: date >= 01/2025
-                  alors: 237179 €/an
-                - si: date >= 01/2024
-                  alors: 224713 €/an
-                - sinon: 203446 €/an
-      arrondi: oui
+  variations:
+    - si: date < 01/2026
+      alors:
+        somme:
+          - variations:
+              - si: date >= 01/2025
+                alors: 2312 €/an
+              - si: date >= 01/2024
+                alors: 2176 €/an
+              - sinon: 1944 €/an
+          - barème:
+              assiette: cotisations et contributions . assiette sociale
+              tranches:
+                - taux: 0%
+                  plafond: 25246 €/an
+                - taux: 3%
+                  plafond:
+                    variations:
+                      - si: date < 01/2024
+                        alors: 203446 €/an
+                      - si: date < 01/2025
+                        alors: 224713 €/an
+                      - sinon: 237179 €/an
+            arrondi: oui
+    - sinon:
+        produit:
+          - valeur: cotisations et contributions . assiette sociale
+            plancher: 0.5 * PSS proratisé
+            plafond: 3 * PSS proratisé
+          - 8.70%
+        arrondi: oui
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=61
 
 indépendant . profession libérale . réglementée . CARPIMKO . invalidité et décès:
   variations:
-    - si: date >= 01/2024
-      alors: 1022 €/an
-    - sinon: 862 €/an
+    - si: date < 01/2024
+      alors: 862 €/an
+    - sinon: 1022 €/an
   références:
     Site CARPIMKO: https://www.carpimko.com/je-suis-en-activite/mes-cotisations/mes-cotisations-sadaptent-a-mes-revenus
 
@@ -55,11 +65,13 @@ indépendant . profession libérale . réglementée . CARPIMKO . PCV:
   avec:
     cotisation forfaitaire:
       variations:
-        - si: date >= 01/2025
-          alors: 665 €/an
-        - si: date >= 01/2024
+        - si: date < 01/2024
+          alors: 634 €/an
+        - si: date < 01/2025
           alors: 657 €/an
-        - sinon: 634 €/an
+        - si: date < 01/2026
+          alors: 665 €/an
+        - sinon: 671 €/an
 
     cotisation proportionnelle:
       produit:
