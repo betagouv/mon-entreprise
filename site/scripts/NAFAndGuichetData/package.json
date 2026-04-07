@@ -10,7 +10,7 @@
 		"directory": "site/scripts"
 	},
 	"engines": {
-		"node": "^18"
+		"node": "^24"
 	},
 	"scripts": {
 		"extract-NAF-from-PDF": "tsx ./extract-NAF-data/convert-pdf.ts",

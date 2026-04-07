@@ -71,7 +71,7 @@
 	},
 	"packageManager": "yarn@4.12.0",
 	"engines": {
-		"node": "^18"
+		"node": "^24"
 	},
 	"dependenciesMeta": {
 		"@sentry/cli": {
