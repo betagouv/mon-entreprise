@@ -40,7 +40,7 @@ export function MockNavigationProvider({
 		}
 	}, [])
 
-	const useHref = useCallback(
+	const getHref = useCallback(
 		(to: string) => {
 			if (to.startsWith('/')) {
 				return to
@@ -84,7 +84,7 @@ export function MockNavigationProvider({
 			locationHash,
 			locationState: initialState,
 			navigationType: initialNavigationType,
-			useHref,
+			getHref,
 			onNavigate,
 			matchPath,
 			generatePath: rrGeneratePath,
@@ -95,7 +95,7 @@ export function MockNavigationProvider({
 			locationHash,
 			initialState,
 			initialNavigationType,
-			useHref,
+			getHref,
 			onNavigate,
 			matchPath,
 		]

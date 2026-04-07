@@ -60,7 +60,7 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 			locationHash: location.hash,
 			locationState: location.state,
 			navigationType,
-			useHref: (to) => rrUseHref(to),
+			getHref: (to) => rrUseHref(to),
 			onNavigate,
 			matchPath,
 			generatePath: rrGeneratePath,

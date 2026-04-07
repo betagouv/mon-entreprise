@@ -44,7 +44,7 @@ import poleEmploiLogo from './images/pole-emploi.png'
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
 	const simulatorsData = useSimulatorsData()
-	const { searchParams, setSearchParams, useHref } = useNavigation()
+	const { searchParams, setSearchParams, getHref } = useNavigation()
 
 	const simulateursValidesPourIntégration = pipe(
 		simulatorsData,
@@ -88,7 +88,7 @@ function IntegrationCustomizer() {
 	const currentIframePath = currentSimulator.iframePath
 	const currentIframeTitle = currentSimulator.title
 
-	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
+	const iframeSrc = getHref(`/iframes/${currentIframePath}`)
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
 	useEffect(() => {
