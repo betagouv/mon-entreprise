@@ -272,7 +272,7 @@ export default function RuleInput({
 					value={value}
 					defaultValue={defaultValue}
 					onChange={(value) => onChange(value, dottedName)}
-					missing={missing ?? dottedName in evaluation.missingVariables}
+					missing={isDefaultValue}
 					id={inputId}
 					title={rule.title}
 					description={rule.rawNode.description}
@@ -297,7 +297,7 @@ export default function RuleInput({
 					id={inputId}
 					/* eslint-disable-next-line jsx-a11y/no-autofocus */
 					autoFocus={accessibilityProps.autoFocus}
-					missing={missing ?? dottedName in evaluation.missingVariables}
+					missing={isDefaultValue}
 					onChange={(c) => {
 						dispatch(enregistreLesRéponsesÀLaQuestion(dottedName, c))
 					}}
@@ -335,21 +335,24 @@ export default function RuleInput({
 	// Gestion des entrées de date
 	if (inputNature === DATE_INPUT) {
 		return (
-			<DateInput
-				id={inputId}
-				dottedName={rule.dottedName}
-				value={isIsoDate(value) ? value : undefined}
-				onChange={(value) => onChange(value, dottedName)}
-				missing={missing ?? dottedName in evaluation.missingVariables}
-				title={rule.title}
-				hideDefaultValue={hideDefaultValue}
-				onSubmit={onSubmit}
-				suggestions={showSuggestions ? rule.suggestions : {}}
-				aria={{
-					labelledby: accessibilityProps['aria-labelledby'],
-				}}
-				type={rule.rawNode.type as DateFieldProps['type']}
-			/>
+			<>
+				<DateInput
+					id={inputId}
+					dottedName={rule.dottedName}
+					value={isIsoDate(value) ? value : undefined}
+					onChange={(value) => onChange(value, dottedName)}
+					missing={isDefaultValue}
+					title={rule.title}
+					hideDefaultValue={hideDefaultValue}
+					onSubmit={onSubmit}
+					suggestions={showSuggestions ? rule.suggestions : {}}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+					}}
+					type={rule.rawNode.type as DateFieldProps['type']}
+				/>
+				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
+			</>
 		)
 	}
 
@@ -378,7 +381,7 @@ export default function RuleInput({
 				id={inputId}
 				value={value}
 				onChange={(value) => onChange(value, dottedName)}
-				missing={missing ?? dottedName in evaluation.missingVariables}
+				missing={isDefaultValue}
 				title={rule.title}
 				description={rule.rawNode.description}
 				/* eslint-disable-next-line jsx-a11y/no-autofocus */
