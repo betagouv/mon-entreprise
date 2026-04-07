@@ -3,15 +3,21 @@ plafond sécurité sociale:
     rémunérations à prendre en compte pour le calcul de certaines cotisations.
   acronyme: PSS
   variations:
-    - si: date >= 01/2026
-      alors: 4005 €/mois
-    - si: date >= 01/2025
-      alors: 3925 €/mois
-    - si: date >= 01/2024
-      alors: 3864 €/mois
-    - si: date >= 01/2023
-      alors: 3666 €/mois
-    - sinon: 3428 €/mois
+    - si: établissement . commune . département . outre-mer . Mayotte
+      alors:
+        variations:
+          - si: date < 01/2026
+            alors: 2821 €/mois
+          - sinon: 3022 €/mois
+    - sinon:
+        variations:
+          - si: date < 01/2024
+            alors: 3666 €/mois
+          - si: date < 01/2025
+            alors: 3864 €/mois
+          - si: date < 01/2026
+            alors: 3925 €/mois
+          - sinon: 4005 €/mois
   références:
     Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
 
