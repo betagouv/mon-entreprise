@@ -18,7 +18,7 @@
         {
           default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
-              nodejs-18_x
+              nodejs-24_x
               yarn
               cypress
             ];
