@@ -76,15 +76,6 @@ const moduleToSitePath = {
 	'simulateur-autoentrepreneur': '/simulateurs/auto-entrepreneur',
 	'simulateur-independant': '/simulateurs/indépendant',
 	'simulateur-assimilesalarie': '/simulateurs/sasu',
-	// 'choix-statut-juridique': '/assistants/choix-du-statut',
-	// 'simulateur-chomage-partiel': '/simulateurs/chômage-partiel',
-	// 'simulateur-artiste-auteur': '/simulateurs/artiste-auteur',
-	// 'simulateur-cessation-activité': '/simulateurs/cessation-activité',
-	// 'comparaison-statuts': '/simulateurs/comparaison-régimes-sociaux',
-	// 'cout-creation-entreprise': '/simulateurs/cout-creation-entreprise',
-	// 'simulateur-EI': '/simulateurs/entreprise-individuelle',
-	// 'simulateur-location-de-logement-meuble':
-	// 	'/simulateurs/location-de-logement-meuble',
 }
 
 const simulateurLink =
