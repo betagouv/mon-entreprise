@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { Condition } from '@/components/EngineValue/Condition'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
-import { CessationActivitéToggles } from '@/pages/simulateurs/cessation-activité/Toggles'
+import { DateCessationQuestion } from '@/pages/simulateurs/cessation-activité/components/DateCessationQuestion'
+import { RégimeImpositionQuestion } from '@/pages/simulateurs/cessation-activité/components/RégimeImpositionQuestion'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export const CessationActivitéGoals = () => {
@@ -14,7 +15,14 @@ export const CessationActivitéGoals = () => {
 	const { t } = useTranslation()
 
 	return (
-		<SimulationGoals toggles={<CessationActivitéToggles />}>
+		<SimulationGoals
+			toggles={
+				<>
+					<DateCessationQuestion />
+					<RégimeImpositionQuestion />
+				</>
+			}
+		>
 			<Condition expression="entreprise . imposition = 'IR'">
 				<Condition expression="entreprise . imposition . IR . régime micro-fiscal = non">
 					<SimulationGoal

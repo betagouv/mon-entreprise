@@ -7,7 +7,6 @@ import {
 	DateFieldProps,
 	InputSuggestions,
 	InputSuggestionsRecord,
-	Spacing,
 } from '@/design-system'
 import {
 	dateToIsoDate,
@@ -105,7 +104,6 @@ export const DateInput = ({
 					label={title}
 					type={type}
 				/>
-				<Spacing md />
 			</div>
 		</div>
 	)
