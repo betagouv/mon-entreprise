@@ -1,5 +1,5 @@
-import { pipe } from 'effect'
 import * as R from 'effect/Record'
+import { useCallback } from 'react'
 import { css, styled } from 'styled-components'
 
 import * as M from '@/domaine/Montant'
@@ -60,9 +60,23 @@ export const MontantField = <U extends UnitéMonétaire>({
 		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
 
-	const convertisseur =
-		unitéRécurrenteCible &&
-		(unitéRécurrenteCible === '€/mois' ? M.toEurosParMois : M.toEurosParAn)
+	const valeurConvertie = useCallback(
+		(montant: Montant<U>): number => {
+			const montantConverti =
+				unitéRécurrenteCible && M.isMontantRécurrent(montant)
+					? unitéRécurrenteCible === '€/mois'
+						? M.toEurosParMois(montant)
+						: M.toEurosParAn(montant)
+					: montant
+
+			return M.montantToNumber(montantConverti)
+		},
+		[unitéRécurrenteCible]
+	)
+
+	const valeur = currentValue && valeurConvertie(currentValue)
+	const placeholderValue = placeholder && valeurConvertie(placeholder)
+	const suggestionsValue = suggestions && R.map(suggestions, valeurConvertie)
 
 	return (
 		<Container $noPadding={unité !== '€'}>
@@ -78,23 +92,11 @@ export const MontantField = <U extends UnitéMonétaire>({
 					minimumFractionDigits: 0,
 					maximumFractionDigits: avecCentimes ? 2 : 0,
 				}}
-				placeholder={placeholder?.valeur}
-				value={currentValue?.valeur}
+				placeholder={placeholderValue}
+				value={valeur}
 				displayedUnit={unitéToDisplayedUnit[unité]}
 				small={small}
-				suggestions={
-					suggestions
-						? R.map(suggestions, (montant) =>
-								M.isMontantRécurrent(montant) && convertisseur
-									? pipe(
-											montant as Montant<UnitéMonétaireRécurrente>,
-											convertisseur,
-											M.montantToNumber
-									  )
-									: M.montantToNumber(montant)
-						  )
-						: undefined
-				}
+				suggestions={suggestionsValue}
 			/>
 		</Container>
 	)
