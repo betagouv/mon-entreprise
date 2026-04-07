@@ -148,3 +148,35 @@
     Logiciels et hébergement: 1950
     Portage: 6633
     Déplacements: 750
+2025:
+  description: |
+    En 2025, en plus du financement de
+    l’<a href="https://www.urssaf.org/accueil.html" aria-label="Site de l'Urssaf Caisse Nationale, nouvelle fenêtre">Urssaf Caisse Nationale</a>,
+    un budget supplémentaire de 49 000 € est alloué à mon-entreprise par la
+    <abbr title="Direction Interministérielle du Numérique">DINUM</abbr> pour la
+    mise en conformité d’accessibilité de la démarche essentielle
+    <a href="https://www.plus.transformation.gouv.fr/" aria-label="Site de Services Publics+, nouvelle fenêtre">Services Publics+</a>
+    « simulateur d’embauche ».
+  T1:
+    Développement: 52241
+    Logiciels et hébergement: 1989
+    Accessibilité: 7000
+    Portage: 6735
+    Déplacements: 1012
+  T2:
+    Développement: 70303
+    Logiciels et hébergement: 2290
+    Accessibilité: 18317
+    Portage: 10000
+    Déplacements: 1099
+  T3:
+    Développement: 52800
+    Logiciels et hébergement: 2801
+    Accessibilité: 15000
+    Portage: 7766
+    Déplacements: 660
+  T4:
+    Développement: 67525
+    Logiciels et hébergement: 3094
+    Accessibilité: 7500
+    Portage: 8593
