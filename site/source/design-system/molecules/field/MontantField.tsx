@@ -1,5 +1,4 @@
 import * as R from 'effect/Record'
-import { useCallback } from 'react'
 import { css, styled } from 'styled-components'
 
 import * as M from '@/domaine/Montant'
@@ -60,19 +59,16 @@ export const MontantField = <U extends UnitéMonétaire>({
 		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
 
-	const valeurConvertie = useCallback(
-		(montant: Montant<U>): number => {
-			const montantConverti =
-				unitéRécurrenteCible && M.isMontantRécurrent(montant)
-					? unitéRécurrenteCible === '€/mois'
-						? M.toEurosParMois(montant)
-						: M.toEurosParAn(montant)
-					: montant
+	const valeurConvertie = (montant: Montant<U>): number => {
+		const montantConverti =
+			unitéRécurrenteCible && M.isMontantRécurrent(montant)
+				? unitéRécurrenteCible === '€/mois'
+					? M.toEurosParMois(montant)
+					: M.toEurosParAn(montant)
+				: montant
 
-			return M.montantToNumber(montantConverti)
-		},
-		[unitéRécurrenteCible]
-	)
+		return M.montantToNumber(montantConverti)
+	}
 
 	const valeur = currentValue && valeurConvertie(currentValue)
 	const placeholderValue = placeholder && valeurConvertie(placeholder)
