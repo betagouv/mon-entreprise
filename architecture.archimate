@@ -25,7 +25,7 @@
     </element>
     <element xsi:type="archimate:ApplicationComponent" name="PubliCodes" id="id-f405aff1400f494aaf99bbb72033bc83"/>
     <element xsi:type="archimate:ApplicationInterface" name="Simulateurs salarié" id="id-d87f65d4bc704eb9bc02fbc8005ad632">
-      <documentation>dont RGCP, Lodeom</documentation>
+      <documentation>dont Lodeom</documentation>
     </element>
     <element xsi:type="archimate:ApplicationInterface" name="Simulateurs indépendants" id="id-3bd705fd6fb947d2a92bb909d0d954cf">
       <documentation>dont cessation d’activité</documentation>

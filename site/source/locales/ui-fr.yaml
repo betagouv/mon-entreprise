@@ -2029,20 +2029,7 @@ pages:
       aria-label: "Aller à la question : {{question}}"
       titre: "Aller à la question :"
     réduction-générale:
-      externalLinks:
-        "1":
-          ariaLabel: Consulter le guide sur urssaf.fr, nouvelle fenêtre
-          ctaLabel: Consulter le guide
-          description: Calcul, déclaration, règles... Consultez le guide de l’Urssaf sur
-            la réduction générale des cotisations.
-          title: La réduction générale des cotisations
-      meta:
-        description: Estimation du montant de la réduction générale des cotisations
-          patronales (RGCP). Cette réduction est applicable pour les salaires
-          inférieurs à 1,6 fois le SMIC.
-        title: Réduction générale
-      month-by-month:
-        caption: "Réduction générale mois par mois :"
+      header: Le simulateur réduction générale des cotisations, c’est terminé
       options:
         description: Ajoute des champs pour moduler l'activité du salarié
         heures-sup:
@@ -2083,31 +2070,6 @@ pages:
         chômage: dont chômage
         retraite: IRC
         urssaf: URSSAF
-      shortname: Réduction générale
-      title: Simulateur de réduction générale des cotisations
-      warning:
-        aria-label:
-          lodeom: aller sur la page du simulateur d’exonération Lodeom
-        réforme:
-          aria-label: En savoir plus sur la réduction générale dégressive (RGDU) sur le
-            site de l’Urssaf, nouvelle fenêtre
-          texte: La <2>réduction générale dégressive (RGDU)</2> n'est pas encore
-            implémentée sur ce simulateur.
-        texte: "<0>Ce simulateur n’intègre <2>pas toutes les règles de calcul</2>
-          spécifiques (Entreprises de Travail Temporaire, salariés des
-          transports routiers soumis à un horaire d’équivalence...). Il ne tient
-          pas non plus compte des taux et/ou répartition particuliers de la
-          cotisation de retraite complémentaire appliqués dans certaines
-          entreprises.</0><1>En outre-mer, il est possible de choisir entre la
-          réduction générale des cotisations et une autre exonération : accéder
-          au <2>simulateur d’exonération Lodeom</2>.</1>"
-      warnings:
-        JEI: La réduction générale n'est pas cumulable avec l'exonération Jeune
-          Entreprise Innovante (JEI).
-        salaire: La RGCP concerne uniquement les salaires inférieurs à 1,6 Smic.
-          C'est-à-dire, pour {{year}}, une rémunération totale qui ne dépasse
-          pas <4>{{plafond}}</4> bruts par an.
-        stage: La réduction générale ne s'applique pas sur les gratifications de stage.
     sage-femme:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.

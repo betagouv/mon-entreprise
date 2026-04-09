@@ -2,9 +2,11 @@ import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { configRéductionGénérale } from '@/pages/simulateurs/reduction-generale/simulationConfig'
-
-const situationParDéfaut = configRéductionGénérale.situation
+const situationParDéfaut = {
+	dirigeant: 'non',
+	'entreprise . catégorie juridique': "''",
+	'entreprise . imposition': 'non',
+}
 
 describe('Réduction générale des cotisations patronales', () => {
 	let engine: Engine<RègleModèleSocial>
