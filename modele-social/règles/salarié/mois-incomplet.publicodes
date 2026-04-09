@@ -2,7 +2,7 @@ salarié . mois incomplet:
   experimental: oui
   description: |
     Gestion des mois incomplets (absence, embauche, départ, etc), notamment pour le
-    calcul de la réduction générale des cotisations ou de l’exonération Lodeom.
+    calcul de l’exonération Lodeom.
   références:
     Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-d-determination-de-la-valeur-du-4-determination-de-la-valeur-du
 

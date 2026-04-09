@@ -10288,11 +10288,8 @@ salarié . cotisations . ATMP:
       titre.en: '[automatic] '
       titre.fr: taux fonctions support
     taux minimum:
-      description.en: '[automatic] The existing minimum rate for the ATMP
-        contribution. Used in particular for the calculation of the general
-        reduction of contributions'
-      description.fr: Le taux minimum existant pour la cotisation ATMP. Utilisé
-        notamment pour le calcul de la réduction générale de cotisations
+      description.en: '[automatic] The existing minimum rate for the ATMP contribution.'
+      description.fr: Le taux minimum existant pour la cotisation ATMP.
       titre.en: '[automatic] minimum rate'
       titre.fr: taux minimum
     taux moyen:
@@ -10745,9 +10742,17 @@ salarié . cotisations . exonérations . RGDU:
     P:
       titre.en: '[automatic] P'
       titre.fr: P
+    caisse de congés payés:
+      question.en: '[automatic] Are you obliged to use a vacation pay fund?'
+      question.fr: Avez-vous l’obligation de recourir à une caisse de congés payés ?
+      titre.en: '[automatic] Obligation to use a paid leave fund'
+      titre.fr: Obligation de recourir à une caisse de congés payés
     coefficient:
       titre.en: '[automatic] coefficient'
       titre.fr: coefficient
+    coefficient de majoration:
+      titre.en: '[automatic] add-on factor'
+      titre.fr: coefficient de majoration
     plafond avec application de la DFS:
       titre.en: '[automatic] ceiling with application of DFS'
       titre.fr: plafond avec application de la DFS
@@ -10832,19 +10837,27 @@ salarié . cotisations . exonérations . heures supplémentaires:
   titre.fr: heures supplémentaires
 salarié . cotisations . exonérations . lodeom:
   description.en: >
-    [automatic] A fairly complex set of contribution reductions is available for
-    employees in the French overseas departments and territories.
+    [automatic] A complex set of contribution reductions is available for
+    employees in
 
-    Their operation is similar to that of the general reduction on low wages: for a given wage, 100% reduction.
+    overseas employees.
 
-    For a higher salary, 0% reduction. Between the two, a straight line is drawn.
+    They operate in a similar way to the single degressive general reduction
+
+    (RGDU): for a given salary, 100% reduction. For a higher
+
+    higher salary, 0% reduction. Between the two, a straight line is drawn.
   description.fr: >
     Un ensemble assez complexe de réductions de cotisation est disponible pour
-    les salariés d’Outre-mer.
+    les
 
-    Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
+    salariés d’Outre-mer.
 
-    Pour un autre salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
+    Leur fonctionnement est similaire à celui de la réduction générale dégressive
+
+    unique (RGDU) : pour un certain salaire donné, 100% de réduction. Pour un autre
+
+    salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
   titre.en: '[automatic] lodeom'
   titre.fr: lodeom
 salarié . cotisations . exonérations . lodeom . code réduction:
@@ -11820,115 +11833,6 @@ salarié . cotisations . exonérations . lodeom . zone un:
       titre.fr: barèmes
   titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Reunion Island'
   titre.fr: Guadeloupe, Guyane, Martinique, La Réunion
-salarié . cotisations . exonérations . réduction générale:
-  avec:
-    caisse de congés payés:
-      question.en: '[automatic] Are you obliged to use a vacation pay fund?'
-      question.fr: Avez-vous l’obligation de recourir à une caisse de congés payés ?
-      titre.en: '[automatic] Obligation to use a paid leave fund'
-      titre.fr: Obligation de recourir à une caisse de congés payés
-    coefficient:
-      titre.en: '[automatic] coefficient'
-      titre.fr: coefficient
-    coefficient de majoration:
-      titre.en: '[automatic] add-on factor'
-      titre.fr: coefficient de majoration
-    imputation chômage:
-      titre.en: '[automatic] unemployment allocation'
-      titre.fr: imputation chômage
-    imputation retraite complémentaire:
-      titre.en: '[automatic] imputation of supplementary pension'
-      titre.fr: imputation retraite complémentaire
-    imputation sécurité sociale:
-      titre.en: '[automatic] social security charge'
-      titre.fr: imputation sécurité sociale
-    plafond avec application de la DFS:
-      titre.en: '[automatic] ceiling with application of the DFS'
-      titre.fr: plafond avec application de la DFS
-  description.en: >
-    [automatic] As part of the Responsibility and Solidarity Pact, the zero
-
-    contributions, employers of employees earning the minimum wage no longer pay any
-
-    contributions. The amount of the reduction is equal to the product of the gross
-
-    by a coefficient. There are no special formalities
-
-    formality.
-  description.fr: >
-    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif
-    zéro
-
-    cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer
-
-    aucune cotisation. Le montant de l'allègement est égal au produit de la
-
-    rémunération annuelle brute par un coefficient. Il n'y a pas de formalité
-
-    particulière à effectuer.
-  titre.en: '[automatic] overall reduction'
-  titre.fr: réduction générale
-salarié . cotisations . exonérations . réduction générale . régularisation:
-  description.en: >
-    [automatic] ### Progressive regularization
-
-
-    At each due date, you accumulate :
-
-    - the employee's gross earnings since the beginning of the year or since being hired ;
-
-    - and calculate the amount of the gross Smic over the same period.
-
-
-    The adjustment corresponds to the difference between the amount calculated in this way and the cumulative amount of
-
-    reductions applied over the previous months or quarters of the year.
-
-
-    ### Annual regularization
-
-
-    This corresponds to the difference between the amount of the reduction calculated according to the annual formula
-
-    and the amount of reductions applied in advance to previous periods of the year.
-
-
-    It is applied :
-
-    - on contributions due for the month of December, for "monthly" employers ;
-
-    - or for the last quarter of the year for "quarterly" employers.
-  description.fr: >
-    ### Régularisation progressive
-
-
-    À chaque échéance, vous cumulez :
-
-    - les rémunérations brutes du salarié perçues depuis le début de l’année ou depuis son embauche ;
-
-    - et vous calculez le montant du Smic brut sur cette même période.
-
-
-    La régularisation correspond à la différence entre le montant ainsi calculé et le montant cumulé
-
-    des réductions appliquées sur les mois ou trimestres précédents de l'année.
-
-
-    ### Régularisation annuelle
-
-
-    Elle correspond à la différence entre le montant de la réduction calculée selon la formule annuelle
-
-    et le montant des réductions appliquées par anticipation sur les périodes précédentes de l’année.
-
-
-    Elle intervient :
-
-    - sur les cotisations dues au titre du mois de décembre, pour les employeurs « mensuels » ;
-
-    - ou au titre du dernier trimestre de l’année pour les employeurs « trimestriels ».
-  titre.en: '[automatic] regularization'
-  titre.fr: régularisation
 salarié . cotisations . exonérations . zones lodeom:
   avec:
     zone deux:
@@ -12487,12 +12391,12 @@ salarié . mois incomplet:
     [automatic] Management of incomplete months (absence, hiring, departure,
     etc.), in particular for calculating
 
-    calculating the general reduction in contributions or the Lodeom exemption.
+    Lodeom exemption calculation.
   description.fr: >
     Gestion des mois incomplets (absence, embauche, départ, etc), notamment pour
     le
 
-    calcul de la réduction générale des cotisations ou de l’exonération Lodeom.
+    calcul de l’exonération Lodeom.
   titre.en: '[automatic] incomplete month'
   titre.fr: mois incomplet
 salarié . mois incomplet . SMIC équivalent:

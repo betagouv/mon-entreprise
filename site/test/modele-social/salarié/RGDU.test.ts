@@ -8,7 +8,7 @@ const situationParDéfaut = {
 	'entreprise . imposition': 'non',
 }
 
-describe('Réduction générale des cotisations patronales', () => {
+describe('Réduction générale dégressive unique', () => {
 	let engine: Engine<RègleModèleSocial>
 	beforeEach(() => {
 		engine = new Engine(rules)
@@ -22,47 +22,20 @@ describe('Réduction générale des cotisations patronales', () => {
 			})
 
 			expect(e).toEvaluate(
-				{
-					valeur: 'salarié . cotisations . exonérations . réduction générale',
-					arrondi: '2 décimales',
-				},
-				542.64
-			)
-			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire',
-				101.85
-			)
-			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale',
-				440.79
-			)
-			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . réduction générale . imputation chômage',
-				67.79
+				'salarié . cotisations . exonérations . RGDU',
+				681.72
 			)
 		})
 
-		it('Salaire supérieur à 1,6 Smic', () => {
+		it('Salaire supérieur à 3 Smic', () => {
+			const Smic = engine.evaluate('SMIC').nodeValue as number
 			const e = engine.setSituation({
 				...situationParDéfaut,
-				'salarié . cotisations . assiette': '2917 €/mois',
+				'salarié . cotisations . assiette': `${Math.ceil(3 * Smic)} €/mois`,
 			})
 
-			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . réduction générale',
-				0
-			)
-			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . réduction générale . imputation retraite complémentaire',
-				0
-			)
-			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . réduction générale . imputation sécurité sociale',
-				0
-			)
-			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . réduction générale . imputation chômage',
-				0
+			expect(e).not.toBeApplicable(
+				'salarié . cotisations . exonérations . RGDU'
 			)
 		})
 	})
@@ -75,7 +48,7 @@ describe('Réduction générale des cotisations patronales', () => {
 				'salarié . cotisations . assiette': '1900 €/mois',
 			})
 			réductionDeBase = engine.evaluate(
-				'salarié . cotisations . exonérations . réduction générale'
+				'salarié . cotisations . exonérations . RGDU'
 			).nodeValue as number
 		})
 
@@ -86,7 +59,7 @@ describe('Réduction générale des cotisations patronales', () => {
 				'entreprise . salariés . effectif': '49',
 			})
 			const réductionÀ49 = engine.evaluate(
-				'salarié . cotisations . exonérations . réduction générale'
+				'salarié . cotisations . exonérations . RGDU'
 			).nodeValue as number
 
 			expect(réductionDeBase).toEqual(réductionÀ49)
@@ -97,30 +70,30 @@ describe('Réduction générale des cotisations patronales', () => {
 				'entreprise . salariés . effectif': '50',
 			})
 			const réductionÀ50 = Math.round(
-				engine.evaluate(
-					'salarié . cotisations . exonérations . réduction générale'
-				).nodeValue as number
+				engine.evaluate('salarié . cotisations . exonérations . RGDU')
+					.nodeValue as number
 			)
 
 			expect(réductionDeBase).toBeLessThan(réductionÀ50)
-			expect(réductionÀ50).toEqual(549)
+			expect(réductionÀ50).toEqual(689)
 		})
 
 		it('Obligation de cotiser à une caisse de congés payés', () => {
 			engine.setSituation({
 				...situationParDéfaut,
 				'salarié . cotisations . assiette': '1900 €/mois',
-				'salarié . cotisations . exonérations . réduction générale . caisse de congés payés':
+				'salarié . cotisations . exonérations . RGDU . caisse de congés payés':
 					'oui',
 			})
 			const réductionAvecCCP = Math.round(
-				engine.evaluate(
-					'salarié . cotisations . exonérations . réduction générale'
-				).nodeValue as number
+				engine.evaluate('salarié . cotisations . exonérations . RGDU')
+					.nodeValue as number
 			)
 
 			expect(réductionDeBase).toBeLessThan(réductionAvecCCP)
-			expect(réductionAvecCCP).toEqual(603)
+			expect(réductionAvecCCP).toEqual(
+				Math.round((réductionDeBase * 100) / 90) - 1
+			)
 		})
 	})
 })

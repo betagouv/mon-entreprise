@@ -3,6 +3,7 @@
 ## next
 
 ### Breaking changes
+- Suppression des règles `salarié . cotisations . exonérations . réduction générale` (utiliser `... . RGDU` à la place)
 - Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
 - Suppression de la règle dépréciée `salarié . contrat . apprentissage . diplôme préparé`
 - Renomme `salarié . coût total employeur . aides . embauche . apprentis` en `salarié . coût total employeur . aides . embauche . apprentissage`

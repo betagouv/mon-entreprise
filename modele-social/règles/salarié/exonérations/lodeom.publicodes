@@ -19,9 +19,11 @@ salarié . cotisations . exonérations . lodeom:
       - zone deux
   valeur: oui
   description: |
-    Un ensemble assez complexe de réductions de cotisation est disponible pour les salariés d’Outre-mer.
-    Leur fonctionnement est similaire à celui de la réduction générale sur les bas salaires : pour un certain salaire donné, 100% de réduction.
-    Pour un autre salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
+    Un ensemble assez complexe de réductions de cotisation est disponible pour les
+    salariés d’Outre-mer.
+    Leur fonctionnement est similaire à celui de la réduction générale dégressive
+    unique (RGDU) : pour un certain salaire donné, 100% de réduction. Pour un autre
+    salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html
     Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica
