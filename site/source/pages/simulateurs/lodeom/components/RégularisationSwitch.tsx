@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
-import { RégularisationMethod } from '@/utils/réductionDeCotisations'
+import { RégularisationMethod } from '@/pages/simulateurs/lodeom/lodeom'
 
 import {
 	SwitchContainer,
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from './réductionDeCotisations'
+} from '../../../../components/Switch'
 
 type Props = {
 	régularisationMethod: RégularisationMethod
@@ -24,7 +24,7 @@ export default function RégularisationSwitch({
 		<SwitchContainer>
 			<SwitchLabel id="régularisation-switch-label">
 				{t(
-					'pages.simulateurs.réduction-générale.régularisation.type',
+					'pages.simulateurs.lodeom.régularisation.type',
 					'Quel type de régularisation souhaitez-vous ?'
 				)}
 			</SwitchLabel>
@@ -38,13 +38,13 @@ export default function RégularisationSwitch({
 			>
 				<SwitchRadio value="annuelle">
 					{t(
-						'pages.simulateurs.réduction-générale.régularisation.annuelle',
+						'pages.simulateurs.lodeom.régularisation.annuelle',
 						'Régularisation annuelle'
 					)}
 				</SwitchRadio>
 				<SwitchRadio value="progressive">
 					{t(
-						'pages.simulateurs.réduction-générale.régularisation.progressive',
+						'pages.simulateurs.lodeom.régularisation.progressive',
 						'Régularisation progressive'
 					)}
 				</SwitchRadio>

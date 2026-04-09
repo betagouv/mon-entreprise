@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
-import {
-	RuleSwitchLabel,
-	SwitchContainer,
-} from '@/components/RéductionDeCotisations/réductionDeCotisations'
 import { SimpleField } from '@/components/Simulation/SimpleField'
+import { RuleSwitchLabel, SwitchContainer } from '@/components/Switch'
 
 export const RégimeImpositionQuestion = () => {
 	const { t } = useTranslation()

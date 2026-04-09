@@ -1960,6 +1960,46 @@ pages:
         title: Exonération Lodeom
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
+      options:
+        description: Ajoute des champs pour moduler l'activité du salarié
+        heures-sup:
+          popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
+            dans le calcul de la réduction : la rémunération brute est comparée
+            au montant du SMIC majoré de ce nombre d'heures.</0>"
+        label:
+          heures-complémentaires: Nombre d'heures complémentaires
+          heures-supplémentaires: Nombre d'heures supplémentaires
+          rémunération-etp: Rémunération de base mois complet
+          rémunération-heures-complémentaires: Rémunération des heures complémentaires
+          rémunération-heures-supplémentaires: Rémunération des heures supplémentaires
+          rémunération-primes: Rémunération non affectée par le mois incomplet
+        rémunération-etp:
+          popover: <0>Indiquez ici la rémunération qui aurait été versée pour un mois
+            complet, <2>en excluant</2> :<4><0>les primes et autres éléments de
+            rémunération non affectés par l'absence ;</0><1>la rémunération des
+            heures supplémentaires ou complémentaires.</1></4></0>
+        rémunération-heures-sup:
+          popover: <0>Indiquez ici la rémunération afférente au paiement des heures
+            supplémentaires ou complémentaires.</0>
+        rémunération-primes:
+          popover: <0>Indiquez ici les éléments de rémunération non affectés par
+            l'absence, comme les primes.</0>
+      recap:
+        T1: 1er trimestre
+        T2: 2ème trimestre
+        T3: 3ème trimestre
+        T4: 4ème trimestre
+        caption: "Récapitulatif trimestriel :"
+        header-réduction: Réduction calculée
+        header-régularisation: Régularisation calculée
+      régularisation:
+        annuelle: Régularisation annuelle
+        progressive: Régularisation progressive
+        type: Quel type de régularisation souhaitez-vous ?
+      répartition:
+        chômage: dont chômage
+        retraite: IRC
+        urssaf: URSSAF
       shortname: Exonération Lodeom
       title: Simulateur d'exonération Lodeom
       warning: <0></0> Les taux et répartitions de cotisations dérogatoires ne sont
@@ -2030,46 +2070,6 @@ pages:
       titre: "Aller à la question :"
     réduction-générale:
       header: Le simulateur réduction générale des cotisations, c’est terminé
-      options:
-        description: Ajoute des champs pour moduler l'activité du salarié
-        heures-sup:
-          popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
-            dans le calcul de la réduction : la rémunération brute est comparée
-            au montant du SMIC majoré de ce nombre d'heures.</0>"
-        label:
-          heures-complémentaires: Nombre d'heures complémentaires
-          heures-supplémentaires: Nombre d'heures supplémentaires
-          rémunération-etp: Rémunération de base mois complet
-          rémunération-heures-complémentaires: Rémunération des heures complémentaires
-          rémunération-heures-supplémentaires: Rémunération des heures supplémentaires
-          rémunération-primes: Rémunération non affectée par le mois incomplet
-        rémunération-etp:
-          popover: <0>Indiquez ici la rémunération qui aurait été versée pour un mois
-            complet, <2>en excluant</2> :<4><0>les primes et autres éléments de
-            rémunération non affectés par l'absence ;</0><1>la rémunération des
-            heures supplémentaires ou complémentaires.</1></4></0>
-        rémunération-heures-sup:
-          popover: <0>Indiquez ici la rémunération afférente au paiement des heures
-            supplémentaires ou complémentaires.</0>
-        rémunération-primes:
-          popover: <0>Indiquez ici les éléments de rémunération non affectés par
-            l'absence, comme les primes.</0>
-      recap:
-        T1: 1er trimestre
-        T2: 2ème trimestre
-        T3: 3ème trimestre
-        T4: 4ème trimestre
-        caption: "Récapitulatif trimestriel :"
-        header-réduction: Réduction calculée
-        header-régularisation: Régularisation calculée
-      régularisation:
-        annuelle: Régularisation annuelle
-        progressive: Régularisation progressive
-        type: Quel type de régularisation souhaitez-vous ?
-      répartition:
-        chômage: dont chômage
-        retraite: IRC
-        urssaf: URSSAF
     sage-femme:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.

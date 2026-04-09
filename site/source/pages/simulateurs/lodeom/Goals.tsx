@@ -3,16 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
-import EffectifSwitch from '@/components/RéductionDeCotisations/EffectifSwitch'
-import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
-import RégularisationSwitch from '@/components/RéductionDeCotisations/RégularisationSwitch'
 import { SimulationGoals } from '@/components/Simulation'
 import { Body, Message } from '@/design-system'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
-import { useEngine } from '@/utils/publicodes/EngineContext'
+import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
+import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
+import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
@@ -23,7 +21,9 @@ import {
 	Options,
 	RégularisationMethod,
 	SituationType,
-} from '@/utils/réductionDeCotisations'
+} from '@/pages/simulateurs/lodeom/lodeom'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import BarèmeSwitch from './components/BarèmeSwitch'
 import Warnings from './components/Warnings'
@@ -54,7 +54,6 @@ export default function LodeomSimulationGoals() {
 
 	const initializeLodeomMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(
-			lodeomDottedName,
 			year,
 			engine,
 			withRépartitionAndRégularisation
@@ -71,7 +70,6 @@ export default function LodeomSimulationGoals() {
 	useEffect(() => {
 		setData((previousData) => {
 			return getDataAfterSituationChange(
-				lodeomDottedName,
 				situation,
 				previousSituation.current,
 				previousData,
@@ -95,7 +93,6 @@ export default function LodeomSimulationGoals() {
 	) => {
 		setData((previousData) => {
 			return getDataAfterRémunérationChange(
-				lodeomDottedName,
 				monthIndex,
 				rémunérationBrute,
 				previousData,
@@ -111,7 +108,6 @@ export default function LodeomSimulationGoals() {
 	const onOptionsChange = (monthIndex: number, options: Options) => {
 		setData((previousData) => {
 			return getDataAfterOptionsChange(
-				lodeomDottedName,
 				monthIndex,
 				options,
 				previousData,
@@ -156,7 +152,6 @@ export default function LodeomSimulationGoals() {
 			</WhenApplicable>
 			{currentBarème && (
 				<RéductionMoisParMois
-					dottedName={lodeomDottedName}
 					data={lodeomMoisParMoisData}
 					onRémunérationChange={onRémunérationChange}
 					onOptionsChange={onOptionsChange}

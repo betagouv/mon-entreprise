@@ -11,12 +11,6 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
-/********************************************************************/
-/* Types et méthodes communes à la Réduction générale et au Lodeom */
-/********************************************************************/
-
-export const réductionGénéraleDottedName =
-	'salarié . cotisations . exonérations . réduction générale'
 export const lodeomDottedName =
 	'salarié . cotisations . exonérations . lodeom . montant'
 
@@ -28,10 +22,6 @@ const heuresSupplémentairesDottedName =
 	'salarié . temps de travail . heures supplémentaires'
 const heuresComplémentairesDottedName =
 	'salarié . temps de travail . heures complémentaires'
-
-export type RéductionDottedName =
-	| typeof réductionGénéraleDottedName
-	| typeof lodeomDottedName
 
 export type MonthState = {
 	rémunérationBrute: number
@@ -101,7 +91,6 @@ const isParamètresRéductionAvecRémunération = (
 ): params is ParamètresRéductionAvecRémunération => params.rémunérationBrute > 0
 
 export const getDataAfterSituationChange = (
-	dottedName: RéductionDottedName,
 	situation: SituationType,
 	previousSituation: SituationType,
 	previousData: MonthState[],
@@ -123,7 +112,6 @@ export const getDataAfterSituationChange = (
 	}, [])
 
 	return reevaluateRéductionMoisParMois(
-		dottedName,
 		updatedData,
 		year,
 		engine,
@@ -133,7 +121,6 @@ export const getDataAfterSituationChange = (
 }
 
 export const getDataAfterRémunérationChange = (
-	dottedName: RéductionDottedName,
 	monthIndex: number,
 	rémunérationBrute: number,
 	previousData: MonthState[],
@@ -143,7 +130,6 @@ export const getDataAfterRémunérationChange = (
 	régularisationMethod: RégularisationMethod,
 	withRépartitionAndRégularisation: boolean = true
 ): MonthState[] => {
-	console.log(régularisationMethod)
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
 		...updatedData[monthIndex],
@@ -153,7 +139,6 @@ export const getDataAfterRémunérationChange = (
 	updateRémunérationBruteAnnuelle(updatedData, dispatch)
 
 	return reevaluateRéductionMoisParMois(
-		dottedName,
 		updatedData,
 		year,
 		engine,
@@ -163,7 +148,6 @@ export const getDataAfterRémunérationChange = (
 }
 
 export const getDataAfterOptionsChange = (
-	dottedName: RéductionDottedName,
 	monthIndex: number,
 	options: Options,
 	previousData: MonthState[],
@@ -179,7 +163,6 @@ export const getDataAfterOptionsChange = (
 	}
 
 	return reevaluateRéductionMoisParMois(
-		dottedName,
 		updatedData,
 		year,
 		engine,
@@ -189,7 +172,6 @@ export const getDataAfterOptionsChange = (
 }
 
 export const getInitialRéductionMoisParMois = (
-	dottedName: RéductionDottedName,
 	year: number,
 	engine: Engine<DottedName>,
 	withRépartition: boolean = true
@@ -238,7 +220,6 @@ export const getInitialRéductionMoisParMois = (
 
 	return Array.from({ length: 12 }, (_item, monthIndex) => {
 		const réduction = getMonthlyRéduction(
-			dottedName,
 			year,
 			monthIndex,
 			rémunérationBrute,
@@ -252,7 +233,7 @@ export const getInitialRéductionMoisParMois = (
 			engine
 		)
 		const répartition = withRépartition
-			? getRépartition(dottedName, rémunérationBrute, réduction, engine)
+			? getRépartition(rémunérationBrute, réduction, engine)
 			: defaultRépartition
 
 		return {
@@ -277,7 +258,6 @@ export const getInitialRéductionMoisParMois = (
 }
 
 const reevaluateRéductionMoisParMois = (
-	dottedName: RéductionDottedName,
 	data: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
@@ -342,7 +322,6 @@ const reevaluateRéductionMoisParMois = (
 				// calculée pour la rémunération totale jusqu'à N (comparée au SMIC équivalent pour ces N mois)
 				// et la somme des N-1 réductions déjà accordées (en incluant les régularisations).
 				const réductionTotale = getTotalRéduction(
-					dottedName,
 					take(paramètresRéductionParMois, monthIndex + 1),
 					engine
 				)
@@ -357,27 +336,16 @@ const reevaluateRéductionMoisParMois = (
 				if (régularisation.value > 0) {
 					réduction.value = régularisation.value
 					réduction.répartition = withRépartition
-						? getRépartition(
-								dottedName,
-								rémunérationBrute,
-								réduction.value,
-								engine
-						  )
+						? getRépartition(rémunérationBrute, réduction.value, engine)
 						: defaultRépartition
 					régularisation.value = 0
 				} else if (régularisation.value < 0) {
 					régularisation.répartition = withRépartition
-						? getRépartition(
-								dottedName,
-								rémunérationBrute,
-								régularisation.value,
-								engine
-						  )
+						? getRépartition(rémunérationBrute, régularisation.value, engine)
 						: defaultRépartition
 				}
 			} else {
 				réduction.value = getMonthlyRéduction(
-					dottedName,
 					year,
 					monthIndex,
 					rémunérationBrute,
@@ -393,7 +361,6 @@ const reevaluateRéductionMoisParMois = (
 					// pour la rémunération annuelle (comparée au SMIC annuel) et la somme des réductions
 					// déjà accordées.
 					const réductionTotale = getTotalRéduction(
-						dottedName,
 						paramètresRéductionParMois,
 						engine
 					)
@@ -409,33 +376,18 @@ const reevaluateRéductionMoisParMois = (
 					if (régularisation.value > 0) {
 						réduction.value = régularisation.value
 						réduction.répartition = withRépartition
-							? getRépartition(
-									dottedName,
-									rémunérationBrute,
-									réduction.value,
-									engine
-							  )
+							? getRépartition(rémunérationBrute, réduction.value, engine)
 							: defaultRépartition
 						régularisation.value = 0
 					} else if (régularisation.value < 0) {
 						régularisation.répartition = withRépartition
-							? getRépartition(
-									dottedName,
-									rémunérationBrute,
-									régularisation.value,
-									engine
-							  )
+							? getRépartition(rémunérationBrute, régularisation.value, engine)
 							: defaultRépartition
 						réduction.value = 0
 					}
 				} else {
 					réduction.répartition = withRépartition
-						? getRépartition(
-								dottedName,
-								rémunérationBrute,
-								réduction.value,
-								engine
-						  )
+						? getRépartition(rémunérationBrute, réduction.value, engine)
 						: defaultRépartition
 				}
 			}
@@ -504,7 +456,6 @@ const updateRémunérationBruteAnnuelle = (
 }
 
 const getMonthlyRéduction = (
-	dottedName: RéductionDottedName,
 	year: number,
 	monthIndex: number,
 	rémunérationBrute: number,
@@ -519,7 +470,7 @@ const getMonthlyRéduction = (
 		engine
 	)
 	const réduction = engine.evaluate({
-		valeur: dottedName,
+		valeur: lodeomDottedName,
 		unité: '€/mois',
 		contexte: {
 			date,
@@ -538,7 +489,6 @@ const getMonthlyRéduction = (
  * En cas de variation de coef T : calcul sur chaque période de coef T identique et somme des résultats
  */
 const getTotalRéduction = (
-	dottedName: RéductionDottedName,
 	paramètresRéductionParMois: Array<ParamètresRéduction>,
 	engine: Engine<DottedName>
 ): number => {
@@ -597,17 +547,17 @@ const getTotalRéduction = (
 	return pipe(
 		périodes,
 		map(last),
-		map(O.map(getRéduction(dottedName, engine))),
+		map(O.map(getRéduction(engine))),
 		map(O.getOrThrow),
 		sumAll
 	)
 }
 
 const getRéduction =
-	(dottedName: RéductionDottedName, engine: Engine<DottedName>) =>
+	(engine: Engine<DottedName>) =>
 	(paramètresRéduction: ParamètresRéductionAvecRémunération) => {
 		return engine.evaluate({
-			valeur: dottedName,
+			valeur: lodeomDottedName,
 			arrondi: 'non',
 			contexte: {
 				[rémunérationBruteDottedName]: paramètresRéduction.rémunérationBrute,
@@ -619,30 +569,29 @@ const getRéduction =
 	}
 
 const getRépartition = (
-	dottedName: RéductionDottedName,
 	rémunération: number,
 	réduction: number,
 	engine: Engine<DottedName>
 ): Répartition => {
 	const contexte = {
 		[rémunérationBruteDottedName]: rémunération,
-		[dottedName]: réduction,
+		[lodeomDottedName]: réduction,
 	}
 	const IRC =
 		(engine.evaluate({
-			valeur: `${dottedName} . imputation retraite complémentaire`,
+			valeur: `${lodeomDottedName} . imputation retraite complémentaire`,
 			unité: '€/mois',
 			contexte,
 		})?.nodeValue as number) ?? 0
 	const Urssaf =
 		(engine.evaluate({
-			valeur: `${dottedName} . imputation sécurité sociale`,
+			valeur: `${lodeomDottedName} . imputation sécurité sociale`,
 			unité: '€/mois',
 			contexte,
 		})?.nodeValue as number) ?? 0
 	const chômage =
 		(engine.evaluate({
-			valeur: `${dottedName} . imputation chômage`,
+			valeur: `${lodeomDottedName} . imputation chômage`,
 			unité: '€/mois',
 			contexte,
 		})?.nodeValue as number) ?? 0

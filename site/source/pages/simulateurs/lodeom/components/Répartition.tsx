@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RépartitionValue from '@/components/RéductionDeCotisations/RépartitionValue'
 import { Body, Li, Strong, Ul } from '@/design-system'
-import { Répartition as RépartitionType } from '@/utils/réductionDeCotisations'
+import RépartitionValue from '@/pages/simulateurs/lodeom/components/RépartitionValue'
+import { Répartition as RépartitionType } from '@/pages/simulateurs/lodeom/lodeom'
 
 type Props = {
 	idPrefix: string
@@ -24,26 +24,20 @@ export default function Répartition({ idPrefix, répartition }: Props) {
 				<StyledLi>
 					<RépartitionValue
 						value={répartition.IRC}
-						label={t(
-							'pages.simulateurs.réduction-générale.répartition.retraite',
-							'IRC'
-						)}
+						label={t('pages.simulateurs.lodeom.répartition.retraite', 'IRC')}
 						idPrefix={`${idPrefix}-IRC`}
 					/>
 				</StyledLi>
 				<StyledLi>
 					<RépartitionValue
 						value={répartition.Urssaf}
-						label={t(
-							'pages.simulateurs.réduction-générale.répartition.urssaf',
-							'URSSAF'
-						)}
+						label={t('pages.simulateurs.lodeom.répartition.urssaf', 'URSSAF')}
 						idPrefix={`${idPrefix}-ISS`}
 					/>
 					<RépartitionValue
 						value={répartition.chômage}
 						label={t(
-							'pages.simulateurs.réduction-générale.répartition.chômage',
+							'pages.simulateurs.lodeom.répartition.chômage',
 							'dont chômage'
 						)}
 						idPrefix={`${idPrefix}-IC`}
