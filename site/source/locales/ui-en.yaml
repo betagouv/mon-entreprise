@@ -1308,6 +1308,8 @@ pages:
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
     cessation-activité:
+      date-cessation:
+        error-message: Please enter a date between {{- débutAnnée }} and {{- finAnnée }}.
       externalLinks:
         "1":
           description: Urssaf will be with you every step of the way when you decide to

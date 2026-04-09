@@ -25,11 +25,19 @@ export interface DateFieldProps {
 	label?: string
 	'aria-labelledby'?: string
 	type?: 'date passé' | 'date' | 'date futur'
+	errorMessage?: string
 }
 
 export const DateField = (props: DateFieldProps) => {
 	const { aria: ariaProps, rest } = splitAriaProps(props)
-	const { id, defaultSelected, label, onChange, type = 'date' } = rest
+	const {
+		id,
+		defaultSelected,
+		label,
+		onChange,
+		type = 'date',
+		errorMessage,
+	} = rest
 
 	const { t, i18n } = useTranslation()
 	const language = i18n.language as 'fr' | 'en'
@@ -149,7 +157,7 @@ export const DateField = (props: DateFieldProps) => {
 									'design-system.date-picker.error.invalid-date',
 									'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
 							  )
-							: ''
+							: errorMessage
 					}
 				/>
 				<StyledButton
