@@ -313,6 +313,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . convention collective",
         "salarié . cotisations . ATMP . taux fonctions support",
         "salarié . cotisations . exonérations . JEI",
+        "salarié . cotisations . exonérations . RGDU . caisse de congés payés",
         "salarié . cotisations . exonérations . lodeom . zone deux",
         "salarié . cotisations . exonérations . lodeom . zone un",
         "salarié . cotisations . exonérations . zones lodeom",

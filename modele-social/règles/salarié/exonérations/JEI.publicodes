@@ -35,7 +35,6 @@ salarié . cotisations . exonérations . JEI:
   par défaut: non
   rend non applicable:
     - RGDU
-    - réduction générale
     - allocations familiales . éligible taux réduit
     - maladie . employeur . éligible taux réduit
     - lodeom
