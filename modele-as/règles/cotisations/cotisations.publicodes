@@ -284,8 +284,7 @@ assimilé salarié . cotisations . ATMP:
 
     taux minimum:
       description: >-
-        Le taux minimum existant pour la cotisation ATMP. Utilisé notamment pour
-        le calcul de la réduction générale de cotisations
+        Le taux minimum existant pour la cotisation ATMP.
       variations:
         - si: date >= 05/2025
           alors: 0.5%

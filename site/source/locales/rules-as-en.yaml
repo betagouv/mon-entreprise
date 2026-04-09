@@ -123,11 +123,8 @@ assimilé salarié . cotisations . ATMP:
       titre.en: '[automatic] support function rate'
       titre.fr: taux fonctions support
     taux minimum:
-      description.en:
-        '[automatic] The existing minimum rate for ATMP contributions.
-        Used in particular to calculate the general reduction in contributions.'
-      description.fr: Le taux minimum existant pour la cotisation ATMP. Utilisé
-        notamment pour le calcul de la réduction générale de cotisations
+      description.en: '[automatic] The existing minimum rate for the ATMP contribution.'
+      description.fr: Le taux minimum existant pour la cotisation ATMP.
       titre.en: '[automatic] minimum rate'
       titre.fr: taux minimum
     taux moyen:
@@ -417,16 +414,6 @@ assimilé salarié . cotisations . exonérations . JEI:
     Exonération pour les jeunes entreprises innovantes (JEI).
   titre.en: '[automatic] JEI exemption'
   titre.fr: Exonération JEI
-assimilé salarié . cotisations . exonérations . T:
-  avec:
-    retraite complémentaire:
-      titre.en: '[automatic] supplementary pension'
-      titre.fr: retraite complémentaire
-    sécurité sociale et chômage:
-      titre.en: '[automatic] social security and unemployment'
-      titre.fr: sécurité sociale et chômage
-  titre.en: '[automatic] Coefficient T'
-  titre.fr: Coefficient T
 assimilé salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
   titre.en: '[automatic] Exempt employer contributions Acre'
   titre.fr: cotisations patronales exonérées Acre
@@ -2066,10 +2053,13 @@ impôt . foyer fiscal . parent isolé:
   titre.en: '[automatic] single parent'
   titre.fr: parent isolé
 impôt . foyer fiscal . situation de famille:
-  question.en: '[automatic] What is your family situation?'
-  question.fr: Quelle est votre situation familiale ?
   titre.en: '[automatic] marital status'
   titre.fr: situation de famille
+impôt . foyer fiscal . situation de famille . question:
+  question.en: '[automatic] What is your family situation?'
+  question.fr: Quelle est votre situation familiale ?
+  titre.en: '[automatic] Marital status'
+  titre.fr: Situation de famille
 impôt . montant:
   description.en: |
     [automatic] Calculation of income tax based on taxable income and
@@ -2188,6 +2178,16 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
+paramètres . impôt . foyer fiscal:
+  titre.en: '[automatic] taxable household'
+  titre.fr: foyer fiscal
+paramètres . impôt . foyer fiscal . situation de famille:
+  description.en: |
+    [automatic] Allows you to impose a value on a family situation.
+  description.fr: |
+    Permet d'imposer une valeur à situation de famille.
+  titre.en: '[automatic] marital status'
+  titre.fr: situation de famille
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using
