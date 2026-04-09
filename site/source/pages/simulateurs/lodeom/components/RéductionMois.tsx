@@ -3,8 +3,6 @@ import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import Montant from '@/components/RéductionDeCotisations/Montant'
-import MonthOptions from '@/components/RéductionDeCotisations/MonthOptions'
 import RuleLink from '@/components/RuleLink'
 import {
 	Body,
@@ -13,17 +11,17 @@ import {
 	RotatingChevronIcon,
 	Spacing,
 } from '@/design-system'
+import Montant from '@/pages/simulateurs/lodeom/components/Montant'
+import MonthOptions from '@/pages/simulateurs/lodeom/components/MonthOptions'
 import {
+	lodeomDottedName,
 	MonthState,
 	Options,
-	RéductionDottedName,
-	réductionGénéraleDottedName,
-} from '@/utils/réductionDeCotisations'
+} from '@/pages/simulateurs/lodeom/lodeom'
 
 import RémunérationInput from './RémunérationInput'
 
 type Props = {
-	dottedName: RéductionDottedName
 	monthName: string
 	data: MonthState
 	index: number
@@ -36,7 +34,6 @@ type Props = {
 }
 
 export default function RéductionMois({
-	dottedName,
 	monthName,
 	data,
 	index,
@@ -72,7 +69,7 @@ export default function RéductionMois({
 	const MontantRéduction = () => {
 		return (
 			<Montant
-				id={`${dottedName.replace(/\s|\./g, '_')}-${monthName}`}
+				id={`${lodeomDottedName.replace(/\s|\./g, '_')}-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.réduction.value}
 				répartition={data.réduction.répartition}
@@ -88,7 +85,10 @@ export default function RéductionMois({
 	const MontantRégularisation = () => {
 		return (
 			<Montant
-				id={`${dottedName.replace(/\s|\./g, '_')}__régularisation-${monthName}`}
+				id={`${lodeomDottedName.replace(
+					/\s|\./g,
+					'_'
+				)}__régularisation-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.régularisation.value}
 				répartition={data.régularisation.répartition}
@@ -120,7 +120,7 @@ export default function RéductionMois({
 
 			<GridContainer container spacing={2}>
 				<Grid item>
-					<RuleLink dottedName={dottedName} />
+					<RuleLink dottedName={lodeomDottedName} />
 				</Grid>
 				<Grid item>
 					<StyledBody>
@@ -132,9 +132,7 @@ export default function RéductionMois({
 			{withRépartitionAndRégularisation && (
 				<GridContainer container spacing={2}>
 					<StyledGrid item>
-						<RuleLink
-							dottedName={`${réductionGénéraleDottedName} . régularisation`}
-						/>
+						<RuleLink dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
 					</StyledGrid>
 					<Grid item>
 						<StyledBody>

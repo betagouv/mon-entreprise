@@ -1,8 +1,5 @@
-import {
-	RuleSwitchLabel,
-	SwitchContainer,
-} from '@/components/RéductionDeCotisations/réductionDeCotisations'
 import { SimpleField } from '@/components/Simulation/SimpleField'
+import { RuleSwitchLabel, SwitchContainer } from '@/components/Switch'
 import { barèmeLodeomDottedName } from '@/hooks/useBarèmeLodeom'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 

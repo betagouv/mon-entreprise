@@ -7,17 +7,15 @@ import RuleLink from '@/components/RuleLink'
 import { baseTheme, H3, Spacing } from '@/design-system'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import {
+	lodeomDottedName,
 	MonthState,
 	Options,
-	RéductionDottedName,
-	réductionGénéraleDottedName,
-} from '@/utils/réductionDeCotisations'
+} from '@/pages/simulateurs/lodeom/lodeom'
 
 import RécapitulatifTrimestre from './RécapitulatifTrimestre'
 import RéductionMois from './RéductionMois'
 
 type Props = {
-	dottedName: RéductionDottedName
 	data: MonthState[]
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
 	onOptionsChange: (monthIndex: number, options: Options) => void
@@ -31,7 +29,6 @@ type Props = {
 }
 
 export default function RéductionMoisParMois({
-	dottedName,
 	data,
 	onRémunérationChange,
 	onOptionsChange,
@@ -64,14 +61,16 @@ export default function RéductionMoisParMois({
 	]
 
 	const quarters = {
-		[t('pages.simulateurs.réduction-générale.recap.T1', '1er trimestre')]:
-			data.slice(0, 3),
-		[t('pages.simulateurs.réduction-générale.recap.T2', '2ème trimestre')]:
-			data.slice(3, 6),
-		[t('pages.simulateurs.réduction-générale.recap.T3', '3ème trimestre')]:
-			data.slice(6, 9),
-		[t('pages.simulateurs.réduction-générale.recap.T4', '4ème trimestre')]:
-			data.slice(9),
+		[t('pages.simulateurs.lodeom.recap.T1', '1er trimestre')]: data.slice(0, 3),
+		[t('pages.simulateurs.lodeom.recap.T2', '2ème trimestre')]: data.slice(
+			3,
+			6
+		),
+		[t('pages.simulateurs.lodeom.recap.T3', '3ème trimestre')]: data.slice(
+			6,
+			9
+		),
+		[t('pages.simulateurs.lodeom.recap.T4', '4ème trimestre')]: data.slice(9),
 	}
 
 	return (
@@ -89,13 +88,11 @@ export default function RéductionMoisParMois({
 									<RuleLink dottedName="salarié . rémunération . brut" />
 								</th>
 								<th scope="col">
-									<RuleLink dottedName={dottedName} />
+									<RuleLink dottedName={lodeomDottedName} />
 								</th>
 								{withRépartitionAndRégularisation && (
 									<th scope="col">
-										<RuleLink
-											dottedName={`${réductionGénéraleDottedName} . régularisation`}
-										/>
+										<RuleLink dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
 									</th>
 								)}
 							</tr>
@@ -105,7 +102,6 @@ export default function RéductionMoisParMois({
 								months.map((monthName, monthIndex) => (
 									<RéductionMois
 										key={`month-${monthIndex}`}
-										dottedName={dottedName}
 										monthName={monthName}
 										data={data[monthIndex]}
 										index={monthIndex}
@@ -125,14 +121,14 @@ export default function RéductionMoisParMois({
 
 					<H3 as="h2">
 						{t(
-							'pages.simulateurs.réduction-générale.recap.caption',
+							'pages.simulateurs.lodeom.recap.caption',
 							'Récapitulatif trimestriel :'
 						)}
 					</H3>
 					<StyledRecapTable>
 						<caption className="sr-only">
 							{t(
-								'pages.simulateurs.réduction-générale.recap.caption',
+								'pages.simulateurs.lodeom.recap.caption',
 								'Récapitulatif trimestriel :'
 							)}
 						</caption>
@@ -141,7 +137,7 @@ export default function RéductionMoisParMois({
 								<th scope="col">{t('Trimestre')}</th>
 								<th scope="col">
 									{t(
-										'pages.simulateurs.réduction-générale.recap.header-réduction',
+										'pages.simulateurs.lodeom.recap.header-réduction',
 										'Réduction calculée'
 									)}
 									{codeRéduction && (
@@ -154,7 +150,7 @@ export default function RéductionMoisParMois({
 								{withRépartitionAndRégularisation && (
 									<th scope="col">
 										{t(
-											'pages.simulateurs.réduction-générale.recap.header-régularisation',
+											'pages.simulateurs.lodeom.recap.header-régularisation',
 											'Régularisation calculée'
 										)}
 										{codeRégularisation && (
@@ -190,7 +186,6 @@ export default function RéductionMoisParMois({
 						months.map((monthName, monthIndex) => (
 							<RéductionMois
 								key={`month-${monthIndex}`}
-								dottedName={dottedName}
 								monthName={monthName}
 								data={data[monthIndex]}
 								index={monthIndex}
@@ -209,7 +204,7 @@ export default function RéductionMoisParMois({
 
 					<H3 as="h2">
 						{t(
-							'pages.simulateurs.réduction-générale.recap.caption',
+							'pages.simulateurs.lodeom.recap.caption',
 							'Récapitulatif trimestriel :'
 						)}
 					</H3>
@@ -231,7 +226,7 @@ export default function RéductionMoisParMois({
 
 			<span id="options-description" className="sr-only">
 				{t(
-					'pages.simulateurs.réduction-générale.options.description',
+					'pages.simulateurs.lodeom.options.description',
 					"Ajoute des champs pour moduler l'activité du salarié"
 				)}
 			</span>

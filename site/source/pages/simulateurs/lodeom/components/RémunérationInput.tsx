@@ -1,6 +1,6 @@
 import { MontantField } from '@/design-system'
 import { euros } from '@/domaine/Montant'
-import { rémunérationBruteDottedName } from '@/utils/réductionDeCotisations'
+import { rémunérationBruteDottedName } from '@/pages/simulateurs/lodeom/lodeom'
 
 type Props = {
 	index: number

@@ -21,8 +21,8 @@ import {
 import { euros } from '@/domaine/Montant'
 import { heuresParMois } from '@/domaine/Quantité'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { Options } from '@/pages/simulateurs/lodeom/lodeom'
 import { useEngine } from '@/utils/publicodes/EngineContext'
-import { Options } from '@/utils/réductionDeCotisations'
 
 type Props = {
 	month: string
@@ -51,21 +51,21 @@ export default function MonthOptions({
 		: 'heuresSupplémentaires'
 	const additionalHoursLabels = {
 		heuresSupplémentaires: t(
-			'pages.simulateurs.réduction-générale.options.label.heures-supplémentaires',
+			'pages.simulateurs.lodeom.options.label.heures-supplémentaires',
 			"Nombre d'heures supplémentaires"
 		),
 		heuresComplémentaires: t(
-			'pages.simulateurs.réduction-générale.options.label.heures-complémentaires',
+			'pages.simulateurs.lodeom.options.label.heures-complémentaires',
 			"Nombre d'heures complémentaires"
 		),
 	}
 	const additionalHoursRémunérationLabels = {
 		heuresSupplémentaires: t(
-			'pages.simulateurs.réduction-générale.options.label.rémunération-heures-supplémentaires',
+			'pages.simulateurs.lodeom.options.label.rémunération-heures-supplémentaires',
 			'Rémunération des heures supplémentaires'
 		),
 		heuresComplémentaires: t(
-			'pages.simulateurs.réduction-générale.options.label.rémunération-heures-complémentaires',
+			'pages.simulateurs.lodeom.options.label.rémunération-heures-complémentaires',
 			'Rémunération des heures complémentaires'
 		),
 	}
@@ -152,14 +152,14 @@ export default function MonthOptions({
 					<FlexDiv>
 						<StyledLabel id={`rémunération-etp-label`}>
 							{t(
-								'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
+								'pages.simulateurs.lodeom.options.label.rémunération-etp',
 								'Rémunération de base mois complet'
 							)}
 						</StyledLabel>
 						<HelpButtonWithPopover
 							type="info"
 							title={t(
-								'pages.simulateurs.réduction-générale.options.label.rémunération-etp',
+								'pages.simulateurs.lodeom.options.label.rémunération-etp',
 								'Rémunération de base mois complet'
 							)}
 						>
@@ -190,14 +190,14 @@ export default function MonthOptions({
 					<FlexDiv>
 						<StyledLabel id={`rémunération-primes-label`}>
 							{t(
-								'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
+								'pages.simulateurs.lodeom.options.label.rémunération-primes',
 								'Rémunération non affectée par le mois incomplet'
 							)}
 						</StyledLabel>
 						<HelpButtonWithPopover
 							type="info"
 							title={t(
-								'pages.simulateurs.réduction-générale.options.label.rémunération-primes',
+								'pages.simulateurs.lodeom.options.label.rémunération-primes',
 								'Rémunération non affectée par le mois incomplet'
 							)}
 						>
@@ -260,7 +260,7 @@ export default function MonthOptions({
 }
 
 const HeuresSupplémentairesPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.réduction-générale.options.heures-sup.popover">
+	<Trans i18nKey="pages.simulateurs.lodeom.options.heures-sup.popover">
 		<Body>
 			Le nombre d'heures supplémentaires et complémentaires est utilisé dans le
 			calcul de la réduction : la rémunération brute est comparée au montant du
@@ -270,7 +270,7 @@ const HeuresSupplémentairesPopoverContent = () => (
 )
 
 const RémunérationETPPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.réduction-générale.options.rémunération-etp.popover">
+	<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-etp.popover">
 		<Body>
 			Indiquez ici la rémunération qui aurait été versée pour un mois complet,{' '}
 			<Strong>en excluant</Strong> :
@@ -286,7 +286,7 @@ const RémunérationETPPopoverContent = () => (
 )
 
 const RémunérationPrimesPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.réduction-générale.options.rémunération-primes.popover">
+	<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-primes.popover">
 		<Body>
 			Indiquez ici les éléments de rémunération non affectés par l'absence,
 			comme les primes.
@@ -295,7 +295,7 @@ const RémunérationPrimesPopoverContent = () => (
 )
 
 const RémunérationHeuresSupPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.réduction-générale.options.rémunération-heures-sup.popover">
+	<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-heures-sup.popover">
 		<Body>
 			Indiquez ici la rémunération afférente au paiement des heures
 			supplémentaires ou complémentaires.

@@ -2,9 +2,9 @@ import { sumAll } from 'effect/Number'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import Montant from '@/components/RéductionDeCotisations/Montant'
 import { Body, Grid } from '@/design-system'
-import { MonthState } from '@/utils/réductionDeCotisations'
+import Montant from '@/pages/simulateurs/lodeom/components/Montant'
+import { MonthState } from '@/pages/simulateurs/lodeom/lodeom'
 
 type Props = {
 	label: string
@@ -107,7 +107,7 @@ export default function RécapitulatifTrimestre({
 				<Grid item>
 					<StyledBody>
 						{t(
-							'pages.simulateurs.réduction-générale.recap.header-réduction',
+							'pages.simulateurs.lodeom.recap.header-réduction',
 							'Réduction calculée'
 						)}
 						{codeRéduction && (
@@ -130,7 +130,7 @@ export default function RécapitulatifTrimestre({
 					<Grid item>
 						<StyledBody>
 							{t(
-								'pages.simulateurs.réduction-générale.recap.header-régularisation',
+								'pages.simulateurs.lodeom.recap.header-régularisation',
 								'Régularisation calculée'
 							)}
 							{codeRégularisation && (

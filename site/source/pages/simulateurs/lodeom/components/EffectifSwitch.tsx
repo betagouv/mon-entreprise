@@ -11,7 +11,7 @@ import {
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from './réductionDeCotisations'
+} from '../../../../components/Switch'
 
 export default function EffectifSwitch() {
 	const dispatch = useDispatch()
