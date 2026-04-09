@@ -16,9 +16,10 @@ import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 import { PageConfig } from './_configs/types'
+import { RéductionGénérale } from './reduction-generale'
 
 export default function Simulateurs() {
-	const { absoluteSitePaths } = useSitePaths()
+	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
 	const { currentPath } = useNavigation()
 	const [lastState] = useNavigationOrigin()
 	const isEmbedded = useIsEmbedded()
@@ -63,6 +64,11 @@ export default function Simulateurs() {
 					element={
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
+				/>
+				{/* Simulateurs décomissionnés */}
+				<Route
+					path={relativeSitePaths.simulateurs['réduction-générale']}
+					element={<RéductionGénérale />}
 				/>
 				{simulateurs.map((s) => (
 					<Route

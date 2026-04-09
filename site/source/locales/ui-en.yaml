@@ -1912,20 +1912,7 @@ pages:
       aria-label: "Go to question : {{question}}"
       titre: "Go to question :"
     réduction-générale:
-      externalLinks:
-        "1":
-          ariaLabel: Consult the guide on urssaf.fr, new window
-          ctaLabel: Consult the guide
-          description: Calculation, declaration, rules... Consult the Urssaf guide to the
-            general reduction in contributions.
-          title: General reduction in contributions
-      meta:
-        description: Estimate of the amount of the general reduction in employer
-          contributions (RGCP). This reduction applies to salaries below 1.6
-          times the SMIC.
-        title: General reduction
-      month-by-month:
-        caption: "General discount month by month :"
+      header: The general reduction in contributions simulator is no longer available
       options:
         description: Adds fields to modulate employee activity
         heures-sup:
@@ -1966,31 +1953,6 @@ pages:
         chômage: of which unemployment
         retraite: IRC
         urssaf: URSSAF
-      shortname: General reduction
-      title: General contribution reduction simulator
-      warning:
-        aria-label:
-          lodeom: go to the Lodeom exemption simulator page
-        réforme:
-          aria-label: Find out more about the general degressive reduction (RGDU) on the
-            Urssaf website, new window
-          texte: The <2>degressive general reduction (RGDU)&lt;/2> is not yet implemented
-            on this simulator.
-        texte: "<0>This simulator does not take into account <2>all the specific
-          calculation rules&lt;/2> (temporary employment agencies, road haulage
-          employees subject to equivalent working hours, etc.). Nor does it take
-          into account the specific rates and/or distribution of supplementary
-          pension contributions applied in certain companies.</0><1>In overseas
-          France, it is possible to choose between the general reduction in
-          contributions and another exemption: access the <2>Lodeom exemption
-          simulator</2>.</1>"
-      warnings:
-        JEI: The general reduction cannot be combined with the Young Innovative Company
-          (JEI) exemption.
-        salaire: The RGCP only applies to salaries below 1.6 Smic. In other words, for
-          {{year}}, total remuneration does not exceed <4>{{plafond}}</4> gross
-          per year.
-        stage: The general reduction does not apply to internship bonuses.
     sage-femme:
       meta:
         description: Calculation of net income after contributions based on total income.

@@ -65,7 +65,6 @@ export const pagesToPrerender: {
 		sitePathFr.simulateurs['profession-libérale'].médecin,
 		sitePathFr.simulateurs['profession-libérale'].pharmacien,
 		sitePathFr.simulateurs['profession-libérale']['sage-femme'],
-		sitePathFr.simulateurs['réduction-générale'],
 	].map((val) => encodeURI(val)),
 	infrance: [
 		sitePathEn.index,

@@ -7,7 +7,6 @@
 Tests devenus instables après réusinage du code des simulateurs :
 
 - simulateurs/lodeom
-- simulateurs/reduction-generale
 - simulateurs-generic/eurl-is
 
 ### Tests passés en `skip` en février 2025
