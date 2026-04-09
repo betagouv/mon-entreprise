@@ -13,6 +13,10 @@
 - Ajout de la participation employeur pour les contrats d’apprentissage
 - Ajout du contrôle de rémunération minimale pour l’alternance
 
+### Nouveautés
+- Ajout des règles `exonération retraite complémentaire`, `avait plus de 40 ans au début` et `revenus non salariés N-1 et N-2` dans `dirigeant . indépendant . PL . CARMF`
+- Modification de la règle `dirigeant . indépendant . PL . CARMF . retraite complémentaire` pour intégrer les conditions d'exonération pour les deux premières années d'activité
+
 ### Mises à jour
 - Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
 - Hausse de la CSG non déductible sur les dividendes

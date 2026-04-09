@@ -51,12 +51,17 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
   description: >-
     La CARMF gère le régime de retraite complémentaire.
 
-    Le montant des cotisations est déterminé en fonction des revenus nets d’activité indépendante de l’avant-dernière année.
+    Le montant des cotisations est déterminé en fonction des revenus nets d’activité
+    indépendante de l’avant-dernière année.
 
-    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf si vous étes âgé de plus de 40 ans au début de votre activité libérale. Dans ce cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante de 2018 plafonnés, sans régularisation ultérieure, avec une cotisation maximale de 14 110 €.
+    Les cotisations des deux premières années d’affiliation ne sont pas dues, sauf
+    si vous aviez plus de 40 ans au début de votre activité libérale. Dans ce
+    cas, la cotisation est proportionnelle aux revenus nets d'activité indépendante
+    de 2023 plafonnés, sans régularisation ultérieure, avec une cotisation maximale
+    de 16 815 €.
   arrondi: oui
   variations:
-    - si: entreprise . durée d'activité . en fin d'année < 2 ans
+    - si: exonération retraite complémentaire
       alors: 0€/an
     - sinon:
         produit:
@@ -71,10 +76,38 @@ dirigeant . indépendant . PL . CARMF . retraite complémentaire:
     valeur: 100%
   unité: €/an
   références:
-    Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Vos cotisations en cours d’activité: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
+    Vos cotisations en début d'activité - Régime complémentaire vieillesse: https://www.carmf.fr/page.php?page=cdrom/coti/coti-debut.htm#rcv
     Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
     Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
+
+dirigeant . indépendant . PL . CARMF . exonération retraite complémentaire:
+  toutes ces conditions:
+    - entreprise . durée d'activité . en fin d'année < 2 ans
+    - une de ces conditions:
+        - plus de 40 ans à l'installation = non
+        - revenus non salariés N-1 et N-2 = non
+
+dirigeant . indépendant . PL . CARMF . plus de 40 ans à l'installation:
+  description: |
+    L'exonération de début d'activité pour la retraite complémentaire ne
+    s'applique pas aux médecins ayant plus de 40 ans lors de leur installation.
+  applicable si: entreprise . durée d'activité . en fin d'année < 2 ans
+  question: Aviez-vous plus de 40 ans au début de votre activité libérale ?
+  par défaut: non
+
+dirigeant . indépendant . PL . CARMF . revenus non salariés N-1 et N-2:
+  description: |
+    Un médecin de plus de 40 ans qui n'a pas eu de revenus non salariés
+    les 2 années précédant son installation peut bénéficier de l'exonération
+    de début d'activité pour la retraite complémentaire.
+  applicable si:
+    toutes ces conditions:
+      - entreprise . durée d'activité . en fin d'année < 2 ans
+      - plus de 40 ans à l'installation
+  question: Aviez-vous des revenus non salariés les 2 années précédant votre installation ?
+  par défaut: non
 
 dirigeant . indépendant . PL . CARMF . invalidité décès:
   non applicable si: CARMF . en retraite
