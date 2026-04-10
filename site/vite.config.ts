@@ -41,6 +41,9 @@ export default defineConfig(({ command, mode }) => ({
 					if (id.includes('modele-social')) {
 						return 'modele-social'
 					}
+					if (id.includes('modele-ae')) {
+						return 'modele-ae'
+					}
 					if (id.includes('modele-as')) {
 						return 'modele-as'
 					}

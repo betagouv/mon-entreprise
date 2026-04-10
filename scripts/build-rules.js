@@ -7,8 +7,9 @@ import Engine from 'publicodes'
 const outDir = './dist'
 const sources = [path.resolve('./règles')]
 if (
-	path.resolve('./').endsWith('/modele-ti') |
-	path.resolve('./').endsWith('/modele-as')
+	path.resolve('./').endsWith('/modele-ae') |
+	path.resolve('./').endsWith('/modele-as') |
+	path.resolve('./').endsWith('/modele-ti')
 ) {
 	sources.push(path.resolve('../modele-commun/règles'))
 }

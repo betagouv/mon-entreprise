@@ -71,6 +71,7 @@
 		"iframe-resizer": "^4.3.7",
 		"isbot": "^3.7.0",
 		"markdown-to-jsx": "^7.3.2",
+		"modele-ae": "workspace:^",
 		"modele-as": "workspace:^",
 		"modele-social": "workspace:^",
 		"modele-ti": "workspace:^",
