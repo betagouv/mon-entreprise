@@ -321,31 +321,6 @@ assimilé salarié . cotisations . assiette:
     avantages en nature (logement, véhicule...).
   titre.en: '[automatic] plate'
   titre.fr: assiette
-assimilé salarié . cotisations . assiette forfaitaire:
-  avec:
-    montant:
-      note.en: >
-        [automatic] There is a general rule governing lump-sum bases. When
-        remuneration is equal to or greater than
-
-        1.5 times the social security ceiling, the lump-sum base cannot be less than 70% of the remuneration.
-      note.fr: >
-        Il existe une règle générale d'encadrement des assiettes forfaitaires.
-        Lorsque la rémunération est supérieure ou égale à
-
-        1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
-      titre.en: '[automatic] flat-rate contribution base'
-      titre.fr: assiette forfaitaire de cotisations
-    rémunération réelle:
-      question.en: '[automatic] Do you want to calculate contributions on actual
-        earnings (instead of the flat-rate basis)?'
-      question.fr:
-        Voulez-vous calculer les cotisations sur la rémunération réelle (au
-        lieu de la base forfaitaire) ?
-      titre.en: '[automatic] actual compensation'
-      titre.fr: rémunération réelle
-  titre.en: '[automatic] lump-sum basis'
-  titre.fr: assiette forfaitaire
 assimilé salarié . cotisations . autres employeur:
   titre.en: '[automatic] Other employer charges'
   titre.fr: Autres charges dues par l'employeur
@@ -777,20 +752,181 @@ assimilé salarié . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 assimilé salarié . exonérations . Acre:
-  description.en: >-
+  description.en: >
     [automatic] Assistance for setting up or taking over a business (Acre)
-    consists of a partial exemption from social security contributions, known as
-    the "start-up exemption", for a period of 12 months.
+    consists of a
+
+    **partial** exemption from social security charges for 12 months, known as the
+
+    exemption.
 
 
-    It is **automatic** for **companies and sole proprietorships** (subject to certain conditions, such as not having benefited from it in the last three years).
-  description.fr: >-
+    To qualify, you must **apply to Urssaf** within
+
+    within 60 days of setting up your business.
+
+
+    You can only benefit from Acre if you are in one of the following situations
+
+    **one of the following situations** at the time of setting up your business:
+
+    - a job-seeker receiving compensation ;
+
+    - a job-seeker who is not receiving benefits but is registered with France Travail
+
+    6 months in the last 18 months;
+
+    - beneficiary of the revenu de solidarité active (RSA) or the allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - young people aged 18 to 25;
+
+    - person under 30 not receiving benefit (duration of activity insufficient to
+
+    for entitlement);
+
+    - disabled persons under 30;
+
+    - salaried employees or those made redundant by a company in receivership or liquidation
+
+    or liquidation and who takes over the business;
+
+    - a person who has signed a Cape (contrat d'appui au projet d'entreprise), provided that
+
+    provided they meet one of the above seven conditions on the date of signing
+
+    on the date the contract is signed;
+
+    - a person setting up a business in a priority district of the
+
+    (QPV);
+
+    - beneficiary of the "prestation partagée d'éducation de l'enfant" (PrePare) ;
+
+    - person carrying on business in a France ruralités revitalization zone
+
+    (ZFRR) or a France ruralités revitalization "plus" zone (ZFRR+).
+
+
+    For **companies**, you must meet at least one of the following conditions
+
+    conditions:
+
+    - you and your family own more than 50% of the capital, of which at least 35% is held personally
+
+    personally;
+
+    - you manage the company and hold at least 1/3 of the capital with your family
+
+    capital, of which at least 25% is held by you personally (provided that no other person
+
+    owns more than 50% of the capital) ;
+
+    - you and the other persons requesting Acre hold more than 50% of the capital, provided that
+
+    capital, provided that at least one of these persons is a director,
+
+    and that each of them holds a share of the capital at least equal to 10% of the share held by the main partner.
+
+    the share held by the main partner.
+
+
+    Prior to 2026, the Acre was granted automatically to all business
+
+    business creators.
+
+
+    In addition, to benefit from Acre, you must not have already received it
+
+    in the previous three years.
+  description.fr: >
     L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
-    exonération partielle de charges sociales, dite exonération de début
-    d’activité pendant 12 mois.
+
+    **exonération partielle** de charges sociales pendant 12 mois, dite exonération
+
+    de début d’activité.
 
 
-    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de l’Urssaf**
+
+    dans un délai de 60 jours après la création de votre entreprise.
+
+
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
+
+    **une des situations suivantes** au moment de la création de votre entreprise :
+
+    - personne demandeuse d’emploi indemnisée ;
+
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
+
+    6 mois au cours des 18 derniers mois ;
+
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - jeune de 18 à 25 ans révolus ;
+
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante pour
+
+    l’ouverture de droits) ;
+
+    - personne de moins de 30 ans reconnue handicapée ;
+
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en redressement
+
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise), sous
+
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+
+    de signature de ce contrat ;
+
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire de
+
+    la politique de la ville (QPV) ;
+
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+
+    - personne exerçant l’activité au sein d’une zone France ruralités revitalisation
+
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
+
+
+    Pour les **sociétés**, vous devez respecter au moins une des conditions
+
+    suivantes :
+
+    - vous détenez avec votre famille plus de 50 % du capital dont au moins 35 % à
+
+    titre personnel ;
+
+    - vous dirigez la société et vous détenez avec votre famille au moins 1/3 du
+
+    capital dont au moins 25 % à titre personnel (sous réserve que personne d’autre
+
+    ne détienne plus de 50 % du capital) ;
+
+    - vous détenez, avec les autres personnes demandant l’Acre, plus de 50 % du
+
+    capital, à condition qu’au moins l’une de ces personnes soit dirigeant/dirigeante,
+
+    et que chacune d’elle détienne une part du capital au moins égal à 10 % de
+
+    la part détenue par la principale associée ou le principal associé.
+
+
+    Avant 2026, l'attribution de l’Acre était automatique et concernait tous les
+
+    créateurs et créatrices d’entreprise.
+
+
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+
+    bénéficié au cours des trois années précédentes.
   question.en: '[automatic] Did you benefit from Acre?'
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
@@ -1480,6 +1616,12 @@ entreprise . code catégorie juridique:
     que défini par l'INSEE.
   titre.en: '[automatic] legal category code'
   titre.fr: code catégorie juridique
+entreprise . créée cette année:
+  description.en: '[automatic] Indicates whether the company was created in the
+    year of the simulation.'
+  description.fr: Indique si l’entreprise a été créée l’année de la simulation.
+  titre.en: '[automatic] Company created this year'
+  titre.fr: Entreprise créée cette année
 entreprise . date de création:
   description.en: >
     [automatic] The start date (or date of creation) is set when you register
@@ -1527,9 +1669,15 @@ entreprise . date de création . contrôle date passée:
     pas vous être trompé dans la saisie ?
   titre.en: '[automatic] control past date'
   titre.fr: contrôle date passée
-entreprise . durée d'activité en début d'année:
-  titre.en: '[automatic] duration of activity at start of year'
-  titre.fr: durée d'activité en début d'année
+entreprise . durée d'activité:
+  titre.en: '[automatic] duration of activity'
+  titre.fr: durée d'activité
+entreprise . durée d'activité . en début d'année:
+  titre.en: '[automatic] at the beginning of the year'
+  titre.fr: en début d'année
+entreprise . durée d'activité . en fin d'année:
+  titre.en: '[automatic] at the end of the year'
+  titre.fr: en fin d'année
 entreprise . imposition:
   question.en: '[automatic] How is your company taxed?'
   question.fr: Quel est le type d’imposition de votre entreprise ?
@@ -1769,6 +1917,13 @@ impôt . barème standard . impôt brut:
   titre.en: '[automatic] gross tax'
   titre.fr: impôt brut
 impôt . barème standard . impôt brut . par part:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    plafond tranche 2:
+      titre.en: '[automatic] tranche 2 ceiling'
+      titre.fr: plafond tranche 2
   description.en: >
     [automatic] This is the famous income tax scale. It's a marginal scale with
     5
@@ -2066,10 +2221,13 @@ impôt . foyer fiscal . parent isolé:
   titre.en: '[automatic] single parent'
   titre.fr: parent isolé
 impôt . foyer fiscal . situation de famille:
-  question.en: '[automatic] What is your family situation?'
-  question.fr: Quelle est votre situation familiale ?
   titre.en: '[automatic] marital status'
   titre.fr: situation de famille
+impôt . foyer fiscal . situation de famille . question:
+  question.en: '[automatic] What is your family situation?'
+  question.fr: Quelle est votre situation familiale ?
+  titre.en: '[automatic] Marital status'
+  titre.fr: Situation de famille
 impôt . montant:
   description.en: |
     [automatic] Calculation of income tax based on taxable income and
@@ -2188,6 +2346,16 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
+paramètres . impôt . foyer fiscal:
+  titre.en: '[automatic] taxable household'
+  titre.fr: foyer fiscal
+paramètres . impôt . foyer fiscal . situation de famille:
+  description.en: |
+    [automatic] Allows you to impose a value on a family situation.
+  description.fr: |
+    Permet d'imposer une valeur à situation de famille.
+  titre.en: '[automatic] marital status'
+  titre.fr: situation de famille
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using
@@ -2366,149 +2534,6 @@ protection sociale . formation:
   titre.fr: formation
 protection sociale . invalidité et décès:
   avec:
-    accidents du travail et maladies professionnelles:
-      avec:
-        rente décès:
-          description.en: >
-            [automatic] If the workplace accident results in the insured's
-            death, the insured's next-of-kin
-
-            (spouse, cohabitee, partner in a civil solidarity pact
-
-            (Pacs) - not divorced or separated - children, etc.) may be entitled to an annuity.
-
-            annuity.
-          description.fr: >
-            Si l’accident du travail entraîne le décès de l’assuré, les proches
-
-            (conjoint, concubin, partenaire lié par un pacte civil de solidarité
-
-            (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d’une
-
-            rente.
-          titre.en: '[automatic] AT/MP death pension'
-          titre.fr: Rente décès AT/MP
-        rente incapacité:
-          description.en: >
-            [automatic] If you are permanently disabled as a result of a
-            work-related accident or illness
-
-            occupational disease is greater than 10%, you will receive a permanent
-
-            permanent disability pension.
-          description.fr: >
-            Si votre taux d’incapacité permanente suite à un accident du travail
-            ou
-
-            une maladie professionnelle est supérieur à 10 %, vous percevrez une
-
-            rente d’incapacité permanente.
-          titre.en: '[automatic] Disability pension'
-          titre.fr: Rente incapacité AT/MP
-      titre.en: '[automatic] work-related accidents and illnesses'
-      titre.fr: accidents du travail et maladies professionnelles
-    accidents du travail et maladies professionnelles . rente incapacité . taux incapacité:
-      question.en:
-        '[automatic] What degree of disability would you like to simulate
-        for an occupational injury and disease pension?'
-      question.fr:
-        Quel taux d’incapacité voulez-vous simuler pour la rente accidents
-        du travail et maladie professionnelle ?
-      titre.en: '[automatic] disability rate'
-      titre.fr: taux incapacité
-    capital décès:
-      titre.en: '[automatic] death benefit'
-      titre.fr: capital décès
-    pension de reversion:
-      description.en: >
-        [automatic] When your husband/wife or ex-husband/wife dies, you may be
-        entitled to a survivor's pension.
-
-        reversionary pension.
-
-        Payment of the pension is possible, under certain conditions, when
-
-        the deceased was gainfully employed or self-employed (self-employed, liberal
-
-        self-employed, self-employed professionals, farmers).
-
-
-        The pension is equal to 54% of the pension your husband/wife or ex-husband/wife
-
-        ex-spouse was receiving or could have received (excluding increases).
-      description.fr: >
-        Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir
-        une
-
-        pension de réversion.
-
-        Le versement de la pension est possible, sous certaines conditions, lorsque
-
-        le défunt exerçait une activité salariée ou non salariée (travailleur
-
-        indépendant, professionnel libéral, agriculteur).
-
-
-        La pension est égale à 54 % de la retraite que votre époux/épouse ou
-
-        ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
-      titre.en: '[automatic] maximum reversionary pension'
-      titre.fr: pension de reversion maximum
-    pension invalidité:
-      avec:
-        condition revenu:
-          titre.en: '[automatic] income condition'
-          titre.fr: condition revenu
-        invalidité partielle:
-          description.en:
-            '[automatic] If you are capable of gainful employment, you are
-            classified in category 1.'
-          description.fr:
-            Si vous êtes capable d’exercer une activité professionnelle
-            rémunérée, vous êtes classé en 1re catégorie.
-          titre.en: '[automatic] partial disability'
-          titre.fr: invalidité partielle
-        invalidité totale:
-          description.en:
-            '[automatic] If you can no longer work, you are classified in
-            category 2.'
-          description.fr:
-            Si vous ne pouvez plus exercer d’activité professionnelle, vous
-            êtes classé en 2e catégorie.
-          titre.en: '[automatic] total disability'
-          titre.fr: invalidité totale
-        minimum:
-          titre.en: '[automatic] minimum'
-          titre.fr: minimum
-        minimum salarié:
-          titre.en: '[automatic] minimum wage'
-          titre.fr: minimum salarié
-        revenu annuel moyen des 10 meilleures années:
-          description.en: >
-            [automatic] Since July 1, 2016, you can only receive one disability
-            pension
-
-            disability pension: either for your salaried activity, or for your activity as a
-
-            for your activity as a craftsman/trader. However, the amount of
-
-            However, the amount of your pension takes into account all your income, whether from
-
-            your salaried activity or your self-employed activity.
-          description.fr: >
-            Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
-
-            pension d’invalidité : soit au titre de votre activité salariée, soit au
-
-            titre de votre activité d’artisan/commerçant. Toutefois, le montant de
-
-            la pension tient compte de tous vos revenus perçus qu’ils proviennent de
-
-            votre activité salariée ou de votre activité comme indépendant.
-          titre.en: '[automatic] average annual income for the 10 best years'
-          titre.fr: revenu annuel moyen des 10 meilleures années
-      titre.en: '[automatic] disability pension'
-      titre.fr: pension invalidité
     revenu annuel moyen:
       titre.en: '[automatic] average annual income'
       titre.fr: revenu annuel moyen
@@ -2551,6 +2576,115 @@ protection sociale . invalidité et décès:
     à vos proches en cas de décès.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles:
+  avec:
+    rente décès:
+      description.en: >
+        [automatic] If the workplace accident results in the insured's death,
+        the insured's next-of-kin
+
+        (spouse, cohabitee, partner in a civil solidarity pact
+
+        (Pacs) - not divorced or separated - children, etc.) may be entitled to an annuity.
+
+        annuity.
+      description.fr: |
+        Si l’accident du travail entraîne le décès de l’assuré, les proches
+        (conjoint, concubin, partenaire lié par un pacte civil de solidarité
+        (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d’une
+        rente.
+      titre.en: '[automatic] AT/MP death pension'
+      titre.fr: Rente décès AT/MP
+    rente incapacité:
+      description.en: >
+        [automatic] If you are permanently disabled as a result of a
+        work-related accident or illness
+
+        occupational disease is greater than 10%, you will receive a permanent
+
+        permanent disability pension.
+      description.fr: |
+        Si votre taux d’incapacité permanente suite à un accident du travail ou
+        une maladie professionnelle est supérieur à 10 %, vous percevrez une
+        rente d’incapacité permanente.
+      titre.en: '[automatic] Disability pension'
+      titre.fr: Rente incapacité AT/MP
+    rente incapacité . taux incapacité:
+      question.en:
+        '[automatic] What degree of disability would you like to simulate
+        for an occupational injury and disease pension?'
+      question.fr:
+        Quel taux d’incapacité voulez-vous simuler pour la rente accidents
+        du travail et maladie professionnelle ?
+      titre.en: '[automatic] disability rate'
+      titre.fr: taux incapacité
+  titre.en: '[automatic] work-related accidents and illnesses'
+  titre.fr: accidents du travail et maladies professionnelles
+protection sociale . invalidité et décès . capital décès:
+  titre.en: '[automatic] death benefit'
+  titre.fr: capital décès
+protection sociale . invalidité et décès . pension de reversion:
+  description.en: >
+    [automatic] When your husband/wife or ex-husband/wife dies, you may be
+    entitled to a survivor's pension.
+
+    reversionary pension.
+
+    Payment of the pension is possible, under certain conditions, when
+
+    the deceased was gainfully employed or self-employed (self-employed, liberal
+
+    self-employed, self-employed professionals, farmers).
+
+
+    The pension is equal to 54% of the pension your husband/wife or ex-husband/wife
+
+    ex-spouse was receiving or could have received (excluding increases).
+  description.fr: >
+    Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir une
+
+    pension de réversion.
+
+    Le versement de la pension est possible, sous certaines conditions, lorsque
+
+    le défunt exerçait une activité salariée ou non salariée (travailleur
+
+    indépendant, professionnel libéral, agriculteur).
+
+
+    La pension est égale à 54 % de la retraite que votre époux/épouse ou
+
+    ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
+  titre.en: '[automatic] maximum reversionary pension'
+  titre.fr: pension de reversion maximum
+protection sociale . invalidité et décès . pension invalidité:
+  avec:
+    condition revenu:
+      titre.en: '[automatic] income condition'
+      titre.fr: condition revenu
+    invalidité partielle:
+      description.en:
+        '[automatic] If you are capable of gainful employment, you are
+        classified in category 1.'
+      description.fr:
+        Si vous êtes capable d’exercer une activité professionnelle
+        rémunérée, vous êtes classé en 1re catégorie.
+      titre.en: '[automatic] partial disability'
+      titre.fr: invalidité partielle
+    invalidité totale:
+      description.en:
+        '[automatic] If you can no longer work, you are classified in
+        category 2.'
+      description.fr:
+        Si vous ne pouvez plus exercer d’activité professionnelle, vous
+        êtes classé en 2e catégorie.
+      titre.en: '[automatic] total disability'
+      titre.fr: invalidité totale
+    minimum:
+      titre.en: '[automatic] minimum'
+      titre.fr: minimum
+  titre.en: '[automatic] disability pension'
+  titre.fr: pension invalidité
 protection sociale . maladie:
   avec:
     abattement forfaitaire salarié:
@@ -2942,6 +3076,9 @@ protection sociale . retraite . base:
 protection sociale . retraite . base . cotisée:
   titre.en: '[automatic] income contributed for basic pension'
   titre.fr: revenu cotisé pour la retraite de base
+protection sociale . retraite . base . trimestres:
+  titre.en: '[automatic] validated quarters'
+  titre.fr: trimestres validés
 protection sociale . retraite . complémentaire:
   description.en: >
     [automatic] Retirement pension supplement acquired through 10 full years of
@@ -3083,9 +3220,6 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
     au 1er janvier.
   titre.en: '[automatic] Agirc-Arrco'
   titre.fr: Agirc-Arrco
-protection sociale . retraite . trimestres:
-  titre.en: '[automatic] validated quarters'
-  titre.fr: trimestres validés
 protection sociale . transport:
   description.en: >
     [automatic] This contribution is paid in full to the [mobility organizing
@@ -3214,13 +3348,13 @@ situation personnelle . domiciliation fiscale à l'étranger:
     nom:
       titre.en: '[automatic] Municipality'
       titre.fr: Commune
-    taux versement mobilité:
-      titre.en: '[automatic] mobility payment rate'
-      titre.fr: taux versement mobilité
   question.en: '[automatic] In which commune is the plant located?'
   question.fr: Dans quelle commune l'établissement est-il implanté ?
   titre.en: '[automatic] commune'
   titre.fr: commune
+établissement . commune . taux versement mobilité:
+  titre.en: '[automatic] mobility payment rate'
+  titre.fr: taux versement mobilité
 établissement . taux ATMP:
   avec:
     taux collectif:
