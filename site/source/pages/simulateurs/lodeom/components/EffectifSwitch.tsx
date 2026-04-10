@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
-import { useEngine } from '@/utils/publicodes/EngineContext'
-
 import {
 	SwitchContainer,
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from '../../../../components/Switch'
+} from '@/components/Switch'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export default function EffectifSwitch() {
 	const dispatch = useDispatch()

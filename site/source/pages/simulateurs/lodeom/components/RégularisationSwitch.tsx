@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next'
 
-import { RégularisationMethod } from '@/pages/simulateurs/lodeom/lodeom'
-
 import {
 	SwitchContainer,
 	SwitchLabel,
 	SwitchRadio,
 	SwitchToggleGroup,
-} from '../../../../components/Switch'
+} from '@/components/Switch'
+import { RégularisationMethod } from '@/pages/simulateurs/lodeom/lodeom'
 
 type Props = {
 	régularisationMethod: RégularisationMethod
