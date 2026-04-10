@@ -14,7 +14,7 @@ salarié . ancienneté:
 salarié . convention collective:
   experimental: oui
   par défaut: "'droit commun'"
-  question: "Quelle convention collective est applicable à l'entreprise ?"
+  question: Quelle convention collective est applicable à l'entreprise ?
   une possibilité:
     - HCR
     - BTP
@@ -580,7 +580,6 @@ salarié . coût total employeur:
   identifiant court: cout-total-employeur
   synonymes: [salaire chargé]
   résumé: Dépensé par l'entreprise
-  question: Quel est le coût total de cette embauche ?
   description: |
     Coût total d'embauche d'un salarié en incluant, en plus des éléments de
     rémunération, les aides différées.

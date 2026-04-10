@@ -118,7 +118,6 @@ salarié . contrat . date d'embauche:
 salarié . contrat . salaire brut:
   identifiant court: salaire-brut
   résumé: Brut de référence (sans les primes, indemnités ni majorations)
-  question: Quel est votre salaire brut ?
   description: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne change jamais entre les mois et ne peut pas être modifié sans signature des deux parties.
 
@@ -154,7 +153,6 @@ salarié . contrat . salaire brut:
       applicable si: temps de travail . temps partiel
       titre: Salaire brut équivalent temps plein
       résumé: Le salaire si l'embauche se faisait à temps plein
-      question: Quel est le salaire en équivalent temps plein ?
       unité: €/mois
       valeur: salaire brut / temps de travail . quotité
 
