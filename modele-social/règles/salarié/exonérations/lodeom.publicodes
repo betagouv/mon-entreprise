@@ -146,8 +146,6 @@ salarié . cotisations . exonérations . lodeom . zone un:
         innovation et croissance:
           titre: barème d’innovation et croissance
           valeur: barèmes = 'innovation et croissance'
-          question: Êtes-vous éligible au barème d’innovation et croissance ?
-          par défaut: non
           description: |
             Pour bénéficier du barème d’innovation et croissance, les employeurs doivent :
             - employer **moins de 250 salariés**,

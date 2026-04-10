@@ -807,7 +807,7 @@ assimilé salarié . exonérations . JEI:
 
     - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - corporate officers who are primarily involved in the company's research and development project
+    - corporate officers who are principally involved in the company's research and development project
 
 
     By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
@@ -2066,10 +2066,13 @@ impôt . foyer fiscal . parent isolé:
   titre.en: '[automatic] single parent'
   titre.fr: parent isolé
 impôt . foyer fiscal . situation de famille:
-  question.en: '[automatic] What is your family situation?'
-  question.fr: Quelle est votre situation familiale ?
   titre.en: '[automatic] marital status'
   titre.fr: situation de famille
+impôt . foyer fiscal . situation de famille . question:
+  question.en: '[automatic] What is your family situation?'
+  question.fr: Quelle est votre situation familiale ?
+  titre.en: '[automatic] Marital status'
+  titre.fr: Situation de famille
 impôt . montant:
   description.en: |
     [automatic] Calculation of income tax based on taxable income and
@@ -2188,6 +2191,16 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
+paramètres . impôt . foyer fiscal:
+  titre.en: '[automatic] taxable household'
+  titre.fr: foyer fiscal
+paramètres . impôt . foyer fiscal . situation de famille:
+  description.en: |
+    [automatic] Allows you to impose a value on a family situation.
+  description.fr: |
+    Permet d'imposer une valeur à situation de famille.
+  titre.en: '[automatic] marital status'
+  titre.fr: situation de famille
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using

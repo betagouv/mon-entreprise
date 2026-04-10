@@ -9611,8 +9611,6 @@ salarié . contrat . salaire brut:
       titre.en: '[automatic] high salary control'
       titre.fr: contrôle salaire élevé
     équivalent temps plein:
-      question.en: '[automatic] What is the full-time equivalent salary?'
-      question.fr: Quel est le salaire en équivalent temps plein ?
       résumé.en: '[automatic] Salary if hired full time'
       résumé.fr: Le salaire si l'embauche se faisait à temps plein
       titre.en: '[automatic] Full-time equivalent gross salary'
@@ -9631,8 +9629,6 @@ salarié . contrat . salaire brut:
 
 
     Il ne comprend pas les indemnités, avantages en nature et primes...
-  question.en: '[automatic] What is your gross salary?'
-  question.fr: Quel est votre salaire brut ?
   résumé.en: '[automatic] Gross reference (without bonuses, allowances or increases)'
   résumé.fr: Brut de référence (sans les primes, indemnités ni majorations)
   suggestions.SMIC.en: '[automatic] SMIC'
@@ -11725,8 +11721,6 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
 
             L’exonération **ne s’applique pas** aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
-          question.en: '[automatic] Are you eligible for the innovation and growth scale?'
-          question.fr: Êtes-vous éligible au barème d’innovation et croissance ?
           titre.en: '[automatic] innovation and growth scale'
           titre.fr: barème d’innovation et croissance
       question.en: '[automatic] What scale do you envisage?'
@@ -12265,8 +12259,6 @@ salarié . coût total employeur:
     votre entreprise : recherche du bon candidat, poste de travail, équipement,
 
     formation initiale, médecine du travail, etc.
-  question.en: What
-  question.fr: Quel est le coût total de cette embauche ?
   résumé.en: Spent by the company
   résumé.fr: Dépensé par l'entreprise
   titre.en: '[automatic] total employer cost'
@@ -14047,8 +14039,6 @@ salarié . rémunération . net . payé après impôt:
   description.fr: >
     C'est le salaire versé sur le compte bancaire du salarié, une fois les
     cotisations et l'impôt prélevés.
-  question.en: What is the net income of the employee after income tax?
-  question.fr: Quel est le revenu net du salarié après impôt ?
   résumé.en: '[automatic] The net salary paid'
   résumé.fr: Le salaire net payé
   titre.en: Net salary after income tax
@@ -14068,8 +14058,6 @@ salarié . rémunération . net . à payer avant impôt:
     Aussi appelé salaire net à payer avant impôt.
 
     Cette somme peut varier en fonction de décisions politiques (augmentation ou diminution des cotisations) alors que le salaire brut est contractuel (pour le changer, il faut signer un avenant au contrat).
-  question.en: '[automatic] What is your net salary?'
-  question.fr: Quel est votre salaire net ?
   résumé.en: '[automatic] Net salary before tax'
   résumé.fr: Salaire net avant impôt
   titre.en: '[automatic] Net salary'
