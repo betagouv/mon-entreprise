@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { Condition } from '@/components/EngineValue/Condition'
@@ -6,6 +7,8 @@ import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 import { DateCessationQuestion } from '@/pages/simulateurs/cessation-activité/components/DateCessationQuestion'
 import { RégimeImpositionQuestion } from '@/pages/simulateurs/cessation-activité/components/RégimeImpositionQuestion'
 import { useEngine } from '@/utils/publicodes/EngineContext'
+
+import { AvertissementAnnéeDeSimulationModifiée } from './components/AvertissementAnnéeDeSimulationModifiée'
 
 export const CessationActivitéGoals = () => {
 	const engine = useEngine()
@@ -17,10 +20,11 @@ export const CessationActivitéGoals = () => {
 	return (
 		<SimulationGoals
 			toggles={
-				<>
+				<LeftAlignedContainer>
 					<DateCessationQuestion />
 					<RégimeImpositionQuestion />
-				</>
+					<AvertissementAnnéeDeSimulationModifiée />
+				</LeftAlignedContainer>
 			}
 		>
 			<Condition expression="entreprise . imposition = 'IR'">
@@ -89,3 +93,10 @@ export const CessationActivitéGoals = () => {
 		</SimulationGoals>
 	)
 }
+
+const LeftAlignedContainer = styled.div`
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	row-gap: ${({ theme }) => theme.spacings.sm};
+`

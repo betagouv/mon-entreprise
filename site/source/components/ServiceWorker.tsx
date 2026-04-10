@@ -3,12 +3,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 
+import { Body, Button, CloseButton, Message } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { getItem, removeItem, setItem } from '@/storage/safeLocalStorage'
-
-import { Message } from '../design-system'
-import { Button, CloseButton } from '../design-system/buttons'
-import { Body } from '../design-system/typography/paragraphs'
 
 const PromptContainer = styled.div`
 	position: fixed;
