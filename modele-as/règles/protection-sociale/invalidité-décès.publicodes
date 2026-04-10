@@ -1,0 +1,139 @@
+protection sociale . invalidité et décès:
+  icônes: 🦽
+  type: branche
+  résumé:
+    Garantit le versement d’une pension en cas d’invalidité et un capital à
+    vos proches en cas de décès.
+  description: |
+    Vous pouvez être reconnu invalide si votre capacité de travail et de gain est
+    réduite d’au moins 2/3 à la suite d’un accident ou d’une maladie d’origine non
+    professionnelle. Vous pouvez obtenir le versement d’une pension d’invalidité
+    afin de compenser la perte de revenus.
+
+    Le capital décès est une indemnité qui garantit le versement d’un capital aux
+    ayants droit d’un travailleur décédé, sous certaines conditions. Son montant est
+    forfaitaire.
+  références:
+    capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
+    capital décès (salarié privé): https://www.service-public.fr/particuliers/vosdroits/F3005
+    pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
+
+  avec:
+    revenu annuel moyen:
+      valeur: assimilé salarié . cotisations . assiette
+      plafond: plafond sécurité sociale
+
+protection sociale . invalidité et décès . accidents du travail et maladies professionnelles:
+  références:
+    'Incapacité permanente suite à un accident du travail : indemnités et rente': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-accident-travail
+    'Incapacité permanente suite à une maladie professionnelle : indemnités et rentes': https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/incapacite-permanente-suite-maladie-professionnelle
+
+  avec:
+    rente décès:
+      titre: Rente décès AT/MP
+      description: |
+        Si l’accident du travail entraîne le décès de l’assuré, les proches
+        (conjoint, concubin, partenaire lié par un pacte civil de solidarité
+        (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d’une
+        rente.
+      produit:
+        - assimilé salarié . cotisations . assiette
+        - 40%
+      références:
+        'Décès d’un salarié suite à un accident de travail ou de trajet : indemnisation des ayants droit': https://www.service-public.fr/particuliers/vosdroits/F14868
+
+    rente incapacité:
+      titre: Rente incapacité AT/MP
+      description: |
+        Si votre taux d’incapacité permanente suite à un accident du travail ou
+        une maladie professionnelle est supérieur à 10 %, vous percevrez une
+        rente d’incapacité permanente.
+      produit:
+        - barème:
+            assiette: assimilé salarié . cotisations . assiette
+            multiplicateur: SMIC
+            tranches:
+              - taux: 100%
+                plafond: 2
+              - taux: 1 / 3
+                plafond: 8
+        - barème:
+            assiette: taux incapacité
+            tranches:
+              - taux: 50%
+                plafond: 50%
+              - taux: 150%
+      références:
+        'Accident du travail : indemnisation en cas d’incapacité permanente': https://www.service-public.fr/particuliers/vosdroits/F14840
+
+    rente incapacité . taux incapacité:
+      question:
+        Quel taux d’incapacité voulez-vous simuler pour la rente accidents du
+        travail et maladie professionnelle ?
+      plancher: 10%
+      plafond: 100%
+      par défaut: 50%
+
+protection sociale . invalidité et décès . capital décès:
+  valeur: 3681 €
+
+protection sociale . invalidité et décès . pension de reversion:
+  titre: pension de reversion maximum
+  unité: €/mois
+  description: |
+    Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir une
+    pension de réversion.
+    Le versement de la pension est possible, sous certaines conditions, lorsque
+    le défunt exerçait une activité salariée ou non salariée (travailleur
+    indépendant, professionnel libéral, agriculteur).
+
+    La pension est égale à 54 % de la retraite que votre époux/épouse ou
+    ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
+  références:
+    Pension de réversion: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/veuvage/pension-reversion-veuvage.html
+    Montants minimums de la pension de reversion: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=retraite_reversion_montant_minimum_bar.aspx
+    Pension de réversion - Défunt ayant travaillé dans le privé: https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
+  plancher:
+    variations:
+      - si: date >= 07/2022
+        alors: 3672.01 €/an
+      - sinon: 3530.78 €/an
+  valeur: 54% * retraite . base
+
+protection sociale . invalidité et décès . pension invalidité:
+  références:
+    Articles R341-4 à R341-6-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173390
+
+  avec:
+    invalidité partielle:
+      description:
+        Si vous êtes capable d’exercer une activité professionnelle
+        rémunérée, vous êtes classé en 1re catégorie.
+      produit:
+        - revenu annuel moyen
+        - 30%
+      plancher: minimum
+      unité: €/mois
+      références:
+        Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+    invalidité totale:
+      description:
+        Si vous ne pouvez plus exercer d’activité professionnelle, vous
+        êtes classé en 2e catégorie.
+      produit:
+        - revenu annuel moyen
+        - 50%
+      unité: €/mois
+      plancher: minimum
+      références:
+        Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+    minimum:
+      applicable si: condition revenu
+      valeur: 309.09 €/mois
+      références:
+        Montant minimal de la pension d’invalidité de travailleur salarié: https://www.legislation.cnav.fr/Lists/ArticlesBareme/DispForm.aspx?ID=4266&ContentTypeId=0x01007CF8FA8574A1B64CA3888B8B205B3F58
+        Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+    condition revenu: assimilé salarié . cotisations . assiette >= 2030 heure/an * SMIC . horaire
