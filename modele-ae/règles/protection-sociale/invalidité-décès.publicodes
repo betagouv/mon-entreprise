@@ -1,0 +1,100 @@
+protection sociale . invalidité et décès:
+  icônes: 🦽
+  type: branche
+  résumé:
+    Garantit le versement d’une pension en cas d’invalidité et un capital à
+    vos proches en cas de décès.
+  description: |
+    Vous pouvez être reconnu invalide si votre capacité de travail et de gain est
+    réduite d’au moins 2/3 à la suite d’un accident ou d’une maladie d’origine non
+    professionnelle. Vous pouvez obtenir le versement d’une pension d’invalidité
+    afin de compenser la perte de revenus.
+
+    Le capital décès est une indemnité qui garantit le versement d’un capital aux
+    ayants droit d’un travailleur décédé, sous certaines conditions. Son montant est
+    forfaitaire.
+  références:
+    capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
+    pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
+
+  avec:
+    revenu annuel moyen:
+      applicable si: maladie . condition revenu
+      valeur: entreprise . chiffre d'affaires . abattu
+      plafond: plafond sécurité sociale
+
+protection sociale . invalidité et décès . capital décès:
+      applicable si: maladie . condition revenu
+      valeur: 20% * plafond sécurité sociale * 1 an
+      unité: €
+
+protection sociale . invalidité et décès . capital décès . orphelin:
+  description: |
+    Un capital « orphelin » est versé aux enfants des travailleurs indépendants
+    décédés. Il concerne :
+
+    - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa
+    charge ;
+    - les enfants à la charge du défunt de plus de 16 ans, et de moins de 20 ans,
+    poursuivant leurs études ou leur apprentissage ;
+    - les enfants, quel que soit leur âge, bénéficiaires des allocations
+    instituées en faveur des personnes handicapées.
+  références:
+    Le capital orphelin pour les enfants des travailleurs indépendants: https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
+  valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
+
+protection sociale . invalidité et décès . pension de reversion:
+  titre: pension de reversion maximum
+  unité: €/mois
+  description: |
+    Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir une
+    pension de réversion.
+    Le versement de la pension est possible, sous certaines conditions, lorsque
+    le défunt exerçait une activité salariée ou non salariée (travailleur
+    indépendant, professionnel libéral, agriculteur).
+
+    La pension est égale à 54 % de la retraite que votre époux/épouse ou
+    ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
+  références:
+    Pension de réversion: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/veuvage/pension-reversion-veuvage.html
+    Montants minimums de la pension de reversion: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=retraite_reversion_montant_minimum_bar.aspx
+    Pension de réversion - Défunt ayant travaillé dans le privé: https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
+  plancher:
+    variations:
+      - si: date >= 07/2022
+        alors: 3672.01 €/an
+      - sinon: 3530.78 €/an
+  valeur: 54 % * retraite . base
+
+protection sociale . invalidité et décès . pension invalidité:
+  références:
+    Articles R341-4 à R341-6-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173390
+
+  avec:
+    invalidité partielle:
+      description:
+        Si vous êtes capable d’exercer une activité professionnelle
+        rémunérée, vous êtes classé en 1re catégorie.
+      produit:
+        - revenu annuel moyen
+        - 30%
+      plancher:
+        applicable si: maladie . condition revenu
+        valeur: 486.98 €/mois
+      unité: €/mois
+      références:
+        Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite
+
+    invalidité totale:
+      description:
+        Si vous ne pouvez plus exercer d’activité professionnelle, vous
+        êtes classé en 2e catégorie.
+      produit:
+        - revenu annuel moyen
+        - 50%
+      plancher:
+        applicable si: maladie . condition revenu
+        valeur: 686.09 €/mois
+      unité: €/mois
+      références:
+        Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite

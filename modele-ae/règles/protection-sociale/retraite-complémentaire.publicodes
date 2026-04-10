@@ -1,0 +1,143 @@
+protection sociale . retraite . complémentaire:
+  titre: Retraite complémentaire
+  arrondi: oui
+  description: |
+    Supplément de pension de retraite acquis grâce à 10 années complètes de
+    cotisation retraite complémentaire.
+
+    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
+    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
+    permet de comparer les régimes de retraite complémentaire entre eux
+  unité: €/mois
+  produit:
+    - somme:
+        - RCI
+        - Cipav
+    - 10 ans
+
+protection sociale . retraite . complémentaire . points acquis:
+  titre: Points de retraite complémentaire acquis
+  description: |
+    Nombre total de points de retraite complémentaire acquis sur une année,
+    tous régimes confondus (AGIRC-ARRCO, RCI ou Cipav selon le statut).
+  unité: point
+  arrondi: oui
+  somme:
+    - RCI . points acquis
+    - Cipav . points acquis
+
+protection sociale . retraite . complémentaire . valeur du point:
+  titre: Valeur de service du point
+  description: |
+    La valeur de service du point permet de convertir les points de retraite
+    complémentaire acquis en pension annuelle. Cette valeur est revalorisée
+    régulièrement par les caisses de retraite.
+  unité: €/an/point
+  variations:
+    - si: auto-entrepreneur . Cipav
+      alors: Cipav . valeur de service du point
+    - sinon: RCI . valeur du point
+
+protection sociale . retraite . complémentaire . RCI:
+  acronyme: RCI
+  titre: retraite complémentaire des indépendants
+  non applicable si: auto-entrepreneur . Cipav
+  produit:
+    - points acquis
+    - valeur du point
+  références:
+    Retraite complémentaire des indépendants: https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/travailleurs-independants/retraite-complementaire.html
+
+  avec:
+    points acquis:
+      valeur: revenu cotisé / valeur d'acquisition
+      arrondi: oui
+
+    revenu cotisé :
+      valeur: auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire
+      contexte:
+        auto-entrepreneur . cotisations et contributions . cotisations . Acre: non
+      unité: €/an
+      références:
+        Décret n° 2024-484 du 30 mai 2024 modifiant les taux globaux de cotisations et contributions de certains travailleurs indépendants exerçant dans le cadre de la microentreprise: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049620955
+        Cotisations sociales, quels changements au 1er juillet 2024 ?: https://entreprendre.service-public.fr/actualites/A17464
+        Circulaire de la Caisse Nationale d’Assurance Vieillesse: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_23_16072024.pdf
+
+    valeur d'acquisition:
+      variations:
+        - si: date >= 01/2026
+          alors: 21.726 €/point
+        - si: date >= 01/2025
+          alors: 21.532 €/point
+        - si: date >= 01/2024
+          alors: 20.734 €/point
+        - si: date >= 01/2023
+          alors: 19.394 €/point
+        - si: date >= 01/2022
+          alors: 17.956 €/point
+        - si: date >= 01/2021
+          alors: 17.765 €/point
+        - si: date >= 01/2020
+          alors: 17.691 €/point
+        - si: date >= 01/01/2019
+          alors: 17.515 €/point
+      références:
+        Valeur d’achat du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_achat_point_bar.aspx
+
+    valeur du point:
+      variations:
+        - si: date >= 01/2026
+          alors: 1.347 €/an/point
+        - si: date >= 01/2025
+          alors: 1.335 €/an/point
+        - si: date >= 01/2024
+          alors: 1.327 €/an/point
+        - si: date >= 01/2023
+          alors: 1.280 €/an/point
+        - si: date >= 01/2022
+          alors: 1.221 €/an/point
+        - si: date >= 01/2021
+          alors: 1.208 €/an/point
+        - si: date >= 01/2020
+          alors: 1.203 €/an/point
+        - si: date >= 01/01/2019
+          alors: 1.191 €/an/point
+      références:
+        Valeur de service du point de retraite complémentaire: https://legislation.lassuranceretraite.fr/#/bareme?file_leaf_ref=rci_valeur_point_bar.aspx
+
+protection sociale . retraite . complémentaire . Cipav:
+  applicable si: auto-entrepreneur . Cipav
+  produit:
+    - points acquis
+    - valeur de service du point
+  références:
+    Comment est calculée ma retraite ?: https://www.lacipav.fr/calcul-retraite
+
+  avec:
+    points acquis:
+      valeur: montant cotisé / valeur d'acquisition
+      arrondi: oui
+
+    montant cotisé:
+      description: |
+        Le montant cotisé pour la retraite complémentaire Cipav correspond à la
+        part des cotisations correspondant à la retraite complémentaire.
+
+        Cette part est calculée en multipliant le montant total des cotisations par
+        un taux de répartition. Ce taux est de **25,6 % du total des cotisations**,
+        soit 5,94 % du chiffre d’affaires.
+      valeur: auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . répartition . retraite complémentaire
+      unité: €/an
+
+    valeur d'acquisition:
+      variations:
+        - si: date < 01/2024
+          alors: 45.30 €/point
+        - sinon: 47.40 €/point
+
+    valeur de service du point:
+      unité: €/an/point
+      variations:
+        - si: date < 01/2024
+          alors: 2.77 €/an/point
+        - sinon: 2.89 €/an/point
