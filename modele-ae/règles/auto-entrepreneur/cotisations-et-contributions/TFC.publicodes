@@ -1,0 +1,61 @@
+auto-entrepreneur . cotisations et contributions . TFC:
+  titre: Taxes pour frais de chambre
+  note: |
+    Nous n’avons pas intégré les exceptions suivantes :
+    - Artisans en double immatriculation CCI-CMA
+  somme:
+    - commerce
+    - métiers
+  unité: €/mois
+  références:
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+
+auto-entrepreneur . cotisations et contributions . TFC . commerce:
+  applicable si: entreprise . activité = 'commerciale'
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - 0.044%
+    - produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - 0.015%
+  arrondi: oui
+  unité: €/mois
+  références:
+    service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F32847
+
+auto-entrepreneur . cotisations et contributions . TFC . métiers:
+  applicable si: entreprise . activité = 'artisanale'
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - taux service
+    - produit:
+        - entreprise . chiffre d'affaires . vente restauration hébergement
+        - taux vente
+  arrondi: oui
+  unité: €/mois
+  références:
+    Taxes pour frais de chambre consulaire du micro-entrepreneur: https://entreprendre.service-public.gouv.fr/vosdroits/F37483
+
+  avec:
+    taux service:
+      variations:
+        - si:
+            une de ces conditions:
+              - établissement . commune . département = 'Bas-Rhin'
+              - établissement . commune . département = 'Haut-Rhin'
+          alors: 0.65%
+        - si: établissement . commune . département = 'Moselle'
+          alors: 0.83%
+        - sinon: 0.48%
+    taux vente:
+      variations:
+        - si:
+            une de ces conditions:
+              - établissement . commune . département = 'Bas-Rhin'
+              - établissement . commune . département = 'Haut-Rhin'
+          alors: 0.29%
+        - si: établissement . commune . département = 'Moselle'
+          alors: 0.37%
+        - sinon: 0.22%
