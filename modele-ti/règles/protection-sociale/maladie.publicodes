@@ -39,7 +39,20 @@ protection sociale . maladie:
             alors: 3 * plafond sécurité sociale
           - sinon: plafond sécurité sociale
 
-    condition revenu: raam >= 10% * plafond sécurité sociale
+    condition revenu:
+      description:
+        En cas de revenu d’activité indépendante faible, le montant de
+        l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
+        être nul. De même en début d’activité, il faut attendre un certain
+        nombre de mois avant de pouvoir bénéficier d’indemnités.
+
+        Depuis le 1er janvier 2022, il est donc possible de percevoir
+        des indemnités journalières pour maladie et/ou pour maternité au titre
+        de son ancienne activité (quel que soit le régime auquel on était
+        affilié).
+      références:
+        Comment bénéficier d’indemnités liées à son ancien régime: https://www.ameli.fr/assure/actualites/indemnites-maladie-et-maternite-du-nouveau-pour-certains-travailleurs-independants
+      valeur: raam >= 10% * plafond sécurité sociale
 
 protection sociale . maladie . arrêt maladie:
   titre: indemnités journalières
@@ -103,7 +116,7 @@ protection sociale . maladie . maternité paternité adoption:
     - plafond sécurité sociale
     - 50%
   abattement:
-    applicable si: raam < 10% * plafond sécurité sociale
+    applicable si: condition revenu = non
     valeur: 90%
   références:
     Les indemnités journalières forfaitaires maternité des travailleuses indépendantes: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125695
@@ -137,7 +150,7 @@ protection sociale . maladie . maternité paternité adoption:
         lorsque celui-ci a lieu avant la fin du 7e mois de la grossesse.
       produit:
         - variations:
-            - si: raam < 10% * plafond sécurité sociale
+            - si: condition revenu = non
               alors: 10% * plafond sécurité sociale
             - sinon: plafond sécurité sociale
         - 1 mois
