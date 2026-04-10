@@ -1,0 +1,41 @@
+auto-entrepreneur . rémunération: oui
+
+auto-entrepreneur . rémunération . nette:
+  titre: Revenu net
+  résumé: Avant impôt
+  description: Il s’agit du revenu après déductions des cotisations, avant le
+    paiement de l’impôt sur le revenu.
+  valeur: entreprise . chiffre d'affaires - cotisations et contributions
+  arrondi: oui
+  unité: €/an
+
+auto-entrepreneur . rémunération . impôt:
+  titre: Impôt sur le revenu
+  variations:
+    - si: versement libératoire
+      alors: versement libératoire . montant
+    - sinon:
+        valeur: impôt . montant
+        contexte:
+          paramètres . impôt . revenu imposable: entreprise . chiffre d'affaires . abattu
+        arrondi: oui
+        unité: €/an
+
+auto-entrepreneur . rémunération . nette . après impôt:
+  titre: Revenu net après impôt
+  résumé: Avant déduction des dépenses liées à l’activité
+  description: |
+    Le revenu net de l’auto-entrepreneur après déduction de l’impôt sur le
+    revenu et des cotisations sociales.
+
+    **Attention :** Pour bien évaluer la rentabilité de l’entreprise, il ne faut pas
+    oublier de retrancher à ce montant les dépenses engagées dans le cadre de
+    l’activité. Cela peut inclure par exemple :
+    - L’achat des matières premières
+    - L’achat des outils / matériel
+    - L’abonnement à des services payants
+    - La location d’un local
+    - etc
+  valeur: rémunération . nette - rémunération . impôt
+  arrondi: oui
+  unité: €/an

@@ -1,0 +1,13 @@
+entreprise . durée d'activité . trimestres civils:
+  titre: Nombre de trimestres civils couverts
+  durée:
+    depuis: date de création
+    jusqu'à: date
+    unité: trimestre civil
+
+entreprise . durée d'activité . années civiles:
+  titre: Nombre d’années civiles couvertes
+  durée:
+    depuis: date de création
+    jusqu'à: date
+    unité: année civile

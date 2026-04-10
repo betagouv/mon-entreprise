@@ -1,0 +1,432 @@
+auto-entrepreneur . cotisations et contributions . cotisations:
+  description: |
+    Les cotisations sociales donnent à l’auto-entrepreneur accès à une
+    protection sociale minimale : une retraite, des soins de santé, des
+    allocations familiales, etc.
+
+    L’auto-entreprise est un régime simplifié : plutôt qu’une fiche de paie
+    complexe, toutes les cotisations sont regroupées dans un *forfait* dont le
+    taux dépend de la catégorie d’activité.
+  somme:
+    - service BIC
+    - service BNC
+    - vente restauration hébergement
+    - service BNC Cipav
+  références:
+    Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+    'Cotisations sociales d’un micro-entrepreneur : ce qu’il faut savoir': https://entreprendre.service-public.gouv.fr/vosdroits/F36232
+    Droit à la retraite des travailleurs indépendants relevant du dispositif micro-social: https://legislation.lassuranceretraite.fr/Pdf/circulaire_cnav_2024_23_16072024.pdf
+    Article D613-4 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052218738
+    Article D613-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000052218747
+
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC:
+  description: Cotisations pour la part du chiffre d’affaires en prestation de
+    service BIC
+  applicable si: entreprise . chiffre d'affaires . service BIC > 0
+  produit:
+    - entreprise . chiffre d'affaires . service BIC
+    - taux
+  arrondi: oui
+  unité: €/mois
+
+  avec:
+    taux:
+      variations:
+        - si: Drom
+          alors: Drom . taux service BIC
+        - si: Acre
+          alors: Acre . taux service BIC
+        - sinon: taux de base
+
+    taux de base: 21.2%
+
+    répartition:
+      avec:
+        maladie-maternité:
+          valeur: service BIC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 10.05%
+                - sinon: 8.90%
+        invalidité-décès:
+          valeur: service BIC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 3.15%
+                - sinon: 3.10%
+        retraite de base:
+          valeur: service BIC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 43.45%
+                - sinon: 41.80%
+        retraite complémentaire:
+          valeur: service BIC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 19.75%
+                - sinon: 16.50%
+        autres contributions:
+          valeur: service BIC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 23.60%
+                - sinon: 29.70%
+
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC:
+  description: Cotisations pour la part du chiffre d’affaires en prestation de
+    service BNC
+  applicable si: entreprise . chiffre d'affaires . service BNC > 0
+  non applicable si: Cipav
+  produit:
+    - entreprise . chiffre d'affaires . service BNC
+    - taux
+  arrondi: oui
+  unité: €/mois
+
+  avec:
+    taux:
+      variations:
+        - si: Drom
+          alors: Drom . taux service BNC
+        - si: Acre
+          alors: Acre . taux service BNC
+        - sinon: taux de base
+
+    taux de base:
+      variations:
+        - si: date < 07/2024
+          alors: 21.1%
+        - si: date < 01/2025
+          alors: 23.1%
+        - si: date < 01/2026
+          alors: 24.6%
+        - sinon: 25.6%
+
+    répartition:
+      avec:
+        maladie-maternité:
+          valeur: service BNC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 4.10%
+                - si: date >= 01/2025
+                  alors: 3.40%
+                - si: date >= 07/2024
+                  alors: 3.60%
+                - sinon: 3.90%
+        invalidité-décès:
+          valeur: service BNC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 3.30%
+                - si: date >= 01/2025
+                  alors: 3.50%
+                - si: date >= 07/2024
+                  alors: 3.70%
+                - sinon: 4.10%
+        retraite de base:
+          valeur: service BNC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 46.40%
+                - si: date >= 01/2025
+                  alors: 47.60%
+                - si: date >= 07/2024
+                  alors: 50.75%
+                - sinon: 55.50%
+        retraite complémentaire:
+          valeur: service BNC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 21.00%
+                - si: date >= 01/2025
+                  alors: 13.00%
+                - si: date >= 07/2024
+                  alors: 7.85%
+                - sinon: 0%
+        autres contributions:
+          valeur: service BNC * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 25.20%
+                - si: date >= 01/2025
+                  alors: 32.50%
+                - si: date >= 07/2024
+                  alors: 34.10%
+                - sinon: 36.50%
+
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav:
+  description: Cotisations pour la part du chiffre d’affaires en prestation de
+    service BNC pour les professions libérales réglementées.
+  applicable si: Cipav
+  produit:
+    - entreprise . chiffre d'affaires . service BNC
+    - taux
+  arrondi: oui
+  unité: €/mois
+
+  avec:
+    taux:
+      variations:
+        - si: Drom
+          alors: Drom . taux service BNC Cipav
+        - si: Acre
+          alors: Acre . taux service BNC Cipav
+        - sinon: taux de base
+
+    taux de base:
+      variations:
+        - si: date < 07/2024
+          alors: 21.2%
+        - sinon: 23.2%
+
+    répartition:
+      références:
+        Article D613-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043656780
+      avec:
+        maladie-maternité:
+          valeur: service BNC Cipav * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 11.40%
+                - si: date >= 07/2024
+                  alors: 10.20%
+                - sinon: 9.05%
+        invalidité-décès:
+          valeur: service BNC Cipav * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 07/2024
+                  alors: 1.40%
+                - sinon: 2.60%
+        retraite de base:
+          valeur: service BNC Cipav * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 29.50%
+                - si: date >= 07/2024
+                  alors: 28.8%
+                - sinon: 31.3%
+        retraite complémentaire:
+          valeur: service BNC Cipav * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 30.70%
+                - si: date >= 07/2024
+                  alors: 25.60%
+                - sinon: 20.75%
+        autres contributions:
+          valeur: service BNC Cipav * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 27%
+                - si: date >= 07/2024
+                  alors: 34%
+                - sinon: 36.30%
+
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement:
+  description: Cotisations pour la part du chiffre d’affaires en vente,
+    restauration et hébergement
+  applicable si: entreprise . chiffre d'affaires . vente restauration hébergement > 0
+  produit:
+    - entreprise . chiffre d'affaires . vente restauration hébergement
+    - taux
+  arrondi: oui
+  unité: €/mois
+
+  avec:
+    taux:
+      variations:
+        - si: Drom
+          alors: Drom . taux vente restauration hébergement
+        - si: Acre
+          alors: Acre . taux vente restauration hébergement
+        - sinon: taux de base
+
+    taux de base: 12.3%
+
+    répartition:
+      avec:
+        maladie-maternité:
+          valeur: vente restauration hébergement * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 10.05%
+                - sinon: 8.90%
+        invalidité-décès:
+          valeur: vente restauration hébergement * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 3.15%
+                - sinon: 3.10%
+        retraite de base:
+          valeur: vente restauration hébergement * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 43.45%
+                - sinon: 41.80%
+        retraite complémentaire:
+          valeur: vente restauration hébergement * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 19.75%
+                - sinon: 16.50%
+        autres contributions:
+          valeur: vente restauration hébergement * taux de répartition
+          avec:
+            taux de répartition:
+              variations:
+                - si: date >= 01/2026
+                  alors: 23.60%
+                - sinon: 29.70%
+
+auto-entrepreneur . cotisations et contributions . cotisations . répartition:
+  avec:
+    maladie-maternité:
+      icônes: 🏥
+      description: |
+        Part des cotisations auto-entrepreneur qui alimentent l’assurance
+        maladie-maternité
+
+        L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+        personnelle ou professionnelle.
+
+        Concrètement, elle accompagne 60 millions d’assurés tout au long de leur
+        vie, en prenant en charge leurs soins quels que soient leurs ressources,
+        leur situation ou leur état de santé. Elle garantit ainsi un accès
+        universel aux droits et elle permet l’accès aux soins.
+
+        Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas
+        de maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+        ### L’assurance maladie en France en quelques chiffres
+          - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
+          maladie et la complémentaire
+          - **30 000 € / an / patient** : exemple de prise en charge complète
+          pour une personne atteinte de mucoviscidose
+          - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10
+          mondial 🏅)
+      somme:
+        - vente restauration hébergement . répartition . maladie-maternité
+        - service BIC . répartition . maladie-maternité
+        - service BNC . répartition . maladie-maternité
+        - service BNC Cipav . répartition . maladie-maternité
+
+    invalidité-décès:
+      icônes: 🦽
+      description: |
+        Part des cotisations auto-entrepreneur qui alimentent l’assurance
+        invalidité-décès
+
+        Garantit le versement d’une pension en cas d’invalidité et un capital à
+        vos proches en cas de décès.
+      somme:
+        - vente restauration hébergement . répartition . invalidité-décès
+        - service BIC . répartition . invalidité-décès
+        - service BNC . répartition . invalidité-décès
+        - service BNC Cipav . répartition . invalidité-décès
+
+    retraite de base:
+      description: Part des cotisations auto-entrepreneur qui alimentent la
+        retraite de base
+      somme:
+        - vente restauration hébergement . répartition . retraite de base
+        - service BIC . répartition . retraite de base
+        - service BNC . répartition . retraite de base
+        - service BNC Cipav . répartition . retraite de base
+
+    retraite complémentaire:
+      description: Part des cotisations auto-entrepreneur qui alimentent la
+        retraite complémentaire
+      somme:
+        - vente restauration hébergement . répartition . retraite complémentaire
+        - service BIC . répartition . retraite complémentaire
+        - service BNC . répartition . retraite complémentaire
+        - service BNC Cipav . répartition . retraite complémentaire
+
+    retraite:
+      icônes: 👵
+      description: |
+        Part des cotisations auto-entrepreneur qui alimentent la retraite
+        ### Un système obligatoire …
+        Dès lors que vous travaillez, vous et votre employeur, cotisez pour la
+        retraite. Cette cotisation est définie à la mesure du salaire que vous
+        percevez.
+
+        ###… par répartition
+        Le montant total des cotisations que vous versez chaque année sert à
+        payer les pensions des retraités pour cette même année. Le système
+        organise ainsi un transfert direct des générations en activité vers les
+        générations à la retraite.
+
+        ###… principalement contributif
+        Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre
+        « revenu » à la retraite) est calculé en fonction de vos revenus, de
+        votre âge de départ à la retraite et du nombre d’années passées à
+        travailler.
+
+        **Notre système de retraite est également solidaire** : les chômeurs, les
+        personnes en arrêt maladie, les personnes en situation de handicap, les
+        travailleurs touchant de faibles revenus, les femmes en congé maternité
+        acquièrent également des droits. Aucune personne à la retraite n’est
+        laissée sans ressources.
+
+        Simulez et gérez votre retraite sur
+        [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+      somme:
+        - répartition . retraite de base
+        - répartition . retraite complémentaire
+
+    autres contributions:
+      icônes: 🔧
+      description: |
+        Part des cotisations auto-entrepreneur qui alimentent la contribution
+        sociale généralisée et la cotisation pour le remboursement de la dette
+        sociale
+      somme:
+        - vente restauration hébergement . répartition . autres contributions
+        - service BIC . répartition . autres contributions
+        - service BNC . répartition . autres contributions
+        - service BNC Cipav . répartition . autres contributions
+
+    formation professionnelle:
+      icônes: 👩‍🎓
+      valeur: auto-entrepreneur . cotisations et contributions . CFP
