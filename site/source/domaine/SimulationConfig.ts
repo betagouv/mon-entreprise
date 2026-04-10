@@ -51,4 +51,4 @@ export type SimulationConfig = Partial<{
 	'règles à ignorer pour déclencher les questions'?: DottedName[]
 }>
 
-export type NomModèle = 'modele-social' | 'modele-as' | 'modele-ti'
+export type NomModèle = 'modele-social' | 'modele-ae' | 'modele-as' | 'modele-ti'

@@ -74,10 +74,12 @@ const App = () => {
 
 	const documentationPathModèleSocial = useDocumentationPath('modele-social')
 	const engineModèleSocial = useEngineFromModèle('modele-social')
-	const documentationPathModèleTI = useDocumentationPath('modele-ti')
-	const engineModèleTI = useEngineFromModèle('modele-ti')
+	const documentationPathModèleAE = useDocumentationPath('modele-ae')
+	const engineModèleAE = useEngineFromModèle('modele-ae')
 	const documentationPathModèleAS = useDocumentationPath('modele-as')
 	const engineModèleAS = useEngineFromModèle('modele-as')
+	const documentationPathModèleTI = useDocumentationPath('modele-ti')
+	const engineModèleTI = useEngineFromModèle('modele-ti')
 
 	return (
 		<StyledLayout $isEmbedded={isEmbedded}>
@@ -109,12 +111,12 @@ const App = () => {
 							element={<SimulateursEtAssistants />}
 						/>
 						<Route
-							path={relativeSitePaths.documentation.index + '/modele-ti/*'}
+							path={relativeSitePaths.documentation.index + '/modele-ae/*'}
 							element={
 								<Documentation
-									documentationPath={documentationPathModèleTI}
-									engine={engineModèleTI}
-									nomModèle="modele-ti"
+									documentationPath={documentationPathModèleAE}
+									engine={engineModèleAE}
+									nomModèle="modele-ae"
 								/>
 							}
 						/>
@@ -125,6 +127,16 @@ const App = () => {
 									documentationPath={documentationPathModèleAS}
 									engine={engineModèleAS}
 									nomModèle="modele-as"
+								/>
+							}
+						/>
+						<Route
+							path={relativeSitePaths.documentation.index + '/modele-ti/*'}
+							element={
+								<Documentation
+									documentationPath={documentationPathModèleTI}
+									engine={engineModèleTI}
+									nomModèle="modele-ti"
 								/>
 							}
 						/>

@@ -1,5 +1,6 @@
 import { writeFileSync } from 'fs'
 
+import rulesModèleAE from 'modele-ae'
 import rulesModèleAS from 'modele-as'
 import rulesModèleSocial from 'modele-social'
 import rulesModèleTI from 'modele-ti'
@@ -21,10 +22,12 @@ const simuData = (await import(path)).default as unknown as Omit<
 >
 
 const parsedRulesModèleSocial = new Engine(rulesModèleSocial).getParsedRules()
+const parsedRulesModèleAE = new Engine(rulesModèleAE).getParsedRules()
 const parsedRulesModèleAS = new Engine(rulesModèleAS).getParsedRules()
 const parsedRulesModèleTI = new Engine(rulesModèleTI).getParsedRules()
 const rules = [
 	...formatRulesToAlgolia(parsedRulesModèleSocial),
+	...formatRulesToAlgolia(parsedRulesModèleAE, 'modele-ae'),
 	...formatRulesToAlgolia(parsedRulesModèleAS, 'modele-as'),
 	...formatRulesToAlgolia(parsedRulesModèleTI, 'modele-ti'),
 ]

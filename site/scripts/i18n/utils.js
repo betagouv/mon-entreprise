@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs'
 
 import dotenv from 'dotenv'
+import rulesAE from 'modele-ae'
 import rulesAS from 'modele-as'
 import rules from 'modele-social'
 import rulesTI from 'modele-ti'
@@ -12,8 +13,9 @@ export const localesPath = new URL('../../source/locales/', import.meta.url)
 	.pathname
 export const UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
 export const rulesTranslationFile = 'rules-en.yaml'
-export const rulesTranslationFileTI = 'rules-ti-en.yaml'
+export const rulesTranslationFileAE = 'rules-ae-en.yaml'
 export const rulesTranslationFileAS = 'rules-as-en.yaml'
+export const rulesTranslationFileTI = 'rules-ti-en.yaml'
 export const UiTranslationPath = localesPath + 'ui-en.yaml'
 export const UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
 
@@ -110,8 +112,9 @@ const recursiveRulesMissingTranslations = (currentExternalization, rules) => {
 export function getRulesMissingTranslations() {
 	return [
 		[rulesTranslationFile, rules],
-		[rulesTranslationFileTI, rulesTI],
+		[rulesTranslationFileAE, rulesAE],
 		[rulesTranslationFileAS, rulesAS],
+		[rulesTranslationFileTI, rulesTI],
 	].map(([fileName, rules]) => {
 		let currentExternalization = yaml.parse(
 			readFileSync(localesPath + fileName, 'utf-8')
