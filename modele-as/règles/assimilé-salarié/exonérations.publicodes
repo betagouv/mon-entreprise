@@ -1,0 +1,85 @@
+assimilé salarié . exonérations:
+
+assimilé salarié . exonérations . Acre:
+  applicable si: entreprise . durée d'activité en début d'année < 1 an
+  question: Bénéficiez-vous de l’Acre ?
+  par défaut: non
+  description: |
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
+    **exonération partielle** de charges sociales pendant 12 mois, dite exonération
+    de début d’activité.
+
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de l’Urssaf**
+    dans un délai de 60 jours après la création de votre entreprise.
+
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
+    **une des situations suivantes** au moment de la création de votre entreprise :
+    - personne demandeuse d’emploi indemnisée ;
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
+    6 mois au cours des 18 derniers mois ;
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+    solidarité spécifique (ASS) ;
+    - jeune de 18 à 25 ans révolus ;
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante pour
+    l’ouverture de droits) ;
+    - personne de moins de 30 ans reconnue handicapée ;
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en redressement
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise), sous
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+    de signature de ce contrat ;
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire de
+    la politique de la ville (QPV) ;
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+    - personne exerçant l’activité au sein d’une zone France ruralités revitalisation
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
+
+    Pour les **sociétés**, vous devez respecter au moins une des conditions
+    suivantes :
+    - vous détenez avec votre famille plus de 50 % du capital dont au moins 35 % à
+    titre personnel ;
+    - vous dirigez la société et vous détenez avec votre famille au moins 1/3 du
+    capital dont au moins 25 % à titre personnel (sous réserve que personne d’autre
+    ne détienne plus de 50 % du capital) ;
+    - vous détenez, avec les autres personnes demandant l’Acre, plus de 50 % du
+    capital, à condition qu’au moins l’une de ces personnes soit dirigeant/dirigeante,
+    et que chacune d’elle détienne une part du capital au moins égal à 10 % de
+    la part détenue par la principale associée ou le principal associé.
+
+    Avant 2026, l'attribution de l’Acre était automatique et concernait tous les
+    créateurs et créatrices d’entreprise.
+
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+    bénéficié au cours des trois années précédentes.
+  références:
+    'Acre : nouvelles règles et démarches à partir du 1er janvier 2026': https://www.urssaf.fr/accueil/actualites/acre-nouvelles-regles-demarches.html
+    'L’Acre : une aide pour favoriser les créations et reprises d’entreprises': https://www.urssaf.fr/accueil/exoneration-acre-createur.html
+    Aide à la création ou à la reprise d’une entreprise: https://www.service-public.gouv.fr/particuliers/vosdroits/F11677
+    # BPI ONLY
+    'Acre : aide aux créateurs et repreneurs d’entreprise (ex Accre)': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
+
+assimilé salarié . exonérations . JEI:
+  question: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
+  par défaut: non
+  description: >-
+    Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
+    finances pour 2004 et permet aux PME de moins de 8 ans consacrant 20% au
+    moins de leurs charges à de la Recherche et Développement de bénéficier
+    d'une exonération de cotisations sociales.
+
+
+    L’exonération peut s’appliquer sur les rémunérations versées :
+
+    - aux salariés pour lesquels l’employeur est soumis à l’obligation d’assurance
+    chômage
+
+    - aux mandataires sociaux qui participent, à titre principal, au projet de
+    recherche et de développement de l’entreprise
+
+
+    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera
+    considéré comme acquis dès lors que la moitié de son temps de travail au moins
+    est consacrée à un ou des projets de recherche et de développement et
+    l’exonération ne pourra être remise en cause.
+  références:
+    Code général des impôts - Article 44 sexies-0 A: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048844070
