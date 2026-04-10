@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
@@ -12,14 +12,27 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
 export const DateCessationQuestion = () => {
-	const { t } = useTranslation().i18n
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const radiéeCetteAnnée = engine.evaluate('entreprise . radiée cette année')
 		.nodeValue as boolean
-	const débutAnnée = engine.evaluate("période . début d'année")
-		.nodeValue as string
-	const finAnnée = engine.evaluate("période . fin d'année").nodeValue as string
+
+	useEffect(() => {
+		if (!radiéeCetteAnnée) {
+			const date =
+				engine.evaluate({
+					valeur: "période . fin d'année",
+					contexte: {
+						date: 'entreprise . date de cessation',
+					},
+				}).nodeValue ?? undefined
+			dispatch(
+				ajusteLaSituation({
+					date,
+				} as Record<DottedName, ValeurPublicodes | undefined>)
+			)
+		}
+	}, [dispatch, engine, radiéeCetteAnnée])
 
 	return (
 		<CessationBlock>
@@ -40,18 +53,6 @@ export const DateCessationQuestion = () => {
 							} as Record<DottedName, ValeurPublicodes | undefined>)
 						)
 					}}
-					errorMessage={
-						!radiéeCetteAnnée
-							? t(
-									'pages.simulateurs.cessation-activité.date-cessation.error-message',
-									'Veuillez saisir une date comprise entre {{- débutAnnée }} et {{- finAnnée }}.',
-									{
-										débutAnnée,
-										finAnnée,
-									}
-							  )
-							: undefined
-					}
 				/>
 			</CessationDateWrapper>
 		</CessationBlock>
@@ -66,7 +67,6 @@ const CessationBlock = styled.div`
 	margin-bottom: -1rem;
 	margin-top: -3rem;
 	width: 100%;
-	text-align: left;
 `
 const CessationQuestion = styled(H3)`
 	overflow-wrap: break-word;

@@ -146,7 +146,6 @@ interface RuleInputProps {
 	inputType?: ChoiceDisplayType
 	modifiers?: Record<string, string>
 	required?: boolean
-	errorMessage?: string
 
 	className?: string
 	autoFocus?: boolean
@@ -171,7 +170,6 @@ export default function RuleInput({
 	engine,
 	small,
 	displayedUnit,
-	errorMessage,
 	...accessibilityProps
 }: RuleInputProps) {
 	const dispatch = useDispatch()
@@ -352,7 +350,6 @@ export default function RuleInput({
 						labelledby: accessibilityProps['aria-labelledby'],
 					}}
 					type={rule.rawNode.type as DateFieldProps['type']}
-					errorMessage={errorMessage}
 				/>
 				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
 			</>
