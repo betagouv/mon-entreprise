@@ -19,8 +19,9 @@ export const détermineLesProchainesQuestions = (
 		'non prioritaires': nonPrioritaires = [],
 	} = config.questions || {}
 
-	const score = (question: string) => {
-		const indexList = liste.findIndex((name) => question.startsWith(name)) + 1
+	const score = (question: DottedName) => {
+		const indexList = liste.indexOf(question)
+		const scoreDeListe = (indexList > -1 ? indexList : liste.findIndex((name) => question.startsWith(name))) + 1
 		const indexNonPrioritaire =
 			nonPrioritaires.findIndex((name) => question.startsWith(name)) + 1
 		const différenceCoeff = questionDifference(
@@ -28,7 +29,7 @@ export const détermineLesProchainesQuestions = (
 			answeredQuestions.slice(-1)[0]?.règle
 		)
 
-		return indexList + indexNonPrioritaire + différenceCoeff
+		return scoreDeListe + indexNonPrioritaire + différenceCoeff
 	}
 
 	return pipe(
@@ -38,22 +39,22 @@ export const détermineLesProchainesQuestions = (
 		]),
 		Object.entries,
 		sort(([, a], [, b]) => Order.number(b, a)),
-		map(([name]) => name as DottedName),
+		map(([règle]) => règle as DottedName),
 		filter(
-			(name: DottedName) =>
-				!answeredQuestions.some((question) => question.règle === name)
+			(règle: DottedName) =>
+				!answeredQuestions.some((question) => question.règle === règle)
 		),
 		filter(
-			(step) =>
-				(!liste.length || liste.some((name) => step.startsWith(name))) &&
-				(!listeNoire.length || !listeNoire.some((name) => step === name)) &&
+			(règle: DottedName) =>
+				(!liste.length || liste.some((question) => règle.startsWith(question))) &&
+				(!listeNoire.length || !listeNoire.some((question) => règle === question)) &&
 				(!config['objectifs exclusifs']?.length ||
-					!config['objectifs exclusifs'].includes(step))
+					!config['objectifs exclusifs'].includes(règle))
 		),
-		sort((a: DottedName, b: DottedName) => Order.number(score(a), score(b))),
+		sort((règleA: DottedName, règleB: DottedName) => Order.number(score(règleA), score(règleB))),
 		filter(
-			(question: DottedName) =>
-				engines[0].getRule(question).rawNode.question !== undefined
+			(règle: DottedName) =>
+				engines[0].getRule(règle).rawNode.question !== undefined
 		)
 	)
 }
