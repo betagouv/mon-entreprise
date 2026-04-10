@@ -16,8 +16,10 @@ export const RéductionGénérale = () => {
 			picture={illustration}
 		>
 			<Body>
-				Nous avons décidé de le retirer du site. En effet, il était trop
-				difficile de maintenir à jour les calculs.
+				{t(
+					'pages.simulateurs.réduction-générale.message',
+					'Nous avons décidé de le retirer du site. En effet, il demandait trop de maintenance pour un très faible usage.'
+				)}
 			</Body>
 		</PageHeader>
 	)

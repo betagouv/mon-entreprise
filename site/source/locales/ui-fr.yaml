@@ -2070,6 +2070,8 @@ pages:
       titre: "Aller à la question :"
     réduction-générale:
       header: Le simulateur réduction générale des cotisations, c’est terminé
+      message: Nous avons décidé de le retirer du site. En effet, il demandait trop de
+        maintenance pour un très faible usage.
     sage-femme:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des recettes.

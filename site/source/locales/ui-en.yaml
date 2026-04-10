@@ -1953,6 +1953,8 @@ pages:
       titre: "Go to question :"
     réduction-générale:
       header: The general reduction in contributions simulator is no longer available
+      message: We decided to remove it from the site. It required too much maintenance
+        for very little use.
     sage-femme:
       meta:
         description: Calculation of net income after contributions based on total income.
