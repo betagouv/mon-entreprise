@@ -1140,6 +1140,13 @@ impôt . barème standard . impôt brut:
   titre.en: '[automatic] gross tax'
   titre.fr: impôt brut
 impôt . barème standard . impôt brut . par part:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    plafond tranche 2:
+      titre.en: '[automatic] tranche 2 ceiling'
+      titre.fr: plafond tranche 2
   description.en: >
     [automatic] This is the famous income tax scale. It's a marginal scale with
     5
@@ -5645,6 +5652,20 @@ protection sociale . invalidité et décès . pension invalidité:
 protection sociale . maladie:
   avec:
     condition revenu:
+      description.en: >-
+        [automatic] In the event of low self-employed income, the amount of
+        daily allowance (IJ) received by the self-employed worker may be zero.
+        Similarly, at the start of a business, you have to wait a certain number
+        of months before you can receive benefits.
+
+        Since January 1, 2022, it has therefore been possible to receive daily sickness and/or maternity benefits for your former activity (regardless of the scheme you were affiliated to).
+      description.fr: >-
+        En cas de revenu d’activité indépendante faible, le montant de
+        l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
+        être nul. De même en début d’activité, il faut attendre un certain
+        nombre de mois avant de pouvoir bénéficier d’indemnités.
+
+        Depuis le 1er janvier 2022, il est donc possible de percevoir des indemnités journalières pour maladie et/ou pour maternité au titre de son ancienne activité (quel que soit le régime auquel on était affilié).
       titre.en: '[automatic] income condition'
       titre.fr: condition revenu
     raam:
@@ -6340,9 +6361,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
     nom:
       titre.en: '[automatic] Municipality'
       titre.fr: Commune
-    taux versement mobilité:
-      titre.en: '[automatic] mobility payment rate'
-      titre.fr: taux versement mobilité
   question.en: '[automatic] In which commune is the plant located?'
   question.fr: Dans quelle commune l'établissement est-il implanté ?
   titre.en: '[automatic] commune'
