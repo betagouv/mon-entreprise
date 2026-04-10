@@ -29,8 +29,3 @@ auto-entrepreneur . Cipav:
         (SSI).
       références:
         Qui est assuré à la Cipav ?: https://www.lacipav.fr/qui-est-assure-cipav
-
-# TODO : déplacer la formule directement dans protection sociale
-auto-entrepreneur . Cipav . retraite complémentaire:
-  description: Montant cotisé pour la retraite complémentaire.
-  valeur: auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . répartition . retraite complémentaire

@@ -1,0 +1,114 @@
+protection sociale . retraite . base:
+  titre: Retraite de base maximum
+  résumé: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  description: |
+    Le montant de votre pension pour la retraite de base est calculé à partir de la
+    moyenne de vos revenus des 25 meilleures années et du nombre de trimestres
+    cotisés.
+
+    Cette **estimation** de votre pension de retraite de base **maximum** est
+    calculée avec les hypothèses suivantes :
+    - La rémunération que vous avez saisie correspond à celle de vos
+    **25 meilleures années** ;
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+    - Vous n’avez pas d’autres sources de revenus ;
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+    bénéficier du **taux plein**.
+
+    > **Calcul détaillé :** 50% x revenu annuel moyen x prorata de pension
+    >
+    > Avec :
+    > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
+    > travailleur indépendant pendant les 25 années les plus avantageuses de votre
+    > carrière ;
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
+    > durée d’assurance pour obtenir une pension à taux plein.
+  produit:
+    - base . cotisée
+    - 50%2 b
+  arrondi: oui
+  unité: €/mois
+  références:
+    Assurance Retraite de la Sécurité sociale: https://www.lassuranceretraite.fr/
+    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.gouv.fr/vosdroits/F23369
+    Montant de la retraite personnelle: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_montant_montant_ex.aspx
+    Durée d’assurance pour le taux plein: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_taux_duree_assurance_pour_taux_plein_ex.aspx
+
+protection sociale . retraite . base . trimestres:
+  titre: trimestres validés
+  variations:
+    - si: auto-entrepreneur . Cipav
+      alors:
+        grille:
+          assiette: entreprise . chiffre d'affaires
+          multiplicateur:
+            variations:
+              - si: date >= 01/2026
+                alors: 2860 €/an
+              - si: date >= 01/2025
+                alors: 2694 €/an
+              - si: date >= 01/2024
+                alors: 2660 €/an
+              - si: date >= 01/2023
+                alors: 2571 €/an
+              - sinon: 2421 €/an
+          tranches:
+            - montant: 0 trimestre validé/an
+              plafond: 1
+            - montant: 1 trimestre validé/an
+              plafond: 2
+            - montant: 2 trimestre validé/an
+              plafond: 3
+            - montant: 3 trimestre validé/an
+              plafond: 4
+            - montant: 4 trimestre validé/an
+    - sinon:
+        grille:
+          assiette: base . cotisée
+          multiplicateur: SMIC . horaire . début d'année
+          tranches:
+            - montant: 0 trimestre validé/an
+              plafond: 150 heure/an
+            - montant: 1 trimestre validé/an
+              plafond: 300 heure/an
+            - montant: 2 trimestre validé/an
+              plafond: 450 heure/an
+            - montant: 3 trimestre validé/an
+              plafond: 600 heure/an
+            - montant: 4 trimestre validé/an
+  plafond: 4 trimestre validé/an
+  références:
+    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.gouv.fr/vosdroits/F23369
+    Cotiser pour acquérir des droits à retraite - Auto-entrepreneurs: https://www.lacipav.fr/sites/default/files/2025-10/Cotiser%20pour%20acqu%C3%A9rir%20des%20droits%20%C3%A0%20retraite%20-%20AE%202025.pdf#page=2
+    Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530
+
+protection sociale . retraite . base . cotisée:
+  titre: revenu cotisé pour la retraite de base
+  arrondi: oui
+  valeur: entreprise . chiffre d'affaires . abattu
+  contexte:
+    entreprise . chiffre d'affaires . abattu . plancher abattement: non
+  plafond: plafond sécurité sociale
+  description: |
+    Le revenu cotisé pour la retraite de base est égal à :
+
+    - Si vous avez le statut d’**auto-entrepreneur (micro-entreprise)** :
+    [Part des cotisations affectée à la retraite de base](/documentation/dirigeant
+    /auto‑entrepreneur/cotisations-et-contributions/cotisations/répartition/
+    retraite-de-base) / [taux de cotisation à la retraite de base](/documentation/
+    dirigeant/indépendant/cotisations-et-contributions/retraite-de-base/taux)
+    <br />En pratique, ce résultat est égal, à quelques euros près, au revenu
+    imposable ([chiffre d’affaires abattu](/documentation/entreprise/imposition/
+    régime/micro‑entreprise/revenu-abattu)).
+
+    - Si vous avez le statut de **travailleur indépendant non auto-entrepreneur** :
+    [Cotisations à la retraite de base](/documentation/dirigeant/indépendant/
+    cotisations-et-contributions/retraite-de-base) / [taux de cotisation à la
+    retraite de base](/documentation/dirigeant/indépendant/
+    cotisations-et-contributions/retraite-de-base/taux)
+
+    En cas d’exonération de cotisations, un montant plancher est utilisé pour le
+    calcul.
+
+    Dans tous les cas, le résultat est limité au plafond de la sécurité sociale.
