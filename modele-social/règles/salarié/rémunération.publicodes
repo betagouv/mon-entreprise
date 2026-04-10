@@ -42,7 +42,6 @@ salarié . rémunération . net . à payer avant impôt:
   titre: Salaire net
   identifiant court: salaire-net
   unité: €/mois
-  question: Quel est votre salaire net ?
   résumé: Salaire net avant impôt
   description: >-
     C'est le montant que le salarié touche à la fin du mois avant de payer
@@ -126,7 +125,6 @@ salarié . rémunération . net . payé après impôt:
   titre: Salaire net après impôt
   identifiant court: salaire-net-apres-impot
   résumé: Le salaire net payé
-  question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   unité: €/mois
   description: |
