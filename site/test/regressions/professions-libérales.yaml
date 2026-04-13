@@ -1,64 +1,80 @@
 médecin:
-  - indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
+  - entreprise . imposition: "'IS'"
+    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 50000 €/an
   - # Secteur 2 dépassement honoraire
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 50000 €/an
     indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
     indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 10000 €/an
   - # Secteur 2 avec dépassement honoraire et grosse rémunération
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 300000 €/an
     indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
     indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 150000 €/an
   - # Secteur 2 avec grosse rémunération et activité non conventionnée
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 400000 €/an
     indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
     indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 80000 €/an
     indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée: 160000 €/an
   - # Non conventionné
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 120000 €/an
     indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'non conventionné'"
   - # < 2 ans exercice
+    entreprise . imposition: "'IS'"
     entreprise . date de création: 01/01/2025
     indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
     indépendant . rémunération . brute: 50000 €/an
 
 sage-femme:
-  - indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
+  - entreprise . imposition: "'IS'"
+    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
     indépendant . rémunération . brute: 50000 €/an
   - # Réduction retraite complémentaire
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
     indépendant . rémunération . brute: 20000 €/an
   - # Exonération RID
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
     indépendant . rémunération . brute: 4000 €/an
 
 auxiliaire médical:
-  - indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
+  - entreprise . imposition: "'IS'"
+    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . brute: 30000 €/an
   - # Dépassement honoraire
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . brute: 30000 €/an
     indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 15000 €/an
   - # Grosse rémunération
+    entreprise . imposition: "'IS'"
     indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
     indépendant . rémunération . brute: 300000 €/an
     indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 300000 €/an
 
 avocat:
-  - indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
+  - entreprise . imposition: "'IS'"
+    indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
     indépendant . rémunération . brute: 50000 €/an
-  - indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
+  - entreprise . imposition: "'IS'"
+    indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
     indépendant . rémunération . brute: 50000 €/an
     entreprise . durée d'activité . en fin d'année: 6 ans
 
 expert-comptable:
-  - indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
+  - entreprise . imposition: "'IS'"
+    indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
     indépendant . rémunération . brute: 20000 €/an
-  - indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
+  - entreprise . imposition: "'IS'"
+    indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
     indépendant . rémunération . brute: 50000 €/an
 
 CIPAV échelle de revenu:
@@ -113,7 +129,6 @@ CIPAV année incomplète:
   - &AnnéeIncomplete
     entreprise . date de création: 01/05/2025
     entreprise . date de cessation: 31/08/2025
-  - <<: *AnnéeIncomplete
     indépendant . rémunération . nette: 2000 €/an
   - <<: *AnnéeIncomplete
     indépendant . rémunération . nette: 5000 €/an

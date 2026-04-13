@@ -16,7 +16,7 @@ it('calculate simulations-indépendant', { timeout: 120_000 }, () => {
 		'indépendant . cotisations et contributions . cotisations',
 		'indépendant . rémunération . nette',
 		'indépendant . revenu professionnel',
-		'impôt . montant',
+		'indépendant . rémunération . impôt',
 		'indépendant . rémunération . nette . après impôt',
 		'entreprise . charges',
 		"entreprise . chiffre d'affaires",
