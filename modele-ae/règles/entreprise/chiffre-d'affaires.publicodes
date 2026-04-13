@@ -9,8 +9,8 @@ entreprise . chiffre d'affaires:
     Le chiffre d’affaires à déclarer est le montant hors taxes (c’est-à-dire sans la
     TVA payée par les clients).
   inversion numérique:
-    - auto-entrepreneur . rémunération . nette
-    - auto-entrepreneur . rémunération . nette . après impôt
+    - auto-entrepreneur . revenu . net
+    - auto-entrepreneur . revenu . net . après impôt
   plancher: 0 €/an
   arrondi: oui
   unité: €/an
