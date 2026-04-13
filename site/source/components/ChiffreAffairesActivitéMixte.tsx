@@ -15,7 +15,6 @@ import {
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
@@ -102,15 +101,15 @@ function useAdjustProportions(CADottedName: DottedName) {
 	return useCallback(
 		(name: DottedName, valeur?: ValeurPublicodes) => {
 			const somme = (
-				m: ReadonlyArray<M.Montant<UnitéMonétaireRécurrente>>
-			): M.Montant<UnitéMonétaireRécurrente> =>
+				m: ReadonlyArray<M.MontantRécurrent>
+			): M.MontantRécurrent =>
 				currentUnit === '€/an'
 					? M.sommeEnEurosParAn(m)
 					: M.sommeEnEurosParMois(m)
 
 			const nouvelleValeurPour = (
 				règleCA: DottedName
-			): O.Option<M.Montant<UnitéMonétaireRécurrente>> => {
+			): O.Option<M.MontantRécurrent> => {
 				const nouvelleValeur =
 					règleCA === name
 						? pipe(
@@ -119,7 +118,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 						  )
 						: pipe(engine.evaluate(règleCA), PublicodesAdapter.decode)
 
-				return nouvelleValeur as O.Option<M.Montant<UnitéMonétaireRécurrente>>
+				return nouvelleValeur as O.Option<M.MontantRécurrent>
 			}
 
 			const nouveauCA = pipe(

@@ -15,13 +15,14 @@ export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly unité: T
 }
 
+export type MontantRécurrent = Montant<UnitéMonétaireRécurrente>
+
 export const isMontant = (something: unknown): something is Montant =>
 	isObject(something) && '_tag' in something && something._tag === 'Montant'
 
 export const isMontantRécurrent = (
 	montant: Montant
-): montant is Montant<UnitéMonétaireRécurrente> =>
-	isUnitéMonétaireRécurrente(montant.unité)
+): montant is MontantRécurrent => isUnitéMonétaireRécurrente(montant.unité)
 
 const makeMontant = Data.tagged<Montant>('Montant')
 
@@ -67,7 +68,7 @@ export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
 	montant(valeur, '€/heure')
 
 export const toEurosParMois = (
-	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: MontantRécurrent
 ): Montant<'€/mois'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {
@@ -86,7 +87,7 @@ export const toEurosParMois = (
 }
 
 export const toEurosParAn = (
-	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: MontantRécurrent
 ): Montant<'€/an'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {
@@ -105,7 +106,7 @@ export const toEurosParAn = (
 }
 
 export const toEurosParJour = (
-	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: MontantRécurrent
 ): Montant<'€/jour'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {
@@ -124,7 +125,7 @@ export const toEurosParJour = (
 }
 
 export const toEurosParHeure = (
-	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+	montantRécurrent: MontantRécurrent
 ): Montant<'€/heure'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {
@@ -165,11 +166,11 @@ export const sommeEnEuros = (
 ): Montant<UnitéMonétairePonctuelle> => montants.reduce(plus)
 
 export const sommeEnEurosParMois = (
-	montants: ReadonlyArray<Montant<UnitéMonétaireRécurrente>>
+	montants: ReadonlyArray<MontantRécurrent>
 ): Montant<'€/mois'> => montants.map(toEurosParMois).reduce(plus)
 
 export const sommeEnEurosParAn = (
-	montants: ReadonlyArray<Montant<UnitéMonétaireRécurrente>>
+	montants: ReadonlyArray<MontantRécurrent>
 ): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus)
 
 export const moins = dual<
@@ -265,10 +266,8 @@ export const parRapportÀ = dual<
 		let dénominateur = diviseur.valeur
 
 		if (a.unité !== '€') {
-			numérateur = toEurosParAn(a as Montant<UnitéMonétaireRécurrente>).valeur
-			dénominateur = toEurosParAn(
-				diviseur as Montant<UnitéMonétaireRécurrente>
-			).valeur
+			numérateur = toEurosParAn(a as MontantRécurrent).valeur
+			dénominateur = toEurosParAn(diviseur as MontantRécurrent).valeur
 		}
 
 		const rapport = numérateur / dénominateur
