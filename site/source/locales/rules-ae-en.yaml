@@ -804,13 +804,13 @@ auto-entrepreneur . cotisations et contributions . cotisations . vente restaurat
     restauration et hébergement
   titre.en: '[automatic] sales catering accommodation'
   titre.fr: vente restauration hébergement
-auto-entrepreneur . rémunération:
-  titre.en: '[automatic] compensation'
-  titre.fr: rémunération
-auto-entrepreneur . rémunération . impôt:
+auto-entrepreneur . revenu:
+  titre.en: '[automatic] income'
+  titre.fr: revenu
+auto-entrepreneur . revenu . impôt:
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
-auto-entrepreneur . rémunération . nette:
+auto-entrepreneur . revenu . net:
   description.en: '[automatic] This is income after deduction of contributions,
     before payment of income tax.'
   description.fr: Il s’agit du revenu après déductions des cotisations, avant le
@@ -819,7 +819,7 @@ auto-entrepreneur . rémunération . nette:
   résumé.fr: Avant impôt
   titre.en: '[automatic] Net income'
   titre.fr: Revenu net
-auto-entrepreneur . rémunération . nette . après impôt:
+auto-entrepreneur . revenu . net . après impôt:
   description.en: >
     [automatic] The auto-entrepreneur's net income after deduction of income tax
     and
@@ -3007,29 +3007,6 @@ protection sociale . retraite . base . trimestres:
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
 protection sociale . retraite . complémentaire:
-  description.en: >
-    [automatic] Retirement pension supplement acquired through 10 full years of
-    supplementary
-
-    supplementary pension contributions.
-
-
-    > This amount may vary between now and your retirement, depending on the
-
-    point value. Nevertheless, it provides an order of magnitude
-
-    allows you to compare supplementary pension schemes.
-  description.fr: >
-    Supplément de pension de retraite acquis grâce à 10 années complètes de
-
-    cotisation retraite complémentaire.
-
-
-    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
-
-    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
-
-    permet de comparer les régimes de retraite complémentaire entre eux
   titre.en: '[automatic] Supplementary pension'
   titre.fr: Retraite complémentaire
 protection sociale . retraite . complémentaire . Cipav:
@@ -3089,11 +3066,9 @@ protection sociale . retraite . complémentaire . RCI:
   titre.fr: retraite complémentaire des indépendants
 protection sociale . retraite . complémentaire . points acquis:
   description.en: |
-    [automatic] Total number of supplementary pension points acquired in a year,
-    all schemes combined (AGIRC-ARRCO, RCI or Cipav depending on status).
+    [automatic] Total number of supplementary pension points acquired in a year.
   description.fr: |
-    Nombre total de points de retraite complémentaire acquis sur une année,
-    tous régimes confondus (AGIRC-ARRCO, RCI ou Cipav selon le statut).
+    Nombre total de points de retraite complémentaire acquis sur une année.
   titre.en: '[automatic] Supplementary pension points acquired'
   titre.fr: Points de retraite complémentaire acquis
 protection sociale . retraite . complémentaire . valeur du point:

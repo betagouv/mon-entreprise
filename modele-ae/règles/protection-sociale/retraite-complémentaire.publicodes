@@ -1,30 +1,15 @@
 protection sociale . retraite . complémentaire:
   titre: Retraite complémentaire
-  arrondi: oui
-  description: |
-    Supplément de pension de retraite acquis grâce à 10 années complètes de
-    cotisation retraite complémentaire.
-
-    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
-    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
-    permet de comparer les régimes de retraite complémentaire entre eux
-  unité: €/mois
-  produit:
-    - somme:
-        - RCI
-        - Cipav
-    - 10 ans
 
 protection sociale . retraite . complémentaire . points acquis:
   titre: Points de retraite complémentaire acquis
   description: |
-    Nombre total de points de retraite complémentaire acquis sur une année,
-    tous régimes confondus (AGIRC-ARRCO, RCI ou Cipav selon le statut).
-  unité: point
-  arrondi: oui
-  somme:
-    - RCI . points acquis
-    - Cipav . points acquis
+    Nombre total de points de retraite complémentaire acquis sur une année.
+  variations:
+    - si: auto-entrepreneur . Cipav
+      alors: Cipav . points acquis
+    - sinon: RCI . points acquis
+  unité: point/an
 
 protection sociale . retraite . complémentaire . valeur du point:
   titre: Valeur de service du point
@@ -42,9 +27,6 @@ protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
   titre: retraite complémentaire des indépendants
   non applicable si: auto-entrepreneur . Cipav
-  produit:
-    - points acquis
-    - valeur du point
   références:
     Retraite complémentaire des indépendants: https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/travailleurs-independants/retraite-complementaire.html
 
@@ -107,9 +89,6 @@ protection sociale . retraite . complémentaire . RCI:
 
 protection sociale . retraite . complémentaire . Cipav:
   applicable si: auto-entrepreneur . Cipav
-  produit:
-    - points acquis
-    - valeur de service du point
   références:
     Comment est calculée ma retraite ?: https://www.lacipav.fr/calcul-retraite
 

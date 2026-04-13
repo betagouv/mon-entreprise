@@ -1,27 +1,20 @@
 protection sociale . retraite . complémentaire:
   titre: Retraite complémentaire
-  description: |
-    Supplément de pension de retraite acquis grâce à 10 années complètes de
-    cotisation retraite complémentaire.
 
-    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
-    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
-    permet de comparer les régimes de retraite complémentaire entre eux
-  produit:
-    - somme:
-        - RCI
-        - Cipav
-    - 10 ans
-  arrondi: oui
-  unité: €/mois
+protection sociale . retraite . complémentaire . points acquis:
+  titre: Points de retraite complémentaire acquis
+  description: |
+    Nombre total de points de retraite complémentaire acquis sur une année.
+  variations:
+    - si: indépendant . profession libérale . CNAVPL
+      alors: RCI . points acquis
+    - sinon: Cipav . points acquis
+  unité: point/an
 
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
   titre: retraite complémentaire des indépendants
   non applicable si: indépendant . profession libérale . CNAVPL
-  produit:
-    - points acquis
-    - valeur du point
   références:
     Retraite complémentaire des indépendants: https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/travailleurs-independants/retraite-complementaire.html
 
@@ -59,9 +52,6 @@ protection sociale . retraite . complémentaire . RCI:
 
 protection sociale . retraite . complémentaire . Cipav:
   applicable si: indépendant . profession libérale . Cipav
-  produit:
-    - points acquis
-    - valeur de service du point
   références:
     Comment est calculée la retraite ?: https://www.lacipav.fr/sites/default/files/2025-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital%202025.pdf
 

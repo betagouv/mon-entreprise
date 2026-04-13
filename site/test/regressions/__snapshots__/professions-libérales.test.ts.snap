@@ -11,9 +11,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 5155
 protection sociale . retraite . base . trimestres: 2
-protection sociale . retraite . complémentaire: 29"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 2`] = `
@@ -27,9 +27,9 @@ indépendant . rémunération . impôt . avec dividendes: 534
 indépendant . rémunération . nette: 20000
 indépendant . rémunération . nette . après impôt: 19466
 indépendant . rémunération . nette . avec dividendes: 20000
-protection sociale . retraite . base: 12
+protection sociale . retraite . base . revenu cotisé: 18385
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 108"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 3`] = `
@@ -43,28 +43,12 @@ indépendant . rémunération . impôt . avec dividendes: 8556
 indépendant . rémunération . nette: 50000
 indépendant . rémunération . nette . après impôt: 41444
 indépendant . rémunération . nette . avec dividendes: 50000
-protection sociale . retraite . base: 31
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 311"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 1`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . rémunération . brute: undefined
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: undefined"
-`;
-
-exports[`calculate simulations-professions-libérales > CIPAV année incomplète 2`] = `
 "entreprise . chiffre d'affaires: 3354
 indépendant . cotisations et contributions: 1354
 indépendant . cotisations et contributions . avec dividendes: 1354
@@ -75,12 +59,12 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 2000
 indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 14"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV année incomplète 3`] = `
+exports[`calculate simulations-professions-libérales > CIPAV année incomplète 2`] = `
 "entreprise . chiffre d'affaires: 6896
 indépendant . cotisations et contributions: 1896
 indépendant . cotisations et contributions . avec dividendes: 1896
@@ -91,12 +75,12 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 29"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV année incomplète 4`] = `
+exports[`calculate simulations-professions-libérales > CIPAV année incomplète 3`] = `
 "entreprise . chiffre d'affaires: 13368
 indépendant . cotisations et contributions: 3368
 indépendant . cotisations et contributions . avec dividendes: 3368
@@ -107,12 +91,12 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 10000
 indépendant . rémunération . nette . après impôt: 10000
 indépendant . rémunération . nette . avec dividendes: 10000
-protection sociale . retraite . base: 6
+protection sociale . retraite . base . revenu cotisé: 12016
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 55"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV année incomplète 5`] = `
+exports[`calculate simulations-professions-libérales > CIPAV année incomplète 4`] = `
 "entreprise . chiffre d'affaires: 148036
 indépendant . cotisations et contributions: 48036
 indépendant . cotisations et contributions . avec dividendes: 48036
@@ -123,12 +107,12 @@ indépendant . rémunération . impôt . avec dividendes: 26103
 indépendant . rémunération . nette: 100000
 indépendant . rémunération . nette . après impôt: 73897
 indépendant . rémunération . nette . avec dividendes: 100000
-protection sociale . retraite . base: 31
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 925"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
-exports[`calculate simulations-professions-libérales > CIPAV année incomplète 6`] = `
+exports[`calculate simulations-professions-libérales > CIPAV année incomplète 5`] = `
 "entreprise . chiffre d'affaires: 1283863
 indépendant . cotisations et contributions: 283863
 indépendant . cotisations et contributions . avec dividendes: 283863
@@ -139,9 +123,9 @@ indépendant . rémunération . impôt . avec dividendes: 471380
 indépendant . rémunération . nette: 1000000
 indépendant . rémunération . nette . après impôt: 528620
 indépendant . rémunération . nette . avec dividendes: 1000000
-protection sociale . retraite . base: 32
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 1806"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 1`] = `
@@ -155,9 +139,9 @@ indépendant . rémunération . impôt . avec dividendes: 11728
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 48272
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 31
+protection sociale . retraite . base . revenu cotisé: 3925
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 450"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 2`] = `
@@ -171,9 +155,9 @@ indépendant . rémunération . impôt . avec dividendes: 8860
 indépendant . rémunération . nette: 50000
 indépendant . rémunération . nette . après impôt: 41140
 indépendant . rémunération . nette . avec dividendes: 50000
-protection sociale . retraite . base: 28
+protection sociale . retraite . base . revenu cotisé: 3864
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 275"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 3`] = `
@@ -187,9 +171,9 @@ indépendant . rémunération . impôt . avec dividendes: 6047
 indépendant . rémunération . nette: 40000
 indépendant . rémunération . nette . après impôt: 33953
 indépendant . rémunération . nette . avec dividendes: 40000
-protection sociale . retraite . base: 25
+protection sociale . retraite . base . revenu cotisé: 3666
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 189"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
@@ -203,9 +187,9 @@ indépendant . rémunération . impôt . avec dividendes: 4822
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 55178
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 31
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 511"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
@@ -219,9 +203,9 @@ indépendant . rémunération . impôt . avec dividendes: 4815
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 55185
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 31
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 501"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
@@ -235,9 +219,9 @@ indépendant . rémunération . impôt . avec dividendes: 4812
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 55188
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 41
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 496"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
@@ -251,9 +235,9 @@ indépendant . rémunération . impôt . avec dividendes: 4815
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 55185
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 31
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 501"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
@@ -267,9 +251,9 @@ indépendant . rémunération . impôt . avec dividendes: 4812
 indépendant . rémunération . nette: 60000
 indépendant . rémunération . nette . après impôt: 55188
 indépendant . rémunération . nette . avec dividendes: 60000
-protection sociale . retraite . base: 41
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 496"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `
@@ -283,9 +267,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
-protection sociale . retraite . base: 5
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 12"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV exonération incapacité 1`] = `
@@ -299,9 +283,9 @@ indépendant . rémunération . impôt . avec dividendes: 5394
 indépendant . rémunération . nette: 40000
 indépendant . rémunération . nette . après impôt: 34606
 indépendant . rémunération . nette . avec dividendes: 40000
-protection sociale . retraite . base: 43
+protection sociale . retraite . base . revenu cotisé: 0
 protection sociale . retraite . base . trimestres: 0
-protection sociale . retraite . complémentaire: 0"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 1`] = `
@@ -315,9 +299,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 500
 indépendant . rémunération . nette . après impôt: 500
 indépendant . rémunération . nette . avec dividendes: 500
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 2"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 2`] = `
@@ -331,9 +315,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 1000
 indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 7"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 3`] = `
@@ -347,9 +331,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 1500
 indépendant . rémunération . nette . après impôt: 1500
 indépendant . rémunération . nette . avec dividendes: 1500
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 10"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 4`] = `
@@ -363,9 +347,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 2000
 indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 14"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 5`] = `
@@ -379,9 +363,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
-protection sociale . retraite . base: 3
+protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire: 29"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 6`] = `
@@ -395,9 +379,9 @@ indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 10000
 indépendant . rémunération . nette . après impôt: 10000
 indépendant . rémunération . nette . avec dividendes: 10000
-protection sociale . retraite . base: 6
+protection sociale . retraite . base . revenu cotisé: 12016
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 55"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 7`] = `
@@ -411,9 +395,9 @@ indépendant . rémunération . impôt . avec dividendes: 26103
 indépendant . rémunération . nette: 100000
 indépendant . rémunération . nette . après impôt: 73897
 indépendant . rémunération . nette . avec dividendes: 100000
-protection sociale . retraite . base: 31
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 925"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 8`] = `
@@ -427,263 +411,269 @@ indépendant . rémunération . impôt . avec dividendes: 471380
 indépendant . rémunération . nette: 1000000
 indépendant . rémunération . nette . après impôt: 528620
 indépendant . rémunération . nette . avec dividendes: 1000000
-protection sociale . retraite . base: 32
+protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 1806"
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 30000
+indépendant . cotisations et contributions: 8111
+indépendant . cotisations et contributions . avec dividendes: 8111
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 30000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 490
+indépendant . rémunération . impôt . avec dividendes: 490
+indépendant . rémunération . nette: 21889
+indépendant . rémunération . nette . après impôt: 21399
+indépendant . rémunération . nette . avec dividendes: 21889
+protection sociale . retraite . base . revenu cotisé: 26953
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 30000
+indépendant . cotisations et contributions: 8695
+indépendant . cotisations et contributions . avec dividendes: 8695
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 30000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 406
+indépendant . rémunération . impôt . avec dividendes: 406
+indépendant . rémunération . nette: 21305
+indépendant . rémunération . nette . après impôt: 20899
+indépendant . rémunération . nette . avec dividendes: 21305
+protection sociale . retraite . base . revenu cotisé: 26953
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 3`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 300000
+indépendant . cotisations et contributions: 79663
+indépendant . cotisations et contributions . avec dividendes: 79663
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 300000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 72225
+indépendant . rémunération . impôt . avec dividendes: 72225
+indépendant . rémunération . nette: 220337
+indépendant . rémunération . nette . après impôt: 148112
+indépendant . rémunération . nette . avec dividendes: 220337
+protection sociale . retraite . base . revenu cotisé: 4005
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 1`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 50000
+indépendant . cotisations et contributions: 11436
+indépendant . cotisations et contributions . avec dividendes: 11436
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 50000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 3806
+indépendant . rémunération . impôt . avec dividendes: 3806
+indépendant . rémunération . nette: 38564
+indépendant . rémunération . nette . après impôt: 34758
+indépendant . rémunération . nette . avec dividendes: 38564
+protection sociale . retraite . base . revenu cotisé: 36334
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > avocat 2`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 50000
+indépendant . cotisations et contributions: 11436
+indépendant . cotisations et contributions . avec dividendes: 11436
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 50000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 3806
+indépendant . rémunération . impôt . avec dividendes: 3806
+indépendant . rémunération . nette: 38564
+indépendant . rémunération . nette . après impôt: 34758
+indépendant . rémunération . nette . avec dividendes: 38564
+protection sociale . retraite . base . revenu cotisé: 36334
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > expert-comptable 1`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 20000
+indépendant . cotisations et contributions: 4488
+indépendant . cotisations et contributions . avec dividendes: 4488
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 20000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 0
+indépendant . rémunération . impôt . avec dividendes: 0
+indépendant . rémunération . nette: 15512
+indépendant . rémunération . nette . après impôt: 15512
+indépendant . rémunération . nette . avec dividendes: 15512
+protection sociale . retraite . base . revenu cotisé: 17973
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > expert-comptable 2`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 50000
+indépendant . cotisations et contributions: 15487
+indépendant . cotisations et contributions . avec dividendes: 15487
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 50000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 2712
+indépendant . rémunération . impôt . avec dividendes: 2712
+indépendant . rémunération . nette: 34513
+indépendant . rémunération . nette . après impôt: 31801
+indépendant . rémunération . nette . avec dividendes: 34513
+protection sociale . retraite . base . revenu cotisé: 44926
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 1`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 50000
+indépendant . cotisations et contributions: 13979
+indépendant . cotisations et contributions . avec dividendes: 13979
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 50000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 3119
+indépendant . rémunération . impôt . avec dividendes: 3119
+indépendant . rémunération . nette: 36021
+indépendant . rémunération . nette . après impôt: 32902
+indépendant . rémunération . nette . avec dividendes: 36021
+protection sociale . retraite . base . revenu cotisé: 35819
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 2`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 50000
+indépendant . cotisations et contributions: 21594
+indépendant . cotisations et contributions . avec dividendes: 21594
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 50000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 1489
+indépendant . rémunération . impôt . avec dividendes: 1489
+indépendant . rémunération . nette: 28406
+indépendant . rémunération . nette . après impôt: 26917
+indépendant . rémunération . nette . avec dividendes: 28406
+protection sociale . retraite . base . revenu cotisé: 44926
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 3`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 300000
+indépendant . cotisations et contributions: 95435
+indépendant . cotisations et contributions . avec dividendes: 95435
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 300000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 65128
+indépendant . rémunération . impôt . avec dividendes: 65128
+indépendant . rémunération . nette: 204565
+indépendant . rémunération . nette . après impôt: 139437
+indépendant . rémunération . nette . avec dividendes: 204565
+protection sociale . retraite . base . revenu cotisé: 4005
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 4`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 400000
+indépendant . cotisations et contributions: 115602
+indépendant . cotisations et contributions . avec dividendes: 115602
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 400000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 103683
+indépendant . rémunération . impôt . avec dividendes: 103683
+indépendant . rémunération . nette: 284398
+indépendant . rémunération . nette . après impôt: 180715
+indépendant . rémunération . nette . avec dividendes: 284398
+protection sociale . retraite . base . revenu cotisé: 4005
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 5`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 120000
+indépendant . cotisations et contributions: 34116
+indépendant . cotisations et contributions . avec dividendes: 34116
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 120000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 16988
+indépendant . rémunération . impôt . avec dividendes: 16988
+indépendant . rémunération . nette: 85884
+indépendant . rémunération . nette . après impôt: 68896
+indépendant . rémunération . nette . avec dividendes: 85884
+protection sociale . retraite . base . revenu cotisé: 4005
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > médecin 6`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 50000
+indépendant . cotisations et contributions: 13979
+indépendant . cotisations et contributions . avec dividendes: 13979
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 50000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 3119
+indépendant . rémunération . impôt . avec dividendes: 3119
+indépendant . rémunération . nette: 36021
+indépendant . rémunération . nette . après impôt: 32902
+indépendant . rémunération . nette . avec dividendes: 36021
+protection sociale . retraite . base . revenu cotisé: 35819
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 1`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 50000
+indépendant . cotisations et contributions: 11368
+indépendant . cotisations et contributions . avec dividendes: 11368
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 50000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 3824
+indépendant . rémunération . impôt . avec dividendes: 3824
+indépendant . rémunération . nette: 38632
+indépendant . rémunération . nette . après impôt: 34808
+indépendant . rémunération . nette . avec dividendes: 38632
+protection sociale . retraite . base . revenu cotisé: 44926
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null
+
+Notifications affichées : indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 2`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 20000
+indépendant . cotisations et contributions: 5019
+indépendant . cotisations et contributions . avec dividendes: 5019
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 20000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 0
+indépendant . rémunération . impôt . avec dividendes: 0
+indépendant . rémunération . nette: 14981
+indépendant . rémunération . nette . après impôt: 14981
+indépendant . rémunération . nette . avec dividendes: 14981
+protection sociale . retraite . base . revenu cotisé: 17973
+protection sociale . retraite . base . trimestres: 4
+protection sociale . retraite . complémentaire . points acquis: null
+
+Notifications affichées : indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable"
 `;
 
 exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
-"entreprise . chiffre d'affaires: undefined
-indépendant . cotisations et contributions: undefined
-indépendant . cotisations et contributions . avec dividendes: undefined
+"entreprise . chiffre d'affaires: 4000
+indépendant . cotisations et contributions: 1658
+indépendant . cotisations et contributions . avec dividendes: 1658
 indépendant . cotisations et contributions . début activité: null
 indépendant . rémunération . brute: 4000
-indépendant . rémunération . impôt: undefined
-indépendant . rémunération . impôt . avec dividendes: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-indépendant . rémunération . nette . avec dividendes: undefined
-protection sociale . retraite . base: undefined
-protection sociale . retraite . base . trimestres: undefined
-protection sociale . retraite . complémentaire: 0"
+indépendant . rémunération . impôt: 0
+indépendant . rémunération . impôt . avec dividendes: 0
+indépendant . rémunération . nette: 2342
+indépendant . rémunération . nette . après impôt: 2342
+indépendant . rémunération . nette . avec dividendes: 2342
+protection sociale . retraite . base . revenu cotisé: 6564
+protection sociale . retraite . base . trimestres: 3
+protection sociale . retraite . complémentaire . points acquis: null
+
+Notifications affichées : indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable, indépendant . profession libérale . réglementée . CARCDSF . sage-femme . exonération PCV"
 `;

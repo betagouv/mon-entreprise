@@ -6208,29 +6208,6 @@ protection sociale . retraite . base . trimestres:
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
 protection sociale . retraite . complémentaire:
-  description.en: >
-    [automatic] Retirement pension supplement acquired through 10 full years of
-    supplementary
-
-    supplementary pension contributions.
-
-
-    &gt; This amount may vary between now and your retirement, depending on
-
-    point value. Nevertheless, it provides an order of magnitude
-
-    allows you to compare supplementary pension schemes.
-  description.fr: >
-    Supplément de pension de retraite acquis grâce à 10 années complètes de
-
-    cotisation retraite complémentaire.
-
-
-    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
-
-    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
-
-    permet de comparer les régimes de retraite complémentaire entre eux
   titre.en: '[automatic] Supplementary pension'
   titre.fr: Retraite complémentaire
 protection sociale . retraite . complémentaire . Cipav:
@@ -6276,6 +6253,13 @@ protection sociale . retraite . complémentaire . RCI:
       titre.fr: valeur du point
   titre.en: '[automatic] supplementary pension for self-employed workers'
   titre.fr: retraite complémentaire des indépendants
+protection sociale . retraite . complémentaire . points acquis:
+  description.en: |
+    [automatic] Total number of supplementary pension points acquired in a year.
+  description.fr: |
+    Nombre total de points de retraite complémentaire acquis sur une année.
+  titre.en: '[automatic] Supplementary pension points acquired'
+  titre.fr: Points de retraite complémentaire acquis
 période:
   titre.en: '[automatic] period'
   titre.fr: période
