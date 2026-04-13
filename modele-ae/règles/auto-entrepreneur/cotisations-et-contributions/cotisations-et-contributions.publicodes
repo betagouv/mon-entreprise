@@ -1,0 +1,36 @@
+auto-entrepreneur . cotisations et contributions:
+  somme:
+    - cotisations
+    - TFC
+    - CFP
+  unité: €/mois
+  références:
+    Imposition du micro-entrepreneur (régime micro-fiscal et social): https://www.service-public.fr/professionnels-entreprises/vosdroits/F23267
+    Les cotisations et contributions sociales: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+
+auto-entrepreneur . cotisations et contributions . CFP:
+  titre: Contribution à la formation professionnelle
+  acronyme: CFP
+  description: |
+    En plus des charges sociales, les auto-entrepreneurs sont redevables d’une
+    contribution à la formation professionnelle leur permettant de bénéficier du
+    droit à la formation professionnelle (à condition d’avoir déclaré un chiffre
+    d’affaires positif au cours des 12 derniers mois).
+  note: Les taux implémentés sont ceux prélevés par l’Urssaf.
+  unité: €/mois
+  somme:
+    - produit:
+        - entreprise . chiffre d'affaires . service BIC
+        - variations:
+            - si: entreprise . activité = 'artisanale'
+              alors: 0.3%
+            - sinon: 0.1%
+    - produit:
+        - entreprise . chiffre d'affaires . service BNC
+        - 0.2%
+
+  références:
+    Article L6331-48 du code du travail: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006072050&idArticle=LEGIARTI000006904325
+    autoentrepreneur.urssaf.fr: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html#cout-durant-vie-auto-entreprise
+    Fiche service-public.fr: https://www.service-public.fr/professionnels-entreprises/vosdroits/F23459
+    shine.fr: https://www.shine.fr/blog/formation-professionnelle-auto-entrepreneur/

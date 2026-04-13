@@ -1,0 +1,46 @@
+# Règles utilisées pour la recherche d'entreprise et de commune
+
+établissement:
+
+établissement . SIRET:
+  type: texte
+  applicable si: entreprise . SIREN
+
+établissement . commune:
+  icônes: 📍
+  question: Dans quelle commune l'établissement est-il implanté ?
+  API: commune
+  variations:
+    - si:
+        est défini: nom
+      alors:
+        texte: '{{ nom }} ({{ code postal }})'
+    - sinon: nom
+
+  avec:
+    code postal:
+
+    département:
+      avec:
+        outre-mer:
+          par défaut: non
+          une de ces conditions:
+            - département = 'Guadeloupe'
+            - département = 'Martinique'
+            - département = 'Guyane'
+            - département = 'La Réunion'
+            - département . outre-mer . Mayotte
+
+          avec:
+            Guadeloupe Réunion Martinique:
+              icônes: 🇬🇵 🇷🇪 🇲🇶
+              une de ces conditions:
+                - département = 'Guadeloupe'
+                - département = 'Martinique'
+                - département = 'La Réunion'
+            Mayotte:
+              valeur: département = 'Mayotte'
+              icônes: 🇾🇹
+
+    nom:
+      titre: Commune

@@ -1,0 +1,92 @@
+protection sociale:
+  experimental: oui
+  description: >
+    La protection sociale est composée de 5 branches principales : maladie,
+    famille, accidents du travail et maladies professionnelles, retraite et
+    chômage. A cela s’ajoutent aussi les cotisations pour la formation
+    professionnelle et le transport.
+  références:
+    securite-sociale.fr: https://www.securite-sociale.fr/accueil
+
+protection sociale . retraite:
+  icônes: 👵
+  type: branche
+  résumé: Garantit en moyenne 60 à 70 % du dernier revenu d’activité pour votre
+    pension de retraite.
+
+  description: |
+    ### Un système obligatoire …
+    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+
+    ###… par répartition
+    Le montant total des cotisations que vous versez chaque année sert à payer les
+    pensions des retraités pour cette même année. Le système organise ainsi un
+    transfert direct des générations en activité vers les générations à la retraite.
+
+    ###… principalement contributif
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu »
+    à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à
+    la retraite et du nombre d’années passées à travailler.
+
+    **Notre système de retraite est également solidaire** : les chômeurs, les
+    personnes en arrêt maladie, les personnes en situation de handicap, les
+    travailleurs touchant de faibles revenus, les femmes en congé maternité
+    acquièrent également des droits. Aucune personne à la retraite n’est laissée
+    sans ressources.
+
+
+    Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+  références:
+    Panorama des régimes de retraites: https://travail-emploi.gouv.fr/IMG/pdf/panorama_regimes_retraites_janvier-2024.pdf
+    'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
+    Régime de retraite des travailleurs indépendants: https://entreprendre.service-public.fr/vosdroits/F33841
+
+protection sociale . famille:
+  icônes: 👶
+  type: branche
+  résumé: |
+    Assure des prestations en soutien aux familles : garde d’enfants, aide au
+    logement...
+  description: |
+    Créée en 1945, la branche Famille est l’un des principaux acteurs de la
+    politique familiale française. Actuellement, elle a deux missions prioritaires :
+      - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la
+      conciliation entre vie familiale et vie professionnelle ;
+      - Développer la solidarité envers les plus vulnérables, dont les personnes
+      handicapées.
+
+    Pour remplir ces missions, elle s’appuie sur deux leviers :
+      - Le versement de prestations financières aux familles (prestations familiales
+      et sociales, aides au logement et minima sociaux comme l’aide aux adultes
+      handicapés et le revenu de solidarité active) ;
+      - L’accompagnement des familles et la mise en place ou le cofinancement de
+      différents services et équipements collectifs qui leur sont destinés (comme
+      les crèches)
+
+  références:
+    Quelles sont les missions de la branche Famille ?: https://www.caf.fr/nous-connaitre/nos-missions
+    Allocations destinées aux familles: https://www.service-public.fr/particuliers/vosdroits/N156
+    Tout savoir sur les Allocations familiales: https://www.caf.fr/nous-connaitre/qui-sommes-nous
+
+protection sociale . formation:
+  icônes: 👩‍🎓
+  résumé: Finance la possibilité de suivre des formations professionnelles.
+  description: |
+    La formation professionnelle permet à chaque personne, indépendamment de son
+    statut, d’acquérir et d’actualiser ses connaissances et ses compétences,
+    d’accroître son niveau de qualification et de favoriser son évolution
+    professionnelle.
+
+    Pour avoir un compte-rendu personnalisé de vos droits à la formation,
+    rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+
+protection sociale . autres:
+  icônes: 🔧
+  résumé: Autres contributions au système social.
+  description: |
+    Toutes les contributions transverses au système social.
+
+    On y retrouve par exemple la CRDS (contribution pour le remboursement de la
+    dette sociale) qui est un impôt destiné à résorber l’endettement de la Sécurité
+    sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants
+    et petits-enfants.

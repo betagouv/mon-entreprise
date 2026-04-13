@@ -18,23 +18,15 @@ protection sociale . invalidité et décès:
     pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
 
   avec:
-    raam:
-      titre: Revenu d’activité annuel moyen
-      description: |
-        Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
-        pension d’invalidité : soit au titre de votre activité salariée, soit au
-        titre de votre activité d’artisan/commerçant. Toutefois, le montant de
-        la pension tient compte de tous vos revenus perçus qu’ils proviennent de
-        votre activité salariée ou de votre activité comme indépendant.
+    revenu annuel moyen:
       applicable si: maladie . condition revenu
-      valeur: indépendant . cotisations et contributions . cotisations . invalidité et
-        décès . assiette
+      valeur: entreprise . chiffre d'affaires . abattu
       plafond: plafond sécurité sociale
 
 protection sociale . invalidité et décès . capital décès:
-  applicable si: maladie . condition revenu
-  valeur: 20% * plafond sécurité sociale * 1 an
-  unité: €
+      applicable si: maladie . condition revenu
+      valeur: 20% * plafond sécurité sociale * 1 an
+      unité: €
 
 protection sociale . invalidité et décès . capital décès . orphelin:
   description: |
@@ -47,12 +39,13 @@ protection sociale . invalidité et décès . capital décès . orphelin:
     poursuivant leurs études ou leur apprentissage ;
     - les enfants, quel que soit leur âge, bénéficiaires des allocations
     instituées en faveur des personnes handicapées.
-  valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
   références:
     Le capital orphelin pour les enfants des travailleurs indépendants: https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
+  valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
 
 protection sociale . invalidité et décès . pension de reversion:
   titre: pension de reversion maximum
+  unité: €/mois
   description: |
     Au décès de votre époux/épouse ou ex-époux/épouse, vous pouvez percevoir une
     pension de réversion.
@@ -62,14 +55,17 @@ protection sociale . invalidité et décès . pension de reversion:
 
     La pension est égale à 54 % de la retraite que votre époux/épouse ou
     ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
-  valeur: 54% * retraite . base
-  plancher: 3672.01 €/an
-  unité: €/mois
   références:
     Pension de réversion: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/veuvage/pension-reversion-veuvage.html
     Montants minimums de la pension de reversion: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=retraite_reversion_montant_minimum_bar.aspx
     Pension de réversion - Défunt ayant travaillé dans le privé: https://www.service-public.fr/particuliers/vosdroits/F35774/0?idFicheParent=N378#0
-  
+  plancher:
+    variations:
+      - si: date >= 07/2022
+        alors: 3672.01 €/an
+      - sinon: 3530.78 €/an
+  valeur: 54 % * retraite . base
+
 protection sociale . invalidité et décès . pension invalidité:
   références:
     Articles R341-4 à R341-6-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173390
@@ -78,9 +74,9 @@ protection sociale . invalidité et décès . pension invalidité:
     invalidité partielle:
       description:
         Si vous êtes capable d’exercer une activité professionnelle
-        rémunérée, vous êtes classé en 1ère catégorie.
+        rémunérée, vous êtes classé en 1re catégorie.
       produit:
-        - raam
+        - revenu annuel moyen
         - 30%
       plancher:
         applicable si: maladie . condition revenu
@@ -92,9 +88,9 @@ protection sociale . invalidité et décès . pension invalidité:
     invalidité totale:
       description:
         Si vous ne pouvez plus exercer d’activité professionnelle, vous
-        êtes classé en 2ème catégorie.
+        êtes classé en 2e catégorie.
       produit:
-        - raam
+        - revenu annuel moyen
         - 50%
       plancher:
         applicable si: maladie . condition revenu

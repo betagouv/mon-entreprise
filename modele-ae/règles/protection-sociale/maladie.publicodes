@@ -23,6 +23,7 @@ protection sociale . maladie:
       - **30 000 € / an / patient** : exemple de prise en charge complète pour une
       personne atteinte de mucoviscidose
       - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+
   références:
     À quel organisme de sécurité sociale est-on rattaché pour l’assurance maladie ?: https://www.service-public.fr/particuliers/vosdroits/F648
     Ce qui est remboursé pour tout le monde: https://www.ameli.fr/assure/remboursements/rembourse
@@ -32,7 +33,7 @@ protection sociale . maladie:
   avec:
     raam:
       titre: Revenu d’activité annuel moyen
-      valeur: indépendant . cotisations et contributions . cotisations . indemnités journalières . assiette
+      valeur: entreprise . chiffre d'affaires . abattu
       plafond:
         variations:
           - si: entreprise . activité . libérale . réglementée
@@ -57,21 +58,14 @@ protection sociale . maladie:
 protection sociale . maladie . arrêt maladie:
   titre: indemnités journalières
   description: |
+    Si vous êtes en arrêt de travail pour maladie, vous avez droit à des
+    indemnités journalières (IJ) versées par votre régime d’assurance maladie
+    (CPAM, MSA,...).
+
     L’indemnité journalière que vous recevrez pendant votre arrêt de travail est
-    égale à 1/730ème de votre [revenu d’activité annuel moyen (Raam)](/documentation/
-    modele-ti/protection-sociale/maladie/raam). Celui-ci est calculé sur la moyenne
-    de vos revenus cotisés des 3 années civiles précédant la date de votre arrêt de
-    travail.
-
-    En cas de revenu d’activité indépendante faible, le montant de
-    l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
-    être nul. De même en début d’activité, il faut attendre un certain
-    nombre de mois avant de pouvoir bénéficier d’indemnités.
-
-    Depuis le 1er janvier 2022, il est donc possible de percevoir
-    des indemnités journalières pour maladie et/ou pour maternité au titre
-    de son ancienne activité (quel que soit le régime auquel on était
-    affilié).
+    égale à 1/730e de votre revenu d’activité annuel moyen (Raam) (1). Celui-ci
+    est calculé sur la moyenne de vos revenus cotisés des 3 années civiles
+    précédant la date de votre arrêt de travail.
   applicable si: condition revenu
   unité: €/jour
   produit:
@@ -80,7 +74,6 @@ protection sociale . maladie . arrêt maladie:
   références:
     Quelles indemnités journalières pour les artisans/commerçants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124972
     Quelles indemnités journalières pour les professions libérales: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-profession-liberale#text_170670
-    Comment bénéficier d’indemnités liées à son ancien régime: https://www.ameli.fr/assure/actualites/indemnites-maladie-et-maternite-du-nouveau-pour-certains-travailleurs-independants
 
   avec:
     délai d'attente:
@@ -111,19 +104,19 @@ protection sociale . maladie . arrêt maladie:
 
 protection sociale . maladie . maternité paternité adoption:
   titre: indemnités journalières forfaitaires de congé maternité paternité adoption
-  unité: €/jour
   produit:
     - plafond sécurité sociale
     - 50%
   abattement:
     applicable si: condition revenu = non
     valeur: 90%
+  unité: €/jour
   références:
+    Simulateur maternité paternité adoption: https://www.ameli.fr/assure/simulateur-maternite-paternite
+    Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
     Les indemnités journalières forfaitaires maternité des travailleuses indépendantes: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125695
     'Paternité et accueil de l’enfant : les indemnités journalières pour les travailleurs indépendants': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant#text_114763
-    Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
-    'Congé d’adoption : les indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-adoption
-    Simulateur maternité paternité adoption: https://www.ameli.fr/assure/simulateur-maternite-paternite
+    'Congé d’adoption : les indemnités journalières pour les travailleurs indépendants': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-adoption#text_125374
 
   avec:
     délai d'attente:
@@ -136,11 +129,6 @@ protection sociale . maladie . maternité paternité adoption:
         Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
         naissance / à l’adoption.
       valeur: 10 mois
-
-    allocation forfaitaire de repos adoption:
-      valeur: 50% * allocation forfaitaire de repos maternel
-      références:
-        Article L623-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685502/
 
     allocation forfaitaire de repos maternel:
       description: |
@@ -156,4 +144,9 @@ protection sociale . maladie . maternité paternité adoption:
         - 1 mois
       références:
         L’allocation forfaitaire de repos maternel: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric#text_125689
+        Article L623-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685502/
+
+    allocation forfaitaire de repos adoption:
+      valeur: 50% * allocation forfaitaire de repos maternel
+      références:
         Article L623-1 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685502/

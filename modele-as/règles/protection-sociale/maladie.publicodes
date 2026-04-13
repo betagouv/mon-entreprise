@@ -1,0 +1,186 @@
+protection sociale . maladie:
+  icônes: 🏥
+  titre: assurance maladie
+  type: branche
+  résumé:
+    Couvre la plupart des soins de santé de la vie quotidienne et 100 % des
+    maladies graves comme les séjours à l’hôpital.
+  description: |
+    L’Assurance Maladie protège durablement la santé de chacun dans sa vie
+    personnelle ou professionnelle.
+
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en
+    prenant en charge leurs soins quels que soient leurs ressources, leur situation
+    ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle
+    permet l’accès aux soins.
+
+    Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de
+    maladie grave ou de longue durée, 100 % des soins sont remboursés.
+
+    ## L’assurance maladie en France en quelques chiffres
+      - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
+      maladie et la complémentaire
+      - **30 000 € / an / patient** : exemple de prise en charge complète pour une
+      personne atteinte de mucoviscidose
+      - **82,4 ans** d’espérance de vie moyenne en france (dans le top 10 mondial 🏅)
+  références:
+    À quel organisme de sécurité sociale est-on rattaché pour l’assurance maladie ?: https://www.service-public.fr/particuliers/vosdroits/F648
+    Ce qui est remboursé pour tout le monde: https://www.ameli.fr/assure/remboursements/rembourse
+    Rapport d’activité de l’assurance maladie 2017 (PDF): https://assurance-maladie.ameli.fr/sites/default/files/ra-2017_agir-ensemble-proteger-chacun.pdf
+    Rapport OCDE sur l’espérance de vie dans les différents pays: https://read.oecd-ilibrary.org/social-issues-migration-health/health-at-a-glance-europe-2018_health_glance_eur-2018-en#page89
+
+  avec:
+    abattement forfaitaire salarié:
+      privé: oui
+      valeur: 21%
+    plancher indemnités salarié:
+      privé: oui
+      valeur: 1015 heure * SMIC . horaire
+
+protection sociale . maladie . arrêt maladie:
+  titre: indemnités journalières
+  description: |
+    L’indemnité journalière que vous recevrez pendant votre arrêt de travail est
+    égale à 50 % de votre salaire journalier de base. Celui-ci est calculé sur
+    la moyenne des salaires bruts des 3 derniers mois précédant votre arrêt de
+    travail (12 mois en cas d’activité saisonnière).
+  applicable si: conditions . revenu
+  unité: €/jour
+  produit:
+    - valeur: assimilé salarié . cotisations . assiette
+      unité: €/jour
+      plafond:
+        variations:
+          - si: date > 04/2025
+            alors: 1.4 * SMIC
+          - sinon: 1.8 * SMIC
+    - 50%
+  références:
+    'Arrêt de travail pour maladie : les indemnités journalières du salarié': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie
+    'Arrêt maladie : indemnités journalières versées au salarié': https://www.service-public.fr/particuliers/vosdroits/F3053
+
+  avec:
+    délai d'attente:
+      non applicable si: arrêt maladie = 0
+
+    délai de carence:
+      non applicable si: arrêt maladie = 0
+      description: |
+        Pendant les 3 premiers jours de votre arrêt de travail, aucune indemnité
+        journalière ne vous est versée ; c’est ce que l’on appelle le délai de
+        carence. Il s’applique au début de chaque arrêt de travail.
+      valeur: 3 jour
+      références:
+        Délai de carence pour les salarié: https://www.service-public.fr/particuliers/vosdroits/F3053#fiche-item-aria-3
+        Délai de carence pour les indépendants: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-artisans-commercants#text_124978
+
+    conditions:
+      références:
+        Quels sont les critères pour être indemnisé en cas de maladie ?: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/arret-maladie-salarie#text_2632
+
+      avec:
+        délai d'attente:
+          description: |
+            Pour pouvoir prétendre à une indemnisation pour maladie au titre de
+            votre activité professionnelle, vous devez justifier d’un délai
+            d’affiliation continus dans cette activité. Ce dernier dépend de votre
+            rémunération des mois précédents.
+
+          remplace: arrêt maladie . délai d'attente
+          applicable si: conditions . revenu
+          valeur: (plancher indemnités salarié / assimilé salarié . cotisations . assiette) + 0.5
+          arrondi: oui
+
+        revenu: assimilé salarié . cotisations . assiette * 6 mois > plancher indemnités salarié
+
+protection sociale . maladie . maternité paternité adoption:
+  titre: indemnités journalières de congé maternité paternité adoption
+  applicable si: arrêt maladie . conditions . revenu
+  unité: €/jour
+  description: |
+    L’indemnité journalière que vous recevrez pendant votre arrêt de travail
+    est égale à 50 % de votre salaire journalier de base. Celui-ci est
+    calculé sur la moyenne des salaires bruts des 3 derniers mois précédant
+    votre arrêt de travail (12 mois en cas d’activité saisonnière).
+  produit:
+    - valeur: assimilé salarié . cotisations . assiette
+      unité: €/jour
+      plafond:
+        unité: €/jour
+        arrondi: 2 décimales
+        le minimum de:
+          - plafond sécurité sociale
+          - assimilé salarié . cotisations . assiette - abattement forfaitaire
+            salarié
+      plancher: invalidité et décès . pension invalidité . minimum
+  références:
+    'Congé maternité : les indemnités journalières pour les salariées': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-maternite-salariee
+    'Paternité et accueil de l’enfant : vos indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-paternite-accueil-enfant
+    Les prestations maternité des travailleuses indépendantes et des conjointes collaboratrices: https://www.ameli.fr/assure/remboursements/indemnites-journalieres/prestations-maternite-independantes-conjointes-collaboratric
+    'Congé d’adoption : les indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/conge-adoption
+    Simulateur maternité paternité adoption: https://www.ameli.fr/assure/simulateur-maternite-paternite
+
+  avec:
+    allocation forfaitaire de repos adoption:
+      non applicable si: oui
+
+    allocation forfaitaire de repos maternel:
+      non applicable si: oui
+
+    délai d'attente:
+      description: |
+        ## Maternité
+        Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
+        accouchement, et cesser toute activité professionnelle pendant la période de
+        perception et au moins pendant 8 semaines dont 6 après l’accouchement.
+        ## Paternité / Adoption
+        Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
+        naissance / à l’adoption.
+      valeur: 10 mois
+          
+protection sociale . maladie . accidents du travail et maladies professionnelles:
+  icônes: ☣️
+  résumé: Offre une couverture complète des maladies ou accidents du travail.
+  description: |
+    Vous avez subi un accident du travail ou êtes atteint d’une maladie
+    professionnelle ?
+    Vos frais médicaux sont pris en charge à 100 %.
+
+    Pour compenser votre perte de salaire, vous pouvez percevoir des indemnités
+    journalières.
+    Si vous êtes déclaré inapte suite à votre accident / maladie, vous pouvez
+    recevoir une indemnité temporaire d’inaptitude.
+  unité: €/jour
+
+  références:
+    Comprendre l’assurance AT/MP: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
+    'Maladie professionnelle : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/maladie-professionnelle
+    'Accident du travail : prise en charge et indemnités journalières': https://www.ameli.fr/assure/remboursements/indemnites-journalieres/accident-travail
+    Qu’est-ce qu’un accident de trajet ?: https://www.service-public.fr/particuliers/vosdroits/F31881
+    Qu’est-ce qu’une maladie professionnelle ?: https://www.service-public.fr/particuliers/vosdroits/F31880
+    'Accident du travail : indemnités journalières pendant l’arrêt de travail': https://www.service-public.fr/particuliers/vosdroits/F175
+    'Maladie professionnelle : indemnités journalières pendant l’arrêt de travail': https://www.service-public.fr/particuliers/vosdroits/F32148
+    Articles R433-1 à R433-17 du Code de la Sécurité Sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006156659/2020-12-10/
+
+  avec:
+    indemmnités:
+      produit:
+        - salaire journalier de référence
+        - 60%
+
+      avec:
+        à partir du 29ème jour:
+          produit:
+            - salaire journalier de référence
+            - 80%
+
+    indemmnités . salaire journalier de référence:
+      privé: oui
+      valeur: assimilé salarié . cotisations . assiette
+      unité: €/jour
+      plafond:
+        arrondi: 2 décimales
+        unité: €/jour
+        le minimum de:
+          - 0.834% * (plafond sécurité sociale * 1 an) / 1 jour
+          - assimilé salarié . cotisations . assiette - abattement forfaitaire salarié

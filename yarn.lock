@@ -27273,6 +27273,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"modele-ae@workspace:^, modele-ae@workspace:modele-ae":
+  version: 0.0.0-use.local
+  resolution: "modele-ae@workspace:modele-ae"
+  dependencies:
+    js-yaml: "npm:^4.1.0"
+    onchange: "npm:^7.1.0"
+  peerDependencies:
+    publicodes: ^1.0.4
+  languageName: unknown
+  linkType: soft
+
 "modele-as@workspace:^, modele-as@workspace:modele-as":
   version: 0.0.0-use.local
   resolution: "modele-as@workspace:modele-as"
@@ -32484,6 +32495,7 @@ __metadata:
     isbot: "npm:^3.7.0"
     jsdom: "npm:^26.1.0"
     markdown-to-jsx: "npm:^7.3.2"
+    modele-ae: "workspace:^"
     modele-as: "workspace:^"
     modele-social: "workspace:^"
     modele-ti: "workspace:^"
