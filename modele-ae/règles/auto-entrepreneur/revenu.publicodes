@@ -1,6 +1,6 @@
-auto-entrepreneur . rémunération: oui
+auto-entrepreneur . revenu: oui
 
-auto-entrepreneur . rémunération . nette:
+auto-entrepreneur . revenu . net:
   titre: Revenu net
   résumé: Avant impôt
   description: Il s’agit du revenu après déductions des cotisations, avant le
@@ -9,7 +9,7 @@ auto-entrepreneur . rémunération . nette:
   arrondi: oui
   unité: €/an
 
-auto-entrepreneur . rémunération . impôt:
+auto-entrepreneur . revenu . impôt:
   titre: Impôt sur le revenu
   variations:
     - si: versement libératoire
@@ -21,7 +21,7 @@ auto-entrepreneur . rémunération . impôt:
         arrondi: oui
         unité: €/an
 
-auto-entrepreneur . rémunération . nette . après impôt:
+auto-entrepreneur . revenu . net . après impôt:
   titre: Revenu net après impôt
   résumé: Avant déduction des dépenses liées à l’activité
   description: |
@@ -36,6 +36,6 @@ auto-entrepreneur . rémunération . nette . après impôt:
     - L’abonnement à des services payants
     - La location d’un local
     - etc
-  valeur: rémunération . nette - rémunération . impôt
+  valeur: revenu . net - revenu . impôt
   arrondi: oui
   unité: €/an
