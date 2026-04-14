@@ -22,6 +22,11 @@ export default function FicheDePaie() {
 						displayedUnit="heures/mois"
 						precision={1}
 					/>
+					<Line
+						rule="salarié . temps de travail . heures complémentaires"
+						displayedUnit="heures/mois"
+						precision={1}
+					/>
 				</ul>
 			</section>
 
