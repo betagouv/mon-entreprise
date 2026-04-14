@@ -1,35 +1,18 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
-import './FicheDePaie.css'
+import '@/components/FicheDePaie/FicheDePaie.css'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Condition } from '@/components/EngineValue/Condition'
-import Value from '@/components/EngineValue/Value'
+import { Line } from '@/components/FicheDePaie/Line'
+import { SalaireLine } from '@/components/FicheDePaie/SalaireLine'
 import { H3, H4 } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-
-import Line from './Line'
-
-function SalaireLine({ rule, title }: { rule: DottedName; title?: string }) {
-	return (
-		<div className="payslip__paymentLine">
-			<H4>
-				{title}
-				<ExplicableRule light dottedName={rule} />
-			</H4>
-			<Value linkToRule={false} expression={rule} unit="€" displayedUnit="€" />
-		</div>
-	)
-}
 
 export const SalaireNet = () => {
 	const { t } = useTranslation()
 
 	return (
 		<section className="payslip__salarySection">
-			<H3 className="payslip__salaryTitle">
-				<Trans>Salaire net</Trans>
-			</H3>
+			<H3 className="payslip__salaryTitle">{t('Salaire net')}</H3>
 
 			<ul>
 				<li>
@@ -38,6 +21,7 @@ export const SalaireNet = () => {
 						title={t('Montant net social')}
 					/>
 				</li>
+
 				<Condition
 					expression={{
 						'une de ces conditions': [
@@ -48,10 +32,7 @@ export const SalaireNet = () => {
 					}}
 				>
 					<li>
-						<H4>
-							<Trans>Remboursements et déductions diverses</Trans>
-						</H4>
-
+						<H4>{t('Remboursements et déductions diverses')}</H4>
 						<ul>
 							<Line
 								rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
@@ -76,11 +57,9 @@ export const SalaireNet = () => {
 						title={t('Montant net à payer avant impôt sur le revenu')}
 					/>
 				</li>
-				<li>
-					<H4>
-						<Trans>Impôt sur le revenu</Trans>
-					</H4>
 
+				<li>
+					<H4>{t('Impôt sur le revenu')}</H4>
 					<ul>
 						<Line
 							rule="salarié . rémunération . net . imposable"

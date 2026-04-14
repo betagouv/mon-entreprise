@@ -5,11 +5,9 @@ import { styled } from 'styled-components'
 import { Cotisations } from './Cotisations'
 import { SalaireBrut } from './SalaireBrut'
 import { SalaireNet } from './SalaireNet'
-import { TempsDeTravail } from './TempsDeTravail'
 
 export const FicheDePaie = () => (
 	<StyledContainer className="payslip__container">
-		<TempsDeTravail />
 		<SalaireBrut />
 		<Cotisations />
 		<SalaireNet />

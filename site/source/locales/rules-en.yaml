@@ -10610,9 +10610,9 @@ salarié . cotisations . catégories:
     atmp:
       titre.en: '[automatic] accidents at work &amp; occupational diseases'
       titre.fr: accidents du travail & maladies professionnelles
-    convention collective:
-      titre.en: '[automatic] statutory or collective agreement contributions'
-      titre.fr: cotisations statutaires ou prévues par la convention collective
+    chômage:
+      titre.en: '[automatic] unemployment insurance'
+      titre.fr: assurance chômage
     divers:
       titre.en: '[automatic] employer contributions'
       titre.fr: cotisations employeur

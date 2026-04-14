@@ -48,9 +48,6 @@ assimilé salarié . cotisations . catégories:
     divers:
       titre: cotisations employeur
       type: branche
-    convention collective:
-      titre: cotisations statutaires ou prévues par la convention collective
-      type: branche
     CSG-CRDS:
       titre: CSG / CRDS
       type: branche

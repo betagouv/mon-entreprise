@@ -53,11 +53,11 @@ salarié . cotisations . catégories:
     retraite:
       titre: retraite
       type: branche
+    chômage:
+      titre: assurance chômage
+      type: branche
     divers:
       titre: cotisations employeur
-      type: branche
-    convention collective:
-      titre: cotisations statutaires ou prévues par la convention collective
       type: branche
     CSG-CRDS:
       titre: CSG / CRDS
@@ -379,7 +379,7 @@ salarié . cotisations . assurance chômage:
 salarié . cotisations . chômage:
   cotisation:
     dû par: employeur
-    branche: assurance chômage
+    branche: chômage
   description: Cotisation d’assurance chômage
   références:
     L’assurance chômage et l’assurance garantie des salaires (AGS): https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
