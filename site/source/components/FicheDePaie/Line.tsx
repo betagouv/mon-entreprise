@@ -9,16 +9,16 @@ import { WhenApplicable } from '../EngineValue/WhenApplicable'
 
 type LineProps = {
 	rule: DottedName
-	title?: string
 	negative?: boolean
-} & Omit<ValueProps<DottedName>, 'expression'>
+	title?: string
+} & Pick<ValueProps<DottedName>, 'displayedUnit' | 'precision'>
 
 export default function Line({
 	rule,
-	displayedUnit = '€',
 	negative = false,
 	title,
-	...props
+	displayedUnit = '€',
+	precision,
 }: LineProps) {
 	return (
 		<WhenApplicable dottedName={rule}>
@@ -31,7 +31,7 @@ export default function Line({
 							expression={(negative ? '- ' : '') + rule}
 							unit={displayedUnit === '€' ? '€/mois' : displayedUnit}
 							displayedUnit={displayedUnit}
-							{...props}
+							precision={precision}
 						/>
 					</li>
 				</Condition>
