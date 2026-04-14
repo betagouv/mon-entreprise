@@ -24,7 +24,7 @@ type Props = {
 		BarType,
 		{ dottedName: DottedName; title: string }
 	>
-	ficheDePaie?: ReactNode
+	ficheDePaie: ReactNode
 }
 
 export default function SalaryExplanation({
@@ -54,61 +54,59 @@ export default function SalaryExplanation({
 
 			<ÀQuoiServentMesCotisationsSection regroupement={cotisationsSection} />
 
-			{ficheDePaie && (
-				<Container
-					backgroundColor={(theme) =>
-						theme.darkMode
-							? theme.colors.extended.dark[700]
-							: theme.colors.bases.primary[100]
-					}
+			<Container
+				backgroundColor={(theme) =>
+					theme.darkMode
+						? theme.colors.extended.dark[700]
+						: theme.colors.bases.primary[100]
+				}
+			>
+				<div ref={payslipRef} />
+				<Grid
+					container
+					style={{
+						justifyContent: 'center',
+					}}
 				>
-					<div ref={payslipRef} />
 					<Grid
-						container
+						item
+						xl={9}
+						lg={10}
 						style={{
-							justifyContent: 'center',
+							overflow: 'auto',
 						}}
 					>
-						<Grid
-							item
-							xl={9}
-							lg={10}
-							style={{
-								overflow: 'auto',
-							}}
-						>
-							<H2>
-								<Trans>Fiche de paie</Trans>
-							</H2>
+						<H2>
+							<Trans>Fiche de paie</Trans>
+						</H2>
 
-							<Message type="info" icon>
-								<Body>
-									<Trans i18nKey="payslip.disclaimer">
-										Cette fiche de paie est issue de la simulation que vous avez
-										faite. Elle vous aide à comprendre votre bulletin de paie :
-										vous pouvez cliquer sur les liens pour comprendre le calcul
-										de chaque montant. Cette fiche de paie ne peut pas de
-										substituer à une fiche de paie réelle. Pour plus
-										d'informations, rendez-vous sur{' '}
-										<Link
-											href="https://www.service-public.fr/particuliers/vosdroits/F559"
-											aria-label={t(
-												'aria-label.service-public',
-												'service-public.fr, nouvelle fenêtre'
-											)}
-										>
-											service-public.fr
-										</Link>
-										.
-									</Trans>
-								</Body>
-							</Message>
+						<Message type="info" icon>
+							<Body>
+								<Trans i18nKey="payslip.disclaimer">
+									Cette fiche de paie est issue de la simulation que vous avez
+									faite. Elle vous aide à comprendre votre bulletin de paie :
+									vous pouvez cliquer sur les liens pour comprendre le calcul de
+									chaque montant. Cette fiche de paie ne peut pas de substituer
+									à une fiche de paie réelle. Pour plus d'informations,
+									rendez-vous sur{' '}
+									<Link
+										href="https://www.service-public.fr/particuliers/vosdroits/F559"
+										aria-label={t(
+											'aria-label.service-public',
+											'service-public.fr, nouvelle fenêtre'
+										)}
+									>
+										service-public.fr
+									</Link>
+									.
+								</Trans>
+							</Body>
+						</Message>
 
-							{ficheDePaie}
-						</Grid>
+						{ficheDePaie}
 					</Grid>
-				</Container>
-			)}
+				</Grid>
+			</Container>
 		</FromTop>
 	)
 }

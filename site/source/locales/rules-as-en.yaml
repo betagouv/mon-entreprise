@@ -135,6 +135,24 @@ assimilé salarié . cotisations . ATMP:
     Professionnelles.
   titre.en: '[automatic] accidents at work &amp; occupational diseases'
   titre.fr: accidents du travail & maladies professionnelles
+assimilé salarié . cotisations . Apec:
+  avec:
+    employeur:
+      titre.en: "[automatic] employer's share"
+      titre.fr: part employeur
+    salarié:
+      titre.en: '[automatic] employee share'
+      titre.fr: part salarié
+  description.en: >
+    [automatic] Specific contribution to APEC (Association pour l'Emploi des
+    Cadres)
+
+    (Association for Executive Employment)
+  description.fr: |
+    Cotisation spécifique aux cadre pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+  titre.en: '[automatic] Apec'
+  titre.fr: Apec
 assimilé salarié . cotisations . CEG:
   avec:
     employeur:
@@ -354,9 +372,6 @@ assimilé salarié . cotisations . catégories:
     atmp:
       titre.en: '[automatic] accidents at work &amp; occupational diseases'
       titre.fr: accidents du travail & maladies professionnelles
-    convention collective:
-      titre.en: '[automatic] statutory or collective agreement contributions'
-      titre.fr: cotisations statutaires ou prévues par la convention collective
     divers:
       titre.en: '[automatic] employer contributions'
       titre.fr: cotisations employeur
