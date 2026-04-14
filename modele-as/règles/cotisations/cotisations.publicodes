@@ -17,6 +17,7 @@ assimilé salarié . cotisations:
         - vieillesse . déplafonnée . employeur
         - retraite complémentaire-CEG-CET . employeur
         - allocations familiales
+        - Apec . employeur
         - autres employeur
         - prévoyances . incapacité invalidité décès . employeur
       abattement: exonérations . employeur
@@ -29,6 +30,7 @@ assimilé salarié . cotisations:
         - vieillesse . plafonnée . salarié
         - vieillesse . déplafonnée . salarié
         - retraite complémentaire-CEG-CET . salarié
+        - Apec . salarié
         - CSG-CRDS . CSG . déductible
         - CSG-CRDS . sur revenus imposables non déductible
         - prévoyances . incapacité invalidité décès . salarié
@@ -218,6 +220,33 @@ assimilé salarié . cotisations . allocations familiales:
   avec:
     taux: 5.25%
     taux réduit: 3.45%
+
+assimilé salarié . cotisations . Apec:
+  cotisation:
+    branche: divers
+  description: |
+    Cotisation spécifique aux cadre pour le fonctionnement de l'APEC
+    (Association Pour l’Emploi des Cadres)
+  références:
+    'Agirc-arrco : le calcul des cotisations': https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
+  somme:
+    - employeur
+    - salarié
+
+  avec:
+    employeur:
+      produit:
+        - valeur: cotisations . assiette
+          plafond: 4 * plafond sécurité sociale
+        - 0.036%
+      titre: part employeur
+
+    salarié:
+      produit:
+        - valeur: cotisations . assiette
+          plafond: 4 * plafond sécurité sociale
+        - 0.024%
+      titre: part salarié
 
 assimilé salarié . cotisations . ATMP:
   cotisation:

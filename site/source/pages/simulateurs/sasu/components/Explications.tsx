@@ -69,5 +69,6 @@ const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 		'assimilé salarié . cotisations . CSA',
 		'assimilé salarié . cotisations . forfait social',
 		'assimilé salarié . cotisations . PEEC',
+		'assimilé salarié . cotisations . Apec',
 	],
 }
