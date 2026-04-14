@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation/SalaryExplanation'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
+import { FicheDePaie } from './FicheDePaie/FicheDePaie'
+
 export default function Explications() {
 	const { t } = useTranslation()
 
@@ -32,6 +34,7 @@ export default function Explications() {
 					),
 				},
 			}}
+			ficheDePaie={<FicheDePaie />}
 		/>
 	)
 }
