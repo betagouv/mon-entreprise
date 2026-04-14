@@ -86,10 +86,7 @@ salarié . cotisations . assiette:
         déductible de la prévoyance employeur. C'est elle qui sert de base au
         calcul des prévoyances proportionnelles au revenu.
       valeur: rémunération . brut
-      abattement:
-        somme:
-          - rémunération . frais professionnels . déductible
-          - contrat . stage . gratification minimale
+      abattement: contrat . stage . gratification minimale
 
 salarié . cotisations . CPF CDD:
   description:
