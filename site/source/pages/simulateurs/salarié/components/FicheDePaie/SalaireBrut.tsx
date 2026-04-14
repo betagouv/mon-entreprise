@@ -1,8 +1,8 @@
 import { Trans } from 'react-i18next'
 
+import { Condition } from '@/components/EngineValue/Condition'
 import { H3 } from '@/design-system'
 
-import { Condition } from '../EngineValue/Condition'
 import Line from './Line'
 
 import './FicheDePaie.css'

@@ -6,12 +6,12 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import './FicheDePaie.css'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import Value from '@/components/EngineValue/Value'
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { H3 } from '@/design-system'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-import { ExplicableRule } from '../conversation/Explicable'
-import Value from '../EngineValue/Value'
-import { normalizeRuleName } from '../utils/normalizeRuleName'
 import CotisationLine from './CotisationLine'
 
 function CotisationLines({ cotisations }: { cotisations: Array<DottedName> }) {

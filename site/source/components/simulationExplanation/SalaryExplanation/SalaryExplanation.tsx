@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/ÀQuoiServentMesCotisationsSection'
@@ -15,7 +15,6 @@ import {
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInversionFail } from '@/hooks/useInversionFail'
 
-import { FicheDePaie } from '../../FicheDePaie/FicheDePaie'
 import { BarType } from '../StackedRulesChart/InnerStackedBarChart'
 import RevenueRepartitionSection from './RevenueRepartitionSection'
 
@@ -25,13 +24,13 @@ type Props = {
 		BarType,
 		{ dottedName: DottedName; title: string }
 	>
-	avecFicheDePaie?: boolean
+	ficheDePaie?: ReactNode
 }
 
 export default function SalaryExplanation({
 	cotisationsSection,
 	répartitionRevenuData,
-	avecFicheDePaie = false,
+	ficheDePaie,
 }: Props) {
 	const payslipRef = useRef<HTMLDivElement>(null)
 	const { t } = useTranslation()
@@ -55,7 +54,7 @@ export default function SalaryExplanation({
 
 			<ÀQuoiServentMesCotisationsSection regroupement={cotisationsSection} />
 
-			{avecFicheDePaie && (
+			{ficheDePaie && (
 				<Container
 					backgroundColor={(theme) =>
 						theme.darkMode
@@ -105,7 +104,7 @@ export default function SalaryExplanation({
 								</Body>
 							</Message>
 
-							<FicheDePaie />
+							{ficheDePaie}
 						</Grid>
 					</Grid>
 				</Container>
