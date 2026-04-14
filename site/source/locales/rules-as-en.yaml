@@ -1315,8 +1315,6 @@ assimilé salarié . rémunération . montant net social:
   titre.en: '[automatic] Net corporate amount'
   titre.fr: Montant net social
 assimilé salarié . rémunération . nette:
-  question.en: '[automatic] What is your net salary?'
-  question.fr: Quelle est votre rémunération nette ?
   résumé.en: '[automatic] After deduction of contributions and expenses'
   résumé.fr: Après déduction des cotisations, contributions et charges
   titre.en: '[automatic] Net remuneration'
@@ -1328,8 +1326,6 @@ assimilé salarié . rémunération . nette . après impôt:
   description.fr: >
     C'est le salaire versé sur le compte bancaire du salarié, une fois les
     cotisations et l'impôt prélevés.
-  question.en: "[automatic] What is the employee's net income after tax?"
-  question.fr: Quel est le revenu net du salarié après impôt ?
   résumé.en: '[automatic] Net salary paid'
   résumé.fr: Le salaire net payé
   titre.en: '[automatic] Net salary after tax'
@@ -1378,8 +1374,6 @@ assimilé salarié . rémunération . totale:
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
 
     On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
-  question.en: '[automatic] How much do you expect to earn in total?'
-  question.fr: Quel montant total pensez-vous dégager pour votre rémunération ?
   résumé.en: "[automatic] Total paid by the company for the executive's
     remuneration, including contributions"
   résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,

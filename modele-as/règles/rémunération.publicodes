@@ -4,7 +4,6 @@ assimilé salarié . rémunération:
 assimilé salarié . rémunération . totale:
   titre: Rémunération totale
   résumé: Total payé par l'entreprise pour la rémunération du dirigeant, cotisations et contributions incluses
-  question: Quel montant total pensez-vous dégager pour votre rémunération ?
   description: |
     C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
@@ -40,7 +39,6 @@ assimilé salarié . rémunération . salaire brut:
 assimilé salarié . rémunération . nette:
   unité: €/an
   titre: Rémunération nette
-  question: Quelle est votre rémunération nette ?
   résumé: Après déduction des cotisations, contributions et charges
   somme:
     - rémunération . brute
@@ -95,9 +93,7 @@ assimilé salarié . rémunération . impôt:
 
 assimilé salarié . rémunération . nette . après impôt:
   titre: Salaire net après impôt
-  identifiant court: salaire-net-apres-impot
   résumé: Le salaire net payé
-  question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   unité: €/mois
   description: |
