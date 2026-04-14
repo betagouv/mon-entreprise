@@ -1,4 +1,4 @@
-import Line from "./Line";
+import Line from './Line'
 
 export const TempsDeTravail = () => (
 	<section className="payslip__salarySection">
