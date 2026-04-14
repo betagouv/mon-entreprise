@@ -22,7 +22,7 @@ function SalaireLine({ rule, title }: { rule: DottedName; title?: string }) {
 	)
 }
 
-export default function SalaireNet() {
+export const SalaireNet = () => {
 	const { t } = useTranslation()
 
 	return (
