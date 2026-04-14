@@ -15,7 +15,7 @@ import {
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInversionFail } from '@/hooks/useInversionFail'
 
-import FicheDePaie from '../../FicheDePaie/FicheDePaie'
+import { FicheDePaie } from '../../FicheDePaie/FicheDePaie'
 import { BarType } from '../StackedRulesChart/InnerStackedBarChart'
 import RevenueRepartitionSection from './RevenueRepartitionSection'
 
