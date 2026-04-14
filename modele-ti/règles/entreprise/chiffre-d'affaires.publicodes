@@ -152,8 +152,16 @@ entreprise . chiffre d'affaires . service:
 entreprise . chiffre d'affaires . seuil micro-fiscal:
   applicable si: imposition . IR . régime micro-fiscal
   avec:
-    service: 77700 €/an
-    vente: 188700 €/an
+    service:
+      variations:
+        - si: date < 01/2026
+          alors: 77700 €/an
+        - sinon: 83600 €/an
+    vente:
+      variations:
+        - si: date < 01/2026
+          alors: 188700 €/an
+        - sinon: 203100 €/an
   références:
     'Impôt sur le revenu : BIC, BNC, comment ça marche ? - Quel régime d’imposition concerne les BIC et les BNC ?': https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/limpot-sur-les-benefices-ir-et/impot-sur-le-revenu-bic#quel-r-gime-d-imposition-concern_2
 
