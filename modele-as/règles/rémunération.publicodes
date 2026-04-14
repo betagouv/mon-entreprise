@@ -95,9 +95,7 @@ assimilé salarié . rémunération . impôt:
 
 assimilé salarié . rémunération . nette . après impôt:
   titre: Salaire net après impôt
-  identifiant court: salaire-net-apres-impot
   résumé: Le salaire net payé
-  question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   unité: €/mois
   description: |

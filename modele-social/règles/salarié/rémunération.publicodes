@@ -19,7 +19,7 @@ salarié . rémunération . brut:
     - indemnités CDD
     - heures supplémentaires
     - heures complémentaires
-    - frais professionnels
+    - frais professionnels . non déductible
 
   abattement: activité partielle . retrait absence
 
@@ -35,7 +35,9 @@ salarié . rémunération . net:
 
   avec:
     sans revenus de remplacement:
-      valeur: brut
+      somme:
+        - brut
+        - frais professionnels . déductible
       abattement: cotisations . salarié
 
 salarié . rémunération . net . à payer avant impôt:
@@ -123,7 +125,6 @@ salarié . rémunération . net . imposable:
 
 salarié . rémunération . net . payé après impôt:
   titre: Salaire net après impôt
-  identifiant court: salaire-net-apres-impot
   résumé: Le salaire net payé
   type: salaire
   unité: €/mois
@@ -445,6 +446,7 @@ salarié . rémunération . frais professionnels:
       somme:
         - titres-restaurant . déductible
         - trajets domicile travail . déductible
+      unité: €/mois
 
     non déductible:
       titre: Part non déductible
@@ -919,11 +921,9 @@ salarié . rémunération . montant net social:
     - indemnités CDD
     - heures supplémentaires
     - heures complémentaires
-    - frais professionnels
+    - frais professionnels . non déductible
   abattement:
       somme:
-        - valeur: frais professionnels . déductible
-          unité: €/mois
         - activité partielle . retrait absence
         - salarié . cotisations . salarié
   références :

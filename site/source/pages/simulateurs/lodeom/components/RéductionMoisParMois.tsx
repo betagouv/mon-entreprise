@@ -10,6 +10,7 @@ import {
 	lodeomDottedName,
 	MonthState,
 	Options,
+	rémunérationBruteDottedName,
 } from '@/pages/simulateurs/lodeom/lodeom'
 
 import RécapitulatifTrimestre from './RécapitulatifTrimestre'
@@ -84,8 +85,7 @@ export default function RéductionMoisParMois({
 							<tr>
 								<th scope="col">{t('Mois')}</th>
 								<th scope="col">
-									{/* TODO: remplacer par rémunérationBruteDottedName lorsque ... */}
-									<RuleLink dottedName="salarié . rémunération . brut" />
+									<RuleLink dottedName={rémunérationBruteDottedName} />
 								</th>
 								<th scope="col">
 									<RuleLink dottedName={lodeomDottedName} />
