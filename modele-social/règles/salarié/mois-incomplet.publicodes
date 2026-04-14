@@ -13,16 +13,12 @@ salarié . mois incomplet . rémunération non impactée par l'absence:
   unité: €/mois
 
 salarié . mois incomplet . rémunération de base mois incomplet:
-  # TODO: décommenter la formule lorsque "rémunération . brut" n'incluera plus
-  # les frais professionnels.
-  # Décommenter aussi la ligne "rémunération . brut" dans "salarié . contrat . salaire brut"
-
-  # valeur: rémunération . brut
-  # abattement:
-  #   somme:
-  #     - rémunération . heures supplémentaires
-  #     - rémunération . heures complémentaires
-  #     - rémunération non impactée par l'absence
+  valeur: rémunération . brut
+  abattement:
+    somme:
+      - rémunération . heures supplémentaires
+      - rémunération . heures complémentaires
+      - rémunération non impactée par l'absence
   unité: €/mois
   description: |
     Exclure de cette rémunération :
@@ -30,13 +26,13 @@ salarié . mois incomplet . rémunération de base mois incomplet:
       - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
 
 salarié . mois incomplet . rémunération équivalente mois complet:
-  # par défaut: contrat . salaire brut
-  unité: €/mois
-  question: Quelle rémunération brute aurait été versée pour un mois complet ?
-  note: |
+  description: |
+    Il s’agit de la rémunération brute qui aurait été versée pour un mois complet.
+
     Exclure de cette rémunération :
       - le paiement des heures supplémentaires et complémentaires,
       - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
+  unité: €/mois
 
 salarié . mois incomplet . prorata:
   valeur: rémunération de base mois incomplet / rémunération équivalente mois complet

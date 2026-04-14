@@ -85,7 +85,9 @@ salarié . cotisations . assiette:
         L'assiette des cotisations avant la réintégration de la part non
         déductible de la prévoyance employeur. C'est elle qui sert de base au
         calcul des prévoyances proportionnelles au revenu.
-      valeur: rémunération . brut
+      somme:
+        - rémunération . brut
+        - rémunération . frais professionnels
       abattement:
         somme:
           - rémunération . frais professionnels . déductible

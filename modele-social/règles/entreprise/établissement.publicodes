@@ -76,7 +76,7 @@
       note: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
         implémentés
       # TODO : cette ligne n'est utile que pour déprioriser cette question par rapport à celle sur de `taux ATMP`.
-      # Il y a peut-être un bug dans publicodes : on s'attendrait à ce soit déjà le cas.
+      # Il y a peut-être un bug dans publicodes : on s'attendrait à ce que ce soit déjà le cas.
 
 établissement . ZFU:
   experimental: oui

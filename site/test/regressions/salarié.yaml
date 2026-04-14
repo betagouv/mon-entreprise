@@ -51,6 +51,8 @@ ATMP:
     établissement . taux ATMP: '0.1 %'
   - salarié . contrat . salaire brut: 2000 €/mois
     salarié . cotisations . ATMP . taux fonctions support: oui
+  - salarié . contrat . salaire brut: 2000 €/mois
+    établissement . taux ATMP . taux collectif: 5%
 
 contrat pro:
   - salarié . contrat: "'professionnalisation'"
@@ -63,6 +65,7 @@ cadre:
   # Prévoyances au dessus du plafond de déduction :
   - salarié . contrat . salaire brut: 8000 €/mois
     salarié . cotisations . prévoyances . santé . montant: 250€/mois
+
 cdd:
   - &CDD
     salarié . contrat: "'CDD'"
@@ -84,10 +87,6 @@ cdd:
     salarié . rémunération . avantages en nature . montant: 200 €/mois
   - <<: *CDD
     salarié . convention collective: "'BTP'"
-
-atmp:
-  - salarié . contrat . salaire brut: 2000 €/mois
-    établissement . taux ATMP . taux collectif: 5%
 
 aides:
   - salarié . contrat . salaire brut: 2000 €/mois

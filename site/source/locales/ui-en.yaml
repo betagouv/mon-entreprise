@@ -1858,17 +1858,12 @@ pages:
           heures-complémentaires: Number of overtime hours
           heures-supplémentaires: Number of overtime hours
           rémunération-etp: Basic remuneration for a full month
-          rémunération-heures-complémentaires: Overtime pay
-          rémunération-heures-supplémentaires: Overtime pay
           rémunération-primes: Remuneration not affected by the incomplete month
         rémunération-etp:
           popover: <0>Indicate here the remuneration that would have been paid for a full
             month, <2>excluding&lt;/2> :<4><0>bonuses and other elements of
             remuneration not affected by the absence ;</0><1>remuneration for
             overtime or additional hours worked.</1></4></0>
-        rémunération-heures-sup:
-          popover: <0>Indicate here the remuneration relating to the payment of overtime
-            or complementary hours.</0>
         rémunération-primes:
           popover: <0>Indicate here any elements of remuneration not affected by the
             absence, such as bonuses.</0>

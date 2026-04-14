@@ -59,16 +59,6 @@ export default function MonthOptions({
 			"Nombre d'heures complémentaires"
 		),
 	}
-	const additionalHoursRémunérationLabels = {
-		heuresSupplémentaires: t(
-			'pages.simulateurs.lodeom.options.label.rémunération-heures-supplémentaires',
-			'Rémunération des heures supplémentaires'
-		),
-		heuresComplémentaires: t(
-			'pages.simulateurs.lodeom.options.label.rémunération-heures-complémentaires',
-			'Rémunération des heures complémentaires'
-		),
-	}
 
 	const onHeuresSupChange = (value?: number) => {
 		const newOptions = {
@@ -96,14 +86,6 @@ export default function MonthOptions({
 		const newOptions = {
 			...options,
 			rémunérationPrimes: value ?? 0,
-		}
-		onOptionsChange(index, newOptions)
-	}
-
-	const onRémunérationHeuresSupChange = (value?: number) => {
-		const newOptions = {
-			...options,
-			rémunérationHeuresSup: value ?? 0,
 		}
 		onOptionsChange(index, newOptions)
 	}
@@ -223,38 +205,6 @@ export default function MonthOptions({
 					</NumberFieldContainer>
 				</GridItemInput>
 			</GridContainer>
-			<GridContainer container columnSpacing={4}>
-				<GridItemLabel item>
-					<FlexDiv>
-						<StyledLabel id={`rémunération-heures-sup-label`}>
-							{additionalHoursRémunérationLabels[additionalHours]}
-						</StyledLabel>
-						<HelpButtonWithPopover
-							type="info"
-							title={additionalHoursRémunérationLabels[additionalHours]}
-						>
-							<RémunérationHeuresSupPopoverContent />
-						</HelpButtonWithPopover>
-					</FlexDiv>
-				</GridItemLabel>
-				<GridItemInput item>
-					<NumberFieldContainer>
-						<MontantField
-							id={`option-rémunération-heures-sup-${month}`}
-							small={true}
-							value={
-								options.rémunérationHeuresSup !== undefined
-									? euros(options.rémunérationHeuresSup)
-									: undefined
-							}
-							unité="€"
-							onChange={(m) => onRémunérationHeuresSupChange(m?.valeur)}
-							aria-labelledby={`rémunération-heures-sup-label`}
-							avecCentimes
-						/>
-					</NumberFieldContainer>
-				</GridItemInput>
-			</GridContainer>
 		</Appear>
 	)
 }
@@ -290,15 +240,6 @@ const RémunérationPrimesPopoverContent = () => (
 		<Body>
 			Indiquez ici les éléments de rémunération non affectés par l'absence,
 			comme les primes.
-		</Body>
-	</Trans>
-)
-
-const RémunérationHeuresSupPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-heures-sup.popover">
-		<Body>
-			Indiquez ici la rémunération afférente au paiement des heures
-			supplémentaires ou complémentaires.
 		</Body>
 	</Trans>
 )

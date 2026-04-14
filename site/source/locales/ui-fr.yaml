@@ -1970,17 +1970,12 @@ pages:
           heures-complémentaires: Nombre d'heures complémentaires
           heures-supplémentaires: Nombre d'heures supplémentaires
           rémunération-etp: Rémunération de base mois complet
-          rémunération-heures-complémentaires: Rémunération des heures complémentaires
-          rémunération-heures-supplémentaires: Rémunération des heures supplémentaires
           rémunération-primes: Rémunération non affectée par le mois incomplet
         rémunération-etp:
           popover: <0>Indiquez ici la rémunération qui aurait été versée pour un mois
             complet, <2>en excluant</2> :<4><0>les primes et autres éléments de
             rémunération non affectés par l'absence ;</0><1>la rémunération des
             heures supplémentaires ou complémentaires.</1></4></0>
-        rémunération-heures-sup:
-          popover: <0>Indiquez ici la rémunération afférente au paiement des heures
-            supplémentaires ou complémentaires.</0>
         rémunération-primes:
           popover: <0>Indiquez ici les éléments de rémunération non affectés par
             l'absence, comme les primes.</0>

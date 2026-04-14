@@ -12483,16 +12483,22 @@ salarié . mois incomplet . rémunération non impactée par l'absence:
   titre.en: '[automatic] compensation not affected by absence'
   titre.fr: rémunération non impactée par l'absence
 salarié . mois incomplet . rémunération équivalente mois complet:
-  note.en: >
-    [automatic] Exclude from this remuneration :
+  description.en: >
+    [automatic] This is the gross remuneration that would have been paid for a
+    full month.
+
+
+    Exclude from this remuneration :
       - payment for overtime and complementary hours,
-      - bonuses, fixed-term contract allowances and other remuneration not affected by the absence.
-  note.fr: >
+      - bonuses, CDD allowances and other elements of remuneration not affected by the absence.
+  description.fr: >
+    Il s’agit de la rémunération brute qui aurait été versée pour un mois
+    complet.
+
+
     Exclure de cette rémunération :
       - le paiement des heures supplémentaires et complémentaires,
       - les primes, indemnités de CDD et autres éléments de rémunération non impactés par l'absence.
-  question.en: '[automatic] What gross salary would have been paid for a full month?'
-  question.fr: Quelle rémunération brute aurait été versée pour un mois complet ?
   titre.en: '[automatic] equivalent remuneration for a full month'
   titre.fr: rémunération équivalente mois complet
 salarié . régimes spécifiques:

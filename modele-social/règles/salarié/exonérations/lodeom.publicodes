@@ -486,7 +486,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
 
 salarié . cotisations . exonérations . lodeom . montant:
-  non applicable si: cotisations . assiette = 0
+  non applicable si: rémunération . brut = 0
   rend non applicable: RGDU
   titre: montant de l’exonération
   références:
@@ -494,15 +494,15 @@ salarié . cotisations . exonérations . lodeom . montant:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html
 
   produit:
-    - cotisations . assiette
+    - rémunération . brut
     - coefficient
 
   avec:
     coefficient:
       variations:
-        - si: cotisations . assiette <= seuil inflexion * temps de travail . SMIC
+        - si: rémunération . brut <= seuil inflexion * temps de travail . SMIC
           alors: T
-        - si: cotisations . assiette >= seuil sortie * temps de travail . SMIC
+        - si: rémunération . brut >= seuil sortie * temps de travail . SMIC
           alors: 0
         - si:
             une de ces conditions:
@@ -513,11 +513,11 @@ salarié . cotisations . exonérations . lodeom . montant:
             variations:
               - si:
                   toutes ces conditions:
-                    - cotisations . assiette > seuil inflexion * temps de travail . SMIC
-                    - cotisations . assiette < seuil intermédiaire * temps de travail . SMIC
-                alors: seuil inflexion * T * temps de travail . SMIC / cotisations . assiette
-              - sinon: seuil inflexion * T / (seuil sortie - seuil intermédiaire) * (seuil sortie * temps de travail . SMIC / cotisations . assiette - 1)
-        - sinon: seuil inflexion * T / (seuil sortie - seuil inflexion) * (seuil sortie * temps de travail . SMIC / cotisations . assiette - 1)
+                    - rémunération . brut > seuil inflexion * temps de travail . SMIC
+                    - rémunération . brut < seuil intermédiaire * temps de travail . SMIC
+                alors: seuil inflexion * T * temps de travail . SMIC / rémunération . brut
+              - sinon: seuil inflexion * T / (seuil sortie - seuil intermédiaire) * (seuil sortie * temps de travail . SMIC / rémunération . brut - 1)
+        - sinon: seuil inflexion * T / (seuil sortie - seuil inflexion) * (seuil sortie * temps de travail . SMIC / rémunération . brut - 1)
       unité: ''
       arrondi: 4 décimales
 
