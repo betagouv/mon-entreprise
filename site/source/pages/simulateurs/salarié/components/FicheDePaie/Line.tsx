@@ -1,11 +1,10 @@
+import { Condition } from '@/components/EngineValue/Condition'
 import { ValueProps } from '@/components/EngineValue/types'
+import Value from '@/components/EngineValue/Value'
+import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
+import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import RuleLink from '@/components/RuleLink'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-
-import { Condition } from '../EngineValue/Condition'
-import Value from '../EngineValue/Value'
-import { WhenAlreadyDefined } from '../EngineValue/WhenAlreadyDefined'
-import { WhenApplicable } from '../EngineValue/WhenApplicable'
 
 type LineProps = {
 	rule: DottedName

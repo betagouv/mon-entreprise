@@ -2,12 +2,12 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import './FicheDePaie.css'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import { Condition } from '@/components/EngineValue/Condition'
+import Value from '@/components/EngineValue/Value'
 import { H3, H4 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import { ExplicableRule } from '../conversation/Explicable'
-import { Condition } from '../EngineValue/Condition'
-import Value from '../EngineValue/Value'
 import Line from './Line'
 
 function SalaireLine({ rule, title }: { rule: DottedName; title?: string }) {
