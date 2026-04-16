@@ -1,0 +1,9 @@
+salarié . convention collective . syntec:
+  formule: convention collective = 'syntec'
+  titre: Syntec
+  icônes: 💻
+  description: >-
+    Cette convention collective concerne notamment les bureaux d’études
+    techniques, les cabinets d’ingénieurs-conseils et les sociétés de conseil.
+  références:
+    Légifrance: https://www.legifrance.gouv.fr/conv_coll/id/KALICONT000005635173
