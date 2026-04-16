@@ -624,6 +624,10 @@ loading: Chargement en cours...
 mai: mai
 main-menu: Menu principal
 mars: mars
+metadata:
+  description: "L'assistant officiel de l'entrepreneur : simulateurs de
+    cotisations, choix du statut, et plus encore."
+  titre: Mon entreprise
 moins: moins
 mois: mois
 navbar:
