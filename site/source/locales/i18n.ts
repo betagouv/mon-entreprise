@@ -3,8 +3,6 @@ import { initReactI18next } from 'react-i18next'
 
 import unitsTranslations from './units.yaml'
 
-export type AvailableLangs = 'fr' | 'en'
-
 interface Units {
 	fr: Record<string, string>
 	en: Record<string, string>

@@ -7,6 +7,9 @@ package-lock.json
 node_modules/
 .env
 dist/
+.next/
+*.tsbuildinfo
+.generated/
 storybook-static/
 
 # Local Netlify folder
