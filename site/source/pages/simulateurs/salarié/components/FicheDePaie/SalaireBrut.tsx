@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { Line } from '@/components/FicheDePaie/Line'
+import { Line } from '@/components/simulationExplanation/FicheDePaie/Line'
 import { H3 } from '@/design-system'
 
-import '@/components/FicheDePaie/FicheDePaie.css'
+import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
 
 export const SalaireBrut = () => {
 	const { t } = useTranslation()

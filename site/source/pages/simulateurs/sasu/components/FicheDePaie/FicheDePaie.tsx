@@ -1,4 +1,4 @@
-import '@/components/FicheDePaie/FicheDePaie.css'
+import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
 
 import { styled } from 'styled-components'
 

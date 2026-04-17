@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
-import '@/components/FicheDePaie/FicheDePaie.css'
+import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { Line } from '@/components/FicheDePaie/Line'
-import { SalaireLine } from '@/components/FicheDePaie/SalaireLine'
+import { Line } from '@/components/simulationExplanation/FicheDePaie/Line'
+import { SalaireLine } from '@/components/simulationExplanation/FicheDePaie/SalaireLine'
 import { H3, H4 } from '@/design-system'
 
 export const SalaireNet = () => {
