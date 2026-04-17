@@ -10,7 +10,7 @@ export const FicheDePaie = ({ children }: Props) => (
 )
 
 const Container = styled.div`
-	line-height: 1.5rem;
+	line-height: ${({ theme }) => theme.spacings.lg};
 
 	span {
 		display: flex;

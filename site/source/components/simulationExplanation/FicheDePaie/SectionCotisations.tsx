@@ -153,8 +153,11 @@ const Table = styled.table`
 		grid-template-columns: 3fr 1fr 1fr;
 	}
 
-	tr:nth-of-type(2n)+* {
-		background-color: rgba(255, 255, 255, 0.4);
+	tr:nth-of-type(2n) + * {
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.dark[600]
+				: theme.colors.bases.primary[200]};
 	}
 
 	th[scope='row'] {
