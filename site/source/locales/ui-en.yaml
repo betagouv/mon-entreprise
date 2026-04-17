@@ -54,7 +54,6 @@ Communes et code postaux correspondants: Corresponding towns and postcodes
 Confirmer: Confirm
 Contactez-nous: Contact us
 Cotisations: Contributions
-Cotisations sociales: Social security contributions
 "Crée le :": "Created on:"
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
@@ -75,7 +74,6 @@ ExportSimulation:
   Banner: Print or save as PDF
 Fermer: Close
 Fiche de paie: Pay slip
-Frais de transport: Transport costs
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
   Graph detailing the number of visits per simulator (alternative accessible via
   the switch at the start of the section)
@@ -86,7 +84,6 @@ Graphique détaillant le nombre de visites (alternative accessible avec l'interr
   Graph detailing number of visits (alternative accessible via the switch at the
   start of the section)
 Impôt au barème: Tax scale
-Impôt sur le revenu: Income tax
 Impôts: Taxes
 Info sur {{ title }}: Info on {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
@@ -121,11 +118,6 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
     fr: My company is recruiting! See job offers on mon-entreprise.urssaf.fr
 Montant annuel: Annual amount
 Montant mensuel: Monthly amount
-Montant net des HC/HS exonérées: Net amount of exempt HC/HS
-Montant net imposable: Net taxable amount
-Montant net social: Net corporate amount
-Montant net à payer: Net amount payable
-Montant net à payer avant impôt sur le revenu: Net amount payable before income tax
 Mots-clés définissants l'activité: Keywords defining the activity
 Nombres: Numbers
 Non: No
@@ -157,7 +149,6 @@ Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
-Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Replier: Fold
 Retour à mon activité: Back to my activity
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
@@ -168,8 +159,6 @@ Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
 Saisissez votre domaine d'activité: Enter your field of activity
-Salaire brut: Gross salary
-Salaire net: Net salary
 Salariés et embauche: Employees and hiring
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   If your company does not appear using your SIREN/SIRET, it may be that you
@@ -189,8 +178,6 @@ Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le 
   site, by month.
 Tableau indiquant le nombre de visites par {{period}}.: Table showing the number of visits per {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
-Titres-restaurant: Meal vouchers
-Total des cotisations et contributions: Total contributions
 Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
@@ -418,6 +405,28 @@ components:
 composants:
   engine-value:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
+  fiche-de-paie:
+    cotisations:
+      employeur: employer
+      salarie: employee
+      total: Total contributions
+    salaire-net:
+      impôt:
+        PAS: income tax deducted at source
+        heures-sup: Net amount of exempt HC/HS
+        net-imposable: Net taxable amount
+        titre: Income tax
+      mns: Net corporate amount
+      net-après-impôt: Net amount payable
+      net-avant-impôt: Net amount payable before income tax
+      remboursements:
+        titre: Reimbursements and miscellaneous deductions
+        titres-restaurant: Meal vouchers
+        transport: Transport costs
+    titres:
+      cotisations: Social security contributions
+      salaire-brut: Gross salary
+      salaire-net: Net salary
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:
@@ -435,9 +444,6 @@ conversation:
   yes-no:
     aria-label: Yes or no
 copied: Copy
-cotisations:
-  employeur: employer
-  salarie: employee
 crée:
   choix-statut:
     détails-activité:
@@ -530,7 +536,6 @@ header:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
-impôt sur le revenu prélevé à la source: income tax deducted at source
 info: info
 intégration:
   description: Tools for developers
@@ -1974,6 +1979,18 @@ pages:
           description: For all your labor law questions, visit the Code du travail
             numérique website.
           title: Digital labor code
+      fiche-de-paie:
+        salaire-net:
+          impôt:
+            PAS: income tax deducted at source
+            net-imposable: Net taxable amount
+            titre: Income tax
+          mns: Net corporate amount
+          net-après-impôt: Net amount payable
+          net-avant-impôt: Net amount payable before income tax
+        titres:
+          salaire-net:
+            avantages: Benefits in kind
       meta:
         description: "Calculate the total cost of hiring and explore different
           compensation options: management, internships, apprenticeships,

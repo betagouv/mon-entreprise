@@ -57,7 +57,6 @@ Communes et code postaux correspondants: Communes et code postaux correspondants
 Confirmer: Confirmer
 Contactez-nous: Contactez-nous
 Cotisations: Cotisations
-Cotisations sociales: Cotisations sociales
 "Crée le :": "Crée le :"
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
@@ -78,7 +77,6 @@ ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
 Fermer: Fermer
 Fiche de paie: Fiche de paie
-Frais de transport: Frais de transport
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
   Graphique détaillant la part des visites par simulateur (alternative
   accessible avec l'interrupteur en début de section)
@@ -89,7 +87,6 @@ Graphique détaillant le nombre de visites (alternative accessible avec l'interr
   Graphique détaillant le nombre de visites (alternative accessible avec
   l'interrupteur en début de section)
 Impôt au barème: Impôt au barème
-Impôt sur le revenu: Impôt sur le revenu
 Impôts: Impôts
 Info sur {{ title }}: Info sur {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
@@ -127,11 +124,6 @@ Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
       mon-entreprise.urssaf.fr
 Montant annuel: Montant annuel
 Montant mensuel: Montant mensuel
-Montant net des HC/HS exonérées: Montant net des HC/HS exonérées
-Montant net imposable: Montant net imposable
-Montant net social: Montant net social
-Montant net à payer: Montant net à payer
-Montant net à payer avant impôt sur le revenu: Montant net à payer avant impôt sur le revenu
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Nombres: Nombres
 Non: Non
@@ -163,7 +155,6 @@ Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
-Remboursements et déductions diverses: Remboursements et déductions diverses
 Replier: Replier
 Retour à mon activité: Retour à mon activité
 Retrouver ma précédente simulation, charger les données de ma précédente simulation.:
@@ -176,8 +167,6 @@ Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
-Salaire brut: Salaire brut
-Salaire net: Salaire net
 Salariés et embauche: Salariés et embauche
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
@@ -198,8 +187,6 @@ Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le 
   le site mon-entreprise par mois.
 Tableau indiquant le nombre de visites par {{period}}.: Tableau indiquant le nombre de visites par {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
-Titres-restaurant: Titres-restaurant
-Total des cotisations et contributions: Total des cotisations et contributions
 Tout déplier: Tout déplier
 Tout plier: Tout plier
 Tout réinitialiser: Tout réinitialiser
@@ -440,6 +427,28 @@ components:
 composants:
   engine-value:
     voir-la-documentation: Voir la documentation du calcul de {{valeur}}
+  fiche-de-paie:
+    cotisations:
+      employeur: employeur
+      salarie: salarié
+      total: Total des cotisations et contributions
+    salaire-net:
+      impôt:
+        PAS: impôt sur le revenu prélevé à la source
+        heures-sup: Montant net des HC/HS exonérées
+        net-imposable: Montant net imposable
+        titre: Impôt sur le revenu
+      mns: Montant net social
+      net-après-impôt: Montant net à payer
+      net-avant-impôt: Montant net à payer avant impôt sur le revenu
+      remboursements:
+        titre: Remboursements et déductions diverses
+        titres-restaurant: Titres-restaurant
+        transport: Frais de transport
+    titres:
+      cotisations: Cotisations sociales
+      salaire-brut: Salaire brut
+      salaire-net: Salaire net
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
@@ -457,9 +466,6 @@ conversation:
   yes-no:
     aria-label: Oui ou non
 copied: Copié
-cotisations:
-  employeur: employeur
-  salarie: salarié
 crée:
   choix-statut:
     détails-activité:
@@ -556,7 +562,6 @@ header:
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
-impôt sur le revenu prélevé à la source: impôt sur le revenu prélevé à la source
 info: info
 intégration:
   description: Outils pour les développeurs
@@ -2092,6 +2097,18 @@ pages:
           description: Pour toutes vos questions en droit du travail, rendez-vous sur le
             site Code du travail numérique.
           title: Code du travail numérique
+      fiche-de-paie:
+        salaire-net:
+          impôt:
+            PAS: impôt sur le revenu prélevé à la source
+            net-imposable: Montant net imposable
+            titre: Impôt sur le revenu
+          mns: Montant net social
+          net-après-impôt: Montant net à payer
+          net-avant-impôt: Montant net à payer avant impôt sur le revenu
+        titres:
+          salaire-net:
+            avantages: Avantages en nature
       meta:
         description: "Calculez le coût total d'une embauche et explorez les différentes
           options de rémunération : cadres, stages, apprentissages, heures
