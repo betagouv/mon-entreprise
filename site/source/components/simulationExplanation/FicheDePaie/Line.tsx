@@ -45,15 +45,10 @@ const Li = styled.li`
 	display: flex;
 	justify-content: space-between;
 
-	div {
-		color: hsl(var(--COLOR_HUE), calc(var(--COLOR_SATURATION) - 34%), 33%);
-		font-family: 'Roboto', sans-serif;
-		font-weight: 700;
-		padding: 0;
-	}
-
 	&:nth-of-type(2n) {
-		background-color: rgba(255, 255, 255, 0.4);
-		color: inherit;
+		background-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.dark[600]
+				: theme.colors.bases.primary[200]};
 	}
 `
