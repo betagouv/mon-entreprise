@@ -12,8 +12,8 @@ export const SalaireNet = () => {
 	const { t } = useTranslation()
 
 	return (
-		<SectionSalaireNet>
-			<li>
+		<SectionSalaireNet
+			montantNetSocial={
 				<SalaireLine
 					rule="salarié . rémunération . montant net social"
 					title={t(
@@ -21,49 +21,49 @@ export const SalaireNet = () => {
 						'Montant net social'
 					)}
 				/>
-			</li>
-
-			<Condition
-				expression={{
-					'une de ces conditions': [
-						'salarié . rémunération . frais professionnels . trajets domicile travail . déductible > 0',
-						'salarié . rémunération . frais professionnels . titres-restaurant', // bool
-						'salarié . rémunération . avantages en nature', // bool
-					],
-				}}
-			>
-				<li>
-					<H4>
-						{t(
-							'composants.fiche-de-paie.salaire-net.remboursements.titre',
-							'Remboursements et déductions diverses'
-						)}
-					</H4>
-					<ul>
-						<Line
-							rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
-							title={t(
-								'composants.fiche-de-paie.salaire-net.remboursements.transport',
-								'Frais de transport'
+			}
+			remboursementsEtRéductions={
+				<Condition
+					expression={{
+						'une de ces conditions': [
+							'salarié . rémunération . frais professionnels . trajets domicile travail . déductible > 0',
+							'salarié . rémunération . frais professionnels . titres-restaurant', // bool
+							'salarié . rémunération . avantages en nature', // bool
+						],
+					}}
+				>
+					<li>
+						<H4>
+							{t(
+								'composants.fiche-de-paie.salaire-net.remboursements.titre',
+								'Remboursements et déductions diverses'
 							)}
-						/>
-						<Line
-							negative
-							rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
-							title={t(
-								'composants.fiche-de-paie.salaire-net.remboursements.titres-restaurant',
-								'Titres-restaurant'
-							)}
-						/>
-						<Line
-							negative
-							rule="salarié . rémunération . avantages en nature . montant"
-						/>
-					</ul>
-				</li>
-			</Condition>
-
-			<li>
+						</H4>
+						<ul>
+							<Line
+								rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
+								title={t(
+									'composants.fiche-de-paie.salaire-net.remboursements.transport',
+									'Frais de transport'
+								)}
+							/>
+							<Line
+								negative
+								rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
+								title={t(
+									'composants.fiche-de-paie.salaire-net.remboursements.titres-restaurant',
+									'Titres-restaurant'
+								)}
+							/>
+							<Line
+								negative
+								rule="salarié . rémunération . avantages en nature . montant"
+							/>
+						</ul>
+					</li>
+				</Condition>
+			}
+			netAvantImpôt={
 				<SalaireLine
 					rule="salarié . rémunération . net . à payer avant impôt"
 					title={t(
@@ -71,16 +71,9 @@ export const SalaireNet = () => {
 						'Montant net à payer avant impôt sur le revenu'
 					)}
 				/>
-			</li>
-
-			<li>
-				<H4>
-					{t(
-						'composants.fiche-de-paie.salaire-net.impôt.titre',
-						'Impôt sur le revenu'
-					)}
-				</H4>
-				<ul>
+			}
+			impôt={
+				<>
 					<Line
 						rule="salarié . rémunération . net . imposable"
 						title={t(
@@ -103,10 +96,9 @@ export const SalaireNet = () => {
 							'impôt sur le revenu prélevé à la source'
 						)}
 					/>
-				</ul>
-			</li>
-
-			<li>
+				</>
+			}
+			netAprèsImpôt={
 				<SalaireLine
 					rule="salarié . rémunération . net . payé après impôt"
 					title={t(
@@ -114,7 +106,7 @@ export const SalaireNet = () => {
 						'Montant net à payer'
 					)}
 				/>
-			</li>
-		</SectionSalaireNet>
+			}
+		/>
 	)
 }

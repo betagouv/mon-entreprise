@@ -12,8 +12,8 @@ export const SalaireNet = () => {
 	const { t } = useTranslation()
 
 	return (
-		<SectionSalaireNet>
-			<li>
+		<SectionSalaireNet
+			montantNetSocial={
 				<SalaireLine
 					rule="assimilé salarié . rémunération . montant net social"
 					title={t(
@@ -21,28 +21,29 @@ export const SalaireNet = () => {
 						'Montant net social'
 					)}
 				/>
-			</li>
-			<Condition
-				expression={'assimilé salarié . rémunération . avantages en nature'}
-			>
-				<li>
-					<H4>
-						{t(
-							'pages.simulateurs.salarié.fiche-de-paie.titres.salaire-net.avantages',
-							'Avantages en nature'
-						)}
-					</H4>
+			}
+			remboursementsEtRéductions={
+				<Condition
+					expression={'assimilé salarié . rémunération . avantages en nature'}
+				>
+					<li>
+						<H4>
+							{t(
+								'pages.simulateurs.salarié.fiche-de-paie.titres.salaire-net.avantages',
+								'Avantages en nature'
+							)}
+						</H4>
 
-					<ul>
-						<Line
-							negative
-							rule="assimilé salarié . rémunération . avantages en nature . montant"
-						/>
-					</ul>
-				</li>
-			</Condition>
-
-			<li>
+						<ul>
+							<Line
+								negative
+								rule="assimilé salarié . rémunération . avantages en nature . montant"
+							/>
+						</ul>
+					</li>
+				</Condition>
+			}
+			netAvantImpôt={
 				<SalaireLine
 					rule="assimilé salarié . rémunération . nette . à payer avant impôt"
 					title={t(
@@ -50,16 +51,9 @@ export const SalaireNet = () => {
 						'Montant net à payer avant impôt sur le revenu'
 					)}
 				/>
-			</li>
-			<li>
-				<H4>
-					{t(
-						'pages.simulateurs.salarié.fiche-de-paie.salaire-net.impôt.titre',
-						'Impôt sur le revenu'
-					)}
-				</H4>
-
-				<ul>
+			}
+			impôt={
+				<>
 					<Line
 						rule="assimilé salarié . rémunération . nette . imposable"
 						title={t(
@@ -75,10 +69,9 @@ export const SalaireNet = () => {
 							'impôt sur le revenu prélevé à la source'
 						)}
 					/>
-				</ul>
-			</li>
-
-			<li>
+				</>
+			}
+			netAprèsImpôt={
 				<SalaireLine
 					rule="assimilé salarié . rémunération . nette . après impôt"
 					title={t(
@@ -86,7 +79,7 @@ export const SalaireNet = () => {
 						'Montant net à payer'
 					)}
 				/>
-			</li>
-		</SectionSalaireNet>
+			}
+		/>
 	)
 }
