@@ -1,4 +1,4 @@
-import { Line } from '../../../../../components/FicheDePaie/Line'
+import { Line } from '@/components/simulationExplanation/FicheDePaie/Line'
 
 export const TempsDeTravail = () => (
 	<section className="payslip__salarySection">
