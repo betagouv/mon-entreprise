@@ -1,26 +1,13 @@
-import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
-
-import { styled } from 'styled-components'
+import { FicheDePaie as FicheDePaieContainer } from '@/components/simulationExplanation/FicheDePaie/FicheDePaie'
 
 import { Cotisations } from './Cotisations'
 import { SalaireBrut } from './SalaireBrut'
 import { SalaireNet } from './SalaireNet'
 
 export const FicheDePaie = () => (
-	<StyledContainer className="payslip__container">
+	<FicheDePaieContainer>
 		<SalaireBrut />
 		<Cotisations />
 		<SalaireNet />
-	</StyledContainer>
+	</FicheDePaieContainer>
 )
-
-const StyledContainer = styled.div`
-	line-height: 1.5rem;
-
-	.value {
-		display: flex;
-		align-items: flex-end;
-		justify-content: flex-end;
-		padding-right: 0.2em;
-	}
-`

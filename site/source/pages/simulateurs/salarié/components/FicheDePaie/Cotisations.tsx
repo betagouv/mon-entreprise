@@ -1,5 +1,3 @@
-import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
-
 import { RègleModèleSocial } from 'modele-social'
 
 import { SectionCotisations } from '@/components/simulationExplanation/FicheDePaie/SectionCotisations'
