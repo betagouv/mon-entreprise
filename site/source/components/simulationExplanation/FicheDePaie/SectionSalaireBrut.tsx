@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Section } from './Section'
+import { Liste } from './styledComponents'
 
 type Props = {
 	children: ReactNode
@@ -14,7 +15,7 @@ export const SectionSalaireBrut = ({ children }: Props) => {
 		<Section
 			title={t('composants.fiche-de-paie.titres.salaire-brut', 'Salaire brut')}
 		>
-			<ul>{children}</ul>
+			<Liste>{children}</Liste>
 		</Section>
 	)
 }
