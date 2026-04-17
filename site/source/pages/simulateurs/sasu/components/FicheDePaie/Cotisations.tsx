@@ -1,5 +1,3 @@
-import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
-
 import { RègleModèleAssimiléSalarié } from 'modele-as'
 
 import { SectionCotisations } from '@/components/simulationExplanation/FicheDePaie/SectionCotisations'

@@ -1,13 +1,12 @@
-import { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
-
-import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
-
 import { RègleModèleAssimiléSalarié } from 'modele-as'
 import { RègleModèleSocial } from 'modele-social'
+import { Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import Value from '@/components/EngineValue/Value'
+import RuleLink from '@/components/RuleLink'
 import { CotisationLine } from '@/components/simulationExplanation/FicheDePaie/CotisationLine'
 import {
 	getCotisationsBySection,
@@ -17,6 +16,7 @@ import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { Section } from './Section'
+import { EnTête, Titre } from './styledComponents'
 
 type Props = {
 	namespace: Namespace
@@ -41,34 +41,33 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 		>
 			{cotisationsBySection.map(([sectionDottedName, cotisations]) => {
 				const section = parsedRules[sectionDottedName]
+				const id = normalizeRuleName(section.dottedName)
 
 				return (
 					<Fragment key={section.dottedName}>
-						<h4
-							id={normalizeRuleName(section.dottedName)}
-							className="payslip__cotisationTitle"
-						>
+						<Titre id={id}>
 							{section.title}
 							<ExplicableRule light dottedName={section.dottedName} />
-						</h4>
-						<table
-							className="payslip__cotisationTable"
-							aria-labelledby={normalizeRuleName(section.dottedName)}
-						>
+						</Titre>
+						<Table aria-labelledby={id}>
 							<tbody>
 								<tr>
 									<td></td>
 									<th scope="col">
-										{t(
-											'composants.fiche-de-paie.cotisations.employeur',
-											'employeur'
-										)}
+										<EnTête>
+											{t(
+												'composants.fiche-de-paie.cotisations.employeur',
+												'Employeur'
+											)}
+										</EnTête>
 									</th>
 									<th scope="col">
-										{t(
-											'composants.fiche-de-paie.cotisations.salarie',
-											'salarié'
-										)}
+										<EnTête>
+											{t(
+												'composants.fiche-de-paie.cotisations.salarie',
+												'Salarié'
+											)}
+										</EnTête>
 									</th>
 								</tr>
 								{cotisations.map((cotisation) => (
@@ -79,57 +78,97 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 									/>
 								))}
 							</tbody>
-						</table>
+						</Table>
 					</Fragment>
 				)
 			})}
 
 			{/* Total cotisation */}
-			<h4 id="total_cotisation" className="payslip__cotisationTitle">
+			<Titre id="total_cotisation">
 				{t(
 					'composants.fiche-de-paie.cotisations.total',
 					'Total des cotisations et contributions'
 				)}
-				<ExplicableRule light dottedName={`${namespace} . cotisations`} />
-			</h4>
-			<table
-				className="payslip__cotisationTable"
-				aria-labelledby="total_cotisation"
-			>
+			</Titre>
+			<Table aria-labelledby="total_cotisation">
 				<tbody>
 					<tr>
 						<td></td>
 						<th scope="col">
-							{t('composants.fiche-de-paie.cotisations.employeur', 'employeur')}
+							<EnTête>
+								{t(
+									'composants.fiche-de-paie.cotisations.employeur',
+									'Employeur'
+								)}
+							</EnTête>
 						</th>
 						<th scope="col">
-							{t('composants.fiche-de-paie.cotisations.salarie', 'salarié')}
+							<EnTête>
+								{t('composants.fiche-de-paie.cotisations.salarie', 'Salarié')}
+							</EnTête>
 						</th>
 					</tr>
 					<tr>
-						<th scope="row" className="payslip__total-th">
-							{t(
-								'composants.fiche-de-paie.cotisations.total',
-								'Total des cotisations et contributions'
-							)}
+						<th scope="row">
+							<RuleLink
+								dottedName={`${namespace} . cotisations`}
+								aria-label={t(
+									'composants.fiche-de-paie.cotisations.aria-label-total',
+									'Voir les détails du calcul pour : Total des cotisations et contributions'
+								)}
+							>
+								{t(
+									'composants.fiche-de-paie.cotisations.total',
+									'Total des cotisations et contributions'
+								)}
+							</RuleLink>
 						</th>
 						<td>
 							<Value
 								expression={`${namespace} . cotisations . employeur`}
 								displayedUnit="€"
-								className="payslip__total"
+								linkToRule={false}
 							/>
 						</td>
 						<td>
 							<Value
 								expression={`${namespace} . cotisations . salarié`}
 								displayedUnit="€"
-								className="payslip__total"
+								linkToRule={false}
 							/>
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</Table>
 		</Section>
 	)
 }
+
+const Table = styled.table`
+	width: 100%;
+	border-spacing: 0;
+
+	tr {
+		display: grid;
+		grid-template-columns: 3fr 1fr 1fr;
+	}
+
+	tr:nth-of-type(2n)+* {
+		background-color: rgba(255, 255, 255, 0.4);
+	}
+
+	th[scope='row'] {
+		text-align: left;
+	}
+
+	th[scope='col'] {
+		text-align: right;
+	}
+
+	td {
+		display: flex;
+		justify-content: flex-end;
+		font-family: 'Courier New', Courier, monospace;
+		text-align: right;
+	}
+`
