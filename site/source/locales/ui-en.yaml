@@ -407,12 +407,13 @@ composants:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
   fiche-de-paie:
     cotisations:
-      employeur: employer
-      salarie: employee
+      aria-label-total: "See calculation details for : Total contributions"
+      employeur: Employer
+      salarie: Employee
       total: Total contributions
     salaire-net:
       impôt:
-        PAS: income tax deducted at source
+        PAS: Income tax deducted at source
         heures-sup: Net amount of exempt HC/HS
         net-imposable: Net taxable amount
         titre: Income tax
@@ -1982,9 +1983,8 @@ pages:
       fiche-de-paie:
         salaire-net:
           impôt:
-            PAS: income tax deducted at source
+            PAS: Income tax deducted at source
             net-imposable: Net taxable amount
-            titre: Income tax
           mns: Net corporate amount
           net-après-impôt: Net amount payable
           net-avant-impôt: Net amount payable before income tax

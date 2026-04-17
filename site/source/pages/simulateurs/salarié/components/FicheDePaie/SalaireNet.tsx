@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
-import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
-
 import { Condition } from '@/components/EngineValue/Condition'
 import { Line } from '@/components/simulationExplanation/FicheDePaie/Line'
 import { SalaireLine } from '@/components/simulationExplanation/FicheDePaie/SalaireLine'
 import { SectionSalaireNet } from '@/components/simulationExplanation/FicheDePaie/SectionSalaireNet'
-import { H4 } from '@/design-system'
+import {
+	Liste,
+	Titre,
+} from '@/components/simulationExplanation/FicheDePaie/styledComponents'
 
 export const SalaireNet = () => {
 	const { t } = useTranslation()
@@ -33,13 +34,13 @@ export const SalaireNet = () => {
 					}}
 				>
 					<li>
-						<H4>
+						<Titre>
 							{t(
 								'composants.fiche-de-paie.salaire-net.remboursements.titre',
 								'Remboursements et déductions diverses'
 							)}
-						</H4>
-						<ul>
+						</Titre>
+						<Liste>
 							<Line
 								rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
 								title={t(
@@ -59,7 +60,7 @@ export const SalaireNet = () => {
 								negative
 								rule="salarié . rémunération . avantages en nature . montant"
 							/>
-						</ul>
+						</Liste>
 					</li>
 				</Condition>
 			}
@@ -93,7 +94,7 @@ export const SalaireNet = () => {
 						rule="impôt . montant"
 						title={t(
 							'composants.fiche-de-paie.salaire-net.impôt.PAS',
-							'impôt sur le revenu prélevé à la source'
+							'Impôt sur le revenu prélevé à la source'
 						)}
 					/>
 				</>

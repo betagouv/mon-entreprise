@@ -1,8 +1,9 @@
 import { Line } from '@/components/simulationExplanation/FicheDePaie/Line'
+import { Liste } from '@/components/simulationExplanation/FicheDePaie/styledComponents'
 
 export const TempsDeTravail = () => (
-	<section className="payslip__salarySection">
-		<ul>
+	<section>
+		<Liste>
 			<Line
 				rule="salarié . temps de travail"
 				displayedUnit="heures/mois"
@@ -18,6 +19,6 @@ export const TempsDeTravail = () => (
 				displayedUnit="heures/mois"
 				precision={1}
 			/>
-		</ul>
+		</Liste>
 	</section>
 )

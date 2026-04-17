@@ -1,9 +1,8 @@
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { H4 } from '@/design-system'
-
 import { Section } from './Section'
+import { Liste, Titre } from './styledComponents'
 
 type Props = {
 	montantNetSocial: ReactNode
@@ -26,22 +25,22 @@ export const SectionSalaireNet = ({
 		<Section
 			title={t('composants.fiche-de-paie.titres.salaire-net', 'Salaire net')}
 		>
-			<ul>
+			<Liste>
 				<li>{montantNetSocial}</li>
 				{remboursementsEtRéductions}
 				<li>{netAvantImpôt}</li>
 				<li>
-					<H4>
+					<Titre>
 						{t(
 							'composants.fiche-de-paie.salaire-net.impôt.titre',
 							'Impôt sur le revenu'
 						)}
-					</H4>
-					<ul>{impôt}</ul>
+					</Titre>
+					<Liste>{impôt}</Liste>
 				</li>
 
 				<li>{netAprèsImpôt}</li>
-			</ul>
+			</Liste>
 		</Section>
 	)
 }

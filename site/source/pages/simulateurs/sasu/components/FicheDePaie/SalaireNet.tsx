@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next'
 
-import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
-
 import { Condition } from '@/components/EngineValue/Condition'
 import { Line } from '@/components/simulationExplanation/FicheDePaie/Line'
 import { SalaireLine } from '@/components/simulationExplanation/FicheDePaie/SalaireLine'
 import { SectionSalaireNet } from '@/components/simulationExplanation/FicheDePaie/SectionSalaireNet'
-import { H4 } from '@/design-system'
+import {
+	Liste,
+	Titre,
+} from '@/components/simulationExplanation/FicheDePaie/styledComponents'
 
 export const SalaireNet = () => {
 	const { t } = useTranslation()
@@ -27,19 +28,19 @@ export const SalaireNet = () => {
 					expression={'assimilé salarié . rémunération . avantages en nature'}
 				>
 					<li>
-						<H4>
+						<Titre>
 							{t(
 								'pages.simulateurs.salarié.fiche-de-paie.titres.salaire-net.avantages',
 								'Avantages en nature'
 							)}
-						</H4>
+						</Titre>
 
-						<ul>
+						<Liste>
 							<Line
 								negative
 								rule="assimilé salarié . rémunération . avantages en nature . montant"
 							/>
-						</ul>
+						</Liste>
 					</li>
 				</Condition>
 			}
@@ -66,7 +67,7 @@ export const SalaireNet = () => {
 						rule="assimilé salarié . rémunération . impôt"
 						title={t(
 							'pages.simulateurs.salarié.fiche-de-paie.salaire-net.impôt.PAS',
-							'impôt sur le revenu prélevé à la source'
+							'Impôt sur le revenu prélevé à la source'
 						)}
 					/>
 				</>

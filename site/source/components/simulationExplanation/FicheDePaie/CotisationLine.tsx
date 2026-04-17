@@ -37,7 +37,7 @@ export const CotisationLine = ({ namespace, dottedName }: Props) => {
 	const signePlusOuMoins = isExoneration(dottedName) ? '-' : ''
 
 	return (
-		<tr className="payslip__cotisationLine">
+		<tr>
 			<th scope="row">
 				<RuleLink dottedName={dottedName} />
 			</th>

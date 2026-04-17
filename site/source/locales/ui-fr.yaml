@@ -429,12 +429,14 @@ composants:
     voir-la-documentation: Voir la documentation du calcul de {{valeur}}
   fiche-de-paie:
     cotisations:
-      employeur: employeur
-      salarie: salarié
+      aria-label-total: "Voir les détails du calcul pour : Total des cotisations et
+        contributions"
+      employeur: Employeur
+      salarie: Salarié
       total: Total des cotisations et contributions
     salaire-net:
       impôt:
-        PAS: impôt sur le revenu prélevé à la source
+        PAS: Impôt sur le revenu prélevé à la source
         heures-sup: Montant net des HC/HS exonérées
         net-imposable: Montant net imposable
         titre: Impôt sur le revenu
@@ -2100,9 +2102,8 @@ pages:
       fiche-de-paie:
         salaire-net:
           impôt:
-            PAS: impôt sur le revenu prélevé à la source
+            PAS: Impôt sur le revenu prélevé à la source
             net-imposable: Montant net imposable
-            titre: Impôt sur le revenu
           mns: Montant net social
           net-après-impôt: Montant net à payer
           net-avant-impôt: Montant net à payer avant impôt sur le revenu

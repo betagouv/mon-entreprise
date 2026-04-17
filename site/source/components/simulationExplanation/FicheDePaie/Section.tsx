@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { H3 } from '@/design-system'
+import { TitreSection } from './styledComponents'
 
 type Props = {
 	title: string
@@ -9,7 +9,7 @@ type Props = {
 
 export const Section = ({ title, children }: Props) => (
 	<section>
-		<H3>{title}</H3>
+		<TitreSection>{title}</TitreSection>
 
 		{children}
 	</section>
