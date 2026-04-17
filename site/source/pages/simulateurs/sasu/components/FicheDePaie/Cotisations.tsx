@@ -1,14 +1,14 @@
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import '@/components/FicheDePaie/FicheDePaie.css'
+import '@/components/simulationExplanation/FicheDePaie/FicheDePaie.css'
 
 import { RègleModèleAssimiléSalarié } from 'modele-as'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import Value from '@/components/EngineValue/Value'
-import { CotisationLine } from '@/components/FicheDePaie/CotisationLine'
-import { getCotisationsBySection } from '@/components/FicheDePaie/utils'
+import { CotisationLine } from '@/components/simulationExplanation/FicheDePaie/CotisationLine'
+import { getCotisationsBySection } from '@/components/simulationExplanation/FicheDePaie/utils'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { H3 } from '@/design-system'
 import { useEngine } from '@/utils/publicodes/EngineContext'
