@@ -1,0 +1,16 @@
+name: Mise en ligne d'une release
+on:
+  release:
+    types: [published, edited]
+
+permissions:
+  contents: read
+  statuses: write
+  deployments: write
+
+jobs:
+  build-and-deploy:
+    uses: ./.github/workflows/_build-and-deploy-prod.yaml
+    with:
+      ref: ${{ github.sha }}
+    secrets: inherit
