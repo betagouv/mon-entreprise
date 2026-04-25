@@ -12,6 +12,4 @@ permissions:
 jobs:
   build-and-deploy:
     uses: ./.github/workflows/_build-and-deploy-prod.yaml
-    with:
-      ref: master
     secrets: inherit
