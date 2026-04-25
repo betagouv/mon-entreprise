@@ -1,6 +1,9 @@
 name: PR clean up
+# Utilise pull_request_target (au lieu de pull_request) pour avoir accès aux secrets
+# même pour les PR de fork. Sûr car on ne checkout pas le code du fork — seuls les
+# scripts de master sont exécutés pour nettoyer l'index Algolia temporaire.
 on:
-  pull_request:
+  pull_request_target:
     types: [closed]
 
 permissions:
@@ -13,26 +16,17 @@ jobs:
       env-name: ${{ steps.deploy-env.outputs.name }}
     steps:
       - id: deploy-env
-        run: echo "name=${{ github.event.number || '${GITHUB_REF#refs/*/}' }}" >> $GITHUB_OUTPUT
+        run: echo "name=${{ github.event.number }}" >> $GITHUB_OUTPUT
 
   algolia-rm-temp-index:
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     needs: deploy-context
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/actions/install
-        env:
-          # Secrets of all kinds for fetching stats & releases
-          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
-          ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
-          ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
-          CRISP_API_IDENTIFIER: ${{ secrets.CRISP_API_IDENTIFIER }}
-          CRISP_API_KEY: ${{ secrets.CRISP_API_KEY }}
-          CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
       - name: Remove temporary Algolia index
         run: yarn workspace site algolia:clean
         env:
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
           ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-          ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-
+          ALGOLIA_INDEX_PREFIX: monentreprise-${{ needs.deploy-context.outputs.env-name }}-

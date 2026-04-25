@@ -1,0 +1,17 @@
+name: Rafraîchissement quotidien des stats
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: write
+  deployments: write
+
+jobs:
+  build-and-deploy:
+    uses: ./.github/workflows/_build-and-deploy-prod.yaml
+    with:
+      ref: master
+    secrets: inherit

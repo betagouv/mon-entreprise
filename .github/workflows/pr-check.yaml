@@ -1,0 +1,140 @@
+name: Vérification PR
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - run: yarn lint
+
+  typecheck:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - run: yarn test:type
+
+  unit:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - run: yarn test
+
+  i18n:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      # La traduction auto des règles est cassée
+      # CF https://github.com/betagouv/mon-entreprise/issues/2078
+      # - run: yarn workspace site run i18n:check
+      - run: yarn workspace site run i18n:ui:check
+
+  deploy-context:
+    runs-on: ubuntu-22.04
+    outputs:
+      env-name: ${{ steps.deploy-env.outputs.name }}
+      api_url: ${{ steps.base-urls.outputs.api }}
+      server_url: ${{ steps.base-urls.outputs.server }}
+      fr_url: ${{ steps.base-urls.outputs.fr }}
+      en_url: ${{ steps.base-urls.outputs.en }}
+    steps:
+      - id: deploy-env
+        run: echo "name=${{ github.event.number }}" >> $GITHUB_OUTPUT
+      - id: base-urls
+        run: |
+          echo "server=https://mon-entreprise-server-pr${{ steps.deploy-env.outputs.name }}.osc-fr1.scalingo.io" >> $GITHUB_OUTPUT
+          echo "api=https://mon-entreprise-api-pr${{ steps.deploy-env.outputs.name }}.osc-fr1.scalingo.io" >> $GITHUB_OUTPUT
+          echo "fr=https://${{ steps.deploy-env.outputs.name }}--mon-entreprise.netlify.app" >> $GITHUB_OUTPUT
+          echo "en=https://${{ steps.deploy-env.outputs.name }}-en--mon-entreprise.netlify.app" >> $GITHUB_OUTPUT
+
+  build:
+    needs: deploy-context
+    env:
+      API_BASE_URL: ${{ needs.deploy-context.outputs.api_url }}
+      SERVER_BASE_URL: ${{ needs.deploy-context.outputs.server_url }}
+      VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
+      VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - name: Build app
+        run: yarn workspace site build
+        env:
+          VITE_ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
+          VITE_ALGOLIA_SEARCH_KEY: ${{ vars.ALGOLIA_SEARCH_KEY }}
+          VITE_ALGOLIA_INDEX_PREFIX: monentreprise-${{ needs.deploy-context.outputs.env-name }}-
+          VITE_GITHUB_REF: ${{ github.ref }}
+          VITE_GITHUB_HEAD_REF: ${{ github.head_ref }}
+          VITE_GITHUB_SHA: ${{ github.sha }}
+      - name: Build app SSR
+        run: yarn workspace site build:ssr
+      - name: Prerender common routes
+        run: yarn workspace site build:prerender --netlify-toml-path ./netlify.base.toml
+      - name: Replace site placeholders in netlify.toml redirection file
+        run: |
+          cp site/netlify.base.toml site/netlify.toml
+          sed -i "s|:API_URL|$API_BASE_URL|g" site/netlify.toml
+          sed -i "s|:SERVER_URL|$SERVER_BASE_URL|g" site/netlify.toml
+          sed -i "s|:SITE_FR|$VITE_FR_BASE_URL|g" site/netlify.toml
+          sed -i "s|:SITE_EN|$VITE_EN_BASE_URL|g" site/netlify.toml
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: static-site
+          path: |
+            site/dist/**
+            site/netlify.toml
+          if-no-files-found: error
+          retention-days: 1
+      - name: Save PR context
+        run: |
+          echo '{"pr_number":"${{ github.event.number }}","env_name":"${{ needs.deploy-context.outputs.env-name }}","fr_url":"${{ needs.deploy-context.outputs.fr_url }}","en_url":"${{ needs.deploy-context.outputs.en_url }}"}' > pr-context.json
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: pr-context
+          path: pr-context.json
+          if-no-files-found: error
+          retention-days: 1
+
+  build-storybook:
+    needs: deploy-context
+    env:
+      VITE_FR_BASE_URL: ${{ needs.deploy-context.outputs.fr_url }}
+      VITE_EN_BASE_URL: ${{ needs.deploy-context.outputs.en_url }}
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - name: Build Storybook
+        run: yarn workspace site build:storybook
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: static-storybook
+          path: |
+            site/storybook-static/**
+          if-no-files-found: error
+          retention-days: 1
+
+  build-api:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - name: Build API
+        run: yarn workspace api build
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: static-api
+          path: |
+            api/dist/**
+          if-no-files-found: error
+          retention-days: 1
