@@ -1,0 +1,75 @@
+name: Tests E2E Production
+on:
+  workflow_run:
+    workflows: ['Déploiement Production']
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  e2e-test-production:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    container: cypress/browsers:latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        site: ['fr', 'en']
+        browser: [chrome]
+        viewport: [default, small]
+        container: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+        include:
+          - site: fr
+            specPattern: mon-entreprise/**/*.{js,jsx,ts,tsx}
+            baseUrl: https://mon-entreprise.urssaf.fr
+            language: fr
+          - site: en
+            specPattern: mon-entreprise/english/**/*.{js,jsx,ts,tsx}
+            baseUrl: https://mycompanyinfrance.urssaf.fr
+            language: en
+        exclude:
+          - site: en
+            container: 1
+          - site: en
+            container: 2
+          - site: en
+            container: 3
+          - site: en
+            container: 4
+          - site: en
+            container: 5
+          - site: en
+            container: 6
+          - site: en
+            container: 7
+          - site: en
+            container: 8
+          - site: en
+            container: 9
+          - site: en
+            container: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - name: Test e2e mon-entreprise on production (site=${{ matrix.site }}, browser=${{ matrix.browser}}, viewport=${{ matrix.viewport }})
+        uses: cypress-io/github-action@783cb3f07983868532cabaedaa1e6c00ff4786a8 # v7.1.9
+        with:
+          install: false
+          working-directory: site
+          record: true
+          tag: master_deploy
+          config: specPattern=cypress/integration/${{ matrix.specPattern }},baseUrl=${{ matrix.baseUrl }}${{ matrix.viewport == 'small' && ',viewportHeight=740,viewportWidth=360' || '' }}
+          env: language=${{ matrix.language }}
+          browser: ${{ matrix.browser }}
+          parallel: true
+          group: ${{ matrix.site }}-${{ matrix.browser }}-viewport_${{ matrix.viewport }}
+          ci-build-id: '${{ github.sha }}-${{ github.event_name }}-${{ github.run_id }}-${{ github.run_attempt }}'
