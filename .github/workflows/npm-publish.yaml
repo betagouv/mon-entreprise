@@ -1,7 +1,7 @@
 name: NPM Publish
 on:
   workflow_run:
-    workflows: ['Tests Master']
+    workflows: ['Tests sur Master']
     types: [completed]
 
 permissions:
