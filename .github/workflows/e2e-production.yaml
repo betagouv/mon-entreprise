@@ -1,7 +1,7 @@
 name: Tests E2E Production
 on:
   workflow_run:
-    workflows: ['Déploiement Production']
+    workflows: ['Déploiement en Production']
     types: [completed]
 
 permissions:
