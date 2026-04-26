@@ -5,7 +5,6 @@ name: Build et déploiement production
 # (release, push master, schedule).
 on:
   workflow_call:
-    secrets: inherit
 
 permissions:
   contents: read
