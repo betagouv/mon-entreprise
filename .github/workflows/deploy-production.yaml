@@ -1,4 +1,4 @@
-name: Déploiement Production
+name: Déploiement en Production
 on:
   workflow_run:
     workflows: ['Tests Master']
