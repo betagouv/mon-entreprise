@@ -1,4 +1,4 @@
-name: PR clean up
+name: Nettoyage PR
 # Utilise pull_request_target (au lieu de pull_request) pour avoir accès aux secrets
 # même pour les PR de fork. Sûr car on ne checkout pas le code du fork — seuls les
 # scripts de master sont exécutés pour nettoyer l'index Algolia temporaire.
