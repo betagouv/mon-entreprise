@@ -18,8 +18,14 @@ type SystemRootProps = {
 	forceDarkMode?: boolean
 }
 
+const isBrowser = typeof document !== 'undefined'
+
+const getBrowserUserAgent = (): string | false =>
+	isBrowser && typeof navigator !== 'undefined' && navigator.userAgent
+
+const shouldDisableCSSOM = isbot(getBrowserUserAgent())
+
 const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
-	const userAgent = typeof navigator !== 'undefined' && navigator.userAgent
 	const [contextDarkMode] = useDarkMode()
 	const isInIframe = useIsEmbedded()
 
@@ -27,7 +33,7 @@ const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
 		typeof forceDarkMode === 'boolean' ? forceDarkMode : contextDarkMode
 
 	return (
-		<StyleSheetManager disableCSSOMInjection={isbot(userAgent)}>
+		<StyleSheetManager disableCSSOMInjection={shouldDisableCSSOM}>
 			<ThemeProvider theme={{ ...urssafTheme, darkMode, isInIframe }}>
 				<BackgroundStyle $darkMode={darkMode}>
 					<GlobalStyle />
