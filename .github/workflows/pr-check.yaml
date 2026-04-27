@@ -70,8 +70,8 @@ jobs:
       - name: Build app
         run: yarn workspace site build
         env:
-          VITE_ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
-          VITE_ALGOLIA_SEARCH_KEY: ${{ vars.ALGOLIA_SEARCH_KEY }}
+          VITE_ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          VITE_ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
           VITE_ALGOLIA_INDEX_PREFIX: monentreprise-${{ needs.deploy-context.outputs.env-name }}-
           VITE_GITHUB_REF: ${{ github.ref }}
           VITE_GITHUB_HEAD_REF: ${{ github.head_ref }}
