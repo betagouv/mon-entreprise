@@ -61,11 +61,7 @@ const loadAlgoliaData = (): AlgoliaData => {
 	try {
 		return JSON.parse(readFileSync('algolia-data.json', 'utf8')) as AlgoliaData
 	} catch (error) {
-		if (
-			error instanceof Error &&
-			'code' in error &&
-			error.code === 'ENOENT'
-		) {
+		if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
 			throw new Error(
 				"algolia-data.json introuvable. Lance 'yarn algolia:export' avant 'yarn algolia:push'."
 			)
