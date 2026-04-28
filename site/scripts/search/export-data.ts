@@ -8,9 +8,9 @@ import Engine from 'publicodes'
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 import {
-	type AlgoliaData,
 	formatRulesToAlgolia,
 	formatSimulationDataToAlgolia,
+	type AlgoliaData,
 } from './format'
 
 const path = '../../source/public/simulation-data.json'
