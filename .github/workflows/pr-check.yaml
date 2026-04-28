@@ -95,6 +95,14 @@ jobs:
             site/netlify.toml
           if-no-files-found: error
           retention-days: 1
+      - name: Export Algolia data
+        run: yarn workspace site algolia:export
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: algolia-data
+          path: site/algolia-data.json
+          if-no-files-found: error
+          retention-days: 1
       - name: Save PR context
         run: |
           echo '{"pr_number":"${{ github.event.number }}","env_name":"${{ needs.deploy-context.outputs.env-name }}","fr_url":"${{ needs.deploy-context.outputs.fr_url }}","en_url":"${{ needs.deploy-context.outputs.en_url }}"}' > pr-context.json
