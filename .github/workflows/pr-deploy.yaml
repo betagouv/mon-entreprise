@@ -37,18 +37,23 @@ jobs:
           echo "fr_url=$(jq -r .fr_url pr-context.json)" >> $GITHUB_OUTPUT
           echo "en_url=$(jq -r .en_url pr-context.json)" >> $GITHUB_OUTPUT
 
-  algolia-update:
+  algolia-push:
     needs: deploy-context
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/actions/install
-      - name: Update Algolia index
-        run: yarn workspace site algolia:update
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: algolia-data
+          path: site
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push Algolia index
+        run: yarn workspace site algolia:push
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-          ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
           ALGOLIA_INDEX_PREFIX: monentreprise-${{ needs.deploy-context.outputs.env_name }}-
 
   deploy-preview:
