@@ -1387,6 +1387,7 @@ pages:
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
     cessation-activité:
+      date-modifiée: L’année de simulation a été changée pour {{ année }}.
       externalLinks:
         "1":
           description: L’Urssaf vous accompagne à toutes les étapes clés de votre démarche
