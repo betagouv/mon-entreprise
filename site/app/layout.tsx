@@ -2,9 +2,7 @@ import { ReactNode } from 'react'
 
 import StyledComponentsRegistry from '@/design-system/StyledComponentsRegistry'
 import { NextJsNavigationProvider } from '@/lib/navigation/providers/NextJsNavigationProvider'
-import i18next from '@/locales/i18n-server'
-
-const langue = process.env.LANGUE ?? 'fr'
+import i18next, { langue } from '@/locales/i18n-server'
 
 export const metadata = {
 	title: i18next.t('metadata.titre', 'Mon entreprise'),
