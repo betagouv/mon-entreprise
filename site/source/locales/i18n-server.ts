@@ -5,10 +5,20 @@ import i18next from 'i18next'
 import enTranslations from './.generated/ui-en.json'
 import unitsTranslations from './.generated/units.json'
 
-const langue = (process.env.LANGUE ?? 'fr') as 'fr' | 'en'
+const SUPPORTED_LANGUAGES = ['fr', 'en'] as const
+type AvailableLang = (typeof SUPPORTED_LANGUAGES)[number]
 
-// Init synchrone : toutes les resources sont fournies inline (pas de backend),
-// donc i18next.t() est utilisable dès le retour de cet appel.
+const rawLangue = process.env.LANGUE ?? 'fr'
+if (!SUPPORTED_LANGUAGES.includes(rawLangue as AvailableLang)) {
+	throw new Error(
+		`LANGUE invalide : "${rawLangue}". Valeurs supportées : ${SUPPORTED_LANGUAGES.join(
+			', '
+		)}.`
+	)
+}
+
+export const langue = rawLangue as AvailableLang
+
 i18next
 	.init({
 		lng: langue,
