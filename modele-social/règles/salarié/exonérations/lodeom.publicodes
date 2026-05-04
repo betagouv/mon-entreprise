@@ -148,8 +148,6 @@ salarié . cotisations . exonérations . lodeom . zone un:
         innovation et croissance:
           titre: barème d’innovation et croissance
           valeur: barèmes = 'innovation et croissance'
-          question: Êtes-vous éligible au barème d’innovation et croissance ?
-          par défaut: non
           description: |
             Pour bénéficier du barème d’innovation et croissance, les employeurs doivent :
             - employer **moins de 250 salariés**,
@@ -206,7 +204,11 @@ salarié . cotisations . exonérations . lodeom . zone un:
       applicable si:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
-          - entreprise . chiffre d'affaires < 50000000
+          # TODO: ajouter cette condition
+          # Problème actuel : la règle est la même pour les TI et pour les salariés
+          # Le moteur se base donc sur le salaire renseigné pour déterminer le CA
+          # au lieu de poser la question.
+          # - entreprise . chiffre d'affaires < 50000000
       formule: barèmes . compétitivité renforcée
       question: Êtes-vous éligible au barème compétitivité renforcée ?
       par défaut: non
@@ -251,7 +253,11 @@ salarié . cotisations . exonérations . lodeom . zone un:
       applicable si:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
-          - entreprise . chiffre d'affaires < 50000000
+          # TODO: ajouter cette condition
+          # Problème actuel : la règle est la même pour les TI et pour les salariés
+          # Le moteur se base donc sur le salaire renseigné pour déterminer le CA
+          # au lieu de poser la question.
+          # - entreprise . chiffre d'affaires < 50000000
       formule: barèmes . innovation et croissance
       question: Êtes-vous éligible au barème d’innovation et croissance ?
       par défaut: non
@@ -450,7 +456,11 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       applicable si:
         toutes ces conditions:
           - entreprise . salariés . effectif < 250
-          - entreprise . chiffre d'affaires < 50000000
+          # TODO: ajouter cette condition
+          # Problème actuel : la règle est la même pour les TI et pour les salariés
+          # Le moteur se base donc sur le salaire renseigné pour déterminer le CA
+          # au lieu de poser la question.
+          # - entreprise . chiffre d'affaires < 50000000
       formule: barèmes . renforcé
       question: Êtes-vous éligible au barème d’exonération renforcée ?
       par défaut: non
