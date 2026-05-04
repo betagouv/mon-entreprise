@@ -1,9 +1,10 @@
 dirigeant . auto-entrepreneur . impôt: oui
 
-dirigeant . auto-entrepreneur . impôt . revenu imposable: entreprise . imposition . régime . micro-entreprise . revenu abattu
+dirigeant . auto-entrepreneur . impôt . revenu imposable:
+  non applicable si: versement libératoire
+  valeur: entreprise . imposition . régime . micro-entreprise . revenu abattu
 
 dirigeant . auto-entrepreneur . impôt . versement libératoire:
-  rend non applicable: revenu imposable
   description: |
     Avec l’option pour le versement libératoire, l’impôt sur le revenu est payé
     en même temps que vos cotisations (par mois ou par trimestre) avec
