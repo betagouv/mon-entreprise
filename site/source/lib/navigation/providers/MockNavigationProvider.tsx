@@ -4,15 +4,27 @@ import {
 	matchPath as rrMatchPath,
 } from 'react-router-dom'
 
-import { NavigationAPI, NavigationType } from '../NavigationAPI'
+import {
+	LinkProps,
+	linkTargetToString,
+	NavigationAPI,
+	NavigationType,
+} from '../NavigationAPI'
 import { NavigationContext } from '../NavigationContext'
+
+function MockLink({ to, children, ...props }: LinkProps) {
+	return (
+		<a href={linkTargetToString(to)} {...props}>
+			{children}
+		</a>
+	)
+}
 
 interface Props {
 	children: ReactNode
 	initialPath?: string
 	initialSearchParams?: URLSearchParams
 	initialHash?: string
-	initialState?: unknown
 	initialNavigationType?: NavigationType
 }
 
@@ -21,7 +33,6 @@ export function MockNavigationProvider({
 	initialPath = '/',
 	initialSearchParams,
 	initialHash = '',
-	initialState = null,
 	initialNavigationType = 'PUSH',
 }: Props) {
 	const [currentPath, setCurrentPath] = useState(initialPath)
@@ -63,6 +74,7 @@ export function MockNavigationProvider({
 
 	const navigation = useMemo<NavigationAPI>(
 		() => ({
+			Link: MockLink,
 			navigate: (to) => {
 				const url = new URL(to, 'http://localhost')
 				setCurrentPath(url.pathname)
@@ -82,7 +94,6 @@ export function MockNavigationProvider({
 				}
 			},
 			locationHash,
-			locationState: initialState,
 			navigationType: initialNavigationType,
 			getHref,
 			onNavigate,
@@ -93,7 +104,6 @@ export function MockNavigationProvider({
 			currentPath,
 			searchParams,
 			locationHash,
-			initialState,
 			initialNavigationType,
 			getHref,
 			onNavigate,

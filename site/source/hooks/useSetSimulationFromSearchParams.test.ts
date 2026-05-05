@@ -64,12 +64,12 @@ describe('useSetSimulationFromSearchParams hook', () => {
 			unité: '€/mois',
 		})
 		vi.mocked(useNavigation).mockReturnValue({
+			Link: () => null,
 			searchParams: initialParams,
 			setSearchParams: setSearchParamsMock,
 			navigate: vi.fn(),
 			currentPath: '/',
 			locationHash: '',
-			locationState: null,
 			navigationType: 'PUSH',
 			getHref: vi.fn((to: string) => to),
 			onNavigate: vi.fn(() => () => {}),
@@ -131,12 +131,12 @@ describe('useSetSimulationFromSearchParams hook', () => {
 			utm_campaign: 'marketing',
 		})
 		vi.mocked(useNavigation).mockReturnValue({
+			Link: () => null,
 			searchParams: initialParams,
 			setSearchParams: setSearchParamsMock,
 			navigate: vi.fn(),
 			currentPath: '/',
 			locationHash: '',
-			locationState: null,
 			navigationType: 'PUSH',
 			getHref: vi.fn((to: string) => to),
 			onNavigate: vi.fn(() => () => {}),
