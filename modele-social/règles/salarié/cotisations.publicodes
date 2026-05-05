@@ -53,11 +53,11 @@ salarié . cotisations . catégories:
     retraite:
       titre: retraite
       type: branche
+    chômage:
+      titre: assurance chômage
+      type: branche
     divers:
       titre: cotisations employeur
-      type: branche
-    convention collective:
-      titre: cotisations statutaires ou prévues par la convention collective
       type: branche
     CSG-CRDS:
       titre: CSG / CRDS
@@ -85,7 +85,9 @@ salarié . cotisations . assiette:
         L'assiette des cotisations avant la réintégration de la part non
         déductible de la prévoyance employeur. C'est elle qui sert de base au
         calcul des prévoyances proportionnelles au revenu.
-      valeur: rémunération . brut
+      somme:
+        - rémunération . brut
+        - rémunération . frais professionnels
       abattement:
         somme:
           - rémunération . frais professionnels . déductible
@@ -377,7 +379,7 @@ salarié . cotisations . assurance chômage:
 salarié . cotisations . chômage:
   cotisation:
     dû par: employeur
-    branche: assurance chômage
+    branche: chômage
   description: Cotisation d’assurance chômage
   références:
     L’assurance chômage et l’assurance garantie des salaires (AGS): https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html

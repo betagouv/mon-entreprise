@@ -275,6 +275,7 @@ assimilé salarié . rémunération . montant net social:
   somme:
     - rémunération . brute
     - avantages en nature . montant
+    - cotisations . exonérations . Acre
   abattement: cotisations . salarié
   références :
     Le montant net social: https://solidarites.gouv.fr/le-montant-net-social

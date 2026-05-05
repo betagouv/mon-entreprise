@@ -14,9 +14,7 @@ import { ajusteLaSituation } from '@/store/actions/actions'
 export const lodeomDottedName =
 	'salarié . cotisations . exonérations . lodeom . montant'
 
-// TODO: remplacer "salarié . cotisations . assiette" par "salarié . rémunération . brut"
-// lorsqu'elle n'incluera plus les frais professionnels.
-export const rémunérationBruteDottedName = 'salarié . cotisations . assiette'
+export const rémunérationBruteDottedName = 'salarié . rémunération . brut'
 
 const heuresSupplémentairesDottedName =
 	'salarié . temps de travail . heures supplémentaires'
@@ -41,7 +39,6 @@ export type Options = {
 	heuresComplémentaires: number
 	rémunérationETP: number
 	rémunérationPrimes: number
-	rémunérationHeuresSup: number
 }
 
 export type RégularisationMethod = 'annuelle' | 'progressive'
@@ -194,7 +191,6 @@ export const getInitialRéductionMoisParMois = (
 		})?.nodeValue as number) ?? 0
 	const rémunérationETP = 0
 	const rémunérationPrimes = 0
-	const rémunérationHeuresSup = 0
 
 	const pasDeRémunération = !rémunérationBrute
 	if (pasDeRémunération) {
@@ -205,7 +201,6 @@ export const getInitialRéductionMoisParMois = (
 				heuresComplémentaires,
 				rémunérationETP,
 				rémunérationPrimes,
-				rémunérationHeuresSup,
 			},
 			réduction: {
 				value: 0,
@@ -228,7 +223,6 @@ export const getInitialRéductionMoisParMois = (
 				heuresComplémentaires,
 				rémunérationETP,
 				rémunérationPrimes,
-				rémunérationHeuresSup,
 			},
 			engine
 		)
@@ -243,7 +237,6 @@ export const getInitialRéductionMoisParMois = (
 				heuresComplémentaires,
 				rémunérationETP,
 				rémunérationPrimes,
-				rémunérationHeuresSup,
 			},
 			réduction: {
 				value: réduction,
@@ -634,14 +627,6 @@ const getSMICMensuelAvecOptions = (
 		return SMICMensuel
 	}
 
-	// TODO: enlever 'salarié . mois incomplet . rémunération de base mois incomplet'
-	// du contexte une fois que la formule de cette règle sera décommentée
-	// (cf TODO dans `mois-incomplet.publicodes`)
-	// On pourra donc enlever le champ "rémunération des heures sup" du formulaire !
-	contexte['salarié . mois incomplet . rémunération de base mois incomplet'] =
-		rémunérationBrute -
-		options.rémunérationPrimes -
-		options.rémunérationHeuresSup
 	contexte['salarié . mois incomplet . rémunération équivalente mois complet'] =
 		options.rémunérationETP
 	if (options.rémunérationPrimes) {

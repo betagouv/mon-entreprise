@@ -27,6 +27,15 @@ salarié . rémunération . net . payé après impôt: 1553
 salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
+exports[`calculate simulations-salarié > ATMP 4`] = `
+"salarié . contrat . salaire brut: 2000
+salarié . contrat . salaire brut . équivalent temps plein: null
+salarié . coût total employeur: 2307
+salarié . rémunération . contrôle minimum: null
+salarié . rémunération . net . payé après impôt: 1553
+salarié . rémunération . net . à payer avant impôt: 1561"
+`;
+
 exports[`calculate simulations-salarié > JEI 1`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
@@ -168,15 +177,6 @@ salarié . coût total employeur: 3132
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2147
 salarié . rémunération . net . à payer avant impôt: 2147"
-`;
-
-exports[`calculate simulations-salarié > atmp 1`] = `
-"salarié . contrat . salaire brut: 2000
-salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2307
-salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 1553
-salarié . rémunération . net . à payer avant impôt: 1561"
 `;
 
 exports[`calculate simulations-salarié > avantages 1`] = `
@@ -464,7 +464,7 @@ salarié . rémunération . net . à payer avant impôt: 2586"
 exports[`calculate simulations-salarié > frais pro - outre-mer 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4057
+salarié . coût total employeur: 4049
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2527
 salarié . rémunération . net . à payer avant impôt: 2583"

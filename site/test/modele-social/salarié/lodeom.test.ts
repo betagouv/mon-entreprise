@@ -6,7 +6,7 @@ import { configLodeom } from '@/pages/simulateurs/lodeom/simulationConfig'
 
 const situationParDéfaut = {
 	...configLodeom.situation,
-	'salarié . cotisations . assiette': '3500 €/mois',
+	'salarié . rémunération . brut': '3500 €/mois',
 }
 const situationZone1 = {
 	...situationParDéfaut,
@@ -201,7 +201,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'compétitivité'",
-					'salarié . cotisations . assiette': '4011 €/mois',
+					'salarié . rémunération . brut': '4011 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -215,7 +215,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'compétitivité renforcée'",
-					'salarié . cotisations . assiette': '4922 €/mois',
+					'salarié . rémunération . brut': '4922 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -229,7 +229,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'innovation et croissance'",
-					'salarié . cotisations . assiette': '6381 €/mois',
+					'salarié . rémunération . brut': '6381 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -245,7 +245,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'moins de 11 salariés'",
-					'salarié . cotisations . assiette': '5469 €/mois',
+					'salarié . rémunération . brut': '5469 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -259,7 +259,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'sectoriel'",
-					'salarié . cotisations . assiette': '5469 €/mois',
+					'salarié . rémunération . brut': '5469 €/mois',
 				})
 
 				expect(e).toEvaluate(
@@ -273,7 +273,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'renforcé'",
-					'salarié . cotisations . assiette': '8202 €/mois',
+					'salarié . rémunération . brut': '8202 €/mois',
 				})
 
 				expect(e).toEvaluate(
