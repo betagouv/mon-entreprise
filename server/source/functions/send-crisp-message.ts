@@ -1,4 +1,4 @@
-import Crisp from 'crisp-api'
+import { Crisp } from 'crisp-api'
 
 const CRISP_API_IDENTIFIER = process.env.CRISP_API_IDENTIFIER
 const CRISP_API_KEY = process.env.CRISP_API_KEY
