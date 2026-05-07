@@ -5,7 +5,7 @@ import {
 	useSearchFieldState,
 } from '@react-stately/searchfield'
 import { AriaSearchFieldProps } from '@react-types/searchfield'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '../../global-style'
@@ -44,9 +44,11 @@ const IconContainer = styled.div<{ $hasLabel?: boolean }>`
 `
 
 export function SearchField(
-	props: AriaSearchFieldProps & {
+	props: Omit<AriaSearchFieldProps, 'errorMessage' | 'description'> & {
 		state?: SearchFieldState
 		isSearchStalled?: boolean
+		errorMessage?: ReactNode
+		description?: ReactNode
 	}
 ) {
 	const innerState = useSearchFieldState(props)

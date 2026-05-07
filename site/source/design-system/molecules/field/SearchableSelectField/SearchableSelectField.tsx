@@ -67,10 +67,12 @@ const StyledClearButton = styled.button`
 `
 
 export function SearchableSelectField(
-	props: AriaSearchFieldProps & {
+	props: Omit<AriaSearchFieldProps, 'errorMessage' | 'description'> & {
 		state?: SearchFieldState
 		isSearchStalled?: boolean
 		selectedValue?: ReactNode | null
+		errorMessage?: ReactNode
+		description?: ReactNode
 	}
 ) {
 	const innerState = useSearchFieldState(props)
