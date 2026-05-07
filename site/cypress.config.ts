@@ -20,5 +20,4 @@ export default defineConfig({
 		runMode: 3,
 	},
 	videoCompression: 30,
-	videoUploadOnPasses: false,
 })
