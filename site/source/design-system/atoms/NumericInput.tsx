@@ -10,6 +10,7 @@ import {
 	InputHTMLAttributes,
 	KeyboardEvent,
 	KeyboardEventHandler,
+	ReactNode,
 	RefObject,
 	useCallback,
 	useEffect,
@@ -38,7 +39,7 @@ import { InputSuggestions, InputSuggestionsRecord } from '../suggestions'
  */
 type NumericInputProps = Omit<
 	AriaNumberFieldProps,
-	'placeholder' | 'onBlur' | 'onFocus'
+	'placeholder' | 'onBlur' | 'onFocus' | 'errorMessage' | 'description'
 > & {
 	name?: string
 	small?: boolean
@@ -47,6 +48,8 @@ type NumericInputProps = Omit<
 	onSubmit?: (source?: string) => void
 	suggestions?: InputSuggestionsRecord<number>
 	displayedUnit?: string
+	errorMessage?: ReactNode
+	description?: ReactNode
 
 	// API of react-aria types is broken, we need to use the HTMLAttributes version
 	onFocus?: React.HTMLAttributes<HTMLInputElement>['onFocus']
