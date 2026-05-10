@@ -19,5 +19,4 @@ export default defineConfig({
 		// Default is 0
 		runMode: 3,
 	},
-	videoCompression: 30,
 })
