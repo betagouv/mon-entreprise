@@ -3257,9 +3257,12 @@ protection sociale . retraite . base:
     votre rémunération est restée la même pendant toute votre vie active.
   titre.en: '[automatic] Maximum basic pension'
   titre.fr: Retraite de base maximum
-protection sociale . retraite . base . cotisée:
+protection sociale . retraite . base . revenu cotisé:
   titre.en: '[automatic] income contributed for basic pension'
   titre.fr: revenu cotisé pour la retraite de base
+protection sociale . retraite . base . trimestres:
+  titre.en: '[automatic] completed quarters'
+  titre.fr: trimestres validés
 protection sociale . retraite . complémentaire:
   titre.en: '[automatic] Supplementary pension'
   titre.fr: Retraite complémentaire
@@ -3379,9 +3382,6 @@ protection sociale . retraite . complémentaire . valeur du point:
     au 1er janvier.
   titre.en: '[automatic] point value'
   titre.fr: valeur du point
-protection sociale . retraite . trimestres:
-  titre.en: '[automatic] validated quarters'
-  titre.fr: trimestres validés
 protection sociale . transport:
   description.en: |
     [automatic] This contribution is paid in full to the [mobility organizing authority
