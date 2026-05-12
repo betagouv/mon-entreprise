@@ -13121,10 +13121,10 @@ salarié . rémunération . avantages en nature:
           titre.fr: autres
       question.en: >
         [automatic] Are there any other benefits in kind (housing, vehicle,
-        discount...)?
+        discount, etc.)?
       question.fr: >
-        Y a-t-il d'autres avantages en natures (logement, véhicule,
-        réduction...) ?
+        Y a-t-il d'autres avantages en nature (logement, véhicule, réduction...)
+        ?
       titre.en: '[automatic] other'
       titre.fr: autres
     montant:
@@ -13288,10 +13288,10 @@ salarié . rémunération . avantages en nature:
 
         La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
       question.en: >
-        [automatic] Does the company provide a free ICT tool (computer, phone,
-        tablet, etc.)?
+        [automatic] Does the company provide a free NICT tool (computer,
+        telephone, tablet, etc.)?
       question.fr: >
-        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        L'entreprise fournit-elle gratuitement un outil issu des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       titre.en: '[automatic] ntic'
       titre.fr: ntic
@@ -13664,11 +13664,11 @@ salarié . rémunération . frais professionnels:
               titre.fr: Prime de transport
             véhicule electrique hybride hydrogène:
               question.en:
-                '[automatic] Does the employee use electric, plug-in hybrid or
-                hydrogen-powered vehicles?'
+                '[automatic] Does the employee use an electric, plug-in hybrid or
+                hydrogen-powered vehicle?'
               question.fr:
-                Le salarié utilise-t-il un véhicules électriques, hybrides
-                rechargeables ou à hydrogène ?
+                Le salarié utilise-t-il un véhicule électrique, hybride
+                rechargeable ou à hydrogène ?
               titre.en: '[automatic] hydrogen hybrid electric vehicle'
               titre.fr: véhicule electrique hybride hydrogène
           titre.en: '[automatic] transportation allowance'

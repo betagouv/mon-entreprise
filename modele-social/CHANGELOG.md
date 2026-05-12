@@ -31,6 +31,7 @@
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
 - Corrige l'unité de `dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf` en `%`
 - Ajout de la CET dans la réduction de cotisations salariales sur les heures supplémentaires
+- Corrige des fautes dans des questions de `salarié . rémunération`
 
 ## 10.0.1
 
