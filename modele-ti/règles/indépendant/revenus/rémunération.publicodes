@@ -24,6 +24,7 @@ indépendant . rémunération . brute:
           - rémunération . nette . avec dividendes
           - cotisations et contributions
           - cotisations et contributions . avec dividendes
+        par défaut: entreprise . chiffre d'affaires - entreprise . charges
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
   arrondi: oui
   unité: €/an
