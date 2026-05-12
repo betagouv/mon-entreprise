@@ -46,6 +46,13 @@ export const titresRestaurantParMois = (
 ): Quantité<'titre-restaurant/mois'> =>
 	quantité(valeur, 'titre-restaurant/mois')
 
+export const trimestresValidésParAn = (
+	valeur: number
+): Quantité<'trimestre validé/an'> => quantité(valeur, 'trimestre validé/an')
+
+export const pointsParAn = (valeur: number): Quantité<'point/an'> =>
+	quantité(valeur, 'point/an')
+
 export const quantité = <U extends UnitéQuantité>(
 	valeur: number,
 	unité: U
