@@ -32,6 +32,8 @@ const UNITÉS_QUANTITÉS = [
 	'année civile',
 	'employés',
 	'titre-restaurant/mois',
+	'trimestre validé/an',
+	'point/an',
 ]
 
 export type UnitéQuantité = (typeof UNITÉS_QUANTITÉS)[number]
