@@ -47,7 +47,7 @@ export const configSalarié: SimulationConfig = {
 				dottedName: 'impôt . méthode de calcul',
 			},
 		],
-		'liste': [
+		liste: [
 			// # Contrat
 			// ## Type de contrat
 			'salarié . contrat',

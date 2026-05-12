@@ -21,7 +21,10 @@ export const détermineLesProchainesQuestions = (
 
 	const score = (question: DottedName) => {
 		const indexList = liste.indexOf(question)
-		const scoreDeListe = (indexList > -1 ? indexList : liste.findIndex((name) => question.startsWith(name))) + 1
+		const scoreDeListe =
+			(indexList > -1
+				? indexList
+				: liste.findIndex((name) => question.startsWith(name))) + 1
 		const indexNonPrioritaire =
 			nonPrioritaires.findIndex((name) => question.startsWith(name)) + 1
 		const différenceCoeff = questionDifference(
@@ -46,12 +49,16 @@ export const détermineLesProchainesQuestions = (
 		),
 		filter(
 			(règle: DottedName) =>
-				(!liste.length || liste.some((question) => règle.startsWith(question))) &&
-				(!listeNoire.length || !listeNoire.some((question) => règle === question)) &&
+				(!liste.length ||
+					liste.some((question) => règle.startsWith(question))) &&
+				(!listeNoire.length ||
+					!listeNoire.some((question) => règle === question)) &&
 				(!config['objectifs exclusifs']?.length ||
 					!config['objectifs exclusifs'].includes(règle))
 		),
-		sort((règleA: DottedName, règleB: DottedName) => Order.number(score(règleA), score(règleB))),
+		sort((règleA: DottedName, règleB: DottedName) =>
+			Order.number(score(règleA), score(règleB))
+		),
 		filter(
 			(règle: DottedName) =>
 				engines[0].getRule(règle).rawNode.question !== undefined
