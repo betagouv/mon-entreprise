@@ -30,6 +30,9 @@ export const Objectifs = ({ comparateur }: Props) => {
 
 	useEffect(() => {
 		comparateur.set.charges(O.getOrElse(charges, () => eurosParAn(0)))
+		// [OK] Ici on a bien une erreur de type car 'taux' n'est pas une réponse valable
+		// pour 'nature-activité' :
+		comparateur.set.réponse('nature-activité', 'taux')
 		console.log(comparateur.compare())
 	}, [comparateur, charges])
 

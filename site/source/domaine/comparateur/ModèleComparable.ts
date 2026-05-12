@@ -14,10 +14,52 @@ export interface ValeurDocumentée {
 export type MontantDocumenté = Montant & ValeurDocumentée
 export type QuantitéDocumentée = Quantité & ValeurDocumentée
 
+type ParamQuestionCommuns = {
+	label: string
+	type: string
+}
+
+export type QuestionType = {
+	'nature-activité': ParamQuestionCommuns & {
+		réponses: readonly [
+			'artisanale',
+			'commerciale',
+			'libérale',
+			'location de meublé',
+		]
+	}
+	'méthode-imposition': ParamQuestionCommuns & {
+		réponses: readonly ['barème', 'taux']
+	}
+}
+
+const Questions = {
+	'nature-activité': {
+		label: 'Quelle est la nature de votre activité ?',
+		type: 'une possibilité',
+		réponses: [
+			'artisanale',
+			'commerciale',
+			'libérale',
+			'location de meublé',
+		] as const,
+	},
+	'méthode-imposition': {
+		label: 'Quelle est la nature de votre activité ?',
+		type: 'une possibilité',
+		réponses: ['barème', 'taux'] as const,
+	},
+} as const satisfies QuestionType
+
+export type Question = keyof typeof Questions
+export type Réponse<T extends Question> =
+	(typeof Questions)[T]['réponses'][number]
+
 export interface ModèleComparable extends Modele {
 	set: {
 		chiffreDAffaires: (montant: MontantRécurrent) => void
 		charges: (montant: MontantRécurrent) => void
+		réponse: <T extends Question>(question: T, valeur: Réponse<T>) => void
 	}
 
 	get: {

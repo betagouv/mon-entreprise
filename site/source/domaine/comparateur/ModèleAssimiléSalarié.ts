@@ -63,6 +63,8 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 				{ keepPreviousSituation: true }
 			)
 		},
+
+		réponse: () => {},
 	},
 
 	get: {

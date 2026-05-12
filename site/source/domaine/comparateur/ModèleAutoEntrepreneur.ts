@@ -39,6 +39,8 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 		},
 
 		charges: () => {},
+
+		réponse: () => {},
 	},
 
 	get: {

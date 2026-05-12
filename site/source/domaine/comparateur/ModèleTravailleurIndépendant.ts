@@ -15,6 +15,8 @@ import {
 	ModèleComparable,
 	MontantDocumenté,
 	QuantitéDocumentée,
+	Question,
+	Réponse,
 } from './ModèleComparable'
 
 let engine: Engine<RègleModèleTravailleurIndépendant> | null = null
@@ -49,6 +51,47 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				},
 				{ keepPreviousSituation: true }
 			)
+		},
+
+		réponse: <T extends Question>(question: T, valeur: Réponse<T>) => {
+			if (question === 'nature-activité') {
+				let valeurModèle = ''
+				// Ici on a bien une erreur de type car la réponse 'location de meublés'
+				// n'existe pas :
+				if (valeur === 'location de meublés') {
+					valeurModèle = 'hébergement'
+				} else if (
+					valeur === 'artisanale' ||
+					valeur === 'commerciale' ||
+					valeur === 'libérale'
+				) {
+					valeurModèle = valeur
+				}
+
+				if (valeurModèle) {
+					engine?.setSituation({
+						'entreprise . activité': valeurModèle,
+					})
+				}
+			}
+
+			if (question === 'méthode-imposition') {
+				let valeurModèle = ''
+				console.log(valeur)
+				// Ici on voudrait une erreur de type car 'location de meublé' n'est pas une
+				// réponse valable pour 'méthode-imposition' :
+				if (valeur === 'location de meublé') {
+					valeurModèle = 'hébergement'
+				} else if (valeur === 'barème' || valeur === 'taux') {
+					valeurModèle = valeur
+				}
+
+				if (valeurModèle) {
+					engine?.setSituation({
+						'entreprise . activité': valeurModèle,
+					})
+				}
+			}
 		},
 	},
 
