@@ -1,60 +1,51 @@
-import { Trans, useTranslation } from 'react-i18next'
-
-import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
-import { Condition } from '@/components/EngineValue/Condition'
 import PeriodSwitch from '@/components/PeriodSwitch'
-import Simulation, {
-	SimulationGoal,
-	SimulationGoals,
-} from '@/components/Simulation'
-import {
-	Body,
-	ConteneurBleu,
-	H4,
-	Link,
-	Message,
-	Spacing,
-} from '@/design-system'
-import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
-import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
-import { useSitePaths } from '@/sitePaths'
+import Simulation, { SimulationGoals } from '@/components/Simulation'
+import { Spacing } from '@/design-system'
+import { ComparateurDeModèles } from '@/domaine/comparateur/ComparateurDeModèle'
+import { ModèleAssimiléSalarié } from '@/domaine/comparateur/ModèleAssimiléSalarié'
+import { ModèleAutoEntrepreneur } from '@/domaine/comparateur/ModèleAutoEntrepreneur'
+import { ModèleComparable } from '@/domaine/comparateur/ModèleComparable'
+import { ModèleTravailleurIndépendant } from '@/domaine/comparateur/ModèleTravailleurIndépendant'
 
+import { Objectifs } from '../Objectifs'
 import Détails from './Détails'
-import ModifierOptions from './ModifierOptions'
-import StatutChoice from './StatutChoice'
 
-function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
-	const simulateurConfig = useSimulatorData('comparaison-statuts')
-	const { questions, raccourcis } = useSimulationPublicodes(simulateurConfig)
-	const { t } = useTranslation()
+const modèles: ModèleComparable[] = [
+	ModèleAutoEntrepreneur,
+	ModèleAssimiléSalarié,
+	ModèleTravailleurIndépendant,
+]
 
-	const { absoluteSitePaths } = useSitePaths()
+export default function Comparateur() {
+	// const simulateurConfig = useSimulatorData('comparaison-statuts')
+	// const { questions, raccourcis } = useSimulationPublicodes(simulateurConfig)
+	// const { t } = useTranslation()
+
+	// const { absoluteSitePaths } = useSitePaths()
+
+	const comparateur = ComparateurDeModèles(modèles)
 
 	return (
 		<>
 			<Simulation
 				hideDetails
 				showQuestionsFromBeginning
-				questionsPublicodes={questions}
-				raccourcisPublicodes={raccourcis}
+				// questionsPublicodes={questions}
+				// raccourcisPublicodes={raccourcis}
 				fullWidth
 				id="simulation-comparateur"
 			>
 				<SimulationGoals>
 					<PeriodSwitch />
-					<SimulationGoal
-						dottedName="entreprise . chiffre d'affaires"
-						isInfoMode
-						label={t("Chiffre d'affaires estimé")}
-					/>
-					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
+					<Objectifs comparateur={comparateur} />
 				</SimulationGoals>
 			</Simulation>
 
 			<Spacing lg />
 
-			<Condition expression="entreprise . activité . nature . libérale . réglementée">
+			{/* <Détails namedEngines={namedEngines} expandRevenuSection /> */}
+
+			{/* <Condition expression="entreprise . activité . nature . libérale . réglementée">
 				<Message type="info">
 					<Trans i18nKey={'comparaisonRégimes.warning-libéral-reglementé'}>
 						<H4 as="h3">
@@ -93,9 +84,7 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 					basePath={absoluteSitePaths.simulateurs.comparaison}
 					namedEngines={namedEngines}
 				/>
-			</Condition>
+			</Condition> */}
 		</>
 	)
 }
-
-export default Comparateur
