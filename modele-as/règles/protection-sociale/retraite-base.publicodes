@@ -28,7 +28,7 @@ protection sociale . retraite . base:
   arrondi: oui
   unité: €/mois
   produit:
-    - base . cotisée
+    - base . revenu cotisé
     - 50%
   références:
     'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
@@ -41,7 +41,7 @@ protection sociale . retraite . base:
 protection sociale . retraite . base . trimestres:
   titre: trimestres validés
   grille:
-    assiette: base . cotisée
+    assiette: base . revenu cotisé
     multiplicateur: SMIC . horaire . début d'année
     tranches:
       - montant: 0 trimestre validé/an
@@ -60,7 +60,7 @@ protection sociale . retraite . base . trimestres:
     # Salaire validant un trimestre: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx
     Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
 
-protection sociale . retraite . base . cotisée:
+protection sociale . retraite . base . revenu cotisé:
   titre: revenu cotisé pour la retraite de base
   arrondi: oui
   valeur:

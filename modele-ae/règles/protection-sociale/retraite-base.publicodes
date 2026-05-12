@@ -25,7 +25,7 @@ protection sociale . retraite . base:
     > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
     > durée d’assurance pour obtenir une pension à taux plein.
   produit:
-    - base . cotisée
+    - base . revenu cotisé
     - 50%2 b
   arrondi: oui
   unité: €/mois
@@ -65,7 +65,7 @@ protection sociale . retraite . base . trimestres:
             - montant: 4 trimestre validé/an
     - sinon:
         grille:
-          assiette: base . cotisée
+          assiette: base . revenu cotisé
           multiplicateur: SMIC . horaire . début d'année
           tranches:
             - montant: 0 trimestre validé/an
@@ -83,7 +83,7 @@ protection sociale . retraite . base . trimestres:
     Cotiser pour acquérir des droits à retraite - Auto-entrepreneurs: https://www.lacipav.fr/sites/default/files/2025-10/Cotiser%20pour%20acqu%C3%A9rir%20des%20droits%20%C3%A0%20retraite%20-%20AE%202025.pdf#page=2
     Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530
 
-protection sociale . retraite . base . cotisée:
+protection sociale . retraite . base . revenu cotisé:
   titre: revenu cotisé pour la retraite de base
   arrondi: oui
   valeur: entreprise . chiffre d'affaires . abattu
