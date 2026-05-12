@@ -149,6 +149,8 @@ export const configSalarié: SimulationConfig = {
 			'salarié . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',
 			'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
 			'salarié . cotisations . exonérations . lodeom . zone deux . barème renforcé',
+			// ## RGDU
+			'salarié . cotisations . exonérations . RGDU . caisse de congés payés',
 			// # Salarié⋅e
 			// ## DFS
 			'salarié . régimes spécifiques . DFS',
