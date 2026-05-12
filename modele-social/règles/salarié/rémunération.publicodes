@@ -721,8 +721,8 @@ salarié . rémunération . frais professionnels:
                 Article 81 du code des impôts (19° ter b.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042910732
 
             véhicule electrique hybride hydrogène:
-              question: Le salarié utilise-t-il un véhicules électriques, hybrides
-                rechargeables ou à hydrogène ?
+              question: Le salarié utilise-t-il un véhicule électrique, hybride
+                rechargeable ou à hydrogène ?
               par défaut: non
 
         forfait mobilités durables:
@@ -841,7 +841,7 @@ salarié . rémunération . avantages en nature:
 
         La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
       question: >
-        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        L'entreprise fournit-elle gratuitement un outil issu des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       par défaut: oui
       références:
@@ -888,7 +888,7 @@ salarié . rémunération . avantages en nature:
 
     autres:
       question: >
-        Y a-t-il d'autres avantages en natures (logement, véhicule,
+        Y a-t-il d'autres avantages en nature (logement, véhicule,
         réduction...) ?
       par défaut: non
       avec:
