@@ -17,17 +17,12 @@ export const configSalarié: SimulationConfig = {
 				dottedName: 'salarié',
 			},
 			{
-				label: 'Temps partiel',
-				dottedName: 'salarié . contrat . temps de travail . temps partiel',
-			},
-			{
-				label: 'Emploi franc',
-				dottedName:
-					'salarié . coût total employeur . aides . emploi franc . éligible',
-			},
-			{
 				label: 'Cadre',
 				dottedName: 'salarié . contrat . statut cadre',
+			},
+			{
+				label: 'Temps partiel',
+				dottedName: 'salarié . contrat . temps de travail . temps partiel',
 			},
 			{
 				label: 'Heures supplémentaires',
@@ -39,12 +34,17 @@ export const configSalarié: SimulationConfig = {
 					'salarié . rémunération . frais professionnels . titres-restaurant',
 			},
 			{
-				label: 'Impôt',
-				dottedName: 'impôt . méthode de calcul',
-			},
-			{
 				label: 'Commune',
 				dottedName: 'établissement . commune',
+			},
+			{
+				label: 'Emploi franc',
+				dottedName:
+					'salarié . coût total employeur . aides . emploi franc . éligible',
+			},
+			{
+				label: 'Impôt',
+				dottedName: 'impôt . méthode de calcul',
 			},
 		],
 		'liste': [
