@@ -8,6 +8,7 @@ import { completeSituationSelector } from '@/store/selectors/completeSituation.s
 import { configSituationSelector } from '@/store/selectors/simulation/config/configSituation.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { règleObsolèteDétectée } from '@/store/slices/simulationSource.slice'
+import { décideActionRègleInvalide } from '@/utils/publicodes/décideActionRègleInvalide'
 import { safeSetSituation } from '@/utils/publicodes/safeSetSituation'
 
 export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
@@ -30,20 +31,24 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 					throw new Error('Bad empty faultyDottedName')
 				}
 
-				if (faultyDottedName in simulatorSituation) {
-					dispatch(supprimeLaRègleDeLaSituation(faultyDottedName))
-					dispatch(règleObsolèteDétectée(faultyDottedName))
-				} else {
-					const dottedName = JSON.stringify(faultyDottedName)
-					let errorMessage = `Bad unknow situation : ${dottedName}`
+				const action = décideActionRègleInvalide(faultyDottedName, {
+					situationDuSimulateur: simulatorSituation,
+					situationDeLEntreprise: companySituation,
+					situationDeConfiguration: configSituation,
+				})
 
-					if (faultyDottedName in configSituation) {
-						errorMessage = `Bad config situation : ${dottedName}`
-					} else if (faultyDottedName in companySituation) {
-						errorMessage = `Bad company situation : ${dottedName}`
-					}
-
-					throw new Error(errorMessage)
+				switch (action.kind) {
+					case 'omettre-et-marquer-obsolète':
+						dispatch(supprimeLaRègleDeLaSituation(action.règle))
+						dispatch(règleObsolèteDétectée(action.règle))
+						break
+					case 'omettre':
+						dispatch(supprimeLaRègleDeLaSituation(action.règle))
+						break
+					case 'erreur-inconnue':
+						throw new Error(
+							`Bad unknown situation : ${JSON.stringify(action.règle)}`
+						)
 				}
 			}
 		)
