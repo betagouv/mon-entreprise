@@ -142,32 +142,3 @@ const getCatégorieFromCode = (
 
 	return 'autre'
 }
-
-// // Profession Libérale
-// const inferPLSimulateurFromCompanyDetails = (
-// 	company: Company | null
-// ): DirigeantOrNull => {
-// 	if (!company) {
-// 		return null
-// 	}
-// 	const activiteToSimulator = {
-// 		'Activités comptables': 'expert-comptable',
-// 		'Activité des médecins généralistes': 'médecin',
-// 		'Activités de radiodiagnostic et de radiothérapie': 'médecin',
-// 		'Activités chirurgicales': 'médecin',
-// 		'Activité des médecins spécialistes': 'médecin',
-// 		'Activités hospitalières': 'pamc',
-// 		'Pratique dentaire': 'chirurgien-dentiste',
-// 		'Commerce de détail de produits pharmaceutiques en magasin spécialisé':
-// 			'pharmacien',
-// 		'Activités des infirmiers et des sages-femmes': 'pamc',
-// 		"Activités des professionnels de la rééducation, de l'appareillage et des pédicures-podologues":
-// 			'auxiliaire-médical',
-// 		"Laboratoires d'analyses médicales": 'pharmacien',
-// 		'Arts du spectacle vivant': 'artiste-auteur',
-// 		'Création artistique relevant des arts plastiques': 'artiste-auteur',
-// 		'Autre création artistique': 'artiste-auteur',
-// 		'Activités photographiques': 'artiste-auteur',
-// 	} as Record<string, keyof SimulatorData>
-// 	return activiteToSimulator[company.activitePrincipale] || null
-// }
