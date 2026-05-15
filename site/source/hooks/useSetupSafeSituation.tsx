@@ -56,6 +56,7 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 								action.règle
 							)}`
 						)
+						dispatch(supprimeLaRègleDeLaSituation(action.règle))
 						break
 				}
 			}
