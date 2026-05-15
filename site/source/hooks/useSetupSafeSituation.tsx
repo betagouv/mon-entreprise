@@ -50,9 +50,13 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 						dispatch(supprimeLaRègleDeLaSituation(action.règle))
 						break
 					case 'erreur-inconnue':
-						throw new Error(
-							`Bad unknown situation : ${JSON.stringify(action.règle)}`
+						// eslint-disable-next-line no-console
+						console.error(
+							`Règle invalide hors des situations connues : ${JSON.stringify(
+								action.règle
+							)}`
 						)
+						break
 				}
 			}
 		)
