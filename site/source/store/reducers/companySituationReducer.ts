@@ -1,4 +1,5 @@
 import * as O from 'effect/Option'
+import { PublicodesExpression } from 'publicodes'
 
 import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
 import { toPublicodeDate } from '@/domaine/Date'
@@ -10,6 +11,17 @@ import { omit } from '@/utils'
 import { buildSituationFromObject } from '@/utils/publicodes/publicodes'
 
 import { SituationPublicodes } from './rootReducer'
+
+export const RÈGLES_IDENTITÉ_ENTREPRISE = [
+	'entreprise . date de création',
+	'entreprise . code catégorie juridique',
+	'entreprise . catégorie juridique',
+	'entreprise . SIREN',
+	'entreprise . nom',
+	'établissement . SIRET',
+] as const satisfies ReadonlyArray<DottedName>
+
+type RègleIdentitéEntreprise = (typeof RÈGLES_IDENTITÉ_ENTREPRISE)[number]
 
 const SAVED_NAMESPACES = [
 	'indépendant . profession libérale . réglementée . métier',
@@ -46,7 +58,7 @@ export function isCompanyDottedName(dottedName: DottedName) {
 export function companySituation(
 	state: SituationPublicodes = {},
 	action: Action
-) {
+): SituationPublicodes {
 	switch (action.type) {
 		case 'ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION':
 			if (isCompanyDottedName(action.fieldName)) {
@@ -92,7 +104,9 @@ export function companySituation(
 	return state
 }
 
-function getCompanySituation(entreprise: Entreprise): SituationPublicodes {
+function getCompanySituation(
+	entreprise: Entreprise
+): Record<RègleIdentitéEntreprise, PublicodesExpression> {
 	return {
 		'entreprise . date de création': toPublicodeDate(entreprise.dateDeCréation),
 		'entreprise . code catégorie juridique': entreprise.codeCatégorieJuridique,
