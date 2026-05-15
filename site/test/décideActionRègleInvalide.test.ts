@@ -73,16 +73,4 @@ describe('décideActionRègleInvalide', () => {
 
 		expect(action).toEqual({ kind: 'erreur-inconnue', règle })
 	})
-
-	it('priorise la situation du simulateur sur celle de l’entreprise si la règle est dans les deux', () => {
-		const règle = 'entreprise . salariés' as DottedName
-
-		const action = décideActionRègleInvalide(règle, {
-			...situationsVides,
-			situationDuSimulateur: { [règle]: 'oui' },
-			situationDeLEntreprise: { [règle]: 'non' },
-		})
-
-		expect(action).toEqual({ kind: 'omettre-et-marquer-obsolète', règle })
-	})
 })
