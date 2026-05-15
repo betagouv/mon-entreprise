@@ -1,4 +1,7 @@
-import { RÈGLES_IDENTITÉ_ENTREPRISE } from '@/domaine/Entreprise'
+import {
+	RègleIdentitéEntreprise,
+	RÈGLES_IDENTITÉ_ENTREPRISE,
+} from '@/domaine/Entreprise'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
@@ -16,8 +19,9 @@ export type ActionRègleInvalide =
 
 const règlesIdentitéEntreprise = new Set<DottedName>(RÈGLES_IDENTITÉ_ENTREPRISE)
 
-const estRègleIdentitéEntreprise = (règle: DottedName): boolean =>
-	règlesIdentitéEntreprise.has(règle)
+const estRègleIdentitéEntreprise = (
+	règle: DottedName
+): règle is RègleIdentitéEntreprise => règlesIdentitéEntreprise.has(règle)
 
 export function décideActionRègleInvalide(
 	règleInvalide: DottedName,
