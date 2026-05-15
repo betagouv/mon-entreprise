@@ -7,6 +7,7 @@ const situationsVides = {
 	situationDuSimulateur: {},
 	situationDeLEntreprise: {},
 	situationDeConfiguration: {},
+	règlesIdentitéEntreprise: [] as ReadonlyArray<DottedName>,
 }
 
 describe('décideActionRègleInvalide', () => {
@@ -19,6 +20,31 @@ describe('décideActionRègleInvalide', () => {
 		})
 
 		expect(action).toEqual({ kind: 'omettre-et-marquer-obsolète', règle })
+	})
+
+	it("demande de réinitialiser l'entreprise si la règle fait partie de l'identité de l'entreprise", () => {
+		const règle = 'entreprise . SIREN' as DottedName
+
+		const action = décideActionRègleInvalide(règle, {
+			...situationsVides,
+			situationDeLEntreprise: { [règle]: "'TAURUS'" },
+			règlesIdentitéEntreprise: [règle],
+		})
+
+		expect(action).toEqual({ kind: 'réinitialiser-entreprise', règle })
+	})
+
+	it("priorise la réinitialisation de l'entreprise sur l'omission si la règle est aussi une saisie", () => {
+		const règle = 'entreprise . catégorie juridique' as DottedName
+
+		const action = décideActionRègleInvalide(règle, {
+			...situationsVides,
+			situationDuSimulateur: { [règle]: "'SAS'" },
+			situationDeLEntreprise: { [règle]: "'SAS'" },
+			règlesIdentitéEntreprise: [règle],
+		})
+
+		expect(action).toEqual({ kind: 'réinitialiser-entreprise', règle })
 	})
 
 	it("demande d'omettre la règle si elle vient d'une saisie utilisateur dans la situation de l’entreprise", () => {
