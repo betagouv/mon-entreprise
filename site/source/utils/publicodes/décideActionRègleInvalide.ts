@@ -1,3 +1,4 @@
+import { RÈGLES_IDENTITÉ_ENTREPRISE } from '@/domaine/Entreprise'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
@@ -5,7 +6,6 @@ export type ContexteRègleInvalide = {
 	situationDuSimulateur: SituationPublicodes
 	situationDeLEntreprise: SituationPublicodes
 	situationDeConfiguration: SituationPublicodes
-	règlesIdentitéEntreprise: ReadonlyArray<DottedName>
 }
 
 export type ActionRègleInvalide =
@@ -14,16 +14,18 @@ export type ActionRègleInvalide =
 	| { kind: 'omettre'; règle: DottedName }
 	| { kind: 'erreur-inconnue'; règle: DottedName }
 
+const estRègleIdentitéEntreprise = (règle: DottedName): boolean =>
+	(RÈGLES_IDENTITÉ_ENTREPRISE as ReadonlyArray<DottedName>).includes(règle)
+
 export function décideActionRègleInvalide(
 	règleInvalide: DottedName,
 	{
 		situationDuSimulateur,
 		situationDeLEntreprise,
 		situationDeConfiguration,
-		règlesIdentitéEntreprise,
 	}: ContexteRègleInvalide
 ): ActionRègleInvalide {
-	if (règlesIdentitéEntreprise.includes(règleInvalide)) {
+	if (estRègleIdentitéEntreprise(règleInvalide)) {
 		return { kind: 'réinitialiser-entreprise', règle: règleInvalide }
 	}
 

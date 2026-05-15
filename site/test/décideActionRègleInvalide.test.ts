@@ -7,7 +7,6 @@ const situationsVides = {
 	situationDuSimulateur: {},
 	situationDeLEntreprise: {},
 	situationDeConfiguration: {},
-	règlesIdentitéEntreprise: [] as ReadonlyArray<DottedName>,
 }
 
 describe('décideActionRègleInvalide', () => {
@@ -28,7 +27,6 @@ describe('décideActionRègleInvalide', () => {
 		const action = décideActionRègleInvalide(règle, {
 			...situationsVides,
 			situationDeLEntreprise: { [règle]: "'TAURUS'" },
-			règlesIdentitéEntreprise: [règle],
 		})
 
 		expect(action).toEqual({ kind: 'réinitialiser-entreprise', règle })
@@ -41,7 +39,6 @@ describe('décideActionRègleInvalide', () => {
 			...situationsVides,
 			situationDuSimulateur: { [règle]: "'SAS'" },
 			situationDeLEntreprise: { [règle]: "'SAS'" },
-			règlesIdentitéEntreprise: [règle],
 		})
 
 		expect(action).toEqual({ kind: 'réinitialiser-entreprise', règle })

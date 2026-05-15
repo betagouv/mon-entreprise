@@ -4,24 +4,13 @@ import { PublicodesExpression } from 'publicodes'
 import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
 import { toPublicodeDate } from '@/domaine/Date'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
-import { Entreprise } from '@/domaine/Entreprise'
+import { Entreprise, RègleIdentitéEntreprise } from '@/domaine/Entreprise'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Action } from '@/store/actions/actions'
 import { omit } from '@/utils'
 import { buildSituationFromObject } from '@/utils/publicodes/publicodes'
 
 import { SituationPublicodes } from './rootReducer'
-
-export const RÈGLES_IDENTITÉ_ENTREPRISE = [
-	'entreprise . date de création',
-	'entreprise . code catégorie juridique',
-	'entreprise . catégorie juridique',
-	'entreprise . SIREN',
-	'entreprise . nom',
-	'établissement . SIRET',
-] as const satisfies ReadonlyArray<DottedName>
-
-type RègleIdentitéEntreprise = (typeof RÈGLES_IDENTITÉ_ENTREPRISE)[number]
 
 const SAVED_NAMESPACES = [
 	'indépendant . profession libérale . réglementée . métier',
