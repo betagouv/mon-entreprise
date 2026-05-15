@@ -14,8 +14,10 @@ export type ActionRègleInvalide =
 	| { kind: 'omettre'; règle: DottedName }
 	| { kind: 'erreur-inconnue'; règle: DottedName }
 
+const règlesIdentitéEntreprise = new Set<DottedName>(RÈGLES_IDENTITÉ_ENTREPRISE)
+
 const estRègleIdentitéEntreprise = (règle: DottedName): boolean =>
-	(RÈGLES_IDENTITÉ_ENTREPRISE as ReadonlyArray<DottedName>).includes(règle)
+	règlesIdentitéEntreprise.has(règle)
 
 export function décideActionRègleInvalide(
 	règleInvalide: DottedName,
