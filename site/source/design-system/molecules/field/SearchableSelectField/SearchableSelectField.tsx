@@ -101,7 +101,7 @@ export function SearchableSelectField(
 				) : (
 					<>
 						<IconContainer $hasLabel={!!props.label}>
-							{props.isSearchStalled ? <Spinner /> : <SearchIcon aria-hidden />}
+							{props.isSearchStalled ? <Spinner /> : <SearchIcon />}
 						</IconContainer>
 						<SearchInput
 							{...inputProps}
