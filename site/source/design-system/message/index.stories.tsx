@@ -125,6 +125,28 @@ export const MiniSansBordures: Story = {
 	),
 }
 
+export const Dismissibles: Story = {
+	render: () => (
+		<>
+			<Message type="primary" dismissible>
+				<Body>Message dismissible de type 'primary'</Body>
+			</Message>
+			<Message type="secondary" dismissible>
+				<Body>Message dismissible de type 'secondary'</Body>
+			</Message>
+			<Message type="success" dismissible>
+				<Body>Message dismissible de type 'success'</Body>
+			</Message>
+			<Message type="info" dismissible>
+				<Body>Message dismissible de type 'info'</Body>
+			</Message>
+			<Message type="error" dismissible>
+				<Body>Message dismissible de type 'error'</Body>
+			</Message>
+		</>
+	),
+}
+
 export const Icones: Story = {
 	render: () => (
 		<>
