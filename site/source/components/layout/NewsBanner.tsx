@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Body, CloseButton, Emoji, Link, Message } from '@/design-system'
+import { Body, Emoji, Link, Message } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 
@@ -60,6 +60,11 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 				icon={<Emoji emoji="✨" />}
 				mini
 				border={false}
+				dismissible
+				onDismiss={() => {
+					setShowBanner(false)
+					setItem(localStorageKey, lastRelease.name)
+				}}
 			>
 				<Body>
 					Découvrez les nouveautés {determinant(lastRelease.name)}
@@ -72,14 +77,6 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 					>
 						{lastRelease.name.toLowerCase()}
 					</Link>
-					<CloseButton
-						color="secondary"
-						onPress={() => {
-							setShowBanner(false)
-							setItem(localStorageKey, lastRelease.name)
-						}}
-						aria-label={t('Fermer')}
-					/>
 				</Body>
 			</Message>
 		</div>

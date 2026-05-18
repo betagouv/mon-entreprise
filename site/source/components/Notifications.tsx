@@ -1,15 +1,9 @@
 import Engine, { RuleNode } from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import {
-	CloseButton,
-	Emoji,
-	Markdown,
-	Message,
-	typography,
-} from '@/design-system'
+import { Emoji, Markdown, Message, typography } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInversionFail } from '@/hooks/useInversionFail'
 import { hideNotification } from '@/store/actions/actions'
@@ -48,7 +42,6 @@ function getNotifications(engine: Engine) {
 }
 
 export default function Notifications() {
-	const { t } = useTranslation()
 	const engine = useOptionalEngine()
 	const inversionFail = useInversionFail()
 	const hiddenNotifications = useSelector(
@@ -95,6 +88,8 @@ export default function Notifications() {
 						icon
 						type={sévérité === 'avertissement' ? 'info' : 'primary'}
 						key={dottedName}
+						dismissible
+						onDismiss={() => dispatch(hideNotification(dottedName))}
 					>
 						<StyledBody
 							as="div"
@@ -104,11 +99,6 @@ export default function Notifications() {
 						</StyledBody>
 						<Absolute $isMultiline={isMultiline(résumé ?? description ?? '')}>
 							<ExplicableRule dottedName={dottedName} light />
-							<CloseButton
-								aria-label={t('Cacher le message')}
-								onPress={() => dispatch(hideNotification(dottedName))}
-								color={sévérité === 'avertissement' ? 'tertiary' : 'primary'}
-							/>
 						</Absolute>
 					</Message>
 				))}
@@ -130,12 +120,9 @@ const Absolute = styled.div<{ $isMultiline: boolean }>`
 	align-items: flex-end;
 	position: absolute;
 	top: ${({ theme, $isMultiline }) =>
-		$isMultiline ? theme.spacings.xxs : theme.spacings.xs};
-	right: ${({ theme }) => theme.spacings.sm};
-	${CloseButton} {
-		margin-left: ${({ theme }) => theme.spacings.xxs};
-		margin-bottom: ${({ theme }) => theme.spacings.xxs};
-	}
+		$isMultiline ? theme.spacings.xxs : theme.spacings.md};
+	right: ${({ theme }) => theme.spacings.xxl};
+	padding-top: 2px;
 `
 
 const StyledEmoji = styled(Emoji)`

@@ -1,9 +1,11 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Palette } from '@/types/styled'
 
+import { CloseButton } from '../buttons'
 import { Emoji } from '../emoji'
 import { ReturnIcon } from '../icons'
 import { getColorPalette } from '../theme'
@@ -22,6 +24,8 @@ type MessageProps = {
 	className?: string
 	style?: CSSProperties
 	role?: string
+	dismissible?: boolean
+	onDismiss?: () => void
 }
 
 export function Message({
@@ -34,7 +38,16 @@ export function Message({
 	className,
 	style,
 	role = undefined,
+	dismissible = false,
+	onDismiss,
 }: MessageProps) {
+	const { t } = useTranslation()
+	const [showMessage, setShowMessage] = useState(true)
+
+	if (!showMessage) {
+		return
+	}
+
 	if (
 		typeof children === 'string' ||
 		(Array.isArray(children) &&
@@ -46,6 +59,11 @@ export function Message({
 		) : (
 			<Body>{children}</Body>
 		)
+	}
+
+	const handleDismiss = () => {
+		setShowMessage(false)
+		onDismiss?.()
 	}
 
 	return (
@@ -66,7 +84,17 @@ export function Message({
 							: getIconFromType(type) ?? <ReturnIcon />}
 					</StyledIconWrapper>
 				)}
-				<Wrapper role={role}>{children}</Wrapper>
+				<Wrapper role={role} $withCloseButton={dismissible}>
+					{children}
+					{dismissible && (
+						<HideButton
+							onPress={handleDismiss}
+							aria-label={t('Cacher le message')}
+							color={getButtonColor(type)}
+							$mini={mini}
+						/>
+					)}
+				</Wrapper>
 			</StyledMessage>
 		</ForceThemeProvider>
 	)
@@ -129,8 +157,16 @@ const StyledMessage = styled.div<StyledMessageProps>`
 	}}
 `
 
-const Wrapper = styled.div`
+const HideButton = styled(CloseButton)<{ $mini: boolean }>`
+	position: absolute;
+	top: ${({ theme, $mini }) => theme.spacings[$mini ? 'sm' : 'md']};
+	right: ${({ theme, $mini }) => theme.spacings[$mini ? 'sm' : 'md']};
+`
+
+const Wrapper = styled.div<{ $withCloseButton: boolean }>`
 	flex: 1;
+	padding-right: ${({ theme, $withCloseButton }) =>
+		$withCloseButton && theme.spacings.xl};
 `
 
 Message.Wrapper = Wrapper
@@ -151,4 +187,12 @@ const getTextColor = (type: ComponentType) => {
 	const colorPalette = getColorPalette(type)
 
 	return (colorPalette as Palette)[700] ?? colorPalette[600]
+}
+
+const getButtonColor = (type: ComponentType) => {
+	if (type === 'info') {
+		return 'tertiary'
+	}
+
+	return type
 }
