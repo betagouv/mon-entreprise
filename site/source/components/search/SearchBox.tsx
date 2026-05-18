@@ -24,7 +24,7 @@ export const SearchBox = connectSearchBox<Props>(
 						refine('')
 					}}
 					placeholder={t(
-						'recherche-globale.placeholder',
+						'components.recherche.placeholder',
 						'Mot-clé ou acronyme (exemple : CSG)'
 					)}
 					id="input-recherche-globale"

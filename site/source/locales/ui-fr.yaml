@@ -1,30 +1,16 @@
-(embauche, absences, départ...): (embauche, absences, départ...)
-"404":
-  action: Revenir en lieu sûr
-  message: Cette page n'existe pas ou n'existe plus
-<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour retrouver les informations à jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2></0>:
-  <0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé
-  de le retirer du site. En effet, il était trop difficile de maintenir à jour
-  les informations et les calculs.</0><1>Pour retrouver les informations à
-  jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités
-  relevant de l’économie collaborative</2></0>
-<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
-  <0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
-  l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>
 <0>Activité mixte</0>: <0>Activité mixte</0>
 <0>Impôt sur le revenu</0> (IR): <0>Impôt sur le revenu</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Impôt sur les sociétés</0> (IS)
-<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
-  <0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas
-  possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil
-  dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en
-  modifiant la valeur renseignée.</1>
+<0>Le montant demandé n'est <1>pas calculable…</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
+  <0>Le montant demandé n'est <1>pas calculable…</1></0><1>Il n'est pas possible
+  d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le
+  calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la
+  valeur renseignée.</1>
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Versement libératoire</0> de l'impôt sur le revenu
 API REST de simulation: API REST de simulation
 API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accéder au site mon-entreprise, nouvelle fenêtre: Accéder au site mon-entreprise, nouvelle fenêtre
-Activités relevant de l’économie collaborative, voir la page: Activités relevant de l’économie collaborative, voir la page
 Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
 Afficher les détails de l'entreprise, la modifier ou la supprimer.: Afficher les détails de l'entreprise, la modifier ou la supprimer.
@@ -38,11 +24,7 @@ Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-cl�
   mots-clés.
 Aucune donnée disponible.: Aucune donnée disponible.
 Avec ACRE: Avec ACRE
-Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".:
-  Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou
-  "viennoiserie".
 Budget: Budget
-Cacher le message: Cacher le message
 Cette commune n’existe pas: Cette commune n’existe pas
 Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
@@ -92,15 +74,13 @@ Info sur {{ title }}: Info sur {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
-J'ai compris: J'ai compris
-J'ai compris, fermer le message condensé.: J'ai compris, fermer le message condensé.
 Je donne mon avis, donner mon avis sur jedonnemonavis:
   numerique:
     gouv:
       fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
         jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
 Jours: Jours
-Le montant demandé n'est <2>pas calculable...</2>: Le montant demandé n'est <2>pas calculable...</2>
+Le montant demandé n'est <2>pas calculable…</2>: Le montant demandé n'est <2>pas calculable…</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Les données de simulations se mettront automatiquement à jour après la
   modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre
@@ -109,7 +89,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   modifierez ce dernier.</2>
 "Lire la documentation au sujet de :": "Lire la documentation au sujet de :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
-Lire les précisions, ouvrir le message condensé.: Lire les précisions, ouvrir le message condensé.
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
@@ -157,9 +136,6 @@ Rechercher une règle dans la documentation: Rechercher une règle dans la docum
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
 Replier: Replier
 Retour à mon activité: Retour à mon activité
-Retrouver ma précédente simulation, charger les données de ma précédente simulation.:
-  Retrouver ma précédente simulation, charger les données de ma précédente
-  simulation.
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Règles de calculs: Règles de calculs
@@ -167,7 +143,6 @@ Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
-Salariés et embauche: Salariés et embauche
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
   que vous ayez opté pour que <2>les informations de votre entreprise ne soient
@@ -249,28 +224,7 @@ aria-label:
   service-public: service-public.fr, nouvelle fenêtre
   urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
   équipe: équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre
-assistants:
-  pour-mon-entreprise:
-    annuaire-entreprises:
-      aria-label: Annuaire-entreprise, Visiter le site
-      body: Retrouvez toutes les informations publiques concernant votre entreprise
-        sur
-      cta: Visiter le site
-      title: Voir vos données publiques
-  warning:
-    cmg: <0><0>Les calculs sont indicatifs.</0> Ils sont faits à partir des éléments
-      que vous avez saisis et des éléments réglementaires applicables, mais ils
-      ne tiennent pas compte de l’ensemble de votre situation.<2></2>Ils n’ont
-      pas de valeur contractuelle et ne peuvent engager la responsabilité de
-      l’Urssaf, de la Caf ou de la MSA.</0><1>Aucun élément de cette simulation
-      ne sera conservé.</1><2><0>De quoi avez-vous besoin ?</0> De votre revenu
-      fiscal 2023, ainsi que du nombre d’heures de garde, du montant des
-      rémunérations et du CMG perçu pour les mois de mars, avril et mai 2025,
-      pour chacune de vos salariées.</2>
 avril: avril
-betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
-  <3>valider les informations et les calculs</3>, mais des <6>erreurs peuvent
-  être présentes.</6></0>"
 cards:
   simulator-resource:
     cta: Accéder au simulateur
@@ -283,113 +237,6 @@ checklist:
   showmore:
     closed: En savoir plus
     open: Masquer les détails
-choix-statut:
-  activité:
-    help:
-      title: Le choix du statut, un choix adapté à votre situation
-    title: Mon activité principale est…<1><0>Le choix du statut et les cotisations
-      diffèrent en fonction de l'activité professionnelle que vous exercez.
-      Renseigner votre métier vous donnera de la visibilité sur les statuts
-      possibles et permettra de simuler vos revenus de manière plus
-      précise.</0><1><0>Vous cumulez plusieurs activités ?</0><1>Votre
-      entreprise doit tout de même déclarer une activité principale à
-      l'administration. Pour savoir comment la déterminer, <2>voir ce
-      guide</2>.</1></1></1>
-  association:
-    help:
-      title: L’association, ou organisation à but non lucratif, quèsaco ?
-    question:
-      gagner-argent:
-        label: Dans le but de <1>gagner de l'argent</1>
-      label: Pourquoi créez vous cette entreprise ?
-      non-lucratif:
-        description:
-          disabled: Cette option n'est pas disponible car votre activité ne peut pas être
-            exercée sous forme d’association
-          label: Par exemple, en créant une association
-        label: Dans un but <1>non lucratif</1>
-    title: "Je crée cette activité...<1><0>Elle permet de <2>partager un projet
-      commun dans l’intérêt général, sans faire de bénéfices</2> : promouvoir
-      une activité sportive, l'insertion de personnes en difficulté, le
-      développement local, etc...</0></1>"
-  associés:
-    help:
-      title: Être plusieurs associé(e)s ou actionnaires
-    plusieurs:
-      avertissement: Cet assistant ne gère pas encore le cas des gérant associés
-        égalitaire ou minoritaire. Il s'adresse uniquement aux personnes
-        possédant <1>au minimum 51 % des parts</1> de leur entreprise.
-    question1:
-      label: Comment gérez-vous cette entreprise ?
-      plusieurs: À plusieurs
-      seul: Seul / seule
-    question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps ?
-    question3:
-      help:
-        title: Choisir entre une entreprise individuelle et une société
-      label: Voulez-vous exercer votre activité sous la forme d'une société uniquement
-        ?<1><0>Entreprise individuelle</0><1><0>Vous êtes <2>responsable sur
-        l'ensemble de vos biens utiles à votre activité</2> (matériel, locaux,
-        outils, etc.). </0><1>Votre <2>patrimoine personnel peut être saisi</2>
-        en cas de manquements à vos obligations fiscales et sociales.</1><2>Vous
-        pouvez <2>renoncer à la séparation de ses patrimoines</2>, par exemple
-        pour garantir un crédit bancaire.</2><3>Les formalités de création et de
-        gestion sont <2>plus simples et moins
-        coûteuses.</2></3></1><2>Société</2><3><0>Vous êtes uniquement
-        <2>responsable sur le montant de votre apport au capital social</2> et
-        des biens détenus par la société.</0><1>Les formalités de création et de
-        gestion sont <2>plus complexes et plus coûteuses</2>.</1></3></1>
-    title: Je gère cette entreprise...<1><0>Vous <1>partagez la propriété de votre
-      entreprise </1>avec d’autres personnes qui peuvent être <4>physiques</4>
-      (individus) ou <7>morales</7> (sociétés).</0><1>Dans le cas des
-      <1>sociétés par actions</1> (SASU, SAS), on parle
-      d’<3>actionnaires</3>.</1></1>
-  commune:
-    description: <0>Vous allez maintenant pouvoir entrer dans le détail et comparer
-      <2>les revenus</2>, la <4>couverture sociale</4> et la <7>gestion
-      comptable et juridique</7> avant de faire votre choix.</0>
-    help:
-      title: Chaque territoire a ses spécificités
-    title: Dans quelle commune voulez-vous créer votre entreprise ?<1><0>Certains
-      dispositifs législatifs sont spécifiques à des régions ou départements
-      (Alsace-Moselle, exonération DOM, etc).</0><1>Par ailleurs, certaines
-      communes ont des dispositifs d'aide à la création d'entreprise (ZRR, ZFU,
-      etc).</1></1>
-  home:
-    estimated-duration: "Durée estimée : 10 minutes."
-    find-statut: Trouver le bon statut
-    intro: La première étape pour créer votre entreprise consiste à <2>choisir un
-      statut juridique adapté à votre activité</2>. Les démarches
-      administratives changent en fonction de ce dernier.
-    warning-entreprise-existante: <0>Une entreprise est déjà renseignée</0><1>Pour
-      accéder à l'assistant, il vous faut réinitialiser les données.</1>
-  rémunération:
-    CA:
-      help:
-        title: Estimer mon chiffre d’affaire
-      label: Montant du chiffre d'affaires HT
-      title: "La première année, j'estime mon chiffre d'affaires à...<1><0>Le chiffre
-        d’affaires est la <2>somme des montants des ventes réalisées pendant</2>
-        votre exercice comptable (un an) : <6>CA = prix de vente × quantités
-        vendues</6>.</0></1>"
-    charges:
-      help:
-        title: Définir vos charges professionnelles
-      label: Montant des charges HT
-      title: "<0>J'estime mes charges professionnelles à...<1><0>Ce sont <2>toutes les
-        dépenses nécessaires au bon fonctionnement de votre entreprise</2> :
-        expertise-comptable, abonnement téléphonique, abonnement internet,
-        mutuelle, prévoyance, outils de travail, etc.</0></1></0>"
-    rémunérationTotale:
-      label: Montant de la rémunération totale
-    totale:
-      help:
-        title: Rémunération totale du dirigeant
-      title: En tant que dirigeant, je souhaite que l'entreprise me rémunère en
-        dépensant au total...<1><0>C'est ce que l'entreprise dépense en tout
-        pour la rémunération du dirigeant. Cette rémunération "super-brute"
-        inclut toutes les cotisations sociales à payer. On peut aussi considérer
-        que c'est la valeur monétaire du travail du dirigeant.</0></1>
 code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Catégories du Guichet unique<1></1></0>
@@ -413,6 +260,8 @@ components:
       parmi l'ensemble des partenaires publics et parapublics, le conseiller
       compétent pour votre demande. Celui-ci vous contactera par téléphone sous
       5 jours et vous accompagnera en fonction de votre situation.
+  engine-value:
+    voir-la-documentation: Voir la documentation du calcul de {{valeur}}
   feedback:
     form:
       email:
@@ -425,7 +274,7 @@ components:
         error: Veuillez entrer un message avant de soumettre le formulaire.
         explanations: Évitez de communiquer des informations personnelles
         label: Que pouvons-nous améliorer pour mieux répondre à vos attentes ?
-        placeholder: "Exemple : Des informations plus claires, un calcul détaillé..."
+        placeholder: "Exemple : Des informations plus claires, un calcul détaillé…"
       send: Envoyer le message
       share:
         checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
@@ -458,9 +307,8 @@ components:
       cotisations: Cotisations sociales
       salaire-brut: Salaire brut
       salaire-net: Salaire net
-composants:
-  engine-value:
-    voir-la-documentation: Voir la documentation du calcul de {{valeur}}
+  recherche:
+    placeholder: "Mot-clé ou acronyme (exemple : CSG)"
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
@@ -478,27 +326,6 @@ conversation:
   yes-no:
     aria-label: Oui ou non
 copied: Copié
-crée:
-  choix-statut:
-    détails-activité:
-      aide-bnc-bic: <0>Le choix entre exercer une activité à titre <2>commercial</2>
-        (avec des revenus de type BIC) ou à titre <4>indépendant</4> (avec des
-        revenus de type BNC) dépend principalement de la nature de votre travail
-        :</0><1><0>Si vous vendez des biens ou des services de manière régulière
-        et que vous agissez comme un commerçant, il est probable que vous
-        releviez du <1>régime BIC.</1></0><1>En revanche, si votre activité est
-        basée sur des compétences professionnelles, intellectuelles ou
-        artistiques, comme la médecine, la consultation ou l'écriture, vous
-        serez probablement sous le <1>régime BNC.</1></1></1><2>Pour en savoir
-        plus, vous pouvez consulter le site de <2>l'URSSAF</2>.</2>
-créer:
-  activité-détails:
-    next1: Continuer avec cette activité
-  choix-statut:
-    détails-activité:
-      aide-cci-cma: Si vous hésitez entre une activité artisanale ou commerciale, vous
-        pouvez consulter les sites de la <2>CCI</2> ou de la <5>CMA</5>.
-      title: Précisions sur votre activité
 design-system:
   date-picker:
     close: Fermer
@@ -527,7 +354,7 @@ error:
   description: "Décrivez les actions qui ont conduit à cette erreur :"
   intro: L'équipe technique mon-entreprise a été prévenue automatiquement,
     veuillez nous excuser pour la gêne occasionnée.
-  placeholder: Bonjour, j'ai rencontré une erreur après avoir cliqué sur...
+  placeholder: Bonjour, j'ai rencontré une erreur après avoir cliqué sur…
   title: Une erreur est survenue
 external-links:
   service:
@@ -555,6 +382,10 @@ footer:
     text: Voir le code source sur Github
 février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
+global:
+  oui-non:
+    non: Non
+    oui: Oui
 gérer:
   ressources:
     annuaire-entreprises:
@@ -637,10 +468,12 @@ legalNotice:
 library:
   description: Outils pour les développeurs
   title: Librairie de calcul
-loading: Chargement en cours...
 mai: mai
 main-menu: Menu principal
 mars: mars
+messages:
+  loading: Chargement en cours…
+  masquer-message: Cacher le message
 metadata:
   description: "L'assistant officiel de l'entrepreneur : simulateurs de
     cotisations, choix du statut, et plus encore."
@@ -665,7 +498,9 @@ novembre: novembre
 octobre: octobre
 pages:
   "404":
+    action: Revenir en lieu sûr
     description: La page que vous cherchez n'existe pas ou n'existe plus
+    message: Cette page n'existe pas ou n'existe plus
     title: Page introuvable
   accessibilité: "<0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
     page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.1 qui vise
@@ -754,22 +589,179 @@ pages:
     07</2><3>Contacter le D&eacute;fenseur des droits par
     t&eacute;l&eacute;phone : <2>+33 9 69 39 00 00</2></3></43><44>Mis à jour le
     27 mai 2025</44>"
-  assistant:
-    recherche-code-ape:
-      seo explanation: "<0>Comment fonctionne la recherche de code APE ?</0><1>Pour
-        retrouver le code APE de votre entreprise, saisissez un ou deux
-        mots-clés qui décrivent l'activité exercée. Par exemple : « restauration
-        » ou « coach sportif » La recherche utilise les bases de l'Insee et du
-        Guichet Unique pour trouver les activités qui correspondent. Par
-        ailleurs, les résultats les plus populaires (avec le plus d'entreprise
-        crées) sont affichés en premier.</1><2>Si vous ne retrouvez pas le code
-        APE correspondant à votre activité, vous pouvez nous le signaler avec le
-        bouton « Je ne trouve pas mon activité ». Cela nous permettra
-        d'améliorer la recherche en ajoutant des mots clés au fur et à mesure de
-        vos retours.</2><3>Source</3><4>Les données utilisées pour ce moteur de
-        recherche sont extraites du PDF des nomenclatures d'activités françaises
-        de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
   assistants:
+    activité-détails:
+      next1: Continuer avec cette activité
+    choix-statut:
+      activité:
+        help:
+          title: Le choix du statut, un choix adapté à votre situation
+        title: Mon activité principale est…<1><0>Le choix du statut et les cotisations
+          diffèrent en fonction de l'activité professionnelle que vous exercez.
+          Renseigner votre métier vous donnera de la visibilité sur les statuts
+          possibles et permettra de simuler vos revenus de manière plus
+          précise.</0><1><0>Vous cumulez plusieurs activités ?</0><1>Votre
+          entreprise doit tout de même déclarer une activité principale à
+          l'administration. Pour savoir comment la déterminer, <2>voir ce
+          guide</2>.</1></1></1>
+      association:
+        help:
+          title: L’association, ou organisation à but non lucratif, quèsaco ?
+        question:
+          gagner-argent:
+            label: Dans le but de <1>gagner de l'argent</1>
+          label: Pourquoi créez vous cette entreprise ?
+          non-lucratif:
+            description:
+              disabled: Cette option n'est pas disponible car votre activité ne peut pas être
+                exercée sous forme d’association
+              label: Par exemple, en créant une association
+            label: Dans un but <1>non lucratif</1>
+        title: "Je crée cette activité…<1><0>Elle permet de <2>partager un projet commun
+          dans l’intérêt général, sans faire de bénéfices</2> : promouvoir une
+          activité sportive, l'insertion de personnes en difficulté, le
+          développement local, etc…</0></1>"
+      associés:
+        help:
+          title: Être plusieurs associé(e)s ou actionnaires
+        plusieurs:
+          avertissement: Cet assistant ne gère pas encore le cas des gérant associés
+            égalitaire ou minoritaire. Il s'adresse uniquement aux personnes
+            possédant <1>au minimum 51 % des parts</1> de leur entreprise.
+        question1:
+          label: Comment gérez-vous cette entreprise ?
+          plusieurs: À plusieurs
+          seul: Seul / seule
+        question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps&nbsp;?
+        question3:
+          help:
+            title: Choisir entre une entreprise individuelle et une société
+          label: Voulez-vous exercer votre activité sous la forme d'une société uniquement
+            ?<1><0>Entreprise individuelle</0><1><0>Vous êtes <2>responsable sur
+            l'ensemble de vos biens utiles à votre activité</2> (matériel,
+            locaux, outils, etc.). </0><1>Votre <2>patrimoine personnel peut
+            être saisi</2> en cas de manquements à vos obligations fiscales et
+            sociales.</1><2>Vous pouvez <2>renoncer à la séparation de ses
+            patrimoines</2>, par exemple pour garantir un crédit
+            bancaire.</2><3>Les formalités de création et de gestion sont
+            <2>plus simples et moins
+            coûteuses.</2></3></1><2>Société</2><3><0>Vous êtes uniquement
+            <2>responsable sur le montant de votre apport au capital social</2>
+            et des biens détenus par la société.</0><1>Les formalités de
+            création et de gestion sont <2>plus complexes et plus
+            coûteuses</2>.</1></3></1>
+        title: Je gère cette entreprise…<1><0>Vous <1>partagez la propriété de votre
+          entreprise </1>avec d’autres personnes qui peuvent être
+          <4>physiques</4> (individus) ou <7>morales</7> (sociétés).</0><1>Dans
+          le cas des <1>sociétés par actions</1> (SASU, SAS), on parle
+          d’<3>actionnaires</3>.</1></1>
+      commune:
+        description: <0>Vous allez maintenant pouvoir entrer dans le détail et comparer
+          <2>les revenus</2>, la <4>couverture sociale</4> et la <7>gestion
+          comptable et juridique</7> avant de faire votre choix.</0>
+        help:
+          title: Chaque territoire a ses spécificités
+        title: Dans quelle commune voulez-vous créer votre entreprise ?<1><0>Certains
+          dispositifs législatifs sont spécifiques à des régions ou départements
+          (Alsace-Moselle, exonération DOM, etc).</0><1>Par ailleurs, certaines
+          communes ont des dispositifs d'aide à la création d'entreprise (ZRR,
+          ZFU, etc).</1></1>
+      détails-activité:
+        aide-bnc-bic: <0>Le choix entre exercer une activité à titre <2>commercial</2>
+          (avec des revenus de type BIC) ou à titre <4>indépendant</4> (avec des
+          revenus de type BNC) dépend principalement de la nature de votre
+          travail :</0><1><0>Si vous vendez des biens ou des services de manière
+          régulière et que vous agissez comme un commerçant, il est probable que
+          vous releviez du <1>régime BIC.</1></0><1>En revanche, si votre
+          activité est basée sur des compétences professionnelles,
+          intellectuelles ou artistiques, comme la médecine, la consultation ou
+          l'écriture, vous serez probablement sous le <1>régime
+          BNC.</1></1></1><2>Pour en savoir plus, vous pouvez consulter le site
+          de <2>l'URSSAF</2>.</2>
+        aide-cci-cma: Si vous hésitez entre une activité artisanale ou commerciale, vous
+          pouvez consulter les sites de la <2>CCI</2> ou de la <5>CMA</5>.
+        title: Précisions sur votre activité
+      home:
+        estimated-duration: "Durée estimée : 10 minutes."
+        find-statut: Trouver le bon statut
+        intro: La première étape pour créer votre entreprise consiste à <2>choisir un
+          statut juridique adapté à votre activité</2>. Les démarches
+          administratives changent en fonction de ce dernier.
+        warning-entreprise-existante:
+          popover:
+            bouton:
+              aria-label: Réinitialiser la situation enregistrée
+              texte: Réinitialiser
+            titre: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
+          titre: <0>Une entreprise est déjà renseignée</0><1>Pour accéder à l'assistant,
+            il vous faut réinitialiser les données.</1>
+      meta:
+        description: SAS, EURL, EI, auto-entrepreneur…  Ce simulateur vous aide à
+          choisir le statut juridique le plus adapté à votre projet
+          d'entreprise.
+        title: Aide au choix du statut juridique
+      rémunération:
+        CA:
+          help:
+            title: Estimer mon chiffre d’affaire
+          label: Montant du chiffre d'affaires HT
+          title: "La première année, j'estime mon chiffre d'affaires à…<1><0>Le chiffre
+            d’affaires est la <2>somme des montants des ventes réalisées
+            pendant</2> votre exercice comptable (un an) : <6>CA = prix de vente
+            × quantités vendues</6>.</0></1>"
+        charges:
+          help:
+            title: Définir vos charges professionnelles
+          label: Montant des charges HT
+          title: "<0>J'estime mes charges professionnelles à…<1><0>Ce sont <2>toutes les
+            dépenses nécessaires au bon fonctionnement de votre entreprise</2> :
+            expertise-comptable, abonnement téléphonique, abonnement internet,
+            mutuelle, prévoyance, outils de travail, etc.</0></1></0>"
+        rémunérationTotale:
+          label: Montant de la rémunération totale
+        totale:
+          help:
+            title: Rémunération totale du dirigeant
+          title: En tant que dirigeant, je souhaite que l'entreprise me rémunère en
+            dépensant au total…<1><0>C'est ce que l'entreprise dépense en tout
+            pour la rémunération du dirigeant. Cette rémunération "super-brute"
+            inclut toutes les cotisations sociales à payer. On peut aussi
+            considérer que c'est la valeur monétaire du travail du
+            dirigeant.</0></1>
+      résultat:
+        démarches:
+          cta: Accéder au site
+          texte: Immatriculez votre entreprise en ligne, de manière sécurisée et gratuite,
+            sur le site officiel formalites.entreprises.gouv.fr.
+        guide:
+          cta: Lire le guide
+          texte: Laissez-vous guidez pas à pas dans les étapes de création de votre
+            entreprise, du stade de l’idée au lancement de l’entreprise.
+        intro: Félicitations ! Le temps est venu de rassembler toutes les informations
+          nécessaires à la création de votre entreprise. Voici quelques pistes.
+        recommencer: Recommencer l’assistant
+        références: "{{statutLabel}} : pour aller plus loin"
+        simulateur: Simuler vos futurs revenus
+        titre: "Vous avez choisi le statut :"
+      seo explanation: <0>Pourquoi le choix du statut est-il essentiel ?</0><1>Votre
+        statut juridique détermine la structure de votre entreprise, ses
+        obligations fiscales et sociales, ainsi que votre responsabilité en tant
+        que dirigeant. Il peut influencer directement votre rentabilité, votre
+        couverture sociale, vos possibilités de financement, et bien plus
+        encore.</1><2>Comment choisir le bon statut ?</2><3>Notre assistant au
+        choix du statut est conçu pour simplifier ce processus complexe. Il vous
+        posera des questions simples sur votre entreprise, vos objectifs et
+        votre situation personnelle. Il vous permettra de selectionner le statut
+        le mieux adaptés à votre situation.</3><4>Les avantages de notre
+        assistant :</4><5><0><0>Personnalisé :</0> Nos recommandations sont
+        adaptées à votre situation spécifique.</0><1><0>Informé :</0> Nous
+        actualisons régulièrement nos informations pour refléter les dernières
+        réglementations et lois fiscales.</1><2><0>Simplicité :</0> Vous n'avez
+        pas besoin d'être un expert juridique. Notre assistant rend le processus
+        aussi simple que possible.</2><3><0>Confiance :</0> Nos recommandations
+        reposent sur une analyse approfondie et impartiale.</3></5>
+      shortname: Choix du statut
+      title: Choisir votre statut
     cmg:
       déclarations:
         AMA:
@@ -903,6 +895,16 @@ pages:
         conservé.</0></1>"
       shortname: Complément transitoire au CMG
       title: Simulateur de complément transitoire au CMG
+      warning: <0><0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
+        éléments que vous avez saisis et des éléments réglementaires
+        applicables, mais ils ne tiennent pas compte de l’ensemble de votre
+        situation.<2></2>Ils n’ont pas de valeur contractuelle et ne peuvent
+        engager la responsabilité de l’Urssaf, de la Caf ou de la
+        MSA.</0><1>Aucun élément de cette simulation ne sera
+        conservé.</1><2><0>De quoi avez-vous besoin ?</0> De votre revenu fiscal
+        2023, ainsi que du nombre d’heures de garde, du montant des
+        rémunérations et du CMG perçu pour les mois de mars, avril et mai 2025,
+        pour chacune de vos salariées.</2>
     declaration-charges-sociales-independant:
       aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
       header: L’assistant à la détermination des charges sociales déductibles, c’est
@@ -910,18 +912,38 @@ pages:
     declaration-revenus-pamc:
       aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
       header: L’assistant à la déclaration de revenus des PAMC, c’est terminé
+    déclaration-indépendant: Ce dernier n’a pas rencontré le succès escompté. Nous
+      avons donc décidé de le retirer du site. En effet, il était trop difficile
+      de maintenir à jour les informations et les calculs.
     pour-mon-entreprise:
+      annuaire-entreprises:
+        aria-label: Annuaire-entreprise, Visiter le site
+        body: Retrouvez toutes les informations publiques concernant votre entreprise
+          sur
+        cta: Visiter le site
+        title: Voir vos données publiques
       avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
         revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
         que nous développions un nouveau simulateur, laissez-nous message en
         cliquant sur le bouton "<1></1>" à droite de votre écran.</1>
-      description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
+      description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
         payer des cotisations et des impôts. Anticipez leurs montants grâce aux
         simulateurs adaptés à votre situation.
+      embauche: Salariés et embauche
       meta:
         description: Simulateurs et assistants adaptés à votre entreprise
+      questions: "Répondez aux questions suivantes pour découvrir les simulateurs et
+        assistants adaptés à votre situation :"
+      simulateurs: Simulateurs pour votre entreprise
+      situation-overwrite:
+        annuler: Annuler
+        question: Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
+          l’écraser ?
+        écraser: Écraser
       title: Assistants pour mon activité
     recherche-code-ape:
+      alternative: Vous pouvez essayer "{{proposal}}" au lieu de "{{match}}"
+      cant-find-my-activity: Je ne trouve pas mon activité
       description: <0>Cet assistant vous permet de trouver rapidement le code APE
         (activité principale exercée) qui correspond à votre activité. Ce code
         est attribué par l'INSEE à chaque entreprise en France afin de les
@@ -930,35 +952,41 @@ pages:
         les plus élevés.</0></1><2><0>Retrouvez plus d'informations sur le code
         APE sur <2>entreprendre.service-public.fr</2> et
         <6>economie.gouv.fr</6>.</0></2>
+      feedback:
+        description: Décrivez-nous votre activité ainsi que les termes de recherche que
+          vous avez utilisés qui n'ont pas donné de bons résultats.<1></1>Nous
+          utiliserons ces informations pour améliorer cet outil.
+        info: Nous ne sommes pas en mesure de répondre aux questions concernant le code
+          APE de votre entreprise.
+        placeholder: Bonjour, je suis boulanger et je n’ai pas trouvé en cherchant
+          "pain" ou "viennoiserie".
       meta:
         description: Assistant pour trouver le code APE qui correspond à votre activité.
         title: Recherche de code APE
+      radio-card-group:
+        aria-label: Liste des activités
+      seo explanation: "<0>Comment fonctionne la recherche de code APE ?</0><1>Pour
+        retrouver le code APE de votre entreprise, saisissez un ou deux
+        mots-clés qui décrivent l'activité exercée. Par exemple : « restauration
+        » ou « coach sportif » La recherche utilise les bases de l'Insee et du
+        Guichet Unique pour trouver les activités qui correspondent. Par
+        ailleurs, les résultats les plus populaires (avec le plus d'entreprise
+        crées) sont affichés en premier.</1><2>Si vous ne retrouvez pas le code
+        APE correspondant à votre activité, vous pouvez nous le signaler avec le
+        bouton « Je ne trouve pas mon activité ». Cela nous permettra
+        d'améliorer la recherche en ajoutant des mots clés au fur et à mesure de
+        vos retours.</2><3>Source</3><4>Les données utilisées pour ce moteur de
+        recherche sont extraites du PDF des nomenclatures d'activités françaises
+        de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
       shortname: Recherche de code APE
       title: "Quel code APE pour mon activité ? "
-  choix-statut:
-    meta:
-      description: SAS, EURL, EI, auto-entrepreneur...  Ce simulateur vous aide à
-        choisir le statut juridique le plus adapté à votre projet d'entreprise.
-      title: Aide au choix du statut juridique
-    seo explanation: <0>Pourquoi le choix du statut est-il essentiel ?</0><1>Votre
-      statut juridique détermine la structure de votre entreprise, ses
-      obligations fiscales et sociales, ainsi que votre responsabilité en tant
-      que dirigeant. Il peut influencer directement votre rentabilité, votre
-      couverture sociale, vos possibilités de financement, et bien plus
-      encore.</1><2>Comment choisir le bon statut ?</2><3>Notre assistant au
-      choix du statut est conçu pour simplifier ce processus complexe. Il vous
-      posera des questions simples sur votre entreprise, vos objectifs et votre
-      situation personnelle. Il vous permettra de selectionner le statut le
-      mieux adaptés à votre situation.</3><4>Les avantages de notre assistant
-      :</4><5><0><0>Personnalisé :</0> Nos recommandations sont adaptées à votre
-      situation spécifique.</0><1><0>Informé :</0> Nous actualisons
-      régulièrement nos informations pour refléter les dernières réglementations
-      et lois fiscales.</1><2><0>Simplicité :</0> Vous n'avez pas besoin d'être
-      un expert juridique. Notre assistant rend le processus aussi simple que
-      possible.</2><3><0>Confiance :</0> Nos recommandations reposent sur une
-      analyse approfondie et impartiale.</3></5>
-    shortname: Choix du statut
-    title: Choisir votre statut
+    économie-collaborative:
+      aria-label: Activités relevant de l’économie collaborative, voir la page
+      texte: <0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc
+        décidé de le retirer du site. En effet, il était trop difficile de
+        maintenir à jour les informations et les calculs.</0><1>Pour retrouver
+        les informations à jours, vous pouvez vous rendre sur le site de
+        l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2>
   documentation:
     back: Retourner à la simulation
     body: Explorez toutes les règles de la documentation
@@ -1051,7 +1079,7 @@ pages:
       description: "Voici le code à copier-coller sur votre site :"
       titre: Code d'intégration
     components:
-      CasParticuliers: "<0>En savoir plus sur...</0><1><0>Comment faire une simulation
+      CasParticuliers: "<0>En savoir plus sur…</0><1><0>Comment faire une simulation
         dans le passé ?</0><1>Depuis fin 2021, les règles de calculs des
         simulateurs sont historisées. Cela veut dire que l'on peut effectuer une
         simulation avec la législation effective à une date antérieure. Pour
@@ -1172,6 +1200,97 @@ pages:
   offline:
     description: Vous êtes actuellement hors ligne.
     title: Hors ligne
+  privacyPolicy:
+    data:
+      content: "mon-entreprise.urssaf.fr ne traite aucune donnée à caractère personnel
+        par le biais des simulateurs ou via un dépôt de cookies ou traceurs. Il
+        n'existe pas de compte, seules les informations anonymes renseignées
+        lors des simulations sont automatiquement sauvegardées dans votre
+        navigateur. <1></1><2></2>Toutefois, si un utilisateur ou une
+        utilisatrice souhaite devenir « beta-testeur » ou « beta-testeuse » pour
+        recevoir des informations sur les nouveautés, donner son avis, et
+        participer à des ateliers pour améliorer nos services, il ou elle peut
+        s'inscrire via le lien en pied de page « Devenir beta-testeur ». Dès
+        lors, sont traitées les données suivantes : adresse e-mail, type
+        d'entreprise, type d'activité, type d'imposition, code postal, tranche
+        d'âge.Ces données sont conservées pour une durée maximale de 2
+        ans.<4></4><5></5>L'Urssaf Caisse nationale s'engage à ce que la
+        collecte et le traitement de vos données, soient conformes à la
+        règlementation en matière de protection des données personnelles. À ce
+        titre l'Urssaf Caisse nationale vous informe :<7><0>De la base légale de
+        ce traitement, à savoir votre consentement à ce que nous conservions les
+        données précitées ;</0><1>De l'identité et des coordonnées du
+        responsable du traitement de vos données : l'Urssaf Caisse nationale,
+        domiciliée 36 rue de Valmy - 93108 Montreuil Cedex, représentée par son
+        directeur, M. Damien IENTILE ;</1><2>Des coordonnées de la Déléguée à la
+        protection des données : Mme la Déléguée à la Protection des données de
+        l'Urssaf Caisse nationale, 36 rue de Valmy - 93108 Montreuil Cedex -
+        informatiqueetlibertes.acoss@acoss.fr.</2></7>"
+      title: Quelles données à caractère personnel sont collectées ?
+    liability:
+      content: La plateforme mon-entreprise.urssaf.fr est sous la responsabilité de
+        l'Agence centrale des organismes de sécurité sociale, également appelée
+        « Acoss » ou « Urssaf Caisse nationale ». <1></1>La plateforme propose
+        des simulateurs pour accompagner les créateurs d'entreprise dans le
+        développement de leur activité.
+      title: Qui est responsable de mon-entreprise ?
+    recipients:
+      table:
+        caption: Liste des sous-traitants destinataires des données à caractère
+          personnel
+        country: Pays destinataire
+        mailer: Envoi d'e-mails
+        processing: Traitement réalisé
+        provider: Sous-traitant
+        security: Garanties
+        support: Outil de support
+      title: Qui sont les destinataires de vos données ?
+    rights:
+      content: "En application de la réglementation Informatique et libertés, vous
+        disposez :<1><0>De la possibilité de demander si l'Urssaf Caisse
+        nationale détient des informations sur vous, et demander que l'Urssaf
+        Caisse nationale vous communique l'intégralité de ces données (droit
+        d'accès) ;</0><1>Du droit à la limitation du traitement de vos données à
+        caractère personnel si vous concéderez que le traitement est illicite ou
+        excessif (droit à la limitation du traitement) ;</1><2>De la possibilité
+        de demander la rectification des informations inexactes vous concernant
+        (droit de rectification) ;</2><3>De la possibilité de vous opposer, le
+        cas échéant et pour des motifs légitimes (droit d'opposition) ;</3><4>De
+        la possibilité de demander, le cas échéant et s'il n'existe pas
+        d'obligations légales contraires, que vos données soient effacées par
+        l'Urssaf Caisse nationale (droit à l'oubli) ;</4><5>De la possibilité de
+        définir le sort de vos données après votre décès.</5></1>Tous ces droits
+        s'exercent auprès de la Déléguée à la Protection des Données de l'Urssaf
+        Caisse nationale, par email à l'adresse
+        <4>informatiqueetlibertes.acoss@acoss.fr</4> ou par courrier postal à
+        l'adresse suivante : Urssaf Caisse nationale, Informatique et Libertés,
+        36 rue de Valmy, 93108 Montreuil Cedex ; en justifiant dans les deux cas
+        de son identité conformément à l'article 77 du décret n°2019-536 du 29
+        mai 2019.<7></7>Pour toute information complémentaire ou réclamation,
+        vous pouvez contacter la Commission Nationale de l'Informatique et des
+        Libertés (CNIL)."
+      title: Quels sont les droits Informatiques et liberté que vous pouvez exercer ?
+    security:
+      content: Vos données personnelles recueillies dans le cadre des services
+        proposés sur mon-entreprise.urssaf.fr sont traitées selon des protocoles
+        sécurisés, à la fois informatiques et physiques.
+      title: Comment la sécurité de vos données est-elle assurée ?
+    title: Politique de confidentialité
+    tracking:
+      ariaLabel: recommandations de la CNIL, voir plus d'informations à ce sujet sur
+        le site de la CNIL, nouvelle fenêtre
+      content: mon-entreprise.urssaf.fr ne dépose pas de cookies ou de traceurs.
+        Cependant, la plateforme utilise Piano Analytics, une solution de mesure
+        d'audience, configurée en mode « exempté » et ne nécessitant pas le
+        recueil du consentement des personnes concernées conformément aux
+        <2>recommandations de la CNIL</2>.
+      optOut:
+        checkboxLabel: Je ne veux pas envoyer de données anonymes sur mon utilisation de
+          la plateforme à des fins de mesures d'audience.
+        confirmation: Vos préférences ont bien été enregistrées
+        content: "Vous pouvez vous soustraire de cette mesure d'utilisation de la
+          plateforme en cochant la case correspondante ci-dessous :"
+      title: Cookies et traceurs
   simulateurs:
     accueil:
       "1":
@@ -1452,8 +1571,32 @@ pages:
       professionnelles: professions réglementées relevant de la Cipav
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
+    commun:
+      betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
+        <3>valider les informations et les calculs</3>, mais des <6>erreurs
+        peuvent être présentes.</6></0>"
+      date: Date de la réglementation utilisée pour les calculs
+      periode-calcul: Période de calcul
+      previousSimulationBanner:
+        bouton:
+          aria-label: Retrouver ma précédente simulation, charger les données de ma
+            précédente simulation.
+          texte: Retrouver ma précédente simulation
+        titre: "Votre précédente simulation a été sauvegardée :"
+      print-info:
+        date: Cette simulation a été effectuée le
+        recover: Retrouvez cette simulation ainsi que d'autres outils d'aide à la
+          création et à la gestion d'entreprise, sur
+          <2>mon-entreprise.urssaf.fr</2>.
+      raccourcis:
+        aria-label: "Aller à la question : {{question}}"
+        titre: "Aller à la question :"
+      select-year:
+        access: Accéder au simulateur {{year}}
+        back: Retourner au simulateur {{year}}
+        info: "Cette simulation concerne l'année <2>{{currentEngineYear}}</2>. "
     comparaison-statuts:
-      accordion-title: Comparer...
+      accordion-title: Comparer…
       items:
         gestion:
           conjoint:
@@ -1466,7 +1609,7 @@ pages:
             body: Les formalités de création d’une entreprise diffèrent selon les statuts et
               la nature de l’activité. Le calcul se concentre ici sur les
               <1>procédures obligatoires</1> (immatriculation, annonces légales,
-              rédaction des statuts...).
+              rédaction des statuts…).
             h4: Coût de création
           title: La gestion juridique et comptable
         parentalité:
@@ -1636,7 +1779,6 @@ pages:
         pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
           entreprises. Il ne prend pas en compte le cas des reprises
           d’entreprises existantes.
-    date: Date de la réglementation utilisée pour les calculs
     demande-mobilité:
       aria-label: service Mobilité internationale, nouvelle fenêtre
       href: https://www.urssaf.fr/accueil/services/travail-etranger-mobilite.html
@@ -1980,6 +2122,9 @@ pages:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
         title: Exonération Lodeom
+      mois-incomplet:
+        court: Mois incomplet
+        détails: (embauche, absences, départ…)
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
       options:
@@ -2055,11 +2200,6 @@ pages:
       professionnelles: pharmaciennes/pharmaciens
       shortname: Pharmacien
       title: Simulateur de revenus pour pharmacien en libéral
-    print-info:
-      date: Cette simulation a été effectuée le
-      recover: Retrouvez cette simulation ainsi que d'autres outils d'aide à la
-        création et à la gestion d'entreprise, sur
-        <2>mon-entreprise.urssaf.fr</2>.
     profession-libérale:
       meta:
         description: Calcul du revenu net pour les indépendants en libéral à l'impôt sur
@@ -2082,9 +2222,6 @@ pages:
           spécifique: Ce simulateur est à destination des {{professionnelles}} en
             <4>BNC</4>. Il ne prend pas en compte les sociétés d’exercice
             libéral.
-    raccourcis:
-      aria-label: "Aller à la question : {{question}}"
-      titre: "Aller à la question :"
     réduction-générale:
       header: Le simulateur réduction générale des cotisations, c’est terminé
       message: Nous avons décidé de le retirer du site. En effet, il demandait trop de
@@ -2157,12 +2294,11 @@ pages:
         :</1><2><0>Être conseillé(e) sur les aides à l'embauche mobilisables
         pour votre recrutement</0><1>Vous informer sur l'apprentissage, le
         contrat de professionnalisation, les emplois francs en quartiers
-        prioritaires, le <1>VTE</1>...</1><2>Trouver des
-        candidats</2><3>Recruter une personne en situation de
-        handicap</3></2><3><0>Service public simple et rapide : vous êtes
-        rappelé(e) par le conseiller qui peut vous aider.</0></3><4>Partenaires
-        mobilisés : France Travail, Apec, Cap Emploi, missions
-        locales...</4><5></5></2>"
+        prioritaires, le <1>VTE</1>…</1><2>Trouver des candidats</2><3>Recruter
+        une personne en situation de handicap</3></2><3><0>Service public simple
+        et rapide : vous êtes rappelé(e) par le conseiller qui peut vous
+        aider.</0></3><4>Partenaires mobilisés : France Travail, Apec, Cap
+        Emploi, missions locales…</4><5></5></2>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
       titres-restaurant: en titres-restaurant
@@ -2204,10 +2340,6 @@ pages:
       title: Simulateur de revenus pour dirigeant de SAS(U)
       warning: Ce simulateur ne gère pas le cas des SAS(U) à l’impôt sur le revenu
         (IR). Seule l’option pour l’impôt sur les sociétés est implémentée (IS).
-    select-year:
-      access: Accéder au simulateur {{year}}
-      back: Retourner au simulateur {{year}}
-      info: "Cette simulation concerne l'année <2>{{currentEngineYear}}</2>. "
   statistiques:
     a11y-switch: Activer le mode accessibilité sur cette section
     anonymous: Les données recueillies sont anonymisées.
@@ -2235,117 +2367,12 @@ payslip:
     d'informations, rendez-vous sur <2>service-public.fr</2>."
   link: Voir la fiche de paie
   repartition: Répartition du total chargé
-periode-calcul: Période de calcul
 points: points
 pourcentage: pourcentage
-previousSimulationBanner:
-  info: "Votre précédente simulation a été sauvegardée :"
-  retrieveButton: Retrouver ma précédente simulation
-privacyPolicy:
-  data:
-    content: "mon-entreprise.urssaf.fr ne traite aucune donnée à caractère personnel
-      par le biais des simulateurs ou via un dépôt de cookies ou traceurs. Il
-      n'existe pas de compte, seules les informations anonymes renseignées lors
-      des simulations sont automatiquement sauvegardées dans votre navigateur.
-      <1></1><2></2>Toutefois, si un utilisateur ou une utilisatrice souhaite
-      devenir « beta-testeur » ou « beta-testeuse » pour recevoir des
-      informations sur les nouveautés, donner son avis, et participer à des
-      ateliers pour améliorer nos services, il ou elle peut s'inscrire via le
-      lien en pied de page « Devenir beta-testeur ». Dès lors, sont traitées les
-      données suivantes : adresse e-mail, type d'entreprise, type d'activité,
-      type d'imposition, code postal, tranche d'âge.Ces données sont conservées
-      pour une durée maximale de 2 ans.<4></4><5></5>L'Urssaf Caisse nationale
-      s'engage à ce que la collecte et le traitement de vos données, soient
-      conformes à la règlementation en matière de protection des données
-      personnelles. À ce titre l'Urssaf Caisse nationale vous informe :<7><0>De
-      la base légale de ce traitement, à savoir votre consentement à ce que nous
-      conservions les données précitées ;</0><1>De l'identité et des coordonnées
-      du responsable du traitement de vos données : l'Urssaf Caisse nationale,
-      domiciliée 36 rue de Valmy - 93108 Montreuil Cedex, représentée par son
-      directeur, M. Damien IENTILE ;</1><2>Des coordonnées de la Déléguée à la
-      protection des données : Mme la Déléguée à la Protection des données de
-      l'Urssaf Caisse nationale, 36 rue de Valmy - 93108 Montreuil Cedex -
-      informatiqueetlibertes.acoss@acoss.fr.</2></7>"
-    title: Quelles données à caractère personnel sont collectées ?
-  liability:
-    content: La plateforme mon-entreprise.urssaf.fr est sous la responsabilité de
-      l'Agence centrale des organismes de sécurité sociale, également appelée «
-      Acoss » ou « Urssaf Caisse nationale ». <1></1>La plateforme propose des
-      simulateurs pour accompagner les créateurs d'entreprise dans le
-      développement de leur activité.
-    title: Qui est responsable de mon-entreprise ?
-  recipients:
-    table:
-      caption: Liste des sous-traitants destinataires des données à caractère personnel
-      country: Pays destinataire
-      mailer: Envoi d'e-mails
-      processing: Traitement réalisé
-      provider: Sous-traitant
-      security: Garanties
-      support: Outil de support
-    title: Qui sont les destinataires de vos données ?
-  rights:
-    content: "En application de la réglementation Informatique et libertés, vous
-      disposez :<1><0>De la possibilité de demander si l'Urssaf Caisse nationale
-      détient des informations sur vous, et demander que l'Urssaf Caisse
-      nationale vous communique l'intégralité de ces données (droit d'accès)
-      ;</0><1>Du droit à la limitation du traitement de vos données à caractère
-      personnel si vous concéderez que le traitement est illicite ou excessif
-      (droit à la limitation du traitement) ;</1><2>De la possibilité de
-      demander la rectification des informations inexactes vous concernant
-      (droit de rectification) ;</2><3>De la possibilité de vous opposer, le cas
-      échéant et pour des motifs légitimes (droit d'opposition) ;</3><4>De la
-      possibilité de demander, le cas échéant et s'il n'existe pas d'obligations
-      légales contraires, que vos données soient effacées par l'Urssaf Caisse
-      nationale (droit à l'oubli) ;</4><5>De la possibilité de définir le sort
-      de vos données après votre décès.</5></1>Tous ces droits s'exercent auprès
-      de la Déléguée à la Protection des Données de l'Urssaf Caisse nationale,
-      par email à l'adresse <4>informatiqueetlibertes.acoss@acoss.fr</4> ou par
-      courrier postal à l'adresse suivante : Urssaf Caisse nationale,
-      Informatique et Libertés, 36 rue de Valmy, 93108 Montreuil Cedex ; en
-      justifiant dans les deux cas de son identité conformément à l'article 77
-      du décret n°2019-536 du 29 mai 2019.<7></7>Pour toute information
-      complémentaire ou réclamation, vous pouvez contacter la Commission
-      Nationale de l'Informatique et des Libertés (CNIL)."
-    title: Quels sont les droits Informatiques et liberté que vous pouvez exercer ?
-  security:
-    content: Vos données personnelles recueillies dans le cadre des services
-      proposés sur mon-entreprise.urssaf.fr sont traitées selon des protocoles
-      sécurisés, à la fois informatiques et physiques.
-    title: Comment la sécurité de vos données est-elle assurée ?
-  title: Politique de confidentialité
-  tracking:
-    ariaLabel: recommandations de la CNIL, voir plus d'informations à ce sujet sur
-      le site de la CNIL, nouvelle fenêtre
-    content: mon-entreprise.urssaf.fr ne dépose pas de cookies ou de traceurs.
-      Cependant, la plateforme utilise Piano Analytics, une solution de mesure
-      d'audience, configurée en mode « exempté » et ne nécessitant pas le
-      recueil du consentement des personnes concernées conformément aux
-      <2>recommandations de la CNIL</2>.
-    optOut:
-      checkboxLabel: Je ne veux pas envoyer de données anonymes sur mon utilisation de
-        la plateforme à des fins de mesures d'audience.
-      confirmation: Vos préférences ont bien été enregistrées
-      content: "Vous pouvez vous soustraire de cette mesure d'utilisation de la
-        plateforme en cochant la case correspondante ci-dessous :"
-    title: Cookies et traceurs
 recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
   recherche lancée automatiquement après l'entrée de caractères, les résultats
   s'afficheront à la suite de cet élément.
-recherche-globale:
-  placeholder: "Mot-clé ou acronyme (exemple : CSG)"
 salarié, accéder au simulateur salarié: salarié, accéder au simulateur salarié
-search-code-ape:
-  alternative: Vous pouvez essayer "{{proposal}}" au lieu de "{{match}}"
-  cant-find-my-activity: Je ne trouve pas mon activité
-  feedback:
-    description: Décrivez-nous votre activité ainsi que les termes de recherche que
-      vous avez utilisés qui n'ont pas donné de bons résultats.<1></1>Nous
-      utiliserons ces informations pour améliorer cet outil.
-    info: Nous ne sommes pas en mesure de répondre aux questions concernant le code
-      APE de votre entreprise.
-  radio-card-group:
-    aria-label: Liste des activités
 select:
   value:
     default: Choisissez une option
@@ -2406,13 +2433,18 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
+    fermer:
+      aria-label: J’ai compris, fermer le message condensé.
+      texte: J’ai compris
     general: <0>Les calculs sont indicatifs.</0> Ils sont faits à partir des
       éléments que vous avez saisis et des éléments réglementaires applicables,
       mais ils ne tiennent pas compte de l'ensemble de votre situation. <3>Ils
       ne se substituent pas aux décomptes réels</3> de l'Urssaf, de
       l'administration fiscale ou de tout autre organisme.
-    plus: Lire les précisions
-    titre: Avant de commencer...
+    plus:
+      aria-label: Lire les précisions, ouvrir le message condensé.
+      texte: Lire les précisions
+    titre: Avant de commencer…
 simulation-end:
   hiring:
     text: Vous pouvez maintenant concrétiser votre projet d’embauche.

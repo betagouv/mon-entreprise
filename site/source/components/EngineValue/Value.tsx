@@ -53,7 +53,7 @@ export default function Value<Names extends string>({
 				dottedName={dottedName}
 				documentationPath={documentationPath}
 				aria-label={t(
-					'composants.engine-value.voir-la-documentation',
+					'components.engine-value.voir-la-documentation',
 					'Voir la documentation du calcul de {{valeur}}',
 					{ valeur: value.replace(/(\d)\s+(\d)/g, '$1$2') }
 				)}

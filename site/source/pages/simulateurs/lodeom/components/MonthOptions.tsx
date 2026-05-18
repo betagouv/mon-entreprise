@@ -125,8 +125,13 @@ export default function MonthOptions({
 			</GridContainer>
 
 			<StyledSmallBody>
-				Mois incomplet {isDesktop && t('(embauche, absences, départ...)')}
-				{' :'}
+				{t('pages.simulateurs.lodeom.mois-incomplet.court', 'Mois incomplet')}{' '}
+				{isDesktop &&
+					t(
+						'pages.simulateurs.lodeom.mois-incomplet.détails',
+						'(embauche, absences, départ…)'
+					)}
+				{' :'}
 			</StyledSmallBody>
 
 			<GridContainer container columnSpacing={4}>

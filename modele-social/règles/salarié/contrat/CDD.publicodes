@@ -95,7 +95,7 @@ salarié . contrat . CDD . motif:
         Code du travail - Décret D1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000018537448&cidTexte=LEGITEXT000006072050
 
     contrat aidé:
-      titre: Contrat aidé (CUI, alternance, ...)
+      titre: Contrat aidé (CUI, alternance…)
       valeur: salarié . contrat . CDD . motif = 'contrat aidé'
       références:
         Code du travail - Article L1242-3: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=714D2E2B814371F4F1D5AA88472CD621.tpdila20v_1?idArticle=LEGIARTI000006901196&cidTexte=LEGITEXT000006072050&dateTexte=20170420

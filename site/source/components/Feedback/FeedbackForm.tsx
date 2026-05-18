@@ -251,7 +251,7 @@ export default function FeedbackForm({
 									placeholder ??
 									t(
 										'components.feedback.form.message.placeholder',
-										'Exemple : Des informations plus claires, un calcul détaillé...'
+										'Exemple : Des informations plus claires, un calcul détaillé…'
 									)
 								}
 							/>

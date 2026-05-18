@@ -71,7 +71,7 @@ export default function Notifications() {
 					<Message icon={<StyledEmoji emoji="🤯" />} type="info">
 						<Trans i18nkey="simulateurs.inversionFail">
 							<Body>
-								Le montant demandé n'est <Strong>pas calculable...</Strong>
+								Le montant demandé n'est <Strong>pas calculable…</Strong>
 							</Body>
 
 							<SmallBody $grey>
