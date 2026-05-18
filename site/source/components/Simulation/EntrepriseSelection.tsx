@@ -63,7 +63,7 @@ export default function EntrepriseSelection() {
 									>
 										{t('Rechercher')}
 									</span>
-									<SearchIcon aria-hidden />
+									<SearchIcon />
 								</>
 							)}
 						</DisclosureButton>
