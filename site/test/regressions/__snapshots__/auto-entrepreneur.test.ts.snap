@@ -3,6 +3,8 @@
 exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 21341
 dirigeant . auto-entrepreneur . cotisations et contributions: 112
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 110
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 26
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 3
@@ -20,6 +22,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 21341
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
@@ -27,6 +32,8 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 22986
 dirigeant . auto-entrepreneur . cotisations et contributions: 249
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 4
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 245
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 62
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 8
@@ -44,6 +51,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: 22986
+entreprise . chiffre d'affaires . vente restauration hébergement: null
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
@@ -51,6 +61,8 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 21444
 dirigeant . auto-entrepreneur . cotisations et contributions: 120
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 4
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 111
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 26
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 3
@@ -68,6 +80,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 21444
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
@@ -75,6 +90,8 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 22564
 dirigeant . auto-entrepreneur . cotisations et contributions: 214
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 6
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 9
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 199
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
@@ -92,6 +109,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 22564
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: null
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
@@ -99,6 +119,8 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 22410
 dirigeant . auto-entrepreneur . cotisations et contributions: 201
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 198
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
@@ -116,6 +138,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 22410
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: null
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
@@ -123,6 +148,8 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 exports[`calculate simulations-auto-entrepreneur > ACRE 6`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 22410
 dirigeant . auto-entrepreneur . cotisations et contributions: 201
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 198
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
@@ -140,6 +167,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
 dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 22410
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: null
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
@@ -147,6 +177,8 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 exports[`calculate simulations-auto-entrepreneur > ACRE 7`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 32012
 dirigeant . auto-entrepreneur . cotisations et contributions: 168
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 165
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 39
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
@@ -164,6 +196,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 30000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 30000
 dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 32012
 
 Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
 `;
@@ -171,6 +206,8 @@ Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification c
 exports[`calculate simulations-auto-entrepreneur > DROM 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 221
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 219
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 52
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 7
@@ -187,12 +224,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
 dirigeant . auto-entrepreneur . revenu net: 17349
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17349
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 12000
+entreprise . chiffre d'affaires . service BNC: 3000
+entreprise . chiffre d'affaires . vente restauration hébergement: 5000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 45000
 dirigeant . auto-entrepreneur . cotisations et contributions: 312
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 4
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 307
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 72
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 10
@@ -209,12 +251,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
 dirigeant . auto-entrepreneur . revenu net: 41259
 dirigeant . auto-entrepreneur . revenu net . après impôt: 41259
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 45000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 3`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 58
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 56
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 13
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
@@ -231,12 +278,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 2
 dirigeant . auto-entrepreneur . revenu net: 19305
 dirigeant . auto-entrepreneur . revenu net . après impôt: 19305
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 12000
+entreprise . chiffre d'affaires . service BNC: 3000
+entreprise . chiffre d'affaires . vente restauration hébergement: 5000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 4`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 167
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 165
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 39
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
@@ -253,12 +305,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
 dirigeant . auto-entrepreneur . revenu net: 17997
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17997
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 12000
+entreprise . chiffre d'affaires . service BNC: 3000
+entreprise . chiffre d'affaires . vente restauration hébergement: 5000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 282
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 280
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 66
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 9
@@ -275,12 +332,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 16620
 dirigeant . auto-entrepreneur . revenu net . après impôt: 16620
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 10000
+entreprise . chiffre d'affaires . service BNC: 0
+entreprise . chiffre d'affaires . vente restauration hébergement: 10000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 355
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 352
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 88
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 12
@@ -297,12 +359,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 15743
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15743
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 0
+entreprise . chiffre d'affaires . service BNC: 13333
+entreprise . chiffre d'affaires . vente restauration hébergement: 6667"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 291
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 6
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 280
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 66
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 9
@@ -319,12 +386,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 16508
 dirigeant . auto-entrepreneur . revenu net . après impôt: 16508
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 10000
+entreprise . chiffre d'affaires . service BNC: 0
+entreprise . chiffre d'affaires . vente restauration hébergement: 10000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: undefined
 dirigeant . auto-entrepreneur . cotisations et contributions: 726
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 720
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 173
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 23
@@ -341,12 +413,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: undefined
 dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
-dirigeant . rémunération . impôt: 597"
+dirigeant . rémunération . impôt: 597
+entreprise . chiffre d'affaires . service BIC: 20000
+entreprise . chiffre d'affaires . service BNC: 10000
+entreprise . chiffre d'affaires . vente restauration hébergement: 15000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 430
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 427
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 108
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 14
@@ -363,12 +440,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 14836
 dirigeant . auto-entrepreneur . revenu net . après impôt: 14836
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: 20000
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 390
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 387
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 104
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
@@ -385,12 +467,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15316
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15316
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: 20000
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 3`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 214
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 4
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 205
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 48
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
@@ -407,12 +494,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 17432
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17432
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 20000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 4`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 366
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 8
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 353
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 83
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 11
@@ -429,12 +521,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15608
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15608
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 20000
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 5`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 207
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 205
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 48
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
@@ -451,12 +548,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 17520
 dirigeant . auto-entrepreneur . revenu net . après impôt: 17520
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 20000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 6`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
 dirigeant . auto-entrepreneur . cotisations et contributions: 356
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 353
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 83
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 11
@@ -473,12 +575,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 15732
 dirigeant . auto-entrepreneur . revenu net . après impôt: 15732
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: 20000
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > aides 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 5701
 dirigeant . auto-entrepreneur . cotisations et contributions: 58
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 58
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
@@ -495,12 +602,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 5000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 5701"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > aides 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 57089
 dirigeant . auto-entrepreneur . cotisations et contributions: 591
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 585
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 138
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 18
@@ -517,12 +629,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 50000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 50000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 57089"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 33696
 dirigeant . auto-entrepreneur . cotisations et contributions: 725
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 6
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 719
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 181
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 24
@@ -539,12 +656,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
 dirigeant . auto-entrepreneur . revenu net: 25000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 24259
-dirigeant . rémunération . impôt: 741"
+dirigeant . rémunération . impôt: 741
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: 33696
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 1`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 573
 dirigeant . auto-entrepreneur . cotisations et contributions: 6
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 6
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 0
@@ -561,12 +683,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 500
 dirigeant . auto-entrepreneur . revenu net . après impôt: 500
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 573"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 2`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 1145
 dirigeant . auto-entrepreneur . cotisations et contributions: 12
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 12
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 3
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 0
@@ -583,12 +710,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 1000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 1000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 1145"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 3`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 2278
 dirigeant . auto-entrepreneur . cotisations et contributions: 23
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 23
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 5
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 1
@@ -605,12 +737,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 2000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 2000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 2278"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 4`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 5701
 dirigeant . auto-entrepreneur . cotisations et contributions: 58
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 58
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
@@ -627,12 +764,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 5000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 5701"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 5`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 11416
 dirigeant . auto-entrepreneur . cotisations et contributions: 118
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 1
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 117
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 28
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 4
@@ -649,12 +791,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 10000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 10000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 11416"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 6`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 22831
 dirigeant . auto-entrepreneur . cotisations et contributions: 236
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 234
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 55
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 7
@@ -671,12 +818,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 20000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 22831"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 7`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 57089
 dirigeant . auto-entrepreneur . cotisations et contributions: 591
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 585
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 138
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 18
@@ -693,12 +845,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 50000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 50000
-dirigeant . rémunération . impôt: 0"
+dirigeant . rémunération . impôt: 0
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 57089"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 8`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 79920
 dirigeant . auto-entrepreneur . cotisations et contributions: 827
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 7
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 819
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 193
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 26
@@ -715,12 +872,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 70000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 69047
-dirigeant . rémunération . impôt: 953"
+dirigeant . rémunération . impôt: 953
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 79920"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 9`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 114166
 dirigeant . auto-entrepreneur . cotisations et contributions: 1181
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 10
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 1170
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 276
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 37
@@ -737,12 +899,17 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
 dirigeant . auto-entrepreneur . revenu net: 100000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 96964
-dirigeant . rémunération . impôt: 3036"
+dirigeant . rémunération . impôt: 3036
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 114166"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 10`] = `
 "dirigeant . auto-entrepreneur . chiffre d'affaires: 1141746
 dirigeant . auto-entrepreneur . cotisations et contributions: 11812
+dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 95
+dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 14
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 11703
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 2762
 dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 369
@@ -760,6 +927,9 @@ dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . ven
 dirigeant . auto-entrepreneur . revenu net: 1000000
 dirigeant . auto-entrepreneur . revenu net . après impôt: 872045
 dirigeant . rémunération . impôt: 127955
+entreprise . chiffre d'affaires . service BIC: null
+entreprise . chiffre d'affaires . service BNC: null
+entreprise . chiffre d'affaires . vente restauration hébergement: 1141746
 
 Notifications affichées : entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés"
 `;

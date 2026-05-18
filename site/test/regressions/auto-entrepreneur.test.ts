@@ -16,6 +16,11 @@ it('calculate simulations-auto-entrepreneur', () => {
 		[
 			...(configAutoEntrepreneur['objectifs exclusifs'] ?? []),
 			...(configAutoEntrepreneur.objectifs ?? []),
+			"entreprise . chiffre d'affaires . vente restauration hébergement",
+			"entreprise . chiffre d'affaires . service BIC",
+			"entreprise . chiffre d'affaires . service BNC",
+			'dirigeant . auto-entrepreneur . cotisations et contributions . CFP',
+			'dirigeant . auto-entrepreneur . cotisations et contributions . TFC',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux',
 			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC',
