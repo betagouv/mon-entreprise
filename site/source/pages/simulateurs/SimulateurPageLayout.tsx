@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
 import { TrackChapter, TrackingChapters } from '@/components/ATInternetTracking'
+import BetaBanner from '@/components/BetaBanner'
 import BêtaChip from '@/components/BêtaChip'
 import { PublicodesDateChip } from '@/components/PublicodesDateChip'
 import Loader from '@/components/utils/Loader'
@@ -74,6 +75,8 @@ export default function SimulateurPageLayout({
 					{tooltip && <Intro>{tooltip}</Intro>}
 				</>
 			)}
+
+			{beta && <BetaBanner />}
 
 			{children}
 

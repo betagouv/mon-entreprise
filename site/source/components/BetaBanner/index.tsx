@@ -13,6 +13,7 @@ export default function BetaBanner() {
 		true as boolean
 	)
 	const { t } = useTranslation()
+
 	if (!showBetaBanner) {
 		return null
 	}
@@ -49,21 +50,15 @@ const AbsoluteHideButton = styled(CloseButton)`
 `
 
 const StyledBetaContainer = styled.div<{ $isEmbedded: boolean }>`
-	padding-top: ${({ theme }) => theme.spacings.xl};
-	${({ $isEmbedded, theme }) =>
-		$isEmbedded
-			? css`
-					margin-bottom: ${theme.spacings.md};
-			  `
-			: css`
-					position: sticky;
-					margin-bottom: -${theme.spacings.xl};
-			  `}
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		padding-top: ${({ theme }) => theme.spacings.md};
-	}
+	padding-top: ${({ theme }) => theme.spacings.md};
+	margin-bottom: ${({ theme }) => theme.spacings.md};
+	${({ $isEmbedded }) =>
+		!$isEmbedded &&
+		css`
+			position: sticky;
+		`}
 	top: 0;
 	z-index: 3;
 	background-color: ${({ theme }) =>
-		!theme.darkMode ? 'rgba(255, 255, 255, 0.7)' : 'inherit'};
+		theme.darkMode ? 'rgba(15, 23, 42, 0.7)' : 'rgba(255, 255, 255, 0.7)'};
 `
