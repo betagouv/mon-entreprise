@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
 
 import { FadeIn } from '@/components/ui/animate'
-import { Body, CloseButton, Message } from '@/design-system'
+import { Body, Message } from '@/design-system'
 import useYear from '@/hooks/useYear'
 
 export const AvertissementAnnéeDeSimulationModifiée = () => {
@@ -22,7 +21,13 @@ export const AvertissementAnnéeDeSimulationModifiée = () => {
 	return (
 		showAvertissement && (
 			<FadeIn>
-				<Message type="info" mini className="print-hidden">
+				<Message
+					type="success"
+					mini
+					className="print-hidden"
+					dismissible
+					onDismiss={() => setShowAvertissement(false)}
+				>
 					<Body>
 						{t(
 							'pages.simulateurs.cessation-activité.date-modifiée',
@@ -30,19 +35,8 @@ export const AvertissementAnnéeDeSimulationModifiée = () => {
 							{ année }
 						)}
 					</Body>
-					<HideButton
-						onPress={() => setShowAvertissement(false)}
-						aria-label={t('Cacher le message')}
-						color="tertiary"
-					/>
 				</Message>
 			</FadeIn>
 		)
 	)
 }
-
-const HideButton = styled(CloseButton)`
-	position: absolute;
-	top: ${({ theme }) => theme.spacings.sm};
-	right: ${({ theme }) => theme.spacings.sm};
-`
