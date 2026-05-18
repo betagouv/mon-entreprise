@@ -18,7 +18,7 @@ export const SalaireNet = () => {
 				<SalaireLine
 					rule="salarié . rémunération . montant net social"
 					title={t(
-						'composants.fiche-de-paie.salaire-net.mns',
+						'components.fiche-de-paie.salaire-net.mns',
 						'Montant net social'
 					)}
 				/>
@@ -36,7 +36,7 @@ export const SalaireNet = () => {
 					<li>
 						<Titre>
 							{t(
-								'composants.fiche-de-paie.salaire-net.remboursements.titre',
+								'components.fiche-de-paie.salaire-net.remboursements.titre',
 								'Remboursements et déductions diverses'
 							)}
 						</Titre>
@@ -44,7 +44,7 @@ export const SalaireNet = () => {
 							<Line
 								rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
 								title={t(
-									'composants.fiche-de-paie.salaire-net.remboursements.transport',
+									'components.fiche-de-paie.salaire-net.remboursements.transport',
 									'Frais de transport'
 								)}
 							/>
@@ -52,7 +52,7 @@ export const SalaireNet = () => {
 								negative
 								rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
 								title={t(
-									'composants.fiche-de-paie.salaire-net.remboursements.titres-restaurant',
+									'components.fiche-de-paie.salaire-net.remboursements.titres-restaurant',
 									'Titres-restaurant'
 								)}
 							/>
@@ -68,7 +68,7 @@ export const SalaireNet = () => {
 				<SalaireLine
 					rule="salarié . rémunération . net . à payer avant impôt"
 					title={t(
-						'composants.fiche-de-paie.salaire-net.net-avant-impôt',
+						'components.fiche-de-paie.salaire-net.net-avant-impôt',
 						'Montant net à payer avant impôt sur le revenu'
 					)}
 				/>
@@ -78,14 +78,14 @@ export const SalaireNet = () => {
 					<Line
 						rule="salarié . rémunération . net . imposable"
 						title={t(
-							'composants.fiche-de-paie.salaire-net.impôt.net-imposable',
+							'components.fiche-de-paie.salaire-net.impôt.net-imposable',
 							'Montant net imposable'
 						)}
 					/>
 					<Line
 						rule="salarié . rémunération . net . imposable . heures supplémentaires et complémentaires défiscalisées"
 						title={t(
-							'composants.fiche-de-paie.salaire-net.impôt.heures-sup',
+							'components.fiche-de-paie.salaire-net.impôt.heures-sup',
 							'Montant net des HC/HS exonérées'
 						)}
 					/>
@@ -93,7 +93,7 @@ export const SalaireNet = () => {
 						negative
 						rule="impôt . montant"
 						title={t(
-							'composants.fiche-de-paie.salaire-net.impôt.PAS',
+							'components.fiche-de-paie.salaire-net.impôt.PAS',
 							'Impôt sur le revenu prélevé à la source'
 						)}
 					/>
@@ -103,7 +103,7 @@ export const SalaireNet = () => {
 				<SalaireLine
 					rule="salarié . rémunération . net . payé après impôt"
 					title={t(
-						'composants.fiche-de-paie.salaire-net.net-après-impôt',
+						'components.fiche-de-paie.salaire-net.net-après-impôt',
 						'Montant net à payer'
 					)}
 				/>

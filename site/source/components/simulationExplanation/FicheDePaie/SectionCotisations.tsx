@@ -35,7 +35,7 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 	return (
 		<Section
 			title={t(
-				'composants.fiche-de-paie.titres.cotisations',
+				'components.fiche-de-paie.titres.cotisations',
 				'Cotisations sociales'
 			)}
 		>
@@ -56,7 +56,7 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 									<th scope="col">
 										<EnTête>
 											{t(
-												'composants.fiche-de-paie.cotisations.employeur',
+												'components.fiche-de-paie.cotisations.employeur',
 												'Employeur'
 											)}
 										</EnTête>
@@ -64,7 +64,7 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 									<th scope="col">
 										<EnTête>
 											{t(
-												'composants.fiche-de-paie.cotisations.salarie',
+												'components.fiche-de-paie.cotisations.salarie',
 												'Salarié'
 											)}
 										</EnTête>
@@ -86,7 +86,7 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 			{/* Total cotisation */}
 			<Titre id="total_cotisation">
 				{t(
-					'composants.fiche-de-paie.cotisations.total',
+					'components.fiche-de-paie.cotisations.total',
 					'Total des cotisations et contributions'
 				)}
 			</Titre>
@@ -97,14 +97,14 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 						<th scope="col">
 							<EnTête>
 								{t(
-									'composants.fiche-de-paie.cotisations.employeur',
+									'components.fiche-de-paie.cotisations.employeur',
 									'Employeur'
 								)}
 							</EnTête>
 						</th>
 						<th scope="col">
 							<EnTête>
-								{t('composants.fiche-de-paie.cotisations.salarie', 'Salarié')}
+								{t('components.fiche-de-paie.cotisations.salarie', 'Salarié')}
 							</EnTête>
 						</th>
 					</tr>
@@ -113,12 +113,12 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 							<RuleLink
 								dottedName={`${namespace} . cotisations`}
 								aria-label={t(
-									'composants.fiche-de-paie.cotisations.aria-label-total',
+									'components.fiche-de-paie.cotisations.aria-label-total',
 									'Voir les détails du calcul pour : Total des cotisations et contributions'
 								)}
 							>
 								{t(
-									'composants.fiche-de-paie.cotisations.total',
+									'components.fiche-de-paie.cotisations.total',
 									'Total des cotisations et contributions'
 								)}
 							</RuleLink>
