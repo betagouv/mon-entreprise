@@ -42,7 +42,7 @@ export const SalaireNet = () => {
 						</Titre>
 						<Liste>
 							<Line
-								rule="salarié . rémunération . frais professionnels . trajets domicile travail . employeur"
+								rule="salarié . rémunération . frais professionnels . trajets domicile travail . déductible"
 								title={t(
 									'components.fiche-de-paie.salaire-net.remboursements.transport',
 									'Frais de transport'
@@ -50,7 +50,7 @@ export const SalaireNet = () => {
 							/>
 							<Line
 								negative
-								rule="salarié . rémunération . frais professionnels . titres-restaurant . salarié"
+								rule="salarié . rémunération . frais professionnels . titres-restaurant . déductible"
 								title={t(
 									'components.fiche-de-paie.salaire-net.remboursements.titres-restaurant',
 									'Titres-restaurant'
