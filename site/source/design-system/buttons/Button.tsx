@@ -3,16 +3,18 @@ import React, { ForwardedRef, forwardRef, useCallback } from 'react'
 import { css, styled } from 'styled-components'
 
 import { useTracking } from '@/hooks/useTracking'
+import { Palette } from '@/types/styled'
 import { omit, wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
+import { getColorPalette } from '../theme'
 import {
 	GenericButtonOrNavLinkProps,
 	useButtonOrLink,
 } from '../typography/link'
 
 type Size = 'XL' | 'MD' | 'XS' | 'XXS'
-type Color = 'primary' | 'secondary' | 'tertiary'
+type ButtonColor = 'primary' | 'secondary' | 'tertiary' | 'error' | 'success'
 
 export type ButtonTracking = {
 	feature: string
@@ -21,7 +23,7 @@ export type ButtonTracking = {
 }
 
 type ButtonProps = GenericButtonOrNavLinkProps & {
-	color?: Color
+	color?: ButtonColor
 	children: React.ReactNode
 	size?: Size
 	light?: boolean
@@ -90,7 +92,7 @@ export const Button = forwardRef(function Button(
 
 type StyledButtonProps = {
 	disabled?: boolean
-	$color: Color
+	$color: ButtonColor
 	$size: Size
 	$light: boolean
 	$underline?: boolean
@@ -104,17 +106,15 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	font-weight: 500;
 
 	padding: ${({ $size }) => {
-		if ($size === 'XL') {
-			return '1.25rem 2rem'
-		}
-		if ($size === 'MD') {
-			return '0.875rem 2rem'
-		}
-		if ($size === 'XS') {
-			return '0.5rem 2rem'
-		}
-		if ($size === 'XXS') {
-			return '0.25rem 1rem'
+		switch ($size) {
+			case 'XL':
+				return '1.25rem 2rem'
+			case 'MD':
+				return '0.875rem 2rem'
+			case 'XS':
+				return '0.5rem 2rem'
+			case 'XXS':
+				return '0.25rem 1rem'
 		}
 	}};
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
@@ -147,97 +147,135 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		${FocusStyle}
 	}
 
-	/* Primary, secondary & tertiary colors */
-	${({ theme, $color }) =>
-		!theme.darkMode &&
-		css`
-			border-color: ${theme.colors.bases[$color][
-				$color === 'primary' ? 700 : $color === 'tertiary' ? 600 : 300
-			]};
+	${({ theme, $color, $light, disabled }) => {
+		const colorPalette = getColorPalette($color)
 
-			background-color: ${theme.colors.bases[$color][
-				$color === 'primary' ? 700 : 300
-			]};
-			color: ${theme.colors.extended.grey[$color === 'primary' ? 100 : 800]};
-		`}
+		return css`
+			/* Regular button colors (same for dark & light mode, except for Primary) */
+			${() => {
+				const backgroundColor =
+					$color === 'primary'
+						? (colorPalette as Palette)[700]
+						: $color === 'error'
+						? colorPalette[400]
+						: colorPalette[300]
 
-	/* Primary, secondary & tertiary light colors */
-	${({ $light, $color, theme }) =>
-		$light &&
-		!theme.darkMode &&
-		css`
-			color: ${theme.colors.bases[$color][$color === 'primary' ? 700 : 700]};
-			background-color: ${theme.colors.extended.grey[100]};
-			${($color === 'secondary' || $color === 'tertiary') &&
-			css`
-				border-color: ${theme.colors.bases[$color][500]};
-			`};
-		`}
+				return css`
+					background-color: ${backgroundColor};
+					color: ${theme.colors.extended.grey[
+						$color === 'primary' || $color === 'error' ? 100 : 800
+					]};
+				`
+			}}
 
-	@media not print {
-		/* White color (dark background mode) */
-		${({ theme }) =>
-			theme.darkMode &&
-			css`
-				color: ${theme.colors.bases.primary[700]};
-				background-color: ${theme.colors.extended.grey[100]};
-			`}
+			/* Light button colors */
+			${() => {
+				const color =
+					$color === 'error'
+						? colorPalette[500]
+						: $color === 'success'
+						? colorPalette[600]
+						: (colorPalette as Palette)[700]
+				const borderColor =
+					$color === 'primary'
+						? (colorPalette as Palette)[700]
+						: $color === 'error'
+						? colorPalette[400]
+						: colorPalette[600]
 
-		/* White color and light mode (dark background mode) */
-		${({ $light, theme }) =>
-			theme.darkMode &&
-			$light &&
-			css`
-				background-color: transparent;
-				border-color: ${theme.colors.extended.grey[100]};
-				color: ${theme.colors.extended.grey[100]};
-			`}
-	}
+				return (
+					$light &&
+					!theme.darkMode &&
+					css`
+						color: ${color};
+						background-color: ${theme.colors.extended.grey[100]};
+						border-color: ${borderColor};
+					`
+				)
+			}}
 
-	/////////////////////
+			/* HOVER STYLE */
+			&:hover {
+				${() => {
+					const backgroundColor =
+						$color === 'primary'
+							? (colorPalette as Palette)[800]
+							: $color === 'error'
+							? colorPalette[500]
+							: colorPalette[400]
 
-	/* HOVER STYLE */
-	&:hover {
-		${({ theme, $color, disabled, $light }) =>
-			disabled || theme.darkMode
-				? ''
-				: /* Primary, secondary & tertiary light colors */
-				$light
-				? css`
-						background-color: ${theme.colors.bases[$color][
-							$color === 'primary' ? 200 : $color === 'secondary' ? 100 : 100
-						]};
-				  `
-				: /* Primary, secondary & tertiary colors */
-				  css`
-						background-color: ${theme.colors.bases[$color][
-							$color === 'primary' ? 800 : 400
-						]};
-						border-color: ${theme.colors.bases[$color][
-							$color === 'primary' ? 800 : 400
-						]};
-				  `}
-	}
+					/* Regular button (same for dark & light mode, except for Primary) */
+					return (
+						!disabled &&
+						!$light &&
+						css`
+							background-color: ${backgroundColor};
+						`
+					)
+				}}
 
-	/* Dark mode */
-	@media not print {
-		&:hover {
-			${({ $light, theme, disabled }) =>
-				disabled || !theme.darkMode
-					? ''
-					: /* White color and light mode (dark background mode) */
-					$light
-					? css`
-							color: rgba(255, 255, 255, 75%);
-							background-color: inherit;
-							opacity: 1;
-					  `
-					: /* White color (dark background mode) */
-					  css`
-							opacity: 80%;
-					  `}
-		}
-	}
+				/* Light button */
+				${() =>
+					!disabled &&
+					!theme.darkMode &&
+					$light &&
+					css`
+						background-color: ${colorPalette[100]};
+					`}
+			}
+
+			/* DARK MODE */
+			@media not print {
+				/* Regular button Primary */
+				${() =>
+					theme.darkMode &&
+					$color === 'primary' &&
+					css`
+						color: ${(colorPalette as Palette)[700]};
+						background-color: ${theme.colors.extended.grey[100]};
+					`}
+
+				/* Light button colors */
+				${() => {
+					const color =
+						$color === 'primary'
+							? theme.colors.extended.grey[100]
+							: $color === 'error'
+							? colorPalette[200]
+							: colorPalette[400]
+
+					return (
+						theme.darkMode &&
+						$light &&
+						css`
+							background-color: transparent;
+							border-color: ${color};
+							color: ${color};
+						`
+					)
+				}}
+
+				&:hover {
+					${() => {
+						if (!disabled && theme.darkMode) {
+							/* Light button */
+							if ($light) {
+								return css`
+									background-color: ${theme.colors.extended.dark[700]};
+								`
+							} else {
+								/* Regular button Primary */
+								if ($color === 'primary') {
+									return css`
+										background-color: ${theme.colors.extended.grey[300]};
+									`
+								}
+							}
+						}
+					}}
+			}
+		`
+	}}
 
 	${({ $underline }) =>
 		$underline &&
