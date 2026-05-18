@@ -428,9 +428,6 @@ components:
       share:
         checkbox: Je souhaite partager ma dernière simulation pour vous aider à mieux me
           répondre.
-composants:
-  engine-value:
-    voir-la-documentation: Voir la documentation du calcul de {{valeur}}
   fiche-de-paie:
     cotisations:
       aria-label-total: "Voir les détails du calcul pour : Total des cotisations et
@@ -455,6 +452,9 @@ composants:
       cotisations: Cotisations sociales
       salaire-brut: Salaire brut
       salaire-net: Salaire net
+composants:
+  engine-value:
+    voir-la-documentation: Voir la documentation du calcul de {{valeur}}
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
