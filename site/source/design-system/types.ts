@@ -7,3 +7,10 @@ export type XS = { xs: true }
 export type XXS = { xxs: true }
 
 export type KeysOfUnion<T> = T extends T ? keyof T : never
+
+export type ComponentType =
+	| 'primary'
+	| 'secondary'
+	| 'info'
+	| 'error'
+	| 'success'
