@@ -1,3 +1,4 @@
+import { Option } from 'effect'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
@@ -5,7 +6,10 @@ import { styled } from 'styled-components'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { H3 } from '@/design-system'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
@@ -14,11 +18,12 @@ import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 export const DateCessationQuestion = () => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const radiéeCetteAnnée = engine.evaluate('entreprise . radiée cette année')
-		.nodeValue as boolean
+	const radiéeCetteAnnée = PublicodesAdapter.decode(
+		engine.evaluate('entreprise . radiée cette année')
+	)
 
 	useEffect(() => {
-		if (!radiéeCetteAnnée) {
+		if (Option.isSome(radiéeCetteAnnée) && radiéeCetteAnnée.value === 'non') {
 			const date =
 				engine.evaluate({
 					valeur: "période . fin d'année",
