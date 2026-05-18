@@ -63,7 +63,7 @@ export default function RevenuTable({
 								<Minus aria-label={t('moins')}>-</Minus> <Trans>Charges</Trans>
 							</th>
 							<td colSpan={3}>
-								<StyledTag color={'grey'}>
+								<StyledTag color="grey">
 									<Value
 										expression="entreprise . charges"
 										unit="€/an"

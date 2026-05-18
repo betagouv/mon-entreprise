@@ -1,18 +1,17 @@
 import React from 'react'
 import { css, styled } from 'styled-components'
 
-import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Palette, SmallPalette } from '@/types/styled'
+import { Palette } from '@/types/styled'
 
 import { Emoji } from '../emoji'
-import { ErrorIcon, InfoIcon, SuccessIcon } from '../icons'
-import { textColorFromType } from '../message'
+import { getColorPalette } from '../theme'
+import { ComponentType } from '../types'
+import { getIconFromType } from '../utils'
 
-export type ChipType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type ChipProps = {
 	children: React.ReactNode
 	icon?: boolean | React.ReactElement<typeof Emoji>
-	type?: ChipType
+	type?: ComponentType
 	className?: string
 	title?: string
 }
@@ -21,72 +20,76 @@ export function Chip({
 	type = 'primary',
 	icon = false,
 	children,
-	className,
 	title,
 }: ChipProps) {
 	return (
-		<ForceThemeProvider forceTheme="light">
-			<StyledChip className={className} $type={type} title={title}>
-				{icon && (
-					<StyledIconWrapper $type={type}>
-						{typeof icon !== 'boolean' ? (
-							icon
-						) : type === 'success' ? (
-							<SuccessIcon />
-						) : type === 'error' ? (
-							<ErrorIcon />
-						) : type === 'info' ? (
-							<InfoIcon />
-						) : (
-							<></>
-						)}
-					</StyledIconWrapper>
-				)}
-				{children}
-			</StyledChip>
-		</ForceThemeProvider>
+		<StyledChip $type={type} title={title}>
+			{icon && (
+				<StyledIconWrapper $type={type}>
+					{typeof icon !== 'boolean' ? icon : getIconFromType(type)}
+				</StyledIconWrapper>
+			)}
+			{children}
+		</StyledChip>
 	)
 }
+
 const StyledIconWrapper = styled.span<{
-	$type: ChipProps['type']
+	$type: ComponentType
 }>`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin-right: ${({ theme }) => theme.spacings.xxs};
-	vertical-align: middle;
 	svg {
-		fill: ${({ theme, $type }) =>
-			$type === 'error'
-				? theme.colors.extended.grey[100]
-				: textColorFromType($type, theme)};
+		fill: ${({ $type }) => getTextColorFromType($type)};
 	}
 `
 
-const StyledChip = styled.strong<
-	Pick<ChipProps, 'type'> & {
-		$type: NonNullable<ChipProps['type']>
-	}
->`
-	vertical-align: middle;
+const StyledChip = styled.strong<{
+	$type: ComponentType
+}>`
+	display: inline-flex;
+	align-items: center;
 	white-space: nowrap;
+	${({ theme }) => css`
+		margin: 0 ${theme.spacings.xxs};
+		border-radius: ${theme.spacings.md};
+		font-family: ${theme.fonts.main};
+		padding: ${theme.spacings.xxs} ${theme.spacings.xs};
+		font-size: ${theme.baseFontSize};
+		text-align: center;
+	`}
 	${({ theme, $type }) => {
-		const colorSpace: Palette | SmallPalette =
-			$type === 'secondary' || $type === 'primary'
-				? theme.colors.bases[$type]
-				: theme.colors.extended[$type]
+		/* Different colors for Primary in dark mode */
+		if (theme.darkMode && $type === 'primary') {
+			const colorPalette = getColorPalette($type)
+
+			return css`
+				@media not print {
+					color: ${(colorPalette as Palette)[700]};
+					background-color: ${theme.colors.extended.grey[100]};
+				}
+			`
+		}
 
 		return css`
-			margin: 0 ${theme.spacings.xxs};
-			border-radius: ${theme.spacings.md};
-			font-family: ${theme.fonts.main};
-			padding: ${theme.spacings.xxs} ${theme.spacings.xs};
-			background-color: ${$type === 'error'
-				? colorSpace[400]
-				: colorSpace[300]};
-
-			font-size: ${theme.baseFontSize};
-			text-align: center;
-			color: ${$type === 'error'
-				? theme.colors.extended.grey[100]
-				: textColorFromType($type, theme)};
+			background-color: ${getBackgroundColorFromType($type)};
+			color: ${getTextColorFromType($type)};
 		`
 	}}
 `
+
+const getTextColorFromType = (type: ComponentType) => {
+	const colorPalette = getColorPalette(type)
+
+	return type === 'error'
+		? colorPalette[100]
+		: (colorPalette as Palette)[700] ?? colorPalette[600]
+}
+
+const getBackgroundColorFromType = (type: ComponentType) => {
+	const colorPalette = getColorPalette(type)
+
+	return type === 'error' ? colorPalette[400] : colorPalette[300]
+}
