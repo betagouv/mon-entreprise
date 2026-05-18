@@ -79,7 +79,7 @@ const Détails = ({
 					<H2>
 						{t(
 							'pages.simulateurs.comparaison-statuts.accordion-title',
-							'Comparer...'
+							'Comparer…'
 						)}
 					</H2>
 				}
@@ -767,7 +767,7 @@ const Détails = ({
 							Les formalités de création d’une entreprise diffèrent selon les
 							statuts et la nature de l’activité. Le calcul se concentre ici sur
 							les <Strong>procédures obligatoires</Strong> (immatriculation,
-							annonces légales, rédaction des statuts...).
+							annonces légales, rédaction des statuts…).
 						</Trans>
 					</Body>
 

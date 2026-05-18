@@ -29,7 +29,7 @@ export default function ActivityNotFound({ job }: { job: string }) {
 							light
 						>
 							<Emoji emoji="🖐️" />{' '}
-							<Trans i18nKey="search-code-ape.cant-find-my-activity">
+							<Trans i18nKey="pages.assistants.recherche-code-ape.cant-find-my-activity">
 								Je ne trouve pas mon activité
 							</Trans>
 						</Button>
@@ -44,14 +44,14 @@ export default function ActivityNotFound({ job }: { job: string }) {
 						<FeedbackForm
 							infoSlot={
 								<Message border={false} type="info" icon>
-									<Trans i18nKey="search-code-ape.feedback.info">
+									<Trans i18nKey="pages.assistants.recherche-code-ape.feedback.info">
 										Nous ne sommes pas en mesure de répondre aux questions
 										concernant le code APE de votre entreprise.
 									</Trans>
 								</Message>
 							}
 							description={
-								<Trans i18nKey="search-code-ape.feedback.description">
+								<Trans i18nKey="pages.assistants.recherche-code-ape.feedback.description">
 									Décrivez-nous votre activité ainsi que les termes de recherche
 									que vous avez utilisés qui n'ont pas donné de bons résultats.
 									<br />
@@ -59,7 +59,8 @@ export default function ActivityNotFound({ job }: { job: string }) {
 								</Trans>
 							}
 							placeholder={t(
-								`Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".`
+								'pages.assistants.recherche-code-ape.feedback.placeholder',
+								'Bonjour, je suis boulanger et je n’ai pas trouvé en cherchant "pain" ou "viennoiserie".'
 							)}
 							tags={['code-ape']}
 							hideShare

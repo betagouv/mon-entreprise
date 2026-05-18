@@ -43,7 +43,7 @@ export default function PeriodSwitch({ periods }: Props) {
 			<Grid item>
 				<TitreObjectif noWrap={true}>
 					<LegendBigger>
-						{t('periode-calcul', 'Période de calcul')}
+						{t('pages.simulateurs.commun.periode-calcul', 'Période de calcul')}
 					</LegendBigger>
 				</TitreObjectif>
 			</Grid>

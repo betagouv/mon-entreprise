@@ -100,7 +100,7 @@ export const ErrorFallback = (props: {
 							}
 							placeholder={t(
 								'error.placeholder',
-								`Bonjour, j'ai rencontré une erreur après avoir cliqué sur...`
+								`Bonjour, j'ai rencontré une erreur après avoir cliqué sur…`
 							)}
 							tags={['error']}
 							additionalData={additionalData}

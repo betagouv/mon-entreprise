@@ -21,7 +21,7 @@ export default function BetaBanner() {
 	return (
 		<StyledBetaContainer $isEmbedded={isEmbedded}>
 			<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
-				<Trans i18nKey="betawarning">
+				<Trans i18nKey="pages.simulateurs.commun.betawarning">
 					<Body>
 						<StyledStrong>Cet outil est en version bêta</StyledStrong> : nous
 						travaillons à{' '}

@@ -8,11 +8,11 @@ export default function ÉconomieCollaborative() {
 	const { t } = useTranslation()
 
 	return (
-		<Trans>
-			<PageHeader
-				titre="L'assistant économie collaborative, c'est terminé"
-				picture={illustration}
-			>
+		<PageHeader
+			titre="L'assistant économie collaborative, c'est terminé"
+			picture={illustration}
+		>
+			<Trans i18nKey="pages.assistants.économie-collaborative.texte">
 				<Body>
 					Ce dernier n'a pas rencontré le succès escompté. Nous avons donc
 					décidé de le retirer du site. En effet, il était trop difficile de
@@ -25,12 +25,13 @@ export default function ÉconomieCollaborative() {
 				<Button
 					href="https://www.urssaf.fr/portail/home/espaces-dedies/activites-relevant-de-leconomie.html"
 					title={t(
+						'pages.assistants.économie-collaborative.aria-label',
 						'Activités relevant de l’économie collaborative, voir la page'
 					)}
 				>
 					Activités relevant de l’économie collaborative
 				</Button>
-			</PageHeader>
-		</Trans>
+			</Trans>
+		</PageHeader>
 	)
 }

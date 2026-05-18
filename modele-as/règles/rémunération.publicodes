@@ -116,7 +116,7 @@ assimilé salarié . rémunération . avantages en nature:
     niveau du salaire brut pour être soumis à cotisations. Après détermination du
     salaire net imposable, il sera déduit du salaire net à verser.
   question: L'entreprise fournit-elle des avantages en nature (repas, véhicule,
-    téléphone, réductions, logement...) ?
+    téléphone, réductions, logement…) ?
   par défaut: non
   références:
     Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
@@ -225,7 +225,7 @@ assimilé salarié . rémunération . avantages en nature:
           titre: outils NTIC
           description: |
             Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
-            tablettes...), il y a une évaluation forfaitaire annuelle correspondant
+            tablettes…), il y a une évaluation forfaitaire annuelle correspondant
             à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC
             avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur
             le bulletin de paie sera de :
@@ -245,7 +245,7 @@ assimilé salarié . rémunération . avantages en nature:
     autres:
       question: >
         Y a-t-il d'autres avantages en natures (logement, véhicule,
-        réduction...) ?
+        réduction…) ?
       par défaut: non
       avec:
         montant:

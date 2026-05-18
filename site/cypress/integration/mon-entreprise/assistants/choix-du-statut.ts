@@ -198,8 +198,8 @@ describe('Assistant choix du statut', { testIsolation: false }, function () {
 	describe('La page rémunération', { testIsolation: false }, function () {
 		it('devrait s’afficher', function () {
 			cy.contains('Choisir votre statut')
-			cy.contains("La première année, j'estime mon chiffre d'affaires à...")
-			cy.contains("J'estime mes charges professionnelles à...")
+			cy.contains("La première année, j'estime mon chiffre d'affaires à…")
+			cy.contains("J'estime mes charges professionnelles à…")
 		})
 
 		it('devrait respecter le RGAA', function () {
@@ -228,7 +228,7 @@ describe('Assistant choix du statut', { testIsolation: false }, function () {
 	describe('La page du comparateur', { testIsolation: false }, function () {
 		it('devrait s’afficher', function () {
 			cy.contains('Choisir votre statut')
-			cy.contains('Comparer...')
+			cy.contains('Comparer…')
 			cy.contains('Tout déplier').click()
 		})
 
