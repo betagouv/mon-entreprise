@@ -26,11 +26,11 @@ export default function Commune() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="choix-statut.commune.title">
+					<Trans i18nKey="pages.assistants.choix-statut.commune.title">
 						Dans quelle commune voulez-vous créer votre entreprise ?
 						<HelpButtonWithPopover
 							title={t(
-								'choix-statut.commune.help.title',
+								'pages.assistants.choix-statut.commune.help.title',
 								'Chaque territoire a ses spécificités'
 							)}
 							type="info"

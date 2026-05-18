@@ -232,7 +232,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
 
     - compensation des charges familiales (naissance, enfant à charge, garde,
     rentrée scolaire) ;
-    - prestations liées au logement, handicap, précarité (RSA...).
+    - prestations liées au logement, handicap, précarité (RSA…).
 
     Le versement de la plupart de ces prestations est soumis à des conditions de
     ressources.
@@ -284,7 +284,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
 
     Les régimes de retraite complémentaire, d'invalidité décès et de prévoyance
     complémentaire sont gérées par les caisses spécifiques à chaque profession
-    (Cipav, CARPIMKO, CARCDSF, CAVEC...). La CNAVPL est l'organisme qui fédère
+    (Cipav, CARPIMKO, CARCDSF, CAVEC…). La CNAVPL est l'organisme qui fédère
     ces différentes caisses.
   variations:
     - si: profession libérale . réglementée . CNBF

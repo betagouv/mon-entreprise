@@ -163,7 +163,7 @@ const DetailsRowCards = ({
 										<StyledSmall>
 											<Trans>
 												Le montant demandé n'est{' '}
-												<Strong>pas calculable...</Strong>
+												<Strong>pas calculable…</Strong>
 											</Trans>
 										</StyledSmall>
 									)}

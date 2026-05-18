@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import { Body, H2, Link } from '@/design-system'
 
 export const SeoExplanations = () => (
-	<Trans i18nKey="pages.assistant.recherche-code-ape.seo explanation">
+	<Trans i18nKey="pages.assistants.recherche-code-ape.seo explanation">
 		<H2>Comment fonctionne la recherche de code APE ?</H2>
 		<Body>
 			Pour retrouver le code APE de votre entreprise, saisissez un ou deux

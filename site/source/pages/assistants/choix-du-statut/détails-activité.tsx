@@ -78,7 +78,7 @@ export default function DétailsActivité() {
 	const isIdle = useIsIdle()
 
 	const title = t(
-		'créer.choix-statut.détails-activité.title',
+		'pages.assistants.choix-statut.détails-activité.title',
 		'Précisions sur votre activité'
 	)
 	if (!isIdle) {
@@ -114,7 +114,10 @@ export default function DétailsActivité() {
 					currentStepIsComplete={!!guichet && !estNonDisponible(guichet)}
 					nextStepLabel={
 						guichetEntries?.length === 1 &&
-						t('créer.activité-détails.next1', 'Continuer avec cette activité')
+						t(
+							'pages.assistants.activité-détails.next1',
+							'Continuer avec cette activité'
+						)
 					}
 				>
 					<AvertissementActivitéNonDisponible guichet={guichet} />
@@ -155,7 +158,7 @@ function GuichetSelection({
 			{showCCIOrCMAHelp && (
 				<Message>
 					<Body>
-						<Trans i18nKey="créer.choix-statut.détails-activité.aide-cci-cma">
+						<Trans i18nKey="pages.assistants.choix-statut.détails-activité.aide-cci-cma">
 							Si vous hésitez entre une activité artisanale ou commerciale, vous
 							pouvez consulter les sites de la{' '}
 							<Link href="https://www.cci.fr/">CCI</Link> ou de la{' '}
@@ -166,7 +169,7 @@ function GuichetSelection({
 			)}
 			{showBNCorBICHelp && (
 				<Message>
-					<Trans i18nKey="crée.choix-statut.détails-activité.aide-bnc-bic">
+					<Trans i18nKey="pages.assistants.choix-statut.détails-activité.aide-bnc-bic">
 						<Body>
 							Le choix entre exercer une activité à titre{' '}
 							<Strong>commercial</Strong> (avec des revenus de type BIC) ou à

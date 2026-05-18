@@ -23,16 +23,16 @@ export function choixStatutJuridiqueConfig({
 		},
 		meta: {
 			title: t(
-				'pages.choix-statut.meta.title',
+				'pages.assistants.choix-statut.meta.title',
 				'Aide au choix du statut juridique'
 			),
 			description: t(
-				'pages.choix-statut.meta.description',
-				"SAS, EURL, EI, auto-entrepreneur...  Ce simulateur vous aide à choisir le statut juridique le plus adapté à votre projet d'entreprise."
+				'pages.assistants.choix-statut.meta.description',
+				"SAS, EURL, EI, auto-entrepreneur…  Ce simulateur vous aide à choisir le statut juridique le plus adapté à votre projet d'entreprise."
 			),
 		},
-		title: t('pages.choix-statut.title', 'Choisir votre statut'),
-		shortName: t('pages.choix-statut.shortname', 'Choix du statut'),
+		title: t('pages.assistants.choix-statut.title', 'Choisir votre statut'),
+		shortName: t('pages.assistants.choix-statut.shortname', 'Choix du statut'),
 		component: ChoixDuStatut,
 		seoExplanations: SeoExplanations,
 		simulation: configChoixDuStatut,
@@ -42,7 +42,7 @@ export function choixStatutJuridiqueConfig({
 
 function SeoExplanations() {
 	return (
-		<Trans i18nKey="pages.choix-statut.seo explanation">
+		<Trans i18nKey="pages.assistants.choix-statut.seo explanation">
 			<H2>Pourquoi le choix du statut est-il essentiel ?</H2>
 			<Body>
 				Votre statut juridique détermine la structure de votre entreprise, ses

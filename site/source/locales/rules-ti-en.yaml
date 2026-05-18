@@ -179,7 +179,7 @@ entreprise . activité:
         > doctors...
 
 
-        These are other people who practice a science or art, and whose intellectual activity
+        These are other people who practice a science or art, and whose intellectual
 
         whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any subordinate relationship, while engaging their technical and moral responsibility.
 
@@ -199,7 +199,7 @@ entreprise . activité:
 
         > Exemples de professions règlementées : architecte, avocat, infirmier,
 
-        > médecin...
+        > médecin…
 
 
         Il s’agit des autres personnes qui pratiquent, une science ou un art et
@@ -209,7 +209,7 @@ entreprise . activité:
 
         > Exemples de professions non-règlementées : développeur, historien,
 
-        > urbaniste...
+        > urbaniste…
       question.en: '[automatic] Is it a regulated liberal profession?'
       question.fr: Est-ce une activité libérale réglementée ?
       titre.en: '[automatic] regulated'
@@ -2027,7 +2027,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
 
     rentrée scolaire) ;
 
-    - prestations liées au logement, handicap, précarité (RSA...).
+    - prestations liées au logement, handicap, précarité (RSA…).
 
 
     Le versement de la plupart de ces prestations est soumis à des conditions de
@@ -3077,7 +3077,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
 
     complémentaire sont gérées par les caisses spécifiques à chaque profession
 
-    (Cipav, CARPIMKO, CARCDSF, CAVEC...). La CNAVPL est l'organisme qui fédère
+    (Cipav, CARPIMKO, CARCDSF, CAVEC…). La CNAVPL est l'organisme qui fédère
 
     ces différentes caisses.
   titre.en: '[automatic] basic retirement'
@@ -4521,7 +4521,7 @@ indépendant . profession libérale . réglementée . PAMC . recettes activité 
 
     - All flat-rate remuneration paid by the health insurance scheme
 
-    (assistance with teletransmission, indemnity, compensation for continuing
+    (assistance with teletransmission, indemnity, compensation for continuing training
 
     training, installation bonus, etc.)
   description.fr: >
@@ -4545,7 +4545,7 @@ indépendant . profession libérale . réglementée . PAMC . recettes activité 
 
     (aide à la télétransmission, indemnisation, indemnisation de la formation
 
-    continue, prime à l’installation, ...)
+    continue, prime à l’installation…)
   question.en: '[automatic] How much do you earn under contract?'
   question.fr: Quel est le montant de vos recettes conventionnées ?
   titre.en: '[automatic] revenues from conventional activities'
@@ -4902,17 +4902,17 @@ indépendant . revenu professionnel:
     [automatic] The **professional income** is the remuneration paid to the
     executive
 
-    for self-employed workers.
+    for the self-employed.
 
 
-    For companies that have opted for the **tax sur le revenu**, it is the
+    For companies that have opted for the **taxe sur le revenu**, it is the
 
     **taxable income**.
 
 
     For companies that have opted for the **corporate income tax**, this is
 
-    the **net remuneration** of the manager.
+    the **net remuneration** of the executive.
 
 
     In both cases, the non-deductible CSG is added, as are optional contributions
@@ -4937,7 +4937,7 @@ indépendant . revenu professionnel:
 
     Dans les deux cas on y ajoute la CSG non déductible ainsi que les cotisations
 
-    facultatives (plan d’épargne retraite, contrats Madelin...).
+    facultatives (plan d’épargne retraite, contrats Madelin…).
   résumé.en: "[automatic] executive compensation under the self-employed workers' scheme"
   résumé.fr: rémunération du dirigeant au régime des indépendants
   titre.en: '[automatic] professional income'
@@ -4988,7 +4988,7 @@ indépendant . revenus de remplacement:
   question.en: '[automatic] Have you received any replacement income?'
   question.fr: Avez-vous perçu des revenus de remplacement ?
   résumé.en: '[automatic] Daily allowances, AJPA...'
-  résumé.fr: Indemnités jouranlières, AJPA...
+  résumé.fr: Indemnités jouranlières, AJPA…
   titre.en: '[automatic] Replacement income'
   titre.fr: Revenus de remplacement
 indépendant . revenus de remplacement . bruts:
@@ -5449,7 +5449,7 @@ protection sociale . famille:
     assistance...
   résumé.fr: |
     Assure des prestations en soutien aux familles : garde d’enfants, aide au
-    logement...
+    logement…
   titre.en: '[automatic] family'
   titre.fr: famille
 protection sociale . formation:

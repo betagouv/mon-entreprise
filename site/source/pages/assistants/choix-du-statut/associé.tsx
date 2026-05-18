@@ -40,11 +40,11 @@ export default function Associés() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="choix-statut.associés.title">
-						Je gère cette entreprise...
+					<Trans i18nKey="pages.assistants.choix-statut.associés.title">
+						Je gère cette entreprise…
 						<HelpButtonWithPopover
 							title={t(
-								'choix-statut.associés.help.title',
+								'pages.assistants.choix-statut.associés.help.title',
 								'Être plusieurs associé(e)s ou actionnaires'
 							)}
 							type="info"
@@ -66,7 +66,7 @@ export default function Associés() {
 			>
 				<RadioCardGroup
 					aria-label={t(
-						'choix-statut.associés.question1.label',
+						'pages.assistants.choix-statut.associés.question1.label',
 						'Comment gérez-vous cette entreprise ?'
 					)}
 					onChange={(value) =>
@@ -76,12 +76,15 @@ export default function Associés() {
 				>
 					<RadioCard
 						value={'seul'}
-						label={t('choix-statut.associés.question1.seul', 'Seul / seule')}
+						label={t(
+							'pages.assistants.choix-statut.associés.question1.seul',
+							'Seul / seule'
+						)}
 					/>
 					<RadioCard
 						value={'plusieurs'}
 						label={t(
-							'choix-statut.associés.question1.plusieurs',
+							'pages.assistants.choix-statut.associés.question1.plusieurs',
 							'À plusieurs'
 						)}
 					/>
@@ -91,10 +94,10 @@ export default function Associés() {
 						<Spacing md />
 						<Message type="secondary" border={false}>
 							<H4 as="h3" id="question2">
-								<Trans i18nKey="choix-statut.associés.question2">
-									Envisagez-vous d’ajouter des associé(e)s dans un second temps
-									?
-								</Trans>
+								{t(
+									'pages.assistants.choix-statut.associés.question2',
+									'Envisagez-vous d’ajouter des associé(e)s dans un second temps&nbsp;?'
+								)}
 							</H4>
 							<ToggleGroup
 								aria-labelledby="question2"
@@ -104,10 +107,10 @@ export default function Associés() {
 								value={question2}
 							>
 								<Radio id="question-2-oui" value={'oui'}>
-									<Trans>Oui</Trans>
+									{t('global.oui-non.oui', 'Oui')}
 								</Radio>
 								<Radio id="question-2-non" value={'non'}>
-									<Trans>Non</Trans>
+									{t('global.oui-non.non', 'Non')}
 								</Radio>
 							</ToggleGroup>
 							<Spacing md />
@@ -119,12 +122,12 @@ export default function Associés() {
 						<Spacing md />
 						<Message type="secondary" border={false}>
 							<H4 as="h3" id="question3">
-								<Trans i18nKey="choix-statut.associés.question3.label">
+								<Trans i18nKey="pages.assistants.choix-statut.associés.question3.label">
 									Voulez-vous exercer votre activité sous la forme d'une société
-									uniquement ?
+									uniquement&nbsp;?
 									<HelpButtonWithPopover
 										title={t(
-											'choix-statut.associés.question3.help.title',
+											'pages.assistants.choix-statut.associés.question3.help.title',
 											'Choisir entre une entreprise individuelle et une société'
 										)}
 										type="info"
@@ -183,10 +186,10 @@ export default function Associés() {
 								value={question3}
 							>
 								<Radio id="question-3-oui" value={'oui'}>
-									<Trans>Oui</Trans>
+									{t('global.oui-non.oui', 'Oui')}
 								</Radio>
 								<Radio id="question-3-non" value={'non'}>
-									<Trans>Non</Trans>
+									{t('global.oui-non.non', 'Non')}
 								</Radio>
 							</ToggleGroup>
 							<Spacing md />
@@ -198,7 +201,7 @@ export default function Associés() {
 						<Spacing lg />
 						<Message type="info" icon>
 							<Body>
-								<Trans i18nKey="choix-statut.associés.plusieurs.avertissement">
+								<Trans i18nKey="pages.assistants.choix-statut.associés.plusieurs.avertissement">
 									Cet assistant ne gère pas encore le cas des gérant associés
 									égalitaire ou minoritaire. Il s'adresse uniquement aux
 									personnes possédant <Strong>au minimum 51 % des parts</Strong>{' '}

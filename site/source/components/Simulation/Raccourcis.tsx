@@ -28,7 +28,10 @@ export default function Raccourcis({
 	return (
 		<Container>
 			<StyledSmallBody>
-				{t('pages.simulateurs.raccourcis.titre', 'Aller à la question :')}
+				{t(
+					'pages.simulateurs.commun.raccourcis.titre',
+					'Aller à la question :'
+				)}
 			</StyledSmallBody>
 
 			<StyledList>
@@ -38,7 +41,7 @@ export default function Raccourcis({
 							$active={id === idQuestionCourante}
 							onPress={() => goTo(id)}
 							aria-label={t(
-								'pages.simulateurs.raccourcis.aria-label',
+								'pages.simulateurs.commun.raccourcis.aria-label',
 								'Aller à la question : {{question}}',
 								{
 									question: libellé,

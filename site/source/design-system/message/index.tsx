@@ -89,7 +89,7 @@ export function Message({
 					{dismissible && (
 						<HideButton
 							onPress={handleDismiss}
-							aria-label={t('Cacher le message')}
+							aria-label={t('messages.masquer-message', 'Cacher le message')}
 							color={getButtonColor(type)}
 							$mini={mini}
 						/>

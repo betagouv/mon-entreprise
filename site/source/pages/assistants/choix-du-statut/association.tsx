@@ -30,11 +30,11 @@ export default function Association() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="choix-statut.association.title">
-						Je crée cette activité...
+					<Trans i18nKey="pages.assistants.choix-statut.association.title">
+						Je crée cette activité…
 						<HelpButtonWithPopover
 							title={t(
-								'choix-statut.association.help.title',
+								'pages.assistants.choix-statut.association.help.title',
 								'L’association, ou organisation à but non lucratif, quèsaco ?'
 							)}
 							type="info"
@@ -46,7 +46,7 @@ export default function Association() {
 									de bénéfices
 								</Strong>{' '}
 								: promouvoir une activité sportive, l'insertion de personnes en
-								difficulté, le développement local, etc...
+								difficulté, le développement local, etc…
 							</Body>
 						</HelpButtonWithPopover>
 					</Trans>
@@ -54,7 +54,7 @@ export default function Association() {
 			>
 				<RadioCardGroup
 					aria-label={t(
-						'choix-statut.association.question.label',
+						'pages.assistants.choix-statut.association.question.label',
 						'Pourquoi créez vous cette entreprise ?'
 					)}
 					onChange={setCurrentSelection as (val: string) => void}
@@ -63,7 +63,7 @@ export default function Association() {
 					<RadioCard
 						value={'gagner-argent'}
 						label={
-							<Trans i18nKey="choix-statut.association.question.gagner-argent.label">
+							<Trans i18nKey="pages.assistants.choix-statut.association.question.gagner-argent.label">
 								Dans le but de <Strong>gagner de l'argent</Strong>
 							</Trans>
 						}
@@ -74,20 +74,20 @@ export default function Association() {
 						value={'non-lucratif'}
 						isDisabled={!associationPossible}
 						label={
-							<Trans i18nKey="choix-statut.association.question.non-lucratif.label">
+							<Trans i18nKey="pages.assistants.choix-statut.association.question.non-lucratif.label">
 								Dans un but <Strong>non lucratif</Strong>
 							</Trans>
 						}
 						description={
 							associationPossible ? (
 								t(
-									'choix-statut.association.question.non-lucratif.description.label',
+									'pages.assistants.choix-statut.association.question.non-lucratif.description.label',
 									'Par exemple, en créant une association'
 								)
 							) : (
 								<Message type="info" mini icon>
 									<SmallBody>
-										<Trans i18nKey="choix-statut.association.question.non-lucratif.description.disabled">
+										<Trans i18nKey="pages.assistants.choix-statut.association.question.non-lucratif.description.disabled">
 											Cette option n'est pas disponible car votre activité ne
 											peut pas être exercée sous forme d’association
 										</Trans>

@@ -1,29 +1,16 @@
-(embauche, absences, départ...): (hiring, absences, departures...)
-"404":
-  action: Back to safety
-  message: This page does not exist or no longer exists
-<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour retrouver les informations à jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2></0>:
-  <0><0>The latter was not as successful as we had hoped. We therefore decided
-  to remove it from the site. It was too difficult to keep the information and
-  calculations up to date.</0><1>To find up-to-date information, please visit
-  the Urssaf website:</1><2>Collaborative economy activities</2></0>
-<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
-  <0><0>We've detected an old situation. Are you sure you want to overwrite
-  it?</0></0><1><0><0>Overwrite</0></0><1><0>Cancel</0></1></1>
 <0>Activité mixte</0>: <0>Mixed activity</0>
 <0>Impôt sur le revenu</0> (IR): <0>Income tax</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Corporate income tax</0> (IS)
-<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
+<0>Le montant demandé n'est <1>pas calculable…</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
   <0>The amount requested <1>cannot be calculated...</1></0><1>It is not
   possible to obtain this amount in real life due to a threshold effect in the
-  calculation of contributions or tax. You can try again by modifying the value
-  entered.</1>
+  calculation of contributions or tax. You can try again by changing the
+  value.</1>
 <0>Versement libératoire</0> de l'impôt sur le revenu: <0>Payment in full discharge</0> of income tax
 API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
 Accessibilité: Accessibility
 Accéder au site mon-entreprise, nouvelle fenêtre: Go to mon-entreprise, new window
-Activités relevant de l’économie collaborative, voir la page: Collaborative economy activities, see page
 Afficher le détail: Show details
 "Afficher les données par :": "Display data by:"
 Afficher les détails de l'entreprise, la modifier ou la supprimer.: View company details, modify or delete.
@@ -35,11 +22,7 @@ Aucun résultat: No results
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.: No results matching your search. Try other keywords.
 Aucune donnée disponible.: No data available.
 Avec ACRE: With ACRE
-Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".:
-  Hello, I'm a baker and I couldn't find "bread" or "viennoiserie" when I
-  searched.
 Budget: Budget
-Cacher le message: Hide message
 Cette commune n’existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
@@ -92,22 +75,19 @@ Info sur {{ title }}: Info on {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
-J'ai compris: I understand
-J'ai compris, fermer le message condensé.: I get it, close the condensed message.
 Je donne mon avis, donner mon avis sur jedonnemonavis:
   numerique:
     gouv:
       fr, nouvelle fenêtre: I give my opinion, give my opinion on
         jedonnemonavis.numerique.gouv.fr, new window
 Jours: Days
-Le montant demandé n'est <2>pas calculable...</2>: The amount requested <2>cannot be calculated.</2>..
+Le montant demandé n'est <2>pas calculable…</2>: The amount requested <2>cannot be calculated...</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Simulation data is automatically updated when you modify a field. <2>A panel
   will open to allow you to add details to the simulation, and detailed results
   will be displayed below the form and updated when you modify it.</2>
 "Lire la documentation au sujet de :": "Read the documentation about :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Read the page on {{ site }}, new window.
-Lire les précisions, ouvrir le message condensé.: Read the details, open the condensed message.
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
@@ -160,7 +140,6 @@ Rechercher, afficher le champ de recherche d'entreprise.: Search, display the co
 Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Replier: Fold
 Retour à mon activité: Back to my activity
-Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
 Règles de calculs: Calculation rules
@@ -170,7 +149,6 @@ Réinitialiser la situation enregistrée: Reset registered situation
 Saisissez votre domaine d'activité: Enter your field of activity
 Salaire brut: Gross salary
 Salaire net: Net salary
-Salariés et embauche: Employees and hiring
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   If your company does not appear using your SIREN/SIRET, it may be that you
   have opted not to have <2>your company information made public</2>, in which
@@ -245,26 +223,7 @@ aria-label:
   service-public: service-public.fr, new window
   urssaf: Urssaf, access to urssaf.fr, new window
   équipe: team, access our team presentation page, new window
-assistants:
-  pour-mon-entreprise:
-    annuaire-entreprises:
-      aria-label: Annuaire-entreprise, Visit the site
-      body: Find all public information about your company at
-      cta: Visit the site
-      title: View your public data
-  warning:
-    cmg: <0><0>Calculations are indicative.</0> They are based on the information
-      you have entered and on the applicable regulations, but they do not take
-      account of your entire situation.<2></2>They have no contractual value and
-      cannot engage the responsibility of Urssaf, Caf or MSA.</0><1>No element
-      of this simulation will be kept.</1><2><0>What do you need?</0> Your
-      taxable income for 2023, as well as the number of hours of childcare, the
-      amount of remuneration and the CMG received for the months of March, April
-      and May 2025, for each of your employees.</2>
 avril: April
-betawarning: "<0><0>This tool is in beta version</0>: we are working on
-  <3>validating the information and calculations</3>, but <6>errors may</6>
-  still occur.</0>"
 cards:
   simulator-resource:
     cta: Access the simulator
@@ -277,108 +236,6 @@ checklist:
   showmore:
     closed: Read more
     open: Hide details
-choix-statut:
-  activité:
-    help:
-      title: Choosing the right status for your situation
-    title: My main activity is...<1><0>The choice of status and contributions
-      depends on your professional activity. Entering your occupation will give
-      you a clearer idea of the possible statuses and enable you to simulate
-      your income more accurately.</0><1><0>Do you combine several
-      activities?</0><1>Your company must still declare one main activity to the
-      authorities. To find out how, <2>see this guide</2>.</1></1></1>
-  association:
-    help:
-      title: What is an association, or non-profit organization?
-    question:
-      gagner-argent:
-        label: To <1>earn</1> money
-      label: Why are you creating this company?
-      non-lucratif:
-        description:
-          disabled: This option is not available because your business cannot be run as an
-            association.
-          label: For example, by creating an association
-        label: <1>Not for profit</1>
-    title: "I am creating this activity...<1><0>It enables you to <2>share a common
-      project in the general interest, without making a profit</2>: promoting a
-      sporting activity, the integration of people in difficulty, local
-      development, etc...</0></1>"
-  associés:
-    help:
-      title: Several partners or shareholders
-    plusieurs:
-      avertissement: This assistant does not yet cover the case of managing partners
-        with equal or minority shares. It is intended only for people who own
-        <1>at least 51% of</1> their company's <1>shares</1>.
-    question1:
-      label: How do you manage this business?
-      plusieurs: Several
-      seul: Alone
-    question2: Do you plan to add partners at a later stage?
-    question3:
-      help:
-        title: Choosing between a sole proprietorship and a company
-      label: Do you want to run your business as a company only?<1><0>Sole
-        proprietorship</0><1><0>You are <2>responsible for all your business
-        assets</2> (equipment, premises, tools, etc.). </0><1>Your <2>personal
-        assets can be seized</2> if you fail to meet your tax and social
-        security obligations.</1><2>You can <2>waive the separation of your
-        assets</2>, for example to secure a bank loan.</2><3>The formalities
-        involved in setting up and running a company are <2>simpler and less
-        costly</2>.</3></1><2>Company</2><3><0>You are <2>liable</2> only for
-        <2>the amount of your contribution to the share capital</2> and the
-        assets held by the company.</0><1>Set-up and management formalities are
-        <2>more complex and costly</2>.</1></3></1>
-    title: I manage this business...<1><0>You <1>share ownership of your business
-      </1>with other people, who may be <4>natural persons</4> (individuals) or
-      <7>legal entities</7> (companies).</0><1>In the case of <1>joint-stock
-      companies</1> (SASU, SAS), these are referred to
-      as<3>shareholders</3>.</1></1>
-  commune:
-    description: <0>You can now go into more detail and compare <2>income</2>,
-      <4>social security coverage</4> and <7>accounting and legal management</7>
-      before making your choice.</0>
-    help:
-      title: Each region has its own specific features
-    title: In which commune would you like to set up your business?<1><0>Some laws
-      are specific to certain regions or departments (Alsace-Moselle, DOM
-      exemption, etc.).</0><1>In addition, some communes have special incentives
-      for business start-ups (ZRR, ZFU, etc.).</1></1>
-  home:
-    estimated-duration: "Estimated duration: 10 minutes."
-    find-statut: Finding the right status
-    intro: The first step in setting up your own business is to <2>choose the legal
-      status best suited to your activity</2>. The administrative procedures
-      vary according to the legal status chosen.
-    warning-entreprise-existante: <0>A company has already been entered</0><1>To
-      access the wizard, you need to reset the data.</1>
-  rémunération:
-    CA:
-      help:
-        title: Estimate my sales
-      label: Sales (excl. VAT)
-      title: "In the first year, I estimate my sales at...<1><0>Sales are the <2>sum
-        of all sales made during</2> your accounting period (one year): <6>Sales
-        = selling price × quantities sold</6>.</0></1>"
-    charges:
-      help:
-        title: Define your business expenses
-      label: Amount of charges excl.
-      title: "<0>I estimate my business expenses at...<1><0>These are <2>all the
-        expenses necessary for the smooth running of your business</2>:
-        accountancy, telephone subscription, internet subscription, health
-        insurance, provident fund, work tools, etc.</0></1></0>"
-    rémunérationTotale:
-      label: Total compensation
-    totale:
-      help:
-        title: Total executive compensation
-      title: As a manager, I want the company to pay me a total of...<1><0>This is the
-        total amount the company spends on the executive's remuneration. This
-        "super-gross" remuneration includes all social security contributions
-        payable. It can also be considered as the monetary value of the
-        executive's work.</0></1>
 code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Guichet unique categories<1></1></0>
@@ -402,6 +259,8 @@ components:
       appropriate advisor for your request from among all our public and
       semi-public partners. He or she will contact you by telephone within 5
       days, and will provide you with assistance tailored to your situation.
+  engine-value:
+    voir-la-documentation: See the documentation for the calculation of {{valeur}}
   feedback:
     form:
       email:
@@ -419,9 +278,8 @@ components:
       share:
         checkbox: I'd like to share my latest simulation with you to help you respond
           better.
-composants:
-  engine-value:
-    voir-la-documentation: See the documentation for the calculation of {{valeur}}
+  recherche:
+    placeholder: Keyword or acronym (e.g. CSG)
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:
@@ -442,26 +300,6 @@ copied: Copy
 cotisations:
   employeur: employer
   salarie: employee
-crée:
-  choix-statut:
-    détails-activité:
-      aide-bnc-bic: <0>Whether you choose to work on a <2>commercial</2> basis
-        (earning BIC-type income) or on a <4>self-employed</4> basis (earning
-        BNC-type income) depends mainly on the nature of your work:</0><1><0>If
-        you sell goods or services on a regular basis and act as a merchant,
-        you're likely to be covered by the <1>BIC regime</1>.</0><1>On the other
-        hand, if your activity is based on professional, intellectual or
-        artistic skills, such as medicine, consulting or writing, you'll
-        probably come under the <1>BNC regime</1>.</1></1><2>To find out more,
-        visit the <2>URSSAF</2> website.</2>
-créer:
-  activité-détails:
-    next1: Continue with this activity
-  choix-statut:
-    détails-activité:
-      aide-cci-cma: If you're not sure whether to choose a craft or commercial
-        activity, you can consult the <2>CCI</2> or <5>CMA</5> websites.
-      title: Details of your business
 design-system:
   date-picker:
     close: Close
@@ -516,6 +354,10 @@ footer:
     text: View source code on Github
 février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
+global:
+  oui-non:
+    non: No
+    oui: Yes
 gérer:
   ressources:
     annuaire-entreprises:
@@ -595,10 +437,12 @@ legalNotice:
 library:
   description: Tools for developers
   title: Calculation library
-loading: Loading in progress...
 mai: May
 main-menu: Main menu
 mars: March
+messages:
+  loading: Loading in progress...
+  masquer-message: Hide message
 metadata:
   description: "The official assistant for entrepreneurs in France: contribution
     simulators, status choice, and more."
@@ -623,7 +467,9 @@ novembre: November
 octobre: October
 pages:
   "404":
+    action: Back to safety
     description: The page you are looking for does not exist or no longer exists
+    message: This page does not exist or no longer exists
     title: Page not found
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with <2></3> RGAA&lt;/2<3>>
@@ -702,21 +548,171 @@ pages:
     des droits<3></3>Libre réponse 71120<5></5>75342 Paris CEDEX
     07</2><3>Contact the D&eacute;fenseur des droits by telephone: <2>+33 9 69
     39 00 00</2></3></43><44>Updated on May 27, 2025</44>"
-  assistant:
-    recherche-code-ape:
-      seo explanation: "<0>How does the APE code search work?</0><1>To find your
-        company's APE code, enter one or two key words that describe the
-        business activity. For example: \"catering\" or \"sports coach\". The
-        search uses the Insee and Guichet Unique databases to find matching
-        activities. In addition, the most popular results (with the most
-        companies created) are displayed first.</1><2>If you can't find the APE
-        code corresponding to your activity, please let us know using the \"I
-        can't find my activity\" button. This will enable us to improve the
-        search by adding keywords as we receive your
-        feedback.</2><3>Source</3><4>The data used for this search engine is
-        taken from INSEE's PDF of French activity nomenclatures, available on
-        <2>this page</2>.</4>"
   assistants:
+    activité-détails:
+      next1: Continue with this activity
+    choix-statut:
+      activité:
+        help:
+          title: Choosing the right status for your situation
+        title: My main activity is...<1><0>The choice of status and contributions
+          depends on your professional activity. Entering your occupation will
+          give you a clearer idea of the possible statuses and enable you to
+          simulate your income more accurately.</0><1><0>Do you combine several
+          activities?</0><1>Your company must still declare one main activity to
+          the authorities. To find out how to do this, <2>see this
+          guide</2>.</1></1></1>
+      association:
+        help:
+          title: What is an association, or non-profit organization?
+        question:
+          gagner-argent:
+            label: To <1>earn money</1>
+          label: Why are you setting up this company?
+          non-lucratif:
+            description:
+              disabled: This option is not available because your business cannot be run as an
+                association.
+              label: For example, by creating an association
+            label: <1>Not for profit</1>
+        title: "I'm starting this business...<1><0>It enables <2>to share a common
+          project in the general interest, without making a profit&lt;/2> :
+          promoting a sporting activity, the integration of people in
+          difficulty, local development, etc...</0></1>"
+      associés:
+        help:
+          title: Several partners or shareholders
+        plusieurs:
+          avertissement: This assistant does not yet cover the case of managing partners
+            with equal or minority shares. It is intended only for people who
+            own <1>at least 51% of the shares&lt;/1> in their company.
+        question1:
+          label: How do you manage this business?
+          plusieurs: Several
+          seul: Alone
+        question2: Do you plan to add partners at a later stage?
+        question3:
+          help:
+            title: Choosing between a sole proprietorship and a company
+          label: Do you want to run your business as a company only?<1><0>Sole
+            proprietorship</0><1><0>You are <2>responsible for all your business
+            assets&lt;/2> (equipment, premises, tools, etc.). </0><1>Your
+            <2>personal assets may be seized&lt;/2> if you fail to meet your tax
+            and social security obligations.</1><2>You can <2>waive the
+            separation of your assets</2>, for example to secure a bank
+            loan.</2><3>The formalities involved in setting up and running a
+            company are <2>simpler and less
+            costly.</2></3></1><2>Company</2><3><0>You are only <2>liable for
+            the amount of your contribution to the share capital&lt;/2> and the
+            assets held by the company.</0><1>Set-up and management formalities
+            are <2>more complex and costly</2>.</1></3></1>
+        title: I run this business<0>...</0><1><0>You <1>share ownership of your
+          business </1>with other people, who may be <4>physiques&lt;/4>
+          (individuals) or <7>morales&lt;/7> (companies).</0><1>In the case of
+          <1>sociétés par actions&lt;/1> (SASU, SAS), these are known
+          as<3>shareholders</3>.</1></1>
+      commune:
+        description: <0>You can now go into more detail and compare <2>income</2>,
+          <4>social coverage&lt;/4> and <7>accounting and legal
+          management&lt;/7> before making your choice.</0>
+        help:
+          title: Each region has its own specific features
+        title: In which commune would you like to set up your business?<1><0>Some laws
+          are specific to certain regions or departments (Alsace-Moselle, DOM
+          exemption, etc.).</0><1>In addition, some communes have special
+          incentives for business start-ups (ZRR, ZFU, etc.).</1></1>
+      détails-activité:
+        aide-bnc-bic: <0>The choice between working as a <2>commercial&lt;/2> (with
+          BIC-type income) or as a <4>independent&lt;/4> (with BNC-type income)
+          depends mainly on the nature of your work:</0><1><0>If you sell goods
+          or services on a regular basis and act like a trader, you're likely to
+          fall under the <1>BIC regime.</1></0><1>On the other hand, if your
+          activity is based on professional, intellectual or artistic skills,
+          such as medicine, consulting or writing, you'll probably come under
+          the <1>BNC regime.</1></1></1><2>To find out more, visit the
+          <2>URSSAF</2> website.</2>
+        aide-cci-cma: If you're not sure whether to choose a craft or commercial
+          activity, you can consult the websites of the <2>CCI&lt;/2> or the
+          <5>CMA</5>.
+        title: Details of your business
+      home:
+        estimated-duration: "Estimated duration: 10 minutes."
+        find-statut: Finding the right status
+        intro: The first step in setting up your own business is to <2>choose the legal
+          status best suited to your activity</2>. The administrative procedures
+          vary according to the legal status chosen.
+        warning-entreprise-existante:
+          popover:
+            bouton:
+              aria-label: Reset registered situation
+              texte: Reset
+            titre: Are you sure you want to reset the registered situation?
+          titre: <0>A company has already been entered</0><1>To access the wizard, you
+            need to reset the data.</1>
+      meta:
+        description: SAS, EURL, EI, auto-entrepreneur... This simulator will help you
+          choose the legal status best suited to your business project.
+        title: Help in choosing legal status
+      rémunération:
+        CA:
+          help:
+            title: Estimate my sales
+          label: Sales (excl. VAT)
+          title: "In the first year, I estimate my sales at...<1><0>Sales are the <2>sum
+            of sales made during&lt;/2> your accounting period (one year):
+            <6>Sales = sales price × quantities sold</6>.</0></1>"
+        charges:
+          help:
+            title: Define your business expenses
+          label: Amount of charges excl.
+          title: "<0>I estimate my business expenses at...<1><0>These are <2>all the
+            expenses necessary for the smooth running of your business&lt;/2> :
+            chartered accountancy, telephone subscription, internet
+            subscription, health insurance, provident fund, work tools,
+            etc.</0></1></0>"
+        rémunérationTotale:
+          label: Total compensation
+        totale:
+          help:
+            title: Total executive compensation
+          title: As a manager, I want the company to pay me a total of...<1><0>This is the
+            total amount the company spends on the executive's remuneration.
+            This "super-gross" remuneration includes all social security
+            contributions payable. It can also be considered as the monetary
+            value of the executive's work.</0></1>
+      résultat:
+        démarches:
+          cta: Go to site
+          texte: Register your company online, securely and free of charge, on the
+            official website formalites.entreprises.gouv.fr.
+        guide:
+          cta: Read the guide
+          texte: Let us guide you step by step through the process of setting up your
+            business, from the idea stage to the launch.
+        intro: Congratulations! The time has come to gather all the information you need
+          to set up your business. Here are a few pointers.
+        recommencer: Restart wizard
+        références: "{{statutLabel}} to find out more"
+        simulateur: Simulate your future income
+        titre: "You have chosen :"
+      seo explanation: <0>Why is the choice of legal status essential?</0><1>Your
+        legal status determines the structure of your company, its tax and
+        social security obligations, and your responsibility as a manager. It
+        can have a direct impact on your profitability, social security
+        coverage, financing possibilities and much more.</1><2>How do I choose
+        the right status?</2><3>Our status selection wizard is designed to
+        simplify this complex process. It asks simple questions about your
+        business, your objectives and your personal situation. It will help you
+        select the status best suited to your situation.</3><4>The benefits of
+        our assistant :</4><5><0><0>Personalized:&lt;/0> Our recommendations are
+        tailored to your specific situation.</0><1><0>Informed :&lt;/0> We
+        regularly update our information to reflect the latest regulations and
+        tax laws.</1><2><0>Simple:&lt;/0> You don't need to be a legal expert.
+        Our assistant makes the process as simple as
+        possible.</2><3><0>Trust:&lt;/0> Our recommendations are based on
+        thorough, unbiased analysis.</3></5>
+      shortname: Choice of status
+      title: Choose your status
     cmg:
       déclarations:
         AMA:
@@ -841,6 +837,14 @@ pages:
         benefit.<3></3>No element of this simulation will be kept.</0></1>"
       shortname: Transitional supplement to CMG
       title: CMG transitional top-up simulator
+      warning: <0><0>The calculations are indicative.&lt;/0> They are based on the
+        information you have entered and on the applicable regulations, but they
+        do not take into account your entire situation.<2></2>They have no
+        contractual value and cannot engage the responsibility of Urssaf, Caf or
+        MSA.</0><1>No element of this simulation will be kept.</1><2><0>What do
+        you need?&lt;/0> Your taxable income for 2023, as well as the number of
+        hours of childcare, the amount of remuneration and the CMG received for
+        the months of March, April and May 2025, for each of your employees.</2>
     declaration-charges-sociales-independant:
       aria-label: Read the dedicated page on the Urssaf website, new window
       header: The wizard for determining deductible social security charges is no
@@ -848,7 +852,15 @@ pages:
     declaration-revenus-pamc:
       aria-label: Read the dedicated page on the Urssaf website, new window
       header: No more PAMC tax return wizard
+    déclaration-indépendant: The latter was not as successful as we'd hoped. We
+      therefore decided to remove it from the site. It was too difficult to keep
+      the information and calculations up to date.
     pour-mon-entreprise:
+      annuaire-entreprises:
+        aria-label: Annuaire-entreprise, Visit the site
+        body: Find all public information about your company at
+        cta: Visit the site
+        title: View your public data
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop
         a new simulator, please let us know by clicking on the "<1></1>" button
@@ -856,10 +868,20 @@ pages:
       description: Do you want to earn an income or hire someone? You'll have to pay
         contributions and taxes. Use our simulators to find out how much you'll
         have to pay.
+      embauche: Employees and hiring
       meta:
         description: Simulators and wizards for your business
+      questions: "Answer the following questions to find out which simulators and
+        wizards are right for you:"
+      simulateurs: Simulators for your business
+      situation-overwrite:
+        annuler: Cancel
+        question: We've detected an old situation. Are you sure you want to squash it?
+        écraser: Crush
       title: Assistants for my business
     recherche-code-ape:
+      alternative: You can try "{{proposal}}" instead of "{{match}}".
+      cant-find-my-activity: I can't find my activity
       description: <0>This wizard enables you to quickly find the APE (activité
         principale exercée) code that corresponds to your activity. This code is
         assigned by INSEE to each company in France, in order to categorize
@@ -868,34 +890,38 @@ pages:
         employees.</0></1><2><0>Find out more about the APE code on
         <2>entreprendre.service-public.fr</2> and
         <6>economie.gouv.</6>fr.</0></2>
+      feedback:
+        description: Tell us about your business and any search terms you've used that
+          didn't give good results.<1></1>We'll use this information to improve
+          this tool.
+        info: We are unable to answer questions about your company's APE code.
+        placeholder: Hello, I'm a baker and I couldn't find "bread" or "viennoiserie"
+          when I searched.
       meta:
         description: Wizard to find the APE code corresponding to your activity.
         title: APE code search
+      radio-card-group:
+        aria-label: List of activities
+      seo explanation: "<0>How does the APE code search work?</0><1>To find your
+        company's APE code, enter one or two keywords that describe the business
+        activity. For example: \"catering\" or \"sports coach\". The search uses
+        the Insee and Guichet Unique databases to find matching activities. In
+        addition, the most popular results (with the most companies created) are
+        displayed first.</1><2>If you can't find the APE code corresponding to
+        your activity, please let us know using the \"I can't find my activity\"
+        button. This will enable us to improve the search by adding keywords as
+        we receive your feedback.</2><3>Source</3><4>The data used for this
+        search engine is taken from INSEE's PDF of French activity
+        nomenclatures, available on <2>this page</2>.</4>"
       shortname: APE code search
       title: "Which APE code for my business? "
-  choix-statut:
-    meta:
-      description: SAS, EURL, EI, auto-entrepreneur...  This simulator will help you
-        choose the legal status best suited to your business project.
-      title: Help in choosing legal status
-    seo explanation: <0>Why is the choice of legal status essential?</0><1>Your
-      legal status determines the structure of your company, its tax and social
-      security obligations, and your responsibility as a manager. It can have a
-      direct impact on your profitability, social security coverage, financing
-      possibilities and much more.</1><2>How do I choose the right
-      status?</2><3>Our status selection wizard is designed to simplify this
-      complex process. It will ask you simple questions about your business,
-      your objectives and your personal situation. It will help you select the
-      status best suited to your situation.</3><4>The benefits of our
-      assistant:</4> <5><0><0>Personalized:</0> Our recommendations are tailored
-      to your specific situation.</0><1><0>Informed:</0> We regularly update our
-      information to reflect the latest regulations and tax
-      laws.</1><2><0>Simple:</0> You don't need to be a legal expert. Our
-      assistant makes the process as simple as
-      possible.</2><3><0>Confidence:</0> Our recommendations are based on a
-      thorough and impartial analysis.</3></5>
-    shortname: Choice of status
-    title: Choose your status
+    économie-collaborative:
+      aria-label: Collaborative economy activities, see page
+      texte: <0>The latter was not as successful as we'd hoped. We therefore decided
+        to remove it from the site. It was too difficult to keep the information
+        and calculations up to date.</0><1>To find up-to-date information,
+        please visit the Urssaf website:</1><2>Collaborative economy
+        activities</2>
   documentation:
     back: Back to simulation
     body: Explore all the rules of documentation
@@ -987,16 +1013,16 @@ pages:
         in the past?</0><1>Since the end of 2021, simulator calculation rules
         have been historicized. This means that you can run a simulation using
         the legislation in force at an earlier date. To do so, simply enter the
-        parameter <2><0>date</0></2> parameter in the
+        parameter <2><0>date&lt;/2</0>> in the
         situation.</1></1><2><0><1>MissingVariables</1></0><1>In return for your
         call to <1>evaluate</1>, you'll get a <3>missingVariables</3> object.
         This contains a list of all the rules used in the calculation whose
-        value is missing from the input situation. A <6>default value</6> has
-        been used instead.</1><2>To further customize your simulation, you can
-        enter their value.</2><3><0>The number associated with them corresponds
-        to the importance of the rule for the calculation: the higher the
-        number, the more the rule has been used by other rules during the
-        calculation.</0></3></2><3><0>Rules tagged as
+        value is missing from the input situation. A <6>default value&lt;/6> has
+        been used instead.</1><2>To customize your simulation even further, you
+        can enter their value.</2><3><0>The number associated with them
+        corresponds to the importance of the rule for the calculation: the
+        higher the number, the more the rule has been used by other rules during
+        the calculation.</0></3></2><3><0>Rules tagged as
         <1>experimental</1></0><1>Our APIs follow <2>semantic version
         management</2>. This means that all modifications are
         backward-compatible, except in the case of major version
@@ -1004,11 +1030,11 @@ pages:
         specification. This means they can be deleted, modified or moved,
         invisibly for the API user.</2><3><0>We therefore advise you to be very
         careful when using these rules, and always check their existence before
-        including them in your application code.</0></3><4><0>How can I tell if
-        a rule is experimental?</0><1>You can tell if you're using an
-        experimental rule by looking at the <1>warnings</1> object supplied in
-        return for your call to <3>evaluate</3>.</1><2>Experimental rules also
-        contain a warning in the \"Reuse this calculation\" section of the
+        including them in your application code.</0></3><4><0>How do I know if a
+        rule is experimental?</0><1>You can find out if you're using an
+        experimental rule by consulting the <1>warnings&lt;/1> </1> object
+        <1>supplied in return for your call to</1><2>evaluateExperimental rules
+        also contain a warning in the \"Reuse this calculation\" section of the
         documentation.</2></4></3><4><0>Reusing data from external
         APIs</0><1>Some of the data in the mon-entreprise simulators comes from
         external APIs. You'll need to retrieve the value yourself and enter it
@@ -1023,9 +1049,9 @@ pages:
         <2>dedicated service on urssaf.fr</2></0></1></1></5><6>The collective
         AT/MP rate</6><7><0><0>establishment . rate ATMP . collective
         rate</0></0></7><8>This collective rate must be found manually. You can
-        use :</8><9><0><0><0>a csv export</0> of the table of collective net
-        rates published in the Journal Officiel</0></0><1><0>Assurance Maladie's
-        \" <2>Cotisations AT/MP\"</2> documentation</0></1></9></4>"
+        use :</8><9><0><0><0>A csv&lt;/0> export of the table of collective net
+        rates published in the Journal Officiel.</0></0><1><0><2>Cotisations
+        AT/MP&lt;/2> documentation from the Assurance Maladie</0></1></9></4>"
       StepByStep: <0><0><0>Choose the simulator according to the calculation you're
         interested in</0><1></1>For example, the <4>employee simulator</4> to
         calculate net income from gross income.</0></0><1><0><0>Run a simulation
@@ -1095,6 +1121,91 @@ pages:
   offline:
     description: You are currently offline.
     title: Offline
+  privacyPolicy:
+    data:
+      content: "mon-entreprise.urssaf.fr does not process any personal data via the
+        simulators or by depositing cookies or tracers. There is no such thing
+        as an account; only the anonymous information entered during the
+        simulations is automatically saved in your browser.
+        <1></1><2></2>However, if a user wishes to become a \"beta tester\" to
+        receive information on new products, give his/her opinion and take part
+        in workshops to improve our services, he/she can register via the link
+        in the footer of the \"Become a beta tester\" page. The following data
+        is then processed: e-mail address, type of company, type of activity,
+        type of taxation, postal code, age group, etc. This data is kept for a
+        maximum of 2 years.<4></4><5></5>The Urssaf Caisse Nationale is
+        committed to ensuring that the collection and processing of your data
+        complies with regulations on the protection of personal data. In this
+        respect, Urssaf Caisse Nationale informs you of :<7><0>The legal basis
+        for this processing, i.e. your consent for us to store the
+        above-mentioned data;</0><1>The identity and contact details of the
+        party responsible for processing your data: Urssaf Caisse Nationale,
+        domiciled at 36 rue de Valmy - 93108 Montreuil Cedex, represented by its
+        Director, Mr Damien IENTILE;</1><2>Contact details for the Data
+        Protection Officer: Mme la Déléguée à la Protection des données de
+        l'Urssaf Caisse nationale, 36 rue de Valmy - 93108 Montreuil Cedex -
+        informatiqueetlibertes.acoss@acoss.fr.</2></7>"
+      title: What personal data is collected?
+    liability:
+      content: The mon-entreprise.urssaf.fr platform is under the responsibility of
+        the Agence centrale des organismes de sécurité sociale, also known as
+        "Acoss" or "Urssaf Caisse nationale". <1></1>The platform offers
+        simulators to help entrepreneurs develop their business.
+      title: Who is responsible for my-company?
+    recipients:
+      table:
+        caption: List of subcontractors receiving personal data
+        country: Destination country
+        mailer: Sending e-mails
+        processing: Treatment performed
+        provider: Subcontractor
+        security: Warranties
+        support: Support tool
+      title: Who will receive your data?
+    rights:
+      content: "In accordance with the French Data Protection Act, you have :<1><0>The
+        right to ask whether the Urssaf Caisse Nationale holds any information
+        about you, and to request that the Urssaf Caisse Nationale communicate
+        all such data to you (right of access);</0><1>The right to restrict the
+        processing of your personal data if you agree that the processing is
+        unlawful or excessive (right to restrict processing);</1><2>the right to
+        request rectification of inaccurate information concerning you (right of
+        rectification);</2><3>the right to object, where appropriate and for
+        legitimate reasons (right to object);</3><4>The possibility of
+        requesting, where appropriate and if there are no legal obligations to
+        the contrary, that your data be deleted by the Urssaf Caisse Nationale
+        (right to be forgotten);</4><5>the possibility of defining what happens
+        to your data after your death.</5></1>All these rights may be exercised
+        by contacting the Data Protection Officer of the Urssaf Caisse
+        Nationale, by email at <4>informatiqueetlibertes.acoss@acoss.fr&lt;/4>
+        or by post at the following address: Urssaf Caisse nationale,
+        Informatique et Libertés, 36 rue de Valmy, 93108 Montreuil Cedex; in
+        both cases providing proof of identity in accordance with article 77 of
+        decree no. 2019-536 of May 29, 2019.<7></7>For further information or to
+        make a complaint, please contact the Commission Nationale de
+        l'Informatique et des Libertés (CNIL)."
+      title: What rights to information and freedom do you have?
+    security:
+      content: Your personal data collected as part of the services offered on
+        mon-entreprise.urssaf.fr are processed using secure computer and
+        physical protocols.
+      title: How is the security of your data ensured?
+    title: Privacy policy
+    tracking:
+      ariaLabel: CNIL recommendations, see more information on the CNIL website, new
+        window
+      content: mon-entreprise.urssaf.fr does not use cookies or other tracking
+        devices. However, the platform uses Piano Analytics, an audience
+        measurement solution configured in "exempted" mode, which does not
+        require the consent of the persons concerned, in accordance with the
+        <2>recommendations of the CNIL</2>.
+      optOut:
+        checkboxLabel: I do not want to send anonymous data about my use of the platform
+          for audience measurement purposes.
+        confirmation: Your preferences have been saved
+        content: "You can opt out of this platform usage measure by checking the
+          appropriate box below:"
+      title: Cookies and trackers
   simulateurs:
     accueil:
       "1":
@@ -1359,6 +1470,28 @@ pages:
       professionnelles: regulated professions covered by Cipav
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
+    commun:
+      betawarning: "<0><0>This tool is in beta version&lt;/0> : we are working to
+        <3>validate the information and calculations</3>, but <6>errors may
+        still occur.</6></0>"
+      date: Date of regulations used for calculations
+      periode-calcul: Calculation period
+      previousSimulationBanner:
+        bouton:
+          aria-label: Find my previous simulation, load data from my previous simulation.
+          texte: Find my previous simulation
+        titre: "Your previous simulation has been saved:"
+      print-info:
+        date: This simulation was carried out on
+        recover: You'll find this simulation and other tools to help you set up and run
+          your business on <2>mon-entreprise.urssaf.fr.</2>
+      raccourcis:
+        aria-label: "Go to question : {{question}}"
+        titre: "Go to question :"
+      select-year:
+        access: Access the simulator {{year}}
+        back: Back to simulator {{year}}
+        info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
     comparaison-statuts:
       accordion-title: Compare...
       items:
@@ -1369,10 +1502,11 @@ pages:
               spouse<3>(associate</3>, <6>partner</6> or <9>employee</9>).
             h4: Spouse's status
           création:
-            body: The formalities involved in setting up a business vary according to the
-              type of company and the nature of the activity. The calculation
-              here focuses on the <1>mandatory procedures</1> (registration,
-              legal announcements, drafting of articles of association, etc.).
+            body: The formalities involved in setting up a new business vary according to
+              the company's articles of association and the nature of its
+              activity. The calculation here focuses on <1>compulsory
+              procedures&lt;/1> (registration, legal announcements, drafting of
+              articles of association, etc.).
             h4: Cost of creation
           title: Legal and accounting management
         parentalité:
@@ -1535,7 +1669,6 @@ pages:
           packing.
         pas-reprise: This simulator calculates start-up costs for new businesses. It
           does not take into account takeovers of existing companies.
-    date: Date of regulations used for calculations
     demande-mobilité:
       aria-label: International Mobility Service, new window
       href: https://www.urssaf.fr/en/accueil/services/travail-etranger-mobilite.html
@@ -1855,6 +1988,9 @@ pages:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
           certain conditions, to overseas employees.
         title: Lodeom exemption
+      mois-incomplet:
+        court: Incomplete month
+        détails: (hiring, absences, departures...)
       month-by-month:
         caption: "Lodeom exemption month by month :"
       options:
@@ -1934,10 +2070,6 @@ pages:
       professionnelles: pharmacists
       shortname: Pharmacist
       title: Income simulator for self-employed pharmacists
-    print-info:
-      date: This simulation was carried out on
-      recover: You'll find this simulation and other tools to help you set up and run
-        your business on <2>mon-entreprise.urssaf.fr</2>.
     profession-libérale:
       meta:
         description: Net income calculation for self-employed workers subject to income
@@ -1957,9 +2089,6 @@ pages:
             <2>BNC</2>. It does not take into account self-employed companies.
           spécifique: This simulator is intended for {{professionnelles}} in <4>BNC</4>.
             It does not take into account partnerships.
-    raccourcis:
-      aria-label: "Go to question : {{question}}"
-      titre: "Go to question :"
     réduction-générale:
       header: The general reduction in contributions simulator is no longer available
       message: We decided to remove it from the site. It required too much maintenance
@@ -2001,37 +2130,38 @@ pages:
         ogTitle: "Gross salary, net salary, net salary after tax, total cost: the
           all-in-one simulator for employees and employers"
         titre: "Gross/net salary: the Urssaf converter"
-      seo: "<0><0>How do you calculate net salary?</0><1>During the job interview, the
-        employer generally proposes a gross salary. This amount includes the
-        employee's social security contributions, which are deducted from the
-        \"net\" salary received by the employee.</1><2>You can use our simulator
-        to convert <2>gross pay into net pay</2>: simply enter the pay
-        advertised in the gross pay box. The simulation can be refined by
-        answering the various questions (fixed-term contract, executive status,
-        overtime, part-time work, meal vouchers, etc.).</2><3></3><4>In
-        addition, since 2019,<1>income tax</1> has been deducted at source. To
-        do this, the Direction Générale des Finances Publiques (DGFiP) sends the
-        employer the tax rate calculated from the employee's tax return. If the
-        employee's tax rate is unknown, for example in the first year of
-        employment, the employer uses the <4>neutral rate</4>.</4></0><1><0>How
-        do I calculate the cost of hiring?</0><1>If you're looking to hire, you
-        can calculate the total cost of remunerating your employee, as well as
-        the corresponding employer and employee contributions. This will enable
-        you to define the level of remuneration, knowing the overall cost to
-        your company.</1><2>In addition to salary, our simulator takes into
-        account the calculation of benefits in kind (telephone, company car,
-        etc.), as well as compulsory health insurance.</2><3>There are also
-        <2>deferred</2> hiring <2>subsidies</2> which are not all taken into
-        account by our simulator. You can find them on <6>the official
-        portal</6>.</3></1><2><0>Talk to an advisor about your recruitment
-        project</0><1>You would like to :</1><2><0>be advised on the hiring aids
-        available for your recruitment project</0><1>Find out about
-        apprenticeships, professionalization contracts, \"emplois francs\" in
-        priority neighborhoods, <1>VTE</1>, etc.</1><2>Find
-        candidates</2><3>Recruiting a disabled person</3></2><3><0>Fast, simple
-        public service: you'll be called back by the advisor who can help
-        you.</0></3><4>Partners: France Travail, Apec, Cap Emploi, local
-        missions...</4><5></5></2>"
+      seo: "<0><0>How to calculate take-home pay</0><1>During the job interview, the
+        employer generally proposes a gross salary. This amount includes
+        employee contributions, which are used to finance the employee's social
+        protection and are deducted from the \"net\" salary received by the
+        employee.</1><2>You can use our simulator to convert the <2>gross salary
+        into a net salary&lt;/2> : simply enter the advertised salary in the
+        gross salary box. The simulation can be refined by answering the various
+        questions (fixed-term contract, executive status, overtime, part-time
+        work, meal vouchers, etc.).</2><3></3><4>In addition, since
+        2019,<1>impôt sur le revenu&lt;/1> has been deducted at source. To do
+        this, the Direction Générale des Finances Publiques (DGFiP) sends the
+        employer the tax rate calculated on the basis of the employee's tax
+        return. If the employee's tax rate is unknown, for example in the first
+        year of employment, the employer uses the <4>neutral
+        rate</4>.</4></0><1><0>How do I calculate the cost of hiring?</0><1>If
+        you're looking to hire, you can calculate the total cost of remunerating
+        your employee, as well as the corresponding employer and employee
+        contributions. This will enable you to define the level of remuneration,
+        knowing the overall cost to your company.</1><2>In addition to salary,
+        our simulator takes into account the calculation of benefits in kind
+        (telephone, company car, etc.), as well as compulsory health
+        insurance.</2><3>There are also <2>aides différées&lt;/2> for new hires,
+        not all of which are taken into account by our simulator. You can find
+        them on <6>the official portal</6>.</3></1><2><0>Talk to an advisor
+        about your recruitment project</0><1>You would like to :</1><2><0>be
+        advised on the hiring aids available for your recruitment
+        project</0><1>Find out about apprenticeships, professionalization
+        contracts, \"emplois francs\" in priority neighborhoods, <1>VTE</1>,
+        etc.</1><2>Find candidates</2><3>Recruiting a disabled
+        person</3></2><3><0>Fast, simple public service: you'll be called back
+        by the advisor who can help you.</0></3><4>Partners: France Travail,
+        Apec, Cap Emploi, local missions...</4><5></5></2>"
       shortname: Employee
       title: Income simulator for employees
       titres-restaurant: in meal vouchers
@@ -2069,10 +2199,6 @@ pages:
       title: Income simulator for SAS(U) managers
       warning: This simulator does not handle the case of SAS(U) taxable on income
         (IR). Only the corporate income tax (IS) option is implemented.
-    select-year:
-      access: Access the simulator {{year}}
-      back: Back to simulator {{year}}
-      info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
   statistiques:
     a11y-switch: Enable accessibility mode on this section
     anonymous: The data collected is anonymized.
@@ -2098,111 +2224,12 @@ payslip:
     payslip. For more information, visit <2>service-public.fr</2>."
   link: See the pay slip
   repartition: Breakdown of total expenses
-periode-calcul: Calculation period
 points: points
 pourcentage: percentage
-previousSimulationBanner:
-  info: "Your previous simulation has been saved:"
-  retrieveButton: Find my simulation
-privacyPolicy:
-  data:
-    content: "mon-entreprise.urssaf.fr does not process any personal data via the
-      simulators or by depositing cookies or tracers. There is no account; only
-      the anonymous information entered during the simulations is automatically
-      saved in your browser. <1></1><2></2>However, if a user wishes to become a
-      “beta tester” in order to receive information on new products, give his or
-      her opinion and take part in workshops to improve our services, he or she
-      can register via the link in the footer of the “Become a beta tester”
-      page. The following data is then processed: e-mail address, type of
-      company, type of activity, type of taxation, postal code, age group, etc.
-      This data is kept for a maximum of 2 years.<4></4><5></5>The Urssaf Caisse
-      Nationale is committed to ensuring that the collection and processing of
-      your data complies with regulations on the protection of personal data. In
-      this respect, Urssaf Caisse Nationale informs you of:<7><0>The legal basis
-      for this processing, i.e. your consent for us to store the above-mentioned
-      data;</0><1>The identity and contact details of the party responsible for
-      processing your data: Urssaf Caisse Nationale, domiciled at 36 rue de
-      Valmy - 93108 Montreuil Cedex, represented by its director, Mr Damien
-      IENTILE;</1><2>Contact details for the Data Protection Officer: Mme la
-      Déléguée à la Protection des données de l'Urssaf Caisse nationale, 36 rue
-      de Valmy - 93108 Montreuil Cedex -
-      informatiqueetlibertes.acoss@acoss.fr.</2></7>"
-    title: What personal data is collected?
-  liability:
-    content: The mon-entreprise.urssaf.fr platform is under the responsibility of
-      the Agence centrale des organismes de sécurité sociale, also known as
-      “Acoss” or “Urssaf Caisse nationale”. <1></1>The platform offers
-      simulators to help entrepreneurs develop their business.
-    title: Who is responsible for my-company?
-  recipients:
-    table:
-      caption: List of subcontractors receiving personal data
-      country: Destination country
-      mailer: Sending e-mails
-      processing: Treatment performed
-      provider: Subcontractor
-      security: Warranties
-      support: Support tool
-    title: Who will receive your data?
-  rights:
-    content: "In accordance with the French Data Protection Act, you have the
-      following rights:<1><0>The right to ask whether the Urssaf Caisse
-      Nationale holds any information about you, and to request that the Urssaf
-      Caisse Nationale communicate all such data to you (right of
-      access);</0><1>The right to restrict the processing of your personal data
-      if you agree that the processing is unlawful or excessive (right to
-      restrict processing);</1><2>The right to request the rectification of
-      inaccurate information concerning you (right of rectification);</2><3>the
-      right to object, where appropriate and for legitimate reasons (right to
-      object);</3><4>The possibility of requesting, where appropriate and if
-      there are no legal obligations to the contrary, that your data be deleted
-      by the Urssaf Caisse Nationale (right to be forgotten);</4><5>the
-      possibility of defining what happens to your data after your
-      death.</5></1>All these rights may be exercised by contacting the Data
-      Protection Officer of the Urssaf Caisse Nationale, by e-mail at
-      <4>informatiqueetlibertes.acoss@acoss.fr</4> or by post at the following
-      address: Urssaf Caisse nationale, Informatique et Libertés, 36 rue de
-      Valmy, 93108 Montreuil Cedex; in both cases providing proof of identity in
-      accordance with article 77 of decree no. 2019-536 of May 29,
-      2019.<7></7>For further information or to make a complaint, please contact
-      the Commission Nationale de l'Informatique et des Libertés (CNIL)."
-    title: What rights to information and freedom do you have?
-  security:
-    content: Your personal data collected as part of the services offered on
-      mon-entreprise.urssaf.fr are processed using secure computer and physical
-      protocols.
-    title: How is the security of your data ensured?
-  title: Privacy policy
-  tracking:
-    ariaLabel: CNIL recommendations, see more information on the CNIL website, new window
-    content: mon-entreprise.urssaf.fr does not use cookies or other tracking
-      devices. However, the platform uses Piano Analytics, an audience
-      measurement solution configured in "exempted" mode, which does not require
-      the consent of the persons concerned, in accordance with the
-      <2>recommendations of the CNIL</2>.
-    optOut:
-      checkboxLabel: I do not want to send anonymous data about my use of the platform
-        for audience measurement purposes.
-      confirmation: Your preferences have been saved
-      content: "You can opt out of this platform usage measure by checking the
-        corresponding box below:"
-    title: Cookies and trackers
 recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
   search launched automatically after entering characters, results will be
   displayed after this element.
-recherche-globale:
-  placeholder: Keyword or acronym (e.g. CSG)
 salarié, accéder au simulateur salarié: employee, access the employee simulator
-search-code-ape:
-  alternative: You can try "{{proposal}}" instead of "{{match}}".
-  cant-find-my-activity: I can't find my activity
-  feedback:
-    description: Tell us about your business and any search terms you've used that
-      didn't give good results.<1></1>We'll use this information to improve this
-      tool.
-    info: We are unable to answer questions concerning your company's APE code.
-  radio-card-group:
-    aria-label: List of activities
 select:
   value:
     default: Choose an option
@@ -2260,12 +2287,17 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
+    fermer:
+      aria-label: I get it, close the condensed message.
+      texte: I understand
     general: <0>The calculations are indicative.&lt;/0> They are based on the
       information you have entered and on the applicable regulations, but they
       do not take into account your entire situation. <3>They do not replace
       actual statements&lt;/3> from Urssaf, the tax authorities or any other
       organization.
-    plus: Read more
+    plus:
+      aria-label: Read the details, open the condensed message.
+      texte: Read more
     titre: Before we begin...
 simulation-end:
   hiring:

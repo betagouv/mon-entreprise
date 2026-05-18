@@ -106,8 +106,7 @@ export const SeoExplanations = () => {
 					<Li>
 						Vous informer sur l'apprentissage, le contrat de
 						professionnalisation, les emplois francs en quartiers prioritaires,
-						le <abbr title="Volontariat Territorial en Entreprise">VTE</abbr>
-						...
+						le <abbr title="Volontariat Territorial en Entreprise">VTE</abbr>…
 					</Li>
 					<Li>Trouver des candidats</Li>
 					<Li>Recruter une personne en situation de handicap</Li>
@@ -120,7 +119,7 @@ export const SeoExplanations = () => {
 				</Body>
 				<Body>
 					Partenaires mobilisés : France Travail, Apec, Cap Emploi, missions
-					locales...
+					locales…
 				</Body>
 				<ConseillersEntreprisesButton variant="recrutement" />
 			</section>

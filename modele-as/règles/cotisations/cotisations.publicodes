@@ -63,7 +63,10 @@ assimilé salarié . cotisations . catégories:
 
 assimilé salarié . cotisations . assiette:
   description: |
-    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de cotisations sur le travail salarié. Elle comprend notamment les rémunérations en espèces (salaire de base, indemnité, primes...) et les avantages en nature (logement, véhicule...).
+    L'assiette des cotisations sociales est la base de calcul d'un grand nombre de
+    cotisations sur le travail salarié. Elle comprend notamment les rémunérations en
+    espèces (salaire de base, indemnité, primes…) et les avantages en nature
+    (logement, véhicule…).
   références:
     Fiche Urssaf: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul.html
   somme:
@@ -883,7 +886,7 @@ assimilé salarié . cotisations . forfait social:
   produit:
     - prévoyances . employeur
     - 8%
-  # TODO Les cotisations au taux de 10, 16 et 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles...)
+  # TODO Les cotisations au taux de 10, 16 et 20% ne sont pas encore dans le modèle (intéressement, plans d'épargne, indemnités de rupture conventionnelles…)
 
 assimilé salarié . cotisations . autres employeur:
   titre: Autres charges dues par l'employeur

@@ -47,7 +47,7 @@ indépendant . profession libérale . réglementée . PAMC . recettes activité 
 
     - Toutes les rémunérations forfaitaires versées par l’assurance maladie
     (aide à la télétransmission, indemnisation, indemnisation de la formation
-    continue, prime à l’installation, ...)
+    continue, prime à l’installation…)
   question: Quel est le montant de vos recettes conventionnées ?
   par défaut: entreprise . chiffre d'affaires
   plafond: entreprise . chiffre d'affaires
