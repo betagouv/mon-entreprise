@@ -435,6 +435,8 @@ components:
       employeur: Employeur
       salarie: Salarié
       total: Total des cotisations et contributions
+    salaire-brut:
+      frais-pro: Frais professionnels non déductibles
     salaire-net:
       impôt:
         PAS: Impôt sur le revenu prélevé à la source

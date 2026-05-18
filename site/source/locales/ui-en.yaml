@@ -412,6 +412,8 @@ components:
       employeur: Employer
       salarie: Employee
       total: Total contributions
+    salaire-brut:
+      frais-pro: Non-deductible business expenses
     salaire-net:
       impôt:
         PAS: Income tax deducted at source
