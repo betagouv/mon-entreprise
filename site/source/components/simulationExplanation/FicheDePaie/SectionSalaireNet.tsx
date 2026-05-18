@@ -23,7 +23,7 @@ export const SectionSalaireNet = ({
 
 	return (
 		<Section
-			title={t('composants.fiche-de-paie.titres.salaire-net', 'Salaire net')}
+			title={t('components.fiche-de-paie.titres.salaire-net', 'Salaire net')}
 		>
 			<Liste>
 				<li>{montantNetSocial}</li>
@@ -32,7 +32,7 @@ export const SectionSalaireNet = ({
 				<li>
 					<Titre>
 						{t(
-							'composants.fiche-de-paie.salaire-net.impôt.titre',
+							'components.fiche-de-paie.salaire-net.impôt.titre',
 							'Impôt sur le revenu'
 						)}
 					</Titre>

@@ -13,7 +13,7 @@ export const SectionSalaireBrut = ({ children }: Props) => {
 
 	return (
 		<Section
-			title={t('composants.fiche-de-paie.titres.salaire-brut', 'Salaire brut')}
+			title={t('components.fiche-de-paie.titres.salaire-brut', 'Salaire brut')}
 		>
 			<Liste>{children}</Liste>
 		</Section>

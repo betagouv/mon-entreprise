@@ -406,9 +406,6 @@ components:
       share:
         checkbox: I'd like to share my latest simulation with you to help you respond
           better.
-composants:
-  engine-value:
-    voir-la-documentation: See the documentation for the calculation of {{valeur}}
   fiche-de-paie:
     cotisations:
       aria-label-total: "See calculation details for : Total contributions"
@@ -432,6 +429,9 @@ composants:
       cotisations: Social security contributions
       salaire-brut: Gross salary
       salaire-net: Net salary
+composants:
+  engine-value:
+    voir-la-documentation: See the documentation for the calculation of {{valeur}}
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:
