@@ -7,7 +7,7 @@ import {
 	UnitéMonétaire,
 	UnitéMonétairePonctuelle,
 	UnitéMonétaireRécurrente,
-} from './Unités'
+} from './Unites'
 
 export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'

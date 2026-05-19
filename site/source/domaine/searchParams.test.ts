@@ -15,7 +15,7 @@ import {
 	joursOuvrés,
 	pourcentage,
 	titresRestaurantParMois,
-} from './Quantité'
+} from './Quantite'
 import {
 	getRèglesIgnoréesFromSearchParams,
 	getSearchParamsFromSituation,

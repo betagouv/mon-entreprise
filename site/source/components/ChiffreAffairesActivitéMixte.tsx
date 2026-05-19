@@ -15,7 +15,7 @@ import {
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { UnitéMonétaireRécurrente } from '@/domaine/Unités'
+import { UnitéMonétaireRécurrente } from '@/domaine/Unites'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'

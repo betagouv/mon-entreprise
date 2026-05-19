@@ -1,7 +1,7 @@
 import { Data } from 'effect'
 import { isObject } from 'effect/Predicate'
 
-import { UnitéQuantité } from './Unités'
+import { UnitéQuantité } from './Unites'
 
 export interface Quantité<T extends UnitéQuantité = UnitéQuantité> {
 	readonly _tag: 'Quantité'
