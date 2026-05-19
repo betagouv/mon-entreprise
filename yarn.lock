@@ -21543,13 +21543,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isbot@npm:^3.7.0":
-  version: 3.7.0
-  resolution: "isbot@npm:3.7.0"
-  checksum: 10/72271caca82263f5048cf6794c03445dff2b798b448e523a0fc8dabb3064fb0112602c0463cfed36b43cd0d37c32f863fce73221378f2736541d8498aaf4fe2e
-  languageName: node
-  linkType: hard
-
 "iserror@npm:0.0.2, iserror@npm:^0.0.2":
   version: 0.0.2
   resolution: "iserror@npm:0.0.2"
@@ -29071,7 +29064,6 @@ __metadata:
     happy-dom: "npm:^20.0.0"
     i18next-parser: "npm:^8.7.0"
     iframe-resizer: "npm:^4.3.7"
-    isbot: "npm:^3.7.0"
     jsdom: "npm:^26.1.0"
     markdown-to-jsx: "npm:^7.3.2"
     modele-as: "workspace:^"
