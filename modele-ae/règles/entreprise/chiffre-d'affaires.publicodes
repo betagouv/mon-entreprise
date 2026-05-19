@@ -10,7 +10,9 @@ entreprise . chiffre d'affaires:
     TVA payée par les clients).
   inversion numérique:
     - auto-entrepreneur . revenu . net
-    - auto-entrepreneur . revenu . net . après impôt
+    - chiffre d'affaires . vente restauration hébergement
+    - chiffre d'affaires . service BIC
+    - chiffre d'affaires . service BNC
   plancher: 0 €/an
   arrondi: oui
   unité: €/an

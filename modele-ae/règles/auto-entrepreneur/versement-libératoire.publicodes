@@ -48,12 +48,18 @@ auto-entrepreneur . versement libératoire . montant:
     - produit:
         - entreprise . chiffre d'affaires . vente restauration hébergement
         - 1%
+      arrondi: oui
+      unité: €/mois
     - produit:
         - entreprise . chiffre d'affaires . service BIC
         - 1.7%
+      arrondi: oui
+      unité: €/mois
     - produit:
         - entreprise . chiffre d'affaires . service BNC
         - 2.2%
+      arrondi: oui
+      unité: €/mois
 
 auto-entrepreneur . versement libératoire . seuil dépassé:
   type: notification

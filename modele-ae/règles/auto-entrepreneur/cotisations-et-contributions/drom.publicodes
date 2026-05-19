@@ -60,7 +60,7 @@ auto-entrepreneur . cotisations et contributions . cotisations . Drom . taux ser
             alors: 11.6%
           - si: date < 01/2026
             alors: 12.3%
-            sinon: 13.1%
+          - sinon: 13.1%
     - sinon:
         variations:
           - si: date < 07/2024

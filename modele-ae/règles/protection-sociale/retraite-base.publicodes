@@ -26,7 +26,7 @@ protection sociale . retraite . base:
     > durée d’assurance pour obtenir une pension à taux plein.
   produit:
     - base . cotisée
-    - 50%2 b
+    - 50%
   arrondi: oui
   unité: €/mois
   références:
