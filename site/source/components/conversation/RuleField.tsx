@@ -9,8 +9,8 @@ import {
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { isQuantité } from '@/domaine/Quantité'
-import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
+import { isQuantité } from '@/domaine/Quantite'
+import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unites'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'

@@ -19,7 +19,7 @@ import {
 	pourcentage,
 	titresRestaurantParMois,
 	trimestreCivil,
-} from '@/domaine/Quantité'
+} from '@/domaine/Quantite'
 
 import { SearchParamsAdapter } from './SearchParamsAdapter'
 

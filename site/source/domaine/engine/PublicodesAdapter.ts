@@ -19,7 +19,7 @@ import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { OuiNonAdapter } from '@/domaine/engine/OuiNonAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
 import { isOuiNon } from '@/domaine/OuiNon'
-import { isQuantité, Quantité } from '@/domaine/Quantité'
+import { isQuantité, Quantité } from '@/domaine/Quantite'
 
 import { QuantitéAdapter } from './QuantitéAdapter'
 
