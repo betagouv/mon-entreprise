@@ -1,10 +1,14 @@
 import { useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { Condition } from '@/components/EngineValue/Condition'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
-import { CessationActivitéToggles } from '@/pages/simulateurs/cessation-activité/Toggles'
+import { DateCessationQuestion } from '@/pages/simulateurs/cessation-activité/components/DateCessationQuestion'
+import { RégimeImpositionQuestion } from '@/pages/simulateurs/cessation-activité/components/RégimeImpositionQuestion'
 import { useEngine } from '@/utils/publicodes/EngineContext'
+
+import { AvertissementAnnéeDeSimulationModifiée } from './components/AvertissementAnnéeDeSimulationModifiée'
 
 export const CessationActivitéGoals = () => {
 	const engine = useEngine()
@@ -14,7 +18,15 @@ export const CessationActivitéGoals = () => {
 	const { t } = useTranslation()
 
 	return (
-		<SimulationGoals toggles={<CessationActivitéToggles />}>
+		<SimulationGoals
+			toggles={
+				<LeftAlignedContainer>
+					<DateCessationQuestion />
+					<RégimeImpositionQuestion />
+					<AvertissementAnnéeDeSimulationModifiée />
+				</LeftAlignedContainer>
+			}
+		>
 			<Condition expression="entreprise . imposition = 'IR'">
 				<Condition expression="entreprise . imposition . IR . régime micro-fiscal = non">
 					<SimulationGoal
@@ -81,3 +93,10 @@ export const CessationActivitéGoals = () => {
 		</SimulationGoals>
 	)
 }
+
+const LeftAlignedContainer = styled.div`
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	row-gap: ${({ theme }) => theme.spacings.sm};
+`

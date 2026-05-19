@@ -1,7 +1,7 @@
 import { useOverlayTriggerState } from '@react-stately/overlays'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { styled } from 'styled-components'
@@ -63,6 +63,7 @@ export default function PourMonEntrepriseHome() {
 const externalLinks = [premiersMoisUrssaf]
 
 function PourMonEntreprise() {
+	const { t } = useTranslation()
 	const simulateurs = useSimulatorsData()
 	const simulateurConfig = simulateurs['pour-mon-entreprise']
 	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
@@ -134,17 +135,14 @@ function PourMonEntreprise() {
 
 					<PageHeader picture={growth}>
 						<Intro>
-							<Trans i18nKey="pages.assistants.pour-mon-entreprise.description">
-								Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
-								payer des cotisations et des impôts. Anticipez leurs montants
-								grâce aux simulateurs adaptés à votre situation.
-							</Trans>
+							{t(
+								'pages.assistants.pour-mon-entreprise.description',
+								'Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à payer des cotisations et des impôts. Anticipez leurs montants grâce aux simulateurs adaptés à votre situation.'
+							)}
 						</Intro>
 						{entreprisePending ? (
 							<Message type="info" border={false}>
-								<Intro>
-									<Trans i18nKey="loading">Chargement en cours...</Trans>
-								</Intro>
+								<Intro>{t('messages.loading', 'Chargement en cours…')}</Intro>
 							</Message>
 						) : (
 							<AskCompanyMissingDetails />
@@ -159,7 +157,10 @@ function PourMonEntreprise() {
 							<FormsImage src={forms} alt="" />
 							<Spacing xs />
 							<ForceThemeProvider forceTheme="dark">
-								<H2>Simulateurs pour votre entreprise</H2>
+								{t(
+									'pages.assistants.pour-mon-entreprise.simulateurs',
+									'Simulateurs pour votre entreprise'
+								)}
 							</ForceThemeProvider>
 							<Grid
 								container
@@ -197,7 +198,10 @@ function PourMonEntreprise() {
 					{!isAutoEntrepreneur && (
 						<FromTop>
 							<H2>
-								<Trans>Salariés et embauche</Trans>
+								{t(
+									'pages.assistants.pour-mon-entreprise.embauche',
+									'Salariés et embauche'
+								)}
 							</H2>
 							<Grid container spacing={3}>
 								<SimulateurCard fromGérer {...simulateurs['salarié']} />
@@ -215,6 +219,7 @@ function PourMonEntreprise() {
 }
 
 const AskCompanyMissingDetails = () => {
+	const { t } = useTranslation()
 	const [questions, onQuestionAnswered] = useQuestionList()
 	const engine = useEngine()
 
@@ -228,8 +233,10 @@ const AskCompanyMissingDetails = () => {
 							marginBottom: '-0.5rem',
 						}}
 					>
-						Répondez aux questions suivantes pour découvrir les simulateurs et
-						assistants adaptés à votre situation :
+						{t(
+							'pages.assistants.pour-mon-entreprise.questions',
+							'Répondez aux questions suivantes pour découvrir les simulateurs et assistants adaptés à votre situation :'
+						)}
 					</Body>
 
 					{questions.map((question) => (
@@ -279,44 +286,50 @@ const PopoverOverwriteSituation = ({
 			isDismissable
 			small
 		>
-			<Trans>
-				<Message type="info">
-					<Body>
-						Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
-						l'écraser ?
-					</Body>
-				</Message>
-				<Grid
-					container
-					style={{
-						justifyContent: 'end',
-					}}
-					spacing={2}
-				>
-					<Grid item>
-						<Button
-							size="XS"
-							onPress={() => {
-								onOverwrite?.()
-							}}
-						>
-							Ecraser
-						</Button>
-					</Grid>
-					<Grid item>
-						<Button
-							size="XS"
-							light
-							onPress={() => {
-								state.close()
-								onCancel?.()
-							}}
-						>
-							Annuler
-						</Button>
-					</Grid>
+			<Message type="info">
+				<Body>
+					{t(
+						'pages.assistants.pour-mon-entreprise.situation-overwrite.question',
+						'Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l’écraser ?'
+					)}
+				</Body>
+			</Message>
+			<Grid
+				container
+				style={{
+					justifyContent: 'end',
+				}}
+				spacing={2}
+			>
+				<Grid item>
+					<Button
+						size="XS"
+						onPress={() => {
+							onOverwrite?.()
+						}}
+					>
+						{t(
+							'pages.assistants.pour-mon-entreprise.situation-overwrite.écraser',
+							'Écraser'
+						)}
+					</Button>
 				</Grid>
-			</Trans>
+				<Grid item>
+					<Button
+						size="XS"
+						light
+						onPress={() => {
+							state.close()
+							onCancel?.()
+						}}
+					>
+						{t(
+							'pages.assistants.pour-mon-entreprise.situation-overwrite.annuler',
+							'Annuler'
+						)}
+					</Button>
+				</Grid>
+			</Grid>
 		</Popover>
 	)
 }

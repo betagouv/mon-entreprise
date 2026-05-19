@@ -416,22 +416,27 @@ salarié . rémunération . frais professionnels:
   titre: remboursement de frais
   unité: €/mois
   possiblement non applicable: oui
-  description: >-
+  description: |
     Les frais professionnels correspondent à des dépenses engagées par le
     salarié pour les besoins de son activité professionnelle. Ces frais sont
     ensuite remboursés par l’employeur.
 
 
-    Le dédommagement de ces frais peut prendre la forme :
+    Le dédommagement de ces frais peut prendre la forme :
 
-      - d’un remboursement des dépenses réelles sur justificatifs ;
+      - d’un remboursement des dépenses réelles sur justificatifs ;
 
-      - d’un versement d’allocations forfaitaires ;
+      - d’un versement d’allocations forfaitaires ;
 
-      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire
+      soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines
+      professions.
 
 
-    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires ( frais de panier, titres-restaurant, forfait mobilités durables...).
+    Les frais professionnels sont généralement exclus de la base de calcul des
+    cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement
+    de plafond pour les remboursements forfaitaires (frais de panier,
+    titres-restaurant, forfait mobilités durables…).
   somme:
     - titres-restaurant . employeur
     - trajets domicile travail . employeur
@@ -766,7 +771,7 @@ salarié . rémunération . avantages en nature:
 
     L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au niveau du salaire brut pour être soumis à cotisations. Après détermination du salaire net imposable, il sera déduit du salaire net à verser.
   question: L'entreprise fournit-elle des avantages en nature (repas, véhicule,
-    téléphone, réductions, logement...) ?
+    téléphone, réductions, logement…) ?
   par défaut: non
   références:
     Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
@@ -872,7 +877,11 @@ salarié . rémunération . avantages en nature:
         montant:
           titre: outils NTIC
           description: |
-            Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
+            Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
+            tablettes…), il y a une évaluation forfaitaire annuelle correspondant
+            à 10 % du prix d'achat. Par exemple, pour un téléphone acheté à 850 €
+            TTC avec un abonnement de 30 €/mois, l'avantage en nature à reporter
+            sur le bulletin de paie sera de :
 
             ```
             [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
@@ -889,7 +898,7 @@ salarié . rémunération . avantages en nature:
     autres:
       question: >
         Y a-t-il d'autres avantages en nature (logement, véhicule,
-        réduction...) ?
+        réduction…) ?
       par défaut: non
       avec:
         montant:

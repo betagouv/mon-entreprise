@@ -25,3 +25,4 @@ entreprise . radiée cette année:
     toutes ces conditions:
       - est défini: date de cessation
       - période . début d'année <= entreprise . date de cessation
+      - période . fin d'année >= entreprise . date de cessation

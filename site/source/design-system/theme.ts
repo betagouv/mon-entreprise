@@ -1,5 +1,6 @@
-import { Theme } from '@/types/styled'
-import { Merge } from '@/types/utils'
+import { Array, Option, pipe, Record } from 'effect'
+
+import { Palette, SmallPalette, Theme } from '@/types/styled'
 
 import { KeysOfUnion } from './types'
 
@@ -116,7 +117,7 @@ export const baseTheme = {
 				300: '#7DE38A',
 				400: '#53D769',
 				500: '#3CB053',
-				600: '#18632C',
+				600: '#175F2A',
 			},
 			info: {
 				100: '#FFFCE0',
@@ -193,36 +194,23 @@ export const baseTheme = {
 }
 
 type ColorsType = typeof baseTheme.colors
-type ColorGroups = Merge<ColorsType[keyof ColorsType]>
+type ColorsSubGroup = ColorsType[keyof ColorsType]
 
-export type Colors = KeysOfUnion<ColorsType[keyof ColorsType]>
-
-/**
- * Check if a color is in the theme
- * @param color
- */
-export const isColor = (color: string): color is Colors =>
-	Object.values(baseTheme.colors).some((val) => color in val)
+export type Color = KeysOfUnion<ColorsSubGroup>
 
 /**
- * Get the color group of a color
- * @example getColorGroup('error') => { 100: '#FDE8E9', 200: '#F9BCC0', 300: '#DB666E', 400: '#CB111D', 500: '#96050F', 600: '#52070C' }
+ * Get the color palette of a color
+ * @example getColorPalette('error') => { 100: '#FDE8E9', 200: '#F9BCC0', 300: '#DB666E', 400: '#CB111D', 500: '#96050F', 600: '#52070C' }
  * @param color
  */
-export const getColorGroup = <T extends Colors>(color: T) => {
-	const colorGroup = Object.values(baseTheme.colors).find(
-		(val) => color in val
-	) as ColorGroups | undefined
+export const getColorPalette = (color: Color) => {
+	const colorGroup = pipe(
+		Record.values(baseTheme.colors),
+		Array.findFirst((val) => color in val),
+		Option.getOrThrow
+	)
 
-	if (colorGroup && color in colorGroup) {
-		return (
-			(colorGroup[color as keyof ColorGroups] as Merge<
-				NonNullable<ColorGroups[T]>
-			>) ?? null
-		)
-	}
-
-	return null
+	return colorGroup[color as keyof typeof colorGroup] as Palette | SmallPalette
 }
 
 // We use the Grid from material-ui, we need to uniformise

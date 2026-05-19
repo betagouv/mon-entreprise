@@ -21,7 +21,7 @@ export const YearSelectionBanner = () => {
 
 	return (
 		<SimulationBanner icon={'📅'}>
-			<Trans i18nKey="pages.simulateurs.select-year.info">
+			<Trans i18nKey="pages.simulateurs.commun.select-year.info">
 				Cette simulation concerne l'année{' '}
 				<Bold $bold={currentEngineYear !== currentYear}>
 					{{ currentEngineYear }}
@@ -42,11 +42,11 @@ export const YearSelectionBanner = () => {
 								}
 							>
 								{year === currentYear ? (
-									<Trans i18nKey="pages.simulateurs.select-year.back">
+									<Trans i18nKey="pages.simulateurs.commun.select-year.back">
 										Retourner au simulateur {{ year }}
 									</Trans>
 								) : (
-									<Trans i18nKey="pages.simulateurs.select-year.access">
+									<Trans i18nKey="pages.simulateurs.commun.select-year.access">
 										Accéder au simulateur {{ year }}
 									</Trans>
 								)}

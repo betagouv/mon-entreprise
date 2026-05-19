@@ -14,7 +14,7 @@ export default function Accueil() {
 			<TrackPage name={ACCUEIL} />
 
 			<Warning localStorageKey="pages.assistants.cmg.warning">
-				<Trans i18nKey="assistants.warning.cmg">
+				<Trans i18nKey="pages.assistants.cmg.warning">
 					<Body>
 						<Strong>Les calculs sont indicatifs.</Strong> Ils sont faits à
 						partir des éléments que vous avez saisis et des éléments

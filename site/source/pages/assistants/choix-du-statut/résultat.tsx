@@ -1,6 +1,7 @@
 import * as O from 'effect/Option'
 import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { TrackPage } from '@/components/ATInternetTracking'
@@ -31,6 +32,7 @@ import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
 import { lastPathSegment } from './_components/useSteps'
 
 export default function Résultat() {
+	const { t } = useTranslation()
 	const { relativeSitePaths } = useSitePaths()
 	const { currentPath } = useNavigation()
 	const segment = lastPathSegment(currentPath)
@@ -50,32 +52,47 @@ export default function Résultat() {
 			<TrackPage chapter3="resultat" name={statutLabel} />
 
 			<H3 as="h2">
-				Vous avez choisi le statut : <Strong>{statutLabel}</Strong>{' '}
-				<Emoji emoji="🎉" />
+				{t(
+					'pages.assistants.choix-statut.résultat.titre',
+					'Vous avez choisi le statut :'
+				)}{' '}
+				<Strong>{statutLabel}</Strong> <Emoji emoji="🎉" />
 			</H3>
 			<Intro>
-				Félicitations ! Le temps est venu de rassembler toutes les informations
-				nécessaires à la création de votre entreprise. Voici quelques pistes.
+				{t(
+					'pages.assistants.choix-statut.résultat.intro',
+					'Félicitations ! Le temps est venu de rassembler toutes les informations nécessaires à la création de votre entreprise. Voici quelques pistes.'
+				)}
 			</Intro>
 			<Grid spacing={3} container>
 				<Grid item xl={4} lg={6} sm={12}>
 					<Article
 						title="Le guide complet pour créer son activité"
 						href={externalGuideLink}
-						ctaLabel="Lire le guide"
+						ctaLabel={t(
+							'pages.assistants.choix-statut.résultat.guide.cta',
+							'Lire le guide'
+						)}
 					>
-						Laissez-vous guidez pas à pas dans les étapes de création de votre
-						entreprise, du stade de l'idée au lancement de l'entreprise.
+						{t(
+							'pages.assistants.choix-statut.résultat.guide.texte',
+							'Laissez-vous guidez pas à pas dans les étapes de création de votre entreprise, du stade de l’idée au lancement de l’entreprise.'
+						)}
 					</Article>
 				</Grid>
 				<Grid item xl={4} lg={6} sm={12}>
 					<Article
 						title="Vos démarches en ligne"
 						href="https://formalites.entreprises.gouv.fr/"
-						ctaLabel="Accéder au site"
+						ctaLabel={t(
+							'pages.assistants.choix-statut.résultat.démarches.cta',
+							'Accéder au site'
+						)}
 					>
-						Immatriculez votre entreprise en ligne, de manière sécurisée et
-						gratuite, sur le site officiel formalites.entreprises.gouv.fr.
+						{t(
+							'pages.assistants.choix-statut.résultat.démarches.texte',
+							'Immatriculez votre entreprise en ligne, de manière sécurisée et gratuite, sur le site officiel formalites.entreprises.gouv.fr.'
+						)}
 					</Article>
 				</Grid>
 				<Grid item xl={4} xs={12} sm>
@@ -102,7 +119,11 @@ export default function Résultat() {
 					xl="auto"
 				>
 					<Button color="secondary" light size="XXS" to="..">
-						<span aria-hidden>↻</span> Recommencer l'assistant
+						<Emoji emoji="↻" />{' '}
+						{t(
+							'pages.assistants.choix-statut.résultat.recommencer',
+							'Recommencer l’assistant'
+						)}
 					</Button>
 				</Grid>
 			</Grid>
@@ -115,9 +136,20 @@ export default function Résultat() {
 						: theme.colors.bases.primary[100]
 				}
 			>
-				<H3>{statutLabel} : pour aller plus loin</H3>
+				<H3>
+					{t(
+						'pages.assistants.choix-statut.résultat.références',
+						'{{statutLabel}} : pour aller plus loin',
+						{ statutLabel }
+					)}
+				</H3>
 				<References dottedName={dottedName} references={références} />
-				<H3>Simuler vos futurs revenus</H3>
+				<H3>
+					{t(
+						'pages.assistants.choix-statut.résultat.simulateur',
+						'Simuler vos futurs revenus'
+					)}
+				</H3>
 				<CurrentSimulatorCard />
 				<Spacing xl />
 			</Container>

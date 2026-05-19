@@ -25,7 +25,7 @@ export function CasParticuliers() {
 	return (
 		<EngineProvider value={engine}>
 			<Trans i18nKey="pages.développeur.components.CasParticuliers">
-				<H2>En savoir plus sur...</H2>
+				<H2>En savoir plus sur…</H2>
 				<section>
 					<H3>Comment faire une simulation dans le passé ?</H3>
 					<Body>

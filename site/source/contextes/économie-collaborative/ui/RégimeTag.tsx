@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import {
 	CircleIcon,
-	Colors,
+	Color,
 	HexagonIcon,
 	Tag,
 	TriangleIcon,
@@ -32,7 +32,7 @@ export const RÉGIME_DATA = {
 	},
 } satisfies {
 	[key: string]: {
-		color: Colors
+		color: Color
 		libellé: string
 		abréviation: string
 		icône: FC
@@ -65,19 +65,17 @@ const StyledTag = styled(Tag)`
 interface RégimeTagProps {
 	régime: RegimeCotisation
 	affichage?: 'abréviation' | 'libellé'
-	className?: string
 }
 
 export const RégimeTag = ({
 	régime,
 	affichage = 'abréviation',
-	className,
 }: RégimeTagProps) => {
 	const régimeTag = mapRégimeCotisationToTag(régime)
 	const Icône = RÉGIME_DATA[régimeTag].icône
 
 	return (
-		<StyledTag color={RÉGIME_DATA[régimeTag].color} sm className={className}>
+		<StyledTag color={RÉGIME_DATA[régimeTag].color}>
 			<Icône />
 			{affichage === 'abréviation' ? (
 				<abbr title={RÉGIME_DATA[régimeTag].libellé}>

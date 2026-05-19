@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import {
 	CircleIcon,
-	Colors,
+	Color,
 	HexagonIcon,
 	RhombusIcon,
 	SquareIcon,
@@ -81,7 +81,7 @@ export const TAG_DATA = {
 	},
 } satisfies {
 	[key: string]: {
-		color: Colors
+		color: Color
 		longName: string
 		acronym: string
 		icon: FC
@@ -117,12 +117,11 @@ export const StatutTag = ({
 	text = 'acronym',
 	showIcon,
 	children,
-	className,
 }: StatutTagProps) => {
 	const Icon = TAG_DATA[statut].icon
 
 	return (
-		<StyledTag color={TAG_DATA[statut].color} sm className={className}>
+		<StyledTag color={TAG_DATA[statut].color}>
 			{showIcon && <Icon />}
 			{children ?? text === 'acronym' ? (
 				<abbr title={TAG_DATA[statut].longName}>

@@ -42,11 +42,11 @@ function RémunérationEntrepriseUnipersonnelle() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="choix-statut.rémunération.CA.title">
-						La première année, j'estime mon chiffre d'affaires à...
+					<Trans i18nKey="pages.assistants.choix-statut.rémunération.CA.title">
+						La première année, j'estime mon chiffre d'affaires à…
 						<HelpButtonWithPopover
 							title={t(
-								'choix-statut.rémunération.CA.help.title',
+								'pages.assistants.choix-statut.rémunération.CA.help.title',
 								'Estimer mon chiffre d’affaire'
 							)}
 							type="info"
@@ -68,17 +68,17 @@ function RémunérationEntrepriseUnipersonnelle() {
 						setState({ CA: m })
 					}}
 					label={t(
-						'choix-statut.rémunération.CA.label',
+						'pages.assistants.choix-statut.rémunération.CA.label',
 						"Montant du chiffre d'affaires HT"
 					)}
 					id="CA"
 				/>
-				<Trans i18nKey="choix-statut.rémunération.charges.title">
+				<Trans i18nKey="pages.assistants.choix-statut.rémunération.charges.title">
 					<H3 as="h2">
-						J'estime mes charges professionnelles à...
+						J'estime mes charges professionnelles à…
 						<HelpButtonWithPopover
 							title={t(
-								'choix-statut.rémunération.charges.help.title',
+								'pages.assistants.choix-statut.rémunération.charges.help.title',
 								'Définir vos charges professionnelles'
 							)}
 							type="info"
@@ -99,7 +99,7 @@ function RémunérationEntrepriseUnipersonnelle() {
 					value={charges}
 					unité="€/an"
 					label={t(
-						'choix-statut.rémunération.charges.label',
+						'pages.assistants.choix-statut.rémunération.charges.label',
 						'Montant des charges HT'
 					)}
 					onChange={(m) => setState({ charges: m })}
@@ -121,12 +121,12 @@ function RémunérationSociétéAssociésMultiples() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="choix-statut.rémunération.totale.title">
+					<Trans i18nKey="pages.assistants.choix-statut.rémunération.totale.title">
 						En tant que dirigeant, je souhaite que l'entreprise me rémunère en
-						dépensant au total...
+						dépensant au total…
 						<HelpButtonWithPopover
 							title={t(
-								'choix-statut.rémunération.totale.help.title',
+								'pages.assistants.choix-statut.rémunération.totale.help.title',
 								'Rémunération totale du dirigeant'
 							)}
 							type="info"
@@ -150,7 +150,7 @@ function RémunérationSociétéAssociésMultiples() {
 					unité="€/an"
 					onChange={(m) => setState({ rémunérationTotale: m?.valeur })}
 					label={t(
-						'choix-statut.rémunération.rémunérationTotale.label',
+						'pages.assistants.choix-statut.rémunération.rémunérationTotale.label',
 						'Montant de la rémunération totale'
 					)}
 					id="rémunérationTotale"

@@ -308,14 +308,22 @@ assimilé salarié . cotisations . assiette:
       titre.fr: sans prévoyance
   description.en: >
     [automatic] The social security contribution base is the basis for
-    calculating a large number of employee contributions. It includes cash
-    remuneration (basic salary, allowances, bonuses, etc.) and benefits in kind
+    calculating a large number of employee
+
+    employee contributions. In particular, it includes remuneration in
+
+    (basic salary, allowances, bonuses, etc.) and benefits in kind (housing, vehicle, etc.).
+
     (housing, vehicle, etc.).
   description.fr: >
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre
-    de cotisations sur le travail salarié. Elle comprend notamment les
-    rémunérations en espèces (salaire de base, indemnité, primes...) et les
-    avantages en nature (logement, véhicule...).
+    de
+
+    cotisations sur le travail salarié. Elle comprend notamment les rémunérations en
+
+    espèces (salaire de base, indemnité, primes…) et les avantages en nature
+
+    (logement, véhicule…).
   titre.en: '[automatic] plate'
   titre.fr: assiette
 assimilé salarié . cotisations . assiette forfaitaire:
@@ -794,7 +802,7 @@ assimilé salarié . exonérations . JEI:
 
     - employees for whom the employer is liable to pay unemployment insurance contributions
 
-    - corporate officers who are principally involved in the company's research and development project
+    - corporate officers who are primarily involved in the company's research and development project
 
 
     By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
@@ -1020,8 +1028,7 @@ assimilé salarié . rémunération . avantages en nature:
         [automatic] Are there any other benefits in kind (housing, vehicle,
         discount, etc.)?
       question.fr: >
-        Y a-t-il d'autres avantages en natures (logement, véhicule,
-        réduction...) ?
+        Y a-t-il d'autres avantages en natures (logement, véhicule, réduction…) ?
       titre.en: '[automatic] other'
       titre.fr: autres
     montant:
@@ -1122,7 +1129,7 @@ assimilé salarié . rémunération . avantages en nature:
 
             10% of the purchase price. For example, for a telephone purchased at €850 inc.
 
-            with a €30/month subscription, the benefit in kind to be reported on the
+            with a subscription of €30/month, the benefit in kind to be reported on the
 
             the pay slip will be :
 
@@ -1137,7 +1144,7 @@ assimilé salarié . rémunération . avantages en nature:
           description.fr: >
             Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
 
-            tablettes...), il y a une évaluation forfaitaire annuelle correspondant
+            tablettes…), il y a une évaluation forfaitaire annuelle correspondant
 
             à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC
 
@@ -1237,7 +1244,7 @@ assimilé salarié . rémunération . avantages en nature:
     vehicle, telephone, discounts, accommodation, etc.)?'
   question.fr:
     L'entreprise fournit-elle des avantages en nature (repas, véhicule,
-    téléphone, réductions, logement...) ?
+    téléphone, réductions, logement…) ?
   titre.en: '[automatic] Benefits in kind'
   titre.fr: Avantages en nature
 assimilé salarié . rémunération . brute:
@@ -2329,7 +2336,7 @@ protection sociale . famille:
     assistance...
   résumé.fr: |
     Assure des prestations en soutien aux familles : garde d’enfants, aide au
-    logement...
+    logement…
   titre.en: '[automatic] family'
   titre.fr: famille
 protection sociale . formation:
@@ -3119,7 +3126,7 @@ protection sociale . transport:
 
     ubventionner les transports en commun existants ou pour développer de nouvelles
 
-    infrastructures de transport (tramway, métro, bus...).
+    infrastructures de transport (tramway, métro, bus…).
 
 
     ## Le versement mobilité en quelques chiffres

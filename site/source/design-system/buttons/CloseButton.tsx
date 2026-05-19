@@ -1,12 +1,15 @@
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
-import { Emoji } from '../emoji'
+import { Palette } from '@/types/styled'
+
+import { CrossIcon } from '../icons'
+import { getColorPalette } from '../theme'
 import { GenericButtonOrNavLinkProps } from '../typography/link'
 import { Button } from './Button'
 
-export default styled(Button).attrs({
+export const CloseButton = styled(Button).attrs({
 	light: true,
-	children: <Emoji emoji="✖️" />,
+	children: <CrossIcon />,
 })<GenericButtonOrNavLinkProps>`
 	@media print {
 		display: none !important;
@@ -23,4 +26,20 @@ export default styled(Button).attrs({
 		width: 0.7em !important;
 		height: 0.7em !important;
 	}
+
+	${({ color = 'primary' }) => {
+		const colorPalette = getColorPalette(color)
+		const borderColor =
+			color === 'primary'
+				? (colorPalette as Palette)[700]
+				: color === 'error'
+				? colorPalette[400]
+				: colorPalette[600]
+
+		return css`
+			svg {
+				fill: ${borderColor};
+			}
+		`
+	}}
 `

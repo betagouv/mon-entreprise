@@ -1,25 +1,31 @@
-import React, { CSSProperties } from 'react'
-import { css, DefaultTheme, styled } from 'styled-components'
+import React, { CSSProperties, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Palette, SmallPalette } from '@/types/styled'
+import { Palette } from '@/types/styled'
 
+import { CloseButton } from '../buttons'
 import { Emoji } from '../emoji'
-import { ErrorIcon, InfoIcon, ReturnIcon, SuccessIcon } from '../icons'
+import { ReturnIcon } from '../icons'
+import { getColorPalette } from '../theme'
+import { ComponentType } from '../types'
 import { StyledLink } from '../typography/link'
 import { Body, SmallBody } from '../typography/paragraphs'
+import { getIconFromType } from '../utils'
 
-export type MessageType = 'primary' | 'secondary' | 'info' | 'error' | 'success'
 type MessageProps = {
 	children: React.ReactNode
 	icon?: boolean | React.ReactElement<typeof Emoji>
 	border?: boolean
-	type?: MessageType
+	type?: ComponentType
 	mini?: boolean
 	light?: boolean
 	className?: string
 	style?: CSSProperties
 	role?: string
+	dismissible?: boolean
+	onDismiss?: () => void
 }
 
 export function Message({
@@ -32,7 +38,16 @@ export function Message({
 	className,
 	style,
 	role = undefined,
+	dismissible = false,
+	onDismiss,
 }: MessageProps) {
+	const { t } = useTranslation()
+	const [showMessage, setShowMessage] = useState(true)
+
+	if (!showMessage) {
+		return
+	}
+
 	if (
 		typeof children === 'string' ||
 		(Array.isArray(children) &&
@@ -46,12 +61,17 @@ export function Message({
 		)
 	}
 
+	const handleDismiss = () => {
+		setShowMessage(false)
+		onDismiss?.()
+	}
+
 	return (
 		<ForceThemeProvider forceTheme="light">
 			<StyledMessage
 				className={className}
 				style={style}
-				$messageType={type}
+				$type={type}
 				$border={border}
 				$mini={mini}
 				$light={light}
@@ -59,33 +79,36 @@ export function Message({
 			>
 				{icon && (
 					<StyledIconWrapper $type={type}>
-						{typeof icon !== 'boolean' ? (
-							icon
-						) : type === 'success' ? (
-							<SuccessIcon />
-						) : type === 'error' ? (
-							<ErrorIcon />
-						) : type === 'info' ? (
-							<InfoIcon />
-						) : (
-							<ReturnIcon />
-						)}
+						{typeof icon !== 'boolean'
+							? icon
+							: getIconFromType(type) ?? <ReturnIcon />}
 					</StyledIconWrapper>
 				)}
-				<Wrapper role={role}>{children}</Wrapper>
+				<Wrapper role={role} $withCloseButton={dismissible}>
+					{children}
+					{dismissible && (
+						<HideButton
+							onPress={handleDismiss}
+							aria-label={t('messages.masquer-message', 'Cacher le message')}
+							color={getButtonColor(type)}
+							$mini={mini}
+						/>
+					)}
+				</Wrapper>
 			</StyledMessage>
 		</ForceThemeProvider>
 	)
 }
+
 const StyledIconWrapper = styled.div<{
-	$type: MessageProps['type']
+	$type: ComponentType
 }>`
 	display: flex;
 	position: relative;
 	top: ${({ theme }) => theme.spacings.xxs};
 	width: ${({ theme }) => theme.spacings.xl};
 	svg {
-		fill: ${({ theme, $type }) => textColorFromType($type, theme)};
+		fill: ${({ $type }) => getTextColor($type)};
 	}
 `
 
@@ -93,7 +116,7 @@ type StyledMessageProps = {
 	$border: boolean
 	$light: boolean
 	$mini: boolean
-	$messageType: NonNullable<MessageProps['type']>
+	$type: ComponentType
 }
 
 const StyledMessage = styled.div<StyledMessageProps>`
@@ -103,17 +126,12 @@ const StyledMessage = styled.div<StyledMessageProps>`
 	transition:
 		color 0.3s ease,
 		background-color 0.3s ease;
-	${({ theme, $messageType, $border, $light, $mini }) => {
-		const colorSpace: Palette | SmallPalette =
-			$messageType === 'secondary' || $messageType === 'primary'
-				? theme.colors.bases[$messageType]
-				: theme.colors.extended[$messageType]
-
+	${({ theme, $type, $border, $light, $mini }) => {
 		return css`
 			padding: ${$mini ? theme.spacings.xxs : '0px'}
-				${$mini ? theme.spacings.md : theme.spacings.lg};
-			background-color: ${$light ? 'rgba(255,255,255,0.75)' : colorSpace[100]};
-			border: ${$mini ? '1px' : '2px'} solid ${colorSpace[$border ? 500 : 100]};
+				${theme.spacings[$mini ? 'md' : 'lg']};
+			background-color: ${getBackgroundColor($type, $light)};
+			border: ${$mini ? '1px' : '2px'} solid ${getBorderColor($type, $border)};
 			border-radius: ${theme.box.borderRadius};
 			margin-bottom: ${theme.spacings.md};
 
@@ -121,7 +139,7 @@ const StyledMessage = styled.div<StyledMessageProps>`
 			&& h4,
 			&& h5,
 			&& h6 {
-				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
+				color: ${getTextColor($type)};
 				background-color: inherit;
 			}
 			> * {
@@ -133,29 +151,48 @@ const StyledMessage = styled.div<StyledMessageProps>`
 				color: ${({ theme }) => theme.colors.extended.grey[800]};
 			}
 			& ${StyledLink} {
-				color: ${(colorSpace as Palette)[700] ?? colorSpace[600]};
+				color: ${getTextColor($type)};
 			}
 		`
 	}}
 `
 
-const Wrapper = styled.div`
+const HideButton = styled(CloseButton)<{ $mini: boolean }>`
+	position: absolute;
+	top: ${({ theme, $mini }) => theme.spacings[$mini ? 'sm' : 'md']};
+	right: ${({ theme, $mini }) => theme.spacings[$mini ? 'sm' : 'md']};
+`
+
+const Wrapper = styled.div<{ $withCloseButton: boolean }>`
 	flex: 1;
+	padding-right: ${({ theme, $withCloseButton }) =>
+		$withCloseButton && theme.spacings.xl};
 `
 
 Message.Wrapper = Wrapper
 
-export function textColorFromType(
-	type: MessageProps['type'],
-	theme: DefaultTheme
-) {
-	return type === 'success'
-		? theme.colors.extended.success[600]
-		: type === 'error'
-		? theme.colors.extended.error[600]
-		: type === 'info'
-		? theme.colors.extended.info[600]
-		: type === 'secondary'
-		? theme.colors.bases.secondary[700]
-		: theme.colors.bases.primary[700]
+const getBackgroundColor = (type: ComponentType, light: boolean) => {
+	const colorPalette = getColorPalette(type)
+
+	return light ? 'rgba(255,255,255,0.75)' : colorPalette[100]
+}
+
+const getBorderColor = (type: ComponentType, border: boolean) => {
+	const colorPalette = getColorPalette(type)
+
+	return colorPalette[border ? 500 : 100]
+}
+
+const getTextColor = (type: ComponentType) => {
+	const colorPalette = getColorPalette(type)
+
+	return (colorPalette as Palette)[700] ?? colorPalette[600]
+}
+
+const getButtonColor = (type: ComponentType) => {
+	if (type === 'info') {
+		return 'tertiary'
+	}
+
+	return type
 }

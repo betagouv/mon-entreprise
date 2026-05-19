@@ -24,14 +24,14 @@ export default function Page404() {
 
 			<PageHeader
 				titre={
-					<Trans i18nKey="404.message">
+					<Trans i18nKey="pages.404.message">
 						Cette page n'existe pas ou n'existe plus
 					</Trans>
 				}
 				picture={image}
 			>
 				<Button size="XL" to={'/'}>
-					<Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
+					<Trans i18nKey="pages.404.action">Revenir en lieu sûr</Trans>
 				</Button>
 			</PageHeader>
 			<Spacing xxl />

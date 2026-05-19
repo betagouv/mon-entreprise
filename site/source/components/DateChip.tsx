@@ -14,7 +14,7 @@ export const DateChip = ({ date }: Props) => {
 			type="secondary"
 			icon={<Emoji emoji="📆" />}
 			title={t(
-				'pages.simulateurs.date',
+				'pages.simulateurs.commun.date',
 				'Date de la réglementation utilisée pour les calculs'
 			)}
 		>

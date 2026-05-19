@@ -1315,7 +1315,7 @@ dirigeant . auto-entrepreneur . revenu net . après impôt:
 
     - La location d’un local
 
-    - etc...
+    - etc…
   question.en: '[automatic] What is the desired net after-tax income?'
   question.fr: Quel est le revenu net après impôt souhaité ?
   résumé.en: '[automatic] Before deduction of business expenses'
@@ -2856,7 +2856,7 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
 
     - All flat-rate remuneration paid by the health insurance scheme
 
-    (assistance with teletransmission, indemnity, compensation for continuing
+    (assistance with teletransmission, indemnity, compensation for continuing training
 
     training, installation bonus, etc.)
   description.fr: |
@@ -2872,7 +2872,7 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
 
     - Toutes les rémunérations forfaitaires versées par l’assurance maladie
     (aide à la télétransmission, indemnisation, indemnisation de la formation
-    continue, prime à l’installation, ...)
+    continue, prime à l’installation…)
   question.en: |
     [automatic] How much of your sales are linked to non-standard activities?
     (estimate)?
@@ -3749,7 +3749,7 @@ dirigeant . indépendant . cotisations et contributions . allocations familiales
 
     rentrée scolaire) ;
 
-    - prestations liées au logement, handicap, précarité (RSA...).
+    - prestations liées au logement, handicap, précarité (RSA…).
 
 
     Le versement de la plupart de ces prestations est soumis à des conditions de
@@ -4913,7 +4913,7 @@ entreprise . activité . nature:
         > Examples of regulated professions: architect, lawyer, nurse, doctor...
 
 
-        These are other people who practice a science or art, and whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any subordinate relationship, while engaging their technical and moral responsibility.
+        These are other people who practice a science or art, and whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any link of subordination, while engaging their technical and moral responsibility.
 
 
         > Examples of non-regulated professions: developer, historian, urban planner...
@@ -4924,13 +4924,13 @@ entreprise . activité . nature:
         instances professionnelles (ordre, chambre, ou syndicat).
 
 
-        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin…
 
 
         Il s’agit des autres personnes qui pratiquent, une science ou un art et dont l’activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d’un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
 
-        > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+        > Exemples de professions non-règlementées : développeur, historien, urbaniste…
       question.en: '[automatic] Is it a regulated liberal activity?'
       question.fr: Est-ce une activité libérale réglementée ?
       titre.en: '[automatic] regulated'
@@ -5151,7 +5151,7 @@ entreprise . activités:
         > Examples of regulated professions: architect, lawyer, nurse, doctor...
 
 
-        These are other people who practice a science or art, and whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any subordinate relationship, while engaging their technical and moral responsibility.
+        These are other people who practice a science or art, and whose intellectual activity plays the main role. Their income must represent remuneration for personal work, without any link of subordination, while engaging their technical and moral responsibility.
 
 
         > Examples of non-regulated professions: developer, historian, urban planner...
@@ -5162,13 +5162,13 @@ entreprise . activités:
         instances professionnelles (ordre, chambre, ou syndicat).
 
 
-        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin...
+        > Exemples de professions règlementées : architecte, avocat, infirmier, médecin…
 
 
         Il s’agit des autres personnes qui pratiquent, une science ou un art et dont l’activité intellectuelle joue le principal rôle. Leurs recettes doivent représenter la rémunération d’un travail personnel, sans lien de subordination, tout en engageant leur responsabilité technique et morale.
 
 
-        > Exemples de professions non-règlementées : développeur, historien, urbaniste...
+        > Exemples de professions non-règlementées : développeur, historien, urbaniste…
       question.en: '[automatic] Is it a regulated liberal activity?'
       question.fr: Est-ce une activité libérale réglementée ?
       titre.en: '[automatic] regulated'
@@ -5350,7 +5350,7 @@ entreprise . associés:
     la SERLARLU qui sont les formes unipersonnelles respectives de la SAS, la
     SELAS et la SELARL.
   question.en: '[automatic] I own this company...'
-  question.fr: Je possède cette entreprise...
+  question.fr: Je possède cette entreprise…
   titre.en: '[automatic] associates'
   titre.fr: associés
 entreprise . capital social:
@@ -7358,7 +7358,7 @@ protection sociale . famille:
     assistance...
   résumé.fr: |
     Assure des prestations en soutien aux familles : garde d’enfants, aide au
-    logement...
+    logement…
   titre.en: family
   titre.fr: famille
 protection sociale . formation:
@@ -7763,13 +7763,13 @@ protection sociale . maladie . arrêt maladie:
       titre.fr: délai de carence
   description.en: >-
     [automatic] If you are off work due to illness, you are entitled to daily
-    benefits (IJ) paid by your health insurance scheme (CPAM, MSA, etc.).
+    benefits (IJ) paid by your health insurance scheme (CPAM, MSA...).
 
     Compensation conditions vary according to your social security scheme.
   description.fr: >-
     Si vous êtes en arrêt de travail pour maladie, vous avez droit à des
     indemnités journalières (IJ) versées par votre régime d’assurance maladie
-    (CPAM, MSA,...).
+    (CPAM, MSA…).
 
     Les conditions d’indemnisation varient en fonction de votre régime de protection sociale.
   titre.en: '[automatic] sick leave'
@@ -7996,14 +7996,14 @@ protection sociale . maladie . maternité paternité adoption:
   titre.fr: indemnités congé maternité paternité adoption
 protection sociale . retraite:
   description.en: >
-    [automatic] ### A compulsory system ...
+    [automatic] ### A compulsory system...
 
-    As soon as you start working, you and your employer contribute to your pension scheme. This contribution is based on your salary.
+    As soon as you start working, you and your employer contribute to the pension scheme. This contribution is based on your salary.
 
 
     ###Pay-as-you-go
 
-    The total amount of contributions you make each year is used to pay the pensions
+    The total amount you contribute each year is used to pay the pensions
 
     pensions for that same year. The system thus organizes a
 
@@ -8012,7 +8012,7 @@ protection sociale . retraite:
 
     ###Mainly contributory
 
-    When you retire, your pension (i.e. your retirement "income") is calculated
+    When you retire, your pension (i.e., your retirement "income") is calculated on the basis of your income, your age and your retirement age.
 
     is calculated on the basis of your income, your retirement age and the number of years
 
@@ -8033,12 +8033,12 @@ protection sociale . retraite:
 
     Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
   description.fr: >
-    ### Un système obligatoire …
+    ### Un système obligatoire…
 
     Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
 
 
-    ###… par répartition
+    ###…par répartition
 
     Le montant total des cotisations que vous versez chaque année sert à payer les
 
@@ -8047,7 +8047,7 @@ protection sociale . retraite:
     transfert direct des générations en activité vers les générations à la retraite.
 
 
-    ###… principalement contributif
+    ###…principalement contributif
 
     Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu »
 
@@ -8762,7 +8762,7 @@ protection sociale . transport:
 
     in the area where the company is located. It can then be used to
 
-    ubsidize existing public transport or develop new transport infrastructure
+    ubsidize existing public transport systems or develop new transport infrastructure
 
     infrastructure (tramway, metro, bus, etc.).
 
@@ -8773,7 +8773,7 @@ protection sociale . transport:
 
     France's largest conurbations.
 
-    - 263 / year / inhabitant** in purchasing power gains for the inhabitants of
+    - 263 / year / inhabitant** gain in purchasing power for the inhabitants of
 
     Île-de-France
   description.fr: >
@@ -8786,7 +8786,7 @@ protection sociale . transport:
 
     ubventionner les transports en commun existants ou pour développer de nouvelles
 
-    infrastructures de transport (tramway, métro, bus...).
+    infrastructures de transport (tramway, métro, bus…).
 
 
     ### Le versement mobilité en quelques chiffres
@@ -9376,8 +9376,8 @@ salarié . contrat . CDD . motif:
       titre.en: '[automatic] Complementary professional training'
       titre.fr: Complément de formation professionnelle
     contrat aidé:
-      titre.en: '[automatic] Subsidized contract (CUI, work-study, etc.)'
-      titre.fr: Contrat aidé (CUI, alternance, ...)
+      titre.en: '[automatic] Subsidized contract (CUI, sandwich course, etc.)'
+      titre.fr: Contrat aidé (CUI, alternance…)
     issue d'apprentissage:
       description.en: >
         [automatic] At the end of an apprenticeship contract, a fixed-term
@@ -9640,19 +9640,21 @@ salarié . contrat . salaire brut:
       titre.en: '[automatic] Full-time equivalent gross salary'
       titre.fr: Salaire brut équivalent temps plein
   description.en: >
-    [automatic] This is the regular *gross* salary written into the employment
-    contract. It never changes between months and cannot be changed without the
+    [automatic] This is the regular *gross* salary specified in the employment
+    contract. It never
+
+    between months and cannot be changed without the signature of both parties.
+
     signature of both parties.
 
 
-    It does not include allowances, benefits in kind and bonuses...
-  description.fr: >
+    It does not include allowances, benefits in kind or bonuses...
+  description.fr: |
     C'est le salaire *brut* régulier inscrit dans le contrat de travail. Il ne
     change jamais entre les mois et ne peut pas être modifié sans signature des
     deux parties.
 
-
-    Il ne comprend pas les indemnités, avantages en nature et primes...
+    Il ne comprend pas les indemnités, avantages en nature et primes…
   résumé.en: '[automatic] Gross reference (without bonuses, allowances or increases)'
   résumé.fr: Brut de référence (sans les primes, indemnités ni majorations)
   suggestions.SMIC.en: '[automatic] SMIC'
@@ -10557,14 +10559,22 @@ salarié . cotisations . assiette:
       titre.fr: sans prévoyance
   description.en: >
     [automatic] The social security contribution base is the basis for
-    calculating a large number of contributions on salaried work. It includes in
-    particular the remuneration in cash (basic salary, allowance, bonuses...)
-    and the benefits in kind (housing, vehicle...).
+    calculating a large number of employee
+
+    employee contributions. In particular, it includes remuneration
+
+    (basic salary, allowances, bonuses, etc.) and benefits in kind (housing, vehicle, etc.).
+
+    (housing, vehicle, etc.).
   description.fr: >
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre
-    de cotisations sur le travail salarié. Elle comprend notamment les
-    rémunérations en espèces (salaire de base, indemnité, primes...) et les
-    avantages en nature (logement, véhicule...).
+    de
+
+    cotisations sur le travail salarié. Elle comprend notamment les rémunérations
+
+    en espèces (salaire de base, indemnité, primes…) et les avantages en nature
+
+    (logement, véhicule…).
   titre.en: '[automatic] plate'
   titre.fr: assiette
 salarié . cotisations . assiette forfaitaire:
@@ -13123,8 +13133,7 @@ salarié . rémunération . avantages en nature:
         [automatic] Are there any other benefits in kind (housing, vehicle,
         discount, etc.)?
       question.fr: >
-        Y a-t-il d'autres avantages en nature (logement, véhicule, réduction...)
-        ?
+        Y a-t-il d'autres avantages en nature (logement, véhicule, réduction…) ?
       titre.en: '[automatic] other'
       titre.fr: autres
     montant:
@@ -13232,26 +13241,34 @@ salarié . rémunération . avantages en nature:
           titre.fr: coût appareils
         montant:
           description.en: >
-            [automatic] For benefits in kind of NTIC type (computers,
-            smartphones, tablets...), there is a fixed annual evaluation
-            corresponding to 10% of the purchase price. For example, for a phone
-            bought at 850€ TTC with a subscription of 30€ / month, the benefit
-            in kind to be reported on the pay slip will be :
+            [automatic] For NICT-type benefits in kind (computers, smartphones,
+
+            tablets...), there is an annual lump-sum assessment corresponding to
+
+            10% of the purchase price. For example, for a telephone purchased at €850
+
+            with a €30/month subscription, the benefit in kind to be reported on the
+
+            on the pay slip will be :
 
 
             ```
 
-            [10% x (850€ + (30€ x 12 months)) / 12 months
+            [10% x (€850 + (€30 x 12 months)) / 12 months
 
             ```
 
-            i.e. 10,08€.
+            or €10.08
           description.fr: >
             Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
-            tablettes...), il y a une évaluation forfaitaire annuelle
-            correspondant à 10% du prix d'achat. Par exemple, pour un téléphone
-            acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en
-            nature à reporter sur le bulletin de paie sera de :
+
+            tablettes…), il y a une évaluation forfaitaire annuelle correspondant
+
+            à 10 % du prix d'achat. Par exemple, pour un téléphone acheté à 850 €
+
+            TTC avec un abonnement de 30 €/mois, l'avantage en nature à reporter
+
+            sur le bulletin de paie sera de :
 
 
             ```
@@ -13312,10 +13329,10 @@ salarié . rémunération . avantages en nature:
 
     L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au niveau du salaire brut pour être soumis à cotisations. Après détermination du salaire net imposable, il sera déduit du salaire net à verser.
   question.en: '[automatic] Does the company provide benefits in kind (meals,
-    vehicle, telephone, discounts, housing, etc.)?'
+    vehicle, telephone, discounts, accommodation, etc.)?'
   question.fr:
     L'entreprise fournit-elle des avantages en nature (repas, véhicule,
-    téléphone, réductions, logement...) ?
+    téléphone, réductions, logement…) ?
   titre.en: '[automatic] Benefits in kind'
   titre.fr: Avantages en nature
 salarié . rémunération . brut:
@@ -13759,38 +13776,61 @@ salarié . rémunération . frais professionnels:
           titre.fr: transports publics
       titre.en: '[automatic] commuting'
       titre.fr: trajets domicile travail
-  description.en: >-
-    [automatic] Professional expenses are expenses incurred by the employee for
-    the needs of his professional activity. These expenses are then reimbursed
-    by the employer.
+  description.en: >
+    [automatic] Professional expenses correspond to expenses incurred by the
+    employee
+
+    for the needs of their professional activity. These expenses are
+
+    reimbursed by the employer.
 
 
-    The reimbursement of these expenses can take the form of :
 
-      - a reimbursement of actual expenses based on receipts;
+    Reimbursement of these expenses may take the form of :
 
-      - payment of a lump sum allowance;
+      - reimbursement of actual expenses based on receipts;
 
-      - the application of a specific flat-rate deduction on the salary subject to contributions; this possibility is only available to certain professions.
+      - payment of lump-sum allowances;
+
+      - the application of a specific flat-rate deduction from the salary
+      subject to contributions; this possibility being open only to certain
+      professions.
 
 
-    Professional expenses are generally excluded from the basis for calculating social security contributions and CSG-CRDS, except in the case of exceeding the ceiling for lump-sum reimbursements (basket expenses, luncheon vouchers, sustainable mobility package, etc.).
-  description.fr: >-
+    Professional expenses are generally excluded from the basis for calculating social security
+
+    social security contributions and CSG-CRDS, except in the case of flat-rate reimbursements
+
+    ceiling for flat-rate reimbursements (basket costs,
+
+    luncheon vouchers, sustainable mobility package, etc.).
+  description.fr: >
     Les frais professionnels correspondent à des dépenses engagées par le
+
     salarié pour les besoins de son activité professionnelle. Ces frais sont
+
     ensuite remboursés par l’employeur.
 
 
-    Le dédommagement de ces frais peut prendre la forme :
 
-      - d’un remboursement des dépenses réelles sur justificatifs ;
+    Le dédommagement de ces frais peut prendre la forme :
 
-      - d’un versement d’allocations forfaitaires ;
+      - d’un remboursement des dépenses réelles sur justificatifs ;
 
-      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
+      - d’un versement d’allocations forfaitaires ;
+
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire
+      soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines
+      professions.
 
 
-    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires ( frais de panier, titres-restaurant, forfait mobilités durables...).
+    Les frais professionnels sont généralement exclus de la base de calcul des
+
+    cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement
+
+    de plafond pour les remboursements forfaitaires (frais de panier,
+
+    titres-restaurant, forfait mobilités durables…).
   titre.en: '[automatic] reimbursement of expenses'
   titre.fr: remboursement de frais
 salarié . rémunération . heures complémentaires:

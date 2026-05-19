@@ -8,7 +8,7 @@ export default function PrintExportRecover() {
 		<section className="print-only">
 			<Message>
 				<Body>
-					<Trans i18nKey="pages.simulateurs.print-info.recover">
+					<Trans i18nKey="pages.simulateurs.commun.print-info.recover">
 						Retrouvez cette simulation ainsi que d'autres outils d'aide à la
 						création et à la gestion d'entreprise, sur{' '}
 						<Link href={useUrl()} target="_blank" rel="noreferrer">
@@ -19,7 +19,7 @@ export default function PrintExportRecover() {
 				</Body>
 
 				<Body>
-					<Trans i18nKey="pages.simulateurs.print-info.date">
+					<Trans i18nKey="pages.simulateurs.commun.print-info.date">
 						Cette simulation a été effectuée le
 					</Trans>{' '}
 					{new Date().toLocaleDateString()}.
