@@ -228,10 +228,6 @@ août: août
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
-app:
-  description: Migration en cours. Cette page confirme que Next.js est
-    correctement configuré.
-  titre: Mon entreprise — Next.js
 aquoiserventmescotisations:
   en-savoir-plus: Pour en savoir plus, rendez-vous sur le site
     <2>aquoiserventlescotisations.urssaf.fr</2>
