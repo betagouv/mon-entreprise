@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { NumberField } from './NumberField'
+import { AmountField } from './AmountField'
 
 export default {
-	component: NumberField,
+	component: AmountField,
 	decorators: [
 		(Story) => (
 			<div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -11,35 +11,40 @@ export default {
 			</div>
 		),
 	],
-} as Meta<typeof NumberField>
+} as Meta<typeof AmountField>
 
-type Story = StoryObj<typeof NumberField>
+type Story = StoryObj<typeof AmountField>
 
 export const Default: Story = {
 	args: {
-		label: 'Label du champ',
+		label: 'Montant annuel brut',
+		unit: '€/an',
 	},
 }
 
-export const WithDisplayedUnit: Story = {
+export const WithCents: Story = {
 	args: {
-		displayedUnit: '€/mois',
-		label: 'Montant mensuel brut',
+		label: 'Montant mensuel net',
+		unit: '€/mois',
+		withCents: true,
 	},
 }
 
 export const WithPlaceholder: Story = {
 	args: {
-		label: "Nombre d'enfants de 0 à 17 ans",
-		placeholder: 'par exemple : 2',
+		label: 'Montant mensuel brut',
+		placeholder: 'par exemple : 2000',
+		unit: '€/mois',
+		withCents: true,
 	},
 }
 
 export const WithInitialValue: Story = {
 	args: {
 		defaultValue: 1801.8,
-		displayedUnit: '€/mois',
 		label: 'Montant mensuel brut (SMIC par défaut)',
+		unit: '€/mois',
+		withCents: true,
 	},
 }
 
@@ -52,23 +57,13 @@ export const WithDescription: Story = {
 	},
 }
 
-export const WithErrorMessage: Story = {
-	args: {
-		defaultValue: -2000,
-		description:
-			'Brut de référence (sans les primes, indemnités ni majorations)',
-		displayedUnit: '€/mois',
-		label: 'Salaire mensuel brut',
-		errorMessage: 'Le montant ne peut être négatif',
-	},
-}
-
 export const WithSuggestionns = {
 	args: {
 		description:
 			'Brut de référence (sans les primes, indemnités ni majorations)',
-		displayedUnit: '€/mois',
 		label: 'Salaire mensuel brut',
 		suggestions: { 'salaire médian': 2700, SMIC: 1801.8 },
+		unit: '€/mois',
+		withCents: true,
 	},
 }

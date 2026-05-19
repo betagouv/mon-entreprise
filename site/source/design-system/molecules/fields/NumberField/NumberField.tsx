@@ -25,12 +25,13 @@ import {
 
 type NumberFieldProps = Pick<
 	RANumberFieldProps,
-	'defaultValue' | 'formatOptions'
+	'defaultValue' | 'formatOptions' | 'value'
 > & {
 	description?: string
 	displayedUnit?: string
 	errorMessage?: string
 	label: string
+	placeholder?: string
 	suggestions?: InputSuggestionsRecord<number>
 	onSubmit?: (source?: string) => void
 }
@@ -45,16 +46,17 @@ export function NumberField({
 		maximumFractionDigits: 2,
 	},
 	label,
+	placeholder,
 	suggestions,
 }: NumberFieldProps) {
-	const [value, setValue] = useState(defaultValue || 0)
+	const [currentValue, setCurrentValue] = useState(defaultValue || undefined)
 	const { t } = useTranslation()
 
 	return (
 		<StyledRANumberField
 			defaultValue={defaultValue}
 			formatOptions={formatOptions}
-			value={value}
+			value={currentValue}
 			$hasError={!!errorMessage}
 		>
 			<StyledRALabel>{label}</StyledRALabel>
@@ -64,7 +66,7 @@ export function NumberField({
 			)}
 
 			<StyledRAGroup className="input-and-unit-group">
-				<StyledRAInput />
+				<StyledRAInput placeholder={placeholder} />
 
 				{displayedUnit && <span>{displayedUnit}</span>}
 			</StyledRAGroup>
@@ -85,7 +87,7 @@ export function NumberField({
 					<InputSuggestions
 						suggestions={suggestions}
 						onFirstClick={(value: number) => {
-							setValue(value)
+							setCurrentValue(value)
 						}}
 					/>
 				</StyledSuggestionsContainer>
@@ -119,13 +121,14 @@ const StyledRAGroup = styled(RAGroup)`
 	${fieldInputStyles}
 
 	display: flex;
-	gap: ${({ theme }) => `${theme.spacings.xs}`};
+	gap: ${({ theme }) => `${theme.spacings.xxs}`};
 
 	width: fit-content;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 `
 
 const StyledRAInput = styled(RAInput)`
+	padding: 0;
 	border: none;
 	outline: none;
 
