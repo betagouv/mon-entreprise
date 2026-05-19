@@ -15,7 +15,6 @@ protection sociale . invalidité et décès:
     forfaitaire.
   références:
     capital décès (amelie.fr): https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces
-    capital décès (salarié privé): https://www.service-public.fr/particuliers/vosdroits/F3005
     pension invalidité: https://www.service-public.fr/particuliers/vosdroits/F672
 
   avec:
@@ -33,7 +32,7 @@ protection sociale . invalidité et décès:
       plafond: plafond sécurité sociale
 
 protection sociale . invalidité et décès . capital décès:
-  applicable si: raam >= 10% * plafond sécurité sociale
+  applicable si: maladie . condition revenu
   valeur: 20% * plafond sécurité sociale * 1 an
   unité: €
 
@@ -85,7 +84,7 @@ protection sociale . invalidité et décès . pension invalidité:
         - 30%
       plancher:
         applicable si: maladie . condition revenu
-        valeur: 486.98 €/mois
+        valeur: 486.98 €/mois
       unité: €/mois
       références:
         Le montant de votre pension d’invalidité: https://www.ameli.fr/assure/remboursements/pensions-allocations-rentes/invalidite

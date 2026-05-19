@@ -1,0 +1,73 @@
+protection sociale . retraite . base:
+  titre: Retraite de base maximum
+  résumé: Pension de retraite de base à taux plein en partant du principe que
+    votre rémunération est restée la même pendant toute votre vie active.
+  description: |
+    Le montant de votre pension pour la retraite de base est calculé à partir de la
+    moyenne de vos revenus des 25 meilleures années et du nombre de trimestres
+    cotisés.
+
+    Cette **estimation** de votre pension de retraite de base **maximum** est
+    calculée avec les hypothèses suivantes :
+    - La rémunération que vous avez saisie correspond à celle de vos
+    **25 meilleures années** ;
+    - Vous n’avez pas eu de variation de revenus au cours de votre carrière ;
+    - Vous n’avez pas d’autres sources de revenus ;
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+    bénéficier du **taux plein**.
+
+    > **Calcul détaillé :** 50% x revenu annuel moyen x prorata de pension
+    >
+    > Avec :
+    > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
+    > travailleur indépendant pendant les 25 années les plus avantageuses de votre
+    > carrière ;
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
+    > durée d’assurance pour obtenir une pension à taux plein.
+
+  arrondi: oui
+  unité: €/mois
+  produit:
+    - base . cotisée
+    - 50%
+  références:
+    'Retraites de base et complémentaire dans le privé : quelles différences ?': https://www.service-public.fr/particuliers/vosdroits/F12389
+    Assurance Retraite de la Sécurité sociale: https://www.lassuranceretraite.fr/
+    Calcul de la retraite du salarié du secteur privé: https://www.service-public.fr/particuliers/vosdroits/F21552
+    Régime de retraite des travailleurs indépendants: https://entreprendre.service-public.fr/vosdroits/F33841
+    Montant de la retraite personnelle: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_montant_montant_ex.aspx
+    Durée d’assurance pour le taux plein: https://legislation.lassuranceretraite.fr/#/expose?file_leaf_ref=retraite_personnelle_taux_duree_assurance_pour_taux_plein_ex.aspx
+
+protection sociale . retraite . base . trimestres:
+  titre: trimestres validés
+  grille:
+    assiette: base . cotisée
+    multiplicateur: SMIC . horaire . début d'année
+    tranches:
+      - montant: 0 trimestre validé/an
+        plafond: 150 heure/an
+      - montant: 1 trimestre validé/an
+        plafond: 300 heure/an
+      - montant: 2 trimestre validé/an
+        plafond: 450 heure/an
+      - montant: 3 trimestre validé/an
+        plafond: 600 heure/an
+      - montant: 4 trimestre validé/an
+  plafond: 4 trimestre validé/an
+  références:
+    Durée d’assurance retraite du salarié du secteur privé: https://www.service-public.fr/particuliers/vosdroits/F1761
+    # Lien mort :
+    # Salaire validant un trimestre: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx
+    Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+
+protection sociale . retraite . base . cotisée:
+  titre: revenu cotisé pour la retraite de base
+  arrondi: oui
+  valeur:
+    assimilé salarié . cotisations . vieillesse . salarié / (assimilé salarié . cotisations .
+    vieillesse . salarié . plafonnée . taux + assimilé salarié . cotisations .
+    vieillesse . salarié . déplafonnée . taux)
+  plafond: plafond sécurité sociale
+  références:
+    Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
+    Salaire validant un trimestre: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx

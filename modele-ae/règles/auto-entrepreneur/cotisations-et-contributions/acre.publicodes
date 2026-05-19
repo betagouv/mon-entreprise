@@ -1,0 +1,82 @@
+auto-entrepreneur . cotisations et contributions . cotisations . Acre:
+  non applicable si: Drom
+  applicable si: entreprise . durée d'activité . en début d'année < 1 an
+  question: Bénéficiez-vous de l’Acre ?
+  par défaut: non
+  description: |
+    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
+    **exonération partielle** de charges sociales pendant 12 mois, dite exonération
+    de début d’activité.
+
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de l’Urssaf**
+    dans un délai de 60 jours après la création de votre entreprise.
+
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
+    **une des situations suivantes** au moment de la création de votre entreprise :
+    - personne demandeuse d’emploi indemnisée ;
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
+    6 mois au cours des 18 derniers mois ;
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+    solidarité spécifique (ASS) ;
+    - jeune de 18 à 25 ans révolus ;
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante pour
+    l’ouverture de droits) ;
+    - personne de moins de 30 ans reconnue handicapée ;
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en redressement
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise), sous
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+    de signature de ce contrat ;
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire de
+    la politique de la ville (QPV) ;
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+    - personne exerçant l’activité au sein d’une zone France ruralités revitalisation
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
+
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+    bénéficié au cours des trois années précédentes.
+  références:
+    Aide à la création ou à la reprise d’une entreprise: https://entreprendre.service-public.gouv.fr/vosdroits/F11677
+    Vous souhaitez devenir Auto-entrepreneur: https://www.urssaf.fr/files/live/sites/urssaffr/files/autres/Diaporama_Auto-entrepreneur.pdf#page=15
+    L'essentiel du statut: https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html
+    
+auto-entrepreneur . cotisations et contributions . cotisations . Acre . taux:
+  description: |
+    Ce taux correspond à la réduction de cotisations qui s’applique pour
+    l’auto-entrepreneur bénéficiant de l’Acre. Un taux de 75% signifie que
+    l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
+    cotisations.
+  variations:
+    - si: date < 07/2026
+      alors: 50%
+    - sinon: 75%
+  unité: '%'
+
+auto-entrepreneur . cotisations et contributions . cotisations . Acre . taux service BIC:
+  valeur: taux * service BIC . taux de base
+  arrondi: 1 décimale
+
+auto-entrepreneur . cotisations et contributions . cotisations . Acre . taux service BNC:
+  valeur: taux * service BNC . taux de base
+  arrondi:
+    variations:
+      - si: date < 01/2026
+        alors: 1 décimale
+      - sinon: 2 décimales
+
+auto-entrepreneur . cotisations et contributions . cotisations . Acre . taux vente restauration hébergement:
+  valeur: taux * vente restauration hébergement . taux de base
+  arrondi: 1 décimale
+
+auto-entrepreneur . cotisations et contributions . cotisations . Acre . taux service BNC Cipav:
+  applicable si: Cipav
+  variations:
+    - si: entreprise . date de création < 01/04/2020
+      alors: taux * service BNC Cipav . taux de base
+    - sinon:
+        variations:
+          - si: date < 07/2024
+            alors: 12.10%
+          - si: date < 01/2026
+            alors: 13.90%
+          - sinon: 13.40% 

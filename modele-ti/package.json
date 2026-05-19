@@ -1,7 +1,7 @@
 {
 	"name": "modele-ti",
 	"version": "0.0.1",
-	"description": "Les règles publicodes du système social français pour les TI.",
+	"description": "Les règles publicodes du système social français pour les travailleurs et travailleuses au régime d'indépendant.",
 	"type": "module",
 	"main": "./dist/index.js",
 	"module": "dist/index.js",

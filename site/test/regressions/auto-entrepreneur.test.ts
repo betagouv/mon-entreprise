@@ -1,7 +1,6 @@
-import rules from 'modele-social'
+import rules from 'modele-ae'
 import { expect, it } from 'vitest'
 
-import { configAutoEntrepreneur } from '@/pages/simulateurs/auto-entrepreneur/simulationConfig'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import autoEntrepreneurSituations from './auto-entrepreneur.yaml'
@@ -10,50 +9,56 @@ import { getMissingVariables, runSimulations } from './utils'
 const engine = engineFactory(rules)
 
 it('calculate simulations-auto-entrepreneur', () => {
-	runSimulations(
-		engine,
-		autoEntrepreneurSituations,
-		[
-			...(configAutoEntrepreneur['objectifs exclusifs'] ?? []),
-			...(configAutoEntrepreneur.objectifs ?? []),
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire',
-			'dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions',
-		],
-		configAutoEntrepreneur.situation
-	)
+	runSimulations(engine, autoEntrepreneurSituations, [
+		"entreprise . chiffre d'affaires",
+		'auto-entrepreneur . revenu . net',
+		'auto-entrepreneur . revenu . net . après impôt',
+		'auto-entrepreneur . cotisations et contributions',
+		'auto-entrepreneur . revenu . impôt',
+		// ...(configAutoEntrepreneur['objectifs exclusifs'] ?? []),
+		// ...(configAutoEntrepreneur.objectifs ?? []),
+		"entreprise . chiffre d'affaires . vente restauration hébergement",
+		"entreprise . chiffre d'affaires . service BIC",
+		"entreprise . chiffre d'affaires . service BNC",
+		'auto-entrepreneur . cotisations et contributions . CFP',
+		'auto-entrepreneur . cotisations et contributions . TFC',
+		'auto-entrepreneur . cotisations et contributions . cotisations',
+		'auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux',
+		'auto-entrepreneur . cotisations et contributions . cotisations . service BIC',
+		'auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux',
+		'auto-entrepreneur . cotisations et contributions . cotisations . service BNC',
+		'auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux',
+		'auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement',
+		'auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux',
+		'auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav',
+		'auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité',
+		'auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès',
+		'auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base',
+		'auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire',
+		'auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions',
+	])
 
 	expect(
 		getMissingVariables(
 			engine
 				.setSituation({
-					...configAutoEntrepreneur.situation,
-					"dirigeant . auto-entrepreneur . chiffre d'affaires": '30000 €/an',
+					"entreprise . chiffre d'affaires": '30000 €/an',
 				})
-				.evaluate('dirigeant . auto-entrepreneur . revenu net . après impôt')
+				.evaluate('auto-entrepreneur . revenu . net . après impôt')
 		)
 	).toMatchInlineSnapshot(`
 		[
-		  "dirigeant . auto-entrepreneur . impôt . versement libératoire",
-		  "entreprise . activité . nature",
+		  "auto-entrepreneur . versement libératoire",
+		  "entreprise . activité",
+		  "entreprise . activité . principale",
 		  "entreprise . activité . revenus mixtes",
-		  "entreprise . activités . service ou vente",
 		  "entreprise . date de création",
+		  "impôt . foyer fiscal . autres revenus imposables",
 		  "impôt . foyer fiscal . enfants à charge",
-		  "impôt . foyer fiscal . revenu imposable . autres revenus imposables",
-		  "impôt . foyer fiscal . situation de famille",
+		  "impôt . foyer fiscal . situation de famille . question",
 		  "impôt . méthode de calcul",
+		  "paramètres . impôt . foyer fiscal . situation de famille",
+		  "paramètres . impôt . revenu d'activité",
 		  "établissement . commune . département",
 		  "établissement . commune . département . outre-mer",
 		]

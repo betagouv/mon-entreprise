@@ -1,7 +1,7 @@
 {
 	"name": "modele-as",
 	"version": "0.0.1",
-	"description": "Les règles publicodes du système social français pour les dirigeants assimilés salariés.",
+	"description": "Les règles publicodes du système social français pour les dirigeantes et dirigeants ayant le statut d'assimilé salarié.",
 	"type": "module",
 	"main": "./dist/index.js",
 	"module": "dist/index.js",

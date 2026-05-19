@@ -29,7 +29,30 @@ entreprise . date de création . contrôle date passée:
   description: Il s’agit d’une très vieille entreprise ! Êtes-vous sûr de ne pas
     vous être trompé dans la saisie ?
 
-entreprise . durée d'activité en début d'année:
+entreprise . créée cette année:
+  titre: Entreprise créée cette année
+  formule:
+    toutes ces conditions:
+      - période . début d'année <= entreprise . date de création
+      - entreprise . date de création <= période . fin d'année
+  description: Indique si l’entreprise a été créée l’année de la simulation.
+
+entreprise . durée d'activité:
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: date
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+
+entreprise . durée d'activité . en fin d'année:
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: période . fin d'année
+    - applicable si: date de création <= période . fin d'année
+      valeur: 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+
+entreprise . durée d'activité . en début d'année:
   durée:
     depuis: date de création
     jusqu'à: période . début d'année
