@@ -8,12 +8,7 @@ import { PublicodesTypes } from './modele-social/helpers/PublicodesTypes'
 
 interface CustomMatchers<R = unknown> {
 	toEvaluate: <T extends PublicodesTypes>(
-		rule:
-			| PublicodesExpression
-			| {
-					rule: PublicodesExpression
-					precision?: number
-			  },
+		rule: PublicodesExpression,
 		value: Evaluation<T>
 	) => R
 	toBeApplicable: (rule: DottedName) => R

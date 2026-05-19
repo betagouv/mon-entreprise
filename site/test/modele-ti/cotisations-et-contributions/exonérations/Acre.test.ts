@@ -2,6 +2,8 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
+import { round } from '@/utils/number'
+
 const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
 
 const defaultSituation = {
@@ -107,8 +109,11 @@ describe('L’exonération Acre', () => {
 				RB - Math.round(((PASS - 40_000) * RB75Pass) / (0.25 * PASS)) + 1
 			)
 			expect(e3).toEvaluate(
-				`${COTISATIONS} . invalidité et décès`,
-				ID - Math.round(((PASS - 40_000) * ID75Pass) / (0.25 * PASS))
+				{
+					valeur: `${COTISATIONS} . invalidité et décès`,
+					arrondi: 'oui',
+				},
+				Math.round(ID - ((PASS - 40_000) * ID75Pass) / (0.25 * PASS))
 			)
 		})
 
@@ -174,7 +179,7 @@ describe('L’exonération Acre', () => {
 			)
 			expect(e2).toEvaluate(
 				`${COTISATIONS} . invalidité et décès`,
-				ID - Math.round((ID * 47) / 365)
+				ID - round((ID * 47) / 365, 2)
 			)
 		})
 	})
@@ -222,7 +227,7 @@ describe('L’exonération Acre', () => {
 			)
 			expect(e2).toEvaluate(
 				`${COTISATIONS} . invalidité et décès`,
-				ID - Math.round(ID / 4) + 1
+				round(ID - ID / 4, 2)
 			)
 		})
 
@@ -287,8 +292,11 @@ describe('L’exonération Acre', () => {
 				RB - Math.round(((PASS - 40_000) * RB75Pass) / PASS)
 			)
 			expect(e3).toEvaluate(
-				`${COTISATIONS} . invalidité et décès`,
-				ID - Math.round(((PASS - 40_000) * ID75Pass) / PASS)
+				{
+					valeur: `${COTISATIONS} . invalidité et décès`,
+					arrondi: 'oui',
+				},
+				Math.round(ID - ((PASS - 40_000) * ID75Pass) / PASS)
 			)
 		})
 
@@ -354,7 +362,7 @@ describe('L’exonération Acre', () => {
 			)
 			expect(e2).toEvaluate(
 				`${COTISATIONS} . invalidité et décès`,
-				ID - Math.round(((ID / 4) * 48) / 365)
+				round(ID - ((ID / 4) * 48) / 365, 2)
 			)
 		})
 	})

@@ -71,7 +71,7 @@ describe('Cotisation allocations familiales', () => {
 					"entreprise . durée d'activité cette année": '304 jour',
 				})
 
-				const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -102,9 +102,9 @@ describe('Cotisation allocations familiales', () => {
 			})
 		})
 
-		it('applique un taux fixe de 3,1% pour les DROM', () => {
+		it('applique un taux fixe de 3,1% pour les DROM (hors Mayotte)', () => {
 			const situation = {
-				'établissement . commune . département . outre-mer': 'oui',
+				'établissement . commune . département': "'La Réunion'",
 			}
 
 			const e1 = engine.setSituation({
@@ -142,6 +142,42 @@ describe('Cotisation allocations familiales', () => {
 				100 * TAUX
 			)
 			expect(e3).toEvaluate(COTISATION, Math.round(70_000 * TAUX))
+		})
+
+		describe('pour Mayotte', () => {
+			const TAUX = 1.6 / 100
+
+			const situation = {
+				'établissement . commune . département': "'Mayotte'",
+			}
+
+			it('applique un taux fixe de 1,60%', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'30000 €/an',
+				})
+
+				expect(e).toEvaluate(COTISATION, Math.round(30_000 * TAUX))
+			})
+
+			it('applique une assiette maximale égale au PASS mahorais', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'60000 €/an',
+				})
+
+				const PASSMahorais = e.evaluate('plafond sécurité sociale . annuel')
+					.nodeValue as number
+
+				expect(e).toEvaluate(
+					`${COTISATION} avant abattements . assiette`,
+					PASSMahorais
+				)
+
+				expect(e).toEvaluate(COTISATION, Math.round(PASSMahorais * TAUX))
+			})
 		})
 	})
 
@@ -188,10 +224,10 @@ describe('Cotisation allocations familiales', () => {
 			expect(e3).toEvaluate(COTISATION, Math.round(70_000 * TAUX))
 		})
 
-		it('applique un taux fixe de 3,1% dans les DROM', () => {
+		it('applique un taux fixe de 3,1% pour les DROM (hors Mayotte)', () => {
 			const situation = {
 				...defaultSituation,
-				'établissement . commune . département . outre-mer': 'oui',
+				'établissement . commune . département': "'La Réunion'",
 			}
 
 			const e1 = engine.setSituation({
@@ -229,6 +265,43 @@ describe('Cotisation allocations familiales', () => {
 				100 * TAUX
 			)
 			expect(e3).toEvaluate(COTISATION, Math.round(70_000 * TAUX))
+		})
+
+		describe('pour Mayotte', () => {
+			const TAUX = 1.6 / 100
+
+			const situation = {
+				...defaultSituation,
+				'établissement . commune . département': "'Mayotte'",
+			}
+
+			it('applique un taux fixe de 1,60%', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'30000 €/an',
+				})
+
+				expect(e).toEvaluate(COTISATION, Math.round(30_000 * TAUX))
+			})
+
+			it('applique une assiette maximale égale au PASS mahorais', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'60000 €/an',
+				})
+
+				const PASSMahorais = e.evaluate('plafond sécurité sociale . annuel')
+					.nodeValue as number
+
+				expect(e).toEvaluate(
+					`${COTISATION} avant abattements . assiette`,
+					PASSMahorais
+				)
+
+				expect(e).toEvaluate(COTISATION, Math.round(PASSMahorais * TAUX))
+			})
 		})
 	})
 })

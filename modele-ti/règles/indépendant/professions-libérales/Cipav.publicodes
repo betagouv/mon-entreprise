@@ -11,7 +11,7 @@ indépendant . profession libérale . Cipav:
 
 indépendant . profession libérale . Cipav . retraite complémentaire:
   barème:
-    multiplicateur: plafond sécurité sociale
+    multiplicateur: plafond sécurité sociale . métropole
     assiette: cotisations et contributions . assiette sociale
     tranches:
       - plafond: 1
@@ -54,6 +54,6 @@ indépendant . profession libérale . Cipav . invalidité et décès:
   avec:
     assiette:
       valeur: cotisations et contributions . assiette sociale
-      unité: €/an
       plancher: assiette minimale . invalidité et décès Cipav
-      plafond: 1.85 * PSS proratisé
+      plafond: 1.85 * plafond sécurité sociale . métropole
+      unité: €/an

@@ -5,7 +5,7 @@ import { expect } from 'vitest'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import { PublicodesTypes } from '../helpers/PublicodesTypes'
+import { PublicodesTypes } from '../modele-social/helpers/PublicodesTypes'
 
 const toEvaluate = function <T extends PublicodesTypes>(
 	engine: Engine,

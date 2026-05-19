@@ -162,7 +162,7 @@ describe('Cotisation maladie', () => {
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '181 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -184,7 +184,7 @@ describe('Cotisation maladie', () => {
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '90 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -208,7 +208,7 @@ describe('Cotisation maladie', () => {
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '60 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -232,7 +232,7 @@ describe('Cotisation maladie', () => {
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '31 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -256,7 +256,7 @@ describe('Cotisation maladie', () => {
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '19 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -280,7 +280,7 @@ describe('Cotisation maladie', () => {
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '10 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 
 				expect(e).toEvaluate(`${COTISATION} avant abattements . taux 1`, 8.5)
@@ -319,6 +319,14 @@ describe('Cotisation maladie', () => {
 
 				expect(e).toEvaluate(COTISATION, Math.round((60_000 * 14.5) / 100))
 			})
+		})
+
+		it('n’est pas redevable par les mahorais⋅es', () => {
+			const e = engine.setSituation({
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(COTISATION)
 		})
 	})
 
@@ -563,6 +571,15 @@ describe('Cotisation maladie', () => {
 				100 * TAUX1_T5
 			)
 			expect(e).toEvaluate(COTISATION, Math.round(60_000 * TAUX1_T5))
+		})
+
+		it('n’est pas redevable par les mahorais⋅es', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(COTISATION)
 		})
 	})
 })

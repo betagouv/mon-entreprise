@@ -81,6 +81,7 @@ indépendant . profession libérale . réglementée . CNBF . retraite de base:
             - si: date < 01/2025
               alors: 3.1%
             - sinon: 3.2%
+      arrondi: oui
 
 indépendant . profession libérale . réglementée . CNBF . retraite complémentaire:
   barème:

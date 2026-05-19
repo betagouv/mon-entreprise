@@ -11,12 +11,15 @@ indépendant . profession libérale . réglementée . CARCDSF:
     Site de la CARCDSF: https://www.carcdsf.fr
 
 indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire:
-  somme:
-    - cotisation forfaitaire
-    - cotisation proportionnelle
+  produit:
+    - somme:
+        - cotisation forfaitaire
+        - cotisation proportionnelle
+    - entreprise . prorata temporis
   abattement:
     applicable si: CNAVPL . exonération incapacité
     valeur: 100%
+  arrondi: 2 décimales
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
     Récapitulatif des cotisations maximales 2025: https://www.carcdsf.fr/images/pdf/2025/Recap-cot_forf_debactivite.pdf
@@ -43,7 +46,7 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
       unité: €/an
       barème:
         assiette: cotisations et contributions . assiette sociale
-        multiplicateur: plafond sécurité sociale
+        multiplicateur: plafond sécurité sociale . métropole
         tranches:
           - taux: 0%
             plafond: 0.85
@@ -52,7 +55,7 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
         arrondi: oui
 
 indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
-  formule: cotisations et contributions . assiette sociale < 85% * plafond sécurité sociale
+  formule: cotisations et contributions . assiette sociale < 85% * plafond sécurité sociale . métropole
   description: |
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
     pour la retraite complémentaire si vous en faites la demande. [En savoir
@@ -73,7 +76,7 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
     photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   unité: '%'
-  formule: cotisations et contributions . assiette sociale / (85% * plafond sécurité sociale)
+  formule: cotisations et contributions . assiette sociale / (85% * plafond sécurité sociale . métropole)
 
 indépendant . profession libérale . réglementée . CARCDSF . invalidité et décès:
   variations:
@@ -117,11 +120,13 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     Cette dispense entraîne l’annulation des droits pour l’année et
     les points non cotisés ne sont pas rachetables.
   non applicable si: exonération PCV
-  somme:
-    - cotisation forfaitaire
-    - cotisation proportionnelle
+  produit:
+    - somme:
+        - cotisation forfaitaire
+        - cotisation proportionnelle
+    - entreprise . prorata temporis
   abattement: participation CPAM
-  arrondi: oui
+  arrondi: 2 décimales
   unité: €/an
   références:
     Montant des cotisations CARCDSF: https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations
@@ -141,8 +146,9 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     cotisation proportionnelle:
       produit:
         - valeur: cotisations et contributions . assiette sociale
-          plafond: 5 * plafond sécurité sociale
+          plafond: 5 * plafond sécurité sociale . métropole
         - 1.45 %
+      arrondi: 2 décimales
       unité: €/an
   
     participation CPAM:

@@ -56,16 +56,33 @@ indépendant . revenu brut:
   références:
     Réforme de l’assiette sociale et du barème des cotisations sociales: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/reforme-cotisations-independants.html
 
-indépendant . PSS proratisé:
+indépendant . PASS proratisé:
   titre: plafond de la sécurité sociale proratisé
   description: |
     Le plafond de la sécurité sociale, proratisé par la durée d’activité pendant
-    l’année (dans le cas d’activité crée ou cessée en cours d’année).
+    l’année (dans le cas d’activité créée ou cessée en cours d’année).
 
-    Utile pour calculer les cotisations forfaitaires de début d’activité ou le
-    montant de l’Acre.
-  unité: €/an
+    Utile pour calculer les plafonds et tranches des barèmes de cotisations, les
+    cotisations forfaitaires de début d’activité ou le montant de l’Acre.
   produit:
     - plafond sécurité sociale
     - entreprise . prorata temporis
   arrondi: oui
+  unité: €/an
+
+indépendant . PASS proratisé . métropole:
+  titre: plafond de la sécurité sociale proratisé (métropole)
+  description: |
+    Version métropole du plafond de la sécurité sociale, proratisé par la durée
+    d’activité pendant l’année (dans le cas d’activité créée ou cessée en cours d’année).
+
+    Utile pour calculer les plafonds et tranches des barèmes de cotisations, les
+    cotisations forfaitaires de début d’activité ou le montant de l’Acre.
+
+    Pour certaines cotisations applicables à Mayotte, c’est quand même la valeur
+    métropole du plafond de sécurité sociale qui est utilisé.
+  produit:
+    - plafond sécurité sociale . métropole
+    - entreprise . prorata temporis
+  arrondi: oui
+  unité: €/an

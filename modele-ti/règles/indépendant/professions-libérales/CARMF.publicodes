@@ -25,7 +25,7 @@ indépendant . profession libérale . réglementée . CARMF . participation CPAM
     - cotisations et contributions . assiette sociale
     - grille:
         assiette: cotisations et contributions . assiette sociale
-        multiplicateur: plafond sécurité sociale
+        multiplicateur: plafond sécurité sociale . métropole
         tranches:
           - montant: 2.15%
             plafond: 140%
@@ -53,15 +53,15 @@ indépendant . profession libérale . réglementée . CARMF . retraite compléme
     de 19 849 €.
   variations:
     - si: entreprise . durée d'activité . en fin d'année < 2 ans
-      alors: 0€/an
+      alors: 0 €/an
     - sinon:
         produit:
           - valeur: cotisations et contributions . assiette sociale
-            plafond: 3.5 * plafond sécurité sociale
+            plafond: 3.5 * plafond sécurité sociale . métropole
           - variations:
-            - si: date >= 01/2024
-              alors: 10.2%
-            - sinon: 10%
+            - si: date < 01/2024
+              alors: 10%
+            - sinon: 10.2%
   abattement:
     applicable si: CNAVPL . exonération incapacité
     valeur: 100%
@@ -87,7 +87,7 @@ indépendant . profession libérale . réglementée . CARMF . invalidité et dé
   formule:
     grille:
       assiette: cotisations et contributions . assiette sociale
-      multiplicateur: plafond sécurité sociale
+      multiplicateur: plafond sécurité sociale . métropole
       tranches:
         - montant:
             variations:
@@ -182,7 +182,7 @@ indépendant . profession libérale . réglementée . CARMF . PCV:
     cotisation proportionnelle:
       produit:
         - valeur: PAMC . assiette sociale conventionnée
-          plafond: 5 * plafond sécurité sociale
+          plafond: 5 * plafond sécurité sociale . métropole
         - variations:
             - si: date < 01/2026
               alors: 3.80%
