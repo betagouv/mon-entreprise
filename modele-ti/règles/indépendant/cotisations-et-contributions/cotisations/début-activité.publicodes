@@ -23,16 +23,18 @@ indépendant . cotisations et contributions . début activité:
 
   applicable si: entreprise . date de création >= période . début d'année
   non applicable si: cotisations . exonérations . invalidité
-  unité: €/an
   valeur: cotisations et contributions
   contexte:
     assiette sociale: assiette forfaitaire
     assiette CSG-CRDS: assiette forfaitaire
     cotisations . indemnités journalières . assiette: assiette forfaitaire indemnités journalières
-    profession libérale . Cipav . invalidité et décès . assiette: assiette forfaitaire invalidité décès Cipav
+    profession libérale . Cipav . invalidité et décès . assiette:
+      applicable si: profession libérale . Cipav
+      valeur: assiette forfaitaire invalidité décès Cipav
     cotisations facultatives:
       non applicable si: entreprise . imposition . IR . régime micro-fiscal
       valeur: non
+  unité: €/an
 
   références:
     'Indépendant : Comment sont calculées vos cotisations ?': https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/comprendre-vos-cotisations.html#ancre-le-calcul-vos-cotisations
@@ -43,7 +45,7 @@ indépendant . cotisations et contributions . début activité:
   avec:
     assiette forfaitaire:
       produit:
-        - PSS proratisé
+        - PASS proratisé
         - 19%
       arrondi: oui
       unité: €/an
@@ -64,7 +66,7 @@ indépendant . cotisations et contributions . début activité:
 
     assiette forfaitaire invalidité décès Cipav:
       produit:
-        - PSS proratisé
+        - PASS proratisé
         - 37%
       arrondi: oui
       unité: €/an

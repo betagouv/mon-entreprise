@@ -86,15 +86,15 @@ describe('Cotisation invalidité et décès', () => {
 						'1000 €/an',
 				})
 
-				const PSSProratisé = e.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
-				expect(PSSProratisé).toEqual(Math.round((PASS * 152) / 365))
+				expect(PASSProratisé).toEqual(Math.round((PASS * 152) / 365))
 
 				const assietteMinimale = e.evaluate(
 					'indépendant . assiette minimale . invalidité et décès'
 				).nodeValue as number
 				expect(assietteMinimale).toEqual(
-					Math.round((PSSProratisé * 11.5) / 100)
+					Math.round((PASSProratisé * 11.5) / 100)
 				)
 
 				expect(e).toEvaluate(`${COTISATION} . assiette`, assietteMinimale)
@@ -110,13 +110,13 @@ describe('Cotisation invalidité et décès', () => {
 						'40000 €/an',
 				})
 
-				const PSSProratisé = e.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
-				expect(PSSProratisé).toEqual(Math.round((PASS * 152) / 365))
+				expect(PASSProratisé).toEqual(Math.round((PASS * 152) / 365))
 
-				expect(e).toEvaluate(`${COTISATION} . assiette`, PSSProratisé)
+				expect(e).toEvaluate(`${COTISATION} . assiette`, PASSProratisé)
 
-				expect(e).toEvaluate(COTISATION, Math.round(PSSProratisé * TAUX))
+				expect(e).toEvaluate(COTISATION, Math.round(PASSProratisé * TAUX))
 			})
 
 			it('applique le taux de 1,3% à l’assiette sociale lorsqu’elle est comprise entre les assiettes minimale et maximale proratisées', () => {
@@ -143,6 +143,14 @@ describe('Cotisation invalidité et décès', () => {
 			})
 
 			expect(e).toEvaluate(`${COTISATION} . assiette`, 30_000 - 10_000)
+		})
+
+		it('n’est pas redevable par les mahorais⋅es', () => {
+			const e = engine.setSituation({
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(COTISATION)
 		})
 	})
 
@@ -400,6 +408,52 @@ describe('Cotisation invalidité et décès', () => {
 						'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
 						1_000
 					)
+				})
+			})
+
+			describe('à Mayotte', () => {
+				const situation = {
+					...defaultSituation,
+					'établissement . commune . département': "'Mayotte'",
+				}
+
+				it('applique une assiette minimale égale à 37% du PASS métropole', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'1000 €/an',
+					})
+
+					const assietteMinimale = Math.round((PASS * 37) / 100)
+
+					expect(e).toEvaluate(COTISATION, Math.round(assietteMinimale * TAUX))
+				})
+
+				it('applique un taux de 0,5% en cas d’assiette sociale comprise entre 37% du PASS métropole et 1,85 PASS métropole', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'50000 €/an',
+					})
+
+					expect(e).toEvaluate(
+						'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+						50_000
+					)
+
+					expect(e).toEvaluate(COTISATION, Math.round(50_000 * TAUX))
+				})
+
+				it('applique une assiette maximale égale à 1,85 PASS métropole', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'100000 €/an',
+					})
+
+					const assietteMaximale = 1.85 * PASS
+
+					expect(e).toEvaluate(COTISATION, Math.round(assietteMaximale * TAUX))
 				})
 			})
 		})

@@ -136,20 +136,20 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     montant maladie-maternité:
       produit:
         - variations:
-            - si: assiette sociale > PSS proratisé
+            - si: assiette sociale > PASS proratisé
               alors: 0 €/an
-            - si: assiette sociale < 75% * PSS proratisé
+            - si: assiette sociale < 75% * PASS proratisé
               alors:
                 produit:
                   - cotisations . maladie-maternité avant abattements
                   - exonération maximale
             - sinon:
                 produit:
-                  - PSS proratisé - assiette sociale
+                  - PASS proratisé - assiette sociale
                   - valeur: cotisations . maladie-maternité avant abattements
                     contexte:
-                      assiette sociale: 75% * PSS proratisé
-                  - 1 / PSS proratisé
+                      assiette sociale: 75% * PASS proratisé
+                  - 1 / PASS proratisé
                   - variations:
                       - si: date < 01/2026
                         alors: 1 / 0.25
@@ -161,13 +161,13 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     taux indemnités journalières:
       produit:
         - variations:
-            - si: indemnités journalières . assiette > PSS proratisé
+            - si: indemnités journalières . assiette > PASS proratisé
               alors: 0%
-            - si: indemnités journalières . assiette < 75% * PSS proratisé
+            - si: indemnités journalières . assiette < 75% * PASS proratisé
               alors: exonération maximale
             - sinon:
                 produit:
-                  - (PSS proratisé - indemnités journalières . assiette) / indemnités journalières . assiette
+                  - (PASS proratisé - indemnités journalières . assiette) / indemnités journalières . assiette
                   - variations:
                       - si: date < 01/2026
                         alors: 3
@@ -178,13 +178,13 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     taux allocations familiales:
       produit:
         - variations:
-            - si: assiette sociale > PSS proratisé
+            - si: assiette sociale > PASS proratisé
               alors: 0%
-            - si: assiette sociale < 75% * PSS proratisé
+            - si: assiette sociale < 75% * PASS proratisé
               alors: exonération maximale
             - sinon:
                 produit:
-                  - (PSS proratisé - assiette sociale) / assiette sociale
+                  - (PASS proratisé - assiette sociale) / assiette sociale
                   - variations:
                       - si: date < 01/2026
                         alors: 3
@@ -195,13 +195,13 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     taux retraite de base et invalidité-décès:
       produit:
         - variations:
-            - si: assiette retraite et invalidité-décès > PSS proratisé
+            - si: assiette retraite et invalidité-décès > PASS proratisé
               alors: 0%
-            - si: assiette retraite et invalidité-décès < 75% * PSS proratisé
+            - si: assiette retraite et invalidité-décès < 75% * PASS proratisé
               alors: exonération maximale
             - sinon:
                 produit:
-                  - (PSS proratisé - assiette retraite et invalidité-décès) / assiette retraite et invalidité-décès
+                  - (PASS proratisé - assiette retraite et invalidité-décès) / assiette retraite et invalidité-décès
                   - variations:
                       - si: date < 01/2026
                         alors: 3

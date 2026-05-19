@@ -22,7 +22,7 @@ describe('Cotisations de début d’activité', () => {
 	describe('Pour les A/C/PLNR', () => {
 		it('applique une assiette forfaitaire égale à 19% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituation)
-			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 				.nodeValue as number
 
 			expect(e).toEvaluate(
@@ -43,7 +43,7 @@ describe('Cotisations de début d’activité', () => {
 		it('applique les assiettes forfaitaires au calcul des cotisations et contributions', () => {
 			const e = engine.setSituation(defaultSituation)
 
-			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
@@ -112,7 +112,7 @@ describe('Cotisations de début d’activité', () => {
 
 		it('applique une assiette forfaitaire égale à 19% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituationPLR)
-			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 				.nodeValue as number
 
 			expect(e).toEvaluate(
@@ -132,7 +132,7 @@ describe('Cotisations de début d’activité', () => {
 
 		it('applique une assiette forfaitaire invalidité décès égale à 37% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituationPLR)
-			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 				.nodeValue as number
 
 			expect(e).toEvaluate(
@@ -144,7 +144,7 @@ describe('Cotisations de début d’activité', () => {
 		it('applique les assiettes forfaitaires au calcul des cotisations et contributions', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
-			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
@@ -217,7 +217,7 @@ describe('Cotisations de début d’activité', () => {
 		it('applique les assiettes forfaitaires, la dispense de CSG-CRDS et le taux maladie spécifique', () => {
 			const e = engine.setSituation(defaultSituationDFE)
 
-			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
@@ -290,7 +290,7 @@ describe('Cotisations de début d’activité', () => {
 					"'santé . sage-femme'",
 			})
 
-			const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 

@@ -84,7 +84,7 @@ describe('Cotisation retraite de base', () => {
 							'40000 €/an',
 					})
 
-					const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+					const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 						.nodeValue as number
 					expect(PASSProratisé).toEqual(Math.round((PASS * 60) / 365))
 
@@ -117,7 +117,7 @@ describe('Cotisation retraite de base', () => {
 							'50000 €/an',
 					})
 
-					const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+					const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 						.nodeValue as number
 					expect(PASSProratisé).toEqual(Math.round((PASS * 120) / 365))
 
@@ -161,6 +161,42 @@ describe('Cotisation retraite de base', () => {
 			})
 
 			expect(e).toEvaluate(`${COTISATION} . assiette`, 30_000 - 10_000)
+		})
+
+		describe('pour Mayotte', () => {
+			const TAUX = 10.75 / 100
+
+			const situation = {
+				'établissement . commune . département': "'Mayotte'",
+			}
+
+			it('applique un taux fixe de 10,75%', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'30000 €/an',
+				})
+
+				expect(e).toEvaluate(COTISATION, Math.round(30_000 * TAUX))
+			})
+
+			it('applique une assiette minimale égale à 450 heures rémunérées au SMIC mahorais', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+				})
+
+				const SmicHoraire = e.evaluate('SMIC . horaire').nodeValue as number
+				const assietteMinimale = e.evaluate(
+					'indépendant . assiette minimale . retraite'
+				).nodeValue as number
+
+				expect(assietteMinimale).toEqual(Math.round(450 * SmicHoraire))
+				expect(e).toEvaluate(`${COTISATION} . assiette`, assietteMinimale)
+
+				expect(e).toEvaluate(COTISATION, Math.round(assietteMinimale * TAUX))
+			})
 		})
 	})
 
@@ -313,6 +349,92 @@ describe('Cotisation retraite de base', () => {
 				})
 
 				expect(e).toEvaluate(`${COTISATION} . assiette`, 1_000)
+			})
+		})
+
+		describe('pour Mayotte', () => {
+			const situation = {
+				...defaultSituation,
+				'établissement . commune . département': "'Mayotte'",
+			}
+
+			it('applique une assiette minimale égale à 450 heures rémunérées au SMIC métropole', () => {
+				const SmicHoraire = engine.evaluate('SMIC . horaire')
+					.nodeValue as number
+				const assietteMinimale = Math.round(450 * SmicHoraire)
+
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+				})
+
+				// Tranche 1
+				const tranche1 = e.evaluate(`${COTISATION_PLR} . tranche 1`)
+					.nodeValue as number
+				expect(tranche1).toEqual(Math.round(assietteMinimale * TAUX_T1))
+
+				// Tranche 2
+				const tranche2 = e.evaluate(`${COTISATION_PLR} . tranche 2`)
+					.nodeValue as number
+				expect(tranche2).toEqual(Math.round(assietteMinimale * TAUX_T2))
+
+				// Total
+				expect(e).toEvaluate(COTISATION, tranche1 + tranche2)
+			})
+
+			it('applique les taux des tranches 1 et 2 en cas d’assiette sociale comprise entre l’assiette minimale et 1 PASS métropole', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'30000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					`${COTISATION_PLR} . tranche 1`,
+					Math.round(30_000 * TAUX_T1)
+				)
+
+				expect(e).toEvaluate(
+					`${COTISATION_PLR} . tranche 2`,
+					Math.round(30_000 * TAUX_T2)
+				)
+			})
+
+			it('applique le taux tranche 1 au PASS métropole et le taux tranche 2 à toute l’assiette sociale en cas d’assiette sociale comprise entre 1 et 5 PASS métropole', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'100000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					`${COTISATION_PLR} . tranche 1`,
+					Math.round(PASS * TAUX_T1)
+				)
+
+				expect(e).toEvaluate(
+					`${COTISATION_PLR} . tranche 2`,
+					Math.round(100_000 * TAUX_T2)
+				)
+			})
+
+			it('applique le taux tranche 1 au PASS métropole et le taux tranche 2 à 5 PASS métropole en cas d’assiette sociale supérieure à 5 PASS métropole', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'250000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					`${COTISATION_PLR} . tranche 1`,
+					Math.round(PASS * TAUX_T1)
+				)
+
+				expect(e).toEvaluate(
+					`${COTISATION_PLR} . tranche 2`,
+					Math.round(5 * PASS * TAUX_T2)
+				)
 			})
 		})
 	})

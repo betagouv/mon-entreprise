@@ -15,7 +15,7 @@ indépendant . profession libérale . réglementée . CAVP . demande reduction:
   applicable si:
     est défini: cotisations et contributions . assiette sociale
   une de ces conditions:
-    - cotisations et contributions . assiette sociale < 1.8125 * plafond sécurité sociale
+    - cotisations et contributions . assiette sociale < 1.8125 * plafond sécurité sociale . métropole
     - entreprise . durée d'activité <= 2 an
   résumé: |
     Une réduction de cotisations peut être demandée les 2 premières années, ou
@@ -72,7 +72,7 @@ indépendant . profession libérale . réglementée . CAVP . retraite complémen
     part gérée par capitalisation:
       grille:
         assiette: cotisations et contributions . assiette sociale
-        multiplicateur: plafond sécurité sociale . N-1
+        multiplicateur: plafond sécurité sociale . métropole . N-1
         tranches:
             - montant: 2 * cotisation de référence
               plafond: 1.8125
@@ -136,7 +136,7 @@ indépendant . profession libérale . réglementée . CAVP . PCV:
     cotisation proportionnelle:
       produit:
         - valeur: cotisations et contributions . assiette sociale
-          plafond: 5 * plafond sécurité sociale
+          plafond: 5 * plafond sécurité sociale . métropole
         - variations:
             - si: date < 01/2024
               alors: 0.60%

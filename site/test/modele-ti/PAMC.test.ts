@@ -136,4 +136,147 @@ describe('PAMC', () => {
 			})
 		})
 	})
+
+	describe('la Curps', () => {
+		it('n’est pas redevable en cas d’entreprise créée après le 1er janvier', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'entreprise . date de création': '02/01/2026',
+			})
+
+			expect(e).not.toBeApplicable(
+				'indépendant . profession libérale . réglementée . PAMC . CURPS'
+			)
+		})
+
+		it('n’est pas redevable par les médecins non conventionnés', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . profession libérale . réglementée . métier . santé . médecin . secteur':
+					"'non conventionné'",
+			})
+
+			expect(e).not.toBeApplicable(
+				'indépendant . profession libérale . réglementée . PAMC . CURPS'
+			)
+		})
+
+		it('applique un taux de 0,5% pour les médecins', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . profession libérale . réglementée . PAMC . CURPS',
+				Math.round((30_000 * 0.5) / 100)
+			)
+		})
+
+		it('applique un taux de 0,3% pour les dentistes', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . profession libérale . réglementée . métier':
+					"'santé . chirurgien-dentiste'",
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . profession libérale . réglementée . PAMC . CURPS',
+				Math.round((30_000 * 0.3) / 100)
+			)
+		})
+
+		it('applique un taux de 0,1% pour les autres professions', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . profession libérale . réglementée . métier':
+					"'santé . sage-femme'",
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . profession libérale . réglementée . PAMC . CURPS',
+				Math.round((30_000 * 0.1) / 100)
+			)
+		})
+
+		it('est plafonnée à 0,5% du PASS', () => {
+			const PASS = engine.evaluate('plafond sécurité sociale . annuel')
+				.nodeValue as number
+
+			const e = engine.setSituation({
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'50000 €/an',
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . profession libérale . réglementée . PAMC . CURPS',
+				Math.round((PASS * 0.5) / 100)
+			)
+		})
+
+		describe('pour Mayotte', () => {
+			const situation = {
+				...defaultSituation,
+				'indépendant . cotisations et contributions . assiette sociale':
+					'30000 €/an',
+				'établissement . commune . département': "'Mayotte'",
+			}
+			it('applique un taux de 0,5% pour les médecins', () => {
+				const e = engine.setSituation(situation)
+
+				expect(e).toEvaluate(
+					'indépendant . profession libérale . réglementée . PAMC . CURPS',
+					Math.round((30_000 * 0.5) / 100)
+				)
+			})
+
+			it('applique un taux de 0,3% pour les dentistes', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . profession libérale . réglementée . métier':
+						"'santé . chirurgien-dentiste'",
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . profession libérale . réglementée . PAMC . CURPS',
+					Math.round((30_000 * 0.3) / 100)
+				)
+			})
+
+			it('applique un taux de 0,1% pour les autres professions', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . profession libérale . réglementée . métier':
+						"'santé . sage-femme'",
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . profession libérale . réglementée . PAMC . CURPS',
+					Math.round((30_000 * 0.1) / 100)
+				)
+			})
+
+			it('est plafonnée à 0,5% du PASS métropole', () => {
+				const PASS = engine.evaluate('plafond sécurité sociale . annuel')
+					.nodeValue as number
+
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'50000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					'indépendant . profession libérale . réglementée . PAMC . CURPS',
+					Math.round((PASS * 0.5) / 100)
+				)
+			})
+		})
+	})
 })

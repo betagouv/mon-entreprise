@@ -77,7 +77,7 @@ describe('Cotisation retraite complémentaire', () => {
 						'50000 €/an',
 				})
 
-				const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				expect(PASSProratisé).toEqual(Math.round((PASS * 150) / 365))
 
@@ -94,7 +94,7 @@ describe('Cotisation retraite complémentaire', () => {
 						'200000 €/an',
 				})
 
-				const PASSProratisé = e.evaluate('indépendant . PSS proratisé')
+				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 				expect(PASSProratisé).toEqual(Math.round((PASS * 150) / 365))
 
@@ -153,6 +153,14 @@ describe('Cotisation retraite complémentaire', () => {
 				expect(e).toEvaluate(COTISATION, Math.round(tranche2))
 			})
 		})
+
+		it('n’est pas redevable par les mahorais⋅es', () => {
+			const e = engine.setSituation({
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(COTISATION)
+		})
 	})
 
 	describe('pour les PLR', () => {
@@ -181,7 +189,7 @@ describe('Cotisation retraite complémentaire', () => {
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
 				expect(cotisationCNAVPL).toEqual(cotisationCARCDSF)
-				expect(cotisationIndépendant).toEqual(Math.round(cotisationCNAVPL))
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
 			})
 
 			it('Sage-femme', () => {
@@ -200,7 +208,7 @@ describe('Cotisation retraite complémentaire', () => {
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
 				expect(cotisationCNAVPL).toEqual(cotisationCARCDSF)
-				expect(cotisationIndépendant).toEqual(Math.round(cotisationCNAVPL))
+				expect(cotisationIndépendant).toEqual(cotisationCNAVPL)
 			})
 
 			it('Médecin', () => {
@@ -354,6 +362,49 @@ describe('Cotisation retraite complémentaire', () => {
 				const tranche2 = 3 * PASS * TAUX_T2
 
 				expect(e).toEvaluate(COTISATION, Math.round(tranche1 + tranche2))
+			})
+
+			describe('à Mayotte', () => {
+				const situation = {
+					...defaultSituation,
+					'établissement . commune . département': "'Mayotte'",
+				}
+
+				it('applique le taux tranche 1 de 11% en cas d’assiette sociale inférieure au PASS métropole', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'10000 €/an',
+					})
+
+					expect(e).toEvaluate(COTISATION, Math.round(10_000 * TAUX_T1))
+				})
+
+				it('applique le taux tranche 1 de 11% au PASS et le taux tranche 2 de 21% au reste de l’assiette sociale en cas d’assiette sociale comprise entre 1 et 4 PASS métropole', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'100000 €/an',
+					})
+
+					const tranche1 = PASS * TAUX_T1
+					const tranche2 = (100_000 - PASS) * TAUX_T2
+
+					expect(e).toEvaluate(COTISATION, Math.round(tranche1 + tranche2))
+				})
+
+				it('applique le taux tranche 1 de 11% au PASS métropole et le taux tranche 2 de 21% à 3 PASS métropole en cas d’assiette sociale supérieure à 4 PASS métropole', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'200000 €/an',
+					})
+
+					const tranche1 = PASS * TAUX_T1
+					const tranche2 = 3 * PASS * TAUX_T2
+
+					expect(e).toEvaluate(COTISATION, Math.round(tranche1 + tranche2))
+				})
 			})
 		})
 	})

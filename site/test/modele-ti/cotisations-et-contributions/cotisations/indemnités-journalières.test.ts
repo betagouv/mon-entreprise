@@ -122,6 +122,14 @@ describe('Cotisation indemnités journalières', () => {
 				expect(e).toEvaluate(`${COTISATION} . assiette`, 5 * PASS)
 			})
 		})
+
+		it('n’est pas redevable par les mahorais⋅es', () => {
+			const e = engine.setSituation({
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(COTISATION)
+		})
 	})
 
 	describe('pour les PLR', () => {
@@ -247,6 +255,15 @@ describe('Cotisation indemnités journalières', () => {
 
 				expect(e).toEvaluate(`${COTISATION} . assiette`, 1_000)
 			})
+		})
+
+		it('n’est pas redevable par les mahorais⋅es', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(COTISATION)
 		})
 	})
 })

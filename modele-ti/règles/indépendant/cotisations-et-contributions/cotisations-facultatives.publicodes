@@ -67,15 +67,15 @@ indépendant . cotisations et contributions . cotisations facultatives . retrait
     - somme:
         - produit:
             - valeur: revenu professionnel
-              plafond: 8 * PSS proratisé
+              plafond: 8 * PASS proratisé
             - 10%
         - produit:
             - valeur: revenu professionnel
-              abattement: PSS proratisé
-              plafond: 8 * PSS proratisé
+              abattement: PASS proratisé
+              plafond: 8 * PASS proratisé
             - 15%
     - produit:
-        - PSS proratisé
+        - PASS proratisé
         - 10%
   unité: €/an
   références:
@@ -112,11 +112,11 @@ indépendant . cotisations et contributions . cotisations facultatives . prévoy
         - revenu professionnel
         - 3.75%
     - produit:
-        - PSS proratisé
+        - PASS proratisé
         - 7%
   plafond:
     produit:
-      - 8 * PSS proratisé
+      - 8 * PASS proratisé
       - 3%
   unité: €/an
   références:

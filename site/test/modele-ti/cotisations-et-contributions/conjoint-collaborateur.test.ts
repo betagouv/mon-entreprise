@@ -213,12 +213,15 @@ describe('Conjoint collaborateur', () => {
 					IJ - Math.round(IJ / 4)
 				)
 				expect(e2).toEvaluate(
-					`${COTISATIONS} . retraite de base`,
-					RB - Math.round(RB / 4)
+					{
+						valeur: `${COTISATIONS} . retraite de base`,
+						arrondi: 'oui',
+					},
+					Math.round(RB - RB / 4)
 				)
 				expect(e2).toEvaluate(
 					`${COTISATIONS} . invalidité et décès`,
-					ID - Math.round(ID / 4) + 1
+					ID - ID / 4
 				)
 			})
 

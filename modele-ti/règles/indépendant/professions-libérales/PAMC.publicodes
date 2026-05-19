@@ -173,7 +173,8 @@ indépendant . profession libérale . réglementée . PAMC . CURPS:
           - si: métier = 'santé . chirurgien-dentiste'
             alors: 0.3%
           - sinon: 0.1%
-    plafond: 0.50% * plafond sécurité sociale
+    plafond:
+      valeur: 0.50% * plafond sécurité sociale . métropole
     arrondi: oui
     unité: €/an
   références:

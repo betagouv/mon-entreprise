@@ -48,6 +48,26 @@ describe('Contribution à la formation professionnelle', () => {
 
 			expect(annéeIncomplète).toEqual(annéeComplète)
 		})
+
+		it('se base sur le PASS mahorais à Mayotte', () => {
+			const e1 = engine.setSituation({
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			const PASSMahorais = e1.evaluate('plafond sécurité sociale . annuel')
+				.nodeValue as number
+
+			expect(PASSMahorais).toEqual(12 * 3_022)
+
+			expect(e1).toEvaluate(COTISATION, Math.round((PASSMahorais * 0.25) / 100))
+
+			const e2 = engine.setSituation({
+				'établissement . commune . département': "'Mayotte'",
+				'entreprise . activité': "'artisanale'",
+			})
+
+			expect(e2).toEvaluate(COTISATION, Math.round((PASSMahorais * 0.29) / 100))
+		})
 	})
 
 	describe('pour les PLR', () => {
@@ -71,6 +91,20 @@ describe('Contribution à la formation professionnelle', () => {
 
 			expect(e).toEvaluate(`${COTISATION} . taux`, 0.34)
 			expect(e).toEvaluate(COTISATION, Math.round((PASS * 0.34) / 100))
+		})
+
+		it('se base sur le PASS mahorais à Mayotte', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			const PASSMahorais = e.evaluate('plafond sécurité sociale . annuel')
+				.nodeValue as number
+
+			expect(PASSMahorais).toEqual(12 * 3_022)
+
+			expect(e).toEvaluate(COTISATION, Math.round((PASSMahorais * 0.25) / 100))
 		})
 	})
 })

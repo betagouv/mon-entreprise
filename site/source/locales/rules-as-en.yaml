@@ -6,9 +6,12 @@ SMIC . horaire:
     début d'année:
       titre.en: '[automatic] at the beginning of the year'
       titre.fr: en début d'année
-    début d'année N-1:
-      titre.en: '[automatic] at the beginning of the previous year'
-      titre.fr: en début d'année précédente
+    métropole:
+      titre.en: '[automatic] metropolis'
+      titre.fr: métropole
+    métropole . début d'année:
+      titre.en: '[automatic] beginning of the year'
+      titre.fr: début d'année
   note.en: >
     [automatic] In principle, the SMIC (minimum wage) is revalued on January 1st
     of each year.
@@ -30,7 +33,8 @@ assimilé salarié:
     [automatic] Some company directors (notably SASU) are considered by the
     social security system to be
 
-    considered by the social security system to be on the same footing as employees. They are therefore
+    considered by the social security system to be on the same footing as
+    employees. They are therefore
 
     under the general social security system, albeit with a few constraints.
 
@@ -38,9 +42,11 @@ assimilé salarié:
   description.fr: >
     Certains dirigeants d’entreprise (c’est notamment le cas pour les SASU) sont
 
-    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont alors
+    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont
+    alors
 
-    au régime général de la sécurité sociale, avec quelques contraintes cependant.
+    au régime général de la sécurité sociale, avec quelques contraintes
+    cependant.
 
     Par exemple, ils ne cotisent pas au chômage, et n’y ont donc pas droit.
   titre.en: '[automatic] assimilated employee'
@@ -200,16 +206,21 @@ assimilé salarié . cotisations . CSG-CRDS:
     [automatic] CSG and CRDS are payable by all employees meeting the following
     two conditions:
 
-    - they are domiciled in France for tax purposes, - they are covered by a compulsory French health insurance scheme.
+    - they are domiciled in France for tax purposes, - they are covered by a
+    compulsory French health insurance scheme.
 
-    If one of the two criteria is not met, CSG and CRDS are not due, provided proof is provided (tax receipt or social security card).
+    If one of the two criteria is not met, CSG and CRDS are not due, provided
+    proof is provided (tax receipt or social security card).
   description.fr: >-
     La CSG et la CRDS sont dues par tous les salariés remplissant les deux
     conditions suivantes :
 
-    - ils sont domiciliés fiscalement en France, - ils sont à la charge d’un régime français d’assurance maladie obligatoire.
+    - ils sont domiciliés fiscalement en France, - ils sont à la charge d’un
+    régime français d’assurance maladie obligatoire.
 
-    Si l’un des deux critères n’est pas rempli, la CSG et la CRDS ne sont pas dues, à la condition d’en apporter la preuve (justificatif fiscal ou carte d’assuré social).
+    Si l’un des deux critères n’est pas rempli, la CSG et la CRDS ne sont pas
+    dues, à la condition d’en apporter la preuve (justificatif fiscal ou carte
+    d’assuré social).
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
 assimilé salarié . cotisations . CSG-CRDS . CRDS:
@@ -239,20 +250,32 @@ assimilé salarié . cotisations . CSG-CRDS . CSG:
     [automatic] The Contribution Sociale Généralisée (CSG) is a tax designed to
     help finance social protection.
 
-    Unlike social security contributions, which apply only to earned income, the CSG applies not only to earned income and replacement income (unemployment benefits, daily allowances, etc.), but also to income from assets, investment income and sums invested in or redistributed by games.
+    Unlike social security contributions, which apply only to earned income, the
+    CSG applies not only to earned income and replacement income (unemployment
+    benefits, daily allowances, etc.), but also to income from assets,
+    investment income and sums invested in or redistributed by games.
 
-    It is deducted at source from most incomes. It is collected by Urssaf on earned income and by the tax authorities on income from assets.
+    It is deducted at source from most incomes. It is collected by Urssaf on
+    earned income and by the tax authorities on income from assets.
 
-    CSG revenues are paid to CNAM and CNAF, and also finance the old-age solidarity fund.
+    CSG revenues are paid to CNAM and CNAF, and also finance the old-age
+    solidarity fund.
   description.fr: >-
     La contribution sociale généralisée (CSG) est un impôt destiné à participer
     au financement de la protection sociale.
 
-    A la différence des cotisations sociales qui ne portent que sur les revenus d’activité, la CSG concerne, outre les revenus d’activité et de remplacement (allocations chômage, indemnités journalières…), les revenus du patrimoine, les produits de placement ou les sommes engagées ou redistribuées par les jeux.
+    A la différence des cotisations sociales qui ne portent que sur les revenus
+    d’activité, la CSG concerne, outre les revenus d’activité et de remplacement
+    (allocations chômage, indemnités journalières…), les revenus du patrimoine,
+    les produits de placement ou les sommes engagées ou redistribuées par les
+    jeux.
 
-    Elle est prélevée à la source sur la plupart des revenus. Elle est recouvrée par les Urssaf sur les revenus d’activité et par l’administration fiscale sur les revenus du patrimoine.
+    Elle est prélevée à la source sur la plupart des revenus. Elle est recouvrée
+    par les Urssaf sur les revenus d’activité et par l’administration fiscale
+    sur les revenus du patrimoine.
 
-    Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance également le fonds de solidarité vieillesse
+    Le produit de la CSG est reversé à la Cnam et à la Cnaf, il finance
+    également le fonds de solidarité vieillesse
   titre.en: '[automatic] CSG'
   titre.fr: CSG
 assimilé salarié . cotisations . CSG-CRDS . assiette de base:
@@ -343,12 +366,14 @@ assimilé salarié . cotisations . assiette forfaitaire:
         [automatic] There is a general rule governing lump-sum bases. When
         remuneration is equal to or greater than
 
-        1.5 times the social security ceiling, the lump-sum base cannot be less than 70% of the remuneration.
+        1.5 times the social security ceiling, the lump-sum base cannot be less
+        than 70% of the remuneration.
       note.fr: >
         Il existe une règle générale d'encadrement des assiettes forfaitaires.
         Lorsque la rémunération est supérieure ou égale à
 
-        1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire retenue ne peut être inférieure à 70% de la rémunération
+        1,5 fois le plafond de la sécurité sociale, l'assiette forfaitaire
+        retenue ne peut être inférieure à 70% de la rémunération
       titre.en: '[automatic] flat-rate contribution base'
       titre.fr: assiette forfaitaire de cotisations
     rémunération réelle:
@@ -458,37 +483,51 @@ assimilé salarié . cotisations . formation professionnelle:
     collective agreements.
 
 
-    &gt; For example, for the Syntec collective agreement, a supplement of 0.025% is mandatory.
+    &gt; For example, for the Syntec collective agreement, a supplement of
+    0.025% is mandatory.
 
 
-    The rate is raised to 1.3% for temporary employment agencies. In addition, specific rates apply when the 10-employee threshold is crossed, in order to limit the increase in the professional training contribution:
+    The rate is raised to 1.3% for temporary employment agencies. In addition,
+    specific rates apply when the 10-employee threshold is crossed, in order to
+    limit the increase in the professional training contribution:
 
 
-    - rate of **0.55%** for employees crossing the threshold in years **N, N+1 and N+2**.
+    - rate of **0.55%** for employees crossing the threshold in years **N, N+1
+    and N+2**.
 
-    - a rate of **0.70%** if the contribution is exceeded in year **N+3** (1.3% for temporary employment agencies)
+    - a rate of **0.70%** if the contribution is exceeded in year **N+3** (1.3%
+    for temporary employment agencies)
 
-    - rate of **0.90%** for crossing the threshold in year **N+4** (1.3% for temporary employment agencies)
+    - rate of **0.90%** for crossing the threshold in year **N+4** (1.3% for
+    temporary employment agencies)
 
-    - rate of **1%** for the crossing in year **N+5** (1.3% for temporary employment agencies)
+    - rate of **1%** for the crossing in year **N+5** (1.3% for temporary
+    employment agencies)
   note.fr: >
     Une part supplémentaire peut-être obligatoire en fonction des accords
     collectifs d'une entreprise.
 
 
-    > Par exemple pour la convention collective Syntec, un supplément de 0.025% est obligatoire.
+    > Par exemple pour la convention collective Syntec, un supplément de 0.025%
+    est obligatoire.
 
 
-    Le taux est porté à 1,3 % pour les entreprises de travail temporaire. Par ailleurs en cas de franchissement du seuil d'effectifs de 10 salariés, des taux spécifiques s'appliquent afin de limiter la hausse de la contribution à la formation professionnelle :
+    Le taux est porté à 1,3 % pour les entreprises de travail temporaire. Par
+    ailleurs en cas de franchissement du seuil d'effectifs de 10 salariés, des
+    taux spécifiques s'appliquent afin de limiter la hausse de la contribution à
+    la formation professionnelle :
 
 
     - taux de **0,55 %** pour le franchissement en année **N, N+1 et N+2**
 
-    - taux de **0,70 %** pour le franchissement en année **N+3**  (1,3 % pour les entreprises de travail temporaire)
+    - taux de **0,70 %** pour le franchissement en année **N+3**  (1,3 % pour
+    les entreprises de travail temporaire)
 
-    - taux de **0,90 %** pour le franchissement en année **N+4** (1,3 % pour les entreprises de travail temporaire)
+    - taux de **0,90 %** pour le franchissement en année **N+4** (1,3 % pour les
+    entreprises de travail temporaire)
 
-    - taux de **1 %** pour le franchissement en année **N+5** (1,3 % pour les entreprises de travail temporaire)
+    - taux de **1 %** pour le franchissement en année **N+5** (1,3 % pour les
+    entreprises de travail temporaire)
   titre.en: '[automatic] professional training'
   titre.fr: formation professionnelle
 assimilé salarié . cotisations . maladie:
@@ -785,14 +824,18 @@ assimilé salarié . exonérations . Acre:
     the "start-up exemption", for a period of 12 months.
 
 
-    It is **automatic** for **companies and sole proprietorships** (subject to certain conditions, such as not having benefited from it in the last three years).
+    It is **automatic** for **companies and sole proprietorships** (subject to
+    certain conditions, such as not having benefited from it in the last three
+    years).
   description.fr: >-
     L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
     exonération partielle de charges sociales, dite exonération de début
     d’activité pendant 12 mois.
 
 
-    Elle est **automatique** pour les **sociétés et les entreprises individuelles** (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois dernières années).
+    Elle est **automatique** pour les **sociétés et les entreprises
+    individuelles** (sous certaines conditions, comme par exemple ne pas en
+    avoir bénéficié les trois dernières années).
   question.en: '[automatic] Did you benefit from Acre?'
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
@@ -807,12 +850,17 @@ assimilé salarié . exonérations . JEI:
 
     The exemption can be applied to remuneration paid to :
 
-    - employees for whom the employer is liable to pay unemployment insurance contributions
+    - employees for whom the employer is liable to pay unemployment insurance
+    contributions
 
-    - corporate officers who are principally involved in the company's research and development project
+    - corporate officers who are principally involved in the company's research
+    and development project
 
 
-    By way of simplification, an employee's entitlement to the exemption will be deemed acquired when at least half of his or her working time is devoted to one or more research and development projects, and the exemption cannot be called into question.
+    By way of simplification, an employee's entitlement to the exemption will be
+    deemed acquired when at least half of his or her working time is devoted to
+    one or more research and development projects, and the exemption cannot be
+    called into question.
   description.fr: >-
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
     finances pour 2004 et permet aux PME de moins de 8 ans consacrant 20% au
@@ -822,12 +870,17 @@ assimilé salarié . exonérations . JEI:
 
     L’exonération peut s’appliquer sur les rémunérations versées :
 
-    - aux salariés pour lesquels l’employeur est soumis à l’obligation d’assurance chômage
+    - aux salariés pour lesquels l’employeur est soumis à l’obligation
+    d’assurance chômage
 
-    - aux mandataires sociaux qui participent, à titre principal, au projet de recherche et de développement de l’entreprise
+    - aux mandataires sociaux qui participent, à titre principal, au projet de
+    recherche et de développement de l’entreprise
 
 
-    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera considéré comme acquis dès lors que la moitié de son temps de travail au moins est consacrée à un ou des projets de recherche et de développement et l’exonération ne pourra être remise en cause.
+    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera
+    considéré comme acquis dès lors que la moitié de son temps de travail au
+    moins est consacrée à un ou des projets de recherche et de développement et
+    l’exonération ne pourra être remise en cause.
   question.en:
     '[automatic] Do you qualify for the Young Innovative Company (JEI)
     tax exemption?'
@@ -844,13 +897,17 @@ assimilé salarié . régimes spécifiques . alsace moselle:
     départements.
 
 
-    Please note: this is a **simplification**: affiliation is more complicated than that, see the exact conditions [on the scheme's website](https://regime-local.fr/affiliation/).
+    Please note: this is a **simplification**: affiliation is more complicated
+    than that, see the exact conditions [on the scheme's
+    website](https://regime-local.fr/affiliation/).
   description.fr: >
     Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand
     l'établissement dans lequel il travaille est situé dans ces départements.
 
 
-    Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](https://regime-local.fr/affiliation/).
+    Attention : c'est une **simplification** : l'affiliation est plus compliquée
+    que celà, voir les conditions exactes [sur le site du
+    régime](https://regime-local.fr/affiliation/).
   titre.en: '[automatic] Alsace-Moselle regime'
   titre.fr: Régime Alsace-Moselle
 assimilé salarié . régimes spécifiques . alsace moselle . ATMP:
@@ -1077,7 +1134,8 @@ assimilé salarié . rémunération . avantages en nature:
 
         Meals at a company restaurant or canteen, which you manage or subsidize
 
-        subsidized by you, in return for a contribution from the employee, constitutes a
+        subsidized by you, in return for a contribution from the employee,
+        constitutes a
 
         a benefit in kind.
       description.fr: >
@@ -1088,7 +1146,8 @@ assimilé salarié . rémunération . avantages en nature:
 
         Le repas d’un restaurant d’entreprise ou une cantine, que vous gérez ou
 
-        subventionnez moyennant une participation du salarié, constitue selon les
+        subventionnez moyennant une participation du salarié, constitue selon
+        les
 
         cas un avantage en nature.
       question.en: |
@@ -1133,11 +1192,14 @@ assimilé salarié . rémunération . avantages en nature:
           description.en: >
             [automatic] For NICT-type benefits in kind (computers, smartphones,
 
-            tablets, etc.), there is an annual lump-sum assessment corresponding to
+            tablets, etc.), there is an annual lump-sum assessment corresponding
+            to
 
-            10% of the purchase price. For example, for a telephone purchased at €850 inc.
+            10% of the purchase price. For example, for a telephone purchased at
+            €850 inc.
 
-            with a €30/month subscription, the benefit in kind to be reported on the
+            with a €30/month subscription, the benefit in kind to be reported on
+            the
 
             the pay slip will be :
 
@@ -1152,11 +1214,14 @@ assimilé salarié . rémunération . avantages en nature:
           description.fr: >
             Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
 
-            tablettes...), il y a une évaluation forfaitaire annuelle correspondant
+            tablettes...), il y a une évaluation forfaitaire annuelle
+            correspondant
 
-            à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC
+            à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€
+            TTC
 
-            avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur
+            avec un abonnement de 30€ / mois, l'avantage en nature à reporter
+            sur
 
             le bulletin de paie sera de :
 
@@ -1177,37 +1242,45 @@ assimilé salarié . rémunération . avantages en nature:
         constitutes a benefit in kind.
 
 
-        This benefit is included in the basis for calculating Social Security contributions.
+        This benefit is included in the basis for calculating Social Security
+        contributions.
 
         contributions.
 
 
-        The reality of private use may be demonstrated either by a written document (employment contract
+        The reality of private use may be demonstrated either by a written
+        document (employment contract
 
         agreement, internal regulations, letter from the company's management
 
-        authorizing the employee to make private use of the tools), or from the existence
+        authorizing the employee to make private use of the tools), or from the
+        existence
 
-        tools), or the existence of detailed invoices making it possible to establish
+        tools), or the existence of detailed invoices making it possible to
+        establish
 
         private use.
       description.fr: >
         L’usage privé des outils NTIC mis à disposition dans le cadre de
         l’activité
 
-        professionnelle à titre permanent est constitutif d’un avantage en nature.
+        professionnelle à titre permanent est constitutif d’un avantage en
+        nature.
 
 
-        Cet avantage est inclus dans la base de calcul des cotisations de Sécurité
+        Cet avantage est inclus dans la base de calcul des cotisations de
+        Sécurité
 
         sociale.
 
 
-        La réalité de l’usage privé peut résulter soit d’un document écrit (contrat
+        La réalité de l’usage privé peut résulter soit d’un document écrit
+        (contrat
 
         de travail, accord d’entreprise, règlement intérieur, courrier de la
 
-        direction de l’entreprise autorisant le salarié à faire un usage privé des
+        direction de l’entreprise autorisant le salarié à faire un usage privé
+        des
 
         outils), soit de l’existence de factures détaillées permettant d’établir
 
@@ -1226,7 +1299,8 @@ assimilé salarié . rémunération . avantages en nature:
 
     of a good or service. They may be provided free of charge or
 
-    in return for a contribution from the beneficiary that is less than the actual value.
+    in return for a contribution from the beneficiary that is less than the
+    actual value.
 
 
     Benefits in kind must appear on the pay slip. It must be indicated
@@ -1238,14 +1312,17 @@ assimilé salarié . rémunération . avantages en nature:
     Les avantages en nature sont constitués par la fourniture par l’entreprise à
     ses
 
-    travailleurs d’un bien ou service. La mise à disposition peut être gratuite ou
+    travailleurs d’un bien ou service. La mise à disposition peut être gratuite
+    ou
 
     moyennant une participation du bénéficiant inférieure à leur valeur réelle.
 
 
-    L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au
+    L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué
+    au
 
-    niveau du salaire brut pour être soumis à cotisations. Après détermination du
+    niveau du salaire brut pour être soumis à cotisations. Après détermination
+    du
 
     salaire net imposable, il sera déduit du salaire net à verser.
   question.en: '[automatic] Does the company provide benefits in kind (meals,
@@ -1260,17 +1337,21 @@ assimilé salarié . rémunération . brute:
     [automatic] Gross remuneration corresponds to the total amount received by
     the
 
-    before deduction of social security contributions, the CSG (general social contribution)
+    before deduction of social security contributions, the CSG (general social
+    contribution)
 
-    social security contributions, the contribution sociale généralisée (CSG) and the contribution
+    social security contributions, the contribution sociale généralisée (CSG)
+    and the contribution
 
     contribution au remboursement de la dette sociale (CRDS).
   description.fr: >
     La rémunération brute correspond à l'intégralité des sommes perçues par le
 
-    dirigeant assimilé salarié avant déduction des cotisations de sécurité sociale
+    dirigeant assimilé salarié avant déduction des cotisations de sécurité
+    sociale
 
-    à sa charge, de la contribution sociale généralisée (CSG) et de la contribution
+    à sa charge, de la contribution sociale généralisée (CSG) et de la
+    contribution
 
     au remboursement de la dette sociale (CRDS).
   titre.en: '[automatic] Gross remuneration'
@@ -1280,9 +1361,11 @@ assimilé salarié . rémunération . impôt:
     [automatic] Amount of income tax on the remuneration of an assimilated
     employee
 
-    of a company subject to corporation tax (IS) and, in the case of calculation using the
+    of a company subject to corporation tax (IS) and, in the case of calculation
+    using the
 
-    and, in the case of calculation using the standard scale, the other taxable income of the
+    and, in the case of calculation using the standard scale, the other taxable
+    income of the
 
     taxable income.
 
@@ -1380,15 +1463,18 @@ assimilé salarié . rémunération . totale:
   description.en: >
     [automatic] This is how much the company spends on executive remuneration.
 
-    This "super-gross" remuneration includes all social security contributions payable.
+    This "super-gross" remuneration includes all social security contributions
+    payable.
 
     It can also be considered as the monetary value of the executive's work.
   description.fr: >
     C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
 
-    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
+    Cette rémunération "super-brute" inclut toutes les cotisations sociales à
+    payer.
 
-    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+    On peut aussi considérer que c’est la valeur monétaire du travail du
+    dirigeant.
   résumé.en: "[automatic] Total paid by the company for the executive's
     remuneration, including contributions"
   résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,
@@ -1424,20 +1510,25 @@ entreprise . TVA:
     These companies pay payroll tax in return.
 
 
-    Examples include banking, financial and insurance establishments. This is also the case for teaching activities.
+    Examples include banking, financial and insurance establishments. This is
+    also the case for teaching activities.
 
 
-    **Note**: don't confuse VAT exemption (which depends on your activity) with the basic tax-free regime (which depends on your sales).
+    **Note**: don't confuse VAT exemption (which depends on your activity) with
+    the basic tax-free regime (which depends on your sales).
   description.fr: >
     Certains types d’entreprises ne sont pas assujetties à la TVA.
 
     Ces dernières payent la taxe sur les salaires en contrepartie.
 
 
-    C’est le cas par exemple des établissements bancaires, financiers ou d’assurance. C’est aussi le cas des activités d’enseignement.
+    C’est le cas par exemple des établissements bancaires, financiers ou
+    d’assurance. C’est aussi le cas des activités d’enseignement.
 
 
-    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de votre activité) et le régime en franchise de base (qui dépend de votre chiffre d’affaires).
+    **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de
+    votre activité) et le régime en franchise de base (qui dépend de votre
+    chiffre d’affaires).
   question.en: '[automatic] Is the company subject to VAT?'
   question.fr: L’entreprise est-elle assujettie à la TVA ?
   titre.en: '[automatic] VAT'
@@ -1539,7 +1630,8 @@ entreprise . imposition . IR:
     other household income.
 
 
-    The result is determined when you fill in the **liasse fiscale** (also known as the
+    The result is determined when you fill in the **liasse fiscale** (also known
+    as the
 
     tax return). This is done by your chartered accountant.
 
@@ -1558,7 +1650,8 @@ entreprise . imposition . IR:
     **your income tax is lower**.
 
 
-    Please note: with income tax, there is no tax difference between your household income and that of your partner.
+    Please note: with income tax, there is no tax difference between your
+    household income and that of your partner.
 
     between your household income and that of your company.
   description.fr: >
@@ -1568,12 +1661,14 @@ entreprise . imposition . IR:
     autres revenus de votre foyer.
 
 
-    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale**
+    (aussi
 
     appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
 
 
-    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+    Il
 
     est ajouté aux autres revenus imposables (s’ils existent) :
 
@@ -1587,7 +1682,8 @@ entreprise . imposition . IR:
     **votre impôt sur le revenu est moins élevé**.
 
 
-    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence
+    fiscale
 
     entre les revenus de votre foyer et ceux de votre entreprise.
   titre.en: '[automatic] Income tax'
@@ -1629,13 +1725,16 @@ entreprise . imposition . IS:
     It will be taxed at a **fixed rate**.
 
 
-    Taxable income is determined when you fill in your **liasse fiscale** (tax return).
+    Taxable income is determined when you fill in your **liasse fiscale** (tax
+    return).
 
-    (also known as an income tax return). This is done by the chartered accountant.
+    (also known as an income tax return). This is done by the chartered
+    accountant.
 
 
 
-    Please note: there are **two ways to earn remuneration** with a company that pays income tax
+    Please note: there are **two ways to earn remuneration** with a company that
+    pays income tax
 
     company:
       - You can pay yourself a salary as a director during the year.
@@ -1651,10 +1750,12 @@ entreprise . imposition . IS:
       income you receive.
   description.fr: >-
 
-    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les
+    sociétés**.
 
 
-    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**.
+    Elle
 
     n’aura pas à payer d’impôt sur les sociétés.
 
@@ -1664,13 +1765,16 @@ entreprise . imposition . IS:
     Il sera imposé à un **taux fixe**.
 
 
-    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
+    Le résultat imposable est déterminé lors du remplissage de la **liasse
+    fiscale**
 
-    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en
+    charge.
 
 
 
-    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à
+    l’impôt
 
     sur les sociétés :
       - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
@@ -1715,12 +1819,14 @@ entreprise . salariés . effectif:
         [automatic] Many employer contributions vary according to the size of
         the company's workforce.
 
-        If a threshold is exceeded, it is only taken into account if it has been reached or exceeded for 5 consecutive calendar years.
+        If a threshold is exceeded, it is only taken into account if it has been
+        reached or exceeded for 5 consecutive calendar years.
       description.fr: >
         De nombreuses cotisations patronales varient selon l’effectif de
         l’entreprise.
 
-        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
+        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il
+        est atteint ou dépassé pendant 5 années civiles consécutives.
       question.en: '[automatic] How many employees does the company have?'
       question.fr: Quel est l’effectif de l’entreprise ?
       titre.en: '[automatic] headcount threshold'
@@ -1788,9 +1894,11 @@ impôt . barème standard . impôt brut . par part:
     Une contribution sur les hauts revenus ajoute deux tranches supplémentaires.
 
 
-    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera pas
+    Attention : pour un revenu de 100 000€ annuels, le contribuable ne paiera
+    pas
 
-    41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
+    41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont
+    appliqués
 
     uniquement à la part de ses revenus supérieure à 72 617 €.
   titre.en: '[automatic] Gross tax per family share'
@@ -1870,7 +1978,8 @@ impôt . barème standard . revenu d'activité abattu:
     [automatic] In the general case, tax is calculated after application of a
     fixed lump-sum allowance.
 
-    fixed allowance. However, everyone can opt to declare their *actual* expenses, which will replace the default flat rate.
+    fixed allowance. However, everyone can opt to declare their *actual*
+    expenses, which will replace the default flat rate.
 
     *actual expenses*, which will replace the default flat rate.
   description.fr: |
@@ -1893,7 +2002,8 @@ impôt . barème standard . revenu net global:
     - part of the CSG levied on income from property and investments.
       investment income.
 
-    As our simulators do not include these charges, overall net income here is directly equal to overall gross income.
+    As our simulators do not include these charges, overall net income here is
+    directly equal to overall gross income.
 
     directly equal to overall gross income.
   description.fr: >
@@ -1906,10 +2016,12 @@ impôt . barème standard . revenu net global:
 
     - les cotisations d’épargne-retraite,
 
-    - une partie de la CSG afférente aux revenus du patrimoine et aux produits de
+    - une partie de la CSG afférente aux revenus du patrimoine et aux produits
+    de
       placement.
 
-    Comme nos simulateurs n’intégrent pas ces charges, le revenu net global est ici
+    Comme nos simulateurs n’intégrent pas ces charges, le revenu net global est
+    ici
 
     directement égal au revenu brut global.
   titre.en: '[automatic] overall net income'
@@ -1920,7 +2032,8 @@ impôt . barème standard . revenu net imposable:
     allowances.
 
 
-    You can benefit from a special allowance if one of the following conditions applies to you 
+    You can benefit from a special allowance if one of the following conditions
+    applies to you 
 
     following conditions:
 
@@ -1955,15 +2068,11 @@ impôt . barème standard . taux effectif:
   titre.en: '[automatic] effective rate'
   titre.fr: taux effectif
 impôt . domiciliation étranger non implémentée:
-  description.en: >
-    [automatic] Withholding tax for non-residents has not yet been implemented.
-    For
-
+  description.en: |
+    [automatic] Withholding tax for non-residents has not yet been implemented. For
     find out more, please refer to the [tax documentation](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
-  description.fr: >
-    La retenue à la source pour les non-résident n’est pas encore implémentée.
-    Pour
-
+  description.fr: |
+    La retenue à la source pour les non-résident n’est pas encore implémentée. Pour
     en savoir plus, se référer à la [documentation fiscale](https://www.impots.gouv.fr/international-particulier/dois-je-declarer-mes-revenus-en-france)
   titre.en: '[automatic] foreign domiciliation not implemented'
   titre.fr: domiciliation étranger non implémentée
@@ -1997,15 +2106,18 @@ impôt . foyer fiscal . autres revenus imposables:
 
     - abattement forfaitaire de 10 % ou frais réels pour les salaires et
 
-    rémunérations de dirigeants d’entreprises soumises à l’impôt sur les sociétés ;
+    rémunérations de dirigeants d’entreprises soumises à l’impôt sur les
+    sociétés ;
 
-    - abattement forfaitaire de 40 % sur les dividendes soumis au barème standard de
+    - abattement forfaitaire de 40 % sur les dividendes soumis au barème
+    standard de
 
     l’impôt sur le revenu (ne pas inclure les dividendes soumis au prélèvement 
 
     forfaitaire unique) ;
 
-    - abattement forfaitaire micro-fiscal pour les revenus d’auto-entreprise et les
+    - abattement forfaitaire micro-fiscal pour les revenus d’auto-entreprise et
+    les
 
     bénéfices soumis au régime micro-fiscal.
   question.en: '[automatic] What is the total amount of other taxable household income?'
@@ -2036,13 +2148,15 @@ impôt . foyer fiscal . nombre de parts . majoration personne veuve avec enfant:
     share for the calculation of the family quotient, which corresponds to
     maintaining the share of the deceased.
 
-    A widow with no dependent children, on the other hand, does not benefit from any increase.
+    A widow with no dependent children, on the other hand, does not benefit from
+    any increase.
   description.fr: >-
     Une personne veuve avec des enfants à charge bénéficie d’une part
     supplémentaire pour le calcul du quotient familial, ce qui correspond au
     maintient de la part de la personne décédée.
 
-    Une personne veuve sans enfant à charge ne bénéficie en revanche d’aucune majoration.
+    Une personne veuve sans enfant à charge ne bénéficie en revanche d’aucune
+    majoration.
   titre.en: '[automatic] increase for widow with child'
   titre.fr: majoration personne veuve avec enfant
 impôt . foyer fiscal . nombre de parts . principales:
@@ -2103,7 +2217,8 @@ impôt . méthode de calcul:
 
     compare the simulator results with your pay slip. The standard scale
 
-    gives you a more accurate result than the neutral rate for a single person with no
+    gives you a more accurate result than the neutral rate for a single person
+    with no
 
     child.
   description.fr: >
@@ -2113,7 +2228,8 @@ impôt . méthode de calcul:
 
     - *Le taux neutre* : pour un célibataire sans enfant
 
-    - *Le barème standard * : la formule "officielle" utilisée par l’administration
+    - *Le barème standard * : la formule "officielle" utilisée par
+    l’administration
 
     fiscale pour obtenir le taux d’imposition
 
@@ -2122,11 +2238,14 @@ impôt . méthode de calcul:
 
     situation réelle. Le taux neutre peut être intéressant dans le cas où vous
 
-    n’avez pas transmis votre taux personnalisé à l’employeur et que vous souhaitez
+    n’avez pas transmis votre taux personnalisé à l’employeur et que vous
+    souhaitez
 
-    comparer les résultats du simulateur à votre fiche de paie. Le barème standard
+    comparer les résultats du simulateur à votre fiche de paie. Le barème
+    standard
 
-    vous donne un résultat plus précis que le taux neutre pour un célibataire sans
+    vous donne un résultat plus précis que le taux neutre pour un célibataire
+    sans
 
     enfant.
   question.en: '[automatic] How would you like to calculate your income tax?'
@@ -2202,21 +2321,25 @@ paramètres . impôt . revenu d'activité:
     [automatic] This is the income to be used in calculating income tax using
     the standard
 
-    standard tax scale, and to which a flat-rate deduction of 10% for professional
+    standard tax scale, and to which a flat-rate deduction of 10% for
+    professional
 
     business expenses.
 
 
-    It must be entered for salaried employees, assimilated employees and directors subject to corporation tax.
+    It must be entered for salaried employees, assimilated employees and
+    directors subject to corporation tax.
   description.fr: >
     C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
 
-    barème standard et auquel appliquer un abattement forfaitaire de 10 % pour les
+    barème standard et auquel appliquer un abattement forfaitaire de 10 % pour
+    les
 
     frais professionnels.
 
 
-    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l'IS.
+    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à
+    l'IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
 paramètres . impôt . revenu imposable:
@@ -2240,9 +2363,6 @@ paramètres . impôt . taux neutre applicable:
   titre.fr: taux neutre applicable
 plafond sécurité sociale:
   avec:
-    N-1:
-      titre.en: '[automatic] N-1'
-      titre.fr: N-1
     annuel:
       titre.en: '[automatic] annual'
       titre.fr: annuel
@@ -2252,6 +2372,12 @@ plafond sécurité sociale:
     journalier:
       titre.en: '[automatic] daily'
       titre.fr: journalier
+    métropole:
+      titre.en: '[automatic] metropolis'
+      titre.fr: métropole
+    métropole . N-1:
+      titre.en: '[automatic] N-1'
+      titre.fr: N-1
   description.en: '[automatic] The Social Security ceiling is the maximum amount
     of remuneration to be taken into account when calculating certain
     contributions.'
@@ -2277,11 +2403,13 @@ protection sociale . autres:
     [automatic] All transversal contributions to the social system.
 
 
-    These include, for example, the CRDS (contribution pour le remboursement de la dette sociale)
+    These include, for example, the CRDS (contribution pour le remboursement de
+    la dette sociale)
 
     social debt), which is a tax designed to pay down the Social Security debt
 
-    to ensure the viability of social protection for your children and grandchildren.
+    to ensure the viability of social protection for your children and
+    grandchildren.
 
     and grandchildren.
   description.fr: >
@@ -2290,9 +2418,11 @@ protection sociale . autres:
 
     On y retrouve par exemple la CRDS (contribution pour le remboursement de la
 
-    dette sociale) qui est un impôt destiné à résorber l’endettement de la Sécurité
+    dette sociale) qui est un impôt destiné à résorber l’endettement de la
+    Sécurité
 
-    sociale, et ainsi assurer la viabilité de la protection sociale pour vos enfants
+    sociale, et ainsi assurer la viabilité de la protection sociale pour vos
+    enfants
 
     et petits-enfants.
   résumé.en: '[automatic] Other contributions to the social system.'
@@ -2320,7 +2450,8 @@ protection sociale . famille:
   description.fr: >
     Créée en 1945, la branche Famille est l’un des principaux acteurs de la
 
-    politique familiale française. Actuellement, elle a deux missions prioritaires :
+    politique familiale française. Actuellement, elle a deux missions
+    prioritaires :
       - Aider les familles dans leur vie quotidienne, faciliter, en particulier, la
       conciliation entre vie familiale et vie professionnelle ;
       - Développer la solidarité envers les plus vulnérables, dont les personnes
@@ -2355,7 +2486,8 @@ protection sociale . formation:
 
     For a personalized account of your training entitlements,
 
-    go to [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+    go to
+    [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
   description.fr: >
     La formation professionnelle permet à chaque personne, indépendamment de son
 
@@ -2368,7 +2500,8 @@ protection sociale . formation:
 
     Pour avoir un compte-rendu personnalisé de vos droits à la formation,
 
-    rendez-vous sur [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
+    rendez-vous sur
+    [www.moncompteactivite.gouv.fr](https://www.moncompteactivite.gouv.fr).
   résumé.en: '[automatic] Finance the possibility of professional training.'
   résumé.fr: Finance la possibilité de suivre des formations professionnelles.
   titre.en: '[automatic] training'
@@ -2384,7 +2517,8 @@ protection sociale . invalidité et décès:
 
             (spouse, cohabitee, partner in a civil solidarity pact
 
-            (Pacs) - not divorced or separated - children, etc.) may be entitled to an annuity.
+            (Pacs) - not divorced or separated - children, etc.) may be entitled
+            to an annuity.
 
             annuity.
           description.fr: >
@@ -2392,7 +2526,8 @@ protection sociale . invalidité et décès:
 
             (conjoint, concubin, partenaire lié par un pacte civil de solidarité
 
-            (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier d’une
+            (Pacs) - non divorcé ni séparé - enfants, etc.) peuvent bénéficier
+            d’une
 
             rente.
           titre.en: '[automatic] AT/MP death pension'
@@ -2402,7 +2537,8 @@ protection sociale . invalidité et décès:
             [automatic] If you are permanently disabled as a result of a
             work-related accident or illness
 
-            occupational disease is greater than 10%, you will receive a permanent
+            occupational disease is greater than 10%, you will receive a
+            permanent
 
             permanent disability pension.
           description.fr: >
@@ -2437,12 +2573,14 @@ protection sociale . invalidité et décès:
 
         Payment of the pension is possible, under certain conditions, when
 
-        the deceased was gainfully employed or self-employed (self-employed, liberal
+        the deceased was gainfully employed or self-employed (self-employed,
+        liberal
 
         self-employed, self-employed professionals, farmers).
 
 
-        The pension is equal to 54% of the pension your husband/wife or ex-husband/wife
+        The pension is equal to 54% of the pension your husband/wife or
+        ex-husband/wife
 
         ex-spouse was receiving or could have received (excluding increases).
       description.fr: >
@@ -2451,7 +2589,8 @@ protection sociale . invalidité et décès:
 
         pension de réversion.
 
-        Le versement de la pension est possible, sous certaines conditions, lorsque
+        Le versement de la pension est possible, sous certaines conditions,
+        lorsque
 
         le défunt exerçait une activité salariée ou non salariée (travailleur
 
@@ -2460,7 +2599,8 @@ protection sociale . invalidité et décès:
 
         La pension est égale à 54 % de la retraite que votre époux/épouse ou
 
-        ex-époux/épouse percevait ou aurait pu percevoir (majorations non comprises).
+        ex-époux/épouse percevait ou aurait pu percevoir (majorations non
+        comprises).
       titre.en: '[automatic] maximum reversionary pension'
       titre.fr: pension de reversion maximum
     pension invalidité:
@@ -2497,21 +2637,26 @@ protection sociale . invalidité et décès:
             [automatic] Since July 1, 2016, you can only receive one disability
             pension
 
-            disability pension: either for your salaried activity, or for your activity as a
+            disability pension: either for your salaried activity, or for your
+            activity as a
 
             for your activity as a craftsman/trader. However, the amount of
 
-            However, the amount of your pension takes into account all your income, whether from
+            However, the amount of your pension takes into account all your
+            income, whether from
 
             your salaried activity or your self-employed activity.
           description.fr: >
             Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
 
-            pension d’invalidité : soit au titre de votre activité salariée, soit au
+            pension d’invalidité : soit au titre de votre activité salariée,
+            soit au
 
-            titre de votre activité d’artisan/commerçant. Toutefois, le montant de
+            titre de votre activité d’artisan/commerçant. Toutefois, le montant
+            de
 
-            la pension tient compte de tous vos revenus perçus qu’ils proviennent de
+            la pension tient compte de tous vos revenus perçus qu’ils
+            proviennent de
 
             votre activité salariée ou de votre activité comme indépendant.
           titre.en: '[automatic] average annual income for the 10 best years'
@@ -2525,14 +2670,16 @@ protection sociale . invalidité et décès:
     [automatic] You may be recognized as disabled if your ability to work and
     earn a living is
 
-    reduced by at least 2/3 as a result of a non-work-related accident or illness.
+    reduced by at least 2/3 as a result of a non-work-related accident or
+    illness.
 
     occupational origin. You may be entitled to a disability pension
 
     to compensate for loss of income.
 
 
-    Lump-sum death benefit guarantees payment of a lump sum to the beneficiaries of a deceased worker.
+    Lump-sum death benefit guarantees payment of a lump sum to the beneficiaries
+    of a deceased worker.
 
     of a deceased worker, under certain conditions. The amount is
 
@@ -2541,16 +2688,19 @@ protection sociale . invalidité et décès:
     Vous pouvez être reconnu invalide si votre capacité de travail et de gain
     est
 
-    réduite d’au moins 2/3 à la suite d’un accident ou d’une maladie d’origine non
+    réduite d’au moins 2/3 à la suite d’un accident ou d’une maladie d’origine
+    non
 
     professionnelle. Vous pouvez obtenir le versement d’une pension d’invalidité
 
     afin de compenser la perte de revenus.
 
 
-    Le capital décès est une indemnité qui garantit le versement d’un capital aux
+    Le capital décès est une indemnité qui garantit le versement d’un capital
+    aux
 
-    ayants droit d’un travailleur décédé, sous certaines conditions. Son montant est
+    ayants droit d’un travailleur décédé, sous certaines conditions. Son montant
+    est
 
     forfaitaire.
   résumé.en: '[automatic] Guarantees the payment of a pension in the event of
@@ -2575,11 +2725,13 @@ protection sociale . maladie:
     and professional life.
 
 
-    In concrete terms, it supports 60 million policyholders throughout their lives, by
+    In concrete terms, it supports 60 million policyholders throughout their
+    lives, by
 
     care, whatever their resources, situation or state of health.
 
-    or state of health. In this way, it guarantees universal access to rights and
+    or state of health. In this way, it guarantees universal access to rights
+    and
 
     access to care.
 
@@ -2601,11 +2753,14 @@ protection sociale . maladie:
     personnelle ou professionnelle.
 
 
-    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur vie, en
+    Concrètement, elle accompagne 60 millions d’assurés tout au long de leur
+    vie, en
 
-    prenant en charge leurs soins quels que soient leurs ressources, leur situation
+    prenant en charge leurs soins quels que soient leurs ressources, leur
+    situation
 
-    ou leur état de santé. Elle garantit ainsi un accès universel aux droits et elle
+    ou leur état de santé. Elle garantit ainsi un accès universel aux droits et
+    elle
 
     permet l’accès aux soins.
 
@@ -2651,7 +2806,8 @@ protection sociale . maladie . accidents du travail et maladies professionnelles
 
     benefits.
 
-    If you are declared unfit for work as a result of your accident or illness, you may be entitled to
+    If you are declared unfit for work as a result of your accident or illness,
+    you may be entitled to
 
     receive a temporary incapacity allowance.
   description.fr: |
@@ -2679,7 +2835,8 @@ protection sociale . maladie . arrêt maladie:
 
             your professional activity, you must provide proof of continuous
 
-            period of continuous affiliation to this activity. This period depends on your
+            period of continuous affiliation to this activity. This period
+            depends on your
 
             previous months' earnings.
           description.fr: >
@@ -2687,7 +2844,8 @@ protection sociale . maladie . arrêt maladie:
 
             votre activité professionnelle, vous devez justifier d’un délai
 
-            d’affiliation continus dans cette activité. Ce dernier dépend de votre
+            d’affiliation continus dans cette activité. Ce dernier dépend de
+            votre
 
             rémunération des mois précédents.
           titre.en: '[automatic] waiting period'
@@ -2738,7 +2896,8 @@ protection sociale . maladie . maternité paternité adoption:
       description.en: >
         [automatic] ## Maternity
 
-        You must have been insured for at least 10 months prior to the expected date of childbirth.
+        You must have been insured for at least 10 months prior to the expected
+        date of childbirth.
 
         and cease all professional activity during the collection period
 
@@ -2746,7 +2905,8 @@ protection sociale . maladie . maternité paternité adoption:
 
         ## Paternity / Adoption
 
-        To benefit from this benefit, you must have 10 months' affiliation at the time of the birth/adoption.
+        To benefit from this benefit, you must have 10 months' affiliation at
+        the time of the birth/adoption.
 
         birth/adoption.
       description.fr: >
@@ -2754,7 +2914,8 @@ protection sociale . maladie . maternité paternité adoption:
 
         Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
 
-        accouchement, et cesser toute activité professionnelle pendant la période de
+        accouchement, et cesser toute activité professionnelle pendant la
+        période de
 
         perception et au moins pendant 8 semaines dont 6 après l’accouchement.
 
@@ -2781,12 +2942,14 @@ protection sociale . retraite:
   description.en: >
     [automatic] ### A compulsory system ...
 
-    As soon as you start working, you and your employer contribute to the pension scheme. This contribution is based on your salary.
+    As soon as you start working, you and your employer contribute to the
+    pension scheme. This contribution is based on your salary.
 
 
     ###Pay-as-you-go
 
-    The total amount of contributions you make each year is used to pay the pensions
+    The total amount of contributions you make each year is used to pay the
+    pensions
 
     pensions for that same year. The system thus organizes a
 
@@ -2797,12 +2960,14 @@ protection sociale . retraite:
 
     When you retire, your pension (i.e. your retirement "income") is calculated
 
-    is calculated on the basis of your income, your retirement age and the number of years
+    is calculated on the basis of your income, your retirement age and the
+    number of years
 
     and the number of years you've worked.
 
 
-    **Our pension system is also based on solidarity**: the unemployed, people on sick leave
+    **Our pension system is also based on solidarity**: the unemployed, people
+    on sick leave
 
     people on sick leave, people with disabilities, low-income workers
 
@@ -2814,27 +2979,34 @@ protection sociale . retraite:
 
 
 
-    Simulate and manage your retirement on [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+    Simulate and manage your retirement on
+    [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
   description.fr: >
     ### Un système obligatoire …
 
-    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
+    Dès lors que vous travaillez, vous et votre employeur, cotisez pour la
+    retraite. Cette cotisation est définie à la mesure du salaire que vous
+    percevez.
 
 
     ###… par répartition
 
-    Le montant total des cotisations que vous versez chaque année sert à payer les
+    Le montant total des cotisations que vous versez chaque année sert à payer
+    les
 
     pensions des retraités pour cette même année. Le système organise ainsi un
 
-    transfert direct des générations en activité vers les générations à la retraite.
+    transfert direct des générations en activité vers les générations à la
+    retraite.
 
 
     ###… principalement contributif
 
-    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu »
+    Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre «
+    revenu »
 
-    à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à
+    à la retraite) est calculé en fonction de vos revenus, de votre âge de
+    départ à
 
     la retraite et du nombre d’années passées à travailler.
 
@@ -2851,7 +3023,8 @@ protection sociale . retraite:
 
 
 
-    Simulez et gérez votre retraite sur [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
+    Simulez et gérez votre retraite sur
+    [info-retraite.fr](https://www.info-retraite.fr/portail-info/home.html).
   résumé.en: '[automatic] Guarantees an average of 60-70% of your last working
     income for your retirement pension.'
   résumé.fr:
@@ -2881,7 +3054,8 @@ protection sociale . retraite . base:
 
     - You have no other sources of income;
 
-    - You have contributed a sufficient number of quarters and are retiring at the age
+    - You have contributed a sufficient number of quarters and are retiring at
+    the age
 
     benefit from the **full rate**.
 
@@ -2898,7 +3072,8 @@ protection sociale . retraite . base:
 
     > career ;
 
-    > - pension prorata_ = length of insurance with the French pension insurance scheme (Assurance Retraite) / length of insurance to obtain a full pension.
+    > - pension prorata_ = length of insurance with the French pension insurance
+    scheme (Assurance Retraite) / length of insurance to obtain a full pension.
 
     > insurance period to obtain a full pension.
   description.fr: >
@@ -2922,7 +3097,8 @@ protection sociale . retraite . base:
 
     - Vous n’avez pas d’autres sources de revenus ;
 
-    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis pour
+    - Vous avez cotisé suffisamment de trimestres et vous partez à l’âge requis
+    pour
 
     bénéficier du **taux plein**.
 
@@ -2935,11 +3111,13 @@ protection sociale . retraite . base:
 
     > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
 
-    > travailleur indépendant pendant les 25 années les plus avantageuses de votre
+    > travailleur indépendant pendant les 25 années les plus avantageuses de
+    votre
 
     > carrière ;
 
-    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite
+    /
 
     > durée d’assurance pour obtenir une pension à taux plein.
   résumé.en: '[automatic] Full basic retirement pension based on the assumption
@@ -2970,9 +3148,11 @@ protection sociale . retraite . complémentaire:
     cotisation retraite complémentaire.
 
 
-    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de la
+    > Ce montant est succeptible de varier d’ici votre retraite, en fonction de
+    la
 
-    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur, et
+    mise à jour de la valeur du point. Néanmoins il offre un ordre de grandeur,
+    et
 
     permet de comparer les régimes de retraite complémentaire entre eux
   titre.en: '[automatic] Supplementary pension'
@@ -2986,7 +3166,8 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
         compulsory pension contributions. The total number of
 
-        points that will determine the annual amount of your future supplementary
+        points that will determine the annual amount of your future
+        supplementary
 
         pension.
 
@@ -2999,43 +3180,51 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         #### Formula for calculating the number of points
 
 
-        **Number of points** = **Contribution base** × **Points calculation rate** / **Purchase value of a point**.
+        **Number of points** = **Contribution base** × **Points calculation
+        rate** / **Purchase value of a point**.
 
 
         #### What is the points calculation rate?
 
 
-        It's the percentage applied to the contribution base to calculate points.
+        It's the percentage applied to the contribution base to calculate
+        points.
 
         points.
 
 
-        Note: it also serves as the basis for calculating the contributions paid by
+        Note: it also serves as the basis for calculating the contributions paid
+        by
 
-        the employer and the employee: it is then multiplied by 1.27 to determine the
+        the employer and the employee: it is then multiplied by 1.27 to
+        determine the
 
         contributions to be paid.
 
 
         The rate that appears on the pay slip and is shared between the
 
-        the employee and the employer is therefore higher than the points acquisition rate.
+        the employee and the employer is therefore higher than the points
+        acquisition rate.
 
-        The additional contribution thus determined is not used to acquire points.
+        The additional contribution thus determined is not used to acquire
+        points.
 
         points.
       description.fr: >
         Tout au long de votre carrière, vous obtenez des points de retraite via
         le
 
-        versement de cotisations de retraite obligatoires. C’est le nombre total des
+        versement de cotisations de retraite obligatoires. C’est le nombre total
+        des
 
         points acquis qui déterminera le montant annuel de votre future retraite
 
         complémentaire.
 
 
-        Il est donc important de bien comprendre comment ces points de retraite sont
+        Il est donc important de bien comprendre comment ces points de retraite
+        sont
 
         attribués.
 
@@ -3043,27 +3232,32 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         #### Formule de calcul du nombre de points
 
 
-        **Nombre de points** = **Assiette des cotisations** × **Taux de calcul des points** / **Valeur d’achat d’un point**
+        **Nombre de points** = **Assiette des cotisations** × **Taux de calcul
+        des points** / **Valeur d’achat d’un point**
 
 
         #### Le taux de calcul des points, c’est quoi ?
 
 
-        C’est le pourcentage appliqué sur l’assiette des cotisations pour calculer
+        C’est le pourcentage appliqué sur l’assiette des cotisations pour
+        calculer
 
         les points.
 
 
         A noter : il sert aussi de base au calcul des cotisations payées par
 
-        l’employeur et le salarié : il est alors multiplié par 1,27 pour déterminer
+        l’employeur et le salarié : il est alors multiplié par 1,27 pour
+        déterminer
 
         les cotisations à payer.
 
 
-        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre le
+        Le taux qui apparait sur le bulletin de salaire et qui est réparti entre
+        le
 
-        salarié et l’employeur est donc supérieur au taux d’acquisition des points.
+        salarié et l’employeur est donc supérieur au taux d’acquisition des
+        points.
 
         Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des
 
@@ -3096,49 +3290,29 @@ protection sociale . retraite . trimestres:
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
 protection sociale . transport:
-  description.en: >
-    [automatic] This contribution is paid in full to the [mobility organizing
-    authority
-
+  description.en: |
+    [automatic] This contribution is paid in full to the [mobility organizing authority
     mobility](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
-
     in the area where the company is located. It can then be used to
-
     ubsidize existing public transport or develop new transport infrastructure
-
     infrastructure (tramway, metro, bus, etc.).
 
-
     ## Mobility payment in figures
-
     - 45% reduction** on the cost of public transport in France's 12 biggest conurbations.
-
     France's largest conurbations.
-
     - 263 / year / inhabitant** in purchasing power gains for the inhabitants of
-
     Île-de-France
-  description.fr: >
-    Cette contribution est reversée intégralement à l’[autorité organisatrice de
-    la
-
+  description.fr: |
+    Cette contribution est reversée intégralement à l’[autorité organisatrice de la
     mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
-
     de la zone ou est implantée l’entreprise. Celle-ci peut ensuite l’utiliser pour
-
     ubventionner les transports en commun existants ou pour développer de nouvelles
-
     infrastructures de transport (tramway, métro, bus...).
 
-
     ## Le versement mobilité en quelques chiffres
-
     - **45% de réduction** sur le coût des transports en communs dans les 12 plus
-
     grandes agglomérations de France.
-
     - **263 € / an / habitant** de gain de pouvoir d’achat pour les habitants
-
     d’Île-de-France
   résumé.en: '[automatic] Keeps transit fares low'
   résumé.fr: Permet de maintenir le prix d’un billet de transport en commun à un bas prix
@@ -3274,12 +3448,14 @@ situation personnelle . domiciliation fiscale à l'étranger:
 
     - Secteur d'activité
 
-    - Fréquence et la gravité des sinistres survenus (accidents du travail, maladies
+    - Fréquence et la gravité des sinistres survenus (accidents du travail,
+    maladies
 
     - professionnelles)
 
 
-    Si vous ne connaissez pas le taux de l'établissement, cliquez sur « Passer ».
+    Si vous ne connaissez pas le taux de l'établissement, cliquez sur
+    « Passer ».
   question.en: "[automatic] What is the employer's contribution rate?"
   question.fr: Quel est le taux de la cotisation AT/MP pour l'établissement ?
   titre.en: '[automatic] ATMP rate'

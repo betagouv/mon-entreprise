@@ -9,15 +9,15 @@
   - assimilé salarié . rémunération . totale: 100000 €/an
 
 Acre:
-  # Acre applicable avec exonération totale car rém. brute < 75% PSS
+  # Acre applicable avec exonération totale car rém. brute < 75% PASS
   - assimilé salarié . rémunération . totale: 25000 €/an
     entreprise . date de création: période . début d'année
     assimilé salarié . exonérations . Acre: oui
-  # Acre applicable avec coefficient car 75% PSS < rém. brute < PSS
+  # Acre applicable avec coefficient car 75% PASS < rém. brute < PASS
   - assimilé salarié . rémunération . totale: 50000 €/an
     entreprise . date de création: période . début d'année
     assimilé salarié . exonérations . Acre: oui
-  # Acre non applicable car rém. brute > PSS
+  # Acre non applicable car rém. brute > PASS
   - assimilé salarié . rémunération . totale: 100000 €/an
     entreprise . date de création: période . début d'année
     assimilé salarié . exonérations . Acre: oui

@@ -23,10 +23,10 @@ indépendant . assiette minimale . maladie:
     calcul, certaines cotisations seront portées à un montant minimum.
   non applicable si: profession libérale . réglementée . PAMC
   produit:
-    - PSS proratisé
+    - PASS proratisé
     - 40%
-  unité: €/an
   arrondi: oui
+  unité: €/an
   références:
     Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
 
@@ -35,8 +35,8 @@ indépendant . assiette minimale . indemnités journalières:
   produit:
     - plafond sécurité sociale
     - 40%
-  unité: €/an
   arrondi: oui
+  unité: €/an
   références:
     Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
 
@@ -47,8 +47,8 @@ indépendant . assiette minimale . retraite:
     - si: entreprise . durée d'activité cette année < 90 jour
       alors: 0
     - sinon: 450 heure/an * SMIC . horaire . début d'année
-  unité: €/an
   arrondi: oui
+  unité: €/an
   références:
     Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
 
@@ -57,10 +57,10 @@ indépendant . assiette minimale . invalidité et décès:
     Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
     calcul, certaines cotisations seront portées à un montant minimum.
   produit:
-    - PSS proratisé
+    - PASS proratisé
     - 11.5%
-  unité: €/an
   arrondi: oui
+  unité: €/an
   références:
     Artisan, commerçant et profession libérale non réglementée - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-vos-cotisations-minimales
     Article D632-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966755
@@ -71,9 +71,9 @@ indépendant . assiette minimale . invalidité et décès Cipav:
     calcul, certaines cotisations seront portées à un montant minimum.
   applicable si: profession libérale . Cipav
   produit:
-    - PSS proratisé
+    - PASS proratisé . métropole
     - 37%
-  unité: €/an
   arrondi: oui
+  unité: €/an
   références:
     Profession libérale réglementée relevant de la Cipav - Vos cotisations minimales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html#ancre-vos-cotisations-minimales

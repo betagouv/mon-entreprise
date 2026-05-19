@@ -9,19 +9,26 @@ plafond sécurité sociale:
           - si: date < 01/2026
             alors: 2821 €/mois
           - sinon: 3022 €/mois
-    - sinon:
-        variations:
-          - si: date < 01/2024
-            alors: 3666 €/mois
-          - si: date < 01/2025
-            alors: 3864 €/mois
-          - si: date < 01/2026
-            alors: 3925 €/mois
-          - sinon: 4005 €/mois
+    - sinon: métropole
   références:
     Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
 
   avec:
+    métropole:
+      variations:
+        - si: date < 01/2024
+          alors: 3666 €/mois
+        - si: date < 01/2025
+          alors: 3864 €/mois
+        - si: date < 01/2026
+          alors: 3925 €/mois
+        - sinon: 4005 €/mois
+
+    métropole . N-1:
+      valeur: plafond sécurité sociale . métropole
+      contexte:
+        date: période . début d'année . N-1
+
     annuel:
       acronyme: PASS
       valeur: plafond sécurité sociale
@@ -36,7 +43,6 @@ plafond sécurité sociale:
         Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
         Article D242-19 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000033516173
 
-
     journalier:
       acronyme: PJSS
       valeur: plafond sécurité sociale / 218 jour/an
@@ -45,11 +51,6 @@ plafond sécurité sociale:
       références:
         Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
         Article D242-17 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043870904
-
-    N-1:
-      valeur: plafond sécurité sociale
-      contexte:
-        date: période . début d'année . N-1
 
 SMIC:
   unité: €/mois
@@ -67,30 +68,18 @@ SMIC . horaire:
     - si: établissement . commune . département . outre-mer . Mayotte
       alors:
         variations:
-          - si: date >= 01/2026
-            alors: 9.33 €/heure
-          - si: date >= 11/2024
-            alors: 8.98 €/heure
-          - si: date >= 01/2024
-            alors: 8.80 €/heure
-          - si: date >= 05/2023
-            alors: 8.70 €/heure
-          - si: date >= 01/2023
+          - si: date < 01/2023
+            alors: 8.35 €/heure
+          - si: date < 05/2023
             alors: 8.51 €/heure
-          - sinon: 8.35 €/heure
-    - sinon:
-        variations:
-          - si: date >= 01/2026
-            alors: 12.02 €/heure
-          - si: date >= 11/2024
-            alors: 11.88 €/heure
-          - si: date >= 01/2024
-            alors: 11.65 €/heure
-          - si: date >= 05/2023
-            alors: 11.52 €/heure
-          - si: date >= 01/2023
-            alors: 11.27 €/heure
-          - sinon: 11.07 €/heure
+          - si: date < 01/2024
+            alors: 8.70 €/heure
+          - si: date < 11/2024
+            alors: 8.80 €/heure
+          - si: date < 01/2026
+            alors: 8.98 €/heure
+          - sinon: 9.33 €/heure
+    - sinon: métropole
   note: |
     En principe et sauf « coup de pouce », le SMIC est revalorisé au 1er janvier
     de chaque année. Toutefois une revalorisation doit intervenir en cours
@@ -101,17 +90,30 @@ SMIC . horaire:
     Arrêté du 26 avril 2023 relatif au relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000047495817
 
   avec:
+    métropole:
+      variations:
+        - si: date < 01/2023
+          alors: 11.07 €/heure
+        - si: date < 05/2023
+          alors: 11.27 €/heure
+        - si: date < 01/2024
+          alors: 11.52 €/heure
+        - si: date < 11/2024
+          alors: 11.65 €/heure
+        - si: date < 01/2026
+          alors: 11.88 €/heure
+        - sinon: 12.02 €/heure
+
+    métropole . début d'année:
+      valeur: SMIC . horaire . métropole
+      contexte:
+        date: période . début d'année
+
     début d'année:
       titre: en début d'année
       valeur: SMIC . horaire
       contexte:
         date: période . début d'année
-
-    début d'année N-1:
-      titre: en début d'année précédente
-      valeur: SMIC . horaire
-      contexte:
-        date: période . début d'année . N-1
 
 durée légale du travail:
   valeur: 35 heure/semaine
