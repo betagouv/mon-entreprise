@@ -1,935 +1,919 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 21341
-dirigeant . auto-entrepreneur . cotisations et contributions: 112
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 110
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 22
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 48
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 110
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
-dirigeant . auto-entrepreneur . revenu net: 20000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 112
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 110
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 26
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 3
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 11
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 22
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 48
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 110
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 20000
+auto-entrepreneur . revenu . net . après impôt: 20000
+entreprise . chiffre d'affaires: 21344
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 21341
-
-Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
+entreprise . chiffre d'affaires . vente restauration hébergement: 21344"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 2`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 22986
-dirigeant . auto-entrepreneur . cotisations et contributions: 249
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 4
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 245
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 62
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 8
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 10
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 51
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 114
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 245
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 13
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 20000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 249
+auto-entrepreneur . cotisations et contributions . CFP: 4
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 245
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 62
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 8
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 10
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 51
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 114
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 245
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 13
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 20000
+auto-entrepreneur . revenu . net . après impôt: 20000
+entreprise . chiffre d'affaires: 22988
 entreprise . chiffre d'affaires . service BIC: null
-entreprise . chiffre d'affaires . service BNC: 22986
-entreprise . chiffre d'affaires . vente restauration hébergement: null
-
-Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
+entreprise . chiffre d'affaires . service BNC: 22988
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 3`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 21444
-dirigeant . auto-entrepreneur . cotisations et contributions: 120
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 4
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 111
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 22
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 48
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 111
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
-dirigeant . auto-entrepreneur . revenu net: 20000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 120
+auto-entrepreneur . cotisations et contributions . CFP: 5
+auto-entrepreneur . cotisations et contributions . TFC: 4
+auto-entrepreneur . cotisations et contributions . cotisations: 111
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 26
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 3
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 11
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 22
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 48
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 111
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 20000
+auto-entrepreneur . revenu . net . après impôt: 20000
+entreprise . chiffre d'affaires: 21440
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 21444
-
-Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
+entreprise . chiffre d'affaires . vente restauration hébergement: 21440"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 4`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 22564
-dirigeant . auto-entrepreneur . cotisations et contributions: 214
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 9
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 199
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 20
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 39
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 86
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 199
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 20000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
-entreprise . chiffre d'affaires . service BIC: 22564
+"auto-entrepreneur . cotisations et contributions: 214
+auto-entrepreneur . cotisations et contributions . CFP: 6
+auto-entrepreneur . cotisations et contributions . TFC: 9
+auto-entrepreneur . cotisations et contributions . cotisations: 199
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 20
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 39
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 86
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 199
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 20000
+auto-entrepreneur . revenu . net . après impôt: 20000
+entreprise . chiffre d'affaires: 22568
+entreprise . chiffre d'affaires . service BIC: 22568
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: null
-
-Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 5`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 22410
-dirigeant . auto-entrepreneur . cotisations et contributions: 201
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 198
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 20
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 39
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 86
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 198
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 20000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
-entreprise . chiffre d'affaires . service BIC: 22410
+"auto-entrepreneur . cotisations et contributions: 201
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 198
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 20
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 39
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 86
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 198
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 20000
+auto-entrepreneur . revenu . net . après impôt: 20000
+entreprise . chiffre d'affaires: 22412
+entreprise . chiffre d'affaires . service BIC: 22412
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: null
-
-Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 6`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 22410
-dirigeant . auto-entrepreneur . cotisations et contributions: 201
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 198
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 20
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 39
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 86
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 198
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 20000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
-entreprise . chiffre d'affaires . service BIC: 22410
+"auto-entrepreneur . cotisations et contributions: 201
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 198
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 47
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 20
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 39
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 86
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 198
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 20000
+auto-entrepreneur . revenu . net . après impôt: 20000
+entreprise . chiffre d'affaires: 22412
+entreprise . chiffre d'affaires . service BIC: 22412
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: null
-
-Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
+entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > ACRE 7`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 32012
-dirigeant . auto-entrepreneur . cotisations et contributions: 168
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 165
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 39
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 17
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 33
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 72
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 165
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
-dirigeant . auto-entrepreneur . revenu net: 30000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 30000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 168
+auto-entrepreneur . cotisations et contributions . CFP: 3
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 165
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 39
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 17
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 33
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 72
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 165
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 30000
+auto-entrepreneur . revenu . net . après impôt: 30000
+entreprise . chiffre d'affaires: 32016
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 32012
-
-Notifications affichées : dirigeant . auto-entrepreneur . Acre . notification calcul ACRE annuel"
+entreprise . chiffre d'affaires . vente restauration hébergement: 32016"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 221
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 219
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 52
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 7
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 19
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 44
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 96
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 142
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 14
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 43
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 17
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 16
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 34
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
-dirigeant . auto-entrepreneur . revenu net: 17349
-dirigeant . auto-entrepreneur . revenu net . après impôt: 17349
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 221
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 219
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 52
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 7
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 19
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 44
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 96
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 142
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 14
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 43
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 17
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 34
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 17348
+auto-entrepreneur . revenu . net . après impôt: 17348
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 12000
 entreprise . chiffre d'affaires . service BNC: 3000
 entreprise . chiffre d'affaires . vente restauration hébergement: 5000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 2`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 45000
-dirigeant . auto-entrepreneur . cotisations et contributions: 312
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 4
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 307
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 72
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 10
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 31
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 61
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 133
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 14
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 17
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 16
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 307
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
-dirigeant . auto-entrepreneur . revenu net: 41259
-dirigeant . auto-entrepreneur . revenu net . après impôt: 41259
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 312
+auto-entrepreneur . cotisations et contributions . CFP: 4
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 307
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 72
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 10
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 31
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 61
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 133
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 307
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 8
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 41256
+auto-entrepreneur . revenu . net . après impôt: 41256
+entreprise . chiffre d'affaires: 45000
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
 entreprise . chiffre d'affaires . vente restauration hébergement: 45000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 3`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 58
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 56
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 13
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 25
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 36
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 4
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 4
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 8
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 9
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 2
-dirigeant . auto-entrepreneur . revenu net: 19305
-dirigeant . auto-entrepreneur . revenu net . après impôt: 19305
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 58
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 56
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 13
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 5
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 11
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 25
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 36
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 4
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 11
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 4
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 9
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 2
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 19304
+auto-entrepreneur . revenu . net . après impôt: 19304
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 12000
 entreprise . chiffre d'affaires . service BNC: 3000
 entreprise . chiffre d'affaires . vente restauration hébergement: 5000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > DROM 4`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 167
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 165
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 39
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 15
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 33
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 73
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 106
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 33
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 13
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 12
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
-dirigeant . auto-entrepreneur . revenu net: 17997
-dirigeant . auto-entrepreneur . revenu net . après impôt: 17997
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 167
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 165
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 39
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 15
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 33
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 73
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 106
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 11
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 33
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 13
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 26
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 6
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 17996
+auto-entrepreneur . revenu . net . après impôt: 17996
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 12000
 entreprise . chiffre d'affaires . service BNC: 3000
 entreprise . chiffre d'affaires . vente restauration hébergement: 5000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 282
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 280
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 66
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 9
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 28
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 55
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 122
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 177
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 103
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 16620
-dirigeant . auto-entrepreneur . revenu net . après impôt: 16620
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 282
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 280
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 66
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 9
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 28
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 55
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 122
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 177
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 103
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 16616
+auto-entrepreneur . revenu . net . après impôt: 16616
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 10000
 entreprise . chiffre d'affaires . service BNC: 0
 entreprise . chiffre d'affaires . vente restauration hébergement: 10000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 2`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 355
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 352
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 88
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 12
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 18
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 73
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 161
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 284
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 68
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 15743
-dirigeant . auto-entrepreneur . revenu net . après impôt: 15743
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 355
+auto-entrepreneur . cotisations et contributions . CFP: 3
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 352
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 88
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 12
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 18
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 73
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 161
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 284
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 68
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 15740
+auto-entrepreneur . revenu . net . après impôt: 15740
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 0
 entreprise . chiffre d'affaires . service BNC: 13333
 entreprise . chiffre d'affaires . vente restauration hébergement: 6667"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 3`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 291
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 280
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 66
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 9
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 28
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 55
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 122
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 177
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 103
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 16508
-dirigeant . auto-entrepreneur . revenu net . après impôt: 16508
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 291
+auto-entrepreneur . cotisations et contributions . CFP: 5
+auto-entrepreneur . cotisations et contributions . TFC: 6
+auto-entrepreneur . cotisations et contributions . cotisations: 280
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 66
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 9
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 28
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 55
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 122
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 177
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 103
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 16508
+auto-entrepreneur . revenu . net . après impôt: 16508
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 10000
 entreprise . chiffre d'affaires . service BNC: 0
 entreprise . chiffre d'affaires . vente restauration hébergement: 10000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activité mixte 4`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: undefined
-dirigeant . auto-entrepreneur . cotisations et contributions: 726
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 720
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 173
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 23
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 60
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 145
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 319
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 353
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 213
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 154
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: undefined
-dirigeant . auto-entrepreneur . revenu net . après impôt: undefined
-dirigeant . rémunération . impôt: 597
+"auto-entrepreneur . cotisations et contributions: 726
+auto-entrepreneur . cotisations et contributions . CFP: 5
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 720
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 173
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 23
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 60
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 145
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 319
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 353
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 213
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 154
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 21288
+auto-entrepreneur . revenu . net . après impôt: 21288
+entreprise . chiffre d'affaires: 30000
 entreprise . chiffre d'affaires . service BIC: 20000
 entreprise . chiffre d'affaires . service BNC: 10000
 entreprise . chiffre d'affaires . vente restauration hébergement: 15000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 430
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 427
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 108
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 14
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 18
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 90
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 198
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 427
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 14836
-dirigeant . auto-entrepreneur . revenu net . après impôt: 14836
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 430
+auto-entrepreneur . cotisations et contributions . CFP: 3
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 427
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 108
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 14
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 18
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 90
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 198
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 427
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 14840
+auto-entrepreneur . revenu . net . après impôt: 14840
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: 20000
 entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 2`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 390
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 387
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 104
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 44
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 119
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 114
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: 387
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 23
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 15316
-dirigeant . auto-entrepreneur . revenu net . après impôt: 15316
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 390
+auto-entrepreneur . cotisations et contributions . CFP: 3
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 387
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 104
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 5
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 44
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 119
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 114
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: 387
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: 23
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 15320
+auto-entrepreneur . revenu . net . après impôt: 15320
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: 20000
 entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 3`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 214
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 4
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 205
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 48
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 40
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 89
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 205
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 17432
-dirigeant . auto-entrepreneur . revenu net . après impôt: 17432
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 214
+auto-entrepreneur . cotisations et contributions . CFP: 5
+auto-entrepreneur . cotisations et contributions . TFC: 4
+auto-entrepreneur . cotisations et contributions . cotisations: 205
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 48
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 21
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 40
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 89
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 205
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 17432
+auto-entrepreneur . revenu . net . après impôt: 17432
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
 entreprise . chiffre d'affaires . vente restauration hébergement: 20000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 4`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 366
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 8
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 353
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 83
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 35
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 70
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 153
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 353
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 15608
-dirigeant . auto-entrepreneur . revenu net . après impôt: 15608
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 366
+auto-entrepreneur . cotisations et contributions . CFP: 5
+auto-entrepreneur . cotisations et contributions . TFC: 8
+auto-entrepreneur . cotisations et contributions . cotisations: 353
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 83
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 11
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 35
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 70
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 153
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 353
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 15608
+auto-entrepreneur . revenu . net . après impôt: 15608
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 20000
 entreprise . chiffre d'affaires . service BNC: null
 entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 5`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 207
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 205
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 48
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 40
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 89
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 205
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 17520
-dirigeant . auto-entrepreneur . revenu net . après impôt: 17520
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 207
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 205
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 48
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 21
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 40
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 89
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 205
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 17516
+auto-entrepreneur . revenu . net . après impôt: 17516
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
 entreprise . chiffre d'affaires . vente restauration hébergement: 20000"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > activités 6`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 20000
-dirigeant . auto-entrepreneur . cotisations et contributions: 356
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 353
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 83
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 35
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 70
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 153
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 353
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 15732
-dirigeant . auto-entrepreneur . revenu net . après impôt: 15732
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 356
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 353
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 83
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 11
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 35
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 70
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 153
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: 353
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: 21
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 15728
+auto-entrepreneur . revenu . net . après impôt: 15728
+entreprise . chiffre d'affaires: 20000
 entreprise . chiffre d'affaires . service BIC: 20000
 entreprise . chiffre d'affaires . service BNC: null
 entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > aides 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 5701
-dirigeant . auto-entrepreneur . cotisations et contributions: 58
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 58
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 14
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 25
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 58
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 5000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 58
+auto-entrepreneur . cotisations et contributions . CFP: 0
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 58
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 14
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 11
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 25
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 58
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 5000
+auto-entrepreneur . revenu . net . après impôt: 5000
+entreprise . chiffre d'affaires: 5696
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 5701"
+entreprise . chiffre d'affaires . vente restauration hébergement: 5696"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > aides 2`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 57089
-dirigeant . auto-entrepreneur . cotisations et contributions: 591
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 585
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 138
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 18
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 59
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 116
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 254
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 585
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 50000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 50000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 591
+auto-entrepreneur . cotisations et contributions . CFP: 5
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 585
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 138
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 18
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 59
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 116
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 254
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 585
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 50000
+auto-entrepreneur . revenu . net . après impôt: 50000
+entreprise . chiffre d'affaires: 57092
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 57089"
+entreprise . chiffre d'affaires . vente restauration hébergement: 57092"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > impôt sur le revenu 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 33696
-dirigeant . auto-entrepreneur . cotisations et contributions: 725
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 719
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 181
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 24
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 29
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 151
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 334
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 719
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
-dirigeant . auto-entrepreneur . revenu net: 25000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 24259
-dirigeant . rémunération . impôt: 741
+"auto-entrepreneur . cotisations et contributions: 725
+auto-entrepreneur . cotisations et contributions . CFP: 6
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 719
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 181
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 24
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 29
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 151
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 334
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: 719
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: 26
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: null
+auto-entrepreneur . revenu . impôt: 62
+auto-entrepreneur . revenu . net: 25000
+auto-entrepreneur . revenu . net . après impôt: 24256
+entreprise . chiffre d'affaires: 33700
 entreprise . chiffre d'affaires . service BIC: null
-entreprise . chiffre d'affaires . service BNC: 33696
+entreprise . chiffre d'affaires . service BNC: 33700
 entreprise . chiffre d'affaires . vente restauration hébergement: null"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 1`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 573
-dirigeant . auto-entrepreneur . cotisations et contributions: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 500
-dirigeant . auto-entrepreneur . revenu net . après impôt: 500
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 6
+auto-entrepreneur . cotisations et contributions . CFP: 0
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 1
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 0
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 1
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 1
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 3
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 6
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 500
+auto-entrepreneur . revenu . net . après impôt: 500
+entreprise . chiffre d'affaires: 572
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 573"
+entreprise . chiffre d'affaires . vente restauration hébergement: 572"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 2`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 1145
-dirigeant . auto-entrepreneur . cotisations et contributions: 12
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 12
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 3
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 12
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 1000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 1000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 12
+auto-entrepreneur . cotisations et contributions . CFP: 0
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 12
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 3
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 0
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 1
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 2
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 5
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 12
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 1000
+auto-entrepreneur . revenu . net . après impôt: 1000
+entreprise . chiffre d'affaires: 1144
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 1145"
+entreprise . chiffre d'affaires . vente restauration hébergement: 1144"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 3`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 2278
-dirigeant . auto-entrepreneur . cotisations et contributions: 23
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 23
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 10
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 23
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 2000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 2000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 23
+auto-entrepreneur . cotisations et contributions . CFP: 0
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 23
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 5
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 1
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 2
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 5
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 10
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 23
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 2000
+auto-entrepreneur . revenu . net . après impôt: 2000
+entreprise . chiffre d'affaires: 2276
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 2278"
+entreprise . chiffre d'affaires . vente restauration hébergement: 2276"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 4`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 5701
-dirigeant . auto-entrepreneur . cotisations et contributions: 58
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 58
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 14
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 6
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 11
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 25
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 58
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 5000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 5000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 58
+auto-entrepreneur . cotisations et contributions . CFP: 0
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 58
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 14
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 2
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 6
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 11
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 25
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 58
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 5000
+auto-entrepreneur . revenu . net . après impôt: 5000
+entreprise . chiffre d'affaires: 5696
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 5701"
+entreprise . chiffre d'affaires . vente restauration hébergement: 5696"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 5`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 11416
-dirigeant . auto-entrepreneur . cotisations et contributions: 118
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 117
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 28
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 4
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 12
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 23
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 51
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 117
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 10000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 10000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 118
+auto-entrepreneur . cotisations et contributions . CFP: 1
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 117
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 28
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 4
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 12
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 23
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 51
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 117
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 10000
+auto-entrepreneur . revenu . net . après impôt: 10000
+entreprise . chiffre d'affaires: 11416
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
 entreprise . chiffre d'affaires . vente restauration hébergement: 11416"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 6`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 22831
-dirigeant . auto-entrepreneur . cotisations et contributions: 236
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 2
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 0
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 234
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 55
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 7
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 24
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 46
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 102
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 234
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 20000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 20000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 236
+auto-entrepreneur . cotisations et contributions . CFP: 2
+auto-entrepreneur . cotisations et contributions . TFC: 0
+auto-entrepreneur . cotisations et contributions . cotisations: 234
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 55
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 7
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 24
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 46
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 102
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 234
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 20000
+auto-entrepreneur . revenu . net . après impôt: 20000
+entreprise . chiffre d'affaires: 22832
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 22831"
+entreprise . chiffre d'affaires . vente restauration hébergement: 22832"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 7`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 57089
-dirigeant . auto-entrepreneur . cotisations et contributions: 591
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 5
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 585
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 138
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 18
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 59
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 116
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 254
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 585
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 50000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 50000
-dirigeant . rémunération . impôt: 0
+"auto-entrepreneur . cotisations et contributions: 591
+auto-entrepreneur . cotisations et contributions . CFP: 5
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 585
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 138
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 18
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 59
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 116
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 254
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 585
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 50000
+auto-entrepreneur . revenu . net . après impôt: 50000
+entreprise . chiffre d'affaires: 57092
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 57089"
+entreprise . chiffre d'affaires . vente restauration hébergement: 57092"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 8`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 79920
-dirigeant . auto-entrepreneur . cotisations et contributions: 827
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 7
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 819
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 193
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 26
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 82
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 162
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 356
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 819
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 70000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 69047
-dirigeant . rémunération . impôt: 953
+"auto-entrepreneur . cotisations et contributions: 827
+auto-entrepreneur . cotisations et contributions . CFP: 7
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 819
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 193
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 26
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 82
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 162
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 356
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 819
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 70000
+auto-entrepreneur . revenu . net . après impôt: 70000
+entreprise . chiffre d'affaires: 79924
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 79920"
+entreprise . chiffre d'affaires . vente restauration hébergement: 79924"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 9`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 114166
-dirigeant . auto-entrepreneur . cotisations et contributions: 1181
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 10
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 1
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 1170
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 276
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 37
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 118
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 231
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 508
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 1170
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 100000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 96964
-dirigeant . rémunération . impôt: 3036
+"auto-entrepreneur . cotisations et contributions: 1181
+auto-entrepreneur . cotisations et contributions . CFP: 10
+auto-entrepreneur . cotisations et contributions . TFC: 1
+auto-entrepreneur . cotisations et contributions . cotisations: 1170
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 276
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 37
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 118
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 231
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 508
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 1170
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 0
+auto-entrepreneur . revenu . net: 100000
+auto-entrepreneur . revenu . net . après impôt: 100000
+entreprise . chiffre d'affaires: 114172
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 114166"
+entreprise . chiffre d'affaires . vente restauration hébergement: 114172"
 `;
 
 exports[`calculate simulations-auto-entrepreneur > échelle de revenus 10`] = `
-"dirigeant . auto-entrepreneur . chiffre d'affaires: 1141746
-dirigeant . auto-entrepreneur . cotisations et contributions: 11812
-dirigeant . auto-entrepreneur . cotisations et contributions . CFP: 95
-dirigeant . auto-entrepreneur . cotisations et contributions . TFC: 14
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations: 11703
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 2762
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 369
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 1176
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 2311
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 5085
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 11703
-dirigeant . auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
-dirigeant . auto-entrepreneur . revenu net: 1000000
-dirigeant . auto-entrepreneur . revenu net . après impôt: 872045
-dirigeant . rémunération . impôt: 127955
+"auto-entrepreneur . cotisations et contributions: 11812
+auto-entrepreneur . cotisations et contributions . CFP: 95
+auto-entrepreneur . cotisations et contributions . TFC: 14
+auto-entrepreneur . cotisations et contributions . cotisations: 11703
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . autres contributions: 2762
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . invalidité-décès: 369
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . maladie-maternité: 1176
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite complémentaire: 2311
+auto-entrepreneur . cotisations et contributions . cotisations . répartition . retraite de base: 5085
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BIC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav: null
+auto-entrepreneur . cotisations et contributions . cotisations . service BNC Cipav . taux: null
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement: 11703
+auto-entrepreneur . cotisations et contributions . cotisations . vente restauration hébergement . taux: 12
+auto-entrepreneur . revenu . impôt: 2433
+auto-entrepreneur . revenu . net: 1000000
+auto-entrepreneur . revenu . net . après impôt: 997567
+entreprise . chiffre d'affaires: 1141744
 entreprise . chiffre d'affaires . service BIC: null
 entreprise . chiffre d'affaires . service BNC: null
-entreprise . chiffre d'affaires . vente restauration hébergement: 1141746
-
-Notifications affichées : entreprise . imposition . régime . micro-entreprise . alerte seuil dépassés"
+entreprise . chiffre d'affaires . vente restauration hébergement: 1141744"
 `;

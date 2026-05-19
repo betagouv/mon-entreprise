@@ -1,107 +1,107 @@
 échelle de revenus:
-  - dirigeant . auto-entrepreneur . revenu net: 500 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 1000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 2000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 5000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 10000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 50000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 70000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 100000 €/an
-  - dirigeant . auto-entrepreneur . revenu net: 1000000 €/an
+  - auto-entrepreneur . revenu . net: 500 €/an
+  - auto-entrepreneur . revenu . net: 1000 €/an
+  - auto-entrepreneur . revenu . net: 2000 €/an
+  - auto-entrepreneur . revenu . net: 5000 €/an
+  - auto-entrepreneur . revenu . net: 10000 €/an
+  - auto-entrepreneur . revenu . net: 20000 €/an
+  - auto-entrepreneur . revenu . net: 50000 €/an
+  - auto-entrepreneur . revenu . net: 70000 €/an
+  - auto-entrepreneur . revenu . net: 100000 €/an
+  - auto-entrepreneur . revenu . net: 1000000 €/an
 
 aides:
-  - dirigeant . auto-entrepreneur . revenu net: 5000 €/an
-    dirigeant . exonérations . ACRE: oui
-  - dirigeant . auto-entrepreneur . revenu net: 50000 €/an
-    dirigeant . exonérations . ACRE: oui
+  - auto-entrepreneur . revenu . net: 5000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
+  - auto-entrepreneur . revenu . net: 50000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
 
 impôt sur le revenu:
-  - dirigeant . auto-entrepreneur . revenu net: 25000 €/an
-    entreprise . activité . nature: "'libérale'"
-    dirigeant . auto-entrepreneur . impôt . versement libératoire: oui
+  - auto-entrepreneur . revenu . net: 25000 €/an
+    entreprise . activité: "'libérale'"
+    auto-entrepreneur . versement libératoire: oui
 
 ACRE:
-  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
+  - auto-entrepreneur . revenu . net: 20000 €/an
     entreprise . date de création: 01/06/2025
-    dirigeant . exonérations . ACRE: oui
-  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
+  - auto-entrepreneur . revenu . net: 20000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
-    entreprise . activité . nature: "'libérale'"
-  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
+    entreprise . activité: "'libérale'"
+  - auto-entrepreneur . revenu . net: 20000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
-    entreprise . activité . nature: "'artisanale'"
-    entreprise . activités . service ou vente: "'vente'"
-  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
+    entreprise . activité: "'artisanale'"
+    entreprise . activité . principale: "'vente'"
+  - auto-entrepreneur . revenu . net: 20000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
-    entreprise . activité . nature: "'artisanale'"
-    entreprise . activités . service ou vente: "'service'"
-  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
+    entreprise . activité: "'artisanale'"
+    entreprise . activité . principale: "'service'"
+  - auto-entrepreneur . revenu . net: 20000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
-    entreprise . activité . nature: "'commerciale'"
-    entreprise . activités . service ou vente: "'service'"
-  - dirigeant . auto-entrepreneur . revenu net: 20000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
+    entreprise . activité: "'commerciale'"
+    entreprise . activité . principale: "'service'"
+  - auto-entrepreneur . revenu . net: 20000 €/an
     entreprise . date de création: période . début d'année
-    dirigeant . exonérations . ACRE: oui
-    entreprise . activité . nature: "'commerciale'"
-    entreprise . activités . service ou vente: "'service'"
-  - dirigeant . auto-entrepreneur . revenu net: 30000 €/an
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
+    entreprise . activité: "'commerciale'"
+    entreprise . activité . principale: "'service'"
+  - auto-entrepreneur . revenu . net: 30000 €/an
     entreprise . date de création: 01/06/2025
-    dirigeant . exonérations . ACRE: oui
+    auto-entrepreneur . cotisations et contributions . cotisations . Acre: oui
 
 activités:
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . nature: "'libérale'"
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . nature: "'libérale'"
-    entreprise . activité . nature . libérale . réglementée: oui
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . nature: "'artisanale'"
-    entreprise . activités . service ou vente: "'vente'"
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . nature: "'artisanale'"
-    entreprise . activités . service ou vente: "'service'"
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . nature: "'commerciale'"
-    entreprise . activités . service ou vente: "'vente'"
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
-    entreprise . activité . nature: "'commerciale'"
-    entreprise . activités . service ou vente: "'service'"
+  - entreprise . chiffre d'affaires: 20000 €/an
+    entreprise . activité: "'libérale'"
+  - entreprise . chiffre d'affaires: 20000 €/an
+    entreprise . activité: "'libérale'"
+    entreprise . activité . libérale . réglementée: oui
+  - entreprise . chiffre d'affaires: 20000 €/an
+    entreprise . activité: "'artisanale'"
+    entreprise . activité . principale: "'vente'"
+  - entreprise . chiffre d'affaires: 20000 €/an
+    entreprise . activité: "'artisanale'"
+    entreprise . activité . principale: "'service'"
+  - entreprise . chiffre d'affaires: 20000 €/an
+    entreprise . activité: "'commerciale'"
+    entreprise . activité . principale: "'vente'"
+  - entreprise . chiffre d'affaires: 20000 €/an
+    entreprise . activité: "'commerciale'"
+    entreprise . activité . principale: "'service'"
 
 activité mixte:
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+  - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . activité . revenus mixtes: oui
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+  - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . activité . revenus mixtes: oui
-    entreprise . activité . nature: "'libérale'"
-  - dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+    entreprise . activité: "'libérale'"
+  - entreprise . chiffre d'affaires: 20000 €/an
     entreprise . activité . revenus mixtes: oui
-    entreprise . activité . nature: "'artisanale'"
+    entreprise . activité: "'artisanale'"
   - entreprise . chiffre d'affaires . service BIC: 20000 €/an
     entreprise . chiffre d'affaires . service BNC: 10000 €/an
     entreprise . chiffre d'affaires . vente restauration hébergement: 15000 €/an
-    entreprise . chiffre d'affaires . proportions . service BIC: 44.44%
-    entreprise . chiffre d'affaires . proportions . service BNC: 22.22%
-    entreprise . chiffre d'affaires . proportions . vente restauration hébergement: 33.33%
+    # entreprise . chiffre d'affaires . proportions . service BIC: 44.44%
+    # entreprise . chiffre d'affaires . proportions . service BNC: 22.22%
+    # entreprise . chiffre d'affaires . proportions . vente restauration hébergement: 33.33%
     entreprise . activité . revenus mixtes: oui
-    entreprise . activité . nature: "'commerciale'"
+    entreprise . activité: "'commerciale'"
 
 DROM:
   - établissement . commune . département . outre-mer: oui
-    dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+    entreprise . chiffre d'affaires: 20000 €/an
     entreprise . activité . revenus mixtes: oui
     entreprise . chiffre d'affaires . service BIC: 12000 €/an
     entreprise . chiffre d'affaires . service BNC: 3000 €/an
     entreprise . chiffre d'affaires . vente restauration hébergement: 5000 €/an
   - établissement . commune . département . outre-mer: oui
-    dirigeant . auto-entrepreneur . chiffre d'affaires: 45000 €/an
+    entreprise . chiffre d'affaires: 45000 €/an
   - établissement . commune . département . outre-mer: oui
     entreprise . durée d'activité . trimestres civils: 1
-    dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+    entreprise . chiffre d'affaires: 20000 €/an
     entreprise . activité . revenus mixtes: oui
     entreprise . chiffre d'affaires . service BIC: 12000 €/an
     entreprise . chiffre d'affaires . service BNC: 3000 €/an
@@ -109,7 +109,7 @@ DROM:
   - établissement . commune . département . outre-mer: oui
     entreprise . durée d'activité . trimestres civils: 10
     entreprise . durée d'activité . années civiles: 3
-    dirigeant . auto-entrepreneur . chiffre d'affaires: 20000 €/an
+    entreprise . chiffre d'affaires: 20000 €/an
     entreprise . activité . revenus mixtes: oui
     entreprise . chiffre d'affaires . service BIC: 12000 €/an
     entreprise . chiffre d'affaires . service BNC: 3000 €/an
