@@ -4,7 +4,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { isExpressionAvecUnité } from '@/domaine/ExpressionPublicodes'
 import { isMontant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { isQuantité } from '@/domaine/Quantité'
+import { isQuantité } from '@/domaine/Quantite'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SearchParamsAdapter, ValeurDomaine } from '@/SearchParamsAdapter'
 

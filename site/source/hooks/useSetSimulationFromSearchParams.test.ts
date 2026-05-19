@@ -20,7 +20,7 @@ import {
 	joursOuvrés,
 	pourcentage,
 	titresRestaurantParMois,
-} from '@/domaine/Quantité'
+} from '@/domaine/Quantite'
 import { useNavigation } from '@/lib/navigation'
 import {
 	enregistreLesRéponsesAuxQuestions,
