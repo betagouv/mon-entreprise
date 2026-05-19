@@ -1,34 +1,43 @@
+import { RègleModèleAssimiléSalarié } from 'modele-as'
+import { RègleModèleSocial } from 'modele-social'
 import { formatValue } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 import { findReferenceInNode } from '@/utils/publicodes/publicodes'
 
-export default function CotisationLine({
-	dottedName,
-}: {
-	dottedName: DottedName
-}) {
+import { Namespace } from './utils'
+
+type Props = {
+	namespace: Namespace
+	dottedName: RègleModèleSocial | RègleModèleAssimiléSalarié
+}
+
+export const CotisationLine = ({ namespace, dottedName }: Props) => {
 	const language = useTranslation().i18n.language
 	const engine = useEngine()
+
 	const partSalariale = engine.evaluate(
 		findReferenceInNode(
 			dottedName,
-			engine.getRule('salarié . cotisations . salarié')
+			engine.getRule(`${namespace} . cotisations . salarié`)
 		) ?? '0'
 	)
 	const partPatronale = engine.evaluate(
 		findReferenceInNode(
 			dottedName,
-			engine.getRule('salarié . cotisations . employeur')
+			engine.getRule(`${namespace} . cotisations . employeur`)
 		) ?? '0'
 	)
+
+	const isExoneration = (
+		dottedName: RègleModèleSocial | RègleModèleAssimiléSalarié
+	): boolean => dottedName === `${namespace} . cotisations . exonérations`
 	const signePlusOuMoins = isExoneration(dottedName) ? '-' : ''
 
 	return (
-		<tr className="payslip__cotisationLine">
+		<tr>
 			<th scope="row">
 				<RuleLink dottedName={dottedName} />
 			</th>
@@ -46,8 +55,4 @@ export default function CotisationLine({
 			</td>
 		</tr>
 	)
-}
-
-function isExoneration(dottedName: DottedName): boolean {
-	return dottedName === 'salarié . cotisations . exonérations'
 }
