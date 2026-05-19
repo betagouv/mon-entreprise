@@ -1,15 +1,15 @@
-import i18next from '@/locales/i18n-server'
+'use client'
+
+import { Body, H1 } from '@/design-system'
 
 export default function Home() {
 	return (
 		<main>
-			<h1>{i18next.t('app.titre', 'Mon entreprise — Next.js')}</h1>
-			<p>
-				{i18next.t(
-					'app.description',
-					'Migration en cours. Cette page confirme que Next.js est correctement configuré.'
-				)}
-			</p>
+			<H1>Mon entreprise — Next.js</H1>
+			<Body>
+				Migration en cours. Cette page confirme que Next.js et le design-system
+				sont correctement configurés.
+			</Body>
 		</main>
 	)
 }
