@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 import {
 	DARK_MODE_STORAGE_KEY,
 	parseDarkModeValue,
-} from '@/components/utils/darkModeStorage'
+} from '@/storage/darkModeStorage'
 
 import { ClientProviders } from './ClientProviders'
 
