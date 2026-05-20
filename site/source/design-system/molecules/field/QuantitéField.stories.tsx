@@ -2,8 +2,8 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React, { useState } from 'react'
 
-import { quantité, Quantité } from '@/domaine/Quantité'
-import { UnitéQuantité } from '@/domaine/Unités'
+import { quantité, Quantité } from '@/domaine/Quantite'
+import { UnitéQuantité } from '@/domaine/Unites'
 
 import { QuantitéField } from './QuantitéField'
 

@@ -29,14 +29,14 @@ import {
 import { isMontant, Montant } from '@/domaine/Montant'
 import { OuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { isQuantité, Quantité } from '@/domaine/Quantité'
+import { isQuantité, Quantité } from '@/domaine/Quantite'
 import {
 	isUnitéMonétaire,
 	isUnitéMonétaireRécurrente,
 	isUnitéQuantité,
 	UnitéMonétaire,
 	UnitéQuantité,
-} from '@/domaine/Unités'
+} from '@/domaine/Unites'
 import { enregistreLesRéponsesÀLaQuestion } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'

@@ -19,7 +19,7 @@ import {
 	Ul,
 } from '@/design-system'
 import { euros } from '@/domaine/Montant'
-import { heuresParMois } from '@/domaine/Quantité'
+import { heuresParMois } from '@/domaine/Quantite'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Options } from '@/pages/simulateurs/lodeom/lodeom'
 import { useEngine } from '@/utils/publicodes/EngineContext'

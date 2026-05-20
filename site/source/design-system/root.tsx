@@ -1,11 +1,5 @@
-import isbot from 'isbot'
 import { ReactNode } from 'react'
-import {
-	css,
-	styled,
-	StyleSheetManager,
-	ThemeProvider,
-} from 'styled-components'
+import { css, styled, ThemeProvider } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
@@ -18,13 +12,6 @@ type SystemRootProps = {
 	forceDarkMode?: boolean
 }
 
-const isBrowser = typeof document !== 'undefined'
-
-const getBrowserUserAgent = (): string | false =>
-	isBrowser && typeof navigator !== 'undefined' && navigator.userAgent
-
-const shouldDisableCSSOM = isbot(getBrowserUserAgent())
-
 const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
 	const [contextDarkMode] = useDarkMode()
 	const isInIframe = useIsEmbedded()
@@ -33,14 +20,12 @@ const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
 		typeof forceDarkMode === 'boolean' ? forceDarkMode : contextDarkMode
 
 	return (
-		<StyleSheetManager disableCSSOMInjection={shouldDisableCSSOM}>
-			<ThemeProvider theme={{ ...urssafTheme, darkMode, isInIframe }}>
-				<BackgroundStyle $darkMode={darkMode}>
-					<GlobalStyle />
-					{children}
-				</BackgroundStyle>
-			</ThemeProvider>
-		</StyleSheetManager>
+		<ThemeProvider theme={{ ...urssafTheme, darkMode, isInIframe }}>
+			<BackgroundStyle $darkMode={darkMode}>
+				<GlobalStyle />
+				{children}
+			</BackgroundStyle>
+		</ThemeProvider>
 	)
 }
 

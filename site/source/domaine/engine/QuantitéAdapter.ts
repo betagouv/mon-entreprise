@@ -4,7 +4,7 @@ import * as O from 'effect/Option'
 import { split } from 'effect/String'
 import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 
-import { quantité, Quantité } from '@/domaine/Quantité'
+import { quantité, Quantité } from '@/domaine/Quantite'
 
 export const QuantitéAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Quantité> => {

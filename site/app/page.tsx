@@ -1,15 +1,21 @@
-import i18next from '@/locales/i18n-server'
+'use client'
+
+import { Body, Button, H1 } from '@/design-system'
+import { useDarkMode } from '@/hooks/useDarkMode'
 
 export default function Home() {
+	const [darkMode, setDarkMode] = useDarkMode()
+
 	return (
 		<main>
-			<h1>{i18next.t('app.titre', 'Mon entreprise — Next.js')}</h1>
-			<p>
-				{i18next.t(
-					'app.description',
-					'Migration en cours. Cette page confirme que Next.js est correctement configuré.'
-				)}
-			</p>
+			<H1>Mon entreprise — Next.js</H1>
+			<Body>
+				Migration en cours. Cette page confirme que Next.js et le design-system
+				sont correctement configurés.
+			</Body>
+			<Button onPress={() => setDarkMode(!darkMode)}>
+				Basculer en mode {darkMode ? 'light' : 'dark'}
+			</Button>
 		</main>
 	)
 }
