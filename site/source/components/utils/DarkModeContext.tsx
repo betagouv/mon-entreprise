@@ -3,7 +3,6 @@ import { ThemeProvider, useTheme } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-
 import {
 	persistDarkMode,
 	readDarkModeFromLocalStorage,
