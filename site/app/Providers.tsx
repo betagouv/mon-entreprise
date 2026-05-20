@@ -1,23 +1,22 @@
-'use client'
-
+import { cookies } from 'next/headers'
 import { ReactNode } from 'react'
 
-import { DarkModeProvider } from '@/components/utils/DarkModeContext'
-import { DesignSystemThemeProvider } from '@/design-system'
-import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
+import {
+	DARK_MODE_STORAGE_KEY,
+	parseDarkModeValue,
+} from '@/components/utils/darkModeStorage'
 
-export function Providers({
-	children,
-	initialDarkMode,
-}: {
-	children: ReactNode
-	initialDarkMode: boolean
-}) {
+import { ClientProviders } from './ClientProviders'
+
+export async function Providers({ children }: { children: ReactNode }) {
+	const cookieStore = await cookies()
+	const initialDarkMode = parseDarkModeValue(
+		cookieStore.get(DARK_MODE_STORAGE_KEY)?.value
+	)
+
 	return (
-		<EmbeddedContextProvider>
-			<DarkModeProvider initialDarkMode={initialDarkMode}>
-				<DesignSystemThemeProvider>{children}</DesignSystemThemeProvider>
-			</DarkModeProvider>
-		</EmbeddedContextProvider>
+		<ClientProviders initialDarkMode={initialDarkMode}>
+			{children}
+		</ClientProviders>
 	)
 }
