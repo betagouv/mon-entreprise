@@ -7,7 +7,7 @@ import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import {
 	persistDarkMode,
 	readDarkModeFromLocalStorage,
-} from './darkModeStorage'
+} from '@/storage/darkModeStorage'
 
 // TODO: Theme and dark mode should be in design-system (https://github.com/betagouv/mon-entreprise/issues/2563)
 
