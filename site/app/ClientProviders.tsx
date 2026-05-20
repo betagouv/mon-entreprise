@@ -3,8 +3,10 @@
 import { ReactNode } from 'react'
 
 import { DarkModeProvider } from '@/components/utils/DarkModeContext'
-import { DesignSystemThemeProvider } from '@/design-system'
-import StyledComponentsRegistry from '@/design-system/StyledComponentsRegistry'
+import {
+	DesignSystemThemeProvider,
+	StyledComponentsRegistry,
+} from '@/design-system'
 import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
 import { NextJsNavigationProvider } from '@/lib/navigation/providers/NextJsNavigationProvider'
 
