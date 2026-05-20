@@ -3,10 +3,7 @@ import { ThemeProvider, useTheme } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import {
-	persistDarkMode,
-	readDarkModeFromLocalStorage,
-} from '@/storage/darkModeStorage'
+import { persistDarkMode, readDarkModeForVite } from '@/storage/darkModeStorage'
 
 // TODO: Theme and dark mode should be in design-system (https://github.com/betagouv/mon-entreprise/issues/2563)
 
@@ -17,7 +14,7 @@ const getInitialDarkMode = (initialDarkMode?: boolean): boolean => {
 		return initialDarkMode
 	}
 
-	return readDarkModeFromLocalStorage()
+	return readDarkModeForVite()
 }
 
 export const DarkModeContext = createContext<DarkModeContextType>([
