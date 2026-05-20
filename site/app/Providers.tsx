@@ -2,13 +2,22 @@
 
 import { ReactNode } from 'react'
 
+import { DarkModeProvider } from '@/components/utils/DarkModeContext'
 import { DesignSystemThemeProvider } from '@/design-system'
 import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
 
-export function Providers({ children }: { children: ReactNode }) {
+export function Providers({
+	children,
+	initialDarkMode,
+}: {
+	children: ReactNode
+	initialDarkMode: boolean
+}) {
 	return (
 		<EmbeddedContextProvider>
-			<DesignSystemThemeProvider>{children}</DesignSystemThemeProvider>
+			<DarkModeProvider initialDarkMode={initialDarkMode}>
+				<DesignSystemThemeProvider>{children}</DesignSystemThemeProvider>
+			</DarkModeProvider>
 		</EmbeddedContextProvider>
 	)
 }
