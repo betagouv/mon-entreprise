@@ -1,7 +1,7 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { Body, CloseButton, Emoji, Message, Strong } from '@/design-system'
+import { Body, Emoji, Message, Strong } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 
 import { usePersistingState } from '../utils/persistState'
@@ -12,7 +12,6 @@ export default function BetaBanner() {
 		'betawarning',
 		true as boolean
 	)
-	const { t } = useTranslation()
 
 	if (!showBetaBanner) {
 		return null
@@ -20,20 +19,21 @@ export default function BetaBanner() {
 
 	return (
 		<StyledBetaContainer $isEmbedded={isEmbedded}>
-			<Message type="info" icon={<Emoji emoji="🚧" />} border={false}>
-				<Trans i18nKey="pages.simulateurs.commun.betawarning">
-					<Body>
-						<StyledStrong>Cet outil est en version bêta</StyledStrong> : nous
-						travaillons à{' '}
+			<Message
+				type="info"
+				icon={<Emoji emoji="🚧" />}
+				border={false}
+				dismissible
+				onDismiss={() => toggleBetaBanner(false)}
+			>
+				<Body>
+					<Trans i18nKey="pages.simulateurs.commun.betawarning">
+						<StyledStrong>Cet outil est en version bêta</StyledStrong>&nbsp;:
+						nous travaillons à{' '}
 						<Strong>valider les informations et les calculs</Strong>, mais des{' '}
 						<Strong>erreurs peuvent être présentes.</Strong>
-					</Body>
-				</Trans>
-				<AbsoluteHideButton
-					color="tertiary"
-					onPress={() => toggleBetaBanner(false)}
-					aria-label={t('Fermer')}
-				/>
+					</Trans>
+				</Body>
 			</Message>
 		</StyledBetaContainer>
 	)
@@ -41,12 +41,6 @@ export default function BetaBanner() {
 
 const StyledStrong = styled(Strong)`
 	color: ${({ theme }) => theme.colors.extended.info[600]};
-`
-
-const AbsoluteHideButton = styled(CloseButton)`
-	position: absolute;
-	top: ${({ theme }) => theme.spacings.sm};
-	right: ${({ theme }) => theme.spacings.sm};
 `
 
 const StyledBetaContainer = styled.div<{ $isEmbedded: boolean }>`
