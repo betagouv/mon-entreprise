@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import { ReactNode } from 'react'
 
+import { langue } from '@/locales/i18n-server'
 import {
 	DARK_MODE_STORAGE_KEY,
 	parseDarkModeValue,
@@ -10,12 +11,15 @@ import { ClientProviders } from './ClientProviders'
 
 export async function Providers({ children }: { children: ReactNode }) {
 	const cookieStore = await cookies()
-	const initialDarkMode = parseDarkModeValue(
+	const darkModeParDéfaut = parseDarkModeValue(
 		cookieStore.get(DARK_MODE_STORAGE_KEY)?.value
 	)
 
 	return (
-		<ClientProviders initialDarkMode={initialDarkMode}>
+		<ClientProviders
+			darkModeParDéfaut={darkModeParDéfaut}
+			langueParDéfaut={langue}
+		>
 			{children}
 		</ClientProviders>
 	)
