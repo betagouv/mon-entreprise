@@ -19,24 +19,26 @@ export const AvertissementAnnéeDeSimulationModifiée = () => {
 	}, [année])
 
 	return (
-		showAvertissement && (
-			<FadeIn>
-				<Message
-					type="success"
-					mini
-					className="print-hidden"
-					dismissible
-					onDismiss={() => setShowAvertissement(false)}
-				>
-					<Body>
-						{t(
-							'pages.simulateurs.cessation-activité.date-modifiée',
-							'L’année de simulation a été changée pour {{ année }}.',
-							{ année }
-						)}
-					</Body>
-				</Message>
-			</FadeIn>
-		)
+		<div role="status">
+			{showAvertissement && (
+				<FadeIn>
+					<Message
+						type="success"
+						mini
+						className="print-hidden"
+						dismissible
+						onDismiss={() => setShowAvertissement(false)}
+					>
+						<Body>
+							{t(
+								'pages.simulateurs.cessation-activité.date-modifiée',
+								'L’année de simulation a été changée pour {{ année }}.',
+								{ année }
+							)}
+						</Body>
+					</Message>
+				</FadeIn>
+			)}
+		</div>
 	)
 }
