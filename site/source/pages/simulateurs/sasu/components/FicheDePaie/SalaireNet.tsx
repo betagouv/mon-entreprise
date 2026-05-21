@@ -18,7 +18,7 @@ export const SalaireNet = () => {
 				<SalaireLine
 					rule="assimilé salarié . rémunération . montant net social"
 					title={t(
-						'pages.simulateurs.salarié.fiche-de-paie.salaire-net.mns',
+						'components.fiche-de-paie.salaire-net.mns',
 						'Montant net social'
 					)}
 				/>
@@ -30,7 +30,7 @@ export const SalaireNet = () => {
 					<li>
 						<Titre>
 							{t(
-								'pages.simulateurs.salarié.fiche-de-paie.titres.salaire-net.avantages',
+								'components.fiche-de-paie.salaire-net.avantages.titre',
 								'Avantages en nature'
 							)}
 						</Titre>
@@ -48,7 +48,7 @@ export const SalaireNet = () => {
 				<SalaireLine
 					rule="assimilé salarié . rémunération . nette . à payer avant impôt"
 					title={t(
-						'pages.simulateurs.salarié.fiche-de-paie.salaire-net.net-avant-impôt',
+						'components.fiche-de-paie.salaire-net.net-avant-impôt',
 						'Montant net à payer avant impôt sur le revenu'
 					)}
 				/>
@@ -58,7 +58,7 @@ export const SalaireNet = () => {
 					<Line
 						rule="assimilé salarié . rémunération . nette . imposable"
 						title={t(
-							'pages.simulateurs.salarié.fiche-de-paie.salaire-net.impôt.net-imposable',
+							'components.fiche-de-paie.salaire-net.impôt.net-imposable',
 							'Montant net imposable'
 						)}
 					/>
@@ -66,7 +66,7 @@ export const SalaireNet = () => {
 						negative
 						rule="assimilé salarié . rémunération . impôt"
 						title={t(
-							'pages.simulateurs.salarié.fiche-de-paie.salaire-net.impôt.PAS',
+							'components.fiche-de-paie.salaire-net.impôt.PAS',
 							'Impôt sur le revenu prélevé à la source'
 						)}
 					/>
@@ -76,7 +76,7 @@ export const SalaireNet = () => {
 				<SalaireLine
 					rule="assimilé salarié . rémunération . nette . après impôt"
 					title={t(
-						'pages.simulateurs.salarié.fiche-de-paie.salaire-net.net-après-impôt',
+						'components.fiche-de-paie.salaire-net.net-après-impôt',
 						'Montant net à payer'
 					)}
 				/>

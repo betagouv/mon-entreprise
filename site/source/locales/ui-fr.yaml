@@ -438,6 +438,8 @@ components:
     salaire-brut:
       frais-pro: Frais professionnels non déductibles
     salaire-net:
+      avantages:
+        titre: Avantages en nature
       impôt:
         PAS: Impôt sur le revenu prélevé à la source
         heures-sup: Montant net des HC/HS exonérées
@@ -2109,17 +2111,6 @@ pages:
           description: Pour toutes vos questions en droit du travail, rendez-vous sur le
             site Code du travail numérique.
           title: Code du travail numérique
-      fiche-de-paie:
-        salaire-net:
-          impôt:
-            PAS: Impôt sur le revenu prélevé à la source
-            net-imposable: Montant net imposable
-          mns: Montant net social
-          net-après-impôt: Montant net à payer
-          net-avant-impôt: Montant net à payer avant impôt sur le revenu
-        titres:
-          salaire-net:
-            avantages: Avantages en nature
       meta:
         description: "Calculez le coût total d'une embauche et explorez les différentes
           options de rémunération : cadres, stages, apprentissages, heures
