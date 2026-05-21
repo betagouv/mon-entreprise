@@ -9,14 +9,6 @@ import { persistDarkMode, readDarkModeForVite } from '@/storage/darkModeStorage'
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
 
-const getInitialDarkMode = (initialDarkMode?: boolean): boolean => {
-	if (typeof initialDarkMode === 'boolean') {
-		return initialDarkMode
-	}
-
-	return readDarkModeForVite()
-}
-
 export const DarkModeContext = createContext<DarkModeContextType>([
 	false,
 	() => {
@@ -27,13 +19,13 @@ export const DarkModeContext = createContext<DarkModeContextType>([
 
 export const DarkModeProvider = ({
 	children,
-	initialDarkMode,
+	darkModeParDéfaut,
 }: {
 	children: ReactNode
-	initialDarkMode?: boolean
+	darkModeParDéfaut?: boolean
 }) => {
 	const [darkMode, _setDarkMode] = useState<boolean>(
-		getInitialDarkMode(initialDarkMode)
+		darkModeParDéfaut ?? readDarkModeForVite()
 	)
 
 	const setDarkMode = (darkMode: boolean) => {
