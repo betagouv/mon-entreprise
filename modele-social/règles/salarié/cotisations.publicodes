@@ -269,7 +269,7 @@ salarié . cotisations . AGS:
     paie les salaires sur les 60 derniers jours de travail. Elle permet de payer
     des préavis et des indemnités de fin de contrat.
   cotisation:
-    branche: assurance chômage
+    branche: chômage
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
     Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F31409
