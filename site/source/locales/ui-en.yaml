@@ -415,6 +415,8 @@ components:
     salaire-brut:
       frais-pro: Non-deductible business expenses
     salaire-net:
+      avantages:
+        titre: Benefits in kind
       impôt:
         PAS: Income tax deducted at source
         heures-sup: Net amount of exempt HC/HS
@@ -1990,17 +1992,6 @@ pages:
           description: For all your labor law questions, visit the Code du travail
             numérique website.
           title: Digital labor code
-      fiche-de-paie:
-        salaire-net:
-          impôt:
-            PAS: Income tax deducted at source
-            net-imposable: Net taxable amount
-          mns: Net corporate amount
-          net-après-impôt: Net amount payable
-          net-avant-impôt: Net amount payable before income tax
-        titres:
-          salaire-net:
-            avantages: Benefits in kind
       meta:
         description: "Calculate the total cost of hiring and explore different
           compensation options: management, internships, apprenticeships,
