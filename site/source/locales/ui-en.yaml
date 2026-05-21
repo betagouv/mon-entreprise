@@ -214,6 +214,12 @@ août: August
 api:
   description: Tools for developers
   title: Use our REST API
+app:
+  basculerDark: Switch to dark mode
+  basculerLight: Switch to light mode
+  description: Migration in progress. This page confirms that Next.js and the
+    design-system are correctly configured.
+  titre: My company - Next.js
 aquoiserventmescotisations:
   en-savoir-plus: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
   h2: What are my contributions used for?
