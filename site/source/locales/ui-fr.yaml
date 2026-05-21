@@ -1572,9 +1572,9 @@ pages:
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
     commun:
-      betawarning: "<0><0>Cet outil est en version bêta</0> : nous travaillons à
+      betawarning: "<0>Cet outil est en version bêta</0> : nous travaillons à
         <3>valider les informations et les calculs</3>, mais des <6>erreurs
-        peuvent être présentes.</6></0>"
+        peuvent être présentes.</6>"
       date: Date de la réglementation utilisée pour les calculs
       periode-calcul: Période de calcul
       previousSimulationBanner:
