@@ -11,6 +11,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useDate } from '@/hooks/useDate'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
@@ -18,6 +19,7 @@ import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 export const DateCessationQuestion = () => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
+	const dateEngine = useDate()
 	const radiéeCetteAnnée = PublicodesAdapter.decode(
 		engine.evaluate('entreprise . radiée cette année')
 	)
@@ -31,13 +33,15 @@ export const DateCessationQuestion = () => {
 						date: 'entreprise . date de cessation',
 					},
 				}).nodeValue ?? undefined
-			dispatch(
-				ajusteLaSituation({
-					date,
-				} as Record<DottedName, ValeurPublicodes | undefined>)
-			)
+			if (date !== dateEngine) {
+				dispatch(
+					ajusteLaSituation({
+						date,
+					} as Record<DottedName, ValeurPublicodes | undefined>)
+				)
+			}
 		}
-	}, [dispatch, engine, radiéeCetteAnnée])
+	}, [dateEngine, dispatch, engine, radiéeCetteAnnée])
 
 	return (
 		<CessationBlock>

@@ -1,4 +1,4 @@
-import useDate from '@/hooks/useDate'
+import { useDate } from '@/hooks/useDate'
 
 import { DateChip } from './DateChip'
 

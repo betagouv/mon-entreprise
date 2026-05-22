@@ -1,4 +1,4 @@
-import useDate from './useDate'
+import { useDate } from './useDate'
 
 export default function useYear() {
 	const date = useDate()
