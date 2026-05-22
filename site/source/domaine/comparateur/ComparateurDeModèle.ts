@@ -4,8 +4,6 @@ import {
 	ModèleComparable,
 	MontantDocumenté,
 	QuantitéDocumentée,
-	Question,
-	Réponse,
 	ValeurDocumentée,
 } from './ModèleComparable'
 
@@ -47,7 +45,7 @@ export interface Comparateur {
 	set: {
 		chiffreDAffaires: (montant: MontantRécurrent) => Comparateur
 		charges: (montant: MontantRécurrent) => Comparateur
-		réponse: <T extends Question>(question: T, valeur: Réponse<T>) => void
+		réponse: ModèleComparable['set']['réponse']
 	}
 	compare: () => Comparaison[]
 }
@@ -69,8 +67,8 @@ export const ComparateurDeModèles = (
 
 				return ComparateurDeModèles(modèles)
 			},
-			réponse: <T extends Question>(question: T, valeur: Réponse<T>) => {
-				modèles.forEach((modèle) => modèle.set.réponse(question, valeur))
+			réponse: (...args) => {
+				modèles.forEach((modèle) => modèle.set.réponse(...args))
 
 				return ComparateurDeModèles(modèles)
 			},

@@ -59,7 +59,11 @@ export interface ModèleComparable extends Modele {
 	set: {
 		chiffreDAffaires: (montant: MontantRécurrent) => void
 		charges: (montant: MontantRécurrent) => void
-		réponse: <T extends Question>(question: T, valeur: Réponse<T>) => void
+		réponse: (
+			...args: {
+				[K in Question]: [question: K, valeur: Réponse<K>]
+			}[Question]
+		) => void
 	}
 
 	get: {

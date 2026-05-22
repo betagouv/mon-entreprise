@@ -15,8 +15,6 @@ import {
 	ModèleComparable,
 	MontantDocumenté,
 	QuantitéDocumentée,
-	Question,
-	Réponse,
 } from './ModèleComparable'
 
 let engine: Engine<RègleModèleTravailleurIndépendant> | null = null
@@ -53,7 +51,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 			)
 		},
 
-		réponse: <T extends Question>(question: T, valeur: Réponse<T>) => {
+		réponse: (question, valeur) => {
 			if (question === 'nature-activité') {
 				let valeurModèle = ''
 				// Ici on a bien une erreur de type car la réponse 'location de meublés'
