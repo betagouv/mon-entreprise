@@ -153,8 +153,8 @@ export const baseTheme = {
 	},
 
 	fonts: {
-		main: "'Roboto', sans-serif",
-		heading: '',
+		main: "var(--font-roboto, 'Roboto'), sans-serif",
+		heading: "var(--font-montserrat, 'Montserrat'), sans-serif",
 	},
 
 	baseFontSize: '1rem',

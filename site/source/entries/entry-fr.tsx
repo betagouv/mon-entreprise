@@ -3,6 +3,9 @@ import { withProfiler } from '@sentry/react'
 import { createRoot } from 'react-dom/client'
 
 import App from '../components/App'
+
+import '../design-system/fonts.css'
+
 import i18next from '../locales/i18n'
 
 import '../api/sentry'

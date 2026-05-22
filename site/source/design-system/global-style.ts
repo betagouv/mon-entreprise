@@ -1,5 +1,3 @@
-import './global.css'
-
 import { createGlobalStyle, css } from 'styled-components'
 
 export const SROnly = css`
@@ -86,7 +84,7 @@ button:enabled {
 	margin: 0;
 	overflow: hidden;
 	clip: rect(1px, 1px, 1px, 1px);
-	font-family: 'Roboto';
+	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: bold;
 	list-style-type: "";
 }
