@@ -257,6 +257,21 @@ describe('searchParams', () => {
 
 			expect(result).toEqual([])
 		})
+
+		it('exclut les paramètres injectés par le script iframe (integratorUrl, lang, couleur)', () => {
+			const rules = [] as Names[]
+
+			const result = getRèglesIgnoréesFromSearchParams(
+				new URLSearchParams({
+					integratorUrl: 'https%3A%2F%2Fexemple.fr%2Fpage',
+					lang: 'fr',
+					couleur: '%7B%22h%22%3A210%2C%22s%22%3A100%2C%22l%22%3A31%7D',
+				}),
+				rules
+			)
+
+			expect(result).toEqual([])
+		})
 	})
 
 	describe('getTargetUnitFromSearchParams', () => {
