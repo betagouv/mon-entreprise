@@ -1,7 +1,7 @@
 import { css, styled } from 'styled-components'
 
 export const baseHeading = css`
-	font-family: 'Montserrat', sans-serif;
+	font-family: ${({ theme }) => theme.fonts.heading};
 	font-weight: 700;
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */
 	color: ${({ theme }) =>

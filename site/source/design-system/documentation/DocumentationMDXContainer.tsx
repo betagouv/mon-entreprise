@@ -8,7 +8,7 @@ export const DocumentationMDXContainer = styled.div`
 			: theme.colors.extended.grey[800]};
 
 	h1 {
-		font-family: 'Montserrat', sans-serif;
+		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
 		font-size: 2rem;
 		line-height: 2.375rem;
@@ -29,7 +29,7 @@ export const DocumentationMDXContainer = styled.div`
 	}
 
 	h2 {
-		font-family: 'Montserrat', sans-serif;
+		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
 		font-size: 1.625rem;
 		line-height: 2rem;
@@ -50,7 +50,7 @@ export const DocumentationMDXContainer = styled.div`
 	}
 
 	h3 {
-		font-family: 'Montserrat', sans-serif;
+		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
 		font-size: 1.25rem;
 		line-height: 1.75rem;
@@ -62,7 +62,7 @@ export const DocumentationMDXContainer = styled.div`
 	}
 
 	h4 {
-		font-family: 'Montserrat', sans-serif;
+		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
 		font-size: 1.125rem;
 		line-height: 1.5rem;
@@ -75,7 +75,7 @@ export const DocumentationMDXContainer = styled.div`
 
 	h5,
 	h6 {
-		font-family: 'Montserrat', sans-serif;
+		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
 		font-size: 1rem;
 		line-height: 1.5rem;

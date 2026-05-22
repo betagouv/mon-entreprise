@@ -31,7 +31,7 @@ const InfoBulleText = styled.span`
 	font-weight: normal;
 	display: block;
 	border-radius: 3px;
-	font-family: 'Roboto';
+	font-family: ${({ theme }) => theme.fonts.main};
 	background-color: white;
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
 	transition:

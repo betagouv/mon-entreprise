@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 
 import i18next, { langue } from '@/locales/i18n-server'
 
+import { montserrat, roboto } from './fonts'
 import { Providers } from './Providers'
 
 export const metadata = {
@@ -14,7 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html lang={langue}>
+		<html lang={langue} className={`${roboto.variable} ${montserrat.variable}`}>
 			<body>
 				<Providers>{children}</Providers>
 			</body>
