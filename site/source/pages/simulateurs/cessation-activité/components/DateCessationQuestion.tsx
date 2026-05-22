@@ -11,6 +11,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { getNotification } from '@/domaine/publicodes/Notification'
 import { useDate } from '@/hooks/useDate'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
@@ -22,6 +23,10 @@ export const DateCessationQuestion = () => {
 	const dateEngine = useDate()
 	const radiéeCetteAnnée = PublicodesAdapter.decode(
 		engine.evaluate('entreprise . radiée cette année')
+	)
+	const notificationDateInvalide = getNotification(
+		engine,
+		'entreprise . date de cessation . invalide'
 	)
 
 	useEffect(() => {
@@ -62,6 +67,7 @@ export const DateCessationQuestion = () => {
 							} as Record<DottedName, ValeurPublicodes | undefined>)
 						)
 					}}
+					errorMessage={notificationDateInvalide?.description}
 				/>
 			</CessationDateWrapper>
 		</CessationBlock>

@@ -6,9 +6,12 @@ import { situationSelector } from '@/store/selectors/simulation/situation/situat
 
 export const firstStepCompletedSelector = createSelector(
 	[situationSelector, configSelector],
-	(situation, config) =>
-		difference(
-			Object.keys(situation),
-			config['règles à ignorer pour déclencher les questions'] || []
-		).length > 0
+	(situation, config) => {
+		const règlesÀIgnorer = [
+			...(config['règles à ignorer pour déclencher les questions'] || []),
+			'date',
+		]
+
+		return difference(Object.keys(situation), règlesÀIgnorer).length > 0
+	}
 )

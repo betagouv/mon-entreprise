@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { simulationReducer } from '@/store/reducers/simulation.reducer'
+import {
+	Simulation,
+	simulationReducer,
+} from '@/store/reducers/simulation.reducer'
 
 import {
 	ajusteLaSituation,
@@ -41,18 +44,22 @@ describe('simulationReducer', () => {
 						{
 							'objectifs exclusifs': [],
 							'unité par défaut': '€/an',
+							'notifications à ignorer': [
+								'entreprise . date de cessation . invalide',
+							],
 						},
 						'/mon-simulateur',
 						'simulateur'
 					)
 				)
 			).toMatchObject({
+				key: 'simulateur',
 				config: {
 					'objectifs exclusifs': [],
 					'unité par défaut': '€/an',
 				},
 				url: '/mon-simulateur',
-				hiddenNotifications: [],
+				hiddenNotifications: ['entreprise . date de cessation . invalide'],
 				situation: {},
 				targetUnit: '€/an',
 				questionsRépondues: [],
@@ -66,9 +73,15 @@ describe('simulationReducer', () => {
 				config: {
 					'objectifs exclusifs': [],
 					'unité par défaut': '€/an',
+					'notifications à ignorer': [
+						'entreprise . date de cessation . invalide',
+					],
 				},
 				url: '/mon-simulateur',
-				hiddenNotifications: ['notification'],
+				hiddenNotifications: [
+					'entreprise . date de cessation . invalide',
+					'entreprise . date de création . contrôle date future',
+				],
 				situation: {
 					['a' as DottedName]: 42,
 				},
@@ -77,7 +90,7 @@ describe('simulationReducer', () => {
 					{ règle: 'a' as DottedName, applicable: true },
 					{ règle: 'b' as DottedName, applicable: true },
 				],
-			}
+			} satisfies Simulation
 			expect(
 				simulationReducer(state, réinitialiseLaSimulation())
 			).toMatchObject({
@@ -86,7 +99,7 @@ describe('simulationReducer', () => {
 					'unité par défaut': '€/an',
 				},
 				url: '/mon-simulateur',
-				hiddenNotifications: [],
+				hiddenNotifications: ['entreprise . date de cessation . invalide'],
 				situation: {},
 				targetUnit: '€/mois',
 				questionsRépondues: [],
@@ -375,12 +388,20 @@ describe('simulationReducer', () => {
 		it('enregistre la notification fournie dans les notifications masquées', () => {
 			const state = {
 				...defaultState,
-				hiddenNotifications: [],
+				hiddenNotifications: ['entreprise . date de cessation . invalide'],
 			}
 			expect(
-				simulationReducer(state, hideNotification('notification'))
+				simulationReducer(
+					state,
+					hideNotification(
+						'entreprise . date de création . contrôle date future'
+					)
+				)
 			).toMatchObject({
-				hiddenNotifications: ['notification'],
+				hiddenNotifications: [
+					'entreprise . date de cessation . invalide',
+					'entreprise . date de création . contrôle date future',
+				],
 			})
 		})
 	})

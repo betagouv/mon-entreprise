@@ -30,6 +30,7 @@ interface DateInputProps {
 	hideDefaultValue?: boolean
 	onSubmit?: (source?: string) => void
 	suggestions?: InputSuggestionsRecord<IsoDate | ASTNode>
+	errorMessage?: string
 
 	title?: string
 	type: DateFieldProps['type']
@@ -49,6 +50,7 @@ export const DateInput = ({
 	onSubmit,
 	value,
 	type,
+	errorMessage,
 	aria = {},
 }: DateInputProps) => {
 	const engine = useEngine()
@@ -103,6 +105,7 @@ export const DateInput = ({
 					onChange={handleDateChange}
 					label={title}
 					type={type}
+					errorMessage={errorMessage}
 				/>
 			</div>
 		</div>

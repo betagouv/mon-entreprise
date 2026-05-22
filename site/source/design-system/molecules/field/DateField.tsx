@@ -25,6 +25,7 @@ export interface DateFieldProps {
 	label?: string
 	'aria-labelledby'?: string
 	type?: 'date passé' | 'date' | 'date futur'
+	errorMessage?: string
 }
 
 export const DateField = (props: DateFieldProps) => {
@@ -144,12 +145,13 @@ export const DateField = (props: DateFieldProps) => {
 						inputProps.onFocus?.(e)
 					}}
 					errorMessage={
-						isChangeOnce && selected === undefined
+						props.errorMessage ??
+						(isChangeOnce && selected === undefined
 							? t(
 									'design-system.date-picker.error.invalid-date',
 									'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
 							  )
-							: ''
+							: '')
 					}
 				/>
 				<StyledButton

@@ -49,6 +49,8 @@ export type SimulationConfig = Partial<{
 	'unité par défaut'?: string
 
 	'règles à ignorer pour déclencher les questions'?: DottedName[]
+
+	'notifications à ignorer'?: DottedName[]
 }>
 
 export type NomModèle = 'modele-social' | 'modele-as' | 'modele-ti'

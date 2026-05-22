@@ -789,6 +789,11 @@ entreprise . date de cessation:
   question.fr: À quelle date avez-vous ou comptez-vous déclarer la cessation d’activité ?
   titre.en: '[automatic] termination date'
   titre.fr: date de cessation
+entreprise . date de cessation . invalide:
+  description.en: '[automatic] This simulator does not handle terminations before 2023.'
+  description.fr: Ce simulateur ne gère pas les cessations d’activité avant 2023.
+  titre.en: '[automatic] invalid'
+  titre.fr: invalide
 entreprise . date de création:
   description.en: >
     [automatic] The start date (or date of creation) is set when you register
