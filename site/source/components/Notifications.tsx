@@ -1,10 +1,9 @@
-import Engine, { RuleNode } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { Emoji, Markdown, Message, typography } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
+import { getNotifications } from '@/domaine/publicodes/Notification'
 import { useInversionFail } from '@/hooks/useInversionFail'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
@@ -14,32 +13,6 @@ import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
 
 const { Body, Strong, SmallBody } = typography
-
-// To add a new notification to a simulator, you should create a publicodes rule
-// with the "type: notification" attribute. The display can be customized with
-// the "sévérité" attribute. The notification will only be displayed if the
-// publicodes rule is applicable.
-type Notification = {
-	dottedName: DottedName | 'inversion fail'
-	description: RuleNode['rawNode']['description']
-	résumé?: RuleNode['rawNode']['description']
-	sévérité: 'avertissement' | 'information'
-}
-
-function getNotifications(engine: Engine) {
-	return Object.values(engine.getParsedRules())
-		.filter(
-			(rule) =>
-				rule.rawNode.type === 'notification' &&
-				!!engine.evaluate(rule.dottedName).nodeValue
-		)
-		.map(({ dottedName, rawNode: { sévérité, résumé, description } }) => ({
-			dottedName,
-			sévérité,
-			résumé,
-			description,
-		}))
-}
 
 export default function Notifications() {
 	const engine = useOptionalEngine()
@@ -53,9 +26,9 @@ export default function Notifications() {
 		return null
 	}
 
-	const messages: Array<Notification> = (
-		getNotifications(engine) as Array<Notification>
-	).filter(({ dottedName }) => !hiddenNotifications?.includes(dottedName))
+	const messages = getNotifications(engine).filter(
+		({ dottedName }) => !hiddenNotifications?.includes(dottedName)
+	)
 
 	const isMultiline = (str: string) => str.trim().split('\n').length > 1
 

@@ -26,4 +26,5 @@ export const configCessationActivité: SimulationConfig = {
 		'entreprise . date de cessation',
 		'entreprise . imposition',
 	],
+	'notifications à ignorer': ['entreprise . date de cessation . invalide'],
 }

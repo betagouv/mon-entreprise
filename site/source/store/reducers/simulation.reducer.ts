@@ -37,7 +37,7 @@ export function simulationReducer(
 			key,
 			config,
 			url,
-			hiddenNotifications: [],
+			hiddenNotifications: config['notifications à ignorer'] || [],
 			situation: {},
 			targetUnit: config['unité par défaut'] || '€/mois',
 			questionsRépondues: [],
@@ -58,7 +58,7 @@ export function simulationReducer(
 		case 'RÉINITIALISE_LA_SIMULATION':
 			return {
 				...state,
-				hiddenNotifications: [],
+				hiddenNotifications: state.config['notifications à ignorer'] || [],
 				situation: {},
 				questionsRépondues: [],
 			}

@@ -10,6 +10,12 @@ entreprise . date de cessation:
   références:
     Comment réaliser votre cessation d’activité en tant que travailleur indépendant ?: https://www.urssaf.fr/accueil/services/services-independants/realiser-cessation-activite.html
 
+entreprise . date de cessation . invalide:
+  type: notification
+  sévérité: avertissement
+  formule: date de cessation < 01/01/2023
+  description: Ce simulateur ne gère pas les cessations d’activité avant 2023.
+
 entreprise . radiée:
   titre: Entreprise radiée
   description: Indique si l’entreprise va être radiée.
