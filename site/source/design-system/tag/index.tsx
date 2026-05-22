@@ -6,7 +6,6 @@ import { Color, getColorPalette } from '../theme'
 
 interface TagProps {
 	children?: React.ReactNode
-	className?: string
 	color?: Color
 }
 
