@@ -58,7 +58,12 @@ export const getSituationFromSearchParams = (
 	return situation
 }
 
-const PARAMS_RÉSERVÉS = new Set([TARGET_UNIT_PARAM])
+const PARAMS_RÉSERVÉS = new Set([
+	TARGET_UNIT_PARAM,
+	'integratorUrl',
+	'lang',
+	'couleur',
+])
 
 export const getRèglesIgnoréesFromSearchParams = (
 	searchParams: URLSearchParams,
