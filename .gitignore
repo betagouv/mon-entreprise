@@ -10,7 +10,6 @@ dist/
 .next/
 next-env.d.ts
 *.tsbuildinfo
-.generated/
 storybook-static/
 
 # Local Netlify folder

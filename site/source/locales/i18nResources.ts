@@ -1,5 +1,13 @@
-import enTranslations from './.generated/ui-en.json'
-import unitsTranslations from './.generated/units.json'
+import enTranslationsRaw from './ui-en.yaml'
+import unitsTranslationsRaw from './units.yaml'
+
+interface Units {
+	fr: Record<string, string>
+	en: Record<string, string>
+}
+
+const enTranslations = enTranslationsRaw as Record<string, string>
+const unitsTranslations = unitsTranslationsRaw as Units
 
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const
 export type AvailableLang = (typeof SUPPORTED_LANGUAGES)[number]
