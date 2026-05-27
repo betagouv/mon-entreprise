@@ -1,6 +1,6 @@
 import Engine, { Situation } from 'publicodes'
 
-import { chargeModèle } from '@/utils/chargeModèle'
+import { chargeModèle } from '@/utils/chargeModele'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import { DottedName } from '../publicodes/DottedName'
