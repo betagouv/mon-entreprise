@@ -16,6 +16,15 @@ const nextConfig = {
 		'publicodes',
 		'@publicodes/react-ui',
 	],
+
+	turbopack: {
+		rules: {
+			'*.yaml': {
+				loaders: ['yaml-loader'],
+				as: '*.js',
+			},
+		},
+	},
 }
 
 export default nextConfig
