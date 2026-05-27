@@ -162,6 +162,7 @@
 		"workbox-strategies": "^7.0.0",
 		"workbox-window": "^7.0.0",
 		"xml2js": "^0.4.23",
-		"yaml": "^2.3.2"
+		"yaml": "^2.3.2",
+		"yaml-loader": "^0.8.1"
 	}
 }
