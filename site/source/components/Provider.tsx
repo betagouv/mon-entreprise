@@ -34,7 +34,7 @@ export default function Provider({
 	basename,
 	children,
 }: ProviderProps): JSX.Element {
-	const store = makeStore()
+	const store = makeStore({ traceActions: !!import.meta.env.VITE_REDUX_TRACE })
 
 	return (
 		<DarkModeProvider>
