@@ -86,41 +86,50 @@ export default function DroitsRetraite() {
 							</Li>
 						</WhenNotApplicable>
 
-						<WhenApplicable dottedName="protection sociale . retraite . complémentaire . Cipav">
-							<Li>
-								Points de retraite complémentaire acquis (Cipav)&nbsp;:{' '}
-								<Value
-									linkToRule
-									expression="protection sociale . retraite . complémentaire . Cipav . points acquis"
-									displayedUnit={t('points')}
-								/>
-							</Li>
-						</WhenApplicable>
-
-						<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . Cipav">
-							<Li>
-								Points de retraite complémentaire acquis&nbsp;:{' '}
-								<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
+						<Condition
+							expression={{
+								'une de ces conditions': [
+									'établissement . commune . département . outre-mer . Mayotte != oui',
+									'indépendant . profession libérale . CNAVPL',
+								],
+							}}
+						>
+							<WhenApplicable dottedName="protection sociale . retraite . complémentaire . Cipav">
+								<Li>
+									Points de retraite complémentaire acquis (Cipav)&nbsp;:{' '}
 									<Value
-										expression="protection sociale . retraite . complémentaire . RCI . points acquis"
+										linkToRule
+										expression="protection sociale . retraite . complémentaire . Cipav . points acquis"
 										displayedUnit={t('points')}
 									/>
-								</WhenApplicable>
-								{/* Pour le moment on ne gère pas la retraite complémentaire des PLR pour
-									les non AE, car il y a des caisses spécifiques par métier et elles ne
-									sont pas encore implémentées. */}
-								<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
-									<Strong>non connue</Strong>
-									<WhenApplicable dottedName="indépendant . profession libérale">
-										<SmallBody>
-											Ce simulateur ne gère pas les droits acquis de retraite
-											complémentaire pour les professions libérales réglementées
-											hors Cipav.
-										</SmallBody>
+								</Li>
+							</WhenApplicable>
+
+							<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . Cipav">
+								<Li>
+									Points de retraite complémentaire acquis&nbsp;:{' '}
+									<WhenApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
+										<Value
+											expression="protection sociale . retraite . complémentaire . RCI . points acquis"
+											displayedUnit={t('points')}
+										/>
 									</WhenApplicable>
-								</WhenNotApplicable>
-							</Li>
-						</WhenNotApplicable>
+									{/* Pour le moment on ne gère pas la retraite complémentaire des PLR pour
+										les non AE, car il y a des caisses spécifiques par métier et elles ne
+										sont pas encore implémentées. */}
+									<WhenNotApplicable dottedName="protection sociale . retraite . complémentaire . RCI">
+										<Strong>non connue</Strong>
+										<WhenApplicable dottedName="indépendant . profession libérale">
+											<SmallBody>
+												Ce simulateur ne gère pas les droits acquis de retraite
+												complémentaire pour les professions libérales
+												réglementées hors Cipav.
+											</SmallBody>
+										</WhenApplicable>
+									</WhenNotApplicable>
+								</Li>
+							</WhenNotApplicable>
+						</Condition>
 					</Ul>
 				</Condition>
 
