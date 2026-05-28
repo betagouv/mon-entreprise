@@ -58,6 +58,11 @@ export const DateField = (props: DateFieldProps) => {
 	const [inputValue, setInputValue] = useState<string>(
 		inputProps.value as string
 	)
+	useEffect(() => {
+		if (defaultSelected === undefined) {
+			setInputValue('')
+		}
+	}, [defaultSelected])
 
 	const { x, y, strategy, refs } = useFloating<HTMLButtonElement>({
 		open: isOpen,
@@ -109,7 +114,7 @@ export const DateField = (props: DateFieldProps) => {
 				onChange?.()
 			}
 		},
-		[close, onChange]
+		[close, locale, onChange]
 	)
 
 	const oldDefaultSelected = useRef<Date | undefined>(defaultSelected)
