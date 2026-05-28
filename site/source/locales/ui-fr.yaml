@@ -1830,13 +1830,13 @@ pages:
             complémentaire.</0></0><1><0>Retraite de base :
             <2></2></0><1><0>Points de retraite de base acquis (CNAVPL) :
             <2></2></0></1><2><0>Revenu cotisé pour la retraite de base :
-            <2></2></0></2><3><0>Points de retraite complémentaire acquis
-            (Cipav) : <2></2></0></3><4><0>Points de retraite complémentaire
+            <2></2></0></2><3><0><0>Points de retraite complémentaire acquis
+            (Cipav) : <2></2></0></0><1><0>Points de retraite complémentaire
             acquis : <2><0></0></2><3><0>non connue</0><1><0>Ce simulateur ne
             gère pas les droits acquis de retraite complémentaire pour les
             professions libérales réglementées hors
-            Cipav.</0></1></3></0></4></1></2><3><0>Pour estimer le montant de
-            votre future pension de retraite, utilisez le <2>simulateur de
+            Cipav.</0></1></3></0></1></3></1></2><3><0>Pour estimer le montant
+            de votre future pension de retraite, utilisez le <2>simulateur de
             l'Assurance retraite</2>.</0></3>"
           titre: Votre retraite
         répartition:
