@@ -99,6 +99,9 @@ protection sociale . retraite . base . revenu cotisé:
       variations:
         - si: indépendant . profession libérale . CNAVPL
           alors: indépendant . profession libérale . CNAVPL . retraite de base . tranche 1 . taux
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: indépendant . cotisations et contributions . cotisations . retraite
+            de base . taux Mayotte
         - sinon: indépendant . cotisations et contributions . cotisations . retraite
             de base . taux T1
 
