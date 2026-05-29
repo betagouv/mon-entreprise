@@ -9,3 +9,29 @@ indépendant . cotisations et contributions . cotisations . exonérations . cumu
   toutes ces conditions:
     - Acre
     - invalidité
+
+indépendant . cotisations et contributions . cotisations . exonérations . Mayotte:
+  applicable si: établissement . commune . département . outre-mer . Mayotte
+  valeur: oui
+  type: notification
+  sévérité: avertissement
+  titre: Recouvrement Mayotte
+  résumé: |
+    Ce simulateur applique bien les taux de cotisations et contributions
+    **spécifiques à Mayotte**.
+
+    En revanche, les **exonérations** mahoraises ne sont pas encore prises en compte.
+  description: |
+    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des cotisations et
+    contributions sociales des travailleurs et travailleuses indépendantes qui
+    exercent leur activité à Mayotte.
+
+    Ce simulateur applique bien les taux de cotisations et contributions spécifiques
+    à Mayotte. En revanche, les exonérations mahoraises ne sont pas encore prises
+    en compte.
+  références:
+    Reprise du recouvrement des cotisations pour les travailleurs indépendants à Mayotte: https://www.cssm.fr/uploads//Formulaires/6584-Depl-TI-Mayotte%2006_08_2024%20web.pdf
+    Taux de cotisations - Travailleur indépendant à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ti-mayotte.html
+    'Taux de cotisations - Artisan, commerçant et profession libérale non réglementée - Début d’activité': https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ac-plnr.html#ancre-debut-d-activite
+    'Taux de cotisations - Profession libérale réglementée relevant de la Cipav - Début d’activité': https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html#ancre-debut-d-activite
+    'Taux de cotisations - Profession libérale réglementée hors Cipav - Début d’activité': https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-hors-cipav.html#ancre-debut-d-activite

@@ -81,9 +81,7 @@ indépendant . cotisations et contributions . début activité: null
 indépendant . revenu professionnel: undefined
 indépendant . rémunération . brute: 20000
 indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
-
-Notifications affichées : indépendant . cotisations et contributions . cotisations . exonérations . DROM"
+indépendant . rémunération . nette . après impôt: undefined"
 `;
 
 exports[`calculate simulations-indépendant > acre 1`] = `

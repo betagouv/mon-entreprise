@@ -2771,6 +2771,52 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
     Ce simulateur ne prend pas en compte les exonérations DROM.
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
+indépendant . cotisations et contributions . cotisations . exonérations . Mayotte:
+  description.en: >
+    [automatic] As of January 1, 2025, Urssaf has taken over the collection of
+    social contributions
+
+    contributions for self-employed workers in Mayotte.
+
+    working in Mayotte.
+
+
+    This simulator applies the contribution rates specific to Mayotte.
+
+    specific to Mayotte. However, Mayotte exemptions are not yet taken into
+    account.
+
+    taken into account.
+  description.fr: >
+    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des cotisations et
+
+    contributions sociales des travailleurs et travailleuses indépendantes qui
+
+    exercent leur activité à Mayotte.
+
+
+    Ce simulateur applique bien les taux de cotisations et contributions
+    spécifiques
+
+    à Mayotte. En revanche, les exonérations mahoraises ne sont pas encore
+    prises
+
+    en compte.
+  résumé.en: |
+    [automatic] This simulator applies the contribution rates
+    **specific to Mayotte**.
+
+    However, the **Mayotte exemptions** are not yet taken into account.
+  résumé.fr: >
+    Ce simulateur applique bien les taux de cotisations et contributions
+
+    **spécifiques à Mayotte**.
+
+
+    En revanche, les **exonérations** mahoraises ne sont pas encore prises en
+    compte.
+  titre.en: '[automatic] Mayotte collection'
+  titre.fr: Recouvrement Mayotte
 indépendant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité:
   description.en: >
     [automatic] This simulator does not handle cases where the exemption is
@@ -3179,6 +3225,9 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     assiette:
       titre.en: '[automatic] plate'
       titre.fr: assiette
+    taux Mayotte:
+      titre.en: '[automatic] Mayotte rate'
+      titre.fr: taux Mayotte
     taux T1:
       titre.en: '[automatic] T1 rate'
       titre.fr: taux T1
