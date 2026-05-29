@@ -19,8 +19,8 @@ export const AvertissementAnnéeDeSimulationModifiée = () => {
 	const { t } = useTranslation()
 
 	useEffect(() => {
-		if (annéeRef.current !== année && !estDateDeCessationParDéfaut) {
-			setShowAvertissement(true)
+		if (annéeRef.current !== année) {
+			setShowAvertissement(!estDateDeCessationParDéfaut)
 			annéeRef.current = année
 		}
 	}, [année, estDateDeCessationParDéfaut])
