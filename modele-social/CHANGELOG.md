@@ -33,6 +33,7 @@
 - Corrige l'unité de `dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf` en `%`
 - Ajout de la CET dans la réduction de cotisations salariales sur les heures supplémentaires
 - Corrige des fautes dans des questions de `salarié . rémunération`
+- Modifie la description de `artiste-auteur . cotisations . IRCEC`
 
 ## 10.0.1
 

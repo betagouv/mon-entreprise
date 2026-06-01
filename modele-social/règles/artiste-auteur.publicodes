@@ -180,9 +180,12 @@ artiste-auteur . cotisations . formation professionnelle:
 artiste-auteur . cotisations . IRCEC:
   titre: Retraite complémentaire
   description: |
-    Si vous êtes artiste-auteur professionnel et que vous êtes rémunéré en
-    droits d’auteur, l’IRCEC est l’organisme de Sécurité sociale qui assure la
-    gestion de votre retraite complémentaire obligatoire.
+    Si vous exercez une activité rémunérée en droits d’auteur et assimilés,
+    l’IRCEC est l’organisme de sécurité sociale qui assure la gestion de votre
+    retraite complémentaire obligatoire.
+
+    Le rattachement auprès d’un ou plusieurs régimes (RAAP, RACD et/ou RACL)
+    dépend de la nature et du montant de vos revenus artistiques.
   formule:
     somme:
       - cotisation RAAP
