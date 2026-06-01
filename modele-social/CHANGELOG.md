@@ -26,6 +26,7 @@
 - Mise à jour du taux horaire minimum de l'allocation d'activité partielle
 - Mise à jour des cotisations aux caisses de retraite spécifiques aux professions libérales réglementées
 - Mise à jour des plafonds de chiffre d'affaires au régime micro-fiscal
+- Mise à jour du guide de la retraite des artistes-auteurs
 
 ### Corrections
 - Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
