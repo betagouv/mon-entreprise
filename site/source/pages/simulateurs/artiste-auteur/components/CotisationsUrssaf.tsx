@@ -17,7 +17,7 @@ export default function CotisationsUrssafArtisteAuteur({ role }: Props) {
 				<Condition expression="artiste-auteur . revenus . traitements et salaires > 0">
 					{t(
 						'pages.simulateurs.artiste-auteur.explications.cotisations.précompte',
-						'Pour vos revenus en traitement et salaires, ces cotisations sont « précomptées », c’est-à-dire payées à la source par le diffuseur.'
+						'Pour vos revenus en traitement et salaires, ces cotisations sont « précomptées », c’est-à-dire payées à la source par le diffuseur.'
 					)}
 				</Condition>
 			}

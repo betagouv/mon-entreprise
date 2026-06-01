@@ -56,16 +56,24 @@ artiste-auteur . cotisations . CSG-CRDS . assiette:
   titre.fr: assiette
 artiste-auteur . cotisations . IRCEC:
   description.en: >
-    [automatic] If you are a professional artist-author and you are paid in
-    royalties, the
+    [automatic] If you work in the field of copyright and related rights,
 
-    royalties, the IRCEC is the social security organization that manages your
+    IRCEC is the social security organization that manages your compulsory
 
-    management of your compulsory supplementary pension.
+    compulsory supplementary pension.
+
+
+    Whether you are covered by one or more schemes (RAAP, RACD and/or RACL)
+    depends on the nature and amount of your income.
+
+    depends on the nature and amount of your artistic income.
   description.fr: |
-    Si vous êtes artiste-auteur professionnel et que vous êtes rémunéré en
-    droits d’auteur, l’IRCEC est l’organisme de Sécurité sociale qui assure la
-    gestion de votre retraite complémentaire obligatoire.
+    Si vous exercez une activité rémunérée en droits d’auteur et assimilés,
+    l’IRCEC est l’organisme de sécurité sociale qui assure la gestion de votre
+    retraite complémentaire obligatoire.
+
+    Le rattachement auprès d’un ou plusieurs régimes (RAAP, RACD et/ou RACL)
+    dépend de la nature et du montant de vos revenus artistiques.
   titre.en: '[automatic] Supplementary pension'
   titre.fr: Retraite complémentaire
 artiste-auteur . cotisations . IRCEC . cotisation RAAP:
