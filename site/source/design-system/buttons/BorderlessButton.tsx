@@ -16,11 +16,5 @@ export const BorderlessButton = ({ children, onPress }: Props) => (
 
 const StyledButton = styled(Button)`
 	border: none;
-	svg {
-		fill: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
-	display: flex;
-	align-items: center;
-	gap: ${({ theme }) => theme.spacings.xs};
 	font-weight: 700;
 `

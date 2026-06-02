@@ -100,7 +100,9 @@ type StyledButtonProps = {
 
 export const StyledButton = styled.button<StyledButtonProps>`
 	width: fit-content;
-	display: inline-block;
+	display: flex;
+	align-items: center;
+	gap: 0 ${({ theme }) => theme.spacings.xs};
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 500;
@@ -112,7 +114,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			case 'MD':
 				return '0.875rem 2rem'
 			case 'XS':
-				return '0.5rem 2rem'
+				return '0.5rem 1.5rem'
 			case 'XXS':
 				return '0.25rem 1rem'
 		}
@@ -159,12 +161,17 @@ export const StyledButton = styled.button<StyledButtonProps>`
 						: $color === 'error'
 						? colorPalette[400]
 						: colorPalette[300]
+				const color =
+					theme.colors.extended.grey[
+						$color === 'primary' || $color === 'error' ? 100 : 800
+					]
 
 				return css`
 					background-color: ${backgroundColor};
-					color: ${theme.colors.extended.grey[
-						$color === 'primary' || $color === 'error' ? 100 : 800
-					]};
+					color: ${color};
+					svg {
+						fill: ${color};
+					}
 				`
 			}}
 
@@ -190,6 +197,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 						color: ${color};
 						background-color: ${theme.colors.extended.grey[100]};
 						border-color: ${borderColor};
+						svg {
+							fill: ${color};
+						}
 					`
 				)
 			}}
@@ -233,6 +243,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 					css`
 						color: ${(colorPalette as Palette)[700]};
 						background-color: ${theme.colors.extended.grey[100]};
+						svg {
+							fill: ${(colorPalette as Palette)[700]};
+						}
 					`}
 
 				/* Light button colors */
@@ -251,6 +264,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
 							background-color: transparent;
 							border-color: ${color};
 							color: ${color};
+							svg {
+								fill: ${color};
+							}
 						`
 					)
 				}}

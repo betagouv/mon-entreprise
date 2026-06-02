@@ -23,7 +23,6 @@ type Props = {
 	siret?: string | null
 }
 
-// TODO: vérifier les couleurs une fois #4464 mergée
 export const BoutonConseillersEntreprises = ({ variant, siret }: Props) => {
 	const { t } = useTranslation()
 
