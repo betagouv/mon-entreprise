@@ -104,9 +104,16 @@ export default defineConfig(({ command, mode }) => ({
 
 		VitePWA(pwaOptions),
 
-		legacy({
-			targets: ['defaults', 'not IE 11'],
-		}),
+		// Skip le plugin legacy en mode Storybook : outil dev sur navigateurs
+		// modernes, et le plugin force build.target = chrome64/firefox67/...
+		// incompatible avec les literals BigInt de Storybook 8 lui-même.
+		...(process.env.STORYBOOK === 'true'
+			? []
+			: [
+					legacy({
+						targets: ['defaults', 'not IE 11'],
+					}),
+			  ]),
 
 		splitVendorChunkPlugin(),
 
