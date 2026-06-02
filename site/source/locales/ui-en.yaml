@@ -107,7 +107,6 @@ Option ACRE non activée: ACRE option not activated
 Options: Options
 Oui: Yes
 Outils pour les développeurs: Tools for developers
-Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
@@ -123,7 +122,6 @@ Période de calcul: Calculation period
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
-Recherche sur le site: Site search
 Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
@@ -294,7 +292,13 @@ components:
       salaire-brut: Gross salary
       salaire-net: Net salary
   recherche:
-    placeholder: Keyword or acronym (e.g. CSG)
+    button:
+      aria-label: Open the search dialog box
+      text: Search
+    input:
+      placeholder: Keyword or acronym (e.g. CSG)
+    modale:
+      title: Site search
   simulateur:
     conseillers-entreprise:
       bouton: Talk to an advisor

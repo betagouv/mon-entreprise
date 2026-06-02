@@ -10,7 +10,6 @@ import { useUrl } from '@/hooks/useUrl'
 import { usePianoTracking } from '../ATInternetTracking'
 import { ShareSimulationPopup } from '../ShareSimulationBanner/ShareSimulationPopup'
 
-// TODO: vérifier les couleurs une fois #4464 mergée
 export const BoutonPartage = () => {
 	const { t } = useTranslation()
 	const tracker = usePianoTracking()
