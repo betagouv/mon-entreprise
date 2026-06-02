@@ -26,6 +26,7 @@ impôt . taux d'imposition:
         alors: foyer fiscal . taux effectif
 
 impôt . méthode de calcul:
+  titre: Méthode de calcul de l’impôt sur le revenu
   description: |
     Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
     - *Le taux personnalisé* : indiqué sur votre avis d’imposition
@@ -946,6 +947,7 @@ impôt . taux neutre d'impôt sur le revenu:
     Qu’est-ce que le taux neutre ?: https://www.economie.gouv.fr/particuliers/modifier-gerer-taux-prelevement-source#qu-est-ce-que-le-taux-non-person_5
 
 impôt . taux personnalisé:
+  titre: Taux d’imposition personnalisé
   description: |
     Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
       - une fiche de paie

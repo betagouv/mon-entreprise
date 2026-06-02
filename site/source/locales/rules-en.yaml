@@ -5047,8 +5047,8 @@ entreprise . TVA:
     chiffre d’affaires).
   question.en: '[automatic] Is the company subject to VAT?'
   question.fr: L’entreprise est-elle assujettie à la TVA ?
-  titre.en: '[automatic] VAT'
-  titre.fr: TVA
+  titre.en: '[automatic] Company subject to VAT'
+  titre.fr: Entreprise assujettie à la TVA
 entreprise . TVA . franchise de TVA:
   titre.en: '[automatic] VAT exemption'
   titre.fr: franchise de TVA
@@ -5174,8 +5174,8 @@ entreprise . activité . nature:
         urbaniste…
       question.en: '[automatic] Is it a regulated liberal activity?'
       question.fr: Est-ce une activité libérale réglementée ?
-      titre.en: '[automatic] regulated'
-      titre.fr: réglementée
+      titre.en: '[automatic] Regulated liberal professions'
+      titre.fr: Activité libérale réglementée
   description.en: >
     [automatic] Your type of activity will determine a large part of the
     calculation of contributions and taxes.
@@ -5209,8 +5209,8 @@ entreprise . activité . nature:
     années soit considérée comme leur activité principale.
   question.en: '[automatic] What is the nature of your main activity?'
   question.fr: Quelle est la nature de votre activité principale ?
-  titre.en: '[automatic] type of activity'
-  titre.fr: nature de l’activité
+  titre.en: '[automatic] Nature of main activity'
+  titre.fr: Nature de l’activité principale
 entreprise . activité . revenus mixtes:
   description.en: >
     [automatic] It is possible to have different types of income from the same
@@ -5610,8 +5610,8 @@ entreprise . activités . service ou vente:
       titre.fr: vente de biens, restauration ou hébergement
   question.en: "[automatic] What is the company's main activity?"
   question.fr: Quel est le type d’activité principale de l’entreprise ?
-  titre.en: '[automatic] service or sale'
-  titre.fr: service ou vente
+  titre.en: '[automatic] Type of main activity'
+  titre.fr: Type d’activité principale
 entreprise . association non lucrative:
   description.en: '[automatic] The company is a non-profit association'
   description.fr: L’entreprise est une association non lucrative
@@ -7513,8 +7513,8 @@ impôt . méthode de calcul:
     enfant.
   question.en: '[automatic] How would you like to calculate your income tax?'
   question.fr: Comment souhaitez-vous calculer l’impôt sur le revenu ?
-  titre.en: calculation method
-  titre.fr: méthode de calcul
+  titre.en: '[automatic] Income tax calculation method'
+  titre.fr: Méthode de calcul de l’impôt sur le revenu
 impôt . méthode de calcul . PFU:
   description.en: '[automatic] Calculating tax on income from transferable
     securities with the single flat-rate tax (or "flat tax")'
@@ -7622,8 +7622,8 @@ impôt . taux personnalisé:
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
   question.en: What is your withholding tax rate?
   question.fr: Quel est votre taux de prélèvement à la source ?
-  titre.en: personalized rate
-  titre.fr: taux personnalisé
+  titre.en: '[automatic] Personalized tax rate'
+  titre.fr: Taux d’imposition personnalisé
 plafond sécurité sociale:
   avec:
     N-1:
