@@ -45,7 +45,7 @@ export const Drawer = ({
 	onCancel?: () => void
 	isDismissable?: boolean
 }) => {
-	const panel = useRef<HTMLDivElement>(null)
+	const panel = useRef<HTMLDivElement>(null!)
 	const [isOpen, setIsOpen] = useState(false)
 	const [isMounted, setIsMounted] = useState(false)
 	const { t } = useTranslation()

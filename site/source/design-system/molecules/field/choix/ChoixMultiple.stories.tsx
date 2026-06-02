@@ -1,9 +1,10 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/react'
+import { Decorator, Meta, StoryObj } from '@storybook/react'
+import { fn } from '@storybook/test'
 import { MemoryRouter } from 'react-router-dom'
 
 import { ChoixMultiple } from './ChoixMultiple'
 
-const RouterDecorator = (Story: StoryFn) => (
+const RouterDecorator: Decorator = (Story) => (
 	<MemoryRouter>
 		<Story />
 	</MemoryRouter>
@@ -11,13 +12,13 @@ const RouterDecorator = (Story: StoryFn) => (
 
 const meta = {
 	component: ChoixMultiple,
+	args: {
+		onChange: fn(),
+	},
 	parameters: {
 		layout: 'centered',
 	},
 	tags: ['autodocs'],
-	argTypes: {
-		onChange: { action: 'changed' },
-	},
 	decorators: [RouterDecorator],
 } satisfies Meta<typeof ChoixMultiple>
 

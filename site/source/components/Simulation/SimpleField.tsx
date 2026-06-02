@@ -1,6 +1,5 @@
-import { useSSRSafeId } from '@react-aria/ssr'
 import { RuleNode } from 'publicodes'
-import { useCallback } from 'react'
+import { useCallback, useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
@@ -44,7 +43,7 @@ export function SimpleField(props: SimpleFieldProps) {
 		[dispatch]
 	)
 
-	const labelId = useSSRSafeId()
+	const labelId = useId()
 	const targetUnit = useSelector(targetUnitSelector)
 
 	if (evaluation.nodeValue === null) {

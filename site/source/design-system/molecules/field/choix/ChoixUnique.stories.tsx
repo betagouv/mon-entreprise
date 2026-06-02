@@ -1,9 +1,10 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/react'
+import { Decorator, Meta, StoryObj } from '@storybook/react'
+import { fn } from '@storybook/test'
 import { MemoryRouter } from 'react-router-dom'
 
 import { ChoixUnique } from './ChoixUnique'
 
-const RouterDecorator = (Story: StoryFn) => (
+const RouterDecorator: Decorator = (Story) => (
 	<MemoryRouter>
 		<Story />
 	</MemoryRouter>
@@ -11,12 +12,14 @@ const RouterDecorator = (Story: StoryFn) => (
 
 const meta = {
 	component: ChoixUnique,
+	args: {
+		onChange: fn(),
+	},
 	parameters: {
 		layout: 'centered',
 	},
 	tags: ['autodocs'],
 	argTypes: {
-		onChange: { action: 'changed' },
 		variant: {
 			control: 'select',
 			options: ['radio', 'card', 'toggle', 'select'],

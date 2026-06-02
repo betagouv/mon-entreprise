@@ -1,9 +1,9 @@
-import { useOverlayTriggerState } from '@react-stately/overlays'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { useOverlayTriggerState } from 'react-stately'
 import { styled } from 'styled-components'
 
 import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'

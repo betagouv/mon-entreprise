@@ -1,6 +1,3 @@
-import { AriaListBoxOptions, useListBox, useOption } from '@react-aria/listbox'
-import type { ListState } from '@react-stately/list'
-import type { Node } from '@react-types/shared'
 import {
 	createContext,
 	HTMLAttributes,
@@ -9,6 +6,8 @@ import {
 	useContext,
 	useRef,
 } from 'react'
+import { AriaListBoxOptions, useListBox, useOption } from 'react-aria'
+import type { ListState, Node } from 'react-stately'
 import { css, styled } from 'styled-components'
 
 interface ListBoxProps extends AriaListBoxOptions<unknown> {

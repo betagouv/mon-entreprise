@@ -19,7 +19,7 @@ export function useSelection<T>({ value, onChange }: SelectionProps<T>) {
 		}
 	}, [value, currentSelection])
 
-	const debounce = useRef<NodeJS.Timeout>()
+	const debounce = useRef<NodeJS.Timeout | undefined>(undefined)
 	const handleChange = useCallback(
 		(val: T) => {
 			setCurrentSelection(val)

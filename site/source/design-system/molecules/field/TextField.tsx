@@ -1,5 +1,5 @@
-import { AriaTextFieldOptions, useTextField } from '@react-aria/textfield'
-import { HTMLAttributes, RefObject, useRef } from 'react'
+import { HTMLAttributes, InputHTMLAttributes, RefObject, useRef } from 'react'
+import { AriaTextFieldOptions, useTextField } from 'react-aria'
 import { css, styled } from 'styled-components'
 
 import { omit } from '@/utils'
@@ -38,7 +38,7 @@ export default function TextField(props: TextFieldProps) {
 					{...(props.id && { id: props.id })}
 					role={props.role}
 					placeholder={
-						(inputProps as HTMLAttributes<HTMLInputElement>).placeholder ??
+						(inputProps as InputHTMLAttributes<HTMLInputElement>).placeholder ??
 						undefined
 					}
 					ref={props.inputRef || ref}

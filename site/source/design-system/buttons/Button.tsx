@@ -1,5 +1,5 @@
-import { PressEvent } from '@react-types/shared'
 import React, { ForwardedRef, forwardRef, useCallback } from 'react'
+import { PressEvent } from 'react-aria'
 import { css, styled } from 'styled-components'
 
 import { useTracking } from '@/hooks/useTracking'

@@ -1,8 +1,4 @@
 import { NumberFormatter, NumberParser } from '@internationalized/number'
-import { useLocale } from '@react-aria/i18n'
-import { useNumberField } from '@react-aria/numberfield'
-import { NumberFieldState } from '@react-stately/numberfield'
-import { AriaNumberFieldProps } from '@react-types/numberfield'
 import {
 	ChangeEvent,
 	ChangeEventHandler,
@@ -18,6 +14,8 @@ import {
 	useRef,
 	useState,
 } from 'react'
+import { AriaNumberFieldProps, useLocale, useNumberField } from 'react-aria'
+import { NumberFieldState } from 'react-stately'
 import { styled } from 'styled-components'
 
 import { omit } from '@/utils'
@@ -72,7 +70,7 @@ export const NumericInput = (props: NumericInputProps) => {
 		  )
 		: 1
 
-	const ref = useRef<HTMLInputElement>(null)
+	const ref = useRef<HTMLInputElement>(null!)
 	const state = useSimpleNumberFieldState({
 		...props,
 		step,

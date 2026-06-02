@@ -1,5 +1,5 @@
-import { OverlayProvider } from '@react-aria/overlays'
 import { Meta, StoryObj } from '@storybook/react'
+import { OverlayProvider } from 'react-aria'
 import { BrowserRouter } from 'react-router-dom'
 
 import { HelpButtonWithPopover as HelpButtonWithPopoverComponent } from './HelpButtonWithPopover'

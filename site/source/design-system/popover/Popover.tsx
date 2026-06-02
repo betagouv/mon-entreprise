@@ -1,15 +1,15 @@
-import { useButton } from '@react-aria/button'
-import { useDialog } from '@react-aria/dialog'
+import FocusTrap from 'focus-trap-react'
+import React, { RefObject, useRef } from 'react'
 import {
+	AriaDialogProps,
 	OverlayContainer,
 	OverlayProps,
+	useButton,
+	useDialog,
 	useModal,
 	useOverlay,
 	usePreventScroll,
-} from '@react-aria/overlays'
-import { AriaDialogProps } from '@react-types/dialog'
-import FocusTrap from 'focus-trap-react'
-import React, { RefObject, useRef } from 'react'
+} from 'react-aria'
 import { css, keyframes, styled } from 'styled-components'
 
 import { FromBottom } from '@/components/ui/animate'

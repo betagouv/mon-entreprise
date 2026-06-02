@@ -1,9 +1,9 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/react'
+import { Decorator, Meta, StoryObj } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import { InfoButton } from './InfoButton'
 
-const RouterDecorator = (Story: StoryFn) => (
+const RouterDecorator: Decorator = (Story) => (
 	<MemoryRouter>
 		<Story />
 	</MemoryRouter>

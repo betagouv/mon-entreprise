@@ -1,4 +1,5 @@
 import Engine, { utils } from 'publicodes'
+import type { JSX } from 'react'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 

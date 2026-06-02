@@ -1,7 +1,6 @@
-import { useOverlayTrigger } from '@react-aria/overlays'
-import { useOverlayTriggerState } from '@react-stately/overlays'
-import { AriaButtonProps } from '@react-types/button'
 import React, { ReactElement, Ref, RefObject, useEffect, useRef } from 'react'
+import { AriaButtonProps, useOverlayTrigger } from 'react-aria'
+import { useOverlayTriggerState } from 'react-stately'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { useNavigation } from '@/lib/navigation'

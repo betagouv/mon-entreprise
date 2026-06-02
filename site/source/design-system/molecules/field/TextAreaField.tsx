@@ -1,5 +1,10 @@
-import { AriaTextFieldOptions, useTextField } from '@react-aria/textfield'
-import { HTMLAttributes, RefObject, useRef } from 'react'
+import {
+	HTMLAttributes,
+	RefObject,
+	TextareaHTMLAttributes,
+	useRef,
+} from 'react'
+import { AriaTextFieldOptions, useTextField } from 'react-aria'
 import { css, styled } from 'styled-components'
 
 import { ExtraSmallBody } from '../../typography/paragraphs'
@@ -33,8 +38,8 @@ export default function TextAreaField(props: TextAreaFieldProps) {
 					{...(inputProps as HTMLAttributes<HTMLTextAreaElement>)}
 					required={props?.isRequired || false}
 					placeholder={
-						(inputProps as HTMLAttributes<HTMLTextAreaElement>).placeholder ??
-						''
+						(inputProps as TextareaHTMLAttributes<HTMLTextAreaElement>)
+							.placeholder ?? ''
 					}
 					ref={props.inputRef || ref}
 				/>
