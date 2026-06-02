@@ -29,7 +29,7 @@ import ItemTitle from './ItemTitle'
 import RevenuTable from './RevenuTable'
 import WarningTooltip from './WarningTooltip'
 
-const Détails = ({
+export const Comparaison = ({
 	namedEngines,
 	expandRevenuSection = false,
 }: {
@@ -864,5 +864,3 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
 `
-
-export default Détails

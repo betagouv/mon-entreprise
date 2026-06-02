@@ -1,0 +1,50 @@
+import { useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
+
+import { H2 } from '@/design-system'
+import { Situation } from '@/domaine/Situation'
+import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesV2'
+import { useQuestions } from '@/hooks/useQuestionsV2'
+
+import { ListeQuestions } from './ListeQuestions'
+import { QuestionCourante } from './QuestionCourante'
+
+type Props<S extends Situation = Situation> = {
+	questionsPublicodes: QuestionPublicodes<S>[]
+}
+
+export const BlocSituation = ({ questionsPublicodes }: Props) => {
+	const { t } = useTranslation()
+	const { questions, questionCourante, setQuestionCourante } = useQuestions({
+		questionsPublicodes,
+	})
+
+	return (
+		<Section>
+			<StyledH2 as="h1">
+				{t('components.simulateur.zone-de-saisie.situation.titre', 'Situation')}
+			</StyledH2>
+
+			{questionCourante ? (
+				<QuestionCourante
+					Question={questionCourante}
+					retour={() => setQuestionCourante(undefined)}
+				/>
+			) : (
+				<ListeQuestions
+					questions={questions}
+					onSélection={setQuestionCourante}
+				/>
+			)}
+		</Section>
+	)
+}
+
+const Section = styled.section`
+	height: 100%;
+`
+
+const StyledH2 = styled(H2)`
+	margin: 0;
+	padding: ${({ theme }) => theme.spacings.md} 0;
+`
