@@ -7,6 +7,7 @@ import Value from '@/components/EngineValue/Value'
 import {
 	Accordion,
 	Body,
+	CircledPlusIcon,
 	Container,
 	Emoji,
 	ExternalLinkIcon,
@@ -17,7 +18,6 @@ import {
 	Li,
 	Link,
 	Message,
-	PlusCircleIcon,
 	Strong,
 	StyledLink,
 	Ul,
@@ -441,7 +441,7 @@ export const Comparaison = ({
 								expression="protection sociale . maladie . arrêt maladie != 0"
 							>
 								<StyledDiv>
-									<PlusCircleIcon
+									<CircledPlusIcon
 										style={{
 											marginTop: '0 !important',
 										}}
