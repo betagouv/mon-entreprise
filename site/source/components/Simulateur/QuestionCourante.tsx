@@ -17,13 +17,13 @@ export const QuestionCourante = ({ Question, retour }: Props) => {
 
 	return (
 		<>
-			<StyledButton light size="XS" onPress={retour}>
+			<Button light size="XS" onPress={retour}>
 				<ReturnIconLeft />
 				{t(
 					'components.simulateur.zone-de-saisie.situation.retour',
 					'Revenir à la liste'
 				)}
-			</StyledButton>
+			</Button>
 
 			{Question._tag === 'QuestionFournie' && (
 				<fieldset>
@@ -38,13 +38,6 @@ export const QuestionCourante = ({ Question, retour }: Props) => {
 		</>
 	)
 }
-
-// TODO: vérifier les couleurs une fois #4464 mergée
-const StyledButton = styled(Button)`
-	display: flex;
-	align-items: center;
-	gap: 0 ${({ theme }) => theme.spacings.xs};
-`
 
 const QuestionTitle = styled(H3)`
 	margin-top: 0;

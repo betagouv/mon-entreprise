@@ -85,15 +85,12 @@ const StyledValue = styled(Value)<{ $répondue: boolean }>`
 		`}
 `
 
-// TODO: vérifier les couleurs une fois #4464 mergée
 const EditButton = styled(Button)`
 	border: none;
 	svg {
-		fill: ${({ theme }) => theme.colors.bases.primary[700]};
+		fill: ${({ theme }) =>
+			theme.colors.extended.grey[theme.darkMode ? 100 : 800]};
 	}
-	display: flex;
-	align-items: center;
-	gap: ${({ theme }) => theme.spacings.xs};
 	font-weight: 700;
 	padding: ${({ theme }) => theme.spacings.xxs};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
