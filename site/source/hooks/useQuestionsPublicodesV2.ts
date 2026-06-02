@@ -21,19 +21,14 @@ export function useQuestionsPublicodes<S extends Situation>(
 	const engine = useEngineFromModèle(nomModèle)
 
 	return idsDesQuestions.map((id: DottedName) => {
+		const evaluation = engine.evaluate(id)
 		const libellé = () => engine.getRule(id).title
 		const applicable = () =>
 			engine.evaluate({
 				'est applicable': id,
-			}).nodeValue as boolean
-		const répondue = () => {
-			const evaluation = engine.evaluate(id)
-
-			return (
-				!(id in evaluation.missingVariables) &&
-				evaluation.nodeValue !== undefined
-			)
-		}
+			}).nodeValue === true && evaluation.nodeValue !== null
+		const répondue = () =>
+			!(id in evaluation.missingVariables) && evaluation.nodeValue !== undefined
 
 		return {
 			_tag: 'QuestionPublicodes',
