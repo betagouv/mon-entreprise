@@ -18,7 +18,7 @@ import {
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { useNavigation } from '@/lib/navigation'
-import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
+import { Comparaison } from '@/pages/simulateurs/comparaison-statuts/components/Comparaison'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
 import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
 import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/StatutChoice'
@@ -49,7 +49,7 @@ export default function Comparateur() {
 			</Trans>
 			<RevenuEstimé />
 			<Spacing xl />
-			<Détails namedEngines={namedEngines} />
+			<Comparaison namedEngines={namedEngines} />
 
 			<Container
 				backgroundColor={(theme) =>

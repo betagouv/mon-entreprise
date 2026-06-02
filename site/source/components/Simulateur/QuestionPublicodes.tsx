@@ -1,0 +1,35 @@
+import { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { Situation } from '@/domaine/Situation'
+import { QuestionPublicodes as TypeQuestionPublicodes } from '@/hooks/useQuestionsPublicodesV2'
+import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
+
+import { RuleField } from '../conversation/RuleField'
+
+type Props<S extends Situation> = {
+	question: TypeQuestionPublicodes<S>
+}
+
+export const QuestionPublicodes = <S extends Situation>({
+	question,
+}: Props<S>) => {
+	const dispatch = useDispatch()
+
+	const handleRéponse = useCallback(
+		(dottedName: DottedName, value: ValeurPublicodes | undefined) => {
+			dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
+		},
+		[dispatch]
+	)
+
+	return (
+		<RuleField
+			dottedName={question.id}
+			labelOrLegend={question.libellé()}
+			onChange={(value, name) => handleRéponse(name, value)}
+		/>
+	)
+}
