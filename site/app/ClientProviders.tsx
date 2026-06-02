@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode, Suspense, useState } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 
@@ -17,11 +17,9 @@ import { makeStore } from '@/store/store'
 
 export function ClientProviders({
 	children,
-	darkModeParDéfaut,
 	langueParDéfaut,
 }: {
 	children: ReactNode
-	darkModeParDéfaut: boolean
 	langueParDéfaut: AvailableLang
 }) {
 	const [i18n] = useState(() => createI18nClient(langueParDéfaut))
@@ -31,19 +29,21 @@ export function ClientProviders({
 
 	return (
 		<StyledComponentsRegistry>
-			<NextJsNavigationProvider>
-				<I18nextProvider i18n={i18n}>
-					<ReduxProvider store={store}>
-						<EmbeddedContextProvider>
-							<DarkModeProvider darkModeParDéfaut={darkModeParDéfaut}>
-								<DesignSystemThemeProvider>
-									{children}
-								</DesignSystemThemeProvider>
-							</DarkModeProvider>
-						</EmbeddedContextProvider>
-					</ReduxProvider>
-				</I18nextProvider>
-			</NextJsNavigationProvider>
+			<Suspense>
+				<NextJsNavigationProvider>
+					<I18nextProvider i18n={i18n}>
+						<ReduxProvider store={store}>
+							<EmbeddedContextProvider>
+								<DarkModeProvider>
+									<DesignSystemThemeProvider>
+										{children}
+									</DesignSystemThemeProvider>
+								</DarkModeProvider>
+							</EmbeddedContextProvider>
+						</ReduxProvider>
+					</I18nextProvider>
+				</NextJsNavigationProvider>
+			</Suspense>
 		</StyledComponentsRegistry>
 	)
 }

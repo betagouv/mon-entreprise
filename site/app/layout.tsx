@@ -13,9 +13,28 @@ export const metadata = {
 	),
 }
 
+const darkModeAntiFlashScript = `
+	try {
+		if (window.localStorage.getItem('darkMode') === 'true') {
+			const styleEl = document.createElement('style')
+			document.head.appendChild(styleEl)
+			styleEl.sheet.insertRule(
+				'body * { background-color: #0f172a !important; color: white !important; border-color: white }',
+				0
+			)
+			addEventListener('load', () => document.head.removeChild(styleEl))
+		}
+	} catch (e) {}
+`
+
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang={langue} className={`${roboto.variable} ${montserrat.variable}`}>
+			<head>
+				<script
+					dangerouslySetInnerHTML={{ __html: darkModeAntiFlashScript }}
+				/>
+			</head>
 			<body>
 				<Providers>{children}</Providers>
 			</body>
