@@ -446,6 +446,7 @@ entreprise . association non lucrative:
   par défaut: non
 
 entreprise . TVA:
+  titre: Entreprise assujettie à la TVA
   question: L’entreprise est-elle assujettie à la TVA ?
   par défaut: oui
   description: |

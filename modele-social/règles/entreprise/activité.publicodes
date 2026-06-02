@@ -7,7 +7,7 @@ entreprise . activité:
     À quoi correspond le code APE (code NAF) ?: https://entreprendre.service-public.fr/vosdroits/F33050
 
 entreprise . activité . nature:
-  titre: nature de l’activité
+  titre: Nature de l’activité principale
   question: Quelle est la nature de votre activité principale ?
   description: |
     Votre type d’activité va déterminer une grande partie des calculs de cotisations, contributions et impôt.
@@ -67,6 +67,7 @@ entreprise . activité . nature:
         liste des professions libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
     libérale . réglementée:
+      titre: Activité libérale réglementée
       question: Est-ce une activité libérale réglementée ?
       par défaut: non
       description: |
@@ -209,6 +210,7 @@ entreprise . activités:
         Liste des activités libérales: https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/verifiertester-son-idee/liste-professions-liberales
 
 entreprise . activités . service ou vente:
+  titre: Type d’activité principale
   experimental: oui
   non applicable si: activité . revenus mixtes
   applicable si:
