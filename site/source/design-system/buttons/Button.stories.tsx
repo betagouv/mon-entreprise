@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import {
 	ArrowDownIcon,
 	EditIcon,
-	PaperClip,
-	Phone,
-	ReturnIconLeft,
+	LinkIcon,
+	PhoneIcon,
+	ReturnLeftIcon,
 } from '../icons'
 import { Button } from './'
 
@@ -72,13 +72,13 @@ export const AvecIcône: Story = {
 					<ArrowDownIcon /> Primary
 				</Button>
 				<Button color="secondary">
-					<PaperClip /> Secondary
+					<LinkIcon /> Secondary
 				</Button>
 				<Button color="tertiary">
-					<Phone /> Tertiary
+					<PhoneIcon /> Tertiary
 				</Button>
 				<Button color="error">
-					<ReturnIconLeft /> Error
+					<ReturnLeftIcon /> Error
 				</Button>
 				<Button color="success">
 					<EditIcon /> Success
@@ -90,13 +90,13 @@ export const AvecIcône: Story = {
 					<ArrowDownIcon /> Primary light
 				</Button>
 				<Button color="secondary" light>
-					<PaperClip /> Secondary light
+					<LinkIcon /> Secondary light
 				</Button>
 				<Button color="tertiary" light>
-					<Phone /> Tertiary light
+					<PhoneIcon /> Tertiary light
 				</Button>
 				<Button color="error" light>
-					<ReturnIconLeft /> Error light
+					<ReturnLeftIcon /> Error light
 				</Button>
 				<Button color="success" light>
 					<EditIcon /> Success light

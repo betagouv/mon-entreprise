@@ -5,7 +5,7 @@ import {
 	Body,
 	BorderlessButton,
 	Button,
-	Phone,
+	PhoneIcon,
 	PopoverWithTrigger,
 } from '@/design-system'
 
@@ -58,7 +58,7 @@ export const BoutonConseillersEntreprises = ({ variant, siret }: Props) => {
 			title={t('Échanger avec un conseiller')}
 			trigger={() => (
 				<BorderlessButton aria-haspopup="dialog">
-					<Phone />
+					<PhoneIcon />
 					{t(
 						'components.simulateur.conseillers-entreprise.bouton',
 						'Échanger avec un conseiller'

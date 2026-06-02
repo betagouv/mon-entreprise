@@ -1,10 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import {
-	BorderlessButton,
-	PaperClip,
-	PopoverWithTrigger,
-} from '@/design-system'
+import { BorderlessButton, LinkIcon, PopoverWithTrigger } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
 import { usePianoTracking } from '../ATInternetTracking'
@@ -61,7 +57,7 @@ export const BoutonPartage = () => {
 					}}
 					aria-haspopup="dialog"
 				>
-					<PaperClip />
+					<LinkIcon />
 					{t(
 						'components.simulateur.partage.bouton',
 						'Générer un lien de partage'
