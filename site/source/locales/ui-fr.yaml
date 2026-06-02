@@ -325,6 +325,7 @@ components:
       bouton: Générer un lien de partage
       modale:
         titre: Votre lien de partage
+    réinitialiser: Valeurs par défaut
     résultats:
       indisponibles: Entrez un montant pour afficher les résultats détaillés.
     voir-le-détail: Voir le détail

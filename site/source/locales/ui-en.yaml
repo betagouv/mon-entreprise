@@ -311,6 +311,7 @@ components:
       bouton: Generate a share link
       modale:
         titre: Your share link
+    réinitialiser: Default values
     résultats:
       indisponibles: Enter an amount to display detailed results.
     voir-le-détail: See details
