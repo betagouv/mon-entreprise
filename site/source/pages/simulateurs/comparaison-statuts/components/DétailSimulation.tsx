@@ -1,12 +1,7 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import { Condition } from '@/components/EngineValue/Condition'
-import PeriodSwitch from '@/components/PeriodSwitch'
-import Simulation, {
-	SimulationGoal,
-	SimulationGoals,
-} from '@/components/Simulation'
 import {
 	Body,
 	ConteneurBleu,
@@ -15,43 +10,22 @@ import {
 	Message,
 	Spacing,
 } from '@/design-system'
-import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
-import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
 
-import Détails from './Détails'
+import { EngineComparison } from '../EngineComparison'
+import { Comparaison } from './Comparaison'
 import ModifierOptions from './ModifierOptions'
 import StatutChoice from './StatutChoice'
 
-function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
-	const simulateurConfig = useSimulatorData('comparaison-statuts')
-	const { questions, raccourcis } = useSimulationPublicodes(simulateurConfig)
-	const { t } = useTranslation()
+type Props = {
+	namedEngines: EngineComparison
+}
 
+export const DétailSimulation = ({ namedEngines }: Props) => {
 	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<>
-			<Simulation
-				hideDetails
-				showQuestionsFromBeginning
-				questionsPublicodes={questions}
-				raccourcisPublicodes={raccourcis}
-				fullWidth
-				id="simulation-comparateur"
-			>
-				<SimulationGoals>
-					<PeriodSwitch />
-					<SimulationGoal
-						dottedName="entreprise . chiffre d'affaires"
-						isInfoMode
-						label={t("Chiffre d'affaires estimé")}
-					/>
-					<SimulationGoal dottedName="entreprise . charges" isInfoMode />
-				</SimulationGoals>
-			</Simulation>
-
 			<Spacing lg />
 
 			<Condition expression="entreprise . activité . nature . libérale . réglementée">
@@ -87,7 +61,8 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 						<ModifierOptions />
 					</div>
 				</ConteneurBleu>
-				<Détails namedEngines={namedEngines} expandRevenuSection />
+
+				<Comparaison namedEngines={namedEngines} expandRevenuSection />
 
 				<EngineDocumentationRoutes
 					basePath={absoluteSitePaths.simulateurs.comparaison}
@@ -97,5 +72,3 @@ function Comparateur({ namedEngines }: { namedEngines: EngineComparison }) {
 		</>
 	)
 }
-
-export default Comparateur

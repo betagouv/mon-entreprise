@@ -30,7 +30,6 @@ Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
 Charges: Charges
 Chiffre d'affaires: Chiffre d'affaires
-Chiffre d'affaires estimé: Chiffre d'affaires estimé
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
@@ -309,6 +308,30 @@ components:
       salaire-net: Salaire net
   recherche:
     placeholder: "Mot-clé ou acronyme (exemple : CSG)"
+  simulateur:
+    conseillers-entreprise:
+      bouton: Échanger avec un conseiller
+      description: Décrivez votre projet ou votre problème en donnant quelques
+        éléments de contexte. Conseillers-Entreprises Service Public
+        identifiera, parmi l'ensemble des partenaires publics et parapublics, le
+        conseiller compétent pour votre demande. Celui-ci vous contactera par
+        téléphone sous 5 jours et vous accompagnera en fonction de votre
+        situation.
+    partage:
+      bouton: Générer un lien de partage
+      modale:
+        titre: Votre lien de partage
+    résultats:
+      indisponibles: Entrez un montant pour afficher les résultats détaillés.
+    voir-le-détail: Voir le détail
+    zone-de-saisie:
+      info-mise-à-jour: Les données de simulations se mettront automatiquement à jour
+        après la modification d’un champ.
+      montants:
+        titre: Montants
+      situation:
+        retour: Revenir à la liste
+        titre: Situation
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
@@ -1746,6 +1769,8 @@ pages:
         title: Modifier mes options
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
+      montants:
+        CA: Chiffre d’affaires estimé
       option-applicable: Option applicable.
       option-non-applicable: Option non applicable.
       option-sous-conditions: Option applicable sous conditions.

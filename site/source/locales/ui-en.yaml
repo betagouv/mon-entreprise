@@ -28,7 +28,6 @@ Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
 Charges: Charges
 Chiffre d'affaires: Sales figures
-Chiffre d'affaires estimé: Estimated sales
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   How does it work? See the explanatory page on the github repository page, new
   window
@@ -296,6 +295,28 @@ components:
       salaire-net: Net salary
   recherche:
     placeholder: Keyword or acronym (e.g. CSG)
+  simulateur:
+    conseillers-entreprise:
+      bouton: Talk to an advisor
+      description: Describe your project or problem and provide some background
+        information. Conseillers-Entreprises Service Public will identify the
+        appropriate advisor for your request from among all our public and
+        semi-public partners. He or she will contact you by telephone within 5
+        days, and will provide you with assistance tailored to your situation.
+    partage:
+      bouton: Generate a share link
+      modale:
+        titre: Your share link
+    résultats:
+      indisponibles: Enter an amount to display detailed results.
+    voir-le-détail: See details
+    zone-de-saisie:
+      info-mise-à-jour: Simulation data is automatically updated when a field is modified.
+      montants:
+        titre: Amounts
+      situation:
+        retour: Back to list
+        titre: Situation
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:
@@ -1650,6 +1671,8 @@ pages:
         title: Modify my options
         versement-libératoire:
           label: Activate final payment in simulation
+      montants:
+        CA: Estimated sales
       option-applicable: Applicable option.
       option-non-applicable: Option not applicable.
       option-sous-conditions: Option available subject to conditions.
