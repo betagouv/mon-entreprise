@@ -31,9 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang={langue} className={`${roboto.variable} ${montserrat.variable}`}>
 			<head>
-				<script
-					dangerouslySetInnerHTML={{ __html: darkModeAntiFlashScript }}
-				/>
+				<script dangerouslySetInnerHTML={{ __html: darkModeAntiFlashScript }} />
 			</head>
 			<body>
 				<Providers>{children}</Providers>
