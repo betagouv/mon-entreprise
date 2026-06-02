@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { PaperClip } from '../icons'
+import { LinkIcon } from '../icons'
 import { BorderlessButton } from './BorderlessButton'
 
 const meta: Meta<typeof BorderlessButton> = {
@@ -18,7 +18,7 @@ export const Partage: Story = {
 	args: {
 		children: (
 			<>
-				<PaperClip />
+				<LinkIcon />
 				Générer un lien de partage
 			</>
 		),

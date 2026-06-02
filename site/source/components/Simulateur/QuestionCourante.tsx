@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button, H3, ReturnIconLeft } from '@/design-system'
+import { Button, H3, ReturnLeftIcon } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { Question } from '@/hooks/useQuestionsV2'
 
@@ -18,7 +18,7 @@ export const QuestionCourante = ({ Question, retour }: Props) => {
 	return (
 		<>
 			<Button light size="XS" onPress={retour}>
-				<ReturnIconLeft />
+				<ReturnLeftIcon />
 				{t(
 					'components.simulateur.zone-de-saisie.situation.retour',
 					'Revenir à la liste'
