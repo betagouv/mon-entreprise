@@ -10,6 +10,7 @@ const meta: Meta<typeof SvgIcon> = {
 export default meta
 
 export {
+	ArrowCircleIcon,
 	ArrowRightIcon,
 	ArrowDownIcon,
 	CarretDownIcon,

@@ -8,6 +8,7 @@ import { Question } from '@/hooks/useQuestionsV2'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
+import { BoutonReset } from './BoutonReset'
 
 export type QuestionEnListe = {
 	id: DottedName
@@ -28,32 +29,47 @@ export const ListeQuestions = ({
 }: Props) => {
 	const { t } = useTranslation()
 
-	return questions.map((question) => (
-		<QuestionContainer key={question.id}>
-			<LabelContainer>
-				{question.libellé(t)}
-				<ExplicableRule
-					aria-label={t(`Info sur {{ title }}`, {
-						title: question.libellé(t),
-					})}
-					light
-					dottedName={question.id}
-				/>
-			</LabelContainer>
+	return (
+		<>
+			<BoutonsContainer>
+				<BoutonReset />
+			</BoutonsContainer>
 
-			<ValueContainer>
-				<StyledValue
-					expression={question.id}
-					linkToRule={false}
-					$répondue={question.répondue(situation)}
-				/>
-				<EditButton light onPress={() => onSélection(question)}>
-					<EditIcon />
-				</EditButton>
-			</ValueContainer>
-		</QuestionContainer>
-	))
+			{questions.map((question) => (
+				<QuestionContainer key={question.id}>
+					<LabelContainer>
+						{question.libellé(t)}
+						<ExplicableRule
+							aria-label={t(`Info sur {{ title }}`, {
+								title: question.libellé(t),
+							})}
+							light
+							dottedName={question.id}
+						/>
+					</LabelContainer>
+
+					<ValueContainer>
+						<StyledValue
+							expression={question.id}
+							linkToRule={false}
+							$répondue={question.répondue(situation)}
+						/>
+						<EditButton light onPress={() => onSélection(question)}>
+							<EditIcon />
+						</EditButton>
+					</ValueContainer>
+				</QuestionContainer>
+			))}
+		</>
+	)
 }
+
+const BoutonsContainer = styled.div`
+	padding: ${({ theme }) => theme.spacings.xs} 0
+		${({ theme }) => theme.spacings.md} 0;
+	display: flex;
+	justify-content: end;
+`
 
 const QuestionContainer = styled.div`
 	display: flex;
