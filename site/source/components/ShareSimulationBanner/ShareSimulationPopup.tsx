@@ -16,7 +16,7 @@ import {
 import { usePianoTracking } from '../ATInternetTracking'
 
 export function ShareSimulationPopup({ url }: { url: string }) {
-	const inputRef = useRef<HTMLInputElement>(null)
+	const inputRef = useRef<HTMLInputElement>(null!)
 	const { t } = useTranslation()
 	const [linkCopied, setLinkCopied] = useState(false)
 	const tracker = usePianoTracking()

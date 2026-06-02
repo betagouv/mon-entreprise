@@ -1,11 +1,6 @@
-import { useButton } from '@react-aria/button'
-import { useSearchField } from '@react-aria/searchfield'
-import {
-	SearchFieldState,
-	useSearchFieldState,
-} from '@react-stately/searchfield'
-import { AriaSearchFieldProps } from '@react-types/searchfield'
 import { ReactNode, useRef } from 'react'
+import { AriaSearchFieldProps, useButton, useSearchField } from 'react-aria'
+import { SearchFieldState, useSearchFieldState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '../../global-style'

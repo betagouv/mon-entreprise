@@ -1,6 +1,5 @@
-import { useRadioGroup } from '@react-aria/radio'
-import { useRadioGroupState } from '@react-stately/radio'
-import { AriaRadioGroupProps } from '@react-types/radio'
+import { AriaRadioGroupProps, useRadioGroup } from 'react-aria'
+import { useRadioGroupState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
 import {

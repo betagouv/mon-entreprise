@@ -1,5 +1,5 @@
 import { ResizeObserver } from '@juggle/resize-observer'
-import { SSRProvider } from '@react-aria/ssr'
+import { SSRProvider } from 'react-aria'
 import ReactDomServerType from 'react-dom/server'
 // @ts-ignore
 import ReactDomServer from 'react-dom/server.browser'

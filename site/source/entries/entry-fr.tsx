@@ -1,5 +1,5 @@
-import { I18nProvider } from '@react-aria/i18n'
 import { withProfiler } from '@sentry/react'
+import { I18nProvider } from 'react-aria'
 import { createRoot } from 'react-dom/client'
 
 import App from '../components/App'

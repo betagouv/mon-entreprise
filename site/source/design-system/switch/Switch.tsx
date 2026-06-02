@@ -1,6 +1,6 @@
-import { useSwitch } from '@react-aria/switch'
-import { useToggleState } from '@react-stately/toggle'
 import { ReactNode, useRef } from 'react'
+import { useSwitch } from 'react-aria'
+import { useToggleState } from 'react-stately'
 import { css, styled } from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 

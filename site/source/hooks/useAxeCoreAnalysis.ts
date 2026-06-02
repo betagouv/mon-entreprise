@@ -11,7 +11,7 @@ export const useAxeCoreAnalysis = () => {
 				) => Promise<void>
 		  }
 		| undefined
-	>()
+	>(undefined)
 
 	const triggerAxeCoreAnalysis = async () => {
 		await axeRef.current?.default(React, ReactDOM, 1000)

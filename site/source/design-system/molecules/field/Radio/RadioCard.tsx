@@ -1,5 +1,5 @@
-import { AriaRadioProps } from '@react-types/radio'
 import React, { ComponentProps } from 'react'
+import { AriaRadioProps } from 'react-aria'
 import { styled } from 'styled-components'
 
 import { CardContainer } from '../../../card/Card'

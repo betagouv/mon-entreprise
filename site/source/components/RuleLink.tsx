@@ -45,6 +45,8 @@ export default function RuleLink({
 
 	return (
 		<EngineRuleLink
+			// @ts-ignore @publicodes/react-ui ne déclare pas `id` dans ses props,
+			// mais le propage au runtime via `...propsRest`.
 			id={id}
 			dottedName={dottedName}
 			aria-label={ariaLabel}

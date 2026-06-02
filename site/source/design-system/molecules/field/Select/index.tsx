@@ -1,11 +1,13 @@
-import { useButton } from '@react-aria/button'
-import { useFocusRing } from '@react-aria/focus'
-import { useSelect } from '@react-aria/select'
-import { mergeProps } from '@react-aria/utils'
-import { useSelectState } from '@react-stately/select'
-import type { AriaSelectProps } from '@react-types/select'
 import { useEffect, useRef } from 'react'
+import {
+	mergeProps,
+	useButton,
+	useFocusRing,
+	useSelect,
+	type AriaSelectProps,
+} from 'react-aria'
 import { useTranslation } from 'react-i18next'
+import { useSelectState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
 import { omit } from '@/utils'

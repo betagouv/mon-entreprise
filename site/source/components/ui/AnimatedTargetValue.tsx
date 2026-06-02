@@ -28,8 +28,8 @@ export default function AnimatedTargetValue({
 	const numericValue = value.valeur
 	const valueUnit = value.unité
 
-	const previousValue = useRef<number>()
-	const previousDifference = useRef<number>()
+	const previousValue = useRef<number | undefined>(undefined)
+	const previousDifference = useRef<number | undefined>(undefined)
 	const { language } = useTranslation().i18n
 	const previousUnit = useRef(valueUnit)
 

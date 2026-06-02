@@ -1,5 +1,3 @@
-import { useButton } from '@react-aria/button'
-import { AriaButtonProps } from '@react-types/button'
 import React, {
 	ComponentProps,
 	ComponentPropsWithRef,
@@ -7,6 +5,7 @@ import React, {
 	useCallback,
 	useRef,
 } from 'react'
+import { AriaButtonOptions, AriaButtonProps, useButton } from 'react-aria'
 import { css, styled } from 'styled-components'
 
 import { NavLink } from '@/lib/navigation'
@@ -185,7 +184,10 @@ export function useButtonOrLink(
 		'href' in props ? 'a' : 'to' in props ? CustomNavLink : 'button'
 
 	const defaultRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null)
-	const { buttonProps } = useButton({ elementType, ...props }, defaultRef)
+	const { buttonProps } = useButton(
+		{ elementType, ...props } as AriaButtonOptions<typeof elementType>,
+		defaultRef
+	)
 
 	const ref = useCallback(
 		(instance: HTMLAnchorElement | HTMLButtonElement | null) => {

@@ -48,7 +48,12 @@ const flatMapChildren = (children: React.ReactNode): Array<string | number> => {
 			? flatMapChildren(Array.from(child))
 			: typeof child === 'object' && 'props' in child
 			? // eslint-disable-next-line
-			  (child.props?.value as string) ?? flatMapChildren(child.props?.children)
+			  ((child.props as { value?: string; children?: React.ReactNode })
+					?.value as string) ??
+			  flatMapChildren(
+					(child.props as { value?: string; children?: React.ReactNode })
+						?.children
+			  )
 			: ''
 	)
 }

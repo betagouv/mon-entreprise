@@ -1,5 +1,6 @@
 import type { TFunction } from 'i18next'
 import { PublicodesExpression } from 'publicodes'
+import type { JSX } from 'react'
 
 import { TrackingChapters } from '@/components/ATInternetTracking'
 import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprisesButton'

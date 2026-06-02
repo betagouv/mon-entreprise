@@ -1,5 +1,5 @@
 import FocusTrap from 'focus-trap-react'
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -19,7 +19,7 @@ export const FeedbackButton = ({ isEmbedded }: { isEmbedded?: boolean }) => {
 		() => !feedbackFormIsOpened && setIsPanelOpen(false)
 	)
 
-	const buttonRef = useRef() as MutableRefObject<HTMLButtonElement | null>
+	const buttonRef = useRef<HTMLButtonElement | null>(null)
 
 	const handleClose = () => {
 		setIsPanelOpen(false)

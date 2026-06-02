@@ -1,10 +1,9 @@
 import { useAccordion, useAccordionItem } from '@react-aria/accordion'
-import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
-import { Node } from '@react-types/shared'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { animated, useSpring } from 'react-spring'
+import { Node, TreeState, useTreeState } from 'react-stately'
 import useMeasure from 'react-use-measure'
 import { css, styled } from 'styled-components'
 

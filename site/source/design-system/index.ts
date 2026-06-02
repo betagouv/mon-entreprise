@@ -1,4 +1,4 @@
-export { Item } from '@react-stately/collections'
+export { Item } from 'react-stately'
 
 // Core
 export { GlobalStyle, FlexCenter, FocusStyle, SROnly } from './global-style'

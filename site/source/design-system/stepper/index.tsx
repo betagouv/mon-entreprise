@@ -1,7 +1,5 @@
-import { useProgressBar } from '@react-aria/progress'
-import { useSSRSafeId } from '@react-aria/ssr'
-import { AriaButtonProps } from '@react-types/button'
-import { ComponentPropsWithRef } from 'react'
+import { ComponentPropsWithRef, useId } from 'react'
+import { AriaButtonProps, useProgressBar } from 'react-aria'
 import { Trans } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
@@ -22,7 +20,7 @@ export function Step({
 	children,
 	...props
 }: Props) {
-	const labelId = useSSRSafeId()
+	const labelId = useId()
 	if (import.meta.env.DEV && (progress > 1 || progress < 0)) {
 		throw new TypeError('`progress` should be a number between 0 and 1')
 	}

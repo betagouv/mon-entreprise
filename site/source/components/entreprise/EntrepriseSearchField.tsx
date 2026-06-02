@@ -1,6 +1,6 @@
-import { useSearchFieldState } from '@react-stately/searchfield'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSearchFieldState } from 'react-stately'
 
 import { Grid, SearchableSelectField } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
