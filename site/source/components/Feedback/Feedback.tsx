@@ -33,7 +33,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
 	const { currentPath } = useNavigation()
-	const tag = usePianoTracker()
+	const tracker = usePianoTracker()
 
 	const { absoluteSitePaths } = useSitePaths()
 	const isSimulateurSalaire =
@@ -45,7 +45,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 	const submitFeedback = useCallback(
 		(rating: FeedbackT) => {
 			setFeedbackGivenForUrl(currentPath)
-			tag?.sendEvent('click.action', {
+			tracker?.sendEvent('click.action', {
 				click_chapter1: 'satisfaction',
 				click: rating,
 			})
@@ -58,7 +58,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 			setIsShowingThankMessage(!isNotSatisfiedValue)
 			setIsShowingSuggestionForm(isNotSatisfiedValue)
 		},
-		[tag, currentPath]
+		[currentPath, tracker]
 	)
 
 	const shouldShowFeedback = shouldAskFeedback(currentPath)
