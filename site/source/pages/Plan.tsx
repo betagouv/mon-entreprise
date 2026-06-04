@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import { H1, Li, Link, Ul } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'

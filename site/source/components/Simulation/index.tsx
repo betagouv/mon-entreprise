@@ -17,7 +17,7 @@ import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { firstStepCompletedSelector } from '@/store/selectors/simulation/firstStepCompleted.selector'
 
-import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../ATInternetTracking'
+import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../PianoAnalytics'
 import { Feedback } from '../Feedback/Feedback'
 import { shouldAskFeedback } from '../Feedback/utils'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import Loader from '@/components/utils/Loader'
 import Meta from '@/components/utils/Meta'
 import { Body, H1 } from '@/design-system'

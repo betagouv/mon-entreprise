@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { H2 } from '@/design-system'
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { usePianoTracking } from '@/components/ATInternetTracking'
+import { usePianoTracker } from '@/components/PianoAnalytics'
 import {
 	Body,
 	Button,
@@ -33,7 +33,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
 	const { currentPath } = useNavigation()
-	const tag = usePianoTracking()
+	const tag = usePianoTracker()
 
 	const { absoluteSitePaths } = useSitePaths()
 	const isSimulateurSalaire =

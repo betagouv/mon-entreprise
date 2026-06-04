@@ -20,7 +20,7 @@ import {
 	ACCUEIL,
 	SIMULATION_COMMENCEE,
 	SIMULATION_TERMINEE,
-} from '@/components/ATInternetTracking'
+} from '@/components/PianoAnalytics'
 import { Body, Li, Strong, Ul } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'

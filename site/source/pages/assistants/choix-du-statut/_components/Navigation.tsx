@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import { Button, Grid, Spacing } from '@/design-system'
 
 import {

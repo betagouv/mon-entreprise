@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Navigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import { determinant, useHideNewsBanner } from '@/components/layout/NewsBanner'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import Meta from '@/components/utils/Meta'

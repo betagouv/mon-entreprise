@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { BorderlessButton, LinkIcon, PopoverWithTrigger } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
-import { usePianoTracking } from '../ATInternetTracking'
+import { usePianoTracker } from '../PianoAnalytics'
 import { ShareSimulationPopup } from '../ShareSimulationBanner/ShareSimulationPopup'
 
 export const BoutonPartage = () => {
 	const { t } = useTranslation()
-	const tracker = usePianoTracking()
+	const tracker = usePianoTracker()
 	const url = useUrl()
 	const shareAPIAvailable = !!window?.navigator?.share
 	const startSharing = async () => {

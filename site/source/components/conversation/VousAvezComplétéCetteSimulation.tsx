@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 
-import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
+import { SIMULATION_TERMINEE, TrackPage } from '@/components/PianoAnalytics'
 import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import Notifications from '@/components/Notifications'
 import { Body, Button, Emoji, Grid, H3, Spacing } from '@/design-system'
