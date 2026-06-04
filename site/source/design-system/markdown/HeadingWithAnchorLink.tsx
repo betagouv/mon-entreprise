@@ -47,8 +47,7 @@ const flatMapChildren = (children: React.ReactNode): Array<string | number> => {
 			: isIterable(child)
 			? flatMapChildren(Array.from(child))
 			: typeof child === 'object' && 'props' in child
-			? // eslint-disable-next-line
-			  ((child.props as { value?: string; children?: React.ReactNode })
+			? ((child.props as { value?: string; children?: React.ReactNode })
 					?.value as string) ??
 			  flatMapChildren(
 					(child.props as { value?: string; children?: React.ReactNode })
