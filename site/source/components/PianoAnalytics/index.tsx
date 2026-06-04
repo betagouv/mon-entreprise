@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect } from 'react'
 
-import { ATTracker } from './Tracker'
+import { PianoTracker } from './PianoTracker'
 
-export const TrackingContext = createContext<ATTracker | null>(null)
+export const PianoTrackerContext = createContext<PianoTracker | null>(null)
 
-export function usePianoTracking(): ATTracker | null {
-	return useContext(TrackingContext)
+export function usePianoTracker(): PianoTracker | null {
+	return useContext(PianoTrackerContext)
 }
 
 // From https://github.com/nclsmitchell/at-internet
@@ -42,10 +42,11 @@ export type TrackingChapters = {
 	chapter3?: string
 }
 
-const PageChapterContext = createContext<TrackingChapters>({})
+const TrackingChaptersContext = createContext<TrackingChapters>({})
 
-function useChapters(props: TrackingChapters): TrackingChapters {
-	let chapters = useContext(PageChapterContext)
+function useTrackingChapters(props: TrackingChapters): TrackingChapters {
+	let chapters = useContext(TrackingChaptersContext)
+
 	if (props.chapter1) {
 		chapters = { chapter2: '', chapter3: '', ...props }
 	}
@@ -59,7 +60,7 @@ function useChapters(props: TrackingChapters): TrackingChapters {
 	return chapters
 }
 
-export function TrackChapter({
+export function TrackingChaptersProvider({
 	children,
 	...chaptersProps
 }: {
@@ -68,12 +69,12 @@ export function TrackChapter({
 	chapter3?: string
 	children: React.ReactNode
 }) {
-	const chapters = useChapters(chaptersProps)
+	const chapters = useTrackingChapters(chaptersProps)
 
 	return (
-		<PageChapterContext.Provider value={chapters}>
+		<TrackingChaptersContext.Provider value={chapters}>
 			{children}
-		</PageChapterContext.Provider>
+		</TrackingChaptersContext.Provider>
 	)
 }
 
@@ -85,8 +86,8 @@ export function TrackPage({
 	name?: string
 	children?: React.ReactNode
 } & TrackingChapters) {
-	const { chapter1, chapter2, chapter3 } = useChapters(chapters)
-	const tag = usePianoTracking()
+	const { chapter1, chapter2, chapter3 } = useTrackingChapters(chapters)
+	const tag = usePianoTracker()
 	useEffect(() => {
 		tag?.sendEvent(
 			'page.display',

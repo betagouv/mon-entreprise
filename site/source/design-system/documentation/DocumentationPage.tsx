@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import Meta from '@/components/utils/Meta'
 import { Link } from '@/design-system'
 

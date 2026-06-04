@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { toAtString } from '@/components/ATInternetTracking'
+import { toAtString } from '@/components/PianoAnalytics'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'

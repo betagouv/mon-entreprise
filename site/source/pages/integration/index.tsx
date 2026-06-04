@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
-import { TrackChapter } from '@/components/ATInternetTracking'
+import { TrackingChaptersProvider } from '@/components/PianoAnalytics'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Banner, Emoji, InnerBanner, Link } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
@@ -29,7 +29,7 @@ export default function Integration() {
 	const { t } = useTranslation()
 
 	return (
-		<TrackChapter chapter1="integration">
+		<TrackingChaptersProvider chapter1="integration">
 			<ScrollToTop />
 
 			{currentPath !== absoluteSitePaths.développeur.index && (
@@ -74,6 +74,6 @@ export default function Integration() {
 					element={<Spreadsheet />}
 				/>
 			</Routes>
-		</TrackChapter>
+		</TrackingChaptersProvider>
 	)
 }

@@ -8,7 +8,7 @@ import {
 	ACCUEIL,
 	SIMULATION_TERMINEE,
 	TrackPage,
-} from '@/components/ATInternetTracking'
+} from '@/components/PianoAnalytics'
 import RuleInput from '@/components/conversation/RuleInput'
 import Value from '@/components/EngineValue/Value'
 import Notifications from '@/components/Notifications'

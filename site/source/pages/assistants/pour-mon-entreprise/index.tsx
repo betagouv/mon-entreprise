@@ -6,7 +6,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { useOverlayTriggerState } from 'react-stately'
 import { styled } from 'styled-components'
 
-import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'

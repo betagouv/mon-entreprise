@@ -1,7 +1,7 @@
 import * as R from 'effect/Record'
 import { useState } from 'react'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import {

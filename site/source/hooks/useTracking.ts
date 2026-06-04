@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { usePianoTracking } from '@/components/ATInternetTracking'
+import { usePianoTracker } from '@/components/PianoAnalytics'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 
 export type ClickTracking = {
@@ -10,7 +10,7 @@ export type ClickTracking = {
 }
 
 export function useTracking() {
-	const pianoTracker = usePianoTracking()
+	const pianoTracker = usePianoTracker()
 	const plausibleTracker = usePlausibleTracking()
 
 	const trackClick = useCallback(

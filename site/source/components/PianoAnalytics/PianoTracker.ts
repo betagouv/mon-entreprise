@@ -1,7 +1,7 @@
 // Ajoute la propriété 'pa' à Window pour que Typescript accepte window.pa
 declare global {
 	interface Window {
-		pa: ATTracker
+		pa: PianoTracker
 		pdl: {
 			requireConsent: string
 			consent: {
@@ -29,7 +29,7 @@ export type ClickHit = {
 	evenement_type?: 'telechargement'
 }
 
-export interface ATTracker {
+export interface PianoTracker {
 	setConfigurations(options: {
 		site: number
 		collectDomain: string
@@ -63,7 +63,7 @@ export interface ATTracker {
 	}
 }
 
-export function createTracker(siteId?: string, doNotTrack = false) {
+export function createPianoTracker(siteId?: string, doNotTrack = false) {
 	const site = siteId ? +siteId : 0
 	if (Number.isNaN(site)) {
 		throw new Error('Expect string siteId to be of number form')
@@ -73,7 +73,7 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 		throw new Error('Piano Analytics script not loaded')
 	}
 
-	class PianoTracker implements ATTracker {
+	class Tracker implements PianoTracker {
 		constructor(options: { language: 'fr' | 'en' }) {
 			window.pa.setConfigurations({
 				site,
@@ -139,5 +139,5 @@ export function createTracker(siteId?: string, doNotTrack = false) {
 		}
 	}
 
-	return PianoTracker
+	return Tracker
 }

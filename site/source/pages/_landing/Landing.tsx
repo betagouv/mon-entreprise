@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
