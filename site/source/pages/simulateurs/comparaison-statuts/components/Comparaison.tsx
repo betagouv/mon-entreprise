@@ -98,6 +98,10 @@ export const Comparaison = ({
 					}
 					key="revenus"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.revenus.title',
+						'Vos revenus'
+					)}
 				>
 					<StyledH4>
 						{t(
@@ -259,6 +263,10 @@ export const Comparaison = ({
 					}
 					key="retraite"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.retraite.title',
+						'Vos droits pour la retraite'
+					)}
 				>
 					<StyledH4>
 						{t(
@@ -382,6 +390,10 @@ export const Comparaison = ({
 					}
 					key="santé"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.santé.title',
+						'Vos prestations santé'
+					)}
 				>
 					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.body">
 						<BodyNoBottomMargin>
@@ -506,6 +518,10 @@ export const Comparaison = ({
 					}
 					key="enfants"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.parentalité.title',
+						'La maternité, paternité et adoption'
+					)}
 				>
 					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.parentalité.body">
 						<BodyNoBottomMargin>
@@ -591,6 +607,10 @@ export const Comparaison = ({
 					}
 					key="maladie"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.prévoyance.title',
+						'Votre couverture invalidité et décès'
+					)}
 				>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.body">
@@ -754,6 +774,10 @@ export const Comparaison = ({
 					}
 					key="administratif"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.gestion.title',
+						'La gestion juridique et comptable'
+					)}
 				>
 					<StyledH4>
 						{t(
