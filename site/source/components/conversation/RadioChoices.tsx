@@ -92,11 +92,8 @@ export function RadioChoices<Names extends string = DottedName>({
 									{type !== 'toggle' && (
 										<>
 											<ExplicableRule
-												light
 												dottedName={node.dottedName as DottedName}
-												aria-label={t('Info sur {{ title }}', {
-													title: node.title,
-												})}
+												light
 											/>
 										</>
 									)}

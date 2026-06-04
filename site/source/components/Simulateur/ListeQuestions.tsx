@@ -39,13 +39,7 @@ export const ListeQuestions = ({
 				<QuestionContainer key={question.id}>
 					<LabelContainer>
 						{question.libellé(t)}
-						<ExplicableRule
-							aria-label={t(`Info sur {{ title }}`, {
-								title: question.libellé(t),
-							})}
-							light
-							dottedName={question.id}
-						/>
+						<ExplicableRule light dottedName={question.id} />
 					</LabelContainer>
 
 					<ValueContainer>
