@@ -10,7 +10,7 @@ import {
 } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
-import { usePianoTracker } from '../PianoAnalytics'
+import { usePianoTracker } from '../PianoAnalytics/PianoTrackerContext'
 import {
 	ConseillersEntreprisesButton,
 	type ConseillersEntreprisesVariant,

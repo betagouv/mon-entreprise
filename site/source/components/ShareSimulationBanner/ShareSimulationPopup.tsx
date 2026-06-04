@@ -13,7 +13,7 @@ import {
 	TextField,
 } from '@/design-system'
 
-import { usePianoTracker } from '../PianoAnalytics'
+import { usePianoTracker } from '../PianoAnalytics/PianoTrackerContext'
 
 export function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef = useRef<HTMLInputElement>(null!)
