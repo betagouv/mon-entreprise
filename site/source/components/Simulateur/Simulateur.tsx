@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -5,8 +6,10 @@ import { SmallBody } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesV2'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { useTracking } from '@/hooks/useTracking'
 
 import { ConseillersEntreprisesVariant } from '../ConseillersEntreprisesButton'
+import { ACCUEIL, SIMULATION_COMMENCEE } from '../PianoAnalytics'
 import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'
 import { ZoneDeSaisie } from './ZoneDeSaisie'
@@ -17,6 +20,7 @@ type Props<S extends Situation = Situation> = {
 	questionsPublicodes: QuestionPublicodes<S>[]
 	avertissement?: React.ReactNode
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
+	simulationEstCommencée: boolean
 	détail?: React.ReactNode
 }
 
@@ -26,17 +30,18 @@ export const Simulateur = ({
 	questionsPublicodes,
 	avertissement,
 	conseillersEntreprisesVariant,
+	simulationEstCommencée,
 	détail,
 }: Props) => {
-	const laSimulationEstCommencée = simulationEstCommencée
-		? simulationEstCommencée(situation)
-		: true
+	const { trackPage } = useTracking()
 	const { t } = useTranslation()
+
+	useEffect(() => {
+		trackPage({ name: simulationEstCommencée ? SIMULATION_COMMENCEE : ACCUEIL })
+	}, [simulationEstCommencée, trackPage])
 
 	return (
 		<Container>
-			{/* Tracking */}
-
 			<SimulateurWarning
 				simulateur={id}
 				informationsComplémentaires={avertissement}
@@ -55,15 +60,15 @@ export const Simulateur = ({
 			/>
 
 			{détail ? (
-					<div id="simulation-détail">{détail}</div>
-				) : (
-					<SmallBody>
-						{t(
-							'components.simulateur.résultats.indisponibles',
-							'Entrez un montant pour afficher les résultats détaillés.'
-						)}
-					</SmallBody>
-				)}
+				<div id="simulation-détail">{détail}</div>
+			) : (
+				<SmallBody>
+					{t(
+						'components.simulateur.résultats.indisponibles',
+						'Entrez un montant pour afficher les résultats détaillés.'
+					)}
+				</SmallBody>
+			)}
 		</Container>
 	)
 }
