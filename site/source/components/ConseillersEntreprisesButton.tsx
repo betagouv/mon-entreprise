@@ -93,12 +93,8 @@ export const ConseillersEntreprisesButton = ({
 							<LazyIframe
 								src={url.href}
 								onLoad={function () {
-									console.log('iframe loaded')
-
 									document.getElementById('pdeIframe')?.focus()
 									scrollTo(0, 0)
-
-									console.log('done!')
 								}}
 							/>
 						</Suspense>
