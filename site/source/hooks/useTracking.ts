@@ -1,9 +1,13 @@
 import { useCallback } from 'react'
 
-import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
-import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
-import { getTrackingChapters, TrackingChapters, useTrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { toAtString } from '@/components/PianoAnalytics'
+import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
+import {
+	getTrackingChapters,
+	TrackingChapters,
+	useTrackingChapters,
+} from '@/components/PianoAnalytics/TrackingChaptersContext'
+import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 
 type ClickTracking = {
 	feature: string
@@ -37,7 +41,10 @@ export function useTracking() {
 
 	const trackPage = useCallback(
 		({ name, ...chapters }: PageTracking) => {
-			const { chapter1, chapter2, chapter3 } = getTrackingChapters(currentPianoChapters, chapters)
+			const { chapter1, chapter2, chapter3 } = getTrackingChapters(
+				currentPianoChapters,
+				chapters
+			)
 
 			pianoTracker?.sendEvent(
 				'page.display',

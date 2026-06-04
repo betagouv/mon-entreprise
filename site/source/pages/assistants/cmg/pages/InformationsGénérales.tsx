@@ -1,9 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import {
-	SIMULATION_COMMENCEE,
-	TrackPage,
-} from '@/components/PianoAnalytics'
+import { SIMULATION_COMMENCEE, TrackPage } from '@/components/PianoAnalytics'
 import { estInformationsValides, useCMG } from '@/contextes/cmg'
 
 import QuestionCMGPerçu from '../components/informations-générales/QuestionCMGPerçu'

@@ -1,15 +1,19 @@
 import i18next from 'i18next'
 import { useEffect, useState } from 'react'
 
-import { PianoTrackerContext } from '@/components/PianoAnalytics/PianoTrackerContext'
 import {
 	createPianoTracker,
 	PianoTracker,
 } from '@/components/PianoAnalytics/PianoTracker'
+import { PianoTrackerContext } from '@/components/PianoAnalytics/PianoTrackerContext'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import { scheduleWhenIdle } from '@/utils/polyfill'
 
-export function PianoTrackerProvider({ children }: { children: React.ReactNode }) {
+export function PianoTrackerProvider({
+	children,
+}: {
+	children: React.ReactNode
+}) {
 	const [tracker, setTracker] = useState<PianoTracker | null>(null)
 	const [script, setScript] = useState<HTMLScriptElement | null>(null)
 	const [injected, setInjected] = useState<boolean>(false)
