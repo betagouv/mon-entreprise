@@ -5,7 +5,7 @@ import {
 	ComposedChart,
 	Legend,
 	Tooltip,
-	TooltipProps,
+	TooltipContentProps,
 	XAxis,
 	YAxis,
 } from 'recharts'
@@ -116,7 +116,11 @@ export default function PagesChart({
 							stroke={darkMode ? 'lightGrey' : 'gray'}
 						/>
 
-						<Tooltip content={<CustomTooltip />} />
+						<Tooltip
+							content={({ active, payload }) => (
+								<CustomTooltip active={active} payload={payload} />
+							)}
+						/>
 
 						{dataKeys.map((k, i) => (
 							<Bar
@@ -144,7 +148,10 @@ function formatMonth(date: string | Date) {
 const CustomTooltip = ({
 	active,
 	payload,
-}: TooltipProps<string | number, string>) => {
+}: Pick<
+	TooltipContentProps<string | number, string>,
+	'active' | 'payload'
+>) => {
 	const language = useTranslation().i18n.language
 	if (!active || !payload) {
 		return null
@@ -173,8 +180,8 @@ const CustomTooltip = ({
 	)
 }
 
-const formatLegend = (key: string) =>
-	key.replace('simulateurs / ', '').replace(/_/g, ' ')
+const formatLegend = (key: string | number) =>
+	String(key).replace('simulateurs / ', '').replace(/_/g, ' ')
 
 const ColoredLi = styled(Li)<{ color?: string }>`
 	&::before {
