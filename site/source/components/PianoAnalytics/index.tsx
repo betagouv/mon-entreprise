@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect } from 'react'
 
 import { PianoTracker } from './PianoTracker'
+import { TrackingChapters, useTrackingChapters } from './TrackingChaptersContext'
 
 export const PianoTrackerContext = createContext<PianoTracker | null>(null)
 
@@ -26,57 +27,6 @@ export function toAtString(string: string): string {
 export const ACCUEIL = 'accueil'
 export const SIMULATION_COMMENCEE = 'simulation_commencee'
 export const SIMULATION_TERMINEE = 'simulation_terminee'
-
-// Chapter definition : https://www.atinternet.com/en/glossary/chapter/
-type Chapter1 =
-	| 'simulateurs'
-	| 'informations'
-	| 'assistants'
-	| 'documentation'
-	| 'integration'
-	| 'navigation'
-
-export type TrackingChapters = {
-	chapter1?: Chapter1
-	chapter2?: string
-	chapter3?: string
-}
-
-const TrackingChaptersContext = createContext<TrackingChapters>({})
-
-function useTrackingChapters(props: TrackingChapters): TrackingChapters {
-	let chapters = useContext(TrackingChaptersContext)
-
-	if (props.chapter1) {
-		chapters = { chapter2: '', chapter3: '', ...props }
-	}
-	if (props.chapter2) {
-		chapters = { ...chapters, chapter3: '', ...props }
-	}
-	if (props.chapter3) {
-		chapters = { ...chapters, ...props }
-	}
-
-	return chapters
-}
-
-export function TrackingChaptersProvider({
-	children,
-	...chaptersProps
-}: {
-	chapter1?: Chapter1
-	chapter2?: string
-	chapter3?: string
-	children: React.ReactNode
-}) {
-	const chapters = useTrackingChapters(chaptersProps)
-
-	return (
-		<TrackingChaptersContext.Provider value={chapters}>
-			{children}
-		</TrackingChaptersContext.Provider>
-	)
-}
 
 export function TrackPage({
 	name,
