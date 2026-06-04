@@ -1,9 +1,7 @@
-import { intersection } from 'effect/Array'
 import { useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle, SimulationConfig } from '@/domaine/SimulationConfig'
-import { Situation } from '@/domaine/Situation'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
@@ -34,13 +32,8 @@ export default function useSimulationPublicodes(
 
 	const questions = useQuestionsPublicodes(nomModèle, idsDesQuestions)
 
-	const situation: Situation = {
-		_tag: 'Situation',
-		_type: id,
-		...useSelector(situationSelector),
-	}
-	const simulationEstCommencée = (montants: DottedName[]) => () =>
-		intersection(montants, Object.keys(situation)).length > 0
+	const situation = useSelector(situationSelector)
+	const simulationEstCommencée = Object.keys(situation).length > 0
 
 	return {
 		isReady: currentKey === id,
