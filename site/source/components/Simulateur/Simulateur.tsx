@@ -18,9 +18,6 @@ type Props<S extends Situation = Situation> = {
 	avertissement?: React.ReactNode
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 	détail?: React.ReactNode
-	simulationEstCommencée?: (situation?: S) => boolean
-
-	situation?: S
 }
 
 export const Simulateur = ({
@@ -28,10 +25,8 @@ export const Simulateur = ({
 	montantsÀSaisir,
 	questionsPublicodes,
 	avertissement,
-	détail,
 	conseillersEntreprisesVariant,
-	situation,
-	simulationEstCommencée,
+	détail,
 }: Props) => {
 	const laSimulationEstCommencée = simulationEstCommencée
 		? simulationEstCommencée(situation)
@@ -56,11 +51,10 @@ export const Simulateur = ({
 
 			<Actions
 				conseillersEntreprisesVariant={conseillersEntreprisesVariant}
-				afficherBoutonVersDétail={!!détail && laSimulationEstCommencée}
+				afficherBoutonVersDétail={!!détail}
 			/>
 
-			{détail &&
-				(laSimulationEstCommencée ? (
+			{détail ? (
 					<div id="simulation-détail">{détail}</div>
 				) : (
 					<SmallBody>
@@ -69,7 +63,7 @@ export const Simulateur = ({
 							'Entrez un montant pour afficher les résultats détaillés.'
 						)}
 					</SmallBody>
-				))}
+				)}
 		</Container>
 	)
 }
