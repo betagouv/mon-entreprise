@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
-import { TrackingChaptersProvider } from '@/components/PianoAnalytics'
+import { TrackingChaptersProvider } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Banner, Emoji, InnerBanner, Link } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
