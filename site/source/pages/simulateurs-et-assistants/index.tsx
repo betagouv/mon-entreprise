@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import PageHeader from '@/components/PageHeader'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import Meta from '@/components/utils/Meta'
 import {

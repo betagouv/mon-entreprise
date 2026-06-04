@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext } from 'react'
 
 // Chapter definition : https://www.atinternet.com/en/glossary/chapter/
 type Chapter1 =
@@ -21,7 +21,10 @@ export function useTrackingChapters(): TrackingChapters {
 	return useContext(TrackingChaptersContext)
 }
 
-export const getTrackingChapters = (currentChapters: TrackingChapters, newChapters: TrackingChapters): TrackingChapters => {
+export const getTrackingChapters = (
+	currentChapters: TrackingChapters,
+	newChapters: TrackingChapters
+): TrackingChapters => {
 	let chapters = currentChapters
 
 	if (newChapters.chapter1) {

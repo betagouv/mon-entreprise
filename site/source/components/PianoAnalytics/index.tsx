@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 
 import { usePianoTracker } from './PianoTrackerContext'
-import { getTrackingChapters, TrackingChapters, useTrackingChapters } from './TrackingChaptersContext'
+import {
+	getTrackingChapters,
+	TrackingChapters,
+	useTrackingChapters,
+} from './TrackingChaptersContext'
 
 // From https://github.com/nclsmitchell/at-internet
 export function toAtString(string: string): string {
@@ -32,7 +36,10 @@ export function TrackPage({
 } & TrackingChapters) {
 	const tracker = usePianoTracker()
 	const currentChapters = useTrackingChapters()
-	const { chapter1, chapter2, chapter3 } = getTrackingChapters(currentChapters, chapters)
+	const { chapter1, chapter2, chapter3 } = getTrackingChapters(
+		currentChapters,
+		chapters
+	)
 
 	useEffect(() => {
 		tracker?.sendEvent(
