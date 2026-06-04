@@ -17,17 +17,21 @@ export type TrackingChapters = {
 
 const TrackingChaptersContext = createContext<TrackingChapters>({})
 
-export function useTrackingChapters(props: TrackingChapters): TrackingChapters {
-	let chapters = useContext(TrackingChaptersContext)
+export function useTrackingChapters(): TrackingChapters {
+	return useContext(TrackingChaptersContext)
+}
 
-	if (props.chapter1) {
-		chapters = { chapter2: '', chapter3: '', ...props }
+export const getTrackingChapters = (currentChapters: TrackingChapters, newChapters: TrackingChapters): TrackingChapters => {
+	let chapters = currentChapters
+
+	if (newChapters.chapter1) {
+		chapters = { chapter2: '', chapter3: '', ...newChapters }
 	}
-	if (props.chapter2) {
-		chapters = { ...chapters, chapter3: '', ...props }
+	if (newChapters.chapter2) {
+		chapters = { ...chapters, chapter3: '', ...newChapters }
 	}
-	if (props.chapter3) {
-		chapters = { ...chapters, ...props }
+	if (newChapters.chapter3) {
+		chapters = { ...chapters, ...newChapters }
 	}
 
 	return chapters
@@ -39,7 +43,8 @@ export function TrackingChaptersProvider({
 }: {
 	children: React.ReactNode
 } & TrackingChapters) {
-	const chapters = useTrackingChapters(chaptersProps)
+	const currentChapters = useTrackingChapters()
+	const chapters = getTrackingChapters(currentChapters, chaptersProps)
 
 	return (
 		<TrackingChaptersContext.Provider value={chapters}>
