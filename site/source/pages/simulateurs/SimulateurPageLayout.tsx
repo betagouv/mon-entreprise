@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import { TrackingChaptersProvider, TrackingChapters } from '@/components/PianoAnalytics'
+import { TrackingChaptersProvider, TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import BetaBanner from '@/components/BetaBanner'
 import BêtaChip from '@/components/BêtaChip'
 import { PublicodesDateChip } from '@/components/PublicodesDateChip'
