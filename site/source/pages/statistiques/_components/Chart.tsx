@@ -135,7 +135,6 @@ export default function VisitsChart({
 					{dataKeys.map((k, i) =>
 						isBarChart ? (
 							<Bar
-								layout={layout}
 								key={k}
 								dataKey={k}
 								name={formatLegend(k)}
