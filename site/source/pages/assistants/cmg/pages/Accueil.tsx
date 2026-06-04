@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Button, Strong } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'

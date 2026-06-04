@@ -13,13 +13,13 @@ import {
 	TextField,
 } from '@/design-system'
 
-import { usePianoTracking } from '../ATInternetTracking'
+import { usePianoTracker } from '../PianoAnalytics'
 
 export function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef = useRef<HTMLInputElement>(null!)
 	const { t } = useTranslation()
 	const [linkCopied, setLinkCopied] = useState(false)
-	const tracker = usePianoTracking()
+	const tracker = usePianoTracker()
 
 	const selectInput = () => {
 		inputRef.current?.select()

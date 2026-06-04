@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
