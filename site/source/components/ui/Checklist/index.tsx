@@ -118,10 +118,10 @@ export function Checklist({
 			const typedChild = child as React.ReactElement<{
 				name: string
 				defaultChecked?: boolean
+				onChange?: (isSelected: boolean) => void
 			}>
 
-			// @ts-ignore
-			return React.cloneElement<{ name: string }>(typedChild, {
+			return React.cloneElement(typedChild, {
 				onChange: (isSelected: boolean) =>
 					onItemCheck?.(typedChild.props.name, isSelected),
 				defaultChecked:
