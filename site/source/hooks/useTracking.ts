@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { usePianoTracker } from '@/components/PianoAnalytics'
+import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 
 export type ClickTracking = {

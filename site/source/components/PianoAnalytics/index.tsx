@@ -1,13 +1,7 @@
-import React, { createContext, useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-import { PianoTracker } from './PianoTracker'
+import { usePianoTracker } from './PianoTrackerContext'
 import { TrackingChapters, useTrackingChapters } from './TrackingChaptersContext'
-
-export const PianoTrackerContext = createContext<PianoTracker | null>(null)
-
-export function usePianoTracker(): PianoTracker | null {
-	return useContext(PianoTrackerContext)
-}
 
 // From https://github.com/nclsmitchell/at-internet
 export function toAtString(string: string): string {

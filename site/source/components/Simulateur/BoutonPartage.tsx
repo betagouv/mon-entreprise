@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { BorderlessButton, LinkIcon, PopoverWithTrigger } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
-import { usePianoTracker } from '../PianoAnalytics'
+import { usePianoTracker } from '../PianoAnalytics/PianoTrackerContext'
 import { ShareSimulationPopup } from '../ShareSimulationBanner/ShareSimulationPopup'
 
 export const BoutonPartage = () => {

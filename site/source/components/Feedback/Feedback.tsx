@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { usePianoTracker } from '@/components/PianoAnalytics'
+import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
 import {
 	Body,
 	Button,

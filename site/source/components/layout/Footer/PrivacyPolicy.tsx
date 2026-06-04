@@ -15,7 +15,8 @@ import {
 } from '@/design-system'
 
 import * as safeLocalStorage from '../../../storage/safeLocalStorage'
-import { TrackPage, usePianoTracker } from '../../PianoAnalytics'
+import { TrackPage } from '../../PianoAnalytics'
+import { usePianoTracker } from '../../PianoAnalytics/PianoTrackerContext'
 
 const StyledTable = styled.table`
 	&,
