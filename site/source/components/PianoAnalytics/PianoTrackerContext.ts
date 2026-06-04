@@ -1,5 +1,6 @@
-import { createContext, useContext } from "react"
-import { PianoTracker } from "./PianoTracker"
+import { createContext, useContext } from 'react'
+
+import { PianoTracker } from './PianoTracker'
 
 export const PianoTrackerContext = createContext<PianoTracker | null>(null)
 

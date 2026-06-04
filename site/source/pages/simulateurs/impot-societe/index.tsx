@@ -4,14 +4,14 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
+import RuleInput from '@/components/conversation/RuleInput'
+import Value from '@/components/EngineValue/Value'
+import Notifications from '@/components/Notifications'
 import {
 	ACCUEIL,
 	SIMULATION_TERMINEE,
 	TrackPage,
 } from '@/components/PianoAnalytics'
-import RuleInput from '@/components/conversation/RuleInput'
-import Value from '@/components/EngineValue/Value'
-import Notifications from '@/components/Notifications'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import {

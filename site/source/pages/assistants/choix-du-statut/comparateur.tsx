@@ -5,8 +5,8 @@ import { useMemo, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { TrackPage } from '@/components/PianoAnalytics'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
+import { TrackPage } from '@/components/PianoAnalytics'
 import { StatutType } from '@/components/StatutTag'
 import {
 	Button,
