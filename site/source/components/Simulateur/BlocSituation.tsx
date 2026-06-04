@@ -6,6 +6,7 @@ import { Situation } from '@/domaine/Situation'
 import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesV2'
 import { useQuestions } from '@/hooks/useQuestionsV2'
 
+import ScrollToElement from '../utils/Scroll/ScrollToElement'
 import { ListeQuestions } from './ListeQuestions'
 import { QuestionCourante } from './QuestionCourante'
 
@@ -26,10 +27,12 @@ export const BlocSituation = ({ questionsPublicodes }: Props) => {
 			</StyledH2>
 
 			{questionCourante ? (
-				<QuestionCourante
-					Question={questionCourante}
-					retour={() => setQuestionCourante(undefined)}
-				/>
+				<ScrollToElement>
+					<QuestionCourante
+						Question={questionCourante}
+						retour={() => setQuestionCourante(undefined)}
+					/>
+				</ScrollToElement>
 			) : (
 				<ListeQuestions
 					questions={questions}
