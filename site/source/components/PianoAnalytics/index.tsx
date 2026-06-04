@@ -31,9 +31,9 @@ export function TrackPage({
 	children?: React.ReactNode
 } & TrackingChapters) {
 	const { chapter1, chapter2, chapter3 } = useTrackingChapters(chapters)
-	const tag = usePianoTracker()
+	const tracker = usePianoTracker()
 	useEffect(() => {
-		tag?.sendEvent(
+		tracker?.sendEvent(
 			'page.display',
 			Object.fromEntries(
 				Object.entries({
@@ -44,7 +44,7 @@ export function TrackPage({
 				}).map(([k, v]) => [k, v && toAtString(v)])
 			)
 		)
-	}, [tag, name, chapter1, chapter2, chapter3])
+	}, [tracker, name, chapter1, chapter2, chapter3])
 
 	return <>{children}</>
 }
