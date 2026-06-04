@@ -1,7 +1,7 @@
 import i18next from 'i18next'
 import { useEffect, useState } from 'react'
 
-import { PianoTrackerContext } from '@/components/PianoAnalytics'
+import { PianoTrackerContext } from '@/components/PianoAnalytics/PianoTrackerContext'
 import {
 	createPianoTracker,
 	PianoTracker,
