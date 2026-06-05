@@ -13,10 +13,9 @@ import {
 	StyledLink,
 	Ul,
 } from '@/design-system'
+import { useTracking } from '@/hooks/useTracking'
 
-import * as safeLocalStorage from '../../../storage/safeLocalStorage'
 import { TrackPage } from '../../PianoAnalytics'
-import { usePianoTracker } from '../../PianoAnalytics/PianoTrackerContext'
 
 const StyledTable = styled.table`
 	&,
@@ -41,22 +40,16 @@ export default function PrivacyPolicy({
 	label?: string
 	noUnderline?: boolean
 }) {
-	const tracker = usePianoTracker()
+	const { isTrackingRefused, refuseTracking } = useTracking()
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
 
 	const handleChange = useCallback(
 		(checked: boolean) => {
-			if (checked) {
-				tracker?.consent.setMode('opt-out')
-				safeLocalStorage.setItem('tracking:do_not_track', '1')
-			} else {
-				tracker?.consent.setMode('essential')
-				safeLocalStorage.setItem('tracking:do_not_track', '0')
-			}
+			refuseTracking(checked)
 			setValueChanged(true)
 		},
-		[setValueChanged, tracker?.consent]
+		[refuseTracking, setValueChanged]
 	)
 
 	return (
@@ -325,7 +318,7 @@ export default function PrivacyPolicy({
 					id="opt-out-mesure-audience"
 					name="opt-out mesure audience"
 					onChange={handleChange}
-					defaultSelected={tracker?.consent.getMode().name === 'opt-out'}
+					defaultSelected={isTrackingRefused}
 				>
 					{t(
 						'pages.privacyPolicy.tracking.optOut.checkboxLabel',

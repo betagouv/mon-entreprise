@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next'
 
 import { BorderlessButton, LinkIcon, PopoverWithTrigger } from '@/design-system'
+import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 
-import { usePianoTracker } from '../PianoAnalytics/PianoTrackerContext'
 import { ShareSimulationPopup } from '../ShareSimulationBanner/ShareSimulationPopup'
 
 export const BoutonPartage = () => {
 	const { t } = useTranslation()
-	const tracker = usePianoTracker()
+	const { trackClick } = useTracking()
 	const url = useUrl()
 	const shareAPIAvailable = !!window?.navigator?.share
 	const startSharing = async () => {
@@ -44,15 +44,14 @@ export const BoutonPartage = () => {
 			trigger={(buttonProps) => (
 				<BorderlessButton
 					onPress={(e) => {
-						tracker?.sendEvent('click.action', {
-							click_chapter1: 'feature:partage',
-							click: 'démarré',
+						trackClick({
+							action: 'démarré',
+							feature: 'feature:partage',
 						})
 						startSharing().catch(
 							// eslint-disable-next-line no-console
 							(err) => console.error(err)
 						)
-
 						buttonProps?.onPress?.(e)
 					}}
 					aria-haspopup="dialog"

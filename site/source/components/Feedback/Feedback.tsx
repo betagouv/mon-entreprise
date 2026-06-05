@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
 import {
 	Body,
 	Button,
@@ -11,6 +10,7 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
+import { useTracking } from '@/hooks/useTracking'
 import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
@@ -33,7 +33,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
 	const { currentPath } = useNavigation()
-	const tracker = usePianoTracker()
+	const { trackClick } = useTracking()
 
 	const { absoluteSitePaths } = useSitePaths()
 	const isSimulateurSalaire =
@@ -45,9 +45,9 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 	const submitFeedback = useCallback(
 		(rating: FeedbackT) => {
 			setFeedbackGivenForUrl(currentPath)
-			tracker?.sendEvent('click.action', {
-				click_chapter1: 'satisfaction',
-				click: rating,
+			trackClick({
+				action: rating,
+				feature: 'satisfaction',
 			})
 			const isNotSatisfiedValue = ['mauvais', 'moyen'].includes(rating)
 			if (isNotSatisfiedValue) {
@@ -58,7 +58,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 			setIsShowingThankMessage(!isNotSatisfiedValue)
 			setIsShowingSuggestionForm(isNotSatisfiedValue)
 		},
-		[currentPath, tracker]
+		[currentPath, onFeedbackFormOpen, trackClick]
 	)
 
 	const shouldShowFeedback = shouldAskFeedback(currentPath)
