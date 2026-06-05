@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import Warning from '@/components/ui/WarningBlock'
-import { Body, Button, Strong } from '@/design-system'
+import { Body, Button, Spacing, Strong } from '@/design-system'
 import { useGetPath } from '@/hooks/useGetPath'
 
 export default function Accueil() {
@@ -33,6 +33,8 @@ export default function Accueil() {
 					</Body>
 				</Trans>
 			</Warning>
+
+			<Spacing lg />
 
 			<Button size="XS" to={getPath('assistants.cmg.informations')}>
 				{t('pages.assistants.cmg.démarrer', 'Démarrer une simulation')}

@@ -59,7 +59,6 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 				</div>
 				<div className="print-only">{children}</div>
 			</Message>
-			<Spacing lg />
 		</>
 	)
 }
