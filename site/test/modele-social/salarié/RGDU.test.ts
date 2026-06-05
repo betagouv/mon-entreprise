@@ -6,6 +6,7 @@ const situationParDéfaut = {
 	dirigeant: 'non',
 	'entreprise . catégorie juridique': "''",
 	'entreprise . imposition': 'non',
+	'salarié . cotisations . assiette': '2200 €/mois',
 }
 
 describe('Réduction générale dégressive unique', () => {
@@ -15,15 +16,12 @@ describe('Réduction générale dégressive unique', () => {
 	})
 
 	describe('Situation de base', () => {
-		it('Calcul de la réduction et de sa répartition', () => {
-			const e = engine.setSituation({
-				...situationParDéfaut,
-				'salarié . cotisations . assiette': '1900 €/mois',
-			})
+		it('Calcul de la réduction', () => {
+			const e = engine.setSituation(situationParDéfaut)
 
 			expect(e).toEvaluate(
 				'salarié . cotisations . exonérations . RGDU',
-				681.72
+				573.98
 			)
 		})
 
@@ -43,10 +41,7 @@ describe('Réduction générale dégressive unique', () => {
 	describe('Modifications des paramètres de calcul', () => {
 		let réductionDeBase: number
 		beforeEach(() => {
-			engine.setSituation({
-				...situationParDéfaut,
-				'salarié . cotisations . assiette': '1900 €/mois',
-			})
+			engine.setSituation(situationParDéfaut)
 			réductionDeBase = engine.evaluate(
 				'salarié . cotisations . exonérations . RGDU'
 			).nodeValue as number
@@ -55,7 +50,6 @@ describe('Réduction générale dégressive unique', () => {
 		it('Taille de l’entreprise', () => {
 			engine.setSituation({
 				...situationParDéfaut,
-				'salarié . cotisations . assiette': '1900 €/mois',
 				'entreprise . salariés . effectif': '49',
 			})
 			const réductionÀ49 = engine.evaluate(
@@ -66,7 +60,6 @@ describe('Réduction générale dégressive unique', () => {
 
 			engine.setSituation({
 				...situationParDéfaut,
-				'salarié . cotisations . assiette': '1900 €/mois',
 				'entreprise . salariés . effectif': '50',
 			})
 			const réductionÀ50 = Math.round(
@@ -75,13 +68,12 @@ describe('Réduction générale dégressive unique', () => {
 			)
 
 			expect(réductionDeBase).toBeLessThan(réductionÀ50)
-			expect(réductionÀ50).toEqual(689)
+			expect(réductionÀ50).toEqual(580)
 		})
 
 		it('Obligation de cotiser à une caisse de congés payés', () => {
 			engine.setSituation({
 				...situationParDéfaut,
-				'salarié . cotisations . assiette': '1900 €/mois',
 				'salarié . cotisations . exonérations . RGDU . caisse de congés payés':
 					'oui',
 			})
@@ -91,9 +83,7 @@ describe('Réduction générale dégressive unique', () => {
 			)
 
 			expect(réductionDeBase).toBeLessThan(réductionAvecCCP)
-			expect(réductionAvecCCP).toEqual(
-				Math.round((réductionDeBase * 100) / 90) - 1
-			)
+			expect(réductionAvecCCP).toEqual(Math.round((réductionDeBase * 100) / 90))
 		})
 	})
 })

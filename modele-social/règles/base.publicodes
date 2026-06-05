@@ -65,6 +65,8 @@ SMIC . horaire:
     - si: établissement . commune . département . outre-mer . Mayotte
       alors:
         variations:
+          - si: date >= 06/2026
+            alors: 9.56 €/heure
           - si: date >= 01/2026
             alors: 9.33 €/heure
           - si: date >= 11/2024
@@ -87,6 +89,8 @@ SMIC . horaire:
             alors: 7.74 €/heure
     - sinon:
         variations:
+          - si: date >= 06/2026
+            alors: 12.31 €/heure
           - si: date >= 01/2026
             alors: 12.02 €/heure
           - si: date >= 11/2024
