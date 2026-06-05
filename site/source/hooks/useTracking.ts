@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 
 import { toAtString } from '@/components/PianoAnalytics'
 import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
@@ -8,6 +8,8 @@ import {
 	useTrackingChapters,
 } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
+
+import * as safeLocalStorage from '../storage/safeLocalStorage'
 
 type ClickTracking = {
 	feature: string
@@ -23,6 +25,24 @@ export function useTracking() {
 	const pianoTracker = usePianoTracker()
 	const plausibleTracker = usePlausibleTracking()
 	const currentPianoChapters = useTrackingChapters()
+
+	const isTrackingRefused = useMemo(
+		() => pianoTracker?.consent.getMode().name === 'opt-out',
+		[pianoTracker?.consent]
+	)
+
+	const refuseTracking = useCallback(
+		(isTrackingRefused: boolean) => {
+			if (isTrackingRefused) {
+				pianoTracker?.consent.setMode('opt-out')
+				safeLocalStorage.setItem('tracking:do_not_track', '1')
+			} else {
+				pianoTracker?.consent.setMode('essential')
+				safeLocalStorage.setItem('tracking:do_not_track', '0')
+			}
+		},
+		[pianoTracker]
+	)
 
 	const trackClick = useCallback(
 		({ feature, action, simulateur }: ClickTracking) => {
@@ -61,5 +81,5 @@ export function useTracking() {
 		[currentPianoChapters, pianoTracker]
 	)
 
-	return { trackClick, trackPage }
+	return { isTrackingRefused, refuseTracking, trackClick, trackPage }
 }
