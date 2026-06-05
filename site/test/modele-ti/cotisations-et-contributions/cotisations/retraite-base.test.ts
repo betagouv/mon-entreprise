@@ -32,7 +32,8 @@ describe('Cotisation retraite de base', () => {
 					'1000 €/an',
 			})
 
-			const SmicHoraire = e.evaluate('SMIC . horaire').nodeValue as number
+			const SmicHoraire = e.evaluate("SMIC . horaire . début d'année")
+				.nodeValue as number
 			const assietteMinimale = e.evaluate(
 				'indépendant . assiette minimale . retraite'
 			).nodeValue as number
@@ -187,7 +188,8 @@ describe('Cotisation retraite de base', () => {
 						'1000 €/an',
 				})
 
-				const SmicHoraire = e.evaluate('SMIC . horaire').nodeValue as number
+				const SmicHoraire = e.evaluate("SMIC . horaire . début d'année")
+					.nodeValue as number
 				const assietteMinimale = e.evaluate(
 					'indépendant . assiette minimale . retraite'
 				).nodeValue as number
@@ -237,7 +239,8 @@ describe('Cotisation retraite de base', () => {
 					'1000 €/an',
 			})
 
-			const SmicHoraire = e.evaluate('SMIC . horaire').nodeValue as number
+			const SmicHoraire = e.evaluate("SMIC . horaire . début d'année")
+				.nodeValue as number
 			const assietteMinimale = e.evaluate(
 				'indépendant . assiette minimale . retraite'
 			).nodeValue as number
@@ -359,7 +362,7 @@ describe('Cotisation retraite de base', () => {
 			}
 
 			it('applique une assiette minimale égale à 450 heures rémunérées au SMIC métropole', () => {
-				const SmicHoraire = engine.evaluate('SMIC . horaire')
+				const SmicHoraire = engine.evaluate("SMIC . horaire . début d'année")
 					.nodeValue as number
 				const assietteMinimale = Math.round(450 * SmicHoraire)
 

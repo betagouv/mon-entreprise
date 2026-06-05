@@ -19,8 +19,10 @@ const situationZone2 = {
 
 describe('Lodeom', () => {
 	let engine: Engine<RègleModèleSocial>
+	let smic: number
 	beforeEach(() => {
 		engine = new Engine(rules)
+		smic = engine.evaluate('SMIC').nodeValue as number
 	})
 
 	describe('Calcul de la réduction et de sa répartition', () => {
@@ -37,7 +39,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					236.25
+					281.05
 				)
 				expect(e).toEvaluate(
 					{
@@ -45,7 +47,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
 						arrondi: '2 décimales',
 					},
-					44.34
+					52.75
 				)
 				expect(e).toEvaluate(
 					{
@@ -53,7 +55,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					191.91
+					228.3
 				)
 				expect(e).toEvaluate(
 					{
@@ -61,7 +63,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
 						arrondi: '2 décimales',
 					},
-					29.51
+					35.11
 				)
 			})
 
@@ -117,7 +119,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					992.25
+					1016.4
 				)
 				expect(e).toEvaluate(
 					{
@@ -125,7 +127,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
 						arrondi: '2 décimales',
 					},
-					186.24
+					190.77
 				)
 				expect(e).toEvaluate(
 					{
@@ -133,7 +135,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					806.01
+					825.63
 				)
 				expect(e).toEvaluate(
 					{
@@ -141,7 +143,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
 						arrondi: '2 décimales',
 					},
-					123.95
+					126.97
 				)
 			})
 		})
@@ -156,7 +158,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					538.65
+					551.95
 				)
 			})
 
@@ -172,7 +174,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					363.65
+					388.15
 				)
 			})
 
@@ -188,7 +190,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					654.15
+					669.9
 				)
 			})
 		})
@@ -201,7 +203,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'compétitivité'",
-					'salarié . rémunération . brut': '4011 €/mois',
+					'salarié . rémunération . brut': `${Math.ceil(2.2 * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -215,7 +217,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'compétitivité renforcée'",
-					'salarié . rémunération . brut': '4922 €/mois',
+					'salarié . rémunération . brut': `${Math.ceil(2.7 * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -229,7 +231,7 @@ describe('Lodeom', () => {
 					...situationZone1,
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 						"'innovation et croissance'",
-					'salarié . rémunération . brut': '6381 €/mois',
+					'salarié . rémunération . brut': `${Math.ceil(3.5 * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -245,7 +247,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'moins de 11 salariés'",
-					'salarié . rémunération . brut': '5469 €/mois',
+					'salarié . rémunération . brut': `${Math.ceil(3 * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -259,7 +261,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'sectoriel'",
-					'salarié . rémunération . brut': '5469 €/mois',
+					'salarié . rémunération . brut': `${Math.ceil(3 * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -273,7 +275,7 @@ describe('Lodeom', () => {
 					...situationZone2,
 					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
 						"'renforcé'",
-					'salarié . rémunération . brut': '8202 €/mois',
+					'salarié . rémunération . brut': `${Math.ceil(4.5 * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -303,7 +305,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					239.05
+					284.55
 				)
 			})
 
@@ -329,7 +331,7 @@ describe('Lodeom', () => {
 
 				expect(e).toEvaluate(
 					'salarié . cotisations . exonérations . lodeom . montant',
-					1004.85
+					1029
 				)
 			})
 		})

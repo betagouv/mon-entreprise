@@ -78,7 +78,9 @@ SMIC . horaire:
             alors: 8.80 €/heure
           - si: date < 01/2026
             alors: 8.98 €/heure
-          - sinon: 9.33 €/heure
+          - si: date < 06/2026
+            alors: 9.33 €/heure
+          - sinon: 9.56 €/heure
     - sinon: métropole
   note: |
     En principe et sauf « coup de pouce », le SMIC est revalorisé au 1er janvier
@@ -102,7 +104,9 @@ SMIC . horaire:
           alors: 11.65 €/heure
         - si: date < 01/2026
           alors: 11.88 €/heure
-        - sinon: 12.02 €/heure
+        - si: date < 06/2026
+          alors: 12.02 €/heure
+        - sinon: 12.31 €/heure
 
     métropole . début d'année:
       valeur: SMIC . horaire . métropole
