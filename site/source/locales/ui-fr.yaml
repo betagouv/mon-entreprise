@@ -632,7 +632,7 @@ pages:
           label: Comment gérez-vous cette entreprise ?
           plusieurs: À plusieurs
           seul: Seul / seule
-        question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps&nbsp;?
+        question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps ?
         question3:
           help:
             title: Choisir entre une entreprise individuelle et une société
