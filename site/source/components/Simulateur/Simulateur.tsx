@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -36,9 +36,10 @@ export const Simulateur = ({
 	const { trackPage } = useTracking()
 	const { t } = useTranslation()
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		trackPage({ name: simulationEstCommencée ? SIMULATION_COMMENCEE : ACCUEIL })
-	}, [simulationEstCommencée, trackPage])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [simulationEstCommencée])
 
 	return (
 		<Container>
