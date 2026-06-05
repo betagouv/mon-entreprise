@@ -96,7 +96,7 @@ export default function Associés() {
 							<H4 as="h3" id="question2">
 								{t(
 									'pages.assistants.choix-statut.associés.question2',
-									'Envisagez-vous d’ajouter des associé(e)s dans un second temps&nbsp;?'
+									'Envisagez-vous d’ajouter des associé(e)s dans un second temps ?'
 								)}
 							</H4>
 							<ToggleGroup
