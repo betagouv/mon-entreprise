@@ -154,14 +154,29 @@ describe('Cotisation allocations familiales', () => {
 			it('applique un taux fixe de 1,60%', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
 						'30000 €/an',
 				})
 
 				expect(e).toEvaluate(COTISATION, Math.round(30_000 * TAUX))
 			})
 
-			it('applique une assiette maximale égale au PASS mahorais', () => {
+			it('applique une assiette abattue de 50% si elle est inférieure au PASS mahorais', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'35000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					`${COTISATION} avant abattements . assiette`,
+					35_000 / 2
+				)
+
+				expect(e).toEvaluate(COTISATION, Math.round((35_000 / 2) * TAUX))
+			})
+
+			it('applique une assiette maximale égale à 50% du PASS mahorais', () => {
 				const e = engine.setSituation({
 					...situation,
 					'indépendant . cotisations et contributions . assiette sociale':
@@ -173,10 +188,13 @@ describe('Cotisation allocations familiales', () => {
 
 				expect(e).toEvaluate(
 					`${COTISATION} avant abattements . assiette`,
-					PASSMahorais
+					Math.round(PASSMahorais / 2)
 				)
 
-				expect(e).toEvaluate(COTISATION, Math.round(PASSMahorais * TAUX))
+				expect(e).toEvaluate(
+					COTISATION,
+					Math.round(Math.round(PASSMahorais / 2) * TAUX)
+				)
 			})
 		})
 	})
@@ -278,14 +296,29 @@ describe('Cotisation allocations familiales', () => {
 			it('applique un taux fixe de 1,60%', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
 						'30000 €/an',
 				})
 
 				expect(e).toEvaluate(COTISATION, Math.round(30_000 * TAUX))
 			})
 
-			it('applique une assiette maximale égale au PASS mahorais', () => {
+			it('applique une assiette abattue de 50% si elle est inférieure au PASS mahorais', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'35000 €/an',
+				})
+
+				expect(e).toEvaluate(
+					`${COTISATION} avant abattements . assiette`,
+					35_000 / 2
+				)
+
+				expect(e).toEvaluate(COTISATION, Math.round((35_000 / 2) * TAUX))
+			})
+
+			it('applique une assiette maximale égale à 50% du PASS mahorais', () => {
 				const e = engine.setSituation({
 					...situation,
 					'indépendant . cotisations et contributions . assiette sociale':
@@ -297,10 +330,13 @@ describe('Cotisation allocations familiales', () => {
 
 				expect(e).toEvaluate(
 					`${COTISATION} avant abattements . assiette`,
-					PASSMahorais
+					Math.round(PASSMahorais / 2)
 				)
 
-				expect(e).toEvaluate(COTISATION, Math.round(PASSMahorais * TAUX))
+				expect(e).toEvaluate(
+					COTISATION,
+					Math.round(Math.round(PASSMahorais / 2) * TAUX)
+				)
 			})
 		})
 	})
