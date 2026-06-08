@@ -85,6 +85,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
 
     Pour les chirurgiennes et chirurgiens-dentistes, l’assiette se calcule avec le
     « taux dentiste » (indiqué sur votre déclaration de revenus professionnels).
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   variations:
     - si: métier = 'santé . chirurgien-dentiste'
       alors:
@@ -133,6 +134,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette autres rev
   valeur: cotisations et contributions . assiette sociale - assiette participation CPAM
 
 indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   produit:
     - assiette autres revenus
     - 3.25%
@@ -197,6 +199,7 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   description: |
     Les professionnels de santé conventionnés bénéficient d’une prise en charge
     d’une partie de leur cotisations par l’Assurance Maladie.
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   formule:
     somme:
       - PAMC . participation CPAM . allocations familiales
