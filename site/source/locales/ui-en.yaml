@@ -321,8 +321,6 @@ components:
     questions:
       modifier: Edit {{ règle }}
     réinitialiser: Default values
-    résultats:
-      indisponibles: Enter an amount to display detailed results.
     voir-le-détail: See details
     zone-de-saisie:
       info-mise-à-jour: Simulation data is automatically updated when a field is modified.

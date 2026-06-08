@@ -335,8 +335,6 @@ components:
     questions:
       modifier: Modifier {{ règle }}
     réinitialiser: Valeurs par défaut
-    résultats:
-      indisponibles: Entrez un montant pour afficher les résultats détaillés.
     voir-le-détail: Voir le détail
     zone-de-saisie:
       info-mise-à-jour: Les données de simulations se mettront automatiquement à jour
