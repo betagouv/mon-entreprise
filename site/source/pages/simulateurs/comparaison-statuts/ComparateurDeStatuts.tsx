@@ -92,7 +92,7 @@ export const ComparateurDeStatuts = () => {
 				<Simulateur
 					id={id}
 					montantsÀSaisir={<MontantsÀSaisir />}
-					questionsPublicodes={questions}
+					questionsPublicodesGroupées={questions}
 					détail={<DétailSimulation namedEngines={engines} />}
 					simulationEstCommencée={simulationEstCommencée}
 				/>

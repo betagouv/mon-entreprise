@@ -1689,6 +1689,26 @@ pages:
       option-applicable: Applicable option.
       option-non-applicable: Option not applicable.
       option-sous-conditions: Option available subject to conditions.
+      questions:
+        TVA:
+          libellé: Company subject to VAT
+          titre: VAT
+        acre:
+          libellé: Acre
+          titre: Acre
+        activité:
+          principale: Main activity
+          réglementée: Regulated activity
+          titre: Activity
+          type: Type of activity
+        impôt:
+          enfants: Dependent children
+          méthode: Calculation method
+          parent-isolé: Single parent
+          revenus: Other taxable income
+          situation: Marital status
+          taux: Personalized rate
+          titre: Tax
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for

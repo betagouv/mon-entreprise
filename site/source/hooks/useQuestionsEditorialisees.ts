@@ -1,12 +1,19 @@
 import { pipe } from 'effect'
-import { filter } from 'effect/Array'
-import { Predicate } from 'effect/Predicate'
+import { isUndefined, Predicate } from 'effect/Predicate'
+import * as R from 'effect/Record'
+import { TFunction } from 'i18next'
 import { FunctionComponent, useMemo, useState } from 'react'
 
-import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import {
+	ComposantQuestion,
+	QuestionsFourniesGroupées,
+} from '@/components/Simulation/ComposantQuestion'
 import { Situation } from '@/domaine/Situation'
 
-import { QuestionPublicodes } from './useQuestionsPublicodesEditorialisees'
+import {
+	QuestionPublicodes,
+	QuestionsPublicodesGroupées,
+} from './useQuestionsPublicodesEditorialisees'
 
 type QuestionFournie<S extends Situation> = Omit<
 	ComposantQuestion<S>,
@@ -34,36 +41,52 @@ export type Question<S extends Situation> =
 	| QuestionFournie<S>
 	| QuestionPublicodes<S>
 
+export type QuestionsGroupées<S extends Situation> = {
+	titre: (t: TFunction) => string
+	liste: Array<Question<S>>
+}
+
 export interface UseQuestionsProps<S extends Situation = Situation> {
-	questionsFournies?: Array<ComposantQuestion<S>>
-	questionsPublicodes?: Array<QuestionPublicodes<S>>
+	questionsFourniesGroupées?: Record<string, QuestionsFourniesGroupées<S>>
+	questionsPublicodesGroupées?: Record<string, QuestionsPublicodesGroupées<S>>
 	situation?: S
 }
 
 export function useQuestionsÉditorialisées<S extends Situation>({
-	questionsFournies = [],
-	questionsPublicodes = [],
+	questionsFourniesGroupées = {},
+	questionsPublicodesGroupées = {},
 	situation,
 }: UseQuestionsProps<S>) {
-	const questions = useMemo(
+	const questionsGroupées = useMemo(
 		() =>
 			pipe(
-				[
-					...questionsFournies.map(fromQuestionFournie),
-					...questionsPublicodes,
-				] as Question<S>[],
-				filter((q: Question<S>): boolean => q.applicable(situation))
+				questionsFourniesGroupées,
+				R.map(({ titre, liste }) => ({
+					titre,
+					liste: liste.map(fromQuestionFournie),
+				})),
+				(questionsFourniesGroupées) => ({
+					...questionsFourniesGroupées,
+					...questionsPublicodesGroupées,
+				}),
+				R.map(({ titre, liste }) => ({
+					titre,
+					liste: liste.filter((q: Question<S>) => q.applicable(situation)),
+				}))
 			),
-		[questionsFournies, questionsPublicodes, situation]
+		[questionsFourniesGroupées, questionsPublicodesGroupées, situation]
 	)
 
-	const [questionCourante, setQuestionCourante] = useState<
-		Question<S> | undefined
+	const [questionCouranteId, setQuestionCouranteId] = useState<
+		string | undefined
 	>()
+	const questionCourante = isUndefined(questionCouranteId)
+		? undefined
+		: questionsGroupées[questionCouranteId]
 
 	return {
-		questions,
+		questionsGroupées,
 		questionCourante,
-		setQuestionCourante,
+		setQuestionCouranteId,
 	}
 }

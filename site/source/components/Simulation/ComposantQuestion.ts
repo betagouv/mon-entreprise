@@ -13,3 +13,8 @@ export type ComposantQuestion<
 	applicable: Predicate<S>
 	répondue: Predicate<S>
 }
+
+export type QuestionsFourniesGroupées<S extends Situation> = {
+	titre: (t: TFunction) => string
+	liste: ComposantQuestion<S>[]
+}
