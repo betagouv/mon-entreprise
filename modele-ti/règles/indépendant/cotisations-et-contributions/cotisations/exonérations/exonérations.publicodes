@@ -17,24 +17,22 @@ indépendant . cotisations et contributions . cotisations . exonérations . Mayo
   sévérité: avertissement
   titre: Recouvrement Mayotte
   résumé: |
-    Ce simulateur applique bien les assiettes et taux de cotisations et contributions
-    **spécifiques à Mayotte**.
+    Ce simulateur applique bien les assiettes et taux de cotisations et
+    contributions **spécifiques à Mayotte**.
 
-    En revanche, l’**exonération 24 mois Mayotte** et les cotisations de
-    conjoint collaborateur/conjointe collaboratrice ne sont pas encore prises
+    En revanche, l’**exonération 24 mois Mayotte** n’est pas encore prise
     en compte.
   description: |
-    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des cotisations et
-    contributions sociales des travailleurs et travailleuses indépendantes qui
-    exercent leur activité à Mayotte.
+    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des
+    cotisations et contributions sociales des travailleurs et
+    travailleuses indépendantes qui exercent leur activité à Mayotte.
 
     Ce simulateur applique bien les assiettes et taux de cotisations et
     contributions spécifiques à Mayotte, y compris l’abattement de 50 %
     sur les assiettes de la cotisation allocations familiales et de la
     cotisation additionnelle d’assurance maladie-maternité et autonomie.
 
-    En revanche, l’**exonération 24 mois Mayotte** et les cotisations de
-    conjoint collaborateur/conjointe collaboratrice ne sont pas encore prises
+    En revanche, l’**exonération 24 mois Mayotte** n’est pas encore prise
     en compte.
   références:
     Reprise du recouvrement des cotisations pour les travailleurs indépendants à Mayotte: https://www.cssm.fr/uploads//Formulaires/6584-Depl-TI-Mayotte%2006_08_2024%20web.pdf

@@ -2780,66 +2780,45 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
 indépendant . cotisations et contributions . cotisations . exonérations . Mayotte:
-  description.en: >
-    [automatic] As of January 1, 2025, Urssaf has taken over the collection of
-    social contributions
+  description.en: |
+    [automatic] Since January 1, 2025, Urssaf has taken over the collection of
+    social security contributions from self-employed men and
+    self-employed men and women working in Mayotte.
 
-    contributions for self-employed workers in Mayotte.
-
-    working in Mayotte.
-
-
-    This simulator correctly applies the bases and rates of contributions and
-
+    This simulator correctly applies the contribution bases and rates
     specific to Mayotte, including the 50% deduction
-
     on the bases for the family allowance contribution and the additional
-
     additional sickness, maternity and autonomy insurance contributions.
 
-
-    On the other hand, the 24-month Mayotte exemption** and the contributions
-    for
-
-    contributions are not yet taken into account.
-
+    However, the 24-month Mayotte exemption has not yet been taken into account.
     taken into account.
   description.fr: |
-    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des cotisations et
-    contributions sociales des travailleurs et travailleuses indépendantes qui
-    exercent leur activité à Mayotte.
+    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des
+    cotisations et contributions sociales des travailleurs et
+    travailleuses indépendantes qui exercent leur activité à Mayotte.
 
     Ce simulateur applique bien les assiettes et taux de cotisations et
     contributions spécifiques à Mayotte, y compris l’abattement de 50 %
     sur les assiettes de la cotisation allocations familiales et de la
     cotisation additionnelle d’assurance maladie-maternité et autonomie.
 
-    En revanche, l’**exonération 24 mois Mayotte** et les cotisations de
-    conjoint collaborateur/conjointe collaboratrice ne sont pas encore prises
+    En revanche, l’**exonération 24 mois Mayotte** n’est pas encore prise
     en compte.
   résumé.en: >
-    [automatic] This simulator correctly applies the bases and rates of
-    contributions and levies
-
-    **specific to Mayotte**.
-
-
-    However, the **Mayotte 24-month exemption** and contributions for
-
-    contributions are not yet taken into account.
-
-    taken into account.
-  résumé.fr: >
-    Ce simulateur applique bien les assiettes et taux de cotisations et
+    [automatic] This simulator applies the bases and rates of contributions and
     contributions
 
-    **spécifiques à Mayotte**.
+    specific to Mayotte**.
 
 
-    En revanche, l’**exonération 24 mois Mayotte** et les cotisations de
+    However, the **Mayotte 24-month exemption** is not yet taken into account.
 
-    conjoint collaborateur/conjointe collaboratrice ne sont pas encore prises
+    taken into account.
+  résumé.fr: |
+    Ce simulateur applique bien les assiettes et taux de cotisations et
+    contributions **spécifiques à Mayotte**.
 
+    En revanche, l’**exonération 24 mois Mayotte** n’est pas encore prise
     en compte.
   titre.en: '[automatic] Mayotte collection'
   titre.fr: Recouvrement Mayotte
