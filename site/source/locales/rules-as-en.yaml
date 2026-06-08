@@ -828,24 +828,146 @@ assimilé salarié . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
 assimilé salarié . exonérations . Acre:
-  description.en: >-
+  description.en: >
     [automatic] Assistance for setting up or taking over a business (Acre)
-    consists of a partial exemption from social security contributions, known as
-    the "start-up exemption", for a period of 12 months.
+
+    consists of a **partial exemption** from social security contributions
+
+    for 12 months, known as the start-up exemption.
 
 
-    It is **automatic** for **companies and sole proprietorships** (subject to
-    certain conditions, such as not having benefited from it in the last three
-    years).
-  description.fr: >-
-    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
-    exonération partielle de charges sociales, dite exonération de début
-    d’activité pendant 12 mois.
+    To qualify, you must **apply to Urssaf** within
+
+    within 60 days of setting up your business.
 
 
-    Elle est **automatique** pour les **sociétés et les entreprises
-    individuelles** (sous certaines conditions, comme par exemple ne pas en
-    avoir bénéficié les trois dernières années).
+    You can only benefit from Acre if you are in one of the following situations
+
+    **one of the following situations** at the time of setting up your business:
+
+    - a job-seeker receiving compensation ;
+
+    - a job-seeker who is not receiving compensation but is registered with
+    France Travail
+
+    6 months in the last 18 months;
+
+    - beneficiary of the revenu de solidarité active (RSA) or the allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - young people aged 18 to 25;
+
+    - person under 30 not receiving compensation (insufficient length of
+    employment to
+
+    for entitlement);
+
+    - disabled persons under 30;
+
+    - salaried employees or those made redundant by a company in receivership or
+    liquidation
+
+    or liquidation and who takes over the business of this company;
+
+    - a person who has signed a Cape (contrat d'appui au projet d'entreprise),
+    provided that
+
+    provided they meet one of the above seven conditions on the date of signing
+
+    on the date the contract is signed;
+
+    - a person setting up a business in a priority district of the
+
+    priority district (QPV);
+
+    - beneficiary of the "prestation partagée d'éducation de l'enfant" (PrePare)
+    ;
+
+    - person carrying on business in a France ruralités revitalization zone
+
+    (ZFRR) or a France ruralités revitalization "plus" zone (ZFRR+).
+
+
+    Prior to 2026, Acre was awarded automatically to all business
+
+    business creators.
+
+
+    In addition, to be eligible for Acre, you must not have received it
+
+    in the previous three years.
+  description.fr: >
+    L’aide à la création ou à la reprise d’une entreprise (Acre)
+
+    consiste en une **exonération partielle** de charges sociales
+
+    pendant 12 mois, dite exonération de début d’activité.
+
+
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de
+    l’Urssaf**
+
+    dans un délai de 60 jours après la création de votre entreprise.
+
+
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
+
+    **une des situations suivantes** au moment de la création de votre
+    entreprise :
+
+    - personne demandeuse d’emploi indemnisée ;
+
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
+
+    6 mois au cours des 18 derniers mois ;
+
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+
+    solidarité spécifique (ASS) ;
+
+    - jeune de 18 à 25 ans révolus ;
+
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante
+    pour
+
+    l’ouverture de droits) ;
+
+    - personne de moins de 30 ans reconnue handicapée ;
+
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en
+    redressement
+
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise),
+    sous
+
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+
+    de signature de ce contrat ;
+
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire
+    de
+
+    la politique de la ville (QPV) ;
+
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+
+    - personne exerçant l’activité au sein d’une zone France ruralités
+    revitalisation
+
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
+
+
+    Avant 2026, l'attribution de l’Acre était automatique et concernait tous les
+
+    créateurs et créatrices d’entreprise.
+
+
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+
+    bénéficié au cours des trois années précédentes.
   question.en: '[automatic] Did you benefit from Acre?'
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
@@ -863,7 +985,7 @@ assimilé salarié . exonérations . JEI:
     - employees for whom the employer is liable to pay unemployment insurance
     contributions
 
-    - corporate officers who are primarily involved in the company's research
+    - corporate officers who are principally involved in the company's research
     and development project
 
 

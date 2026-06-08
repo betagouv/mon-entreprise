@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate assimilé salarié > Acre 1`] = `
-"assimilé salarié . cotisations: 766
+"assimilé salarié . cotisations: 851
 assimilé salarié . rémunération . brute: 1552
 assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 1317
-assimilé salarié . rémunération . nette . à payer avant impôt: 1317
+assimilé salarié . rémunération . nette . après impôt: 1232
+assimilé salarié . rémunération . nette . à payer avant impôt: 1232
 assimilé salarié . rémunération . totale: 25000"
 `;
 
@@ -37,11 +37,11 @@ assimilé salarié . rémunération . totale: 30000"
 `;
 
 exports[`calculate assimilé salarié > Acre 5`] = `
-"assimilé salarié . cotisations: 766
+"assimilé salarié . cotisations: 851
 assimilé salarié . rémunération . brute: 1552
 assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 1317
-assimilé salarié . rémunération . nette . à payer avant impôt: 1317
+assimilé salarié . rémunération . nette . après impôt: 1232
+assimilé salarié . rémunération . nette . à payer avant impôt: 1232
 assimilé salarié . rémunération . totale: 25000"
 `;
 

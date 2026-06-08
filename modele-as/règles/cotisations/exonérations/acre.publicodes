@@ -50,7 +50,11 @@ assimilé salarié . cotisations . exonérations . Acre . salarié:
     assiette: cotisations . assiette
     multiplicateur: plafond sécurité sociale
     tranches:
-      - montant: cotisations salariales exonérées Acre
+      - montant:
+          variations:
+            - si: date < 01/2026
+              alors: cotisations salariales exonérées Acre
+            - sinon: 25% * cotisations salariales exonérées Acre
         plafond: 75%
       - montant:
           produit:

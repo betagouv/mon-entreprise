@@ -4,30 +4,47 @@ assimilé salarié . exonérations . Acre:
   applicable si: entreprise . durée d'activité en début d'année < 1 an
   question: Bénéficiez-vous de l’Acre ?
   par défaut: non
-  description: >-
-    L’aide à la création ou à la reprise d’une entreprise (Acre) consiste en une
-    exonération partielle de charges sociales, dite exonération de début
-    d’activité pendant 12 mois.
+  description: |
+    L’aide à la création ou à la reprise d’une entreprise (Acre)
+    consiste en une **exonération partielle** de charges sociales
+    pendant 12 mois, dite exonération de début d’activité.
 
+    Pour pouvoir en bénéficier vous devez **déposer une demande auprès de l’Urssaf**
+    dans un délai de 60 jours après la création de votre entreprise.
 
-    Elle est **automatique** pour les **sociétés et les entreprises individuelles**
-    (sous certaines conditions, comme par exemple ne pas en avoir bénéficié les trois
-    dernières années).
-  notes: |
-    #### Historique
+    Vous ne pouvez bénéficier de l’Acre que si vous êtes dans l’
+    **une des situations suivantes** au moment de la création de votre entreprise :
+    - personne demandeuse d’emploi indemnisée ;
+    - personne demandeuse d’emploi non indemnisée mais inscrite à France Travail
+    6 mois au cours des 18 derniers mois ;
+    - bénéficiaire du revenu de solidarité active (RSA) ou de l’allocation de
+    solidarité spécifique (ASS) ;
+    - jeune de 18 à 25 ans révolus ;
+    - personne de moins de 30 ans non indemnisée (durée d’activité insuffisante pour
+    l’ouverture de droits) ;
+    - personne de moins de 30 ans reconnue handicapée ;
+    - personne salariée ou licenciée d’une entreprise en sauvegarde, en redressement
+    ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
+    - personne ayant conclu un Cape (contrat d’appui au projet d’entreprise), sous
+    réserve qu’elle remplisse l’une des sept conditions ci-dessus à la date
+    de signature de ce contrat ;
+    - personne créant une entreprise implantée au sein d’un quartier prioritaire de
+    la politique de la ville (QPV) ;
+    - bénéficiaire de la prestation partagée d’éducation de l’enfant (PrePare) ;
+    - personne exerçant l’activité au sein d’une zone France ruralités revitalisation
+    (ZFRR) ou d’une zone France ruralités revitalisation « plus » (ZFRR+).
 
-    - Pour les entreprises créées entre le 1er janvier 2019 et le 31 décembre 2019,
-    la réduction est généralisée à tous les créateurs, sauf si vous avez déjà obtenu
-    l’ACCRE dans les trois années précédentes
-    - Pour les entreprises créées avant le 1er janvier 2019, la l’exonération de
-    cotisation s’appelait ACCRE était soumise à conditions et n’était pas
-    automatique : il fallait en faire la demande.
+    Avant 2026, l'attribution de l’Acre était automatique et concernait tous les
+    créateurs et créatrices d’entreprise.
 
+    Par ailleurs, pour bénéficier de l’Acre, vous ne devez pas en avoir déjà
+    bénéficié au cours des trois années précédentes.
   références:
+    'Acre : nouvelles règles et démarches à partir du 1er janvier 2026': https://www.urssaf.fr/accueil/actualites/acre-nouvelles-regles-demarches.html
     'L’Acre : une aide pour favoriser les créations et reprises d’entreprises': https://www.urssaf.fr/accueil/exoneration-acre-createur.html
-    Aide à la création ou à la reprise d’une entreprise: https://www.service-public.fr/particuliers/vosdroits/F11677
+    Aide à la création ou à la reprise d’une entreprise: https://www.service-public.gouv.fr/particuliers/vosdroits/F11677
     # BPI ONLY
-    'Acre : aide aux créateurs et repreneurs d’entreprise': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
+    'Acre : aide aux créateurs et repreneurs d’entreprise (ex Accre)': https://bpifrance-creation.fr/encyclopedie/aides-a-creation-a-reprise-dentreprise/aides-sociales-financieres/acre-aide-aux
 
 assimilé salarié . exonérations . JEI:
   question: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
