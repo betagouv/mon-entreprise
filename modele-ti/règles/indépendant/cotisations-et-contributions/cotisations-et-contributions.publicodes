@@ -16,7 +16,10 @@ indépendant . cotisations et contributions:
       experimentale: oui
       titre: cotisations recouvrées par l’Urssaf
       valeur: cotisations et contributions
-      abattement: cotisations facultatives . montant
+      abattement:
+        somme:
+          - profession libérale . cotisations caisse de retraite
+          - cotisations facultatives . montant
 
 indépendant . cotisations et contributions . avec dividendes:
   titre: Cotisations et contributions
