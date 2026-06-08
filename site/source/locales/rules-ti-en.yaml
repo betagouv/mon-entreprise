@@ -2789,40 +2789,58 @@ indépendant . cotisations et contributions . cotisations . exonérations . Mayo
     working in Mayotte.
 
 
-    This simulator applies the contribution rates specific to Mayotte.
+    This simulator correctly applies the bases and rates of contributions and
 
-    specific to Mayotte. However, Mayotte exemptions are not yet taken into
-    account.
+    specific to Mayotte, including the 50% deduction
+
+    on the bases for the family allowance contribution and the additional
+
+    additional sickness, maternity and autonomy insurance contributions.
+
+
+    On the other hand, the 24-month Mayotte exemption** and the contributions
+    for
+
+    contributions are not yet taken into account.
 
     taken into account.
-  description.fr: >
+  description.fr: |
     Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des cotisations et
-
     contributions sociales des travailleurs et travailleuses indépendantes qui
-
     exercent leur activité à Mayotte.
 
+    Ce simulateur applique bien les assiettes et taux de cotisations et
+    contributions spécifiques à Mayotte, y compris l’abattement de 50 %
+    sur les assiettes de la cotisation allocations familiales et de la
+    cotisation additionnelle d’assurance maladie-maternité et autonomie.
 
-    Ce simulateur applique bien les taux de cotisations et contributions
-    spécifiques
-
-    à Mayotte. En revanche, les exonérations mahoraises ne sont pas encore
-    prises
-
+    En revanche, l’**exonération 24 mois Mayotte** et les cotisations de
+    conjoint collaborateur/conjointe collaboratrice ne sont pas encore prises
     en compte.
-  résumé.en: |
-    [automatic] This simulator applies the contribution rates
+  résumé.en: >
+    [automatic] This simulator correctly applies the bases and rates of
+    contributions and levies
+
     **specific to Mayotte**.
 
-    However, the **Mayotte exemptions** are not yet taken into account.
+
+    However, the **Mayotte 24-month exemption** and contributions for
+
+    contributions are not yet taken into account.
+
+    taken into account.
   résumé.fr: >
-    Ce simulateur applique bien les taux de cotisations et contributions
+    Ce simulateur applique bien les assiettes et taux de cotisations et
+    contributions
 
     **spécifiques à Mayotte**.
 
 
-    En revanche, les **exonérations** mahoraises ne sont pas encore prises en
-    compte.
+    En revanche, l’**exonération 24 mois Mayotte** et les cotisations de
+
+    conjoint collaborateur/conjointe collaboratrice ne sont pas encore prises
+
+    en compte.
   titre.en: '[automatic] Mayotte collection'
   titre.fr: Recouvrement Mayotte
 indépendant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité:
