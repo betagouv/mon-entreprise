@@ -63,10 +63,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 			},
 			{
 				libellé: (t: TFunction) =>
-					t(
-						'pages.simulateurs.comparaison-statuts.questions.acre',
-						'Acre'
-					),
+					t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
 				dottedName: 'dirigeant . exonérations . ACRE',
 			},
 		],
@@ -100,7 +97,8 @@ export const configComparateurStatuts: ComparateurConfig = {
 								'pages.simulateurs.comparaison-statuts.questions.activité.réglementée',
 								'Activité réglementée'
 							),
-						dottedName: 'entreprise . activité . nature . libérale . réglementée',
+						dottedName:
+							'entreprise . activité . nature . libérale . réglementée',
 					},
 				],
 			},
