@@ -34,9 +34,8 @@ export const BlocSituation = ({
 		groupesDeQuestionsPublicodes,
 	})
 
-	const [afficherQuestionsPrincipales] = useState(
-		questionsPrincipales.length > 0
-	)
+	const [afficherQuestionsPrincipales, setAfficherQuestionsPrincipales] =
+		useState(questionsPrincipales.length > 0)
 
 	return (
 		<Section>
@@ -45,7 +44,10 @@ export const BlocSituation = ({
 			</StyledH2>
 
 			{afficherQuestionsPrincipales ? (
-				<QuestionsPrincipales questions={questionsPrincipales} />
+				<QuestionsPrincipales
+					questions={questionsPrincipales}
+					onClose={() => setAfficherQuestionsPrincipales(false)}
+				/>
 			) : questionCourante ? (
 				<ScrollToElement>
 					<QuestionCourante
@@ -54,10 +56,13 @@ export const BlocSituation = ({
 					/>
 				</ScrollToElement>
 			) : (
-				<ListeQuestions
-					groupesDeQuestions={groupesDeQuestions}
-					onSélection={setQuestionCouranteId}
-				/>
+				<ScrollToElement>
+					<ListeQuestions
+						groupesDeQuestions={groupesDeQuestions}
+						onSélection={setQuestionCouranteId}
+						retour={() => setAfficherQuestionsPrincipales(true)}
+					/>
+				</ScrollToElement>
 			)}
 		</Section>
 	)
