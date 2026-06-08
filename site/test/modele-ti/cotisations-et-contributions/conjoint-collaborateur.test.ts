@@ -118,6 +118,21 @@ describe('Conjoint collaborateur', () => {
 					30_000
 				)
 			})
+
+			it('est égale à 450 Smic horaire mahorais à Mayotte', () => {
+				const e = engine.setSituation({
+					...defaultSituation,
+					'établissement . commune . département': "'Mayotte'",
+				})
+
+				const Smic = e.evaluate("SMIC . horaire . début d'année")
+					.nodeValue as number
+
+				expect(e).toEvaluate(
+					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					Math.round(450 * Smic)
+				)
+			})
 		})
 
 		describe('montant des cotisations', () => {
