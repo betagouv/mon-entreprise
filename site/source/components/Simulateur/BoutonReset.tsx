@@ -17,7 +17,10 @@ export const BoutonReset = () => {
 			}}
 		>
 			<ArrowCircleIcon />
-			{t('components.simulateur.réinitialiser', 'Valeurs par défaut')}
+			{t(
+				'components.simulateur.zone-de-saisie.situation.réinitialiser',
+				'Valeurs par défaut'
+			)}
 		</Button>
 	)
 }

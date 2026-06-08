@@ -38,7 +38,7 @@ export const QuestionCourante = ({ questions, retour }: Props) => {
 					<Button light size="XS" onPress={retour}>
 						<ReturnLeftIcon />
 						{t(
-							'components.simulateur.zone-de-saisie.situation.retour',
+							'components.simulateur.zone-de-saisie.situation.retour-liste',
 							'Revenir à la liste'
 						)}
 					</Button>

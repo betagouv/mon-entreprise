@@ -320,14 +320,18 @@ components:
         titre: Your share link
     questions:
       modifier: Edit {{ règle }}
-    réinitialiser: Default values
     voir-le-détail: See details
     zone-de-saisie:
       info-mise-à-jour: Simulation data is automatically updated when a field is modified.
       montants:
         titre: Amounts
       situation:
-        retour: Back to list
+        questions-principales:
+          bouton: Specify your situation
+          texte: For a better simulation, you can specify your situation.
+        retour: Back
+        retour-liste: Back to list
+        réinitialiser: Default values
         titre: Situation
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the

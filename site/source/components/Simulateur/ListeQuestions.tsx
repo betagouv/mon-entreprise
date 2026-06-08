@@ -12,6 +12,7 @@ import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
 import { BoutonReset } from './BoutonReset'
+import { BoutonRetour } from './BoutonRetour'
 
 export type QuestionEnListe = {
 	id: DottedName
@@ -22,14 +23,20 @@ export type QuestionEnListe = {
 type Props<S extends Situation = Situation> = {
 	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>
 	onSélection: (questionId: string) => void
+	retour: () => void
 }
 
-export const ListeQuestions = ({ groupesDeQuestions, onSélection }: Props) => {
+export const ListeQuestions = ({
+	groupesDeQuestions,
+	onSélection,
+	retour,
+}: Props) => {
 	const { t } = useTranslation()
 
 	return (
 		<>
 			<BoutonsContainer>
+				<BoutonRetour onPress={retour} />
 				<BoutonReset />
 			</BoutonsContainer>
 
@@ -79,7 +86,7 @@ const BoutonsContainer = styled.div`
 	padding: ${({ theme }) => theme.spacings.xs} 0
 		${({ theme }) => theme.spacings.md} 0;
 	display: flex;
-	justify-content: end;
+	justify-content: space-between;
 `
 
 const UlWithoutMargin = styled(Ul)`
