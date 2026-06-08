@@ -616,7 +616,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité e
   description: Cotisation spécifique à Mayotte.
   applicable si: établissement . commune . département . outre-mer . Mayotte
   produit:
-    - assiette sociale
+    - assiette
     - variations:
         - si: date < 01/2026
           alors: 3.90%
@@ -647,3 +647,16 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité e
     Taux de cotisations - Travailleur indépendant à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ti-mayotte.html
     Article 28-4 de l’ordonnance n°96-1122: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000044405006
     Décret n° 2019-632 du 24 juin 2019 modifiant le décret n° 2011-2085 du 30 décembre 2011: https://www.legifrance.gouv.fr/loda/id/JORFTEXT000038677832
+
+  avec:
+    assiette:
+      valeur: assiette sociale
+      abattement:
+        applicable si: entreprise . durée d'activité >= 25 mois
+        produit:
+          - valeur: assiette sociale
+            plafond: PASS proratisé
+          - 50%
+        arrondi: oui
+      références:
+        Article 28-5 de l’ordonnance n°96-1122: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000025018568
