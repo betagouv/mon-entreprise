@@ -87,6 +87,15 @@ describe('PAMC', () => {
 
 			expect(e).toEvaluate(ASSIETTE_CPAM, assietteSociale)
 		})
+
+		it('n’est pas applicable à Mayotte', () => {
+			const e = engine.setSituation({
+				...defaultSituation,
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(ASSIETTE_CPAM)
+		})
 	})
 
 	describe('les cotisations forfaitaires de début d’activité', () => {
