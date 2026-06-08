@@ -1,7 +1,10 @@
 import { useSelector } from 'react-redux'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle, SimulationConfig } from '@/domaine/SimulationConfig'
+import {
+	NomModèle,
+	QuestionsGroupées,
+	SimulationConfig,
+} from '@/domaine/SimulationConfig'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
@@ -16,7 +19,10 @@ export default function useSimulationPublicodesÉditorialisées(
 ) {
 	const { id, path, simulation, autoloadLastSimulation } = simulatorConfig
 	const nomModèle = simulation?.nomModèle as NomModèle
-	const idsDesQuestions = simulation?.questions?.liste as DottedName[]
+	const questionsGroupées = simulation?.questionsV2 as Record<
+		string,
+		QuestionsGroupées
+	>
 
 	useSimulationConfig({
 		key: id,
@@ -30,9 +36,9 @@ export default function useSimulationPublicodesÉditorialisées(
 
 	const currentKey = useSelector(simulationKeySelector)
 
-	const questions = useQuestionsPublicodesÉditorialisées(
+	const questionsPublicodesGroupées = useQuestionsPublicodesÉditorialisées(
 		nomModèle,
-		idsDesQuestions
+		questionsGroupées
 	)
 
 	const situation = useSelector(situationSelector)
@@ -41,7 +47,7 @@ export default function useSimulationPublicodesÉditorialisées(
 	return {
 		isReady: currentKey === id,
 		engine,
-		questions,
+		questions: questionsPublicodesGroupées,
 		simulationEstCommencée,
 	}
 }

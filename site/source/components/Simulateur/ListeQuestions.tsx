@@ -1,10 +1,13 @@
+import { pipe } from 'effect'
+import { map } from 'effect/Array'
+import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Body, Button, EditIcon, Li, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
-import { Question } from '@/hooks/useQuestionsEditorialisees'
+import { QuestionsGroupées } from '@/hooks/useQuestionsEditorialisees'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
@@ -17,11 +20,11 @@ export type QuestionEnListe = {
 }
 
 type Props<S extends Situation = Situation> = {
-	questions: Question<S>[]
-	onSélection: (question: Question<S>) => void
+	questionsGroupées: Record<string, QuestionsGroupées<S>>
+	onSélection: (questionId: string) => void
 }
 
-export const ListeQuestions = ({ questions, onSélection }: Props) => {
+export const ListeQuestions = ({ questionsGroupées, onSélection }: Props) => {
 	const { t } = useTranslation()
 
 	return (
@@ -30,31 +33,39 @@ export const ListeQuestions = ({ questions, onSélection }: Props) => {
 				<BoutonReset />
 			</BoutonsContainer>
 
-			{questions.length && (
+			{Object.keys(questionsGroupées).length && (
 				<UlWithoutMargin $noMarker>
-					{questions.map((question) => (
-						<StyledLi key={question.id}>
-							<div>
-								<BodyWithoutMargin>{question.libellé(t)}</BodyWithoutMargin>
-								<ExplicableRule light dottedName={question.id} />
-							</div>
+					{pipe(
+						questionsGroupées,
+						R.toEntries,
+						map(([id, questionGroupée]) => {
+							const question = questionGroupée.liste[0]
 
-							<ValueContainer>
-								<Value expression={question.id} linkToRule={false} />
-								<EditButton
-									light
-									onPress={() => onSélection(question)}
-									aria-label={t(
-										'components.simulateur.questions.modifier',
-										'Modifier {{ règle }}',
-										{ règle: question.libellé(t) }
-									)}
-								>
-									<EditIcon />
-								</EditButton>
-							</ValueContainer>
-						</StyledLi>
-					))}
+							return (
+								<StyledLi key={id}>
+									<div>
+										<BodyWithoutMargin>{question.libellé(t)}</BodyWithoutMargin>
+										<ExplicableRule light dottedName={question.id} />
+									</div>
+
+									<ValueContainer>
+										<Value expression={question.id} linkToRule={false} />
+										<EditButton
+											light
+											onPress={() => onSélection(question.id)}
+											aria-label={t(
+												'components.simulateur.questions.modifier',
+												'Modifier {{ règle }}',
+												{ règle: question.libellé(t) }
+											)}
+										>
+											<EditIcon />
+										</EditButton>
+									</ValueContainer>
+								</StyledLi>
+							)
+						})
+					)}
 				</UlWithoutMargin>
 			)}
 		</>

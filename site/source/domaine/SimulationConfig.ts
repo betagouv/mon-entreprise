@@ -1,3 +1,5 @@
+import { TFunction } from 'i18next'
+
 import { DottedName } from './publicodes/DottedName'
 import { RaccourciPublicodes } from './RaccourciPublicodes'
 import { SituationPublicodes } from './SituationPublicodes'
@@ -24,7 +26,7 @@ export type SimulationConfig = Partial<{
 
 	questions: {
 		/**
-		 * Question non prioritaires, elles aparraitront en fin de simulation
+		 * Question non prioritaires, elles aparaitront en fin de simulation
 		 */
 		'non prioritaires'?: DottedName[]
 
@@ -46,6 +48,8 @@ export type SimulationConfig = Partial<{
 		raccourcis?: RaccourciPublicodes[]
 	}
 
+	questionsV2: Record<string, QuestionsGroupées>
+
 	'unité par défaut'?: string
 
 	'règles à ignorer pour déclencher les questions'?: DottedName[]
@@ -54,3 +58,13 @@ export type SimulationConfig = Partial<{
 }>
 
 export type NomModèle = 'modele-social' | 'modele-as' | 'modele-ti'
+
+type Question = {
+	libellé: (t: TFunction) => string
+	dottedName: DottedName
+}
+
+export type QuestionsGroupées = {
+	titre: (t: TFunction) => string
+	liste: Question[]
+}

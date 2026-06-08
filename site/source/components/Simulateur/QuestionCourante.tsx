@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -8,11 +9,11 @@ import { Question } from '@/hooks/useQuestionsEditorialisees'
 import { QuestionPublicodes } from './QuestionPublicodes'
 
 type Props<S extends Situation = Situation> = {
-	Question: Question<S>
+	questions: Array<Question<S>>
 	retour: () => void
 }
 
-export const QuestionCourante = ({ Question, retour }: Props) => {
+export const QuestionCourante = ({ questions, retour }: Props) => {
 	const { t } = useTranslation()
 
 	return (
@@ -25,16 +26,20 @@ export const QuestionCourante = ({ Question, retour }: Props) => {
 				)}
 			</Button>
 
-			{Question._tag === 'QuestionFournie' && (
-				<fieldset>
-					<QuestionTitle as="legend">{Question.libellé(t)}</QuestionTitle>
-					<Question />
-				</fieldset>
-			)}
+			{questions.map((Question) => (
+				<React.Fragment key={Question.id}>
+					{Question._tag === 'QuestionFournie' && (
+						<fieldset>
+							<QuestionTitle as="legend">{Question.libellé(t)}</QuestionTitle>
+							<Question />
+						</fieldset>
+					)}
 
-			{Question._tag === 'QuestionPublicodes' && (
-				<QuestionPublicodes question={Question} />
-			)}
+					{Question._tag === 'QuestionPublicodes' && (
+						<QuestionPublicodes question={Question} />
+					)}
+				</React.Fragment>
+			))}
 		</>
 	)
 }
