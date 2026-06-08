@@ -221,6 +221,18 @@ indépendant . cotisations et contributions . cotisations . allocations familial
 
   avec:
     assiette:
+      valeur: assiette non abattue
+      abattement:
+        applicable si:
+          toutes ces conditions:
+            - établissement . commune . département . outre-mer . Mayotte
+            - entreprise . durée d'activité >= 25 mois
+        valeur: 50%
+      arrondi: oui
+      références:
+        Article 28-5 de l’ordonnance n°96-1122: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000025018568
+
+    assiette non abattue:
       valeur: assiette sociale
       plafond:
         applicable si: établissement . commune . département . outre-mer . Mayotte

@@ -2148,6 +2148,9 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     assiette:
       titre.en: '[automatic] plate'
       titre.fr: assiette
+    assiette non abattue:
+      titre.en: '[automatic] untrimmed plate'
+      titre.fr: assiette non abattue
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
