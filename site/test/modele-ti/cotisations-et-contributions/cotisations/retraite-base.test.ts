@@ -199,6 +199,36 @@ describe('Cotisation retraite de base', () => {
 
 				expect(e).toEvaluate(COTISATION, Math.round(assietteMinimale * TAUX))
 			})
+
+			it('applique une assiette minimale en cas de RSA ou de prime d’activité', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'situation personnelle . RSA': 'oui',
+				})
+
+				const assietteMinimale = e.evaluate(
+					'indépendant . assiette minimale . retraite'
+				).nodeValue as number
+
+				expect(e).toEvaluate(`${COTISATION} . assiette`, assietteMinimale)
+			})
+
+			it('applique une assiette minimale en cas d’activité saisonnière', () => {
+				const e = engine.setSituation({
+					...situation,
+					'indépendant . cotisations et contributions . assiette sociale':
+						'1000 €/an',
+					'entreprise . activité . saisonnière': 'oui',
+				})
+
+				const assietteMinimale = e.evaluate(
+					'indépendant . assiette minimale . retraite'
+				).nodeValue as number
+
+				expect(e).toEvaluate(`${COTISATION} . assiette`, assietteMinimale)
+			})
 		})
 	})
 
@@ -340,7 +370,7 @@ describe('Cotisation retraite de base', () => {
 					'situation personnelle . RSA': 'oui',
 				})
 
-				expect(e).toEvaluate(`${COTISATION} . assiette`, 1_000)
+				expect(e).toEvaluate(`${COTISATION_PLR} . assiette`, 1_000)
 			})
 
 			it('en cas d’activité saisonnière', () => {
@@ -351,7 +381,7 @@ describe('Cotisation retraite de base', () => {
 					'entreprise . activité . saisonnière': 'oui',
 				})
 
-				expect(e).toEvaluate(`${COTISATION} . assiette`, 1_000)
+				expect(e).toEvaluate(`${COTISATION_PLR} . assiette`, 1_000)
 			})
 		})
 
@@ -438,6 +468,30 @@ describe('Cotisation retraite de base', () => {
 					`${COTISATION_PLR} . tranche 2`,
 					Math.round(5 * PASS * TAUX_T2)
 				)
+			})
+
+			describe('n’applique pas d’assiette minimale', () => {
+				it('en cas de RSA ou de prime d’activité', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'1000 €/an',
+						'situation personnelle . RSA': 'oui',
+					})
+
+					expect(e).toEvaluate(`${COTISATION_PLR} . assiette`, 1_000)
+				})
+
+				it('en cas d’activité saisonnière', () => {
+					const e = engine.setSituation({
+						...situation,
+						'indépendant . cotisations et contributions . assiette sociale':
+							'1000 €/an',
+						'entreprise . activité . saisonnière': 'oui',
+					})
+
+					expect(e).toEvaluate(`${COTISATION_PLR} . assiette`, 1_000)
+				})
 			})
 		})
 	})

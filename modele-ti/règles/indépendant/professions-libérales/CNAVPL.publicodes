@@ -82,10 +82,7 @@ indépendant . profession libérale . CNAVPL . retraite de base:
 
     assiette:
       valeur: cotisations et contributions . cotisations . assiette retraite et invalidité-décès
-      plancher:
-        valeur: 450 heure/an * SMIC . horaire . métropole . début d'année
-        arrondi: oui
-        unité: €/an
+      plancher: assiette minimale . retraite
 
 indépendant . profession libérale . CNAVPL . retraite complémentaire:
   variations:
