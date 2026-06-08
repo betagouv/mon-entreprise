@@ -1,3 +1,5 @@
+import { TFunction } from 'i18next'
+
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
@@ -33,20 +35,126 @@ export const configComparateurStatuts: ComparateurConfig = {
 		'protection sociale . invalidité et décès . capital décès',
 		'protection sociale . invalidité et décès . capital décès . orphelin',
 	],
-	questions: {
-		liste: [
-			'entreprise . activité . nature',
-			'entreprise . activités . service ou vente',
-			'entreprise . activité . nature . libérale . réglementée',
-			'dirigeant . exonérations . ACRE',
-			'entreprise . TVA',
-			'impôt . méthode de calcul',
-			'impôt . taux personnalisé',
-			'impôt . foyer fiscal . situation de famille',
-			'impôt . foyer fiscal . enfants à charge',
-			'impôt . foyer fiscal . parent isolé',
-			'impôt . foyer fiscal . revenu imposable . autres revenus imposables',
-		],
+	questionsV2: {
+		activité: {
+			titre: (t: TFunction) =>
+				t(
+					'pages.simulateurs.comparaison-statuts.questions.activité.titre',
+					'Activité'
+				),
+			liste: [
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.activité.principale',
+							'Activité principale'
+						),
+					dottedName: 'entreprise . activité . nature',
+				},
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.activité.type',
+							'Type d’activité'
+						),
+					dottedName: 'entreprise . activités . service ou vente',
+				},
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.activité.réglementée',
+							'Activité réglementée'
+						),
+					dottedName: 'entreprise . activité . nature . libérale . réglementée',
+				},
+			],
+		},
+		acre: {
+			titre: (t: TFunction) =>
+				t('pages.simulateurs.comparaison-statuts.questions.acre.titre', 'Acre'),
+			liste: [
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.acre.libellé',
+							'Acre'
+						),
+					dottedName: 'dirigeant . exonérations . ACRE',
+				},
+			],
+		},
+		TVA: {
+			titre: (t: TFunction) =>
+				t('pages.simulateurs.comparaison-statuts.questions.TVA.titre', 'TVA'),
+			liste: [
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.TVA.libellé',
+							'Entreprise assujettie à la TVA'
+						),
+					dottedName: 'entreprise . TVA',
+				},
+			],
+		},
+		impôt: {
+			titre: (t: TFunction) =>
+				t(
+					'pages.simulateurs.comparaison-statuts.questions.impôt.titre',
+					'Impôt'
+				),
+			liste: [
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.impôt.méthode',
+							'Méthode de calcul'
+						),
+					dottedName: 'impôt . méthode de calcul',
+				},
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.impôt.taux',
+							'Taux personnalisé'
+						),
+					dottedName: 'impôt . taux personnalisé',
+				},
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.impôt.situation',
+							'Situation de famille'
+						),
+					dottedName: 'impôt . foyer fiscal . situation de famille',
+				},
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.impôt.enfants',
+							'Enfants à charge'
+						),
+					dottedName: 'impôt . foyer fiscal . enfants à charge',
+				},
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.impôt.parent-isolé',
+							'Parent isolé'
+						),
+					dottedName: 'impôt . foyer fiscal . parent isolé',
+				},
+				{
+					libellé: (t: TFunction) =>
+						t(
+							'pages.simulateurs.comparaison-statuts.questions.impôt.revenus',
+							'Autres revenus imposables'
+						),
+					dottedName:
+						'impôt . foyer fiscal . revenu imposable . autres revenus imposables',
+				},
+			],
+		},
 	},
 	'unité par défaut': '€/mois',
 	situation: {

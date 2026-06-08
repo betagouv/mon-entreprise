@@ -1789,6 +1789,26 @@ pages:
       option-applicable: Option applicable.
       option-non-applicable: Option non applicable.
       option-sous-conditions: Option applicable sous conditions.
+      questions:
+        TVA:
+          libellé: Entreprise assujettie à la TVA
+          titre: TVA
+        acre:
+          libellé: Acre
+          titre: Acre
+        activité:
+          principale: Activité principale
+          réglementée: Activité réglementée
+          titre: Activité
+          type: Type d’activité
+        impôt:
+          enfants: Enfants à charge
+          méthode: Méthode de calcul
+          parent-isolé: Parent isolé
+          revenus: Autres revenus imposables
+          situation: Situation de famille
+          taux: Taux personnalisé
+          titre: Impôt
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
