@@ -1,8 +1,14 @@
 indépendant . assiette minimale:
   non applicable si:
-    une de ces conditions:
-      - situation personnelle . RSA
-      - entreprise . activité . saisonnière
+    toutes ces conditions:
+      - une de ces conditions:
+          - situation personnelle . RSA
+          - entreprise . activité . saisonnière
+      - une de ces conditions:
+          - profession libérale . CNAVPL
+          - toutes ces conditions:
+              - profession libérale . CNAVPL = non
+              - établissement . commune . département . outre-mer . Mayotte = non
   valeur: oui
   description: |
     Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de
@@ -46,7 +52,13 @@ indépendant . assiette minimale . retraite:
   variations:
     - si: entreprise . durée d'activité cette année < 90 jour
       alors: 0
-    - sinon: 450 heure/an * SMIC . horaire . début d'année
+    - sinon:
+        produit:
+          - 450 heure/an
+          - variations:
+              - si: profession libérale . CNAVPL
+                alors: SMIC . horaire . métropole . début d'année
+              - sinon: SMIC . horaire . début d'année
   arrondi: oui
   unité: €/an
   références:

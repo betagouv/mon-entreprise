@@ -455,6 +455,36 @@ describe('Cotisation invalidité et décès', () => {
 
 					expect(e).toEvaluate(COTISATION, Math.round(assietteMaximale * TAUX))
 				})
+
+				describe('n’applique pas d’assiette minimale', () => {
+					it('en cas de RSA ou de prime d’activité', () => {
+						const e = engine.setSituation({
+							...situation,
+							'indépendant . cotisations et contributions . assiette sociale':
+								'1000 €/an',
+							'situation personnelle . RSA': 'oui',
+						})
+
+						expect(e).toEvaluate(
+							'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+							1_000
+						)
+					})
+
+					it('en cas d’activité saisonnière', () => {
+						const e = engine.setSituation({
+							...situation,
+							'indépendant . cotisations et contributions . assiette sociale':
+								'1000 €/an',
+							'entreprise . activité . saisonnière': 'oui',
+						})
+
+						expect(e).toEvaluate(
+							'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+							1_000
+						)
+					})
+				})
 			})
 		})
 	})
