@@ -3167,6 +3167,10 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité a
   titre.en: '[automatic] sickness-maternity before deductions'
   titre.fr: maladie-maternité avant abattements
 indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
   description.en: '[automatic] Contribution specific to Mayotte.'
   description.fr: Cotisation spécifique à Mayotte.
   titre.en: '[automatic] Additional sickness, maternity and autonomy insurance
