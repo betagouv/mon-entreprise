@@ -6,7 +6,7 @@ import { FunctionComponent, useMemo, useState } from 'react'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Situation } from '@/domaine/Situation'
 
-import { QuestionPublicodes } from './useQuestionsPublicodesV2'
+import { QuestionPublicodes } from './useQuestionsPublicodesEditorialisees'
 
 type QuestionFournie<S extends Situation> = Omit<
 	ComposantQuestion<S>,
@@ -40,7 +40,7 @@ export interface UseQuestionsProps<S extends Situation = Situation> {
 	situation?: S
 }
 
-export function useQuestions<S extends Situation>({
+export function useQuestionsÉditorialisées<S extends Situation>({
 	questionsFournies = [],
 	questionsPublicodes = [],
 	situation,

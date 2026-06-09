@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import { Button, H3, ReturnLeftIcon } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
-import { Question } from '@/hooks/useQuestionsV2'
+import { Question } from '@/hooks/useQuestionsEditorialisees'
 
 import { QuestionPublicodes } from './QuestionPublicodes'
 
