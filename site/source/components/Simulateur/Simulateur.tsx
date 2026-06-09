@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 
 import { SmallBody } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
-import { QuestionsPublicodesGroupées } from '@/hooks/useQuestionsPublicodesEditorialisees'
+import { GroupeDeQuestionsPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useTracking } from '@/hooks/useTracking'
 
@@ -17,7 +17,7 @@ import { ZoneDeSaisie } from './ZoneDeSaisie'
 type Props<S extends Situation = Situation> = {
 	id: SimulateurId
 	montantsÀSaisir: React.ReactNode
-	questionsPublicodesGroupées: Record<string, QuestionsPublicodesGroupées<S>>
+	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes<S>>
 	avertissement?: React.ReactNode
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 	simulationEstCommencée: boolean
@@ -27,7 +27,7 @@ type Props<S extends Situation = Situation> = {
 export const Simulateur = ({
 	id,
 	montantsÀSaisir,
-	questionsPublicodesGroupées,
+	groupesDeQuestionsPublicodes,
 	avertissement,
 	conseillersEntreprisesVariant,
 	simulationEstCommencée,
@@ -51,7 +51,7 @@ export const Simulateur = ({
 			{/* Année précédente */}
 
 			<ZoneDeSaisie
-				questionsPublicodesGroupées={questionsPublicodesGroupées}
+				groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
 				montants={montantsÀSaisir}
 			/>
 

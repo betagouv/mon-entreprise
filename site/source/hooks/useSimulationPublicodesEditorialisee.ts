@@ -36,7 +36,7 @@ export default function useSimulationPublicodesÉditorialisées(
 
 	const currentKey = useSelector(simulationKeySelector)
 
-	const questionsPublicodesGroupées = useQuestionsPublicodesÉditorialisées(
+	const groupesDeQuestionsPublicodes = useQuestionsPublicodesÉditorialisées(
 		nomModèle,
 		questionsGroupées
 	)
@@ -47,7 +47,7 @@ export default function useSimulationPublicodesÉditorialisées(
 	return {
 		isReady: currentKey === id,
 		engine,
-		questions: questionsPublicodesGroupées,
+		groupesDeQuestions: groupesDeQuestionsPublicodes,
 		simulationEstCommencée,
 	}
 }
