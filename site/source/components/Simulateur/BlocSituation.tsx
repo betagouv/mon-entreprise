@@ -1,25 +1,42 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { H2 } from '@/design-system'
-import { Situation } from '@/domaine/Situation'
 import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
-import { GroupeDeQuestionsPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
+import {
+	GroupeDeQuestionsPublicodes,
+	QuestionPublicodes,
+} from '@/hooks/useQuestionsPublicodesEditorialisees'
 
 import ScrollToElement from '../utils/Scroll/ScrollToElement'
 import { ListeQuestions } from './ListeQuestions'
 import { QuestionCourante } from './QuestionCourante'
+import { QuestionsPrincipales } from './QuestionsPrincipales'
 
-type Props<S extends Situation = Situation> = {
-	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes<S>>
+type Props = {
+	questionsPublicodesPrincipales: QuestionPublicodes[]
+	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes>
 }
 
-export const BlocSituation = ({ groupesDeQuestionsPublicodes }: Props) => {
+export const BlocSituation = ({
+	questionsPublicodesPrincipales,
+	groupesDeQuestionsPublicodes,
+}: Props) => {
 	const { t } = useTranslation()
-	const { groupesDeQuestions, questionCourante, setQuestionCouranteId } =
-		useQuestionsÉditorialisées({
-			groupesDeQuestionsPublicodes,
-		})
+	const {
+		questionsPrincipales,
+		groupesDeQuestions,
+		questionCourante,
+		setQuestionCouranteId,
+	} = useQuestionsÉditorialisées({
+		questionsPublicodesPrincipales,
+		groupesDeQuestionsPublicodes,
+	})
+
+	const [afficherQuestionsPrincipales] = useState(
+		questionsPrincipales.length > 0
+	)
 
 	return (
 		<Section>
@@ -27,7 +44,9 @@ export const BlocSituation = ({ groupesDeQuestionsPublicodes }: Props) => {
 				{t('components.simulateur.zone-de-saisie.situation.titre', 'Situation')}
 			</StyledH2>
 
-			{questionCourante ? (
+			{afficherQuestionsPrincipales ? (
+				<QuestionsPrincipales questions={questionsPrincipales} />
+			) : questionCourante ? (
 				<ScrollToElement>
 					<QuestionCourante
 						questions={questionCourante.liste}

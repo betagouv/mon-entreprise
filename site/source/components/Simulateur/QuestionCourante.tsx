@@ -10,7 +10,7 @@ import { QuestionPublicodes } from './QuestionPublicodes'
 
 type Props<S extends Situation = Situation> = {
 	questions: Array<Question<S>>
-	retour: () => void
+	retour?: () => void
 }
 
 export const QuestionCourante = ({ questions, retour }: Props) => {
@@ -33,15 +33,17 @@ export const QuestionCourante = ({ questions, retour }: Props) => {
 				</React.Fragment>
 			))}
 
-			<StyledDiv>
-				<Button light size="XS" onPress={retour}>
-					<ReturnLeftIcon />
-					{t(
-						'components.simulateur.zone-de-saisie.situation.retour',
-						'Revenir à la liste'
-					)}
-				</Button>
-			</StyledDiv>
+			{retour && (
+				<StyledDiv>
+					<Button light size="XS" onPress={retour}>
+						<ReturnLeftIcon />
+						{t(
+							'components.simulateur.zone-de-saisie.situation.retour',
+							'Revenir à la liste'
+						)}
+					</Button>
+				</StyledDiv>
+			)}
 		</>
 	)
 }

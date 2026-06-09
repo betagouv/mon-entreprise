@@ -2,19 +2,23 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Body } from '@/design-system'
-import { Situation } from '@/domaine/Situation'
-import { GroupeDeQuestionsPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
+import {
+	GroupeDeQuestionsPublicodes,
+	QuestionPublicodes,
+} from '@/hooks/useQuestionsPublicodesEditorialisees'
 
 import { BlocMontants } from './BlocMontants'
 import { BlocSituation } from './BlocSituation'
 
-type Props<S extends Situation = Situation> = {
+type Props = {
 	montants: React.ReactNode
-	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes<S>>
+	questionsPublicodesPrincipales: QuestionPublicodes[]
+	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes>
 }
 
 export const ZoneDeSaisie = ({
 	montants,
+	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
 }: Props) => {
 	const { t } = useTranslation()
@@ -31,6 +35,7 @@ export const ZoneDeSaisie = ({
 			<Container>
 				<LeftColumn>
 					<BlocSituation
+						questionsPublicodesPrincipales={questionsPublicodesPrincipales}
 						groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
 					/>
 				</LeftColumn>
