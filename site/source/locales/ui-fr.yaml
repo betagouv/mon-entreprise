@@ -86,7 +86,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
-"Lire la documentation au sujet de :": "Lire la documentation au sujet de :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
@@ -312,6 +311,13 @@ components:
       placeholder: "Mot-clé ou acronyme (exemple : CSG)"
     modale:
       title: Recherche sur le site
+  règles:
+    info:
+      aria-label: Info sur {{ règle }}
+    lien-documentation:
+      aria-label: Lire la documentation sur {{ règle }}
+      texte: Lire la documentation
+    références: Liens utiles
   simulateur:
     conseillers-entreprise:
       bouton: Échanger avec un conseiller

@@ -82,7 +82,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   Simulation data is automatically updated when you modify a field. <2>A panel
   will open to allow you to add details to the simulation, and detailed results
   will be displayed below the form and updated when you modify it.</2>
-"Lire la documentation au sujet de :": "Read the documentation about :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Read the page on {{ site }}, new window.
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
@@ -299,6 +298,13 @@ components:
       placeholder: Keyword or acronym (e.g. CSG)
     modale:
       title: Site search
+  règles:
+    info:
+      aria-label: Info on {{ règle }}
+    lien-documentation:
+      aria-label: Read the documentation on {{ règle }}
+      texte: Read the documentation
+    références: Useful links
   simulateur:
     conseillers-entreprise:
       bouton: Talk to an advisor
