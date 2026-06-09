@@ -1,4 +1,5 @@
 import { pipe } from 'effect'
+import * as A from 'effect/Array'
 import { isUndefined, Predicate } from 'effect/Predicate'
 import * as R from 'effect/Record'
 import { TFunction } from 'i18next'
@@ -44,12 +45,17 @@ const adapteLesQuestionsFourniesDansLeGroupe = <S extends Situation>(
 	liste: groupeDeQuestionsFournies.liste.map(adapteUneQuestionFournie),
 })
 
+const estApplicableDansLaSituation =
+	<S extends Situation>(situation: S | undefined) =>
+	(question: Question<S>) =>
+		question.applicable(situation)
+
 const filtreLesQuestionsApplicablesDansLeGroupe =
 	<S extends Situation>(situation: S | undefined) =>
 	(groupeDeQuestion: GroupeDeQuestions<S>) => ({
 		...groupeDeQuestion,
-		liste: groupeDeQuestion.liste.filter((q: Question<S>) =>
-			q.applicable(situation)
+		liste: groupeDeQuestion.liste.filter(
+			estApplicableDansLaSituation(situation)
 		),
 	})
 
@@ -59,7 +65,7 @@ const filtreLesGroupesSansQuestions = <S extends Situation>(
 
 export type Question<S extends Situation> =
 	| QuestionFournie<S>
-	| QuestionPublicodes<S>
+	| QuestionPublicodes
 
 export type GroupeDeQuestions<S extends Situation> = {
 	titre: (t: TFunction) => string
@@ -67,16 +73,31 @@ export type GroupeDeQuestions<S extends Situation> = {
 }
 
 export interface UseQuestionsProps<S extends Situation = Situation> {
+	questionsFourniesPrincipales?: ComposantQuestion<S>[]
+	questionsPublicodesPrincipales?: QuestionPublicodes[]
 	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
-	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes<S>>
+	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>
 	situation?: S
 }
 
-export function useQuestionsÉditorialisées<S extends Situation>({
+export function useQuestionsÉditorialisées<S extends Situation = Situation>({
+	questionsFourniesPrincipales = [],
+	questionsPublicodesPrincipales = [],
 	groupesDeQuestionsFournies = {},
 	groupesDeQuestionsPublicodes = {},
 	situation,
 }: UseQuestionsProps<S>) {
+	const questionsPrincipales = useMemo(
+		() =>
+			pipe(
+				questionsFourniesPrincipales,
+				A.map(adapteUneQuestionFournie),
+				A.union(questionsPublicodesPrincipales),
+				A.filter(estApplicableDansLaSituation(situation))
+			),
+		[questionsFourniesPrincipales, questionsPublicodesPrincipales, situation]
+	)
+
 	const groupesDeQuestions = useMemo(
 		() =>
 			pipe(
@@ -97,6 +118,7 @@ export function useQuestionsÉditorialisées<S extends Situation>({
 		: groupesDeQuestions[questionCouranteId]
 
 	return {
+		questionsPrincipales,
 		groupesDeQuestions,
 		questionCourante,
 		setQuestionCouranteId,

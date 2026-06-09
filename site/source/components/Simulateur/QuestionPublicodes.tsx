@@ -4,19 +4,16 @@ import { useDispatch } from 'react-redux'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { Situation } from '@/domaine/Situation'
 import { QuestionPublicodes as TypeQuestionPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 
 import { RuleField } from '../conversation/RuleField'
 
-type Props<S extends Situation> = {
-	question: TypeQuestionPublicodes<S>
+type Props = {
+	question: TypeQuestionPublicodes
 }
 
-export const QuestionPublicodes = <S extends Situation>({
-	question,
-}: Props<S>) => {
+export const QuestionPublicodes = ({ question }: Props) => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 

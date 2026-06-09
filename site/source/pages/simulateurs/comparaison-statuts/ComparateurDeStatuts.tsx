@@ -21,8 +21,13 @@ import { EngineComparison } from './EngineComparison'
 export const ComparateurDeStatuts = () => {
 	const id = 'comparaison-statuts'
 	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, groupesDeQuestions, simulationEstCommencée } =
-		useSimulationPublicodesÉditorialisées(simulateurConfig)
+	const {
+		isReady,
+		engine,
+		questionsPrincipales,
+		groupesDeQuestions,
+		simulationEstCommencée,
+	} = useSimulationPublicodesÉditorialisées(simulateurConfig)
 
 	const situation = useSelector(completeSituationSelector)
 	const { absoluteSitePaths } = useSitePaths()
@@ -92,6 +97,7 @@ export const ComparateurDeStatuts = () => {
 				<Simulateur
 					id={id}
 					montantsÀSaisir={<MontantsÀSaisir />}
+					questionsPublicodesPrincipales={questionsPrincipales}
 					groupesDeQuestionsPublicodes={groupesDeQuestions}
 					détail={<DétailSimulation namedEngines={engines} />}
 					simulationEstCommencée={simulationEstCommencée}
