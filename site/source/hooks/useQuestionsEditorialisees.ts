@@ -53,6 +53,10 @@ const filtreLesQuestionsApplicablesDansLeGroupe =
 		),
 	})
 
+const filtreLesGroupesSansQuestions = <S extends Situation>(
+	groupeDeQuestion: GroupeDeQuestions<S>
+) => groupeDeQuestion.liste.length > 0
+
 export type Question<S extends Situation> =
 	| QuestionFournie<S>
 	| QuestionPublicodes<S>
@@ -79,7 +83,8 @@ export function useQuestionsÉditorialisées<S extends Situation>({
 				groupesDeQuestionsFournies,
 				R.map(adapteLesQuestionsFourniesDansLeGroupe),
 				R.union(groupesDeQuestionsPublicodes, (_, qPublicodes) => qPublicodes),
-				R.map(filtreLesQuestionsApplicablesDansLeGroupe(situation))
+				R.map(filtreLesQuestionsApplicablesDansLeGroupe(situation)),
+				R.filter(filtreLesGroupesSansQuestions)
 			),
 		[groupesDeQuestionsFournies, groupesDeQuestionsPublicodes, situation]
 	)

@@ -71,14 +71,11 @@ export const configComparateurStatuts: ComparateurConfig = {
 		},
 		acre: {
 			titre: (t: TFunction) =>
-				t('pages.simulateurs.comparaison-statuts.questions.acre.titre', 'Acre'),
+				t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
 			liste: [
 				{
 					libellé: (t: TFunction) =>
-						t(
-							'pages.simulateurs.comparaison-statuts.questions.acre.libellé',
-							'Acre'
-						),
+						t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
 					dottedName: 'dirigeant . exonérations . ACRE',
 				},
 			],
@@ -97,33 +94,51 @@ export const configComparateurStatuts: ComparateurConfig = {
 				},
 			],
 		},
-		impôt: {
+		méthodeImpôt: {
 			titre: (t: TFunction) =>
 				t(
-					'pages.simulateurs.comparaison-statuts.questions.impôt.titre',
-					'Impôt'
+					'pages.simulateurs.comparaison-statuts.questions.méthode-impôt',
+					'Méthode de calcul de l’impôt sur le revenu'
 				),
 			liste: [
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.impôt.méthode',
-							'Méthode de calcul'
+							'pages.simulateurs.comparaison-statuts.questions.méthode-impôt',
+							'Méthode de calcul de l’impôt sur le revenu'
 						),
 					dottedName: 'impôt . méthode de calcul',
 				},
+			],
+		},
+		tauxImpôt: {
+			titre: (t: TFunction) =>
+				t(
+					'pages.simulateurs.comparaison-statuts.questions.taux-impôt',
+					'Taux d’imposition'
+				),
+			liste: [
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.impôt.taux',
-							'Taux personnalisé'
+							'pages.simulateurs.comparaison-statuts.questions.taux-impôt',
+							'Taux d’imposition'
 						),
 					dottedName: 'impôt . taux personnalisé',
 				},
+			],
+		},
+		situationFamiliale: {
+			titre: (t: TFunction) =>
+				t(
+					'pages.simulateurs.comparaison-statuts.questions.situation-familiale.titre',
+					'Situation de famille'
+				),
+			liste: [
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.impôt.situation',
+							'pages.simulateurs.comparaison-statuts.questions.situation-familiale.situation',
 							'Situation de famille'
 						),
 					dottedName: 'impôt . foyer fiscal . situation de famille',
@@ -131,7 +146,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.impôt.enfants',
+							'pages.simulateurs.comparaison-statuts.questions.situation-familiale.enfants',
 							'Enfants à charge'
 						),
 					dottedName: 'impôt . foyer fiscal . enfants à charge',
@@ -139,15 +154,24 @@ export const configComparateurStatuts: ComparateurConfig = {
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.impôt.parent-isolé',
+							'pages.simulateurs.comparaison-statuts.questions.situation-familiale.parent-isolé',
 							'Parent isolé'
 						),
 					dottedName: 'impôt . foyer fiscal . parent isolé',
 				},
+			],
+		},
+		autresRevenus: {
+			titre: (t: TFunction) =>
+				t(
+					'pages.simulateurs.comparaison-statuts.questions.autres-revenus',
+					'Autres revenus imposables'
+				),
+			liste: [
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.impôt.revenus',
+							'pages.simulateurs.comparaison-statuts.questions.autres-revenus',
 							'Autres revenus imposables'
 						),
 					dottedName:

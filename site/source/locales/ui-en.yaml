@@ -1693,22 +1693,20 @@ pages:
         TVA:
           libellé: Company subject to VAT
           titre: VAT
-        acre:
-          libellé: Acre
-          titre: Acre
+        acre: Acre
         activité:
           principale: Main activity
           réglementée: Regulated activity
           titre: Activity
           type: Type of activity
-        impôt:
+        autres-revenus: Other taxable income
+        méthode-impôt: Income tax calculation method
+        situation-familiale:
           enfants: Dependent children
-          méthode: Calculation method
           parent-isolé: Single parent
-          revenus: Other taxable income
           situation: Marital status
-          taux: Personalized rate
-          titre: Tax
+          titre: Marital status
+        taux-impôt: Tax rates
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
