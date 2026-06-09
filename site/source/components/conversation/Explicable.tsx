@@ -38,21 +38,32 @@ export function ExplicableRule<Names extends string = DottedName>({
 			bigPopover={bigPopover}
 			className="print-hidden"
 			aria-haspopup="dialog"
-			aria-label={`Info sur ${rule.title}`}
+			aria-label={t(
+				'components.règles.info.aria-label',
+				'Info sur {{ règle }}',
+				{ règle: rule.title }
+			)}
 			aria-describedby={ariaDescribedBy}
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
 
 			<RuleLink
 				dottedName={dottedName as DottedName}
-				aria-label={t('Lire la documentation au sujet de :') + ' ' + rule.title}
+				aria-label={t(
+					'components.règles.lien-documentation.aria-label',
+					'Lire la documentation sur {{ règle }}',
+					{ règle: rule.title }
+				)}
 			>
-				Lire la documentation
+				{t(
+					'components.règles.lien-documentation.texte',
+					'Lire la documentation'
+				)}
 			</RuleLink>
 
 			{références && Object.keys(références).length > 0 && (
 				<>
-					<H3>Liens utiles</H3>
+					<H3>{t('components.règles.références', 'Liens utiles')}</H3>
 					<References references={références} />
 				</>
 			)}
