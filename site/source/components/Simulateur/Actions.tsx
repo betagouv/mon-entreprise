@@ -1,7 +1,9 @@
 import { styled } from 'styled-components'
 
-import { BoutonConseillersEntreprises } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
-import { ConseillersEntreprisesVariant } from '../ConseillersEntreprisesButton'
+import {
+	BoutonConseillersEntreprises,
+	type ConseillersEntreprisesVariant,
+} from '../ConseillersEntreprises/BoutonConseillersEntreprises'
 import { BoutonDétail } from './BoutonDétail'
 import { BoutonPartage } from './BoutonPartage'
 
