@@ -10,6 +10,7 @@ import {
 	useOverlay,
 	usePreventScroll,
 } from 'react-aria'
+import { useTranslation } from 'react-i18next'
 import { css, keyframes, styled } from 'styled-components'
 
 import { FromBottom } from '@/components/ui/animate'
@@ -35,6 +36,7 @@ export function Popover(
 			disableOverflowAuto?: boolean
 		}
 ) {
+	const { t } = useTranslation()
 	const { title, ariaLabel, children, small, contentRef } = props
 
 	// Handle interacting outside the dialog and pressing
@@ -106,7 +108,7 @@ export function Popover(
 											<CloseButtonContainer>
 												{/* TODO : replace with Link when in design system */}
 												<CloseButton {...closeButtonProps} ref={closeButtonRef}>
-													Fermer
+													{t('global.fermer', 'Fermer')}
 													<CrossIcon />
 												</CloseButton>
 											</CloseButtonContainer>
