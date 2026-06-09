@@ -7,7 +7,7 @@ import { styled } from 'styled-components'
 import { Body, Button, EditIcon, Li, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
-import { QuestionsGroupées } from '@/hooks/useQuestionsEditorialisees'
+import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
@@ -20,11 +20,11 @@ export type QuestionEnListe = {
 }
 
 type Props<S extends Situation = Situation> = {
-	questionsGroupées: Record<string, QuestionsGroupées<S>>
+	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>
 	onSélection: (questionId: string) => void
 }
 
-export const ListeQuestions = ({ questionsGroupées, onSélection }: Props) => {
+export const ListeQuestions = ({ groupesDeQuestions, onSélection }: Props) => {
 	const { t } = useTranslation()
 
 	return (
@@ -33,13 +33,13 @@ export const ListeQuestions = ({ questionsGroupées, onSélection }: Props) => {
 				<BoutonReset />
 			</BoutonsContainer>
 
-			{Object.keys(questionsGroupées).length && (
+			{Object.keys(groupesDeQuestions).length && (
 				<UlWithoutMargin $noMarker>
 					{pipe(
-						questionsGroupées,
+						groupesDeQuestions,
 						R.toEntries,
-						map(([id, questionGroupée]) => {
-							const question = questionGroupée.liste[0]
+						map(([id, groupe]) => {
+							const question = groupe.liste[0]
 
 							return (
 								<StyledLi key={id}>

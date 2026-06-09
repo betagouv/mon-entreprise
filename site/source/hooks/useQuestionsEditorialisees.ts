@@ -6,13 +6,13 @@ import { FunctionComponent, useMemo, useState } from 'react'
 
 import {
 	ComposantQuestion,
-	QuestionsFourniesGroupées,
+	GroupeDeQuestionsFournies,
 } from '@/components/Simulation/ComposantQuestion'
 import { Situation } from '@/domaine/Situation'
 
 import {
+	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
-	QuestionsPublicodesGroupées,
 } from './useQuestionsPublicodesEditorialisees'
 
 type QuestionFournie<S extends Situation> = Omit<
@@ -41,40 +41,40 @@ export type Question<S extends Situation> =
 	| QuestionFournie<S>
 	| QuestionPublicodes<S>
 
-export type QuestionsGroupées<S extends Situation> = {
+export type GroupeDeQuestions<S extends Situation> = {
 	titre: (t: TFunction) => string
 	liste: Array<Question<S>>
 }
 
 export interface UseQuestionsProps<S extends Situation = Situation> {
-	questionsFourniesGroupées?: Record<string, QuestionsFourniesGroupées<S>>
-	questionsPublicodesGroupées?: Record<string, QuestionsPublicodesGroupées<S>>
+	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
+	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes<S>>
 	situation?: S
 }
 
 export function useQuestionsÉditorialisées<S extends Situation>({
-	questionsFourniesGroupées = {},
-	questionsPublicodesGroupées = {},
+	groupesDeQuestionsFournies = {},
+	groupesDeQuestionsPublicodes = {},
 	situation,
 }: UseQuestionsProps<S>) {
-	const questionsGroupées = useMemo(
+	const groupesDeQuestions = useMemo(
 		() =>
 			pipe(
-				questionsFourniesGroupées,
+				groupesDeQuestionsFournies,
 				R.map(({ titre, liste }) => ({
 					titre,
 					liste: liste.map(fromQuestionFournie),
 				})),
-				(questionsFourniesGroupées) => ({
-					...questionsFourniesGroupées,
-					...questionsPublicodesGroupées,
+				(groupesDeQuestionsFournies) => ({
+					...groupesDeQuestionsFournies,
+					...groupesDeQuestionsPublicodes,
 				}),
 				R.map(({ titre, liste }) => ({
 					titre,
 					liste: liste.filter((q: Question<S>) => q.applicable(situation)),
 				}))
 			),
-		[questionsFourniesGroupées, questionsPublicodesGroupées, situation]
+		[groupesDeQuestionsFournies, groupesDeQuestionsPublicodes, situation]
 	)
 
 	const [questionCouranteId, setQuestionCouranteId] = useState<
@@ -82,10 +82,10 @@ export function useQuestionsÉditorialisées<S extends Situation>({
 	>()
 	const questionCourante = isUndefined(questionCouranteId)
 		? undefined
-		: questionsGroupées[questionCouranteId]
+		: groupesDeQuestions[questionCouranteId]
 
 	return {
-		questionsGroupées,
+		groupesDeQuestions,
 		questionCourante,
 		setQuestionCouranteId,
 	}

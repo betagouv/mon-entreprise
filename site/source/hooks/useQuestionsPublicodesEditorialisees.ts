@@ -8,7 +8,7 @@ import { Situation } from '@/domaine/Situation'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
 
-export type QuestionsPublicodesGroupées<S extends Situation> = {
+export type GroupeDeQuestionsPublicodes<S extends Situation> = {
 	titre: (t: TFunction) => string
 	liste: QuestionPublicodes<S>[]
 }
