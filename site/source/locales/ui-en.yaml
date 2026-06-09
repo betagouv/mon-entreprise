@@ -307,6 +307,7 @@ components:
         appropriate advisor for your request from among all our public and
         semi-public partners. He or she will contact you by telephone within 5
         days, and will provide you with assistance tailored to your situation.
+      title: Talk to an advisor
     partage:
       bouton: Generate a share link
       modale:
@@ -394,6 +395,7 @@ footer:
 février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
 global:
+  fermer: Close
   oui-non:
     non: No
     oui: Yes
