@@ -7,11 +7,11 @@ import { situationSelector } from '@/store/selectors/simulation/situation/situat
 
 import { MergedSimulatorDataValues } from './useCurrentSimulatorData'
 import { useEngineFromModèle } from './useEngineFromModèle'
-import { useQuestionsPublicodes } from './useQuestionsPublicodesV2'
+import { useQuestionsPublicodesÉditorialisées } from './useQuestionsPublicodesEditorialisees'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 import useSimulationConfig from './useSimulationConfig'
 
-export default function useSimulationPublicodes(
+export default function useSimulationPublicodesÉditorialisées(
 	simulatorConfig: MergedSimulatorDataValues
 ) {
 	const { id, path, simulation, autoloadLastSimulation } = simulatorConfig
@@ -30,7 +30,10 @@ export default function useSimulationPublicodes(
 
 	const currentKey = useSelector(simulationKeySelector)
 
-	const questions = useQuestionsPublicodes(nomModèle, idsDesQuestions)
+	const questions = useQuestionsPublicodesÉditorialisées(
+		nomModèle,
+		idsDesQuestions
+	)
 
 	const situation = useSelector(situationSelector)
 	const simulationEstCommencée = Object.keys(situation).length > 0

@@ -4,7 +4,7 @@ import { css, styled } from 'styled-components'
 import { Body, Button, EditIcon } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
-import { Question } from '@/hooks/useQuestionsV2'
+import { Question } from '@/hooks/useQuestionsEditorialisees'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'

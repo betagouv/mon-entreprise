@@ -3,8 +3,8 @@ import { styled } from 'styled-components'
 
 import { H2 } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
-import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesV2'
-import { useQuestions } from '@/hooks/useQuestionsV2'
+import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
+import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
 import ScrollToElement from '../utils/Scroll/ScrollToElement'
 import { ListeQuestions } from './ListeQuestions'
@@ -16,9 +16,10 @@ type Props<S extends Situation = Situation> = {
 
 export const BlocSituation = ({ questionsPublicodes }: Props) => {
 	const { t } = useTranslation()
-	const { questions, questionCourante, setQuestionCourante } = useQuestions({
-		questionsPublicodes,
-	})
+	const { questions, questionCourante, setQuestionCourante } =
+		useQuestionsÉditorialisées({
+			questionsPublicodes,
+		})
 
 	return (
 		<Section>

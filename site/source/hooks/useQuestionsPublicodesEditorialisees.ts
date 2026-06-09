@@ -14,7 +14,7 @@ export interface QuestionPublicodes<S extends Situation> {
 	répondue: Predicate<S | undefined>
 }
 
-export function useQuestionsPublicodes<S extends Situation>(
+export function useQuestionsPublicodesÉditorialisées<S extends Situation>(
 	nomModèle: NomModèle,
 	idsDesQuestions: DottedName[]
 ): QuestionPublicodes<S>[] {
