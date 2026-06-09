@@ -8,7 +8,7 @@ import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesV2'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useTracking } from '@/hooks/useTracking'
 
-import { ConseillersEntreprisesVariant } from '../ConseillersEntreprisesButton'
+import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
 import { ACCUEIL, SIMULATION_COMMENCEE } from '../PianoAnalytics'
 import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'

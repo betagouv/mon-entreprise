@@ -11,10 +11,8 @@ import {
 import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 
-import {
-	ConseillersEntreprisesButton,
-	type ConseillersEntreprisesVariant,
-} from '../ConseillersEntreprisesButton'
+import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
+import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
 export interface CustomSimulationButton {
