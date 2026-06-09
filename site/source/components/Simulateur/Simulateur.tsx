@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 
 import { SmallBody } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
-import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesV2'
+import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useTracking } from '@/hooks/useTracking'
 

@@ -7,7 +7,7 @@ import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
-import useSimulationPublicodes from '@/hooks/useSimulationPublicodesV2'
+import useSimulationPublicodesÉditorialisées from '@/hooks/useSimulationPublicodesEditorialisee'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { useSitePaths } from '@/sitePaths'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
@@ -22,7 +22,7 @@ export const ComparateurDeStatuts = () => {
 	const id = 'comparaison-statuts'
 	const simulateurConfig = useSimulatorData(id)
 	const { isReady, engine, questions, simulationEstCommencée } =
-		useSimulationPublicodes(simulateurConfig)
+		useSimulationPublicodesÉditorialisées(simulateurConfig)
 
 	const situation = useSelector(completeSituationSelector)
 	const { absoluteSitePaths } = useSitePaths()
