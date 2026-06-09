@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { BorderlessButton, LinkIcon, PopoverWithTrigger } from '@/design-system'
+import { Button, LinkIcon, PopoverWithTrigger } from '@/design-system'
 import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 
@@ -42,7 +42,9 @@ export const BoutonPartage = () => {
 				'Votre lien de partage'
 			)}
 			trigger={(buttonProps) => (
-				<BorderlessButton
+				<Button
+					size="XXS"
+					light
 					onPress={(e) => {
 						trackClick({
 							action: 'démarré',
@@ -61,7 +63,7 @@ export const BoutonPartage = () => {
 						'components.simulateur.partage.bouton',
 						'Générer un lien de partage'
 					)}
-				</BorderlessButton>
+				</Button>
 			)}
 			small
 		>
