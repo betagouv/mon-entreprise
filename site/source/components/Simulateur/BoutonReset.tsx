@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { ArrowCircleIcon, BorderlessButton } from '@/design-system'
+import { ArrowCircleIcon, Button } from '@/design-system'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
 
 export const BoutonReset = () => {
@@ -9,13 +9,15 @@ export const BoutonReset = () => {
 	const dispatch = useDispatch()
 
 	return (
-		<BorderlessButton
+		<Button
+			size="XXS"
+			light
 			onPress={() => {
 				dispatch(réinitialiseLaSimulation())
 			}}
 		>
 			<ArrowCircleIcon />
 			{t('components.simulateur.réinitialiser', 'Valeurs par défaut')}
-		</BorderlessButton>
+		</Button>
 	)
 }

@@ -1,13 +1,7 @@
 import { ComponentType, lazy, Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import {
-	Body,
-	BorderlessButton,
-	Button,
-	PhoneIcon,
-	PopoverWithTrigger,
-} from '@/design-system'
+import { Body, Button, PhoneIcon, PopoverWithTrigger } from '@/design-system'
 
 import Loader from '../utils/Loader'
 
@@ -55,15 +49,18 @@ export const BoutonConseillersEntreprises = ({ variant, siret }: Props) => {
 
 	return (
 		<PopoverWithTrigger
-			title={t('Échanger avec un conseiller')}
-			trigger={() => (
-				<BorderlessButton aria-haspopup="dialog">
+			title={t(
+				'components.simulateur.conseillers-entreprise.title',
+				'Échanger avec un conseiller'
+			)}
+			trigger={(props) => (
+				<Button {...props} size="XXS" light aria-haspopup="dialog">
 					<PhoneIcon />
 					{t(
 						'components.simulateur.conseillers-entreprise.bouton',
 						'Échanger avec un conseiller'
 					)}
-				</BorderlessButton>
+				</Button>
 			)}
 			contentRef={contentRef}
 		>
@@ -87,8 +84,12 @@ export const BoutonConseillersEntreprises = ({ variant, siret }: Props) => {
 					</Suspense>
 
 					<Body style={{ textAlign: 'right' }}>
-						<Button aria-label={t('Fermer')} size="XS" onPress={close}>
-							{t('Fermer')}
+						<Button
+							aria-label={t('global.fermer', 'Fermer')}
+							size="XS"
+							onPress={close}
+						>
+							{t('global.fermer', 'Fermer')}
 						</Button>
 					</Body>
 				</>
