@@ -1,4 +1,7 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import {
+	QuestionsAutoGénérées,
+	SimulationConfig,
+} from '@/domaine/SimulationConfig'
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 
 export const configCessationActivité: SimulationConfig = {
@@ -17,7 +20,9 @@ export const configCessationActivité: SimulationConfig = {
 	questions: {
 		...configIndépendant.questions,
 		'liste noire': [
-			...(configIndépendant.questions?.['liste noire'] || []),
+			...((configIndépendant.questions as QuestionsAutoGénérées)?.[
+				'liste noire'
+			] || []),
 			'entreprise . date de cessation',
 			'impôt', // Ce simulateur ignore le calcul de l’impôt
 		],
