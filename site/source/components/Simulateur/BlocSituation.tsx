@@ -4,21 +4,21 @@ import { styled } from 'styled-components'
 import { H2 } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
-import { QuestionsPublicodesGroupées } from '@/hooks/useQuestionsPublicodesEditorialisees'
+import { GroupeDeQuestionsPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
 import ScrollToElement from '../utils/Scroll/ScrollToElement'
 import { ListeQuestions } from './ListeQuestions'
 import { QuestionCourante } from './QuestionCourante'
 
 type Props<S extends Situation = Situation> = {
-	questionsPublicodesGroupées: Record<string, QuestionsPublicodesGroupées<S>>
+	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes<S>>
 }
 
-export const BlocSituation = ({ questionsPublicodesGroupées }: Props) => {
+export const BlocSituation = ({ groupesDeQuestionsPublicodes }: Props) => {
 	const { t } = useTranslation()
-	const { questionsGroupées, questionCourante, setQuestionCouranteId } =
+	const { groupesDeQuestions, questionCourante, setQuestionCouranteId } =
 		useQuestionsÉditorialisées({
-			questionsPublicodesGroupées,
+			groupesDeQuestionsPublicodes,
 		})
 
 	return (
@@ -36,7 +36,7 @@ export const BlocSituation = ({ questionsPublicodesGroupées }: Props) => {
 				</ScrollToElement>
 			) : (
 				<ListeQuestions
-					questionsGroupées={questionsGroupées}
+					groupesDeQuestions={groupesDeQuestions}
 					onSélection={setQuestionCouranteId}
 				/>
 			)}
