@@ -2,7 +2,7 @@ import type { TFunction } from 'i18next'
 import { PublicodesExpression } from 'publicodes'
 import type { JSX } from 'react'
 
-import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprisesButton'
+import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
