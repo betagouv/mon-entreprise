@@ -3,7 +3,7 @@ import * as R from 'effect/Record'
 import { TFunction } from 'i18next'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle, QuestionsGroupées } from '@/domaine/SimulationConfig'
+import { NomModèle, QuestionsÉditorialisées } from '@/domaine/SimulationConfig'
 import { Situation } from '@/domaine/Situation'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
@@ -23,11 +23,11 @@ export interface QuestionPublicodes<S extends Situation> {
 
 export function useQuestionsPublicodesÉditorialisées<S extends Situation>(
 	nomModèle: NomModèle,
-	questionsGroupées: Record<string, QuestionsGroupées>
-): Record<string, QuestionsPublicodesGroupées<S>> {
+	questionsÉditorialisées: QuestionsÉditorialisées
+): Record<string, GroupeDeQuestionsPublicodes<S>> {
 	const engine = useEngineFromModèle(nomModèle)
 
-	return R.map(questionsGroupées, ({ titre, liste }) => {
+	return R.map(questionsÉditorialisées, ({ titre, liste }) => {
 		return {
 			titre,
 			liste: liste.map(({ libellé, dottedName }) => {
