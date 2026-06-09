@@ -25,19 +25,17 @@ export const getTrackingChapters = (
 	currentChapters: TrackingChapters,
 	newChapters: TrackingChapters
 ): TrackingChapters => {
-	let chapters = currentChapters
+	const niveau1Changé = Boolean(newChapters.chapter1)
+	const niveau2Changé = Boolean(newChapters.chapter2)
 
-	if (newChapters.chapter1) {
-		chapters = { chapter2: '', chapter3: '', ...newChapters }
+	return {
+		chapter1: newChapters.chapter1 || currentChapters.chapter1,
+		chapter2:
+			newChapters.chapter2 || (niveau1Changé ? '' : currentChapters.chapter2),
+		chapter3:
+			newChapters.chapter3 ||
+			(niveau1Changé || niveau2Changé ? '' : currentChapters.chapter3),
 	}
-	if (newChapters.chapter2) {
-		chapters = { ...chapters, chapter3: '', ...newChapters }
-	}
-	if (newChapters.chapter3) {
-		chapters = { ...chapters, ...newChapters }
-	}
-
-	return chapters
 }
 
 export function TrackingChaptersProvider({
