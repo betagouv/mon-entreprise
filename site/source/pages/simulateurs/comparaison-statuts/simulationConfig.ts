@@ -4,6 +4,37 @@ import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
+import { Question } from '@/domaine/SimulationConfig'
+
+const questionActivitéPrincipale = {
+	libellé: (t: TFunction) =>
+		t(
+			'pages.simulateurs.comparaison-statuts.questions.activité.principale',
+			'Activité principale'
+		),
+	dottedName: 'entreprise . activité . nature',
+} satisfies Question
+const questionTypeActivité = {
+	libellé: (t: TFunction) =>
+		t(
+			'pages.simulateurs.comparaison-statuts.questions.activité.type',
+			'Type d’activité'
+		),
+	dottedName: 'entreprise . activités . service ou vente',
+} satisfies Question
+const questionActivitéRéglementée = {
+	libellé: (t: TFunction) =>
+		t(
+			'pages.simulateurs.comparaison-statuts.questions.activité.réglementée',
+			'Activité réglementée'
+		),
+	dottedName: 'entreprise . activité . nature . libérale . réglementée',
+} satisfies Question
+const questionAcre = {
+	libellé: (t: TFunction) =>
+		t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
+	dottedName: 'dirigeant . exonérations . ACRE',
+} satisfies Question
 
 export const configComparateurStatuts: ComparateurConfig = {
 	nomModèle: 'modele-social',
@@ -37,35 +68,10 @@ export const configComparateurStatuts: ComparateurConfig = {
 	],
 	questions: {
 		'questions principales': [
-			{
-				libellé: (t: TFunction) =>
-					t(
-						'pages.simulateurs.comparaison-statuts.questions.activité.principale',
-						'Activité principale'
-					),
-				dottedName: 'entreprise . activité . nature',
-			},
-			{
-				libellé: (t: TFunction) =>
-					t(
-						'pages.simulateurs.comparaison-statuts.questions.activité.type',
-						'Type d’activité'
-					),
-				dottedName: 'entreprise . activités . service ou vente',
-			},
-			{
-				libellé: (t: TFunction) =>
-					t(
-						'pages.simulateurs.comparaison-statuts.questions.activité.réglementée',
-						'Activité réglementée'
-					),
-				dottedName: 'entreprise . activité . nature . libérale . réglementée',
-			},
-			{
-				libellé: (t: TFunction) =>
-					t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
-				dottedName: 'dirigeant . exonérations . ACRE',
-			},
+			questionActivitéPrincipale,
+			questionTypeActivité,
+			questionActivitéRéglementée,
+			questionAcre,
 		],
 		'groupes de questions': {
 			activité: {
@@ -75,43 +81,15 @@ export const configComparateurStatuts: ComparateurConfig = {
 						'Activité'
 					),
 				liste: [
-					{
-						libellé: (t: TFunction) =>
-							t(
-								'pages.simulateurs.comparaison-statuts.questions.activité.principale',
-								'Activité principale'
-							),
-						dottedName: 'entreprise . activité . nature',
-					},
-					{
-						libellé: (t: TFunction) =>
-							t(
-								'pages.simulateurs.comparaison-statuts.questions.activité.type',
-								'Type d’activité'
-							),
-						dottedName: 'entreprise . activités . service ou vente',
-					},
-					{
-						libellé: (t: TFunction) =>
-							t(
-								'pages.simulateurs.comparaison-statuts.questions.activité.réglementée',
-								'Activité réglementée'
-							),
-						dottedName:
-							'entreprise . activité . nature . libérale . réglementée',
-					},
+					questionActivitéPrincipale,
+					questionTypeActivité,
+					questionActivitéRéglementée,
 				],
 			},
 			acre: {
 				titre: (t: TFunction) =>
 					t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
-				liste: [
-					{
-						libellé: (t: TFunction) =>
-							t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
-						dottedName: 'dirigeant . exonérations . ACRE',
-					},
-				],
+				liste: [questionAcre],
 			},
 			TVA: {
 				titre: (t: TFunction) =>
