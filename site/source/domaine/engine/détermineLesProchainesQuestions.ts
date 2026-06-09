@@ -5,7 +5,10 @@ import Engine from 'publicodes'
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 import { listeLesVariablesManquantes } from '@/domaine/engine/listeLesVariablesManquantes'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import {
+	QuestionsAutoGénérées,
+	SimulationConfig,
+} from '@/domaine/SimulationConfig'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
 export const détermineLesProchainesQuestions = (
@@ -17,7 +20,7 @@ export const détermineLesProchainesQuestions = (
 		liste = [],
 		'liste noire': listeNoire = [],
 		'non prioritaires': nonPrioritaires = [],
-	} = config.questions || {}
+	} = (config.questions as QuestionsAutoGénérées) || {}
 
 	const score = (question: DottedName) => {
 		const indexList = liste.indexOf(question)

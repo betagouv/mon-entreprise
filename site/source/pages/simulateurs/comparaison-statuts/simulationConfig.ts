@@ -35,7 +35,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 		'protection sociale . invalidité et décès . capital décès',
 		'protection sociale . invalidité et décès . capital décès . orphelin',
 	],
-	questionsV2: {
+	questions: {
 		activité: {
 			titre: (t: TFunction) =>
 				t(

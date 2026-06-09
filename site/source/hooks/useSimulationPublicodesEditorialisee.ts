@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 
 import {
 	NomModèle,
-	QuestionsGroupées,
+	QuestionsÉditorialisées,
 	SimulationConfig,
 } from '@/domaine/SimulationConfig'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
@@ -19,10 +19,8 @@ export default function useSimulationPublicodesÉditorialisées(
 ) {
 	const { id, path, simulation, autoloadLastSimulation } = simulatorConfig
 	const nomModèle = simulation?.nomModèle as NomModèle
-	const questionsGroupées = simulation?.questionsV2 as Record<
-		string,
-		QuestionsGroupées
-	>
+	const questionsÉditorialisées =
+		simulation?.questions as QuestionsÉditorialisées
 
 	useSimulationConfig({
 		key: id,
@@ -38,7 +36,7 @@ export default function useSimulationPublicodesÉditorialisées(
 
 	const groupesDeQuestionsPublicodes = useQuestionsPublicodesÉditorialisées(
 		nomModèle,
-		questionsGroupées
+		questionsÉditorialisées
 	)
 
 	const situation = useSelector(situationSelector)
