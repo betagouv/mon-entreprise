@@ -23,7 +23,7 @@ type QuestionFournie<S extends Situation> = Omit<
 	applicable: Predicate<S | undefined>
 } & FunctionComponent
 
-const fromQuestionFournie = <S extends Situation>(
+const adapteUneQuestionFournie = <S extends Situation>(
 	q: ComposantQuestion<S>
 ): QuestionFournie<S> => {
 	const originalRépondue = q.répondue
@@ -36,6 +36,22 @@ const fromQuestionFournie = <S extends Situation>(
 			situation === undefined ? false : originalApplicable(situation),
 	})
 }
+
+const adapteLesQuestionsFourniesDansLeGroupe = <S extends Situation>(
+	groupeDeQuestionsFournies: GroupeDeQuestionsFournies<S>
+): GroupeDeQuestions<S> => ({
+	...groupeDeQuestionsFournies,
+	liste: groupeDeQuestionsFournies.liste.map(adapteUneQuestionFournie),
+})
+
+const filtreLesQuestionsApplicablesDansLeGroupe =
+	<S extends Situation>(situation: S | undefined) =>
+	(groupeDeQuestion: GroupeDeQuestions<S>) => ({
+		...groupeDeQuestion,
+		liste: groupeDeQuestion.liste.filter((q: Question<S>) =>
+			q.applicable(situation)
+		),
+	})
 
 export type Question<S extends Situation> =
 	| QuestionFournie<S>
@@ -61,18 +77,9 @@ export function useQuestionsÉditorialisées<S extends Situation>({
 		() =>
 			pipe(
 				groupesDeQuestionsFournies,
-				R.map(({ titre, liste }) => ({
-					titre,
-					liste: liste.map(fromQuestionFournie),
-				})),
-				(groupesDeQuestionsFournies) => ({
-					...groupesDeQuestionsFournies,
-					...groupesDeQuestionsPublicodes,
-				}),
-				R.map(({ titre, liste }) => ({
-					titre,
-					liste: liste.filter((q: Question<S>) => q.applicable(situation)),
-				}))
+				R.map(adapteLesQuestionsFourniesDansLeGroupe),
+				R.union(groupesDeQuestionsPublicodes, (_, qPublicodes) => qPublicodes),
+				R.map(filtreLesQuestionsApplicablesDansLeGroupe(situation))
 			),
 		[groupesDeQuestionsFournies, groupesDeQuestionsPublicodes, situation]
 	)
