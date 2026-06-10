@@ -12,7 +12,10 @@ import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
 export interface ChampSaisieProps {
 	id: string
-	aria: { labelledby: string }
+	aria: {
+		labelledby: string
+		describedby?: string
+	}
 }
 
 export type ObjectifSaisissableDeSimulationProps = {
@@ -87,7 +90,10 @@ export function ObjectifSaisissableDeSimulation({
 						<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
 							{rendreChampSaisie({
 								id: `${id}-input`,
-								aria: { labelledby: `${id}-label` },
+								aria: {
+									labelledby: `${id}-label`,
+									describedby: `${id}-description`,
+								},
 							})}
 						</LargeInputContainer>
 					</Grid>

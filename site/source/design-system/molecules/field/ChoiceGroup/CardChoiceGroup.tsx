@@ -11,6 +11,7 @@ interface CardChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 	options: ChoiceOption[]
 	title?: string
@@ -24,13 +25,14 @@ export default function CardChoiceGroup({
 	defaultValue,
 	options,
 	title,
-	aria = {},
+	aria,
 	isSubGroup = false,
 }: CardChoiceGroupProps) {
 	return (
 		<RadioCardGroup
 			aria-label=""
-			aria-labelledby={aria.labelledby}
+			aria-labelledby={aria?.labelledby}
+			aria-describedby={aria?.describedby}
 			onChange={onChange}
 			value={value}
 			label={title}
