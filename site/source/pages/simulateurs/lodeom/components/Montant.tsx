@@ -9,7 +9,7 @@ import Répartition from '@/pages/simulateurs/lodeom/components/Répartition'
 import {
 	rémunérationBruteDottedName,
 	Répartition as RépartitionType,
-} from '@/pages/simulateurs/lodeom/lodeom'
+} from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
 	id: string

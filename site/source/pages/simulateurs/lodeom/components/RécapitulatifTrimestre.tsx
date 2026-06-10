@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 
 import { Body, Grid } from '@/design-system'
 import Montant from '@/pages/simulateurs/lodeom/components/Montant'
-import { MonthState } from '@/pages/simulateurs/lodeom/lodeom'
+import { MonthState } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
 	label: string

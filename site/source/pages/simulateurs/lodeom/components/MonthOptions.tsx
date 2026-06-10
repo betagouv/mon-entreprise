@@ -21,7 +21,7 @@ import {
 import { euros } from '@/domaine/Montant'
 import { heuresParMois } from '@/domaine/Quantite'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Options } from '@/pages/simulateurs/lodeom/lodeom'
+import { Options } from '@/pages/simulateurs/lodeom/utils'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 type Props = {

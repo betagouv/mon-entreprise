@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import { Body, Li, Strong, Ul } from '@/design-system'
 import RépartitionValue from '@/pages/simulateurs/lodeom/components/RépartitionValue'
-import { Répartition as RépartitionType } from '@/pages/simulateurs/lodeom/lodeom'
+import { Répartition as RépartitionType } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
 	idPrefix: string

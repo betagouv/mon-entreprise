@@ -6,7 +6,7 @@ import {
 	SwitchRadio,
 	SwitchToggleGroup,
 } from '@/components/Switch'
-import { RégularisationMethod } from '@/pages/simulateurs/lodeom/lodeom'
+import { RégularisationMethod } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
 	régularisationMethod: RégularisationMethod

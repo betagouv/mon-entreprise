@@ -17,7 +17,7 @@ import {
 	lodeomDottedName,
 	MonthState,
 	Options,
-} from '@/pages/simulateurs/lodeom/lodeom'
+} from '@/pages/simulateurs/lodeom/utils'
 
 import RémunérationInput from './RémunérationInput'
 

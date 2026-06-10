@@ -21,7 +21,7 @@ import {
 	Options,
 	RégularisationMethod,
 	SituationType,
-} from '@/pages/simulateurs/lodeom/lodeom'
+} from '@/pages/simulateurs/lodeom/utils'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
