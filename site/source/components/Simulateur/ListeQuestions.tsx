@@ -50,7 +50,15 @@ export const ListeQuestions = ({
 									linkToRule={false}
 									$répondue={question.répondue(situation)}
 								/>
-								<EditButton light onPress={() => onSélection(question)}>
+								<EditButton
+									light
+									onPress={() => onSélection(question)}
+									aria-label={t(
+										'components.simulateur.questions.modifier',
+										'Modifier {{ règle }}',
+										{ règle: question.libellé(t) }
+									)}
+								>
 									<EditIcon />
 								</EditButton>
 							</ValueContainer>
