@@ -38,10 +38,7 @@ salarié . cotisations . exonérations . heures supplémentaires:
 
   avec:
     employeur:
-      applicable si:
-        toutes ces conditions:
-          - temps de travail . heures supplémentaires > 0
-          - exonérations . RGDU > 0
+      applicable si: temps de travail . heures supplémentaires > 0
       titre: déduction forfaitaire pour heures supplémentaires
       produit:
         - temps de travail . heures supplémentaires
