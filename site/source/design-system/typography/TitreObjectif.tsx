@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { css, styled } from 'styled-components'
 
-import { Strong } from '.'
 import { Body } from './paragraphs'
 
 type Props = {
@@ -13,12 +12,13 @@ type Props = {
 export const TitreObjectif = ({ id, children, noWrap = false }: Props) => {
 	return (
 		<StyledBody as="span" id={id} $noWrap={noWrap}>
-			<Strong>{children}</Strong>
+			{children}
 		</StyledBody>
 	)
 }
 
 const StyledBody = styled(Body)<{ $noWrap?: boolean }>`
+	font-weight: 700;
 	display: inline;
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
