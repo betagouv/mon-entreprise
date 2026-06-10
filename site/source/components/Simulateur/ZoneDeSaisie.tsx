@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { SmallBody } from '@/design-system'
+import { Body } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
@@ -18,12 +18,12 @@ export const ZoneDeSaisie = ({ montants, questionsPublicodes }: Props) => {
 
 	return (
 		<>
-			<SmallBodyWithoutMargin>
+			<BodyWithoutMargin>
 				{t(
 					'components.simulateur.zone-de-saisie.info-mise-à-jour',
 					'Les données de simulations se mettront automatiquement à jour après la modification d’un champ.'
 				)}
-			</SmallBodyWithoutMargin>
+			</BodyWithoutMargin>
 
 			<Container>
 				<LeftColumn>
@@ -59,6 +59,6 @@ const RightColumn = styled.div`
 	}
 `
 
-const SmallBodyWithoutMargin = styled(SmallBody)`
+const BodyWithoutMargin = styled(Body)`
 	margin: 0;
 `
