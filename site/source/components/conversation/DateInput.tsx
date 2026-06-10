@@ -37,6 +37,7 @@ interface DateInputProps {
 
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 }
 
@@ -51,7 +52,7 @@ export const DateInput = ({
 	value,
 	type,
 	errorMessage,
-	aria = {},
+	aria,
 }: DateInputProps) => {
 	const engine = useEngine()
 
@@ -96,7 +97,8 @@ export const DateInput = ({
 				)}
 				<DateField
 					id={id}
-					aria-labelledby={aria.labelledby}
+					aria-labelledby={aria?.labelledby}
+					aria-describedby={aria?.describedby}
 					defaultSelected={
 						(missing && hideDefaultValue) || value === undefined
 							? undefined

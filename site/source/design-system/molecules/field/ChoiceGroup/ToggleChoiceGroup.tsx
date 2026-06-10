@@ -11,6 +11,7 @@ export interface ToggleChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 	options: ChoiceOption[]
 	title?: string
@@ -22,12 +23,13 @@ export default function ToggleChoiceGroup({
 	autoFocus,
 	defaultValue,
 	options,
-	aria = {},
+	aria,
 }: ToggleChoiceGroupProps) {
 	return (
 		<ToggleGroup
 			aria-label=""
-			aria-labelledby={aria.labelledby}
+			aria-labelledby={aria?.labelledby}
+			aria-describedby={aria?.describedby}
 			onChange={onChange}
 			value={value}
 		>
