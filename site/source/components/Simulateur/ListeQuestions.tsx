@@ -39,10 +39,10 @@ export const ListeQuestions = ({
 				<UlWithoutMargin $noMarker>
 					{questions.map((question) => (
 						<StyledLi key={question.id}>
-							<LabelContainer>
-								{question.libellé(t)}
+							<div>
+								<BodyWithoutMargin>{question.libellé(t)}</BodyWithoutMargin>
 								<ExplicableRule light dottedName={question.id} />
-							</LabelContainer>
+							</div>
 
 							<ValueContainer>
 								<StyledValue
@@ -85,12 +85,12 @@ const StyledLi = styled(Li)`
 	}
 `
 
-const LabelContainer = styled(Body)`
+const BodyWithoutMargin = styled(Body)`
 	margin: 0;
+	display: inline;
 `
 
-const ValueContainer = styled(Body)`
-	margin: 0;
+const ValueContainer = styled.div`
 	white-space: nowrap;
 	display: flex;
 	align-items: center;
