@@ -10,7 +10,7 @@ import { useInitialRender } from '@/hooks/useInitialRender'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
-const { Body } = typography
+const { Body, SmallBody } = typography
 
 export type ObjectifDeSimulationProps = {
 	id: string
@@ -66,16 +66,16 @@ export function ObjectifDeSimulation({
 						)}
 
 						{description && (
-							<StyledBody
+							<StyledSmallBody
 								className={small ? 'sr-only' : ''}
 								id={`${id}-description`}
 							>
 								{description}
-							</StyledBody>
+							</StyledSmallBody>
 						)}
 
 						{messageComplementaire && (
-							<StyledBody>{messageComplementaire}</StyledBody>
+							<StyledSmallBody>{messageComplementaire}</StyledSmallBody>
 						)}
 					</Grid>
 					<Grid item>
@@ -121,9 +121,8 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	}
 `
 
-const StyledBody = styled(Body)`
-	margin-top: 0;
-	margin-bottom: 0;
+const StyledSmallBody = styled(SmallBody)`
+	margin: 0;
 `
 
 const StyledValue = styled(Body)`
