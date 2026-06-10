@@ -318,6 +318,8 @@ components:
       bouton: Generate a share link
       modale:
         titre: Your share link
+    questions:
+      modifier: Edit {{ règle }}
     réinitialiser: Default values
     résultats:
       indisponibles: Enter an amount to display detailed results.

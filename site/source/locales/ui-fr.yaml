@@ -332,6 +332,8 @@ components:
       bouton: Générer un lien de partage
       modale:
         titre: Votre lien de partage
+    questions:
+      modifier: Modifier {{ règle }}
     réinitialiser: Valeurs par défaut
     résultats:
       indisponibles: Entrez un montant pour afficher les résultats détaillés.
