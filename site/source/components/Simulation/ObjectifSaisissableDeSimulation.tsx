@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import { css, styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Body, Grid, TitreObjectifSaisissable } from '@/design-system'
+import { Grid, TitreObjectifSaisissable, typography } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
+
+const { SmallBody } = typography
 
 export interface ChampSaisieProps {
 	id: string
@@ -79,7 +81,9 @@ export function ObjectifSaisissableDeSimulation({
 						)}
 
 						{avecDescription && description && (
-							<StyledBody id={`${id}-description`}>{description}</StyledBody>
+							<StyledSmallBody id={`${id}-description`}>
+								{description}
+							</StyledSmallBody>
 						)}
 					</StyledGridItem>
 
@@ -165,7 +169,7 @@ const StyledGridItem = styled(Grid)<{ $avecDescription: boolean }>`
 		`}
 `
 
-const StyledBody = styled(Body)`
+const StyledSmallBody = styled(SmallBody)`
 	margin-bottom: 0;
 `
 
