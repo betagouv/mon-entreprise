@@ -37,7 +37,7 @@ export const BoutonConseillersEntreprises = ({ variant, siret }: Props) => {
 
 	const url = new URL(baseURL + paths[variant])
 
-	const contentRef = useRef<HTMLDivElement>(null)
+	const contentRef = useRef<HTMLDivElement>(null!)
 
 	const scrollTo = (x: number, y: number) => {
 		contentRef.current?.scrollTo(x, y)
