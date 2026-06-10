@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { Body, Button, EditIcon } from '@/design-system'
+import { Body, Button, EditIcon, Li, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
 import { Question } from '@/hooks/useQuestionsEditorialisees'
@@ -35,25 +35,29 @@ export const ListeQuestions = ({
 				<BoutonReset />
 			</BoutonsContainer>
 
-			{questions.map((question) => (
-				<QuestionContainer key={question.id}>
-					<LabelContainer>
-						{question.libellé(t)}
-						<ExplicableRule light dottedName={question.id} />
-					</LabelContainer>
+			{questions.length && (
+				<UlWithoutMargin $noMarker>
+					{questions.map((question) => (
+						<StyledLi key={question.id}>
+							<LabelContainer>
+								{question.libellé(t)}
+								<ExplicableRule light dottedName={question.id} />
+							</LabelContainer>
 
-					<ValueContainer>
-						<StyledValue
-							expression={question.id}
-							linkToRule={false}
-							$répondue={question.répondue(situation)}
-						/>
-						<EditButton light onPress={() => onSélection(question)}>
-							<EditIcon />
-						</EditButton>
-					</ValueContainer>
-				</QuestionContainer>
-			))}
+							<ValueContainer>
+								<StyledValue
+									expression={question.id}
+									linkToRule={false}
+									$répondue={question.répondue(situation)}
+								/>
+								<EditButton light onPress={() => onSélection(question)}>
+									<EditIcon />
+								</EditButton>
+							</ValueContainer>
+						</StyledLi>
+					))}
+				</UlWithoutMargin>
+			)}
 		</>
 	)
 }
@@ -65,10 +69,16 @@ const BoutonsContainer = styled.div`
 	justify-content: end;
 `
 
-const QuestionContainer = styled.div`
+const UlWithoutMargin = styled(Ul)`
+	margin: 0;
+`
+
+const StyledLi = styled(Li)`
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	gap: 0 ${({ theme }) => theme.spacings.sm};
+	margin: 0 !important;
 	padding: ${({ theme }) => theme.spacings.sm} 0;
 	&:not(:last-of-type) {
 		border-bottom: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
