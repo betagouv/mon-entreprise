@@ -20,6 +20,7 @@ indépendant . cotisations et contributions:
         somme:
           - profession libérale . cotisations caisse de retraite
           - cotisations facultatives . montant
+      arrondi: oui
 
 indépendant . cotisations et contributions . avec dividendes:
   titre: Cotisations et contributions
