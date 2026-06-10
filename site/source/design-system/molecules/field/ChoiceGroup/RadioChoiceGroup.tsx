@@ -3,8 +3,7 @@ import { AriaRadioGroupProps, useRadioGroup } from 'react-aria'
 import { useRadioGroupState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
-import { FlexCenter } from '@/design-system/global-style'
-import { H5 } from '@/design-system/typography'
+import { FlexCenter, H5 } from '@/design-system'
 
 import { Emoji } from '../../../emoji'
 import { InfoButton } from '../../../InfoButton'
@@ -22,6 +21,7 @@ export interface RadioChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 	options: Array<ChoiceOption>
 	isSubRadioGroup?: boolean
@@ -35,12 +35,13 @@ export default function RadioChoiceGroup({
 	autoFocus,
 	defaultValue,
 	options,
-	aria = {},
+	aria,
 	isSubRadioGroup = false,
 }: RadioChoiceGroupProps) {
 	return (
 		<RadioGroup
-			aria-labelledby={aria.labelledby}
+			aria-labelledby={aria?.labelledby}
+			aria-describedby={aria?.describedby}
 			onChange={onChange}
 			value={value}
 			label={label}

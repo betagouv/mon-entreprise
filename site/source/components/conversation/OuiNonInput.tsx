@@ -14,6 +14,7 @@ interface OuiNonInputProps {
 
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 }
 
@@ -23,7 +24,7 @@ export function OuiNonInput({
 	defaultValue,
 	id,
 	autoFocus,
-	aria = {},
+	aria,
 }: OuiNonInputProps) {
 	const { handleChange, currentSelection } = useSelection({
 		value,
@@ -45,7 +46,8 @@ export function OuiNonInput({
 	return (
 		<ToggleGroup
 			aria-label=""
-			aria-labelledby={aria.labelledby}
+			aria-labelledby={aria?.labelledby}
+			aria-describedby={aria?.describedby}
 			onChange={handleToggleGroupChange}
 			value={currentValueAsString}
 		>

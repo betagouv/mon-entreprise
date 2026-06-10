@@ -42,6 +42,7 @@ export interface ChoixUniqueProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 }
 

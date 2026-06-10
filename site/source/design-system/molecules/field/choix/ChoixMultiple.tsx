@@ -22,6 +22,7 @@ export interface ChoixMultipleProps {
 
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 }
 
@@ -32,12 +33,13 @@ export interface ChoixMultipleProps {
 export function ChoixMultiple({
 	options,
 	onChange,
-	aria = {},
+	aria,
 	id,
 }: ChoixMultipleProps) {
 	return (
 		<div
-			aria-labelledby={aria.labelledby || 'questionHeader'} // FIXME: supprimer ce aria-labelledby en dur
+			aria-labelledby={aria?.labelledby}
+			aria-describedby={aria?.describedby}
 			id={id}
 		>
 			{options.map((option) => (

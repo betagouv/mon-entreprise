@@ -20,6 +20,7 @@ interface PlusieursPossibilitésProps {
 
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 }
 
@@ -27,7 +28,7 @@ export function PlusieursPossibilités({
 	règle,
 	onChange,
 	engine,
-	aria = {},
+	aria,
 	id,
 }: PlusieursPossibilitésProps) {
 	const choices = getMultiplePossibilitiesOptions(engine, règle)
