@@ -11,7 +11,7 @@ import {
 	MonthState,
 	Options,
 	rémunérationBruteDottedName,
-} from '@/pages/simulateurs/lodeom/lodeom'
+} from '@/pages/simulateurs/lodeom/utils'
 
 import RécapitulatifTrimestre from './RécapitulatifTrimestre'
 import RéductionMois from './RéductionMois'
