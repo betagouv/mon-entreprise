@@ -14,7 +14,7 @@ export const BlocMontants = ({ children }: Props) => {
 
 	return (
 		<Section>
-			<StyledH2 as="h1">
+			<StyledH2>
 				{t('components.simulateur.zone-de-saisie.montants.titre', 'Montants')}
 			</StyledH2>
 			<ForceThemeProvider forceTheme="dark">{children}</ForceThemeProvider>

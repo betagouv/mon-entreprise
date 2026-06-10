@@ -23,7 +23,7 @@ export const BlocSituation = ({ questionsPublicodes }: Props) => {
 
 	return (
 		<Section>
-			<StyledH2 as="h1">
+			<StyledH2>
 				{t('components.simulateur.zone-de-saisie.situation.titre', 'Situation')}
 			</StyledH2>
 
