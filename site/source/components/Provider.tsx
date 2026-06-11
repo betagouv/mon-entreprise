@@ -7,7 +7,7 @@ import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import { TrackingProvider } from '@/components/TrackingProvider'
+import { PianoTrackerProvider } from '@/components/PianoAnalytics/PianoTrackerProvider'
 import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { DesignSystemThemeProvider } from '@/design-system'
@@ -88,7 +88,7 @@ function BrowserRouterProvider({
 
 	return (
 		<HelmetProvider>
-			<TrackingProvider>
+			<PianoTrackerProvider>
 				<BrowserRouter
 					basename={import.meta.env.MODE === 'production' ? '' : basename}
 					future={{ v7_startTransition: true }}
@@ -97,7 +97,7 @@ function BrowserRouterProvider({
 						{children}
 					</ReactRouterNavigationProvider>
 				</BrowserRouter>
-			</TrackingProvider>
+			</PianoTrackerProvider>
 		</HelmetProvider>
 	)
 }

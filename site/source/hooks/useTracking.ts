@@ -1,17 +1,48 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 
-import { usePianoTracking } from '@/components/ATInternetTracking'
+import { toAtString } from '@/components/PianoAnalytics'
+import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
+import {
+	getTrackingChapters,
+	TrackingChapters,
+	useTrackingChapters,
+} from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 
-export type ClickTracking = {
+import * as safeLocalStorage from '../storage/safeLocalStorage'
+
+type ClickTracking = {
 	feature: string
 	action: string
 	simulateur?: string
 }
 
+type PageTracking = {
+	name?: string
+} & TrackingChapters
+
 export function useTracking() {
-	const pianoTracker = usePianoTracking()
+	const pianoTracker = usePianoTracker()
 	const plausibleTracker = usePlausibleTracking()
+	const currentPianoChapters = useTrackingChapters()
+
+	const isTrackingRefused = useMemo(
+		() => pianoTracker?.consent.getMode().name === 'opt-out',
+		[pianoTracker?.consent]
+	)
+
+	const refuseTracking = useCallback(
+		(isTrackingRefused: boolean) => {
+			if (isTrackingRefused) {
+				pianoTracker?.consent.setMode('opt-out')
+				safeLocalStorage.setItem('tracking:do_not_track', '1')
+			} else {
+				pianoTracker?.consent.setMode('essential')
+				safeLocalStorage.setItem('tracking:do_not_track', '0')
+			}
+		},
+		[pianoTracker]
+	)
 
 	const trackClick = useCallback(
 		({ feature, action, simulateur }: ClickTracking) => {
@@ -28,5 +59,27 @@ export function useTracking() {
 		[pianoTracker, plausibleTracker]
 	)
 
-	return { trackClick }
+	const trackPage = useCallback(
+		({ name, ...chapters }: PageTracking) => {
+			const { chapter1, chapter2, chapter3 } = getTrackingChapters(
+				currentPianoChapters,
+				chapters
+			)
+
+			pianoTracker?.sendEvent(
+				'page.display',
+				Object.fromEntries(
+					Object.entries({
+						page_chapter1: chapter1,
+						page_chapter2: chapter2,
+						page_chapter3: chapter3,
+						page: name,
+					}).map(([k, v]) => [k, v && toAtString(v)])
+				)
+			)
+		},
+		[currentPianoChapters, pianoTracker]
+	)
+
+	return { isTrackingRefused, refuseTracking, trackClick, trackPage }
 }

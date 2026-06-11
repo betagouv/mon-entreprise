@@ -87,6 +87,7 @@ export function SimulationGoal({
 			<RuleInput
 				id={id}
 				aria-labelledby={aria.labelledby}
+				aria-describedby={aria.describedby}
 				modifiers={
 					!isTypeBoolean
 						? {

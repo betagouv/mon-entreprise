@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import {
 	Body,
 	Button,

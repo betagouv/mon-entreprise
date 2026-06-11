@@ -6,7 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import urssafLogo from '@/assets/images/Urssaf.svg'
-import { TrackPage } from '@/components/ATInternetTracking'
+import { TrackPage } from '@/components/PianoAnalytics'
 import {
 	Article,
 	Body,

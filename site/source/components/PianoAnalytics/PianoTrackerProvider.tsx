@@ -1,16 +1,20 @@
 import i18next from 'i18next'
 import { useEffect, useState } from 'react'
 
-import { TrackingContext } from '@/components/ATInternetTracking'
 import {
-	ATTracker,
-	createTracker,
-} from '@/components/ATInternetTracking/Tracker'
+	createPianoTracker,
+	PianoTracker,
+} from '@/components/PianoAnalytics/PianoTracker'
+import { PianoTrackerContext } from '@/components/PianoAnalytics/PianoTrackerContext'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import { scheduleWhenIdle } from '@/utils/polyfill'
 
-export function TrackingProvider({ children }: { children: React.ReactNode }) {
-	const [tracker, setTracker] = useState<ATTracker | null>(null)
+export function PianoTrackerProvider({
+	children,
+}: {
+	children: React.ReactNode
+}) {
+	const [tracker, setTracker] = useState<PianoTracker | null>(null)
 	const [script, setScript] = useState<HTMLScriptElement | null>(null)
 	const [injected, setInjected] = useState<boolean>(false)
 
@@ -22,13 +26,13 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 		script.onload = () => {
 			const siteId = import.meta.env.VITE_AT_INTERNET_SITE_ID
 
-			const ATTrackerClass = createTracker(
+			const PianoTrackerClass = createPianoTracker(
 				siteId,
 				safeLocalStorage.getItem('tracking:do_not_track') === '1' ||
 					navigator.doNotTrack === '1'
 			)
 
-			const instance = new ATTrackerClass({
+			const instance = new PianoTrackerClass({
 				language: i18next.language as 'fr' | 'en',
 			})
 
@@ -78,9 +82,9 @@ export function TrackingProvider({ children }: { children: React.ReactNode }) {
 	}
 
 	return (
-		<TrackingContext.Provider value={tracker}>
+		<PianoTrackerContext.Provider value={tracker}>
 			{children}
-		</TrackingContext.Provider>
+		</PianoTrackerContext.Provider>
 	)
 }
 

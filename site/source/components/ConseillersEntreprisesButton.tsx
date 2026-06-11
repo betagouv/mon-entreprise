@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 
 import { Body, Button, Emoji, PopoverWithTrigger } from '@/design-system'
 
+import { type ConseillersEntreprisesVariant } from './ConseillersEntreprises/BoutonConseillersEntreprises'
 import Loader from './utils/Loader'
 
 const LazyIframe = lazy<ComponentType<{ src: string; onLoad: () => void }>>(
@@ -24,13 +25,6 @@ const Container = styled.div`
 const ButtonLabel = styled.span`
 	margin-left: 1rem;
 `
-
-export type ConseillersEntreprisesVariant =
-	| 'activite_partielle'
-	| 'recrutement'
-	| 'micro_entrepreneur'
-	| 'revenus_par_statut'
-	| 'professions_liberales'
 
 export const ConseillersEntreprisesButton = ({
 	variant,
@@ -93,12 +87,8 @@ export const ConseillersEntreprisesButton = ({
 							<LazyIframe
 								src={url.href}
 								onLoad={function () {
-									console.log('iframe loaded')
-
 									document.getElementById('pdeIframe')?.focus()
 									scrollTo(0, 0)
-
-									console.log('done!')
 								}}
 							/>
 						</Suspense>

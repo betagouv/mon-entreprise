@@ -30,7 +30,6 @@ Cette opération n'est pas réversible.: Cette opération n'est pas réversible.
 Charger plus de résultats: Charger plus de résultats
 Charges: Charges
 Chiffre d'affaires: Chiffre d'affaires
-Chiffre d'affaires estimé: Chiffre d'affaires estimé
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   Comment ça marche ? Voir la page explicative sur la page du dépôt github,
   nouvelle fenêtre
@@ -87,7 +86,6 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   d'apporter des précisions à la simulation, des résultats détaillés
   s'afficheront en dessous du formulaire et seront mis à jour quand vous
   modifierez ce dernier.</2>
-"Lire la documentation au sujet de :": "Lire la documentation au sujet de :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Ma situation: Ma situation
 Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
@@ -113,7 +111,6 @@ Option ACRE non activée: Option ACRE non activée
 Options: Options
 Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
-Ouvrir la boite de dialogue pour rechercher: Ouvrir la boite de dialogue pour rechercher
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
 "Par exemple : coiffure, boulangerie ou restauration": "Par exemple : coiffure, boulangerie ou restauration"
@@ -129,7 +126,6 @@ Période de calcul: Période de calcul
 Quel est l’effectif de votre entreprise ?: Quel est l’effectif de votre entreprise ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
-Recherche sur le site: Recherche sur le site
 Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
@@ -308,7 +304,48 @@ components:
       salaire-brut: Salaire brut
       salaire-net: Salaire net
   recherche:
-    placeholder: "Mot-clé ou acronyme (exemple : CSG)"
+    button:
+      aria-label: Ouvrir la boite de dialogue pour rechercher
+      text: Rechercher
+    input:
+      placeholder: "Mot-clé ou acronyme (exemple : CSG)"
+    modale:
+      title: Recherche sur le site
+  règles:
+    info:
+      aria-label: Info sur {{ règle }}
+    lien-documentation:
+      aria-label: Lire la documentation sur {{ règle }}
+      texte: Lire la documentation
+    références: Liens utiles
+  simulateur:
+    conseillers-entreprise:
+      bouton: Échanger avec un conseiller
+      description: Décrivez votre projet ou votre problème en donnant quelques
+        éléments de contexte. Conseillers-Entreprises Service Public
+        identifiera, parmi l'ensemble des partenaires publics et parapublics, le
+        conseiller compétent pour votre demande. Celui-ci vous contactera par
+        téléphone sous 5 jours et vous accompagnera en fonction de votre
+        situation.
+      title: Échanger avec un conseiller
+    partage:
+      bouton: Générer un lien de partage
+      modale:
+        titre: Votre lien de partage
+    questions:
+      modifier: Modifier {{ règle }}
+    réinitialiser: Valeurs par défaut
+    résultats:
+      indisponibles: Entrez un montant pour afficher les résultats détaillés.
+    voir-le-détail: Voir le détail
+    zone-de-saisie:
+      info-mise-à-jour: Les données de simulations se mettront automatiquement à jour
+        après la modification d’un champ.
+      montants:
+        titre: Montants
+      situation:
+        retour: Revenir à la liste
+        titre: Situation
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
     👋 en haut à droite de votre ecran ou directement par mail à l'adresse
@@ -383,6 +420,7 @@ footer:
 février: février
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 global:
+  fermer: Fermer
   oui-non:
     non: Non
     oui: Oui
@@ -1746,6 +1784,8 @@ pages:
         title: Modifier mes options
         versement-libératoire:
           label: Activer le versement libératoire dans la simulation
+      montants:
+        CA: Chiffre d’affaires estimé
       option-applicable: Option applicable.
       option-non-applicable: Option non applicable.
       option-sous-conditions: Option applicable sous conditions.

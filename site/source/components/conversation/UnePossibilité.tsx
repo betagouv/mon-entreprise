@@ -29,6 +29,7 @@ interface UnePossibilitéProps {
 	variant?: ChoiceDisplayType
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 }
 

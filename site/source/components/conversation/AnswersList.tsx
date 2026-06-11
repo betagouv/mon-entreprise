@@ -262,8 +262,6 @@ function StepsTable({
 	rules: Array<EvaluatedRule | RuleNode>
 	onClose: () => void
 }) {
-	const { t } = useTranslation()
-
 	return (
 		<Ul>
 			{rules
@@ -272,13 +270,7 @@ function StepsTable({
 					<StyledAnswerLine as="li" container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
-							<ExplicableRule
-								aria-label={t('Info sur {{ title }}', {
-									title: rule.title,
-								})}
-								light
-								dottedName={rule.dottedName}
-							/>
+							<ExplicableRule dottedName={rule.dottedName} light />
 						</Grid>
 						<StyledAnswer item xs="auto">
 							<AnswerElement {...rule} />

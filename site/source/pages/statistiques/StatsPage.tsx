@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { toAtString } from '@/components/ATInternetTracking'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
+import { toAtString } from '@/components/PianoAnalytics'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { Emoji, Grid, Spacing, Switch, typography } from '@/design-system'

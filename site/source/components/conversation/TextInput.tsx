@@ -15,6 +15,7 @@ interface TextInputProps {
 
 	aria?: {
 		labelledby?: string
+		describedby?: string
 	}
 }
 
@@ -26,7 +27,7 @@ export default function TextInput({
 	title,
 	missing,
 	autoFocus,
-	aria = {},
+	aria,
 }: TextInputProps) {
 	const { handleChange } = useSelection({
 		value,
@@ -48,7 +49,8 @@ export default function TextInput({
 				[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
 			}}
 			autoComplete="off"
-			aria-labelledby={aria.labelledby}
+			aria-labelledby={aria?.labelledby}
+			aria-describedby={aria?.describedby}
 		/>
 	)
 }

@@ -7,6 +7,7 @@ import Value from '@/components/EngineValue/Value'
 import {
 	Accordion,
 	Body,
+	CircledPlusIcon,
 	Container,
 	Emoji,
 	ExternalLinkIcon,
@@ -17,7 +18,6 @@ import {
 	Li,
 	Link,
 	Message,
-	PlusCircleIcon,
 	Strong,
 	StyledLink,
 	Ul,
@@ -29,7 +29,7 @@ import ItemTitle from './ItemTitle'
 import RevenuTable from './RevenuTable'
 import WarningTooltip from './WarningTooltip'
 
-const Détails = ({
+export const Comparaison = ({
 	namedEngines,
 	expandRevenuSection = false,
 }: {
@@ -98,6 +98,10 @@ const Détails = ({
 					}
 					key="revenus"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.revenus.title',
+						'Vos revenus'
+					)}
 				>
 					<StyledH4>
 						{t(
@@ -259,6 +263,10 @@ const Détails = ({
 					}
 					key="retraite"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.retraite.title',
+						'Vos droits pour la retraite'
+					)}
 				>
 					<StyledH4>
 						{t(
@@ -382,6 +390,10 @@ const Détails = ({
 					}
 					key="santé"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.santé.title',
+						'Vos prestations santé'
+					)}
 				>
 					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.body">
 						<BodyNoBottomMargin>
@@ -441,7 +453,7 @@ const Détails = ({
 								expression="protection sociale . maladie . arrêt maladie != 0"
 							>
 								<StyledDiv>
-									<PlusCircleIcon
+									<CircledPlusIcon
 										style={{
 											marginTop: '0 !important',
 										}}
@@ -506,6 +518,10 @@ const Détails = ({
 					}
 					key="enfants"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.parentalité.title',
+						'La maternité, paternité et adoption'
+					)}
 				>
 					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.parentalité.body">
 						<BodyNoBottomMargin>
@@ -591,6 +607,10 @@ const Détails = ({
 					}
 					key="maladie"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.prévoyance.title',
+						'Votre couverture invalidité et décès'
+					)}
 				>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.body">
@@ -754,6 +774,10 @@ const Détails = ({
 					}
 					key="administratif"
 					hasChildItems={false}
+					textValue={t(
+						'pages.simulateurs.comparaison-statuts.items.gestion.title',
+						'La gestion juridique et comptable'
+					)}
 				>
 					<StyledH4>
 						{t(
@@ -864,5 +888,3 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 const BlackColoredLink = styled(StyledLink)`
 	color: ${({ theme }) => theme.colors.extended.grey[800]};
 `
-
-export default Détails

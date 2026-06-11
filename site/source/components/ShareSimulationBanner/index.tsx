@@ -8,13 +8,11 @@ import {
 	PopoverWithTrigger,
 	Spacing,
 } from '@/design-system'
+import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 
-import { usePianoTracking } from '../ATInternetTracking'
-import {
-	ConseillersEntreprisesButton,
-	type ConseillersEntreprisesVariant,
-} from '../ConseillersEntreprisesButton'
+import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
+import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
 export interface CustomSimulationButton {
@@ -34,7 +32,7 @@ export default function ShareOrSaveSimulationBanner({
 	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
-	const tracker = usePianoTracking()
+	const { trackClick } = useTracking()
 	const shareAPIAvailable = !!window?.navigator?.share
 	const url = useUrl()
 	const startSharing = async () => {
@@ -91,15 +89,14 @@ export default function ShareOrSaveSimulationBanner({
 									light
 									size="XS"
 									onPress={(e) => {
-										tracker?.sendEvent('click.action', {
-											click_chapter1: 'feature:partage',
-											click: 'démarré',
+										trackClick({
+											action: 'démarré',
+											feature: 'feature:partage',
 										})
 										startSharing().catch(
 											// eslint-disable-next-line no-console
 											(err) => console.error(err)
 										)
-
 										buttonProps?.onPress?.(e)
 									}}
 									aria-haspopup="dialog"

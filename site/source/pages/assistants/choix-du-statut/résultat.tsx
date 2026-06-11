@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { References } from '@/components/documentation/References/References'
 import { Feedback } from '@/components/Feedback/Feedback'
+import { TrackPage } from '@/components/PianoAnalytics'
 import { StatutType } from '@/components/StatutTag'
 import {
 	Article,

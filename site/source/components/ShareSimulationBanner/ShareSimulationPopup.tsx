@@ -12,14 +12,13 @@ import {
 	Strong,
 	TextField,
 } from '@/design-system'
-
-import { usePianoTracking } from '../ATInternetTracking'
+import { useTracking } from '@/hooks/useTracking'
 
 export function ShareSimulationPopup({ url }: { url: string }) {
 	const inputRef = useRef<HTMLInputElement>(null!)
 	const { t } = useTranslation()
 	const [linkCopied, setLinkCopied] = useState(false)
-	const tracker = usePianoTracking()
+	const { trackClick } = useTracking()
 
 	const selectInput = () => {
 		inputRef.current?.select()
@@ -61,9 +60,9 @@ export function ShareSimulationPopup({ url }: { url: string }) {
 						<Button
 							size="XS"
 							onPress={() => {
-								tracker?.sendEvent('click.action', {
-									click_chapter1: 'feature:partage',
-									click: 'lien copié',
+								trackClick({
+									action: 'lien copié',
+									feature: 'feature:partage',
 								})
 								navigator.clipboard.writeText(url).catch((err) =>
 									// eslint-disable-next-line no-console

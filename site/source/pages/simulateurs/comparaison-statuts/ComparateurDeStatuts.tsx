@@ -2,23 +2,27 @@ import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
+import { Simulateur } from '@/components/Simulateur/Simulateur'
 import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
-import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
+import useSimulationPublicodesÉditorialisées from '@/hooks/useSimulationPublicodesEditorialisee'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { useSitePaths } from '@/sitePaths'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
-import Comparateur from './components/Comparateur'
+import { DétailSimulation } from './components/DétailSimulation'
+import { MontantsÀSaisir } from './components/MontantsÀSaisir'
 import { EngineComparison } from './EngineComparison'
 
-export default function ComparateurStatuts() {
-	const simulateurConfig = useSimulatorData('comparaison-statuts')
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+export const ComparateurDeStatuts = () => {
+	const id = 'comparaison-statuts'
+	const simulateurConfig = useSimulatorData(id)
+	const { isReady, engine, questions, simulationEstCommencée } =
+		useSimulationPublicodesÉditorialisées(simulateurConfig)
 
 	const situation = useSelector(completeSituationSelector)
 	const { absoluteSitePaths } = useSitePaths()
@@ -85,7 +89,13 @@ export default function ComparateurStatuts() {
 					</Trans>
 				</Intro>
 
-				<Comparateur namedEngines={engines} />
+				<Simulateur
+					id={id}
+					montantsÀSaisir={<MontantsÀSaisir />}
+					questionsPublicodes={questions}
+					détail={<DétailSimulation namedEngines={engines} />}
+					simulationEstCommencée={simulationEstCommencée}
+				/>
 			</SimulateurPageLayout>
 		</EngineProvider>
 	)
