@@ -39,24 +39,27 @@ export const ListeQuestions = ({ groupesDeQuestions, onSélection }: Props) => {
 						groupesDeQuestions,
 						R.toEntries,
 						map(([id, groupe]) => {
-							const question = groupe.liste[0]
+							const premièreQuestion = groupe.liste[0]
 
 							return (
 								<StyledLi key={id}>
 									<div>
-										<BodyWithoutMargin>{question.libellé(t)}</BodyWithoutMargin>
-										<ExplicableRule light dottedName={question.id} />
+										<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
+										<ExplicableRule light dottedName={premièreQuestion.id} />
 									</div>
 
 									<ValueContainer>
-										<Value expression={question.id} linkToRule={false} />
+										<Value
+											expression={premièreQuestion.id}
+											linkToRule={false}
+										/>
 										<EditButton
 											light
-											onPress={() => onSélection(question.id)}
+											onPress={() => onSélection(id)}
 											aria-label={t(
 												'components.simulateur.questions.modifier',
 												'Modifier {{ règle }}',
-												{ règle: question.libellé(t) }
+												{ règle: groupe.titre(t) }
 											)}
 										>
 											<EditIcon />
