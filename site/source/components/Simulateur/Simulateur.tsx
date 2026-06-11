@@ -1,10 +1,10 @@
 import { useLayoutEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { SmallBody } from '@/design-system'
-import { Situation } from '@/domaine/Situation'
-import { GroupeDeQuestionsPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
+import {
+	GroupeDeQuestionsPublicodes,
+	QuestionPublicodes,
+} from '@/hooks/useQuestionsPublicodesEditorialisees'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useTracking } from '@/hooks/useTracking'
 
@@ -14,10 +14,11 @@ import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'
 import { ZoneDeSaisie } from './ZoneDeSaisie'
 
-type Props<S extends Situation = Situation> = {
+type Props = {
 	id: SimulateurId
 	montantsÀSaisir: React.ReactNode
-	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes<S>>
+	questionsPublicodesPrincipales: QuestionPublicodes[]
+	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes>
 	avertissement?: React.ReactNode
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 	simulationEstCommencée: boolean
@@ -27,6 +28,7 @@ type Props<S extends Situation = Situation> = {
 export const Simulateur = ({
 	id,
 	montantsÀSaisir,
+	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
 	avertissement,
 	conseillersEntreprisesVariant,
@@ -34,7 +36,6 @@ export const Simulateur = ({
 	détail,
 }: Props) => {
 	const { trackPage } = useTracking()
-	const { t } = useTranslation()
 
 	useLayoutEffect(() => {
 		trackPage({ name: simulationEstCommencée ? SIMULATION_COMMENCEE : ACCUEIL })
@@ -51,6 +52,7 @@ export const Simulateur = ({
 			{/* Année précédente */}
 
 			<ZoneDeSaisie
+				questionsPublicodesPrincipales={questionsPublicodesPrincipales}
 				groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
 				montants={montantsÀSaisir}
 			/>
@@ -60,16 +62,7 @@ export const Simulateur = ({
 				afficherBoutonVersDétail={!!détail}
 			/>
 
-			{détail ? (
-				<div id="simulation-détail">{détail}</div>
-			) : (
-				<SmallBody>
-					{t(
-						'components.simulateur.résultats.indisponibles',
-						'Entrez un montant pour afficher les résultats détaillés.'
-					)}
-				</SmallBody>
-			)}
+			{détail && <div id="simulation-détail">{détail}</div>}
 		</Container>
 	)
 }

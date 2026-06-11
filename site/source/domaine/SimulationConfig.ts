@@ -50,13 +50,18 @@ export type QuestionsAutoGénérées = {
 	raccourcis?: RaccourciPublicodes[]
 }
 
-export type QuestionsÉditorialisées = Record<
-	string,
-	{
-		titre: (t: TFunction) => string
-		liste: Array<{
-			libellé: (t: TFunction) => string
-			dottedName: DottedName
-		}>
-	}
->
+export type Question = {
+	libellé: (t: TFunction) => string
+	dottedName: DottedName
+}
+
+export type QuestionsÉditorialisées = {
+	'questions principales': Question[]
+	'groupes de questions': Record<
+		string,
+		{
+			titre: (t: TFunction) => string
+			liste: Question[]
+		}
+	>
+}

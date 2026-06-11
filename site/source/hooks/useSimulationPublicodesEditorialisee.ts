@@ -19,8 +19,10 @@ export default function useSimulationPublicodesÉditorialisées(
 ) {
 	const { id, path, simulation, autoloadLastSimulation } = simulatorConfig
 	const nomModèle = simulation?.nomModèle as NomModèle
-	const questionsÉditorialisées =
-		simulation?.questions as QuestionsÉditorialisées
+	const {
+		'questions principales': questionsPrincipales,
+		'groupes de questions': groupesDeQuestions,
+	} = simulation?.questions as QuestionsÉditorialisées
 
 	useSimulationConfig({
 		key: id,
@@ -34,10 +36,12 @@ export default function useSimulationPublicodesÉditorialisées(
 
 	const currentKey = useSelector(simulationKeySelector)
 
-	const groupesDeQuestionsPublicodes = useQuestionsPublicodesÉditorialisées(
-		nomModèle,
-		questionsÉditorialisées
-	)
+	const { questionsPublicodesPrincipales, groupesDeQuestionsPublicodes } =
+		useQuestionsPublicodesÉditorialisées(
+			nomModèle,
+			questionsPrincipales,
+			groupesDeQuestions
+		)
 
 	const situation = useSelector(situationSelector)
 	const simulationEstCommencée = Object.keys(situation).length > 0
@@ -45,6 +49,7 @@ export default function useSimulationPublicodesÉditorialisées(
 	return {
 		isReady: currentKey === id,
 		engine,
+		questionsPrincipales: questionsPublicodesPrincipales,
 		groupesDeQuestions: groupesDeQuestionsPublicodes,
 		simulationEstCommencée,
 	}

@@ -334,9 +334,6 @@ components:
         titre: Votre lien de partage
     questions:
       modifier: Modifier {{ règle }}
-    réinitialiser: Valeurs par défaut
-    résultats:
-      indisponibles: Entrez un montant pour afficher les résultats détaillés.
     voir-le-détail: Voir le détail
     zone-de-saisie:
       info-mise-à-jour: Les données de simulations se mettront automatiquement à jour
@@ -344,7 +341,12 @@ components:
       montants:
         titre: Montants
       situation:
-        retour: Revenir à la liste
+        questions-principales:
+          bouton: Préciser votre situation
+          texte: Pour une meilleure simulation, vous pouvez préciser votre situation.
+        retour: Retour
+        retour-liste: Revenir à la liste
+        réinitialiser: Valeurs par défaut
         titre: Situation
 contact:
   email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
