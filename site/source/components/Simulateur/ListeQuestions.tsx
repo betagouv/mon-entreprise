@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Body, Button, EditIcon, Li, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -18,15 +18,10 @@ export type QuestionEnListe = {
 
 type Props<S extends Situation = Situation> = {
 	questions: Question<S>[]
-	situation?: S
 	onSélection: (question: Question<S>) => void
 }
 
-export const ListeQuestions = ({
-	questions,
-	situation,
-	onSélection,
-}: Props) => {
+export const ListeQuestions = ({ questions, onSélection }: Props) => {
 	const { t } = useTranslation()
 
 	return (
@@ -45,11 +40,7 @@ export const ListeQuestions = ({
 							</div>
 
 							<ValueContainer>
-								<StyledValue
-									expression={question.id}
-									linkToRule={false}
-									$répondue={question.répondue(situation)}
-								/>
+								<Value expression={question.id} linkToRule={false} />
 								<EditButton
 									light
 									onPress={() => onSélection(question)}
@@ -103,14 +94,6 @@ const ValueContainer = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0 ${({ theme }) => theme.spacings.xxs};
-`
-
-const StyledValue = styled(Value)<{ $répondue: boolean }>`
-	${({ $répondue }) =>
-		$répondue &&
-		css`
-			font-weight: 700;
-		`}
 `
 
 const EditButton = styled(Button)`
