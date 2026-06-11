@@ -1,41 +1,53 @@
 import { Predicate } from 'effect/Predicate'
+import * as R from 'effect/Record'
+import { TFunction } from 'i18next'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle, QuestionsÉditorialisées } from '@/domaine/SimulationConfig'
 import { Situation } from '@/domaine/Situation'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
 
+export type GroupeDeQuestionsPublicodes<S extends Situation> = {
+	titre: (t: TFunction) => string
+	liste: QuestionPublicodes<S>[]
+}
+
 export interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'
 	id: DottedName
-	libellé: () => string
+	libellé: (t: TFunction) => string
 	applicable: Predicate<S | undefined>
 	répondue: Predicate<S | undefined>
 }
 
 export function useQuestionsPublicodesÉditorialisées<S extends Situation>(
 	nomModèle: NomModèle,
-	idsDesQuestions: DottedName[]
-): QuestionPublicodes<S>[] {
+	questionsÉditorialisées: QuestionsÉditorialisées
+): Record<string, GroupeDeQuestionsPublicodes<S>> {
 	const engine = useEngineFromModèle(nomModèle)
 
-	return idsDesQuestions.map((id: DottedName) => {
-		const evaluation = engine.evaluate(id)
-		const libellé = () => engine.getRule(id).title
-		const applicable = () =>
-			engine.evaluate({
-				'est applicable': id,
-			}).nodeValue === true && evaluation.nodeValue !== null
-		const répondue = () =>
-			!(id in evaluation.missingVariables) && evaluation.nodeValue !== undefined
-
+	return R.map(questionsÉditorialisées, ({ titre, liste }) => {
 		return {
-			_tag: 'QuestionPublicodes',
-			id,
-			libellé,
-			applicable,
-			répondue,
+			titre,
+			liste: liste.map(({ libellé, dottedName }) => {
+				const evaluation = engine.evaluate(dottedName)
+				const applicable = () =>
+					engine.evaluate({
+						'est applicable': dottedName,
+					}).nodeValue === true && evaluation.nodeValue !== null
+				const répondue = () =>
+					!(dottedName in evaluation.missingVariables) &&
+					evaluation.nodeValue !== undefined
+
+				return {
+					_tag: 'QuestionPublicodes',
+					id: dottedName,
+					libellé,
+					applicable,
+					répondue,
+				}
+			}),
 		}
 	})
 }

@@ -4,21 +4,21 @@ import { styled } from 'styled-components'
 import { H2 } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
-import { QuestionPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
+import { GroupeDeQuestionsPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
 import ScrollToElement from '../utils/Scroll/ScrollToElement'
 import { ListeQuestions } from './ListeQuestions'
 import { QuestionCourante } from './QuestionCourante'
 
 type Props<S extends Situation = Situation> = {
-	questionsPublicodes: QuestionPublicodes<S>[]
+	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes<S>>
 }
 
-export const BlocSituation = ({ questionsPublicodes }: Props) => {
+export const BlocSituation = ({ groupesDeQuestionsPublicodes }: Props) => {
 	const { t } = useTranslation()
-	const { questions, questionCourante, setQuestionCourante } =
+	const { groupesDeQuestions, questionCourante, setQuestionCouranteId } =
 		useQuestionsÉditorialisées({
-			questionsPublicodes,
+			groupesDeQuestionsPublicodes,
 		})
 
 	return (
@@ -30,14 +30,14 @@ export const BlocSituation = ({ questionsPublicodes }: Props) => {
 			{questionCourante ? (
 				<ScrollToElement>
 					<QuestionCourante
-						Question={questionCourante}
-						retour={() => setQuestionCourante(undefined)}
+						questions={questionCourante.liste}
+						retour={() => setQuestionCouranteId(undefined)}
 					/>
 				</ScrollToElement>
 			) : (
 				<ListeQuestions
-					questions={questions}
-					onSélection={setQuestionCourante}
+					groupesDeQuestions={groupesDeQuestions}
+					onSélection={setQuestionCouranteId}
 				/>
 			)}
 		</Section>

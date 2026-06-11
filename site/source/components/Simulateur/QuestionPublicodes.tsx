@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
@@ -16,6 +17,7 @@ type Props<S extends Situation> = {
 export const QuestionPublicodes = <S extends Situation>({
 	question,
 }: Props<S>) => {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 
 	const handleRéponse = useCallback(
@@ -28,7 +30,7 @@ export const QuestionPublicodes = <S extends Situation>({
 	return (
 		<RuleField
 			dottedName={question.id}
-			labelOrLegend={question.libellé()}
+			labelOrLegend={question.libellé(t)}
 			onChange={(value, name) => handleRéponse(name, value)}
 		/>
 	)
