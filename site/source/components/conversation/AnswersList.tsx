@@ -270,7 +270,7 @@ function StepsTable({
 					<StyledAnswerLine as="li" container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
-							<ExplicableRule dottedName={rule.dottedName} light />
+							<ExplicableRule dottedName={rule.dottedName} />
 						</Grid>
 						<StyledAnswer item xs="auto">
 							<AnswerElement {...rule} />

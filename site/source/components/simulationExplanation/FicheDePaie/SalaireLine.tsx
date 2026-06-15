@@ -16,7 +16,7 @@ export const SalaireLine = ({ rule, title }: Props) => (
 	<Container>
 		<Titre>
 			{title}
-			<ExplicableRule light dottedName={rule} />
+			<ExplicableRule dottedName={rule} />
 		</Titre>
 		<Value linkToRule={false} expression={rule} unit="€" displayedUnit="€" />
 	</Container>

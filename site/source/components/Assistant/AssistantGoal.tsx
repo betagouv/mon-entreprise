@@ -78,7 +78,7 @@ export function AssistantGoal({
 							</Grid>
 							<Grid item>
 								<ForceThemeProvider forceTheme="default">
-									<ExplicableRule dottedName={dottedName} light />
+									<ExplicableRule dottedName={dottedName} />
 								</ForceThemeProvider>
 							</Grid>
 						</Grid>

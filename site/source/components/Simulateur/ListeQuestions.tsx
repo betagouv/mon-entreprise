@@ -52,7 +52,7 @@ export const ListeQuestions = ({
 								<StyledLi key={id}>
 									<div>
 										<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
-										<ExplicableRule light dottedName={premièreQuestion.id} />
+										<ExplicableRule dottedName={premièreQuestion.id} />
 									</div>
 
 									<ValueContainer>

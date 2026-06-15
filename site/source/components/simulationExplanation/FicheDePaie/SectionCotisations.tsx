@@ -47,7 +47,7 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 					<Fragment key={section.dottedName}>
 						<Titre id={id}>
 							{section.title}
-							<ExplicableRule light dottedName={section.dottedName} />
+							<ExplicableRule dottedName={section.dottedName} />
 						</Titre>
 						<Table aria-labelledby={id}>
 							<tbody>

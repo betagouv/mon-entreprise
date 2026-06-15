@@ -178,7 +178,7 @@ export function SimulationGoal({
 			isInfoMode={isInfoMode}
 			small={small}
 			appear={appear}
-			explication={<ExplicableRule dottedName={dottedName} light />}
+			explication={<ExplicableRule dottedName={dottedName} />}
 		/>
 	)
 }

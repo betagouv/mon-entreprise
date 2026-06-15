@@ -93,7 +93,6 @@ export function RadioChoices<Names extends string = DottedName>({
 										<>
 											<ExplicableRule
 												dottedName={node.dottedName as DottedName}
-												light
 											/>
 										</>
 									)}
