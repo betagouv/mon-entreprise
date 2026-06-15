@@ -41,24 +41,6 @@ export const WithMarkdown: Story = {
 	},
 }
 
-export const WithLightStyle: Story = {
-	args: {
-		title: 'Style léger',
-		description:
-			"Info-bulle avec style léger (pour les contextes où l'importance est moindre)",
-		light: true,
-	},
-}
-
-export const WithBigPopover: Story = {
-	args: {
-		title: 'Grande info-bulle',
-		description:
-			"Une info-bulle plus grande pour afficher plus de contenu.\n\nCette info-bulle a une taille plus grande que la normale, permettant d'afficher davantage de contenu sans que l'utilisateur ait à faire défiler autant.",
-		bigPopover: true,
-	},
-}
-
 export const WithChildren: Story = {
 	args: {
 		title: 'Avec contenu personnalisé',
