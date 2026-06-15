@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import {
 	Body,
 	Button,
@@ -149,14 +150,16 @@ export default function RéductionMois({
 			</GridContainer>
 
 			{isOptionVisible && (
-				<OptionsContainer>
-					<MonthOptions
-						month={monthName}
-						index={index}
-						options={data.options}
-						onOptionsChange={onOptionsChange}
-					/>
-				</OptionsContainer>
+				<ForceThemeProvider forceTheme="default">
+					<OptionsContainer>
+						<MonthOptions
+							month={monthName}
+							index={index}
+							options={data.options}
+							onOptionsChange={onOptionsChange}
+						/>
+					</OptionsContainer>
+				</ForceThemeProvider>
 			)}
 		</div>
 	) : (
@@ -184,17 +187,19 @@ export default function RéductionMois({
 				</td>
 			</tr>
 			{isOptionVisible && (
-				<StyledTableRow>
-					<td />
-					<td colSpan={withRépartitionAndRégularisation ? 4 : 3}>
-						<MonthOptions
-							month={monthName}
-							index={index}
-							options={data.options}
-							onOptionsChange={onOptionsChange}
-						/>
-					</td>
-				</StyledTableRow>
+				<ForceThemeProvider forceTheme="default">
+					<StyledTableRow>
+						<td />
+						<td colSpan={withRépartitionAndRégularisation ? 4 : 3}>
+							<MonthOptions
+								month={monthName}
+								index={index}
+								options={data.options}
+								onOptionsChange={onOptionsChange}
+							/>
+						</td>
+					</StyledTableRow>
+				</ForceThemeProvider>
 			)}
 		</>
 	)
@@ -220,12 +225,18 @@ const StyledButton = styled(Button)`
 `
 const OptionsContainer = styled.div`
 	margin-top: ${({ theme }) => theme.spacings.xs};
-	background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.bases.primary[200]};
 	padding: ${({ theme }) => theme.spacings.sm};
 `
 
 const StyledTableRow = styled.tr`
-	background-color: ${({ theme }) => theme.colors.bases.primary[200]};
+	background-color: ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.bases.primary[200]};
 	td {
 		padding-top: ${({ theme }) => theme.spacings.sm};
 		padding-bottom: ${({ theme }) => theme.spacings.sm};
