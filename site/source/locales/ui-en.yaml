@@ -181,7 +181,6 @@ accessibility:
   description: Référentiel Général d'Amélioration de l'Accessibilité (General
     Accessibility Improvement Reference System)
   title: Accessibility
-aide: assistance
 aides différées, voir le détail du calcul pour aides différées: deferred aid, see detailed calculation for deferred aid
 août: August
 api:
@@ -222,7 +221,14 @@ checklist:
     open: Hide details
 code {{ code }}: code {{ code }}
 codeApe:
-  catégorie-guichet: <0>Guichet unique categories<1></1></0>
+  catégorie-guichet: <0>Guichet unique categories<1><0>The <2>Guichet électronique
+    des formalités d'entreprises&lt;/2> (Guichet unique) is a secure internet
+    portal, through which all companies are required to declare their creation,
+    as of January 1, 2023.</0><1>It uses a different activity classification
+    from that used by INSEE for the APE code.</1></1></0>
+  guichet-unique:
+    subject: one-stop shop
+    title: What is the one-stop shop?
 common:
   useful-resources: Useful resources
 comparaisonRégimes:
@@ -289,6 +295,8 @@ components:
       cotisations: Social security contributions
       salaire-brut: Gross salary
       salaire-net: Net salary
+  info:
+    aria-label: About {{ subject }}
   recherche:
     button:
       aria-label: Open the search dialog box
@@ -299,7 +307,6 @@ components:
       title: Site search
   règle:
     info:
-      aria-label: Info on {{ title }}
       lien-documentation:
         aria-label: Read the documentation on {{ règle }}
         texte: Read the documentation
@@ -426,7 +433,6 @@ header:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
-info: info
 intégration:
   description: Tools for developers
   title: Integration
@@ -602,6 +608,7 @@ pages:
     choix-statut:
       activité:
         help:
+          subject: core business
           title: Choosing the right status for your situation
         title: My main activity is...<1><0>The choice of status and contributions
           depends on your professional activity. Entering your occupation will
@@ -611,6 +618,7 @@ pages:
           the authorities. To find out how, <2>see this guide</2>.</1></1></1>
       association:
         help:
+          subject: the nonprofit association or organization
           title: What is an association, or non-profit organization?
         question:
           gagner-argent:
@@ -640,6 +648,7 @@ pages:
         question2: Do you plan to add partners at a later stage?
         question3:
           help:
+            subject: sole proprietorship or corporation
             title: Choosing between a sole proprietorship and a company
           label: Do you want to run your business as a company only?<1><0>Sole
             proprietorship</0><1><0>You are <2>responsible for all your business
@@ -663,6 +672,7 @@ pages:
           <4>social coverage</4> and <7>accounting and legal management</7>
           before making your choice.</0>
         help:
+          subject: the company's municipality
           title: Each region has its own specific features
         title: In which commune would you like to set up your business?<1><0>Some laws
           are specific to certain regions or departments (Alsace-Moselle, DOM
@@ -703,13 +713,15 @@ pages:
       rémunération:
         CA:
           help:
-            title: Estimate my sales
+            subject: revenue
+            title: Estimate my revenue
           label: Sales (excl. VAT)
           title: "In the first year, I estimate my sales at...<1><0>Sales are the <2>sum
             of sales made during</2> your accounting period (one year): <6>Sales
             = sales price × quantities sold</6>.</0></1>"
         charges:
           help:
+            subject: expenses
             title: Define your business expenses
           label: Amount of charges excl.
           title: "<0>I estimate my business expenses at...<1><0>These are <2>all the
@@ -1628,13 +1640,15 @@ pages:
               <2>Retirement Insurance simulator</2>.
           title: Your pension rights
         revenus:
-          button-title: Calculate your income
           détails:
             "1": Or <2><0></0></2> before tax
             "2": With <2><0></0></2> social security contributions on sales (i.e.
               <6><0></0></6> of profit)
             "3": With <2><0></0></2> social security contributions on profits
           h4: Net monthly income after tax
+          info:
+            subject: income
+            title: Calculate your income
           title: Your income
           warning: You will exceed the micro-business limit <2>(<1></1> sales).</2>
         santé:
@@ -2064,22 +2078,22 @@ pages:
       options:
         description: Adds fields to modulate employee activity
         heures-sup:
-          popover: "<0>The number of hours of overtime and complementary work is used to
-            calculate the reduction: gross remuneration is compared with the
-            SMIC increased by this number of hours.</0>"
+          popover: "The number of overtime and additional hours is used to calculate the
+            reduction: gross pay is compared to the minimum wage plus the number
+            of hours worked."
         label:
           heures-complémentaires: Number of overtime hours
           heures-supplémentaires: Number of overtime hours
           rémunération-etp: Basic remuneration for a full month
           rémunération-primes: Remuneration not affected by the incomplete month
         rémunération-etp:
-          popover: <0>Indicate here the remuneration that would have been paid for a full
-            month, <2>excluding</2> :<4><0>bonuses and other elements of
-            remuneration not affected by the absence ;</0><1>remuneration for
-            overtime or additional hours worked.</1></4></0>
+          popover: Enter here the compensation that would have been paid for a full month,
+            <2>excluding&lt;/2> :<4><0>bonuses and other compensation components
+            not affected by the absence;</0><1>overtime or additional hours
+            pay.</1></4>
         rémunération-primes:
-          popover: <0>Indicate here any elements of remuneration not affected by the
-            absence, such as bonuses.</0>
+          popover: List here the compensation components not affected by the absence, such
+            as bonuses.
       recap:
         T1: 1st quarter
         T2: 2nd quarter

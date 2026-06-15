@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
-	HelpButtonWithPopover,
+	InfoButton,
 	Message,
 	Radio,
 	RadioCard,
@@ -42,12 +42,11 @@ export default function Associés() {
 				title={
 					<Trans i18nKey="pages.assistants.choix-statut.associés.title">
 						Je gère cette entreprise…
-						<HelpButtonWithPopover
-							title={t(
+						<InfoButton
+							subject={t(
 								'pages.assistants.choix-statut.associés.help.title',
 								'Être plusieurs associé(e)s ou actionnaires'
 							)}
-							type="info"
 						>
 							<Body>
 								Vous <Strong>partagez la propriété de votre entreprise </Strong>
@@ -60,7 +59,7 @@ export default function Associés() {
 								SAS), on parle d’
 								<Strong>actionnaires</Strong>.
 							</Body>
-						</HelpButtonWithPopover>
+						</InfoButton>
 					</Trans>
 				}
 			>
@@ -125,12 +124,15 @@ export default function Associés() {
 								<Trans i18nKey="pages.assistants.choix-statut.associés.question3.label">
 									Voulez-vous exercer votre activité sous la forme d'une société
 									uniquement&nbsp;?
-									<HelpButtonWithPopover
-										title={t(
+									<InfoButton
+										subject={t(
+											'pages.assistants.choix-statut.associés.question3.help.subject',
+											'entreprise individuelle ou société'
+										)}
+										popoverTitle={t(
 											'pages.assistants.choix-statut.associés.question3.help.title',
 											'Choisir entre une entreprise individuelle et une société'
 										)}
-										type="info"
 									>
 										<H3>Entreprise individuelle</H3>
 										<Ul>
@@ -175,7 +177,7 @@ export default function Associés() {
 												<Strong>plus complexes et plus coûteuses</Strong>.
 											</Li>
 										</Ul>
-									</HelpButtonWithPopover>
+									</InfoButton>
 								</Trans>
 							</H4>
 							<ToggleGroup

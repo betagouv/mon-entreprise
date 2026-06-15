@@ -13,7 +13,7 @@ import {
 	ExternalLinkIcon,
 	H2,
 	H4,
-	HelpButtonWithPopover,
+	InfoButton,
 	Item,
 	Li,
 	Link,
@@ -109,16 +109,18 @@ export const Comparaison = ({
 							'Revenu net mensuel après impôts'
 						)}
 
-						<HelpButtonWithPopover
-							type="info"
-							bigPopover
-							title={t(
-								'pages.simulateurs.comparaison-statuts.items.revenus.button-title',
+						<InfoButton
+							subject={t(
+								'pages.simulateurs.comparaison-statuts.items.revenus.info.subject',
+								'le revenu'
+							)}
+							popoverTitle={t(
+								'pages.simulateurs.comparaison-statuts.items.revenus.info.title',
 								'Calculer vos revenus'
 							)}
 						>
 							<RevenuTable namedEngines={namedEngines} />
-						</HelpButtonWithPopover>
+						</InfoButton>
 					</StyledH4>
 					<DetailsRowCards
 						dottedName="dirigeant . rémunération . net . après impôt"

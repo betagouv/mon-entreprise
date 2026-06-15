@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
 	Body,
-	HelpButtonWithPopover,
+	InfoButton,
 	Message,
 	RadioCard,
 	RadioCardGroup,
@@ -32,12 +32,15 @@ export default function Association() {
 				title={
 					<Trans i18nKey="pages.assistants.choix-statut.association.title">
 						Je crée cette activité…
-						<HelpButtonWithPopover
-							title={t(
+						<InfoButton
+							subject={t(
+								'pages.assistants.choix-statut.association.help.subject',
+								'l’association ou organisation à but non lucratif'
+							)}
+							popoverTitle={t(
 								'pages.assistants.choix-statut.association.help.title',
 								'L’association, ou organisation à but non lucratif, quèsaco ?'
 							)}
-							type="info"
 						>
 							<Body>
 								Elle permet de{' '}
@@ -48,7 +51,7 @@ export default function Association() {
 								: promouvoir une activité sportive, l'insertion de personnes en
 								difficulté, le développement local, etc…
 							</Body>
-						</HelpButtonWithPopover>
+						</InfoButton>
 					</Trans>
 				}
 			>

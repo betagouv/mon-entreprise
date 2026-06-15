@@ -3,10 +3,9 @@ import { AriaRadioGroupProps, useRadioGroup } from 'react-aria'
 import { useRadioGroupState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
-import { FlexCenter, H5 } from '@/design-system'
+import { FlexCenter, H5, InfoButton } from '@/design-system'
 
 import { Emoji } from '../../../emoji'
-import { InfoButton } from '../../../InfoButton'
 import { Radio } from '../Radio'
 import { RadioContext } from '../Radio/Radio'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
@@ -66,7 +65,7 @@ export default function RadioChoiceGroup({
 						{option.emoji && <Emoji emoji={option.emoji} />}{' '}
 						{option.description && (
 							<InfoButton
-								title={option.label.toString()}
+								subject={option.label.toString()}
 								description={option.description}
 							/>
 						)}
@@ -115,7 +114,7 @@ function RadioGroup(props: RadioGroupProps) {
 				<StyledH5 as="p">
 					{label}
 					{description && (
-						<InfoButton title={label} description={description} />
+						<InfoButton subject={label} description={description} />
 					)}
 				</StyledH5>
 			)}

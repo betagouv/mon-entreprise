@@ -90,11 +90,9 @@ export function RadioChoices<Names extends string = DottedName>({
 									{node.title}
 									{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
 									{type !== 'toggle' && (
-										<>
-											<ExplicableRule
-												dottedName={node.dottedName as DottedName}
-											/>
-										</>
+										<ExplicableRule
+											dottedName={node.dottedName as DottedName}
+										/>
 									)}
 								</Radio>
 							</span>

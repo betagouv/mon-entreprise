@@ -4,13 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { usePersistingState } from '@/components/utils/persistState'
-import {
-	Body,
-	H3,
-	HelpButtonWithPopover,
-	MontantField,
-	Strong,
-} from '@/design-system'
+import { Body, H3, InfoButton, MontantField, Strong } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn, Montant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -44,12 +38,15 @@ function RémunérationEntrepriseUnipersonnelle() {
 				title={
 					<Trans i18nKey="pages.assistants.choix-statut.rémunération.CA.title">
 						La première année, j'estime mon chiffre d'affaires à…
-						<HelpButtonWithPopover
-							title={t(
-								'pages.assistants.choix-statut.rémunération.CA.help.title',
-								'Estimer mon chiffre d’affaire'
+						<InfoButton
+							subject={t(
+								'pages.assistants.choix-statut.rémunération.CA.help.subject',
+								'le chiffre d’affaires'
 							)}
-							type="info"
+							popoverTitle={t(
+								'pages.assistants.choix-statut.rémunération.CA.help.title',
+								'Estimer mon chiffre d’affaires'
+							)}
 						>
 							<Body>
 								Le chiffre d’affaires est la{' '}
@@ -57,7 +54,7 @@ function RémunérationEntrepriseUnipersonnelle() {
 								votre exercice comptable (un an) :{' '}
 								<pre>CA = prix de vente × quantités vendues</pre>.
 							</Body>
-						</HelpButtonWithPopover>
+						</InfoButton>
 					</Trans>
 				}
 			>
@@ -76,12 +73,15 @@ function RémunérationEntrepriseUnipersonnelle() {
 				<Trans i18nKey="pages.assistants.choix-statut.rémunération.charges.title">
 					<H3 as="h2">
 						J'estime mes charges professionnelles à…
-						<HelpButtonWithPopover
-							title={t(
+						<InfoButton
+							subject={t(
+								'pages.assistants.choix-statut.rémunération.charges.help.subject',
+								'les charges'
+							)}
+							popoverTitle={t(
 								'pages.assistants.choix-statut.rémunération.charges.help.title',
 								'Définir vos charges professionnelles'
 							)}
-							type="info"
 						>
 							<Body>
 								Ce sont{' '}
@@ -92,7 +92,7 @@ function RémunérationEntrepriseUnipersonnelle() {
 								: expertise-comptable, abonnement téléphonique, abonnement
 								internet, mutuelle, prévoyance, outils de travail, etc.
 							</Body>
-						</HelpButtonWithPopover>
+						</InfoButton>
 					</H3>
 				</Trans>
 				<MontantField
@@ -124,12 +124,11 @@ function RémunérationSociétéAssociésMultiples() {
 					<Trans i18nKey="pages.assistants.choix-statut.rémunération.totale.title">
 						En tant que dirigeant, je souhaite que l'entreprise me rémunère en
 						dépensant au total…
-						<HelpButtonWithPopover
-							title={t(
+						<InfoButton
+							subject={t(
 								'pages.assistants.choix-statut.rémunération.totale.help.title',
 								'Rémunération totale du dirigeant'
 							)}
-							type="info"
 						>
 							<Body>
 								C'est ce que l'entreprise dépense en tout pour la rémunération
@@ -137,7 +136,7 @@ function RémunérationSociétéAssociésMultiples() {
 								cotisations sociales à payer. On peut aussi considérer que c'est
 								la valeur monétaire du travail du dirigeant.
 							</Body>
-						</HelpButtonWithPopover>
+						</InfoButton>
 					</Trans>
 				}
 			>

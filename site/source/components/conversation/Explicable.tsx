@@ -25,7 +25,8 @@ export function ExplicableRule<Names extends string = DottedName>({
 
 	return (
 		<InfoButton
-			title={title ?? rule.title}
+			subject={rule.title}
+			popoverTitle={title}
 			description={rule.rawNode.description}
 		>
 			<RuleLink

@@ -192,7 +192,6 @@ Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résulta
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
-aide: aide
 aides différées, voir le détail du calcul pour aides différées: aides différées, voir le détail du calcul pour aides différées
 août: août
 api:
@@ -234,7 +233,15 @@ checklist:
     open: Masquer les détails
 code {{ code }}: code {{ code }}
 codeApe:
-  catégorie-guichet: <0>Catégories du Guichet unique<1></1></0>
+  catégorie-guichet: <0>Catégories du Guichet unique<1><0>Le <2>Guichet
+    électronique des formalités d’entreprises</2> (Guichet unique) est un
+    portail internet sécurisé, auprès duquel toute entreprise est tenue de
+    déclarer sa création, depuis le 1er janvier 2023.</0><1>Il utilise une
+    classification des activités différente de celle utilisée par l'INSEE pour
+    code APE.</1></1></0>
+  guichet-unique:
+    subject: le guichet unique
+    title: Qu’est-ce que le guichet unique ?
 common:
   useful-resources: Ressources utiles
 comparaisonRégimes:
@@ -302,6 +309,8 @@ components:
       cotisations: Cotisations sociales
       salaire-brut: Salaire brut
       salaire-net: Salaire net
+  info:
+    aria-label: Info sur {{ subject }}
   recherche:
     button:
       aria-label: Ouvrir la boite de dialogue pour rechercher
@@ -312,7 +321,6 @@ components:
       title: Recherche sur le site
   règle:
     info:
-      aria-label: Info sur {{ title }}
       lien-documentation:
         aria-label: Lire la documentation sur {{ règle }}
         texte: Lire la documentation
@@ -444,7 +452,6 @@ header:
 iframe:
   description: Outils pour les développeurs
   title: Intégrer un simulateur
-info: info
 intégration:
   description: Outils pour les développeurs
   title: Intégration
@@ -634,6 +641,7 @@ pages:
     choix-statut:
       activité:
         help:
+          subject: l’activité principale
           title: Le choix du statut, un choix adapté à votre situation
         title: Mon activité principale est…<1><0>Le choix du statut et les cotisations
           diffèrent en fonction de l'activité professionnelle que vous exercez.
@@ -645,6 +653,7 @@ pages:
           guide</2>.</1></1></1>
       association:
         help:
+          subject: l’association ou organisation à but non lucratif
           title: L’association, ou organisation à but non lucratif, quèsaco ?
         question:
           gagner-argent:
@@ -674,6 +683,7 @@ pages:
         question2: Envisagez-vous d’ajouter des associé(e)s dans un second temps ?
         question3:
           help:
+            subject: entreprise individuelle ou société
             title: Choisir entre une entreprise individuelle et une société
           label: Voulez-vous exercer votre activité sous la forme d'une société uniquement
             ?<1><0>Entreprise individuelle</0><1><0>Vous êtes <2>responsable sur
@@ -699,6 +709,7 @@ pages:
           <2>les revenus</2>, la <4>couverture sociale</4> et la <7>gestion
           comptable et juridique</7> avant de faire votre choix.</0>
         help:
+          subject: la commune de l’entreprise
           title: Chaque territoire a ses spécificités
         title: Dans quelle commune voulez-vous créer votre entreprise ?<1><0>Certains
           dispositifs législatifs sont spécifiques à des régions ou départements
@@ -742,7 +753,8 @@ pages:
       rémunération:
         CA:
           help:
-            title: Estimer mon chiffre d’affaire
+            subject: le chiffre d’affaires
+            title: Estimer mon chiffre d’affaires
           label: Montant du chiffre d'affaires HT
           title: "La première année, j'estime mon chiffre d'affaires à…<1><0>Le chiffre
             d’affaires est la <2>somme des montants des ventes réalisées
@@ -750,6 +762,7 @@ pages:
             × quantités vendues</6>.</0></1>"
         charges:
           help:
+            subject: les charges
             title: Définir vos charges professionnelles
           label: Montant des charges HT
           title: "<0>J'estime mes charges professionnelles à…<1><0>Ce sont <2>toutes les
@@ -1726,13 +1739,15 @@ pages:
               le <2>simulateur de l'Assurance retraite</2>.
           title: Vos droits pour la retraite
         revenus:
-          button-title: Calculer vos revenus
           détails:
             "1": Soit <2><0></0></2> avant impôts
             "2": Avec <2><0></0></2> de cotisations sociales sur le chiffre d’affaires (soit
               <6><0></0></6> du bénéfice)
             "3": Avec <2><0></0></2> de cotisations sociales sur le bénéfice
           h4: Revenu net mensuel après impôts
+          info:
+            subject: le revenu
+            title: Calculer vos revenus
           title: Vos revenus
           warning: Vous allez dépasser le plafond de la micro-entreprise <2>(<1></1> de
             chiffre d’affaires).</2>
@@ -2190,22 +2205,22 @@ pages:
       options:
         description: Ajoute des champs pour moduler l'activité du salarié
         heures-sup:
-          popover: "<0>Le nombre d'heures supplémentaires et complémentaires est utilisé
-            dans le calcul de la réduction : la rémunération brute est comparée
-            au montant du SMIC majoré de ce nombre d'heures.</0>"
+          popover: "Le nombre d'heures supplémentaires et complémentaires est utilisé dans
+            le calcul de la réduction : la rémunération brute est comparée au
+            montant du SMIC majoré de ce nombre d'heures."
         label:
           heures-complémentaires: Nombre d'heures complémentaires
           heures-supplémentaires: Nombre d'heures supplémentaires
           rémunération-etp: Rémunération de base mois complet
           rémunération-primes: Rémunération non affectée par le mois incomplet
         rémunération-etp:
-          popover: <0>Indiquez ici la rémunération qui aurait été versée pour un mois
+          popover: Indiquez ici la rémunération qui aurait été versée pour un mois
             complet, <2>en excluant</2> :<4><0>les primes et autres éléments de
             rémunération non affectés par l'absence ;</0><1>la rémunération des
-            heures supplémentaires ou complémentaires.</1></4></0>
+            heures supplémentaires ou complémentaires.</1></4>
         rémunération-primes:
-          popover: <0>Indiquez ici les éléments de rémunération non affectés par
-            l'absence, comme les primes.</0>
+          popover: Indiquez ici les éléments de rémunération non affectés par l’absence,
+            comme les primes.
       recap:
         T1: 1er trimestre
         T2: 2ème trimestre

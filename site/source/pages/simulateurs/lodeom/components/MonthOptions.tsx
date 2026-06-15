@@ -7,7 +7,7 @@ import {
 	Body,
 	FlexCenter,
 	Grid,
-	HelpButtonWithPopover,
+	HelpButton,
 	Li,
 	MontantField,
 	QuantitéField,
@@ -98,12 +98,7 @@ export default function MonthOptions({
 						<StyledLabel id={`heures-sup-label`}>
 							{additionalHoursLabels[additionalHours]}
 						</StyledLabel>
-						<HelpButtonWithPopover
-							type="info"
-							title={additionalHoursLabels[additionalHours]}
-						>
-							<HeuresSupplémentairesPopoverContent />
-						</HelpButtonWithPopover>
+						<HelpButton description={<HeuresSupplémentairesPopoverContent />} />
 					</FlexDiv>
 				</GridItemLabel>
 				<GridItemInput item>
@@ -137,21 +132,13 @@ export default function MonthOptions({
 			<GridContainer container columnSpacing={4}>
 				<GridItemLabel item>
 					<FlexDiv>
-						<StyledLabel id={`rémunération-etp-label`}>
+						<StyledLabel id="rémunération-etp-label">
 							{t(
 								'pages.simulateurs.lodeom.options.label.rémunération-etp',
 								'Rémunération de base mois complet'
 							)}
 						</StyledLabel>
-						<HelpButtonWithPopover
-							type="info"
-							title={t(
-								'pages.simulateurs.lodeom.options.label.rémunération-etp',
-								'Rémunération de base mois complet'
-							)}
-						>
-							<RémunérationETPPopoverContent />
-						</HelpButtonWithPopover>
+						<HelpButton description={<RémunérationETPPopoverContent />} />
 					</FlexDiv>
 				</GridItemLabel>
 				<GridItemInput item>
@@ -166,7 +153,9 @@ export default function MonthOptions({
 							}
 							unité="€"
 							onChange={(m) => onRémunérationETPChange(m?.valeur)}
-							aria-labelledby={`rémunération-etp-label`}
+							aria={{
+								labelledby: 'rémunération-etp-label',
+							}}
 							avecCentimes
 						/>
 					</NumberFieldContainer>
@@ -175,21 +164,13 @@ export default function MonthOptions({
 			<GridContainer container columnSpacing={4}>
 				<GridItemLabel item>
 					<FlexDiv>
-						<StyledLabel id={`rémunération-primes-label`}>
+						<StyledLabel id="rémunération-primes-label">
 							{t(
 								'pages.simulateurs.lodeom.options.label.rémunération-primes',
 								'Rémunération non affectée par le mois incomplet'
 							)}
 						</StyledLabel>
-						<HelpButtonWithPopover
-							type="info"
-							title={t(
-								'pages.simulateurs.lodeom.options.label.rémunération-primes',
-								'Rémunération non affectée par le mois incomplet'
-							)}
-						>
-							<RémunérationPrimesPopoverContent />
-						</HelpButtonWithPopover>
+						<HelpButton description={<RémunérationPrimesPopoverContent />} />
 					</FlexDiv>
 				</GridItemLabel>
 				<GridItemInput item>
@@ -204,7 +185,9 @@ export default function MonthOptions({
 							}
 							unité="€"
 							onChange={(m) => onRémunérationPrimesChange(m?.valeur)}
-							aria-labelledby={`rémunération-primes-label`}
+							aria={{
+								labelledby: 'rémunération-primes-label',
+							}}
 							avecCentimes
 						/>
 					</NumberFieldContainer>
@@ -215,38 +198,38 @@ export default function MonthOptions({
 }
 
 const HeuresSupplémentairesPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.lodeom.options.heures-sup.popover">
-		<Body>
+	<Body>
+		<Trans i18nKey="pages.simulateurs.lodeom.options.heures-sup.popover">
 			Le nombre d'heures supplémentaires et complémentaires est utilisé dans le
-			calcul de la réduction : la rémunération brute est comparée au montant du
-			SMIC majoré de ce nombre d'heures.
-		</Body>
-	</Trans>
+			calcul de la réduction&nbsp;: la rémunération brute est comparée au
+			montant du SMIC majoré de ce nombre d'heures.
+		</Trans>
+	</Body>
 )
 
 const RémunérationETPPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-etp.popover">
-		<Body>
+	<Body>
+		<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-etp.popover">
 			Indiquez ici la rémunération qui aurait été versée pour un mois complet,{' '}
-			<Strong>en excluant</Strong> :
+			<Strong>en excluant</Strong>&nbsp;:
 			<Ul>
 				<Li>
 					les primes et autres éléments de rémunération non affectés par
-					l'absence ;
+					l'absence&nbsp;;
 				</Li>
 				<Li>la rémunération des heures supplémentaires ou complémentaires.</Li>
 			</Ul>
-		</Body>
-	</Trans>
+		</Trans>
+	</Body>
 )
 
 const RémunérationPrimesPopoverContent = () => (
-	<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-primes.popover">
-		<Body>
-			Indiquez ici les éléments de rémunération non affectés par l'absence,
+	<Body>
+		<Trans i18nKey="pages.simulateurs.lodeom.options.rémunération-primes.popover">
+			Indiquez ici les éléments de rémunération non affectés par l’absence,
 			comme les primes.
-		</Body>
-	</Trans>
+		</Trans>
+	</Body>
 )
 
 const GridContainer = styled(Grid)`
