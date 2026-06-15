@@ -2,15 +2,12 @@ import * as O from 'effect/Option'
 import React, { useState } from 'react'
 import { css, styled } from 'styled-components'
 
-import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid, TitreObjectifSaisissable, typography } from '@/design-system'
+import { Grid, HelpButton, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
-
-const { SmallBody } = typography
 
 export interface ChampSaisieProps {
 	id: string
@@ -27,7 +24,6 @@ export type ObjectifSaisissableDeSimulationProps = {
 	explication?: React.ReactNode
 	valeur: O.Option<Montant>
 	rendreChampSaisie: (props: ChampSaisieProps) => React.ReactNode
-	avecDescription?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
 	onFocus?: () => void
@@ -38,10 +34,8 @@ export function ObjectifSaisissableDeSimulation({
 	id,
 	titre,
 	description,
-	explication,
 	valeur,
 	rendreChampSaisie,
-	avecDescription = true,
 	appear = true,
 	onFocus,
 	onBlur,
@@ -65,7 +59,7 @@ export function ObjectifSaisissableDeSimulation({
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal>
 				<GridCentered container spacing={2}>
-					<StyledGridItem item $avecDescription={avecDescription}>
+					<StyledGridItem item $avecDescription={!!description}>
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
@@ -74,17 +68,7 @@ export function ObjectifSaisissableDeSimulation({
 							{titre}
 						</TitreObjectifSaisissable>
 
-						{explication && (
-							<BiggerForceThemeProvider forceTheme="default">
-								{explication}
-							</BiggerForceThemeProvider>
-						)}
-
-						{avecDescription && description && (
-							<StyledSmallBody id={`${id}-description`}>
-								{description}
-							</StyledSmallBody>
-						)}
+						{description && <HelpButton description={description} />}
 					</StyledGridItem>
 
 					<Grid item>
@@ -96,7 +80,6 @@ export function ObjectifSaisissableDeSimulation({
 								id: `${id}-input`,
 								aria: {
 									labelledby: `${id}-label`,
-									describedby: `${id}-description`,
 								},
 							})}
 						</LargeInputContainer>
@@ -167,14 +150,6 @@ const StyledGridItem = styled(Grid)<{ $avecDescription: boolean }>`
 			justify-content: end;
 			align-items: center;
 		`}
-`
-
-const StyledSmallBody = styled(SmallBody)`
-	margin-bottom: 0;
-`
-
-const BiggerForceThemeProvider = styled(ForceThemeProvider)`
-	font-size: 1rem;
 `
 
 const LargeInputContainer = styled.div`

@@ -3,14 +3,12 @@ import React from 'react'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Grid, TitreObjectif, typography } from '@/design-system'
+import { Body, Grid, HelpButton, TitreObjectif } from '@/design-system'
 import { Montant, montantToString } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
-
-const { Body, SmallBody } = typography
 
 export type ObjectifDeSimulationProps = {
 	id: string
@@ -18,7 +16,6 @@ export type ObjectifDeSimulationProps = {
 	description?: React.ReactNode
 	explication?: React.ReactNode
 	valeur: Option.Option<Montant> | string
-	messageComplementaire?: string
 	small?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
@@ -31,7 +28,6 @@ export function ObjectifDeSimulation({
 	description,
 	explication,
 	valeur,
-	messageComplementaire,
 	displayedUnit,
 	small = false,
 	appear = true,
@@ -65,24 +61,15 @@ export function ObjectifDeSimulation({
 							</ForceThemeProvider>
 						)}
 
-						{description && (
-							<StyledSmallBody
-								className={small ? 'sr-only' : ''}
-								id={`${id}-description`}
-							>
-								{description}
-							</StyledSmallBody>
-						)}
-
-						{messageComplementaire && (
-							<StyledSmallBody>{messageComplementaire}</StyledSmallBody>
-						)}
+						{description && <HelpButton description={description} />}
 					</Grid>
 					<Grid item>
 						{!small && typeof valeur !== 'string' && Option.isSome(valeur) && (
 							<AnimatedTargetValue value={valeur.value} />
 						)}
-						<StyledValue id={`${id}-value`}>{valeurAffichee}</StyledValue>
+						<StyledValue id={`${id}-value`} aria-labelledby={`${id}-label`}>
+							{valeurAffichee}
+						</StyledValue>
 					</Grid>
 				</GridCentered>
 			</StyledGoal>
@@ -119,10 +106,6 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	@media print {
 		padding: 0;
 	}
-`
-
-const StyledSmallBody = styled(SmallBody)`
-	margin: 0;
 `
 
 const StyledValue = styled(Body)`
