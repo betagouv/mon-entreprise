@@ -23,14 +23,22 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	args: {
-		title: "Titre de l'info-bulle",
+		subject: "Sujet de l'info",
+		description: "Description détaillée dans l'info-bulle.",
+	},
+}
+
+export const WithDifferentTitle: Story = {
+	args: {
+		subject: "Sujet de l'info",
+		popoverTitle: 'Titre de la modale',
 		description: "Description détaillée dans l'info-bulle.",
 	},
 }
 
 export const WithMarkdown: Story = {
 	args: {
-		title: 'Avec markdown',
+		subject: 'Avec markdown',
 		description: `
 # Titre dans l'info-bulle
 - Point 1
@@ -43,7 +51,7 @@ export const WithMarkdown: Story = {
 
 export const WithChildren: Story = {
 	args: {
-		title: 'Avec contenu personnalisé',
+		subject: 'Avec contenu personnalisé',
 		children: (
 			<div
 				style={{

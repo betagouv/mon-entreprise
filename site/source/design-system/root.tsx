@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { I18nProvider, OverlayProvider } from 'react-aria'
 import { css, styled, ThemeProvider } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
@@ -20,12 +21,16 @@ const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
 		typeof forceDarkMode === 'boolean' ? forceDarkMode : contextDarkMode
 
 	return (
-		<ThemeProvider theme={{ ...urssafTheme, darkMode, isInIframe }}>
-			<BackgroundStyle $darkMode={darkMode}>
-				<GlobalStyle />
-				{children}
-			</BackgroundStyle>
-		</ThemeProvider>
+		<I18nProvider locale="fr-FR">
+			<ThemeProvider theme={{ ...urssafTheme, darkMode, isInIframe }}>
+				<OverlayProvider>
+					<BackgroundStyle $darkMode={darkMode}>
+						<GlobalStyle />
+						{children}
+					</BackgroundStyle>
+				</OverlayProvider>
+			</ThemeProvider>
+		</I18nProvider>
 	)
 }
 

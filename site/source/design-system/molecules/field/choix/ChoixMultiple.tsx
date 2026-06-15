@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
 import { Emoji } from '../../../emoji'
-import { InfoButton } from '../../../InfoButton'
+import { InfoButton } from '../../InfoButton'
 import { Checkbox } from '../Checkbox'
 
 export interface ChoixOption {
@@ -70,7 +70,7 @@ function CheckBoxOption({ option, onChange }: CheckBoxOptionProps) {
 			/>
 			{option.emoji && <Emoji emoji={option.emoji} />}{' '}
 			{option.description && (
-				<InfoButton title={option.label} description={option.description} />
+				<InfoButton subject={option.label} description={option.description} />
 			)}
 			<br />
 		</>

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { Commune as CommuneType } from '@/api/commune'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Body, HelpButtonWithPopover } from '@/design-system'
+import { Body, InfoButton } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
@@ -28,12 +28,15 @@ export default function Commune() {
 				title={
 					<Trans i18nKey="pages.assistants.choix-statut.commune.title">
 						Dans quelle commune voulez-vous créer votre entreprise ?
-						<HelpButtonWithPopover
-							title={t(
+						<InfoButton
+							subject={t(
+								'pages.assistants.choix-statut.commune.help.subject',
+								'la commune de l’entreprise'
+							)}
+							popoverTitle={t(
 								'pages.assistants.choix-statut.commune.help.title',
 								'Chaque territoire a ses spécificités'
 							)}
-							type="info"
 						>
 							<Body>
 								Certains dispositifs législatifs sont spécifiques à des régions
@@ -43,7 +46,7 @@ export default function Commune() {
 								Par ailleurs, certaines communes ont des dispositifs d'aide à la
 								création d'entreprise (ZRR, ZFU, etc).
 							</Body>
-						</HelpButtonWithPopover>
+						</InfoButton>
 					</Trans>
 				}
 			>

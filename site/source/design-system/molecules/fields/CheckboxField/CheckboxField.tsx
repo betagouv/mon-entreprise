@@ -1,7 +1,7 @@
 import { Checkbox as RACheckbox } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { InfoButton } from '@/design-system/InfoButton'
+import { InfoButton } from '@/design-system'
 
 import { fieldTransition, outlineOnFocus } from '../fieldsStyles'
 
@@ -29,7 +29,7 @@ export function CheckboxField({ option }: CheckboxFieldProps) {
 			{option.description && (
 				<InfoButton
 					description={option.description}
-					title={option.label.toString()}
+					subject={option.label.toString()}
 				/>
 			)}
 		</StyledCheckoxAndInfoButtonContainer>
