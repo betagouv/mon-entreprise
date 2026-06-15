@@ -197,7 +197,7 @@ function ActivitéMixte() {
 						Activité mixte
 					</Switch>
 				</Trans>
-				<ExplicableRule dottedName={rule.dottedName} light />
+				<ExplicableRule dottedName={rule.dottedName} />
 			</StyledActivitéMixteContainer>
 		</div>
 	)

@@ -71,7 +71,7 @@ export default function Notifications() {
 							<Markdown>{résumé ?? description ?? ''}</Markdown>
 						</StyledBody>
 						<Absolute $isMultiline={isMultiline(résumé ?? description ?? '')}>
-							<ExplicableRule dottedName={dottedName} light />
+							<ExplicableRule dottedName={dottedName} />
 						</Absolute>
 					</Message>
 				))}

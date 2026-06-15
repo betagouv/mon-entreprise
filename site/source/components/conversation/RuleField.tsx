@@ -107,7 +107,7 @@ export function RuleField({
 				<H3 as="legend">
 					{labelOrLegend}
 
-					<ExplicableRule light dottedName={dottedName} />
+					<ExplicableRule dottedName={dottedName} />
 				</H3>
 
 				<RuleInput
@@ -126,7 +126,7 @@ export function RuleField({
 			<LabelWithMargin as="label" htmlFor={htmlForId}>
 				{labelOrLegend}
 
-				<ExplicableRule light dottedName={dottedName} />
+				<ExplicableRule dottedName={dottedName} />
 			</LabelWithMargin>
 
 			<RuleInput

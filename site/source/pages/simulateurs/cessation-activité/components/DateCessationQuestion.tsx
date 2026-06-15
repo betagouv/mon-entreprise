@@ -55,7 +55,7 @@ export const DateCessationQuestion = () => {
 					engine,
 					engine.getRule('entreprise . date de cessation')
 				)}
-				<ExplicableRule light dottedName={'entreprise . date de cessation'} />
+				<ExplicableRule dottedName={'entreprise . date de cessation'} />
 			</CessationQuestion>
 			<CessationDateWrapper>
 				<RuleInput

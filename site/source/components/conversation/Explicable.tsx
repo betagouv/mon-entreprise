@@ -9,16 +9,10 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function ExplicableRule<Names extends string = DottedName>({
 	dottedName,
-	light,
-	bigPopover,
 	title,
-	ariaDescribedBy,
 }: {
 	dottedName: Names
-	light?: boolean
-	bigPopover?: boolean
 	title?: string
-	ariaDescribedBy?: string
 }) {
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
@@ -34,8 +28,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 			key={rule.dottedName}
 			type="info"
 			title={title ?? rule.title}
-			light={light}
-			bigPopover={bigPopover}
+			light
 			className="print-hidden"
 			aria-haspopup="dialog"
 			aria-label={t(
@@ -43,7 +36,6 @@ export function ExplicableRule<Names extends string = DottedName>({
 				'Info sur {{ règle }}',
 				{ règle: rule.title }
 			)}
-			aria-describedby={ariaDescribedBy}
 		>
 			<Markdown>{rule.rawNode.description}</Markdown>
 
