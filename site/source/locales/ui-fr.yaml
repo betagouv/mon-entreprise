@@ -1800,13 +1800,14 @@ pages:
           titre: Activité
           type: Type d’activité
         autres-revenus: Autres revenus imposables
-        méthode-impôt: Méthode de calcul de l’impôt sur le revenu
+        impôt:
+          méthode: Méthode de calcul de l’impôt sur le revenu
+          taux: Taux d’imposition
         situation-familiale:
           enfants: Enfants à charge
           parent-isolé: Parent isolé
           situation: Situation de famille
           titre: Situation de famille
-        taux-impôt: Taux d’imposition
       revenu-table:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
