@@ -69,7 +69,6 @@ Graphique détaillant le nombre de visites (alternative accessible avec l'interr
   l'interrupteur en début de section)
 Impôt au barème: Impôt au barème
 Impôts: Impôts
-Info sur {{ title }}: Info sur {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
@@ -311,13 +310,13 @@ components:
       placeholder: "Mot-clé ou acronyme (exemple : CSG)"
     modale:
       title: Recherche sur le site
-  règles:
+  règle:
     info:
-      aria-label: Info sur {{ règle }}
-    lien-documentation:
-      aria-label: Lire la documentation sur {{ règle }}
-      texte: Lire la documentation
-    références: Liens utiles
+      aria-label: Info sur {{ title }}
+      lien-documentation:
+        aria-label: Lire la documentation sur {{ règle }}
+        texte: Lire la documentation
+      références: Liens utiles
   simulateur:
     conseillers-entreprise:
       bouton: Échanger avec un conseiller

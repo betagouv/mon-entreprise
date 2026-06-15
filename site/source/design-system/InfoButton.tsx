@@ -24,9 +24,11 @@ export function InfoButton({ title, description, children }: InfoButtonProps) {
 			light
 			className="print-hidden"
 			aria-haspopup="dialog"
-			aria-label={t('Info sur {{ title }}', {
-				title,
-			})}
+			aria-label={t(
+				'components.règle.info.aria-label',
+				'Info sur {{ title }}',
+				{ title }
+			)}
 		>
 			{description && typeof description === 'string' ? (
 				<Markdown>{description}</Markdown>
