@@ -123,14 +123,18 @@ const DetailsRowCards = ({
 								<StatusCard.Titre>
 									{dottedName && (
 										<WhenNotApplicable dottedName={dottedName} engine={engine}>
-											<DisabledLabel>Ne s'applique pas</DisabledLabel>
-											<StyledRuleLink
-												documentationPath={`${statusObject.name as string}`}
-												dottedName={dottedName}
-												engine={engine}
-											>
-												<HelpIcon />
-											</StyledRuleLink>
+											<StyledDiv>
+												<DisabledLabel>Ne s'applique pas</DisabledLabel>
+												<RuleLinkContainer>
+													<RuleLink
+														documentationPath={`${statusObject.name as string}`}
+														dottedName={dottedName}
+														engine={engine}
+													>
+														<HelpIcon />
+													</RuleLink>
+												</RuleLinkContainer>
+											</StyledDiv>
 										</WhenNotApplicable>
 									)}
 									{isDefinedAndApplicable && (
@@ -148,13 +152,15 @@ const DetailsRowCards = ({
 												{label && label}
 											</span>
 											{dottedName && (
-												<StyledRuleLink
-													documentationPath={`${statusObject.name}`}
-													dottedName={dottedName}
-													engine={engine}
-												>
-													<HelpIcon />
-												</StyledRuleLink>
+												<RuleLinkContainer>
+													<RuleLink
+														documentationPath={`${statusObject.name}`}
+														dottedName={dottedName}
+														engine={engine}
+													>
+														<HelpIcon />
+													</RuleLink>
+												</RuleLinkContainer>
 											)}
 											{warning?.(engine)}
 										</StyledDiv>
@@ -203,9 +209,13 @@ const StyledSmall = styled.small`
 	font-size: 80%;
 `
 
-const StyledRuleLink = styled(RuleLink)`
+const RuleLinkContainer = styled.div`
 	display: inline-flex;
-	margin-left: ${({ theme }) => theme.spacings.xxs};
+	align-items: center;
+	a {
+		display: inline-flex;
+		align-items: center;
+	}
 	&:hover {
 		opacity: 0.8;
 	}
@@ -223,6 +233,7 @@ const StyledDiv = styled.div`
 	width: 100%;
 	display: flex;
 	align-items: center;
+	column-gap: ${({ theme }) => theme.spacings.xs};
 `
 
 export default DetailsRowCards
