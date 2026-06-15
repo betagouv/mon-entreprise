@@ -159,6 +159,25 @@ export const CircledArrowIcon = (props: HTMLAttributes<SVGElement>) => (
 	</SvgIcon>
 )
 
+export const CircledInfoIcon = (props: HTMLAttributes<SVGElement>) => (
+	<SvgIcon
+		{...props}
+		viewBox="0 0 20 20"
+		width="20"
+		height="20"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden
+	>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM20 10C20 15.5229 15.5228 20 10 20C4.47715 20 -4.82823e-07 15.5228 0 10C4.82823e-07 4.47715 4.47715 -4.82823e-07 10 0C15.5229 4.82823e-07 20 4.47715 20 10Z"
+		/>
+		<path d="M9 6.00003C9 5.44774 9.44772 5.00003 10 5.00003C10.5523 5.00003 11 5.44774 11 6.00003C11 6.55231 10.5523 7.00003 10 7.00003C9.44772 7.00003 9 6.55231 9 6.00003Z" />
+		<path d="M11 14.6C11 15.1523 10.5523 15.6 10 15.6C9.44772 15.6 9 15.1523 9 14.6L9 9.4C9 8.84772 9.44772 8.4 10 8.4C10.5523 8.4 11 8.84772 11 9.4L11 14.6Z" />
+	</SvgIcon>
+)
+
 export const CircledPlusIcon = (props: HTMLAttributes<SVGElement>) => (
 	<SvgIcon
 		{...props}
@@ -364,25 +383,6 @@ export const HexagonIcon = (props: HTMLAttributes<SVGElement>) => (
 		aria-hidden
 	>
 		<path d="M8 3L12.3301 5.5V10.5L8 13L3.66987 10.5V5.5L8 3Z" />
-	</SvgIcon>
-)
-
-export const InfoIcon = (props: HTMLAttributes<SVGElement>) => (
-	<SvgIcon
-		{...props}
-		viewBox="0 0 20 20"
-		width="20"
-		height="20"
-		xmlns="http://www.w3.org/2000/svg"
-		aria-hidden
-	>
-		<path
-			fillRule="evenodd"
-			clipRule="evenodd"
-			d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM20 10C20 15.5229 15.5228 20 10 20C4.47715 20 -4.82823e-07 15.5228 0 10C4.82823e-07 4.47715 4.47715 -4.82823e-07 10 0C15.5229 4.82823e-07 20 4.47715 20 10Z"
-		/>
-		<path d="M9 6.00003C9 5.44774 9.44772 5.00003 10 5.00003C10.5523 5.00003 11 5.44774 11 6.00003C11 6.55231 10.5523 7.00003 10 7.00003C9.44772 7.00003 9 6.55231 9 6.00003Z" />
-		<path d="M11 14.6C11 15.1523 10.5523 15.6 10 15.6C9.44772 15.6 9 15.1523 9 14.6L9 9.4C9 8.84772 9.44772 8.4 10 8.4C10.5523 8.4 11 8.84772 11 9.4L11 14.6Z" />
 	</SvgIcon>
 )
 

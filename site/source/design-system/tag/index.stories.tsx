@@ -4,12 +4,12 @@ import { Tag } from '.'
 import {
 	CarretDownIcon,
 	CarretUpIcon,
+	CircledInfoIcon,
 	CircleIcon,
 	EditIcon,
 	ErrorIcon,
 	HelpIcon,
 	HexagonIcon,
-	InfoIcon,
 	ReturnIcon,
 	RhombusIcon,
 	SearchIcon,
@@ -128,7 +128,7 @@ export const Icones: Story = {
 			&nbsp;
 			<Tag color="info">
 				info&nbsp;
-				<InfoIcon />
+				<CircledInfoIcon />
 			</Tag>
 			&nbsp;
 			<Tag color="dark">
