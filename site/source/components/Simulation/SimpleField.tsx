@@ -1,4 +1,3 @@
-import { RuleNode } from 'publicodes'
 import { useCallback, useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
@@ -7,7 +6,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
-import { Intro, Markdown, SmallBody, Spacing } from '@/design-system'
+import { Intro, Markdown, Spacing } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
@@ -17,20 +16,12 @@ import { evaluateQuestion, getMeta } from '@/utils/publicodes/publicodes'
 
 type SimpleFieldProps = {
 	dottedName: DottedName
-	summary?: RuleNode['rawNode']['résumé']
-	question?: RuleNode['rawNode']['question']
-	showSuggestions?: boolean
+	question?: string
 	labelStyle?: IStyledComponent<'web', object>
 }
 
 export function SimpleField(props: SimpleFieldProps) {
-	const {
-		dottedName,
-		question,
-		summary,
-		showSuggestions = false,
-		labelStyle,
-	} = props
+	const { dottedName, question, labelStyle } = props
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
@@ -77,7 +68,6 @@ export function SimpleField(props: SimpleFieldProps) {
 				{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
 				<ExplicableRule dottedName={dottedName} />
 			</StyledQuestion>
-			{summary && <SmallBody>{summary ?? rule.rawNode.résumé}</SmallBody>}
 			<RuleInput
 				dottedName={dottedName}
 				displayedUnit={
@@ -92,7 +82,7 @@ export function SimpleField(props: SimpleFieldProps) {
 					Object.keys(evaluation.missingVariables).length > 0
 				}
 				onChange={dispatchValue}
-				showSuggestions={showSuggestions}
+				showSuggestions={false}
 			/>
 			<Spacing sm />
 		</FadeIn>
