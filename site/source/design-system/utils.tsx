@@ -1,4 +1,4 @@
-import { ErrorIcon, InfoIcon, SuccessIcon } from './icons'
+import { CircledInfoIcon, ErrorIcon, SuccessIcon } from './icons'
 import { ComponentType } from './types'
 
 export const getIconFromType = (type: ComponentType) => {
@@ -8,6 +8,6 @@ export const getIconFromType = (type: ComponentType) => {
 		case 'error':
 			return <ErrorIcon />
 		case 'info':
-			return <InfoIcon />
+			return <CircledInfoIcon />
 	}
 }

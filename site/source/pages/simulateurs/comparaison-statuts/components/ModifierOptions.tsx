@@ -8,12 +8,12 @@ import {
 	ArrowRightIcon,
 	Body,
 	Button,
+	CircledInfoIcon,
 	Drawer,
 	Grid,
 	H2,
 	H3,
 	H5,
-	InfoIcon,
 	Link,
 	Message,
 	Spacing,
@@ -154,7 +154,7 @@ export default function ModifierOptions() {
 						spacing={3}
 					>
 						<Grid item>
-							<InfoIcon
+							<CircledInfoIcon
 								style={{
 									paddingTop: '0.15rem',
 									display: 'inline-block',
