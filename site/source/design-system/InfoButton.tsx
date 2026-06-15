@@ -7,22 +7,10 @@ import { HelpButtonWithPopover } from './molecules/HelpButtonWithPopover'
 export interface InfoButtonProps {
 	title: string
 	description?: string | ReactNode
-	light?: boolean
-	bigPopover?: boolean
 	children?: ReactNode
-	className?: string
-	onClick?: () => void
 }
 
-export function InfoButton({
-	title,
-	description,
-	light,
-	bigPopover,
-	children,
-	className,
-	onClick,
-}: InfoButtonProps) {
+export function InfoButton({ title, description, children }: InfoButtonProps) {
 	const { t } = useTranslation()
 
 	if (!description && !children) {
@@ -33,14 +21,12 @@ export function InfoButton({
 		<HelpButtonWithPopover
 			type="info"
 			title={title}
-			light={light}
-			bigPopover={bigPopover}
-			className={className || 'print-hidden'}
+			light
+			className="print-hidden"
 			aria-haspopup="dialog"
 			aria-label={t('Info sur {{ title }}', {
 				title,
 			})}
-			onClick={onClick}
 		>
 			{description && typeof description === 'string' ? (
 				<Markdown>{description}</Markdown>

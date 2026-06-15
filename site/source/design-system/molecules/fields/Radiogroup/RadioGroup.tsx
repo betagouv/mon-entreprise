@@ -49,7 +49,6 @@ export function RadioGroup({
 						<InfoButton
 							description={option.description}
 							title={option.label.toString()}
-							light
 						/>
 					)}
 				</StyledRadioAndInfoButton>

@@ -66,7 +66,6 @@ export default function RadioChoiceGroup({
 						{option.emoji && <Emoji emoji={option.emoji} />}{' '}
 						{option.description && (
 							<InfoButton
-								light
 								title={option.label.toString()}
 								description={option.description}
 							/>
@@ -116,7 +115,7 @@ function RadioGroup(props: RadioGroupProps) {
 				<StyledH5 as="p">
 					{label}
 					{description && (
-						<InfoButton light title={label} description={description} />
+						<InfoButton title={label} description={description} />
 					)}
 				</StyledH5>
 			)}

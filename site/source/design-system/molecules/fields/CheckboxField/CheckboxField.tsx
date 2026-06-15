@@ -30,7 +30,6 @@ export function CheckboxField({ option }: CheckboxFieldProps) {
 				<InfoButton
 					description={option.description}
 					title={option.label.toString()}
-					light
 				/>
 			)}
 		</StyledCheckoxAndInfoButtonContainer>

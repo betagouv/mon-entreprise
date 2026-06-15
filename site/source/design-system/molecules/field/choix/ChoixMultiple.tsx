@@ -70,11 +70,7 @@ function CheckBoxOption({ option, onChange }: CheckBoxOptionProps) {
 			/>
 			{option.emoji && <Emoji emoji={option.emoji} />}{' '}
 			{option.description && (
-				<InfoButton
-					light
-					title={option.label}
-					description={option.description}
-				/>
+				<InfoButton title={option.label} description={option.description} />
 			)}
 			<br />
 		</>
