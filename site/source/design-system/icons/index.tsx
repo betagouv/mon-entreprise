@@ -9,7 +9,7 @@ export const SvgIcon = styled.svg`
 `
 
 export const ArrowCircleIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="18"
 		height="16"
@@ -27,11 +27,11 @@ export const ArrowCircleIcon = (props: HTMLAttributes<SVGElement>) => (
 			clipRule="evenodd"
 			d="M6.49433 6.41614C6.96217 6.70966 7.10348 7.32685 6.80997 7.79468L4.89674 10.8442C4.60322 11.312 3.98603 11.4533 3.5182 11.1598L0.468679 9.2466C0.000845581 8.95309 -0.140469 8.3359 0.153044 7.86806C0.446558 7.40023 1.06375 7.25891 1.53159 7.55243L3.73401 8.93421L5.11579 6.73178C5.4093 6.26394 6.0265 6.12263 6.49433 6.41614Z"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const ArrowRightIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="14"
 		height="14"
@@ -50,7 +50,7 @@ export const ArrowRightIcon = (props: HTMLAttributes<SVGElement>) => (
 			clipRule="evenodd"
 			d="M0.199219 6.99991C0.199219 6.44762 0.646934 5.99991 1.19922 5.99991L12.7992 5.99991C13.3515 5.99991 13.7992 6.44762 13.7992 6.9999C13.7992 7.55219 13.3515 7.9999 12.7992 7.9999L1.19922 7.99991C0.646934 7.99991 0.199219 7.55219 0.199219 6.99991Z"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const ArrowDownIcon = styled(ArrowRightIcon)`
@@ -130,7 +130,7 @@ export const RotatingChevronIcon = styled(ChevronIcon).withConfig({
 `
 
 export const CircledArrowIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="40"
 		height="40"
@@ -156,16 +156,15 @@ export const CircledArrowIcon = (props: HTMLAttributes<SVGElement>) => (
 			d="M10 20.0004C10 19.4481 10.4477 19.0004 11 19.0004L29 19.0004C29.5523 19.0004 30 19.4481 30 20.0004C30 20.5527 29.5523 21.0004 29 21.0004L11 21.0004C10.4477 21.0004 10 20.5527 10 20.0004Z"
 			fill="white"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const CircledPlusIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="24"
 		height="24"
 		viewBox="0 0 24 24"
-		fill="#2E5FB6"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
@@ -184,30 +183,28 @@ export const CircledPlusIcon = (props: HTMLAttributes<SVGElement>) => (
 			clipRule="evenodd"
 			d="M12 17.2C11.4477 17.2 11 16.7523 11 16.2L11 7.8C11 7.24772 11.4477 6.8 12 6.8C12.5523 6.8 13 7.24771 13 7.8L13 16.2C13 16.7523 12.5523 17.2 12 17.2Z"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const CircleIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="16"
 		height="16"
 		viewBox="0 0 16 16"
-		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
 		<path d="M8 3L8.52264 3.02739L9.03956 3.10926L9.54508 3.24472L10.0337 3.43227L10.5 3.66987L10.9389 3.95492L11.3457 4.28428L11.7157 4.65435L12.0451 5.06107L12.3301 5.5L12.5677 5.96632L12.7553 6.45492L12.8907 6.96044L12.9726 7.47736L13 8L12.9726 8.52264L12.8907 9.03956L12.7553 9.54508L12.5677 10.0337L12.3301 10.5L12.0451 10.9389L11.7157 11.3457L11.3457 11.7157L10.9389 12.0451L10.5 12.3301L10.0337 12.5677L9.54508 12.7553L9.03956 12.8907L8.52264 12.9726L8 13L7.47736 12.9726L6.96044 12.8907L6.45492 12.7553L5.96632 12.5677L5.5 12.3301L5.06107 12.0451L4.65435 11.7157L4.28428 11.3457L3.95492 10.9389L3.66987 10.5L3.43227 10.0337L3.24472 9.54508L3.10926 9.03956L3.02739 8.52264L3 8L3.02739 7.47736L3.10926 6.96044L3.24472 6.45492L3.43227 5.96632L3.66987 5.5L3.95492 5.06107L4.28428 4.65435L4.65435 4.28428L5.06107 3.95492L5.5 3.66987L5.96632 3.43227L6.45492 3.24472L6.96044 3.10926L7.47736 3.02739L8 3Z" />
-	</svg>
+	</SvgIcon>
 )
 
 export const ClockIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="20"
 		height="20"
 		viewBox="0 0 20 20"
-		// fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
@@ -215,30 +212,26 @@ export const ClockIcon = (props: HTMLAttributes<SVGElement>) => (
 			fillRule="evenodd"
 			clipRule="evenodd"
 			d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20Z"
-			// fill="#212529"
 		/>
 		<path
 			fillRule="evenodd"
 			clipRule="evenodd"
 			d="M10 3.85C10.5523 3.85 11 4.29771 11 4.85V9.95C11 10.5023 10.5523 10.95 10 10.95C9.44771 10.95 9 10.5023 9 9.95V4.85C9 4.29771 9.44771 3.85 10 3.85Z"
-			// fill="#212529"
 		/>
 		<path
 			fillRule="evenodd"
 			clipRule="evenodd"
 			d="M5.43058 12.1087C5.19894 11.6073 5.4176 11.0131 5.91896 10.7815L9.55013 9.10383C10.0515 8.87219 10.6457 9.09084 10.8773 9.5922C11.109 10.0936 10.8903 10.6878 10.389 10.9194L6.75779 12.5971C6.25643 12.8287 5.66222 12.6101 5.43058 12.1087Z"
-			// fill="#212529"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const CrossIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="24"
 		height="24"
 		viewBox="0 0 24 24"
-		fill="#6C757D"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
@@ -252,16 +245,15 @@ export const CrossIcon = (props: HTMLAttributes<SVGElement>) => (
 			clipRule="evenodd"
 			d="M6.66399 6.69331C7.05451 6.30278 7.68768 6.30278 8.0782 6.69331L17.2706 15.8857C17.6611 16.2762 17.6611 16.9094 17.2706 17.2999C16.8801 17.6904 16.2469 17.6904 15.8564 17.2999L6.66399 8.10752C6.27346 7.71699 6.27346 7.08383 6.66399 6.69331Z"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const EditIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="24"
 		height="24"
 		viewBox="0 0 24 24"
-		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
@@ -270,7 +262,7 @@ export const EditIcon = (props: HTMLAttributes<SVGElement>) => (
 			clipRule="evenodd"
 			d="M17.6713 4.34045C17.1223 3.79142 16.1035 3.9201 15.3957 4.62786L14.0118 6.01178L17.9882 9.98822L19.3721 8.6043C20.0799 7.89653 20.2086 6.8777 19.6595 6.32867L17.6713 4.34045ZM16.4882 11.4882L12.5118 7.51178L5.26693 14.7566C4.94924 15.0743 4.73441 15.4722 4.66412 15.8732L4.00634 19.625C3.96438 19.8643 4.13568 20.0356 4.37496 19.9937L8.12685 19.3359C8.52777 19.2656 8.92567 19.0508 9.24336 18.7331L16.4882 11.4882Z"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const ErrorIcon = (props: HTMLAttributes<SVGElement>) => (
@@ -293,12 +285,11 @@ export const ErrorIcon = (props: HTMLAttributes<SVGElement>) => (
 )
 
 export const ExternalLinkIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="14"
 		height="14"
 		viewBox="0 0 14 14"
-		fill="#6C757D"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
@@ -311,13 +302,12 @@ export const ExternalLinkIcon = (props: HTMLAttributes<SVGElement>) => (
 			fillRule="evenodd"
 			clipRule="evenodd"
 			d="M0.292969 2.83301C0.292969 1.45229 1.41226 0.333008 2.79297 0.333008H4.6388C5.09904 0.333008 5.47214 0.706104 5.47214 1.16634C5.47214 1.62658 5.09904 1.99967 4.6388 1.99967H2.79297C2.33273 1.99967 1.95964 2.37277 1.95964 2.83301V11.208C1.95964 11.6682 2.33273 12.0413 2.79297 12.0413L11.168 12.0413C11.6282 12.0413 12.0013 11.6682 12.0013 11.208V9.36217C12.0013 8.90194 12.3744 8.52884 12.8346 8.52884C13.2949 8.52884 13.668 8.90194 13.668 9.36217V11.208C13.668 12.5887 12.5487 13.708 11.168 13.708L2.79297 13.708C1.41226 13.708 0.292969 12.5887 0.292969 11.208V2.83301ZM7.83464 1.99967C7.3744 1.99967 7.0013 1.62658 7.0013 1.16634C7.0013 0.706104 7.3744 0.333008 7.83464 0.333008H12.8346C13.2949 0.333008 13.668 0.706104 13.668 1.16634V6.16634C13.668 6.62658 13.2949 6.99967 12.8346 6.99967C12.3744 6.99967 12.0013 6.62658 12.0013 6.16634V3.17819L8.42389 6.7556C8.09845 7.08103 7.57082 7.08103 7.24538 6.7556C6.91994 6.43016 6.91994 5.90252 7.24538 5.57709L10.8228 1.99967H7.83464Z"
-			fill="#212529"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const EyeIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="16"
 		height="16"
@@ -327,7 +317,7 @@ export const EyeIcon = (props: HTMLAttributes<SVGElement>) => (
 	>
 		{/* Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
 		<path d="M288 80c-65.2 0-118.8 29.6-159.9 67.7C89.6 183.5 63 226 49.4 256c13.6 30 40.2 72.5 78.6 108.3C169.2 402.4 222.8 432 288 432s118.8-29.6 159.9-67.7C486.4 328.5 513 286 526.6 256c-13.6-30-40.2-72.5-78.6-108.3C406.8 109.6 353.2 80 288 80zM95.4 112.6C142.5 68.8 207.2 32 288 32s145.5 36.8 192.6 80.6c46.8 43.5 78.1 95.4 93 131.1c3.3 7.9 3.3 16.7 0 24.6c-14.9 35.7-46.2 87.7-93 131.1C433.5 443.2 368.8 480 288 480s-145.5-36.8-192.6-80.6C48.6 356 17.3 304 2.5 268.3c-3.3-7.9-3.3-16.7 0-24.6C17.3 208 48.6 156 95.4 112.6zM288 336c44.2 0 80-35.8 80-80s-35.8-80-80-80c-.7 0-1.3 0-2 0c1.3 5.1 2 10.5 2 16c0 35.3-28.7 64-64 64c-5.5 0-10.9-.7-16-2c0 .7 0 1.3 0 2c0 44.2 35.8 80 80 80zm0-208a128 128 0 1 1 0 256 128 128 0 1 1 0-256z" />
-	</svg>
+	</SvgIcon>
 )
 
 export const GithubIcon = (props: HTMLAttributes<SVGElement>) => (
@@ -348,12 +338,11 @@ export const GithubIcon = (props: HTMLAttributes<SVGElement>) => (
 )
 
 export const HelpIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="24"
 		height="24"
 		viewBox="0 0 24 24"
-		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
@@ -362,21 +351,20 @@ export const HelpIcon = (props: HTMLAttributes<SVGElement>) => (
 			clipRule="evenodd"
 			d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12.9725 16.5886C12.9725 17.1472 12.5197 17.6 11.9612 17.6C11.4026 17.6 10.9498 17.1472 10.9498 16.5886C10.9498 16.0301 11.4026 15.5772 11.9612 15.5772C12.5197 15.5772 12.9725 16.0301 12.9725 16.5886ZM10.6146 9.25871C10.6784 9.05633 10.7844 8.86166 10.9534 8.71892C11.1062 8.58978 11.3903 8.43428 11.949 8.43296L11.9495 8.43297C11.9552 8.43316 11.9681 8.43369 11.9873 8.43506C12.0261 8.43782 12.088 8.44382 12.165 8.4566C12.3237 8.48295 12.5199 8.53377 12.7037 8.62531C12.8836 8.71493 13.0322 8.83327 13.138 8.9913C13.2394 9.14281 13.3416 9.38993 13.3416 9.80899C13.3416 10.1472 13.1563 10.4615 12.8509 10.747C12.7055 10.8829 12.5563 10.989 12.4428 11.0609C12.387 11.0962 12.3424 11.1216 12.3147 11.1368L12.3005 11.1444C11.704 11.4042 11.3207 11.8034 11.1131 12.2523C10.9193 12.6712 10.9196 13.0527 10.9198 13.1824L10.9198 13.1912V13.5544C10.9198 14.113 11.3726 14.5658 11.9312 14.5658C12.4897 14.5658 12.9426 14.113 12.9426 13.5544V13.1912C12.9426 13.115 12.9473 13.1049 12.9489 13.1017L12.949 13.1014L12.9492 13.101L12.9502 13.0995C12.9512 13.0981 12.9547 13.0933 12.9627 13.0858C12.9775 13.0718 13.0214 13.0352 13.1209 12.9935C13.1372 12.9867 13.1534 12.9794 13.1693 12.9717L12.7301 12.0607C13.1693 12.9717 13.1696 12.9716 13.17 12.9714L13.1707 12.9711L13.1722 12.9703L13.1758 12.9686L13.1847 12.9642L13.2095 12.9517C13.229 12.9417 13.2545 12.9283 13.285 12.9116C13.3461 12.8782 13.4283 12.831 13.5246 12.7701C13.7154 12.6493 13.9719 12.468 14.2322 12.2247C14.7383 11.7516 15.3644 10.9401 15.3644 9.80899C15.3644 9.03433 15.167 8.38616 14.819 7.8662C14.4754 7.35277 14.0247 7.02346 13.6054 6.81465C13.19 6.60776 12.7869 6.50937 12.4963 6.46111C12.3485 6.43659 12.2232 6.42394 12.1309 6.41737C12.0846 6.41407 12.046 6.41227 12.0166 6.41129C12.0019 6.4108 11.9894 6.41052 11.9793 6.41036L11.9659 6.41019L11.9605 6.41016L11.9582 6.41016L11.9571 6.41015C11.9566 6.41015 11.9561 6.41015 11.9561 7.42155V6.41015C10.9764 6.41015 10.2108 6.69811 9.64782 7.17384C9.10024 7.63652 8.82473 8.20846 8.68535 8.65082C8.51749 9.18358 8.8133 9.75155 9.34606 9.91941C9.87882 10.0873 10.4468 9.79147 10.6146 9.25871ZM12.2868 11.1516L12.2872 11.1513C12.2851 11.1524 12.2843 11.1528 12.2849 11.1525L12.2868 11.1516Z"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export const HexagonIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="16"
 		height="16"
 		viewBox="0 0 16 16"
-		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
 		<path d="M8 3L12.3301 5.5V10.5L8 13L3.66987 10.5V5.5L8 3Z" />
-	</svg>
+	</SvgIcon>
 )
 
 export const InfoIcon = (props: HTMLAttributes<SVGElement>) => (
@@ -417,7 +405,7 @@ export const LinkIcon = (props: HTMLAttributes<SVGElement>) => (
 )
 
 export const PhoneIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		width="18"
 		height="18"
 		viewBox="0 0 20 20"
@@ -426,7 +414,7 @@ export const PhoneIcon = (props: HTMLAttributes<SVGElement>) => (
 		{...props}
 	>
 		<path d="M18.0404 13.6386L15.2125 13.3157C14.5333 13.2378 13.8653 13.4716 13.3866 13.9503L11.338 15.9989C8.18723 14.3956 5.60425 11.8238 4.00102 8.66188L6.06073 6.60218C6.53947 6.12344 6.77327 5.45543 6.69534 4.77628L6.37246 1.97063C6.23886 0.846148 5.29251 0 4.15689 0H2.23079C0.972707 0 -0.0738448 1.04655 0.00408987 2.30464C0.594167 11.8127 8.19836 19.4057 17.6953 19.9958C18.9533 20.0737 19.9999 19.0272 19.9999 17.7691V15.843C20.011 14.7185 19.1649 13.7722 18.0404 13.6386Z" />
-	</svg>
+	</SvgIcon>
 )
 
 export const ReturnIcon = (props: HTMLAttributes<SVGElement>) => (
@@ -452,7 +440,7 @@ export const ReturnIcon = (props: HTMLAttributes<SVGElement>) => (
 )
 
 export const ReturnLeftIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		width="16"
 		height="13"
 		viewBox="0 0 16 13"
@@ -470,7 +458,7 @@ export const ReturnLeftIcon = (props: HTMLAttributes<SVGElement>) => (
 			clipRule="evenodd"
 			d="M4.4585 8.15259C4.04287 8.51627 3.41111 8.47415 3.04742 8.05852L0.247423 4.85852C-0.0824745 4.48149 -0.0824744 3.91853 0.247423 3.54151L3.04742 0.341509C3.41111 -0.0741273 4.04287 -0.116245 4.45851 0.247437C4.87414 0.611119 4.91626 1.24288 4.55258 1.65852L2.32877 4.20001L4.55258 6.74151C4.91626 7.15715 4.87414 7.78891 4.4585 8.15259Z"
 		/>
-	</svg>
+	</SvgIcon>
 )
 
 export function SearchIcon({ ...props }) {
@@ -521,18 +509,17 @@ export const SuccessIcon = (props: HTMLAttributes<SVGElement>) => (
 )
 
 export const SquareIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="16"
 		height="16"
 		viewBox="0 0 16 16"
-		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 		className={'square-icon' + (props.className ? ' ' + props.className : '')}
 	>
 		<path d="M3 3H13V13H3V3Z" />
-	</svg>
+	</SvgIcon>
 )
 
 export const RhombusIcon = styled(SquareIcon)`
@@ -540,17 +527,16 @@ export const RhombusIcon = styled(SquareIcon)`
 `
 
 export const TriangleIcon = (props: HTMLAttributes<SVGElement>) => (
-	<svg
+	<SvgIcon
 		{...props}
 		width="16"
 		height="16"
 		viewBox="0 0 16 16"
-		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
 		<path d="M8 3L13.1962 12H2.80385L8 3Z" />
-	</svg>
+	</SvgIcon>
 )
 
 export const WarningIcon = (props: HTMLAttributes<SVGElement>) => (
