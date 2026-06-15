@@ -158,11 +158,10 @@ export function SimulationGoal({
 			<ObjectifSaisissableDeSimulation
 				id={id}
 				titre={titre}
-				description={description}
+				description={small ? undefined : description}
 				valeur={valeurMontant}
 				rendreChampSaisie={RuleInputWrapper}
 				isInfoMode={isInfoMode}
-				avecDescription={!small}
 				appear={appear}
 			/>
 		)
