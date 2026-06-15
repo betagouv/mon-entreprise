@@ -1700,13 +1700,14 @@ pages:
           titre: Activity
           type: Type of activity
         autres-revenus: Other taxable income
-        méthode-impôt: Income tax calculation method
+        impôt:
+          méthode: Income tax calculation method
+          taux: Tax rates
         situation-familiale:
           enfants: Dependent children
           parent-isolé: Single parent
           situation: Marital status
           titre: Marital status
-        taux-impôt: Tax rates
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for

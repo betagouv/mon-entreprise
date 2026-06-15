@@ -94,34 +94,25 @@ export const configComparateurStatuts: ComparateurConfig = {
 				},
 			],
 		},
-		méthodeImpôt: {
+		impôt: {
 			titre: (t: TFunction) =>
 				t(
-					'pages.simulateurs.comparaison-statuts.questions.méthode-impôt',
+					'pages.simulateurs.comparaison-statuts.questions.impôt.méthode',
 					'Méthode de calcul de l’impôt sur le revenu'
 				),
 			liste: [
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.méthode-impôt',
+							'pages.simulateurs.comparaison-statuts.questions.impôt.méthode',
 							'Méthode de calcul de l’impôt sur le revenu'
 						),
 					dottedName: 'impôt . méthode de calcul',
 				},
-			],
-		},
-		tauxImpôt: {
-			titre: (t: TFunction) =>
-				t(
-					'pages.simulateurs.comparaison-statuts.questions.taux-impôt',
-					'Taux d’imposition'
-				),
-			liste: [
 				{
 					libellé: (t: TFunction) =>
 						t(
-							'pages.simulateurs.comparaison-statuts.questions.taux-impôt',
+							'pages.simulateurs.comparaison-statuts.questions.impôt.taux',
 							'Taux d’imposition'
 						),
 					dottedName: 'impôt . taux personnalisé',
