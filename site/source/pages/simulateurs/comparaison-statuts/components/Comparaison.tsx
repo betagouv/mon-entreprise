@@ -886,5 +886,19 @@ const StyledExternalLinkIcon = styled(ExternalLinkIcon)`
 `
 
 const BlackColoredLink = styled(StyledLink)`
-	color: ${({ theme }) => theme.colors.extended.grey[800]};
+	color: ${({ theme }) =>
+		theme.colors.extended.grey[theme.darkMode ? 100 : 800]};
+	svg {
+		fill: ${({ theme }) =>
+			theme.colors.extended.grey[theme.darkMode ? 100 : 800]};
+	}
+
+	&:hover {
+		color: ${({ theme }) =>
+			theme.colors.extended.grey[theme.darkMode ? 400 : 700]};
+		svg {
+			fill: ${({ theme }) =>
+				theme.colors.extended.grey[theme.darkMode ? 400 : 700]};
+		}
+	}
 `
