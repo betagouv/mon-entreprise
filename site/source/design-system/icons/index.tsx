@@ -386,6 +386,23 @@ export const HexagonIcon = (props: HTMLAttributes<SVGElement>) => (
 	</SvgIcon>
 )
 
+export const InfoIcon = (props: HTMLAttributes<SVGElement>) => (
+	<SvgIcon
+		{...props}
+		width="17"
+		height="17"
+		viewBox="0 0 17 17"
+		xmlns="http://www.w3.org/2000/svg"
+		aria-hidden
+	>
+		<path
+			fillRule="evenodd"
+			clipRule="evenodd"
+			d="M8.3125 16.625C12.9034 16.625 16.625 12.9034 16.625 8.3125C16.625 3.72163 12.9034 -4.01346e-07 8.3125 0C3.72163 4.01347e-07 -4.01347e-07 3.72163 0 8.3125C4.01346e-07 12.9034 3.72163 16.625 8.3125 16.625ZM8.29167 13C8.75191 13 9.125 12.6269 9.125 12.1667V7.41667C9.125 6.95643 8.75191 6.58334 8.29167 6.58334C7.83143 6.58334 7.45834 6.95643 7.45834 7.41667V12.1667C7.45834 12.6269 7.83143 13 8.29167 13ZM8.29167 3.66667C7.83143 3.66667 7.45834 4.03976 7.45834 4.5C7.45834 4.96024 7.83143 5.33334 8.29167 5.33334C8.75191 5.33334 9.125 4.96024 9.125 4.5C9.125 4.03976 8.75191 3.66667 8.29167 3.66667Z"
+		/>
+	</SvgIcon>
+)
+
 export const LinkIcon = (props: HTMLAttributes<SVGElement>) => (
 	<svg
 		width="18"

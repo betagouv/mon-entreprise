@@ -31,6 +31,7 @@ export {
 	GithubIcon,
 	HelpIcon,
 	HexagonIcon,
+	InfoIcon,
 	LinkIcon,
 	PhoneIcon,
 	ReturnIcon,
