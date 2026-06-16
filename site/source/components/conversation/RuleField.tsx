@@ -1,5 +1,6 @@
 import * as O from 'effect/Option'
 import { RuleNode, Unit } from 'publicodes'
+import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { H3 } from '@/design-system'
@@ -122,11 +123,11 @@ export function RuleField({
 
 	return (
 		<>
-			<H3 as="label" htmlFor={htmlForId}>
+			<LabelWithMargin as="label" htmlFor={htmlForId}>
 				{labelOrLegend}
 
 				<ExplicableRule light dottedName={dottedName} />
-			</H3>
+			</LabelWithMargin>
 
 			<RuleInput
 				id={htmlForId}
@@ -137,3 +138,7 @@ export function RuleField({
 		</>
 	)
 }
+
+const LabelWithMargin = styled(H3)`
+	display: inline-block;
+`
