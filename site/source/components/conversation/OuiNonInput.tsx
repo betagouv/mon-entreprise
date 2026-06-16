@@ -8,9 +8,7 @@ import { NoOp } from '@/utils/NoOp'
 interface OuiNonInputProps {
 	value?: OuiNon
 	onChange?: (value: OuiNon | undefined) => void
-	defaultValue?: OuiNon
 	id?: string
-	autoFocus?: boolean
 
 	aria?: {
 		labelledby?: string
@@ -21,9 +19,7 @@ interface OuiNonInputProps {
 export function OuiNonInput({
 	value,
 	onChange = NoOp,
-	defaultValue,
 	id,
-	autoFocus,
 	aria,
 }: OuiNonInputProps) {
 	const { handleChange, currentSelection } = useSelection({
@@ -51,20 +47,10 @@ export function OuiNonInput({
 			onChange={handleToggleGroupChange}
 			value={currentValueAsString}
 		>
-			<Radio
-				value="oui"
-				id={`input-oui-${id || ''}`}
-				/* eslint-disable-next-line jsx-a11y/no-autofocus */
-				autoFocus={autoFocus && defaultValue === 'oui'}
-			>
+			<Radio value="oui" id={`input-oui-${id || ''}`}>
 				{t('conversation.yes', 'Oui')}
 			</Radio>
-			<Radio
-				value="non"
-				id={`input-non-${id || ''}`}
-				/* eslint-disable-next-line jsx-a11y/no-autofocus */
-				autoFocus={autoFocus && defaultValue === 'non'}
-			>
+			<Radio value="non" id={`input-non-${id || ''}`}>
 				{t('conversation.no', 'Non')}
 			</Radio>
 		</ToggleGroup>

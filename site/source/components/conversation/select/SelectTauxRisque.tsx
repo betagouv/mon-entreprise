@@ -37,10 +37,8 @@ function SelectComponent({
 	onSubmit,
 	id,
 	options,
-	autoFocus,
 }: {
 	options: Result[]
-	autoFocus?: boolean
 	id?: string
 	onChange?: (value: string | undefined) => void
 	onSubmit?: () => void
@@ -77,8 +75,6 @@ function SelectComponent({
 				type="search"
 				placeholder={t("Saisissez votre domaine d'activité")}
 				aria-label={t("Votre domaine d'activité")}
-				// eslint-disable-next-line jsx-a11y/no-autofocus
-				autoFocus={autoFocus}
 				errorMessage={
 					searchResults && searchResults.length === 0 ? t('Aucun résultat') : ''
 				}

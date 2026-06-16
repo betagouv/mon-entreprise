@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { styled } from 'styled-components'
 
 import { Emoji } from '../../../emoji'
 import { InfoButton } from '../../InfoButton'
@@ -37,7 +38,7 @@ export function ChoixMultiple({
 	id,
 }: ChoixMultipleProps) {
 	return (
-		<div
+		<Container
 			aria-labelledby={aria?.labelledby}
 			aria-describedby={aria?.describedby}
 			id={id}
@@ -50,9 +51,13 @@ export function ChoixMultiple({
 					/>
 				</Fragment>
 			))}
-		</div>
+		</Container>
 	)
 }
+
+const Container = styled.div`
+	margin-bottom: ${({ theme }) => theme.spacings.md};
+`
 
 type CheckBoxOptionProps = {
 	option: ChoixOption

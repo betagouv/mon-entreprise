@@ -141,6 +141,7 @@ const RadioGroupContainer = styled.div<{
 	flex-wrap: wrap;
 	flex-direction: ${({ $orientationMode }) =>
 		$orientationMode === 'horizontal' ? 'row' : 'column'};
+	margin-bottom: ${({ theme }) => theme.spacings.md};
 	${({ $isSubGroup }) =>
 		$isSubGroup &&
 		css`

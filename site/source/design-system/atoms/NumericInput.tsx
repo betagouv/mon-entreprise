@@ -107,12 +107,10 @@ export const NumericInput = (props: NumericInputProps) => {
 					{...(omit(
 						props as typeof props & {
 							dottedName?: string
-							hideDefaultValue?: boolean
 						},
 						'label',
 						'small',
 						'formatOptions',
-						'hideDefaultValue',
 						'dottedName',
 						'suggestions',
 						'onSubmit',
