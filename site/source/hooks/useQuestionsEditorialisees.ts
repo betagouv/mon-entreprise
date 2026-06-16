@@ -6,9 +6,9 @@ import { TFunction } from 'i18next'
 import { FunctionComponent, useMemo, useState } from 'react'
 
 import {
-	ComposantQuestion,
+	ComposantQuestionFournie,
 	GroupeDeQuestionsFournies,
-} from '@/components/Simulation/ComposantQuestion'
+} from '@/components/Simulateur/ComposantQuestionFournie'
 import { Situation } from '@/domaine/Situation'
 
 import {
@@ -17,22 +17,18 @@ import {
 } from './useQuestionsPublicodesEditorialisees'
 
 type QuestionFournie<S extends Situation> = Omit<
-	ComposantQuestion<S>,
-	'répondue' | 'applicable'
+	ComposantQuestionFournie<S>,
+	'applicable'
 > & {
-	répondue: Predicate<S | undefined>
 	applicable: Predicate<S | undefined>
 } & FunctionComponent
 
 const adapteUneQuestionFournie = <S extends Situation>(
-	q: ComposantQuestion<S>
+	q: ComposantQuestionFournie<S>
 ): QuestionFournie<S> => {
-	const originalRépondue = q.répondue
 	const originalApplicable = q.applicable
 
 	return Object.assign(q, {
-		répondue: (situation?: S) =>
-			situation === undefined ? false : originalRépondue(situation),
 		applicable: (situation?: S) =>
 			situation === undefined ? false : originalApplicable(situation),
 	})
@@ -73,7 +69,7 @@ export type GroupeDeQuestions<S extends Situation> = {
 }
 
 export interface UseQuestionsProps<S extends Situation = Situation> {
-	questionsFourniesPrincipales?: ComposantQuestion<S>[]
+	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
 	questionsPublicodesPrincipales?: QuestionPublicodes[]
 	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
 	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>

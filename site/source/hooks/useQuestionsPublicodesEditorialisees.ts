@@ -17,7 +17,6 @@ export interface QuestionPublicodes {
 	id: DottedName
 	libellé: (t: TFunction) => string
 	applicable: () => boolean
-	répondue: () => boolean
 }
 
 export function useQuestionsPublicodesÉditorialisées(
@@ -43,16 +42,12 @@ export function useQuestionsPublicodesÉditorialisées(
 				engine.evaluate({
 					'est applicable': question.dottedName,
 				}).nodeValue === true && evaluation.nodeValue !== null
-			const répondue = () =>
-				!(question.dottedName in evaluation.missingVariables) &&
-				evaluation.nodeValue !== undefined
 
 			return {
 				_tag: 'QuestionPublicodes',
 				id: question.dottedName,
 				libellé: question.libellé,
 				applicable,
-				répondue,
 			} satisfies QuestionPublicodes
 		},
 		[engine]
