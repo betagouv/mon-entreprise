@@ -108,7 +108,6 @@ export default function IndépendantBase({ id }: Props) {
 							<>
 								<RuleInput
 									inputType="toggle"
-									hideDefaultValue
 									missing={false}
 									dottedName="entreprise . imposition"
 									onChange={(imposition) => {

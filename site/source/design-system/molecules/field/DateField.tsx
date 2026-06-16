@@ -272,6 +272,7 @@ const StyledBody = styled(Body)`
 const Wrapper = styled.div`
 	width: fit-content;
 	position: relative;
+	margin-bottom: ${({ theme }) => theme.spacings.md};
 `
 
 const StyledButton = styled(Button)`

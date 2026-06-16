@@ -18,19 +18,11 @@ function formatCommune(value: SearchCommune) {
 type SelectCommuneProps = {
 	onChange: (c: Commune) => void
 	value: string | undefined | null
-	missing?: boolean
 	id?: string
-	autoFocus?: boolean
 }
 
-export default function Select({
-	onChange,
-	value,
-	id,
-	missing,
-	autoFocus,
-}: SelectCommuneProps) {
-	const [name, setName] = useState(missing ? '' : value ?? undefined)
+export default function Select({ onChange, value, id }: SelectCommuneProps) {
+	const [name, setName] = useState(value ?? undefined)
 	const [searchResults, setSearchResults] =
 		useState<null | Array<SearchCommune>>(null)
 	const { t } = useTranslation()
@@ -140,7 +132,6 @@ export default function Select({
 				id={id}
 				label={t('Commune ou code postal')}
 				value={name}
-				autoFocus={autoFocus}
 				autoComplete="off"
 				aria-controls="liste-commune"
 				aria-expanded={!!searchResults}
@@ -205,6 +196,7 @@ const FocusedOption = css`
 
 const Container = styled.div`
 	position: relative;
+	margin-bottom: ${({ theme }) => theme.spacings.md};
 `
 
 const OptionList = styled.ul`

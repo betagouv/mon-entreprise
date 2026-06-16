@@ -95,7 +95,6 @@ export function SimulationGoal({
 						  }
 						: undefined
 				}
-				hideDefaultValue
 				displayedUnit={displayedUnit}
 				dottedName={dottedName}
 				onChange={(x?: ValeurPublicodes) => {

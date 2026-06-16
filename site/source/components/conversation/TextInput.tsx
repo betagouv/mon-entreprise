@@ -7,10 +7,8 @@ interface TextInputProps {
 	id?: string
 	value: ValeurPublicodes | undefined
 	onChange?: (value: ValeurPublicodes | undefined) => void
-	missing?: boolean
 	title?: string
 	description?: string
-	autoFocus?: boolean
 	onSubmit?: (source?: string) => void
 
 	aria?: {
@@ -25,8 +23,6 @@ export default function TextInput({
 	value,
 	description,
 	title,
-	missing,
-	autoFocus,
 	aria,
 }: TextInputProps) {
 	const { handleChange } = useSelection({
@@ -39,15 +35,11 @@ export default function TextInput({
 			id={id}
 			type="text"
 			label={title}
-			// eslint-disable-next-line jsx-a11y/no-autofocus
-			autoFocus={autoFocus}
 			onChange={(value) => {
 				handleChange(value)
 			}}
 			description={description}
-			{...{
-				[missing ? 'placeholder' : 'defaultValue']: (value as string) || '',
-			}}
+			defaultValue={(value as string) || ''}
 			autoComplete="off"
 			aria-labelledby={aria?.labelledby}
 			aria-describedby={aria?.describedby}

@@ -26,8 +26,6 @@ interface DateInputProps {
 	dottedName: DottedName
 	value?: IsoDate
 	onChange?: (value: IsoDate) => void
-	missing?: boolean
-	hideDefaultValue?: boolean
 	onSubmit?: (source?: string) => void
 	suggestions?: InputSuggestionsRecord<IsoDate | ASTNode>
 	errorMessage?: string
@@ -45,9 +43,7 @@ export const DateInput = ({
 	id,
 	suggestions = {},
 	onChange = NoOp,
-	missing,
 	title,
-	hideDefaultValue,
 	onSubmit,
 	value,
 	type,
@@ -70,46 +66,42 @@ export const DateInput = ({
 
 	return (
 		<div className="step input">
-			<div>
-				{suggestions && (
-					<InputSuggestions
-						suggestions={suggestions}
-						onFirstClick={(valeur) => {
-							if (isIsoDate(valeur)) {
-								return handleSuggestion(valeur)
-							}
-							if (isPublicodesStandardDate(valeur)) {
-								return handleSuggestion(publicodesDateToIsoDate(valeur))
-							}
+			{suggestions && (
+				<InputSuggestions
+					suggestions={suggestions}
+					onFirstClick={(valeur) => {
+						if (isIsoDate(valeur)) {
+							return handleSuggestion(valeur)
+						}
+						if (isPublicodesStandardDate(valeur)) {
+							return handleSuggestion(publicodesDateToIsoDate(valeur))
+						}
 
-							const dateÉvaluée = pipe(
-								engine.evaluate(valeur),
-								PublicodesAdapter.decode,
-								O.getOrUndefined
-							) as IsoDate | undefined
+						const dateÉvaluée = pipe(
+							engine.evaluate(valeur),
+							PublicodesAdapter.decode,
+							O.getOrUndefined
+						) as IsoDate | undefined
 
-							handleSuggestion(dateÉvaluée)
-						}}
-						onSecondClick={() => {
-							onSubmit?.('suggestion')
-						}}
-					/>
-				)}
-				<DateField
-					id={id}
-					aria-labelledby={aria?.labelledby}
-					aria-describedby={aria?.describedby}
-					defaultSelected={
-						(missing && hideDefaultValue) || value === undefined
-							? undefined
-							: parseIsoDateString(value)
-					}
-					onChange={handleDateChange}
-					label={title}
-					type={type}
-					errorMessage={errorMessage}
+						handleSuggestion(dateÉvaluée)
+					}}
+					onSecondClick={() => {
+						onSubmit?.('suggestion')
+					}}
 				/>
-			</div>
+			)}
+			<DateField
+				id={id}
+				aria-labelledby={aria?.labelledby}
+				aria-describedby={aria?.describedby}
+				defaultSelected={
+					value === undefined ? undefined : parseIsoDateString(value)
+				}
+				onChange={handleDateChange}
+				label={title}
+				type={type}
+				errorMessage={errorMessage}
+			/>
 		</div>
 	)
 }

@@ -6,7 +6,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
-import { Intro, Markdown, Spacing } from '@/design-system'
+import { Intro, Markdown } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
@@ -84,7 +84,6 @@ export function SimpleField(props: SimpleFieldProps) {
 				onChange={dispatchValue}
 				showSuggestions={false}
 			/>
-			<Spacing sm />
 		</FadeIn>
 	)
 }
