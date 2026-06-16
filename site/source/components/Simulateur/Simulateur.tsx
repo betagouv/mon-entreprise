@@ -12,6 +12,7 @@ import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/Bo
 import { ACCUEIL, SIMULATION_COMMENCEE } from '../PianoAnalytics'
 import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'
+import { ÉLÉMENT_DÉTAILS_ID } from './BoutonDétail'
 import { ZoneDeSaisie } from './ZoneDeSaisie'
 
 type Props<S extends Situation = Situation> = {
@@ -61,7 +62,9 @@ export const Simulateur = ({
 			/>
 
 			{détail ? (
-				<div id="simulation-détail">{détail}</div>
+				<div id={ÉLÉMENT_DÉTAILS_ID} tabIndex={-1}>
+					{détail}
+				</div>
 			) : (
 				<SmallBody>
 					{t(
