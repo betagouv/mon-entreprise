@@ -1,10 +1,3 @@
-/**
- * @vitest-environment jsdom
- * Sans cette directive, on ne peut pas appeler `renderHook` car Vitest tourne par
- * défaut dans un environnement Node alors que `renderHook` a besoin d'un
- * environnement DOM.
- */
-
 import { renderHook } from '@testing-library/react'
 import * as O from 'effect/Option'
 import rules from 'modele-social'
