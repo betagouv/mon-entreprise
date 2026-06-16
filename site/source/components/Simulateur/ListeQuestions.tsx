@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Body, Button, EditIcon, Li, Ul } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 
@@ -13,12 +12,6 @@ import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
 import { BoutonReset } from './BoutonReset'
 import { BoutonRetour } from './BoutonRetour'
-
-export type QuestionEnListe = {
-	id: DottedName
-	label: string
-	répondue: boolean
-}
 
 type Props<S extends Situation = Situation> = {
 	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>
