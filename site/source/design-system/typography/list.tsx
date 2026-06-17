@@ -72,7 +72,10 @@ export const UlStyle = css<ListProps>`
 	}
 	> ${Li} ${Li}::before {
 		font-size: 60%;
-		color: ${({ theme }) => theme.colors.bases.primary[700]};
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 	}
 `
 export const Ul = styled.ul<ListProps>`

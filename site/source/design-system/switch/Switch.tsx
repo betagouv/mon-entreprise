@@ -19,7 +19,7 @@ const sizeDico = {
 	XL: '4rem',
 } as { [K in Size]: string }
 
-const StyledSpan = styled.span<{ checked: boolean }>`
+const StyledSpan = styled.span<{ checked: boolean; $light: boolean }>`
 	position: relative;
 	left: ${({ checked }) =>
 		checked ? 'calc(100% - 2 * (var(--switch-size) / 5))' : '0'};
@@ -32,6 +32,10 @@ const StyledSpan = styled.span<{ checked: boolean }>`
 		0px 3px 1px 0px #0000000f,
 		0px 3px 8px 0px #00000026;
 	background-color: #ffffff;
+	background-color: ${({ theme, checked, $light }) =>
+		checked && theme.darkMode && !$light
+			? theme.colors.bases.primary[700]
+			: theme.colors.extended.grey[100]};
 	color: inherit;
 `
 interface StyledSwitchProps {
@@ -45,9 +49,11 @@ const StyledSwitch = styled.span<StyledSwitchProps>`
 	--switch-size: ${({ $size }) => sizeDico[$size]};
 	display: inline-flex;
 	transition: all 0.15s ease-in-out;
-	background-color: ${({ theme, checked }) =>
+	background-color: ${({ theme, checked, $light }) =>
 		checked
-			? theme.colors.bases.primary[700]
+			? theme.darkMode && !$light
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]
 			: theme.colors.extended.grey[600]};
 	color: inherit;
 	font-family: ${({ theme }) => theme.fonts.main};
@@ -136,7 +142,7 @@ export const Switch = (props: SwitchProps) => {
 					tabIndex={0}
 					ref={ref}
 				/>
-				<StyledSpan aria-hidden checked={isSelected} />
+				<StyledSpan aria-hidden checked={isSelected} $light={light} />
 			</StyledSwitch>
 
 			{srOnlyLabel ? (

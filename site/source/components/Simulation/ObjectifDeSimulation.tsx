@@ -2,7 +2,6 @@ import { Option } from 'effect'
 import React from 'react'
 import { styled } from 'styled-components'
 
-import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Body, Grid, InfoBulle, TitreObjectif } from '@/design-system'
 import { Montant, montantToString } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
@@ -55,11 +54,7 @@ export function ObjectifDeSimulation({
 				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<TitreObjectif id={`${id}-label`}>{titre}</TitreObjectif>
-						{explication && (
-							<ForceThemeProvider forceTheme="default">
-								{explication}
-							</ForceThemeProvider>
-						)}
+						{explication}
 
 						{description && <InfoBulle description={description} />}
 					</Grid>
