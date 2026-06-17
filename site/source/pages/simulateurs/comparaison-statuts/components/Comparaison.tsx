@@ -343,7 +343,7 @@ export const Comparaison = ({
 							'point(s) acquis par an'
 						)}
 						footer={(engine) => (
-							<Body style={{ margin: 0 }}>
+							<BodyNoMargin>
 								<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.valeur-du-point">
 									Valeur du point&nbsp;:{' '}
 									<Strong>
@@ -355,7 +355,7 @@ export const Comparaison = ({
 										/>
 									</Strong>
 								</Trans>
-							</Body>
+							</BodyNoMargin>
 						)}
 					/>
 
@@ -455,16 +455,8 @@ export const Comparaison = ({
 								expression="protection sociale . maladie . arrêt maladie != 0"
 							>
 								<StyledDiv>
-									<CircledPlusIcon
-										style={{
-											marginTop: '0 !important',
-										}}
-									/>
-									<Body
-										style={{
-											margin: '0',
-										}}
-									>
+									<CircledPlusIcon />
+									<BodyNoMargin>
 										<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.footer">
 											Pour y prétendre, vous devez avoir cotisé au moins{' '}
 											<Strong>
@@ -474,7 +466,7 @@ export const Comparaison = ({
 												/>
 											</Strong>
 										</Trans>
-									</Body>
+									</BodyNoMargin>
 								</StyledDiv>
 							</Condition>
 						)}
@@ -642,11 +634,7 @@ export const Comparaison = ({
 							</Strong>
 							.
 						</BodyNoMargin>
-						<BodyNoTopMargin
-							style={{
-								marginBottom: '1rem',
-							}}
-						>
+						<BodyNoTopMargin>
 							Pour y prétendre, vous devez respecter{' '}
 							<BlackColoredLink href="https://www.service-public.fr/particuliers/vosdroits/F672">
 								certaines règles
@@ -669,7 +657,7 @@ export const Comparaison = ({
 							</span>
 						}
 						evolutionLabel={
-							<span style={{ fontSize: '0.75rem' }}>
+							<span style={{ fontSize: '0.875rem' }}>
 								{t(
 									'pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.evolution-label',
 									'(invalidité totale)'
@@ -862,11 +850,11 @@ const StyledMessage = styled(Message)`
 
 const StyledDiv = styled.div`
 	display: flex;
+	align-items: center;
+	column-gap: ${({ theme }) => theme.spacings.md};
 
 	svg {
 		width: 2.5rem;
-		margin-right: 1rem;
-		margin-top: 1rem;
 	}
 `
 
