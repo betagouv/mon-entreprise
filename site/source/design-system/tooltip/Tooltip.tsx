@@ -84,8 +84,9 @@ const StyledTooltip = styled.span`
 	max-width: 20rem;
 
 	opacity: 1 !important;
-	font-size: 80%;
 	font-family: ${({ theme }) => theme.fonts.main};
+	font-size: ${({ theme }) => theme.fontSizes.min};
+	line-height: ${({ theme }) => theme.lineHeights.sm};
 	background: ${({ theme }) => theme.colors.extended.grey[800]};
 	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
 	border: 1px solid
