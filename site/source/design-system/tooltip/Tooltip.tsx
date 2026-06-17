@@ -5,7 +5,7 @@ import {
 	shift,
 	useFloating,
 } from '@floating-ui/react-dom'
-import { CSSProperties, ReactNode, useId, useState } from 'react'
+import { ReactNode, useId, useState } from 'react'
 import { styled } from 'styled-components'
 
 import { useOnKeyDown } from '@/hooks/useOnKeyDown'
@@ -14,12 +14,10 @@ export const Tooltip = ({
 	children,
 	tooltip,
 	className,
-	style,
 }: {
 	children: ReactNode
 	tooltip: ReactNode
 	className?: string
-	style?: CSSProperties
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
@@ -47,7 +45,6 @@ export const Tooltip = ({
 		<>
 			<StyledButtonAsText
 				className={className}
-				style={style}
 				ref={refs.setReference}
 				onMouseEnter={() => setIsOpen(true)}
 				onMouseLeave={() => setIsOpen(false)}
