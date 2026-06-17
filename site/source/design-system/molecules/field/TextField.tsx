@@ -153,23 +153,27 @@ export const StyledInputContainer = styled.div.withConfig({
 				? theme.colors.extended.grey[100]
 				: theme.colors.extended.grey[700]
 		}`};
+	border-color: var(--field-border-color, ${({ theme }) =>
+		theme.darkMode
+			? theme.colors.extended.grey[100]
+			: theme.colors.extended.grey[700]}) !important;
 	outline: transparent solid 1px;
 	position: relative;
 	display: flex;
-	background-color: ${({ theme }) =>
+	background-color: var(--field-background-color, ${({ theme }) =>
 		theme.darkMode
 			? 'rgba(255, 255, 255, 10%)'
-			: theme.colors.extended.grey[100]};
+			: theme.colors.extended.grey[100]});
 	align-items: center;
 	transition: all 0.2s;
 
 	&:focus-within {
-		outline-color: ${({ theme, hasError }) =>
+		outline-color: var(--field-focus-outline-color, ${({ theme, hasError }) =>
 			hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
 				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[700]};
+				: theme.colors.bases.primary[700]}) !important;
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
 		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
@@ -228,10 +232,10 @@ export const StyledInputContainer = styled.div.withConfig({
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
 				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
-		color: ${({ theme }) =>
+		color:  var(--field-text-color, ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]
-				: theme.colors.extended.grey[800]};
+				: theme.colors.extended.grey[800]}) !important;
 	}
 
 	${({ small }) =>

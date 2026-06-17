@@ -13,9 +13,6 @@ import {
 	QuantitéField,
 	SmallBody,
 	Strong,
-	StyledInput,
-	StyledInputContainer,
-	StyledSuffix,
 	Ul,
 } from '@/design-system'
 import { euros } from '@/domaine/Montant'
@@ -89,7 +86,7 @@ export default function MonthOptions({
 		}
 		onOptionsChange(index, newOptions)
 	}
-
+	
 	return (
 		<Appear>
 			<GridContainer container columnSpacing={4}>
@@ -270,26 +267,13 @@ const StyledLabel = styled(SmallBody)`
 	margin: 0;
 	color: ${({ theme }) => theme.colors.bases.primary[800]};
 `
-// FIXME: Ce composant utilise des styled components internes de TextField
-// (StyledInputContainer, StyledInput, StyledSuffix) qui ne devraient pas être
-// exposés publiquement car ils créent un couplage fort avec l'implémentation
-// interne. Il faudrait refactorer ce code pour soit :
-// - Utiliser des props de style sur les composants de field
-// - Créer un composant dédié dans le design-system
-// - Utiliser des sélecteurs CSS génériques
 const NumberFieldContainer = styled.div`
 	max-width: 120px;
-	${StyledInputContainer} {
-		border-color: ${({ theme }) => theme.colors.bases.primary[800]};
-		background-color: 'rgba(255, 255, 255, 10%)';
-		&:focus-within {
-			outline-color: ${({ theme }) => theme.colors.bases.primary[700]};
-		}
-		${StyledInput}, ${StyledSuffix} {
-			color: ${({ theme }) => theme.colors.bases.primary[800]}!important;
-		}
-	}
+	--field-border-color: ${({ theme }) => theme.colors.bases.primary[800]};
+	--field-focus-outline-color: ${({ theme }) => theme.colors.bases.primary[700]};
+	--field-text-color: ${({ theme }) => theme.colors.bases.primary[800]};
 `
+
 const StyledSmallBody = styled(SmallBody)`
 	font-weight: bold;
 	color: ${({ theme }) => theme.colors.bases.primary[800]};
