@@ -8,7 +8,7 @@ export interface Props {
 	description: React.ReactNode
 }
 
-export function HelpButton({ description }: Props) {
+export function InfoBulle({ description }: Props) {
 	return (
 		<StyledTooltip className="print-hidden" tooltip={description}>
 			<HelpIcon />

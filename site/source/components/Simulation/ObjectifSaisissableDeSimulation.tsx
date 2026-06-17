@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 import React, { useState } from 'react'
 import { css, styled } from 'styled-components'
 
-import { Grid, HelpButton, TitreObjectifSaisissable } from '@/design-system'
+import { Grid, InfoBulle, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
@@ -68,7 +68,7 @@ export function ObjectifSaisissableDeSimulation({
 							{titre}
 						</TitreObjectifSaisissable>
 
-						{description && <HelpButton description={description} />}
+						{description && <InfoBulle description={description} />}
 					</StyledGridItem>
 
 					<Grid item>

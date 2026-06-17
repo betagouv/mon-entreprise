@@ -47,7 +47,7 @@ const SimulateurCardHit = ({
 			title={
 				<p>
 					<Highlight hit={hit} attribute="title" />{' '}
-					{tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+					{tooltip && <InfoBulle description={tooltip} />}
 				</p>
 			}
 		/>

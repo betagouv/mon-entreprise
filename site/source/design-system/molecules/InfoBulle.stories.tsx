@@ -2,7 +2,7 @@ import { Decorator, Meta, StoryObj } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import { Li, SmallBody, Strong, Ul } from '../typography'
-import { HelpButton } from './HelpButton'
+import { InfoBulle } from './InfoBulle'
 
 const RouterDecorator: Decorator = (Story) => (
 	<MemoryRouter>
@@ -11,13 +11,13 @@ const RouterDecorator: Decorator = (Story) => (
 )
 
 const meta = {
-	component: HelpButton,
+	component: InfoBulle,
 	parameters: {
 		layout: 'centered',
 	},
 	tags: ['autodocs'],
 	decorators: [RouterDecorator],
-} satisfies Meta<typeof HelpButton>
+} satisfies Meta<typeof InfoBulle>
 
 export default meta
 type Story = StoryObj<typeof meta>

@@ -7,7 +7,7 @@ import {
 	Body,
 	FlexCenter,
 	Grid,
-	HelpButton,
+	InfoBulle,
 	Li,
 	MontantField,
 	QuantitéField,
@@ -95,7 +95,7 @@ export default function MonthOptions({
 						<StyledLabel id={`heures-sup-label`}>
 							{additionalHoursLabels[additionalHours]}
 						</StyledLabel>
-						<HelpButton description={<HeuresSupplémentairesPopoverContent />} />
+						<InfoBulle description={<HeuresSupplémentairesPopoverContent />} />
 					</FlexDiv>
 				</GridItemLabel>
 				<GridItemInput item>
@@ -135,7 +135,7 @@ export default function MonthOptions({
 								'Rémunération de base mois complet'
 							)}
 						</StyledLabel>
-						<HelpButton description={<RémunérationETPPopoverContent />} />
+						<InfoBulle description={<RémunérationETPPopoverContent />} />
 					</FlexDiv>
 				</GridItemLabel>
 				<GridItemInput item>
@@ -167,7 +167,7 @@ export default function MonthOptions({
 								'Rémunération non affectée par le mois incomplet'
 							)}
 						</StyledLabel>
-						<HelpButton description={<RémunérationPrimesPopoverContent />} />
+						<InfoBulle description={<RémunérationPrimesPopoverContent />} />
 					</FlexDiv>
 				</GridItemLabel>
 				<GridItemInput item>

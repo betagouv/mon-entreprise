@@ -55,7 +55,7 @@ export function SimulateurCard({
 					onPress={handlePress}
 					title={
 						<span>
-							{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
+							{shortName} {tooltip && <InfoBulle description={tooltip} />}
 							{beta && (
 								<Chip type="info" icon={<Emoji emoji="🚧" />}>
 									Bêta
