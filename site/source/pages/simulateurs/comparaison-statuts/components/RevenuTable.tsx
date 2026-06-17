@@ -229,7 +229,7 @@ const StyledTable = styled.table`
 
 	thead th {
 		text-align: center;
-		font-size: 0.75rem;
+		font-size: ${({ theme }) => theme.fontSizes.min};
 	}
 	.table-title {
 		display: flex;
@@ -266,13 +266,13 @@ const StyledTable = styled.table`
 const StyledStatutTag = styled(StatutTag)`
 	width: 100%;
 	justify-content: center;
-	font-size: 0.75rem;
+	font-size: ${({ theme }) => theme.fontSizes.min};
 `
 
 const StyledTag = styled(Tag)`
 	width: 100%;
 	justify-content: center;
-	font-size: 0.75rem;
+	font-size: ${({ theme }) => theme.fontSizes.min};
 `
 
 const Minus = styled.span`

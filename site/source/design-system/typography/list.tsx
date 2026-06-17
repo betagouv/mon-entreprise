@@ -26,20 +26,20 @@ export const DarkLi = styled(Li)`
 
 const BaseListStyle = css<ListProps>`
 	${baseParagraphStyle}
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	list-style: none;
 	padding: 0;
 	${({ size = 'MD' }) =>
 		size === 'XS'
 			? css`
-					font-size: 0.875rem;
-					line-height: 1.25rem;
+					font-size: ${({ theme }) => theme.fontSizes.min};
+					line-height: ${({ theme }) => theme.lineHeights.sm};
 			  `
 			: size === 'XL' &&
 			  css`
-					font-size: 1.25rem;
-					line-height: 2rem;
+					font-size: ${({ theme }) => theme.fontSizes.xl};
+					line-height: ${({ theme }) => theme.lineHeights.lg};
 					padding-left: 2rem;
 			  `}
 
@@ -85,13 +85,13 @@ export const Ol = styled.ol<ListProps>`
 	${({ size = 'MD' }) =>
 		size === 'XS'
 			? css`
-					font-size: 0.875rem;
-					line-height: 1.25rem;
+					font-size: ${({ theme }) => theme.fontSizes.min};
+					line-height: ${({ theme }) => theme.lineHeights.sm};
 			  `
 			: size === 'XL' &&
 			  css`
-					font-size: 1.25rem;
-					line-height: 2rem;
+					font-size: ${({ theme }) => theme.fontSizes.xl};
+					line-height: ${({ theme }) => theme.lineHeights.lg};
 			  `}
 
 	${Li} {
@@ -110,7 +110,7 @@ export const Ol = styled.ol<ListProps>`
 	}
 	${Li}::before {
 		content: counter(step-counter);
-		font-size: 1.125rem;
+		font-size: ${({ theme }) => theme.fontSizes.lg};
 		font-weight: 500;
 		border-radius: 100%;
 		justify-content: center;
@@ -126,13 +126,13 @@ export const Ol = styled.ol<ListProps>`
 			vertical-align: baseline;
 			${size === 'XS'
 				? css`
-						font-size: 0.875rem;
+						font-size: ${({ theme }) => theme.fontSizes.min};
 						width: ${theme.spacings.md};
 						height: ${theme.spacings.md};
 				  `
 				: size === 'XL' &&
 				  css`
-						font-size: 1.25rem;
+						font-size: ${({ theme }) => theme.fontSizes.xl};
 						width: ${theme.spacings.xl};
 						height: ${theme.spacings.xl};
 				  `}

@@ -223,7 +223,7 @@ const RuleLinkContainer = styled.div`
 
 const DisabledLabel = styled.span`
 	color: ${({ theme }) => theme.colors.extended.grey[800]}!important;
-	font-size: 1.25rem;
+	font-size: ${({ theme }) => theme.fontSizes.xl};
 	font-weight: 700;
 	font-style: italic;
 	margin: 0 !important;

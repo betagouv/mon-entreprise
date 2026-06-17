@@ -57,7 +57,7 @@ const StyledChip = styled.strong<{
 		border-radius: ${theme.spacings.md};
 		font-family: ${theme.fonts.main};
 		padding: ${theme.spacings.xxs} ${theme.spacings.xs};
-		font-size: ${theme.baseFontSize};
+		font-size: ${theme.fontSizes.base};
 		text-align: center;
 	`}
 	${({ theme, $type }) => {

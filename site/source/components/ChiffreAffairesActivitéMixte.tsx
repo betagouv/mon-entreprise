@@ -223,6 +223,6 @@ const ConditionWrapper = styled.div`
 		}
 	}
 	a {
-		font-size: 1rem;
+		font-size: ${({ theme }) => theme.fontSizes.base};
 	}
 `

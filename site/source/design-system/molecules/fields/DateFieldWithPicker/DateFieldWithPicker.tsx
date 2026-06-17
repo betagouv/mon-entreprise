@@ -177,7 +177,7 @@ const StyledRACalendar = styled(RACalendar)`
 		border: none;
 		border-radius: 50%;
 
-		font-size: 1.25rem;
+		font-size: ${({ theme }) => theme.fontSizes.xl};
 		background: transparent;
 
 		${fieldTransition}

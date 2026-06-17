@@ -10,7 +10,7 @@ export const DocumentationMDXContainer = styled.div`
 	h1 {
 		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
-		font-size: 2rem;
+		font-size: ${({ theme }) => theme.fontSizes.xxxl};
 		line-height: 2.375rem;
 		margin: ${({ theme }) => `${theme.spacings.xxxl} 0 ${theme.spacings.xl}`};
 		color: ${({ theme }) =>
@@ -32,7 +32,7 @@ export const DocumentationMDXContainer = styled.div`
 		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
 		font-size: 1.625rem;
-		line-height: 2rem;
+		line-height: ${({ theme }) => theme.lineHeights.lg};
 		margin: ${({ theme }) => `${theme.spacings.xxl} 0 ${theme.spacings.lg}`};
 		color: ${({ theme }) =>
 			theme.darkMode
@@ -52,8 +52,8 @@ export const DocumentationMDXContainer = styled.div`
 	h3 {
 		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
-		font-size: 1.25rem;
-		line-height: 1.75rem;
+		font-size: ${({ theme }) => theme.fontSizes.xl};
+		line-height: ${({ theme }) => theme.lineHeights.lg};
 		margin: ${({ theme }) => `${theme.spacings.xl} 0 ${theme.spacings.md}`};
 		color: ${({ theme }) =>
 			theme.darkMode
@@ -64,8 +64,8 @@ export const DocumentationMDXContainer = styled.div`
 	h4 {
 		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
-		font-size: 1.125rem;
-		line-height: 1.5rem;
+		font-size: ${({ theme }) => theme.fontSizes.lg};
+		line-height: ${({ theme }) => theme.lineHeights.base};
 		margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.sm}`};
 		color: ${({ theme }) =>
 			theme.darkMode
@@ -77,8 +77,8 @@ export const DocumentationMDXContainer = styled.div`
 	h6 {
 		font-family: ${({ theme }) => theme.fonts.heading};
 		font-weight: 700;
-		font-size: 1rem;
-		line-height: 1.5rem;
+		font-size: ${({ theme }) => theme.fontSizes.base};
+		line-height: ${({ theme }) => theme.lineHeights.base};
 		margin: ${({ theme }) => `${theme.spacings.md} 0 ${theme.spacings.xs}`};
 		color: ${({ theme }) =>
 			theme.darkMode
@@ -87,8 +87,8 @@ export const DocumentationMDXContainer = styled.div`
 	}
 
 	p {
-		font-size: 1rem;
-		line-height: 1.5rem;
+		font-size: ${({ theme }) => theme.fontSizes.base};
+		line-height: ${({ theme }) => theme.lineHeights.base};
 		margin: ${({ theme }) => `0 0 ${theme.spacings.md}`};
 	}
 
@@ -104,7 +104,7 @@ export const DocumentationMDXContainer = styled.div`
 
 	li {
 		margin: ${({ theme }) => `${theme.spacings.xxs} 0`};
-		line-height: 1.5rem;
+		line-height: ${({ theme }) => theme.lineHeights.base};
 	}
 
 	a {
@@ -131,7 +131,7 @@ export const DocumentationMDXContainer = styled.div`
 		color: inherit;
 		border-radius: 0.25rem;
 		font-family: 'Courier New', monospace;
-		font-size: 0.875rem;
+		font-size: ${({ theme }) => theme.fontSizes.min};
 	}
 
 	pre {

@@ -139,29 +139,27 @@ export const baseTheme = {
 			},
 		},
 	},
-	darkMode: false,
-	isInIframe: false,
-	spacings: {
-		xxxs: '.125rem',
-		xxs: '.25rem',
-		xs: '.5rem',
-		sm: '0.75rem',
-		md: '1rem',
-		lg: '1.5rem',
-		xl: '2rem',
-		xxl: '3rem',
-		xxxl: '4rem',
-	},
 
 	fonts: {
 		main: "var(--font-roboto, 'Roboto'), sans-serif",
 		heading: "var(--font-montserrat, 'Montserrat'), sans-serif",
 	},
 
-	baseFontSize: '1rem',
-
 	fontSizes: {
+		min: '0.875rem',
+		base: '1rem',
 		lg: '1.125rem',
+		xl: '1.25rem',
+		xxl: '1.5rem',
+		xxxl: '2rem',
+	},
+
+	lineHeights: {
+		sm: '1.25rem',
+		base: '1.5rem',
+		lg: '1.75rem',
+		xl: '2rem',
+		xxl: '2.5rem',
 	},
 
 	box: {
@@ -190,6 +188,21 @@ export const baseTheme = {
 		md: '768px',
 		lg: '992px',
 		xl: '1200px',
+	},
+
+	darkMode: false,
+	isInIframe: false,
+
+	spacings: {
+		xxxs: '.125rem',
+		xxs: '.25rem',
+		xs: '.5rem',
+		sm: '0.75rem',
+		md: '1rem',
+		lg: '1.5rem',
+		xl: '2rem',
+		xxl: '3rem',
+		xxxl: '4rem',
 	},
 }
 

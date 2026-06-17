@@ -109,7 +109,7 @@ const StyledGoal = styled.div`
 
 const StyledBody = styled(Body)`
 	margin: 0;
-	font-size: 1.125rem;
+	font-size: ${({ theme }) => theme.fontSizes.lg};
 `
 const RedSpan = styled.span`
 	color: ${({ theme }) =>

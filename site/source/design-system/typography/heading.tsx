@@ -24,7 +24,7 @@ export const HeadingUnderline = css`
 export const H1Style = css`
 	${baseHeading}
 	${HeadingUnderline}
-	font-size: 2rem;
+	font-size: ${({ theme }) => theme.fontSizes.xxxl};
 	margin: ${({ theme }) => css`
 		${theme.spacings.xxxl} 0 ${theme.spacings.xl}
 	`};
@@ -42,7 +42,7 @@ export const H2Style = css`
 	${baseHeading}
 	${HeadingUnderline}
 	font-size: 1.625rem;
-	line-height: 2rem;
+	line-height: ${({ theme }) => theme.lineHeights.lg};
 	margin: ${({ theme }) => css`
 		${theme.spacings.xxl} 0 ${theme.spacings.lg}
 	`};
@@ -60,8 +60,8 @@ export const H3Style = css`
 	margin: ${({ theme }) => css`
 		${theme.spacings.xl} 0 ${theme.spacings.md}
 	`};
-	font-size: 1.25rem;
-	line-height: 1.75rem;
+	font-size: ${({ theme }) => theme.fontSizes.xl};
+	line-height: ${({ theme }) => theme.lineHeights.lg};
 `
 export const H3 = styled.h3`
 	${H3Style}
@@ -72,8 +72,8 @@ export const H4Style = css`
 	margin: ${({ theme }) => css`
 		${theme.spacings.lg} 0 ${theme.spacings.sm}
 	`};
-	font-size: 1.125rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.lg};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 `
 export const H4 = styled.h4`
 	${H4Style}
@@ -81,11 +81,11 @@ export const H4 = styled.h4`
 
 export const H5Style = css`
 	${baseHeading}
-	font-size: 1rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
 	margin: ${({ theme }) => css`
 		${theme.spacings.md} 0 ${theme.spacings.xs}
 	`};
-	line-height: 1.5rem;
+	line-height: ${({ theme }) => theme.lineHeights.base};
 `
 export const H5 = styled.h5`
 	${H5Style}
@@ -96,8 +96,8 @@ export const H6 = styled.h6`
 	margin: ${({ theme }) => css`
 		${theme.spacings.sm} 0 ${theme.spacings.xxs}
 	`};
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 `
 
 export const fromLevel = (level: number) => {

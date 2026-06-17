@@ -67,8 +67,8 @@ export const StyledContainer = styled.div`
 	width: 100%;
 `
 export const StyledTextArea = styled.textarea`
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	border: none;
 	width: 100%;
 	background: none;
@@ -132,8 +132,8 @@ export const StyledErrorMessage = styled(StyledDescription)`
 `
 
 export const StyledSuffix = styled.span`
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
@@ -200,8 +200,8 @@ export const StyledTextAreaContainer = styled.div.withConfig({
 		`}
 
 	${StyledTextArea}:not(:focus):placeholder-shown:not(:empty) + ${StyledLabel} {
-		font-size: 1rem;
-		line-height: 1.5rem;
+		font-size: ${({ theme }) => theme.fontSizes.base};
+		line-height: ${({ theme }) => theme.lineHeights.base};
 		top: 50%;
 		transform: translateY(-50%);
 	}
@@ -233,8 +233,8 @@ export const StyledTextAreaContainer = styled.div.withConfig({
 		small &&
 		css`
 			${StyledSuffix}, ${StyledTextArea} {
-				font-size: 1rem;
-				line-height: 1.25rem;
+				font-size: ${({ theme }) => theme.fontSizes.base};
+				line-height: ${({ theme }) => theme.lineHeights.sm};
 			}
 		`}
 `

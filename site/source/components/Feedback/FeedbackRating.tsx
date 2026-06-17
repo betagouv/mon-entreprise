@@ -60,7 +60,7 @@ const EmojisList = styled.ul`
 `
 
 const EmojiButton = styled.button`
-	font-size: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.xxl};
 	padding: 0.6rem;
 	border: none;
 	background: none;

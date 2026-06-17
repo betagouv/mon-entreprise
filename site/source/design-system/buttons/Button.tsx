@@ -121,8 +121,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 	}};
 	border-radius: 2.5rem;
 	transition: all 0.15s;
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	border: 2px solid transparent;
 
 	${({ disabled }) =>

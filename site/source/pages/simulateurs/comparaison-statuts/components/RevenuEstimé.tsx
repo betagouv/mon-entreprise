@@ -87,7 +87,7 @@ const Label = styled(Body)`
 		theme.darkMode
 			? theme.colors.extended.grey[200]
 			: theme.colors.extended.grey[700]}!important;
-	font-size: 0.875rem;
+	font-size: ${({ theme }) => theme.fontSizes.min};
 `
 
 const StyledValue = styled(Value)`
@@ -96,7 +96,7 @@ const StyledValue = styled(Value)`
 		theme.darkMode
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]}!important;
-	font-size: 1.25rem;
+	font-size: ${({ theme }) => theme.fontSizes.xl};
 	font-weight: 700;
 	font-family: ${({ theme }) => theme.fonts.main};
 `

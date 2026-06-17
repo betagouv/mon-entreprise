@@ -13,12 +13,12 @@ export const Callout = styled.div.withConfig({
 	border: 1px solid;
 	position: relative;
 
-	${({ icon }) =>
+	${({ theme, icon }) =>
 		icon &&
 		`
 		&::before {
 			content: '${icon}';
-			font-size: 1.25rem;
+			font-size: ${theme.fontSizes.xl};
 			margin-right: 0.5rem;
 		}
 	`}

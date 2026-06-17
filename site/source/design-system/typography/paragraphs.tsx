@@ -17,14 +17,14 @@ export const baseParagraphStyle = css`
 
 export const Intro = styled.p<{ $xxl?: boolean }>`
 	${baseParagraphStyle}
-	font-size: ${({ $xxl }) => ($xxl ? '1.5rem' : '1.25rem')};
-	line-height: ${({ $xxl }) => ($xxl ? '2.5rem' : '2rem')};
+	font-size: ${({ theme, $xxl }) => theme.fontSizes[$xxl ? 'xxl' : 'xl']};
+	line-height: ${({ theme, $xxl }) => theme.lineHeights[$xxl ? 'xxl' : 'xl']};
 `
 
 export const BodyStyle = css`
 	${baseParagraphStyle}
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 `
 export const Body = styled.p`
 	${BodyStyle}
@@ -32,8 +32,8 @@ export const Body = styled.p`
 
 export const SmallBody = styled.p<{ $grey?: boolean }>`
 	${baseParagraphStyle}
-	font-size: 0.875rem;
-	line-height: 1.25rem;
+	font-size: ${({ theme }) => theme.fontSizes.min};
+	line-height: ${({ theme }) => theme.lineHeights.sm};
 
 	${({ $grey }) =>
 		$grey &&
