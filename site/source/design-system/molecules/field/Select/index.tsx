@@ -17,7 +17,7 @@ import { CarretDownIcon } from '../../../icons'
 import { ListBox } from './ListBox'
 import { Popover } from './PopOver'
 
-export const Label = styled.label`
+const Label = styled.label`
 	display: block;
 	text-align: left;
 	top: 0%;

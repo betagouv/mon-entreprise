@@ -8,7 +8,7 @@ export default function BarèmeSwitch() {
 
 	return (
 		currentZone && (
-			<SwitchContainer isRule>
+			<SwitchContainer>
 				<SimpleField
 					dottedName={barèmeLodeomDottedName(currentZone)}
 					labelStyle={RuleSwitchLabel}

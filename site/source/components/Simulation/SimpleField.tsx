@@ -18,10 +18,11 @@ type SimpleFieldProps = {
 	dottedName: DottedName
 	question?: string
 	labelStyle?: IStyledComponent<'web', object>
+	errorMessage?: string
 }
 
 export function SimpleField(props: SimpleFieldProps) {
-	const { dottedName, question, labelStyle } = props
+	const { dottedName, question, labelStyle, errorMessage } = props
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
@@ -57,9 +58,10 @@ export function SimpleField(props: SimpleFieldProps) {
 
 	return (
 		<FadeIn>
-			<StyledQuestion id={labelId}>
+			<div>
 				<Markdown
 					as="label"
+					id={labelId}
 					htmlFor={normalizeRuleName.Input(dottedName)}
 					components={markdownComponents}
 				>
@@ -67,7 +69,7 @@ export function SimpleField(props: SimpleFieldProps) {
 				</Markdown>
 				{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
 				<ExplicableRule dottedName={dottedName} />
-			</StyledQuestion>
+			</div>
 			<RuleInput
 				dottedName={dottedName}
 				displayedUnit={
@@ -83,16 +85,12 @@ export function SimpleField(props: SimpleFieldProps) {
 				}
 				onChange={dispatchValue}
 				showSuggestions={false}
+				errorMessage={errorMessage}
 			/>
 		</FadeIn>
 	)
 }
 
-const StyledQuestion = styled.div`
-	display: inline-flex;
-	align-items: baseline;
-	margin-bottom: -0.75rem;
-`
 const RedIntro = styled(Intro)`
 	color: ${({ theme }) =>
 		theme.darkMode ? '' : theme.colors.extended.error[400]};

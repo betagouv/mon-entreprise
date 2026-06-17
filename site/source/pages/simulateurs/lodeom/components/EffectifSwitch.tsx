@@ -2,12 +2,8 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import {
-	SwitchContainer,
-	SwitchLabel,
-	SwitchRadio,
-	SwitchToggleGroup,
-} from '@/components/Switch'
+import { SwitchContainer, SwitchLabel } from '@/components/Switch'
+import { ChoixUnique } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
@@ -20,6 +16,23 @@ export default function EffectifSwitch() {
 	const [currentEffectif, setCurrentEffectif] = useState(engineEffectif)
 	const { t } = useTranslation()
 
+	const options = [
+		{
+			value: '10',
+			label: t(
+				'pages.simulateurs.lodeom.effectif.moins-de-50',
+				'Moins de 50 salariés'
+			),
+		},
+		{
+			value: '100',
+			label: t(
+				'pages.simulateurs.lodeom.effectif.plus-de-50',
+				'Plus de 50 salariés'
+			),
+		},
+	]
+
 	useEffect(() => {
 		const effectif = parseInt(engineEffectif) > 49 ? '100' : '10'
 		setCurrentEffectif(effectif)
@@ -27,20 +40,20 @@ export default function EffectifSwitch() {
 
 	return (
 		<SwitchContainer>
-			<SwitchLabel id="effectif-switch-label">
+			<SwitchLabel id="effectif-switch-label" as="label">
 				{t('Quel est l’effectif de votre entreprise ?')}
 			</SwitchLabel>
-			<SwitchToggleGroup
+
+			<ChoixUnique
+				variant="toggle"
+				options={options}
 				value={currentEffectif}
 				onChange={(value) => {
 					setCurrentEffectif(value)
 					dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
 				}}
-				aria-labelledby="effectif-switch-label"
-			>
-				<SwitchRadio value="10">{t('Moins de 50 salariés')}</SwitchRadio>
-				<SwitchRadio value="100">{t('Plus de 50 salariés')}</SwitchRadio>
-			</SwitchToggleGroup>
+				aria={{ labelledby: 'effectif-switch-label' }}
+			/>
 		</SwitchContainer>
 	)
 }

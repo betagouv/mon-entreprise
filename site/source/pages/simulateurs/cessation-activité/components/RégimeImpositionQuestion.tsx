@@ -7,7 +7,7 @@ export const RégimeImpositionQuestion = () => {
 	const { t } = useTranslation()
 
 	return (
-		<SwitchContainer isRule>
+		<SwitchContainer>
 			<SimpleField
 				dottedName="entreprise . imposition"
 				question={t(
