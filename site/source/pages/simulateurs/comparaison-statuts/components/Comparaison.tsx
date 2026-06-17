@@ -103,7 +103,7 @@ export const Comparaison = ({
 						'Vos revenus'
 					)}
 				>
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.revenus.h4',
 							'Revenu net mensuel après impôts'
@@ -121,7 +121,7 @@ export const Comparaison = ({
 						>
 							<RevenuTable namedEngines={namedEngines} />
 						</InfoButton>
-					</StyledH4>
+					</H4>
 					<DetailsRowCards
 						dottedName="dirigeant . rémunération . net . après impôt"
 						namedEngines={namedEngines}
@@ -270,13 +270,13 @@ export const Comparaison = ({
 						'Vos droits pour la retraite'
 					)}
 				>
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.h4',
 							'Retraite de base'
 						)}
 						<ExplicableRule dottedName="protection sociale . retraite . trimestres" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.base.body">
 							Chaque année, selon votre rémunération, vous validez{' '}
@@ -319,13 +319,13 @@ export const Comparaison = ({
 						/>
 					</Condition>
 
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.h4',
 							'Retraite complémentaire'
 						)}
 						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.body">
 							Tous les ans, selon votre rémunération,{' '}
@@ -409,13 +409,13 @@ export const Comparaison = ({
 						</BodyNoMargin>
 					</Trans>
 
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.santé.arrêt.h4',
 							'Arrêt maladie'
 						)}
 						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.body">
 							Pour tous les statuts, vous aurez un{' '}
@@ -480,13 +480,13 @@ export const Comparaison = ({
 						)}
 					/>
 
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.santé.atmp.h4',
 							'Accident du travail et maladie professionnelle'
 						)}
 						<ExplicableRule dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.atmp.body">
 							En cas d’<Strong>accident du travail</Strong>, de{' '}
@@ -543,13 +543,13 @@ export const Comparaison = ({
 						unit="€/jour"
 					/>
 
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.parentalité.maternité.h4',
 							'Maternité'
 						)}
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.parentalité.maternité.body">
 							En plus des indemnités journalières, vous pouvez aussi prétendre à
@@ -569,13 +569,13 @@ export const Comparaison = ({
 						)}
 					/>
 
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.parentalité.adoption.h4',
 							'Adoption'
 						)}
 						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.parentalité.adoption.body">
 							En plus des indemnités journalières, vous pouvez aussi prétendre à
@@ -626,13 +626,13 @@ export const Comparaison = ({
 							.
 						</Trans>
 					</Body>
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.h4',
 							'Invalidité'
 						)}
 						<ExplicableRule dottedName="protection sociale . invalidité et décès" />
-					</StyledH4>
+					</H4>
 					<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.invalidité.body.1">
 						<BodyNoMargin>
 							Vous pouvez bénéficier d’une pension invalidité{' '}
@@ -690,13 +690,13 @@ export const Comparaison = ({
 						unit="€/mois"
 					/>
 
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.prévoyance.décès.h4',
 							'Décès'
 						)}
 						<ExplicableRule dottedName="protection sociale . invalidité et décès . capital décès" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.prévoyance.décès.body.1">
 							La Sécurité Sociale garantit un{' '}
@@ -781,13 +781,13 @@ export const Comparaison = ({
 						'La gestion juridique et comptable'
 					)}
 				>
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.gestion.création.h4',
 							'Coût de création'
 						)}
 						<ExplicableRule dottedName="entreprise . coût formalités . création" />
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.gestion.création.body">
 							Les formalités de création d’une entreprise diffèrent selon les
@@ -803,12 +803,12 @@ export const Comparaison = ({
 						displayedUnit="€ HT"
 					/>
 
-					<StyledH4>
+					<H4>
 						{t(
 							'pages.simulateurs.comparaison-statuts.items.gestion.conjoint.h4',
 							'Statut du conjoint / de la conjointe'
 						)}
-					</StyledH4>
+					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.gestion.conjoint.body">
 							Vous êtes marié/mariée, pacsé/pacsée ou en union libre&nbsp;: il
@@ -858,9 +858,6 @@ export const Comparaison = ({
 const StyledMessage = styled(Message)`
 	margin-top: ${({ theme }) => theme.spacings.xl};
 	margin-bottom: -${({ theme }) => theme.spacings.md};
-`
-const StyledH4 = styled(H4)`
-	color: ${({ theme }) => theme.colors.bases.primary[600]};
 `
 
 const StyledDiv = styled.div`

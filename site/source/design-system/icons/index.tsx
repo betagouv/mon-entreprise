@@ -5,7 +5,13 @@ export const SvgIcon = styled.svg`
 	fill: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
-			: theme.colors.bases.primary[800]};
+			: theme.colors.bases.primary[700]};
+	path.inner-icon {
+		fill: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[700]
+				: theme.colors.extended.grey[100]};
+	}
 `
 
 export const ArrowCircleIcon = (props: HTMLAttributes<SVGElement>) => (
@@ -135,7 +141,6 @@ export const CircledArrowIcon = (props: HTMLAttributes<SVGElement>) => (
 		width="40"
 		height="40"
 		viewBox="0 0 45 45"
-		fill="#1D458C"
 		xmlns="http://www.w3.org/2000/svg"
 		aria-hidden
 	>
@@ -145,16 +150,16 @@ export const CircledArrowIcon = (props: HTMLAttributes<SVGElement>) => (
 			d="M20 40C31.0457 40 40 31.0457 40 20C40 8.95431 31.0457 0 20 0C8.95431 0 0 8.95431 0 20C0 31.0457 8.95431 40 20 40Z"
 		/>
 		<path
+			className="inner-icon"
 			fillRule="evenodd"
 			clipRule="evenodd"
 			d="M23.1195 13.6676C23.5243 13.2918 24.157 13.3152 24.5328 13.7199L29.7328 19.3199C30.0891 19.7036 30.0891 20.2972 29.7328 20.6808L24.5328 26.2808C24.157 26.6856 23.5243 26.709 23.1195 26.3332C22.7148 25.9574 22.6914 25.3247 23.0672 24.9199L27.6354 20.0004L23.0672 15.0808C22.6914 14.6761 22.7148 14.0434 23.1195 13.6676Z"
-			fill="white"
 		/>
 		<path
+			className="inner-icon"
 			fillRule="evenodd"
 			clipRule="evenodd"
 			d="M10 20.0004C10 19.4481 10.4477 19.0004 11 19.0004L29 19.0004C29.5523 19.0004 30 19.4481 30 20.0004C30 20.5527 29.5523 21.0004 29 21.0004L11 21.0004C10.4477 21.0004 10 20.5527 10 20.0004Z"
-			fill="white"
 		/>
 	</SvgIcon>
 )

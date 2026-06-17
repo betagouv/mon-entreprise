@@ -13,7 +13,11 @@ export const SROnly = css`
 `
 
 export const FocusStyle = css`
-	outline: 3px solid ${({ theme }) => theme.colors.bases.primary[700]};
+	outline: 3px solid
+		${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[700]};
 	outline-offset: 2px;
 	box-shadow: 0 0 0 2px #ffffff;
 `
