@@ -175,7 +175,7 @@ const DetailsRowCards = ({
 									)}
 								</StatusCard.Titre>
 							)}
-							{evolutionDottedName && (
+							{isDefinedAndApplicable && evolutionDottedName && (
 								<StatusCard.ValeurSecondaire>
 									<Value
 										linkToRule={false}
