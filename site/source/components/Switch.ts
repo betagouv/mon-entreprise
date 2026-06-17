@@ -1,38 +1,27 @@
 import { styled } from 'styled-components'
 
-import { Body, Radio, ToggleGroup } from '@/design-system'
+import { Body } from '@/design-system'
 
-export const SwitchContainer = styled.div.withConfig({
-	shouldForwardProp: (prop) => prop !== 'isRule',
-})<{ isRule?: boolean }>`
+export const SwitchContainer = styled.div`
 	text-align: left;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
 	column-gap: ${({ theme }) => theme.spacings.sm};
 	width: 100%;
-	margin-bottom: ${({ isRule, theme }) =>
-		isRule ? `-${theme.spacings.lg}` : theme.spacings.sm};
+	&:not(:last-of-type) {
+		margin-bottom: -${({ theme }) => theme.spacings.sm};
+	}
 `
 export const SwitchLabel = styled(Body).withConfig({
 	shouldForwardProp: (prop) => prop !== 'isRule',
 })<{ isRule?: boolean }>`
+	display: inline-block;
 	margin: 0;
-	margin-bottom: ${({ isRule, theme }) => theme.spacings[isRule ? 'md' : 'sm']};
+	margin-bottom: ${({ isRule, theme }) =>
+		theme.spacings[isRule ? 'xxs' : 'sm']};
 	font-weight: 700;
 `
 export const RuleSwitchLabel = styled(SwitchLabel).attrs({
 	isRule: true,
 })``
-export const SwitchToggleGroup = styled(ToggleGroup)`
-	display: flex;
-	> * {
-		display: flex;
-	}
-`
-export const SwitchRadio = styled(Radio)`
-	white-space: nowrap;
-	> span {
-		width: 100%;
-	}
-`

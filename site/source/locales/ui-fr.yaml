@@ -91,7 +91,6 @@ Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
 "Mettre la valeur :": "Mettre la valeur :"
 Modifier mes réponses: Modifier mes réponses
-Moins de 50 salariés: Moins de 50 salariés
 Mois: Mois
 Mon entreprise: Mon entreprise
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
@@ -116,7 +115,6 @@ Page d'accueil: Page d'accueil
 Passer: Passer
 Personnalisez l'intégration: Personnalisez l'intégration
 Plan du site: Plan du site
-Plus de 50 salariés: Plus de 50 salariés
 Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Précédent: Précédent
@@ -2197,6 +2195,9 @@ pages:
         chambre-hôte: Chambre d'hôtes
         meublé-tourisme: Meublé de tourisme
     lodeom:
+      effectif:
+        moins-de-50: Moins de 50 salariés
+        plus-de-50: Plus de 50 salariés
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.

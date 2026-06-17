@@ -87,7 +87,6 @@ Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
 "Mettre la valeur :": "Set value to:"
 Modifier mes réponses: Modify my answers
-Moins de 50 salariés: Less than 50 employees
 Mois: Month
 Mon entreprise: My company
 Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
@@ -111,7 +110,6 @@ Page d'accueil: Home page
 Passer: Pass
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
-Plus de 50 salariés: More than 50 employees
 Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
@@ -2071,6 +2069,9 @@ pages:
         chambre-hôte: Bed &amp; Breakfast
         meublé-tourisme: Furnished tourist accommodation
     lodeom:
+      effectif:
+        moins-de-50: Fewer than 50 employees
+        plus-de-50: More than 50 employees
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
           certain conditions, to overseas employees.

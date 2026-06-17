@@ -1,11 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
-import {
-	SwitchContainer,
-	SwitchLabel,
-	SwitchRadio,
-	SwitchToggleGroup,
-} from '@/components/Switch'
+import { SwitchContainer, SwitchLabel } from '@/components/Switch'
+import { ChoixUnique } from '@/design-system'
 import { RégularisationMethod } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
@@ -19,35 +15,41 @@ export default function RégularisationSwitch({
 }: Props) {
 	const { t } = useTranslation()
 
+	const options = [
+		{
+			value: 'annuelle',
+			label: t(
+				'pages.simulateurs.lodeom.régularisation.annuelle',
+				'Régularisation annuelle'
+			),
+		},
+		{
+			value: 'progressive',
+			label: t(
+				'pages.simulateurs.lodeom.régularisation.progressive',
+				'Régularisation progressive'
+			),
+		},
+	]
+
 	return (
 		<SwitchContainer>
-			<SwitchLabel id="régularisation-switch-label">
+			<SwitchLabel id="régularisation-switch-label" as="label">
 				{t(
 					'pages.simulateurs.lodeom.régularisation.type',
 					'Quel type de régularisation souhaitez-vous ?'
 				)}
 			</SwitchLabel>
 
-			<SwitchToggleGroup
+			<ChoixUnique
+				variant="toggle"
+				options={options}
 				value={régularisationMethod}
 				onChange={(value) => {
 					setRégularisationMethod(value as RégularisationMethod)
 				}}
-				aria-labelledby="régularisation-switch-label"
-			>
-				<SwitchRadio value="annuelle">
-					{t(
-						'pages.simulateurs.lodeom.régularisation.annuelle',
-						'Régularisation annuelle'
-					)}
-				</SwitchRadio>
-				<SwitchRadio value="progressive">
-					{t(
-						'pages.simulateurs.lodeom.régularisation.progressive',
-						'Régularisation progressive'
-					)}
-				</SwitchRadio>
-			</SwitchToggleGroup>
+				aria={{ labelledby: 'régularisation-switch-label' }}
+			/>
 		</SwitchContainer>
 	)
 }

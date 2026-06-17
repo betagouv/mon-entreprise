@@ -4,7 +4,7 @@ import { zonesLodeomDottedName } from '@/hooks/useZoneLodeom'
 
 export default function ZoneSwitch() {
 	return (
-		<SwitchContainer isRule>
+		<SwitchContainer>
 			<SimpleField
 				dottedName={zonesLodeomDottedName}
 				labelStyle={RuleSwitchLabel}
