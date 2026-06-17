@@ -3,7 +3,7 @@ import React from 'react'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { Body, Grid, HelpButton, TitreObjectif } from '@/design-system'
+import { Body, Grid, InfoBulle, TitreObjectif } from '@/design-system'
 import { Montant, montantToString } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
@@ -61,7 +61,7 @@ export function ObjectifDeSimulation({
 							</ForceThemeProvider>
 						)}
 
-						{description && <HelpButton description={description} />}
+						{description && <InfoBulle description={description} />}
 					</Grid>
 					<Grid item>
 						{!small && typeof valeur !== 'string' && Option.isSome(valeur) && (
