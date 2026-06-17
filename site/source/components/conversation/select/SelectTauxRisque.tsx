@@ -144,7 +144,7 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	text-align: left;
-	font-size: 0.85rem;
+	font-size: ${({ theme }) => theme.fontSizes.min};
 `
 
 interface ErrorT extends Error {

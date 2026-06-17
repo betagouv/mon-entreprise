@@ -100,7 +100,7 @@ const StyledStepContainer = styled.li`
 const StyledStepNumber = styled.span<{ $active: boolean; $disabled: boolean }>`
 	&::before {
 		content: counter(step-counter);
-		font-size: 1.125rem;
+		font-size: ${({ theme }) => theme.fontSizes.lg};
 		font-weight: 500;
 	}
 	display: inline-flex;

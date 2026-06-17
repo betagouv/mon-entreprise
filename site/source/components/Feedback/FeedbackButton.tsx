@@ -113,7 +113,7 @@ const StyledButton = styled.button<{
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.md}) {
 		width: 3.25rem;
 		height: 3.25rem;
-		font-size: 1.5rem;
+		font-size: ${({ theme }) => theme.fontSizes.xxl};
 	}
 
 	@keyframes wiggle {

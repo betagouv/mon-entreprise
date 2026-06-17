@@ -173,8 +173,8 @@ const StyledNumberInput = styled(StyledInput)`
 `
 
 const Unit = styled.span<{ $small?: boolean }>`
-	font-size: ${({ $small }) => ($small ? '0.875rem' : '1rem')};
-	line-height: 1.5rem;
+	font-size: ${({ theme, $small }) => theme.fontSizes[$small ? 'min' : 'base']};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	font-family: ${({ theme }) => theme.fonts.main};
 	color: ${({ theme }) =>
 		theme.darkMode

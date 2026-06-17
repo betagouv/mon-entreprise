@@ -2,7 +2,6 @@ export { AccordeonDocumentation } from './AccordeonDocumentation'
 export { Alert } from './Alert'
 export { Attention, Callout, Conseil, Info, Note } from './Callout'
 export { Liseré } from './Liseré'
-export { BoutonMinimaliste } from './BoutonMinimaliste'
 export { DocumentationMDXContainer } from './DocumentationMDXContainer'
 export {
 	DocumentationPage,

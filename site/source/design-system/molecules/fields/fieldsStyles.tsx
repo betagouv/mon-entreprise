@@ -1,6 +1,5 @@
 import { css } from 'styled-components'
 
-const LABELS_HEIGHT = '1rem'
 const HELPERS_HEIGHT = '0.9rem'
 
 export const fieldTransition = css`
@@ -39,7 +38,7 @@ export const labelAndInputContainerStyles = css`
 `
 
 export const fieldLabelStyles = css`
-	font-size: ${LABELS_HEIGHT};
+	font-size: ${({ theme }) => theme.fontSizes.base};
 
 	${fieldTransition}
 
@@ -64,10 +63,10 @@ export const fieldInputStyles = css`
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	outline: transparent solid 1px;
 
-	font-size: 1rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
 
 	input {
-		font-size: 1rem;
+		font-size: ${({ theme }) => theme.fontSizes.base};
 	}
 
 	&:focus,

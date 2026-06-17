@@ -212,7 +212,7 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 	justify-content: space-between;
 	${({ theme }) => css`
 		font-family: ${theme.fonts.main};
-		font-size: ${theme.baseFontSize};
+		font-size: ${theme.fontSizes.base};
 		color: ${theme.colors.bases.primary[700]};
 		padding: ${theme.spacings.lg};
 		background-color: ${theme.colors.bases.primary[100]};

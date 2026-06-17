@@ -23,7 +23,7 @@ export const Titre = styled(H4)`
 		theme.darkMode
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
-	font-size: ${({ theme }) => theme.baseFontSize};
+	font-size: ${({ theme }) => theme.fontSizes.base};
 `
 
 export const Liste = styled.ul`

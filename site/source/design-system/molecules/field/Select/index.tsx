@@ -50,8 +50,8 @@ const Button = styled.button`
 	justify-content: space-between;
 	text-align: left;
 	appearance: none;
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	border: none;
 	width: 100%;
 	background: none;
@@ -74,8 +74,8 @@ const Button = styled.button`
 const Value = styled.span`
 	display: inline-flex;
 	align-items: center;
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	margin-top: 1rem;
 `
 
@@ -111,8 +111,8 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
 	}
 
 	${Button}:not(:focus):placeholder-shown + ${Button} {
-		font-size: 1rem;
-		line-height: 1.5rem;
+		font-size: ${({ theme }) => theme.fontSizes.base};
+		line-height: ${({ theme }) => theme.lineHeights.base};
 		top: 50%;
 		transform: translateY(-50%);
 	}

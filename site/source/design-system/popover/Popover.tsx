@@ -221,8 +221,8 @@ export const CloseButton = styled.button`
 			: theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
-	font-size: ${({ theme }) => theme.baseFontSize};
-	line-height: 24px;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	padding: ${({ theme }) => theme.spacings.sm};
 	svg {
 		width: ${({ theme }) => theme.spacings.lg};

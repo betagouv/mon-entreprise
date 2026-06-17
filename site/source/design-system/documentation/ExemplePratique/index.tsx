@@ -11,7 +11,7 @@ export const ExemplePratique = styled(ContenuInteractif)`
 		font-weight: 700;
 		color: ${({ theme }) => theme.colors.bases.secondary[700]};
 		margin-bottom: ${({ theme }) => theme.spacings.sm};
-		font-size: 0.875rem;
+		font-size: ${({ theme }) => theme.fontSizes.min};
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 	}

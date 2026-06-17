@@ -209,11 +209,11 @@ const AbsoluteSpanWithMargin = styled.span`
 `
 
 const StyledEmoji = styled(Emoji)`
-	font-size: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.xxl};
 `
 
 const StyledStatusEmoji = styled(Emoji)`
-	font-size: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.xxl};
 `
 
 const CardBody = styled.div`
@@ -231,7 +231,7 @@ const CardFooter = styled.div`
 `
 
 const StyledContentWrapper = styled(Body)<{ $status?: Status }>`
-	font-size: 1.25rem;
+	font-size: ${({ theme }) => theme.fontSizes.xl};
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -250,7 +250,7 @@ const StyledValeurSecondaire = styled.span`
 	display: block;
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
-	font-size: 1rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
 	color: ${({ theme }) => theme.colors.extended.grey[700]};
 	margin: 0 !important;
 	margin-top: 0.5rem;

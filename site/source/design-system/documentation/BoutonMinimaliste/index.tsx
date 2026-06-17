@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
 export const BoutonMinimaliste = styled.button`
-	font-size: 0.8rem;
+	font-size: ${({ theme }) => theme.fontSizes.min};
 	background-color: ${({ theme }) => theme.colors.extended.grey[200]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	border: none;

@@ -59,6 +59,7 @@ export interface Theme {
 	}
 
 	spacings: {
+		xxxs: Spacing
 		xxs: Spacing
 		xs: Spacing
 		sm: Spacing
@@ -74,7 +75,10 @@ export interface Theme {
 		heading: Font
 	}
 
-	baseFontSize: FontSize
+	fontSizes: {
+		min: FontSize
+		base: FontSize
+	}
 
 	box: {
 		borderRadius: Metric
@@ -98,10 +102,10 @@ export interface Theme {
 	}
 
 	breakpointsWidth: {
-		xl: Metric
-		lg: Metric
-		md: Metric
 		sm: Metric
+		md: Metric
+		lg: Metric
+		xl: Metric
 	}
 
 	darkMode: boolean

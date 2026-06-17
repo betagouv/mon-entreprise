@@ -50,8 +50,8 @@ const StyledClearButton = styled.button`
 	right: 0;
 	background: transparent;
 	border: none;
-	font-size: 2rem;
-	line-height: 2rem;
+	font-size: ${({ theme }) => theme.fontSizes.xxxl};
+	line-height: ${({ theme }) => theme.lineHeights.lg};
 	height: ${({ theme }) => theme.spacings.xxxl};
 	padding: ${({ theme }) => `${theme.spacings.md} ${theme.spacings.xs}`};
 	${({ theme: { darkMode } }) =>

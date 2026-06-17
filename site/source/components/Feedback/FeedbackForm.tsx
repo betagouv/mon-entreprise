@@ -298,8 +298,8 @@ export default function FeedbackForm({
 }
 
 const StyledFeedback = styled.div`
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: left;
 
@@ -311,16 +311,16 @@ const StyledFeedback = styled.div`
 
 const StyledTextArea = styled(TextAreaField)`
 	width: 100%;
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	padding: ${({ theme }) => theme.spacings.sm};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
 const StyledTextField = styled(TextField)`
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: ${({ theme }) => theme.fontSizes.base};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	padding: ${({ theme }) => theme.spacings.sm};
 	font-family: ${({ theme }) => theme.fonts.main};
 `
