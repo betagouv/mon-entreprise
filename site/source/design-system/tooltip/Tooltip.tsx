@@ -21,10 +21,8 @@ export const Tooltip = ({
 	className?: string
 	style?: CSSProperties
 }) => {
-	const [isHovered, setIsHovered] = useState(false)
-	const [isFocused, setIsFocused] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
 
-	const isOpen = isHovered || isFocused
 	const { x, y, strategy, refs } = useFloating<HTMLButtonElement>({
 		open: isOpen,
 		placement: 'top',
@@ -40,8 +38,7 @@ export const Tooltip = ({
 	})
 
 	useOnKeyDown('Escape', () => {
-		setIsHovered(false)
-		setIsFocused(false)
+		setIsOpen(false)
 	})
 
 	const id = useId()
@@ -52,10 +49,10 @@ export const Tooltip = ({
 				className={className}
 				style={style}
 				ref={refs.setReference}
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-				onFocus={() => setIsFocused(true)}
-				onBlur={() => setIsFocused(false)}
+				onMouseEnter={() => setIsOpen(true)}
+				onMouseLeave={() => setIsOpen(false)}
+				onFocus={() => setIsOpen(true)}
+				onBlur={() => setIsOpen(false)}
 				aria-describedby={id}
 			>
 				{children}
