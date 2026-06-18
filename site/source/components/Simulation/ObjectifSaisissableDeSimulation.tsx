@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 import React, { useState } from 'react'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Grid, InfoBulle, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
@@ -59,7 +59,7 @@ export function ObjectifSaisissableDeSimulation({
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal>
 				<GridCentered container spacing={2}>
-					<StyledGridItem item $avecDescription={!!description}>
+					<Grid item>
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
@@ -69,7 +69,7 @@ export function ObjectifSaisissableDeSimulation({
 						</TitreObjectifSaisissable>
 
 						{description && <InfoBulle description={description} />}
-					</StyledGridItem>
+					</Grid>
 
 					<Grid item>
 						{!isFocused && montantAnimation !== undefined && (
@@ -140,16 +140,6 @@ const StyledGoal = styled.div`
 	@media print {
 		padding: 0;
 	}
-`
-
-const StyledGridItem = styled(Grid)<{ $avecDescription: boolean }>`
-	${({ $avecDescription }) =>
-		!$avecDescription &&
-		css`
-			display: flex;
-			justify-content: end;
-			align-items: center;
-		`}
 `
 
 const LargeInputContainer = styled.div`
