@@ -18,14 +18,6 @@ export const QuestionCourante = ({ questions, retour }: Props) => {
 
 	return (
 		<>
-			<Button light size="XS" onPress={retour}>
-				<ReturnLeftIcon />
-				{t(
-					'components.simulateur.zone-de-saisie.situation.retour',
-					'Revenir à la liste'
-				)}
-			</Button>
-
 			{questions.map((Question) => (
 				<React.Fragment key={Question.id}>
 					{Question._tag === 'QuestionFournie' && (
@@ -40,10 +32,28 @@ export const QuestionCourante = ({ questions, retour }: Props) => {
 					)}
 				</React.Fragment>
 			))}
+
+			<StyledDiv>
+				<Button light size="XS" onPress={retour}>
+					<ReturnLeftIcon />
+					{t(
+						'components.simulateur.zone-de-saisie.situation.retour',
+						'Revenir à la liste'
+					)}
+				</Button>
+			</StyledDiv>
 		</>
 	)
 }
 
 const QuestionTitle = styled(H3)`
 	margin-top: 0;
+`
+
+const StyledDiv = styled.div`
+	margin-top: ${({ theme }) => theme.spacings.xl};
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		padding-bottom: ${({ theme }) => theme.spacings.xl};
+		border-bottom: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
+	}
 `
