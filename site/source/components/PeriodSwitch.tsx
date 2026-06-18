@@ -70,7 +70,7 @@ export default function PeriodSwitch({ periods }: Props) {
 
 const GridCentered = styled.fieldset`
 	display: grid;
-	grid-template-columns: 1.25fr 1fr;
+	grid-template-columns: 1.15fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
 
 	& > div {
