@@ -92,7 +92,7 @@ export function ObjectifSaisissableDeSimulation({
 
 const GridCentered = styled(Grid)`
 	display: grid;
-	grid-template-columns: 1.25fr 1fr;
+	grid-template-columns: 1.15fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
 
 	& > div {
