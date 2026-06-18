@@ -1,0 +1,144 @@
+import * as O from 'effect/Option'
+
+import {
+	abattementSécuritéSociale,
+	annéeDeCotisation,
+	décomposeCotisationMaladie,
+	estSituationValide,
+	joursDansAnnée,
+	plafondSécuritéSociale,
+	useFrontalierSuisse,
+} from '@/contextes/frontalier-suisse'
+import { Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
+import { arrondirÀLEuro, montantToString } from '@/domaine/Montant'
+
+export const metadata = {
+	title: 'Comprendre le calcul de votre cotisation maladie',
+	description:
+		'Le détail du calcul de la cotisation maladie des travailleurs frontaliers en Suisse',
+}
+
+export const Décomposition = () => {
+	const { situation } = useFrontalierSuisse()
+
+    if (!estSituationValide(situation)) {
+    	return (
+    		<Info>
+    			Renseignez le simulateur (date d’affiliation et revenus) pour voir le
+    			calcul appliqué à votre situation.
+    		</Info>
+    	)
+    }
+
+    const année = annéeDeCotisation(situation.dateAffiliation.value)
+    const détail = décomposeCotisationMaladie(situation, année)
+    const plafond = plafondSécuritéSociale(année)
+    const abattement = abattementSécuritéSociale(année)
+    const joursAnnée = joursDansAnnée(année)
+    const euro = (m) => montantToString(arrondirÀLEuro(m))
+
+    return (
+    	<Tableau>
+    		<thead>
+    			<tr>
+    				<th>Étape</th>
+    				<th>Calcul</th>
+    				<th>Montant</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			<tr>
+    				<td>Assiette retenue</td>
+    				<td>
+    					{euro(détail.salaires)} +{' '}
+    					{euro(détail.autresRevenus)}
+    				</td>
+    				<td>
+    					<Valeur couleur="primary">
+    						{euro(détail.assiette)}
+    					</Valeur>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>Abattement</td>
+    				<td>
+    					25 % × PASS {année} ({euro(plafond)})
+    				</td>
+    				<td>
+    					<Valeur couleur="primary">
+    						{euro(abattement)}
+    					</Valeur>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>Base imposable</td>
+    				<td>
+    					{euro(détail.assiette)} −{' '}
+    					{euro(abattement)}
+    				</td>
+    				<td>
+    					<Valeur couleur="primary">{euro(détail.base)}</Valeur>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>Cotisation annuelle</td>
+    				<td>{euro(détail.base)} × 8 %</td>
+    				<td>
+    					<ValeurImportante>
+    						{euro(détail.annuel)}
+    					</ValeurImportante>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>Cotisation mensuelle</td>
+    				<td>{euro(détail.annuel)} ÷ 12</td>
+    				<td>
+    					<ValeurImportante>
+    						{euro(détail.mensuel)}
+    					</ValeurImportante>
+    				</td>
+    			</tr>
+    			{O.isSome(détail.prorataPremièreAnnée) && (
+    				<tr>
+    					<td>Cotisation {année} au prorata</td>
+    					<td>
+    						{euro(détail.annuel)} × {détail.joursAffiliation} ÷{' '}
+    						{joursAnnée}
+    					</td>
+    					<td>
+    						<ValeurImportante>
+    							{euro(détail.prorataPremièreAnnée.value)}
+    						</ValeurImportante>
+    					</td>
+    				</tr>
+    			)}
+    		</tbody>
+    	</Tableau>
+    )
+
+}
+
+En tant que **travailleur frontalier en Suisse** affilié à l’assurance maladie française, votre cotisation est calculée chaque année par l’Urssaf à partir de vos revenus.
+
+## La formule
+
+> **Cotisation annuelle = (assiette − abattement) × 8 %**
+
+- **Assiette retenue** : la somme de vos **salaires** et de vos **autres revenus** déclarés (revenus de l’avant-dernière année).
+- **Abattement** : **25 % du plafond annuel de la Sécurité sociale (PASS)**, revalorisé chaque année.
+- **Taux** : **8 %**.
+
+## La première année (prorata)
+
+Si vous vous affiliez en cours d’année, la cotisation de cette première année est proratisée au nombre de jours d’affiliation :
+
+> **Cotisation de l’année = cotisation annuelle × jours d’affiliation ÷ nombre de jours de l’année**
+
+## Votre calcul
+
+<Décomposition />
+
+<Info>
+	Les montants affichés dans le simulateur sont arrondis à l’euro. Cette
+	estimation ne saurait engager la responsabilité de l’Urssaf.
+</Info>

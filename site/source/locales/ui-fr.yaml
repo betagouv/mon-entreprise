@@ -1830,6 +1830,28 @@ pages:
             cotisations sur le site de l’Urssaf, nouvelle fenêtre
           texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
             encore implémentée sur ce comparateur.
+    cotisation-maladie-frontalier-suisse:
+      externalLinks:
+        "1":
+          description: Affiliation, droit d'option et paiement de votre cotisation maladie
+            auprès de l'Urssaf.
+          title: Travailleurs frontaliers en Suisse
+      meta:
+        description: Estimez le coût de votre cotisation maladie française en tant que
+          travailleur frontalier en Suisse.
+        title: Cotisation maladie frontalier suisse
+      objectifs:
+        autres-revenus: Autres revenus perçus en {{annéeRevenus}}
+        date-affiliation: Date d'affiliation
+        salaires: Salaires perçus en {{annéeRevenus}}
+      résultat:
+        annuel: Cotisation maladie annuelle
+        mensuel: Cotisation maladie mensuelle
+        prorata:
+          message: première année, à partir du {{date}}
+          titre: Cotisation {{année}} au prorata
+      shortname: Cotisation maladie frontalier suisse
+      title: Cotisations maladie des travailleurs frontaliers en Suisse
     coût-création-entreprise:
       meta:
         description: Estimez les coûts des formalités administratives obligatoires à la

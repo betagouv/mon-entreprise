@@ -1731,6 +1731,28 @@ pages:
             scale on the Urssaf website, new window
           texte: The <2>reform of the contribution base and scale</2> has not yet been
             implemented on this comparator.
+    cotisation-maladie-frontalier-suisse:
+      externalLinks:
+        "1":
+          description: Affiliation, right of option and payment of your health insurance
+            contribution with Urssaf.
+          title: Cross-border workers in Switzerland
+      meta:
+        description: Estimate the cost of your French health insurance premiums as a
+          cross-border worker in Switzerland.
+        title: Swiss cross-border health insurance contribution
+      objectifs:
+        autres-revenus: Other income received in {{annéeRevenus}}
+        date-affiliation: Date of affiliation
+        salaires: Salaries in {{annéeRevenus}}
+      résultat:
+        annuel: Annual health contribution
+        mensuel: Monthly health contribution
+        prorata:
+          message: first year, starting on {{date}}
+          titre: "{{année}} 's pro-rata contribution"
+      shortname: Swiss cross-border health insurance contribution
+      title: Health insurance premiums for cross-border workers in Switzerland
     coût-création-entreprise:
       meta:
         description: Estimate the cost of the administrative formalities involved in

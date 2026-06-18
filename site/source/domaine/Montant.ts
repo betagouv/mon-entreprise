@@ -151,6 +151,9 @@ export const montant = <U extends UnitéMonétaire>(
 		unité,
 	}) as Montant<U>
 
+export const arrondirÀLEuro = <M extends Montant>(m: M): M =>
+	montant(Math.round(m.valeur), m.unité) as M
+
 export const plus = dual<
 	<M extends Montant<UnitéMonétaire>>(b: M) => (a: M) => M,
 	<M extends Montant<UnitéMonétaire>>(a: M, b: M) => M
