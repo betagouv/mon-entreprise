@@ -15,6 +15,7 @@ import { cessationActivitéConfig } from '@/pages/simulateurs/cessation-activit�
 import { chirurgienDentisteConfig } from '@/pages/simulateurs/chirurgien-dentiste/config'
 import { cipavConfig } from '@/pages/simulateurs/cipav/config'
 import { comparaisonStatutsConfig } from '@/pages/simulateurs/comparaison-statuts/config'
+import { cotisationMaladieFrontalierSuisseConfig } from '@/pages/simulateurs/cotisation-maladie-frontalier-suisse/config'
 import { coûtCréationEntrepriseConfig } from '@/pages/simulateurs/cout-creation-entreprise/config.js'
 import { dividendesConfig } from '@/pages/simulateurs/dividendes/config'
 import { eirlConfig } from '@/pages/simulateurs/eirl/config'
@@ -68,6 +69,7 @@ const getMetadataSrc = (params: SimulatorsDataParams) => {
 		...lodeomConfig(params),
 		...cessationActivitéConfig(params),
 		...locationDeMeubleConfig(params),
+		...cotisationMaladieFrontalierSuisseConfig(params),
 
 		// assistants:
 		...choixStatutJuridiqueConfig(params),
