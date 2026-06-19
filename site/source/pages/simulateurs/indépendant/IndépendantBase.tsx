@@ -3,10 +3,7 @@ import { useDispatch } from 'react-redux'
 import RuleInput from '@/components/conversation/RuleInput'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
-import AvertissementAnnéeCotisationsIndépendant from '@/components/Simulation/Avertissements/AvertissementAnnéeCotisationsIndépendant'
-import AvertissementDoubleRégimeIndépendant from '@/components/Simulation/Avertissements/AvertissementDoubleRégimeIndépendant'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Body } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
@@ -24,6 +21,9 @@ import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import { ExternalLink } from '../_configs/types'
 import SimulateurPageLayout from '../SimulateurPageLayout'
+import { AvertissementAnnéeCotisationsIndépendant } from './components/AvertissementAnnéeCotisationsIndépendant'
+import { AvertissementAutoEntrepreneur } from './components/AvertissementAutoEntrepreneur'
+import { AvertissementDoubleRégimeIndépendant } from './components/AvertissementDoubleRégimeIndépendant'
 
 const nextSteps = ['is', 'comparaison-statuts'] satisfies SimulateurId[]
 
@@ -67,6 +67,13 @@ export default function IndépendantBase({ id }: Props) {
 	const allExternalLinks =
 		relevantConditionalExternalLinks.concat(externalLinks)
 
+	const confusionAEPossible = [
+		'indépendant',
+		'entreprise-individuelle',
+		'profession-libérale',
+		'cipav',
+	]
+
 	const Warning = simulateurConfig.warning
 
 	return (
@@ -87,13 +94,12 @@ export default function IndépendantBase({ id }: Props) {
 						simulateur={id}
 						informationsComplémentaires={
 							<>
+								{confusionAEPossible.indexOf(id) > -1 && (
+									<AvertissementAutoEntrepreneur />
+								)}
 								{Warning && <Warning />}
-								<Body>
-									<AvertissementAnnéeCotisationsIndépendant />
-								</Body>
-								<Body>
-									<AvertissementDoubleRégimeIndépendant />
-								</Body>
+								<AvertissementAnnéeCotisationsIndépendant />
+								<AvertissementDoubleRégimeIndépendant />
 							</>
 						}
 					/>
