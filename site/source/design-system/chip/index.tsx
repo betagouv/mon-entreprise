@@ -52,13 +52,14 @@ const StyledChip = styled.strong<{
 	display: inline-flex;
 	align-items: center;
 	white-space: nowrap;
+	text-align: center;
+	line-height: initial;
 	${({ theme }) => css`
 		margin: 0 ${theme.spacings.xxs};
 		border-radius: ${theme.spacings.md};
 		font-family: ${theme.fonts.main};
 		padding: ${theme.spacings.xxs} ${theme.spacings.xs};
 		font-size: ${theme.fontSizes.base};
-		text-align: center;
 	`}
 	${({ theme, $type }) => {
 		/* Different colors for Primary in dark mode */
