@@ -84,7 +84,6 @@ export function SimpleField(props: SimpleFieldProps) {
 					Object.keys(evaluation.missingVariables).length > 0
 				}
 				onChange={dispatchValue}
-				showSuggestions={false}
 				errorMessage={errorMessage}
 			/>
 		</FadeIn>

@@ -139,7 +139,6 @@ interface RuleInputProps {
 	missing?: boolean
 	onSubmit?: (source?: string) => void
 	engine?: Engine<DottedName>
-	showSuggestions?: boolean
 	inputType?: ChoiceDisplayType
 	modifiers?: Record<string, string>
 	required?: boolean
@@ -160,7 +159,6 @@ interface RuleInputProps {
 export default function RuleInput({
 	dottedName,
 	onChange,
-	showSuggestions = true,
 	onSubmit = () => null,
 	missing,
 	inputType,
@@ -332,7 +330,7 @@ export default function RuleInput({
 				onChange={(value) => onChange(value, dottedName)}
 				title={rule.title}
 				onSubmit={onSubmit}
-				suggestions={showSuggestions ? rule.suggestions : {}}
+				suggestions={rule.suggestions}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
 					describedby: accessibilityProps['aria-describedby'],
@@ -400,9 +398,7 @@ export default function RuleInput({
 					onChange(value, dottedName)
 				}}
 				onSubmit={onSubmit}
-				suggestions={
-					showSuggestions ? (suggestions as Record<string, Montant>) : {}
-				}
+				suggestions={suggestions as Record<string, Montant>}
 				id={inputId}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
@@ -429,11 +425,7 @@ export default function RuleInput({
 					onChange(value, dottedName)
 				}}
 				onSubmit={onSubmit}
-				suggestions={
-					showSuggestions
-						? (suggestions as Record<string, Quantité>)
-						: undefined
-				}
+				suggestions={suggestions as Record<string, Quantité>}
 				id={inputId}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
@@ -452,11 +444,7 @@ export default function RuleInput({
 				onChange(value, dottedName)
 			}}
 			onSubmit={onSubmit}
-			suggestions={
-				showSuggestions
-					? (suggestions as InputSuggestionsRecord<number>)
-					: undefined
-			}
+			suggestions={suggestions as InputSuggestionsRecord<number>}
 			id={inputId}
 			formatOptions={accessibilityProps.formatOptions}
 			aria={{
