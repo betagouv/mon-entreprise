@@ -3,23 +3,36 @@ import { Trans } from 'react-i18next'
 
 import SimulationChargéeBanner from '@/components/Simulation/SimulationChargéeBanner'
 import Warning from '@/components/ui/WarningBlock'
-import { Body, Strong } from '@/design-system'
+import { Body, Emoji, Strong } from '@/design-system'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 
 type SimulateurWarningProps = {
 	simulateur: SimulateurId
 	informationsComplémentaires?: ReactNode
+	bêta?: boolean
 }
 
 export default function SimulateurWarning({
 	simulateur,
 	informationsComplémentaires,
+	bêta = false,
 }: SimulateurWarningProps) {
 	return (
 		<>
 			<Warning
 				localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
 			>
+				{bêta && (
+					<Body>
+						<Trans i18nKey="simulateurs.warning.beta">
+							<Emoji emoji="🚧" />{' '}
+							<Strong>Cet outil est en version bêta</Strong>&nbsp;: nous
+							travaillons à valider les informations et les calculs, mais
+							<Strong>des erreurs peuvent être présentes</Strong>.
+						</Trans>
+					</Body>
+				)}
+
 				{informationsComplémentaires && <>{informationsComplémentaires}</>}
 
 				<Body>

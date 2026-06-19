@@ -52,6 +52,7 @@ export default function LodeomSimulation() {
 								</Trans>
 							</Body>
 						}
+						bêta
 					/>
 					<LodeomSimulationGoals />
 				</Simulation>
