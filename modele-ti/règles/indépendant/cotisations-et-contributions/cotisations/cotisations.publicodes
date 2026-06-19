@@ -556,8 +556,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     variations:
       - si: exonérations . âge
         alors: 100%
-      - si: exonérations . invalidité = non
-        alors: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
+      - sinon: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
   arrondi: 2 décimales
   unité: €/an
   références:

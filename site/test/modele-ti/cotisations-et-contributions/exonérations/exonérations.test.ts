@@ -3,6 +3,8 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
+const EXONÉRATIONS =
+	'indépendant . cotisations et contributions . cotisations . exonérations'
 
 const defaultSituation = {
 	'entreprise . activité': "'libérale'",
@@ -25,9 +27,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . montant maladie-maternité':
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
+				[`${EXONÉRATIONS} . Acre . exonération . montant maladie-maternité`]:
 					'100 €/an',
 			})
 
@@ -44,9 +45,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières':
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . invalidité . exonération . taux maladie-maternité et indemnités journalières`]:
 					'50%',
 			})
 			expect(e2).toEvaluate(
@@ -62,10 +62,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
 			})
 
 			expect(e2).toEvaluate(`${COTISATIONS} . maladie-maternité`, cotisation)
@@ -80,9 +78,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux indemnités journalières':
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
+				[`${EXONÉRATIONS} . Acre . exonération . taux indemnités journalières`]:
 					'50 %',
 			})
 
@@ -99,9 +96,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières':
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . invalidité . exonération . taux maladie-maternité et indemnités journalières`]:
 					'50%',
 			})
 
@@ -118,10 +114,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
 			})
 
 			expect(e2).toEvaluate(
@@ -139,9 +133,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux allocations familiales':
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
+				[`${EXONÉRATIONS} . Acre . exonération . taux allocations familiales`]:
 					'50 %',
 			})
 
@@ -158,10 +151,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
 			})
 
 			expect(e2).toEvaluate(
@@ -179,9 +170,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux retraite de base et invalidité-décès':
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
+				[`${EXONÉRATIONS} . Acre . exonération . taux retraite de base et invalidité-décès`]:
 					'50 %',
 			})
 
@@ -198,9 +188,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite de base':
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . invalidité . exonération . taux retraite de base`]:
 					'50%',
 			})
 
@@ -217,10 +206,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
 			})
 
 			expect(e2).toEvaluate(`${COTISATIONS} . retraite de base`, cotisation)
@@ -229,16 +216,64 @@ describe('L’exonération appliquée', () => {
 		it('est l’exonération incapacité lorsqu’elle est présente', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
 				'indépendant . profession libérale . CNAVPL . exonération incapacité':
 					'oui',
 			})
 
 			expect(e).toEvaluate(`${COTISATIONS} . retraite de base`, 0)
 		})
+
+		it.each([
+			[
+				'd’Acre seule',
+				{
+					[`${EXONÉRATIONS} . Acre`]: 'oui',
+					[`${EXONÉRATIONS} . Acre . exonération . taux retraite de base et invalidité-décès`]:
+						'50 %',
+				},
+			],
+			[
+				'de pension invalidité seule',
+				{
+					[`${EXONÉRATIONS} . invalidité`]: 'oui',
+					[`${EXONÉRATIONS} . invalidité . exonération . taux retraite de base`]:
+						'50 %',
+				},
+			],
+			[
+				'd’Acre et de pension invalidité',
+				{
+					[`${EXONÉRATIONS} . invalidité`]: 'oui',
+					[`${EXONÉRATIONS} . Acre`]: 'oui',
+				},
+			],
+			[
+				'd’exonération incapacité',
+				{
+					[`${EXONÉRATIONS} . invalidité`]: 'oui',
+					[`${EXONÉRATIONS} . Acre`]: 'oui',
+					'indépendant . profession libérale . CNAVPL . exonération incapacité':
+						'oui',
+				},
+			],
+		])(
+			'est la même pour les PLR Cipav mahorais⋅es qu’en métropole en cas %s',
+			(_libellé, exonérations) => {
+				const enMétropole = engine
+					.setSituation({ ...defaultSituation, ...exonérations })
+					.evaluate(`${COTISATIONS} . retraite de base`).nodeValue as number
+
+				expect(
+					engine.setSituation({
+						...defaultSituation,
+						...exonérations,
+						'établissement . commune . département': "'Mayotte'",
+					})
+				).toEvaluate(`${COTISATIONS} . retraite de base`, enMétropole)
+			}
+		)
 	})
 
 	describe('à la cotisation retraite complémentaire', () => {
@@ -249,9 +284,8 @@ describe('L’exonération appliquée', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite complémentaire':
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . invalidité . exonération . taux retraite complémentaire`]:
 					'50%',
 			})
 
@@ -264,9 +298,8 @@ describe('L’exonération appliquée', () => {
 		it('est l’exonération incapacité lorsqu’elle est présente', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération . taux retraite complémentaire':
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . invalidité . exonération . taux retraite complémentaire`]:
 					'50%',
 				'indépendant . profession libérale . CNAVPL . exonération incapacité':
 					'oui',
@@ -274,19 +307,53 @@ describe('L’exonération appliquée', () => {
 
 			expect(e).toEvaluate(`${COTISATIONS} . retraite complémentaire`, 0)
 		})
+
+		it.each([
+			[
+				'de pension invalidité seule',
+				{
+					[`${EXONÉRATIONS} . invalidité`]: 'oui',
+					[`${EXONÉRATIONS} . invalidité . exonération . taux retraite de base`]:
+						'50 %',
+				},
+			],
+			[
+				'd’exonération incapacité',
+				{
+					[`${EXONÉRATIONS} . invalidité`]: 'oui',
+					'indépendant . profession libérale . CNAVPL . exonération incapacité':
+						'oui',
+				},
+			],
+		])(
+			'est la même pour les PLR Cipav mahorais⋅es qu’en métropole en cas %s',
+			(_libellé, exonérations) => {
+				const enMétropole = engine
+					.setSituation({ ...defaultSituation, ...exonérations })
+					.evaluate(`${COTISATIONS} . retraite complémentaire`)
+					.nodeValue as number
+
+				expect(
+					engine.setSituation({
+						...defaultSituation,
+						...exonérations,
+						'établissement . commune . département': "'Mayotte'",
+					})
+				).toEvaluate(`${COTISATIONS} . retraite complémentaire`, enMétropole)
+			}
+		)
 	})
 
 	describe('à la cotisation invalidité-décès', () => {
-		it('est l’Acre lorsqu’il n’y a pas d’exonération invalidité ni âge', () => {
+		it('est l’Acre lorsqu’il n’y a pas d’exonération âge', () => {
 			const e1 = engine.setSituation(defaultSituation)
 			const cotisation = e1.evaluate(`${COTISATIONS} . invalidité et décès`)
 				.nodeValue as number
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération . taux retraite de base et invalidité-décès':
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
+				[`${EXONÉRATIONS} . Acre . exonération . taux retraite de base et invalidité-décès`]:
 					'50 %',
 			})
 
@@ -296,34 +363,48 @@ describe('L’exonération appliquée', () => {
 			)
 		})
 
-		it('est nulle lorsqu’il y a à la fois Acre et invalidité mais pas d’exonération âge', () => {
-			const e1 = engine.setSituation(defaultSituation)
-			const cotisation = e1.evaluate(`${COTISATIONS} . invalidité et décès`)
-				.nodeValue as number
-
-			const e2 = engine.setSituation({
-				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
-			})
-
-			expect(e2).toEvaluate(`${COTISATIONS} . invalidité et décès`, cotisation)
-		})
-
 		it('est l’exonération âge lorsqu’elle est présente', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-					'oui',
-				'indépendant . cotisations et contributions . cotisations . exonérations . âge':
-					'oui',
+				[`${EXONÉRATIONS} . invalidité`]: 'oui',
+				[`${EXONÉRATIONS} . Acre`]: 'oui',
+				[`${EXONÉRATIONS} . âge`]: 'oui',
 			})
 
 			expect(e).toEvaluate(`${COTISATIONS} . invalidité et décès`, 0)
 		})
+
+		it.each([
+			[
+				'd’Acre seule',
+				{
+					[`${EXONÉRATIONS} . Acre`]: 'oui',
+					[`${EXONÉRATIONS} . Acre . exonération . taux retraite de base et invalidité-décès`]:
+						'50 %',
+				},
+			],
+			[
+				'd’exonération âge',
+				{
+					[`${EXONÉRATIONS} . Acre`]: 'oui',
+					[`${EXONÉRATIONS} . âge`]: 'oui',
+				},
+			],
+		])(
+			'est la même pour les PLR Cipav mahorais⋅es qu’en métropole en cas %s',
+			(_libellé, exonérations) => {
+				const enMétropole = engine
+					.setSituation({ ...defaultSituation, ...exonérations })
+					.evaluate(`${COTISATIONS} . invalidité et décès`).nodeValue as number
+
+				expect(
+					engine.setSituation({
+						...defaultSituation,
+						...exonérations,
+						'établissement . commune . département': "'Mayotte'",
+					})
+				).toEvaluate(`${COTISATIONS} . invalidité et décès`, enMétropole)
+			}
+		)
 	})
 })
