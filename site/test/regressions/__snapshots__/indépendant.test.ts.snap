@@ -5,7 +5,7 @@ exports[`calculate simulations-indépendant > Année incomplète 1`] = `
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
+indépendant . cotisations et contributions . début activité: 3593
 indépendant . revenu professionnel: undefined
 indépendant . rémunération . brute: undefined
 indépendant . rémunération . nette: undefined
@@ -17,7 +17,7 @@ exports[`calculate simulations-indépendant > Année incomplète 2`] = `
 entreprise . chiffre d'affaires: 3749
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: 1360
-indépendant . cotisations et contributions . début activité: null
+indépendant . cotisations et contributions . début activité: 3593
 indépendant . revenu professionnel: 2080
 indépendant . rémunération . brute: 3749
 indépendant . rémunération . nette: 2000
@@ -29,7 +29,7 @@ exports[`calculate simulations-indépendant > Année incomplète 3`] = `
 entreprise . chiffre d'affaires: 7205
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: 1567
-indépendant . cotisations et contributions . début activité: null
+indépendant . cotisations et contributions . début activité: 3593
 indépendant . revenu professionnel: 5155
 indépendant . rémunération . brute: 7205
 indépendant . rémunération . nette: 5000
@@ -41,7 +41,7 @@ exports[`calculate simulations-indépendant > Année incomplète 4`] = `
 entreprise . chiffre d'affaires: 14082
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: 2951
-indépendant . cotisations et contributions . début activité: null
+indépendant . cotisations et contributions . début activité: 3593
 indépendant . revenu professionnel: 10302
 indépendant . rémunération . brute: 14082
 indépendant . rémunération . nette: 10000
@@ -53,7 +53,7 @@ exports[`calculate simulations-indépendant > Année incomplète 5`] = `
 entreprise . chiffre d'affaires: 140741
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: 30519
-indépendant . cotisations et contributions . début activité: null
+indépendant . cotisations et contributions . début activité: 3593
 indépendant . revenu professionnel: 103020
 indépendant . rémunération . brute: 140741
 indépendant . rémunération . nette: 100000
@@ -65,7 +65,7 @@ exports[`calculate simulations-indépendant > Année incomplète 6`] = `
 entreprise . chiffre d'affaires: 1272290
 impôt . montant: undefined
 indépendant . cotisations et contributions . cotisations: 154818
-indépendant . cotisations et contributions . début activité: null
+indépendant . cotisations et contributions . début activité: 3593
 indépendant . revenu professionnel: 1035085
 indépendant . rémunération . brute: 1272290
 indépendant . rémunération . nette: 1000000

@@ -21,7 +21,7 @@ indépendant . cotisations et contributions . début activité:
     cotisation indemnités journalières pour lesquelles l’assiette
     forfaitaire est égale à 40 % du plafond annuel de la Sécurité sociale).
 
-  applicable si: entreprise . date de création >= période . début d'année
+  applicable si: entreprise . durée d'activité < 2 an
   non applicable si: cotisations . exonérations . invalidité
   valeur: cotisations et contributions
   contexte:
