@@ -13166,24 +13166,24 @@ salarié . coût total employeur . aides . emploi franc . montant:
   titre.fr: montant
 salarié . coût total employeur . aides . emploi franc . éligible:
   description.en: >
-    [automatic] Conditions :
+    [automatic] Conditions:
 
-    - The employee recruited is a jobseeker registered with France Travail and
-    resides in a priority urban district (QPV) [check district
-    eligibility](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - The hired employee is a job seeker registered with France Travail and
+    resides in a priority neighborhood (QPV) of the city [check a neighborhood’s
+    eligibility](https://sig.ville.gouv.fr/)
 
-    - The employer is up to date with its contributions and has not made any
-    redundancies for the position filled in the 6 months prior to recruitment.
+    - The employer is up to date on social security contributions and has not
+    carried out any layoffs for economic reasons for the filled position within
+    the 6 months prior to hiring
 
-    - The employee recruited must not have been part of the company's workforce
-    in the 6 months prior to recruitment.
+    - The hired employee must not have been part of the company’s workforce
+    within the 6 months prior to hiring
   description.fr: >
     Conditions :
 
     - Le salarié recruté est un demandeur d'emploi inscrit à France Travail et
     réside dans un quartier prioritaire de la ville (QPV) [vérifier
-    l'éligibilité d'un
-    quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    l'éligibilité d'un quartier](https://sig.ville.gouv.fr/)
 
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un
     licenciement économique pour le poste pourvu dans les 6 mois précédents le
