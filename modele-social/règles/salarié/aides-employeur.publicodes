@@ -110,7 +110,7 @@ salarié . coût total employeur . aides . emploi franc . éligible:
   question: Cette embauche est-elle éligible à l'aide emploi-franc ?
   description: |
     Conditions :
-    - Le salarié recruté est un demandeur d'emploi inscrit à France Travail et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/recherche-adresses-qp-polville)
+    - Le salarié recruté est un demandeur d'emploi inscrit à France Travail et réside dans un quartier prioritaire de la ville (QPV) [vérifier l'éligibilité d'un quartier](https://sig.ville.gouv.fr/)
     - L'employeur est à jour de ses cotisations et n'a pas procédé à un licenciement économique pour le poste pourvu dans les 6 mois précédents le recrutement
     - Le salarié recruté ne doit pas avoir appartenu à l'effectif de l'entreprise dans les 6 mois précédent l'embauche
   par défaut: non
