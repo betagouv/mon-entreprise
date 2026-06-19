@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import BetaBanner from '@/components/BetaBanner'
 import BêtaChip from '@/components/BêtaChip'
 import {
 	TrackingChapters,
@@ -82,8 +81,6 @@ export default function SimulateurPageLayout({
 					{tooltip && <Intro>{tooltip}</Intro>}
 				</>
 			)}
-
-			{beta && <BetaBanner />}
 
 			{inIframe ? <Conteneur>{children}</Conteneur> : children}
 

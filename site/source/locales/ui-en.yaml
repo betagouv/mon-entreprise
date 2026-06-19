@@ -1528,9 +1528,6 @@ pages:
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
     commun:
-      betawarning: "<0>This tool is in beta version</0> : we are working to
-        <3>validate the information and calculations</3>, but <6>errors may
-        occur.</6>"
       date: Date of regulations used for calculations
       periode-calcul: Calculation period
       previousSimulationBanner:
@@ -2369,6 +2366,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
+    beta: "<0>&lt;/0> <2> This tool is in beta&lt;/2> : We are working to validate
+      the information and calculations,<4>but errors may be present</4>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand
