@@ -1,4 +1,3 @@
-
 indépendant . cotisations et contributions . cotisations . exonérations . Acre:
   applicable si: entreprise . durée d'activité . en début d'année < 1 an
   question: Bénéficiez-vous de l’Acre ?
@@ -108,9 +107,9 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     Afin de faciliter les calculs, nous avons également simplifié la formule de ce
     taux d’exonération pour les cotisations indemnités journalières, allocations
-    familiales, retraite de base et invalidité-décès. En effet, dans le cadre de
-    l’Acre, l’assiette est inférieure au PASS et dans ce cas la formule de chacune
-    de ces cotisations est du type `assiette x taux`.
+    familiales, retraite de base et invalidité-décès. En effet, l’Acre ne
+    s’applique que pour des assiettes inférieures au PASS, et dans ce cadre la
+    formule de chacune de ces cotisations est du type `assiette x taux`.
 
     En notant T ce taux, la cotisation hors exonération vaut donc `R x T` et la
     cotisation pour une assiette valant 75 % du PASS vaut `0,75 x PASS x T`.

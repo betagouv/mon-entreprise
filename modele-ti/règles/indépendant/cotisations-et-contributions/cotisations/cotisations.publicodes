@@ -113,17 +113,11 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     valeur: maladie-maternité avant abattements
     abattement:
       variations:
-        - si:
-            toutes ces conditions:
-              - exonérations . Acre
-              - exonérations . invalidité = non
+        - si: exonérations . invalidité = non
           alors:
             valeur: exonérations . Acre . exonération . montant maladie-maternité
             unité: €/an
-        - si:
-            toutes ces conditions:
-              - exonérations . Acre = non
-              - exonérations . invalidité
+        - si: exonérations . Acre = non
           alors:
             valeur: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
             unité: '%'
@@ -171,15 +165,9 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
     - taux
   abattement:
     variations:
-      - si:
-          toutes ces conditions:
-            - exonérations . Acre
-            - exonérations . invalidité = non
+      - si: exonérations . invalidité = non
         alors: exonérations . Acre . exonération . taux indemnités journalières
-      - si:
-          toutes ces conditions:
-            - exonérations . Acre = non
-            - exonérations . invalidité
+      - si: exonérations . Acre = non
         alors: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
   arrondi: oui
   unité: €/an
@@ -370,15 +358,9 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
         alors: 100%
       - sinon:
           variations:
-            - si:
-                toutes ces conditions:
-                  - exonérations . Acre
-                  - exonérations . invalidité = non
+            - si: exonérations . invalidité = non
               alors: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
-            - si:
-                toutes ces conditions:
-                  - exonérations . Acre = non
-                  - exonérations . invalidité
+            - si: exonérations . Acre = non
               alors: exonérations . invalidité . exonération . taux retraite de base
   arrondi: oui
   unité: €/an
@@ -568,9 +550,8 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     variations:
       - si: exonérations . âge
         alors: 100%
-      - sinon:
-          applicable si: exonérations . invalidité = non
-          valeur: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
+      - si: exonérations . invalidité = non
+        alors: exonérations . Acre . exonération . taux retraite de base et invalidité-décès
   arrondi: 2 décimales
   unité: €/an
   références:
