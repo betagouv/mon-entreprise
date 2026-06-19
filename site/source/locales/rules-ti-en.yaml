@@ -2603,41 +2603,38 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     > 75 % du PASS (proratisé en cas d’année incomplète).
   note.en: >
-    [automatic] For performance reasons, we do not calculate the amount of the
-    exemption
+    [automatic] For performance reasons, we do not calculate the amount of
 
-    but its rate. In other words, the ratio between the amount of the exemption
-    and the amount of the contribution excluding the exemption.
+    the exemption but rather its rate. That is, the ratio of the amount of
 
-    the amount of the contribution excluding the exemption.
+    the exemption to the contribution amount excluding the exemption.
 
 
-    To simplify calculations, we have also simplified the formula for this
+    To simplify calculations, we have also streamlined the formula for this
 
-    exemption rate for contributions to daily allowances, family allowances
+    exemption rate for contributions related to daily sickness benefits, family
 
-    basic pension and disability-death contributions. Indeed, under the
+    allowances, basic retirement, and disability-death benefits. In fact, the
+    Acre
 
-    Acre, the base is less than the PASS and in this case the formula for each
-    of these
+    applies only to contribution bases below the PASS, and in this context, the
 
-    of each of these contributions is of the "base x rate" type.
-
-
-    If we denote this rate as T, the contribution excluding the exemption is
-    therefore `R x T` and the contribution for a base of `R x T` is `R x T`.
-
-    contribution for a base equal to 75% of PASS is `0.75 x PASS x T`.
+    formula for each of these contributions is of the form `contribution base ×
+    rate`.
 
 
-    The exemption rate then becomes **`0.75 x (PASS - R) / R`**.
+    Let T be this rate; the contribution before the exemption is therefore `R x
+    T`, and the
+
+    contribution for a contribution base equal to 75% of the PASS is `0.75 x
+    PASS x T`.
 
 
-    > Proof :
+    The exemption rate then becomes **`0.75 x (PASS - R) / R`**
 
-    &gt;
+    > Proof:
 
-    > [(PASS - R) x E / PASS] / (R x T)
+    &gt;> [(PASS - R) x E / PASS] / (R x T)
 
     &gt;
 
@@ -2652,9 +2649,8 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     > = 0.75 x (PASS - R) / R
 
 
-    For sickness and maternity contributions, the calculation of which is more
-    complex, we calculate the amount of the exemption using the official
-    formula.
+    For the health and maternity insurance contribution, which is more complex
+    to calculate, we
 
     calculate the amount of the exemption using the official formula.
   note.fr: >
@@ -2670,12 +2666,11 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     taux d’exonération pour les cotisations indemnités journalières, allocations
 
-    familiales, retraite de base et invalidité-décès. En effet, dans le cadre de
+    familiales, retraite de base et invalidité-décès. En effet, l’Acre ne
 
-    l’Acre, l’assiette est inférieure au PASS et dans ce cas la formule de
-    chacune
+    s’applique que pour des assiettes inférieures au PASS, et dans ce cadre la
 
-    de ces cotisations est du type `assiette x taux`.
+    formule de chacune de ces cotisations est du type `assiette x taux`.
 
 
     En notant T ce taux, la cotisation hors exonération vaut donc `R x T` et la
