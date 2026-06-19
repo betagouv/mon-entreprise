@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import Notifications from '@/components/Notifications'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { DarkLi, Ul } from '@/design-system'
+import { DarkLi, Strong, Ul } from '@/design-system'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
@@ -47,10 +47,17 @@ export default function DividendesSimulation() {
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>
-									{t(
-										'pages.simulateurs.dividendes.warning.1',
-										'Cette simulation ne concerne que les sociétés françaises à l’impôt sur les sociétés (IS), et ne concerne pas les travailleurs indépendants non salariés.'
-									)}
+									<Trans i18nKey="pages.simulateurs.dividendes.warning.1">
+										Cette simulation ne concerne que les sociétés françaises à
+										l’impôt sur les sociétés (IS), et{' '}
+										<Strong>
+											ne concerne pas les travailleurs indépendants non salariés
+										</Strong>{' '}
+										comme les <Strong>gérants majoritaires de SARL</Strong>, les
+										associés uniques d’
+										<Strong>EURL</Strong> ou les{' '}
+										<Strong>associés de SNC</Strong>.
+									</Trans>
 								</DarkLi>
 								<DarkLi>
 									{t(

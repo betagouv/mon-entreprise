@@ -1787,8 +1787,10 @@ pages:
       shortName: Dividends
       title: Dividend payment simulator
       warning:
-        "1": This simulation applies only to French companies subject to corporation tax
-          (IS), and does not concern self-employed workers.
+        "1": This simulation applies only to French companies subject to corporate
+          income tax (IS), and <2>does not apply to self-employed
+          individuals&lt;/2> such as <5>majority managers of SARLs</5>, sole
+          partners of<7>EURLs&lt;/7> , or <10>partners in SNCs</10>.
         "2": Tax on dividends is calculated in addition to tax on other taxable income.
     ei:
       meta:

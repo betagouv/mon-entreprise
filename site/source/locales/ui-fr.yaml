@@ -1894,8 +1894,9 @@ pages:
       title: Simulateur de versement de dividendes
       warning:
         "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
-          sociétés (IS), et ne concerne pas les travailleurs indépendants non
-          salariés.
+          sociétés (IS), et <2>ne concerne pas les travailleurs indépendants non
+          salariés</2> comme les <5>gérants majoritaires de SARL</5>, les
+          associés uniques d’<7>EURL</7> ou les <10>associés de SNC</10>.
         "2": Le montant de l’impôt sur les dividendes est calculé en plus de l’impôt sur
           les autres revenus imposables.
     ei:
