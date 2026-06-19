@@ -284,8 +284,11 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     valeur: allocations familiales avant abattements
     abattement: profession libérale . réglementée . PAMC . participation CPAM . allocations familiales
   abattement:
-    applicable si: exonérations . invalidité = non
-    valeur: exonérations . Acre . exonération . taux allocations familiales
+    variations:
+      - si: exonérations . Mayotte 24 mois
+        alors: 100%
+      - si: exonérations . invalidité = non
+        alors: exonérations . Acre . exonération . taux allocations familiales
   arrondi: oui
   unité: €/an
   références:
@@ -340,6 +343,9 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
         produit:
           - assiette
           - taux Mayotte
+        abattement:
+          applicable si: exonérations . Mayotte 24 mois
+          valeur: 100%
     - sinon:
         # Le code de la sécurité sociale décrit un calcul identique à celui des PLR
         # (taux T1 sur la part de l'assiette < PASS + taux T2 sur toute l'assiette)
@@ -599,6 +605,9 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité-i
         - si: date < 01/2036
           alors: 7.65%
         - sinon: 8.00%
+  abattement:
+    applicable si: exonérations . Mayotte 24 mois
+    valeur: 100%
   arrondi: oui
   unité: €/an
   références:
@@ -634,6 +643,9 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité e
         - si: date < 01/2036
           alors: 6.90%
         - sinon: 7.20%
+  abattement:
+    applicable si: exonérations . Mayotte 24 mois
+    valeur: 100%
   arrondi: oui
   unité: €/an
   références:

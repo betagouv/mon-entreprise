@@ -1,0 +1,13 @@
+indépendant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois:
+  titre: Exonération 24 mois Mayotte
+  description: |
+    Les cotisantes et cotisants mahorais en début d’activité bénéficient d’une
+    **exonération totale des cotisations et contributions**, à l’exception de la
+    CFP et de la CURPS, pour une période de **24 mois** à compter de la date de
+    création de l’activité.
+  références:
+    Article 28-8 de l'ordonnance n°96-1122: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025023112
+  valeur:
+    toutes ces conditions:
+      - établissement . commune . département . outre-mer . Mayotte
+      - entreprise . durée d'activité < 2 an
