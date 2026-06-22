@@ -69,6 +69,8 @@ export default function PeriodSwitch({ periods }: Props) {
 }
 
 const GridCentered = styled.fieldset`
+	position: relative;
+	z-index: 1;
 	display: grid;
 	grid-template-columns: 1.15fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
