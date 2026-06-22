@@ -128,7 +128,7 @@ const VisibleContainer = styled.span<{
 	z-index: 1;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	padding: 0 ${({ theme }) => theme.spacings.sm};
-	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
+	margin: 0 ${({ theme }) => theme.spacings.xxs};
 	align-items: ${({ $alignItems }) => $alignItems};
 `
 const LabelBody = styled(Body)`
