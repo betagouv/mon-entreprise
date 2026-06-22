@@ -85,7 +85,7 @@ export default function SimulateurPageLayout({
 
 			{beta && <BetaBanner />}
 
-			{children}
+			{inIframe ? <Conteneur>{children}</Conteneur> : children}
 
 			{!inIframe && (
 				<>
@@ -106,6 +106,9 @@ export default function SimulateurPageLayout({
 	)
 }
 
+const Conteneur = styled.div`
+	padding: 0 ${({ theme }) => theme.spacings.xxxs};
+`
 const StyledSpan = styled.span`
 	margin-right: ${({ theme }) => theme.spacings.sm};
 `
