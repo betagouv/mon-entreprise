@@ -3,6 +3,7 @@ import {
 	flip,
 	offset,
 	shift,
+	Strategy,
 	useFloating,
 } from '@floating-ui/react-dom'
 import { ReactNode, useId, useState } from 'react'
@@ -60,12 +61,9 @@ export const Tooltip = ({
 					id={id}
 					ref={refs.setFloating}
 					role="tooltip"
-					style={{
-						position: strategy,
-						top: y ?? 0,
-						left: x ?? 0,
-						width: 'max-content',
-					}}
+					position={strategy}
+					top={y ?? 0}
+					left={x ?? 0}
 				>
 					{tooltip}
 				</StyledTooltip>
@@ -74,21 +72,30 @@ export const Tooltip = ({
 	)
 }
 
-const StyledTooltip = styled.span`
+const StyledTooltip = styled.span.withConfig({
+	shouldForwardProp: (prop) => !['position', 'top', 'left'].includes(prop),
+})<{
+	position: Strategy
+	top: number
+	left: number
+}>`
+	position: ${({ position }) => position};
+	top: ${({ top }) => `${top}px`};
+	left: ${({ left }) => `${left}px`};
+	width: max-content;
 	max-width: 20rem;
-
 	opacity: 1 !important;
+	z-index: 100;
+	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-size: ${({ theme }) => theme.fontSizes.min};
 	line-height: ${({ theme }) => theme.lineHeights.sm};
+	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	background: ${({ theme }) => theme.colors.extended.grey[800]};
-	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
 	border: 1px solid
 		${({ theme }) =>
 			theme.darkMode ? theme.colors.extended.dark[500] : 'transparent'};
-	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
-	z-index: 100;
 	pointer-events: none;
 	* {
 		color: ${({ theme }) => theme.colors.extended.grey[100]};
