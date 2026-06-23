@@ -1,6 +1,6 @@
 import Plausible from 'plausible-tracker'
 
-import { trackingConfig } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement/environnement'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 
 class PlausibleService {
@@ -15,7 +15,8 @@ class PlausibleService {
 
 		if (this.plausible || this.isTrackingDisabled) return
 
-		const { domaine, hôteApi, suivreLocalhost } = trackingConfig.plausible
+		const { domaine, hôteApi, suivreLocalhost } =
+			environnement.tracking.plausible
 
 		this.plausible = Plausible({
 			domain: domaine,

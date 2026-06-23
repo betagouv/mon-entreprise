@@ -6,7 +6,7 @@ import {
 	PianoTracker,
 } from '@/components/PianoAnalytics/PianoTracker'
 import { PianoTrackerContext } from '@/components/PianoAnalytics/PianoTrackerContext'
-import { trackingConfig } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement/environnement'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import { scheduleWhenIdle } from '@/utils/polyfill'
 
@@ -25,7 +25,7 @@ export function PianoTrackerProvider({
 		const script = prepareScript()
 
 		script.onload = () => {
-			const siteId = trackingConfig.piano.siteId
+			const siteId = environnement.tracking.piano.siteId
 
 			const PianoTrackerClass = createPianoTracker(
 				siteId,
