@@ -6966,12 +6966,12 @@ entreprise . imposition . IS . prorata temporis:
     the number of days to 30 days.
 
 
-    &gt; **Example for a financial year running from January 1 to October 15:**
+    > **Example for a financial year running from January 1 to October 15:**
 
-    &gt; theoretical prorata temporis = (9 full months + (15 days / 30)) / 12 =
+    > theoretical prorata temporis = (9 full months + (15 days / 30)) / 12 =
     79.17%.
 
-    &gt; - calculated prorata temporis = 288 days / 365 = 78.90
+    > - calculated prorata temporis = 288 days / 365 = 78.90
   note.fr: >
     Ici on rapporte le nombre de jours de l’exercice à 1 an. En réalité on
     devrait
@@ -8582,7 +8582,7 @@ protection sociale . retraite . base:
 
     > **Detailed calculation:** 50% x average annual income x pension prorata
 
-    &gt;
+    >
 
     > With :
 

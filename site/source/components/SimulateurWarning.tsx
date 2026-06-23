@@ -25,10 +25,10 @@ export default function SimulateurWarning({
 			>
 				{beta && (
 					<Body>
+						<Emoji emoji="🚧" />{' '}
 						<Trans i18nKey="simulateurs.warning.beta">
-							<Emoji emoji="🚧" />{' '}
 							<Strong>Cet outil est en version bêta</Strong>&nbsp;: nous
-							travaillons à valider les informations et les calculs, mais
+							travaillons à valider les informations et les calculs, mais{' '}
 							<Strong>des erreurs peuvent être présentes</Strong>.
 						</Trans>
 					</Body>

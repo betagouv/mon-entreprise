@@ -229,17 +229,6 @@ codeApe:
     title: What is the one-stop shop?
 common:
   useful-resources: Useful resources
-comparaisonRégimes:
-  description: When you set up your company, the choice of legal status will
-    <2>determine which social security scheme the manager is affiliated to</2>.
-    There are <4>three different</4> types, each with its own advantages and
-    disadvantages. Use this comparison to find the one that suits you best.
-  notif: <0><0>Find out which status is <2>best for your business</2> with the
-    <5>new status selection wizard</5>!</0></0>
-  warning-libéral-reglementé: "<0>This simulator does not take into account
-    regulated liberal professions. </0><1>These are subject to specific rules,
-    and have access to dedicated statutes: liberal practice companies
-    (SEL).</1><2><0>To find out more</0> </2>"
 components:
   conseillersEntreprises:
     description: Describe your project or problem and provide some background
@@ -525,14 +514,14 @@ pages:
     message: This page does not exist or no longer exists
     title: Page not found
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
-    page, but a declaration of compliance with <2>RGAA</2> 4.1,
-    which aims to define the general level of accessibility observed on the site
-    in accordance with regulations. This page is mandatory to comply with RGAA
-    4.1.</3><4>What is digital accessibility?</4><5>An accessible website is one
-    that enables all Internet users to access its content without difficulty,
-    including people with disabilities who use specialized software or
-    hardware.</5><6>An accessible site enables, for example :</6><7><0>Navigate
-    with voice synthesizers or Braille displays (used in particular by blind or
+    page, but a declaration of compliance with <2>RGAA</2> 4.1, which aims to
+    define the general level of accessibility observed on the site in accordance
+    with regulations. This page is mandatory to comply with RGAA 4.1.</3><4>What
+    is digital accessibility?</4><5>An accessible website is one that enables
+    all Internet users to access its content without difficulty, including
+    people with disabilities who use specialized software or hardware.</5><6>An
+    accessible site enables, for example :</6><7><0>Navigate with voice
+    synthesizers or Braille displays (used in particular by blind or
     partially-sighted Internet users).</0><1>Customize the site's display
     according to your needs (enlarging characters, changing colors,
     etc.).</1><2>Navigate without using the mouse, with the keyboard only or via
@@ -546,17 +535,17 @@ pages:
     compliant with the RGAA <5>(référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
     derogations listed below.</13><14>Test resultsThe</14><15>compliance audit
-    carried out by <2>boscop</2> reveals that :</15><16><0>93.65% of
-    RGAA criteria are met.</0><1>The site's average compliance rate is
-    98%.</1><2>The \"Simulateur de revenus pour salarié\" page has a compliance
-    rate of 100%.</2></16><17>Number of applicable criteria: 63; Number of
-    compliant criteria: 59; Number of non-compliant
-    criteria:</17><18>4Non-accessible contentList of</18><19>non-compliant
-    criteria:<1><0>Some links are not explicit.</0><1>Some scripts are not
-    compatible with assistive technologies.</1><2>For some scripts that initiate
-    a context switch, the user is not warned or has no control over
-    it.</2><3>For certain forms, certain legends associated with a grouping of
-    fields of the same nature are not relevant.</3></1></19><20>Derogation
+    carried out by <2>boscop</2> reveals that :</15><16><0>93.65% of RGAA
+    criteria are met.</0><1>The site's average compliance rate is 98%.</1><2>The
+    \"Simulateur de revenus pour salarié\" page has a compliance rate of
+    100%.</2></16><17>Number of applicable criteria: 63; Number of compliant
+    criteria: 59; Number of non-compliant criteria:</17><18>4Non-accessible
+    contentList of</18><19>non-compliant criteria:<1><0>Some links are not
+    explicit.</0><1>Some scripts are not compatible with assistive
+    technologies.</1><2>For some scripts that initiate a context switch, the
+    user is not warned or has no control over it.</2><3>For certain forms,
+    certain legends associated with a grouping of fields of the same nature are
+    not relevant.</3></1></19><20>Derogation
     for</20><21>disproportionate</21><20>burdenNothingContents</20><22>not
     subject to the accessibility</22><23>obligationNothing</23><24>Establishment
     of this accessibility declaration</24> <26>This accessibility declaration
@@ -1548,6 +1537,11 @@ pages:
         info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
     comparaison-statuts:
       accordion-title: Compare...
+      description: When you start your business, the legal structure you choose will
+        <2>determine which social security system the business owner is enrolled
+        in</2>. There are <4>three different</4> options, each with its own
+        advantages and disadvantages. Use this comparison to find the one that
+        best suits your needs.
       items:
         gestion:
           conjoint:
@@ -1696,6 +1690,9 @@ pages:
           label: Activate final payment in simulation
       montants:
         CA: Estimated sales
+      notif: <0><0>Find out which business structure is the <2>best fit for your
+        business</2> with the help of the <5>new business structure selection
+        wizard</5> !</0></0>
       option-applicable: Applicable option.
       option-non-applicable: Option not applicable.
       option-sous-conditions: Option available subject to conditions.
@@ -1725,6 +1722,10 @@ pages:
       shortname: Status comparison
       title: Legal status comparator
       warning:
+        PLR: "<0>This simulator does not take into account regulated professional
+          practices. </0><1>This is because these professions are subject to
+          specific rules and have access to a dedicated legal structure:
+          professional service companies (SEL).</1><2><0>Learn more</0> </2>"
         réforme:
           aria-label: Read the page dedicated to the reform of the contribution base and
             scale on the Urssaf website, new window
@@ -1802,8 +1803,8 @@ pages:
         trader must pay social security contributions to the authorities. These
         contributions are used to finance the social security system, and give
         entitlement to pension and health insurance benefits. They are also used
-        to finance vocational training.</1><2><0></0> <2>See details of
-        how contributions are calculatedDon</2></2><3>'t forget to deduct all
+        to finance vocational training.</1><2><0></0> <2>See details of how
+        contributions are calculatedDon</2></2><3>'t forget to deduct all
         expenses incurred in the course of your business (equipment, raw
         materials, premises, transport). These are deductible from the company's
         income, which means you won't pay tax or social security contributions
@@ -1954,8 +1955,8 @@ pages:
       warning:
         année-courante: The amount calculated corresponds to <2>contributions for the
           year {{year}} </2> (for an income of {{year}}).
-        auto-entrepreneur: This simulator <1>does not apply to auto-entrepreneurs</1>
-          , who have their own dedicated <4>income simulator</4> .
+        auto-entrepreneur: This simulator <1>does not apply to auto-entrepreneurs</1> ,
+          who have their own dedicated <4>income simulator</4> .
         double-régime: This simulator does not take into account the situation of users
           who have <2>two different tax regimes</2> (actual and micro-tax
           regimes) in the same year.
@@ -2366,8 +2367,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>&lt;/0> <2> This tool is in beta&lt;/2> : We are working to validate
-      the information and calculations,<4>but errors may be present</4>."
+    beta: "<0>This tool is in beta</0> : We are working to validate the
+      information and calculations, but <3>errors may still be present</3>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand
