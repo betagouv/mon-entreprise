@@ -12,17 +12,19 @@ import {
 	useNavigationType,
 } from 'react-router-dom'
 
-if (BRANCH_NAME && IS_STAGING) {
+import { environnement } from '@/services/environnement/environnement'
+
+if (environnement.branche && environnement.déployé === 'staging') {
 	// eslint-disable-next-line no-console
 	console.info(
-		`ℹ Vous êtes sur la branche : %c${BRANCH_NAME}`,
+		`ℹ Vous êtes sur la branche : %c${environnement.branche}`,
 		'font-weight: bold; text-decoration: underline;'
 	)
 }
 
-if (!import.meta.env.SSR && (IS_PRODUCTION || IS_STAGING)) {
+if (!import.meta.env.SSR && environnement.déployé !== 'développement') {
 	init({
-		release: SENTRY_RELEASE_NAME,
+		release: environnement.sentryRelease,
 		dsn: 'https://d857393f4cfb40eebc0b9b54893bab23@sentry.incubateur.net/9',
 		integrations: [
 			new CaptureConsole({ levels: ['error'] }),

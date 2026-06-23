@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
+import { environnement } from '@/services/environnement/environnement'
+
 export const useSiteUrl = () => {
 	const language = useTranslation().i18n.language
 
-	return language === 'fr'
-		? import.meta.env.VITE_FR_BASE_URL
-		: import.meta.env.VITE_EN_BASE_URL
+	return language === 'fr' ? environnement.urls.fr : environnement.urls.en
 }

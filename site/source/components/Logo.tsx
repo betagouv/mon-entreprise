@@ -7,6 +7,7 @@ import logoSvgENDark from '@/assets/images/logo-mycompany_white.svg'
 import logoSvgEN from '@/assets/images/logo-mycompany.svg'
 import { Link } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
+import { environnement } from '@/services/environnement/environnement'
 
 /* Figma source: https://www.figma.com/file/YJUpRNO12lcPUDsEYEXzT9/logo-monentreprisee-urssaf-edition */
 
@@ -44,7 +45,7 @@ export function LogoWithLink() {
 
 	return (
 		<LogoContainer
-			href={import.meta.env.VITE_FR_BASE_URL}
+			href={environnement.urls.fr}
 			target="_blank"
 			rel="noreferrer"
 			aria-label={t('Accéder au site mon-entreprise, nouvelle fenêtre')}
