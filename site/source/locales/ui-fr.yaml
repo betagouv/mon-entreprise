@@ -242,17 +242,6 @@ codeApe:
     title: Qu’est-ce que le guichet unique ?
 common:
   useful-resources: Ressources utiles
-comparaisonRégimes:
-  description: Lorsque vous créez votre entreprise, le choix du statut juridique
-    va <2>déterminer à quel régime social le dirigeant est affilié</2>. Il en
-    existe <4>trois différents</4>, avec chacun ses avantages et inconvénients.
-    Avec ce comparatif, trouvez celui qui vous correspond le mieux.
-  notif: <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
-    grâce au <5>nouvel assistant au choix du statut</5> !</0></0>
-  warning-libéral-reglementé: "<0>Ce simulateur ne prend pas en compte les
-    activités libérales réglementées. </0><1>En effet, ces dernières sont
-    soumises à des règles spécifiques, et ont accès à des statuts dédiés : les
-    sociétés d'exercice libérale (SEL).</1><2><0>En savoir plus</0> </2>"
 components:
   conseillersEntreprises:
     description: Décrivez votre projet ou votre problème en donnant quelques
@@ -1644,6 +1633,11 @@ pages:
         info: "Cette simulation concerne l'année <2>{{currentEngineYear}}</2>. "
     comparaison-statuts:
       accordion-title: Comparer…
+      description: Lorsque vous créez votre entreprise, le choix du statut juridique
+        va <2>déterminer à quel régime social le dirigeant est affilié</2>. Il
+        en existe <4>trois différents</4>, avec chacun ses avantages et
+        inconvénients. Avec ce comparatif, trouvez celui qui vous correspond le
+        mieux.
       items:
         gestion:
           conjoint:
@@ -1797,6 +1791,8 @@ pages:
           label: Activer le versement libératoire dans la simulation
       montants:
         CA: Chiffre d’affaires estimé
+      notif: <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
+        grâce au <5>nouvel assistant au choix du statut</5> !</0></0>
       option-applicable: Option applicable.
       option-non-applicable: Option non applicable.
       option-sous-conditions: Option applicable sous conditions.
@@ -1826,6 +1822,10 @@ pages:
       shortname: Comparaison des statuts
       title: Comparateur de statut juridique
       warning:
+        PLR: "<0>Ce simulateur ne prend pas en compte les activités libérales
+          réglementées. </0><1>En effet, ces dernières sont soumises à des
+          règles spécifiques, et ont accès à des statuts dédiés : les sociétés
+          d'exercice libérale (SEL).</1><2><0>En savoir plus</0> </2>"
         réforme:
           aria-label: Lire la page dédiée à la réforme de l’assiette et du barème des
             cotisations sur le site de l’Urssaf, nouvelle fenêtre
@@ -2510,9 +2510,9 @@ simulateurs:
   précision:
     défaut: "Améliorez votre simulation en répondant aux questions :"
   warning:
-    beta: "<0></0> <2>Cet outil est en version bêta</2> : nous travaillons à valider
-      les informations et les calculs, mais<4>des erreurs peuvent être
-      présentes</4>."
+    beta: "<0>Cet outil est en version bêta</0> : nous travaillons à valider les
+      informations et les calculs, mais <3>des erreurs peuvent être
+      présentes</3>."
     fermer:
       aria-label: J’ai compris, fermer le message condensé.
       texte: J’ai compris

@@ -70,7 +70,7 @@ export const ComparateurDeStatuts = () => {
 				simulateurConfig={simulateurConfig}
 				isReady={isReady}
 			>
-				<Trans i18nKey="comparaisonRégimes.notif">
+				<Trans i18nKey="pages.simulateurs.comparaison-statuts.notif">
 					<Message type="secondary" icon={<Emoji emoji="✨" />} border={false}>
 						<Body>
 							Découvrez quel statut est le{' '}
@@ -83,7 +83,7 @@ export const ComparateurDeStatuts = () => {
 					</Message>
 				</Trans>
 				<Intro>
-					<Trans i18nKey="comparaisonRégimes.description">
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.description">
 						Lorsque vous créez votre entreprise, le choix du statut juridique va{' '}
 						<Strong>
 							déterminer à quel régime social le dirigeant est affilié

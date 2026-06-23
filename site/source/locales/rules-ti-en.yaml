@@ -453,7 +453,7 @@ entreprise . charges:
 
     > **Please note** :
 
-    &gt;
+    >
 
     > Social security contributions for self-employed workers
 
@@ -461,7 +461,7 @@ entreprise . charges:
 
     > **deductible from taxable income**.
 
-    &gt;
+    >
 
     > Since the reform of the social security base, they are not
 
@@ -2537,11 +2537,11 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     > The formula for calculating the degressive exemption is as follows:
 
-    &gt;
+    >
 
     > (PASS - R) x E / PASS
 
-    &gt;
+    >
 
     > where :
 
@@ -2634,17 +2634,17 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     > Proof:
 
-    &gt;> [(PASS - R) x E / PASS] / (R x T)
+    >> [(PASS - R) x E / PASS] / (R x T)
 
-    &gt;
+    >
 
     > = [(PASS - R) x (0.75 x PASS x T) / PASS] / (R x T)
 
-    &gt;
+    >
 
     > = [(PASS - R) x (0.75 / R)
 
-    &gt;
+    >
 
     > = 0.75 x (PASS - R) / R
 
@@ -2723,7 +2723,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     > for 2026 contributions will be as follows :
 
-    &gt;
+    >
 
     > 31 days of Acre remaining in 2026 / 365 days = 8.5%`.
   description.fr: >
@@ -6419,7 +6419,7 @@ protection sociale . retraite . base:
 
     > **Detailed calculation:** 50% x average annual income x pension prorata
 
-    &gt;
+    >
 
     > With :
 
@@ -6650,7 +6650,7 @@ protection sociale . retraite . complémentaire:
     supplementary pension contributions.
 
 
-    &gt; This amount may vary between now and your retirement, depending on
+    > This amount may vary between now and your retirement, depending on
 
     point value. Nevertheless, it provides an order of magnitude
 

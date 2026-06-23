@@ -30,7 +30,7 @@ export const DétailSimulation = ({ namedEngines }: Props) => {
 
 			<Condition expression="entreprise . activité . nature . libérale . réglementée">
 				<Message type="info">
-					<Trans i18nKey={'comparaisonRégimes.warning-libéral-reglementé'}>
+					<Trans i18nKey={'pages.simulateurs.comparaison-statuts.warning.PLR'}>
 						<H4 as="h3">
 							Ce simulateur ne prend pas en compte les activités libérales
 							réglementées.{' '}
