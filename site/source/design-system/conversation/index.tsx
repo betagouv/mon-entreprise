@@ -87,7 +87,7 @@ export function Conversation({
 			>
 				{children}
 
-				<Grid container spacing={2}>
+				<GridContainer container columnSpacing={2}>
 					{onPrevious && (
 						<Grid item xs={6} sm="auto">
 							<Button
@@ -133,8 +133,12 @@ export function Conversation({
 							{customVisualisation}
 						</Grid>
 					)}
-				</Grid>
+				</GridContainer>
 			</form>
 		</Container>
 	)
 }
+
+const GridContainer = styled(Grid)`
+	margin-top: ${({ theme }) => theme.spacings.md};
+`
