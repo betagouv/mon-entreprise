@@ -1,9 +1,9 @@
-import { useCallback } from 'react'
+import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
+import { Grid, RadioChoiceGroup, TitreObjectif } from '@/design-system'
 import { updateUnit } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
@@ -32,8 +32,8 @@ export default function PeriodSwitch({ periods }: Props) {
 	const periodsValue = periods || defaultPeriods
 
 	const onChange = useCallback(
-		(unit: string) => {
-			dispatch(updateUnit(unit))
+		(unit: Key) => {
+			dispatch(updateUnit(unit as string))
 		},
 		[dispatch]
 	)
@@ -42,27 +42,23 @@ export default function PeriodSwitch({ periods }: Props) {
 		<GridCentered>
 			<Grid item>
 				<TitreObjectif noWrap={true}>
-					<LegendBigger>
+					<LegendBigger id="periode-calcul-label">
 						{t('pages.simulateurs.commun.periode-calcul', 'Période de calcul')}
 					</LegendBigger>
 				</TitreObjectif>
 			</Grid>
 
 			<Grid item>
-				<PeriodSwitchToggleGroup
+				<RadioChoiceGroup
 					value={currentUnit}
 					onChange={onChange}
-					aria-label={t('Période de calcul')}
-				>
-					{periodsValue.map(({ label, unit }) => (
-						<span
-							key={unit}
-							className={currentUnit !== unit ? 'print-hidden' : ''}
-						>
-							<Radio value={unit}>{label}</Radio>
-						</span>
-					))}
-				</PeriodSwitchToggleGroup>
+					aria={{ labelledby: 'periode-calcul-label' }}
+					options={periodsValue.map(({ label, unit }) => ({
+						key: unit,
+						value: unit,
+						label,
+					}))}
+				/>
 			</Grid>
 		</GridCentered>
 	)
@@ -95,15 +91,4 @@ const GridCentered = styled.fieldset`
 const LegendBigger = styled.legend`
 	padding: 0.5rem 0 0;
 	font-size: ${({ theme }) => theme.fontSizes.lg};
-`
-const PeriodSwitchToggleGroup = styled(ToggleGroup)`
-	margin: 0 0 1.5rem;
-
-	input {
-		& + span {
-			padding: 0.5rem 0.75rem 0.5rem 0 !important;
-			border: 0 solid transparent !important;
-			background: none !important;
-		}
-	}
 `
