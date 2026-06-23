@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import RuleLink from '@/components/RuleLink'
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
@@ -176,7 +175,6 @@ export function SimulationGoal({
 			isInfoMode={isInfoMode}
 			small={small}
 			appear={appear}
-			explication={<ExplicableRule dottedName={dottedName} />}
 		/>
 	)
 }
