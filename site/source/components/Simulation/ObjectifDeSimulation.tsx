@@ -13,7 +13,6 @@ export type ObjectifDeSimulationProps = {
 	id: string
 	titre: React.ReactNode
 	description?: React.ReactNode
-	explication?: React.ReactNode
 	valeur: Option.Option<Montant> | string
 	small?: boolean
 	appear?: boolean
@@ -25,7 +24,6 @@ export function ObjectifDeSimulation({
 	id,
 	titre,
 	description,
-	explication,
 	valeur,
 	displayedUnit,
 	small = false,
@@ -44,17 +42,9 @@ export function ObjectifDeSimulation({
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal $small={small}>
-				<GridCentered
-					container
-					style={{
-						alignItems: 'baseline',
-						justifyContent: 'space-between',
-					}}
-					spacing={2}
-				>
+				<GridCentered container spacing={2}>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<TitreObjectif id={`${id}-label`}>{titre}</TitreObjectif>
-						{explication}
 
 						{description && <InfoBulle description={description} />}
 					</Grid>
@@ -76,6 +66,8 @@ const GridCentered = styled(Grid)`
 	display: grid;
 	grid-template-columns: 1.15fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
+	align-items: baseline;
+	justify-content: space-between;
 
 	& > div {
 		padding: 0;
