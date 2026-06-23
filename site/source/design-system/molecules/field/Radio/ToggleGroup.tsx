@@ -95,7 +95,6 @@ export const ToggleGroupContainer = styled.div<{
 	--radius: 0.25rem;
 	display: inline-flex;
 	flex-wrap: wrap;
-	margin-bottom: ${({ theme }) => theme.spacings.md};
 	${({ $mode }) =>
 		$mode === 'tab' &&
 		css`
