@@ -10,6 +10,10 @@ interface ImportMetaEnv {
 
 	VITE_AT_INTERNET_SITE_ID: string
 
+	VITE_PLAUSIBLE_DOMAIN?: string
+	VITE_PLAUSIBLE_API_HOST?: string
+	VITE_PLAUSIBLE_TRACK_LOCALHOST?: string
+
 	VITE_ALGOLIA_INDEX_PREFIX: string
 	VITE_ALGOLIA_SEARCH_KEY: string
 	VITE_ALGOLIA_APP_ID: string
@@ -58,6 +62,8 @@ declare const IS_STAGING: boolean
  * This variable is statically replaced during the build
  */
 declare const IS_DEVELOPMENT: boolean
+
+declare const ENVIRONNEMENT: import('../domaine/EnvironnementDeploye').EnvironnementDéployé
 
 /**
  * This variable is statically replaced during the build
