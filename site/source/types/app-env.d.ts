@@ -18,8 +18,6 @@ interface ImportMetaEnv {
 	VITE_ALGOLIA_SEARCH_KEY: string
 	VITE_ALGOLIA_APP_ID: string
 
-	VITE_COMPANY_SEARCH_HOST?: string
-
 	VITE_REDUX_TRACE?: string
 
 	/**
