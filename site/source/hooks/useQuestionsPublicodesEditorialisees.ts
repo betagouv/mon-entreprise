@@ -1,5 +1,6 @@
 import * as R from 'effect/Record'
 import { TFunction } from 'i18next'
+import Engine from 'publicodes'
 import { useCallback } from 'react'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -9,6 +10,7 @@ import { useEngineFromModèle } from './useEngineFromModèle'
 
 export type GroupeDeQuestionsPublicodes = {
 	titre: (t: TFunction) => string
+	réponse?: (engine: Engine, t: TFunction) => string
 	liste: QuestionPublicodes[]
 }
 
@@ -26,6 +28,7 @@ export function useQuestionsPublicodesÉditorialisées(
 		string,
 		{
 			titre: (t: TFunction) => string
+			réponse?: (engine: Engine, t: TFunction) => string
 			liste: Question[]
 		}
 	>
@@ -58,9 +61,10 @@ export function useQuestionsPublicodesÉditorialisées(
 			questionsPrincipales.map(toQuestionPublicodes),
 		groupesDeQuestionsPublicodes: R.map(
 			groupesDeQuestions,
-			({ titre, liste }) => {
+			({ titre, réponse, liste }) => {
 				return {
 					titre,
+					réponse,
 					liste: liste.map(toQuestionPublicodes),
 				}
 			}

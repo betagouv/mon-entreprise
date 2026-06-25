@@ -6,6 +6,12 @@ import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 import { Question } from '@/domaine/SimulationConfig'
 
+import {
+	réponseActivité,
+	réponseFoyerFiscal,
+	réponseImpôt,
+} from './reponsesEditorialisees'
+
 const questionActivitéPrincipale = {
 	libellé: (t: TFunction) =>
 		t(
@@ -80,6 +86,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 						'pages.simulateurs.comparaison-statuts.questions.activité.titre',
 						'Activité'
 					),
+				réponse: réponseActivité,
 				liste: [
 					questionActivitéPrincipale,
 					questionTypeActivité,
@@ -111,6 +118,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 						'pages.simulateurs.comparaison-statuts.questions.impôt.méthode',
 						'Méthode de calcul de l’impôt sur le revenu'
 					),
+				réponse: réponseImpôt,
 				liste: [
 					{
 						libellé: (t: TFunction) =>
@@ -130,17 +138,18 @@ export const configComparateurStatuts: ComparateurConfig = {
 					},
 				],
 			},
-			situationFamiliale: {
+			foyerFiscal: {
 				titre: (t: TFunction) =>
 					t(
-						'pages.simulateurs.comparaison-statuts.questions.situation-familiale.titre',
-						'Situation de famille'
+						'pages.simulateurs.comparaison-statuts.questions.foyer-fiscal.titre',
+						'Foyer fiscal'
 					),
+				réponse: réponseFoyerFiscal,
 				liste: [
 					{
 						libellé: (t: TFunction) =>
 							t(
-								'pages.simulateurs.comparaison-statuts.questions.situation-familiale.situation',
+								'pages.simulateurs.comparaison-statuts.questions.foyer-fiscal.situation',
 								'Situation de famille'
 							),
 						dottedName: 'impôt . foyer fiscal . situation de famille',
@@ -148,7 +157,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 					{
 						libellé: (t: TFunction) =>
 							t(
-								'pages.simulateurs.comparaison-statuts.questions.situation-familiale.enfants',
+								'pages.simulateurs.comparaison-statuts.questions.foyer-fiscal.enfants',
 								'Enfants à charge'
 							),
 						dottedName: 'impôt . foyer fiscal . enfants à charge',
@@ -156,7 +165,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 					{
 						libellé: (t: TFunction) =>
 							t(
-								'pages.simulateurs.comparaison-statuts.questions.situation-familiale.parent-isolé',
+								'pages.simulateurs.comparaison-statuts.questions.foyer-fiscal.parent-isolé',
 								'Parent isolé'
 							),
 						dottedName: 'impôt . foyer fiscal . parent isolé',

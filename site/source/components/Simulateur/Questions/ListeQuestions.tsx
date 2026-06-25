@@ -7,6 +7,7 @@ import { styled } from 'styled-components'
 import { Body, Button, EditIcon, Li, ReturnButton, Ul } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from '../../conversation/Explicable'
 import Value from '../../EngineValue/Value'
@@ -27,6 +28,7 @@ export const ListeQuestions = ({
 }: Props) => {
 	const { t } = useTranslation()
 	const { autoScrollToQuestions } = useAutoScrollToQuestions()
+	const engine = useEngine()
 
 	return (
 		<ScrollToElement when={autoScrollToQuestions}>
@@ -51,10 +53,14 @@ export const ListeQuestions = ({
 									</div>
 
 									<ValueContainer>
-										<Value
-											expression={premièreQuestion.id}
-											linkToRule={false}
-										/>
+										{groupe.réponse ? (
+											groupe.réponse(engine)
+										) : (
+											<Value
+												expression={premièreQuestion.id}
+												linkToRule={false}
+											/>
+										)}
 										<EditButton
 											light
 											onPress={() => onSélection(id)}
