@@ -18,6 +18,12 @@ const rateLimiter =
 				keyPrefix: 'rate-limiter',
 				points: 5, // 5 requests for ctx.ip
 				duration: 1, // per 1 second
+				// Compteur de secours en mémoire : si Redis est indisponible, le
+				// rate-limiting continue (par conteneur) plutôt que d'échouer.
+				insuranceLimiter: new RateLimiterMemory({
+					points: 5,
+					duration: 1,
+				}),
 		  })
 		: new RateLimiterMemory({
 				points: 5, // 5 requests for ctx.ip
