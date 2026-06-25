@@ -191,5 +191,6 @@ export const configComparateurStatuts: ComparateurConfig = {
 		"entreprise . chiffre d'affaires": '4000 €/mois',
 		'entreprise . charges': '1000 €/mois',
 		'entreprise . date de création': "période . début d'année",
+		'entreprise . imposition': "'IR'",
 	},
 }
