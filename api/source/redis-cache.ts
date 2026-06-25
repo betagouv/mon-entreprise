@@ -33,7 +33,8 @@ export const redisCacheMiddleware = () => {
 			.update(JSON.stringify(ctx.request.body))
 			.digest('base64')
 
-		const cachedResponse = await redis.get(cacheKey)
+		// Si Redis ne répond pas, on répond sans cache.
+		const cachedResponse = await redis.get(cacheKey).catch(() => null)
 		if (cachedResponse) {
 			ctx.body = JSON.parse(cachedResponse) as unknown
 
@@ -45,12 +46,15 @@ export const redisCacheMiddleware = () => {
 		if (ctx.status === 200) {
 			const responseCachedAt = Date.now()
 			const cacheExpiresAt = responseCachedAt + CACHE_EXPIRE * 1000
-			await redis.set(
-				cacheKey,
-				JSON.stringify({ responseCachedAt, cacheExpiresAt, ...ctx.body }),
-				'EX',
-				CACHE_EXPIRE
-			)
+			// Si Redis ne répond pas, on n'enregistre pas.
+			await redis
+				.set(
+					cacheKey,
+					JSON.stringify({ responseCachedAt, cacheExpiresAt, ...ctx.body }),
+					'EX',
+					CACHE_EXPIRE
+				)
+				.catch(() => undefined)
 		}
 	})
 
